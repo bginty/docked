@@ -199,11 +199,7 @@
             This form sends the brief to Docked for a manual preview build. The customer gets a review link first, then payment and domain purchase happen after approval.
           </p>
         </div>
-        <form class="brief-form" id="briefForm" action="https://formsubmit.co/briantginty21@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New Docked preview request" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="true" />
-          <input type="hidden" name="_next" value="https://docked.com.au/?submitted=1#brief" />
+        <form class="brief-form" id="briefForm" action="mailto:briantginty21@gmail.com" method="post" enctype="text/plain">
           <input type="hidden" name="workflow_stage" value="Preview requested - no payment collected" />
           <input type="hidden" name="manual_next_step" value="Check domain, build private preview, email preview link, collect approval, then arrange Docked-owned domain purchase and direct debit. Customer can buy domain and website outright for $499 anytime." />
           <input type="hidden" name="godaddy_check_link" id="godaddyCheckField" value="https://www.godaddy.com/en-au/domains" />
@@ -268,11 +264,7 @@
           </p>
         </div>
         <div class="approval-stack">
-          <form class="brief-form" id="approvalForm" action="https://formsubmit.co/briantginty21@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Docked preview approved - action required" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="true" />
-            <input type="hidden" name="_next" value="https://docked.com.au/?approved=1#approve" />
+          <form class="brief-form" id="approvalForm" action="mailto:briantginty21@gmail.com" method="post" enctype="text/plain">
             <input type="hidden" name="workflow_stage" value="Preview approved - purchase Docked-owned domain and arrange direct debit. Customer has $499 buyout option anytime." />
             <div class="field-row">
               <label>
