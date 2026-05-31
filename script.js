@@ -12,6 +12,9 @@ const chatLog = document.querySelector("#chatLog");
 const taskList = document.querySelector("#taskList");
 const briefForm = document.querySelector("#briefForm");
 const formStatus = document.querySelector("#formStatus");
+const domainInput = document.querySelector("#domainInput");
+const domainCheckLink = document.querySelector("#domainCheckLink");
+const godaddyCheckField = document.querySelector("#godaddyCheckField");
 
 function pickTasks(value) {
   const lower = value.toLowerCase();
@@ -43,21 +46,10 @@ automationForm?.addEventListener("submit", (event) => {
 });
 
 briefForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
   const formData = new FormData(briefForm);
-  const projectType = formData.get("projectType");
   const business = formData.get("business");
-  const email = formData.get("email");
-  const domain = formData.get("domain") || "No preferred domain";
-  const details = formData.get("details");
-
-  const subject = encodeURIComponent(`Docked build request: ${business}`);
-  const body = encodeURIComponent(
-    `Business: ${business}\nEmail: ${email}\nProject: ${projectType}\nDomain: ${domain}\n\nBuild request:\n${details}`,
-  );
-
-  formStatus.textContent = "Launch brief prepared. Opening email handoff now.";
-  window.location.href = `mailto:hello@docked.com.au?subject=${subject}&body=${body}`;
+  updateDomainCheckLink();
+  formStatus.textContent = `Sending ${business || "the"} preview request to Docked.`;
 });
 
 function escapeHtml(value) {
@@ -72,3 +64,17 @@ function escapeHtml(value) {
     return map[char];
   });
 }
+
+function updateDomainCheckLink() {
+  const rawDomain = domainInput?.value.trim();
+  const baseUrl = "https://www.godaddy.com/en-au/domainsearch/find";
+  const url = rawDomain
+    ? `${baseUrl}?domainToCheck=${encodeURIComponent(rawDomain)}`
+    : "https://www.godaddy.com/en-au/domains";
+
+  if (domainCheckLink) domainCheckLink.href = url;
+  if (godaddyCheckField) godaddyCheckField.value = url;
+}
+
+domainInput?.addEventListener("input", updateDomainCheckLink);
+updateDomainCheckLink();
