@@ -4,7 +4,7 @@ const palettes = {
   Premium: {
     name: "Premium",
     layout: "noir",
-    colors: ["#071f23", "#c9a45c", "#f5efe6", "#ffffff"],
+    colors: ["#16110d", "#b9854d", "#f5eee5", "#ffffff"],
     tone: "polished, confident and high-trust",
   },
   Bold: {
@@ -22,12 +22,14 @@ const palettes = {
   Warm: {
     name: "Warm",
     layout: "sunlit",
-    colors: ["#164e63", "#e76f51", "#fff7ed", "#ffffff"],
+    colors: ["#5a3023", "#d77f48", "#fff3e6", "#fffaf4"],
     tone: "approachable, human and polished",
   },
 };
 
 const preview = readPreview() || createFallbackPreview();
+preview.style = palettes[preview.style?.name] || palettes.Premium;
+preview.images = preview.images || [];
 const customerSite = document.querySelector("#customerSite");
 const statusText = document.querySelector("#previewStatus");
 const revisionForm = document.querySelector("#revisionForm");
@@ -50,7 +52,7 @@ revisionForm?.addEventListener("submit", (event) => {
   persistPreview(preview);
   appendMessage(`Updated the preview: ${summariseRevision(request)}.`);
   revisionInput.value = "";
-  saveLead("preview_revision", { revision_request: request, preview_snapshot: JSON.stringify(preview) });
+  saveLead("preview_revision", { revision_request: request, preview_snapshot: JSON.stringify(stripImageData(preview)) });
 });
 
 document.querySelectorAll("[data-prompt]").forEach((button) => {
@@ -77,7 +79,7 @@ focusButton?.addEventListener("click", () => {
 
 approveButton?.addEventListener("click", async () => {
   localStorage.setItem("docked_preview_approved", "true");
-  await saveLead("preview_approved", { preview_snapshot: JSON.stringify(preview) });
+  await saveLead("preview_approved", { preview_snapshot: JSON.stringify(stripImageData(preview)) });
   window.location.href = "index.html#approve";
 });
 
@@ -87,7 +89,7 @@ function renderPreview(data) {
   customerSite.style.setProperty("--accent", accent);
   customerSite.style.setProperty("--soft", soft);
   customerSite.style.setProperty("--site-paper", paper);
-  customerSite.className = `customer-site layout-${data.style.layout}`;
+  customerSite.className = `customer-site layout-${data.style.layout} industry-${industryClass(data.industry)}`;
 
   setText("#siteBusiness", data.business);
   setText("#brandMark", initials(data.business));
@@ -106,12 +108,15 @@ function renderPreview(data) {
   setText("#contactBusiness", data.business);
   setText("#contactDomain", data.domain);
   setText("#contactHeadline", `Launch ${data.business} with a site customers can trust.`);
-  setText("#contactCopy", `Docked can turn this approved direction into a live site on ${data.domain}, then keep it active for $30/month.`);
+  setText("#contactCopy", `${data.business} can use this page to turn visitors into ${data.goal.toLowerCase()} with a direct path from first impression to enquiry.`);
+  setText("#galleryHeadline", galleryHeadline(data));
   if (statusText) statusText.textContent = `${data.business} / ${data.domain}`;
 
   renderStats(data);
   renderServices(data);
   renderProof(data);
+  renderImages(data);
+  renderGallery(data);
 }
 
 function renderStats(data) {
@@ -139,6 +144,30 @@ function renderServices(data) {
 function renderProof(data) {
   document.querySelector("#proofList").innerHTML = data.trust
     .map((item) => `<div><strong>${escapeHtml(item)}</strong><p>${escapeHtml(proofCopy(item, data))}</p></div>`)
+    .join("");
+}
+
+function renderImages(data) {
+  const tile = document.querySelector("#visualImageTile");
+  if (!tile) return;
+
+  const image = data.images?.[0];
+  tile.classList.toggle("has-image", Boolean(image));
+  tile.style.backgroundImage = image ? `url("${image.dataUrl}")` : "";
+}
+
+function renderGallery(data) {
+  const gallery = document.querySelector("#galleryGrid");
+  if (!gallery) return;
+
+  const labels = galleryLabels(data);
+  const images = data.images?.length ? data.images : [];
+  gallery.innerHTML = labels
+    .map((label, index) => {
+      const image = images[index % images.length];
+      const style = image ? ` style="background-image:url('${image.dataUrl}')"` : "";
+      return `<article class="gallery-card"${style}><strong>${escapeHtml(label)}</strong><span>${escapeHtml(galleryCaption(label, data))}</span></article>`;
+    })
     .join("");
 }
 
@@ -208,13 +237,13 @@ function serviceCopy(service, data) {
 
 function proofCopy(item, data) {
   if (/mobile/i.test(item)) return "Designed to feel strong on phone screens first, where most early customers will see it.";
-  if (/seo|search/i.test(item)) return "The structure gives Docked a clean starting point for search-friendly page content.";
+  if (/seo|search/i.test(item)) return "The structure gives the business a clean starting point for search-friendly page content.";
   if (/trust|proof|premium/i.test(item)) return "The layout leads with credibility, clarity and a professional first impression.";
   return `Supports ${data.goal.toLowerCase()} without adding unnecessary complexity.`;
 }
 
 function quoteFor(data) {
-  return `${data.business} should feel established before a customer ever calls. This preview gives the final build a premium direction to work from.`;
+  return `${data.business} should feel established before a customer ever calls. This page gives visitors a reason to trust the business and take the next step.`;
 }
 
 function visualWord(data) {
@@ -248,8 +277,53 @@ function createFallbackPreview() {
     style: palettes.Premium,
     cta: "Enquire now",
     trust: ["Premium first impression", "Conversion-led sections", "Mobile-ready structure"],
+    images: [],
     generated_at: new Date().toISOString(),
     revisions: [],
+  };
+}
+
+function galleryHeadline(data) {
+  if (data.images?.length) return "Real customer images make the preview feel specific from the first scroll.";
+  if (/restaurant|cafe|venue/i.test(data.industry)) return "A visual section ready for venue, menu and atmosphere shots.";
+  if (/product|ecommerce/i.test(data.industry)) return "A product-led gallery ready for launch assets.";
+  if (/creative|portfolio/i.test(data.industry)) return "A portfolio-style gallery ready for finished work.";
+  return "A visual section ready for work examples, products and proof.";
+}
+
+function galleryLabels(data) {
+  if (/restaurant|cafe|venue/i.test(data.industry)) return ["Venue atmosphere", "Menu highlight", "Booking moment", "Local favourite"];
+  if (/health|clinic|wellness/i.test(data.industry)) return ["Calm welcome", "Treatment room", "Care detail", "Patient journey"];
+  if (/product|ecommerce/i.test(data.industry)) return ["Hero product", "Detail shot", "Lifestyle image", "Best seller"];
+  if (/creative|portfolio/i.test(data.industry)) return ["Featured work", "Project detail", "Studio process", "Client result"];
+  if (/trade|service/i.test(data.industry)) return ["Finished install", "Material detail", "Before and after", "Customer result"];
+  return ["Hero image", "Offer detail", "Customer proof", "Launch asset"];
+}
+
+function galleryCaption(label, data) {
+  if (data.images?.length) return "Uploaded customer image";
+  return `${label} placeholder for ${data.business}`;
+}
+
+function industryClass(industry) {
+  if (/trade|service/i.test(industry)) return "trade";
+  if (/restaurant|cafe|venue/i.test(industry)) return "restaurant";
+  if (/health|clinic|wellness/i.test(industry)) return "clinic";
+  if (/creative|portfolio/i.test(industry)) return "creative";
+  if (/product|ecommerce/i.test(industry)) return "product";
+  return "startup";
+}
+
+function stripImageData(data) {
+  if (!data) return data;
+  return {
+    ...data,
+    images: (data.images || []).map((image) => ({
+      name: image.name,
+      width: image.width,
+      height: image.height,
+    })),
+    uploaded_image_count: String((data.images || []).length),
   };
 }
 
