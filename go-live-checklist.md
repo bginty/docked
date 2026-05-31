@@ -4,7 +4,7 @@ The current website is a static GitHub Pages front-end with a full generated pre
 
 ## Required next access
 
-- Google Sheet webhook URL for lead capture
+- Google Apps Script web app URL for lead capture into the supplied Google Sheet
 - PayPal product/subscription confirmation for the live `$30/month` offer
 - Email inbox or forwarding for `hello@docked.com.au`
 - ABN/business details, refund terms, privacy policy, and terms of service
@@ -30,7 +30,18 @@ The current website is a static GitHub Pages front-end with a full generated pre
 
 ## Spreadsheet connection
 
-The site is ready for a Google Sheets webhook. Create a Google Sheet, add the Apps Script in `google-sheets-webhook.gs`, deploy it as a web app, then paste the web app URL into `SHEET_WEBHOOK_URL` in `script.js` and `preview.js`.
+The lead capture script is already pointed at this Google Sheet:
+
+`1BU1jclFfLkmNOMjdcMLFC6BcAtxhh7iP_bHMWxCG_qQ`
+
+To turn on live spreadsheet submissions, open the sheet, go to Extensions -> Apps Script, paste `google-sheets-webhook.gs`, deploy it as a web app, then paste the web app URL into `SHEET_WEBHOOK_URL` in both `script.js` and `preview.js`.
+
+Use these Apps Script deployment settings:
+
+- Execute as: Me
+- Who has access: Anyone
+
+Uploaded preview images are used to generate the live browser preview. The spreadsheet receives image file names and image counts, not the image data itself. Persistent image storage can be added later with Drive, Cloudinary, or S3.
 
 ## Current front-end files
 
