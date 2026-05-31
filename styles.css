@@ -38,6 +38,7 @@ a {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -426,6 +427,7 @@ legend {
 }
 
 input,
+select,
 textarea {
   width: 100%;
   border: 1px solid rgba(16, 32, 35, 0.18);
@@ -440,12 +442,27 @@ input {
   padding: 0 14px;
 }
 
+select {
+  height: 48px;
+  padding: 0 38px 0 14px;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #314347 50%),
+    linear-gradient(135deg, #314347 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 20px,
+    calc(100% - 14px) 20px;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
 textarea {
   padding: 14px;
   resize: vertical;
 }
 
 input:focus,
+select:focus,
 textarea:focus {
   border-color: var(--teal);
   box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.14);
@@ -601,6 +618,28 @@ textarea:focus {
   gap: 8px;
 }
 
+.domain-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  background: #f7fbf8;
+  border: 1px solid rgba(16, 32, 35, 0.12);
+  border-radius: 8px;
+}
+
+.domain-tools strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+.domain-tools p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
 fieldset {
   margin: 0;
   padding: 0;
@@ -612,6 +651,10 @@ fieldset {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   margin-top: 8px;
+}
+
+.segmented.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .segmented label {
@@ -640,6 +683,44 @@ fieldset {
   border-color: var(--teal-deep);
   background: var(--teal-deep);
   color: var(--white);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.feature-grid label {
+  position: relative;
+}
+
+.feature-grid input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.feature-grid span {
+  display: grid;
+  min-height: 44px;
+  place-items: center;
+  padding: 0 10px;
+  border: 1px solid rgba(16, 32, 35, 0.16);
+  border-radius: 8px;
+  background: #f7fbf8;
+  color: #314347;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+.feature-grid input:checked + span {
+  border-color: var(--teal);
+  background: #e1f5ef;
+  color: var(--teal-deep);
 }
 
 .form-status {
@@ -754,6 +835,9 @@ fieldset {
 
   .hero-stats,
   .field-row,
+  .domain-tools,
+  .feature-grid,
+  .segmented.four,
   .segmented {
     grid-template-columns: 1fr;
   }
