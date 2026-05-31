@@ -15,6 +15,8 @@ const formStatus = document.querySelector("#formStatus");
 const domainInput = document.querySelector("#domainInput");
 const domainCheckLink = document.querySelector("#domainCheckLink");
 const godaddyCheckField = document.querySelector("#godaddyCheckField");
+const approvalForm = document.querySelector("#approvalForm");
+const approvalStatus = document.querySelector("#approvalStatus");
 
 function pickTasks(value) {
   const lower = value.toLowerCase();
@@ -78,3 +80,7 @@ function updateDomainCheckLink() {
 
 domainInput?.addEventListener("input", updateDomainCheckLink);
 updateDomainCheckLink();
+
+approvalForm?.addEventListener("submit", () => {
+  approvalStatus.textContent = "Sending approval details to Docked.";
+});
