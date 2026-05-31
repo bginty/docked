@@ -1,6 +1,6 @@
 # Docked Go-Live Checklist
 
-The current website is a static GitHub Pages front-end with a full generated preview page, PayPal button, and RDAP-based domain signal check.
+The current website is a static GitHub Pages front-end with a full customer intake form, PayPal button, and RDAP-based domain signal check.
 
 ## Required next access
 
@@ -12,13 +12,12 @@ The current website is a static GitHub Pages front-end with a full generated pre
 
 ## Current customer flow
 
-1. Customer completes the brief on `docked.com.au`.
-2. Docked opens a full generated website preview on `preview.html`.
-3. Customer asks for improvements in plain language from the preview control panel.
-4. Customer approves the preview from the preview page.
-5. Approval details are prepared for spreadsheet capture.
-6. Customer pays through PayPal.
-7. Docked buys the domain, publishes the site, and keeps it active while the subscription is paid.
+1. Customer completes the full brief on `docked.com.au`.
+2. Docked receives the request details and prepares a free website or logo preview within 24 hours.
+3. Customer reviews the preview sent by Docked.
+4. Changes are handled in a simple back-and-forth loop until the customer is happy with the direction.
+5. Customer pays through PayPal or a direct debit arrangement after approval.
+6. Docked buys the domain, publishes the site, and keeps it active while the subscription is paid.
 
 ## Domain checking
 
@@ -41,7 +40,7 @@ Use these Apps Script deployment settings:
 - Execute as: Me
 - Who has access: Anyone
 
-Uploaded preview images are used to generate the live browser preview. The spreadsheet receives image file names and image counts, not the image data itself. Persistent image storage can be added later with Drive, Cloudinary, or S3.
+Uploaded images are requested for the manual preview process. The spreadsheet receives image file names and image counts, not the image data itself. Persistent image storage can be added later with Drive, Cloudinary, or S3.
 
 ## Current front-end files
 
