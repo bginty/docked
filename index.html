@@ -10,8 +10,8 @@
     />
     <meta name="theme-color" content="#09252a" />
     <link rel="preload" as="image" href="assets/docked-ai-studio-hero.svg" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="intake.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="intake.css?v=4" />
     <script src="https://www.paypal.com/sdk/js?client-id=BAA83q7cTy53N-f43UgIVqO62xDUufaYFpk8z0VnNv6t8cZnoYcsCN2db5eN-k2EN2gfGqBglvS9d3hTFU&components=hosted-buttons&disable-funding=venmo&currency=AUD"></script>
   </head>
   <body>
@@ -196,7 +196,7 @@
           <p class="eyebrow">Start a build</p>
           <h2 id="brief-title">Tell Docked what to make.</h2>
           <p>
-            Answer the brief and Docked will generate a first-pass preview on the page. Keep asking for changes until it feels right, then approve it for payment and launch.
+            Answer a sharper brief and Docked will open a full customer-style website preview on a separate page. Keep asking for changes until it feels right, then approve it for payment and launch.
           </p>
         </div>
         <form class="brief-form" id="briefForm">
@@ -214,12 +214,52 @@
               <input name="email" type="email" placeholder="you@example.com" required />
             </label>
           </div>
+          <div class="field-row">
+            <label>
+              Industry
+              <select name="industry" required>
+                <option value="">Choose industry</option>
+                <option>Trade or local service</option>
+                <option>Health, wellness or clinic</option>
+                <option>Restaurant, cafe or venue</option>
+                <option>Consulting or professional service</option>
+                <option>Product or ecommerce</option>
+                <option>Creative, portfolio or personal brand</option>
+                <option>Startup or SaaS</option>
+              </select>
+            </label>
+            <label>
+              Main goal
+              <select name="primary_goal" required>
+                <option value="">Choose goal</option>
+                <option>Get more enquiries</option>
+                <option>Take bookings</option>
+                <option>Sell products</option>
+                <option>Look credible for launch</option>
+                <option>Showcase work</option>
+                <option>Build a waitlist</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            Best customer or audience
+            <input name="target_customer" type="text" placeholder="Example: homeowners who need emergency plumbing after hours" required />
+          </label>
           <fieldset>
             <legend>Project type</legend>
             <div class="segmented">
               <label><input type="radio" name="projectType" value="Website" checked /> <span>Website</span></label>
               <label><input type="radio" name="projectType" value="Logo" /> <span>Logo</span></label>
               <label><input type="radio" name="projectType" value="Website + logo" /> <span>Both</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Design direction</legend>
+            <div class="segmented four">
+              <label><input type="radio" name="style_direction" value="Premium" checked /> <span>Premium</span></label>
+              <label><input type="radio" name="style_direction" value="Bold" /> <span>Bold</span></label>
+              <label><input type="radio" name="style_direction" value="Minimal" /> <span>Minimal</span></label>
+              <label><input type="radio" name="style_direction" value="Warm" /> <span>Warm</span></label>
             </div>
           </fieldset>
           <label>
@@ -244,6 +284,17 @@
               <input name="current_website" type="text" placeholder="Optional" />
             </label>
           </div>
+          <fieldset>
+            <legend>Must-have features</legend>
+            <div class="feature-grid">
+              <label><input type="checkbox" name="features" value="Booking" /> <span>Booking</span></label>
+              <label><input type="checkbox" name="features" value="Quote form" /> <span>Quote form</span></label>
+              <label><input type="checkbox" name="features" value="Gallery" /> <span>Gallery</span></label>
+              <label><input type="checkbox" name="features" value="Shop" /> <span>Shop</span></label>
+              <label><input type="checkbox" name="features" value="Reviews" /> <span>Reviews</span></label>
+              <label><input type="checkbox" name="features" value="Logo concepts" /> <span>Logo concepts</span></label>
+            </div>
+          </fieldset>
           <label>
             What should we build?
             <textarea name="details" rows="5" placeholder="Describe the business, style, pages, colours, logo ideas, and anything customers should be able to do." required></textarea>
@@ -252,65 +303,24 @@
             What should the preview include?
             <textarea name="preview_requirements" rows="4" placeholder="Example: homepage, services, contact form, booking button, logo options, colour preferences, competitor sites, and any must-have changes."></textarea>
           </label>
-          <button class="button primary wide" type="submit">Generate AI preview</button>
+          <label>
+            Visual references or design notes
+            <textarea name="visual_references" rows="3" placeholder="Example: premium black and gold, clean clinic style, bold startup feel, links to websites you like."></textarea>
+          </label>
+          <button class="button primary wide" type="submit">Create full website preview</button>
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
       </section>
 
-      <section class="preview-lab" id="preview" aria-labelledby="preview-title">
-        <div class="preview-copy">
-          <p class="eyebrow">AI preview studio</p>
-          <h2 id="preview-title">Preview, refine, then approve.</h2>
+      <section class="preview-teaser" id="preview" aria-labelledby="preview-title">
+        <div>
+          <p class="eyebrow">Full preview page</p>
+          <h2 id="preview-title">The customer sees an actual website direction, not a tiny mockup.</h2>
           <p>
-            The first preview appears here from the customer brief. Customers can ask for changes in plain language before moving to payment.
+            The preview opens as its own generated website with a Docked control bar for revisions, layout changes, and approval.
           </p>
         </div>
-        <div class="preview-workspace">
-          <div class="agent-chat" id="agentChat" aria-live="polite">
-            <div class="agent-message outgoing">Fill in the brief above and I will generate a first website or logo direction here.</div>
-          </div>
-          <div class="preview-board" aria-label="Generated site preview image">
-            <div class="preview-browser">
-              <span></span>
-              <span></span>
-              <span></span>
-              <strong id="previewDomain">preview.docked</strong>
-            </div>
-            <div class="site-preview-image" id="sitePreviewImage">
-              <div class="preview-nav">
-                <div class="generated-logo" id="generatedLogo">D</div>
-                <span id="previewBusiness">Docked preview</span>
-                <button type="button">Book now</button>
-              </div>
-              <div class="preview-hero-block">
-                <p id="previewKicker">AI website concept</p>
-                <h3 id="previewHeadline">Your generated preview will appear here.</h3>
-                <p id="previewSubcopy">Complete the brief and Docked will create a visual direction, page structure, and launch checklist.</p>
-              </div>
-              <div class="preview-service-row" id="previewServices">
-                <span>Homepage</span>
-                <span>Services</span>
-                <span>Contact</span>
-              </div>
-              <div class="preview-palette" aria-label="Preview colours">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-          </div>
-          <form class="revision-form" id="revisionForm">
-            <label for="revisionText">Ask for an improvement</label>
-            <div class="request-row">
-              <input id="revisionText" name="revisionText" type="text" placeholder="Example: make it more premium and add booking" disabled />
-              <button class="icon-button" type="submit" aria-label="Apply improvement" disabled>&rarr;</button>
-            </div>
-          </form>
-          <div class="preview-actions">
-            <button class="button secondary" id="downloadPreviewButton" type="button" disabled>Download preview image</button>
-            <button class="button primary" id="acceptPreviewButton" type="button" disabled>I am happy with this preview</button>
-          </div>
-        </div>
+        <a class="button secondary" href="preview.html">Open demo preview</a>
       </section>
 
       <section class="approval-section" id="approve" aria-labelledby="approve-title">
@@ -374,6 +384,6 @@
       <a href="mailto:briantginty21@gmail.com">briantginty21@gmail.com</a>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
   </body>
 </html>
