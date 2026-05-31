@@ -224,7 +224,7 @@ input {
   width: min(1180px, 100%);
   margin: 0 auto;
   background: var(--site-paper);
-  border: 1px solid rgba(7, 31, 35, 0.12);
+  border: 1px solid color-mix(in srgb, var(--brand) 16%, transparent);
   border-radius: 8px;
   box-shadow: var(--shadow);
   color: var(--site-ink);
@@ -424,6 +424,26 @@ input {
   line-height: 0.9;
 }
 
+.visual-tile.has-image {
+  position: relative;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+}
+
+.visual-tile.has-image::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 36%, rgba(0, 0, 0, 0.62));
+  content: "";
+}
+
+.visual-tile.has-image p {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.38);
+}
+
 .visual-tile strong {
   font-size: 3rem;
   line-height: 1;
@@ -539,8 +559,76 @@ input {
   color: var(--accent);
 }
 
-.process-section {
+.process-section,
+.gallery-section {
   background: color-mix(in srgb, var(--soft) 48%, #ffffff);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.9fr;
+  grid-auto-rows: 260px;
+  gap: 14px;
+}
+
+.gallery-card {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: 220px;
+  overflow: hidden;
+  padding: 22px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--brand) 20%, var(--soft)), color-mix(in srgb, var(--accent) 26%, #ffffff)),
+    repeating-linear-gradient(45deg, transparent 0 18px, rgba(255, 255, 255, 0.18) 18px 20px);
+  border: 1px solid rgba(7, 31, 35, 0.08);
+  border-radius: 8px;
+  color: #ffffff;
+  background-position: center;
+  background-size: cover;
+}
+
+.gallery-card:nth-child(2) {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 44%, #111111), color-mix(in srgb, var(--brand) 36%, #ffffff)),
+    repeating-linear-gradient(-35deg, transparent 0 14px, rgba(255, 255, 255, 0.16) 14px 16px);
+}
+
+.gallery-card:nth-child(3) {
+  background:
+    radial-gradient(circle at 70% 22%, color-mix(in srgb, var(--accent) 44%, #ffffff), transparent 32%),
+    linear-gradient(135deg, color-mix(in srgb, var(--brand) 70%, #ffffff), color-mix(in srgb, var(--soft) 62%, #000000));
+}
+
+.gallery-card:nth-child(4) {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--brand) 82%, #000000), color-mix(in srgb, var(--accent) 45%, #ffffff)),
+    repeating-linear-gradient(90deg, transparent 0 28px, rgba(255, 255, 255, 0.12) 28px 30px);
+}
+
+.gallery-card:first-child {
+  grid-row: span 2;
+}
+
+.gallery-card::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 34%, rgba(0, 0, 0, 0.62));
+  content: "";
+}
+
+.gallery-card strong,
+.gallery-card span {
+  position: relative;
+  z-index: 1;
+}
+
+.gallery-card strong {
+  font-size: 1.25rem;
+}
+
+.gallery-card span {
+  color: rgba(255, 255, 255, 0.76);
 }
 
 .process-grid {
@@ -611,20 +699,123 @@ body.focus-mode .customer-site {
   border-radius: 0;
 }
 
+.layout-noir .customer-nav {
+  background: #16110d;
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+.layout-noir .site-brand strong,
+.layout-noir .customer-nav nav {
+  color: #f7efe7;
+}
+
+.layout-noir .site-brand span {
+  background: var(--accent);
+  color: #16110d;
+}
+
+.layout-noir .site-cta {
+  background: var(--accent);
+  color: #16110d;
+}
+
+.layout-noir .customer-hero .primary-cta {
+  background: var(--accent);
+  color: #16110d;
+}
+
+.layout-noir .customer-hero .secondary-cta {
+  border-color: rgba(255, 248, 240, 0.26);
+  background: transparent;
+  color: #fff8f0;
+}
+
+.layout-noir .customer-hero {
+  background:
+    linear-gradient(112deg, #16110d 0 55%, #fff8f0 55% 100%),
+    var(--site-paper);
+}
+
+.layout-noir .hero-content h2,
+.layout-noir .hero-content > p:not(.site-eyebrow) {
+  color: #fff8f0;
+}
+
+.layout-noir .site-stats div {
+  background: rgba(255, 248, 240, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.layout-noir .site-stats dt,
+.layout-noir .site-stats dd {
+  color: #fff8f0;
+}
+
 .layout-electric .customer-hero {
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent) 20%, #ffffff), #ffffff 62%),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 26%, #ffffff), #ffffff 58%),
     var(--site-paper);
+}
+
+.layout-electric .customer-site {
+  border: 2px solid var(--brand);
+  box-shadow: 14px 14px 0 color-mix(in srgb, var(--accent) 82%, #111827);
+}
+
+.layout-electric .customer-nav {
+  background: #ffffff;
+}
+
+.layout-electric .hero-content h2 {
+  text-transform: uppercase;
 }
 
 .layout-atelier .hero-visual {
   background: #171717;
 }
 
+.layout-atelier .hero-content h2,
+.layout-atelier .section-lead h3,
+.layout-atelier .contact-section h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+
+.layout-atelier .customer-hero {
+  background:
+    linear-gradient(90deg, #ffffff 0 64%, color-mix(in srgb, var(--soft) 78%, #ffffff) 64%),
+    var(--site-paper);
+}
+
 .layout-sunlit .customer-hero {
   background:
-    linear-gradient(135deg, #fff7ed, color-mix(in srgb, var(--accent) 12%, #ffffff)),
+    linear-gradient(135deg, #fff7ef, color-mix(in srgb, var(--accent) 16%, #ffffff)),
     var(--site-paper);
+}
+
+.industry-trade .customer-hero {
+  background:
+    linear-gradient(105deg, color-mix(in srgb, var(--soft) 75%, #ffffff), #ffffff 54%),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.03) 0 2px, transparent 2px 34px);
+}
+
+.industry-restaurant .customer-hero,
+.industry-creative .customer-hero {
+  background:
+    radial-gradient(circle at 12% 20%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 30%),
+    linear-gradient(135deg, color-mix(in srgb, var(--soft) 90%, #ffffff), #ffffff);
+}
+
+.industry-clinic .customer-hero {
+  background:
+    linear-gradient(135deg, #f8fbfa, color-mix(in srgb, var(--soft) 60%, #ffffff)),
+    var(--site-paper);
+}
+
+.industry-product .customer-hero {
+  background:
+    radial-gradient(circle at 86% 16%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 24%),
+    linear-gradient(135deg, #ffffff, color-mix(in srgb, var(--soft) 68%, #ffffff));
 }
 
 @media (max-width: 1020px) {
@@ -674,11 +865,16 @@ body.focus-mode .customer-site {
   .visual-grid,
   .site-stats,
   .service-grid,
+  .gallery-grid,
   .process-grid {
     grid-template-columns: 1fr;
   }
 
   .visual-tile.large {
+    grid-row: auto;
+  }
+
+  .gallery-card:first-child {
     grid-row: auto;
   }
 }
