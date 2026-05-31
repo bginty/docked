@@ -2,10 +2,10 @@ const SHEET_WEBHOOK_URL = "";
 
 const taskSets = {
   logo: ["Analyse brand cues", "Generate logo routes", "Prepare colour variants", "Package export files"],
-  booking: ["Map booking action", "Add homepage CTA", "Connect booking destination", "Publish after approval"],
-  price: ["Find pricing mentions", "Update offer copy", "Check mobile layout", "Publish after approval"],
-  domain: ["Check domain options", "Prepare registration task", "Connect DNS records", "Confirm launch path"],
-  default: ["Interpret request", "Generate draft", "Send preview", "Publish after approval"],
+  booking: ["Map booking action", "Prepare booking layout", "Send free preview", "Publish after approval"],
+  price: ["Find pricing mentions", "Prepare offer copy", "Check mobile layout", "Send free preview"],
+  domain: ["Check domain options", "Prepare registration task", "Confirm launch path", "Send free preview"],
+  default: ["Review brief", "Check domain", "Prepare free preview", "Send within 24 hours"],
 };
 
 const palettes = {
@@ -48,8 +48,6 @@ const domainStatusField = document.querySelector("#domainStatusField");
 const domainLookupSourceField = document.querySelector("#domainLookupSourceField");
 const imageInput = document.querySelector("#imageInput");
 const uploadPreview = document.querySelector("#uploadPreview");
-const approvalForm = document.querySelector("#approvalForm");
-const approvalStatus = document.querySelector("#approvalStatus");
 
 let rdapBootstrap = null;
 
@@ -77,17 +75,22 @@ briefForm?.addEventListener("submit", async (event) => {
     formData.set("preferred_domain", domain);
   }
 
-  const uploadedImages = await prepareUploadedImages(imageInput?.files || []);
-  const preview = createPreview(formData, uploadedImages);
-  localStorage.setItem("docked_preview", JSON.stringify(preview));
-  localStorage.removeItem("docked_preview_approved");
-  await saveLead("preview_created", formData, {
-    uploaded_image_count: String(uploadedImages.length),
-    preview_snapshot: JSON.stringify(stripImageData(preview)),
+  const uploadedImageCount = countUploadedImages(imageInput?.files || []);
+  const result = await saveLead("free_preview_requested", formData, {
+    uploaded_image_count: String(uploadedImageCount),
+    preview_turnaround: "Free preview ready to view within 24 hours",
+    payment_status: "No payment collected",
   });
 
-  formStatus.textContent = "Creating full preview...";
-  window.location.href = "preview.html";
+  formStatus.textContent = result.sent
+    ? "Request received. We will have a free preview ready to view within 24 hours. No payment is needed yet."
+    : "Request prepared. We will have a free preview ready to view within 24 hours. No payment is needed yet.";
+  briefForm.reset();
+  if (uploadPreview) uploadPreview.innerHTML = "";
+  if (domainStatus) {
+    domainStatus.textContent = "Enter a domain to check.";
+    delete domainStatus.dataset.status;
+  }
 });
 
 domainInput?.addEventListener("blur", () => {
@@ -125,45 +128,8 @@ imageInput?.addEventListener("change", async () => {
   uploadPreview.innerHTML = images.map((image) => `<img src="${image.dataUrl}" alt="">`).join("");
 });
 
-approvalForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!approvalForm.reportValidity()) return;
-
-  const preview = readPreview();
-  const formData = new FormData(approvalForm);
-  if (preview) {
-    formData.set("approved_preview_snapshot", JSON.stringify(stripImageData(preview)));
-  }
-
-  const result = await saveLead("approval_submitted", formData, {
-    payment_provider: "PayPal",
-    subscription_price: "AUD 30 per month",
-    domain_buyout_price: "AUD 499",
-  });
-
-  approvalStatus.textContent = result.sent
-    ? "Approval details saved. Please complete PayPal if you have not already."
-    : "Approval details are ready. Spreadsheet capture will be connected before live customer intake.";
-});
-
-hydrateApprovalFromPreview();
 renderPaypalButton();
 window.addEventListener("load", renderPaypalButton);
-
-function hydrateApprovalFromPreview() {
-  if (!approvalForm) return;
-  const preview = readPreview();
-  const approved = localStorage.getItem("docked_preview_approved") === "true";
-  if (!preview || !approved) return;
-
-  approvalForm.elements.approved_business.value = preview.business || "";
-  approvalForm.elements.approved_email.value = preview.email || "";
-  approvalForm.elements.approved_domain.value = preview.domain || "";
-  approvalForm.elements.preview_link.value = `Generated Docked preview - ${new Date(preview.generated_at).toLocaleString("en-AU")}`;
-  const snapshotField = document.querySelector("#approvedPreviewSnapshotField");
-  if (snapshotField) snapshotField.value = JSON.stringify(stripImageData(preview));
-  approvalStatus.textContent = "Preview accepted. Complete the approval details and PayPal payment below.";
-}
 
 function createPreview(formData, uploadedImages = []) {
   const business = cleanValue(formData.get("business")) || "Your business";
@@ -359,6 +325,10 @@ function formDataToObject(formData) {
     else output[key] = value;
   }
   return output;
+}
+
+function countUploadedImages(files) {
+  return Array.from(files).filter((file) => file.type.startsWith("image/")).slice(0, 4).length;
 }
 
 async function prepareUploadedImages(files, limit = 4) {
