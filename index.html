@@ -196,13 +196,14 @@
           <p class="eyebrow">Start a build</p>
           <h2 id="brief-title">Tell Docked what to make.</h2>
           <p>
-            This form sends the brief to Docked for a manual preview build. The customer gets a review link first, then payment and domain purchase happen after approval.
+            Answer the brief and Docked will generate a first-pass preview on the page. Keep asking for changes until it feels right, then approve it for payment and launch.
           </p>
         </div>
-        <form class="brief-form" id="briefForm" action="mailto:briantginty21@gmail.com" method="post" enctype="text/plain">
-          <input type="hidden" name="workflow_stage" value="Preview requested - no payment collected" />
-          <input type="hidden" name="manual_next_step" value="Check domain, build private preview, email preview link, collect approval, then arrange Docked-owned domain purchase and direct debit. Customer can buy domain and website outright for $499 anytime." />
-          <input type="hidden" name="godaddy_check_link" id="godaddyCheckField" value="https://www.godaddy.com/en-au/domains" />
+        <form class="brief-form" id="briefForm">
+          <input type="hidden" name="workflow_stage" value="AI preview generated - no payment collected" />
+          <input type="hidden" name="domain_status" id="domainStatusField" value="Not checked yet" />
+          <input type="hidden" name="domain_lookup_source" id="domainLookupSourceField" value="RDAP" />
+          <input type="hidden" name="preview_snapshot" id="previewSnapshotField" value="" />
           <div class="field-row">
             <label>
               Business name
@@ -225,12 +226,13 @@
             Preferred domain
             <input id="domainInput" name="preferred_domain" type="text" placeholder="yourbusiness.com.au" />
           </label>
-          <div class="domain-tools">
+          <div class="domain-tools domain-checker">
             <div>
-              <strong>Check the domain first</strong>
-              <p>Open the preferred name in GoDaddy, then submit the brief so Docked can handle the preview and purchase steps.</p>
+              <strong>Check domain availability</strong>
+              <p id="domainHelp">Docked checks the registry signal first, then confirms the final purchase after approval.</p>
             </div>
-            <a class="button secondary" id="domainCheckLink" href="https://www.godaddy.com/en-au/domains" target="_blank" rel="noopener">Check on GoDaddy</a>
+            <button class="button secondary" id="domainCheckButton" type="button">Check domain</button>
+            <p class="domain-status" id="domainStatus" role="status">Enter a domain to check.</p>
           </div>
           <div class="field-row">
             <label>
@@ -250,9 +252,65 @@
             What should the preview include?
             <textarea name="preview_requirements" rows="4" placeholder="Example: homepage, services, contact form, booking button, logo options, colour preferences, competitor sites, and any must-have changes."></textarea>
           </label>
-          <button class="button primary wide" type="submit">Send preview request</button>
+          <button class="button primary wide" type="submit">Generate AI preview</button>
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
+      </section>
+
+      <section class="preview-lab" id="preview" aria-labelledby="preview-title">
+        <div class="preview-copy">
+          <p class="eyebrow">AI preview studio</p>
+          <h2 id="preview-title">Preview, refine, then approve.</h2>
+          <p>
+            The first preview appears here from the customer brief. Customers can ask for changes in plain language before moving to payment.
+          </p>
+        </div>
+        <div class="preview-workspace">
+          <div class="agent-chat" id="agentChat" aria-live="polite">
+            <div class="agent-message outgoing">Fill in the brief above and I will generate a first website or logo direction here.</div>
+          </div>
+          <div class="preview-board" aria-label="Generated site preview image">
+            <div class="preview-browser">
+              <span></span>
+              <span></span>
+              <span></span>
+              <strong id="previewDomain">preview.docked</strong>
+            </div>
+            <div class="site-preview-image" id="sitePreviewImage">
+              <div class="preview-nav">
+                <div class="generated-logo" id="generatedLogo">D</div>
+                <span id="previewBusiness">Docked preview</span>
+                <button type="button">Book now</button>
+              </div>
+              <div class="preview-hero-block">
+                <p id="previewKicker">AI website concept</p>
+                <h3 id="previewHeadline">Your generated preview will appear here.</h3>
+                <p id="previewSubcopy">Complete the brief and Docked will create a visual direction, page structure, and launch checklist.</p>
+              </div>
+              <div class="preview-service-row" id="previewServices">
+                <span>Homepage</span>
+                <span>Services</span>
+                <span>Contact</span>
+              </div>
+              <div class="preview-palette" aria-label="Preview colours">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <form class="revision-form" id="revisionForm">
+            <label for="revisionText">Ask for an improvement</label>
+            <div class="request-row">
+              <input id="revisionText" name="revisionText" type="text" placeholder="Example: make it more premium and add booking" disabled />
+              <button class="icon-button" type="submit" aria-label="Apply improvement" disabled>&rarr;</button>
+            </div>
+          </form>
+          <div class="preview-actions">
+            <button class="button secondary" id="downloadPreviewButton" type="button" disabled>Download preview image</button>
+            <button class="button primary" id="acceptPreviewButton" type="button" disabled>I am happy with this preview</button>
+          </div>
+        </div>
       </section>
 
       <section class="approval-section" id="approve" aria-labelledby="approve-title">
@@ -260,12 +318,13 @@
           <p class="eyebrow">Approve a preview</p>
           <h2 id="approve-title">Ready to go live?</h2>
           <p>
-            After the customer has reviewed the private preview link and requested any changes, this approval form sends Docked the details needed to prepare the Docked-managed domain purchase and subscription setup.
+            After the customer is happy with the generated preview, this captures the approval details for the spreadsheet, domain purchase, and subscription setup.
           </p>
         </div>
         <div class="approval-stack">
-          <form class="brief-form" id="approvalForm" action="mailto:briantginty21@gmail.com" method="post" enctype="text/plain">
+          <form class="brief-form" id="approvalForm">
             <input type="hidden" name="workflow_stage" value="Preview approved - purchase Docked-owned domain and arrange direct debit. Customer has $499 buyout option anytime." />
+            <input type="hidden" name="approved_preview_snapshot" id="approvedPreviewSnapshotField" value="" />
             <div class="field-row">
               <label>
                 Business name
@@ -281,8 +340,8 @@
               <input name="approved_domain" type="text" placeholder="yourbusiness.com.au" required />
             </label>
             <label>
-              Preview link
-              <input name="preview_link" type="url" placeholder="https://..." required />
+              Preview reference
+              <input name="preview_link" type="text" placeholder="Generated Docked preview or private URL" required />
             </label>
             <label>
               Final notes
@@ -292,7 +351,7 @@
               <input name="approval_confirmation" type="checkbox" value="Customer approved preview and wants Docked to arrange domain purchase and payment setup" required />
               <span>I approve this preview and want Docked to contact me to arrange payment/direct debit before publishing. I understand Docked manages the domain during the subscription, with a $499 buyout option for full website and domain handover.</span>
             </label>
-            <button class="button primary wide" type="submit">Approve preview</button>
+            <button class="button primary wide" type="submit">Submit approval details</button>
             <p class="form-status" id="approvalStatus" role="status"></p>
           </form>
           <div class="paypal-panel" aria-label="PayPal payment">
