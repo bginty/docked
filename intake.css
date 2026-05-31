@@ -25,3 +25,40 @@
     grid-template-columns: 1fr;
   }
 }
+
+.approval-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 0.95fr);
+  gap: clamp(30px, 6vw, 80px);
+  padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 64px);
+  background: #fbfff9;
+}
+
+.consent-row {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  color: #314347;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.consent-row input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+@media (max-width: 920px) {
+  .approval-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .approval-section {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+}
