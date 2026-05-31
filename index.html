@@ -12,6 +12,7 @@
     <link rel="preload" as="image" href="assets/docked-ai-studio-hero.svg" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="intake.css" />
+    <script src="https://www.paypal.com/sdk/js?client-id=BAA83q7cTy53N-f43UgIVqO62xDUufaYFpk8z0VnNv6t8cZnoYcsCN2db5eN-k2EN2gfGqBglvS9d3hTFU&components=hosted-buttons&disable-funding=venmo&currency=AUD"></script>
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
@@ -266,41 +267,51 @@
             After the customer has reviewed the private preview link and requested any changes, this approval form sends Docked the details needed to prepare the Docked-managed domain purchase and subscription setup.
           </p>
         </div>
-        <form class="brief-form" id="approvalForm" action="https://formsubmit.co/briantginty21@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="Docked preview approved - action required" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="true" />
-          <input type="hidden" name="_next" value="https://docked.com.au/?approved=1#approve" />
-          <input type="hidden" name="workflow_stage" value="Preview approved - purchase Docked-owned domain and arrange direct debit. Customer has $499 buyout option anytime." />
-          <div class="field-row">
+        <div class="approval-stack">
+          <form class="brief-form" id="approvalForm" action="https://formsubmit.co/briantginty21@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Docked preview approved - action required" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="true" />
+            <input type="hidden" name="_next" value="https://docked.com.au/?approved=1#approve" />
+            <input type="hidden" name="workflow_stage" value="Preview approved - purchase Docked-owned domain and arrange direct debit. Customer has $499 buyout option anytime." />
+            <div class="field-row">
+              <label>
+                Business name
+                <input name="approved_business" type="text" placeholder="Example: Northside Plumbing" required />
+              </label>
+              <label>
+                Customer email
+                <input name="approved_email" type="email" placeholder="you@example.com" required />
+              </label>
+            </div>
             <label>
-              Business name
-              <input name="approved_business" type="text" placeholder="Example: Northside Plumbing" required />
+              Approved domain
+              <input name="approved_domain" type="text" placeholder="yourbusiness.com.au" required />
             </label>
             <label>
-              Customer email
-              <input name="approved_email" type="email" placeholder="you@example.com" required />
+              Preview link
+              <input name="preview_link" type="url" placeholder="https://..." required />
             </label>
+            <label>
+              Final notes
+              <textarea name="approval_notes" rows="4" placeholder="Any final launch notes, preferred payment contact, or changes already agreed."></textarea>
+            </label>
+            <label class="consent-row">
+              <input name="approval_confirmation" type="checkbox" value="Customer approved preview and wants Docked to arrange domain purchase and payment setup" required />
+              <span>I approve this preview and want Docked to contact me to arrange payment/direct debit before publishing. I understand Docked manages the domain during the subscription, with a $499 buyout option for full website and domain handover.</span>
+            </label>
+            <button class="button primary wide" type="submit">Approve preview</button>
+            <p class="form-status" id="approvalStatus" role="status"></p>
+          </form>
+          <div class="paypal-panel" aria-label="PayPal payment">
+            <div>
+              <p class="eyebrow">Payment</p>
+              <h3>Pay once the preview is approved</h3>
+              <p>Use PayPal when you are ready for Docked to move the approved website toward launch.</p>
+            </div>
+            <div id="paypal-container-ZGTCFXXGBGNKU"></div>
           </div>
-          <label>
-            Approved domain
-            <input name="approved_domain" type="text" placeholder="yourbusiness.com.au" required />
-          </label>
-          <label>
-            Preview link
-            <input name="preview_link" type="url" placeholder="https://..." required />
-          </label>
-          <label>
-            Final notes
-            <textarea name="approval_notes" rows="4" placeholder="Any final launch notes, preferred payment contact, or changes already agreed."></textarea>
-          </label>
-          <label class="consent-row">
-            <input name="approval_confirmation" type="checkbox" value="Customer approved preview and wants Docked to arrange domain purchase and payment setup" required />
-            <span>I approve this preview and want Docked to contact me to arrange payment/direct debit before publishing. I understand Docked manages the domain during the subscription, with a $499 buyout option for full website and domain handover.</span>
-          </label>
-          <button class="button primary wide" type="submit">Approve preview</button>
-          <p class="form-status" id="approvalStatus" role="status"></p>
-        </form>
+        </div>
       </section>
     </main>
 
