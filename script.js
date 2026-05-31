@@ -48,10 +48,15 @@ automationForm?.addEventListener("submit", (event) => {
 });
 
 briefForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
   const formData = new FormData(briefForm);
   const business = formData.get("business");
   updateDomainCheckLink();
-  formStatus.textContent = `Sending ${business || "the"} preview request to Docked.`;
+  openMailDraft({
+    subject: `New Docked preview request${business ? `: ${business}` : ""}`,
+    formData,
+  });
+  formStatus.textContent = `Email prepared for ${business || "the"} preview request.`;
 });
 
 function escapeHtml(value) {
@@ -81,12 +86,32 @@ function updateDomainCheckLink() {
 domainInput?.addEventListener("input", updateDomainCheckLink);
 updateDomainCheckLink();
 
-approvalForm?.addEventListener("submit", () => {
-  approvalStatus.textContent = "Sending approval details to Docked.";
+approvalForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(approvalForm);
+  const business = formData.get("approved_business");
+  openMailDraft({
+    subject: `Docked preview approved${business ? `: ${business}` : ""}`,
+    formData,
+  });
+  approvalStatus.textContent = "Approval email prepared for Docked.";
 });
 
 if (window.paypal?.HostedButtons) {
   paypal.HostedButtons({
     hostedButtonId: "ZGTCFXXGBGNKU",
   }).render("#paypal-container-ZGTCFXXGBGNKU");
+}
+
+function openMailDraft({ subject, formData }) {
+  const lines = [];
+  for (const [key, value] of formData.entries()) {
+    if (!value) continue;
+    const label = key.replaceAll("_", " ");
+    lines.push(`${label}: ${value}`);
+  }
+
+  const body = encodeURIComponent(lines.join("\n"));
+  const encodedSubject = encodeURIComponent(subject);
+  window.location.href = `mailto:briantginty21@gmail.com?subject=${encodedSubject}&body=${body}`;
 }
