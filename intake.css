@@ -34,6 +34,30 @@
   background: #fbfff9;
 }
 
+.approval-stack {
+  display: grid;
+  width: min(620px, 100%);
+  gap: 18px;
+}
+
+.paypal-panel {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(31, 48, 50, 0.07);
+}
+
+.paypal-panel h3 {
+  margin-bottom: 6px;
+}
+
+.paypal-panel p:last-child {
+  margin-bottom: 0;
+}
+
 .consent-row {
   display: grid;
   grid-template-columns: 20px minmax(0, 1fr);
