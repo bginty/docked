@@ -84,3 +84,9 @@ updateDomainCheckLink();
 approvalForm?.addEventListener("submit", () => {
   approvalStatus.textContent = "Sending approval details to Docked.";
 });
+
+if (window.paypal?.HostedButtons) {
+  paypal.HostedButtons({
+    hostedButtonId: "ZGTCFXXGBGNKU",
+  }).render("#paypal-container-ZGTCFXXGBGNKU");
+}
