@@ -258,6 +258,51 @@
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
       </section>
+
+      <section class="approval-section" id="approve" aria-labelledby="approve-title">
+        <div class="brief-copy">
+          <p class="eyebrow">Approve a preview</p>
+          <h2 id="approve-title">Ready to go live?</h2>
+          <p>
+            After the customer has reviewed the private preview link and requested any changes, this approval form sends Docked the details needed to prepare the domain purchase and subscription setup.
+          </p>
+        </div>
+        <form class="brief-form" id="approvalForm" action="https://formsubmit.co/briantginty21@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Docked preview approved - action required" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_next" value="https://docked.com.au/?approved=1#approve" />
+          <input type="hidden" name="workflow_stage" value="Preview approved - purchase domain and arrange direct debit" />
+          <div class="field-row">
+            <label>
+              Business name
+              <input name="approved_business" type="text" placeholder="Example: Northside Plumbing" required />
+            </label>
+            <label>
+              Customer email
+              <input name="approved_email" type="email" placeholder="you@example.com" required />
+            </label>
+          </div>
+          <label>
+            Approved domain
+            <input name="approved_domain" type="text" placeholder="yourbusiness.com.au" required />
+          </label>
+          <label>
+            Preview link
+            <input name="preview_link" type="url" placeholder="https://..." required />
+          </label>
+          <label>
+            Final notes
+            <textarea name="approval_notes" rows="4" placeholder="Any final launch notes, preferred payment contact, or changes already agreed."></textarea>
+          </label>
+          <label class="consent-row">
+            <input name="approval_confirmation" type="checkbox" value="Customer approved preview and wants Docked to arrange domain purchase and payment setup" required />
+            <span>I approve this preview and want Docked to contact me to arrange payment/direct debit before publishing.</span>
+          </label>
+          <button class="button primary wide" type="submit">Approve preview</button>
+          <p class="form-status" id="approvalStatus" role="status"></p>
+        </form>
+      </section>
     </main>
 
     <footer class="site-footer">
