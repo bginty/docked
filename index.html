@@ -102,13 +102,13 @@
           </li>
           <li>
             <span>02</span>
-            <h3>Docked prepares a preview</h3>
-            <p>We check the domain, create a private website or logo preview, and send the customer a review link before payment.</p>
+            <h3>Free preview within 24 hours</h3>
+            <p>We check the domain, review the brief, and prepare a website or logo preview for the customer to view.</p>
           </li>
           <li>
             <span>03</span>
-            <h3>Customer asks</h3>
-            <p>Changes are handled in a simple back-and-forth loop until the customer is happy with the direction.</p>
+            <h3>Customer reviews</h3>
+            <p>Changes are handled in a simple back-and-forth loop after the preview is sent.</p>
           </li>
           <li>
             <span>04</span>
@@ -120,13 +120,13 @@
 
       <section class="demo-band" id="demo" aria-labelledby="demo-title">
         <div class="demo-copy">
-          <p class="eyebrow">Automation preview</p>
+          <p class="eyebrow">Production workflow</p>
           <h2 id="demo-title">Ask once. The workflow knows what to do next.</h2>
           <p>
-            This front-end preview shows the customer experience: plain requests become structured production tasks for the Docked build system.
+            Plain requests become structured production tasks so Docked can prepare a free preview within 24 hours.
           </p>
         </div>
-        <div class="demo-panel" aria-label="Automation preview">
+        <div class="demo-panel" aria-label="Production workflow preview">
           <div class="chat-log" id="chatLog" aria-live="polite">
             <div class="message incoming">Can you make the homepage more premium and add a booking button?</div>
             <div class="message outgoing">Queued: hero rewrite, design pass, booking CTA, publish review.</div>
@@ -140,8 +140,8 @@
           </form>
           <ul class="task-list" id="taskList" aria-label="Generated tasks">
             <li><span></span> Interpret request</li>
-            <li><span></span> Generate draft</li>
-            <li><span></span> Send preview</li>
+            <li><span></span> Check domain</li>
+            <li><span></span> Prepare free preview</li>
             <li><span></span> Publish after approval</li>
           </ul>
         </div>
@@ -159,13 +159,13 @@
           <p class="price-label">Launch subscription</p>
           <p class="price"><span>$30</span>/month</p>
           <ul>
-            <li>Private website or logo preview before payment</li>
+            <li>Free website or logo preview within 24 hours</li>
             <li>Domain availability check and purchase handoff</li>
             <li>Plain-language update requests</li>
             <li>Hosted website or packaged logo files after approval</li>
             <li>$499 domain and website handover option</li>
           </ul>
-          <a class="button primary wide" href="#brief">Request a preview</a>
+          <a class="button primary wide" href="#brief">Request free preview</a>
           <p class="fine-print">Preview requests are free. Payment is taken after approval using PayPal. Under the subscription, Docked registers and manages the domain. Premium domains, paid add-ons, and third-party services can be billed separately.</p>
         </div>
       </section>
@@ -196,14 +196,13 @@
           <p class="eyebrow">Start a build</p>
           <h2 id="brief-title">Tell Docked what to make.</h2>
           <p>
-            Answer a sharper brief and Docked will open a full customer-style website preview on a separate page. Keep asking for changes until it feels right, then approve it for payment and launch.
+            Answer the brief and Docked will prepare a free website or logo preview for you to view within 24 hours. No payment is needed until you approve the direction.
           </p>
         </div>
         <form class="brief-form" id="briefForm">
-          <input type="hidden" name="workflow_stage" value="AI preview generated - no payment collected" />
+          <input type="hidden" name="workflow_stage" value="Free preview requested - no payment collected" />
           <input type="hidden" name="domain_status" id="domainStatusField" value="Not checked yet" />
           <input type="hidden" name="domain_lookup_source" id="domainLookupSourceField" value="RDAP" />
-          <input type="hidden" name="preview_snapshot" id="previewSnapshotField" value="" />
           <div class="field-row">
             <label>
               Business name
@@ -269,7 +268,7 @@
           <div class="domain-tools domain-checker">
             <div>
               <strong>Check domain availability</strong>
-              <p id="domainHelp">Docked checks the registry signal first, then confirms the final purchase after approval.</p>
+              <p id="domainHelp">Docked checks the registry signal first, then confirms the final purchase after you approve.</p>
             </div>
             <button class="button secondary" id="domainCheckButton" type="button">Check domain</button>
             <p class="domain-status" id="domainStatus" role="status">Enter a domain to check.</p>
@@ -296,7 +295,7 @@
             </div>
           </fieldset>
           <label class="file-field">
-            Upload images for the preview gallery
+            Upload images for the free preview
             <input id="imageInput" name="gallery_images" type="file" accept="image/*" multiple />
             <span>Choose up to 4 customer photos, product shots, work examples, venue images, or brand assets.</span>
           </label>
@@ -306,75 +305,32 @@
             <textarea name="details" rows="5" placeholder="Describe the business, style, pages, colours, logo ideas, and anything customers should be able to do." required></textarea>
           </label>
           <label>
-            What should the preview include?
+            What should the 24-hour preview include?
             <textarea name="preview_requirements" rows="4" placeholder="Example: homepage, services, contact form, booking button, logo options, colour preferences, competitor sites, and any must-have changes."></textarea>
           </label>
           <label>
             Visual references or design notes
             <textarea name="visual_references" rows="3" placeholder="Example: premium black and gold, clean clinic style, bold startup feel, links to websites you like."></textarea>
           </label>
-          <button class="button primary wide" type="submit">Create full website preview</button>
+          <button class="button primary wide" type="submit">Request free 24-hour preview</button>
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
       </section>
 
-      <section class="preview-teaser" id="preview" aria-labelledby="preview-title">
-        <div>
-          <p class="eyebrow">Full preview page</p>
-          <h2 id="preview-title">The customer sees an actual website direction, not a tiny mockup.</h2>
-          <p>
-            The preview opens as its own generated website with a Docked control bar for revisions, layout changes, and approval.
-          </p>
-        </div>
-        <a class="button secondary" href="preview.html">Open demo preview</a>
-      </section>
-
-      <section class="approval-section" id="approve" aria-labelledby="approve-title">
+      <section class="approval-section" id="payment" aria-labelledby="payment-title">
         <div class="brief-copy">
-          <p class="eyebrow">Approve a preview</p>
-          <h2 id="approve-title">Ready to go live?</h2>
+          <p class="eyebrow">Payment after approval</p>
+          <h2 id="payment-title">Pay only once you are happy with the free preview.</h2>
           <p>
-            After the customer is happy with the generated preview, this captures the approval details for the spreadsheet, domain purchase, and subscription setup.
+            Submit the brief first. Docked will send a preview within 24 hours, then payment starts only when you approve the website or logo for launch.
           </p>
         </div>
         <div class="approval-stack">
-          <form class="brief-form" id="approvalForm">
-            <input type="hidden" name="workflow_stage" value="Preview approved - purchase Docked-owned domain and arrange direct debit. Customer has $499 buyout option anytime." />
-            <input type="hidden" name="approved_preview_snapshot" id="approvedPreviewSnapshotField" value="" />
-            <div class="field-row">
-              <label>
-                Business name
-                <input name="approved_business" type="text" placeholder="Example: Northside Plumbing" required />
-              </label>
-              <label>
-                Customer email
-                <input name="approved_email" type="email" placeholder="you@example.com" required />
-              </label>
-            </div>
-            <label>
-              Approved domain
-              <input name="approved_domain" type="text" placeholder="yourbusiness.com.au" required />
-            </label>
-            <label>
-              Preview reference
-              <input name="preview_link" type="text" placeholder="Generated Docked preview or private URL" required />
-            </label>
-            <label>
-              Final notes
-              <textarea name="approval_notes" rows="4" placeholder="Any final launch notes, preferred payment contact, or changes already agreed."></textarea>
-            </label>
-            <label class="consent-row">
-              <input name="approval_confirmation" type="checkbox" value="Customer approved preview and wants Docked to arrange domain purchase and payment setup" required />
-              <span>I approve this preview and want Docked to contact me to arrange payment/direct debit before publishing. I understand Docked manages the domain during the subscription, with a $499 buyout option for full website and domain handover.</span>
-            </label>
-            <button class="button primary wide" type="submit">Submit approval details</button>
-            <p class="form-status" id="approvalStatus" role="status"></p>
-          </form>
           <div class="paypal-panel" aria-label="PayPal payment">
             <div>
               <p class="eyebrow">Payment</p>
-              <h3>Pay once the preview is approved</h3>
-              <p>Use PayPal when you are ready for Docked to move the approved website toward launch.</p>
+              <h3>Use this after preview approval</h3>
+              <p>Preview requests are free. Use PayPal only after Docked has sent your preview and you are ready to move toward launch.</p>
             </div>
             <div id="paypal-container-ZGTCFXXGBGNKU"></div>
           </div>
