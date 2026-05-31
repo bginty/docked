@@ -9,25 +9,29 @@ const taskSets = {
 };
 
 const palettes = {
-  premium: {
+  Premium: {
     name: "Premium",
-    colors: ["#073f43", "#f46f5f", "#fffaf3"],
-    mood: "confident, polished, and conversion-focused",
+    layout: "noir",
+    colors: ["#071f23", "#c9a45c", "#f5efe6", "#ffffff"],
+    tone: "polished, confident and high-trust",
   },
-  fresh: {
-    name: "Fresh",
-    colors: ["#0d9488", "#f7c948", "#f8fafc"],
-    mood: "friendly, modern, and easy to trust",
+  Bold: {
+    name: "Bold",
+    layout: "electric",
+    colors: ["#1338f2", "#ff5c35", "#fff6e8", "#111827"],
+    tone: "energetic, memorable and conversion-led",
   },
-  minimal: {
+  Minimal: {
     name: "Minimal",
-    colors: ["#18262a", "#d3a34c", "#ffffff"],
-    mood: "clean, direct, and professional",
+    layout: "atelier",
+    colors: ["#151515", "#9ca3af", "#f8fafc", "#ffffff"],
+    tone: "clean, precise and premium",
   },
-  energetic: {
-    name: "Energetic",
-    colors: ["#2f5bea", "#f46f5f", "#fff7ed"],
-    mood: "bright, active, and launch-ready",
+  Warm: {
+    name: "Warm",
+    layout: "sunlit",
+    colors: ["#164e63", "#e76f51", "#fff7ed", "#ffffff"],
+    tone: "approachable, human and polished",
   },
 };
 
@@ -42,39 +46,10 @@ const domainCheckButton = document.querySelector("#domainCheckButton");
 const domainStatus = document.querySelector("#domainStatus");
 const domainStatusField = document.querySelector("#domainStatusField");
 const domainLookupSourceField = document.querySelector("#domainLookupSourceField");
-const previewSnapshotField = document.querySelector("#previewSnapshotField");
-const approvedPreviewSnapshotField = document.querySelector("#approvedPreviewSnapshotField");
 const approvalForm = document.querySelector("#approvalForm");
 const approvalStatus = document.querySelector("#approvalStatus");
-const agentChat = document.querySelector("#agentChat");
-const revisionForm = document.querySelector("#revisionForm");
-const revisionText = document.querySelector("#revisionText");
-const acceptPreviewButton = document.querySelector("#acceptPreviewButton");
-const downloadPreviewButton = document.querySelector("#downloadPreviewButton");
-const sitePreviewImage = document.querySelector("#sitePreviewImage");
-const previewDomain = document.querySelector("#previewDomain");
-const previewBusiness = document.querySelector("#previewBusiness");
-const generatedLogo = document.querySelector("#generatedLogo");
-const previewKicker = document.querySelector("#previewKicker");
-const previewHeadline = document.querySelector("#previewHeadline");
-const previewSubcopy = document.querySelector("#previewSubcopy");
-const previewServices = document.querySelector("#previewServices");
 
-let previewState = null;
 let rdapBootstrap = null;
-
-function pickTasks(value) {
-  const lower = value.toLowerCase();
-  if (lower.includes("logo") || lower.includes("brand")) return taskSets.logo;
-  if (lower.includes("book") || lower.includes("call") || lower.includes("appointment")) return taskSets.booking;
-  if (lower.includes("price") || lower.includes("$") || lower.includes("cost")) return taskSets.price;
-  if (lower.includes("domain") || lower.includes(".com")) return taskSets.domain;
-  return taskSets.default;
-}
-
-function renderTasks(tasks) {
-  taskList.innerHTML = tasks.map((task) => `<li><span></span> ${task}</li>`).join("");
-}
 
 automationForm?.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -83,11 +58,8 @@ automationForm?.addEventListener("submit", (event) => {
 
   const tasks = pickTasks(request);
   chatLog.insertAdjacentHTML("beforeend", `<div class="message incoming">${escapeHtml(request)}</div>`);
-  chatLog.insertAdjacentHTML(
-    "beforeend",
-    `<div class="message outgoing">Queued: ${tasks.join(", ").toLowerCase()}.</div>`,
-  );
-  renderTasks(tasks);
+  chatLog.insertAdjacentHTML("beforeend", `<div class="message outgoing">Queued: ${tasks.join(", ").toLowerCase()}.</div>`);
+  taskList.innerHTML = tasks.map((task) => `<li><span></span> ${task}</li>`).join("");
   requestText.value = "";
   chatLog.scrollTop = chatLog.scrollHeight;
 });
@@ -103,19 +75,13 @@ briefForm?.addEventListener("submit", async (event) => {
     formData.set("preferred_domain", domain);
   }
 
-  previewState = createPreview(formData);
-  renderGeneratedPreview(previewState);
-  setPreviewSnapshot(previewState);
-  setPreviewControlsEnabled(true);
-  appendAgentMessage(
-    `I generated a ${previewState.style.name.toLowerCase()} preview for ${previewState.business}. Ask for changes below, or approve it when it feels right.`,
-  );
-  await saveLead("preview_generated", formData, {
-    preview_snapshot: JSON.stringify(previewState),
-  });
+  const preview = createPreview(formData);
+  localStorage.setItem("docked_preview", JSON.stringify(preview));
+  localStorage.removeItem("docked_preview_approved");
+  await saveLead("preview_created", formData, { preview_snapshot: JSON.stringify(preview) });
 
-  formStatus.textContent = "Preview generated below. Ask for changes or approve when happy.";
-  document.querySelector("#preview")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  formStatus.textContent = "Creating full preview...";
+  window.location.href = "preview.html";
 });
 
 domainInput?.addEventListener("blur", () => {
@@ -147,51 +113,14 @@ domainCheckButton?.addEventListener("click", async () => {
   }
 });
 
-revisionForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!previewState) return;
-
-  const request = revisionText.value.trim();
-  if (!request) return;
-
-  appendAgentMessage(request, "incoming");
-  applyRevision(previewState, request);
-  renderGeneratedPreview(previewState);
-  setPreviewSnapshot(previewState);
-  appendAgentMessage(`Updated preview: ${summariseRevision(request)}.`);
-  revisionText.value = "";
-
-  await saveLead("preview_revision", new FormData(briefForm), {
-    revision_request: request,
-    preview_snapshot: JSON.stringify(previewState),
-  });
-});
-
-acceptPreviewButton?.addEventListener("click", async () => {
-  if (!previewState || !approvalForm) return;
-
-  fillApprovalForm(previewState);
-  appendAgentMessage("Preview approved. I have moved the launch details into the approval step.");
-  await saveLead("preview_accepted", new FormData(briefForm), {
-    preview_snapshot: JSON.stringify(previewState),
-  });
-
-  approvalStatus.textContent = "Preview accepted. Complete the approval details and PayPal payment below.";
-  document.querySelector("#approve")?.scrollIntoView({ behavior: "smooth", block: "start" });
-});
-
-downloadPreviewButton?.addEventListener("click", () => {
-  if (!previewState) return;
-  downloadTextFile(`${slugify(previewState.business)}-docked-preview.svg`, buildPreviewSvg(previewState), "image/svg+xml");
-});
-
 approvalForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!approvalForm.reportValidity()) return;
 
+  const preview = readPreview();
   const formData = new FormData(approvalForm);
-  if (previewState) {
-    formData.set("approved_preview_snapshot", JSON.stringify(previewState));
+  if (preview) {
+    formData.set("approved_preview_snapshot", JSON.stringify(preview));
   }
 
   const result = await saveLead("approval_submitted", formData, {
@@ -205,134 +134,104 @@ approvalForm?.addEventListener("submit", async (event) => {
     : "Approval details are ready. Spreadsheet capture will be connected before live customer intake.";
 });
 
+hydrateApprovalFromPreview();
+renderPaypalButton();
+window.addEventListener("load", renderPaypalButton);
+
+function hydrateApprovalFromPreview() {
+  if (!approvalForm) return;
+  const preview = readPreview();
+  const approved = localStorage.getItem("docked_preview_approved") === "true";
+  if (!preview || !approved) return;
+
+  approvalForm.elements.approved_business.value = preview.business || "";
+  approvalForm.elements.approved_email.value = preview.email || "";
+  approvalForm.elements.approved_domain.value = preview.domain || "";
+  approvalForm.elements.preview_link.value = `Generated Docked preview - ${new Date(preview.generated_at).toLocaleString("en-AU")}`;
+  const snapshotField = document.querySelector("#approvedPreviewSnapshotField");
+  if (snapshotField) snapshotField.value = JSON.stringify(preview);
+  approvalStatus.textContent = "Preview accepted. Complete the approval details and PayPal payment below.";
+}
+
 function createPreview(formData) {
   const business = cleanValue(formData.get("business")) || "Your business";
-  const projectType = cleanValue(formData.get("projectType")) || "Website";
-  const domain = normalizeDomain(formData.get("preferred_domain")) || `${slugify(business)}.com.au`;
+  const industry = cleanValue(formData.get("industry")) || "Local business";
+  const goal = cleanValue(formData.get("primary_goal")) || "Get more enquiries";
+  const styleName = cleanValue(formData.get("style_direction")) || "Premium";
+  const style = palettes[styleName] || palettes.Premium;
+  const features = formData.getAll("features").map(cleanValue).filter(Boolean);
   const details = cleanValue(formData.get("details"));
-  const previewRequirements = cleanValue(formData.get("preview_requirements"));
-  const combined = `${business} ${details} ${previewRequirements} ${projectType}`.toLowerCase();
-  const style = chooseStyle(combined);
-  const services = chooseServices(combined, projectType);
+  const audience = cleanValue(formData.get("target_customer"));
+  const domain = normalizeDomain(formData.get("preferred_domain")) || `${slugify(business)}.com.au`;
+
+  const services = buildServices(industry, goal, features, details);
+  const headline = buildHeadline(business, industry, goal, details);
+  const subcopy = buildSubcopy(business, audience, goal, style);
 
   return {
     business,
     email: cleanValue(formData.get("email")),
     phone: cleanValue(formData.get("phone")),
-    current_website: cleanValue(formData.get("current_website")),
-    project_type: projectType,
+    industry,
+    goal,
+    project_type: cleanValue(formData.get("projectType")) || "Website",
+    target_customer: audience,
     domain,
-    style,
+    current_website: cleanValue(formData.get("current_website")),
+    details,
+    preview_requirements: cleanValue(formData.get("preview_requirements")),
+    visual_references: cleanValue(formData.get("visual_references")),
+    features,
     services,
-    headline: buildHeadline(business, combined, projectType),
-    subcopy: buildSubcopy(business, combined, projectType),
-    kicker: `${style.name} ${projectType.toLowerCase()} preview`,
-    changes: [],
+    headline,
+    subcopy,
+    style,
+    cta: goalToCta(goal),
+    trust: buildTrust(industry),
     generated_at: new Date().toISOString(),
+    revisions: [],
   };
 }
 
-function chooseStyle(value) {
-  if (value.includes("premium") || value.includes("luxury") || value.includes("high end")) return { ...palettes.premium };
-  if (value.includes("minimal") || value.includes("simple") || value.includes("clean")) return { ...palettes.minimal };
-  if (value.includes("bright") || value.includes("bold") || value.includes("fun") || value.includes("colour")) {
-    return { ...palettes.energetic };
-  }
-  return { ...palettes.fresh };
+function buildHeadline(business, industry, goal, details) {
+  const text = `${industry} ${goal} ${details}`.toLowerCase();
+  if (text.includes("booking")) return "Turn visits into booked jobs";
+  if (text.includes("sell") || text.includes("shop")) return "A storefront ready for customers";
+  if (text.includes("credible") || text.includes("launch")) return "Launch with a site customers trust";
+  if (text.includes("portfolio") || text.includes("showcase")) return "Show the work. Win the next brief.";
+  return `${business}, built to win better customers`;
 }
 
-function chooseServices(value, projectType) {
-  const services = [];
-  if (projectType.toLowerCase().includes("logo")) services.push("Logo routes");
-  if (value.includes("book") || value.includes("appointment")) services.push("Booking");
-  if (value.includes("quote") || value.includes("estimate")) services.push("Quote form");
-  if (value.includes("shop") || value.includes("product")) services.push("Products");
-  if (value.includes("gallery") || value.includes("photo")) services.push("Gallery");
-  if (value.includes("menu")) services.push("Menu");
-  if (value.includes("service")) services.push("Services");
-  services.push("Homepage", "Contact");
-  return [...new Set(services)].slice(0, 5);
+function buildSubcopy(business, audience, goal, style) {
+  const customer = audience || "the right customers";
+  return `${business} gets a ${style.tone} website direction built around ${customer}, with a clear path to ${goal.toLowerCase()}.`;
 }
 
-function buildHeadline(business, value, projectType) {
-  if (projectType === "Logo") return `${business} brand direction`;
-  if (value.includes("book")) return `${business} bookings made simple`;
-  if (value.includes("quote")) return `Get a fast quote from ${business}`;
-  return `${business}, ready to launch`;
+function buildServices(industry, goal, features, details) {
+  const text = `${industry} ${goal} ${details} ${features.join(" ")}`.toLowerCase();
+  const services = [...features];
+  if (text.includes("trade") || text.includes("service")) services.push("Services", "Fast enquiry");
+  if (text.includes("clinic") || text.includes("health")) services.push("Treatments", "Patient trust");
+  if (text.includes("restaurant") || text.includes("cafe") || text.includes("venue")) services.push("Menu", "Reservations");
+  if (text.includes("consult")) services.push("Expert positioning", "Discovery calls");
+  if (text.includes("shop") || text.includes("product") || text.includes("ecommerce")) services.push("Product showcase", "Checkout path");
+  services.push("Homepage", "About", "Contact");
+  return [...new Set(services)].slice(0, 6);
 }
 
-function buildSubcopy(business, value, projectType) {
-  if (projectType === "Logo") {
-    return `A generated logo system for ${business}, with colours, usage direction, and export-ready assets.`;
-  }
-  if (value.includes("premium") || value.includes("luxury")) {
-    return `A polished site direction for ${business}, designed to build trust quickly and move visitors toward enquiry.`;
-  }
-  return `A clear website direction for ${business}, with the key sections, calls to action, and launch path mapped out.`;
+function buildTrust(industry) {
+  if (/health|clinic|wellness/i.test(industry)) return ["Patient-first copy", "Trust-building proof", "Simple bookings"];
+  if (/restaurant|cafe|venue/i.test(industry)) return ["Menu-ready layout", "Mobile booking", "Local search focus"];
+  if (/product|ecommerce/i.test(industry)) return ["Product storytelling", "Checkout path", "Launch-ready SEO"];
+  return ["Premium first impression", "Conversion-led sections", "Mobile-ready structure"];
 }
 
-function renderGeneratedPreview(snapshot) {
-  const [primary, accent, background] = snapshot.style.colors;
-  sitePreviewImage?.style.setProperty("--preview-primary", primary);
-  sitePreviewImage?.style.setProperty("--preview-accent", accent);
-  sitePreviewImage?.style.setProperty("--preview-bg", background);
-
-  if (previewDomain) previewDomain.textContent = snapshot.domain;
-  if (previewBusiness) previewBusiness.textContent = snapshot.business;
-  if (generatedLogo) generatedLogo.textContent = initials(snapshot.business);
-  if (previewKicker) previewKicker.textContent = snapshot.kicker;
-  if (previewHeadline) previewHeadline.textContent = snapshot.headline;
-  if (previewSubcopy) previewSubcopy.textContent = snapshot.subcopy;
-  if (previewServices) {
-    previewServices.innerHTML = snapshot.services.map((service) => `<span>${escapeHtml(service)}</span>`).join("");
-  }
-}
-
-function applyRevision(snapshot, request) {
-  const lower = request.toLowerCase();
-  snapshot.changes.push({
-    request,
-    changed_at: new Date().toISOString(),
-  });
-
-  if (lower.includes("premium") || lower.includes("luxury")) snapshot.style = { ...palettes.premium };
-  if (lower.includes("minimal") || lower.includes("clean")) snapshot.style = { ...palettes.minimal };
-  if (lower.includes("bright") || lower.includes("bold") || lower.includes("colour") || lower.includes("coral")) {
-    snapshot.style = { ...palettes.energetic };
-  }
-  if (lower.includes("green") || lower.includes("teal")) snapshot.style = { ...palettes.fresh };
-  if (lower.includes("booking") || lower.includes("book")) snapshot.services = addService(snapshot.services, "Booking");
-  if (lower.includes("quote")) snapshot.services = addService(snapshot.services, "Quote form");
-  if (lower.includes("gallery") || lower.includes("photo")) snapshot.services = addService(snapshot.services, "Gallery");
-  if (lower.includes("logo") || lower.includes("brand")) snapshot.services = addService(snapshot.services, "Logo routes");
-  if (lower.includes("more direct")) snapshot.headline = `Work with ${snapshot.business} today`;
-  snapshot.kicker = `${snapshot.style.name} preview, revised`;
-}
-
-function summariseRevision(request) {
-  const tasks = pickTasks(request);
-  return tasks.join(", ").toLowerCase();
-}
-
-function setPreviewControlsEnabled(enabled) {
-  if (revisionText) revisionText.disabled = !enabled;
-  revisionForm?.querySelector("button")?.toggleAttribute("disabled", !enabled);
-  acceptPreviewButton?.toggleAttribute("disabled", !enabled);
-  downloadPreviewButton?.toggleAttribute("disabled", !enabled);
-}
-
-function fillApprovalForm(snapshot) {
-  approvalForm.elements.approved_business.value = snapshot.business;
-  approvalForm.elements.approved_email.value = snapshot.email || "";
-  approvalForm.elements.approved_domain.value = snapshot.domain;
-  approvalForm.elements.preview_link.value = `Generated Docked preview - ${new Date(snapshot.generated_at).toLocaleString("en-AU")}`;
-  setPreviewSnapshot(snapshot);
-}
-
-function setPreviewSnapshot(snapshot) {
-  const value = JSON.stringify(snapshot);
-  if (previewSnapshotField) previewSnapshotField.value = value;
-  if (approvedPreviewSnapshotField) approvedPreviewSnapshotField.value = value;
+function goalToCta(goal) {
+  if (/booking/i.test(goal)) return "Book now";
+  if (/sell/i.test(goal)) return "Shop now";
+  if (/waitlist/i.test(goal)) return "Join the waitlist";
+  if (/showcase/i.test(goal)) return "View work";
+  return "Enquire now";
 }
 
 async function lookupDomain(domain) {
@@ -430,63 +329,36 @@ async function saveLead(stage, formData, extra = {}) {
 }
 
 function storeLocalLead(payload) {
-  try {
-    const existing = JSON.parse(localStorage.getItem("docked_leads") || "[]");
-    existing.push(payload);
-    localStorage.setItem("docked_leads", JSON.stringify(existing.slice(-40)));
-  } catch {
-    localStorage.setItem("docked_leads", JSON.stringify([payload]));
-  }
+  const existing = JSON.parse(localStorage.getItem("docked_leads") || "[]");
+  existing.push(payload);
+  localStorage.setItem("docked_leads", JSON.stringify(existing.slice(-50)));
 }
 
 function formDataToObject(formData) {
   const output = {};
   for (const [key, value] of formData.entries()) {
-    if (value) output[key] = value;
+    if (!value) continue;
+    if (output[key]) output[key] = `${output[key]}, ${value}`;
+    else output[key] = value;
   }
   return output;
 }
 
-function appendAgentMessage(text, type = "outgoing") {
-  if (!agentChat) return;
-  agentChat.insertAdjacentHTML("beforeend", `<div class="agent-message ${type}">${escapeHtml(text)}</div>`);
-  agentChat.scrollTop = agentChat.scrollHeight;
+function readPreview() {
+  try {
+    return JSON.parse(localStorage.getItem("docked_preview") || "null");
+  } catch {
+    return null;
+  }
 }
 
-function buildPreviewSvg(snapshot) {
-  const [primary, accent, background] = snapshot.style.colors;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
-  <rect width="1200" height="760" fill="${background}"/>
-  <rect x="70" y="60" width="1060" height="640" rx="26" fill="#ffffff" stroke="#d9e4e2" stroke-width="3"/>
-  <rect x="70" y="60" width="1060" height="72" rx="26" fill="${primary}"/>
-  <circle cx="115" cy="96" r="10" fill="${accent}"/>
-  <circle cx="148" cy="96" r="10" fill="#ffffff" opacity=".68"/>
-  <circle cx="181" cy="96" r="10" fill="#ffffff" opacity=".36"/>
-  <text x="230" y="106" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">${escapeSvg(snapshot.domain)}</text>
-  <text x="115" y="230" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="${accent}">${escapeSvg(snapshot.kicker)}</text>
-  <text x="115" y="315" font-family="Arial, sans-serif" font-size="64" font-weight="800" fill="${primary}">${escapeSvg(snapshot.headline)}</text>
-  <foreignObject x="115" y="350" width="620" height="130"><p xmlns="http://www.w3.org/1999/xhtml" style="font-family:Arial,sans-serif;font-size:28px;line-height:1.45;color:#46595c;margin:0;">${escapeHtml(snapshot.subcopy)}</p></foreignObject>
-  <rect x="115" y="525" width="210" height="64" rx="12" fill="${primary}"/>
-  <text x="158" y="568" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">Start now</text>
-  <rect x="790" y="220" width="230" height="230" rx="34" fill="${primary}"/>
-  <text x="856" y="362" font-family="Arial, sans-serif" font-size="96" font-weight="800" fill="#ffffff">${escapeSvg(initials(snapshot.business))}</text>
-  ${snapshot.services
-    .slice(0, 4)
-    .map((service, index) => `<rect x="${115 + index * 245}" y="620" width="210" height="44" rx="12" fill="#eef7f3"/><text x="${140 + index * 245}" y="650" font-family="Arial, sans-serif" font-size="20" fill="#203538">${escapeSvg(service)}</text>`)
-    .join("")}
-</svg>`;
-}
-
-function downloadTextFile(filename, content, type) {
-  const blob = new Blob([content], { type });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  document.body.append(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
+function pickTasks(value) {
+  const lower = value.toLowerCase();
+  if (lower.includes("logo") || lower.includes("brand")) return taskSets.logo;
+  if (lower.includes("book") || lower.includes("call") || lower.includes("appointment")) return taskSets.booking;
+  if (lower.includes("price") || lower.includes("$") || lower.includes("cost")) return taskSets.price;
+  if (lower.includes("domain") || lower.includes(".com")) return taskSets.domain;
+  return taskSets.default;
 }
 
 function normalizeDomain(value) {
@@ -506,20 +378,6 @@ function normalizeDomain(value) {
 
 function cleanValue(value) {
   return String(value || "").trim();
-}
-
-function initials(value) {
-  const letters = cleanValue(value)
-    .split(/\s+/)
-    .map((word) => word[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-  return letters || "D";
-}
-
-function addService(services, service) {
-  return [service, ...services.filter((item) => item !== service)].slice(0, 5);
 }
 
 function slugify(value) {
@@ -542,10 +400,6 @@ function escapeHtml(value) {
   });
 }
 
-function escapeSvg(value) {
-  return escapeHtml(value);
-}
-
 function renderPaypalButton() {
   const container = document.querySelector("#paypal-container-ZGTCFXXGBGNKU");
   if (!container || container.childElementCount || !window.paypal?.HostedButtons) return;
@@ -553,6 +407,3 @@ function renderPaypalButton() {
     hostedButtonId: "ZGTCFXXGBGNKU",
   }).render("#paypal-container-ZGTCFXXGBGNKU");
 }
-
-renderPaypalButton();
-window.addEventListener("load", renderPaypalButton);
