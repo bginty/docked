@@ -10,7 +10,7 @@
     />
     <meta name="theme-color" content="#09252a" />
     <link rel="preload" as="image" href="assets/docked-ai-studio-hero.svg" />
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
     <link rel="stylesheet" href="intake.css?v=4" />
     <script src="https://www.paypal.com/sdk/js?client-id=BAA83q7cTy53N-f43UgIVqO62xDUufaYFpk8z0VnNv6t8cZnoYcsCN2db5eN-k2EN2gfGqBglvS9d3hTFU&components=hosted-buttons&disable-funding=venmo&currency=AUD"></script>
   </head>
@@ -295,6 +295,12 @@
               <label><input type="checkbox" name="features" value="Logo concepts" /> <span>Logo concepts</span></label>
             </div>
           </fieldset>
+          <label class="file-field">
+            Upload images for the preview gallery
+            <input id="imageInput" name="gallery_images" type="file" accept="image/*" multiple />
+            <span>Choose up to 4 customer photos, product shots, work examples, venue images, or brand assets.</span>
+          </label>
+          <div class="upload-preview" id="uploadPreview" aria-live="polite"></div>
           <label>
             What should we build?
             <textarea name="details" rows="5" placeholder="Describe the business, style, pages, colours, logo ideas, and anything customers should be able to do." required></textarea>
@@ -384,6 +390,6 @@
       <a href="mailto:briantginty21@gmail.com">briantginty21@gmail.com</a>
     </footer>
 
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
   </body>
 </html>
