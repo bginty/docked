@@ -12,7 +12,7 @@ const palettes = {
   Premium: {
     name: "Premium",
     layout: "noir",
-    colors: ["#071f23", "#c9a45c", "#f5efe6", "#ffffff"],
+    colors: ["#16110d", "#b9854d", "#f5eee5", "#ffffff"],
     tone: "polished, confident and high-trust",
   },
   Bold: {
@@ -30,7 +30,7 @@ const palettes = {
   Warm: {
     name: "Warm",
     layout: "sunlit",
-    colors: ["#164e63", "#e76f51", "#fff7ed", "#ffffff"],
+    colors: ["#5a3023", "#d77f48", "#fff3e6", "#fffaf4"],
     tone: "approachable, human and polished",
   },
 };
@@ -46,6 +46,8 @@ const domainCheckButton = document.querySelector("#domainCheckButton");
 const domainStatus = document.querySelector("#domainStatus");
 const domainStatusField = document.querySelector("#domainStatusField");
 const domainLookupSourceField = document.querySelector("#domainLookupSourceField");
+const imageInput = document.querySelector("#imageInput");
+const uploadPreview = document.querySelector("#uploadPreview");
 const approvalForm = document.querySelector("#approvalForm");
 const approvalStatus = document.querySelector("#approvalStatus");
 
@@ -75,10 +77,14 @@ briefForm?.addEventListener("submit", async (event) => {
     formData.set("preferred_domain", domain);
   }
 
-  const preview = createPreview(formData);
+  const uploadedImages = await prepareUploadedImages(imageInput?.files || []);
+  const preview = createPreview(formData, uploadedImages);
   localStorage.setItem("docked_preview", JSON.stringify(preview));
   localStorage.removeItem("docked_preview_approved");
-  await saveLead("preview_created", formData, { preview_snapshot: JSON.stringify(preview) });
+  await saveLead("preview_created", formData, {
+    uploaded_image_count: String(uploadedImages.length),
+    preview_snapshot: JSON.stringify(stripImageData(preview)),
+  });
 
   formStatus.textContent = "Creating full preview...";
   window.location.href = "preview.html";
@@ -113,6 +119,12 @@ domainCheckButton?.addEventListener("click", async () => {
   }
 });
 
+imageInput?.addEventListener("change", async () => {
+  const images = await prepareUploadedImages(imageInput.files || [], 4);
+  if (!uploadPreview) return;
+  uploadPreview.innerHTML = images.map((image) => `<img src="${image.dataUrl}" alt="">`).join("");
+});
+
 approvalForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!approvalForm.reportValidity()) return;
@@ -120,7 +132,7 @@ approvalForm?.addEventListener("submit", async (event) => {
   const preview = readPreview();
   const formData = new FormData(approvalForm);
   if (preview) {
-    formData.set("approved_preview_snapshot", JSON.stringify(preview));
+    formData.set("approved_preview_snapshot", JSON.stringify(stripImageData(preview)));
   }
 
   const result = await saveLead("approval_submitted", formData, {
@@ -149,11 +161,11 @@ function hydrateApprovalFromPreview() {
   approvalForm.elements.approved_domain.value = preview.domain || "";
   approvalForm.elements.preview_link.value = `Generated Docked preview - ${new Date(preview.generated_at).toLocaleString("en-AU")}`;
   const snapshotField = document.querySelector("#approvedPreviewSnapshotField");
-  if (snapshotField) snapshotField.value = JSON.stringify(preview);
+  if (snapshotField) snapshotField.value = JSON.stringify(stripImageData(preview));
   approvalStatus.textContent = "Preview accepted. Complete the approval details and PayPal payment below.";
 }
 
-function createPreview(formData) {
+function createPreview(formData, uploadedImages = []) {
   const business = cleanValue(formData.get("business")) || "Your business";
   const industry = cleanValue(formData.get("industry")) || "Local business";
   const goal = cleanValue(formData.get("primary_goal")) || "Get more enquiries";
@@ -182,6 +194,7 @@ function createPreview(formData) {
     preview_requirements: cleanValue(formData.get("preview_requirements")),
     visual_references: cleanValue(formData.get("visual_references")),
     features,
+    images: uploadedImages,
     services,
     headline,
     subcopy,
@@ -337,11 +350,71 @@ function storeLocalLead(payload) {
 function formDataToObject(formData) {
   const output = {};
   for (const [key, value] of formData.entries()) {
+    if (value instanceof File) {
+      if (value.name) output[key] = output[key] ? `${output[key]}, ${value.name}` : value.name;
+      continue;
+    }
     if (!value) continue;
     if (output[key]) output[key] = `${output[key]}, ${value}`;
     else output[key] = value;
   }
   return output;
+}
+
+async function prepareUploadedImages(files, limit = 4) {
+  const selected = Array.from(files).filter((file) => file.type.startsWith("image/")).slice(0, limit);
+  const images = [];
+  for (const file of selected) {
+    try {
+      images.push(await compressImage(file));
+    } catch {
+      // Ignore files that the browser cannot read as an image.
+    }
+  }
+  return images;
+}
+
+function compressImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const image = new Image();
+      image.onload = () => {
+        const maxSize = 900;
+        const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+        const width = Math.max(1, Math.round(image.width * scale));
+        const height = Math.max(1, Math.round(image.height * scale));
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const context = canvas.getContext("2d");
+        context.drawImage(image, 0, 0, width, height);
+        resolve({
+          name: file.name,
+          width,
+          height,
+          dataUrl: canvas.toDataURL("image/jpeg", 0.72),
+        });
+      };
+      image.onerror = reject;
+      image.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function stripImageData(preview) {
+  if (!preview) return preview;
+  return {
+    ...preview,
+    images: (preview.images || []).map((image) => ({
+      name: image.name,
+      width: image.width,
+      height: image.height,
+    })),
+    uploaded_image_count: String((preview.images || []).length),
+  };
 }
 
 function readPreview() {
