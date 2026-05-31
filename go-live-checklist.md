@@ -1,6 +1,6 @@
 # Docked Go-Live Checklist
 
-The current website is a static GitHub Pages front-end with an on-page preview studio, PayPal button, and RDAP-based domain signal check.
+The current website is a static GitHub Pages front-end with a full generated preview page, PayPal button, and RDAP-based domain signal check.
 
 ## Required next access
 
@@ -13,9 +13,9 @@ The current website is a static GitHub Pages front-end with an on-page preview s
 ## Current customer flow
 
 1. Customer completes the brief on `docked.com.au`.
-2. Docked generates an on-page website/logo preview.
-3. Customer asks for improvements in plain language.
-4. Customer approves the preview.
+2. Docked opens a full generated website preview on `preview.html`.
+3. Customer asks for improvements in plain language from the preview control panel.
+4. Customer approves the preview from the preview page.
 5. Approval details are prepared for spreadsheet capture.
 6. Customer pays through PayPal.
 7. Docked buys the domain, publishes the site, and keeps it active while the subscription is paid.
@@ -30,7 +30,7 @@ The current website is a static GitHub Pages front-end with an on-page preview s
 
 ## Spreadsheet connection
 
-The site is ready for a Google Sheets webhook. Create a Google Sheet, add the Apps Script in `google-sheets-webhook.gs`, deploy it as a web app, then paste the web app URL into `SHEET_WEBHOOK_URL` in `script.js`.
+The site is ready for a Google Sheets webhook. Create a Google Sheet, add the Apps Script in `google-sheets-webhook.gs`, deploy it as a web app, then paste the web app URL into `SHEET_WEBHOOK_URL` in `script.js` and `preview.js`.
 
 ## Current front-end files
 
@@ -38,6 +38,9 @@ The site is ready for a Google Sheets webhook. Create a Google Sheet, add the Ap
 - `styles.css`
 - `intake.css`
 - `script.js`
+- `preview.html`
+- `preview.css`
+- `preview.js`
 - `google-sheets-webhook.gs`
 - `CNAME`
 - `.nojekyll`
