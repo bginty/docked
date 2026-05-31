@@ -101,18 +101,18 @@
           </li>
           <li>
             <span>02</span>
-            <h3>Docked builds</h3>
-            <p>We create the website or logo, register the chosen domain where required, connect hosting, and prepare a launch version.</p>
+            <h3>Docked prepares a preview</h3>
+            <p>We check the domain, create a private website or logo preview, and send the customer a review link before payment.</p>
           </li>
           <li>
             <span>03</span>
             <h3>Customer asks</h3>
-            <p>New requests become automated build tasks: change copy, add a section, update pricing, create a logo variation, or publish news.</p>
+            <p>Changes are handled in a simple back-and-forth loop until the customer is happy with the direction.</p>
           </li>
           <li>
             <span>04</span>
-            <h3>Subscription keeps it active</h3>
-            <p>The site stays hosted and maintained while the subscription is active, with cancellation rules made clear at sign-up.</p>
+            <h3>Approve and activate</h3>
+            <p>After approval, we buy the domain, set up the monthly agreement, publish the site, and keep it active.</p>
           </li>
         </ol>
       </section>
@@ -158,14 +158,14 @@
           <p class="price-label">Launch subscription</p>
           <p class="price"><span>$30</span>/month</p>
           <ul>
-            <li>Custom website or logo project</li>
-            <li>Hosted launch page or packaged logo files</li>
+            <li>Private website or logo preview before payment</li>
+            <li>Domain availability check and purchase handoff</li>
             <li>Plain-language update requests</li>
-            <li>Domain search and setup support</li>
-            <li>Basic care while subscription is active</li>
+            <li>Hosted website or packaged logo files after approval</li>
+            <li>Basic care while subscription remains active</li>
           </ul>
-          <a class="button primary wide" href="#brief">Start for $30/month</a>
-          <p class="fine-print">Domain registration fees, premium domains, paid add-ons, and third-party services can be billed separately.</p>
+          <a class="button primary wide" href="#brief">Request a preview</a>
+          <p class="fine-print">No payment is collected on this website yet. Domain registration fees, premium domains, paid add-ons, and third-party services can be billed separately.</p>
         </div>
       </section>
 
@@ -195,10 +195,17 @@
           <p class="eyebrow">Start a build</p>
           <h2 id="brief-title">Tell Docked what to make.</h2>
           <p>
-            This form prepares a launch brief. Once payment and the live backend are connected, it can create the customer record, subscription, domain task, and build queue automatically.
+            This form sends the brief to Docked for a manual preview build. The customer gets a review link first, then payment and domain purchase happen after approval.
           </p>
         </div>
-        <form class="brief-form" id="briefForm">
+        <form class="brief-form" id="briefForm" action="https://formsubmit.co/briantginty21@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Docked preview request" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_next" value="https://docked.com.au/?submitted=1#brief" />
+          <input type="hidden" name="workflow_stage" value="Preview requested - no payment collected" />
+          <input type="hidden" name="manual_next_step" value="Check domain, build private preview, email preview link, collect approval, then arrange domain purchase and direct debit." />
+          <input type="hidden" name="godaddy_check_link" id="godaddyCheckField" value="https://www.godaddy.com/en-au/domains" />
           <div class="field-row">
             <label>
               Business name
@@ -219,13 +226,34 @@
           </fieldset>
           <label>
             Preferred domain
-            <input name="domain" type="text" placeholder="yourbusiness.com.au" />
+            <input id="domainInput" name="preferred_domain" type="text" placeholder="yourbusiness.com.au" />
           </label>
+          <div class="domain-tools">
+            <div>
+              <strong>Check the domain first</strong>
+              <p>Open the preferred name in GoDaddy, then submit the brief so Docked can handle the preview and purchase steps.</p>
+            </div>
+            <a class="button secondary" id="domainCheckLink" href="https://www.godaddy.com/en-au/domains" target="_blank" rel="noopener">Check on GoDaddy</a>
+          </div>
+          <div class="field-row">
+            <label>
+              Phone
+              <input name="phone" type="tel" placeholder="Optional" />
+            </label>
+            <label>
+              Current website
+              <input name="current_website" type="text" placeholder="Optional" />
+            </label>
+          </div>
           <label>
             What should we build?
             <textarea name="details" rows="5" placeholder="Describe the business, style, pages, colours, logo ideas, and anything customers should be able to do." required></textarea>
           </label>
-          <button class="button primary wide" type="submit">Prepare launch brief</button>
+          <label>
+            What should the preview include?
+            <textarea name="preview_requirements" rows="4" placeholder="Example: homepage, services, contact form, booking button, logo options, colour preferences, competitor sites, and any must-have changes."></textarea>
+          </label>
+          <button class="button primary wide" type="submit">Send preview request</button>
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
       </section>
