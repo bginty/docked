@@ -136,6 +136,7 @@ leadForm?.addEventListener("submit", async (event) => {
 
 renderDailyArticle();
 updateCalculator();
+normaliseBorrowerLabels();
 
 function updateCalculator() {
   const calculators = {
@@ -166,6 +167,11 @@ function updateCalculator() {
   if (heroRepayment && activeCalculator === "repayments") {
     heroRepayment.textContent = calculation.primary;
   }
+}
+
+function normaliseBorrowerLabels() {
+  const notesLabel = document.querySelector('textarea[name="notes"]')?.parentElement;
+  if (notesLabel?.firstChild) notesLabel.firstChild.textContent = "Notes for the loan specialist";
 }
 
 function calculateRepayments() {
@@ -660,7 +666,7 @@ function renderDailyArticle() {
   dailyArticle.innerHTML = `
     <h3>${escapeHtml(article.title)}</h3>
     <p>${escapeHtml(article.body)}</p>
-    <a class="button secondary" href="#lead">Ask a broker</a>
+    <a class="button secondary" href="#lead">Ask for help</a>
   `;
 }
 
