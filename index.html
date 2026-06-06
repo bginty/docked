@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Docked | Check what you can afford before you apply</title>
+    <title>Docked | Know your limit before you bid</title>
     <meta
       name="description"
       content="Use Docked loan calculators, check bank-statement affordability, read practical Australian lending answers, and ask for help with your next loan step."
     />
     <meta name="theme-color" content="#12312f" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312312f'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial, sans-serif' font-size='28' font-weight='800' fill='white'%3ED%3C/text%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="styles.css?v=9" />
+    <link rel="stylesheet" href="styles.css?v=10" />
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
@@ -27,15 +27,16 @@
         <a href="#lead">Get help</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="header-cta" href="#affordability">Check affordability</a>
+      <a class="header-cta" href="#calculators">Calculate</a>
     </header>
 
     <main id="top">
       <section class="tool-hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <h1 id="hero-title">Find out what you may be able to afford before you apply.</h1>
+          <p class="market-pill"><span aria-hidden="true"></span> Australian affordability guide</p>
+          <h1 id="hero-title">Know your <em>limit</em> before you bid.</h1>
           <p class="hero-lede">
-            Use calculators, upload bank statement exports for an instant affordability guide, and get pointed toward the right next step when you are ready.
+            Real-world Australian home loan affordability tools. No guesswork, just a clearer starting point before you talk to anyone.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#calculators">Use calculators</a>
@@ -50,8 +51,9 @@
 
         <aside class="insight-panel" aria-label="Loan affordability preview">
           <div class="panel-top">
-            <span>Affordability snapshot</span>
+            <span>Monthly repayment</span>
             <strong id="heroRepayment">$3,221/mo</strong>
+            <em>Guide</em>
           </div>
           <div class="visual-card" aria-hidden="true">
             <div class="bar one"></div>
@@ -81,17 +83,36 @@
 
       <section class="calculator-section" id="calculators" aria-labelledby="calculator-title">
         <div class="section-heading">
-          <p class="eyebrow">Calculators</p>
-          <h2 id="calculator-title">Start with the numbers that matter before you talk to anyone.</h2>
+          <h2 id="calculator-title">Calculators</h2>
         </div>
 
         <div class="calculator-shell">
           <div class="calculator-tabs" role="tablist" aria-label="Loan calculators">
-            <button class="tab-button active" type="button" data-calculator-tab="repayments">Repayments</button>
-            <button class="tab-button" type="button" data-calculator-tab="borrowing">Borrowing power</button>
-            <button class="tab-button" type="button" data-calculator-tab="refinance">Refinance</button>
-            <button class="tab-button" type="button" data-calculator-tab="deposit">Deposit/LVR</button>
-            <button class="tab-button" type="button" data-calculator-tab="extra">Extra repayments</button>
+            <button class="tab-button active" type="button" data-calculator-tab="repayments">
+              <span class="tab-icon blue"></span>
+              <span class="tab-copy"><strong>Repayments</strong><small>Weekly vs fortnightly vs monthly</small></span>
+              <span class="tab-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="tab-button" type="button" data-calculator-tab="borrowing">
+              <span class="tab-icon aqua"></span>
+              <span class="tab-copy"><strong>Borrowing power</strong><small>Income, expenses, debts, dependants</small></span>
+              <span class="tab-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="tab-button" type="button" data-calculator-tab="refinance">
+              <span class="tab-icon purple"></span>
+              <span class="tab-copy"><strong>Refinance check</strong><small>Is your bank overcharging?</small></span>
+              <span class="tab-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="tab-button" type="button" data-calculator-tab="deposit">
+              <span class="tab-icon orange"></span>
+              <span class="tab-copy"><strong>Deposit &amp; LVR</strong><small>Target price vs cash on hand</small></span>
+              <span class="tab-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+            <button class="tab-button" type="button" data-calculator-tab="extra">
+              <span class="tab-icon blue"></span>
+              <span class="tab-copy"><strong>Extra repayments</strong><small>Years and interest you could save</small></span>
+              <span class="tab-arrow" aria-hidden="true">&rarr;</span>
+            </button>
           </div>
 
           <div class="calculator-grid">
@@ -354,46 +375,45 @@
 
       <section class="article-section" id="faq" aria-labelledby="faq-title">
         <div class="section-heading">
-          <p class="eyebrow">Common questions</p>
-          <h2 id="faq-title">Plain-English answers borrowers search before making a decision.</h2>
+          <h2 id="faq-title">Common questions</h2>
         </div>
         <div class="article-grid" id="articleGrid">
-          <article>
-            <h3>How much can I borrow for a home loan?</h3>
+          <details open>
+            <summary>Is my bank data shared with lenders?</summary>
             <p>
-              Your borrowing power usually depends on income, expenses, other debts, dependants, credit history, deposit, and lender policy. A calculator can show a rough range, but a broker needs to check lender rules before relying on the number.
+              No. Calculations run locally in your browser. Statement uploads are not sent to Docked, banks, brokers, or lenders unless you choose to submit a help request.
             </p>
-          </article>
-          <article>
-            <h3>Is refinancing worth it if my rate has changed?</h3>
+          </details>
+          <details>
+            <summary>How accurate are these calculators?</summary>
             <p>
-              Refinancing may help if the repayment saving beats switching costs and the new loan still suits your plans. Compare monthly savings, annual savings, loan features, fees, cashback conditions, and break-even time.
+              They are a practical guide, not an approval. Lenders still assess income, spending, credit history, deposit, property type, buffers, and policy rules before making a decision.
             </p>
-          </article>
-          <article>
-            <h3>What deposit do I need for a home loan?</h3>
+          </details>
+          <details>
+            <summary>What is LVR and why does it matter?</summary>
             <p>
-              Many borrowers aim for a 20% deposit to reduce the chance of lenders mortgage insurance, but smaller deposits may still be possible depending on lender policy, income, loan type, and government scheme eligibility.
+              LVR means loan-to-value ratio. It compares the loan amount to the property value, and it can affect lender options, interest rates, and whether lenders mortgage insurance applies.
             </p>
-          </article>
-          <article>
-            <h3>Fixed or variable home loan: which is better?</h3>
+          </details>
+          <details>
+            <summary>Do you provide credit advice?</summary>
             <p>
-              Fixed loans can help with repayment certainty, while variable loans may provide more flexibility. Some borrowers split the loan. The better fit depends on risk comfort, repayment plans, cashflow, and available loan features.
+              Docked provides calculators, education, and enquiry routing. Any credit assistance should come from a licensed broker, lender, or authorised credit representative.
             </p>
-          </article>
-          <article>
-            <h3>What documents do brokers usually ask for?</h3>
+          </details>
+          <details>
+            <summary>What documents do brokers usually ask for?</summary>
             <p>
               Common documents include ID, payslips, bank statements, tax returns for self-employed borrowers, loan statements, rates notices, rental income evidence, and details of assets, debts, and living expenses.
             </p>
-          </article>
-          <article>
-            <h3>Can self-employed borrowers get a home loan?</h3>
+          </details>
+          <details>
+            <summary>Can self-employed borrowers get a home loan?</summary>
             <p>
               Yes, but lenders usually review business income differently. A broker may compare full-doc and alt-doc options, business financials, BAS, tax returns, income stability, and loan purpose.
             </p>
-          </article>
+          </details>
         </div>
       </section>
     </main>
