@@ -35,7 +35,7 @@ function connectSheetLeadCapture() {
     } catch {
       if (formStatus) formStatus.textContent = "Thanks, your loan help request is saved on this device, but the sheet connection did not respond.";
     }
-  });
+  }, { capture: true });
 }
 
 function buildSheetPayload(formData) {
