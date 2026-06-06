@@ -253,11 +253,16 @@
             <h3>Instant affordability guide</h3>
             <p>CSV, TXT, OFX, and QIF exports work best. PDF files can be noted, but most PDFs need a human review or a lender/broker document tool.</p>
           </div>
-          <label class="file-drop">
-            Upload bank statement exports
-            <input id="statementFiles" name="statement_files" type="file" accept=".csv,.txt,.ofx,.qif,.pdf" multiple />
-            <span>Choose up to 6 files covering the same period.</span>
+          <label class="file-drop" id="statementDropZone">
+            <strong>Upload bank statement exports</strong>
+            <input id="statementFiles" name="statement_files" type="file" accept=".csv,.txt,.ofx,.qif,.pdf,.xls,.xlsx,.doc,.docx" multiple />
+            <span class="file-drop-hint">Tap to choose files or drag them here. CSV, TXT, OFX, and QIF can be estimated. PDFs and documents are recorded for the enquiry.</span>
+            <span class="file-drop-action">Choose files</span>
           </label>
+          <div class="file-list" id="statementFileList" aria-live="polite">
+            <strong>No files selected yet</strong>
+            <span>After choosing files, press Check my affordability below.</span>
+          </div>
           <div class="field-row">
             <label>Months covered <input name="statement_months" type="number" min="1" max="12" step="1" value="3" /></label>
             <label>Dependants <input name="statement_dependants" type="number" min="0" step="1" value="0" /></label>
@@ -273,7 +278,7 @@
               <label>Monthly living spending <input name="manual_spending" type="number" min="0" step="100" placeholder="5200" /></label>
             </div>
           </details>
-          <button class="button primary wide" type="submit">Check my affordability</button>
+          <button class="button primary wide" id="checkAffordabilityButton" type="submit">Check my affordability</button>
           <div class="affordability-result" id="affordabilityResult" aria-live="polite">
             <p class="eyebrow">Result</p>
             <h3>Upload statements or enter figures to start.</h3>
@@ -443,6 +448,6 @@
       <a href="mailto:briantginty21@gmail.com">briantginty21@gmail.com</a>
     </footer>
 
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=10"></script>
   </body>
 </html>
