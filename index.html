@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Docked Loans | Australian loan calculators and broker matching</title>
+    <title>Docked Loans | Check what you can afford before you apply</title>
     <meta
       name="description"
-      content="Use Docked loan calculators, read practical Australian lending answers, and request a broker match for home loans, refinancing, investment loans, car finance, and business lending."
+      content="Use Docked loan calculators, check bank-statement affordability, read practical Australian lending answers, and ask for help with your next loan step."
     />
     <meta name="theme-color" content="#12312f" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312312f'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial, sans-serif' font-size='28' font-weight='800' fill='white'%3ED%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
@@ -17,40 +18,41 @@
         <span class="brand-mark" aria-hidden="true">D</span>
         <span>
           <strong>Docked Loans</strong>
-          <small>Calculators and broker matching</small>
+          <small>Affordability checks and loan help</small>
         </span>
       </a>
       <nav class="nav-links" aria-label="Main menu">
         <a href="#calculators">Calculators</a>
+        <a href="#affordability">Affordability check</a>
         <a href="#daily-answer">Daily answer</a>
-        <a href="#lead">Broker match</a>
+        <a href="#lead">Get help</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="header-cta" href="#lead">Get broker help</a>
+      <a class="header-cta" href="#affordability">Check affordability</a>
     </header>
 
     <main id="top">
       <section class="tool-hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Australian loan lead hub</p>
-          <h1 id="hero-title">Loan calculators that turn questions into broker-ready leads.</h1>
+          <p class="eyebrow">Australian borrower tools</p>
+          <h1 id="hero-title">Find out what you may be able to afford before you apply.</h1>
           <p class="hero-lede">
-            Work out repayments, borrowing power, refinance savings, deposit position, and extra repayment impact, then request a callback from a broker when you are ready.
+            Use calculators, upload bank statement exports for an instant affordability guide, and get pointed toward the right next step when you are ready.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#calculators">Use calculators</a>
-            <a class="button secondary" href="#lead">Request broker match</a>
+            <a class="button secondary" href="#affordability">Check affordability</a>
           </div>
-          <ul class="hero-proof" aria-label="Docked loan lead highlights">
-            <li>Useful borrower tools</li>
-            <li>Daily lending answers</li>
-            <li>Referral-fee disclosure included</li>
+          <ul class="hero-proof" aria-label="Docked borrower highlights">
+            <li>Repayments and borrowing power</li>
+            <li>Private statement quick check</li>
+            <li>Plain-English loan answers</li>
           </ul>
         </div>
 
-        <aside class="insight-panel" aria-label="Loan insight preview">
+        <aside class="insight-panel" aria-label="Loan affordability preview">
           <div class="panel-top">
-            <span>Scenario snapshot</span>
+            <span>Affordability snapshot</span>
             <strong id="heroRepayment">$3,221/mo</strong>
           </div>
           <div class="visual-card" aria-hidden="true">
@@ -74,7 +76,7 @@
             </div>
           </dl>
           <p>
-            Calculators are estimates only. A licensed broker or lender needs to assess your actual situation before any loan decision.
+            Start with a guide, then confirm the details with a licensed broker, lender, or authorised credit representative before making a loan decision.
           </p>
         </aside>
       </section>
@@ -82,7 +84,7 @@
       <section class="calculator-section" id="calculators" aria-labelledby="calculator-title">
         <div class="section-heading">
           <p class="eyebrow">Calculators</p>
-          <h2 id="calculator-title">Help borrowers answer the first question, then capture the next step.</h2>
+          <h2 id="calculator-title">Start with the numbers that matter before you talk to anyone.</h2>
         </div>
 
         <div class="calculator-shell">
@@ -185,7 +187,7 @@
               <p class="result-detail" id="resultDetail">Total interest estimate: $727,320 over 30 years.</p>
               <div class="result-actions">
                 <button class="button secondary" id="copyScenarioButton" type="button">Add to enquiry</button>
-                <a class="button primary" href="#lead">Speak to a broker</a>
+                <a class="button primary" href="#lead">Get loan help</a>
               </div>
               <p class="fine-print">
                 These calculators are general estimates only and do not consider all fees, lender rules, credit policy, tax, insurance, or your personal objectives.
@@ -193,6 +195,56 @@
             </aside>
           </div>
         </div>
+      </section>
+
+      <section class="statement-section" id="affordability" aria-labelledby="statement-title">
+        <div class="statement-copy">
+          <p class="eyebrow">Bank statement quick check</p>
+          <h2 id="statement-title">Upload recent statements and get an instant affordability guide.</h2>
+          <p>
+            Docked estimates monthly income, spending, surplus cashflow, and a rough loan capacity from your statement export. It is a guide only, but it gives you a sharper starting point before asking for help.
+          </p>
+          <div class="privacy-box">
+            <strong>Your files stay private in this quick check</strong>
+            <p>
+              Statement files are read in your browser. This static page does not upload statement files to Docked. If you ask for help, Docked receives the affordability summary and file names, not the statement files.
+            </p>
+          </div>
+        </div>
+
+        <form class="statement-form" id="statementForm">
+          <div class="form-heading">
+            <h3>Instant affordability guide</h3>
+            <p>CSV, TXT, OFX, and QIF exports work best. PDF files can be noted, but most PDFs need a human review or a lender/broker document tool.</p>
+          </div>
+          <label class="file-drop">
+            Upload bank statement exports
+            <input id="statementFiles" name="statement_files" type="file" accept=".csv,.txt,.ofx,.qif,.pdf" multiple />
+            <span>Choose up to 6 files covering the same period.</span>
+          </label>
+          <div class="field-row">
+            <label>Months covered <input name="statement_months" type="number" min="1" max="12" step="1" value="3" /></label>
+            <label>Dependants <input name="statement_dependants" type="number" min="0" step="1" value="0" /></label>
+          </div>
+          <div class="field-row">
+            <label>Other monthly debt repayments <input name="statement_debts" type="number" min="0" step="50" value="0" /></label>
+            <label>Preferred repayment buffer <input name="statement_buffer" type="number" min="0" max="50" step="5" value="25" /></label>
+          </div>
+          <details class="manual-details">
+            <summary>Enter figures manually instead</summary>
+            <div class="field-row">
+              <label>Monthly after-tax income <input name="manual_income" type="number" min="0" step="100" placeholder="9000" /></label>
+              <label>Monthly living spending <input name="manual_spending" type="number" min="0" step="100" placeholder="5200" /></label>
+            </div>
+          </details>
+          <button class="button primary wide" type="submit">Check my affordability</button>
+          <div class="affordability-result" id="affordabilityResult" aria-live="polite">
+            <p class="eyebrow">Result</p>
+            <h3>Upload statements or enter figures to start.</h3>
+            <p>Docked will show an estimated affordable repayment and rough borrowing guide here.</p>
+          </div>
+          <button class="button secondary wide" id="useAffordabilityButton" type="button" disabled>Add result to help request</button>
+        </form>
       </section>
 
       <section class="daily-section" id="daily-answer" aria-labelledby="daily-title">
@@ -207,23 +259,25 @@
 
       <section class="lead-section" id="lead" aria-labelledby="lead-title">
         <div class="lead-copy">
-          <p class="eyebrow">Broker match</p>
-          <h2 id="lead-title">Turn the calculator result into a broker-ready enquiry.</h2>
+          <p class="eyebrow">Get help</p>
+          <h2 id="lead-title">Ready to check your options with a real person?</h2>
           <p>
-            Docked collects the borrower's details and can pass the lead to an Australian broker or credit representative. Docked may receive a referral fee or affiliate commission if the customer proceeds.
+            Share your scenario and Docked can introduce you to an Australian loan specialist, broker, lender, or authorised credit representative who can look at your actual situation.
           </p>
           <div class="disclosure-box">
             <strong>Important disclosure</strong>
             <p>
-              Docked is not currently presenting itself as a lender or credit adviser. Any credit assistance should be provided by a licensed broker, lender, or authorised credit representative.
+              Docked is not presenting itself as a lender or credit adviser. Any credit assistance should be provided by a licensed broker, lender, or authorised credit representative. Docked may receive a referral fee or affiliate commission if you proceed with a provider.
             </p>
           </div>
         </div>
 
         <form class="lead-form" id="leadForm">
-          <input type="hidden" name="stage" value="loan_lead_requested" />
+          <input type="hidden" name="stage" value="loan_help_requested" />
           <input type="hidden" name="lead_source" value="docked.com.au" />
           <input type="hidden" name="calculator_snapshot" id="calculatorSnapshot" value="" />
+          <input type="hidden" name="affordability_snapshot" id="affordabilitySnapshot" value="" />
+          <input type="hidden" name="statement_file_names" id="statementFileNames" value="" />
           <div class="field-row">
             <label>
               Loan purpose
@@ -289,13 +343,13 @@
           </div>
           <label class="consent-line">
             <input name="consent_broker_contact" type="checkbox" value="yes" required />
-            <span>I agree Docked may share my details with a broker, lender, aggregator, or authorised credit representative who may contact me about my enquiry.</span>
+            <span>I agree Docked may share my details and affordability summary with a broker, lender, aggregator, or authorised credit representative who may contact me about my enquiry.</span>
           </label>
           <label class="consent-line">
             <input name="referral_fee_disclosure" type="checkbox" value="yes" required />
             <span>I understand Docked may receive a referral fee, affiliate commission, or similar benefit if I proceed with a provider.</span>
           </label>
-          <button class="button primary wide" type="submit">Request broker match</button>
+          <button class="button primary wide" type="submit">Ask for loan help</button>
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
       </section>
@@ -303,7 +357,7 @@
       <section class="article-section" id="faq" aria-labelledby="faq-title">
         <div class="section-heading">
           <p class="eyebrow">Common questions</p>
-          <h2 id="faq-title">SEO articles borrowers search before they speak to someone.</h2>
+          <h2 id="faq-title">Plain-English answers borrowers search before making a decision.</h2>
         </div>
         <div class="article-grid" id="articleGrid">
           <article>
@@ -349,7 +403,7 @@
     <footer class="site-footer">
       <div>
         <strong>docked.com.au</strong>
-        <p>Australian loan calculators, borrower education, and broker lead generation.</p>
+        <p>Australian loan calculators, borrower education, affordability checks, and loan help.</p>
       </div>
       <a href="mailto:briantginty21@gmail.com">briantginty21@gmail.com</a>
     </footer>
