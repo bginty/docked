@@ -1,290 +1,334 @@
 const SHEET_WEBHOOK_URL = "";
 
-const taskSets = {
-  logo: ["Analyse brand cues", "Generate logo routes", "Prepare colour variants", "Package export files"],
-  booking: ["Map booking action", "Prepare booking layout", "Send free preview", "Publish after approval"],
-  price: ["Find pricing mentions", "Prepare offer copy", "Check mobile layout", "Send free preview"],
-  domain: ["Check domain options", "Prepare registration task", "Confirm launch path", "Send free preview"],
-  default: ["Review brief", "Check domain", "Prepare free preview", "Send within 24 hours"],
-};
-
-const palettes = {
-  Premium: {
-    name: "Premium",
-    layout: "noir",
-    colors: ["#16110d", "#b9854d", "#f5eee5", "#ffffff"],
-    tone: "polished, confident and high-trust",
-  },
-  Bold: {
-    name: "Bold",
-    layout: "electric",
-    colors: ["#1338f2", "#ff5c35", "#fff6e8", "#111827"],
-    tone: "energetic, memorable and conversion-led",
-  },
-  Minimal: {
-    name: "Minimal",
-    layout: "atelier",
-    colors: ["#151515", "#9ca3af", "#f8fafc", "#ffffff"],
-    tone: "clean, precise and premium",
-  },
-  Warm: {
-    name: "Warm",
-    layout: "sunlit",
-    colors: ["#5a3023", "#d77f48", "#fff3e6", "#fffaf4"],
-    tone: "approachable, human and polished",
-  },
-};
-
-const automationForm = document.querySelector("#automationForm");
-const requestText = document.querySelector("#requestText");
-const chatLog = document.querySelector("#chatLog");
-const taskList = document.querySelector("#taskList");
-const briefForm = document.querySelector("#briefForm");
+const calculatorTabs = document.querySelectorAll("[data-calculator-tab]");
+const calculatorPanels = document.querySelectorAll("[data-calculator-panel]");
+const resultTitle = document.querySelector("#resultTitle");
+const resultPrimary = document.querySelector("#resultPrimary");
+const resultDetail = document.querySelector("#resultDetail");
+const heroRepayment = document.querySelector("#heroRepayment");
+const copyScenarioButton = document.querySelector("#copyScenarioButton");
+const calculatorSnapshot = document.querySelector("#calculatorSnapshot");
+const leadForm = document.querySelector("#leadForm");
 const formStatus = document.querySelector("#formStatus");
-const domainInput = document.querySelector("#domainInput");
-const domainCheckButton = document.querySelector("#domainCheckButton");
-const domainStatus = document.querySelector("#domainStatus");
-const domainStatusField = document.querySelector("#domainStatusField");
-const domainLookupSourceField = document.querySelector("#domainLookupSourceField");
-const imageInput = document.querySelector("#imageInput");
-const uploadPreview = document.querySelector("#uploadPreview");
+const dailyArticle = document.querySelector("#dailyArticle");
 
-let rdapBootstrap = null;
+let activeCalculator = "repayments";
+let currentScenario = {};
 
-automationForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const request = requestText.value.trim();
-  if (!request) return;
+const dailyArticles = [
+  {
+    title: "How much can I borrow for a home loan?",
+    body:
+      "Borrowing power is shaped by income, expenses, existing debts, dependants, deposit, credit history, and lender policy. A calculator gives a useful guide, but the number should be checked against actual lender rules before you make decisions.",
+  },
+  {
+    title: "When is refinancing worth checking?",
+    body:
+      "Refinancing is worth checking when your current rate, fees, features, or loan structure no longer suit you. Compare the repayment saving, switching costs, annual benefit, and break-even time before moving.",
+  },
+  {
+    title: "What deposit do I need to buy property?",
+    body:
+      "A 20% deposit is a common target because it can reduce the chance of lenders mortgage insurance, but smaller deposits may still work depending on lender policy, income, property type, and available schemes.",
+  },
+  {
+    title: "Should I choose a fixed or variable rate?",
+    body:
+      "Fixed rates can support repayment certainty. Variable rates may give more flexibility. Some borrowers split their loan between fixed and variable portions to balance certainty with optionality.",
+  },
+  {
+    title: "Can self-employed borrowers get approved?",
+    body:
+      "Self-employed borrowers can get approved, but the evidence can be different. Brokers often compare tax returns, BAS, business financials, bank statements, loan purpose, and lender appetite.",
+  },
+  {
+    title: "What documents should I prepare for a broker?",
+    body:
+      "Most brokers ask for ID, income evidence, bank statements, current loan details, living expense information, asset and liability details, and property information if you already have a property in mind.",
+  },
+  {
+    title: "Does using a broker cost the borrower money?",
+    body:
+      "Many mortgage brokers are paid by the lender if a loan settles, but fees and arrangements can vary. Ask the broker how they are paid, whether any fee applies to you, and which lenders they compare.",
+  },
+];
 
-  const tasks = pickTasks(request);
-  chatLog.insertAdjacentHTML("beforeend", `<div class="message incoming">${escapeHtml(request)}</div>`);
-  chatLog.insertAdjacentHTML("beforeend", `<div class="message outgoing">Queued: ${tasks.join(", ").toLowerCase()}.</div>`);
-  taskList.innerHTML = tasks.map((task) => `<li><span></span> ${task}</li>`).join("");
-  requestText.value = "";
-  chatLog.scrollTop = chatLog.scrollHeight;
+calculatorTabs.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeCalculator = button.dataset.calculatorTab;
+    calculatorTabs.forEach((tab) => tab.classList.toggle("active", tab === button));
+    calculatorPanels.forEach((panel) => panel.classList.toggle("active", panel.dataset.calculatorPanel === activeCalculator));
+    updateCalculator();
+  });
 });
 
-briefForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!briefForm.reportValidity()) return;
+calculatorPanels.forEach((panel) => {
+  panel.addEventListener("input", updateCalculator);
+  panel.addEventListener("change", updateCalculator);
+});
 
-  const formData = new FormData(briefForm);
-  const domain = normalizeDomain(formData.get("preferred_domain"));
-  if (domain && domainInput) {
-    domainInput.value = domain;
-    formData.set("preferred_domain", domain);
+copyScenarioButton?.addEventListener("click", () => {
+  if (!leadForm) return;
+  applyScenarioToLeadForm();
+  document.querySelector("#lead")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (formStatus) formStatus.textContent = "Calculator scenario added to your enquiry.";
+});
+
+leadForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!leadForm.reportValidity()) return;
+
+  if (calculatorSnapshot) {
+    calculatorSnapshot.value = JSON.stringify(currentScenario);
   }
 
-  const uploadedImageCount = countUploadedImages(imageInput?.files || []);
-  const result = await saveLead("free_preview_requested", formData, {
-    uploaded_image_count: String(uploadedImageCount),
-    preview_turnaround: "Free preview ready to view within 24 hours",
-    payment_status: "No payment collected",
+  const formData = new FormData(leadForm);
+  const result = await saveLead("loan_lead_requested", formData, {
+    calculator_snapshot: JSON.stringify(currentScenario),
+    consent_recorded: "yes",
   });
 
   formStatus.textContent = result.sent
-    ? "Request received. We will have a free preview ready to view within 24 hours. No payment is needed yet."
-    : "Request prepared. We will have a free preview ready to view within 24 hours. No payment is needed yet.";
-  briefForm.reset();
-  if (uploadPreview) uploadPreview.innerHTML = "";
-  if (domainStatus) {
-    domainStatus.textContent = "Enter a domain to check.";
-    delete domainStatus.dataset.status;
+    ? "Thanks, your broker match request has been received."
+    : "Thanks, your broker match request is ready. Connect the Google Sheet webhook to capture it automatically.";
+  leadForm.reset();
+  if (calculatorSnapshot) calculatorSnapshot.value = "";
+});
+
+renderDailyArticle();
+updateCalculator();
+
+function updateCalculator() {
+  const calculators = {
+    repayments: calculateRepayments,
+    borrowing: calculateBorrowingPower,
+    refinance: calculateRefinance,
+    deposit: calculateDeposit,
+    extra: calculateExtraRepayments,
+  };
+
+  const calculation = calculators[activeCalculator]?.();
+  if (!calculation) return;
+
+  currentScenario = {
+    calculator: activeCalculator,
+    title: calculation.title,
+    primary: calculation.primary,
+    detail: calculation.detail,
+    values: calculation.values,
+    calculated_at: new Date().toISOString(),
+  };
+
+  if (resultTitle) resultTitle.textContent = calculation.title;
+  if (resultPrimary) resultPrimary.textContent = calculation.primary;
+  if (resultDetail) resultDetail.textContent = calculation.detail;
+  if (calculatorSnapshot) calculatorSnapshot.value = JSON.stringify(currentScenario);
+
+  if (heroRepayment && activeCalculator === "repayments") {
+    heroRepayment.textContent = calculation.primary;
   }
-});
+}
 
-domainInput?.addEventListener("blur", () => {
-  const domain = normalizeDomain(domainInput.value);
-  if (domain) domainInput.value = domain;
-});
-
-domainCheckButton?.addEventListener("click", async () => {
-  const domain = normalizeDomain(domainInput?.value);
-  if (!domain) {
-    setDomainStatus("Enter a domain first, for example yourbusiness.com.au.", "unknown");
-    return;
-  }
-
-  domainInput.value = domain;
-  domainCheckButton.disabled = true;
-  setDomainStatus(`Checking ${domain} against the registry...`, "checking");
-
-  try {
-    const result = await lookupDomain(domain);
-    setDomainStatus(result.message, result.status);
-    if (domainStatusField) domainStatusField.value = `${result.status}: ${result.message}`;
-    if (domainLookupSourceField) domainLookupSourceField.value = result.source || "RDAP";
-  } catch {
-    setDomainStatus("Could not confirm automatically. Docked will check this domain before purchase.", "unknown");
-    if (domainStatusField) domainStatusField.value = "Automatic check failed - manual check needed";
-  } finally {
-    domainCheckButton.disabled = false;
-  }
-});
-
-imageInput?.addEventListener("change", async () => {
-  const images = await prepareUploadedImages(imageInput.files || [], 4);
-  if (!uploadPreview) return;
-  uploadPreview.innerHTML = images.map((image) => `<img src="${image.dataUrl}" alt="">`).join("");
-});
-
-renderPaypalButton();
-window.addEventListener("load", renderPaypalButton);
-
-function createPreview(formData, uploadedImages = []) {
-  const business = cleanValue(formData.get("business")) || "Your business";
-  const industry = cleanValue(formData.get("industry")) || "Local business";
-  const goal = cleanValue(formData.get("primary_goal")) || "Get more enquiries";
-  const styleName = cleanValue(formData.get("style_direction")) || "Premium";
-  const style = palettes[styleName] || palettes.Premium;
-  const features = formData.getAll("features").map(cleanValue).filter(Boolean);
-  const details = cleanValue(formData.get("details"));
-  const audience = cleanValue(formData.get("target_customer"));
-  const domain = normalizeDomain(formData.get("preferred_domain")) || `${slugify(business)}.com.au`;
-
-  const services = buildServices(industry, goal, features, details);
-  const headline = buildHeadline(business, industry, goal, details);
-  const subcopy = buildSubcopy(business, audience, goal, style);
+function calculateRepayments() {
+  const form = document.querySelector("#repaymentsCalc");
+  const loan = readNumber(form, "loan_amount");
+  const rate = readNumber(form, "interest_rate");
+  const years = readNumber(form, "loan_term_years");
+  const frequency = form?.elements.repayment_frequency?.value || "monthly";
+  const periods = frequency === "weekly" ? 52 : frequency === "fortnightly" ? 26 : 12;
+  const repayment = repaymentAmount(loan, rate, years, periods);
+  const totalInterest = Math.max(0, repayment * years * periods - loan);
 
   return {
-    business,
-    email: cleanValue(formData.get("email")),
-    phone: cleanValue(formData.get("phone")),
-    industry,
-    goal,
-    project_type: cleanValue(formData.get("projectType")) || "Website",
-    target_customer: audience,
-    domain,
-    current_website: cleanValue(formData.get("current_website")),
-    details,
-    preview_requirements: cleanValue(formData.get("preview_requirements")),
-    visual_references: cleanValue(formData.get("visual_references")),
-    features,
-    images: uploadedImages,
-    services,
-    headline,
-    subcopy,
-    style,
-    cta: goalToCta(goal),
-    trust: buildTrust(industry),
-    generated_at: new Date().toISOString(),
-    revisions: [],
+    title: `${capitalise(frequency)} repayment`,
+    primary: formatCurrency(repayment),
+    detail: `Total interest estimate: ${formatCurrency(totalInterest)} over ${years} years.`,
+    values: {
+      loan_amount: loan,
+      interest_rate: rate,
+      loan_term_years: years,
+      repayment_frequency: frequency,
+      repayment: roundCurrency(repayment),
+      total_interest: roundCurrency(totalInterest),
+    },
   };
 }
 
-function buildHeadline(business, industry, goal, details) {
-  const text = `${industry} ${goal} ${details}`.toLowerCase();
-  if (text.includes("booking")) return "Turn visits into booked jobs";
-  if (text.includes("sell") || text.includes("shop")) return "A storefront ready for customers";
-  if (text.includes("credible") || text.includes("launch")) return "Launch with a site customers trust";
-  if (text.includes("portfolio") || text.includes("showcase")) return "Show the work. Win the next brief.";
-  return `${business}, built to win better customers`;
-}
-
-function buildSubcopy(business, audience, goal, style) {
-  const customer = audience || "the right customers";
-  return `${business} gets a ${style.tone} website direction built around ${customer}, with a clear path to ${goal.toLowerCase()}.`;
-}
-
-function buildServices(industry, goal, features, details) {
-  const text = `${industry} ${goal} ${details} ${features.join(" ")}`.toLowerCase();
-  const services = [...features];
-  if (text.includes("trade") || text.includes("service")) services.push("Services", "Fast enquiry");
-  if (text.includes("clinic") || text.includes("health")) services.push("Treatments", "Patient trust");
-  if (text.includes("restaurant") || text.includes("cafe") || text.includes("venue")) services.push("Menu", "Reservations");
-  if (text.includes("consult")) services.push("Expert positioning", "Discovery calls");
-  if (text.includes("shop") || text.includes("product") || text.includes("ecommerce")) services.push("Product showcase", "Checkout path");
-  services.push("Homepage", "About", "Contact");
-  return [...new Set(services)].slice(0, 6);
-}
-
-function buildTrust(industry) {
-  if (/health|clinic|wellness/i.test(industry)) return ["Patient-first copy", "Trust-building proof", "Simple bookings"];
-  if (/restaurant|cafe|venue/i.test(industry)) return ["Menu-ready layout", "Mobile booking", "Local search focus"];
-  if (/product|ecommerce/i.test(industry)) return ["Product storytelling", "Checkout path", "Launch-ready SEO"];
-  return ["Premium first impression", "Conversion-led sections", "Mobile-ready structure"];
-}
-
-function goalToCta(goal) {
-  if (/booking/i.test(goal)) return "Book now";
-  if (/sell/i.test(goal)) return "Shop now";
-  if (/waitlist/i.test(goal)) return "Join the waitlist";
-  if (/showcase/i.test(goal)) return "View work";
-  return "Enquire now";
-}
-
-async function lookupDomain(domain) {
-  const baseUrl = await getRdapBaseUrl(domain);
-  if (!baseUrl) {
-    return {
-      status: "unknown",
-      message: "No public registry lookup was found for this domain ending. Docked will confirm manually.",
-      source: "No RDAP endpoint",
-    };
-  }
-
-  const source = `${baseUrl.replace(/\/+$/, "")}/domain/${encodeURIComponent(domain)}`;
-  const response = await fetch(source, {
-    headers: { Accept: "application/rdap+json, application/json" },
-  });
-
-  if (response.status === 404) {
-    return {
-      status: "likely_available",
-      message: `${domain} is not showing in the registry. Docked will confirm final availability before purchase.`,
-      source,
-    };
-  }
-
-  if (response.status === 200) {
-    const data = await response.json().catch(() => ({}));
-    const registrar = findRegistrar(data);
-    return {
-      status: "registered",
-      message: `${domain} is already registered${registrar ? ` with ${registrar}` : ""}. Try another option.`,
-      source,
-    };
-  }
+function calculateBorrowingPower() {
+  const form = document.querySelector("#borrowingCalc");
+  const income = readNumber(form, "household_income");
+  const expenses = readNumber(form, "monthly_expenses");
+  const debts = readNumber(form, "other_debt_repayments");
+  const dependants = readNumber(form, "dependants");
+  const monthlyIncome = income / 12;
+  const dependantBuffer = dependants * 350;
+  const serviceableMonthly = Math.max(0, monthlyIncome * 0.5 - expenses - debts - dependantBuffer);
+  const assessmentRate = 8.5;
+  const years = 30;
+  const guide = principalFromRepayment(serviceableMonthly, assessmentRate, years, 12);
 
   return {
-    status: "unknown",
-    message: `The registry returned status ${response.status}. Docked will confirm manually before purchase.`,
-    source,
+    title: "Borrowing power guide",
+    primary: formatCurrency(guide),
+    detail: `Based on an assessment rate of ${assessmentRate.toFixed(2)}% and an estimated serviceable repayment guide of ${formatCurrency(serviceableMonthly)} per month.`,
+    values: {
+      household_income: income,
+      monthly_expenses: expenses,
+      other_debt_repayments: debts,
+      dependants,
+      assessment_rate: assessmentRate,
+      estimated_serviceable_monthly_repayment: roundCurrency(serviceableMonthly),
+      borrowing_power_guide: roundCurrency(guide),
+    },
   };
 }
 
-async function getRdapBaseUrl(domain) {
-  const labels = domain.split(".");
-  const tld = labels[labels.length - 1];
-  if (tld === "au") return "https://rdap.cctld.au/rdap/";
+function calculateRefinance() {
+  const form = document.querySelector("#refinanceCalc");
+  const balance = readNumber(form, "current_balance");
+  const currentRate = readNumber(form, "current_rate");
+  const newRate = readNumber(form, "new_rate");
+  const years = readNumber(form, "remaining_term_years");
+  const costs = readNumber(form, "switching_costs");
+  const currentMonthly = repaymentAmount(balance, currentRate, years, 12);
+  const newMonthly = repaymentAmount(balance, newRate, years, 12);
+  const monthlySaving = currentMonthly - newMonthly;
+  const annualSaving = monthlySaving * 12;
+  const breakEven = monthlySaving > 0 ? Math.ceil(costs / monthlySaving) : 0;
 
-  if (!rdapBootstrap) {
-    const response = await fetch("https://data.iana.org/rdap/dns.json");
-    rdapBootstrap = await response.json();
+  return {
+    title: "Estimated monthly saving",
+    primary: formatCurrency(monthlySaving),
+    detail:
+      monthlySaving > 0
+        ? `Annual saving estimate: ${formatCurrency(annualSaving)}. Break-even after about ${breakEven} months.`
+        : "The new rate does not show a repayment saving on these inputs.",
+    values: {
+      current_balance: balance,
+      current_rate: currentRate,
+      new_rate: newRate,
+      remaining_term_years: years,
+      switching_costs: costs,
+      current_monthly_repayment: roundCurrency(currentMonthly),
+      new_monthly_repayment: roundCurrency(newMonthly),
+      monthly_saving: roundCurrency(monthlySaving),
+      annual_saving: roundCurrency(annualSaving),
+      break_even_months: breakEven,
+    },
+  };
+}
+
+function calculateDeposit() {
+  const form = document.querySelector("#depositCalc");
+  const price = readNumber(form, "property_price");
+  const deposit = readNumber(form, "deposit_equity");
+  const upfrontCosts = readNumber(form, "upfront_costs");
+  const targetLvr = readNumber(form, "target_lvr");
+  const usableDeposit = Math.max(0, deposit - upfrontCosts);
+  const loan = Math.max(0, price - usableDeposit);
+  const lvr = price > 0 ? (loan / price) * 100 : 0;
+  const targetDeposit = price * (1 - targetLvr / 100) + upfrontCosts;
+  const gap = Math.max(0, targetDeposit - deposit);
+
+  return {
+    title: "Estimated LVR",
+    primary: `${formatNumber(lvr)}%`,
+    detail:
+      gap > 0
+        ? `Estimated loan size: ${formatCurrency(loan)}. Deposit gap to reach ${formatNumber(targetLvr)}% LVR: ${formatCurrency(gap)}.`
+        : `Estimated loan size: ${formatCurrency(loan)}. You appear to meet the ${formatNumber(targetLvr)}% LVR target on these inputs.`,
+    values: {
+      property_price: price,
+      deposit_equity: deposit,
+      upfront_costs: upfrontCosts,
+      usable_deposit: roundCurrency(usableDeposit),
+      estimated_loan_size: roundCurrency(loan),
+      estimated_lvr: roundCurrency(lvr),
+      target_lvr: targetLvr,
+      deposit_gap: roundCurrency(gap),
+    },
+  };
+}
+
+function calculateExtraRepayments() {
+  const form = document.querySelector("#extraCalc");
+  const balance = readNumber(form, "extra_balance");
+  const rate = readNumber(form, "extra_rate");
+  const years = readNumber(form, "extra_term_years");
+  const extra = readNumber(form, "extra_monthly");
+  const baseRepayment = repaymentAmount(balance, rate, years, 12);
+  const baseInterest = Math.max(0, baseRepayment * years * 12 - balance);
+  const accelerated = simulatePayoff(balance, rate, baseRepayment + extra, years * 12);
+  const interestSaved = Math.max(0, baseInterest - accelerated.interest);
+  const monthsSaved = Math.max(0, years * 12 - accelerated.months);
+
+  return {
+    title: "Estimated interest saved",
+    primary: formatCurrency(interestSaved),
+    detail: `Estimated time saved: ${monthsToYears(monthsSaved)}. New payoff time: ${monthsToYears(accelerated.months)}.`,
+    values: {
+      loan_balance: balance,
+      interest_rate: rate,
+      remaining_term_years: years,
+      standard_monthly_repayment: roundCurrency(baseRepayment),
+      extra_monthly_repayment: extra,
+      estimated_interest_saved: roundCurrency(interestSaved),
+      estimated_months_saved: monthsSaved,
+      estimated_payoff_months: accelerated.months,
+    },
+  };
+}
+
+function repaymentAmount(principal, annualRate, years, periodsPerYear) {
+  const periods = years * periodsPerYear;
+  if (!principal || !periods) return 0;
+  const rate = annualRate / 100 / periodsPerYear;
+  if (!rate) return principal / periods;
+  return (principal * rate) / (1 - Math.pow(1 + rate, -periods));
+}
+
+function principalFromRepayment(payment, annualRate, years, periodsPerYear) {
+  const periods = years * periodsPerYear;
+  const rate = annualRate / 100 / periodsPerYear;
+  if (!payment || !periods) return 0;
+  if (!rate) return payment * periods;
+  return payment * ((1 - Math.pow(1 + rate, -periods)) / rate);
+}
+
+function simulatePayoff(balance, annualRate, monthlyPayment, maxMonths) {
+  const monthlyRate = annualRate / 100 / 12;
+  let remaining = balance;
+  let interest = 0;
+  let months = 0;
+
+  while (remaining > 0 && months < maxMonths * 2 && monthlyPayment > 0) {
+    const monthlyInterest = remaining * monthlyRate;
+    const principalPaid = monthlyPayment - monthlyInterest;
+    if (principalPaid <= 0) break;
+    remaining -= principalPaid;
+    interest += monthlyInterest;
+    months += 1;
   }
 
-  const service = rdapBootstrap.services.find(([tlds]) => tlds.includes(tld));
-  return service?.[1]?.[0] || null;
+  return {
+    months,
+    interest,
+  };
 }
 
-function findRegistrar(data) {
-  const registrar = data.entities?.find((entity) => entity.roles?.includes("registrar"));
-  const vcard = registrar?.vcardArray?.[1] || [];
-  const fn = vcard.find((item) => item[0] === "fn");
-  return fn?.[3] || "";
-}
-
-function setDomainStatus(message, status) {
-  if (!domainStatus) return;
-  domainStatus.textContent = message;
-  domainStatus.dataset.status = status;
+function applyScenarioToLeadForm() {
+  const values = currentScenario.values || {};
+  setLeadValue("loan_amount", values.loan_amount || values.current_balance || values.estimated_loan_size || values.loan_balance);
+  setLeadValue("property_value", values.property_price);
+  setLeadValue("deposit_equity", values.deposit_equity);
+  setLeadValue("household_income", values.household_income);
 }
 
 async function saveLead(stage, formData, extra = {}) {
   const payload = {
-    stage,
     submitted_at: new Date().toISOString(),
     ...formDataToObject(formData),
+    stage,
     ...extra,
   };
 
@@ -308,18 +352,14 @@ async function saveLead(stage, formData, extra = {}) {
 }
 
 function storeLocalLead(payload) {
-  const existing = JSON.parse(localStorage.getItem("docked_leads") || "[]");
+  const existing = JSON.parse(localStorage.getItem("docked_loan_leads") || "[]");
   existing.push(payload);
-  localStorage.setItem("docked_leads", JSON.stringify(existing.slice(-50)));
+  localStorage.setItem("docked_loan_leads", JSON.stringify(existing.slice(-75)));
 }
 
 function formDataToObject(formData) {
   const output = {};
   for (const [key, value] of formData.entries()) {
-    if (value instanceof File) {
-      if (value.name) output[key] = output[key] ? `${output[key]}, ${value.name}` : value.name;
-      continue;
-    }
     if (!value) continue;
     if (output[key]) output[key] = `${output[key]}, ${value}`;
     else output[key] = value;
@@ -327,107 +367,58 @@ function formDataToObject(formData) {
   return output;
 }
 
-function countUploadedImages(files) {
-  return Array.from(files).filter((file) => file.type.startsWith("image/")).slice(0, 4).length;
+function renderDailyArticle() {
+  if (!dailyArticle) return;
+  const dayIndex = Math.floor(Date.now() / 86400000) % dailyArticles.length;
+  const article = dailyArticles[dayIndex];
+  dailyArticle.innerHTML = `
+    <h3>${escapeHtml(article.title)}</h3>
+    <p>${escapeHtml(article.body)}</p>
+    <a class="button secondary" href="#lead">Ask a broker</a>
+  `;
 }
 
-async function prepareUploadedImages(files, limit = 4) {
-  const selected = Array.from(files).filter((file) => file.type.startsWith("image/")).slice(0, limit);
-  const images = [];
-  for (const file of selected) {
-    try {
-      images.push(await compressImage(file));
-    } catch {
-      // Ignore files that the browser cannot read as an image.
-    }
+function readNumber(form, name) {
+  return Number(form?.elements[name]?.value || 0);
+}
+
+function setLeadValue(name, value) {
+  const field = leadForm?.elements[name];
+  if (field && value !== undefined && value !== null && value !== "") {
+    field.value = Math.round(Number(value));
   }
-  return images;
 }
 
-function compressImage(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const image = new Image();
-      image.onload = () => {
-        const maxSize = 900;
-        const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
-        const width = Math.max(1, Math.round(image.width * scale));
-        const height = Math.max(1, Math.round(image.height * scale));
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        const context = canvas.getContext("2d");
-        context.drawImage(image, 0, 0, width, height);
-        resolve({
-          name: file.name,
-          width,
-          height,
-          dataUrl: canvas.toDataURL("image/jpeg", 0.72),
-        });
-      };
-      image.onerror = reject;
-      image.src = reader.result;
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
+function formatCurrency(value) {
+  const safeValue = Number.isFinite(value) ? value : 0;
+  const sign = safeValue < 0 ? "-" : "";
+  return `${sign}$${Math.abs(safeValue).toLocaleString("en-AU", {
+    maximumFractionDigits: 0,
+  })}`;
+}
+
+function formatNumber(value) {
+  const safeValue = Number.isFinite(value) ? value : 0;
+  return safeValue.toLocaleString("en-AU", {
+    maximumFractionDigits: 1,
   });
 }
 
-function stripImageData(preview) {
-  if (!preview) return preview;
-  return {
-    ...preview,
-    images: (preview.images || []).map((image) => ({
-      name: image.name,
-      width: image.width,
-      height: image.height,
-    })),
-    uploaded_image_count: String((preview.images || []).length),
-  };
+function roundCurrency(value) {
+  return Math.round((Number.isFinite(value) ? value : 0) * 100) / 100;
 }
 
-function readPreview() {
-  try {
-    return JSON.parse(localStorage.getItem("docked_preview") || "null");
-  } catch {
-    return null;
-  }
+function monthsToYears(months) {
+  if (!months) return "0 months";
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+  if (!years) return `${remainingMonths} month${remainingMonths === 1 ? "" : "s"}`;
+  if (!remainingMonths) return `${years} year${years === 1 ? "" : "s"}`;
+  return `${years} year${years === 1 ? "" : "s"} ${remainingMonths} month${remainingMonths === 1 ? "" : "s"}`;
 }
 
-function pickTasks(value) {
-  const lower = value.toLowerCase();
-  if (lower.includes("logo") || lower.includes("brand")) return taskSets.logo;
-  if (lower.includes("book") || lower.includes("call") || lower.includes("appointment")) return taskSets.booking;
-  if (lower.includes("price") || lower.includes("$") || lower.includes("cost")) return taskSets.price;
-  if (lower.includes("domain") || lower.includes(".com")) return taskSets.domain;
-  return taskSets.default;
-}
-
-function normalizeDomain(value) {
-  const raw = cleanValue(value)
-    .toLowerCase()
-    .replace(/^https?:\/\//, "")
-    .replace(/^www\./, "")
-    .split("/")[0]
-    .replace(/[^a-z0-9.-]/g, "")
-    .replace(/\.+/g, ".")
-    .replace(/^\./, "")
-    .replace(/\.$/, "");
-
-  if (!raw) return "";
-  return raw.includes(".") ? raw : `${raw}.com.au`;
-}
-
-function cleanValue(value) {
-  return String(value || "").trim();
-}
-
-function slugify(value) {
-  return cleanValue(value)
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "") || "docked-preview";
+function capitalise(value) {
+  return String(value || "").charAt(0).toUpperCase() + String(value || "").slice(1);
 }
 
 function escapeHtml(value) {
@@ -441,12 +432,4 @@ function escapeHtml(value) {
     };
     return map[char];
   });
-}
-
-function renderPaypalButton() {
-  const container = document.querySelector("#paypal-container-ZGTCFXXGBGNKU");
-  if (!container || container.childElementCount || !window.paypal?.HostedButtons) return;
-  paypal.HostedButtons({
-    hostedButtonId: "ZGTCFXXGBGNKU",
-  }).render("#paypal-container-ZGTCFXXGBGNKU");
 }
