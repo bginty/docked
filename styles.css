@@ -83,6 +83,10 @@ p {
   line-height: 1.65;
 }
 
+section {
+  scroll-margin-top: 84px;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -249,9 +253,11 @@ p {
 .insight-panel,
 .result-panel,
 .lead-form,
+.statement-form,
 .daily-card,
 .article-grid article,
-.disclosure-box {
+.disclosure-box,
+.privacy-box {
   background: rgba(255, 255, 255, 0.86);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -458,6 +464,7 @@ textarea:focus {
 }
 
 .calculator-form label,
+.statement-form label,
 .lead-form label {
   display: grid;
   gap: 8px;
@@ -505,6 +512,109 @@ textarea:focus {
 .daily-section {
   padding: clamp(64px, 8vw, 108px) clamp(20px, 5vw, 64px);
   background: var(--forest);
+}
+
+.statement-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(380px, 0.96fr);
+  gap: clamp(28px, 6vw, 82px);
+  align-items: start;
+  padding: clamp(72px, 10vw, 130px) clamp(20px, 5vw, 64px);
+  background:
+    linear-gradient(135deg, rgba(223, 240, 230, 0.86), rgba(251, 247, 239, 0.76)),
+    var(--soft);
+}
+
+.statement-copy {
+  width: min(580px, 100%);
+  justify-self: end;
+}
+
+.statement-form {
+  display: grid;
+  width: min(660px, 100%);
+  gap: 18px;
+  padding: 28px;
+}
+
+.file-drop {
+  display: grid;
+  gap: 9px;
+  padding: 18px;
+  background: #f9fcf9;
+  border: 1px dashed rgba(19, 35, 32, 0.28);
+  border-radius: 8px;
+}
+
+.file-drop input {
+  height: auto;
+  padding: 12px;
+}
+
+.file-drop span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.manual-details {
+  padding: 16px;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.manual-details summary {
+  cursor: pointer;
+  color: var(--forest);
+  font-weight: 900;
+}
+
+.manual-details .field-row {
+  margin-top: 14px;
+}
+
+.affordability-result {
+  padding: 20px;
+  background: var(--forest);
+  border-radius: 8px;
+  color: var(--white);
+}
+
+.affordability-result h3 {
+  color: var(--white);
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+}
+
+.affordability-result p,
+.affordability-result .eyebrow {
+  color: #c8ead7;
+}
+
+.affordability-result dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 16px 0 0;
+}
+
+.affordability-result div {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.affordability-result dt {
+  color: #c8ead7;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.affordability-result dd {
+  margin: 4px 0 0;
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 900;
 }
 
 .daily-card {
@@ -561,10 +671,21 @@ textarea:focus {
 }
 
 .disclosure-box strong,
+.privacy-box strong,
 .privacy-note strong {
   display: block;
   margin-bottom: 8px;
   color: var(--forest);
+}
+
+.privacy-box {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fffdf8;
+}
+
+.privacy-box p {
+  margin-bottom: 0;
 }
 
 .privacy-note {
@@ -645,6 +766,7 @@ textarea:focus {
 
   .tool-hero,
   .calculator-grid,
+  .statement-section,
   .daily-card,
   .lead-section,
   .article-grid {
@@ -656,6 +778,7 @@ textarea:focus {
   }
 
   .hero-copy,
+  .statement-copy,
   .lead-copy {
     justify-self: start;
   }
@@ -694,6 +817,7 @@ textarea:focus {
 
   .tool-hero,
   .calculator-section,
+  .statement-section,
   .daily-section,
   .lead-section,
   .article-section {
@@ -709,12 +833,14 @@ textarea:focus {
 
   .calculator-tabs,
   .field-row,
-  .mini-metrics {
+  .mini-metrics,
+  .affordability-result dl {
     grid-template-columns: 1fr;
   }
 
   .calculator-form,
   .result-panel,
+  .statement-form,
   .lead-form,
   .daily-card {
     padding: 20px;
