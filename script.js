@@ -28,10 +28,8 @@ function connectSheetLeadCapture() {
     "submit",
     async () => {
       if (!leadForm.checkValidity()) return;
-
       const formData = new FormData(leadForm);
       const payload = buildSheetPayload(formData);
-
       try {
         await fetch(DOCKED_SHEET_WEBHOOK_URL, {
           method: "POST",
@@ -58,7 +56,6 @@ function enhanceStatementUpload() {
   if (!statementForm || !statementFiles || !dropZone || !affordabilityResult) return;
 
   injectStatementUploadStyles();
-
   dropZone.id = "statementDropZone";
   dropZone.classList.add("enhanced-file-drop");
   statementFiles.setAttribute("accept", ".csv,.txt,.ofx,.qif,.pdf,.xls,.xlsx,.doc,.docx");
@@ -91,19 +88,16 @@ function enhanceStatementUpload() {
     dropZone.classList.toggle("has-files", files.length > 0);
     window.dockedEnhancedAffordability = null;
     if (useAffordabilityButton) useAffordabilityButton.disabled = true;
-
     if (!files.length) {
       fileList.innerHTML = '<strong>No files selected yet</strong><span>After choosing files, press Check my affordability below.</span>';
       if (checkButton) checkButton.textContent = "Check my affordability";
       return;
     }
-
     const estimateCount = files.filter((file) => /\.(csv|txt|ofx|qif|pdf)$/i.test(file.name)).length;
     const manualCount = files.length - estimateCount;
     const summary = estimateCount
       ? `${estimateCount} file${estimateCount === 1 ? "" : "s"} ready to try for an instant estimate${manualCount ? `, ${manualCount} recorded for enquiry` : ""}.`
       : "Files selected and recorded. For an instant estimate, upload CSV, TXT, OFX, QIF, a text-based PDF, or enter figures manually.";
-
     fileList.innerHTML = `
       <strong>${files.length} file${files.length === 1 ? "" : "s"} selected</strong>
       <span>${escapeHtml(summary)}</span>
@@ -113,53 +107,56 @@ function enhanceStatementUpload() {
   };
 
   statementFiles.addEventListener("change", renderSelectedFiles);
-
   dropZone.addEventListener("dragover", (event) => {
     event.preventDefault();
     dropZone.classList.add("is-dragging");
   });
-
-  dropZone.addEventListener("dragleave", () => {
-    dropZone.classList.remove("is-dragging");
-  });
-
+  dropZone.addEventListener("dragleave", () => dropZone.classList.remove("is-dragging"));
   dropZone.addEventListener("drop", (event) => {
     event.preventDefault();
     dropZone.classList.remove("is-dragging");
-
     const droppedFiles = Array.from(event.dataTransfer?.files || []);
     if (!droppedFiles.length || typeof DataTransfer === "undefined") return;
-
     const transfer = new DataTransfer();
     droppedFiles.slice(0, 6).forEach((file) => transfer.items.add(file));
     statementFiles.files = transfer.files;
     renderSelectedFiles();
   });
 
+  const runEnhancedCheck = async () => {
+    if (checkButton) {
+      checkButton.disabled = true;
+      checkButton.textContent = "Checking affordability...";
+    }
+    const snapshot = await analyseEnhancedAffordability(statementForm, statementFiles);
+    window.dockedEnhancedAffordability = snapshot?.ok ? snapshot : null;
+    renderEnhancedAffordability(snapshot, affordabilityResult);
+    syncAffordabilityHiddenFields(snapshot);
+    if (useAffordabilityButton) useAffordabilityButton.disabled = !snapshot?.ok;
+    if (checkButton) {
+      checkButton.disabled = false;
+      checkButton.textContent = snapshot?.ok ? "Re-check affordability" : "Check manual figures";
+    }
+  };
+
+  checkButton?.addEventListener(
+    "click",
+    async (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      await runEnhancedCheck();
+    },
+    { capture: true },
+  );
   statementForm.addEventListener(
     "submit",
     async (event) => {
       event.preventDefault();
       event.stopImmediatePropagation();
-      if (checkButton) {
-        checkButton.disabled = true;
-        checkButton.textContent = "Checking affordability...";
-      }
-
-      const snapshot = await analyseEnhancedAffordability(statementForm, statementFiles);
-      window.dockedEnhancedAffordability = snapshot?.ok ? snapshot : null;
-      renderEnhancedAffordability(snapshot, affordabilityResult);
-      syncAffordabilityHiddenFields(snapshot);
-      if (useAffordabilityButton) useAffordabilityButton.disabled = !snapshot?.ok;
-
-      if (checkButton) {
-        checkButton.disabled = false;
-        checkButton.textContent = snapshot?.ok ? "Re-check affordability" : "Check manual figures";
-      }
+      await runEnhancedCheck();
     },
     { capture: true },
   );
-
   useAffordabilityButton?.addEventListener(
     "click",
     (event) => {
@@ -173,7 +170,6 @@ function enhanceStatementUpload() {
     },
     { capture: true },
   );
-
   renderSelectedFiles();
 }
 
@@ -186,10 +182,8 @@ async function analyseEnhancedAffordability(form, fileInput) {
   const manualSpending = readFormNumber(form, "manual_spending");
   const files = Array.from(fileInput?.files || []).slice(0, 6);
   const parsed = await parseEnhancedStatementFiles(files, months);
-
   const monthlyIncome = manualIncome || parsed.monthlyIncome;
   const monthlySpending = manualSpending || parsed.monthlySpending;
-
   if (!monthlyIncome || !monthlySpending) {
     const manualDetails = form.querySelector(".manual-details");
     if (manualDetails && files.some((file) => /\.pdf$/i.test(file.name))) manualDetails.open = true;
@@ -201,15 +195,12 @@ async function analyseEnhancedAffordability(form, fileInput) {
       skippedFiles: parsed.skippedFiles,
     };
   }
-
   const dependantBuffer = dependants * 350;
   const monthlySurplus = monthlyIncome - monthlySpending - debts - dependantBuffer;
   const affordableRepayment = Math.max(0, monthlySurplus * (1 - bufferPercent / 100));
   const assessmentRate = 8.5;
   const borrowingGuide = principalFromRepayment(affordableRepayment, assessmentRate, 30, 12);
-  const status =
-    affordableRepayment >= 3500 ? "Strong starting point" : affordableRepayment >= 1500 ? "Possible, worth checking" : "Tight, needs review";
-
+  const status = affordableRepayment >= 3500 ? "Strong starting point" : affordableRepayment >= 1500 ? "Possible, worth checking" : "Tight, needs review";
   return {
     ok: true,
     status,
@@ -232,18 +223,10 @@ async function analyseEnhancedAffordability(form, fileInput) {
 }
 
 async function parseEnhancedStatementFiles(files, months) {
-  const totals = {
-    income: 0,
-    spending: 0,
-    transactionCount: 0,
-    skippedFiles: [],
-    analysisMethods: [],
-  };
-
+  const totals = { income: 0, spending: 0, transactionCount: 0, skippedFiles: [], analysisMethods: [] };
   for (const file of files) {
     try {
       let parsed = null;
-
       if (/\.pdf$/i.test(file.name)) {
         parsed = await parsePdfStatement(file);
         if (parsed.transactionCount) totals.analysisMethods.push("Browser PDF statement text estimate");
@@ -254,7 +237,6 @@ async function parseEnhancedStatementFiles(files, months) {
         totals.skippedFiles.push(`${file.name}: file recorded, not parsed in browser`);
         continue;
       }
-
       totals.income += parsed.income;
       totals.spending += parsed.spending;
       totals.transactionCount += parsed.transactionCount;
@@ -263,7 +245,6 @@ async function parseEnhancedStatementFiles(files, months) {
       totals.skippedFiles.push(`${file.name}: could not read file`);
     }
   }
-
   return {
     monthlyIncome: totals.income / months,
     monthlySpending: totals.spending / months,
@@ -281,29 +262,24 @@ async function parsePdfStatement(file) {
   let transactionCount = 0;
   const allLines = [];
   let lastColumns = null;
-
   for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
     const page = await pdf.getPage(pageNumber);
     const content = await page.getTextContent();
     const lines = groupPdfTextItems(content.items);
     allLines.push(...lines.map((line) => line.text));
-
     const columns = findPdfColumns(lines) || lastColumns;
     if (columns) lastColumns = columns;
-
     const parsed = columns ? parsePdfLinesWithColumns(lines, columns) : { income: 0, spending: 0, transactionCount: 0 };
     income += parsed.income;
     spending += parsed.spending;
     transactionCount += parsed.transactionCount;
   }
-
   if (!transactionCount) {
     const fallback = parseStatementText(allLines.join("\n"));
     income += fallback.income;
     spending += fallback.spending;
     transactionCount += fallback.transactionCount;
   }
-
   return { income, spending, transactionCount };
 }
 
@@ -326,17 +302,10 @@ function groupPdfTextItems(items) {
     }
     row.items.push({ text, x, y });
   }
-
-  return rows
-    .sort((a, b) => b.y - a.y)
-    .map((row) => {
-      const sortedItems = row.items.sort((a, b) => a.x - b.x);
-      return {
-        y: row.y,
-        items: sortedItems,
-        text: sortedItems.map((item) => item.text).join("\t"),
-      };
-    });
+  return rows.sort((a, b) => b.y - a.y).map((row) => {
+    const sortedItems = row.items.sort((a, b) => a.x - b.x);
+    return { y: row.y, items: sortedItems, text: sortedItems.map((item) => item.text).join("\t") };
+  });
 }
 
 function findPdfColumns(lines) {
@@ -344,19 +313,10 @@ function findPdfColumns(lines) {
     const line = lines[index];
     const text = line.text.toLowerCase();
     if (!/(debit|withdrawal|money out|credit|deposit|money in)/.test(text)) continue;
-
     const debitItem = findHeaderItem(line.items, ["debit", "withdrawal", "out"]);
     const creditItem = findHeaderItem(line.items, ["credit", "deposit", "in"]);
     const balanceItem = findHeaderItem(line.items, ["balance"]);
-
-    if (debitItem || creditItem) {
-      return {
-        headerIndex: index,
-        debitX: debitItem?.x ?? null,
-        creditX: creditItem?.x ?? null,
-        balanceX: balanceItem?.x ?? null,
-      };
-    }
+    if (debitItem || creditItem) return { headerIndex: index, debitX: debitItem?.x ?? null, creditX: creditItem?.x ?? null, balanceX: balanceItem?.x ?? null };
   }
   return null;
 }
@@ -370,13 +330,9 @@ function parsePdfLinesWithColumns(lines, columns) {
   let spending = 0;
   let transactionCount = 0;
   const start = Math.max(0, (columns.headerIndex || 0) + 1);
-
   for (const line of lines.slice(start)) {
-    const moneyItems = line.items
-      .map((item) => ({ ...item, amount: parseMoneyToken(item.text) }))
-      .filter((item) => item.amount);
+    const moneyItems = line.items.map((item) => ({ ...item, amount: parseMoneyToken(item.text) })).filter((item) => item.amount);
     if (!moneyItems.length) continue;
-
     let counted = false;
     for (const item of moneyItems) {
       if (columns.balanceX !== null && Math.abs(item.x - columns.balanceX) < 44) continue;
@@ -392,22 +348,14 @@ function parsePdfLinesWithColumns(lines, columns) {
     }
     if (counted) transactionCount += 1;
   }
-
   return { income, spending, transactionCount };
 }
 
 function parseStatementText(text) {
-  const lines = String(text || "")
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
+  const lines = String(text || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
   if (!lines.length) return { income: 0, spending: 0, transactionCount: 0 };
-
   const headerInfo = findDelimitedHeader(lines);
-  if (headerInfo) {
-    return parseStatementRows(lines.slice(headerInfo.index + 1), headerInfo.indexes);
-  }
-
+  if (headerInfo) return parseStatementRows(lines.slice(headerInfo.index + 1), headerInfo.indexes);
   return parseSignedAmountRows(lines);
 }
 
@@ -426,14 +374,12 @@ function parseStatementRows(lines, indexes) {
   let income = 0;
   let spending = 0;
   let transactionCount = 0;
-
   for (const line of lines) {
     const cells = parseDelimitedLine(line);
     const debit = parseMoney(cells[indexes.debitIndex]);
     const credit = parseMoney(cells[indexes.creditIndex]);
     const amount = parseMoney(cells[indexes.amountIndex]);
     let counted = false;
-
     if (debit) {
       spending += Math.abs(debit);
       counted = true;
@@ -449,7 +395,6 @@ function parseStatementRows(lines, indexes) {
     }
     if (counted) transactionCount += 1;
   }
-
   return { income, spending, transactionCount };
 }
 
@@ -461,72 +406,26 @@ function parseSignedAmountRows(lines) {
     const amount = parseMoney(matches[matches.length - 1]);
     if (amount) amounts.push(amount);
   }
-
   const hasPositive = amounts.some((amount) => amount > 0);
   const hasNegative = amounts.some((amount) => amount < 0);
   if (!hasPositive || !hasNegative) return { income: 0, spending: 0, transactionCount: 0 };
-
-  return amounts.reduce(
-    (total, amount) => {
-      if (amount > 0) total.income += amount;
-      else total.spending += Math.abs(amount);
-      total.transactionCount += 1;
-      return total;
-    },
-    { income: 0, spending: 0, transactionCount: 0 },
-  );
-}
-
-function parseDelimitedLine(line) {
-  const cells = [];
-  let value = "";
-  let quoted = false;
-  for (const char of String(line || "")) {
-    if (char === '"') {
-      quoted = !quoted;
-      continue;
-    }
-    if (!quoted && (char === "," || char === "\t")) {
-      cells.push(value.trim());
-      value = "";
-      continue;
-    }
-    value += char;
-  }
-  cells.push(value.trim());
-  return cells;
-}
-
-function findHeaderIndex(header, words) {
-  return header.findIndex((cell) => words.some((word) => cell.includes(word)));
+  return amounts.reduce((total, amount) => {
+    if (amount > 0) total.income += amount;
+    else total.spending += Math.abs(amount);
+    total.transactionCount += 1;
+    return total;
+  }, { income: 0, spending: 0, transactionCount: 0 });
 }
 
 function renderEnhancedAffordability(snapshot, target) {
   if (!target) return;
   if (!snapshot?.ok) {
     const skipped = snapshot?.skippedFiles?.length ? `<p>${escapeHtml(snapshot.skippedFiles.join(" "))}</p>` : "";
-    target.innerHTML = `
-      <p class="eyebrow">Result</p>
-      <h3>More information needed</h3>
-      <p>${escapeHtml(snapshot?.message || "Upload statement exports or enter figures manually to start.")}</p>
-      ${skipped}
-    `;
+    target.innerHTML = `<p class="eyebrow">Result</p><h3>More information needed</h3><p>${escapeHtml(snapshot?.message || "Upload statement exports or enter figures manually to start.")}</p>${skipped}`;
     return;
   }
-
   const skipped = snapshot.skippedFiles?.length ? `<p>${escapeHtml(snapshot.skippedFiles.join(" "))}</p>` : "";
-  target.innerHTML = `
-    <p class="eyebrow">${escapeHtml(snapshot.status)}</p>
-    <h3>${formatCurrency(snapshot.borrowing_capacity_guide)} rough borrowing guide</h3>
-    <p>Estimated affordable repayment: ${formatCurrency(snapshot.affordable_repayment_guide)} per month after a ${snapshot.repayment_buffer_percent}% buffer.</p>
-    <dl>
-      <div><dt>Income</dt><dd>${formatCurrency(snapshot.monthly_income_estimate)}/mo</dd></div>
-      <div><dt>Spending</dt><dd>${formatCurrency(snapshot.monthly_spending_estimate)}/mo</dd></div>
-      <div><dt>Surplus</dt><dd>${formatCurrency(snapshot.monthly_surplus_estimate)}/mo</dd></div>
-    </dl>
-    <p>Based on ${snapshot.months} months, ${snapshot.transaction_count} parsed transactions, and an ${formatNumber(snapshot.assessment_rate)}% assessment-rate guide.</p>
-    ${skipped}
-  `;
+  target.innerHTML = `<p class="eyebrow">${escapeHtml(snapshot.status)}</p><h3>${formatCurrency(snapshot.borrowing_capacity_guide)} rough borrowing guide</h3><p>Estimated affordable repayment: ${formatCurrency(snapshot.affordable_repayment_guide)} per month after a ${snapshot.repayment_buffer_percent}% buffer.</p><dl><div><dt>Income</dt><dd>${formatCurrency(snapshot.monthly_income_estimate)}/mo</dd></div><div><dt>Spending</dt><dd>${formatCurrency(snapshot.monthly_spending_estimate)}/mo</dd></div><div><dt>Surplus</dt><dd>${formatCurrency(snapshot.monthly_surplus_estimate)}/mo</dd></div></dl><p>Based on ${snapshot.months} months, ${snapshot.transaction_count} parsed transactions, and an ${formatNumber(snapshot.assessment_rate)}% assessment-rate guide.</p>${skipped}`;
 }
 
 function syncAffordabilityHiddenFields(snapshot) {
@@ -542,7 +441,6 @@ function applyEnhancedAffordabilityToLeadForm(snapshot) {
   setLeadValue(leadForm, "loan_amount", snapshot.borrowing_capacity_guide);
   setLeadValue(leadForm, "household_income", snapshot.monthly_income_estimate * 12);
   syncAffordabilityHiddenFields(snapshot);
-
   const notes = leadForm.elements.notes;
   if (notes) {
     const summary = `Affordability guide: ${formatCurrency(snapshot.borrowing_capacity_guide)} borrowing guide, ${formatCurrency(snapshot.affordable_repayment_guide)}/mo affordable repayment, ${formatCurrency(snapshot.monthly_surplus_estimate)}/mo surplus.`;
@@ -551,14 +449,7 @@ function applyEnhancedAffordabilityToLeadForm(snapshot) {
 }
 
 function buildSheetPayload(formData) {
-  const payload = {
-    submitted_at: new Date().toISOString(),
-    stage: "loan_help_requested",
-    lead_source: "docked.com.au",
-    ...formDataToObject(formData),
-    consent_recorded: "yes",
-  };
-
+  const payload = { submitted_at: new Date().toISOString(), stage: "loan_help_requested", lead_source: "docked.com.au", ...formDataToObject(formData), consent_recorded: "yes" };
   const affordability = parseJson(payload.affordability_snapshot);
   if (affordability) {
     payload.statement_months = affordability.months || "";
@@ -570,14 +461,8 @@ function buildSheetPayload(formData) {
     payload.affordable_repayment_guide = affordability.affordable_repayment_guide || "";
     payload.borrowing_capacity_guide = affordability.borrowing_capacity_guide || "";
   }
-
   const calculator = parseJson(payload.calculator_snapshot);
-  if (calculator?.values) {
-    Object.entries(calculator.values).forEach(([key, value]) => {
-      if (payload[key] === undefined || payload[key] === "") payload[key] = value;
-    });
-  }
-
+  if (calculator?.values) Object.entries(calculator.values).forEach(([key, value]) => { if (payload[key] === undefined || payload[key] === "") payload[key] = value; });
   return payload;
 }
 
@@ -585,155 +470,22 @@ function injectStatementUploadStyles() {
   if (document.querySelector("#statementUploadEnhancementStyles")) return;
   const style = document.createElement("style");
   style.id = "statementUploadEnhancementStyles";
-  style.textContent = `
-    .enhanced-file-drop {
-      gap: 10px;
-      padding: 20px;
-      background: #f8fbff;
-      border: 1.5px dashed #b9cff0;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
-    }
-    .enhanced-file-drop input { background: #ffffff; }
-    .enhanced-file-drop.is-dragging,
-    .enhanced-file-drop.has-files {
-      background: #eef5ff;
-      border-color: #126bff;
-      box-shadow: 0 0 0 4px rgba(18, 107, 255, 0.1);
-    }
-    .file-drop-action {
-      display: inline-flex;
-      width: fit-content;
-      min-height: 36px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 14px;
-      background: #126bff;
-      border-radius: 999px;
-      color: #ffffff !important;
-      font-size: 0.8rem !important;
-      font-weight: 950 !important;
-    }
-    .file-list {
-      display: grid;
-      gap: 6px;
-      padding: 14px;
-      background: #ffffff;
-      border: 1px solid #e1e9f3;
-      border-radius: 12px;
-      color: #41546b;
-    }
-    .file-list strong { color: #071427; font-size: 0.92rem; }
-    .file-list span,
-    .file-list li {
-      color: #6d7d91;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-    .file-list ul {
-      display: grid;
-      gap: 5px;
-      margin: 0;
-      padding-left: 18px;
-    }
-  `;
+  style.textContent = `.enhanced-file-drop{gap:10px;padding:20px;background:#f8fbff;border:1.5px dashed #b9cff0;border-radius:14px;cursor:pointer;transition:border-color 160ms ease,background 160ms ease,box-shadow 160ms ease}.enhanced-file-drop input{background:#fff}.enhanced-file-drop.is-dragging,.enhanced-file-drop.has-files{background:#eef5ff;border-color:#126bff;box-shadow:0 0 0 4px rgba(18,107,255,.1)}.file-drop-action{display:inline-flex;width:fit-content;min-height:36px;align-items:center;justify-content:center;padding:0 14px;background:#126bff;border-radius:999px;color:#fff!important;font-size:.8rem!important;font-weight:950!important}.file-list{display:grid;gap:6px;padding:14px;background:#fff;border:1px solid #e1e9f3;border-radius:12px;color:#41546b}.file-list strong{color:#071427;font-size:.92rem}.file-list span,.file-list li{color:#6d7d91;font-size:.85rem;font-weight:700}.file-list ul{display:grid;gap:5px;margin:0;padding-left:18px}`;
   document.head.appendChild(style);
 }
 
-function readFileAsText(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result || "");
-    reader.onerror = reject;
-    reader.readAsText(file);
-  });
-}
-
-function readFormNumber(form, name) {
-  return Number(form?.elements[name]?.value || 0);
-}
-
-function setLeadValue(form, name, value) {
-  const field = form?.elements[name];
-  if (field && value !== undefined && value !== null && value !== "") {
-    const numericValue = Number(value);
-    const step = Number(field.getAttribute("step") || 1);
-    field.value = Number.isFinite(numericValue) && step > 1 ? Math.round(numericValue / step) * step : Math.round(numericValue);
-  }
-}
-
-function principalFromRepayment(payment, annualRate, years, periodsPerYear) {
-  const periods = years * periodsPerYear;
-  const rate = annualRate / 100 / periodsPerYear;
-  if (!payment || !periods) return 0;
-  if (!rate) return payment * periods;
-  return payment * ((1 - Math.pow(1 + rate, -periods)) / rate);
-}
-
-function parseMoneyToken(value) {
-  const token = String(value || "").trim();
-  if (!/\d/.test(token)) return 0;
-  if (!/[$,.\-()]/.test(token)) return 0;
-  return parseMoney(token);
-}
-
-function parseMoney(value) {
-  const raw = String(value || "").trim();
-  if (!raw) return 0;
-  const negative = raw.includes("(") && raw.includes(")") ? -1 : 1;
-  const cleaned = raw.replace(/[$,\s()]/g, "");
-  const amount = Number(cleaned);
-  return Number.isFinite(amount) ? amount * negative : 0;
-}
-
-function formDataToObject(formData) {
-  const output = {};
-  for (const [key, value] of formData.entries()) {
-    if (!value) continue;
-    output[key] = output[key] ? `${output[key]}, ${value}` : value;
-  }
-  return output;
-}
-
-function parseJson(value) {
-  try {
-    return value ? JSON.parse(value) : null;
-  } catch {
-    return null;
-  }
-}
-
-function formatCurrency(value) {
-  const safeValue = Number.isFinite(value) ? value : 0;
-  const sign = safeValue < 0 ? "-" : "";
-  return `${sign}$${Math.abs(safeValue).toLocaleString("en-AU", { maximumFractionDigits: 0 })}`;
-}
-
-function formatNumber(value) {
-  const safeValue = Number.isFinite(value) ? value : 0;
-  return safeValue.toLocaleString("en-AU", { maximumFractionDigits: 1 });
-}
-
-function formatFileSize(bytes) {
-  if (!Number.isFinite(bytes) || bytes <= 0) return "0 KB";
-  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
-  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
-}
-
-function roundCurrency(value) {
-  return Math.round((Number.isFinite(value) ? value : 0) * 100) / 100;
-}
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, (char) => {
-    const map = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;",
-    };
-    return map[char];
-  });
-}
+function readFileAsText(file) { return new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result || ""); reader.onerror = reject; reader.readAsText(file); }); }
+function readFormNumber(form, name) { return Number(form?.elements[name]?.value || 0); }
+function setLeadValue(form, name, value) { const field = form?.elements[name]; if (field && value !== undefined && value !== null && value !== "") { const numericValue = Number(value); const step = Number(field.getAttribute("step") || 1); field.value = Number.isFinite(numericValue) && step > 1 ? Math.round(numericValue / step) * step : Math.round(numericValue); } }
+function principalFromRepayment(payment, annualRate, years, periodsPerYear) { const periods = years * periodsPerYear; const rate = annualRate / 100 / periodsPerYear; if (!payment || !periods) return 0; if (!rate) return payment * periods; return payment * ((1 - Math.pow(1 + rate, -periods)) / rate); }
+function parseMoneyToken(value) { const token = String(value || "").trim(); if (!/\d/.test(token)) return 0; if (!/[$,.\-()]/.test(token)) return 0; return parseMoney(token); }
+function parseMoney(value) { const raw = String(value || "").trim(); if (!raw) return 0; const negative = raw.includes("(") && raw.includes(")") ? -1 : 1; const cleaned = raw.replace(/[$,\s()]/g, ""); const amount = Number(cleaned); return Number.isFinite(amount) ? amount * negative : 0; }
+function parseDelimitedLine(line) { const cells = []; let value = ""; let quoted = false; for (const char of String(line || "")) { if (char === '"') { quoted = !quoted; continue; } if (!quoted && (char === "," || char === "\t")) { cells.push(value.trim()); value = ""; continue; } value += char; } cells.push(value.trim()); return cells; }
+function findHeaderIndex(header, words) { return header.findIndex((cell) => words.some((word) => cell.includes(word))); }
+function formDataToObject(formData) { const output = {}; for (const [key, value] of formData.entries()) { if (!value) continue; output[key] = output[key] ? `${output[key]}, ${value}` : value; } return output; }
+function parseJson(value) { try { return value ? JSON.parse(value) : null; } catch { return null; } }
+function formatCurrency(value) { const safeValue = Number.isFinite(value) ? value : 0; const sign = safeValue < 0 ? "-" : ""; return `${sign}$${Math.abs(safeValue).toLocaleString("en-AU", { maximumFractionDigits: 0 })}`; }
+function formatNumber(value) { const safeValue = Number.isFinite(value) ? value : 0; return safeValue.toLocaleString("en-AU", { maximumFractionDigits: 1 }); }
+function formatFileSize(bytes) { if (!Number.isFinite(bytes) || bytes <= 0) return "0 KB"; if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`; return `${(bytes / 1024 / 1024).toFixed(1)} MB`; }
+function roundCurrency(value) { return Math.round((Number.isFinite(value) ? value : 0) * 100) / 100; }
+function escapeHtml(value) { return String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[char]); }
