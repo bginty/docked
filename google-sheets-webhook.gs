@@ -1,5 +1,5 @@
 const SPREADSHEET_ID = "1BU1jclFfLkmNOMjdcMLFC6BcAtxhh7iP_bHMWxCG_qQ";
-const SHEET_NAME = "Docked Leads";
+const SHEET_NAME = "Docked Loan Leads";
 
 function doPost(e) {
   const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
@@ -8,35 +8,35 @@ function doPost(e) {
   const headers = [
     "submitted_at",
     "stage",
-    "business",
-    "email",
+    "lead_source",
+    "loan_purpose",
+    "timeframe",
+    "property_value",
+    "loan_amount",
+    "deposit_equity",
+    "postcode",
+    "employment_type",
+    "household_income",
+    "name",
     "phone",
-    "projectType",
-    "industry",
-    "primary_goal",
-    "target_customer",
-    "style_direction",
-    "features",
-    "uploaded_image_count",
-    "preview_turnaround",
-    "preferred_domain",
-    "domain_status",
-    "domain_lookup_source",
-    "approved_business",
-    "approved_email",
-    "approved_domain",
-    "preview_link",
-    "subscription_price",
-    "domain_buyout_price",
-    "payment_status",
-    "payment_provider",
-    "details",
-    "preview_requirements",
-    "visual_references",
-    "approval_notes",
-    "revision_request",
-    "preview_snapshot",
-    "approved_preview_snapshot",
+    "email",
+    "notes",
+    "consent_broker_contact",
+    "referral_fee_disclosure",
+    "consent_recorded",
+    "calculator_snapshot",
+    "repayment_frequency",
+    "interest_rate",
+    "loan_term_years",
+    "monthly_expenses",
+    "other_debt_repayments",
+    "dependants",
+    "current_rate",
+    "new_rate",
+    "switching_costs",
+    "upfront_costs",
+    "target_lvr",
+    "extra_monthly_repayment",
   ];
 
   const activeHeaders = ensureHeaders(sheet, headers);
@@ -51,7 +51,7 @@ function doPost(e) {
 
 function doGet() {
   return ContentService
-    .createTextOutput(JSON.stringify({ ok: true, service: "Docked lead capture" }))
+    .createTextOutput(JSON.stringify({ ok: true, service: "Docked loan lead capture" }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
