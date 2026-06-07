@@ -5,8 +5,8 @@
   --paper: #f7faff;
   --white: #ffffff;
   --soft: #eef6ff;
-  --mint: #e7f1ff;
-  --forest: #08172d;
+  --mint: #e8f1ff;
+  --forest: #071a3d;
   --green: #126bff;
   --blue: #126bff;
   --clay: #ff8a3d;
@@ -268,7 +268,7 @@ section {
   min-height: calc(100svh - 58px);
   grid-template-columns: minmax(0, 1.1fr) minmax(350px, 0.72fr);
   gap: clamp(28px, 5vw, 72px);
-  align-items: center;
+  align-items: start;
   padding: clamp(54px, 8vw, 104px) clamp(20px, 5vw, 64px);
   background:
     radial-gradient(circle at 85% 18%, rgba(18, 107, 255, 0.1), transparent 26%),
@@ -355,7 +355,7 @@ section {
   width: min(470px, 100%);
   padding: 24px;
   background:
-    radial-gradient(circle at 16% 100%, rgba(23, 202, 212, 0.36), transparent 28%),
+    radial-gradient(circle at 16% 100%, rgba(18, 107, 255, 0.34), transparent 28%),
     linear-gradient(135deg, #071427, #0b2450 72%);
   border-color: rgba(255, 255, 255, 0.08);
   border-radius: 18px;
@@ -390,9 +390,9 @@ section {
   align-self: start;
   justify-self: start;
   padding: 5px 9px;
-  border: 1px solid rgba(36, 224, 228, 0.45);
+  border: 1px solid rgba(147, 197, 253, 0.58);
   border-radius: 6px;
-  color: #29e0e7;
+  color: #93c5fd;
   font-size: 0.72rem;
   font-style: normal;
   font-weight: 950;
@@ -427,12 +427,12 @@ section {
 
 .bar.three {
   width: 34%;
-  background: #1edee1;
+  background: #60a5fa;
 }
 
 .bar.four {
   width: 100%;
-  background: linear-gradient(90deg, #1edee1 32%, rgba(255, 255, 255, 0.92) 32%);
+  background: linear-gradient(90deg, #60a5fa 32%, rgba(255, 255, 255, 0.92) 32%);
 }
 
 .mini-metrics {
@@ -538,18 +538,18 @@ section {
 }
 
 .tab-icon.aqua {
-  background: #eafdfc;
-  color: #067f80;
+  background: #eef5ff;
+  color: #1d4ed8;
 }
 
 .tab-icon.purple {
-  background: #f5edff;
-  color: #8c3dff;
+  background: #edf4ff;
+  color: #2563eb;
 }
 
 .tab-icon.orange {
-  background: #fff5e6;
-  color: #f08a23;
+  background: #f4f8ff;
+  color: #3b82f6;
 }
 
 .tab-copy {
@@ -650,7 +650,7 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(28, 124, 84, 0.13);
+  box-shadow: 0 0 0 3px rgba(18, 107, 255, 0.15);
 }
 
 .calculator-form label,
@@ -712,7 +712,7 @@ textarea:focus {
   align-items: start;
   padding: clamp(72px, 10vw, 130px) clamp(20px, 5vw, 64px);
   background:
-    linear-gradient(135deg, rgba(223, 240, 230, 0.86), rgba(251, 247, 239, 0.76)),
+    linear-gradient(135deg, rgba(238, 245, 255, 0.92), rgba(248, 251, 255, 0.82)),
     var(--soft);
 }
 
@@ -730,16 +730,22 @@ textarea:focus {
 
 .file-drop {
   display: grid;
-  gap: 9px;
-  padding: 18px;
-  background: #f9fcf9;
-  border: 1px dashed rgba(19, 35, 32, 0.28);
-  border-radius: 8px;
+  gap: 10px;
+  padding: 20px;
+  background: #f8fbff;
+  border: 1.5px dashed #b9cff0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .file-drop input {
   height: auto;
   padding: 12px;
+  background: var(--white);
 }
 
 .file-drop span {
@@ -748,9 +754,63 @@ textarea:focus {
   font-weight: 700;
 }
 
+.file-drop strong {
+  color: var(--ink);
+}
+
+.file-drop.is-dragging,
+.file-drop.has-files {
+  background: #eef5ff;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 4px rgba(18, 107, 255, 0.1);
+}
+
+.file-drop-action {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  background: var(--blue);
+  border-radius: 999px;
+  color: var(--white) !important;
+  font-size: 0.8rem !important;
+  font-weight: 950 !important;
+}
+
+.file-list {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  background: #ffffff;
+  border: 1px solid #e1e9f3;
+  border-radius: 12px;
+  color: #41546b;
+}
+
+.file-list strong {
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.file-list span,
+.file-list li {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.file-list ul {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding-left: 18px;
+}
+
 .manual-details {
   padding: 16px;
-  background: #fffdf8;
+  background: #f8fbff;
   border: 1px solid var(--line);
   border-radius: 8px;
 }
@@ -779,7 +839,7 @@ textarea:focus {
 
 .affordability-result p,
 .affordability-result .eyebrow {
-  color: #c8ead7;
+  color: #bfdbfe;
 }
 
 .affordability-result dl {
@@ -796,7 +856,7 @@ textarea:focus {
 }
 
 .affordability-result dt {
-  color: #c8ead7;
+  color: #bfdbfe;
   font-size: 0.78rem;
   font-weight: 800;
 }
@@ -816,7 +876,7 @@ textarea:focus {
   align-items: start;
   margin: 0 auto;
   padding: clamp(24px, 4vw, 42px);
-  background: #f7fbf7;
+  background: #f8fbff;
 }
 
 .daily-card h2 {
@@ -839,7 +899,7 @@ textarea:focus {
   gap: clamp(28px, 6vw, 82px);
   padding: clamp(72px, 10vw, 130px) clamp(20px, 5vw, 64px);
   background:
-    linear-gradient(135deg, rgba(38, 92, 130, 0.1), rgba(196, 154, 74, 0.12)),
+    linear-gradient(135deg, rgba(18, 107, 255, 0.1), rgba(147, 197, 253, 0.16)),
     var(--paper);
 }
 
@@ -858,7 +918,7 @@ textarea:focus {
 .disclosure-box {
   margin-top: 24px;
   padding: 20px;
-  background: #fffdf8;
+  background: #f8fbff;
 }
 
 .disclosure-box strong,
@@ -872,7 +932,7 @@ textarea:focus {
 .privacy-box {
   margin-top: 24px;
   padding: 20px;
-  background: #fffdf8;
+  background: #f8fbff;
 }
 
 .privacy-box p {
@@ -895,7 +955,7 @@ textarea:focus {
   grid-template-columns: 22px minmax(0, 1fr);
   align-items: start;
   gap: 10px;
-  color: #40524e;
+  color: #41546b;
   font-weight: 700;
   line-height: 1.45;
 }
@@ -976,12 +1036,14 @@ textarea:focus {
 
 .site-footer p {
   margin: 6px 0 0;
-  color: #c5d4d0;
+  color: #c8d7ee;
 }
 
 .site-footer a {
-  color: #b8e1c8;
+  color: #bfdbfe;
   font-weight: 850;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 @media (max-width: 980px) {
@@ -1094,6 +1156,15 @@ textarea:focus {
   .lead-form,
   .daily-card {
     padding: 20px;
+  }
+
+  .site-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 18px;
+    padding-right: 18px;
+    padding-left: 18px;
   }
 
   .visual-card {
