@@ -1,20 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-label="Docked">
-  <rect width="720" height="220" fill="#ffffff" />
-  <g fill="#050505" stroke="#050505" stroke-linejoin="round">
-    <path d="M88 78 28 108v52l60 30-18-54Z" />
-    <path d="M252 78 312 108v52l-60 30 18-54Z" />
-    <path d="M122 52h77c60 0 102 41 102 82s-42 82-102 82h-77V52Zm60 55v55h24c25 0 43-12 43-28s-18-27-43-27h-24Z" />
-    <path d="M124 145 70 194h145l-55-49Z" />
-    <path d="M169 94h38v20h-38Z" fill="#ffffff" stroke="#ffffff" />
-    <path d="M171 122h34v23h-34Z" fill="#ffffff" stroke="#ffffff" />
-  </g>
-  <g fill="none" stroke="#050505" stroke-linecap="round" stroke-linejoin="round" stroke-width="12">
-    <circle cx="190" cy="100" r="18" />
-    <path d="M190 118v57" />
-    <path d="M169 136h42" />
-    <path d="M151 153c9 27 34 39 39 39s30-12 39-39" />
-    <path d="M151 153l-9 23" />
-    <path d="M229 153l9 23" />
-  </g>
-  <text x="342" y="148" fill="#050505" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="62" font-weight="900" letter-spacing="4">DOCKED</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="110" viewBox="0 0 430 110" fill="none">
+
+<g transform="translate(14,10) scale(0.9)">
+  <circle cx="50" cy="50" r="48" fill="#2563eb"/>
+  <circle cx="50" cy="50" r="42" fill="none" stroke="#93c5fd" stroke-width="2" opacity="0.5"/>
+  <circle cx="50" cy="26" r="9" fill="none" stroke="white" stroke-width="6"/>
+  <line x1="50" y1="35" x2="50" y2="78" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <line x1="28" y1="46" x2="72" y2="46" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <path d="M50 78 Q32 78 28 67" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <path d="M50 78 Q68 78 72 67" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="28" cy="67" r="4" fill="white"/>
+  <circle cx="72" cy="67" r="4" fill="white"/>
+</g>
+<text x="117" y="60" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="-1" fill="#0f1e4a">DOCKED</text>
+
 </svg>
