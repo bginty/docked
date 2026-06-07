@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Docked | Know your limit before you bid</title>
+    <title>Docked | Know before you apply</title>
     <meta
       name="description"
       content="Use Docked loan calculators, check bank-statement affordability, read practical Australian lending answers, and ask for help with your next loan step."
     />
     <meta name="theme-color" content="#12312f" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2312312f'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial, sans-serif' font-size='28' font-weight='800' fill='white'%3ED%3C/text%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="styles.css?v=10" />
+    <link rel="stylesheet" href="styles.css?v=11" />
   </head>
   <body>
     <header class="site-header" aria-label="Primary navigation">
@@ -51,7 +51,7 @@
       <section class="tool-hero" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="market-pill"><span aria-hidden="true"></span> Australian affordability guide</p>
-          <h1 id="hero-title">Know your <em>limit</em> before you bid.</h1>
+          <h1 id="hero-title">Know <em>before</em> you apply.</h1>
           <p class="hero-lede">
             Real-world Australian home loan affordability tools. No guesswork, just a clearer starting point before you talk to anyone.
           </p>
@@ -251,12 +251,12 @@
         <form class="statement-form" id="statementForm">
           <div class="form-heading">
             <h3>Instant affordability guide</h3>
-            <p>CSV, TXT, OFX, and QIF exports work best. PDF files can be noted, but most PDFs need a human review or a lender/broker document tool.</p>
+            <p>CSV, TXT, OFX, and QIF exports work best. Text-based PDFs may be estimated; scanned PDFs need manual figures or human review.</p>
           </div>
           <label class="file-drop" id="statementDropZone">
             <strong>Upload bank statement exports</strong>
             <input id="statementFiles" name="statement_files" type="file" accept=".csv,.txt,.ofx,.qif,.pdf,.xls,.xlsx,.doc,.docx" multiple />
-            <span class="file-drop-hint">Tap to choose files or drag them here. CSV, TXT, OFX, and QIF can be estimated. PDFs and documents are recorded for the enquiry.</span>
+            <span class="file-drop-hint">Tap to choose files or drag them here. CSV, TXT, OFX, QIF and text-based PDFs can be estimated. Documents are recorded for the enquiry.</span>
             <span class="file-drop-action">Choose files</span>
           </label>
           <div class="file-list" id="statementFileList" aria-live="polite">
@@ -448,6 +448,6 @@
       <a href="mailto:briantginty21@gmail.com">briantginty21@gmail.com</a>
     </footer>
 
-    <script src="script.js?v=11"></script>
+    <script src="script.js?v=13"></script>
   </body>
 </html>
