@@ -19,10 +19,94 @@
 
   const appScript = document.createElement("script");
   appScript.src = fullAppScriptSrc;
-  appScript.onload = patchPdfReaderWorker;
+  appScript.onload = () => {
+    patchPdfReaderWorker();
+    patchHomepageContent();
+  };
   appScript.onerror = () => {
     const formStatus = document.querySelector("#formStatus");
     if (formStatus) formStatus.textContent = "The calculator tools are taking a moment to load. Please refresh and try again.";
   };
   document.head.appendChild(appScript);
+
+  function patchHomepageContent() {
+    if (!document.querySelector("#dockedContentPatchStyles")) {
+      const style = document.createElement("style");
+      style.id = "dockedContentPatchStyles";
+      style.textContent = `
+        .footer-links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 14px;
+          margin-top: 12px;
+        }
+        .footer-links a {
+          color: #b8e1c8;
+          font-weight: 850;
+        }
+        .disclosure-box p + p {
+          margin-top: 10px;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    document.title = "Docked | Know your limit before you borrow";
+
+    const heroTitle = document.querySelector("#hero-title");
+    if (heroTitle) heroTitle.innerHTML = "Know your <em>limit</em> before you borrow.";
+
+    const nav = document.querySelector(".nav-links");
+    if (nav && !nav.querySelector('a[href="about.html"]')) {
+      const aboutLink = document.createElement("a");
+      aboutLink.href = "about.html";
+      aboutLink.textContent = "About";
+      nav.appendChild(aboutLink);
+    }
+
+    const disclosureBox = document.querySelector(".disclosure-box");
+    if (disclosureBox) {
+      disclosureBox.innerHTML = `
+        <strong>ASIC referral disclosure</strong>
+        <p>Docked is operated by Ginty United Investments as an online loan information and referral service. Docked is not a lender, credit provider, mortgage broker, credit representative, or holder of an Australian credit licence.</p>
+        <p>Docked provides calculators, education, and enquiry routing only. We do not recommend a specific loan, lender, broker, product, or strategy, and we do not assess whether credit is suitable for you.</p>
+        <p>If you ask for help and give consent, Docked may share your enquiry and affordability summary with a licensed broker, lender, aggregator, or authorised credit representative. Docked may receive a referral fee, affiliate commission, or other benefit if your details are referred or if you proceed with a provider.</p>
+      `;
+    }
+
+    const brokerConsent = document.querySelector('input[name="consent_broker_contact"]')?.closest(".consent-line")?.querySelector("span");
+    if (brokerConsent) {
+      brokerConsent.textContent =
+        "I agree Docked may share my details, calculator result, and affordability summary with a licensed broker, lender, aggregator, or authorised credit representative who may contact me about my enquiry.";
+    }
+
+    const referralConsent = document.querySelector('input[name="referral_fee_disclosure"]')?.closest(".consent-line")?.querySelector("span");
+    if (referralConsent) {
+      referralConsent.textContent =
+        "I understand Docked may receive a referral fee, affiliate commission, or similar benefit if my details are referred or if I proceed with a provider.";
+    }
+
+    const privacyNote = document.querySelector(".privacy-note p");
+    if (privacyNote) {
+      privacyNote.textContent =
+        "Docked collects your contact and loan details to respond to this enquiry, keep a record, and connect you with a licensed broker, lender, aggregator, or authorised credit representative if you consent. If you do not provide contact details, a callback cannot be arranged.";
+    }
+
+    const footer = document.querySelector(".site-footer");
+    if (footer) {
+      footer.innerHTML = `
+        <div>
+          <strong>docked.com.au</strong>
+          <p>Australian loan calculators, borrower education, affordability checks, and loan help.</p>
+          <p>Operated by Ginty United Investments.</p>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">About us</a>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="terms.html">Terms of use</a>
+          </nav>
+        </div>
+        <a href="mailto:hello@docked.com.au">hello@docked.com.au</a>
+      `;
+    }
+  }
 })();
