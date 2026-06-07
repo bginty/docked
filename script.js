@@ -44,7 +44,7 @@
           margin-top: 12px;
         }
         .footer-links a {
-          color: #b8e1c8;
+          color: #bfdbfe;
           font-weight: 850;
         }
         .site-footer {
@@ -53,6 +53,10 @@
         .site-footer a {
           overflow-wrap: anywhere;
           word-break: break-word;
+          color: #bfdbfe;
+        }
+        .site-footer p {
+          color: #c8d7ee;
         }
         .tool-hero {
           align-items: start;
