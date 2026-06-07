@@ -54,6 +54,9 @@
           overflow-wrap: anywhere;
           word-break: break-word;
         }
+        .tool-hero {
+          align-items: start;
+        }
         .disclosure-box p + p {
           margin-top: 10px;
         }
@@ -267,9 +270,6 @@
           height: 108px;
           margin: 12px 0;
         }
-        .quick-capture-panel .mini-metrics {
-          margin-top: 0;
-        }
         @media (max-width: 620px) {
           .quick-adjust-grid,
           .quick-lead-grid {
@@ -300,20 +300,6 @@
         <div class="bar three"></div>
         <div class="bar four"></div>
       </div>
-      <dl class="mini-metrics">
-        <div>
-          <dt>Loan</dt>
-          <dd id="heroLoanMetric">$600k</dd>
-        </div>
-        <div>
-          <dt>Rate</dt>
-          <dd id="heroRateMetric">6.24%</dd>
-        </div>
-        <div>
-          <dt>Term</dt>
-          <dd id="heroTermMetric">30 yrs</dd>
-        </div>
-      </dl>
       <p>
         Adjust the guide, then submit your details for a quick loan help response.
       </p>
@@ -363,9 +349,6 @@
     const rateInput = panel.querySelector("#heroLoanRate");
     const termInput = panel.querySelector("#heroLoanTerm");
     const repaymentTarget = panel.querySelector("#heroRepayment");
-    const loanMetric = panel.querySelector("#heroLoanMetric");
-    const rateMetric = panel.querySelector("#heroRateMetric");
-    const termMetric = panel.querySelector("#heroTermMetric");
     const quickStatus = panel.querySelector("#heroQuickLeadStatus");
 
     const readHeroScenario = () => {
@@ -379,9 +362,6 @@
     const updateHeroGuide = () => {
       const scenario = readHeroScenario();
       if (repaymentTarget) repaymentTarget.textContent = formatCurrency(scenario.repayment);
-      if (loanMetric) loanMetric.textContent = formatCompactCurrency(scenario.loan);
-      if (rateMetric) rateMetric.textContent = `${formatPercent(scenario.rate)}%`;
-      if (termMetric) termMetric.textContent = `${Math.round(scenario.years || 0)} yrs`;
       syncMainRepaymentForm(scenario);
     };
 
