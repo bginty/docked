@@ -22,6 +22,8 @@
   appScript.onload = () => {
     patchPdfReaderWorker();
     patchHomepageContent();
+    patchLeadResponseTime();
+    injectSeoTags();
   };
   appScript.onerror = () => {
     const formStatus = document.querySelector("#formStatus");
@@ -47,6 +49,37 @@
         .disclosure-box p + p {
           margin-top: 10px;
         }
+        .brand.has-image-logo {
+          min-width: 136px;
+        }
+        .site-logo-img {
+          display: block;
+          width: 124px;
+          height: 56px;
+          object-fit: contain;
+          border-radius: 8px;
+        }
+        .footer-brand-row {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 10px;
+        }
+        .footer-logo-img {
+          width: 112px;
+          height: 68px;
+          object-fit: contain;
+          border-radius: 8px;
+        }
+        @media (max-width: 620px) {
+          .brand.has-image-logo {
+            min-width: 106px;
+          }
+          .site-logo-img {
+            width: 100px;
+            height: 48px;
+          }
+        }
       `;
       document.head.appendChild(style);
     }
@@ -56,6 +89,12 @@
     const heroTitle = document.querySelector("#hero-title");
     if (heroTitle) heroTitle.innerHTML = "Know your <em>limit</em> before you borrow.";
 
+    const brand = document.querySelector(".site-header .brand");
+    if (brand) {
+      brand.classList.add("has-image-logo");
+      brand.innerHTML = '<img class="site-logo-img" src="docked-logo.svg" alt="Docked" />';
+    }
+
     const nav = document.querySelector(".nav-links");
     if (nav && !nav.querySelector('a[href="about.html"]')) {
       const aboutLink = document.createElement("a");
@@ -63,12 +102,14 @@
       aboutLink.textContent = "About";
       nav.appendChild(aboutLink);
     }
+    const faqNavLink = nav?.querySelector('a[href="#faq"]');
+    if (faqNavLink) faqNavLink.href = "faq.html";
 
     const disclosureBox = document.querySelector(".disclosure-box");
     if (disclosureBox) {
       disclosureBox.innerHTML = `
         <strong>ASIC referral disclosure</strong>
-        <p>Docked is operated by Ginty United Investments as an online loan information and referral service. Docked is not a lender, credit provider, mortgage broker, credit representative, or holder of an Australian credit licence.</p>
+        <p>Docked is operated by Ginty United Investments Pty Ltd (ABN 78 606 187 106, ACN 606 187 106) as an online loan information and referral service. Docked is not a lender, credit provider, mortgage broker, credit representative, or holder of an Australian credit licence.</p>
         <p>Docked provides calculators, education, and enquiry routing only. We do not recommend a specific loan, lender, broker, product, or strategy, and we do not assess whether credit is suitable for you.</p>
         <p>If you ask for help and give consent, Docked may share your enquiry and affordability summary with a licensed broker, lender, aggregator, or authorised credit representative. Docked may receive a referral fee, affiliate commission, or other benefit if your details are referred or if you proceed with a provider.</p>
       `;
@@ -96,11 +137,15 @@
     if (footer) {
       footer.innerHTML = `
         <div>
-          <strong>docked.com.au</strong>
+          <div class="footer-brand-row">
+            <img class="footer-logo-img" src="docked-logo.svg" alt="Docked" />
+            <strong>docked.com.au</strong>
+          </div>
           <p>Australian loan calculators, borrower education, affordability checks, and loan help.</p>
-          <p>Operated by Ginty United Investments.</p>
+          <p>Operated by Ginty United Investments Pty Ltd. ABN 78 606 187 106. ACN 606 187 106.</p>
           <nav class="footer-links" aria-label="Footer links">
             <a href="about.html">About us</a>
+            <a href="faq.html">FAQ</a>
             <a href="privacy.html">Privacy policy</a>
             <a href="terms.html">Terms of use</a>
           </nav>
@@ -108,5 +153,100 @@
         <a href="mailto:hello@docked.com.au">hello@docked.com.au</a>
       `;
     }
+  }
+
+  function patchLeadResponseTime() {
+    const leadForm = document.querySelector("#leadForm");
+    const formStatus = document.querySelector("#formStatus");
+    if (!leadForm || !formStatus || leadForm.dataset.responseTimePatched === "true") return;
+
+    leadForm.dataset.responseTimePatched = "true";
+    leadForm.addEventListener("submit", () => {
+      if (!leadForm.checkValidity()) return;
+      window.setTimeout(() => {
+        formStatus.textContent =
+          "Thanks, your loan help request has been received. Expect a response within 1 business day.";
+      }, 900);
+    });
+  }
+
+  function injectSeoTags() {
+    const origin = "https://docked.com.au";
+    const description =
+      "Docked helps Australian borrowers estimate repayments, borrowing power, LVR, LMI, refinance savings, HECS impact, bank statement affordability, and loan next steps before they borrow.";
+
+    setMeta("description", description);
+    setMeta("keywords", "home loan calculator Australia, borrowing power calculator, mortgage repayment calculator, LMI calculator, LVR calculator, refinance calculator, HECS borrowing power, first home buyer loans, guarantor loan Australia, stamp duty guide");
+    setMetaProperty("og:title", "Docked | Know your limit before you borrow");
+    setMetaProperty("og:description", description);
+    setMetaProperty("og:type", "website");
+    setMetaProperty("og:url", origin + "/");
+    setMetaProperty("og:image", origin + "/docked-logo.svg");
+    setMeta("twitter:card", "summary_large_image");
+    setMeta("twitter:title", "Docked | Know your limit before you borrow");
+    setMeta("twitter:description", description);
+    setLink("canonical", origin + "/");
+
+    addJsonLd("docked-org-schema", {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Docked",
+      legalName: "Ginty United Investments Pty Ltd",
+      url: origin + "/",
+      logo: origin + "/docked-logo.svg",
+      email: "hello@docked.com.au",
+      identifier: [
+        { "@type": "PropertyValue", name: "ABN", value: "78 606 187 106" },
+        { "@type": "PropertyValue", name: "ACN", value: "606 187 106" },
+      ],
+    });
+
+    addJsonLd("docked-website-schema", {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Docked",
+      url: origin + "/",
+      description,
+      publisher: { "@type": "Organization", name: "Docked" },
+    });
+  }
+
+  function setMeta(name, content) {
+    let tag = document.querySelector(`meta[name="${name}"]`);
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.setAttribute("name", name);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", content);
+  }
+
+  function setMetaProperty(property, content) {
+    let tag = document.querySelector(`meta[property="${property}"]`);
+    if (!tag) {
+      tag = document.createElement("meta");
+      tag.setAttribute("property", property);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", content);
+  }
+
+  function setLink(rel, href) {
+    let tag = document.querySelector(`link[rel="${rel}"]`);
+    if (!tag) {
+      tag = document.createElement("link");
+      tag.setAttribute("rel", rel);
+      document.head.appendChild(tag);
+    }
+    tag.setAttribute("href", href);
+  }
+
+  function addJsonLd(id, data) {
+    if (document.querySelector(`#${id}`)) return;
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = id;
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
   }
 })();
