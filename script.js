@@ -50,14 +50,13 @@
           margin-top: 10px;
         }
         .brand.has-image-logo {
-          min-width: 136px;
+          min-width: 166px;
         }
         .site-logo-img {
           display: block;
-          width: 124px;
-          height: 56px;
+          width: 158px;
+          height: 44px;
           object-fit: contain;
-          border-radius: 8px;
         }
         .footer-brand-row {
           display: flex;
@@ -69,15 +68,14 @@
           width: 112px;
           height: 68px;
           object-fit: contain;
-          border-radius: 8px;
         }
         @media (max-width: 620px) {
           .brand.has-image-logo {
-            min-width: 106px;
+            min-width: 148px;
           }
           .site-logo-img {
-            width: 100px;
-            height: 48px;
+            width: 142px;
+            height: 42px;
           }
         }
       `;
@@ -88,6 +86,7 @@
 
     const heroTitle = document.querySelector("#hero-title");
     if (heroTitle) heroTitle.innerHTML = "Know your <em>limit</em> before you borrow.";
+    setLink("icon", "docked-icon.svg");
 
     const brand = document.querySelector(".site-header .brand");
     if (brand) {
