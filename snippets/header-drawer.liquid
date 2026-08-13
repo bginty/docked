@@ -4,12 +4,15 @@
   @param {boolean} [show_country_selector] - Whether to render the country selector in the drawer.
   @param {boolean} [show_language_selector] - Whether to render the language selector in the drawer.
   @param {boolean} [show_social_links] - Whether to render social links list in the drawer.
+  @param {object} menu - Shopify link list used for the drawer.
+  @param {string} menu_type_desktop - Desktop menu presentation setting.
+  @param {string} menu_color_scheme - Drawer colour scheme id.
 
   @example
-  {% render 'header-drawer', show_language_selector: true %}
+  {% render 'header-drawer', menu: section.settings.menu, menu_type_desktop: section.settings.menu_type_desktop, menu_color_scheme: section.settings.menu_color_scheme, show_language_selector: true %}
 {% enddoc %}
 
-<header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
+<header-drawer data-breakpoint="{% if menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
   <details id="Details-menu-drawer-container" class="menu-drawer-container">
     <summary
       class="header__icon header__icon--menu header__icon--summary link focus-inset"
@@ -20,12 +23,12 @@
         {{- 'icon-close.svg' | inline_asset_content -}}
       </span>
     </summary>
-    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ menu_color_scheme }}">
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
-              {%- for link in section.settings.menu.links -%}
+              {%- for link in menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">

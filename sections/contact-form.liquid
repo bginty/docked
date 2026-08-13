@@ -112,6 +112,26 @@
         >
         <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
       </div>
+      <div class="contact__fields">
+        <div class="field">
+          <select id="ContactForm-topic" class="select__select field__input" name="contact[Topic]" required aria-required="true">
+            <option value="" selected disabled>Choose a topic</option>
+            <option value="Product question">Product question</option>
+            <option value="Order support">Order support</option>
+            <option value="Shipping question">Shipping question</option>
+            <option value="Return or refund">Return or refund</option>
+            <option value="Warranty claim">Warranty claim</option>
+            <option value="Safety concern">Safety concern</option>
+            <option value="Privacy request">Privacy request</option>
+            <option value="Accessibility feedback">Accessibility feedback</option>
+          </select>
+          <label class="field__label" for="ContactForm-topic">Topic <span aria-hidden="true">*</span></label>
+        </div>
+        <div class="field">
+          <input type="text" id="ContactForm-order" class="field__input" name="contact[Order number]" autocomplete="off" placeholder="Order number (if applicable)">
+          <label class="field__label" for="ContactForm-order">Order number (if applicable)</label>
+        </div>
+      </div>
       <div class="field">
         <textarea
           rows="10"
@@ -125,6 +145,16 @@
         <label class="form__label field__label" for="ContactForm-body">
           {{- 'templates.contact.form.comment' | t -}}
         </label>
+      </div>
+      <p class="caption">
+        We use the information you provide to respond to your request and manage any related order, return, warranty, safety, privacy or accessibility matter. Do not send payment details. Read our
+        <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Privacy Policy</a>.
+      </p>
+      <div class="docked-detail-card">
+        <strong>Customer support</strong>
+        <p><a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a></p>
+        <p>{{ settings.correspondence_address | escape | newline_to_br }}</p>
+        <p class="caption">{{ settings.address_qualifier | escape }} Contact us before sending any return.</p>
       </div>
       <div class="contact__button">
         <button type="submit" class="button">

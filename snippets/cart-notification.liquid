@@ -44,10 +44,13 @@
           {{- 'general.cart.view_empty_cart' | t -}}
         </a>
         <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
-          <button class="button button--primary button--full-width" name="checkout">
-            {{ 'sections.cart.checkout' | t }}
+          <button class="button button--primary button--full-width" name="checkout"{% if settings.prelaunch_mode %} disabled{% endif %}>
+            {%- if settings.prelaunch_mode -%}Ordering not yet open{%- else -%}{{ 'sections.cart.checkout' | t }}{%- endif -%}
           </button>
         </form>
+        {%- if settings.prelaunch_mode -%}
+          <p class="docked-gst-note">Preview only. Checkout is locked until payments, products, shipping and compliance are approved.</p>
+        {%- endif -%}
         <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
       </div>
     </div>

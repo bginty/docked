@@ -1,0 +1,102 @@
+{%- liquid
+  assign has_specs = false
+  if product.metafields.custom.motor_configuration.value != blank or product.metafields.custom.motor_count.value != blank or product.metafields.custom.control_type.value != blank or product.metafields.custom.rated_power_w.value != blank or product.metafields.custom.battery_type.value != blank or product.metafields.custom.battery_capacity_mah.value != blank or product.metafields.custom.battery_voltage_v.value != blank or product.metafields.custom.battery_watt_hours.value != blank or product.metafields.custom.verified_runtime_minutes.value != blank or product.metafields.custom.verified_charge_time_hours.value != blank or product.metafields.custom.maximum_user_weight_kg.value != blank or product.metafields.custom.inflated_length_cm.value != blank or product.metafields.custom.inflated_width_cm.value != blank or product.metafields.custom.packed_dimensions.value != blank or product.metafields.custom.product_weight_kg.value != blank or product.metafields.custom.material.value != blank or product.metafields.custom.pvc_grade_or_thickness.value != blank or product.metafields.custom.verified_water_ingress_rating.value != blank or product.metafields.custom.minimum_user_age.value != blank or product.metafields.custom.approved_use_environment.value != blank
+    assign has_specs = true
+  endif
+-%}
+
+<section class="docked-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="ProductDetails-{{ section.id }}">
+  <div class="docked-section__inner">
+    <p class="docked-eyebrow">Verified product information</p>
+    <h2 id="ProductDetails-{{ section.id }}">Details that earn their place.</h2>
+    <p class="docked-lede">Docked publishes physical specifications only after supporting supplier documentation has been reviewed. Empty fields stay hidden.</p>
+
+    <div class="docked-details-grid">
+      {%- if has_specs -%}
+        <div class="docked-detail-card">
+          <h3>Specifications</h3>
+          <table class="docked-spec-table">
+            <tbody>
+              {%- if product.metafields.custom.motor_configuration.value != blank -%}<tr><th scope="row">Motor configuration</th><td>{{ product.metafields.custom.motor_configuration.value | escape }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.motor_count.value != blank -%}<tr><th scope="row">Motor count</th><td>{{ product.metafields.custom.motor_count.value }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.control_type.value != blank -%}<tr><th scope="row">Control type</th><td>{{ product.metafields.custom.control_type.value | escape }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.rated_power_w.value != blank -%}<tr><th scope="row">Rated power</th><td>{{ product.metafields.custom.rated_power_w.value }} W</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.battery_type.value != blank -%}<tr><th scope="row">Battery type</th><td>{{ product.metafields.custom.battery_type.value | escape }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.battery_capacity_mah.value != blank -%}<tr><th scope="row">Battery capacity</th><td>{{ product.metafields.custom.battery_capacity_mah.value }} mAh</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.battery_voltage_v.value != blank -%}<tr><th scope="row">Battery voltage</th><td>{{ product.metafields.custom.battery_voltage_v.value }} V</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.battery_watt_hours.value != blank -%}<tr><th scope="row">Battery energy</th><td>{{ product.metafields.custom.battery_watt_hours.value }} Wh</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.verified_runtime_minutes.value != blank -%}<tr><th scope="row">Verified runtime</th><td>{{ product.metafields.custom.verified_runtime_minutes.value }} minutes</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.verified_charge_time_hours.value != blank -%}<tr><th scope="row">Verified charge time</th><td>{{ product.metafields.custom.verified_charge_time_hours.value }} hours</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.maximum_user_weight_kg.value != blank -%}<tr><th scope="row">Verified maximum user weight</th><td>{{ product.metafields.custom.maximum_user_weight_kg.value }} kg</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.inflated_length_cm.value != blank -%}<tr><th scope="row">Inflated length</th><td>{{ product.metafields.custom.inflated_length_cm.value }} cm</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.inflated_width_cm.value != blank -%}<tr><th scope="row">Inflated width</th><td>{{ product.metafields.custom.inflated_width_cm.value }} cm</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.packed_dimensions.value != blank -%}<tr><th scope="row">Packed dimensions</th><td>{{ product.metafields.custom.packed_dimensions.value | escape }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.product_weight_kg.value != blank -%}<tr><th scope="row">Product weight</th><td>{{ product.metafields.custom.product_weight_kg.value }} kg</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.material.value != blank -%}<tr><th scope="row">Material</th><td>{{ product.metafields.custom.material.value | escape }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.pvc_grade_or_thickness.value != blank -%}<tr><th scope="row">Verified PVC detail</th><td>{{ product.metafields.custom.pvc_grade_or_thickness.value | escape }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.verified_water_ingress_rating.value != blank -%}<tr><th scope="row">Verified ingress rating</th><td>{{ product.metafields.custom.verified_water_ingress_rating.value | escape }}</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.minimum_user_age.value != blank -%}<tr><th scope="row">Minimum user age</th><td>{{ product.metafields.custom.minimum_user_age.value }} years</td></tr>{%- endif -%}
+              {%- if product.metafields.custom.approved_use_environment.value != blank -%}<tr><th scope="row">Approved use environment</th><td>{{ product.metafields.custom.approved_use_environment.value | escape }}</td></tr>{%- endif -%}
+            </tbody>
+          </table>
+        </div>
+      {%- endif -%}
+
+      {%- if product.metafields.custom.included_items.value != blank -%}
+        <div class="docked-detail-card"><h3>What is included</h3><div class="rte">{{ product.metafields.custom.included_items | metafield_tag }}</div></div>
+      {%- endif -%}
+      {%- if product.metafields.custom.how_it_works.value != blank -%}
+        <div class="docked-detail-card"><h3>How it works</h3><div class="rte">{{ product.metafields.custom.how_it_works | metafield_tag }}</div></div>
+      {%- endif -%}
+      {%- if product.metafields.custom.setup_instructions.value != blank -%}
+        <div class="docked-detail-card"><h3>Setup</h3><div class="rte">{{ product.metafields.custom.setup_instructions | metafield_tag }}</div></div>
+      {%- endif -%}
+      {%- if product.metafields.custom.usage_instructions.value != blank -%}
+        <div class="docked-detail-card"><h3>Use</h3><div class="rte">{{ product.metafields.custom.usage_instructions | metafield_tag }}</div></div>
+      {%- endif -%}
+      {%- if product.metafields.custom.charging_instructions.value != blank -%}
+        <div class="docked-detail-card"><h3>Charging</h3><div class="rte">{{ product.metafields.custom.charging_instructions | metafield_tag }}</div></div>
+      {%- endif -%}
+      {%- if product.metafields.custom.care_instructions.value != blank -%}
+        <div class="docked-detail-card"><h3>Cleaning and storage</h3><div class="rte">{{ product.metafields.custom.care_instructions | metafield_tag }}</div></div>
+      {%- endif -%}
+
+      {%- if product.metafields.custom.adult_only.value or product.metafields.custom.powered_float.value or product.metafields.custom.safety_warnings.value != blank -%}
+        <div class="docked-detail-card">
+          <h3>Safety</h3>
+          {%- render 'docked-adult-safety-notice', product: product -%}
+        </div>
+      {%- endif -%}
+
+      <div class="docked-detail-card">
+        <h3>Shipping, returns and warranty</h3>
+        <p>Australia-only delivery options and any battery restrictions are confirmed at checkout only after the product's carrier profile is approved.</p>
+        <p><a class="docked-text-link" href="/pages/shipping">Shipping &amp; Delivery</a> · <a class="docked-text-link" href="/pages/returns">Returns &amp; Refunds</a> · <a class="docked-text-link" href="/pages/warranty">Warranty</a></p>
+        {%- if product.metafields.custom.warranty_period.value != blank -%}<p><strong>Express warranty:</strong> {{ product.metafields.custom.warranty_period.value | escape }}</p>{%- endif -%}
+        <p><strong>Australian Consumer Law:</strong> Our goods come with guarantees that cannot be excluded under the Australian Consumer Law.</p>
+      </div>
+
+      {%- if product.metafields.custom.manual_url.value != blank or product.metafields.custom.compliance_reports.value != blank -%}
+        <div class="docked-detail-card">
+          <h3>Manual and compliance references</h3>
+          {%- if product.metafields.custom.manual_url.value != blank -%}<p><a class="button button--secondary" href="{{ product.metafields.custom.manual_url.value }}" target="_blank" rel="noopener">Download approved manual</a></p>{%- endif -%}
+          {%- if product.metafields.custom.compliance_reports.value != blank -%}<div class="rte">{{ product.metafields.custom.compliance_reports | metafield_tag }}</div>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  @media screen and (min-width: 990px) { .docked-details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Verified product details",
+  "tag": "section",
+  "class": "section",
+  "settings": [{ "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }],
+  "presets": [{ "name": "Verified product details" }]
+}
+{% endschema %}

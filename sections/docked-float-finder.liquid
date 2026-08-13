@@ -1,0 +1,51 @@
+<section class="docked-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="Finder-{{ section.id }}">
+  <div class="docked-section__inner docked-finder" data-docked-finder data-powered-url="{{ section.settings.powered_collection.url | default: '/collections/powered-pool-floats' }}" data-loungers-url="{{ section.settings.loungers_collection.url | default: '/collections/adult-pool-loungers' }}" data-games-url="{{ section.settings.games_collection.url | default: '/collections/adult-pool-games' }}">
+    <div>
+      <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 id="Finder-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <div class="rte docked-lede">{{ section.settings.text }}</div>
+    </div>
+    <fieldset class="docked-finder__form">
+      <legend>Find your float</legend>
+      <label for="FinderPowered-{{ section.id }}">Interested in powered movement?</label>
+      <select id="FinderPowered-{{ section.id }}" name="finder-powered">
+        <option value="yes">Yes — show powered floats</option>
+        <option value="no">No — show non-powered lounging</option>
+      </select>
+      <label for="FinderStyle-{{ section.id }}">What is the plan?</label>
+      <select id="FinderStyle-{{ section.id }}" name="finder-style">
+        <option value="relax">Recline and relax</option>
+        <option value="social">Pool games and entertaining</option>
+      </select>
+      <a class="button" data-docked-finder-link href="{{ section.settings.powered_collection.url | default: '/collections/powered-pool-floats' }}">See my collection</a>
+    </fieldset>
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-finder { display: grid; gap: 3rem; align-items: center; }
+  .docked-finder__form { display: grid; gap: 1rem; min-width: 0; margin: 0; padding: clamp(2rem, 4vw, 4rem); background: #ddf7fb; border: 0; border-radius: 2.4rem; }
+  .docked-finder__form legend { padding: 0 .6rem; color: #06283d; font-size: 1.6rem; font-weight: 900; }
+  .docked-finder__form label { margin-top: 1rem; color: #06283d; font-weight: 800; }
+  .docked-finder__form select { width: 100%; min-height: 5.2rem; padding: 0 1.5rem; color: #06283d; background: #fff; border: .1rem solid rgba(6,40,61,.3); border-radius: 1.2rem; font: inherit; }
+  .docked-finder__form .button { margin-top: 1.4rem; }
+  @media screen and (min-width: 990px) { .docked-finder { grid-template-columns: 1fr 1fr; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Find your float",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Find Your Float" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Start with the kind of pool day you want." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Use two quick prompts to reach the most relevant collection. Always check verified limits and Safety & Care before choosing.</p>" },
+    { "type": "collection", "id": "powered_collection", "label": "Powered collection" },
+    { "type": "collection", "id": "loungers_collection", "label": "Loungers collection" },
+    { "type": "collection", "id": "games_collection", "label": "Games collection" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Find your float" }]
+}
+{% endschema %}

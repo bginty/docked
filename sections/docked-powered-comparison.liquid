@@ -1,0 +1,149 @@
+{%- liquid
+  assign selected_count = 0
+  assign selected_product_ids = '|'
+  assign all_unique_products = true
+  assign all_powered_floats = true
+  assign all_motor_count = true
+  assign all_seating = true
+  assign all_occupancy = true
+  assign all_load = true
+  assign all_runtime = true
+  assign all_charge = true
+  assign all_canopy = true
+  assign all_weight = true
+  assign all_packed = true
+  assign all_pump = true
+  assign all_warranty = true
+  for block in section.blocks
+    if block.settings.product != blank
+      assign product_token = block.settings.product.id | prepend: '|' | append: '|'
+      if selected_product_ids contains product_token
+        assign all_unique_products = false
+      else
+        assign selected_product_ids = selected_product_ids | append: block.settings.product.id | append: '|'
+        assign selected_count = selected_count | plus: 1
+        unless block.settings.product.metafields.custom.powered_float.value
+          assign all_powered_floats = false
+        endunless
+        if block.settings.product.metafields.custom.motor_count.value == blank
+          assign all_motor_count = false
+        endif
+        if block.settings.product.metafields.custom.seating_style.value == blank
+          assign all_seating = false
+        endif
+        if block.settings.product.metafields.custom.verified_occupancy.value == blank
+          assign all_occupancy = false
+        endif
+        if block.settings.product.metafields.custom.maximum_user_weight_kg.value == blank
+          assign all_load = false
+        endif
+        if block.settings.product.metafields.custom.verified_runtime_minutes.value == blank
+          assign all_runtime = false
+        endif
+        if block.settings.product.metafields.custom.verified_charge_time_hours.value == blank
+          assign all_charge = false
+        endif
+        if block.settings.product.metafields.custom.canopy == blank
+          assign all_canopy = false
+        endif
+        if block.settings.product.metafields.custom.product_weight_kg.value == blank
+          assign all_weight = false
+        endif
+        if block.settings.product.metafields.custom.packed_dimensions.value == blank
+          assign all_packed = false
+        endif
+        if block.settings.product.metafields.custom.included_pump.value == blank
+          assign all_pump = false
+        endif
+        if block.settings.product.metafields.custom.warranty_period.value == blank
+          assign all_warranty = false
+        endif
+      endif
+    endif
+  endfor
+-%}
+
+{%- if request.design_mode or selected_count >= 2 and all_powered_floats and all_unique_products -%}
+  <section id="compare-powered-floats" class="docked-section docked-comparison color-{{ section.settings.color_scheme }} gradient" aria-labelledby="Comparison-{{ section.id }}">
+    <div class="docked-section__inner">
+      <div class="docked-badge-row" aria-label="Product audience">
+        <span class="docked-badge docked-badge--adult">Adults 18+</span>
+        <span class="docked-badge docked-badge--pool">Pool use only</span>
+      </div>
+      <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 id="Comparison-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <div class="rte docked-lede">{{ section.settings.text }}</div>
+
+      {%- if selected_count >= 2 and all_powered_floats and all_unique_products -%}
+        <div class="docked-comparison__scroll" tabindex="0" role="region" aria-label="Powered float comparison table">
+          <table class="docked-comparison__table">
+            <thead>
+              <tr>
+                <th scope="col">Verified field</th>
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.product != blank -%}
+                    <th scope="col" {{ block.shopify_attributes }}>
+                      <a href="{{ block.settings.product.url }}">{{ block.settings.product.title | escape }}</a>
+                      <span>{{ block.settings.product.price | money_with_currency }}</span>
+                    </th>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tr>
+            </thead>
+            <tbody>
+              {%- if all_motor_count -%}<tr><th scope="row">Motor count</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.motor_count.value }}</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_seating -%}<tr><th scope="row">Seating style</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.seating_style.value | escape }}</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_occupancy -%}<tr><th scope="row">Verified occupancy</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.verified_occupancy.value | escape }}</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_load -%}<tr><th scope="row">Verified maximum load</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.maximum_user_weight_kg.value }} kg</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_runtime -%}<tr><th scope="row">Verified runtime</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.verified_runtime_minutes.value }} minutes</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_charge -%}<tr><th scope="row">Verified charge time</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.verified_charge_time_hours.value }} hours</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_canopy -%}<tr><th scope="row">Canopy</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{% if block.settings.product.metafields.custom.canopy.value %}Yes{% else %}No{% endif %}</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_weight -%}<tr><th scope="row">Product weight</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.product_weight_kg.value }} kg</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_packed -%}<tr><th scope="row">Packed dimensions</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.packed_dimensions.value | escape }}</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_pump -%}<tr><th scope="row">Included pump</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.included_pump.value | escape }}</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+              {%- if all_warranty -%}<tr><th scope="row">Warranty</th>{%- for block in section.blocks -%}{%- if block.settings.product != blank -%}<td>{{ block.settings.product.metafields.custom.warranty_period.value | escape }}</td>{%- endif -%}{%- endfor -%}</tr>{%- endif -%}
+            </tbody>
+          </table>
+        </div>
+        <p class="docked-gst-note">Only fields verified for every compared product are shown.{% if cart.taxes_included %} {{ settings.gst_message | escape }}{% endif %}</p>
+      {%- elsif request.design_mode -%}
+        <div class="docked-detail-card docked-comparison__pending" role="note">
+          <strong>Verified comparison coming before ordering opens.</strong>
+          <p>At least two distinct, reviewed motorised pool floats are required. No duplicate, unverified field or ineligible product will be shown.</p>
+          <p>Select reviewed products with the Motorised pool float metafield set to true.</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .docked-comparison { background: #06283d; color: #fff; }
+  .docked-comparison h2 { color: #fff; }
+  .docked-comparison .docked-eyebrow { color: #13bfe6; }
+  .docked-comparison__scroll { margin-top: 3rem; overflow-x: auto; border-radius: 2rem; }
+  .docked-comparison__table { width: 100%; min-width: 72rem; border-collapse: collapse; color: #06283d; background: #fff; }
+  .docked-comparison__table th, .docked-comparison__table td { padding: 1.6rem; border: .1rem solid rgba(6,40,61,.12); text-align: left; }
+  .docked-comparison__table thead th { background: #ddf7fb; }
+  .docked-comparison__table thead a { display: block; color: #06283d; font-weight: 900; }
+  .docked-comparison__table thead span { display: block; margin-top: .5rem; font-size: 1.3rem; }
+  .docked-comparison__pending { margin-top: 3rem; color: #06283d; }
+  .docked-comparison__pending p { margin: .6rem 0 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Compare powered floats",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Compare powered floats" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Choose by evidence, not hype." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Every published comparison is drawn from approved product data. Unknown specifications stay hidden.</p>" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-3" }
+  ],
+  "blocks": [{ "type": "product", "name": "Powered product", "settings": [{ "type": "product", "id": "product", "label": "Product" }] }],
+  "presets": [{ "name": "Compare powered floats", "blocks": [{ "type": "product" }, { "type": "product" }, { "type": "product" }] }]
+}
+{% endschema %}

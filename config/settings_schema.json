@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Dawn",
-    "theme_version": "16.0.0",
-    "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_name": "Docked",
+    "theme_version": "1.0.0",
+    "theme_author": "Ginty United Investments Pty Ltd",
+    "theme_documentation_url": "https://github.com/bginty/docked",
+    "theme_support_url": "https://docked.com.au/pages/contact"
   },
   {
     "name": "t:settings_schema.logo.name",
@@ -1449,6 +1449,107 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      }
+    ]
+  },
+  {
+    "name": "Docked launch controls",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "prelaunch_mode",
+        "label": "Lock purchases in prelaunch mode",
+        "info": "Keep enabled until every product, compliance, payment, shipping and operational launch gate is approved.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "prelaunch_message",
+        "label": "Prelaunch notice",
+        "default": "Preview catalogue — products are not yet available to order"
+      },
+      {
+        "type": "checkbox",
+        "id": "powered_comparison_ready",
+        "label": "Show powered comparison links on product cards",
+        "info": "Enable only after the homepage comparison contains at least two approved products classified as motorised pool floats.",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_age_confirmation",
+        "label": "Enable optional adult confirmation",
+        "info": "Disabled by default. This is not a legal waiver or a substitute for safety controls.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "age_confirmation_heading",
+        "label": "Adult confirmation heading",
+        "default": "Docked is designed for adults 18+"
+      },
+      {
+        "type": "richtext",
+        "id": "age_confirmation_text",
+        "label": "Adult confirmation text",
+        "default": "<p>Our aquatic products are marketed for adult pool leisure. Confirm that you are 18 years or older to continue.</p>"
+      },
+      {
+        "type": "url",
+        "id": "age_exit_url",
+        "label": "Exit link"
+      },
+      {
+        "type": "page",
+        "id": "safety_page",
+        "label": "Safety and Care page"
+      }
+    ]
+  },
+  {
+    "name": "Docked business details",
+    "settings": [
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Customer support email",
+        "default": "support@docked.com.au"
+      },
+      {
+        "type": "text",
+        "id": "legal_entity",
+        "label": "Legal seller",
+        "default": "GINTY UNITED INVESTMENTS PTY LTD"
+      },
+      {
+        "type": "text",
+        "id": "abn",
+        "label": "ABN",
+        "default": "78 606 187 106"
+      },
+      {
+        "type": "text",
+        "id": "acn",
+        "label": "ACN",
+        "default": "606 187 106"
+      },
+      {
+        "type": "textarea",
+        "id": "correspondence_address",
+        "label": "Correspondence and authorised-returns address",
+        "default": "135 Bamfield Road\nHeidelberg Heights VIC 3081\nAustralia"
+      },
+      {
+        "type": "text",
+        "id": "address_qualifier",
+        "label": "Address qualification",
+        "default": "Correspondence and authorised returns only. No public showroom or walk-in service."
+      },
+      {
+        "type": "text",
+        "id": "gst_message",
+        "label": "GST price message",
+        "default": "All prices are in Australian dollars and include GST."
       }
     ]
   },

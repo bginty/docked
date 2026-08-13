@@ -4,16 +4,38 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "shop_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Explore",
+            "menu": "main-menu"
+          }
+        },
+        "help_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help and policies",
+            "menu": "footer"
+          }
+        },
+        "adult_note": {
+          "type": "text",
+          "settings": {
+            "heading": "Grown-up pool time",
+            "subtext": "<p>Aquatic leisure products are marketed for adults aged 18 and over. Pool use only. Read each product's verified limits and safety instructions.</p>"
+          }
+        }
+      },
+      "block_order": ["shop_links", "help_links", "adult_note"],
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "newsletter_heading": "Docked summer notes — launch updates, product education and poolside ideas. Unsubscribe any time.",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "payment_enable": true,
         "show_policy": true,
         "margin_top": 0,

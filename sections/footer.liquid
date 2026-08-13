@@ -201,7 +201,7 @@
                       type="submit"
                       class="newsletter-form__button field__button"
                       name="commit"
-                      id="Subscribe"
+                            id="Subscribe--{{ section.id }}"
                       aria-label="{{ 'newsletter.button_label' | t }}"
                     >
                       <span class="svg-wrapper">
@@ -283,7 +283,7 @@
         {%- endif -%}
       </div>
       <div class="footer__column footer__column--info">
-        {%- if section.settings.payment_enable -%}
+        {%- if section.settings.payment_enable and settings.prelaunch_mode == false and shop.enabled_payment_types.size > 0 -%}
           <div class="footer__payment">
             <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
             <ul class="list list-payment" role="list">
@@ -302,7 +302,19 @@
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
+        <small class="copyright__content">
+          Docked is operated by {{ settings.legal_entity | escape }}. ABN {{ settings.abn | escape }}.
+        </small>
+        <small class="copyright__content">
+          Customer support:
+          <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a>
+        </small>
+        <small class="copyright__content">
+          {{ settings.address_qualifier | escape }}
+        </small>
+        <small class="copyright__content">
+          {{ settings.correspondence_address | escape | newline_to_br }}
+        </small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}

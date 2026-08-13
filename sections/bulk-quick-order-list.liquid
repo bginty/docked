@@ -1,8 +1,12 @@
+{%- unless settings.prelaunch_mode -%}
 {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 
 {% render 'quick-order-list', product: product, show_image: true, show_sku: true, is_modal: true %}
+{%- else -%}
+  <div class="page-width"><div class="docked-prelaunch-note" role="note"><strong>Ordering not yet open.</strong> Bulk ordering stays locked in prelaunch mode.</div></div>
+{%- endunless -%}
 
 {% schema %}
 {

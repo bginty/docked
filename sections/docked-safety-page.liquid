@@ -1,0 +1,77 @@
+<section class="docked-section docked-powered-safety color-{{ section.settings.color_scheme }} gradient" aria-labelledby="PoweredSafety-{{ section.id }}">
+  <div class="docked-section__inner docked-safety-page">
+    <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 id="PoweredSafety-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <div class="docked-powered-warning docked-powered-warning--page" role="note">
+      <strong>{{ section.settings.warning_heading | escape }}</strong>
+      <p>{{ section.settings.warning_text | escape }}</p>
+    </div>
+    <ul class="docked-safety-page__list" role="list">
+      <li>Do not operate the motor while another person is touching the propulsion unit.</li>
+      <li>Do not remove a propeller guard while the system is powered.</li>
+      <li>Do not attempt to clear an obstruction while the battery is connected.</li>
+      <li>Do not operate near another swimmer's hair, hands or clothing.</li>
+      <li>Do not use where the pool is too small for safe turning and stopping.</li>
+      <li>Keep clear of pool covers, ropes, nets and loose equipment.</li>
+      <li>Do not leave a battery charging unattended unless the approved manual expressly permits it.</li>
+      <li>Stop charging and isolate the product if a battery becomes unusually hot, swollen, damaged, wet, emits an odour or behaves abnormally.</li>
+      <li>Use only the supplied or specifically approved charger and battery.</li>
+      <li>Follow the supplier's storage-charge requirements and use an approved battery-recycling service for disposal.</li>
+      <li>Never describe the entire product as waterproof unless evidence supports that exact claim.</li>
+      <li>Confirm exactly which components are water resistant and their verified rating before use.</li>
+    </ul>
+
+    <div class="docked-safety-categories">
+      <article class="docked-detail-card">
+        <h3>Inflatable loungers and islands</h3>
+        <ul><li>Do not exceed verified occupancy; distribute weight evenly.</li><li>Do not stand or jump.</li><li>Stop use if a chamber, valve, handle or seam is damaged.</li><li>Do not connect products unless the manufacturer expressly permits it.</li><li>Never use as a pool cover or safety barrier.</li></ul>
+      </article>
+      <article class="docked-detail-card">
+        <h3>Canopies</h3>
+        <ul><li>A canopy does not provide complete sun protection.</li><li>Continue appropriate sun-protection measures.</li><li>Remove or fold the canopy in windy conditions where instructed.</li><li>Do not use the canopy as a grab handle.</li></ul>
+      </article>
+      <article class="docked-detail-card">
+        <h3>Floating coolers and drink holders</h3>
+        <ul><li>Do not use glass in or around the pool.</li><li>Do not overload or use as a flotation device.</li><li>Do not sit or climb on the product unless expressly designed and tested for it.</li><li>Stay within the verified container capacity.</li></ul>
+      </article>
+      <article class="docked-detail-card">
+        <h3>Pool games</h3>
+        <ul><li>Clear the playing area; no diving onto or through equipment and no rough play.</li><li>Keep cords, nets and anchors away from the neck and body.</li><li>Stop using damaged nets, cords, balls or anchor points.</li><li>Follow verified pool-size and water-depth requirements.</li></ul>
+      </article>
+      <article class="docked-detail-card">
+        <h3>Pumps and charging products</h3>
+        <ul><li>Keep electrical pumps and connections dry; never use mains equipment at the pool edge.</li><li>Never use damaged cords, plugs, batteries or housings.</li><li>Use only approved Australian electrical equipment and disconnect after inflation.</li><li>Do not overinflate; follow the specified pressure and inflation method.</li></ul>
+      </article>
+    </div>
+    <p class="docked-gst-note">Draft safety copy only. Product-specific instructions, permanent markings, manuals and legal/compliance review must be approved before any SKU becomes Active.</p>
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-powered-safety { background: #06283d; color: #fff; }
+  .docked-powered-safety h2 { color: #fff; }
+  .docked-powered-safety .docked-eyebrow { color: #13bfe6; }
+  .docked-powered-warning--page { margin: 2.4rem 0; padding: 2.4rem; color: #17232b; background: #fff7f3; border: .2rem solid #ff6b4a; border-radius: 1.6rem; }
+  .docked-powered-warning--page > strong { display: block; margin-bottom: 1rem; color: #06283d; font-size: 2rem; text-transform: uppercase; }
+  .docked-powered-safety .docked-safety-page__list li { color: #17232b; }
+  .docked-safety-categories { display: grid; gap: 1.6rem; margin-top: 4rem; }
+  .docked-safety-categories .docked-detail-card { color: #17232b; }
+  .docked-safety-categories ul { padding-left: 2rem; }
+  @media screen and (min-width: 750px) { .docked-safety-categories { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Powered product safety",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Powered products" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Motor, battery and charging safety" },
+    { "type": "text", "id": "warning_heading", "label": "Warning heading", "default": "Powered product warning" },
+    { "type": "textarea", "id": "warning_text", "label": "Primary powered warning", "default": "Switch the propulsion system off before entering, exiting, lifting, inspecting or handling the float. Keep hair, fingers, hands, feet, jewellery, swimwear ties and loose clothing away from propellers, guards, water intakes and moving components. Never operate a damaged or obstructed motor. Use only the supplied or specifically approved battery and charger. Never charge the product in or near water. Ensure the product, battery compartment and charging connection are fully dry before charging." },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-3" }
+  ],
+  "presets": [{ "name": "Powered product safety" }]
+}
+{% endschema %}

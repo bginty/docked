@@ -1,0 +1,48 @@
+<section class="docked-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="HowItWorks-{{ section.id }}">
+  <div class="docked-section__inner">
+    <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 id="HowItWorks-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <div class="rte docked-lede">{{ section.settings.text }}</div>
+    <ol class="docked-steps">
+      {%- for block in section.blocks -%}
+        <li class="docked-step" {{ block.shopify_attributes }}>
+          <span class="docked-step__number" aria-hidden="true">{{ forloop.index }}</span>
+          <h3>{{ block.settings.heading | escape }}</h3>
+          <div class="rte">{{ block.settings.text }}</div>
+        </li>
+      {%- endfor -%}
+    </ol>
+    <div class="docked-safety-notice docked-safety-notice--compact">
+      <strong>Instructions must match the approved manual.</strong>
+      <p>Product-specific inflation, component attachment, boarding, steering, charging, drying and storage instructions are published only after supplier documentation has been reviewed.</p>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-steps { display: grid; gap: 1.6rem; margin: 3.2rem 0; padding: 0; list-style: none; counter-reset: steps; }
+  .docked-step { padding: 2.4rem; background: #fff; border: .1rem solid rgba(6,40,61,.12); border-radius: 2rem; box-shadow: var(--docked-shadow-soft); }
+  .docked-step__number { display: grid; place-items: center; width: 4rem; height: 4rem; color: #06283d; background: #13bfe6; border-radius: 50%; font-weight: 900; }
+  .docked-step h3 { margin: 1.5rem 0 .8rem; }
+  @media screen and (min-width: 750px) { .docked-steps { grid-template-columns: repeat(5, minmax(0,1fr)); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "How powered floats work",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How powered floats work" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A slower way around the pool." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Use only the instructions supplied with your approved product. The sequence below is a high-level guide, not a substitute for the manual.</p>" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+  ],
+  "blocks": [{ "type": "step", "name": "Step", "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Review the manual" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Follow the verified product instructions and warnings.</p>" }
+  ] }],
+  "max_blocks": 5,
+  "presets": [{ "name": "How powered floats work", "blocks": [{ "type": "step" }, { "type": "step" }, { "type": "step" }, { "type": "step" }, { "type": "step" }] }]
+}
+{% endschema %}

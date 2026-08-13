@@ -1,0 +1,112 @@
+<section class="docked-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="docked-section__inner docked-information-page">
+    <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h1>{{ page.title | default: section.settings.fallback_title | escape }}</h1>
+
+    {%- if settings.prelaunch_mode -%}
+      <div class="docked-prelaunch-note" role="note"><strong>Prelaunch information:</strong> commercial terms and operational settings remain subject to final approval before ordering opens.</div>
+    {%- endif -%}
+
+    {%- if page.content != blank -%}
+      <div class="rte">{{ page.content }}</div>
+    {%- else -%}
+      <div class="rte">
+        {%- case section.settings.page_kind -%}
+          {%- when 'shipping' -%}
+            <h2>Shipping within Australia</h2>
+            <p>Docked's launch market is Australia. Available destinations, services, charges and any remote-area limitations will be shown at Shopify checkout once carrier arrangements have been approved and tested. We do not promise free shipping or a dispatch window before those details are confirmed.</p>
+            <h2>Dispatch and tracking</h2>
+            <p>An estimated dispatch window will be stated for each approved product and order. Once a carrier accepts a parcel, the order-status page will show the tracking information supplied to Shopify. Carrier estimates are not guaranteed delivery dates.</p>
+            <h2>Large, battery-containing and restricted shipments</h2>
+            <p>Some inflatable, powered or battery-containing products may require specific packaging, services or destinations. Docked will offer a service only after the carrier accepts the exact packed product. International shipping and public pickup are not offered at launch unless separately approved.</p>
+            <h2>Delivery issues</h2>
+            <p>Check the delivery promptly. For transit damage, a missing item or an incorrect item, email <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a> with the order number and relevant photos where safe to do so. This does not limit rights under the Australian Consumer Law.</p>
+          {%- when 'returns' -%}
+            <h2>Contact us before returning a product</h2>
+            <p>Email <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a> with your order number and the reason for the proposed return. Wait for return instructions. The address below is for correspondence and authorised returns only; sending an item without authorisation may delay safe identification and handling.</p>
+            <h2>Australian Consumer Law</h2>
+            <p><strong>Our goods come with guarantees that cannot be excluded under the Australian Consumer Law.</strong> Nothing in this policy excludes, restricts or modifies a right or remedy that cannot lawfully be excluded. The available remedy depends on the circumstances, including whether a failure is minor or major.</p>
+            <h2>Problems with an order</h2>
+            <p>Tell us whether the issue concerns transit damage, an incorrect item, a minor or major defect, a motor, battery, charger, PVC chamber, seam or valve, or another safety concern. Stop using a product that is damaged, leaking, unusually hot, wet where it should remain dry, or behaving abnormally. Do not ship a damaged battery until Docked provides an approved process.</p>
+            <h2>Change of mind</h2>
+            <p>Change-of-mind eligibility, timeframe, condition and return-cost rules will be published before sales open. Those voluntary terms are separate from Australian Consumer Law remedies and will not be used to remove them. Valid consumer-guarantee claims will not be subjected to an inappropriate restocking or inspection fee.</p>
+            <h2>Return address</h2>
+            <p>{{ settings.legal_entity | escape }}<br>{{ settings.correspondence_address | escape | newline_to_br }}<br><strong>{{ settings.address_qualifier | escape }}</strong></p>
+          {%- when 'warranty' -%}
+            <h2>Consumer guarantees come first</h2>
+            <p><strong>Our goods come with guarantees that cannot be excluded under the Australian Consumer Law.</strong> A written or manufacturer's warranty is additional to, and does not replace, those rights. An expired express warranty does not automatically determine whether a consumer guarantee applies.</p>
+            <h2>Product warranty</h2>
+            <p>The exact warranty period and coverage for each SKU will appear only after the supplier terms and Docked's customer promise are approved. Unknown warranty details remain hidden from product comparisons.</p>
+            <h2>Make a claim</h2>
+            <p>Email <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a> with the order number, product/SKU, a clear description of the issue, when it occurred and photographs or video where safe and relevant. Stop using a product if there is a safety concern. Docked will assess the claim and explain the next safe step; customers are not required to deal only with a manufacturer.</p>
+            <h2>What may be relevant</h2>
+            <p>Normal wear, accidental damage, unauthorised modification, use outside verified limits, unsuitable charging equipment or failure to follow clear care instructions may be relevant to a claim. They do not create a blanket exclusion of statutory rights.</p>
+          {%- when 'about' -%}
+            <h2>Built for grown-up pool time</h2>
+            <p>Docked is an Australian pool-leisure retail concept focused on adults aged 18 and over: powered pool floats, loungers, games, entertaining products and practical care accessories for calm, controlled swimming-pool use.</p>
+            <p>Our catalogue is curated rather than represented as wholly manufactured by Docked. The actual brand or lawful private-label arrangement for every approved SKU must be identified before sale.</p>
+            <h2>Evidence before hype</h2>
+            <p>Unknown specifications stay off the storefront. Product activation requires supplier identity and traceability, classification and safety review, applicable electrical/battery evidence, approved instructions and warnings, licensed exact-SKU media, landed cost, stock and owner approval.</p>
+            <h2>Operator</h2>
+            <p>Docked is operated by {{ settings.legal_entity | escape }} (ABN {{ settings.abn | escape }}; ACN {{ settings.acn | escape }}), an Australian GST-registered company. Customer support: <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a>.</p>
+          {%- when 'accessibility' -%}
+            <h2>Our commitment</h2>
+            <p>Docked aims to make its storefront perceivable, operable, understandable and robust for a broad range of people, devices and assistive technologies. We use semantic HTML, visible focus, keyboard-operable controls, responsive layouts, text alternatives and reduced-motion support, and we test common shopping flows before release.</p>
+            <h2>Known prelaunch limits</h2>
+            <p>Shopify Admin content, third-party apps, uploaded media, customer accounts and hosted checkout must be audited in the actual store. The theme's source-level accessibility work does not prove that those surfaces or every assistive-technology combination will be barrier-free.</p>
+            <h2>Ask for help or report a barrier</h2>
+            <p>Email <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a> with the page, task, browser/device and assistive technology where comfortable. You may also ask for information in another reasonable accessible form. Do not include payment details.</p>
+          {%- when 'privacy' -%}
+            <h2>Who manages your information</h2>
+            <p>{{ settings.legal_entity | escape }} (ABN {{ settings.abn | escape }}), trading as Docked subject to business-name approval, is responsible for this storefront. Privacy questions, access/correction requests and complaints can be sent to <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a> or {{ settings.correspondence_address | escape | newline_to_br }}.</p>
+            <h2>Information we may collect</h2>
+            <p>Depending on the service you use, this may include identity and contact details, delivery/billing details, order and support history, marketing preferences, fraud/risk signals, device/browser and storefront interaction data. Shopify's hosted checkout and enabled payment providers process payment information; Docked's theme does not collect or store full card details.</p>
+            <h2>Why and how it is used</h2>
+            <p>Information may be used to provide and deliver orders, operate accounts and support, issue tax invoices, handle returns/warranties/safety incidents, detect fraud, meet legal obligations, improve the storefront and send marketing only where permitted. Newsletter consent is optional and every marketing message must provide a working unsubscribe method.</p>
+            <h2>Sharing, storage and overseas processing</h2>
+            <p>Information may be handled by Shopify and approved providers needed for payments, fraud prevention, shipping, communications, analytics, professional advice and legal compliance. Some providers may process information outside Australia. The final provider/country map, retention schedule, cookie controls and Shopify privacy configuration must be completed and accurately disclosed before launch.</p>
+            <h2>Your choices, access, correction and complaints</h2>
+            <p>You may ask what personal information we hold about you, request access or correction, withdraw marketing consent, or make a complaint. We will verify requests where appropriate and explain the complaint process and available escalation. This draft must be replaced or approved against actual operating practices before live sales.</p>
+          {%- when 'terms' -%}
+            <h2>Seller and scope</h2>
+            <p>The seller is {{ settings.legal_entity | escape }} (ABN {{ settings.abn | escape }}; ACN {{ settings.acn | escape }}). These draft terms apply to the Australian Docked storefront and must be approved against the final offer before ordering opens.</p>
+            <h2>Products, prices and orders</h2>
+            <p>Customer prices are shown in Australian dollars{% if cart.taxes_included %} and include GST{% endif %}. Delivery is shown separately where it depends on destination. A product display is not acceptance of an order; Shopify records the order and Docked will confirm acceptance/fulfilment under the final approved process. Compare-at prices and savings appear only when genuine and supportable.</p>
+            <h2>Safe and lawful use</h2>
+            <p>Follow all product markings, the approved manual, verified limits and the Safety and Care page. Adult-only positioning does not waive product-safety obligations or customer rights. Do not use aquatic leisure products as life-saving devices or personal flotation devices.</p>
+            <h2>Australian Consumer Law</h2>
+            <p><strong>Our goods come with guarantees that cannot be excluded under the Australian Consumer Law.</strong> Nothing in these terms excludes, restricts or modifies a non-excludable right, guarantee, remedy or liability. Docked will not require a customer with a valid claim to deal only with the manufacturer.</p>
+            <h2>Returns, warranty, privacy and contact</h2>
+            <p>The approved Shipping, Returns, Warranty and Privacy policies form part of the customer information. Contact <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a> before any return. Address: {{ settings.correspondence_address | escape | newline_to_br }}. {{ settings.address_qualifier | escape }}</p>
+          {%- else -%}
+            <p>This page is ready for owner-approved content in Shopify Admin.</p>
+        {%- endcase -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-information-page { max-width: 88rem; }
+  .docked-information-page h2 { margin-top: 3.2rem; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Docked information page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "select", "id": "page_kind", "label": "Fallback content", "options": [
+      { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+      { "value": "warranty", "label": "Warranty" }, { "value": "about", "label": "About" },
+      { "value": "accessibility", "label": "Accessibility" }, { "value": "privacy", "label": "Privacy" },
+      { "value": "terms", "label": "Terms" }
+    ], "default": "shipping" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Docked customer information" },
+    { "type": "text", "id": "fallback_title", "label": "Fallback title", "default": "Customer information" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Docked information page" }]
+}
+{% endschema %}

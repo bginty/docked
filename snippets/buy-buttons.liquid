@@ -19,7 +19,7 @@
       endif
 
       assign show_dynamic_checkout = false
-      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
+      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false and settings.prelaunch_mode == false
         assign show_dynamic_checkout = true
       endif
     -%}
@@ -47,7 +47,8 @@
           type="hidden"
           name="id"
           value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false
+          {% if settings.prelaunch_mode
+            or product.selected_or_first_available_variant.available == false
             or quantity_rule_soldout
             or product.selected_or_first_available_variant == null
           %}
@@ -75,7 +76,8 @@
             type="submit"
             name="add"
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-            {% if product.selected_or_first_available_variant.available == false
+            {% if settings.prelaunch_mode
+              or product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
             %}
@@ -83,7 +85,9 @@
             {% endif %}
           >
             <span>
-              {%- if product.selected_or_first_available_variant == null -%}
+              {%- if settings.prelaunch_mode -%}
+                Coming soon — not available to order
+              {%- elsif product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
@@ -108,13 +112,17 @@
           class="product-form__submit button button--full-width button--primary"
           disabled
         >
-          {{ 'products.product.sold_out' | t }}
+          {%- if settings.prelaunch_mode -%}
+            Coming soon — not available to order
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
         </button>
       </div>
     </div>
   {%- endif -%}
 
-  {%- if show_pickup_availability -%}
+  {%- if show_pickup_availability and settings.prelaunch_mode == false -%}
     {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
 
     {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities

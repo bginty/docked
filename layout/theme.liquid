@@ -9,6 +9,8 @@
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- else -%}
+      <link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">
     {%- endif -%}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
@@ -78,6 +80,7 @@
       {{ body_font_bold_italic | font_face: font_display: 'swap' }}
       {{ settings.type_header_font | font_face: font_display: 'swap' }}
 
+      {% assign scheme_classes = '' %}
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
         {% if forloop.index == 1 -%}
@@ -279,6 +282,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'docked-theme.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -321,7 +325,7 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient docked-theme template-{{ template.name | handle }}{% if settings.prelaunch_mode %} docked-prelaunch{% endif %}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -331,6 +335,13 @@
     {%- endif -%}
 
     {% sections 'header-group' %}
+
+    {%- if settings.prelaunch_mode -%}
+      <div class="docked-prelaunch-banner" role="status">
+        <span class="docked-prelaunch-banner__dot" aria-hidden="true"></span>
+        {{ settings.prelaunch_message | escape }}
+      </div>
+    {%- endif -%}
 
     <main
       id="MainContent"
@@ -343,6 +354,8 @@
     </main>
 
     {% sections 'footer-group' %}
+
+    {%- render 'docked-age-confirmation' -%}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
@@ -369,6 +382,7 @@
         soldOut: `{{ 'products.product.sold_out' | t }}`,
         unavailable: `{{ 'products.product.unavailable' | t }}`,
         unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
+        prelaunch: `Coming soon — not available to order`,
       };
 
       window.quickOrderListStrings = {
@@ -401,5 +415,6 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script src="{{ 'docked-theme.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>

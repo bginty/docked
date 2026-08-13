@@ -214,7 +214,9 @@ if (!customElements.get('product-info')) {
 
           this.productForm?.toggleSubmitButton(
             html.getElementById(`ProductSubmitButton-${this.sectionId}`)?.hasAttribute('disabled') ?? true,
-            window.variantStrings.soldOut
+            document.body.classList.contains('docked-prelaunch')
+              ? window.variantStrings.prelaunch
+              : window.variantStrings.soldOut
           );
 
           publish(PUB_SUB_EVENTS.variantChange, {
@@ -247,7 +249,12 @@ if (!customElements.get('product-info')) {
       }
 
       setUnavailable() {
-        this.productForm?.toggleSubmitButton(true, window.variantStrings.unavailable);
+        this.productForm?.toggleSubmitButton(
+          true,
+          document.body.classList.contains('docked-prelaunch')
+            ? window.variantStrings.prelaunch
+            : window.variantStrings.unavailable
+        );
 
         const selectors = ['price', 'Inventory', 'Sku', 'Price-Per-Item', 'Volume-Note', 'Volume', 'Quantity-Rules']
           .map((id) => `#${id}-${this.dataset.section}`)

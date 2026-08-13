@@ -1,0 +1,44 @@
+<section class="docked-section docked-safety-callout color-{{ section.settings.color_scheme }} gradient" aria-labelledby="SafetyCallout-{{ section.id }}">
+  <div class="docked-section__inner docked-safety-callout__grid">
+    <div>
+      <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 id="SafetyCallout-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <div class="rte docked-lede">{{ section.settings.text }}</div>
+      <a class="button" href="{{ section.settings.link | default: '/pages/safety-and-care' }}">{{ section.settings.link_label | escape }}</a>
+    </div>
+    <ul class="docked-safety-list" role="list">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}><span aria-hidden="true">✓</span>{{ block.settings.text | escape }}</li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-safety-callout { background: #fff7f3; }
+  .docked-safety-callout__grid { display: grid; gap: 4rem; align-items: center; }
+  .docked-safety-callout .button { margin-top: 2.4rem; }
+  .docked-safety-list { display: grid; gap: 1.2rem; margin: 0; padding: 2.4rem; background: #fff; border-radius: 2.4rem; box-shadow: var(--docked-shadow-soft); list-style: none; }
+  .docked-safety-list li { display: flex; gap: 1rem; align-items: flex-start; font-weight: 700; }
+  .docked-safety-list span { display: grid; place-items: center; flex: 0 0 auto; width: 2.6rem; height: 2.6rem; color: #06283d; background: #13bfe6; border-radius: 50%; }
+  @media screen and (min-width: 990px) { .docked-safety-callout__grid { grid-template-columns: 1.1fr .9fr; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Safety and Care callout",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Safety belongs up front" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Relaxed pool time starts with clear limits." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Docked aquatic products are for competent adult swimmers in calm, controlled swimming pools. They are not life-saving devices or personal flotation devices.</p>" },
+    { "type": "text", "id": "link_label", "label": "Button label", "default": "Read Safety & Care" },
+    { "type": "url", "id": "link", "label": "Button link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+  ],
+  "blocks": [{ "type": "point", "name": "Safety point", "settings": [{ "type": "text", "id": "text", "label": "Text", "default": "Adults aged 18 years and over only" }] }],
+  "max_blocks": 6,
+  "presets": [{ "name": "Safety and Care callout", "blocks": [{ "type": "point" }, { "type": "point" }, { "type": "point" }, { "type": "point" }] }]
+}
+{% endschema %}

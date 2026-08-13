@@ -1,5 +1,9 @@
 {%- liquid
   assign product = section.settings.product
+  assign show_commerce_badges = true
+  if settings.prelaunch_mode
+    assign show_commerce_badges = false
+  endif
   if product == null
     assign placeholder = true
   endif
@@ -122,11 +126,11 @@
                       product: product,
                       placeholder: placeholder,
                       use_variant: true,
-                      show_badges: true,
+                      show_badges: show_commerce_badges,
                       price_class: 'price--large'
                     -%}
                   </div>
-                  {%- if product.quantity_price_breaks_configured? -%}
+                  {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                     </div>
@@ -145,14 +149,14 @@
                       {%- endif -%}
                     </div>
                   {%- endif -%}
-                  {%- unless placeholder -%}
+                  {%- if placeholder == false and settings.prelaunch_mode == false -%}
                     <div {{ block.shopify_attributes }}>
                       {%- form 'product', product -%}
                         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                         {{ form | payment_terms }}
                       {%- endform -%}
                     </div>
-                  {%- endunless -%}
+                  {%- endif -%}
                 {%- when 'sku' -%}
                   <p
                     class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -239,7 +243,7 @@
                           assign current_qty_for_volume_pricing = cart_qty | plus: product.selected_or_first_available_variant.quantity_rule.increment
                         endif
                       -%}
-                      {%- if product.quantity_price_breaks_configured? -%}
+                      {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                         <price-per-item
                           id="Price-Per-Item-{{ section.id }}"
                           data-section-id="{{ section.id }}"
@@ -346,7 +350,7 @@
                         </span>
                       {%- endif -%}
                     </div>
-                    {%- if product.quantity_price_breaks_configured? -%}
+                    {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                       <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
                         {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
                           <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
@@ -498,9 +502,11 @@
     <script src="{{ 'product-model.js' | asset_url }}" defer></script>
   {%- endif -%}
 
-  <script type="application/ld+json">
-    {{ product | structured_data }}
-  </script>
+  {%- if placeholder == false and settings.prelaunch_mode == false -%}
+    <script type="application/ld+json">
+      {{ product | structured_data }}
+    </script>
+  {%- endif -%}
 
   {% if product.media.size > 0 %}
     <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>

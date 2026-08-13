@@ -1,3 +1,4 @@
+{%- unless settings.prelaunch_mode -%}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
@@ -25,6 +26,11 @@
   show_image: section.settings.show_image,
   show_sku: section.settings.show_sku
 %}
+{%- else -%}
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="docked-prelaunch-note" role="note"><strong>Ordering not yet open.</strong> Bulk ordering stays locked in prelaunch mode.</div>
+  </div>
+{%- endunless -%}
 
 {% schema %}
 {

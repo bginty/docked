@@ -2,62 +2,62 @@
   "current": "Dawn",
   "presets": {
     "Dawn": {
-      "logo_width": 90,
+      "logo_width": 150,
       "customer_account_menu": "customer-account-main-menu",
       "color_schemes": {
         "scheme-1": {
           "settings": {
             "background": "#FFFFFF",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
+            "text": "#17232B",
+            "button": "#06283D",
             "button_label": "#FFFFFF",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "secondary_button_label": "#06283D",
+            "shadow": "#06283D"
           }
         },
         "scheme-2": {
           "settings": {
-            "background": "#F3F3F3",
+            "background": "#F8F5EE",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#F3F3F3",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#17232B",
+            "button": "#06283D",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#06283D",
+            "shadow": "#06283D"
           }
         },
         "scheme-3": {
           "settings": {
-            "background": "#242833",
+            "background": "#06283D",
             "background_gradient": "",
             "text": "#FFFFFF",
             "button": "#FFFFFF",
-            "button_label": "#000000",
+            "button_label": "#06283D",
             "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "shadow": "#06283D"
           }
         },
         "scheme-4": {
           "settings": {
-            "background": "#121212",
+            "background": "#DDF7FB",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#121212",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#06283D",
+            "button": "#FF6B4A",
+            "button_label": "#06283D",
+            "secondary_button_label": "#06283D",
+            "shadow": "#06283D"
           }
         },
         "scheme-5": {
           "settings": {
-            "background": "#334FB4",
+            "background": "#13BFE6",
             "background_gradient": "",
-            "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#334FB4",
-            "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "text": "#06283D",
+            "button": "#06283D",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#06283D",
+            "shadow": "#06283D"
           }
         }
       },
@@ -65,16 +65,16 @@
       "heading_scale": 100,
       "type_body_font": "assistant_n4",
       "body_scale": 100,
-      "page_width": 1200,
-      "spacing_sections": 0,
-      "spacing_grid_horizontal": 8,
-      "spacing_grid_vertical": 8,
+      "page_width": 1280,
+      "spacing_sections": 12,
+      "spacing_grid_horizontal": 20,
+      "spacing_grid_vertical": 20,
       "animations_reveal_on_scroll": true,
       "animations_hover_elements": "none",
       "buttons_border_thickness": 1,
       "buttons_border_opacity": 100,
-      "buttons_radius": 0,
-      "buttons_shadow_opacity": 0,
+      "buttons_radius": 14,
+      "buttons_shadow_opacity": 8,
       "buttons_shadow_horizontal_offset": 0,
       "buttons_shadow_vertical_offset": 4,
       "buttons_shadow_blur": 5,
@@ -87,7 +87,7 @@
       "variant_pills_shadow_blur": 5,
       "inputs_border_thickness": 1,
       "inputs_border_opacity": 55,
-      "inputs_radius": 0,
+      "inputs_radius": 12,
       "inputs_shadow_opacity": 0,
       "inputs_shadow_horizontal_offset": 0,
       "inputs_shadow_vertical_offset": 4,
@@ -98,8 +98,8 @@
       "card_color_scheme": "scheme-2",
       "card_border_thickness": 0,
       "card_border_opacity": 10,
-      "card_corner_radius": 0,
-      "card_shadow_opacity": 0,
+      "card_corner_radius": 18,
+      "card_shadow_opacity": 8,
       "card_shadow_horizontal_offset": 0,
       "card_shadow_vertical_offset": 4,
       "card_shadow_blur": 5,
@@ -109,8 +109,8 @@
       "collection_card_color_scheme": "scheme-2",
       "collection_card_border_thickness": 0,
       "collection_card_border_opacity": 10,
-      "collection_card_corner_radius": 0,
-      "collection_card_shadow_opacity": 0,
+      "collection_card_corner_radius": 18,
+      "collection_card_shadow_opacity": 8,
       "collection_card_shadow_horizontal_offset": 0,
       "collection_card_shadow_vertical_offset": 4,
       "collection_card_shadow_blur": 5,
@@ -169,14 +169,29 @@
       "social_youtube_link": "",
       "social_vimeo_link": "",
       "predictive_search_enabled": true,
-      "predictive_search_show_vendor": false,
-      "predictive_search_show_price": false,
+      "predictive_search_show_vendor": true,
+      "predictive_search_show_price": true,
       "currency_code_enabled": true,
-      "cart_type": "notification",
-      "show_vendor": false,
+      "cart_type": "drawer",
+      "show_vendor": true,
       "show_cart_note": false,
       "cart_drawer_collection": "",
       "cart_color_scheme": "scheme-1",
+      "prelaunch_mode": true,
+      "prelaunch_message": "Preview catalogue — products are not yet available to order",
+      "powered_comparison_ready": false,
+      "enable_age_confirmation": false,
+      "age_confirmation_heading": "Docked is designed for adults 18+",
+      "age_confirmation_text": "<p>Our aquatic products are marketed for adult pool leisure. Confirm that you are 18 years or older to continue.</p>",
+      "age_exit_url": "",
+      "safety_page": "",
+      "support_email": "support@docked.com.au",
+      "legal_entity": "GINTY UNITED INVESTMENTS PTY LTD",
+      "abn": "78 606 187 106",
+      "acn": "606 187 106",
+      "correspondence_address": "135 Bamfield Road\nHeidelberg Heights VIC 3081\nAustralia",
+      "address_qualifier": "Correspondence and authorised returns only. No public showroom or walk-in service.",
+      "gst_message": "All prices are in Australian dollars and include GST.",
       "sections": {
         "main-password-header": {
           "type": "main-password-header",

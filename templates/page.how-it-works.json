@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": { "type": "main-page", "settings": { "padding_top": 28, "padding_bottom": 0 } },
+    "steps": {
+      "type": "docked-how-it-works",
+      "blocks": {
+        "manual": { "type": "step", "settings": { "heading": "Read the approved manual", "text": "<p>Review every product-specific instruction, warning and verified limit before use.</p>" } },
+        "inflate": { "type": "step", "settings": { "heading": "Inflate as directed", "text": "<p>Use only the specified pressure and inflation method. Check chambers, valves, seams and attachments.</p>" } },
+        "connect": { "type": "step", "settings": { "heading": "Attach and check", "text": "<p>Fit only approved components with power switched off, then complete the manual's pre-use checks.</p>" } },
+        "use": { "type": "step", "settings": { "heading": "Enter, steer and relax", "text": "<p>Use with another responsible adult in a calm, controlled pool and stay clear of swimmers and pool hazards.</p>" } },
+        "store": { "type": "step", "settings": { "heading": "Switch off, dry and store", "text": "<p>Follow the manual for exiting, disconnection, charging, cleaning, inspection, drying and storage.</p>" } }
+      },
+      "block_order": ["manual", "inflate", "connect", "use", "store"],
+      "settings": { "heading": "How powered floats work", "color_scheme": "scheme-2" }
+    }
+  },
+  "order": ["main", "steps"]
+}

@@ -11,13 +11,13 @@
 </style>
 
 <div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
+  <p class="docked-eyebrow">That one drifted away</p>
   <h1 class="title">
-    {{ 'templates.404.title' | t }}
+    This page is no longer in the pool.
   </h1>
+  <p>Try the current Docked range, search the store, or head back to the shallow end.</p>
   <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
+    Explore the range
   </a>
+  <a href="{{ routes.search_url }}" class="button button--secondary">Search Docked</a>
 </div>

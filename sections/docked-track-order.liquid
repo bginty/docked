@@ -1,0 +1,40 @@
+<section class="docked-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="TrackOrder-{{ section.id }}">
+  <div class="docked-section__inner docked-track-order">
+    <div>
+      <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 id="TrackOrder-{{ section.id }}">{{ section.settings.heading | escape }}</h1>
+      <div class="rte docked-lede">{{ section.settings.text }}</div>
+    </div>
+    <div class="docked-detail-card">
+      <h2>Use your secure order-status link</h2>
+      <ol>
+        <li>Open the order confirmation or shipping email sent by Docked.</li>
+        <li>Select the unique <strong>View your order</strong> link.</li>
+        <li>Use that page for the latest fulfilment and carrier information supplied for your order.</li>
+      </ol>
+      <p>Do not share that private link. If you cannot find the email, contact <a href="mailto:{{ settings.support_email | escape }}">{{ settings.support_email | escape }}</a> with your order number and the email address used at checkout. Never send card or banking details.</p>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-track-order { display: grid; gap: 3rem; max-width: 104rem; }
+  .docked-track-order ol { padding-left: 2rem; }
+  .docked-track-order li { margin: 1rem 0; }
+  @media screen and (min-width: 990px) { .docked-track-order { grid-template-columns: 1fr 1fr; align-items: start; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Track an order",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Order help" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Track your order" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Shopify's order-status page is the source of truth for an order. Docked does not ask you to enter payment details into a third-party tracking form.</p>" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+  ],
+  "presets": [{ "name": "Track an order" }]
+}
+{% endschema %}

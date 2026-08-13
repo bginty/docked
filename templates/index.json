@@ -1,75 +1,249 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+    "hero": {
+      "type": "docked-hero",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "eyebrow": "Adult pool leisure · Australia",
+        "heading": "Pool time, powered.",
+        "text": "<p>Discover rechargeable motorised pool floats, adult loungers and poolside products designed for slow laps, long afternoons and better summer entertaining.</p>",
+        "primary_label": "Shop Powered Floats",
+        "primary_link": "shopify://collections/powered-pool-floats",
+        "secondary_label": "Explore the Range",
+        "secondary_link": "shopify://collections/all",
+        "color_scheme": "scheme-2"
       }
     },
-    "featured_collection": {
+    "adult_statement": {
+      "type": "docked-adult-statement",
+      "settings": {
+        "eyebrow": "Adults only · Pool use only",
+        "heading": "Built for grown-up pool time.",
+        "text": "<p>From powered loungers to floating coolers and adult pool games, Docked brings together a curated range for relaxing and entertaining in the pool.</p>",
+        "link_label": "Read Safety & Care",
+        "link": "shopify://pages/safety-and-care",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "collections": {
+      "type": "docked-collection-grid",
+      "blocks": {
+        "powered": { "type": "collection", "settings": { "collection": "powered-pool-floats", "title": "Powered Floats", "link": "", "icon": "powered" } },
+        "loungers": { "type": "collection", "settings": { "collection": "adult-pool-loungers", "title": "Adult Loungers", "link": "", "icon": "lounger" } },
+        "games": { "type": "collection", "settings": { "collection": "adult-pool-games", "title": "Pool Games", "link": "", "icon": "games" } },
+        "coolers": { "type": "collection", "settings": { "collection": "floating-bars-and-coolers", "title": "Bars & Coolers", "link": "", "icon": "cooler" } },
+        "care": { "type": "collection", "settings": { "collection": "pumps-care-and-repair", "title": "Pumps & Care", "link": "", "icon": "care" } }
+      },
+      "block_order": ["powered", "loungers", "games", "coolers", "care"],
+      "settings": {
+        "eyebrow": "The Docked range",
+        "heading": "Choose your kind of pool day.",
+        "text": "<p>A focused edit of adult pool relaxation, recreation and care.</p>",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "comparison": {
+      "type": "docked-powered-comparison",
+      "blocks": {
+        "product_1": { "type": "product", "settings": { "product": "" } },
+        "product_2": { "type": "product", "settings": { "product": "" } },
+        "product_3": { "type": "product", "settings": { "product": "" } }
+      },
+      "block_order": ["product_1", "product_2", "product_3"],
+      "settings": {
+        "eyebrow": "Compare powered floats",
+        "heading": "Choose by evidence, not hype.",
+        "text": "<p>Every published comparison is drawn from approved product data. Unknown specifications stay hidden.</p>",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "powered_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
+        "title": "Powered pool floats",
+        "heading_size": "h1",
+        "description": "A preview of the flagship powered range. Products remain Draft until every launch gate is approved.",
+        "show_description": true,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "collection": "powered-pool-floats",
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-2",
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
-        "show_vendor": false,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "loungers_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Adult pool loungers",
+        "heading_size": "h1",
+        "description": "Non-powered lounging concepts for long, calm afternoons.",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "adult-pool-loungers",
+        "products_to_show": 5,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": true,
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "padding_top": 72,
+        "padding_bottom": 72
       }
+    },
+    "entertaining_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Pool games and entertaining",
+        "heading_size": "h1",
+        "description": "Adult pool recreation, floating coolers and serving accessories—without glass or unsafe behaviour.",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "adult-pool-games",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-4",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "how_it_works": {
+      "type": "docked-how-it-works",
+      "blocks": {
+        "one": { "type": "step", "settings": { "heading": "Review", "text": "<p>Read the approved manual, warnings and verified limits before every use.</p>" } },
+        "two": { "type": "step", "settings": { "heading": "Prepare", "text": "<p>Inflate and fit only approved components exactly as instructed.</p>" } },
+        "three": { "type": "step", "settings": { "heading": "Check", "text": "<p>Inspect the float, valves, guards, battery and surroundings before entering.</p>" } },
+        "four": { "type": "step", "settings": { "heading": "Use", "text": "<p>Enter safely, keep clear of hazards and remain with another responsible adult.</p>" } },
+        "five": { "type": "step", "settings": { "heading": "Dry", "text": "<p>Switch off, exit, inspect, dry fully and store as the manual directs.</p>" } }
+      },
+      "block_order": ["one", "two", "three", "four", "five"],
+      "settings": {
+        "eyebrow": "How powered floats work",
+        "heading": "A slower way around the pool.",
+        "text": "<p>Use only the instructions supplied with your approved product. This sequence is a high-level guide, not a substitute for the manual.</p>",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "safety": {
+      "type": "docked-safety-callout",
+      "blocks": {
+        "one": { "type": "point", "settings": { "text": "Adults aged 18 years and over only" } },
+        "two": { "type": "point", "settings": { "text": "Competent swimmers with another responsible adult present" } },
+        "three": { "type": "point", "settings": { "text": "Calm, controlled swimming pools only" } },
+        "four": { "type": "point", "settings": { "text": "Never use while impaired or near drains, covers, ropes or loose equipment" } },
+        "five": { "type": "point", "settings": { "text": "Switch powered products off before handling and charge only when fully dry" } }
+      },
+      "block_order": ["one", "two", "three", "four", "five"],
+      "settings": {
+        "eyebrow": "Safety belongs up front",
+        "heading": "Relaxed pool time starts with clear limits.",
+        "text": "<p>Docked aquatic products are for competent adult swimmers in calm, controlled swimming pools. They are not life-saving devices or personal flotation devices.</p>",
+        "link_label": "Read Safety & Care",
+        "link": "shopify://pages/safety-and-care",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "finder": {
+      "type": "docked-float-finder",
+      "settings": {
+        "eyebrow": "Find Your Float",
+        "heading": "Start with the kind of pool day you want.",
+        "text": "<p>Use two quick prompts to reach the most relevant collection. Always check verified limits and Safety & Care before choosing.</p>",
+        "powered_collection": "powered-pool-floats",
+        "loungers_collection": "adult-pool-loungers",
+        "games_collection": "adult-pool-games",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "bundles": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Recommended bundles",
+        "heading_size": "h1",
+        "description": "Bundles appear only when every component and genuine saving is approved. Nothing is added without consent.",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "pool-party-bundles",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-2",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": true,
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "faq": {
+      "type": "docked-faq",
+      "blocks": {
+        "launch": { "type": "question", "settings": { "question": "When will Docked products be available?", "answer": "<p>Products remain Draft until supplier, safety, compliance, pricing, imagery, shipping and payment checks are complete. The current site is a prelaunch preview and does not accept orders.</p>" } },
+        "adult": { "type": "question", "settings": { "question": "Are Docked aquatic products adults-only?", "answer": "<p>Yes. Docked markets every aquatic product for adults aged 18 years and over. This does not replace supervision, swimming ability, product testing or any applicable Australian product-safety obligation.</p>" } },
+        "open_water": { "type": "question", "settings": { "question": "Can I use a Docked float at the beach or on a river?", "answer": "<p>No. Unless a particular product is separately approved and documented, Docked aquatic products are for calm, controlled swimming pools only—not oceans, rivers, lakes, moving water, waves or currents.</p>" } },
+        "lifesaving": { "type": "question", "settings": { "question": "Is a Docked float a life-saving device?", "answer": "<p>No. A pool float is not a life-saving device or personal flotation device and must never be relied on to prevent drowning.</p>" } }
+      },
+      "block_order": ["launch", "adult", "open_water", "lifesaving"],
+      "settings": {
+        "eyebrow": "Good questions",
+        "heading": "Before you get in.",
+        "text": "<p>Clear answers on adult-only use, safety, product verification and launch status.</p>",
+        "link_label": "Read all FAQs",
+        "link": "shopify://pages/faq",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "Cruise. Recline. Repeat.", "heading_size": "h1" } },
+        "paragraph": { "type": "paragraph", "settings": { "text": "<p>Join for launch updates, product education and poolside ideas. No pre-ticked consent; unsubscribe any time.</p>" } },
+        "email_form": { "type": "email_form" }
+      },
+      "block_order": ["heading", "paragraph", "email_form"],
+      "settings": { "color_scheme": "scheme-3", "full_width": true, "padding_top": 72, "padding_bottom": 72 }
     }
   },
-  "order": [
-    "image_banner",
-    "featured_collection"
-  ]
+  "order": ["hero", "adult_statement", "collections", "comparison", "powered_collection", "loungers_collection", "entertaining_collection", "how_it_works", "safety", "finder", "bundles", "faq", "newsletter"]
 }

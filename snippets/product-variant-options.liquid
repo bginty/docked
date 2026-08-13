@@ -37,6 +37,9 @@
     if value.available
       assign option_disabled = false
     endif
+    if settings.prelaunch_mode
+      assign option_disabled = false
+    endif
   -%}
 
   {%- capture input_id -%}
@@ -54,9 +57,11 @@
   {%- endcapture -%}
 
   {%- capture label_unavailable -%}
-    <span class="visually-hidden label-unavailable">
-      {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
-    </span>
+    {%- unless settings.prelaunch_mode -%}
+      <span class="visually-hidden label-unavailable">
+        {{- 'products.product.variant_sold_out_or_unavailable' | t -}}
+      </span>
+    {%- endunless -%}
   {%- endcapture -%}
 
   {% assign escaped_value = value | escape %}

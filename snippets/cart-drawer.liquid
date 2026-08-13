@@ -581,12 +581,15 @@
             class="cart__checkout-button button"
             name="checkout"
             form="CartDrawer-Form"
-            {% if cart == empty %}
+            {% if settings.prelaunch_mode or cart == empty %}
               disabled
             {% endif %}
           >
-            {{ 'sections.cart.checkout' | t }}
+            {%- if settings.prelaunch_mode -%}Ordering not yet open{%- else -%}{{ 'sections.cart.checkout' | t }}{%- endif -%}
           </button>
+          {%- if settings.prelaunch_mode -%}
+            <p class="docked-gst-note">Preview only. Checkout is locked until payments, products, shipping and compliance are approved.</p>
+          {%- endif -%}
         </div>
       </div>
     </div>

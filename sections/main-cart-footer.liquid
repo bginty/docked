@@ -110,16 +110,19 @@
                   id="checkout"
                   class="cart__checkout-button button"
                   name="checkout"
-                  {% if cart == empty %}
+                  {% if settings.prelaunch_mode or cart == empty %}
                     disabled
                   {% endif %}
                   form="cart"
                 >
-                  {{ 'sections.cart.checkout' | t }}
+                  {%- if settings.prelaunch_mode -%}Ordering not yet open{%- else -%}{{ 'sections.cart.checkout' | t }}{%- endif -%}
                 </button>
+                {%- if settings.prelaunch_mode -%}
+                  <p class="docked-gst-note">Preview only. Checkout is locked until payments, products, shipping and compliance are approved.</p>
+                {%- endif -%}
               </div>
 
-              {%- if additional_checkout_buttons -%}
+              {%- if additional_checkout_buttons and settings.prelaunch_mode == false -%}
                 <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
                   {{ content_for_additional_checkout_buttons }}
                 </div>

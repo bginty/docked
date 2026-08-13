@@ -1,0 +1,73 @@
+<section class="docked-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="CollectionGrid-{{ section.id }}">
+  <div class="docked-section__inner">
+    <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 id="CollectionGrid-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <div class="rte docked-lede">{{ section.settings.text }}</div>
+    <div class="docked-collection-grid">
+      {%- for block in section.blocks -%}
+        {%- assign collection = block.settings.collection -%}
+        <a class="docked-collection-tile" href="{{ collection.url | default: block.settings.link | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
+          <div class="docked-collection-tile__media">
+            {%- if collection.featured_image != blank -%}
+              {{ collection.featured_image | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 990px) 20vw, 50vw', class: 'docked-collection-tile__image', loading: 'lazy', alt: collection.featured_image.alt }}
+            {%- else -%}
+              <span class="docked-collection-tile__icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'powered' -%}{{- 'docked-icon-powered.svg' | inline_asset_content -}}
+                  {%- when 'lounger' -%}{{- 'docked-icon-seated.svg' | inline_asset_content -}}
+                  {%- when 'games' -%}{{- 'docked-icon-capacity.svg' | inline_asset_content -}}
+                  {%- when 'cooler' -%}{{- 'docked-icon-pool-use.svg' | inline_asset_content -}}
+                  {%- else -%}{{- 'docked-icon-storage.svg' | inline_asset_content -}}
+                {%- endcase -%}
+              </span>
+            {%- endif -%}
+          </div>
+          <span class="docked-collection-tile__title">{{ block.settings.title | default: collection.title | escape }}</span>
+          <span class="docked-collection-tile__arrow" aria-hidden="true">→</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-collection-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.6rem; margin-top: 3.2rem; }
+  .docked-collection-tile { position: relative; overflow: hidden; min-width: 0; color: #06283d; background: #ddf7fb; border-radius: 2.4rem; text-decoration: none; box-shadow: var(--docked-shadow-soft); }
+  .docked-collection-tile__media { display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; }
+  .docked-collection-tile__image { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+  .docked-collection-tile__icon { display: block; width: 34%; }
+  .docked-collection-tile__icon svg { display: block; width: 100%; height: auto; }
+  .docked-collection-tile__title { display: block; padding: 1.6rem 4.5rem 1.8rem 1.6rem; font-size: clamp(1.7rem, 2vw, 2.2rem); font-weight: 800; }
+  .docked-collection-tile__arrow { position: absolute; right: 1.6rem; bottom: 1.7rem; font-size: 2rem; }
+  .docked-collection-tile:hover .docked-collection-tile__image { transform: scale(1.03); }
+  @media screen and (min-width: 750px) { .docked-collection-grid { grid-template-columns: repeat(5, minmax(0,1fr)); } }
+  @media (prefers-reduced-motion: reduce) { .docked-collection-tile__image { transition: none; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop by collection",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 7,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Docked range" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Choose your kind of pool day." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>A focused edit of adult pool relaxation, recreation and care.</p>" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-1" }
+  ],
+  "blocks": [{
+    "type": "collection",
+    "name": "Collection",
+    "settings": [
+      { "type": "collection", "id": "collection", "label": "Collection" },
+      { "type": "text", "id": "title", "label": "Display title" },
+      { "type": "url", "id": "link", "label": "Fallback link" },
+      { "type": "select", "id": "icon", "label": "Fallback icon", "default": "powered", "options": [
+        { "value": "powered", "label": "Powered" }, { "value": "lounger", "label": "Lounger" }, { "value": "games", "label": "Games" }, { "value": "cooler", "label": "Cooler" }, { "value": "care", "label": "Care" }
+      ] }
+    ]
+  }],
+  "presets": [{ "name": "Shop by collection", "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }, { "type": "collection" }] }]
+}
+{% endschema %}

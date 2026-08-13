@@ -30,6 +30,11 @@
 {%- endunless -%}
 {%- if card_product and card_product != empty -%}
   {%- liquid
+    assign show_card_compare_at = true
+    if settings.prelaunch_mode
+      assign quick_add = 'none'
+      assign show_card_compare_at = false
+    endif
     assign ratio = 1
     if card_product.featured_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
@@ -120,29 +125,31 @@
                   href="{{ card_product.url }}"
                   id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
                   class="full-unstyled-link"
-                  aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
+                  aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% unless settings.prelaunch_mode %}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}{% endunless %}"
                 >
                   {{ card_product.title | escape }}
                 </a>
               </h3>
             </div>
-            <div class="card__badge {{ settings.badge_position }}">
-              {%- if card_product.available == false -%}
-                <span
-                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-                >
-                  {{- 'products.product.sold_out' | t -}}
-                </span>
-              {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-                <span
-                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-                >
-                  {{- 'products.product.on_sale' | t -}}
-                </span>
-              {%- endif -%}
-            </div>
+            {%- unless settings.prelaunch_mode -%}
+              <div class="card__badge {{ settings.badge_position }}">
+                {%- if card_product.available == false -%}
+                  <span
+                    id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                    class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
+                  >
+                    {{- 'products.product.sold_out' | t -}}
+                  </span>
+                {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+                  <span
+                    id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                    class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                  >
+                    {{- 'products.product.on_sale' | t -}}
+                  </span>
+                {%- endif -%}
+              </div>
+            {%- endunless -%}
           </div>
         </div>
         <div class="card__content">
@@ -157,7 +164,7 @@
                 href="{{ card_product.url }}"
                 id="CardLink-{{ section_id }}-{{ card_product.id }}"
                 class="full-unstyled-link"
-                aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} Badge-{{ section_id }}-{{ card_product.id }}{% endif %}"
+                aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }}{% unless settings.prelaunch_mode %}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} Badge-{{ section_id }}-{{ card_product.id }}{% endif %}{% endunless %}"
               >
                 {{ card_product.title | escape }}
               </a>
@@ -206,8 +213,26 @@
                 </p>
               {%- endif -%}
 
-              {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-              {%- if card_product.quantity_price_breaks_configured? -%}
+              <div class="docked-card-extras">
+                {%- render 'docked-product-badges', product: card_product -%}
+              </div>
+              {% render 'price', product: card_product, price_class: '', show_compare_at_price: show_card_compare_at %}
+              {%- if cart.taxes_included -%}<div class="docked-gst-note">GST included</div>{%- endif -%}
+              <div class="docked-card-stock" aria-label="Stock status">
+                {%- if settings.prelaunch_mode -%}
+                  <span>Preview &mdash; not available to order</span>
+                {%- elsif card_product.available -%}
+                  <span class="docked-card-stock__available">Available</span>
+                {%- else -%}
+                  <span>Sold out</span>
+                {%- endif -%}
+              </div>
+              {%- if settings.powered_comparison_ready and card_product.metafields.custom.powered_float.value -%}
+                <a class="docked-card-compare" href="{{ routes.root_url }}#compare-powered-floats">
+                  Compare powered floats
+                </a>
+              {%- endif -%}
+              {%- if card_product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                   {% liquid
                     assign quantity_rule = card_product.selected_or_first_available_variant.quantity_rule
@@ -352,7 +377,7 @@
                       name="id"
                       value="{{ card_product.selected_or_first_available_variant.id }}"
                       class="product-variant-id"
-                      {% if card_product.selected_or_first_available_variant.available == false %}
+                      {% if settings.prelaunch_mode or card_product.selected_or_first_available_variant.available == false %}
                         disabled
                       {% endif %}
                     >
@@ -365,12 +390,14 @@
                       aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                       aria-live="polite"
                       data-sold-out-message="true"
-                      {% if card_product.selected_or_first_available_variant.available == false %}
+                      {% if settings.prelaunch_mode or card_product.selected_or_first_available_variant.available == false %}
                         disabled
                       {% endif %}
                     >
                       <span>
-                        {%- if card_product.selected_or_first_available_variant.available -%}
+                        {%- if settings.prelaunch_mode -%}
+                          Coming soon
+                        {%- elsif card_product.selected_or_first_available_variant.available -%}
                           {{ 'products.product.add_to_cart' | t }}
                         {%- else -%}
                           {{ 'products.product.sold_out' | t }}
@@ -514,8 +541,8 @@
                           <a href="{{ card_product.url }}" class="full-unstyled-link">
                             <h3>{{ card_product.title | escape }}</h3>
                           </a>
-                          {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-                          {%- if card_product.quantity_price_breaks_configured? -%}
+                          {% render 'price', product: card_product, price_class: '', show_compare_at_price: show_card_compare_at %}
+                          {%- if card_product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                             <div class="card__information-volume-pricing-note">
                               <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
                             </div>
@@ -529,8 +556,8 @@
                               {{ card_product.title | escape }}
                             </h3>
                           </a>
-                          {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-                          {%- if card_product.quantity_price_breaks_configured? -%}
+                          {% render 'price', product: card_product, price_class: '', show_compare_at_price: show_card_compare_at %}
+                          {%- if card_product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                             <div class="card__information-volume-pricing-note">
                               <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
                             </div>
@@ -550,23 +577,25 @@
               </div>
             {% endif %}
           {% endif %}
-          <div class="card__badge {{ settings.badge_position }}">
-            {%- if card_product.available == false -%}
-              <span
-                id="Badge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-              >
-                {{- 'products.product.sold_out' | t -}}
-              </span>
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-              <span
-                id="Badge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-              >
-                {{- 'products.product.on_sale' | t -}}
-              </span>
-            {%- endif -%}
-          </div>
+          {%- unless settings.prelaunch_mode -%}
+            <div class="card__badge {{ settings.badge_position }}">
+              {%- if card_product.available == false -%}
+                <span
+                  id="Badge-{{ section_id }}-{{ card_product.id }}"
+                  class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
+                >
+                  {{- 'products.product.sold_out' | t -}}
+                </span>
+              {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+                <span
+                  id="Badge-{{ section_id }}-{{ card_product.id }}"
+                  class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                >
+                  {{- 'products.product.on_sale' | t -}}
+                </span>
+              {%- endif -%}
+            </div>
+          {%- endunless -%}
         </div>
       </div>
     </div>

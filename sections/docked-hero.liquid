@@ -1,0 +1,71 @@
+<section class="docked-section docked-hero color-{{ section.settings.color_scheme }} gradient" aria-labelledby="DockedHero-{{ section.id }}">
+  <div class="docked-section__inner docked-hero__grid">
+    <div class="docked-hero__content">
+      {%- if section.settings.eyebrow != blank -%}<p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h1 id="DockedHero-{{ section.id }}" class="docked-hero__heading">{{ section.settings.heading | escape }}</h1>
+      <div class="docked-hero__copy rte">{{ section.settings.text }}</div>
+      <div class="docked-hero__actions">
+        {%- if section.settings.primary_label != blank -%}
+          <a class="button" href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}">{{ section.settings.primary_label | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a class="button button--secondary" href="{{ section.settings.secondary_link | default: routes.all_products_collection_url }}">{{ section.settings.secondary_label | escape }}</a>
+        {%- endif -%}
+      </div>
+      <p class="docked-hero__safety">Adults 18+ only · Calm, controlled swimming-pool use · Not a life-saving device</p>
+    </div>
+    <div class="docked-hero__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '480, 720, 960, 1280, 1600', sizes: '(min-width: 990px) 50vw, 100vw', class: 'docked-hero__image', loading: 'eager', fetchpriority: 'high', alt: section.settings.image.alt }}
+      {%- else -%}
+        <div class="docked-hero__art" role="img" aria-label="Abstract Docked pool-water illustration. Product photography is pending approval.">
+          <span class="docked-hero__orbit docked-hero__orbit--one"></span>
+          <span class="docked-hero__orbit docked-hero__orbit--two"></span>
+          <span class="docked-hero__mark">{{- 'docked-mark.svg' | inline_asset_content -}}</span>
+          <span class="docked-hero__art-note">Original preview artwork · Approved product photography required before launch</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-hero { background: linear-gradient(145deg, #f8f5ee 0%, #ddf7fb 100%); }
+  .docked-hero__grid { display: grid; gap: 4rem; align-items: center; min-height: min(82rem, calc(100svh - 12rem)); }
+  .docked-hero__heading { max-width: 9ch; margin: 0; font-size: clamp(5.2rem, 10vw, 11rem); line-height: .88; }
+  .docked-hero__copy { max-width: 60rem; margin-top: 2.4rem; font-size: clamp(1.8rem, 2vw, 2.3rem); line-height: 1.55; }
+  .docked-hero__actions { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 3rem; }
+  .docked-hero__safety { margin-top: 2.4rem; color: rgba(6, 40, 61, .72); font-size: 1.2rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  .docked-hero__media { min-width: 0; }
+  .docked-hero__image,
+  .docked-hero__art { width: 100%; aspect-ratio: 5 / 6; border-radius: 3.2rem; box-shadow: var(--docked-shadow); }
+  .docked-hero__image { display: block; object-fit: cover; }
+  .docked-hero__art { position: relative; display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at 65% 28%, #fff 0 8%, transparent 9%), linear-gradient(155deg, #13bfe6 0%, #ddf7fb 55%, #f8f5ee 100%); }
+  .docked-hero__mark { position: relative; z-index: 2; display: block; width: min(60%, 34rem); filter: drop-shadow(0 2rem 3rem rgba(6,40,61,.18)); }
+  .docked-hero__mark svg { display: block; width: 100%; height: auto; }
+  .docked-hero__orbit { position: absolute; border: .2rem solid rgba(255,255,255,.75); border-radius: 50%; }
+  .docked-hero__orbit--one { width: 72%; aspect-ratio: 1; transform: rotate(-10deg); }
+  .docked-hero__orbit--two { width: 110%; aspect-ratio: 1; transform: translate(30%, 25%); }
+  .docked-hero__art-note { position: absolute; right: 2rem; bottom: 2rem; left: 2rem; z-index: 3; padding: 1rem 1.2rem; color: #06283d; background: rgba(255,255,255,.84); border-radius: 1rem; font-size: 1.1rem; font-weight: 700; text-align: center; backdrop-filter: blur(.6rem); }
+  @media screen and (min-width: 990px) { .docked-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(38rem, .78fr); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Docked hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Adult pool leisure · Australia" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pool time, powered." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Discover rechargeable motorised pool floats, adult loungers and poolside products designed for slow laps, long afternoons and better summer entertaining.</p>" },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop Powered Floats" },
+    { "type": "url", "id": "primary_link", "label": "Primary link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Explore the Range" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary link" },
+    { "type": "image_picker", "id": "image", "label": "Approved hero image" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+  ],
+  "presets": [{ "name": "Docked hero" }]
+}
+{% endschema %}

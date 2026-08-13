@@ -172,7 +172,7 @@
       endif
 
       if section.settings.menu != blank
-        render 'header-drawer', show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
+        render 'header-drawer', menu: section.settings.menu, menu_type_desktop: section.settings.menu_type_desktop, menu_color_scheme: section.settings.menu_color_scheme, show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
       endif
 
       if render_search_left
@@ -181,9 +181,7 @@
     -%}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
-      {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
-      {%- endif -%}
+      <div class="header__heading">
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if settings.logo != blank -%}
           <div class="header__heading-logo-wrapper">
@@ -205,12 +203,10 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="docked-wordmark-fallback">{{- 'docked-wordmark.svg' | inline_asset_content -}}</span>
         {%- endif -%}
       </a>
-      {%- if request.page_type == 'index' -%}
-        </h1>
-      {%- endif -%}
+      </div>
     {%- endif -%}
 
     {%- liquid
@@ -224,9 +220,7 @@
     %}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
-      {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
-      {%- endif -%}
+      <div class="header__heading">
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if settings.logo != blank -%}
           <div class="header__heading-logo-wrapper">
@@ -248,12 +242,10 @@
             }}
           </div>
         {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
+          <span class="docked-wordmark-fallback">{{- 'docked-wordmark.svg' | inline_asset_content -}}</span>
         {%- endif -%}
       </a>
-      {%- if request.page_type == 'index' -%}
-        </h1>
-      {%- endif -%}
+      </div>
     {%- endif -%}
 
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
@@ -458,26 +450,48 @@
   customElements.define('sticky-header', StickyHeader);
 {% endjavascript %}
 
+{%- assign storefront_url = request.origin | append: routes.root_url -%}
 <script type="application/ld+json">
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Organization",
     "name": {{ shop.name | json }},
     {% if settings.logo %}
       "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
     {% endif %}
-    "sameAs": [
-      {{ settings.social_twitter_link | json }},
-      {{ settings.social_facebook_link | json }},
-      {{ settings.social_pinterest_link | json }},
-      {{ settings.social_instagram_link | json }},
-      {{ settings.social_tiktok_link | json }},
-      {{ settings.social_tumblr_link | json }},
-      {{ settings.social_snapchat_link | json }},
-      {{ settings.social_youtube_link | json }},
-      {{ settings.social_vimeo_link | json }}
-    ],
-    "url": {{ request.origin | append: page.url | json }}
+    {%- if social_links -%}
+      "sameAs": [
+        {%- assign social_link_written = false -%}
+        {%- if settings.social_twitter_link != blank -%}
+          {{ settings.social_twitter_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_facebook_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_facebook_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_pinterest_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_pinterest_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_instagram_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_instagram_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_tiktok_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_tiktok_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_tumblr_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_tumblr_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_snapchat_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_snapchat_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_youtube_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_youtube_link | json }}{%- assign social_link_written = true -%}
+        {%- endif -%}
+        {%- if settings.social_vimeo_link != blank -%}
+          {%- if social_link_written -%},{%- endif -%}{{ settings.social_vimeo_link | json }}
+        {%- endif -%}
+      ],
+    {%- endif -%}
+    "url": {{ storefront_url | json }}
   }
 </script>
 
@@ -485,7 +499,7 @@
   {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "WebSite",
       "name": {{ shop.name | json }},
       "potentialAction": {
@@ -493,7 +507,7 @@
         "target": {{ potential_action_target | json }},
         "query-input": "required name=search_term_string"
       },
-      "url": {{ request.origin | append: page.url | json }}
+      "url": {{ storefront_url | json }}
     }
   </script>
 {%- endif -%}

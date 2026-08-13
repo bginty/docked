@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "main": { "type": "main-page", "settings": { "padding_top": 28, "padding_bottom": 0 } },
+    "adult_notice": {
+      "type": "docked-adult-safety-notice",
+      "blocks": {
+        "age": { "type": "warning", "settings": { "text": "Adults aged 18 years and over only." } },
+        "lifesaving": { "type": "warning", "settings": { "text": "Never rely on the product to prevent drowning." } },
+        "together": { "type": "warning", "settings": { "text": "Use only with another responsible adult present." } },
+        "impairment": { "type": "warning", "settings": { "text": "Do not use while impaired by alcohol, recreational drugs, sedating medication, illness, exhaustion or another condition that could affect judgement or swimming ability." } },
+        "stunts": { "type": "warning", "settings": { "text": "Do not stand, dive, jump or perform stunts on the product." } },
+        "tow": { "type": "warning", "settings": { "text": "Do not tow behind a boat or other powered equipment." } },
+        "misuse": { "type": "warning", "settings": { "text": "Do not use as a rescue device, bridge, step, diving platform or pool-safety product." } },
+        "pool_hazards": { "type": "warning", "settings": { "text": "Stay clear of pool drains, suction outlets, skimmers, fountains and operating pool-cleaning equipment." } },
+        "sharp": { "type": "warning", "settings": { "text": "Keep away from sharp objects, rough surfaces, glass and open flames." } },
+        "limits": { "type": "warning", "settings": { "text": "Follow the verified maximum user weight and occupancy." } },
+        "inspect": { "type": "warning", "settings": { "text": "Check valves, seams, handles, motors and attachments before use." } },
+        "stop": { "type": "warning", "settings": { "text": "Stop using the product immediately if it loses air or stability." } },
+        "entry": { "type": "warning", "settings": { "text": "Enter and leave the product according to the supplied instructions." } },
+        "store": { "type": "warning", "settings": { "text": "Store completely dry and away from excessive heat and direct sunlight when not in use." } }
+      },
+      "block_order": ["age", "lifesaving", "together", "impairment", "stunts", "tow", "misuse", "pool_hazards", "sharp", "limits", "inspect", "stop", "entry", "store"],
+      "settings": { "color_scheme": "scheme-2" }
+    },
+    "powered": { "type": "docked-safety-page", "settings": { "color_scheme": "scheme-3" } }
+  },
+  "order": ["main", "adult_notice", "powered"]
+}

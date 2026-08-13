@@ -26,6 +26,12 @@
   assign price_min = product.price_min
   assign price_max = product.price_max
   assign available = target.available | default: false
+  if settings.prelaunch_mode
+    assign compare_at_price = nil
+    assign available = true
+    assign show_badges = false
+    assign show_compare_at_price = false
+  endif
   assign money_price = price | money
   assign money_price_min = price_min | money
   assign money_price_max = price_max | money

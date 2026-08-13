@@ -21,7 +21,7 @@
     {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
     {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
   {% endunless %}
-  {%- if product.quantity_price_breaks_configured? -%}
+  {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
   {%- endif -%}
 
@@ -41,7 +41,7 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-  {%- if product.quantity_price_breaks_configured? -%}
+  {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
@@ -54,6 +54,10 @@
   {%- endif -%}
 
   {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
+  {%- assign show_commerce_badges = true -%}
+  {%- if settings.prelaunch_mode -%}
+    {%- assign show_commerce_badges = false -%}
+  {%- endif -%}
   {%- if first_3d_model -%}
     {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
     <link
@@ -75,6 +79,13 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
     <div class="page-width">
+      <nav class="docked-product-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="{{ routes.root_url }}">Home</a></li>
+          {%- if collection -%}<li><a href="{{ collection.url }}">{{ collection.title | escape }}</a></li>{%- endif -%}
+          <li aria-current="page">{{ product.title | escape }}</li>
+        </ol>
+      </nav>
       <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
@@ -106,16 +117,20 @@
                       </h2>
                     </a>
                   </div>
+                  {%- render 'docked-product-badges', product: product -%}
+                  {%- if product.metafields.custom.adult_only.value -%}
+                    <p class="docked-gst-note"><strong>Pool use only.</strong> Designed and marketed for adults aged 18 and over.</p>
+                  {%- endif -%}
                 {%- when 'price' -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
                       product: product,
                       use_variant: true,
-                      show_badges: true,
+                      show_badges: show_commerce_badges,
                       price_class: 'price--large'
                     -%}
                   </div>
-                  {%- if product.quantity_price_breaks_configured? -%}
+                  {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                     </div>
@@ -134,64 +149,80 @@
                       {%- endif -%}
                     </div>
                   {%- endif -%}
-                  <div {{ block.shopify_attributes }}>
-                    {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                    {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                      {{ form | payment_terms }}
-                    {%- endform -%}
-                  </div>
+                  {%- unless settings.prelaunch_mode -%}
+                    <div {{ block.shopify_attributes }}>
+                      {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                      {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                        {{ form | payment_terms }}
+                      {%- endform -%}
+                    </div>
+                  {%- endunless -%}
+                  {%- if cart.taxes_included -%}
+                    <p class="docked-gst-note">{{ settings.gst_message | escape }}</p>
+                  {%- endif -%}
                 {%- when 'inventory' -%}
-                  <p
-                    class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
-                    {{ block.shopify_attributes }}
-                    id="Inventory-{{ section.id }}"
-                    role="status"
-                  >
-                    {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
-                      {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                        {%- if product.selected_or_first_available_variant.inventory_quantity
-                            <= block.settings.inventory_threshold
-                        -%}
-                          <span class="svg-wrapper" style="color: rgb(238, 148, 65)">
-                            {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                          </span>
-                          {%- if block.settings.show_inventory_quantity -%}
-                            {{-
-                              'products.product.inventory_low_stock_show_count'
-                              | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                            -}}
+                  {%- if settings.prelaunch_mode -%}
+                    <p
+                      class="product__inventory caption-with-letter-spacing"
+                      {{ block.shopify_attributes }}
+                      id="Inventory-{{ section.id }}"
+                      role="status"
+                    >
+                      Preview &mdash; not available to order.
+                    </p>
+                  {%- else -%}
+                    <p
+                      class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
+                      {{ block.shopify_attributes }}
+                      id="Inventory-{{ section.id }}"
+                      role="status"
+                    >
+                      {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
+                        {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+                          {%- if product.selected_or_first_available_variant.inventory_quantity
+                              <= block.settings.inventory_threshold
+                          -%}
+                            <span class="svg-wrapper" style="color: rgb(238, 148, 65)">
+                              {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                            </span>
+                            {%- if block.settings.show_inventory_quantity -%}
+                              {{-
+                                'products.product.inventory_low_stock_show_count'
+                                | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                              -}}
+                            {%- else -%}
+                              {{- 'products.product.inventory_low_stock' | t -}}
+                            {%- endif -%}
                           {%- else -%}
-                            {{- 'products.product.inventory_low_stock' | t -}}
+                            <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
+                              {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                            </span>
+                            {%- if block.settings.show_inventory_quantity -%}
+                              {{-
+                                'products.product.inventory_in_stock_show_count'
+                                | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                              -}}
+                            {%- else -%}
+                              {{- 'products.product.inventory_in_stock' | t -}}
+                            {%- endif -%}
                           {%- endif -%}
                         {%- else -%}
-                          <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                            {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                          </span>
-                          {%- if block.settings.show_inventory_quantity -%}
-                            {{-
-                              'products.product.inventory_in_stock_show_count'
-                              | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                            -}}
+                          {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                            <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
+                              {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                            </span>
+                            {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
                           {%- else -%}
-                            {{- 'products.product.inventory_in_stock' | t -}}
+                            <span class="svg-wrapper" style="color: rgb(200, 200, 200)">
+                              {{- 'icon-inventory-status.svg' | inline_asset_content -}}
+                            </span>
+                            {{- 'products.product.inventory_out_of_stock' | t -}}
                           {%- endif -%}
-                        {%- endif -%}
-                      {%- else -%}
-                        {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                          <span class="svg-wrapper" style="color: rgb(62, 214, 96)">
-                            {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                          </span>
-                          {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-                        {%- else -%}
-                          <span class="svg-wrapper" style="color: rgb(200, 200, 200)">
-                            {{- 'icon-inventory-status.svg' | inline_asset_content -}}
-                          </span>
-                          {{- 'products.product.inventory_out_of_stock' | t -}}
                         {%- endif -%}
                       {%- endif -%}
-                    {%- endif -%}
-                  </p>
+                    </p>
+                  {%- endif -%}
                 {%- when 'description' -%}
                   {%- if product.description != blank -%}
                     <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
@@ -304,7 +335,7 @@
                           assign current_qty_for_volume_pricing = cart_qty | plus: product.selected_or_first_available_variant.quantity_rule.increment
                         endif
                       -%}
-                      {%- if product.quantity_price_breaks_configured? -%}
+                      {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                         <price-per-item
                           id="Price-Per-Item-{{ section.id }}"
                           data-section-id="{{ section.id }}"
@@ -411,7 +442,7 @@
                         </span>
                       {%- endif -%}
                     </div>
-                    {%- if product.quantity_price_breaks_configured? -%}
+                    {%- if product.quantity_price_breaks_configured? and settings.prelaunch_mode == false -%}
                       <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
                         {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
                           <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
@@ -492,6 +523,7 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
+                  {%- render 'docked-adult-safety-notice', product: product, compact: true -%}
                   {%- render 'buy-buttons',
                     block: block,
                     product: product,
@@ -499,6 +531,18 @@
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+                  {%- if settings.prelaunch_mode == false and shop.enabled_payment_types != empty -%}
+                    <div class="docked-product-payments" aria-label="Payment methods enabled at checkout">
+                      <span>Payment methods enabled at checkout</span>
+                      <ul class="list list-payment" role="list">
+                        {%- for type in shop.enabled_payment_types -%}
+                          <li class="list-payment__item">
+                            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">
@@ -596,10 +640,12 @@
                                   {% endif %}
                                 >
                                   <ul class="list-unstyled" role="list">
+                                    {% # theme-check-disable UndefinedObject %}
                                     {%- for product in recommendations.products
                                       limit: block.settings.products_per_page
                                       offset: continue
                                     -%}
+                                      {% # theme-check-enable UndefinedObject %}
                                       <li>
                                         {%- if block.settings.enable_quick_add -%}
                                           {% assign quick_add = 'standard' %}
@@ -738,17 +784,12 @@
         <script src="{{ 'product-model.js' | asset_url }}" defer></script>
       {%- endif -%}
 
-      {%- liquid
-        if product.selected_or_first_available_variant.featured_media
-          assign seo_media = product.selected_or_first_available_variant.featured_media
-        else
-          assign seo_media = product.featured_media
-        endif
-      -%}
-
-      <script type="application/ld+json">
-        {{ product | structured_data }}
-      </script>
+      {%- unless settings.prelaunch_mode -%}
+        <script type="application/ld+json">
+          {{ product | structured_data }}
+        </script>
+      {%- endunless -%}
+      {%- render 'docked-sticky-add-to-cart', product: product -%}
     </div>
   </product-component>
 </product-info>
