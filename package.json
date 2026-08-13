@@ -1,0 +1,19 @@
+{
+  "name": "docked-shopify-theme",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local structural validation for the Docked Shopify Online Store 2.0 theme.",
+  "scripts": {
+    "validate": "node scripts/validate-theme.mjs",
+    "audit:copy": "node scripts/validate-theme.mjs --copy-only",
+    "test": "node --test tests/theme-structure.test.mjs",
+    "test:storefront": "node --test tests/storefront.spec.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@shopify/cli": "4.5.2"
+  }
+}
