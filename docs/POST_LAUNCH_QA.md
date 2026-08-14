@@ -150,7 +150,7 @@ The mailbox gate requires end-to-end delivery evidence in both directions; DNS r
 | Contact-form delivery | Shopify accepted controlled submission at `?contact_posted=true` and showed its success confirmation; mailbox receipt unverified | Shopify submission result plus receipt in the support mailbox |
 | Order-notification delivery | Not run | Redacted test-order notification and mailbox receipt |
 | Refund-notification delivery | Not run | Redacted test-refund notification and mailbox receipt |
-| Sender-domain authentication | Admin Notifications rechecked after the owner's setup report: textbox `support@docked.com.au`, status still **Unverified**, **Resend verification** offered | Delivered-message headers and provider configuration review |
+| Sender-domain authentication | Admin Notifications rechecked after the owner's setup report: textbox `support@docked.com.au`, status still **Unverified**. A fresh verification email was requested at approximately 11:06 AEST and Shopify confirmed **Verification email sent** | Owner completes the verification link; delivered-message headers and provider configuration review |
 | SPF | DNS observed; operational result not tested | Alignment/authentication result from delivered-message headers |
 | DKIM | Unverified | Selector/provider evidence plus delivered-message signature result |
 | DMARC | DNS observed; operational result not tested | Alignment result and policy review for the actual sender |

@@ -161,7 +161,7 @@
     "evidence": {
       "type": "admin_record_and_failed_test_setup",
       "observed_at": "2026-08-14",
-      "summary": "The owner reports support@docked.com.au is set up. Shopify Notifications was rechecked afterward: its sender textbox contained that address, status remained Unverified and Resend verification was available. A controlled Contact form submission was accepted at ?contact_posted=true and Shopify displayed its success confirmation. An attempted external Gmail send did not occur because the connected Gmail account reported Mail service not enabled.",
+      "summary": "The owner reports support@docked.com.au is set up. Shopify Notifications was rechecked afterward: its sender textbox contained that address and status remained Unverified. A fresh verification email was requested at approximately 11:06 AEST and Shopify confirmed Verification email sent. A controlled Contact form submission was accepted at ?contact_posted=true and Shopify displayed its success confirmation. An attempted external Gmail send did not occur because the connected Gmail account reported Mail service not enabled.",
       "reference": "docs/POST_LAUNCH_QA.md",
       "operator_or_source": "Project owner, authenticated Shopify Admin and connected Gmail attempt",
       "reviewer": "Codex",

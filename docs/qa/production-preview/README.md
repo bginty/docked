@@ -22,7 +22,7 @@ Observed 14 August 2026 against unpublished Shopify theme `130871427130` at `cfb
 - No public product page, variant, quantity, inventory, add/remove item, checkout or GST/invoice test is possible because all 15 concepts remain Draft and no SKU is approved.
 - Current Edge, Firefox, Android Chrome, Safari/WebKit-equivalent and physical-device runs were not completed.
 - `npm run test:storefront` was attempted with the preview URL but stopped before any assertion because Playwright is not installed. Automated accessibility, screen-reader, Lighthouse and checkout tests were not completed.
-- Contact-form delivery, external inbound/reply mail and order/refund notifications were not verified. Customer-account entry rendered, but authentication, post-submit errors, logout and order history were not tested. After the owner's mailbox-setup report, Admin Notifications still showed `support@docked.com.au` as **Unverified** with **Resend verification** available.
+- Contact-form delivery, external inbound/reply mail and order/refund notifications were not verified. Customer-account entry rendered, but authentication, post-submit errors, logout and order history were not tested. After the owner's mailbox-setup report, Admin Notifications still showed `support@docked.com.au` as **Unverified**. A fresh verification email was requested at approximately 11:06 AEST and Shopify confirmed **Verification email sent**; the owner still needs to complete the link and the delivery matrix.
 
 ## Screenshot index
 
