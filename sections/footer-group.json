@@ -5,6 +5,12 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "brand": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": false
+          }
+        },
         "shop_links": {
           "type": "link_list",
           "settings": {
@@ -27,7 +33,7 @@
           }
         }
       },
-      "block_order": ["shop_links", "help_links", "adult_note"],
+      "block_order": ["brand", "shop_links", "help_links", "adult_note"],
       "settings": {
         "color_scheme": "scheme-3",
         "newsletter_enable": true,

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -402,6 +403,12 @@ function validateReferences(root, report) {
   const liquidFiles = THEME_DIRS.flatMap((directory) => walk(path.join(root, directory))).filter(
     (file) => path.extname(file).toLowerCase() === '.liquid',
   );
+  const assetDirectory = path.join(root, 'assets');
+  const exactAssetNames = new Set(
+    fs.existsSync(assetDirectory)
+      ? fs.readdirSync(assetDirectory, { withFileTypes: true }).filter((entry) => entry.isFile()).map((entry) => entry.name)
+      : [],
+  );
   const assetPattern = /['"]([^'"]+)['"]\s*\|\s*(asset_url|inline_asset_content)/gi;
   const references = [];
   const missingAssets = [];
@@ -409,7 +416,7 @@ function validateReferences(root, report) {
     const source = fs.readFileSync(file, 'utf8');
     for (const match of source.matchAll(assetPattern)) {
       references.push(match[1]);
-      if (!fs.existsSync(path.join(root, 'assets', match[1]))) {
+      if (!exactAssetNames.has(match[1])) {
         missingAssets.push(`${normalise(file, root)} (${match[2]}) -> assets/${match[1]}`);
       }
     }
@@ -446,6 +453,266 @@ function validateReferences(root, report) {
     missingSections,
   );
   report.stats.referencedSectionTypes = new Set(sectionTypes).size;
+}
+
+function validateBrandIdentity(root, report) {
+  const identityExpectations = [
+    { file: 'docked-wordmark.svg', aspect: 'wide wordmark', validAspect: (ratio) => ratio >= 4 && ratio <= 6 },
+    { file: 'docked-mark.svg', aspect: 'square mark', validAspect: (ratio) => Math.abs(ratio - 1) <= 0.001 },
+    { file: 'docked-wake.svg', aspect: 'wide wake', validAspect: (ratio) => ratio >= 2 && ratio <= 3 },
+    {
+      file: 'docked-social-template.svg',
+      aspect: '1200:630 social canvas',
+      validAspect: (ratio) => Math.abs(ratio - 1200 / 630) <= 0.001,
+    },
+    { file: 'favicon.svg', aspect: 'square favicon', validAspect: (ratio) => Math.abs(ratio - 1) <= 0.001 },
+  ];
+  const identityNames = new Set(identityExpectations.map(({ file }) => file));
+  const failures = [];
+  const fail = (control, file, reason) => failures.push({ control, file, reason });
+  const sourceFor = (relativePath) => {
+    const resolved = path.join(root, relativePath);
+    return fs.existsSync(resolved) ? fs.readFileSync(resolved, 'utf8') : '';
+  };
+
+  const liquidFiles = THEME_DIRS.flatMap((directory) => walk(path.join(root, directory))).filter(
+    (file) => path.extname(file).toLowerCase() === '.liquid',
+  );
+  const inlineIdentityAssets = new Set();
+  for (const file of liquidFiles) {
+    const source = fs.readFileSync(file, 'utf8');
+    for (const match of source.matchAll(/['"]([^'"]+)['"]\s*\|\s*inline_asset_content/gi)) {
+      if (identityNames.has(match[1])) inlineIdentityAssets.add(match[1]);
+    }
+  }
+
+  const disallowedMarkup = [
+    ['DOCTYPE declaration', /<!DOCTYPE\b/i],
+    ['entity declaration', /<!ENTITY\b/i],
+    ['executable or embedded element', /<\s*(?:script|foreignObject|iframe|object|embed|image|text|style)\b/i],
+    ['SMIL animation', /<\s*(?:animate(?:Color|Motion|Transform)?|set|mpath)\b/i],
+    ['event-handler attribute', /\son[a-z][\w:.-]*\s*=/i],
+    [
+      'remote, data or JavaScript link',
+      /(?:href|xlink:href|src)\s*=\s*['"]\s*(?:https?:|\/\/|data:|javascript:)|url\(\s*['"]?\s*(?:https?:|\/\/|data:|javascript:)/i,
+    ],
+  ];
+  const prohibitedIdentityTerms = /\b(?:ducks?|ducklings?|propell(?:er|or)s?)\b/i;
+
+  for (const expectation of identityExpectations) {
+    const relativePath = `assets/${expectation.file}`;
+    const resolved = path.join(root, relativePath);
+    if (!fs.existsSync(resolved)) {
+      fail('identity SVG set', relativePath, 'required identity asset is missing');
+      continue;
+    }
+
+    const source = fs.readFileSync(resolved, 'utf8');
+    const rootTag = source.match(/<svg\b[^>]*>/i)?.[0] ?? '';
+    const viewBoxValue = rootTag.match(/\bviewBox\s*=\s*['"]([^'"]+)['"]/i)?.[1];
+    const viewBox = viewBoxValue?.trim().split(/[\s,]+/).map(Number) ?? [];
+    const validViewBox =
+      viewBox.length === 4 && viewBox.every(Number.isFinite) && viewBox[2] > 0 && viewBox[3] > 0;
+    if (!validViewBox) {
+      fail('SVG viewBox', relativePath, 'viewBox must contain four finite numbers with positive width and height');
+    } else {
+      const ratio = viewBox[2] / viewBox[3];
+      if (!expectation.validAspect(ratio)) {
+        fail('SVG aspect', relativePath, `${expectation.aspect} expected; received ${ratio.toFixed(4)}:1`);
+      }
+    }
+
+    if (!/\bxmlns\s*=\s*['"]http:\/\/www\.w3\.org\/2000\/svg['"]/i.test(rootTag)) {
+      fail('SVG root', relativePath, 'root SVG namespace is missing or invalid');
+    }
+    if (!/\baria-hidden\s*=\s*['"]true['"]/i.test(rootTag)) {
+      fail('SVG accessibility', relativePath, 'identity artwork must be decorative with aria-hidden="true"');
+    }
+    if (!/\bfocusable\s*=\s*['"]false['"]/i.test(rootTag)) {
+      fail('SVG accessibility', relativePath, 'identity artwork must declare focusable="false"');
+    }
+    const pathHasGeometry = [...source.matchAll(/<path\b[^>]*>/gi)].some((match) =>
+      /\bd\s*=\s*['"][^'"]*[a-z][^'"]*['"]/i.test(match[0]),
+    );
+    if (!pathHasGeometry) fail('SVG geometry', relativePath, 'at least one path with drawing geometry is required');
+
+    for (const [description, pattern] of disallowedMarkup) {
+      if (pattern.test(source)) fail('SVG safety', relativePath, description);
+    }
+    if (prohibitedIdentityTerms.test(source)) {
+      fail('identity metadata', relativePath, 'duck or propeller terminology is prohibited in production identity SVGs');
+    }
+    if (inlineIdentityAssets.has(expectation.file)) {
+      if (/\s(?:xml:)?id\s*=\s*['"]/i.test(source)) {
+        fail('inline SVG isolation', relativePath, 'inline identity SVGs must not declare IDs');
+      }
+      if (/url\(\s*['"]?\s*#/i.test(source)) {
+        fail('inline SVG isolation', relativePath, 'inline identity SVGs must not contain url(#...) references');
+      }
+      if (/(?:href|xlink:href)\s*=\s*['"]\s*#/i.test(source)) {
+        fail('inline SVG isolation', relativePath, 'inline identity SVGs must not contain hash references');
+      }
+    }
+  }
+
+  const wordmarkSnippetPath = 'snippets/docked-brand-wordmark.liquid';
+  const wordmarkSnippet = sourceFor(wordmarkSnippetPath);
+  const directWordmarkUsers = liquidFiles
+    .filter((file) => /['"]docked-wordmark\.svg['"]\s*\|\s*inline_asset_content/i.test(fs.readFileSync(file, 'utf8')))
+    .map((file) => normalise(file, root));
+  if (
+    directWordmarkUsers.length !== 1 ||
+    directWordmarkUsers[0] !== wordmarkSnippetPath ||
+    !/\baccessible_name\b/.test(wordmarkSnippet) ||
+    !/class\s*=\s*['"]visually-hidden['"]/.test(wordmarkSnippet) ||
+    !/aria-hidden\s*=\s*['"]true['"]/.test(wordmarkSnippet)
+  ) {
+    fail('shared wordmark', wordmarkSnippetPath, 'the shared accessible wordmark snippet must be the sole inline wordmark renderer');
+  }
+
+  const header = sourceFor('sections/header.liquid');
+  const passwordHeader = sourceFor('sections/main-password-header.liquid');
+  const footer = sourceFor('sections/footer.liquid');
+  const wordmarkRender = /render\s+['"]docked-brand-wordmark['"]/;
+  if (
+    !wordmarkRender.test(header) ||
+    !/if\s+settings\.logo\s*!=\s*blank/.test(header) ||
+    !/settings\.logo\s*\|\s*image_url/.test(header)
+  ) {
+    fail('shared wordmark', 'sections/header.liquid', 'header must retain the merchant logo override and shared wordmark fallback');
+  }
+  if (
+    !wordmarkRender.test(passwordHeader) ||
+    !/if\s+settings\.logo\s*!=\s*blank/.test(passwordHeader) ||
+    !/settings\.logo\s*\|\s*image_url/.test(passwordHeader)
+  ) {
+    fail(
+      'shared wordmark',
+      'sections/main-password-header.liquid',
+      'password header must retain the merchant logo override and shared wordmark fallback',
+    );
+  }
+  if (
+    !wordmarkRender.test(footer) ||
+    !/if\s+settings\.brand_image\s*!=\s*blank/.test(footer) ||
+    !/settings\.brand_image\s*\|\s*image_url/.test(footer)
+  ) {
+    fail('shared wordmark', 'sections/footer.liquid', 'footer must retain the merchant brand-image override and shared wordmark fallback');
+  }
+
+  const hero = sourceFor('sections/docked-hero.liquid');
+  for (const asset of ['docked-mark.svg', 'docked-wake.svg']) {
+    const escapedAsset = asset.replace('.', '\\.');
+    if (!new RegExp(`['"]${escapedAsset}['"]\\s*\\|\\s*inline_asset_content`).test(hero)) {
+      fail('hero identity', 'sections/docked-hero.liquid', `hero must inline ${asset}`);
+    }
+  }
+
+  const giftCard = sourceFor('templates/gift_card.liquid');
+  const giftCardFaviconFallback =
+    /if\s+settings\.favicon\s*!=\s*blank[\s\S]{0,750}?settings\.favicon\s*\|\s*image_url[\s\S]{0,750}?else[\s\S]{0,500}?['"]favicon\.svg['"]\s*\|\s*asset_url/.test(
+      giftCard,
+    );
+  if (!giftCardFaviconFallback) {
+    fail('gift-card identity', 'templates/gift_card.liquid', 'gift card must retain the merchant favicon override and SVG fallback');
+  }
+
+  const organizationFallback =
+    /if\s+settings\.logo[\s\S]{0,500}?settings\.logo\s*\|\s*image_url[\s\S]{0,500}?else[\s\S]{0,300}?['"]docked-mark\.svg['"]\s*\|\s*asset_url/.test(
+      header,
+    );
+  if (!organizationFallback) {
+    fail('Organization identity', 'sections/header.liquid', 'Organization JSON-LD must use the configured logo or Docked mark fallback');
+  }
+
+  let footerGroup;
+  try {
+    footerGroup = getJson(root, 'sections/footer-group.json');
+  } catch {
+    footerGroup = undefined;
+  }
+  const configuredFooter = footerGroup?.sections?.footer;
+  const brandBlockEntry = Object.entries(configuredFooter?.blocks ?? {}).find(([, block]) => block?.type === 'brand_information');
+  const brandBlockConfigured = Boolean(
+    brandBlockEntry && configuredFooter?.block_order?.includes(brandBlockEntry[0]),
+  );
+  const brandBlockSupported =
+    /when\s+['"]brand_information['"]/.test(footer) && /['"]type['"]\s*:\s*['"]brand_information['"]/.test(footer);
+  if (!brandBlockConfigured || !brandBlockSupported) {
+    fail('footer identity', 'sections/footer-group.json', 'footer must support and configure an ordered brand_information block');
+  }
+
+  const gitIgnore = sourceFor('.gitignore');
+  const shopifyIgnore = sourceFor('.shopifyignore');
+  const gitAttachmentIgnored = gitIgnore
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .some((line) => line === '/.codex-remote-attachments/' || line === '.codex-remote-attachments/');
+  const shopifyAttachmentIgnored = shopifyIgnore
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .some((line) => line === '/^\\.codex-remote-attachments\\/.*/');
+  if (!gitAttachmentIgnored) fail('reference isolation', '.gitignore', '.codex-remote-attachments must be ignored by Git');
+  if (!shopifyAttachmentIgnored) {
+    fail('reference isolation', '.shopifyignore', '.codex-remote-attachments must be excluded from Shopify uploads');
+  }
+
+  const referenceJpgNames = new Set(['1-Photo-1.jpg', '2-Photo-2.jpg', '3-Photo-3.jpg']);
+  const misplacedReferenceJpgs = walk(root)
+    .filter((file) => referenceJpgNames.has(path.basename(file)))
+    .map((file) => normalise(file, root))
+    .filter((file) => !file.startsWith('.codex-remote-attachments/'));
+  for (const file of misplacedReferenceJpgs) {
+    fail('reference isolation', file, 'user-supplied logo reference JPG must remain under .codex-remote-attachments');
+  }
+
+  try {
+    const trackedFiles = execFileSync('git', ['-C', root, 'ls-files', '-z'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+      .split('\0')
+      .filter(Boolean)
+      .map((file) => file.split(path.sep).join('/'));
+    const trackedReferenceJpgs = trackedFiles.filter(
+      (file) =>
+        file.startsWith('.codex-remote-attachments/') ||
+        referenceJpgNames.has(path.posix.basename(file)),
+    );
+    for (const file of trackedReferenceJpgs) {
+      fail('reference isolation', file, 'reference JPGs and attachment files must not be tracked or shipped');
+    }
+  } catch (error) {
+    fail('reference isolation', '.git', `unable to inspect tracked files: ${error.message}`);
+  }
+
+  const assetLicences = sourceFor('docs/ASSET_LICENCES.md');
+  for (const { file } of identityExpectations) {
+    if (!assetLicences.includes(`assets/${file}`)) {
+      fail('asset provenance', 'docs/ASSET_LICENCES.md', `missing provenance entry for assets/${file}`);
+    }
+  }
+  for (const [description, pattern] of [
+    ['original vector geometry statement', /original vector geometry/i],
+    ['path-only statement', /path-only/i],
+    ['not-traced statement', /not traced/i],
+  ]) {
+    if (!pattern.test(assetLicences)) fail('asset provenance', 'docs/ASSET_LICENCES.md', `missing ${description}`);
+  }
+
+  report.stats.identitySvgFiles = identityExpectations.length;
+  addCheck(
+    report,
+    failures.length === 0,
+    'brand.identity-contract',
+    'Five identity SVGs, their theme integrations and reference isolation satisfy the structural brand-safety contract',
+    {
+      identityFiles: identityExpectations.map(({ file }) => file),
+      inlineIdentityAssets: [...inlineIdentityAssets].sort(),
+      scope: 'Structural validation only; originality, ownership and public-use rights require separate evidence.',
+      failures,
+    },
+  );
 }
 
 function validateRoutesAndComposition(root, report) {
@@ -1207,13 +1474,13 @@ function validateFinalAuditGates(root, report) {
 
   const browserSpec = read(root, 'tests/storefront.spec.mjs');
   const viewportWidths = [...browserSpec.matchAll(/viewport:\s*{\s*width:\s*(\d+)/g)].map((match) => Number(match[1]));
-  const requiredViewportWidths = [320, 375, 768, 1024, 1440];
+  const requiredViewportWidths = [320, 360, 375, 390, 768, 1024, 1440];
   const missingViewportWidths = requiredViewportWidths.filter((width) => !viewportWidths.includes(width));
   addCheck(
     report,
     missingViewportWidths.length === 0,
     'browser.viewport-matrix',
-    'Optional storefront browser smoke tests cover 320, 375, 768, 1024 and 1440 pixel widths',
+    'Optional storefront browser smoke tests cover 320, 360, 375, 390, 768, 1024 and 1440 pixel widths',
     { viewportWidths, missingViewportWidths },
   );
 
@@ -1699,6 +1966,7 @@ export function validateTheme(root = THEME_ROOT, options = {}) {
   } else {
     validateJsonAndSchemas(resolvedRoot, report);
     validateReferences(resolvedRoot, report);
+    validateBrandIdentity(resolvedRoot, report);
     validateRoutesAndComposition(resolvedRoot, report);
     validateMerchandisingSurfaces(resolvedRoot, report);
     validateFinalAuditGates(resolvedRoot, report);

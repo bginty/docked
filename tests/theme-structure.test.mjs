@@ -56,12 +56,29 @@ test('remaining product and interaction requirements have dedicated passing gate
     'prelaunch.sticky-fixed-label',
     'contact.address-escaping',
     'newsletter.section-scoped-ids',
+    'brand.identity-contract',
   ];
   const report = validateTheme(THEME_ROOT);
   const passedCodes = new Set(report.passed.map((check) => check.code));
   const missing = requiredChecks.filter((code) => !passedCodes.has(code));
   const relevantErrors = report.errors.filter((error) => requiredChecks.includes(error.code));
   assert.deepEqual(missing, [], `Unmet remaining theme gates:\n${JSON.stringify(relevantErrors, null, 2)}`);
+});
+
+test('the five-file Docked brand identity has a dedicated passing contract', () => {
+  const report = validateTheme(THEME_ROOT);
+  const identityCheck = report.passed.find((check) => check.code === 'brand.identity-contract');
+
+  assert.ok(identityCheck, `Brand identity validation failed:\n${formatReport(report)}`);
+  assert.equal(report.stats.identitySvgFiles, 5);
+  assert.deepEqual(identityCheck.details.identityFiles, [
+    'docked-wordmark.svg',
+    'docked-mark.svg',
+    'docked-wake.svg',
+    'docked-social-template.svg',
+    'favicon.svg',
+  ]);
+  assert.deepEqual(identityCheck.details.failures, []);
 });
 
 test('the built-in CSV parser preserves commas and escaped quotes', () => {

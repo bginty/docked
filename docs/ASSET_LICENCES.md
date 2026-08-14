@@ -15,7 +15,9 @@ This register covers assets shipped with the theme source. It does not grant per
 
 ## Original Docked design assets
 
-The following SVGs were created specifically for this repository from original vector shapes and text paths/geometry. They were not traced from competitor or supplier media and are not depictions of a physical product:
+The following SVGs were created specifically for this repository from original vector geometry. They are path-only assets using theme-controlled `currentColor` for the main ink plus fixed Docked cyan/coral accents; the standalone favicon and social template carry their own approved preview palette. They are decorative (`aria-hidden="true"`, `focusable="false"`) and rely on adjacent interface text for the accessible brand name. They were not traced from competitor, supplier or reference media and are not depictions of a physical product:
+
+Creation record: implemented in the Docked repository by Codex at the owner's direction on 14 August 2026. This records source provenance only; it does not clear the public brand name or establish rights in the supplied moodboard artwork.
 
 - `assets/docked-wordmark.svg`
 - `assets/docked-mark.svg`
@@ -32,6 +34,17 @@ The following SVGs were created specifically for this repository from original v
 - `assets/docked-social-template.svg`
 
 Status: **approved for unpublished theme preview only**. The wordmark and mark remain subject to the Docked business-name and trademark gate in [Business name and trademark](BUSINESS_NAME_AND_TRADEMARK.md). The social template is a layout asset, not approved finished campaign creative.
+
+## User-supplied logo moodboard references
+
+Three JPG logo references supplied on 14 August 2026 were reviewed only for broad moodboard attributes: a bold geometric wordmark, forward visual energy, strong navy/aqua contrast and a restrained warm accent. Their creator, rights holder and licence are not established.
+
+- The JPG files remain under `.codex-remote-attachments/`, which is excluded from both Git and Shopify theme uploads.
+- They are not shipped assets, product media or approved public brand artwork.
+- No duck mascot, propeller-in-D construction, glossy highlight treatment, lettering silhouette or splash composition was traced or reproduced.
+- The production-candidate SVG layer uses independently constructed path geometry, a calm wake and no universal powered-product or speed claim.
+
+If the reference artwork is ever proposed for public use, record its creator, rights holder, written licence, permitted channels, territory and term before importing it into the controlled asset workflow.
 
 ## Product and lifestyle media
 

@@ -72,7 +72,9 @@ test(
     try {
       for (const device of [
         { label: 'mobile-320', viewport: { width: 320, height: 720 }, isMobile: true, hasTouch: true },
+        { label: 'mobile-360', viewport: { width: 360, height: 800 }, isMobile: true, hasTouch: true },
         { label: 'mobile-375', viewport: { width: 375, height: 812 }, isMobile: true, hasTouch: true },
+        { label: 'mobile-390', viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
         { label: 'tablet-768', viewport: { width: 768, height: 1024 }, isMobile: true, hasTouch: true },
         { label: 'desktop-1024', viewport: { width: 1024, height: 768 } },
         { label: 'desktop-1440', viewport: { width: 1440, height: 1000 } },

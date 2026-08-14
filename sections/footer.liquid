@@ -34,9 +34,7 @@
       assign has_social_icons = false
     endif
 
-    if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
-      assign brand_empty = true
-    endif
+    assign brand_empty = false
 
     if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
       assign only_empty_brand = true
@@ -121,6 +119,14 @@
                               width: settings.brand_image_width
                           }}
                         </div>
+                      {%- else -%}
+                        {%- assign docked_footer_home_label = shop.name | append: ' — home' -%}
+                        <a class="docked-footer-brand link focus-inset" href="{{ routes.root_url }}">
+                          {%- render 'docked-brand-wordmark',
+                            class: 'docked-wordmark-fallback docked-wordmark-fallback--footer',
+                            accessible_name: docked_footer_home_label
+                          -%}
+                        </a>
                       {%- endif -%}
                       {%- if settings.brand_headline != blank -%}
                         <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>

@@ -145,7 +145,10 @@ textarea:focus-visible {
 .docked-collection-empty strong { font-size: 1.8rem; }
 .docked-collection-empty p { margin: .6rem 0 0; }
 .docked-wordmark-fallback { display: block; width: min(18rem, 42vw); color: var(--docked-navy); }
+.docked-brand-wordmark__art,
 .docked-wordmark-fallback svg { display: block; width: 100%; height: auto; }
+.docked-footer-brand { display: inline-block; color: rgb(var(--color-foreground)); text-decoration: none; }
+.docked-wordmark-fallback--footer { width: min(22rem, 100%); color: inherit; }
 
 .docked-product-breadcrumbs { margin-bottom: 2rem; font-size: 1.3rem; }
 .docked-product-breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
@@ -174,6 +177,7 @@ textarea:focus-visible {
 
 @media screen and (max-width: 360px) {
   .docked-wordmark-fallback { width: 11rem; }
+  .docked-wordmark-fallback.docked-wordmark-fallback--footer { width: min(22rem, 100%); }
   .docked-sticky-atc { gap: .8rem; padding-inline: 1.2rem; }
   .docked-sticky-atc__details { flex: 1 1 0; max-width: none; }
   .docked-sticky-atc__eyebrow { display: none; }
