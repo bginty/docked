@@ -13,7 +13,7 @@ This record contains non-sensitive Shopify deployment metadata only. It must nev
 | Release branch | `release/docked-shopify-production-2026-08` |
 | Starting commit | `895958891c8ec2780eba7ff224c5d0259d0de9dd` |
 | Release-preparation/theme-source commit | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
-| Draft pull request | Pending |
+| Draft pull request | [bginty/docked#1](https://github.com/bginty/docked/pull/1) |
 | Theme root | Repository root |
 | Candidate theme name | `Docked Production Candidate 2026-08` |
 | Shopify CLI | 4.5.2 |

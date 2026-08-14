@@ -13,7 +13,7 @@ This is the production-control runbook for moving the completed Shopify theme so
 | Release branch | `release/docked-shopify-production-2026-08` |
 | Starting commit | `895958891c8ec2780eba7ff224c5d0259d0de9dd` |
 | Release-preparation/theme-source commit | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
-| Draft pull request | Pending |
+| Draft pull request | [bginty/docked#1](https://github.com/bginty/docked/pull/1) |
 | Source branch | `codex/docked-pool-commerce-rebuild` |
 | Theme root | Repository root; contains `assets`, `config`, `layout`, `locales`, `sections`, `snippets` and `templates` |
 | Shopify CLI | `4.5.2`, pinned in `package.json` |
