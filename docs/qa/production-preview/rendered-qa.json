@@ -1,19 +1,40 @@
 {
   "schema_version": "1.0.0",
   "observation_window": {
-    "started_at": "2026-08-14T08:41:00+10:00",
-    "latest_timestamped_artifact_at": "2026-08-14T10:11:30+10:00",
-    "ended_at": "2026-08-14T10:45:00+10:00",
+    "historical_started_at": "2026-08-14T08:41:00+10:00",
+    "historical_latest_timestamped_artifact_at": "2026-08-14T10:11:30+10:00",
+    "historical_ended_at": "2026-08-14T10:45:00+10:00",
+    "latest_brand_qa_date": "2026-08-14",
     "timezone": "Australia/Sydney",
-    "limitations": "Timestamped screenshots span the earlier window. Exact-commit push timestamps are retained separately; post-push footer, mobile-menu and sender-status observations followed immediately but did not retain per-action timestamps."
+    "limitations": "Timestamped screenshots span the earlier historical window. The current brand-refresh push and rendered QA completed later on 14 August 2026 AEST, but exact CLI and per-action timestamps were not retained. The latest screenshot/CDP capture timed out, so no new screenshot artifact was created."
   },
-  "record_updated_at": "2026-08-14T10:45:00+10:00",
-  "theme_source_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
-  "strict_push_window": {
+  "record_updated_at": "2026-08-14",
+  "theme_source_commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
+  "initial_brand_refresh_theme_source_commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
+  "previous_exact_theme_source_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
+  "historical_strict_push_window": {
+    "commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
     "started_at": "2026-08-14T10:43:36+10:00",
     "finished_at": "2026-08-14T10:44:47+10:00",
     "result": "success",
     "returned_role": "unpublished"
+  },
+  "initial_brand_refresh_strict_push": {
+    "commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
+    "completed_on": "2026-08-14",
+    "timezone": "Australia/Sydney",
+    "exact_start_end_timestamps_retained": false,
+    "result": "success",
+    "returned_role": "unpublished"
+  },
+  "current_strict_push": {
+    "commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
+    "completed_on": "2026-08-14",
+    "timezone": "Australia/Sydney",
+    "exact_start_end_timestamps_retained": false,
+    "result": "success",
+    "returned_role": "unpublished",
+    "live_theme_untouched": "130871099450"
   },
   "store": "cfbexf-h4.myshopify.com",
   "theme_id": "130871427130",
@@ -37,7 +58,48 @@
       "h1_count": 1,
       "old_finance_copy": false
     },
-    "limitations": "One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence."
+    "current_brand_refresh": {
+      "all_widths_scroll_width_matched_inner_width": true,
+      "width_320": {
+        "inner_width": 320,
+        "document_scroll_width": 320,
+        "body_scroll_width": 320,
+        "header_wordmark_px": {"width": 110, "height": 25.71},
+        "wordmark_view_box": "0 0 650 152",
+        "hero_art_px": {"width": 288, "height": 345.6},
+        "hero_note_px": {"width": 248, "height": 79.4},
+        "footer_wordmark_px": {"width": 220, "height": 51.44},
+        "horizontal_overflow": false
+      },
+      "header_widths_by_viewport_px": {
+        "320": 110,
+        "360": 157.575,
+        "375": 163.963,
+        "390": 180,
+        "768": 180,
+        "1024": 180,
+        "1440": 180
+      },
+      "footer_widths_by_viewport_px": {
+        "320": 220,
+        "360": 220,
+        "375": 220,
+        "390": 152,
+        "768": 216,
+        "1024": 220,
+        "1440": 220
+      },
+      "width_1440": {
+        "inner_width": 1440,
+        "document_scroll_width": 1440,
+        "body_scroll_width": 1440,
+        "header_wordmark_width": 180,
+        "footer_wordmark_width": 220,
+        "hero_art_width": 552.14,
+        "desktop_navigation": "intact"
+      }
+    },
+    "limitations": "One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The latest screenshot/CDP capture timed out and produced no new artifact. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence."
   },
   "regressions": [
     {
@@ -76,7 +138,7 @@
     "/this-route-should-404-20260814": {"status": "pass", "result": "branded 404"}
   },
   "interactions": {
-    "mobile_menu": "passed_after_exact_commit_push_at_390px_with_updated_six_links",
+    "mobile_menu": "passed_after_current_brand_push_at_320px_with_updated_six_links_and_no_overflow",
     "desktop_navigation": "passed",
     "search_dialog": "passed",
     "predictive_collection_search": "passed",
@@ -85,6 +147,31 @@
     "contact_form_submission": "accepted_by_shopify_delivery_unverified",
     "customer_account_entry": "partial_pass_dialog_opened_no_credentials_entered",
     "product_and_checkout_flows": "not_run"
+  },
+  "brand_rendering": {
+    "header_home_accessible_name": "Docked — home",
+    "footer_home_accessible_name": "Docked — home",
+    "header_main_fill": "#06283D",
+    "header_wake_fill": "#13BFE6",
+    "footer_wordmark": "white with cyan wake on scheme3",
+    "hero": {
+      "mark": "navy",
+      "adult_seal": "18+",
+      "preview_art_accessible_label": "complete"
+    },
+    "favicon": "resolved from theme asset",
+    "password_page_on_initial_brand_push": {
+      "hidden_name": "Docked",
+      "favicon": "theme asset resolved",
+      "h1": "rendered",
+      "modal": "rendered",
+      "final_commit_change_scope": "wordmark SVG geometry only"
+    },
+    "organization_json_ld_logo": "absolute docked-mark.svg theme asset URL",
+    "console_errors": 0,
+    "console_warnings": 0,
+    "screenshot_capture": "timed_out_no_new_artifact",
+    "evidence_type": "authenticated Browser DOM, geometry and computed-style observations"
   },
   "customer_accounts": {
     "entry_state": "partial_pass",
@@ -105,8 +192,8 @@
     "observed_on": "2026-08-14",
     "main": {
       "items": ["Home", "Shop", "Contact", "How It Works", "Safety and Care", "FAQ"],
-      "rendered_candidate_verification": "passed_desktop_and_390px_mobile",
-      "updated_mobile_contents_verification": "passed_exact_six_links"
+      "rendered_candidate_verification": "passed_desktop_and_320px_mobile_after_current_brand_push",
+      "updated_mobile_contents_verification": "passed_exact_six_links_without_overflow"
     },
     "existing_footer": {
       "items": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
@@ -132,7 +219,7 @@
     "source_mapping": {
       "explore": "footer-shopping-menu",
       "help_and_policies": "footer-support-menu",
-      "upload_state": "exact_commit_pushed_and_rendered",
+      "upload_state": "current_commit_5f46487d1f53e45f5706ae945eeb5a09064893e3_pushed_strictly_and_rendered",
       "rendered_explore": ["Powered Pool Floats", "Adult Pool Loungers", "Adult Pool Games", "Floating Bars and Coolers", "Pumps, Care and Repair", "Pool Party Bundles", "Shop All"],
       "rendered_help_and_policies": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
       "native_privacy_policy_link": "rendered_separately_through_show_policy",
@@ -144,7 +231,7 @@
     "/about.html": {"target": "/pages/about-docked", "result": "target_404_while_page_hidden", "status": "blocked_pending_business_name_resolution"},
     "/privacy.html": {"target": "/policies/privacy-policy", "result": "existing_native_shopify_privacy_policy_resource_reached_behind_password_unapproved"}
   },
-  "accessibility": "not_run_beyond_incidental_dom_observations_no_accessibility_suite_or_manual_keyboard_screen_reader_audit",
+  "accessibility": "not_run_beyond_incidental_dom_observations_including_header_footer_home_names_and_hero_label_no_accessibility_suite_or_manual_keyboard_screen_reader_audit",
   "lighthouse": "not_run",
   "rendered_qa_gate": "blocked"
 }

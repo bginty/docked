@@ -12,7 +12,9 @@ This record contains non-sensitive Shopify deployment metadata only. It must nev
 | Repository | `bginty/docked` |
 | Release branch | `release/docked-shopify-production-2026-08` |
 | Starting commit | `895958891c8ec2780eba7ff224c5d0259d0de9dd` |
-| Release-preparation/theme-source commit | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
+| Current uploaded theme-source commit | `5f46487d1f53e45f5706ae945eeb5a09064893e3` |
+| Initial brand-refresh uploaded source | `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818` |
+| Previous exact uploaded source | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
 | Draft pull request | [bginty/docked#1](https://github.com/bginty/docked/pull/1) |
 | Theme root | Repository root |
 | Candidate theme name | `Docked Production Candidate 2026-08` |
@@ -45,9 +47,9 @@ Authenticated Admin inspection confirmed AUD, Australia/Melbourne, metric units 
 - [ ] Confirm the store ID and legal business without copying sensitive fields; authenticated display name is `Briant Ginty`, but the store remains on a trial and a paid plan is not selected.
 - [x] Record the current published Shopify theme name/ID and preserve it.
 - [x] Use an unpublished creation flow and exact candidate ID; no publish, live overwrite or force flag was used.
-- [x] Re-run Theme Check (186 files, 0 offenses).
-- [x] Re-run structural validation (57/57), production gate validation (21/21 required; 23 total) and Node tests (5/5).
-- [x] Re-run copy/data audits, dependency audit, documentation links and secret scan.
+- [x] Re-run Theme Check (187 files, 0 offenses).
+- [x] Re-run structural validation (58/58), production gate validation (21/21 required; 23 total) and Node tests (6/6).
+- [x] Re-run copy/data audits, dependency audit, documentation links, secret scan and diff checks; all clean.
 - [x] Confirm `.gitignore` excludes local Shopify authentication/environment artefacts.
 - [x] Confirm the exact current CLI syntax and candidate name.
 
@@ -69,15 +71,19 @@ npm.cmd exec shopify theme push -- --path . --store cfbexf-h4.myshopify.com --th
 | --- | --- |
 | Upload attempted | Yes; new unpublished candidate plus clean full push |
 | Initial clean full-push timestamp | Completed by 14 August 2026, 07:14 AEST |
-| Exact release-commit strict-push window | 14 August 2026, 10:43:36–10:44:47 AEST |
+| Historical exact-source strict-push window | `0b8d127b83d68930992643d666a7d26c1f1b067d`: 14 August 2026, 10:43:36–10:44:47 AEST |
+| Initial brand-refresh strict push | `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818`: successful on 14 August 2026 AEST; exact CLI start/end timestamps not retained |
+| Current integrated-wordmark strict push | `5f46487d1f53e45f5706ae945eeb5a09064893e3`: successful on 14 August 2026 AEST before the final rendered brand QA; exact CLI start/end timestamps not retained |
 | Operator | Codex through owner-authenticated Shopify CLI session |
-| CLI exit status | Success; no warning/error returned by the final strict JSON push |
+| CLI exit status | Success; no warning/error returned by the current strict JSON push |
 | Returned store | `cfbexf-h4.myshopify.com` |
 | Returned theme ID | `130871427130` |
 | Returned role | `unpublished` |
 | Returned preview URL | `https://cfbexf-h4.myshopify.com?preview_theme_id=130871427130` |
 | Returned editor URL | `https://cfbexf-h4.myshopify.com/admin/themes/130871427130/editor` |
-| Exact uploaded commit | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
+| Current exact uploaded commit | `5f46487d1f53e45f5706ae945eeb5a09064893e3` |
+| Initial brand-refresh uploaded commit | `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818` |
+| Historical exact uploaded commit | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
 | Asset rejection/missing-file result | Final full strict push completed cleanly; no warning/error returned |
 
 Paste only a redacted CLI result or controlled evidence reference here. Do not paste tokens or authenticated URLs containing secrets.
@@ -93,7 +99,7 @@ Paste only a redacted CLI result or controlled evidence reference here. Do not p
 | Customer accounts | New accounts are active. Signed-out candidate account entry opened Shopify's dialog with Sign in with Shop, email sign-in (submit disabled until email), marketing opt-in and Orders/Profile quick links. No credentials were entered; authentication, post-submit errors, logout and order history remain untested, so this is a partial entry-point pass only |
 | Collections | All 7 planned collections created in Admin; empty because no SKU is approved or Active |
 | Pages | All 12 planned Pages exist and all intended template suffixes were assigned and verified in Admin. Visible only behind password: Contact, How It Works, Safety and Care, FAQ, Track Your Order, Accessibility. Hidden pending applicable approvals: Shipping and Delivery, Returns and Refunds, Warranty, About Docked, Privacy Policy, Terms of Service. The hidden custom Privacy Policy Page is distinct from Shopify's native policy resource; neither is approved |
-| Menus | Main menu `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` rendered on desktop and in the opened 390 px mobile menu after the exact-commit push. Candidate Explore rendered `Powered Pool Floats`, `Adult Pool Loungers`, `Adult Pool Games`, `Floating Bars and Coolers`, `Pumps, Care and Repair`, `Pool Party Bundles`, `Shop All`. Help and policies rendered `Search`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`, `Track Your Order`, `Accessibility`. Shopify's native Privacy policy link rendered separately through `show_policy`. Footer shopping menu ID `198327042106` and Footer support menu ID `198327074874` supply the two mapped blocks. Footer legal menu ID `198327107642` remains an unused Admin resource and did not render; unapproved Terms were withheld |
+| Menus | Main menu `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` rendered on desktop and in the earlier 390 px mobile check, then was rechecked open at 320 px after the current brand push with no overflow. Candidate Explore rendered `Powered Pool Floats`, `Adult Pool Loungers`, `Adult Pool Games`, `Floating Bars and Coolers`, `Pumps, Care and Repair`, `Pool Party Bundles`, `Shop All`. Help and policies rendered `Search`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`, `Track Your Order`, `Accessibility`. Shopify's native Privacy policy link rendered separately through `show_policy`. Footer shopping menu ID `198327042106` and Footer support menu ID `198327074874` supply the two mapped blocks. Footer legal menu ID `198327107642` remains an unused Admin resource and did not render; unapproved Terms were withheld |
 | Redirects | All 3 prepared redirects imported successfully. `/index.html` served homepage content; `/privacy.html` reached Shopify's privacy policy; `/about.html` correctly targets `/pages/about-docked` but remains 404 while About Docked is intentionally hidden pending the business-name gate |
 | Products | 15 concepts imported and verified **Draft**; inventory not tracked, no images, channels 0, vendor `Requires verification`, no approved SKU claims; none approved/Active |
 | Product media | No licensed exact-SKU product media supplied |
@@ -111,7 +117,9 @@ The permanent preview URL exists and the storefront password was entered only in
 
 Observed passes in the limited in-app-browser run were home, empty collection, empty cart, Contact, Safety and Care, FAQ and branded 404 routes; the mobile-menu mechanism in the earlier run; search, predictive search, cart drawer, desktop navigation and an eight-item FAQ accordion; and no broken images, console errors, Liquid errors, mixed content or old finance copy on the tested routes. Safety and Care and FAQ each rendered one H1 and no 404. Shopify accepted a controlled Contact form submission and displayed its success confirmation, but mailbox delivery was not verified. Checkout controls remained disabled. No public product route was available because every product remains Draft.
 
-Exact release commit `0b8d127b83d68930992643d666a7d26c1f1b067d` was pushed strictly to theme `130871427130` from 10:43:36 to 10:44:47 AEST; Shopify returned role `unpublished`, the verified store/name and the recorded preview/editor URLs. The post-push candidate measured `innerWidth=390` and `scrollWidth=390`. Its mobile menu opened and rendered `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`. Footer Explore rendered the seven planned collection links, Help and policies rendered the seven support links, and Shopify's native Privacy policy link rendered separately through `show_policy`. Footer legal menu ID `198327107642` remains an unused Admin resource and was not rendered.
+Historical exact source `0b8d127b83d68930992643d666a7d26c1f1b067d` was pushed strictly to theme `130871427130` from 10:43:36 to 10:44:47 AEST. Initial brand-refresh source `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818` and current integrated one-word source `5f46487d1f53e45f5706ae945eeb5a09064893e3` were subsequently pushed successfully with `--strict` on 14 August 2026 AEST; exact CLI start/end timestamps were not retained. Shopify returned role `unpublished`, the verified store/name and the unchanged recorded preview/editor URLs. Existing live `Horizon`, ID `130871099450`, remained untouched.
+
+After the current push, the candidate was observed at all seven required widths with no viewport overflow. At 320 px, `innerWidth`, document `scrollWidth` and body `scrollWidth` were exactly `320/320/320`; the integrated header wordmark measured `110 × 25.71` px with viewBox `0 0 650 152`, hero art `288 × 345.6` px, its note `248 × 79.4` px and footer wordmark `220 × 51.44` px. Header wordmark widths across 320/360/375/390/768/1024/1440 were `110/157.575/163.963/180/180/180/180` px, and footer widths were `220/220/220/152/216/220/220` px; every viewport had document/body `scrollWidth` equal to `innerWidth`. At 1440 px, header/footer/hero widths were `180/220/552.14` px and desktop navigation remained intact. The 320 px mobile menu opened and rendered `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` without overflow. Header and footer links exposed `Docked — home`; the header mark used navy `#06283D` with cyan `#13BFE6`; the footer wordmark rendered white with cyan wake on scheme 3; and the hero included the navy mark, `18+` seal and complete preview-art accessible label. The password page rendered the hidden `Docked` name, theme favicon, H1 and modal on the initial brand push; the final source changed only wordmark SVG geometry. The favicon resolved from the theme asset, Organization JSON-LD contained an absolute `docked-mark.svg` asset URL, and the final console contained no errors or warnings. Screenshot/CDP capture timed out, so this latest run has DOM, geometry and computed-style observations but no new screenshot artifact.
 
 Screenshots are retained in `docs/qa/production-preview/`. Full multi-browser, accessibility, Lighthouse, product, checkout, contact-delivery, customer-account and commerce QA remains required.
 
