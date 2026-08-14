@@ -16,7 +16,7 @@
     "store_handle_state": "confirmed through authenticated Shopify CLI 4.5.2; storefront remains password-protected",
     "theme_root": ".",
     "shopify_cli_version": "4.5.2",
-    "release_commit": "pending release commit",
+    "release_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
     "pull_request": "pending",
     "authenticated_account_display_name": "Briant Ginty",
     "existing_live_theme": {
@@ -48,7 +48,7 @@
     "secret_scan": "0 high-confidence matches",
     "rendered_qa": "partial manual in-app-browser QA at 320, 360, 375, 390, 768, 1024 and 1440 px; 320 px overflow fixed and retested; Safety and Care and FAQ render with one H1 and no 404; FAQ accordion passed; controlled Contact submission accepted by Shopify; signed-out customer-account entry dialog opened, but authentication/logout/history untested; full multi-browser, accessibility, Lighthouse, product, checkout and mailbox-delivery QA not passed",
     "admin_catalogue": "15 Draft product shells; inventory not tracked; no images; channels 0; no Active products; seven planned empty collections created; three redirects imported; 12 planned Pages created with all intended template suffixes verified; six visible behind password and six hidden pending approval",
-    "admin_navigation": "Main menu: Home, Shop, Contact, How It Works, Safety and Care, FAQ, rendered candidate pass. Existing Footer menu: Search, Contact, How It Works, Safety and Care, FAQ, Track Your Order, Accessibility. Footer shopping ID 198327042106 has seven planned collections; Footer support ID 198327074874 duplicates support links; Footer legal ID 198327107642 contains only existing Privacy Policy; unapproved Terms withheld. Local footer source mapping is not yet evidenced as re-pushed/rendered.",
+    "admin_navigation": "Exact commit 0b8d127b83d68930992643d666a7d26c1f1b067d was strictly pushed to unpublished theme 130871427130. The 390 px mobile menu rendered Home, Shop, Contact, How It Works, Safety and Care and FAQ. Explore rendered all seven planned collection links; Help and policies rendered Search, Contact, How It Works, Safety and Care, FAQ, Track Your Order and Accessibility. The native Privacy policy link rendered separately through show_policy. Footer legal ID 198327107642 remains an unused Admin resource; unapproved Terms were withheld.",
     "admin_commerce_safety": "Australia-only market; Domestic Australia has no rates; international zone deleted; local delivery and pickup off; no payment provider active; no test or live transaction"
   },
   "evidence_schema": {
@@ -135,12 +135,12 @@
     "evidence": {
       "type": "cli_output",
       "observed_at": "2026-08-14",
-      "summary": "A clean strict full push completed for Docked Production Candidate 2026-08, theme ID 130871427130, and Shopify returned role unpublished plus permanent preview/editor URLs. Existing live Horizon theme ID 130871099450 was preserved.",
+      "summary": "Exact commit 0b8d127b83d68930992643d666a7d26c1f1b067d was strictly pushed from 2026-08-14T10:43:36+10:00 to 2026-08-14T10:44:47+10:00 to Docked Production Candidate 2026-08, theme ID 130871427130. Shopify returned role unpublished plus the permanent preview/editor URLs. Existing live Horizon theme ID 130871099450 was preserved.",
       "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
       "operator_or_source": "Authenticated Shopify CLI 4.5.2",
       "reviewer": "Codex",
-      "scope": "Repository-root theme on release/docked-shopify-production-2026-08 uploaded to cfbexf-h4.myshopify.com as unpublished theme 130871427130",
-      "limitations": "Exact uploaded release commit remains pending. Upload is not publication. The local footer menu mapping was changed after the recorded candidate push and is not yet evidenced as uploaded/rendered. Partial manual rendered QA exists, but the full rendered gate has not passed."
+      "scope": "Repository-root theme at commit 0b8d127b83d68930992643d666a7d26c1f1b067d on release/docked-shopify-production-2026-08 uploaded to cfbexf-h4.myshopify.com as unpublished theme 130871427130",
+      "limitations": "Upload is not publication. Post-push footer and mobile-menu rendering was verified, but only partial manual rendered QA exists and the full rendered gate has not passed."
     }
   },
   "rendered_qa_passed": {
@@ -148,12 +148,12 @@
     "evidence": {
       "type": "test_result",
       "observed_at": "2026-08-14",
-      "summary": "The storefront password was entered only in the authenticated in-app Browser and manual candidate QA ran at 320, 360, 375, 390, 768, 1024 and 1440 px. A 320 px overflow defect was fixed, re-pushed and retested. Core home, empty collection, empty cart, contact and 404 routes plus the updated Main menu, search and cart-drawer interactions passed. The signed-out account button opened Shopify's new customer-account dialog.",
+      "summary": "The storefront password was entered only in the authenticated in-app Browser and manual candidate QA ran at 320, 360, 375, 390, 768, 1024 and 1440 px. A 320 px overflow defect was fixed, re-pushed and retested. After exact commit 0b8d127b83d68930992643d666a7d26c1f1b067d was pushed, the 390 px mobile menu rendered the updated six links without overflow; Explore and Help footer blocks rendered their exact configured links. Core home, empty collection, empty cart, contact and 404 routes plus search and cart-drawer interactions passed. The signed-out account button opened Shopify's new customer-account dialog.",
       "reference": "docs/POST_LAUNCH_QA.md",
       "operator_or_source": "Authenticated Codex in-app Browser and repository screenshots",
       "reviewer": "Codex",
       "scope": "Unpublished Shopify theme 130871427130",
-      "limitations": "Only one in-app browser engine was used and its exact version was not recorded. The locally prepared named-footer mapping is not yet evidenced as re-pushed/rendered. No customer credentials were entered, so authentication, post-submit errors, logout and order history remain untested. Accessibility, Lighthouse, product, checkout, contact mailbox delivery and commerce testing did not pass."
+      "limitations": "Only one in-app browser engine was used and its exact version was not recorded. No customer credentials were entered, so authentication, post-submit errors, logout and order history remain untested. Accessibility, Lighthouse, product, checkout, contact mailbox delivery and commerce testing did not pass."
     }
   },
   "support_email_verified": {
@@ -161,7 +161,7 @@
     "evidence": {
       "type": "admin_record_and_failed_test_setup",
       "observed_at": "2026-08-14",
-      "summary": "The owner reports support@docked.com.au is set up. Shopify uses it as the configured sender, still labels it Unverified, and a verification email was sent. A controlled Contact form submission was accepted at ?contact_posted=true and Shopify displayed its success confirmation. An attempted external Gmail send did not occur because the connected Gmail account reported Mail service not enabled.",
+      "summary": "The owner reports support@docked.com.au is set up. Shopify Notifications was rechecked afterward: its sender textbox contained that address, status remained Unverified and Resend verification was available. A controlled Contact form submission was accepted at ?contact_posted=true and Shopify displayed its success confirmation. An attempted external Gmail send did not occur because the connected Gmail account reported Mail service not enabled.",
       "reference": "docs/POST_LAUNCH_QA.md",
       "operator_or_source": "Project owner, authenticated Shopify Admin and connected Gmail attempt",
       "reviewer": "Codex",

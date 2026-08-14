@@ -12,7 +12,7 @@ This record contains non-sensitive Shopify deployment metadata only. It must nev
 | Repository | `bginty/docked` |
 | Release branch | `release/docked-shopify-production-2026-08` |
 | Starting commit | `895958891c8ec2780eba7ff224c5d0259d0de9dd` |
-| Release commit | `pending release commit` |
+| Release-preparation/theme-source commit | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
 | Draft pull request | Pending |
 | Theme root | Repository root |
 | Candidate theme name | `Docked Production Candidate 2026-08` |
@@ -59,7 +59,7 @@ The intended action is a new unpublished push only. Do not use a live-theme over
 npm.cmd exec shopify theme push -- --path . --store cfbexf-h4.myshopify.com --unpublished --theme "Docked Production Candidate 2026-08" --json --strict
 ```
 
-Two Shopify platform validation errors were repaired during the initial creation sequence. Settings-data/schema sequencing was then reconciled, and this exact final full push to the independently verified candidate ID returned cleanly:
+Two Shopify platform validation errors were repaired during the initial creation sequence. Settings-data/schema sequencing was then reconciled, and this initial full push to the independently verified candidate ID returned cleanly:
 
 ```powershell
 npm.cmd exec shopify theme push -- --path . --store cfbexf-h4.myshopify.com --theme 130871427130 --json --strict
@@ -68,7 +68,8 @@ npm.cmd exec shopify theme push -- --path . --store cfbexf-h4.myshopify.com --th
 | Field | Result |
 | --- | --- |
 | Upload attempted | Yes; new unpublished candidate plus clean full push |
-| Upload timestamp | Completed by 14 August 2026, 07:14 AEST |
+| Initial clean full-push timestamp | Completed by 14 August 2026, 07:14 AEST |
+| Exact release-commit strict-push window | 14 August 2026, 10:43:36–10:44:47 AEST |
 | Operator | Codex through owner-authenticated Shopify CLI session |
 | CLI exit status | Success; no warning/error returned by the final strict JSON push |
 | Returned store | `cfbexf-h4.myshopify.com` |
@@ -76,7 +77,7 @@ npm.cmd exec shopify theme push -- --path . --store cfbexf-h4.myshopify.com --th
 | Returned role | `unpublished` |
 | Returned preview URL | `https://cfbexf-h4.myshopify.com?preview_theme_id=130871427130` |
 | Returned editor URL | `https://cfbexf-h4.myshopify.com/admin/themes/130871427130/editor` |
-| Exact uploaded commit | `pending release commit` |
+| Exact uploaded commit | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
 | Asset rejection/missing-file result | Final full strict push completed cleanly; no warning/error returned |
 
 Paste only a redacted CLI result or controlled evidence reference here. Do not paste tokens or authenticated URLs containing secrets.
@@ -91,15 +92,15 @@ Paste only a redacted CLI result or controlled evidence reference here. Do not p
 | GST-inclusive configuration | Admin shows GST collection enabled for Australia with the owner-supplied ABN and the prices-include-sales-tax setting checked; no order, invoice, discount, shipping-tax, cancellation or refund reconciliation has run |
 | Customer accounts | New accounts are active. Signed-out candidate account entry opened Shopify's dialog with Sign in with Shop, email sign-in (submit disabled until email), marketing opt-in and Orders/Profile quick links. No credentials were entered; authentication, post-submit errors, logout and order history remain untested, so this is a partial entry-point pass only |
 | Collections | All 7 planned collections created in Admin; empty because no SKU is approved or Active |
-| Pages | All 12 planned Pages exist and all intended template suffixes were assigned and verified in Admin. Visible only behind password: Contact, How It Works, Safety and Care, FAQ, Track Your Order, Accessibility. Hidden pending applicable approvals: Shipping and Delivery, Returns and Refunds, Warranty, About Docked, Privacy Policy, Terms of Service |
-| Menus | Main menu now `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` and passed rendered candidate verification. Existing Footer menu now `Search`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`, `Track Your Order`, `Accessibility`. Created Footer shopping menu ID `198327042106` with seven planned collections; Footer support menu ID `198327074874` duplicated from the support footer; Footer legal menu ID `198327107642` containing only existing Privacy Policy, with unapproved Terms intentionally withheld |
+| Pages | All 12 planned Pages exist and all intended template suffixes were assigned and verified in Admin. Visible only behind password: Contact, How It Works, Safety and Care, FAQ, Track Your Order, Accessibility. Hidden pending applicable approvals: Shipping and Delivery, Returns and Refunds, Warranty, About Docked, Privacy Policy, Terms of Service. The hidden custom Privacy Policy Page is distinct from Shopify's native policy resource; neither is approved |
+| Menus | Main menu `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` rendered on desktop and in the opened 390 px mobile menu after the exact-commit push. Candidate Explore rendered `Powered Pool Floats`, `Adult Pool Loungers`, `Adult Pool Games`, `Floating Bars and Coolers`, `Pumps, Care and Repair`, `Pool Party Bundles`, `Shop All`. Help and policies rendered `Search`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`, `Track Your Order`, `Accessibility`. Shopify's native Privacy policy link rendered separately through `show_policy`. Footer shopping menu ID `198327042106` and Footer support menu ID `198327074874` supply the two mapped blocks. Footer legal menu ID `198327107642` remains an unused Admin resource and did not render; unapproved Terms were withheld |
 | Redirects | All 3 prepared redirects imported successfully. `/index.html` served homepage content; `/privacy.html` reached Shopify's privacy policy; `/about.html` correctly targets `/pages/about-docked` but remains 404 while About Docked is intentionally hidden pending the business-name gate |
 | Products | 15 concepts imported and verified **Draft**; inventory not tracked, no images, channels 0, vendor `Requires verification`, no approved SKU claims; none approved/Active |
 | Product media | No licensed exact-SKU product media supplied |
 | Shipping | Unapproved Express $15, Standard $11/free-over-$100 and Standard international $20 rates removed; international zone deleted; Domestic Australia remains with **no rates**; local pickup/delivery off; checkout shipping tests not run |
 | Payments | Shopify Payments stops at required business-information setup; no provider active, no test mode, no test transaction and no live capture |
 | Policies | The custom Privacy Policy and Terms of Service Pages remain hidden drafts. Shopify's separate native `/policies/privacy-policy` resource is reachable only behind the storefront password and is used by the existing redirect/menu resource; it is also unapproved. No policy is recorded as launch-approved or publicly published. |
-| Support sender email | `support@docked.com.au` configured; Shopify reports **Unverified** and a verification email was sent. A controlled Contact form submission was accepted at `?contact_posted=true` with Shopify's success confirmation, but mailbox delivery remains unverified. An attempted external Gmail send could not be performed because the connected account's Mail service was not enabled; inbound/reply/order/refund notification evidence remains blocked |
+| Support sender email | `support@docked.com.au` configured. After the owner's mailbox-setup report, Admin Notifications was rechecked: the sender textbox still contained that address, status remained **Unverified**, and **Resend verification** was offered. A controlled Contact form submission was accepted at `?contact_posted=true` with Shopify's success confirmation, but mailbox delivery remains unverified. An attempted external Gmail send could not be performed because the connected account's Mail service was not enabled; inbound/reply/order/refund notification evidence remains blocked |
 | Store address | `GINTY UNITED INVESTMENTS PTY LTD, 135 Bamfield Road, Heidelberg Heights VIC 3081, Australia` configured; source documentation continues to qualify it as correspondence and authorised returns only |
 | Markets | Australia is the only active market observed; US and EU appear only as create-market prompts, not active markets; the international shipping zone was deleted |
 | Domains | Only the `cfbexf-h4.myshopify.com` primary domain is connected; no custom domain is connected |
@@ -110,7 +111,7 @@ The permanent preview URL exists and the storefront password was entered only in
 
 Observed passes in the limited in-app-browser run were home, empty collection, empty cart, Contact, Safety and Care, FAQ and branded 404 routes; the mobile-menu mechanism in the earlier run; search, predictive search, cart drawer, desktop navigation and an eight-item FAQ accordion; and no broken images, console errors, Liquid errors, mixed content or old finance copy on the tested routes. Safety and Care and FAQ each rendered one H1 and no 404. Shopify accepted a controlled Contact form submission and displayed its success confirmation, but mailbox delivery was not verified. Checkout controls remained disabled. No public product route was available because every product remains Draft.
 
-The updated Main menu rendered and passed with `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care` and `FAQ`. The repository now maps footer **Explore** to `footer-shopping-menu` and **Help and policies** to `footer-support-menu`. That footer mapping is a local source change made after the recorded candidate push and is not yet evidenced as uploaded or rendered; the named footer menus must be rechecked only after the parent workflow records a clean push.
+Exact release commit `0b8d127b83d68930992643d666a7d26c1f1b067d` was pushed strictly to theme `130871427130` from 10:43:36 to 10:44:47 AEST; Shopify returned role `unpublished`, the verified store/name and the recorded preview/editor URLs. The post-push candidate measured `innerWidth=390` and `scrollWidth=390`. Its mobile menu opened and rendered `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`. Footer Explore rendered the seven planned collection links, Help and policies rendered the seven support links, and Shopify's native Privacy policy link rendered separately through `show_policy`. Footer legal menu ID `198327107642` remains an unused Admin resource and was not rendered.
 
 Screenshots are retained in `docs/qa/production-preview/`. Full multi-browser, accessibility, Lighthouse, product, checkout, contact-delivery, customer-account and commerce QA remains required.
 

@@ -3,11 +3,18 @@
   "observation_window": {
     "started_at": "2026-08-14T08:41:00+10:00",
     "latest_timestamped_artifact_at": "2026-08-14T10:11:30+10:00",
-    "ended_at": null,
+    "ended_at": "2026-08-14T10:45:00+10:00",
     "timezone": "Australia/Sydney",
-    "limitations": "Admin, menu and account observations continued later that morning, but exact per-action timestamps were not retained. The record therefore does not assign one false timestamp to all evidence."
+    "limitations": "Timestamped screenshots span the earlier window. Exact-commit push timestamps are retained separately; post-push footer, mobile-menu and sender-status observations followed immediately but did not retain per-action timestamps."
   },
-  "record_updated_at": "2026-08-14T10:38:00+10:00",
+  "record_updated_at": "2026-08-14T10:45:00+10:00",
+  "theme_source_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
+  "strict_push_window": {
+    "started_at": "2026-08-14T10:43:36+10:00",
+    "finished_at": "2026-08-14T10:44:47+10:00",
+    "result": "success",
+    "returned_role": "unpublished"
+  },
   "store": "cfbexf-h4.myshopify.com",
   "theme_id": "130871427130",
   "theme_name": "Docked Production Candidate 2026-08",
@@ -69,7 +76,7 @@
     "/this-route-should-404-20260814": {"status": "pass", "result": "branded 404"}
   },
   "interactions": {
-    "mobile_menu": "mechanism_passed_in_earlier_run_updated_six_link_contents_not_reverified_on_mobile",
+    "mobile_menu": "passed_after_exact_commit_push_at_390px_with_updated_six_links",
     "desktop_navigation": "passed",
     "search_dialog": "passed",
     "predictive_collection_search": "passed",
@@ -98,8 +105,8 @@
     "observed_on": "2026-08-14",
     "main": {
       "items": ["Home", "Shop", "Contact", "How It Works", "Safety and Care", "FAQ"],
-      "rendered_candidate_verification": "passed_desktop",
-      "updated_mobile_contents_verification": "not_retested"
+      "rendered_candidate_verification": "passed_desktop_and_390px_mobile",
+      "updated_mobile_contents_verification": "passed_exact_six_links"
     },
     "existing_footer": {
       "items": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
@@ -125,7 +132,11 @@
     "source_mapping": {
       "explore": "footer-shopping-menu",
       "help_and_policies": "footer-support-menu",
-      "upload_state": "local_change_not_yet_evidenced_as_re_pushed_or_rendered"
+      "upload_state": "exact_commit_pushed_and_rendered",
+      "rendered_explore": ["Powered Pool Floats", "Adult Pool Loungers", "Adult Pool Games", "Floating Bars and Coolers", "Pumps, Care and Repair", "Pool Party Bundles", "Shop All"],
+      "rendered_help_and_policies": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
+      "native_privacy_policy_link": "rendered_separately_through_show_policy",
+      "footer_legal_resource": "unused_not_rendered"
     }
   },
   "redirects": {
