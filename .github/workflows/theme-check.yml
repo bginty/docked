@@ -6,6 +6,8 @@ on:
       - "assets/**"
       - "config/**"
       - "data/draft-product-catalogue.csv"
+      - "data/shopify-draft-products-import.csv"
+      - "docs/production-launch-gates.json"
       - "layout/**"
       - "locales/**"
       - "sections/**"
@@ -19,10 +21,13 @@ on:
   push:
     branches:
       - "codex/**"
+      - "release/**"
     paths:
       - "assets/**"
       - "config/**"
       - "data/draft-product-catalogue.csv"
+      - "data/shopify-draft-products-import.csv"
+      - "docs/production-launch-gates.json"
       - "layout/**"
       - "locales/**"
       - "sections/**"
@@ -55,6 +60,8 @@ jobs:
           node-version: 22
       - name: Validate theme structure and copy
         run: npm run validate
+      - name: Validate production launch gates
+        run: npm run validate:production
       - name: Run local tests
         run: npm test
 

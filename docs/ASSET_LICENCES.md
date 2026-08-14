@@ -1,7 +1,7 @@
 # Docked asset provenance and licence register
 
 Status: **REPOSITORY ASSETS RECORDED — PRODUCT MEDIA STILL BLOCKED**  
-Last updated: 13 August 2026
+Last updated: 14 August 2026
 
 This register covers assets shipped with the theme source. It does not grant permission to use a supplier's, marketplace seller's or competitor's media. No Desertcart, Amazon or other retailer product photography, copy, reviews, branding or page design has been imported.
 
@@ -42,6 +42,10 @@ No licensed exact-SKU product photography or video has been supplied. Consequent
 - no supplier or marketplace image may be uploaded until written permission covers Docked's intended channels, territories, edits and duration; and
 - aquatic-product media must show adults only, controlled pool use and behaviour consistent with the approved manual and warning set.
 
+Authenticated Shopify Admin inspection on 14 August 2026 confirmed that all 15 imported concept products are Draft with **no product images** and channels 0. The import therefore created no new product-media licence claim. Inventory is not tracked; this is not evidence of zero or available stock.
+
+The QA image files under `docs/qa/production-preview/` are dated captures of the unpublished theme interface. They are test evidence only, are not exact-SKU product media, and must not be reused as product photography or public campaign creative.
+
 For every incoming product image, video, illustration, audio track, testimonial capture or model image, add one row before upload:
 
 | Asset ID | File / Shopify media ID | Exact product and revision | Creator / rights owner | Source URL or delivery record | Licence or permission | Territory / channels / term | Model/property release | Safety and adult-only review | Approver / date | Expiry / withdrawal action |
@@ -60,4 +64,3 @@ Store signed licences and releases in the approved controlled evidence repositor
 - [ ] No unlicensed font, stock asset, music or social icon has been added.
 - [ ] Placeholder artwork is absent from Active product media and live sales creative.
 - [ ] The final wordmark/mark is cleared under the business-name and trademark gate.
-

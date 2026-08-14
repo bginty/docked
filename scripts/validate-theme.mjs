@@ -38,22 +38,33 @@ const REQUIRED_HOME_SECTION_TYPES = [
   'docked-float-finder',
   'docked-faq',
 ];
-const EXPECTED_PRODUCTS = [
-  'Docked Cruise S1',
-  'Docked Cruise D2',
-  'Docked Shade D2',
-  'Docked Drift Mesh Lounge',
-  'Docked Recline Pool Chair',
-  'Docked Stretch Full-Length Lounge',
-  'Docked Social Two-Person Island',
-  'Docked Party Deck',
-  'Docked Rally Pool Volleyball Set',
-  'Docked Chill Floating Cooler',
-  'Docked Drinks Dock',
-  'Docked Inflate Rechargeable Air Pump',
-  'Docked Double-Action Manual Pump',
-  'Docked Restore PVC Repair Kit',
-  'Docked Dry Storage Pouch',
+const EXPECTED_PRODUCT_IMPORTS = [
+  ['Docked Cruise S1', 'docked-cruise-s1', 'Powered pool float concept'],
+  ['Docked Cruise D2', 'docked-cruise-d2', 'Powered pool lounger concept'],
+  ['Docked Shade D2', 'docked-shade-d2', 'Powered canopy lounger concept'],
+  ['Docked Drift Mesh Lounge', 'docked-drift-mesh-lounge', 'Adult pool lounger concept'],
+  ['Docked Recline Pool Chair', 'docked-recline-pool-chair', 'Adult pool chair concept'],
+  ['Docked Stretch Full-Length Lounge', 'docked-stretch-full-length-lounge', 'Adult pool lounger concept'],
+  ['Docked Social Two-Person Island', 'docked-social-two-person-island', 'Adult pool island concept'],
+  ['Docked Party Deck', 'docked-party-deck', 'Adult pool island concept'],
+  ['Docked Rally Pool Volleyball Set', 'docked-rally-pool-volleyball-set', 'Adult pool game concept'],
+  ['Docked Chill Floating Cooler', 'docked-chill-floating-cooler', 'Floating cooler concept'],
+  ['Docked Drinks Dock', 'docked-drinks-dock', 'Floating drink holder concept'],
+  ['Docked Inflate Rechargeable Air Pump', 'docked-inflate-rechargeable-air-pump', 'Rechargeable air pump concept'],
+  ['Docked Double-Action Manual Pump', 'docked-double-action-manual-pump', 'Manual air pump concept'],
+  ['Docked Restore PVC Repair Kit', 'docked-restore-pvc-repair-kit', 'PVC repair kit concept'],
+  ['Docked Dry Storage Pouch', 'docked-dry-storage-pouch', 'Storage pouch concept'],
+];
+const EXPECTED_PRODUCTS = EXPECTED_PRODUCT_IMPORTS.map(([title]) => title);
+const SHOPIFY_DRAFT_IMPORT_HEADERS = [
+  'Title',
+  'URL handle',
+  'Vendor',
+  'Product type',
+  'Option1 name',
+  'Option1 value',
+  'Published on online store',
+  'Status',
 ];
 
 function normalise(filePath, root) {
@@ -108,7 +119,7 @@ function templateSectionTypes(template) {
     .filter((type) => typeof type === 'string');
 }
 
-export function parseCsv(source) {
+function parseCsvRows(source) {
   const rows = [];
   let row = [];
   let value = '';
@@ -146,12 +157,103 @@ export function parseCsv(source) {
     rows.push(row);
   }
   while (rows.length && rows.at(-1).every((cell) => cell === '')) rows.pop();
+  return rows;
+}
+
+export function parseCsv(source) {
+  const rows = parseCsvRows(source);
   if (rows.length === 0) return [];
 
   const headers = rows[0].map((header, index) => (index === 0 ? header.replace(/^\uFEFF/, '') : header));
   return rows.slice(1).map((cells) =>
     Object.fromEntries(headers.map((header, index) => [header, cells[index] ?? ''])),
   );
+}
+
+function productImportKey(title, handle, productType) {
+  return [title, handle, productType].join('\u001f');
+}
+
+export function auditShopifyDraftProductImport(source) {
+  let rows;
+  try {
+    rows = parseCsvRows(source);
+  } catch (error) {
+    return { ok: false, parseError: error.message };
+  }
+
+  if (rows.length === 0) {
+    return { ok: false, parseError: 'CSV is empty.' };
+  }
+
+  const headers = rows[0].map((header, index) => (index === 0 ? header.replace(/^\uFEFF/, '') : header));
+  const dataRows = rows.slice(1);
+  const invalidRowWidths = dataRows
+    .map((row, index) => ({ row: index + 2, columns: row.length }))
+    .filter(({ columns }) => columns !== SHOPIFY_DRAFT_IMPORT_HEADERS.length);
+  const safeSchema =
+    headers.length === SHOPIFY_DRAFT_IMPORT_HEADERS.length &&
+    headers.every((header, index) => header === SHOPIFY_DRAFT_IMPORT_HEADERS[index]) &&
+    invalidRowWidths.length === 0;
+  const products = dataRows.map((cells) =>
+    Object.fromEntries(headers.map((header, index) => [header, cells[index] ?? ''])),
+  );
+
+  const expectedKeys = new Set(
+    EXPECTED_PRODUCT_IMPORTS.map(([title, handle, productType]) => productImportKey(title, handle, productType)),
+  );
+  const actualKeys = products.map((product) =>
+    productImportKey(product.Title, product['URL handle'], product['Product type']),
+  );
+  const actualKeySet = new Set(actualKeys);
+  const missingConcepts = EXPECTED_PRODUCT_IMPORTS
+    .filter(([title, handle, productType]) => !actualKeySet.has(productImportKey(title, handle, productType)))
+    .map(([title, handle, productType]) => ({ title, handle, productType }));
+  const unexpectedConcepts = products
+    .filter((product) => !expectedKeys.has(productImportKey(product.Title, product['URL handle'], product['Product type'])))
+    .map((product) => ({
+      title: product.Title,
+      handle: product['URL handle'],
+      productType: product['Product type'],
+    }));
+  const duplicateConcepts = actualKeys
+    .filter((key, index) => actualKeys.indexOf(key) !== index)
+    .map((key) => {
+      const [title, handle, productType] = key.split('\u001f');
+      return { title, handle, productType };
+    });
+  const plannedConcepts =
+    products.length === EXPECTED_PRODUCT_IMPORTS.length &&
+    actualKeySet.size === EXPECTED_PRODUCT_IMPORTS.length &&
+    missingConcepts.length === 0 &&
+    unexpectedConcepts.length === 0 &&
+    duplicateConcepts.length === 0;
+
+  const lockFailures = products
+    .map((product, index) => {
+      const failures = [];
+      if (product.Vendor !== 'Requires verification') failures.push('Vendor');
+      if (product['Option1 name'] !== 'Title') failures.push('Option1 name');
+      if (product['Option1 value'] !== 'Default Title') failures.push('Option1 value');
+      if (product['Published on online store'] !== 'false') failures.push('Published on online store');
+      if (product.Status !== 'draft') failures.push('Status');
+      return failures.length ? { row: index + 2, title: product.Title, fields: failures } : null;
+    })
+    .filter(Boolean);
+
+  return {
+    ok: safeSchema && plannedConcepts && lockFailures.length === 0,
+    parseError: null,
+    headers,
+    invalidRowWidths,
+    rows: products.length,
+    safeSchema,
+    plannedConcepts,
+    missingConcepts,
+    unexpectedConcepts,
+    duplicateConcepts,
+    lockFailures,
+  };
 }
 
 function validateJsonAndSchemas(root, report) {
@@ -180,13 +282,17 @@ function validateJsonAndSchemas(root, report) {
   );
   const schemaPattern = /{%\s*schema\s*%}([\s\S]*?){%\s*endschema\s*%}/g;
   const invalidSchemas = [];
+  const sectionSchemas = new Map();
   let schemaCount = 0;
   for (const file of liquidFiles) {
     const source = fs.readFileSync(file, 'utf8');
     for (const match of source.matchAll(schemaPattern)) {
       schemaCount += 1;
       try {
-        JSON.parse(match[1]);
+        const schema = JSON.parse(match[1]);
+        if (normalise(file, root).startsWith('sections/')) {
+          sectionSchemas.set(path.basename(file, '.liquid'), schema);
+        }
       } catch (error) {
         invalidSchemas.push(`${normalise(file, root)}: ${error.message}`);
       }
@@ -200,6 +306,96 @@ function validateJsonAndSchemas(root, report) {
     invalidSchemas,
   );
   report.stats.schemaBlocks = schemaCount;
+
+  const platformSchemaErrors = [];
+  const settingsSchema = getJson(root, 'config/settings_schema.json');
+  const themeAuthor = settingsSchema.find((group) => typeof group?.theme_author === 'string')?.theme_author;
+  if (typeof themeAuthor !== 'string' || themeAuthor.length > 25) {
+    platformSchemaErrors.push(`config/settings_schema.json: theme_author must contain at most 25 characters (found ${themeAuthor?.length ?? 0})`);
+  }
+  const settingsData = getJson(root, 'config/settings_data.json');
+  const configuredPresets = Object.entries(settingsData.presets ?? {});
+  if (settingsData.current && typeof settingsData.current === 'object') {
+    configuredPresets.push(['current', settingsData.current]);
+  }
+  const rangeSettings = settingsSchema
+    .flatMap((group) => group.settings ?? [])
+    .filter((setting) => setting.type === 'range');
+  for (const [presetName, preset] of configuredPresets) {
+    for (const setting of rangeSettings) {
+      const value = preset?.[setting.id];
+      if (value === undefined) continue;
+      const offset = (Number(value) - Number(setting.min)) / Number(setting.step);
+      const onStep = Number.isFinite(offset) && Math.abs(offset - Math.round(offset)) < 1e-9;
+      if (
+        typeof value !== 'number' ||
+        value < Number(setting.min) ||
+        value > Number(setting.max) ||
+        !onStep
+      ) {
+        platformSchemaErrors.push(
+          'config/settings_data.json: ' +
+            presetName +
+            '.' +
+            setting.id +
+            '=' +
+            value +
+            ' must be within ' +
+            setting.min +
+            '-' +
+            setting.max +
+            ' on step ' +
+            setting.step,
+        );
+      }
+    }
+  }
+
+  const allowedRichTextRoot = /^\s*<(p|ul|ol|h[1-6])(?:\s|>)/i;
+  const configuredSectionFiles = [
+    ...walk(path.join(root, 'templates')).filter((file) => path.extname(file).toLowerCase() === '.json'),
+    ...walk(path.join(root, 'sections')).filter((file) => path.extname(file).toLowerCase() === '.json'),
+  ];
+  for (const file of configuredSectionFiles) {
+    const parsed = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const configuredSections = collectObjects(
+      parsed,
+      (value) => typeof value?.type === 'string' && value.settings && sectionSchemas.has(value.type),
+    );
+    for (const configuredSection of configuredSections) {
+      const schema = sectionSchemas.get(configuredSection.type);
+      for (const setting of schema.settings ?? []) {
+        if (setting.type !== 'richtext') continue;
+        const value = configuredSection.settings?.[setting.id];
+        if (typeof value === 'string' && value.trim() && !allowedRichTextRoot.test(value)) {
+          platformSchemaErrors.push(
+            `${normalise(file, root)}: ${configuredSection.type}.${setting.id} richtext must start with an allowed top-level HTML element`,
+          );
+        }
+      }
+      const blockSchemas = new Map((schema.blocks ?? []).map((block) => [block.type, block]));
+      for (const configuredBlock of Object.values(configuredSection.blocks ?? {})) {
+        const blockSchema = blockSchemas.get(configuredBlock?.type);
+        if (!blockSchema) continue;
+        for (const setting of blockSchema.settings ?? []) {
+          if (setting.type !== 'richtext') continue;
+          const value = configuredBlock.settings?.[setting.id];
+          if (typeof value === 'string' && value.trim() && !allowedRichTextRoot.test(value)) {
+            platformSchemaErrors.push(
+              `${normalise(file, root)}: ${configuredSection.type}.${configuredBlock.type}.${setting.id} richtext must start with an allowed top-level HTML element`,
+            );
+          }
+        }
+      }
+    }
+  }
+  addCheck(
+    report,
+    platformSchemaErrors.length === 0,
+    'shopify.platform-schema',
+    'Configured theme metadata and rich-text values satisfy Shopify upload constraints',
+    platformSchemaErrors,
+  );
 }
 
 function validateReferences(root, report) {
@@ -1343,6 +1539,55 @@ function validateCatalogue(root, report) {
   report.stats.activeProducts = activeCount;
 }
 
+function validateShopifyDraftImport(root, report) {
+  const importPath = path.join(root, 'data', 'shopify-draft-products-import.csv');
+  addCheck(report, fs.existsSync(importPath), 'shopify-import.exists', 'Shopify Draft product import CSV exists');
+  if (!fs.existsSync(importPath)) return;
+
+  const audit = auditShopifyDraftProductImport(fs.readFileSync(importPath, 'utf8'));
+  addCheck(
+    report,
+    audit.parseError === null,
+    'shopify-import.parse',
+    'Shopify Draft product import CSV parses',
+    audit.parseError ?? undefined,
+  );
+  if (audit.parseError !== null) return;
+
+  addCheck(
+    report,
+    audit.safeSchema,
+    'shopify-import.safe-schema',
+    'Shopify import uses only the exact eight non-commercial Draft-shell columns',
+    {
+      expectedHeaders: SHOPIFY_DRAFT_IMPORT_HEADERS,
+      actualHeaders: audit.headers,
+      invalidRowWidths: audit.invalidRowWidths,
+    },
+  );
+  addCheck(
+    report,
+    audit.plannedConcepts,
+    'shopify-import.planned-concepts',
+    'Shopify import contains exactly the 15 planned concept title, handle and product-type tuples',
+    {
+      rows: audit.rows,
+      missingConcepts: audit.missingConcepts,
+      unexpectedConcepts: audit.unexpectedConcepts,
+      duplicateConcepts: audit.duplicateConcepts,
+    },
+  );
+  addCheck(
+    report,
+    audit.lockFailures.length === 0,
+    'shopify-import.draft-locks',
+    'Every Shopify import row is unpublished Draft status with an unverified vendor and Default Title option only',
+    { lockFailures: audit.lockFailures },
+  );
+  report.stats.shopifyImportRows = audit.rows;
+  report.stats.shopifyImportDraftProducts = audit.rows - audit.lockFailures.filter(({ fields }) => fields.includes('Status')).length;
+}
+
 function findSetting(value, id) {
   if (!value || typeof value !== 'object') return undefined;
   if (value.id === id) return value;
@@ -1460,6 +1705,7 @@ export function validateTheme(root = THEME_ROOT, options = {}) {
     validateMetafieldGates(resolvedRoot, report);
     validateCopy(resolvedRoot, report);
     validateCatalogue(resolvedRoot, report);
+    validateShopifyDraftImport(resolvedRoot, report);
     validatePrelaunchLocks(resolvedRoot, report);
   }
 

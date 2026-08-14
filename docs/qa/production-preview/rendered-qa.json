@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "observation_window": {
+    "started_at": "2026-08-14T08:41:00+10:00",
+    "latest_timestamped_artifact_at": "2026-08-14T10:11:30+10:00",
+    "ended_at": null,
+    "timezone": "Australia/Sydney",
+    "limitations": "Admin, menu and account observations continued later that morning, but exact per-action timestamps were not retained. The record therefore does not assign one false timestamp to all evidence."
+  },
+  "record_updated_at": "2026-08-14T10:38:00+10:00",
+  "store": "cfbexf-h4.myshopify.com",
+  "theme_id": "130871427130",
+  "theme_name": "Docked Production Candidate 2026-08",
+  "theme_role": "unpublished",
+  "browser": "Codex in-app Chromium browser",
+  "prelaunch_mode": true,
+  "automated_runner": {
+    "status": "blocked_before_assertions",
+    "command": "npm run test:storefront",
+    "preview_url_supplied": true,
+    "reason": "The Playwright package is not installed, so no browser launched and no automated assertion ran.",
+    "additional_limit": "An isolated runner would not share the authenticated in-app-browser storefront-password context."
+  },
+  "viewport_matrix": {
+    "widths_checked": [320, 360, 375, 390, 768, 1024, 1440],
+    "homepage_after_fix": {
+      "horizontal_overflow": false,
+      "broken_images": 0,
+      "duplicate_ids": 0,
+      "h1_count": 1,
+      "old_finance_copy": false
+    },
+    "limitations": "One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence."
+  },
+  "regressions": [
+    {
+      "id": "mobile-header-320-overflow",
+      "status": "fixed_and_retested",
+      "initial_scroll_width": 343,
+      "viewport_width": 320,
+      "final_scroll_width": 319,
+      "fix": "Cap .docked-wordmark-fallback to 11rem at max-width 360px."
+    },
+    {
+      "id": "missing-safety-and-faq-pages",
+      "status": "fixed_and_retested",
+      "routes": ["/pages/safety-and-care", "/pages/faq"],
+      "result": "candidate templates rendered with one h1 and no 404",
+      "fix": "Created the Shopify Page records and assigned the safety-and-care and faq template suffixes."
+    }
+  ],
+  "pages": {
+    "total": 12,
+    "visible_behind_password": 6,
+    "hidden_pending_approval": 6,
+    "template_suffixes_assigned": 12,
+    "visible_titles": ["Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
+    "hidden_titles": ["Shipping and Delivery", "Returns and Refunds", "Warranty", "About Docked", "Privacy Policy", "Terms of Service"],
+    "privacy_resource_distinction": "The hidden Privacy Policy title is a custom Shopify Page. It is distinct from Shopify's existing native /policies/privacy-policy resource, which is reachable behind the storefront password but remains unapproved."
+  },
+  "routes": {
+    "/": {"status": "partial_pass", "broken_images": 0, "console_errors": 0, "liquid_errors": 0, "mixed_content": 0, "old_finance_copy": false},
+    "/collections/powered-pool-floats": {"status": "partial_pass", "products": 0, "broken_images": 0, "console_errors": 0},
+    "/cart": {"status": "partial_pass", "cart_state": "empty", "checkout_control": "disabled", "checkout_label": "Ordering not yet open"},
+    "/pages/contact": {"status": "partial_pass", "submission": "accepted_by_shopify", "result_url_query": "contact_posted=true", "confirmation": "Thanks for contacting us", "delivery_test": "unverified"},
+    "/pages/safety-and-care": {"status": "partial_pass", "result": "candidate safety content rendered", "h1_count": 1, "safety_warnings_present": true},
+    "/pages/faq": {"status": "partial_pass", "result": "candidate FAQ content rendered", "h1_count": 1, "faq_items": 8, "accordion_interaction": "passed"},
+    "/products/docked-cruise-s1": {"status": "pass", "result": "404", "add_to_cart_forms": 0, "reason": "Draft product is not public"},
+    "/this-route-should-404-20260814": {"status": "pass", "result": "branded 404"}
+  },
+  "interactions": {
+    "mobile_menu": "mechanism_passed_in_earlier_run_updated_six_link_contents_not_reverified_on_mobile",
+    "desktop_navigation": "passed",
+    "search_dialog": "passed",
+    "predictive_collection_search": "passed",
+    "empty_cart_drawer": "passed",
+    "faq_accordion": "passed",
+    "contact_form_submission": "accepted_by_shopify_delivery_unverified",
+    "customer_account_entry": "partial_pass_dialog_opened_no_credentials_entered",
+    "product_and_checkout_flows": "not_run"
+  },
+  "customer_accounts": {
+    "entry_state": "partial_pass",
+    "signed_out_dialog": {
+      "sign_in_with_shop": true,
+      "email_form": true,
+      "email_submit_disabled_until_input": true,
+      "marketing_opt_in": true,
+      "quick_links": ["Orders", "Profile"]
+    },
+    "credentials_entered": false,
+    "authentication": "not_run",
+    "post_submit_errors": "not_run",
+    "logout": "not_run",
+    "order_history": "not_run"
+  },
+  "menus": {
+    "observed_on": "2026-08-14",
+    "main": {
+      "items": ["Home", "Shop", "Contact", "How It Works", "Safety and Care", "FAQ"],
+      "rendered_candidate_verification": "passed_desktop",
+      "updated_mobile_contents_verification": "not_retested"
+    },
+    "existing_footer": {
+      "items": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
+      "admin_configuration": "verified"
+    },
+    "footer_shopping": {
+      "id": "198327042106",
+      "items": "seven planned collections",
+      "admin_configuration": "verified"
+    },
+    "footer_support": {
+      "id": "198327074874",
+      "items": "duplicated from support footer",
+      "admin_configuration": "verified"
+    },
+    "footer_legal": {
+      "id": "198327107642",
+      "items": ["Privacy Policy"],
+      "privacy_item_type": "existing_native_shopify_policy_resource_not_hidden_custom_page",
+      "unapproved_terms_withheld": true,
+      "admin_configuration": "verified"
+    },
+    "source_mapping": {
+      "explore": "footer-shopping-menu",
+      "help_and_policies": "footer-support-menu",
+      "upload_state": "local_change_not_yet_evidenced_as_re_pushed_or_rendered"
+    }
+  },
+  "redirects": {
+    "/index.html": {"target": "/", "result": "homepage_content"},
+    "/about.html": {"target": "/pages/about-docked", "result": "target_404_while_page_hidden", "status": "blocked_pending_business_name_resolution"},
+    "/privacy.html": {"target": "/policies/privacy-policy", "result": "existing_native_shopify_privacy_policy_resource_reached_behind_password_unapproved"}
+  },
+  "accessibility": "not_run_beyond_incidental_dom_observations_no_accessibility_suite_or_manual_keyboard_screen_reader_audit",
+  "lighthouse": "not_run",
+  "rendered_qa_gate": "blocked"
+}

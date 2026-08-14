@@ -6,6 +6,7 @@
   "description": "Local structural validation for the Docked Shopify Online Store 2.0 theme.",
   "scripts": {
     "validate": "node scripts/validate-theme.mjs",
+    "validate:production": "node scripts/validate-production-gates.mjs",
     "audit:copy": "node scripts/validate-theme.mjs --copy-only",
     "test": "node --test tests/theme-structure.test.mjs",
     "test:storefront": "node --test tests/storefront.spec.mjs"

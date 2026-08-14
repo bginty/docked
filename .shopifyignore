@@ -1,9 +1,9 @@
-.git/
-.github/
-data/
-docs/
-scripts/
-tests/
+/^\.git\/.*/
+/^\.github\/.*/
+/^data\/.*/
+/^docs\/.*/
+/^scripts\/.*/
+/^tests\/.*/
 .gitignore
 .prettierrc.json
 .shopifyignore
@@ -15,4 +15,4 @@ release-notes.md
 package.json
 package-lock.json
 npm-debug.log*
-node_modules/
+/^node_modules\/.*/

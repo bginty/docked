@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import {
   THEME_ROOT,
+  auditShopifyDraftProductImport,
   auditCopy,
   formatReport,
   parseCsv,
@@ -15,6 +17,8 @@ test('the committed theme passes every structural launch guard', () => {
   assert.equal(report.stats.catalogueRows, 15);
   assert.equal(report.stats.draftProducts, 15);
   assert.equal(report.stats.activeProducts, 0);
+  assert.equal(report.stats.shopifyImportRows, 15);
+  assert.equal(report.stats.shopifyImportDraftProducts, 15);
 });
 
 test('the configured storefront copy audit is clean', () => {
@@ -63,4 +67,21 @@ test('remaining product and interaction requirements have dedicated passing gate
 test('the built-in CSV parser preserves commas and escaped quotes', () => {
   const rows = parseCsv('Name,Notes,Status\r\n"Float, Large","Says ""hello""",Draft\r\n');
   assert.deepEqual(rows, [{ Name: 'Float, Large', Notes: 'Says "hello"', Status: 'Draft' }]);
+});
+
+test('the Shopify import contract rejects schema, publication and concept drift', () => {
+  const source = readFileSync(new URL('../data/shopify-draft-products-import.csv', import.meta.url), 'utf8');
+  assert.equal(auditShopifyDraftProductImport(source).ok, true);
+
+  const commercialColumn = source.replace(
+    'Published on online store,Status',
+    'Published on online store,Status,Variant Price',
+  );
+  assert.equal(auditShopifyDraftProductImport(commercialColumn).safeSchema, false);
+
+  const publishedProduct = source.replace(',false,draft', ',true,active');
+  assert.notEqual(auditShopifyDraftProductImport(publishedProduct).lockFailures.length, 0);
+
+  const alteredConcept = source.replace('docked-cruise-s1', 'docked-cruise-s1-unapproved');
+  assert.equal(auditShopifyDraftProductImport(alteredConcept).plannedConcepts, false);
 });
