@@ -16,6 +16,16 @@ Last updated: 15 August 2026 (AEST)
 
 The public production commit contains only the 28-file static web output. Development tests, source-image custody files, processing scripts, evidence records, screenshots and Shopify history remain on the working branch and in Git history; they are not copied into the Pages root.
 
+## Candidate feature-board revision — local QA complete, not yet deployed
+
+The current working-tree revision adds the supplier feature board at `assets/images/product/cruise-d2-features.jpg`. Its owner-supplied source is `C:\Users\61412\Desktop\1000047443.png`: 405,229 bytes, 1536 × 1536 pixels, SHA-256 `93E1A9A811B851185F1B9335850A99561B8B54994A2FD46AA147F0E912A7054C`. Although the source filename ends in `.png`, its payload is JPEG/JFIF. The 507,583-byte public derivative is also 1536 × 1536 JPEG/JFIF and has SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523`.
+
+The owner confirmed that the image came from the supplier, depicts the Docked product and is authorised for website use. The owner separately confirmed the six displayed product facts: motorised electric propulsion, up to 5 km/h, dual joystick control, 160 kg capacity, built-in cup holder and supportive headrest. The derivative preserves the supplier product and those confirmed callouts, but deterministically replaces the source's unsupported “strong and stable” / “safe and comfortable ride” sentence with the neutral text “Maximum supported load: 160 kg.” No independent speed/performance or 160 kg load-bearing test has been reviewed, and the site does not describe either value as independently verified.
+
+The candidate rebuild also centralises PayPal configuration, adds Contact and Warranty pages, exposes only confirmed specifications, strengthens the buyer journey and makes the supplied feature board a prominent uncropped homepage visual. Local validation passed 37/37, Node tests passed 8/8, and rendered QA passed at 360, 390, 430, 768, 1024 and 1440 CSS pixels with no page-wide overflow. PayPal rendered the configured Cruise D2 at A$649.00 AUD; no payment was attempted.
+
+This candidate revision is not included in production commit `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`. Its source commit, Pages deployment and live-domain verification remain pending. The completed production evidence below continues to describe the currently deployed revision.
+
 ## Preserved systems
 
 - Finance-site archive branch: `archive/docked-finance-site-2026-08`

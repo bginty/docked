@@ -21,6 +21,24 @@ This register covers only assets intended for the public static site. It does no
 
 These registered files are the complete published visual set. No undocumented visual may be published.
 
+## Candidate supplier feature-board revision
+
+The owner supplied a further square feature-board file for the Cruise D2 and confirmed that it came from the product supplier, depicts the Docked product and is authorised for Docked's website use. The owner separately confirmed the six facts retained on the public derivative: motorised electric propulsion, up to 5 km/h, dual joystick control, 160 kg capacity, built-in cup holder and supportive headrest.
+
+| Evidence item | Recorded value |
+| --- | --- |
+| Owner-supplied source path | `C:\Users\61412\Desktop\1000047443.png` |
+| Source size | 405,229 bytes; 1536 × 1536 pixels |
+| Source SHA-256 | `93E1A9A811B851185F1B9335850A99561B8B54994A2FD46AA147F0E912A7054C` |
+| Actual source encoding | JPEG/JFIF (`FF D8 FF E0 ... JFIF`) despite the `.png` filename |
+| Intended public asset | `assets/images/product/cruise-d2-features.jpg` |
+| Public derivative | 507,583 bytes; 1536 × 1536 JPEG/JFIF; SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523` |
+| File treatment | Deterministic raster derivative of the supplied board. The product depiction, layout and confirmed callouts are retained. The unsupported source sentence “Strong and stable design for a safe and comfortable ride” is covered and replaced with “Maximum supported load: 160 kg.” |
+| Generative edit decision | A full-frame generated draft was rejected because it altered supplier-product pixels. It is outside the repository and is not published. The final public file uses the supplied source and a deterministic text-only redaction; no product geometry or feature depiction was generated. |
+| Revision status | Present in the working tree; hash/dimensions verified; automated validation and rendered responsive QA passed locally on 15 August 2026; source commit, Pages deployment and live-domain verification remain pending |
+
+The public board states motorised power with built-in electric propulsion up to 5 kph, dual joystick control, a built-in cup holder, 160 kg capacity, a supportive headrest and summer-oriented use. The owner's confirmation is the evidence currently recorded for the six product facts. No independent speed/performance test or 160 kg load-bearing test was supplied or reviewed in this revision, so the board is not described as independently tested or laboratory-verified.
+
 ## Supplied friend-logo references — not published
 
 The user supplied three JPG logo references and asked that they guide the design. They are preserved outside the tracked production output under `.codex-remote-attachments/`, which is ignored by Git.

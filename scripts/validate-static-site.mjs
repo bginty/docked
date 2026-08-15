@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { createHash } from 'node:crypto';
+import vm from 'node:vm';
 
 const root = process.cwd();
 const requiredPages = [
@@ -10,6 +11,8 @@ const requiredPages = [
   'shipping-returns.html',
   'privacy.html',
   'terms.html',
+  'contact.html',
+  'warranty.html',
   'thank-you.html',
   '404.html',
 ];
@@ -29,6 +32,7 @@ const requiredFiles = [
   'assets/images/product/cruise-d2-overview-600.webp',
   'assets/images/product/cruise-d2-controls-1200.webp',
   'assets/images/product/cruise-d2-controls-600.webp',
+  'assets/images/product/cruise-d2-features.jpg',
   'assets/images/product/cruise-d2-social-1200.jpg',
   'docs/STATIC_SITE_ASSET_REGISTER.md',
   'docs/STATIC_PAYPAL_DEPLOYMENT.md',
@@ -56,6 +60,22 @@ function exists(relativePath) {
 
 function sha256(relativePath) {
   return createHash('sha256').update(fs.readFileSync(path.join(root, relativePath))).digest('hex').toUpperCase();
+}
+
+function visibleText(html) {
+  return html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&(?:nbsp|amp|quot|#39);/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function evaluateProductConfig(source) {
+  const context = { window: {} };
+  vm.runInNewContext(source, context, { filename: 'assets/js/product-config.js' });
+  return context.window.DOCKED_PRODUCT;
 }
 
 function assert(name, condition, detail) {
@@ -113,60 +133,92 @@ if (missing.length === 0) {
   const productImageDrift = [...productImageHashes].filter(([file, hash]) => sha256(file) !== hash).map(([file]) => file);
   assert('assets.product-media', productImageDrift.length === 0, productImageDrift.length ? `Unexpected product-media bytes: ${productImageDrift.join(', ')}` : 'Seven approved supplier-image derivatives match the asset register');
 
+  const featureImagePath = 'assets/images/product/cruise-d2-features.jpg';
+  const featureImage = fs.readFileSync(path.join(root, featureImagePath));
+  const isJfifJpeg = featureImage.length > 10_000 &&
+    featureImage[0] === 0xff && featureImage[1] === 0xd8 &&
+    featureImage.subarray(0, 64).includes(Buffer.from('JFIF\0', 'ascii')) &&
+    featureImage.at(-2) === 0xff && featureImage.at(-1) === 0xd9;
+  assert('assets.feature-image-format', isJfifJpeg, `${featureImagePath} uses a .jpg extension and valid JPEG/JFIF bytes`);
+  const approvedFeatureHash = '3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523';
+  assert(
+    'assets.feature-image-approved-derivative',
+    sha256(featureImagePath) === approvedFeatureHash,
+    'Feature image matches the registered text-redacted supplier derivative',
+  );
+
   const index = htmlByFile.get('index.html');
   const config = read('assets/js/product-config.js');
-  const checkoutEnabled = /checkoutEnabled\s*:\s*true\b/.test(config);
-  const paypalSdkMatches = [...index.matchAll(/<script\b[^>]*src=["']https:\/\/www\.paypal\.com\/sdk\/js\?([^"']+)["'][^>]*>\s*<\/script>/gi)];
-  const paypalSdkQuery = paypalSdkMatches[0]?.[1]?.replaceAll('&amp;', '&') ?? '';
-  const paypalSdkParams = new URLSearchParams(paypalSdkQuery);
-  const publicClientId = paypalSdkParams.get('client-id') ?? '';
-  const hostedButtonId = config.match(/paypalHostedButtonId\s*:\s*["']([^"']*)["']/)?.[1] ?? '';
-  const hostedContainerCount = hostedButtonId ? (index.match(new RegExp(`id=["']paypal-container-${hostedButtonId}["']`, 'g')) ?? []).length : 0;
-  const hostedRenderCount = hostedButtonId ? (index.match(new RegExp(`hostedButtonId:\\s*["']${hostedButtonId}["']`, 'g')) ?? []).length : 0;
+  const siteScript = read('assets/js/site.js');
+  let productConfig;
+  try {
+    productConfig = evaluateProductConfig(config);
+    pass('product.config-parses', 'Product configuration evaluates without browser-only side effects');
+  } catch (error) {
+    fail('product.config-parses', error.message);
+    productConfig = {};
+  }
+  const checkoutEnabled = productConfig?.checkoutEnabled === true;
+  const publicClientId = productConfig?.paypal?.clientId ?? '';
+  const hostedButtonId = productConfig?.paypal?.hostedButtonId ?? '';
+  const runtimeFilesWithoutConfig = [...requiredPages, 'assets/js/site.js'].map((file) => read(file)).join('\n');
+  const paypalSdkInHtml = (requiredPages.map((file) => read(file)).join('\n').match(/https:\/\/www\.paypal\.com\/sdk\/js/gi) ?? []).length;
+  const neutralCheckoutRoots = (index.match(/id=["']paypal-checkout-root["']/g) ?? []).length;
+  const neutralCheckoutMarkers = (index.match(/\bdata-paypal-checkout-root\b/g) ?? []).length;
+  const literalClientIdOutsideConfig = publicClientId ? runtimeFilesWithoutConfig.includes(publicClientId) : false;
+  const literalHostedIdOutsideConfig = hostedButtonId ? runtimeFilesWithoutConfig.includes(hostedButtonId) : false;
   if (checkoutEnabled) {
     assert(
       'checkout.hosted-button',
-      /paypalIntegration\s*:\s*["']hosted-buttons["']/.test(config) &&
-        hostedButtonId.length >= 8 &&
-        paypalSdkMatches.length === 1 && publicClientId.length >= 40 &&
-        paypalSdkParams.get('components') === 'hosted-buttons' &&
-        paypalSdkParams.get('currency') === 'AUD' &&
-        paypalSdkParams.get('disable-funding') === 'venmo' &&
-        hostedContainerCount === 1 && hostedRenderCount === 1 &&
-        /paypalPaymentLink\s*:\s*["']\s*["']/.test(config),
-      `Official PayPal hosted-button mode: id=${hostedButtonId || 'missing'}, SDK=${paypalSdkMatches.length}, container=${hostedContainerCount}, render=${hostedRenderCount}, currency=${paypalSdkParams.get('currency') ?? 'missing'}`,
+      publicClientId.length >= 40 && hostedButtonId.length >= 8 &&
+        paypalSdkInHtml === 0 && neutralCheckoutRoots === 1 && neutralCheckoutMarkers === 1 &&
+        !literalClientIdOutsideConfig && !literalHostedIdOutsideConfig &&
+        /https:\/\/www\.paypal\.com\/sdk\/js/.test(siteScript) &&
+        /\.clientId\b/.test(siteScript) && /\.hostedButtonId\b/.test(siteScript) &&
+        /hosted-buttons/.test(siteScript) && /paypal\.HostedButtons/.test(siteScript),
+      `Config-owned PayPal hosted-button mode: client=${publicClientId ? 'set' : 'missing'}, button=${hostedButtonId ? 'set' : 'missing'}, neutral root=${neutralCheckoutRoots}, SDK tags in HTML=${paypalSdkInHtml}`,
     );
   } else {
     const paypalSource = publicTextFiles.map(read).join('\n');
     assert(
       'checkout.fail-closed',
-      paypalSdkMatches.length === 0 && !/paypal\.HostedButtons|paypal-container-|paypalobjects\.com/i.test(paypalSource) &&
-        /paypalIntegration\s*:\s*["']\s*["']/.test(config) &&
-        /paypalHostedButtonId\s*:\s*["']\s*["']/.test(config) &&
-        /paypalPaymentLink\s*:\s*["']\s*["']/.test(config),
+      paypalSdkInHtml === 0 && !/paypal\.HostedButtons|paypal-container-|paypalobjects\.com/i.test(paypalSource) &&
+        publicClientId === '' && hostedButtonId === '',
       'Checkout disabled: no PayPal URL, SDK, hosted-button ID, container, form, iframe, or credentials',
     );
   }
 
-  const fakePurchaseControls = [];
-  for (const [file, html] of htmlByFile) {
-    const interactive = html.matchAll(/<(a|button)\b[^>]*>([\s\S]*?)<\/\1>/gi);
-    for (const match of interactive) {
-      const text = match[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-      const open = match[0].slice(0, match[0].indexOf('>') + 1);
-      const href = open.match(/\bhref=["']([^"']*)["']/i)?.[1] ?? '';
-      const isCheckoutSectionLink = /^(?:\/)?#ordering$/.test(href);
-      if (/\b(?:buy now|order now|pay now|pay with paypal)\b/i.test(text) && !isCheckoutSectionLink || /href=["'](?:#|javascript:|\s*)["']/i.test(open) && /\b(?:buy|order|pay)\b/i.test(text)) {
-        fakePurchaseControls.push(`${file}: ${text}`);
-      }
+  const purchaseControlIssues = [];
+  const purchaseCtas = [];
+  for (const match of index.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)) {
+    const attrs = match[1];
+    const text = visibleText(match[2]);
+    const href = attrs.match(/\bhref=["']([^"']*)["']/i)?.[1] ?? '';
+    const marked = /\bdata-buy-cta\b/i.test(attrs);
+    const soundsLikePurchase = /\b(?:buy|order|get)\b/i.test(text) && /\b(?:cruise d2|now|checkout)\b/i.test(text);
+    if (marked) {
+      purchaseCtas.push(text);
+      if (href !== '#checkout') purchaseControlIssues.push(`data-buy-cta "${text}" targets ${href || '(missing href)'}`);
     }
+    if (soundsLikePurchase && (!marked || href !== '#checkout')) purchaseControlIssues.push(`purchase CTA "${text}" must be a[data-buy-cta][href="#checkout"]`);
+    if (/href=["'](?:#|javascript:|\s*)["']/i.test(match[0]) && /\b(?:buy|order|pay)\b/i.test(text)) purchaseControlIssues.push(`fake purchase control "${text}"`);
   }
-  assert('checkout.no-fake-control', fakePurchaseControls.length === 0, fakePurchaseControls.length ? fakePurchaseControls.join('; ') : 'No fake or disabled-looking purchase control');
+  assert(
+    'checkout.purchase-ctas',
+    purchaseCtas.length >= 4 && purchaseControlIssues.length === 0 && /\bid=["']checkout["']/.test(index),
+    purchaseControlIssues.length ? purchaseControlIssues.join('; ') : `${purchaseCtas.length} purchase CTAs share #checkout and the checkout target exists`,
+  );
 
-  assert('product.config', /name\s*:\s*['"]Docked Cruise D2['"]/.test(config) && /price\s*:\s*649(?:\.0+)?\b/.test(config) && /currency\s*:\s*['"]AUD['"]/.test(config), 'Config identifies Docked Cruise D2 at A$649 AUD');
-  assert('product.checkout-mode', checkoutEnabled ? /paypalIntegration\s*:\s*['"]hosted-buttons['"]/.test(config) : /checkoutEnabled\s*:\s*false\b/.test(config), checkoutEnabled ? 'Exactly one checkout mode is configured: PayPal hosted button' : 'Checkout is explicitly disabled');
+  assert('product.config', productConfig?.name === 'Docked Cruise D2' && Number(productConfig?.price) === 649 && productConfig?.currency === 'AUD', 'Config identifies Docked Cruise D2 at A$649 AUD');
+  assert('product.checkout-mode', checkoutEnabled ? publicClientId.length >= 40 && hostedButtonId.length >= 8 : productConfig?.checkoutEnabled === false, checkoutEnabled ? 'Exactly one checkout mode is configured: PayPal hosted button' : 'Checkout is explicitly disabled');
 
-  assert('product.checkout-copy', checkoutEnabled ? index.includes('Secure checkout powered by PayPal.') : index.includes('Online ordering is not yet available.'), checkoutEnabled ? 'Hosted-checkout disclosure is visible' : 'Ordering-unavailable notice is visible');
+  assert(
+    'product.checkout-copy',
+    checkoutEnabled
+      ? /handled securely by PayPal/i.test(index) && /does not collect card details/i.test(index)
+      : index.includes('Online ordering is not yet available.'),
+    checkoutEnabled ? 'Hosted-checkout and card-data disclosures are visible' : 'Ordering-unavailable notice is visible',
+  );
   assert(
     'shipping.owner-approved-offer',
     /market\s*:\s*['"]Worldwide['"]/.test(config) &&
@@ -174,28 +226,99 @@ if (missing.length === 0) {
       read('shipping-returns.html').includes('Free standard shipping is included worldwide'),
     'Worldwide market and free-shipping wording match the owner-approved offer',
   );
-  const adultWarning = 'Adults 18+ only. For competent swimmers in calm, controlled swimming pools. Not a life-saving device.';
-  assert('product.adult-warning', index.includes(adultWarning) && (index.match(/Adults 18\+/g) ?? []).length === 1, 'One concise adult safety warning is visible near checkout');
+  const checkoutSection = index.slice(index.search(/<section\b[^>]*\bid=["']checkout["']/i), index.indexOf('</section>', index.search(/<section\b[^>]*\bid=["']checkout["']/i)) + 10);
+  const conciseAdultWarning = /18\+/i.test(checkoutSection) && /competent swimmers/i.test(checkoutSection) && /calm, controlled swimming pools/i.test(checkoutSection) && /not a life-saving device/i.test(checkoutSection);
+  assert('product.adult-warning', conciseAdultWarning && (index.match(/18\+/g) ?? []).length === 1, 'One concise adult-use safety notice is visible near checkout');
   assert('product.price-target', /data-product-price/.test(index), 'Homepage exposes the single configured price target');
   assert(
     'content.product-first',
     /cruise-d2-pool-1200\.webp/.test(index) && /cruise-d2-overview-1200\.webp/.test(index) && /cruise-d2-controls-1200\.webp/.test(index) &&
+      /cruise-d2-features\.jpg/.test(index) && /\bdata-cruise-d2-feature-image\b/.test(index) &&
       !/unverified performance|original brand illustrations|the Docked approach|confirmed before dispatch/i.test(publicText),
-    'Homepage uses approved product media and contains no internal compliance-preview copy',
+    'Homepage uses the registered product media and feature image with no internal compliance-preview copy',
   );
 
-  const unsupportedPatterns = [
-    /\b(?:30|90)[ -]?minute(?:s)?\b/i,
-    /\b(?:46|66)\s*w(?:att)?s?\b/i,
-    /\b(?:1\.6\s*m\/s|5\s*k(?:m|ph)|160\s*kg|2\.8\s*kg)\b/i,
-    /\b(?:puncture-proof|unsinkable|child-safe|completely waterproof|rcm-approved|australian certified)\b/i,
+  const configurationText = JSON.stringify(productConfig ?? {});
+  const marketingText = `${visibleText(index)} ${configurationText} ${read('site.webmanifest')}`;
+  const confirmedClaimPatterns = [
+    /\bmotorised\s+(?:inflatable\s+)?(?:water|pool)\s+lounger\b/i,
+    /\bup to 5\s*km\/h\b/i,
+    /\b160\s*kg\b/i,
+    /\belectric\s+propulsion\b/i,
+    /\bdual[- ]joystick\b/i,
+    /\bcup holders?\b/i,
+    /\bsupportive\s+headrest\b/i,
+  ];
+  const missingConfirmedClaims = confirmedClaimPatterns.filter((pattern) => !pattern.test(marketingText)).map(String);
+  assert('claims.confirmed-product', missingConfirmedClaims.length === 0, missingConfirmedClaims.length ? `Missing confirmed Cruise D2 facts: ${missingConfirmedClaims.join(', ')}` : 'Motorised lounger identity and six confirmed product facts are present');
+
+  const wrongProductPatterns = [
+    /\b(?:inflatable\s+)?floating\s+(?:dock|platform)\b/i,
+    /\bprivate\s+deck\b/i,
+    /\b(?:beside|attach(?:ed|es|ing)?\s+to)\s+(?:a|the)\s+boat\b/i,
+    /\b(?:boat|boating|beach|ocean|surf)\s+(?:use|ready|days?|setup|accessory)\b/i,
+    /\b(?:swim|dive|board)\s+from\s+(?:it|the\s+(?:dock|platform|deck))\b/i,
+  ];
+  const wrongProductHits = wrongProductPatterns.filter((pattern) => pattern.test(marketingText)).map(String);
+  assert('claims.not-a-floating-dock', wrongProductHits.length === 0, wrongProductHits.length ? `Wrong-product positioning: ${wrongProductHits.join(', ')}` : 'Cruise D2 is not marketed as a dock, deck, boat accessory, beach product, or floating platform');
+
+  const unsafeMarketingPatterns = [
+    /\bsafe\b/i,
+    /\bunsinkable\b/i,
+    /\b(?:ocean|surf|boating)\b/i,
+    /\bwaterproof\s+(?:electronics?|electrical|motor|battery|controller?|controls?)\b/i,
+    /\bmarine[- ]certified\b/i,
+    /\bcoast\s+guard\b/i,
+    /\baustralian\s+standards?\b/i,
+    /\bpuncture[- ]proof\b/i,
+    /\bcommercial[- ]grade\b/i,
+    /\ball[- ]day\b/i,
+    /\blong[- ]range\b/i,
+    /\bcompletely\s+stable\b/i,
     /\b(?:in stock|low stock|only \d+ left|compare-at|was a\$|save \d+%)\b/i,
   ];
-  const unsupportedHits = unsupportedPatterns.filter((pattern) => pattern.test(publicTextFiles.map(read).join('\n'))).map(String);
-  assert('claims.conservative', unsupportedHits.length === 0, unsupportedHits.length ? `Unsupported marketing claim patterns: ${unsupportedHits.join(', ')}` : 'No blocked numeric, certification, urgency, or durability claims');
+  const unsafeMarketingHits = unsafeMarketingPatterns.filter((pattern) => pattern.test(marketingText)).map(String);
+  assert('claims.no-unsafe-marketing', unsafeMarketingHits.length === 0, unsafeMarketingHits.length ? `Unsafe or unsupported marketing: ${unsafeMarketingHits.join(', ')}` : 'No safety, marine, open-water, durability, range, stability, urgency, or stock claims');
 
-  const structuredProduct = /["']@type["']\s*:\s*["'](?:Product|Offer|AggregateRating|Review)["']/i.test(publicTextFiles.map(read).join('\n'));
-  assert('seo.no-unverified-commerce-schema', !structuredProduct, 'No unverified Product, Offer, availability, rating, or review schema');
+  const capacitySafetyPatterns = [
+    /160\s*kg.{0,100}\b(?:safe|safety|stable|stability|strength|certified|approved|tested)\b/is,
+    /\b(?:safe|safety|stable|stability|strength|certified|approved|tested)\b.{0,100}160\s*kg/is,
+  ];
+  const capacitySafetyHits = capacitySafetyPatterns.filter((pattern) => pattern.test(marketingText)).map(String);
+  assert('claims.capacity-not-safety-proof', capacitySafetyHits.length === 0, capacitySafetyHits.length ? 'The 160 kg capacity is presented as evidence of safety, stability, strength, testing, certification, or approval' : 'The 160 kg capacity is stated without turning it into a safety claim');
+
+  const specifications = Array.isArray(productConfig?.specifications) ? productConfig.specifications : [];
+  const hasNullSpecification = specifications.some((specification) => specification?.value === null);
+  const nullFilterContract = /specifications(?:\s*\?\?\s*\[\])?\.filter\([\s\S]{0,320}?(?:\.value\s*!={1,2}\s*null|nonEmptyString\([^)]*\.value\))/i.test(siteScript);
+  assert(
+    'product.null-specifications-hidden',
+    specifications.length >= 2 && hasNullSpecification && nullFilterContract && /\bdata-product-specifications\b/.test(index) && !/>\s*(?:null|undefined|tbd)\s*</i.test(index),
+    'Product configuration retains null placeholders while site.js filters them from the specifications UI',
+  );
+
+  const featureImageTag = index.match(/<img\b(?=[^>]*\bdata-cruise-d2-feature-image\b)[^>]*>/i)?.[0] ?? '';
+  const featureImageRules = [...read('assets/css/styles.css').matchAll(/[^{}]*\[data-cruise-d2-feature-image\][^{]*\{([^}]*)\}/gi)].map((match) => match[1]).join('\n');
+  const featureImageResponsive = /src=["']\/assets\/images\/product\/cruise-d2-features\.jpg["']/i.test(featureImageTag) &&
+    /\bwidth=["']\d+["']/i.test(featureImageTag) && /\bheight=["']\d+["']/i.test(featureImageTag) && /\balt=["'][^"']+["']/i.test(featureImageTag) &&
+    /object-fit\s*:\s*contain/i.test(featureImageRules) && /width\s*:\s*100%/i.test(featureImageRules) &&
+    /max-width\s*:\s*100%/i.test(featureImageRules) && /height\s*:\s*auto/i.test(featureImageRules) &&
+    !/object-fit\s*:\s*cover|object-position\s*:|clip-path\s*:/i.test(featureImageRules);
+  const horizontalMasking = /\bwidth\s*:\s*100vw\b|overflow-x\s*:\s*(?:hidden|clip)\b/i.test(read('assets/css/styles.css'));
+  assert('assets.feature-image-no-crop', featureImageResponsive, 'Feature image uses its canonical JPEG, intrinsic dimensions, useful alt text, contain sizing, and responsive width without cropping');
+  assert('css.no-horizontal-scroll-masking', !horizontalMasking, 'CSS avoids 100vw overflow and does not hide or clip horizontal overflow');
+
+  const hasTruthfulProductSchema = /["']@type["']\s*:\s*["']Product["']/i.test(siteScript) &&
+    /["']@type["']\s*:\s*["']Offer["']/i.test(siteScript) &&
+    /priceCurrency\s*:\s*product\.currency/i.test(siteScript) && /price\s*:\s*String\(price\)/i.test(siteScript);
+  const unsupportedSchemaFields = [
+    'availability', 'inventoryLevel', 'aggregateRating', 'review', 'shippingDetails',
+    'hasMerchantReturnPolicy', 'warranty', 'priceValidUntil',
+  ].filter((field) => new RegExp(`\\b${field}\\s*:`, 'i').test(siteScript));
+  assert(
+    'seo.truthful-product-schema',
+    hasTruthfulProductSchema && unsupportedSchemaFields.length === 0,
+    unsupportedSchemaFields.length ? `Unsupported schema fields: ${unsupportedSchemaFields.join(', ')}` : 'Product/Offer schema is limited to configured identity, images, URL, price, and currency',
+  );
 
   const linkProblems = [];
   const fragmentProblems = [];
@@ -238,6 +361,8 @@ if (missing.length === 0) {
     if (!/<main\b/i.test(html)) pageIssues.push(`${file}: missing main landmark`);
     if (!/<a\b[^>]*class=["'][^"']*skip-link/i.test(html)) pageIssues.push(`${file}: missing skip link`);
     if (!/\bdata-menu-toggle\b/i.test(html) || !/\bdata-site-nav\b/i.test(html)) pageIssues.push(`${file}: mobile navigation contract incomplete`);
+    if (!/href=["']\/?contact\.html["']/i.test(html)) pageIssues.push(`${file}: missing Contact route link`);
+    if (!/href=["']\/?warranty\.html["']/i.test(html)) pageIssues.push(`${file}: missing Warranty route link`);
     const canonical = html.match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1];
     if (!canonical?.startsWith('https://docked.com.au')) pageIssues.push(`${file}: invalid/missing canonical`);
     else canonicalUrls.add(canonical);
