@@ -33,7 +33,7 @@ html {
 
 body {
   margin: 0;
-  min-width: 20rem;
+  min-width: 0;
   color: var(--text);
   background: var(--white);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -183,7 +183,7 @@ p {
 .header-inner {
   position: relative;
   display: flex;
-  min-height: 5rem;
+  min-height: 4.25rem;
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
@@ -191,7 +191,7 @@ p {
 
 .brand {
   display: inline-flex;
-  width: min(12.5rem, 54vw);
+  width: min(10.75rem, 52vw);
   flex: 0 0 auto;
   color: var(--navy);
 }
@@ -277,21 +277,10 @@ p {
 .hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(3.25rem, 8vw, 6.5rem) 0 clamp(4.25rem, 9vw, 7.5rem);
+  padding: clamp(1rem, 3vw, 2.5rem) 0 clamp(3rem, 7vw, 5rem);
   background:
-    radial-gradient(circle at 85% 17%, rgba(255, 107, 74, 0.28) 0 6rem, transparent 6.2rem),
-    linear-gradient(140deg, var(--sand) 0 49%, var(--light-aqua) 49% 100%);
-}
-
-.hero::after {
-  position: absolute;
-  right: -10%;
-  bottom: -6rem;
-  left: -10%;
-  height: 9rem;
-  background: var(--white);
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  content: "";
+    radial-gradient(circle at 92% 7%, rgba(19, 191, 230, 0.13) 0 9rem, transparent 9.2rem),
+    linear-gradient(135deg, #fffdf9 0%, var(--sand) 100%);
 }
 
 .hero-grid {
@@ -299,10 +288,11 @@ p {
   z-index: 1;
   display: grid;
   align-items: center;
-  gap: clamp(2rem, 6vw, 5rem);
+  gap: clamp(1.25rem, 4vw, 2.5rem);
 }
 
 .hero-copy h1 span {
+  display: block;
   color: var(--pool-text);
 }
 
@@ -325,7 +315,7 @@ p {
 
 .hero-offer strong {
   color: var(--navy);
-  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-size: clamp(3.4rem, 12vw, 4.75rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.055em;
@@ -361,6 +351,17 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+}
+
+.hero-actions {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.hero-actions .button,
+.hero-actions .button-secondary {
+  width: 100%;
+  min-height: 3.5rem;
 }
 
 .button {
@@ -402,6 +403,26 @@ p {
 .button-light:hover {
   color: var(--white);
   background: transparent;
+}
+
+.hero-feature-media {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  background: #81dce9;
+  border-radius: clamp(1rem, 3vw, 1.6rem);
+  box-shadow: 0 16px 42px rgba(6, 40, 61, 0.14);
+}
+
+.hero-feature-media a {
+  display: block;
+}
+
+.hero-feature-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
 }
 
 .hero-product-media,
@@ -1210,6 +1231,27 @@ img[data-cruise-d2-feature-image] {
   color: #8ee9f7;
 }
 
+.footer-identity {
+  display: flex;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  color: #c9d6dc;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.82rem;
+}
+
+.footer-identity strong {
+  width: 100%;
+  color: var(--white);
+  font-size: 0.95rem;
+}
+
+.footer-identity a {
+  color: var(--white);
+}
+
 .footer-base {
   display: flex;
   margin-top: 2rem;
@@ -1259,7 +1301,6 @@ img[data-cruise-d2-feature-image] {
 }
 
 @media (min-width: 44rem) {
-  .hero-grid,
   .overview-grid,
   .order-grid,
   .split-grid,
@@ -1291,6 +1332,19 @@ img[data-cruise-d2-feature-image] {
 }
 
 @media (min-width: 64rem) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(22rem, 0.92fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .header-inner {
+    min-height: 5rem;
+  }
+
+  .brand {
+    width: min(12.5rem, 54vw);
+  }
+
   .feature-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1354,27 +1408,21 @@ img[data-cruise-d2-feature-image] {
   }
 
   .hero {
-    padding-top: 2.75rem;
+    padding-top: 1rem;
   }
 
   .hero-grid {
     gap: 1.75rem;
   }
 
-  .hero-actions {
-    display: grid;
-  }
-
-  .hero-actions .button {
-    width: 100%;
-  }
-
-  .hero-actions .button-secondary {
-    display: none;
+  .hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(2.3rem, 10.75vw, 2.9rem);
   }
 
   .hero-feature-line {
     font-size: 0.78rem;
+    text-align: center;
   }
 
   .hero-product-media figcaption,

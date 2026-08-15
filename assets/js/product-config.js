@@ -12,7 +12,6 @@ window.DOCKED_PRODUCT = Object.freeze({
   ]),
   price: 649,
   currency: "AUD",
-  market: "Worldwide",
   minimumAge: 18,
   supportEmail: "support@docked.com.au",
   organization: Object.freeze({
