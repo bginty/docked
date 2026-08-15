@@ -29,7 +29,7 @@ Observed 14 August 2026 against unpublished Shopify theme `130871427130` at `cfb
 - Current Edge, Firefox, Android Chrome, Safari/WebKit-equivalent and physical-device runs were not completed.
 - The latest brand-refresh screenshot/CDP capture timed out. No new screenshot artifact was retained, so current-brand visual screenshot coverage remains incomplete despite the DOM/geometry/computed-style observations.
 - `npm run test:storefront` was attempted with the preview URL but stopped before any assertion because Playwright is not installed. Automated accessibility, screen-reader, Lighthouse and checkout tests were not completed.
-- Contact-form delivery, external inbound/reply mail and order/refund notifications were not verified. Customer-account entry rendered, but authentication, post-submit errors, logout and order history were not tested. After the owner's mailbox-setup report, Admin Notifications still showed `support@docked.com.au` as **Unverified**. A fresh verification email was requested at approximately 11:06 AEST and Shopify confirmed **Verification email sent**; the owner still needs to complete the link and the delivery matrix.
+- Contact-form delivery, external inbound/reply mail and order/refund notifications were not verified. Customer-account entry rendered, but authentication, post-submit errors, logout and order history were not tested. On 15 August, Admin Notifications showed `support@docked.com.au` with **Email domain authentication — Needs setup** and a Shopify backup-sender warning; the owner still needs to complete domain authentication and the delivery matrix.
 
 ## Screenshot index
 

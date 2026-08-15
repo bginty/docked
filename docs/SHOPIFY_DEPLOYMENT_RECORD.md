@@ -1,7 +1,7 @@
 # Docked Shopify deployment record
 
 Status: **UNPUBLISHED CANDIDATE UPLOADED — PARTIAL RENDERED QA COMPLETE; LAUNCH BLOCKED**
-Last updated: 14 August 2026 (Australia/Sydney)
+Last updated: 15 August 2026 (Australia/Sydney)
 
 This record contains non-sensitive Shopify deployment metadata only. It must never contain credentials, Theme Access passwords, Admin tokens, bank information, identity documents, full payment data or customer data.
 
@@ -22,7 +22,7 @@ This record contains non-sensitive Shopify deployment metadata only. It must nev
 | Store handle | `cfbexf-h4.myshopify.com` — confirmed through authenticated Shopify CLI 4.5.2 |
 | Shop domain | `cfbexf-h4.myshopify.com` |
 | Store ID | Not available |
-| Plan | Trial ending in 3 days; Admin showed **Subscribe for $1** / **Select a plan**; paid-plan gate blocked |
+| Plan | **Basic** active; Admin showed the promotional `$1 AUD per month` until 15 November 2026; paid-plan gate passed |
 | Authenticated account | `Briant Ginty` (safe Admin display name); Shopify CLI session authenticated |
 | Theme ID | `130871427130` |
 | Theme role | `unpublished` |
@@ -36,15 +36,15 @@ This record contains non-sensitive Shopify deployment metadata only. It must nev
 
 The repository contains a valid Shopify Online Store 2.0 theme at its root. Shopify CLI 4.5.2 authenticated through Shopify's supported flow and confirmed `cfbexf-h4.myshopify.com`. Theme-library inspection identified the existing published `Horizon` theme, ID `130871099450`; it was preserved and not changed.
 
-A signed-out browser request resolves to the Shopify password page and displays **Docked — Opening soon**. The storefront password was entered only in the authenticated in-app Browser, allowing candidate theme `130871427130` to be rendered for partial QA without removing password protection. This verifies store existence, password protection, candidate rendering and the CLI theme metadata; it does not verify paid-plan status, legal identity or launch readiness.
+A signed-out browser request resolves to the Shopify password page and displays **Docked — Opening soon**. The storefront password was entered only in the authenticated in-app Browser, allowing candidate theme `130871427130` to be rendered for partial QA without removing password protection. This verifies store existence, password protection, candidate rendering and the CLI theme metadata. A Basic paid plan was separately verified on 15 August; neither fact verifies legal identity or launch readiness.
 
-Authenticated Admin inspection confirmed AUD, Australia/Melbourne, metric units and kilograms. The supplied correspondence address and `support@docked.com.au` were configured; Shopify still reports the sender email as unverified. Australia is the only active market and new customer accounts are active. No plan selection, publication, product activation, payment-provider setup or custom-domain connection is recorded as completed.
+Authenticated Admin inspection confirmed AUD, Australia/Melbourne, metric units and kilograms. The supplied correspondence address and `support@docked.com.au` are configured; email-domain authentication still reports **Needs setup**. Australia is the only active market and new customer accounts are active. A Basic plan is active, but no publication, product activation, completed Shopify Payments setup or custom-domain connection is recorded.
 
 ## Pre-upload verification
 
 - [x] Authenticate through Shopify's supported browser flow.
 - [x] Confirm the current store is exactly `cfbexf-h4.myshopify.com` before the unpublished write.
-- [ ] Confirm the store ID and legal business without copying sensitive fields; authenticated display name is `Briant Ginty`, but the store remains on a trial and a paid plan is not selected.
+- [x] Confirm a paid plan without copying billing details: authenticated Admin showed Basic active on 15 August 2026. Store ID and legal-business verification remain separate launch evidence.
 - [x] Record the current published Shopify theme name/ID and preserve it.
 - [x] Use an unpublished creation flow and exact candidate ID; no publish, live overwrite or force flag was used.
 - [x] Re-run Theme Check (187 files, 0 offenses).
@@ -95,7 +95,7 @@ Paste only a redacted CLI result or controlled evidence reference here. Do not p
 | Store settings | Inspected; store contact email and address configured from supplied business facts |
 | Australia/AUD/Melbourne/kilograms | Verified in Admin: backup region Australia, AUD, Canberra/Melbourne time zone, metric, kilograms |
 | Legal entity/ABN/ACN | Owner-supplied repository facts; not verified in Admin |
-| GST-inclusive configuration | Admin shows GST collection enabled for Australia with the owner-supplied ABN and the prices-include-sales-tax setting checked; no order, invoice, discount, shipping-tax, cancellation or refund reconciliation has run |
+| GST-inclusive configuration | Australia collects through Basic Tax and prices-include-sales-tax is checked; charge-sales-tax-on-shipping is unchecked. No order, invoice, discount, shipping-tax, cancellation or refund reconciliation has run |
 | Customer accounts | New accounts are active. Signed-out candidate account entry opened Shopify's dialog with Sign in with Shop, email sign-in (submit disabled until email), marketing opt-in and Orders/Profile quick links. No credentials were entered; authentication, post-submit errors, logout and order history remain untested, so this is a partial entry-point pass only |
 | Collections | All 7 planned collections created in Admin; empty because no SKU is approved or Active |
 | Pages | All 12 planned Pages exist and all intended template suffixes were assigned and verified in Admin. Visible only behind password: Contact, How It Works, Safety and Care, FAQ, Track Your Order, Accessibility. Hidden pending applicable approvals: Shipping and Delivery, Returns and Refunds, Warranty, About Docked, Privacy Policy, Terms of Service. The hidden custom Privacy Policy Page is distinct from Shopify's native policy resource; neither is approved |
@@ -103,12 +103,12 @@ Paste only a redacted CLI result or controlled evidence reference here. Do not p
 | Redirects | All 3 prepared redirects imported successfully. `/index.html` served homepage content; `/privacy.html` reached Shopify's privacy policy; `/about.html` correctly targets `/pages/about-docked` but remains 404 while About Docked is intentionally hidden pending the business-name gate |
 | Products | 15 concepts imported and verified **Draft**; inventory not tracked, no images, channels 0, vendor `Requires verification`, no approved SKU claims; none approved/Active |
 | Product media | No licensed exact-SKU product media supplied |
-| Shipping | Unapproved Express $15, Standard $11/free-over-$100 and Standard international $20 rates removed; international zone deleted; Domestic Australia remains with **no rates**; local pickup/delivery off; checkout shipping tests not run |
-| Payments | Shopify Payments stops at required business-information setup; no provider active, no test mode, no test transaction and no live capture |
-| Policies | The custom Privacy Policy and Terms of Service Pages remain hidden drafts. Shopify's separate native `/policies/privacy-policy` resource is reachable only behind the storefront password and is used by the existing redirect/menu resource; it is also unapproved. No policy is recorded as launch-approved or publicly published. |
-| Support sender email | `support@docked.com.au` configured. After the owner's mailbox-setup report, Admin Notifications was rechecked: the sender textbox still contained that address and status remained **Unverified**. A fresh verification email was requested at approximately 11:06 AEST and Shopify confirmed **Verification email sent**. A controlled Contact form submission was accepted at `?contact_posted=true` with Shopify's success confirmation, but mailbox delivery remains unverified. An attempted external Gmail send could not be performed because the connected account's Mail service was not enabled; verification-link completion and inbound/reply/order/refund notification evidence remain blocked |
+| Shipping | General profile contains unapproved Domestic Express `$15` / `1–2 business days`, Domestic Standard `$11` or free from `$100` / `3–5 business days`, and Standard international `$20` / `3–5 business days` for 27 countries. Carrier accounts: **None**; local pickup/delivery off; owner/carrier/package/battery/remote-area/checkout evidence absent |
+| Payments | Shopify Payments requires more business information and shows **Complete setup**. PayPal displays **Active**, but its authorised account identity, currency, support details and test/refund behaviour are not verified. No test mode, test transaction or live-capture evidence exists |
+| Policies | Shopify Policies shows only an **Automated** Privacy policy. Return and refund, Terms of service, Shipping policy and Legal notice show **No policy set**; Contact information is **Required** and no return/cancellation rule is set. Custom policy Pages remain hidden drafts and no policy is launch-approved |
+| Support sender email | `support@docked.com.au` is configured, but Shopify Notifications reports **Email domain authentication — Needs setup** and says it may use a `shopifyemail.com` backup sender. Earlier Contact form acceptance is recorded; inbound, reply, Contact receipt, order/refund notification and delivered-header authentication evidence remain blocked |
 | Store address | `GINTY UNITED INVESTMENTS PTY LTD, 135 Bamfield Road, Heidelberg Heights VIC 3081, Australia` configured; source documentation continues to qualify it as correspondence and authorised returns only |
-| Markets | Australia is the only active market observed; US and EU appear only as create-market prompts, not active markets; the international shipping zone was deleted |
+| Markets | Australia is the only active market observed. An international shipping zone for 27 countries exists but Shopify states those countries must be added to a market before selling; international launch remains unapproved |
 | Domains | Only the `cfbexf-h4.myshopify.com` primary domain is connected; no custom domain is connected |
 
 ## Preview and rendered-QA record

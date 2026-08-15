@@ -1,9 +1,9 @@
 # Docked rendered preview and post-launch QA
 
 Status: **PARTIAL PREVIEW QA COMPLETE — FULL RENDERED GATE AND PUBLIC LAUNCH BLOCKED**
-Last updated: 14 August 2026 (Australia/Sydney)
+Last updated: 15 August 2026 (Australia/Sydney)
 
-This file records actual rendered evidence only after a permanent Shopify preview or authorised public release exists. Prepared tests and target scores are not passing results. The current source baseline passed Theme Check (187 files/0 offenses), structural validation (58/58), production gate validation (21/21 required gates; 23 total with 4 passed and 19 blocked), Node tests (6/6), copy/data audit, dependency audit (0 vulnerabilities), document-link audit (48 files/172 references/0 broken, excluding two intentional upstream pull-request-template placeholders), secret scan and diff checks. A permanent unpublished candidate exists and partial manual in-app-browser QA has run. Full multi-browser, accessibility, Lighthouse, product, checkout, contact-delivery and commerce QA has not passed.
+This file records actual rendered evidence only after a permanent Shopify preview or authorised public release exists. Prepared tests and target scores are not passing results. The current source baseline passed Theme Check (187 files/0 offenses), structural validation (58/58), production gate validation (21/21 required gates; 23 total with 5 passed and 18 blocked), Node tests (6/6), copy/data audit, dependency audit (0 vulnerabilities), document-link audit (48 files/172 references/0 broken, excluding two intentional upstream pull-request-template placeholders), secret scan and diff checks. A permanent unpublished candidate exists and partial manual in-app-browser QA has run. Full multi-browser, accessibility, Lighthouse, product, checkout, contact-delivery and commerce QA has not passed.
 
 ## Target identity
 
@@ -93,7 +93,7 @@ The initial 320 px run found horizontal overflow. The mobile wordmark was constr
 | Legacy finance copy | Pass on tested routes | None observed on the tested candidate routes; favicon and Organization JSON-LD logo were checked, but the full sitemap/metadata/structured-data audit remains incomplete |
 | Claims/payment badges/urgency | Not fully audited | No product route exists; do not infer a full content pass from the limited routes |
 | AUD/GST-inclusive prices | Not run in rendered commerce | No Active product price or checkout/invoice flow exists |
-| International/local service | Disabled in Admin | International shipping zone deleted; local delivery and pickup off; Domestic Australia has no rates |
+| International/local service | Not approved | Unapproved domestic and 27-country international rates and delivery-time claims are configured; Australia remains the only observed active market; local delivery and pickup are off |
 
 ## Accessibility record
 
@@ -154,7 +154,7 @@ The mailbox gate requires end-to-end delivery evidence in both directions; DNS r
 | Contact-form delivery | Shopify accepted controlled submission at `?contact_posted=true` and showed its success confirmation; mailbox receipt unverified | Shopify submission result plus receipt in the support mailbox |
 | Order-notification delivery | Not run | Redacted test-order notification and mailbox receipt |
 | Refund-notification delivery | Not run | Redacted test-refund notification and mailbox receipt |
-| Sender-domain authentication | Admin Notifications rechecked after the owner's setup report: textbox `support@docked.com.au`, status still **Unverified**. A fresh verification email was requested at approximately 11:06 AEST and Shopify confirmed **Verification email sent** | Owner completes the verification link; delivered-message headers and provider configuration review |
+| Sender-domain authentication | On 15 August, Admin Notifications showed `support@docked.com.au` and **Email domain authentication — Needs setup**, with a Shopify backup sender warning | Complete domain authentication and review delivered-message headers/provider configuration |
 | SPF | DNS observed; operational result not tested | Alignment/authentication result from delivered-message headers |
 | DKIM | Unverified | Selector/provider evidence plus delivered-message signature result |
 | DMARC | DNS observed; operational result not tested | Alignment result and policy review for the actual sender |
@@ -169,4 +169,4 @@ Record every failure with severity, owner, reproduction, evidence and dispositio
 
 ## Current conclusion
 
-Partial manual rendered QA passed the tested candidate routes and responsive widths after one repaired 320 px overflow defect. Current integrated one-word source `5f46487d1f53e45f5706ae945eeb5a09064893e3` was strictly pushed to the same unpublished candidate; subsequent Browser observations found no overflow at all seven widths, verified the 320 px mobile navigation, accessible header/footer home names, navy/cyan/white logo presentation, hero `18+` treatment, theme favicon and absolute Organization JSON-LD logo URL, and found no console errors or warnings. Screenshot/CDP capture timed out, so there is no new screenshot artifact for this latest brand run. Earlier menu, route, Safety and Care, eight-item FAQ and controlled Contact observations remain recorded, but mailbox receipt is unverified and Shopify still marks the sender **Unverified**. Full rendered QA, visual screenshot coverage, accessibility, Lighthouse, product, checkout, GST/invoice, email and live-site smoke tests are **not passed**. The theme cannot be published and live sales cannot be enabled on this evidence. See [Production launch gates](PRODUCTION_LAUNCH_GATES.md) and [Shopify deployment record](SHOPIFY_DEPLOYMENT_RECORD.md).
+Partial manual rendered QA passed the tested candidate routes and responsive widths after one repaired 320 px overflow defect. Current integrated one-word source `5f46487d1f53e45f5706ae945eeb5a09064893e3` was strictly pushed to the same unpublished candidate; subsequent Browser observations found no overflow at all seven widths, verified the 320 px mobile navigation, accessible header/footer home names, navy/cyan/white logo presentation, hero `18+` treatment, theme favicon and absolute Organization JSON-LD logo URL, and found no console errors or warnings. Screenshot/CDP capture timed out, so there is no new screenshot artifact for this latest brand run. Earlier menu, route, Safety and Care, eight-item FAQ and controlled Contact observations remain recorded, but mailbox receipt is unverified and sender-domain authentication now reports **Needs setup**. Full rendered QA, visual screenshot coverage, accessibility, Lighthouse, product, checkout, GST/invoice, email and live-site smoke tests are **not passed**. The theme cannot be published and live sales cannot be enabled on this evidence. See [Production launch gates](PRODUCTION_LAUNCH_GATES.md) and [Shopify deployment record](SHOPIFY_DEPLOYMENT_RECORD.md).

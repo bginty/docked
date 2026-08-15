@@ -1,7 +1,7 @@
 # Docked domain cutover record
 
 Status: **NOT AUTHORISED — DOMAIN UNCHANGED**
-Last updated: 14 August 2026 (Australia/Sydney)
+Last updated: 15 August 2026 (Australia/Sydney)
 
 `docked.com.au` continues to serve the legacy GitHub Pages finance site. No production DNS record has been changed. The public read-only observations below supplement [DNS before change](DNS_BEFORE_CHANGE.md); they are not a complete private DNS-zone export and do not prove provider write access.
 
@@ -23,16 +23,16 @@ Last updated: 14 August 2026 (Australia/Sydney)
 | `autodiscover.docked.com.au` | CNAME | `autodiscover.outlook.com` | Preserve |
 | `docked.com.au` | CAA | No public answer observed | Re-check provider export |
 | `docked.com.au` | NS | `ns35.domaincontrol.com`, `ns36.domaincontrol.com` | GoDaddy-managed DNS; do not change nameservers |
-| `docked.com.au` | SOA | Serial `2026053006` | Read-only observation |
+| `docked.com.au` | SOA | Serial `2026081400` | Read-only 15 August observation; previous record was `2026053006` |
 | DKIM selectors | TXT/CNAME | No repository selector; common selector probes returned NXDOMAIN | **DKIM remains unverified**; provider/mail-admin review required |
 
-Web observations on 14 August 2026:
+Web observations rechecked on 15 August 2026 at approximately 10:36 AEST:
 
 - HTTPS apex returned 200 from GitHub Pages/GitHub infrastructure.
 - HTTPS `www` returned 301 to the apex.
 - The TLS certificate covered the apex and `www` and was valid through 28 October 2026 at observation time.
 - Plain HTTP apex did not upgrade to HTTPS, no HSTS header was observed, and no canonical link was observed on the legacy page.
-- The support address is configured in Shopify, but Shopify still labels the sender unverified and no successful end-to-end mailbox test exists.
+- The support address is configured in Shopify, but Email domain authentication reports **Needs setup** and no successful end-to-end mailbox test exists.
 - The GitHub Pages rollback remains live.
 
 These are dated observations, not guarantees at the future cutover time. Re-query immediately before and after any authorised change.
