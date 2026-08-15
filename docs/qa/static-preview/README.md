@@ -1,6 +1,6 @@
 # Static preview QA
 
-Reference-layout candidate QA: 15 August 2026 (local only)
+Reference-layout local and production QA: 15 August 2026
 
 Feature-board candidate observation window: 15 August 2026, 20:15–20:20 AEST
 
@@ -10,23 +10,23 @@ Current deployed product-led revision observation window: 15 August 2026, 18:03�
 
 Initial-launch production observation window: 15 August 2026, 17:31:41–17:36:28 AEST
 
-Current deployed source commit: `06d4bd1941517b79c10a72a59d581969afd58f31`; public Pages output commit: `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`.
+Current reviewed source implementation commit: `777b09037e0f78e627cef09e710b05f0c4d88ff6`; public Pages output commit: `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`.
 
-## Screenshot-reference candidate
+## Screenshot-reference production revision
 
-The current local candidate implements the owner-approved screenshot hierarchy without changing the product evidence or checkout provider:
+The deployed revision implements the owner-approved screenshot hierarchy without changing the product evidence or checkout provider:
 
 - the complete Cruise D2 feature board is the first major visual immediately below the header and is shown without cropping;
 - the sales sequence is product label, headline, supporting copy, `$649` price with `AUD`, primary purchase action, secondary feature action and the concise feature line;
-- the visible offer uses `$649 AUD` and `Free shipping`; the superseded `A$` notation and geographic shipping qualifier are absent from the candidate's customer-facing source;
+- the visible offer uses `$649 AUD` and `Free shipping`; the superseded `A$` notation and geographic shipping qualifier are absent from the live customer-facing page;
 - the company name, ABN and support email have been removed from the homepage sales content and consolidated in the bottom footer; and
 - the mobile purchase action resolves to `#checkout`.
 
-Rendered Browser QA was performed locally at requested outer viewports of 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. Captures are in [`reference-layout/`](./reference-layout/). The PayPal Hosted Button rendered `Docked Cruise D2` at `$649.00 AUD` in the inspected 390- and 1440-pixel views. Static validation passed 41/41 and the Node suite passed 10/10. No checkout control was activated, no buyer or payment data was entered and no payment was submitted.
+Rendered Browser QA was performed locally and again on the live domain at requested outer viewports of 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. At each live viewport, document `scrollWidth` equalled `clientWidth`, the complete feature image used contain-style rendering and the secondary hero action remained visible. Captures are in [`reference-layout/`](./reference-layout/). The PayPal Hosted Button rendered `Docked Cruise D2` at `$649.00 AUD`; the purchase action resolved to `#checkout`. Static validation passed 41/41 and the Node suite passed 10/10 before deployment. No checkout control was activated, no buyer or payment data was entered and no payment was submitted.
 
-This is candidate evidence only. A source commit, production allowlist commit, GitHub Pages deployment and live-domain verification for this reference-layout revision are still pending. The deployed commit identifiers above continue to identify the preceding production revision.
+The reviewed implementation commit `777b09037e0f78e627cef09e710b05f0c4d88ff6` was pushed on `codex/docked-static-paypal-launch`. Its exact eight-file public payload is production commit `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. GitHub Pages [run #100](https://github.com/bginty/docked/actions/runs/31883818055) completed successfully. Live screenshots and this post-deployment record were created after the reviewed implementation commit; they do not alter the deployed eight-file payload.
 
-No new console-clean, Lighthouse-score or automated accessibility claim is made for this candidate. Those checks require their own recorded evidence and are not inferred from the responsive screenshots.
+No new console-clean, Lighthouse-score or automated accessibility claim is made for this revision. Those checks require their own recorded evidence and are not inferred from the responsive screenshots.
 
 ## Previously deployed feature-board revision
 
@@ -62,7 +62,7 @@ The source revision is commit `06d4bd1941517b79c10a72a59d581969afd58f31`. Its ex
 
 ## Responsive matrix
 
-The screenshot-reference candidate passed local rendered inspection at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. Its seven captures are in `docs/qa/static-preview/reference-layout/`. They document the intended responsive hierarchy and are not live-production evidence.
+The screenshot-reference revision passed local and live rendered inspection at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. Its seven local full-page captures and three 390-pixel live captures are in `docs/qa/static-preview/reference-layout/`. At every live size, document `scrollWidth` equalled `clientWidth`, the feature image remained contained and the secondary hero action was visible.
 
 The initial static launch also passed same-origin responsive checks at 320, 375, 390, 768, 1024 and 1440 CSS pixels. Those measurements and the six PNG files in this folder predate both the feature-board revision and the screenshot-reference candidate, and remain historical baseline evidence only.
 
@@ -72,10 +72,10 @@ Hosted button ID: `FGAUDYCA2LX36`
 
 - Button rendered: passed.
 - Product name: `Docked Cruise D2` — passed.
-- Candidate website price: `$649 AUD` — passed.
+- Live website price: `$649 AUD` — passed.
 - Currency and quantity-one total: `$649.00 AUD` — passed.
-- Candidate shipping copy: `Free shipping`, with no geographic qualifier — passed.
-- Inspected candidate viewports: 390 and 1440 CSS pixels — passed.
+- Live shipping copy: `Free shipping`, with no geographic qualifier — passed.
+- Inspected local and live viewports: 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels — passed.
 - Mobile purchase target: `#checkout` — passed.
 - Real payment: not run.
 - Card, address and identity fields: no data entered.
@@ -83,21 +83,21 @@ Hosted button ID: `FGAUDYCA2LX36`
 
 ## Production-domain verification
 
-This section records the preceding deployed feature-board revision. The screenshot-reference candidate described above has not yet been committed, promoted or checked on the live domain.
-
-- GitHub Pages workflow [run #99](https://github.com/bginty/docked/actions/runs/31880122836) completed successfully for exact commit `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`; deployment ID `5919624892` reached `success` at `2026-08-15T10:41:09Z`.
-- `https://docked.com.au/` returned `Docked Cruise D2 | Motorised Inflatable Water Lounger Australia` over a valid TLS connection; `https://www.docked.com.au/` continued to redirect to the HTTPS apex.
-- The live feature-board asset returned `200`, 1536 × 1536 JPEG/JFIF and exact registered SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523`. It rendered uncropped and inside the 390-pixel browser viewport.
-- The live homepage rendered four purchase CTAs targeting `#checkout`, the PayPal Hosted Button for `Docked Cruise D2` at `A$649`, quantity 1 to 10, and one quiet `18+` eligibility notice. No checkout control was activated, no payment data was entered and no transaction was completed.
-- At requested viewports of 390 and 1440 CSS pixels, document `scrollWidth` equalled `clientWidth`; there were no broken loaded images. On desktop, price and the primary purchase action were above the fold.
-- Contact, Warranty, Safety, Shipping and Returns, Privacy, Terms and Thank You returned `200` with intended titles. An unknown route returned the custom 404.
-- Checked finance phrases and Shopify references were absent from the public output.
+- GitHub Pages workflow [run #100](https://github.com/bginty/docked/actions/runs/31883818055) completed successfully for exact production commit `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. Run ID `31883818055` was created at `2026-08-15T12:07:55Z` and completed at `2026-08-15T12:08:17Z`.
+- Deployment ID `5920263065`, status ID `16849484631`, reached `success`; it was created at `2026-08-15T12:08:05Z` and completed at `2026-08-15T12:08:17Z`.
+- `https://docked.com.au/` returned `200` over HTTPS; `https://www.docked.com.au/` redirected to the HTTPS apex.
+- The complete Cruise D2 feature image was the first major visual and remained contained at all seven inspected live viewports.
+- The live offer rendered `$649` with `AUD · Free shipping`. No `A$` notation or `worldwide` shipping qualifier was visible.
+- Ginty United Investments Pty Ltd, ABN 78 606 187 106 and `support@docked.com.au` did not appear above the bottom footer.
+- The live PayPal Hosted Button rendered `Docked Cruise D2` at `$649.00 AUD`, and the purchase CTA resolved to `#checkout`. No checkout control was activated, no payment data was entered and no transaction was completed.
+- At requested viewports of 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels, document `scrollWidth` equalled `clientWidth`, the feature image remained contained and the secondary hero action remained visible.
+- Live evidence files are `live-homepage-390.png`, `live-checkout-390.png` and `live-footer-bottom-390.png` in `docs/qa/static-preview/reference-layout/`.
 - HTTPS availability passed, but enforcement did not: plain `http://docked.com.au/` returned `200` instead of redirecting, and GitHub's Pages API reported `https_enforced: false`.
 
 ## Limits
 
 - The homepage uses deterministic crops of owner-approved supplier images plus the deterministic text-redacted feature board. A full-frame generated edit was rejected and is not published. Source custody and derivative hashes are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`.
 - Lighthouse was not run because a Lighthouse executable was not installed in the workspace. No target score is reported as achieved.
-- The current live PayPal-enabled load produced PayPal's own `ncps_standalone_paylater_ineligible`, Apple Pay configuration and eligibility messages while the hosted button remained rendered. No first-party Docked JavaScript error was observed; this is not reported as a zero-message console pass.
+- No console-clean result is claimed for the screenshot-reference production revision.
 - A real payment, PayPal seller-account transaction record, payment email and refund were not tested or claimed.
 - GitHub Pages has deployed and the production-domain checks above are complete. HTTP-to-HTTPS enforcement remains an infrastructure follow-up and is not reported as passed.
