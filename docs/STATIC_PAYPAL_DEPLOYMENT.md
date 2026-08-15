@@ -14,7 +14,7 @@ Last updated: 15 August 2026 (AEST)
 - `CNAME`: `docked.com.au`
 - DNS and email DNS: unchanged by this release
 
-The public production commit contains only the static web output. Development tests, scripts, evidence records, screenshots and Shopify history remain on the working branch and in Git history; they are not copied into the Pages root.
+The public production commit contains only the 28-file static web output. Development tests, source-image custody files, processing scripts, evidence records, screenshots and Shopify history remain on the working branch and in Git history; they are not copied into the Pages root.
 
 ## Preserved systems
 
@@ -52,24 +52,26 @@ The public identifier in the SDK URL and the hosted-button ID are intentionally 
 | Repository identity | Passed | `origin` is `https://github.com/bginty/docked.git`; branch was created from exact `origin/main`. |
 | Pages source | Passed | Existing platform workflow `pages-build-deployment` (workflow ID `286250434`) serves `main` at repository root. |
 | Backup refs | Passed | Archive branch and peeled annotated tag both resolve to the exact legacy commit. |
-| Static validation | Passed locally | `npm run validate`: 26/26 passed, including hosted-button, shipping, links, claims and secret gates. |
+| Static validation | Passed locally | `npm run validate`: 28/28 passed, including hosted-button, shipping, product-media integrity, links, claims and secret gates. |
 | Node tests | Passed locally | `npm test`: 5/5 passed. |
 | Local browser QA | Passed with stated limits | See `docs/qa/static-preview/README.md`. |
+| Supplier product imagery | Passed for publication | Owner confirmed the supplied images depict the Docked product and approved their use. Fixed, non-generative crops remove unsupported promotional overlays; derivative hashes and source custody are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`. |
 | PayPal product/price/currency | Passed | Fresh hosted checkout showed Docked Cruise D2, A$649.00 and AUD. |
 | PayPal delivery capture | Passed | Card flow requested a delivery address and exposed worldwide countries; no data was entered. |
 | Shipping offer | Owner approved | Free worldwide shipping, subject to carrier service and local restrictions. |
 | Real payment | Not run | No real payment was authorised or completed. |
-| Working-branch push | Passed | Commit `be44b0d34be1987b3bdc13bd2ce864b02182b55e` is pushed to `origin/codex/docked-static-paypal-launch`. |
-| Production promotion | Passed | `main` was fast-forwarded without force to `a4d9075e13a90a03a8587b5641626f0d42a36160`; Pages [run #97](https://github.com/bginty/docked/actions/runs/31872052450) completed successfully. |
+| Working-branch push | Passed | Product-led revision `f3475f2d60aa7ce011b726cf6a4d6050c8baee39` is pushed to `origin/codex/docked-static-paypal-launch`. |
+| Production promotion | Passed | `main` was fast-forwarded without force to `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`; Pages [run #98](https://github.com/bginty/docked/actions/runs/31874058651) completed successfully. |
+| Public rendered verification | Passed with stated limits | The live page rendered the new product-led hero, supplier imagery, A$649 offer, free-shipping copy, gallery controls and PayPal Hosted Button. No first-party Docked console error was observed; PayPal emitted its own Pay Later/Apple Pay eligibility diagnostics. |
 | Public HTTPS verification | HTTPS live; enforcement pending | Valid HTTPS returned the current storefront; `www` redirected to the HTTPS apex. Plain `http://docked.com.au/` still returned `200` instead of redirecting, and GitHub's Pages API reported `https_enforced: false`. |
 
 ## Final deployment record
 
-- Static-site working commit: `be44b0d34be1987b3bdc13bd2ce864b02182b55e`
-- Production commit: `a4d9075e13a90a03a8587b5641626f0d42a36160`
-- GitHub Pages deployment: workflow `pages build and deployment`, run `97`, run ID `31872052450`, deployment ID `5918312600`, completed successfully at `2026-08-15T07:29:19Z`
-- Production tag: `docked-static-paypal-launch-2026-08` (annotated tag object `c9510d884b79248d98f837047d10cc7fd9762c3d`, peeled commit `a4d9075e13a90a03a8587b5641626f0d42a36160`)
-- Live verification time: `2026-08-15 17:36:28 AEST`
+- Static-site working commit: `f3475f2d60aa7ce011b726cf6a4d6050c8baee39`
+- Production commit: `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`
+- GitHub Pages deployment: workflow `pages build and deployment`, run `98`, run ID `31874058651`, deployment ID `5918633369`, completed successfully at `2026-08-15T08:16:35Z`
+- Production tag: `docked-static-paypal-launch-2026-08` remains the immutable initial-launch tag (annotated tag object `c9510d884b79248d98f837047d10cc7fd9762c3d`, peeled commit `a4d9075e13a90a03a8587b5641626f0d42a36160`); it was not moved for this product-media revision.
+- Live verification window: `2026-08-15 18:18–18:20 AEST`
 - Logged-out production URL: `https://docked.com.au`
 
-The live audit confirmed the current homepage, all public pages and assets, the custom 404, canonical metadata, robots and sitemap, and the production PayPal Hosted Button. All checked legacy finance-only routes returned the branded 404. A real payment, seller-side transaction record, payment email, refund and PayPal return URL remain deliberately untested.
+The live audit confirmed the product-led homepage, supplier-image derivatives, gallery interaction, all public pages, the custom 404 and the production PayPal Hosted Button. The current page had no horizontal overflow in the inspected desktop viewport and contained one understated `18+` mention beside ordering. Checked retired finance routes returned the branded 404. A real payment, seller-side transaction record, payment email, refund and PayPal return URL remain deliberately untested.
