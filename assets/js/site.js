@@ -287,14 +287,16 @@
     function showPanel(index, focusThumb) {
       activeIndex = (index + panels.length) % panels.length;
       panels.forEach(function (panel, panelIndex) {
-        panel.hidden = panelIndex !== activeIndex;
+        var selected = panelIndex === activeIndex;
+        panel.hidden = !selected;
+        panel.setAttribute("aria-hidden", String(!selected));
       });
       thumbs.forEach(function (thumb, thumbIndex) {
         var selected = thumbIndex === activeIndex;
         thumb.setAttribute("aria-selected", String(selected));
         thumb.tabIndex = selected ? 0 : -1;
       });
-      if (focusThumb) thumbs[activeIndex].focus();
+      if (focusThumb && thumbs[activeIndex]) thumbs[activeIndex].focus();
     }
 
     thumbs.forEach(function (thumb, index) {
@@ -362,17 +364,18 @@
   });
 
   var mobileBuyBar = document.querySelector("[data-mobile-buy-bar]");
-  var hero = document.querySelector(".hero");
-  var checkoutSection = document.querySelector("#checkout") || document.querySelector("#ordering");
   var checkoutRoot = document.querySelector("#paypal-checkout-root") || document.querySelector("[data-paypal-checkout-root]");
   var checkoutStatus = document.querySelector("[data-checkout-status]");
-  var heroVisible = true;
-  var checkoutVisible = false;
-  var checkoutAvailable = false;
+  var checkoutAvailable = Boolean(product && product.checkoutEnabled);
+  var alternatePurchaseSurfaces = Array.from(document.querySelectorAll(
+    ".hero-actions [data-buy-cta], #checkout, .final-cta [data-buy-cta]"
+  ));
+  var visiblePurchaseSurfaces = new Set();
+  var purchaseVisibilityReady = alternatePurchaseSurfaces.length === 0 || !("IntersectionObserver" in window);
 
   function updateMobileBuyBar() {
     if (!mobileBuyBar) return;
-    var show = checkoutAvailable && !heroVisible && !checkoutVisible;
+    var show = checkoutAvailable && purchaseVisibilityReady && visiblePurchaseSurfaces.size === 0;
     mobileBuyBar.dataset.hidden = String(!show);
     document.body.classList.toggle("has-mobile-buy-bar", show);
   }
@@ -473,21 +476,21 @@
       });
   }
 
-  if (mobileBuyBar) mobileBuyBar.dataset.hidden = "true";
-  if (hero && checkoutSection && "IntersectionObserver" in window) {
-    var heroObserver = new IntersectionObserver(function (entries) {
-      heroVisible = entries.some(function (entry) { return entry.isIntersecting; });
+  if (alternatePurchaseSurfaces.length && "IntersectionObserver" in window) {
+    var purchaseObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) visiblePurchaseSurfaces.add(entry.target);
+        else visiblePurchaseSurfaces.delete(entry.target);
+      });
+      purchaseVisibilityReady = true;
       updateMobileBuyBar();
     }, { threshold: 0 });
-    var checkoutObserver = new IntersectionObserver(function (entries) {
-      checkoutVisible = entries.some(function (entry) { return entry.isIntersecting; });
-      updateMobileBuyBar();
-    }, { threshold: 0.1 });
-    heroObserver.observe(hero);
-    checkoutObserver.observe(checkoutSection);
-  } else if (mobileBuyBar) {
-    mobileBuyBar.dataset.hidden = "true";
+    alternatePurchaseSurfaces.forEach(function (surface) {
+      purchaseObserver.observe(surface);
+    });
   }
+
+  updateMobileBuyBar();
 
   initCheckout();
 }());

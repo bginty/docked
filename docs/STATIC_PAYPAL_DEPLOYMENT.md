@@ -1,8 +1,8 @@
 # Docked static PayPal deployment record
 
-Status: screenshot-reference revision live on `docked.com.au`; PayPal Hosted Button rendered; HTTP-to-HTTPS enforcement pending
+Status: screenshot-reference revision remains live on `docked.com.au`; summer-feedback revision passed local automated and rendered QA and awaits deployment; HTTP-to-HTTPS enforcement remains pending
 
-Last updated: 15 August 2026 (AEST)
+Last updated: 16 August 2026 (AEST)
 
 ## Deployment scope
 
@@ -15,6 +15,49 @@ Last updated: 15 August 2026 (AEST)
 - DNS and email DNS: unchanged by this release
 
 The public production commit contains only the 31-file static web output. Development tests, source-image custody files, processing scripts, evidence records, screenshots and Shopify history remain on the working branch and in Git history; they are not copied into the Pages root.
+
+## Summer-feedback candidate — local, not deployed
+
+The owner approved implementing the unambiguous visual and merchandising changes supplied in `Website Ideas.eml`, while retaining the existing Docked logo and `Cruise D2` product name. At the time of this record, these changes exist only in the working tree on `codex/docked-static-paypal-launch`. They have not been committed, pushed, promoted to `main` or verified on `docked.com.au`.
+
+The candidate:
+
+- brightens the established palette with sunshine yellow, pool cyan, coral and navy accents;
+- removes the small hero product eyebrow while keeping the approved feature-board-first sales sequence and `$649 AUD · Free shipping` offer;
+- uses fixed, deterministic crops of the approved `Man on Float.png` and `Girl on Float.png` email attachments in the “More than a float” and “Control from your seat” panels;
+- removes the redundant lifestyle-image caption and simplifies the specifications introduction;
+- restores a three-panel product slideshow with explicit tab/tabpanel relationships and keyboard navigation; and
+- makes the real `#checkout` purchase action contextually persistent when checkout is enabled: it appears only when the hero, checkout and final purchase action are outside the viewport.
+
+The feature-board and both lifestyle sources contain C2PA provenance identifying `gpt-image v2.0` and the digital-source type `trainedAlgorithmicMedia`. The site therefore presents the feature board as a visible “Supplier product illustration” and each lifestyle image as a visible “Supplier lifestyle illustration”; their alt text also identifies them as illustrations. Cropping, resizing, redaction and encoding are deterministic, but the underlying sources are AI-credentialed and are not represented as documentary product photographs.
+
+The candidate feature board preserves the supplied depiction, layout and approved callouts. A deterministic water-texture patch removes only the sentence “Strong and stable design for a safe and comfortable ride.” and adds no replacement box or claim. The owner's publication approval is recorded, but no independent speed/performance test or 160 kg load-bearing test was supplied or reviewed. Owner approval is not recorded as technical substantiation for that qualitative safety/comfort statement. Full C2PA provenance, source custody, crop coordinates, processing details and byte hashes are in `docs/STATIC_SITE_ASSET_REGISTER.md`.
+
+The planned public candidate payload is limited to these eight paths:
+
+- `assets/css/styles.css`
+- `assets/images/product/cruise-d2-features.jpg`
+- `assets/images/product/cruise-d2-lifestyle-man-1200.webp`
+- `assets/images/product/cruise-d2-lifestyle-man-600.webp`
+- `assets/images/product/cruise-d2-lifestyle-woman-1200.webp`
+- `assets/images/product/cruise-d2-lifestyle-woman-600.webp`
+- `assets/js/site.js`
+- `index.html`
+
+The processing script, asset register, validator, tests and QA records are working-branch evidence rather than public Pages payload. The configured PayPal public client ID, hosted-button ID `FGAUDYCA2LX36`, product identity, price, currency and shipping copy are unchanged.
+
+Local automated evidence recorded on 16 August 2026:
+
+- `npm run validate`: 51/51 passed;
+- `npm test`: 15/15 passed;
+- `node --check` passed for `assets/js/site.js`, `assets/js/product-config.js`, `scripts/validate-static-site.mjs` and `tests/static-site.test.mjs`; and
+- `git diff --check`: passed.
+
+Fresh local rendered QA passed at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. Every viewport had no page-wide overflow or broken image, displayed all three supplier-illustration disclosures, retained the man illustration's 1.5 aspect ratio with computed `min-height: 0px`, and showed the persistent purchase bar only when no alternate purchase surface was visible. The bar remained hidden while the hero action, checkout or final action was visible.
+
+At 390 CSS pixels, gallery click and `ArrowRight` navigation reached the `Poolside` panel, the mobile menu opened and closed with `Escape`, and PayPal rendered two iframes with `Docked Cruise D2` at `$649.00 AUD`. Activating the persistent CTA reached `#checkout` with the checkout heading at approximately 112 CSS pixels from the viewport top; the bar was hidden there. No first-party Docked console error was observed. PayPal emitted its third-party `ncps_standalone_paylater_ineligible` diagnostic and Apple Pay configuration messages. Six screenshots are recorded in `docs/qa/static-preview/summer-feedback/`.
+
+Production promotion, Pages workflow evidence and live-domain QA remain pending. No Lighthouse, automated accessibility, real-payment or live-deployment result is claimed for the candidate. No buyer or payment data was entered. The detailed candidate QA register is `docs/qa/static-preview/summer-feedback/README.md`.
 
 ## Screenshot-reference production revision
 
@@ -80,7 +123,7 @@ The public identifier in the SDK URL and the hosted-button ID are intentionally 
 | Screenshot-reference hierarchy | Passed locally and live | Full feature board first, followed by product label, headline, supporting copy, `$649 AUD` offer and purchase actions at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. |
 | Responsive live matrix | Passed | At all seven live viewports, `scrollWidth` equalled `clientWidth`, the feature image remained contained and the secondary hero action remained visible. |
 | Seller-detail placement | Passed live | Company name, ABN and support email are outside homepage sales content and grouped in the bottom footer. |
-| Supplier product imagery | Passed for publication | Owner confirmed the supplied images depict the Docked product and approved their use. Fixed, non-generative crops remove unsupported promotional overlays; derivative hashes and source custody are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`. |
+| Supplier product imagery | Passed for the deployed revision | Owner confirmed the supplied imagery and approved its use. Derivative processing is deterministic. The summer-feedback candidate's feature-board and lifestyle sources are separately recorded as C2PA `gpt-image v2.0` / `trainedAlgorithmicMedia` and are visibly labelled supplier illustrations; hashes, processing and source custody are in `docs/STATIC_SITE_ASSET_REGISTER.md`. |
 | PayPal product/price/currency | Passed locally and live | The hosted widget showed Docked Cruise D2 and `$649.00 AUD`; no payment was submitted. |
 | Shipping offer copy | Passed live | Customer-facing copy says `Free shipping` with no geographic qualifier; no `worldwide` copy was visible. |
 | Real payment | Not run | No real payment was authorised or completed. |

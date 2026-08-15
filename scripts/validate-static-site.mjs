@@ -32,6 +32,10 @@ const requiredFiles = [
   'assets/images/product/cruise-d2-overview-600.webp',
   'assets/images/product/cruise-d2-controls-1200.webp',
   'assets/images/product/cruise-d2-controls-600.webp',
+  'assets/images/product/cruise-d2-lifestyle-man-1200.webp',
+  'assets/images/product/cruise-d2-lifestyle-man-600.webp',
+  'assets/images/product/cruise-d2-lifestyle-woman-1200.webp',
+  'assets/images/product/cruise-d2-lifestyle-woman-600.webp',
   'assets/images/product/cruise-d2-features.jpg',
   'assets/images/product/cruise-d2-social-1200.jpg',
   'docs/STATIC_SITE_ASSET_REGISTER.md',
@@ -149,10 +153,14 @@ if (missing.length === 0) {
     ['assets/images/product/cruise-d2-overview-600.webp', '2657B7F06D570D7C2F60D8B345D095ECA10E728562CC563F3082F76F5EDF8BB2'],
     ['assets/images/product/cruise-d2-controls-1200.webp', '70A780E4E1F8BF0A13FB98F5B14B6D56EB8883125F6D241373B34C15D76F5340'],
     ['assets/images/product/cruise-d2-controls-600.webp', 'E5E6DA93DA8256346D8B5A86AF56490DA5472827BD2B33E0DC9EF92CB8986DD8'],
+    ['assets/images/product/cruise-d2-lifestyle-man-1200.webp', 'F4000655664C9C191FA490741D69ED626B5DEA58AFCA31E6153A37FE5BAE5532'],
+    ['assets/images/product/cruise-d2-lifestyle-man-600.webp', '3F6DCFE50254F91A1C17172DB90969C92C26DFC6E136DC2893E9D395687B0221'],
+    ['assets/images/product/cruise-d2-lifestyle-woman-1200.webp', 'FFC9A0077793CE2AEE2FA310FCCC175581089695900B5F6EC4B111381F76E89B'],
+    ['assets/images/product/cruise-d2-lifestyle-woman-600.webp', '1BD22C4389CE63B689AE22F6F1D7D579714D8669D9D32ED7BB30F50E921FF0FC'],
     ['assets/images/product/cruise-d2-social-1200.jpg', '852B87ACA39C0599C23EA7414892FE1B38362AADF262957A885CFF4AF601FAFF'],
   ]);
   const productImageDrift = [...productImageHashes].filter(([file, hash]) => sha256(file) !== hash).map(([file]) => file);
-  assert('assets.product-media', productImageDrift.length === 0, productImageDrift.length ? `Unexpected product-media bytes: ${productImageDrift.join(', ')}` : 'Seven approved supplier-image derivatives match the asset register');
+  assert('assets.product-media', productImageDrift.length === 0, productImageDrift.length ? `Unexpected product-media bytes: ${productImageDrift.join(', ')}` : 'Eleven approved supplier-image derivatives match their locked bytes');
 
   const featureImagePath = 'assets/images/product/cruise-d2-features.jpg';
   const featureImage = fs.readFileSync(path.join(root, featureImagePath));
@@ -161,11 +169,38 @@ if (missing.length === 0) {
     featureImage.subarray(0, 64).includes(Buffer.from('JFIF\0', 'ascii')) &&
     featureImage.at(-2) === 0xff && featureImage.at(-1) === 0xd9;
   assert('assets.feature-image-format', isJfifJpeg, `${featureImagePath} uses a .jpg extension and valid JPEG/JFIF bytes`);
-  const approvedFeatureHash = '3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523';
+  const approvedFeatureHash = 'CBF4A3F9508F01A17732FC24853ECEDD1B99CFE3CD3A5BEB104023DDE8FE01A7';
   assert(
     'assets.feature-image-approved-derivative',
     sha256(featureImagePath) === approvedFeatureHash,
     'Feature image matches the registered text-redacted supplier derivative',
+  );
+
+  const assetRegister = read('docs/STATIC_SITE_ASSET_REGISTER.md');
+  function hasNearbyProvenance(anchorPattern) {
+    const matches = [...assetRegister.matchAll(new RegExp(anchorPattern.source, 'gi'))];
+    return matches.some((match) => {
+      const excerpt = assetRegister.slice(Math.max(0, match.index - 2500), match.index + match[0].length + 2500);
+      return /gpt-image\s+v2\.0/i.test(excerpt) && /trainedAlgorithmicMedia/i.test(excerpt) && /C2PA/i.test(excerpt);
+    });
+  }
+  const falseProvenanceStatements = [
+    /Actual source encoding[^\n]*no embedded image metadata/i,
+    /Neither PNG contains embedded image metadata/i,
+  ].filter((pattern) => pattern.test(assetRegister)).map(String);
+  const provenanceAnchors = [
+    /cruise-d2-features\.jpg/i,
+    /Man on Float\.png/i,
+    /Girl on Float\.png/i,
+  ];
+  const missingProvenance = provenanceAnchors.filter((pattern) => !hasNearbyProvenance(pattern)).map(String);
+  assert(
+    'assets.ai-provenance-register',
+    missingProvenance.length === 0 && falseProvenanceStatements.length === 0 &&
+      /supplier(?:[- ]provided)?(?:\s+(?:product|lifestyle))?\s+illustrations?/i.test(assetRegister),
+    missingProvenance.length || falseProvenanceStatements.length
+      ? `Missing/contradictory C2PA provenance: missing=${missingProvenance.join(', ') || 'none'}; false statements=${falseProvenanceStatements.join(', ') || 'none'}`
+      : 'Feature board and both lifestyle sources are explicitly registered as supplier-provided illustrations with C2PA gpt-image v2.0 / trainedAlgorithmicMedia provenance',
   );
 
   const index = htmlByFile.get('index.html');
@@ -182,6 +217,13 @@ if (missing.length === 0) {
   const checkoutEnabled = productConfig?.checkoutEnabled === true;
   const publicClientId = productConfig?.paypal?.clientId ?? '';
   const hostedButtonId = productConfig?.paypal?.hostedButtonId ?? '';
+  const approvedPaypalClientFingerprint = '2679020198760B81224A5A742EA2574BCFEEDA85A11CBC84B3C638D2F2FB207F';
+  const approvedPaypalButtonFingerprint = 'A83A02BEAA6ADD3FB65A29CBD09F0DAF7714AC8982161D804205147242274C1C';
+  const paypalConfigurationUnchanged =
+    createHash('sha256').update(publicClientId).digest('hex').toUpperCase() === approvedPaypalClientFingerprint &&
+    createHash('sha256').update(hostedButtonId).digest('hex').toUpperCase() === approvedPaypalButtonFingerprint &&
+    productConfig?.paypal?.components === 'hosted-buttons' && productConfig?.paypal?.disableFunding === 'venmo' &&
+    productConfig?.currency === 'AUD';
   const runtimeFilesWithoutConfig = [...requiredPages, 'assets/js/site.js'].map((file) => read(file)).join('\n');
   const paypalSdkInHtml = (requiredPages.map((file) => read(file)).join('\n').match(/https:\/\/www\.paypal\.com\/sdk\/js/gi) ?? []).length;
   const neutralCheckoutRoots = (index.match(/id=["']paypal-checkout-root["']/g) ?? []).length;
@@ -208,6 +250,13 @@ if (missing.length === 0) {
       'Checkout disabled: no PayPal URL, SDK, hosted-button ID, container, form, iframe, or credentials',
     );
   }
+  assert(
+    'checkout.paypal-configuration-unchanged',
+    checkoutEnabled && paypalConfigurationUnchanged,
+    checkoutEnabled && paypalConfigurationUnchanged
+      ? 'The approved PayPal client, hosted button, component, currency, and funding configuration is unchanged'
+      : 'The approved PayPal hosted-button configuration has drifted',
+  );
 
   const purchaseControlIssues = [];
   const purchaseCtas = [];
@@ -266,11 +315,9 @@ if (missing.length === 0) {
   const featureImagePosition = afterHeader.search(/<img\b(?=[^>]*\bdata-cruise-d2-feature-image\b)[^>]*>/i);
   const heroCopyPosition = afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-copy\b/i);
   const heroTitlePosition = afterHeader.search(/<h1\b[^>]*\bid=["']hero-title["']/i);
-  const featureLabelPosition = afterHeader.search(/<p\b[^>]*class=["'][^"']*\beyebrow\b[^"']*["'][^>]*>\s*Docked Cruise D2\s*<\/p>/i);
   const firstSectionEnd = afterHeader.search(/<\/section\s*>/i);
   const approvedHeroSequence = [
     featureImagePosition,
-    featureLabelPosition,
     heroTitlePosition,
     afterHeader.search(/A motorised inflatable water lounger with dual joystick control\./i),
     afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-offer\b/i),
@@ -286,6 +333,35 @@ if (missing.length === 0) {
       featureImagePosition >= 0 && firstSectionEnd > featureImagePosition &&
       heroCopyPosition > featureImagePosition && heroTitlePosition > featureImagePosition && sequenceIsOrdered,
     `Hero sequence positions: ${approvedHeroSequence.join(', ')}; first post-header image=${/\bdata-cruise-d2-feature-image\b/i.test(firstPostHeaderImage) ? 'approved feature image' : firstPostHeaderImage || '(missing)'}`,
+  );
+
+  const heroSection = firstSectionEnd >= 0 ? afterHeader.slice(0, firstSectionEnd + 10) : '';
+  const valueSectionStart = index.search(/<section\b[^>]*class=["'][^"']*\bvalue-section\b/i);
+  const valueSectionEnd = valueSectionStart >= 0 ? index.indexOf('</section>', valueSectionStart) : -1;
+  const valueSection = valueSectionStart >= 0 && valueSectionEnd > valueSectionStart
+    ? index.slice(valueSectionStart, valueSectionEnd + 10)
+    : '';
+  const specsSectionStart = index.search(/<section\b[^>]*\bid=["']specifications["']/i);
+  const specsSectionEnd = specsSectionStart >= 0 ? index.indexOf('</section>', specsSectionStart) : -1;
+  const specsSection = specsSectionStart >= 0 && specsSectionEnd > specsSectionStart
+    ? index.slice(specsSectionStart, specsSectionEnd + 10)
+    : '';
+  assert(
+    'content.approved-copy-simplification',
+    heroSection.length > 0 && !/\beyebrow\b/i.test(heroSection) &&
+      valueSection.length > 0 && !/Full-length lounging profile/i.test(index) &&
+      specsSection.length > 0 && /<h2\b[^>]*\bid=["']specifications-title["'][^>]*>\s*Cruise D2 specifications\.\s*<\/h2>/i.test(specsSection) &&
+      !/\beyebrow\b/i.test(specsSection) && !/class=["'][^"']*\blede\b/i.test(specsSection),
+    'Hero eyebrow, obsolete overview caption, and specifications eyebrow/lede are removed while the concise specifications heading remains',
+  );
+
+  const brandLink = index.match(/<a\b(?=[^>]*class=["'][^"']*\bbrand\b)[^>]*>[\s\S]*?<\/a>/i)?.[0] ?? '';
+  assert(
+    'brand.current-name-and-logo',
+    productConfig?.brand === 'Docked' && productConfig?.name === 'Docked Cruise D2' &&
+      /href=["']\/["']/i.test(brandLink) && /src=["']\/assets\/images\/brand-mark\.svg["']/i.test(brandLink) &&
+      /alt=["']Docked["']/i.test(brandLink),
+    'The Docked name, Cruise D2 product name, and current Docked brand-mark.svg header logo remain unchanged',
   );
 
   const footerStart = index.search(/<footer\b/i);
@@ -306,12 +382,42 @@ if (missing.length === 0) {
       ? `Homepage legal/support details found above footer: ${legalIdentityOutsideFooter.join(', ')}`
       : `Footer legal block=${footerHasLegalBlock ? 'present' : 'missing or out of order'}`,
   );
+  const controlSectionStart = index.search(/<section\b[^>]*aria-labelledby=["']control-title["']/i);
+  const controlSectionEnd = controlSectionStart >= 0 ? index.indexOf('</section>', controlSectionStart) : -1;
+  const controlSection = controlSectionStart >= 0 && controlSectionEnd > controlSectionStart
+    ? index.slice(controlSectionStart, controlSectionEnd + 10)
+    : '';
+  const publicFigures = [...index.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi)].map((match) => match[0]);
+  const illustrationMedia = [
+    { label: 'feature board', path: 'cruise-d2-features.jpg' },
+    { label: 'man lifestyle', path: 'cruise-d2-lifestyle-man-1200.webp' },
+    { label: 'woman lifestyle', path: 'cruise-d2-lifestyle-woman-1200.webp' },
+  ];
+  const illustrationDisclosureIssues = [];
+  for (const media of illustrationMedia) {
+    const figure = publicFigures.find((candidate) => candidate.includes(media.path)) ?? '';
+    const image = figure.match(new RegExp(`<img\\b(?=[^>]*${media.path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})[^>]*>`, 'i'))?.[0] ?? '';
+    const disclosure = figure.match(/<([a-z][a-z0-9]*)\b(?=[^>]*class=["'][^"']*\bmedia-disclosure\b)[^>]*>([\s\S]*?)<\/\1>/i);
+    const disclosureAttrs = disclosure?.[0]?.slice(0, disclosure[0].indexOf('>') + 1) ?? '';
+    if (!figure) illustrationDisclosureIssues.push(`${media.label}: missing associated figure`);
+    if (!/\balt=["'][^"']*\billustration\b[^"']*["']/i.test(image)) illustrationDisclosureIssues.push(`${media.label}: alt text must say illustration`);
+    if (!disclosure || !/supplier\s+(?:product|lifestyle)\s+illustration/i.test(visibleText(disclosure[2]))) illustrationDisclosureIssues.push(`${media.label}: visible supplier illustration disclosure missing`);
+    if (/\bhidden\b|aria-hidden=["']true["']/i.test(disclosureAttrs)) illustrationDisclosureIssues.push(`${media.label}: disclosure is hidden`);
+  }
+  assert(
+    'assets.visible-illustration-disclosures',
+    illustrationDisclosureIssues.length === 0,
+    illustrationDisclosureIssues.length
+      ? illustrationDisclosureIssues.join('; ')
+      : 'Feature board, man lifestyle and woman lifestyle figures each have illustration alt text and an associated visible supplier illustration disclosure',
+  );
   assert(
     'content.product-first',
-    /cruise-d2-overview-1200\.webp/.test(index) && /cruise-d2-controls-1200\.webp/.test(index) &&
+    /cruise-d2-lifestyle-man-1200\.webp/.test(valueSection) && /cruise-d2-lifestyle-woman-1200\.webp/.test(controlSection) &&
+      !/cruise-d2-overview-(?:600|1200)\.webp/.test(valueSection) && !/cruise-d2-controls-(?:600|1200)\.webp/.test(controlSection) &&
       /cruise-d2-features\.jpg/.test(index) && /\bdata-cruise-d2-feature-image\b/.test(index) &&
       !/unverified performance|original brand illustrations|the Docked approach|confirmed before dispatch/i.test(publicText),
-    'Homepage uses the approved lead feature graphic and supporting product imagery with no internal compliance-preview copy',
+    'Homepage uses the approved lead feature graphic, man and woman lifestyle derivatives, and no internal compliance-preview copy',
   );
 
   const configurationText = JSON.stringify(productConfig ?? {});
@@ -340,6 +446,10 @@ if (missing.length === 0) {
 
   const unsafeMarketingPatterns = [
     /\bsafe\b/i,
+    /\bstrong\s+and\s+stable\s+design\b/i,
+    /\b90[- ]minute\s+runtime\b/i,
+    /\b66\s*w\s+dual\s+motors?\b/i,
+    /\blong[- ]lasting\s+battery\b/i,
     /\bunsinkable\b/i,
     /\b(?:ocean|surf|boating)\b/i,
     /\bwaterproof\s+(?:electronics?|electrical|motor|battery|controller?|controls?)\b/i,
@@ -354,7 +464,7 @@ if (missing.length === 0) {
     /\b(?:in stock|low stock|only \d+ left|compare-at|was a\$|save \d+%)\b/i,
   ];
   const unsafeMarketingHits = unsafeMarketingPatterns.filter((pattern) => pattern.test(marketingText)).map(String);
-  assert('claims.no-unsafe-marketing', unsafeMarketingHits.length === 0, unsafeMarketingHits.length ? `Unsafe or unsupported marketing: ${unsafeMarketingHits.join(', ')}` : 'No safety, marine, open-water, durability, range, stability, urgency, or stock claims');
+  assert('claims.no-unsafe-marketing', unsafeMarketingHits.length === 0, unsafeMarketingHits.length ? `Unsafe or unsupported marketing: ${unsafeMarketingHits.join(', ')}` : 'No safety, unverified runtime/power, marine, open-water, durability, range, stability, urgency, or stock claims');
 
   const capacitySafetyPatterns = [
     /160\s*kg.{0,100}\b(?:safe|safety|stable|stability|strength|certified|approved|tested)\b/is,
@@ -372,14 +482,119 @@ if (missing.length === 0) {
     'Product configuration retains null placeholders while site.js filters them from the specifications UI',
   );
 
+  const css = read('assets/css/styles.css');
+  const productPhotoImageRules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .filter((match) => match[1].split(',').some((selector) => selector.trim() === '.product-photo-card img'))
+    .map((match) => match[2]);
+  const productPhotoDeclarations = productPhotoImageRules.flatMap((body) => body.split(';'))
+    .map((declaration) => declaration.trim())
+    .filter(Boolean)
+    .map((declaration) => {
+      const colon = declaration.indexOf(':');
+      return colon >= 0
+        ? { property: declaration.slice(0, colon).trim().toLowerCase(), value: declaration.slice(colon + 1).trim().toLowerCase() }
+        : { property: '', value: '' };
+    });
+  const cropForcingDeclarations = productPhotoDeclarations.filter(({ property, value }) =>
+    (property === 'min-height' && !/^0(?:[a-z%]+)?(?:\s*!important)?$/i.test(value)) ||
+    (property === 'height' && !/^auto(?:\s*!important)?$/i.test(value)) ||
+    (property === 'max-height' && !/^none(?:\s*!important)?$/i.test(value)) ||
+    (property === 'clip-path' && !/^none(?:\s*!important)?$/i.test(value)) ||
+    (property === 'transform' && /scale/i.test(value)));
+  const manImageTag = valueSection.match(/<img\b(?=[^>]*cruise-d2-lifestyle-man-1200\.webp)[^>]*>/i)?.[0] ?? '';
+  assert(
+    'assets.lifestyle-man-no-css-crop',
+    productPhotoImageRules.length > 0 &&
+      productPhotoImageRules.some((body) => /\baspect-ratio\s*:\s*3\s*\/\s*2\b/i.test(body)) &&
+      productPhotoImageRules.some((body) => /\bmin-height\s*:\s*0(?:[a-z%]+)?\b/i.test(body)) &&
+      cropForcingDeclarations.length === 0 &&
+      /\bwidth=["']1200["']/i.test(manImageTag) && /\bheight=["']800["']/i.test(manImageTag),
+    cropForcingDeclarations.length
+      ? `Crop-forcing .product-photo-card img declarations: ${cropForcingDeclarations.map(({ property, value }) => `${property}: ${value}`).join('; ')}`
+      : 'The 1200 × 800 man illustration retains a 3:2 CSS frame with min-height 0 and no fixed-height, clipping, or scaling crop rule',
+  );
+  const mediaDisclosureRules = [...css.matchAll(/[^{}]*\.media-disclosure[^{]*\{([^}]*)\}/gi)].map((match) => match[1]).join('\n');
+  const disclosureCssHidden = /display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0(?:\D|$)|clip(?:-path)?\s*:/i.test(mediaDisclosureRules);
+  assert(
+    'assets.illustration-disclosure-visible-css',
+    mediaDisclosureRules.length > 0 && !disclosureCssHidden,
+    mediaDisclosureRules.length > 0 && !disclosureCssHidden
+      ? 'Supplier illustration disclosures have visible screen styling'
+      : 'Supplier illustration disclosure CSS is missing or hides the disclosure',
+  );
+  const sunshineUses = (css.match(/var\(--sunshine\)/g) ?? []).length;
+  const sunshineDeepUses = (css.match(/var\(--sunshine-deep\)/g) ?? []).length;
+  assert(
+    'design.summer-palette',
+    /--sunshine\s*:\s*#ffd43b\b/i.test(css) && /--sunshine-deep\s*:\s*#edae00\b/i.test(css) &&
+      /--pool-bright\s*:\s*#13bfe6\b/i.test(css) && /--coral\s*:\s*#e95032\b/i.test(css) &&
+      sunshineUses >= 4 && sunshineDeepUses >= 1,
+    `Summer palette tokens are defined and applied (sunshine uses=${sunshineUses}, sunshine-deep uses=${sunshineDeepUses})`,
+  );
+
+  const galleryRoot = index.match(/<([a-z][a-z0-9]*)\b(?=[^>]*\bdata-gallery\b)(?=[^>]*\bdata-product-gallery\b)[^>]*>/i)?.[0] ?? '';
+  const galleryStage = index.match(/<([a-z][a-z0-9]*)\b(?=[^>]*\bdata-gallery-stage\b)[^>]*>/i)?.[0] ?? '';
+  const galleryPanels = [...index.matchAll(/<figure\b(?=[^>]*\bdata-gallery-panel\b)([^>]*)>/gi)].map((match) => match[1]);
+  const galleryTabs = [...index.matchAll(/<button\b(?=[^>]*\bdata-gallery-target\b)([^>]*)>/gi)].map((match) => match[1]);
+  const panelIds = new Set(galleryPanels.map((attrs) => attrs.match(/\bid=["']([^"']+)["']/i)?.[1]).filter(Boolean));
+  const tabIds = new Set(galleryTabs.map((attrs) => attrs.match(/\bid=["']([^"']+)["']/i)?.[1]).filter(Boolean));
+  const tabsMapToPanels = galleryTabs.every((attrs) => {
+    const target = attrs.match(/\baria-controls=["']([^"']+)["']/i)?.[1];
+    return /\btype=["']button["']/i.test(attrs) && /\brole=["']tab["']/i.test(attrs) && target && panelIds.has(target);
+  });
+  const panelsMapToTabs = galleryPanels.every((attrs) => {
+    const label = attrs.match(/\baria-labelledby=["']([^"']+)["']/i)?.[1];
+    return /\brole=["']tabpanel["']/i.test(attrs) && label && tabIds.has(label);
+  });
+  const selectedTabs = galleryTabs.filter((attrs) => /\baria-selected=["']true["']/i.test(attrs)).length;
+  const unselectedTabsAreUntabbable = galleryTabs.every((attrs) =>
+    /\baria-selected=["']true["']/i.test(attrs) || /\btabindex=["']-1["']/i.test(attrs));
+  const galleryKeyboardContract =
+    /addEventListener\(["']click["']/.test(siteScript) && /addEventListener\(["']keydown["']/.test(siteScript) &&
+    /ArrowRight/.test(siteScript) && /ArrowDown/.test(siteScript) && /ArrowLeft/.test(siteScript) &&
+    /ArrowUp/.test(siteScript) && /event\.key\s*===\s*["']Home["']/.test(siteScript) &&
+    /event\.key\s*===\s*["']End["']/.test(siteScript) && /thumb\.tabIndex\s*=/.test(siteScript) &&
+    /panel\.hidden\s*=/.test(siteScript) && /panel\.setAttribute\(["']aria-hidden["']/.test(siteScript);
+  assert(
+    'product.accessible-slideshow',
+    galleryRoot.length > 0 && /\baria-live=["']polite["']/i.test(galleryStage) && /\baria-describedby=["'][^"']+["']/i.test(galleryStage) &&
+      galleryPanels.length === 3 && galleryTabs.length === 3 && panelIds.size === 3 && tabIds.size === 3 &&
+      tabsMapToPanels && panelsMapToTabs && selectedTabs === 1 && unselectedTabsAreUntabbable && galleryKeyboardContract,
+    `Gallery root=${Boolean(galleryRoot)}, panels=${galleryPanels.length}, tabs=${galleryTabs.length}, selected tabs=${selectedTabs}, mapped=${tabsMapToPanels && panelsMapToTabs}, keyboard=${galleryKeyboardContract}`,
+  );
+
+  const persistentBuyBar = index.match(/<aside\b(?=[^>]*\bdata-persistent-buy-bar\b)[^>]*>[\s\S]*?<\/aside>/i)?.[0] ?? '';
+  const persistentBaseRule = css.match(/\.mobile-buy-bar\s*\{([^}]*)\}/i)?.[1] ?? '';
+  const printMediaPosition = css.search(/@media\s+print\b/i);
+  const screenCss = css.slice(0, printMediaPosition >= 0 ? printMediaPosition : css.length);
+  const persistentRules = [...screenCss.matchAll(/[^{}]*\.(?:mobile-buy-bar|persistent-buy-bar)[^{]*\{([^}]*)\}/gi)].map((match) => match[1]).join('\n');
+  const persistentRuntimeContract =
+    /querySelector\(["']\[data-mobile-buy-bar\]["']\)/.test(siteScript) &&
+    /querySelectorAll\(\s*["']\.hero-actions \[data-buy-cta\], #checkout, \.final-cta \[data-buy-cta\]["']\s*\)/.test(siteScript) &&
+    /visiblePurchaseSurfaces\s*=\s*new Set\(\)/.test(siteScript) &&
+    /purchaseVisibilityReady\s*=/.test(siteScript) && /new IntersectionObserver\(/.test(siteScript) &&
+    /entry\.isIntersecting[\s\S]{0,120}visiblePurchaseSurfaces\.add\(entry\.target\)[\s\S]{0,120}visiblePurchaseSurfaces\.delete\(entry\.target\)/.test(siteScript) &&
+    /purchaseObserver\.observe\(surface\)/.test(siteScript) &&
+    /var\s+show\s*=\s*checkoutAvailable\s*&&\s*purchaseVisibilityReady\s*&&\s*visiblePurchaseSurfaces\.size\s*===\s*0\s*;/.test(siteScript) &&
+    /dataset\.hidden\s*=\s*String\(!show\)/.test(siteScript);
+  assert(
+    'checkout.persistent-buy-bar',
+    /class=["'][^"']*\bmobile-buy-bar\b[^"']*\bpersistent-buy-bar\b[^"']*["']/i.test(persistentBuyBar) &&
+      /\baria-label=["'][^"']+["']/i.test(persistentBuyBar) && /\bdata-hidden=["']true["']/i.test(persistentBuyBar) &&
+      /<a\b(?=[^>]*\bdata-buy-cta\b)(?=[^>]*href=["']#checkout["'])[^>]*>/i.test(persistentBuyBar) &&
+      /position\s*:\s*fixed/i.test(persistentBaseRule) && /display\s*:\s*(?:flex|grid)/i.test(persistentBaseRule) &&
+      !/display\s*:\s*none/i.test(persistentRules) && persistentRuntimeContract,
+    `Persistent CTA markup=${Boolean(persistentBuyBar)}, fixed/display base=${/position\s*:\s*fixed/i.test(persistentBaseRule) && /display\s*:\s*(?:flex|grid)/i.test(persistentBaseRule)}, runtime=${persistentRuntimeContract}`,
+  );
+
   const featureImageTag = index.match(/<img\b(?=[^>]*\bdata-cruise-d2-feature-image\b)[^>]*>/i)?.[0] ?? '';
-  const featureImageRules = [...read('assets/css/styles.css').matchAll(/[^{}]*\[data-cruise-d2-feature-image\][^{]*\{([^}]*)\}/gi)].map((match) => match[1]).join('\n');
+  const featureImageRules = [...css.matchAll(/[^{}]*\[data-cruise-d2-feature-image\][^{]*\{([^}]*)\}/gi)].map((match) => match[1]).join('\n');
   const featureImageResponsive = /src=["']\/assets\/images\/product\/cruise-d2-features\.jpg["']/i.test(featureImageTag) &&
     /\bwidth=["']\d+["']/i.test(featureImageTag) && /\bheight=["']\d+["']/i.test(featureImageTag) && /\balt=["'][^"']+["']/i.test(featureImageTag) &&
     /object-fit\s*:\s*contain/i.test(featureImageRules) && /width\s*:\s*100%/i.test(featureImageRules) &&
     /max-width\s*:\s*100%/i.test(featureImageRules) && /height\s*:\s*auto/i.test(featureImageRules) &&
     !/object-fit\s*:\s*cover|object-position\s*:|clip-path\s*:/i.test(featureImageRules);
-  const horizontalMasking = /\bwidth\s*:\s*100vw\b|overflow-x\s*:\s*(?:hidden|clip)\b/i.test(read('assets/css/styles.css'));
+  const horizontalMasking = /\bwidth\s*:\s*100vw\b|overflow-x\s*:\s*(?:hidden|clip)\b/i.test(css);
   assert('assets.feature-image-no-crop', featureImageResponsive, 'Feature image uses its canonical JPEG, intrinsic dimensions, useful alt text, contain sizing, and responsive width without cropping');
   assert('css.no-horizontal-scroll-masking', !horizontalMasking, 'CSS avoids 100vw overflow and does not hide or clip horizontal overflow');
 

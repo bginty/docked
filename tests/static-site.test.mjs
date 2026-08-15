@@ -43,6 +43,11 @@ test('checkout state is internally consistent and never uses a placeholder', () 
     assert.match(site, /paypal\.HostedButtons/);
     assert.equal((html.match(/id=["']paypal-checkout-root["']/g) ?? []).length, 1);
     assert.equal((html.match(/\bdata-paypal-checkout-root\b/g) ?? []).length, 1);
+    assert.equal(createHash('sha256').update(config.paypal.clientId).digest('hex').toUpperCase(), '2679020198760B81224A5A742EA2574BCFEEDA85A11CBC84B3C638D2F2FB207F');
+    assert.equal(createHash('sha256').update(config.paypal.hostedButtonId).digest('hex').toUpperCase(), 'A83A02BEAA6ADD3FB65A29CBD09F0DAF7714AC8982161D804205147242274C1C');
+    assert.equal(config.paypal.components, 'hosted-buttons');
+    assert.equal(config.paypal.disableFunding, 'venmo');
+    assert.equal(config.currency, 'AUD');
   } else {
     assert.equal(config.checkoutEnabled, false);
     assert.equal(config.paypal.clientId, '');
@@ -68,11 +73,13 @@ test('homepage has the one-product PayPal ordering contract', () => {
   assert.match(index, /handled securely by PayPal/i);
   assert.match(index, /does not collect card details/i);
   assert.match(index, /Free shipping/);
-  assert.match(index, /cruise-d2-overview-1200\.webp/);
-  assert.match(index, /cruise-d2-controls-1200\.webp/);
+  assert.match(index, /cruise-d2-lifestyle-man-1200\.webp/);
+  assert.match(index, /cruise-d2-lifestyle-woman-1200\.webp/);
   assert.match(index, /cruise-d2-features\.jpg/);
   assert.match(index, /data-cruise-d2-feature-image/);
   assert.match(index, /data-mobile-buy-bar/);
+  assert.match(index, /data-persistent-buy-bar/);
+  assert.match(index, /data-gallery[^>]*data-product-gallery/);
   assert.match(index, /id=["']checkout["']/);
   assert.match(index, /data-product-specifications/);
   assert.ok(Array.isArray(config.specifications));
@@ -112,7 +119,6 @@ test('approved top-of-page sequence and offer language remain exact', () => {
 
   const sequence = [
     afterHeader.search(/<img\b(?=[^>]*\bdata-cruise-d2-feature-image\b)[^>]*>/i),
-    afterHeader.search(/<p\b[^>]*class=["'][^"']*\beyebrow\b[^"']*["'][^>]*>\s*Docked Cruise D2\s*<\/p>/i),
     afterHeader.search(/<h1\b[^>]*\bid=["']hero-title["']/i),
     afterHeader.search(/A motorised inflatable water lounger with dual joystick control\./i),
     afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-offer\b/i),
@@ -138,6 +144,148 @@ test('approved top-of-page sequence and offer language remain exact', () => {
   assert.match(site, /setText\(\s*["']\[data-product-price\]["']\s*,\s*["']\$["']\s*\+\s*audAmount\s*\)/);
   assert.equal(productConfig().price, 649);
   assert.equal(productConfig().currency, 'AUD');
+});
+
+test('approved summer revision keeps the brand and simplifies the sales hierarchy', () => {
+  const index = read('index.html');
+  const css = read('assets/css/styles.css');
+  const config = productConfig();
+  const section = (startPattern) => {
+    const start = index.search(startPattern);
+    const end = start >= 0 ? index.indexOf('</section>', start) : -1;
+    return start >= 0 && end > start ? index.slice(start, end + 10) : '';
+  };
+  const hero = section(/<section\b[^>]*class=["'][^"']*\bhero\b/i);
+  const value = section(/<section\b[^>]*class=["'][^"']*\bvalue-section\b/i);
+  const controls = section(/<section\b[^>]*aria-labelledby=["']control-title["']/i);
+  const specifications = section(/<section\b[^>]*id=["']specifications["']/i);
+  const brandLink = index.match(/<a\b(?=[^>]*class=["'][^"']*\bbrand\b)[^>]*>[\s\S]*?<\/a>/i)?.[0] ?? '';
+
+  assert.equal(config.brand, 'Docked');
+  assert.equal(config.name, 'Docked Cruise D2');
+  assert.match(brandLink, /href=["']\/["']/i);
+  assert.match(brandLink, /src=["']\/assets\/images\/brand-mark\.svg["']/i);
+  assert.match(brandLink, /alt=["']Docked["']/i);
+
+  assert.ok(hero);
+  assert.doesNotMatch(hero, /\beyebrow\b/i);
+  assert.ok(value);
+  assert.doesNotMatch(index, /Full-length lounging profile/i);
+  assert.ok(specifications);
+  assert.match(specifications, /<h2\b[^>]*id=["']specifications-title["'][^>]*>\s*Cruise D2 specifications\.\s*<\/h2>/i);
+  assert.doesNotMatch(specifications, /\beyebrow\b/i);
+  assert.doesNotMatch(specifications, /class=["'][^"']*\blede\b/i);
+
+  assert.match(value, /cruise-d2-lifestyle-man-600\.webp[\s\S]*cruise-d2-lifestyle-man-1200\.webp/i);
+  assert.doesNotMatch(value, /cruise-d2-overview-(?:600|1200)\.webp/i);
+  assert.match(controls, /cruise-d2-lifestyle-woman-600\.webp[\s\S]*cruise-d2-lifestyle-woman-1200\.webp/i);
+  assert.doesNotMatch(controls, /cruise-d2-controls-(?:600|1200)\.webp/i);
+
+  assert.match(css, /--sunshine\s*:\s*#ffd43b\b/i);
+  assert.match(css, /--sunshine-deep\s*:\s*#edae00\b/i);
+  assert.match(css, /--pool-bright\s*:\s*#13bfe6\b/i);
+  assert.match(css, /--coral\s*:\s*#e95032\b/i);
+  assert.ok((css.match(/var\(--sunshine\)/g) ?? []).length >= 4);
+  assert.ok((css.match(/var\(--sunshine-deep\)/g) ?? []).length >= 1);
+
+  const persistent = index.match(/<aside\b(?=[^>]*data-persistent-buy-bar)[^>]*>[\s\S]*?<\/aside>/i)?.[0] ?? '';
+  const baseRule = css.match(/\.mobile-buy-bar\s*\{([^}]*)\}/i)?.[1] ?? '';
+  const printMediaPosition = css.search(/@media\s+print\b/i);
+  const screenCss = css.slice(0, printMediaPosition >= 0 ? printMediaPosition : css.length);
+  const persistentRules = [...screenCss.matchAll(/[^{}]*\.(?:mobile-buy-bar|persistent-buy-bar)[^{]*\{([^}]*)\}/gi)].map((match) => match[1]).join('\n');
+  assert.match(persistent, /class=["'][^"']*\bmobile-buy-bar\b[^"']*\bpersistent-buy-bar\b[^"']*["']/i);
+  assert.match(persistent, /aria-label=["'][^"']+["']/i);
+  assert.match(persistent, /<a\b(?=[^>]*data-buy-cta)(?=[^>]*href=["']#checkout["'])[^>]*>/i);
+  assert.match(baseRule, /position\s*:\s*fixed/i);
+  assert.match(baseRule, /display\s*:\s*(?:flex|grid)/i);
+  assert.doesNotMatch(persistentRules, /display\s*:\s*none/i);
+  const site = read('assets/js/site.js');
+  assert.match(site, /querySelectorAll\(\s*["']\.hero-actions \[data-buy-cta\], #checkout, \.final-cta \[data-buy-cta\]["']\s*\)/i);
+  assert.match(site, /visiblePurchaseSurfaces\s*=\s*new Set\(\)/i);
+  assert.match(site, /purchaseVisibilityReady\s*=/i);
+  assert.match(site, /new IntersectionObserver\(/i);
+  assert.match(site, /entry\.isIntersecting[\s\S]{0,120}visiblePurchaseSurfaces\.add\(entry\.target\)[\s\S]{0,120}visiblePurchaseSurfaces\.delete\(entry\.target\)/i);
+  assert.match(site, /purchaseObserver\.observe\(surface\)/i);
+  assert.match(site, /var\s+show\s*=\s*checkoutAvailable\s*&&\s*purchaseVisibilityReady\s*&&\s*visiblePurchaseSurfaces\.size\s*===\s*0\s*;/i);
+  assert.match(site, /dataset\.hidden\s*=\s*String\(!show\)/i);
+});
+
+test('published supplier illustrations disclose AI provenance visibly and in the asset register', () => {
+  const index = read('index.html');
+  const css = read('assets/css/styles.css');
+  const register = read('docs/STATIC_SITE_ASSET_REGISTER.md');
+  const figures = [...index.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi)].map((match) => match[0]);
+  const media = [
+    'cruise-d2-features.jpg',
+    'cruise-d2-lifestyle-man-1200.webp',
+    'cruise-d2-lifestyle-woman-1200.webp',
+  ];
+  for (const file of media) {
+    const figure = figures.find((candidate) => candidate.includes(file)) ?? '';
+    assert.ok(figure, `${file} must be inside an associated figure`);
+    const escaped = file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const image = figure.match(new RegExp(`<img\\b(?=[^>]*${escaped})[^>]*>`, 'i'))?.[0] ?? '';
+    assert.match(image, /alt=["'][^"']*\billustration\b[^"']*["']/i, `${file} alt must identify it as an illustration`);
+    const disclosure = figure.match(/<([a-z][a-z0-9]*)\b(?=[^>]*class=["'][^"']*\bmedia-disclosure\b)[^>]*>([\s\S]*?)<\/\1>/i);
+    assert.ok(disclosure, `${file} needs an associated media-disclosure element`);
+    assert.match(visibleText(disclosure[2]), /supplier\s+(?:product|lifestyle)\s+illustration/i);
+    const openingTag = disclosure[0].slice(0, disclosure[0].indexOf('>') + 1);
+    assert.doesNotMatch(openingTag, /\bhidden\b|aria-hidden=["']true["']/i);
+  }
+  const disclosureRules = [...css.matchAll(/[^{}]*\.media-disclosure[^{]*\{([^}]*)\}/gi)].map((match) => match[1]).join('\n');
+  assert.doesNotMatch(disclosureRules, /display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0(?:\D|$)|clip(?:-path)?\s*:/i);
+
+  assert.match(register, /C2PA/i);
+  assert.match(register, /gpt-image\s+v2\.0/i);
+  assert.match(register, /trainedAlgorithmicMedia/i);
+  assert.match(register, /supplier(?:[- ]provided)?(?:\s+(?:product|lifestyle))?\s+illustrations?/i);
+  for (const anchor of [/cruise-d2-features\.jpg/i, /Man on Float\.png/i, /Girl on Float\.png/i]) {
+    const occurrences = [...register.matchAll(new RegExp(anchor.source, 'gi'))];
+    assert.ok(occurrences.some((match) => {
+      const excerpt = register.slice(Math.max(0, match.index - 2500), match.index + match[0].length + 2500);
+      return /C2PA/i.test(excerpt) && /gpt-image\s+v2\.0/i.test(excerpt) && /trainedAlgorithmicMedia/i.test(excerpt);
+    }), `${anchor} must be associated with the explicit C2PA provenance record`);
+  }
+  assert.doesNotMatch(register, /Actual source encoding[^\n]*no embedded image metadata/i);
+  assert.doesNotMatch(register, /Neither PNG contains embedded image metadata/i);
+});
+
+test('product slideshow has complete tab semantics and keyboard controls', () => {
+  const index = read('index.html');
+  const site = read('assets/js/site.js');
+  assert.match(index, /data-gallery[^>]*data-product-gallery/i);
+  const stage = index.match(/<([a-z][a-z0-9]*)\b(?=[^>]*data-gallery-stage)[^>]*>/i)?.[0] ?? '';
+  assert.match(stage, /aria-live=["']polite["']/i);
+  assert.match(stage, /aria-describedby=["'][^"']+["']/i);
+
+  const panels = [...index.matchAll(/<figure\b(?=[^>]*data-gallery-panel)([^>]*)>/gi)].map((match) => match[1]);
+  const tabs = [...index.matchAll(/<button\b(?=[^>]*data-gallery-target)([^>]*)>/gi)].map((match) => match[1]);
+  assert.equal(panels.length, 3);
+  assert.equal(tabs.length, 3);
+  const panelIds = new Set(panels.map((attrs) => attrs.match(/id=["']([^"']+)["']/i)?.[1]).filter(Boolean));
+  const tabIds = new Set(tabs.map((attrs) => attrs.match(/id=["']([^"']+)["']/i)?.[1]).filter(Boolean));
+  assert.equal(panelIds.size, 3);
+  assert.equal(tabIds.size, 3);
+  for (const attrs of panels) {
+    assert.match(attrs, /role=["']tabpanel["']/i);
+    const labelledBy = attrs.match(/aria-labelledby=["']([^"']+)["']/i)?.[1];
+    assert.ok(labelledBy && tabIds.has(labelledBy));
+  }
+  for (const attrs of tabs) {
+    assert.match(attrs, /type=["']button["']/i);
+    assert.match(attrs, /role=["']tab["']/i);
+    const controls = attrs.match(/aria-controls=["']([^"']+)["']/i)?.[1];
+    assert.ok(controls && panelIds.has(controls));
+    if (!/aria-selected=["']true["']/i.test(attrs)) assert.match(attrs, /tabindex=["']-1["']/i);
+  }
+  assert.equal(tabs.filter((attrs) => /aria-selected=["']true["']/i.test(attrs)).length, 1);
+
+  assert.match(site, /addEventListener\(["']click["']/);
+  assert.match(site, /addEventListener\(["']keydown["']/);
+  for (const key of ['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End']) assert.match(site, new RegExp(key));
+  assert.match(site, /thumb\.tabIndex\s*=/);
+  assert.match(site, /panel\.hidden\s*=/);
+  assert.match(site, /panel\.setAttribute\(["']aria-hidden["']/);
 });
 
 test('homepage legal identity and support details occur only in the footer', () => {
@@ -176,6 +324,10 @@ test('Cruise D2 is never marketed as a dock, open-water craft, or safety-certifi
     /\bprivate\s+deck\b/i,
     /\b(?:beside|attach(?:ed|es|ing)?\s+to)\s+(?:a|the)\s+boat\b/i,
     /\bsafe\b/i,
+    /\bstrong\s+and\s+stable\s+design\b/i,
+    /\b90[- ]minute\s+runtime\b/i,
+    /\b66\s*w\s+dual\s+motors?\b/i,
+    /\blong[- ]lasting\s+battery\b/i,
     /\bunsinkable\b/i,
     /\b(?:ocean|surf|boating)\b/i,
     /\bwaterproof\s+(?:electronics?|electrical|motor|battery|controller?|controls?)\b/i,
@@ -216,7 +368,7 @@ test('CSS includes mobile, focus, and reduced-motion safeguards', () => {
   assert.match(css, /@media\s*\([^)]*max-width\s*:\s*(?:360px|43\.99rem)/i);
   assert.match(css, /@media\s*\([^)]*prefers-reduced-motion\s*:\s*reduce/i);
   assert.match(css, /:focus-visible/i);
-  assert.match(css, /\.site-nav \.nav-cta\s*\{[^}]*background:\s*var\(--coral-dark\)/s);
+  assert.match(css, /\.site-nav \.nav-cta\s*\{[^}]*background:\s*var\(--sunshine\)/s);
   assert.match(css, /\.mobile-buy-bar/);
   assert.match(css, /--pool-text:\s*#087b98/i);
   assert.doesNotMatch(css, /width\s*:\s*100vw/i);
@@ -230,6 +382,62 @@ test('CSS includes mobile, focus, and reduced-motion safeguards', () => {
   assert.doesNotMatch(featureRule, /object-fit\s*:\s*cover|object-position\s*:|clip-path\s*:/i);
 });
 
+test('man lifestyle card preserves its 3:2 image without CSS crop forcing', () => {
+  const css = read('assets/css/styles.css');
+  const rules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .filter((match) => match[1].split(',').some((selector) => selector.trim() === '.product-photo-card img'))
+    .map((match) => match[2]);
+  assert.ok(rules.length > 0);
+  assert.ok(rules.some((body) => /\baspect-ratio\s*:\s*3\s*\/\s*2\b/i.test(body)));
+  assert.ok(rules.some((body) => /\bmin-height\s*:\s*0(?:[a-z%]+)?\b/i.test(body)));
+
+  const declarations = rules.flatMap((body) => body.split(';'))
+    .map((declaration) => declaration.trim())
+    .filter(Boolean)
+    .map((declaration) => {
+      const colon = declaration.indexOf(':');
+      return {
+        property: colon >= 0 ? declaration.slice(0, colon).trim().toLowerCase() : '',
+        value: colon >= 0 ? declaration.slice(colon + 1).trim().toLowerCase() : '',
+      };
+    });
+  for (const { property, value } of declarations) {
+    if (property === 'min-height') assert.match(value, /^0(?:[a-z%]+)?(?:\s*!important)?$/i);
+    if (property === 'height') assert.match(value, /^auto(?:\s*!important)?$/i);
+    if (property === 'max-height') assert.match(value, /^none(?:\s*!important)?$/i);
+    if (property === 'clip-path') assert.match(value, /^none(?:\s*!important)?$/i);
+    if (property === 'transform') assert.doesNotMatch(value, /scale/i);
+  }
+
+  const index = read('index.html');
+  const image = index.match(/<img\b(?=[^>]*cruise-d2-lifestyle-man-1200\.webp)[^>]*>/i)?.[0] ?? '';
+  assert.match(image, /width=["']1200["']/i);
+  assert.match(image, /height=["']800["']/i);
+});
+
+test('approved man and woman lifestyle derivatives are byte-locked and responsive', () => {
+  const expected = new Map([
+    ['assets/images/product/cruise-d2-lifestyle-man-1200.webp', 'F4000655664C9C191FA490741D69ED626B5DEA58AFCA31E6153A37FE5BAE5532'],
+    ['assets/images/product/cruise-d2-lifestyle-man-600.webp', '3F6DCFE50254F91A1C17172DB90969C92C26DFC6E136DC2893E9D395687B0221'],
+    ['assets/images/product/cruise-d2-lifestyle-woman-1200.webp', 'FFC9A0077793CE2AEE2FA310FCCC175581089695900B5F6EC4B111381F76E89B'],
+    ['assets/images/product/cruise-d2-lifestyle-woman-600.webp', '1BD22C4389CE63B689AE22F6F1D7D579714D8669D9D32ED7BB30F50E921FF0FC'],
+  ]);
+  for (const [file, hash] of expected) {
+    const bytes = fs.readFileSync(path.join(root, file));
+    assert.equal(bytes.subarray(0, 4).toString('ascii'), 'RIFF');
+    assert.equal(bytes.subarray(8, 12).toString('ascii'), 'WEBP');
+    assert.equal(createHash('sha256').update(bytes).digest('hex').toUpperCase(), hash);
+  }
+  const index = read('index.html');
+  for (const person of ['man', 'woman']) {
+    assert.match(index, new RegExp(`cruise-d2-lifestyle-${person}-600\\.webp\\s+600w`));
+    const image = index.match(new RegExp(`<img\\b(?=[^>]*cruise-d2-lifestyle-${person}-1200\\.webp)[^>]*>`, 'i'))?.[0] ?? '';
+    assert.match(image, /width=["']1200["']/i);
+    assert.match(image, /height=["']800["']/i);
+    assert.match(image, /alt=["'][^"']+["']/i);
+  }
+});
+
 test('supplier feature image is a real responsive JPEG and is not cropped', () => {
   const file = path.join(root, 'assets/images/product/cruise-d2-features.jpg');
   const bytes = fs.readFileSync(file);
@@ -241,7 +449,7 @@ test('supplier feature image is a real responsive JPEG and is not cropped', () =
   assert.equal(bytes.at(-1), 0xd9);
   assert.equal(
     createHash('sha256').update(bytes).digest('hex').toUpperCase(),
-    '3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523',
+    'CBF4A3F9508F01A17732FC24853ECEDD1B99CFE3CD3A5BEB104023DDE8FE01A7',
   );
 
   const image = read('index.html').match(/<img\b(?=[^>]*\bdata-cruise-d2-feature-image\b)[^>]*>/i)?.[0] ?? '';

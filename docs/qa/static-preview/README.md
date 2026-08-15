@@ -1,5 +1,7 @@
 # Static preview QA
 
+Summer-feedback candidate local automated and rendered QA: 16 August 2026
+
 Reference-layout local and production QA: 15 August 2026
 
 Feature-board candidate observation window: 15 August 2026, 20:15–20:20 AEST
@@ -10,7 +12,26 @@ Current deployed product-led revision observation window: 15 August 2026, 18:03�
 
 Initial-launch production observation window: 15 August 2026, 17:31:41–17:36:28 AEST
 
-Current reviewed source implementation commit: `777b09037e0f78e627cef09e710b05f0c4d88ff6`; public Pages output commit: `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`.
+Current deployed reviewed source implementation commit: `777b09037e0f78e627cef09e710b05f0c4d88ff6`; public Pages output commit: `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. The summer-feedback candidate is uncommitted and not deployed at the time of this record.
+
+## Summer-feedback candidate — local QA passed, deployment pending
+
+The owner-approved summer-feedback revision is recorded in [`summer-feedback/`](./summer-feedback/). It keeps the current Docked logo, `Cruise D2` name, `$649 AUD · Free shipping` offer and PayPal Hosted Button configuration while adding the brighter palette, approved man and woman lifestyle-image derivatives, simplified copy hierarchy, accessible three-panel slideshow and a contextual persistent `#checkout` call to action. The purchase bar hides whenever the hero action, checkout or final action is visible and appears only when no alternate purchase surface is in view.
+
+The feature-board and both lifestyle sources contain C2PA provenance identifying `gpt-image v2.0` / `trainedAlgorithmicMedia`. Their public derivatives use deterministic processing but retain that AI source provenance. The candidate labels the feature board visibly as “Supplier product illustration” and each lifestyle image as “Supplier lifestyle illustration”; their alt text also identifies them as illustrations.
+
+The candidate feature board removes the unsupported “Strong and stable design for a safe and comfortable ride.” paragraph with a deterministic pool-water patch and adds no replacement claim. The supplied depiction, retained callouts and overall layout are preserved. No independent speed/performance or 160 kg load-bearing test was supplied or reviewed, so owner approval is not treated as technical substantiation for the removed qualitative safety/comfort wording.
+
+Recorded local automated results:
+
+- `npm run validate`: 51/51 passed;
+- `npm test`: 15/15 passed;
+- JavaScript syntax checks: passed for the two public scripts, validator and test file; and
+- `git diff --check`: passed.
+
+Fresh local Browser QA passed at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. All seven viewports had no horizontal overflow or broken image, showed the three visible supplier-illustration disclosures, kept the man illustration at a 1.5 rendered aspect ratio with `min-height: 0px`, and applied the contextual purchase-bar rule correctly. At 390 pixels, gallery click and `ArrowRight` navigation reached `Poolside`; the mobile menu opened and closed with `Escape`; two PayPal iframes rendered `Docked Cruise D2` at `$649.00 AUD`; and the persistent CTA reached `#checkout` with the heading approximately 112 pixels from the viewport top and the bar hidden. Six screenshots are in [`summer-feedback/`](./summer-feedback/).
+
+No first-party Docked console error was observed. PayPal emitted `ncps_standalone_paylater_ineligible` and Apple Pay configuration messages from its third-party integration. No payment or Lighthouse run was performed. Production promotion and live-domain QA remain pending. Nothing in the historical sections below is evidence for the current local candidate.
 
 ## Screenshot-reference production revision
 
@@ -96,7 +117,7 @@ Hosted button ID: `FGAUDYCA2LX36`
 
 ## Limits
 
-- The homepage uses deterministic crops of owner-approved supplier images plus the deterministic text-redacted feature board. A full-frame generated edit was rejected and is not published. Source custody and derivative hashes are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`.
+- The deployed revision uses deterministic derivatives of owner-approved supplier imagery. The summer-feedback candidate's feature-board and lifestyle sources are C2PA-declared `gpt-image v2.0` / `trainedAlgorithmicMedia`, so their deterministic public derivatives are visibly labelled supplier illustrations rather than presented as documentary photographs. Source custody, processing and derivative hashes are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`.
 - Lighthouse was not run because a Lighthouse executable was not installed in the workspace. No target score is reported as achieved.
 - No console-clean result is claimed for the screenshot-reference production revision.
 - A real payment, PayPal seller-account transaction record, payment email and refund were not tested or claimed.
