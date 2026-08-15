@@ -1,0 +1,35 @@
+name: Static site checks
+
+on:
+  pull_request:
+    paths:
+      - "*.html"
+      - "CNAME"
+      - ".nojekyll"
+      - "robots.txt"
+      - "sitemap.xml"
+      - "site.webmanifest"
+      - "assets/**"
+      - "scripts/**"
+      - "tests/**"
+      - "package.json"
+      - ".github/workflows/static-site-checks.yml"
+  push:
+    branches:
+      - main
+      - codex/docked-static-paypal-launch
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run validate
+      - run: npm test

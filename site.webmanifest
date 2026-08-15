@@ -1,0 +1,18 @@
+{
+  "name": "Docked",
+  "short_name": "Docked",
+  "description": "Adult pool lounging for Australian summers.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f5ee",
+  "theme_color": "#06283d",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

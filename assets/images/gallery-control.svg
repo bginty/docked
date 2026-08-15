@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract direction and control concept</title>
+  <desc id="desc">A decorative navy and aqua pattern with directional lines and paired control circles.</desc>
+  <rect width="1200" height="760" rx="44" fill="#f8f5ee"/>
+  <path fill="#ddf7fb" d="M0 502c183-105 349-114 498-26 163 97 351 85 564-37 53-30 99-42 138-36v357H0V502Z"/>
+  <g transform="translate(600 350)">
+    <circle r="212" fill="#06283d"/>
+    <circle r="148" fill="none" stroke="#13bfe6" stroke-width="18" stroke-dasharray="26 22"/>
+    <circle cx="-68" cy="0" r="58" fill="#ff6b4a"/>
+    <circle cx="68" cy="0" r="58" fill="#13bfe6"/>
+    <circle cx="-68" cy="0" r="18" fill="#fff"/>
+    <circle cx="68" cy="0" r="18" fill="#fff"/>
+    <path d="M0-265v72M0 265v-72M-265 0h72M265 0h-72" stroke="#06283d" stroke-linecap="round" stroke-width="24"/>
+    <path d="m0-302-31 44h62L0-302Zm0 604-31-44h62L0 302ZM-302 0l44-31v62L-302 0Zm604 0-44-31v62L302 0Z" fill="#06283d"/>
+  </g>
+</svg>

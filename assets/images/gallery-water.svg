@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract Australian summer pool scene</title>
+  <desc id="desc">A decorative composition of deep blue water, sunlit ripples and a warm coral sun.</desc>
+  <defs>
+    <linearGradient id="water" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#06283d"/>
+      <stop offset="0.55" stop-color="#087fae"/>
+      <stop offset="1" stop-color="#13bfe6"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffd09f"/>
+      <stop offset="1" stop-color="#ff6b4a"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="760" rx="44" fill="url(#water)"/>
+  <circle cx="962" cy="151" r="88" fill="url(#sun)"/>
+  <g fill="none" stroke="#ddf7fb" stroke-linecap="round" opacity=".62">
+    <path stroke-width="12" d="M-20 166c168 82 325 82 471 0s305-82 476 0 323 82 433 0"/>
+    <path stroke-width="8" d="M-51 301c165 71 325 71 481 0s315-71 477 0 320 71 423 0"/>
+    <path stroke-width="12" d="M-20 456c168 82 325 82 471 0s305-82 476 0 323 82 433 0"/>
+    <path stroke-width="7" d="M-51 614c165 71 325 71 481 0s315-71 477 0 320 71 423 0"/>
+  </g>
+  <g fill="#fff" opacity=".18">
+    <circle cx="241" cy="228" r="76"/>
+    <circle cx="679" cy="525" r="116"/>
+    <circle cx="1022" cy="416" r="58"/>
+  </g>
+</svg>
