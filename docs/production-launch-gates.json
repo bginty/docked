@@ -16,7 +16,7 @@
     "store_handle_state": "confirmed through authenticated Shopify CLI 4.5.2; storefront remains password-protected",
     "theme_root": ".",
     "shopify_cli_version": "4.5.2",
-    "release_commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
+    "release_commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
     "initial_brand_refresh_uploaded_commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
     "previous_exact_uploaded_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
     "pull_request": "https://github.com/bginty/docked/pull/1",
@@ -32,6 +32,40 @@
       "preview_url": "https://cfbexf-h4.myshopify.com?preview_theme_id=130871427130",
       "editor_url": "https://cfbexf-h4.myshopify.com/admin/themes/130871427130/editor"
     },
+    "one_product_upload": {
+      "failed_attempt": {
+        "commit": "5cc3edcce9fe76c09c630eb859d2cebc3d61fa6f",
+        "started_at": "2026-08-15T12:48:17+10:00",
+        "finished_at": "2026-08-15T12:49:53+10:00",
+        "result": "failed",
+        "reason": "Shopify schema validation rejected templates/index.json products_to_show below the minimum of 2."
+      },
+      "successful_attempt": {
+        "commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
+        "started_at": "2026-08-15T12:52:11.7607489+10:00",
+        "finished_at": "2026-08-15T12:53:12.6371436+10:00",
+        "result": "success",
+        "role": "unpublished",
+        "live_theme_untouched": "130871099450"
+      }
+    },
+    "theme_role_verification": {
+      "verified_by": "2026-08-15T13:02:18+10:00",
+      "exact_cli_minute_retained": false,
+      "source": "Authenticated Shopify CLI theme list JSON after authentication refresh",
+      "live_theme": {
+        "id": "130871099450",
+        "name": "Horizon",
+        "role": "live",
+        "processing": false
+      },
+      "candidate_theme": {
+        "id": "130871427130",
+        "name": "Docked Production Candidate 2026-08",
+        "role": "unpublished",
+        "processing": false
+      }
+    },
     "mode": "AUTO_MAXIMUM_SAFE_PROGRESS",
     "public_prelaunch_authorisation_phrase": "AUTHORISE_DOCKED_PUBLIC_PRELAUNCH",
     "full_launch_authorisation_phrase": "AUTHORISE_DOCKED_DOMAIN_CUTOVER_AND_LIVE_SALES",
@@ -42,17 +76,17 @@
     "structural_validation": "62/62 passed",
     "node_tests": "6/6 passed",
     "copy_audit": "passed",
-    "data_validation": "The current working tree validated one Draft DC-02 catalogue row, one guarded DC-02 pricing row and one safe Draft-import row. The 104-row competitor file remains historical research and the 3 redirects remain valid. The one-product revision is not yet committed, pushed or rendered.",
+    "data_validation": "Commit bb41a70d630041e95f627d05c62b7247b04257f7 validated one Draft DC-02 catalogue row, one guarded DC-02 pricing row and one safe Draft-import row. The 104-row competitor file remains historical research and the 3 redirects remain valid.",
     "production_gate_validator": "21/21 required gates present and valid; 23 total gates",
     "gate_summary": "5 passed, 18 blocked, 0 pending, 0 not_applicable",
     "dependency_audit": "0 vulnerabilities",
     "document_link_audit": "50 Markdown files, 176 relative references, 0 broken",
     "secret_scan": "0 high-confidence matches; diff check clean",
-    "rendered_qa": "Historical partial manual in-app-browser QA at 320, 360, 375, 390, 768, 1024 and 1440 px applies only to uploaded commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. The current one-product working-tree revision has not been committed, pushed to theme 130871427130 or rendered, so the complete rendered suite must be rerun after the strict candidate push; the gate remains blocked.",
+    "rendered_qa": "Historical detailed manual QA applies only to commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is uploaded; signed-out/direct preview remains password-protected, the password page displays one-product D2 Draft copy, and authenticated Theme Editor lists the one-product homepage composition. The inner homepage, product and commerce/browser suite were not run or passed; the gate remains blocked.",
     "admin_catalogue": "Authenticated Shopify Admin on 2026-08-15 showed 15 total shells. Docked Cruise D2 product 7591990034490 is the sole Draft shell with inventory not tracked, channels 0 and vendor Requires verification; the other 14 shells were changed to Archived, not deleted. No product is Active and no newly supplied AI-generated concept image was uploaded.",
-    "admin_navigation": "Current commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 was strictly pushed to unpublished theme 130871427130. The 320 px mobile menu rendered Home, Shop, Contact, How It Works, Safety and Care and FAQ without overflow, and desktop navigation remained intact. Explore rendered all seven planned collection links; Help and policies rendered Search, Contact, How It Works, Safety and Care, FAQ, Track Your Order and Accessibility. The native Privacy policy link rendered separately through show_policy. Footer legal ID 198327107642 remains an unused Admin resource; unapproved Terms were withheld.",
+    "admin_navigation": "Authenticated Theme Editor for current commit bb41a70d630041e95f627d05c62b7247b04257f7 lists the one-product homepage composition. Detailed menu/navigation rendering observations belong to historical commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 and were not rerun against the current commit.",
     "admin_commerce_safety": "Basic plan active. Docked Cruise D2 remains Draft with inventory not tracked and channels 0; the other 14 historical shells are Archived and no product is Active. Shopify Payments requires completion; PayPal displays Active but has no account-identity or transaction evidence. Domestic and international shipping rates are configured without approval evidence; local delivery and pickup are off. Policies and sender-domain authentication remain incomplete; no test or live transaction exists.",
-    "single_product_revision": "Repository source is being narrowed to one planned D2 product but the working-tree revision is not yet committed, pushed to unpublished candidate 130871427130 or rendered. Supplier files received on 2026-08-15 are component-level review material only and do not pass product, media, battery/transport, compliance, price, inventory, shipping, policy, payment, test-order, DNS, business-name or authorisation gates."
+    "single_product_revision": "One-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is committed and strictly uploaded to unpublished candidate 130871427130. Limited current password-page and Theme Editor evidence exists; full inner homepage, product and commerce/browser QA is not passed. Supplier files received on 2026-08-15 are component-level review material only and do not pass product, media, battery/transport, compliance, price, inventory, shipping, policy, payment, test-order, DNS, business-name or authorisation gates."
   },
   "evidence_schema": {
     "description": "A gate may be passed only with actual, dated evidence applying to the exact store, theme, commit, SKU, provider or DNS zone. A template is not evidence.",
@@ -137,26 +171,26 @@
     "status": "passed",
     "evidence": {
       "type": "cli_output",
-      "observed_at": "2026-08-14",
-      "summary": "Historical exact source 0b8d127b83d68930992643d666a7d26c1f1b067d was strictly pushed from 2026-08-14T10:43:36+10:00 to 2026-08-14T10:44:47+10:00. Initial brand-refresh source 6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818 and current integrated one-word source 5f46487d1f53e45f5706ae945eeb5a09064893e3 were subsequently pushed successfully with --strict on 14 August 2026 AEST; exact CLI start/end timestamps were not retained. Candidate theme 130871427130 remained unpublished, the permanent preview/editor URLs were unchanged and existing live Horizon theme 130871099450 was untouched.",
+      "observed_at": "2026-08-15T12:53:12.6371436+10:00",
+      "summary": "The interim 5cc3edcce9fe76c09c630eb859d2cebc3d61fa6f strict push failed Shopify schema validation from 2026-08-15T12:48:17+10:00 to 2026-08-15T12:49:53+10:00 because templates/index.json products_to_show was below Shopify's minimum of 2; it is not a successful upload. Corrected one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 strictly pushed successfully from 2026-08-15T12:52:11.7607489+10:00 to 2026-08-15T12:53:12.6371436+10:00. Candidate 130871427130 remained unpublished, preview/editor URLs were unchanged and live Horizon 130871099450 was untouched.",
       "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
       "operator_or_source": "Authenticated Shopify CLI 4.5.2",
       "reviewer": "Codex",
-      "scope": "Repository-root theme at commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 on release/docked-shopify-production-2026-08 uploaded to cfbexf-h4.myshopify.com as unpublished theme 130871427130",
-      "limitations": "Upload is not publication. Post-push brand, navigation and responsive rendering was verified in one authenticated in-app browser, but the screenshot capture timed out and only partial manual rendered QA exists. A newer one-product working-tree revision has not yet been committed, uploaded or rendered, so the full rendered gate has not passed."
+      "scope": "Repository-root theme at commit bb41a70d630041e95f627d05c62b7247b04257f7 on release/docked-shopify-production-2026-08 uploaded to cfbexf-h4.myshopify.com as unpublished theme 130871427130",
+      "limitations": "Upload is not publication. Only the password page and authenticated Theme Editor received limited current observation; the inner homepage, product route and full commerce/browser suite were not run or passed."
     }
   },
   "rendered_qa_passed": {
     "status": "blocked",
     "evidence": {
       "type": "test_result",
-      "observed_at": "2026-08-14",
-      "summary": "Historical manual candidate QA ran at 320, 360, 375, 390, 768, 1024 and 1440 px against uploaded source 5f46487d1f53e45f5706ae945eeb5a09064893e3 and found no final viewport overflow or console errors/warnings in the tested in-app Browser scope. A newer one-product working-tree revision has not been committed, pushed to candidate theme 130871427130 or rendered; all relevant checks must be rerun after its strict unpublished-candidate push.",
+      "observed_at": "2026-08-15",
+      "summary": "Detailed responsive and interaction evidence remains historical for commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. For current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7, signed-out/direct preview remained password-protected; the password page displayed “Pool time, powered — soon.” and D2 Draft wording; and authenticated Theme Editor listed the one-product homepage composition.",
       "reference": "docs/POST_LAUNCH_QA.md",
       "operator_or_source": "Authenticated Codex in-app Browser; repository screenshots are qualified historical evidence only",
       "reviewer": "Codex",
-      "scope": "Unpublished Shopify theme 130871427130",
-      "limitations": "The retained results are historical and do not cover the current one-product source revision. Only one in-app browser engine was used and its exact version was not recorded. Latest screenshot/CDP capture timed out, so there is no new visual screenshot artifact. No customer credentials were entered, so authentication, post-submit errors, logout and order history remain untested. Full multi-browser, accessibility, Lighthouse, product, checkout, contact mailbox delivery and commerce testing did not pass."
+      "scope": "Unpublished Shopify theme 130871427130 at current commit bb41a70d630041e95f627d05c62b7247b04257f7, with historical detailed evidence separately retained for 5f46487d1f53e45f5706ae945eeb5a09064893e3",
+      "limitations": "Current evidence covers only the password page and Theme Editor composition listing. The inner homepage, product route, route/menu/contact/account interactions, multi-browser, accessibility, Lighthouse, checkout, mailbox delivery and commerce testing did not run or pass."
     }
   },
   "support_email_verified": {

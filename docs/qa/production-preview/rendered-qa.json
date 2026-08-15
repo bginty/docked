@@ -6,10 +6,12 @@
     "historical_ended_at": "2026-08-14T10:45:00+10:00",
     "latest_brand_qa_date": "2026-08-14",
     "timezone": "Australia/Sydney",
-    "limitations": "Timestamped screenshots span the earlier historical window. The uploaded brand-refresh push and rendered QA completed later on 14 August 2026 AEST, but exact CLI and per-action timestamps were not retained. The latest screenshot/CDP capture timed out, so no new screenshot artifact was created. A newer one-product working-tree revision has not been committed, pushed or rendered, so this entire record is historical."
+    "limitations": "Timestamped screenshots and detailed route/viewport results apply to historical commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is uploaded, but only its password page and authenticated Theme Editor composition received limited observation; the inner homepage, product and commerce/browser suite did not run."
   },
   "record_updated_at": "2026-08-15",
   "theme_source_commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
+  "theme_source_commit_scope": "historical_detailed_rendered_evidence",
+  "current_uploaded_theme_source_commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
   "initial_brand_refresh_theme_source_commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
   "previous_exact_theme_source_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
   "historical_strict_push_window": {
@@ -27,7 +29,7 @@
     "result": "success",
     "returned_role": "unpublished"
   },
-  "current_strict_push": {
+  "historical_integrated_strict_push": {
     "commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
     "completed_on": "2026-08-14",
     "timezone": "Australia/Sydney",
@@ -37,7 +39,22 @@
     "live_theme_untouched": "130871099450"
   },
   "current_single_product_revision": {
-    "state": "working_tree_not_committed_not_pushed_not_rendered",
+    "state": "committed_and_strictly_pushed_limited_rendered_evidence",
+    "commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
+    "failed_push": {
+      "commit": "5cc3edcce9fe76c09c630eb859d2cebc3d61fa6f",
+      "started_at": "2026-08-15T12:48:17+10:00",
+      "finished_at": "2026-08-15T12:49:53+10:00",
+      "result": "failed",
+      "reason": "Shopify schema validation rejected templates/index.json products_to_show below the minimum of 2."
+    },
+    "successful_push": {
+      "started_at": "2026-08-15T12:52:11.7607489+10:00",
+      "finished_at": "2026-08-15T12:53:12.6371436+10:00",
+      "result": "success",
+      "role": "unpublished",
+      "live_theme_untouched": "130871099450"
+    },
     "planned_product": "Docked Cruise D2",
     "shopify_product_id": "7591990034490",
     "admin_observed_on": "2026-08-15",
@@ -52,7 +69,14 @@
       "archived_shells_deleted": false,
       "new_ai_concept_images_uploaded": false
     },
-    "required_next_step": "After validation, commit and strictly push the exact one-product revision to unpublished theme 130871427130, then rerun the full rendered QA suite.",
+    "limited_current_evidence": {
+      "signed_out_direct_preview": "password_protected",
+      "password_page_heading": "Pool time, powered — soon.",
+      "password_page_d2_draft_wording": true,
+      "authenticated_theme_editor": "one_product_homepage_composition_listed",
+      "inner_homepage_product_commerce_browser_qa": "not_run"
+    },
+    "required_next_step": "Rerun the full rendered QA suite against exact uploaded commit bb41a70d630041e95f627d05c62b7247b04257f7.",
     "historical_evidence_applies_to_revision": false
   },
   "store": "cfbexf-h4.myshopify.com",
@@ -77,7 +101,7 @@
       "h1_count": 1,
       "old_finance_copy": false
     },
-    "current_brand_refresh": {
+    "historical_brand_refresh": {
       "all_widths_scroll_width_matched_inner_width": true,
       "width_320": {
         "inner_width": 320,
@@ -118,7 +142,7 @@
         "desktop_navigation": "intact"
       }
     },
-    "limitations": "Historical results for uploaded commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 only. One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The latest screenshot/CDP capture timed out and produced no new artifact. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence. The one-product revision requires a complete rerun after push."
+    "limitations": "Historical results for uploaded commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 only. One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The latest screenshot/CDP capture timed out and produced no new artifact. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence. Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 requires a complete rendered rerun."
   },
   "regressions": [
     {
@@ -157,7 +181,7 @@
     "/this-route-should-404-20260814": {"status": "pass", "result": "branded 404"}
   },
   "interactions": {
-    "mobile_menu": "passed_after_current_brand_push_at_320px_with_updated_six_links_and_no_overflow",
+    "mobile_menu": "historical_pass_after_5f46487_brand_push_at_320px_with_updated_six_links_and_no_overflow",
     "desktop_navigation": "passed",
     "search_dialog": "passed",
     "predictive_collection_search": "passed",
@@ -211,7 +235,7 @@
     "observed_on": "2026-08-14",
     "main": {
       "items": ["Home", "Shop", "Contact", "How It Works", "Safety and Care", "FAQ"],
-      "rendered_candidate_verification": "passed_desktop_and_320px_mobile_after_current_brand_push",
+      "rendered_candidate_verification": "historical_pass_desktop_and_320px_mobile_after_5f46487_brand_push",
       "updated_mobile_contents_verification": "passed_exact_six_links_without_overflow"
     },
     "existing_footer": {
@@ -238,7 +262,7 @@
     "source_mapping": {
       "explore": "footer-shopping-menu",
       "help_and_policies": "footer-support-menu",
-      "upload_state": "current_commit_5f46487d1f53e45f5706ae945eeb5a09064893e3_pushed_strictly_and_rendered",
+      "upload_state": "historical_commit_5f46487d1f53e45f5706ae945eeb5a09064893e3_pushed_strictly_and_rendered_current_bb41a70_not_rerun",
       "rendered_explore": ["Powered Pool Floats", "Adult Pool Loungers", "Adult Pool Games", "Floating Bars and Coolers", "Pumps, Care and Repair", "Pool Party Bundles", "Shop All"],
       "rendered_help_and_policies": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
       "native_privacy_policy_link": "rendered_separately_through_show_policy",
@@ -253,5 +277,5 @@
   "accessibility": "not_run_beyond_incidental_dom_observations_including_header_footer_home_names_and_hero_label_no_accessibility_suite_or_manual_keyboard_screen_reader_audit",
   "lighthouse": "not_run",
   "rendered_qa_gate": "blocked",
-  "gate_reason": "The retained results are historical; the current one-product source revision has not been committed, pushed to the unpublished candidate or rendered."
+  "gate_reason": "Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is uploaded, but only password-page and Theme Editor evidence exists; the full inner homepage, product and commerce/browser QA did not run or pass."
 }
