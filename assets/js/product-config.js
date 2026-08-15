@@ -1,7 +1,7 @@
 window.DOCKED_PRODUCT = Object.freeze({
   brand: "Docked",
   name: "Docked Cruise D2",
-  subtitle: "Dual-Motor Adult Pool Lounger",
+  subtitle: "Dual-Motor Pool Lounger",
   price: 649,
   currency: "AUD",
   market: "Worldwide",

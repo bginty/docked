@@ -1,9 +1,11 @@
 node_modules/
 .codex-remote-attachments/
+source-assets/
 .env
 .env.*
 !.env.example
 *.log
+__pycache__/
 Thumbs.db
 .DS_Store
 tmp/

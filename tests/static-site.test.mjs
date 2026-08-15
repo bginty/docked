@@ -34,8 +34,14 @@ test('homepage has the one-product PayPal ordering contract', () => {
   assert.match(index, /Docked Cruise D2/);
   assert.match(index, /data-product-price/);
   assert.match(index, /Adults 18\+ only\. For competent swimmers in calm, controlled swimming pools\. Not a life-saving device\./);
+  assert.equal((index.match(/Adults 18\+/g) ?? []).length, 1);
   assert.match(index, /Secure checkout powered by PayPal\./);
   assert.match(index, /Free worldwide shipping/);
+  assert.match(index, /cruise-d2-pool-1200\.webp/);
+  assert.match(index, /cruise-d2-overview-1200\.webp/);
+  assert.match(index, /cruise-d2-controls-1200\.webp/);
+  assert.match(index, /data-mobile-buy-bar/);
+  assert.doesNotMatch(index, /unverified performance|original brand illustrations|the Docked approach|confirmed before dispatch/i);
   assert.doesNotMatch(index, /\b(?:in stock|sale|limited time|only \d+ left|rating|reviews?)\b/i);
 });
 
@@ -59,6 +65,8 @@ test('CSS includes mobile, focus, and reduced-motion safeguards', () => {
   assert.match(css, /@media\s*\([^)]*prefers-reduced-motion\s*:\s*reduce/i);
   assert.match(css, /:focus-visible/i);
   assert.match(css, /\.site-nav \.nav-cta\s*\{[^}]*background:\s*var\(--coral-dark\)/s);
+  assert.match(css, /\.mobile-buy-bar/);
+  assert.match(css, /--pool-text:\s*#087b98/i);
   assert.doesNotMatch(css, /width\s*:\s*100vw/i);
 });
 

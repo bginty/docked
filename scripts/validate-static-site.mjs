@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { createHash } from 'node:crypto';
 
 const root = process.cwd();
 const requiredPages = [
@@ -22,6 +23,13 @@ const requiredFiles = [
   'assets/css/styles.css',
   'assets/js/product-config.js',
   'assets/js/site.js',
+  'assets/images/product/cruise-d2-pool-1200.webp',
+  'assets/images/product/cruise-d2-pool-600.webp',
+  'assets/images/product/cruise-d2-overview-1200.webp',
+  'assets/images/product/cruise-d2-overview-600.webp',
+  'assets/images/product/cruise-d2-controls-1200.webp',
+  'assets/images/product/cruise-d2-controls-600.webp',
+  'assets/images/product/cruise-d2-social-1200.jpg',
   'docs/STATIC_SITE_ASSET_REGISTER.md',
   'docs/STATIC_PAYPAL_DEPLOYMENT.md',
   'docs/STATIC_PAYPAL_ROLLBACK.md',
@@ -44,6 +52,10 @@ function read(relativePath) {
 
 function exists(relativePath) {
   return fs.existsSync(path.join(root, relativePath));
+}
+
+function sha256(relativePath) {
+  return createHash('sha256').update(fs.readFileSync(path.join(root, relativePath))).digest('hex').toUpperCase();
 }
 
 function assert(name, condition, detail) {
@@ -88,6 +100,18 @@ if (missing.length === 0) {
   ];
   const placeholderHits = placeholders.filter((term) => publicText.includes(term));
   assert('checkout.no-placeholders', placeholderHits.length === 0, placeholderHits.length ? `Found: ${placeholderHits.join(', ')}` : 'No placeholder checkout or draft copy');
+
+  const productImageHashes = new Map([
+    ['assets/images/product/cruise-d2-pool-1200.webp', '20DF5BEB0C943D520B8046C0AECB17D91327C8B40D32E70B6CC86A3E53D62345'],
+    ['assets/images/product/cruise-d2-pool-600.webp', 'CDE094AB9E31F36DFC94C97FF23C8B7BDAC0B0004C0592E5159BA636894E5ACA'],
+    ['assets/images/product/cruise-d2-overview-1200.webp', '997C319C86592B570726D22B3B5B5AFFACD2EB4F0EBBB898FE2B13C21A914214'],
+    ['assets/images/product/cruise-d2-overview-600.webp', '2657B7F06D570D7C2F60D8B345D095ECA10E728562CC563F3082F76F5EDF8BB2'],
+    ['assets/images/product/cruise-d2-controls-1200.webp', '70A780E4E1F8BF0A13FB98F5B14B6D56EB8883125F6D241373B34C15D76F5340'],
+    ['assets/images/product/cruise-d2-controls-600.webp', 'E5E6DA93DA8256346D8B5A86AF56490DA5472827BD2B33E0DC9EF92CB8986DD8'],
+    ['assets/images/product/cruise-d2-social-1200.jpg', '852B87ACA39C0599C23EA7414892FE1B38362AADF262957A885CFF4AF601FAFF'],
+  ]);
+  const productImageDrift = [...productImageHashes].filter(([file, hash]) => sha256(file) !== hash).map(([file]) => file);
+  assert('assets.product-media', productImageDrift.length === 0, productImageDrift.length ? `Unexpected product-media bytes: ${productImageDrift.join(', ')}` : 'Seven approved supplier-image derivatives match the asset register');
 
   const index = htmlByFile.get('index.html');
   const config = read('assets/js/product-config.js');
@@ -150,8 +174,15 @@ if (missing.length === 0) {
       read('shipping-returns.html').includes('Free standard shipping is included worldwide'),
     'Worldwide market and free-shipping wording match the owner-approved offer',
   );
-  assert('product.adult-warning', index.includes('Adults 18+ only. For competent swimmers in calm, controlled swimming pools. Not a life-saving device.'), 'Concise adult safety warning is visible');
+  const adultWarning = 'Adults 18+ only. For competent swimmers in calm, controlled swimming pools. Not a life-saving device.';
+  assert('product.adult-warning', index.includes(adultWarning) && (index.match(/Adults 18\+/g) ?? []).length === 1, 'One concise adult safety warning is visible near checkout');
   assert('product.price-target', /data-product-price/.test(index), 'Homepage exposes the single configured price target');
+  assert(
+    'content.product-first',
+    /cruise-d2-pool-1200\.webp/.test(index) && /cruise-d2-overview-1200\.webp/.test(index) && /cruise-d2-controls-1200\.webp/.test(index) &&
+      !/unverified performance|original brand illustrations|the Docked approach|confirmed before dispatch/i.test(publicText),
+    'Homepage uses approved product media and contains no internal compliance-preview copy',
+  );
 
   const unsupportedPatterns = [
     /\b(?:30|90)[ -]?minute(?:s)?\b/i,
