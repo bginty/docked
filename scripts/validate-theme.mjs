@@ -720,14 +720,18 @@ function validateRoutesAndComposition(root, report) {
     missingHomeSections,
   );
   const featuredCollections = homeTypes.filter((type) => type === 'featured-collection').length;
+  const featuredCollectionSection = Object.values(home.sections ?? {}).find(
+    (section) => section.type === 'featured-collection',
+  );
+  const productsToShow = featuredCollectionSection?.settings?.products_to_show;
   const obsoleteRangeSections = ['docked-collection-grid', 'docked-powered-comparison', 'docked-float-finder']
     .filter((type) => homeTypes.includes(type));
   addCheck(
     report,
-    featuredCollections === 1 && obsoleteRangeSections.length === 0,
+    featuredCollections === 1 && productsToShow === 2 && obsoleteRangeSections.length === 0,
     'home.single-product-layout',
-    'Homepage presents one featured product range without multi-category finder or comparison surfaces',
-    { featuredCollections, obsoleteRangeSections },
+    'Homepage presents one featured product range with Shopify-valid minimum card capacity and no multi-category finder or comparison surfaces',
+    { featuredCollections, productsToShow, obsoleteRangeSections },
   );
   addCheck(
     report,
