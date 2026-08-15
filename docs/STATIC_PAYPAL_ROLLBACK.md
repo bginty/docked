@@ -4,8 +4,8 @@ Last updated: 15 August 2026 (AEST)
 
 ## Recovery point
 
-- Current product-led production commit: `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`
-- Immediate prior static storefront commit: `a4d9075e13a90a03a8587b5641626f0d42a36160`
+- Current product-led production commit: `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`
+- Immediate prior static storefront commit: `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`
 - Historical finance snapshot: `b26add982e5f4c7cfab2b13f74a14500d7199530`
 - Historical archive branch: `archive/docked-finance-site-2026-08`
 - Historical archive tag: `docked-finance-site-before-pool-rebuild`
@@ -22,7 +22,7 @@ Do not force-push and do not delete the failed Docked commit. From a clean, up-t
 ```powershell
 git fetch origin --prune
 git switch -c codex/docked-product-media-rollback origin/main
-git restore --source=a4d9075e13a90a03a8587b5641626f0d42a36160 --staged --worktree -- .
+git restore --source=5aceddc9726d7d2617c8e2e09c1b4f290f87e633 --staged --worktree -- .
 git commit -m "revert: restore prior Docked static storefront"
 git push -u origin codex/docked-product-media-rollback
 git push origin codex/docked-product-media-rollback:main

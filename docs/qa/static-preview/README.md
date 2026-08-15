@@ -1,14 +1,16 @@
 # Static preview QA
 
-Candidate feature-board revision observation window: 15 August 2026, 20:15–20:20 AEST
+Feature-board candidate observation window: 15 August 2026, 20:15–20:20 AEST
+
+Feature-board production observation window: 15 August 2026, 20:42–20:44 AEST
 
 Current deployed product-led revision observation window: 15 August 2026, 18:03–18:20 AEST
 
 Initial-launch production observation window: 15 August 2026, 17:31:41–17:36:28 AEST
 
-Current deployed source commit: `f3475f2d60aa7ce011b726cf6a4d6050c8baee39`; public Pages output commit: `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`. The feature-board candidate is locally tested but not yet committed or deployed.
+Current deployed source commit: `06d4bd1941517b79c10a72a59d581969afd58f31`; public Pages output commit: `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`.
 
-## Candidate feature-board revision
+## Feature-board revision
 
 The current working tree adds `assets/images/product/cruise-d2-features.jpg` from the owner-supplied supplier file `C:\Users\61412\Desktop\1000047443.png` (405,229 bytes, 1536 × 1536, SHA-256 `93E1A9A811B851185F1B9335850A99561B8B54994A2FD46AA147F0E912A7054C`). The source is JPEG/JFIF despite its `.png` filename. The 507,583-byte public derivative is also 1536 × 1536 JPEG/JFIF and has SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523`.
 
@@ -29,7 +31,7 @@ Candidate QA results:
 
 Captured evidence is stored in `docs/qa/static-preview/feature-revision/`: `homepage-360.png`, `homepage-390.png`, `homepage-430.png`, `homepage-768.png`, `homepage-1024.png`, `homepage-1440.png`, `feature-360.png` and `checkout-390.png`. Filenames identify the requested browser viewport; raster width records the scrollbar-adjusted content viewport described above.
 
-The candidate source commit, Pages deployment and live-domain verification remain pending. The production results below describe the currently deployed `5aceddc…` revision and are not evidence that the candidate is already live.
+The source revision is commit `06d4bd1941517b79c10a72a59d581969afd58f31`. Its exact public allowlist is production commit `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`, deployed successfully by Pages run #99. Live evidence files added after deployment are `live-homepage-390.png`, `live-feature-390.png` and `live-checkout-390.png`.
 
 ## Browser checks
 
@@ -38,7 +40,7 @@ The candidate source commit, Pages deployment and live-domain verification remai
 - The product image derivatives loaded successfully. Selecting the `Controls` gallery tab updated `aria-selected`, exposed `gallery-panel-3` and loaded the registered controls derivative.
 - The live DOM contained one understated `18+` mention beside ordering; the detailed warning content remains on the Safety page.
 - Local links, fragments, image references, JavaScript syntax and page semantics are also covered by the deterministic validator and Node tests.
-- Final local source checks: `npm run validate` passed 28/28 and `npm test` passed 5/5.
+- Final local source checks: `npm run validate` passed 37/37 and `npm test` passed 8/8.
 
 ## Responsive matrix
 
@@ -62,19 +64,18 @@ Hosted button ID: `FGAUDYCA2LX36`
 
 ## Production-domain verification
 
-- GitHub Pages workflow [run #98](https://github.com/bginty/docked/actions/runs/31874058651) completed successfully for exact commit `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`; deployment ID `5918633369` reached `success` at `2026-08-15T08:16:35Z`.
-- `https://docked.com.au/` returned the product-led `Docked Cruise D2 | Motorised Pool Lounger` site over a valid TLS connection; `https://www.docked.com.au/` redirected to the HTTPS apex.
-- The live hero, overview and controls product derivatives returned `200 image/webp`. The hero and overview loaded immediately; selecting `Controls` loaded the lazy gallery image and changed the selected tab/panel correctly.
-- The live homepage rendered the PayPal Hosted Button for `Docked Cruise D2`, `A$649.00 AUD`, quantity 1 to 10. No checkout button was activated, no payment data was entered and no transaction was completed during this revision check.
-- The inspected desktop viewport had no page-wide horizontal overflow. Fresh rendered mobile dimensions were not available in the current browser environment and are not reported as passed for this revision.
-- Safety, Shipping and Returns, Privacy and Terms rendered with their intended titles and H1 headings. An unknown route returned the custom `Page Not Found | Docked` page with H1 `We couldn’t find it.`
-- A same-origin crawl found 14 references with no broken targets or fragment links. All current public files returned `200`; all 14 checked finance-only legacy routes and assets returned the custom 404.
-- The live homepage contained the expected PayPal public client identifier, Hosted Button ID `FGAUDYCA2LX36`, `currency=AUD`, public price `649`, worldwide shipping copy and one quiet `18+` eligibility notice. Checked finance phrases and Shopify references were absent from the public output.
+- GitHub Pages workflow [run #99](https://github.com/bginty/docked/actions/runs/31880122836) completed successfully for exact commit `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`; deployment ID `5919624892` reached `success` at `2026-08-15T10:41:09Z`.
+- `https://docked.com.au/` returned `Docked Cruise D2 | Motorised Inflatable Water Lounger Australia` over a valid TLS connection; `https://www.docked.com.au/` continued to redirect to the HTTPS apex.
+- The live feature-board asset returned `200`, 1536 × 1536 JPEG/JFIF and exact registered SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523`. It rendered uncropped and inside the 390-pixel browser viewport.
+- The live homepage rendered four purchase CTAs targeting `#checkout`, the PayPal Hosted Button for `Docked Cruise D2` at `A$649`, quantity 1 to 10, and one quiet `18+` eligibility notice. No checkout control was activated, no payment data was entered and no transaction was completed.
+- At requested viewports of 390 and 1440 CSS pixels, document `scrollWidth` equalled `clientWidth`; there were no broken loaded images. On desktop, price and the primary purchase action were above the fold.
+- Contact, Warranty, Safety, Shipping and Returns, Privacy, Terms and Thank You returned `200` with intended titles. An unknown route returned the custom 404.
+- Checked finance phrases and Shopify references were absent from the public output.
 - HTTPS availability passed, but enforcement did not: plain `http://docked.com.au/` returned `200` instead of redirecting, and GitHub's Pages API reported `https_enforced: false`.
 
 ## Limits
 
-- The homepage now uses deterministic crops of owner-approved supplier images depicting the Docked product. The promotional source overlays were excluded, and no image was generatively reconstructed. Source custody and derivative hashes are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`.
+- The homepage uses deterministic crops of owner-approved supplier images plus the deterministic text-redacted feature board. A full-frame generated edit was rejected and is not published. Source custody and derivative hashes are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`.
 - Lighthouse was not run because a Lighthouse executable was not installed in the workspace. No target score is reported as achieved.
 - The current live PayPal-enabled load produced PayPal's own `ncps_standalone_paylater_ineligible`, Apple Pay configuration and eligibility messages while the hosted button remained rendered. No first-party Docked JavaScript error was observed; this is not reported as a zero-message console pass.
 - A real payment, PayPal seller-account transaction record, payment email and refund were not tested or claimed.

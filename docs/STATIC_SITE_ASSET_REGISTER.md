@@ -18,10 +18,11 @@ This register covers only assets intended for the public static site. It does no
 | `assets/images/product/cruise-d2-overview-{600,1200}.webp` | Product overview and gallery | Deterministic crops of supplier `2-Photo-2.jpg`; exact source pixels retained and surrounding numerical claims removed. | Approved by the owner on 15 August 2026 as the Docked product. |
 | `assets/images/product/cruise-d2-controls-{600,1200}.webp` | Controls gallery | Deterministic crops of supplier `1-Photo-1.jpg`; exact source pixels retained and the supplier headline/text callouts removed. | Approved by the owner on 15 August 2026 as the Docked product. |
 | `assets/images/product/cruise-d2-social-1200.jpg` | 1200 × 630 Open Graph image | Deterministic social crop of supplier `3-Photo-3.jpg`; no generative alteration. | Approved for this release under the same owner confirmation. |
+| `assets/images/product/cruise-d2-features.jpg` | Prominent homepage feature board | Deterministic text-redacted derivative of the owner-authorised supplier board; exact public hash and treatment are recorded below. | Published in production commit `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`. |
 
 These registered files are the complete published visual set. No undocumented visual may be published.
 
-## Candidate supplier feature-board revision
+## Published supplier feature-board revision
 
 The owner supplied a further square feature-board file for the Cruise D2 and confirmed that it came from the product supplier, depicts the Docked product and is authorised for Docked's website use. The owner separately confirmed the six facts retained on the public derivative: motorised electric propulsion, up to 5 km/h, dual joystick control, 160 kg capacity, built-in cup holder and supportive headrest.
 
@@ -35,7 +36,7 @@ The owner supplied a further square feature-board file for the Cruise D2 and con
 | Public derivative | 507,583 bytes; 1536 × 1536 JPEG/JFIF; SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523` |
 | File treatment | Deterministic raster derivative of the supplied board. The product depiction, layout and confirmed callouts are retained. The unsupported source sentence “Strong and stable design for a safe and comfortable ride” is covered and replaced with “Maximum supported load: 160 kg.” |
 | Generative edit decision | A full-frame generated draft was rejected because it altered supplier-product pixels. It is outside the repository and is not published. The final public file uses the supplied source and a deterministic text-only redaction; no product geometry or feature depiction was generated. |
-| Revision status | Present in the working tree; hash/dimensions verified; automated validation and rendered responsive QA passed locally on 15 August 2026; source commit, Pages deployment and live-domain verification remain pending |
+| Revision status | Published in production commit `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`; Pages run #99 succeeded; live asset hash/dimensions and responsive rendering verified on 15 August 2026 |
 
 The public board states motorised power with built-in electric propulsion up to 5 kph, dual joystick control, a built-in cup holder, 160 kg capacity, a supportive headrest and summer-oriented use. The owner's confirmation is the evidence currently recorded for the six product facts. No independent speed/performance test or 160 kg load-bearing test was supplied or reviewed in this revision, so the board is not described as independently tested or laboratory-verified.
 
