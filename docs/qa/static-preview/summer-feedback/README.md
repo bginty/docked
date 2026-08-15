@@ -1,6 +1,6 @@
 # Summer-feedback candidate QA
 
-Status: local candidate; automated and rendered QA passed; production deployment pending
+Status: reviewed source and isolated production candidate pushed; public deployment awaits explicit owner authorisation
 
 Recorded: 16 August 2026 (AEST)
 
@@ -8,7 +8,8 @@ Recorded: 16 August 2026 (AEST)
 
 - Repository: `https://github.com/bginty/docked.git`
 - Working branch: `codex/docked-static-paypal-launch`
-- Candidate source commit: pending
+- Candidate source commit: `be6d391743feec1ef869694b9ad67d42f02497d0` (pushed)
+- Isolated production candidate: `5be6e075d6d72bf6ebc8c96b131b7fa257465868` (pushed to `codex/docked-static-pages-production`, not `main`)
 - Current deployed production commit: `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`
 - Production URL: `https://docked.com.au`
 - Production state at record time: the preceding screenshot-reference revision remains live; this candidate is not live
@@ -114,9 +115,10 @@ These are local candidate captures only. They are not evidence that the candidat
 
 | Item | Status | Evidence |
 | --- | --- | --- |
-| Candidate source commit | Pending | Not committed at record time. |
-| Working-branch push | Pending | Not pushed at record time. |
-| Exact public promotion commit | Pending | Current production remains `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. |
+| Candidate source commit | Passed | Reviewed source commit `be6d391743feec1ef869694b9ad67d42f02497d0`. |
+| Working-branch push | Passed | The source commit is pushed to `origin/codex/docked-static-paypal-launch`. |
+| Isolated public candidate | Passed | Exact eight-file commit `5be6e075d6d72bf6ebc8c96b131b7fa257465868` is pushed to `origin/codex/docked-static-pages-production`. |
+| Public `main` promotion | Awaiting owner authorisation | Current production remains `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`; the release safeguard did not treat implementation approval as fresh production permission. |
 | GitHub Pages workflow | Pending | No run exists for this candidate. |
 | HTTPS apex and `www` | Pending fresh verification | Historical production evidence is not reused. |
 | Live responsive matrix | Pending | Must be repeated on the exact promoted commit; the local seven-width pass is not substituted. |

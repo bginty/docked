@@ -1,6 +1,6 @@
 # Docked static PayPal deployment record
 
-Status: screenshot-reference revision remains live on `docked.com.au`; summer-feedback revision passed local automated and rendered QA and awaits deployment; HTTP-to-HTTPS enforcement remains pending
+Status: screenshot-reference revision remains live on `docked.com.au`; reviewed summer-feedback source and isolated production candidate are pushed, while public promotion awaits explicit owner authorisation; HTTP-to-HTTPS enforcement remains pending
 
 Last updated: 16 August 2026 (AEST)
 
@@ -16,9 +16,9 @@ Last updated: 16 August 2026 (AEST)
 
 The public production commit contains only the 31-file static web output. Development tests, source-image custody files, processing scripts, evidence records, screenshots and Shopify history remain on the working branch and in Git history; they are not copied into the Pages root.
 
-## Summer-feedback candidate — local, not deployed
+## Summer-feedback candidate — reviewed and pushed, not deployed
 
-The owner approved implementing the unambiguous visual and merchandising changes supplied in `Website Ideas.eml`, while retaining the existing Docked logo and `Cruise D2` product name. At the time of this record, these changes exist only in the working tree on `codex/docked-static-paypal-launch`. They have not been committed, pushed, promoted to `main` or verified on `docked.com.au`.
+The owner approved implementing the unambiguous visual and merchandising changes supplied in `Website Ideas.eml`, while retaining the existing Docked logo and `Cruise D2` product name. The reviewed source is commit `be6d391743feec1ef869694b9ad67d42f02497d0`, pushed to `origin/codex/docked-static-paypal-launch`. Its exact eight-file public payload is committed as `5be6e075d6d72bf6ebc8c96b131b7fa257465868` and pushed to `origin/codex/docked-static-pages-production`. It has not been promoted to `main`, has not triggered a Pages run and has not been verified on `docked.com.au`.
 
 The candidate:
 
@@ -57,7 +57,7 @@ Fresh local rendered QA passed at 320, 360, 390, 430, 768, 1024 and 1440 CSS pix
 
 At 390 CSS pixels, gallery click and `ArrowRight` navigation reached the `Poolside` panel, the mobile menu opened and closed with `Escape`, and PayPal rendered two iframes with `Docked Cruise D2` at `$649.00 AUD`. Activating the persistent CTA reached `#checkout` with the checkout heading at approximately 112 CSS pixels from the viewport top; the bar was hidden there. No first-party Docked console error was observed. PayPal emitted its third-party `ncps_standalone_paylater_ineligible` diagnostic and Apple Pay configuration messages. Six screenshots are recorded in `docs/qa/static-preview/summer-feedback/`.
 
-Production promotion, Pages workflow evidence and live-domain QA remain pending. No Lighthouse, automated accessibility, real-payment or live-deployment result is claimed for the candidate. No buyer or payment data was entered. The detailed candidate QA register is `docs/qa/static-preview/summer-feedback/README.md`.
+The attempted non-force `main` promotion was deliberately stopped by the release safeguard because implementation approval was not treated as a fresh public-production authorisation. Production promotion, Pages workflow evidence and live-domain QA therefore remain pending. No Lighthouse, automated accessibility, real-payment or live-deployment result is claimed for the candidate. No buyer or payment data was entered. The detailed candidate QA register is `docs/qa/static-preview/summer-feedback/README.md`.
 
 ## Screenshot-reference production revision
 

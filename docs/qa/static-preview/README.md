@@ -12,7 +12,7 @@ Current deployed product-led revision observation window: 15 August 2026, 18:03�
 
 Initial-launch production observation window: 15 August 2026, 17:31:41–17:36:28 AEST
 
-Current deployed reviewed source implementation commit: `777b09037e0f78e627cef09e710b05f0c4d88ff6`; public Pages output commit: `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. The summer-feedback candidate is uncommitted and not deployed at the time of this record.
+Current deployed reviewed source implementation commit: `777b09037e0f78e627cef09e710b05f0c4d88ff6`; public Pages output commit: `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. The summer-feedback source is committed and pushed as `be6d391743feec1ef869694b9ad67d42f02497d0`; its isolated eight-file production candidate is pushed as `5be6e075d6d72bf6ebc8c96b131b7fa257465868`, but it is not on `main` and is not live.
 
 ## Summer-feedback candidate — local QA passed, deployment pending
 
@@ -31,7 +31,7 @@ Recorded local automated results:
 
 Fresh local Browser QA passed at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. All seven viewports had no horizontal overflow or broken image, showed the three visible supplier-illustration disclosures, kept the man illustration at a 1.5 rendered aspect ratio with `min-height: 0px`, and applied the contextual purchase-bar rule correctly. At 390 pixels, gallery click and `ArrowRight` navigation reached `Poolside`; the mobile menu opened and closed with `Escape`; two PayPal iframes rendered `Docked Cruise D2` at `$649.00 AUD`; and the persistent CTA reached `#checkout` with the heading approximately 112 pixels from the viewport top and the bar hidden. Six screenshots are in [`summer-feedback/`](./summer-feedback/).
 
-No first-party Docked console error was observed. PayPal emitted `ncps_standalone_paylater_ineligible` and Apple Pay configuration messages from its third-party integration. No payment or Lighthouse run was performed. Production promotion and live-domain QA remain pending. Nothing in the historical sections below is evidence for the current local candidate.
+No first-party Docked console error was observed. PayPal emitted `ncps_standalone_paylater_ineligible` and Apple Pay configuration messages from its third-party integration. No payment or Lighthouse run was performed. Public promotion awaits explicit owner authorisation; live-domain QA remains pending. Nothing in the historical sections below is evidence for this reviewed candidate.
 
 ## Screenshot-reference production revision
 
