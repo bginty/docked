@@ -129,4 +129,18 @@
 
     showPanel(0, false);
   }
+
+  var mobileBuyBar = document.querySelector("[data-mobile-buy-bar]");
+  var orderingSection = document.querySelector("#ordering");
+  if (mobileBuyBar) {
+    document.body.classList.add("has-mobile-buy-bar");
+  }
+  if (mobileBuyBar && orderingSection && "IntersectionObserver" in window) {
+    var orderingObserver = new IntersectionObserver(function (entries) {
+      mobileBuyBar.dataset.hidden = String(entries.some(function (entry) {
+        return entry.isIntersecting;
+      }));
+    }, { threshold: 0.1 });
+    orderingObserver.observe(orderingSection);
+  }
 }());
