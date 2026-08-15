@@ -1,0 +1,21 @@
+{%- if settings.enable_age_confirmation -%}
+  <dialog
+    class="docked-age-dialog"
+    data-docked-age-dialog
+    aria-labelledby="DockedAgeTitle"
+    aria-describedby="DockedAgeDescription"
+  >
+    <div class="docked-age-dialog__mark" aria-hidden="true">18+</div>
+    <h2 id="DockedAgeTitle">{{ settings.age_confirmation_heading | escape }}</h2>
+    <div id="DockedAgeDescription" class="rte">{{ settings.age_confirmation_text }}</div>
+    <div class="docked-age-dialog__actions">
+      <button type="button" class="button" data-docked-age-confirm>
+        Continue to Docked
+      </button>
+      <a class="button button--secondary" href="{{ settings.age_exit_url | default: 'https://www.google.com/' }}">
+        Leave this site
+      </a>
+    </div>
+    <p class="caption">This confirmation is a merchandising aid. It does not waive legal rights or replace supervision and product safety.</p>
+  </dialog>
+{%- endif -%}

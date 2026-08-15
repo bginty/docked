@@ -1,0 +1,10 @@
+{%- liquid
+  assign wordmark_class = class | default: 'docked-wordmark-fallback'
+  assign wordmark_label = accessible_name | default: shop.name
+-%}
+<span class="{{ wordmark_class }}">
+  <span class="visually-hidden">{{ wordmark_label | escape }}</span>
+  <span class="docked-brand-wordmark__art" aria-hidden="true">
+    {{- 'docked-wordmark.svg' | inline_asset_content -}}
+  </span>
+</span>

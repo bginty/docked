@@ -1,0 +1,80 @@
+name: Docked theme validation
+
+on:
+  pull_request:
+    paths:
+      - "assets/**"
+      - "config/**"
+      - "data/draft-product-catalogue.csv"
+      - "data/pricing-calculator.csv"
+      - "data/shopify-draft-products-import.csv"
+      - "docs/production-launch-gates.json"
+      - "layout/**"
+      - "locales/**"
+      - "sections/**"
+      - "snippets/**"
+      - "templates/**"
+      - "scripts/**"
+      - "tests/**"
+      - ".theme-check.yml"
+      - ".github/workflows/theme-check.yml"
+      - "package.json"
+  push:
+    branches:
+      - "codex/**"
+      - "release/**"
+    paths:
+      - "assets/**"
+      - "config/**"
+      - "data/draft-product-catalogue.csv"
+      - "data/pricing-calculator.csv"
+      - "data/shopify-draft-products-import.csv"
+      - "docs/production-launch-gates.json"
+      - "layout/**"
+      - "locales/**"
+      - "sections/**"
+      - "snippets/**"
+      - "templates/**"
+      - "scripts/**"
+      - "tests/**"
+      - ".theme-check.yml"
+      - ".github/workflows/theme-check.yml"
+      - "package.json"
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  contents: read
+
+concurrency:
+  group: docked-theme-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  structural-validation:
+    name: Structural and safety gates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out theme
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate theme structure and copy
+        run: npm run validate
+      - name: Validate production launch gates
+        run: npm run validate:production
+      - name: Run local tests
+        run: npm test
+
+  shopify-theme-check:
+    name: Shopify Theme Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out theme
+        uses: actions/checkout@v4
+      - name: Run Theme Check
+        uses: shopify/theme-check-action@v2
+        with:
+          token: ${{ github.token }}

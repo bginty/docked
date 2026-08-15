@@ -1,0 +1,359 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-08-15",
+  "timezone": "Australia/Sydney",
+  "allowed_statuses": [
+    "blocked",
+    "pending",
+    "passed",
+    "not_applicable"
+  ],
+  "release": {
+    "repository": "bginty/docked",
+    "release_branch": "release/docked-shopify-production-2026-08",
+    "starting_commit": "895958891c8ec2780eba7ff224c5d0259d0de9dd",
+    "store_handle": "cfbexf-h4.myshopify.com",
+    "store_handle_state": "confirmed through authenticated Shopify CLI 4.5.2; storefront remains password-protected",
+    "theme_root": ".",
+    "shopify_cli_version": "4.5.2",
+    "release_commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
+    "initial_brand_refresh_uploaded_commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
+    "previous_exact_uploaded_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
+    "pull_request": "https://github.com/bginty/docked/pull/1",
+    "authenticated_account_display_name": "Briant Ginty",
+    "existing_live_theme": {
+      "id": "130871099450",
+      "name": "Horizon"
+    },
+    "unpublished_candidate": {
+      "id": "130871427130",
+      "name": "Docked Production Candidate 2026-08",
+      "role": "unpublished",
+      "preview_url": "https://cfbexf-h4.myshopify.com?preview_theme_id=130871427130",
+      "editor_url": "https://cfbexf-h4.myshopify.com/admin/themes/130871427130/editor"
+    },
+    "one_product_upload": {
+      "failed_attempt": {
+        "commit": "5cc3edcce9fe76c09c630eb859d2cebc3d61fa6f",
+        "started_at": "2026-08-15T12:48:17+10:00",
+        "finished_at": "2026-08-15T12:49:53+10:00",
+        "result": "failed",
+        "reason": "Shopify schema validation rejected templates/index.json products_to_show below the minimum of 2."
+      },
+      "successful_attempt": {
+        "commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
+        "started_at": "2026-08-15T12:52:11.7607489+10:00",
+        "finished_at": "2026-08-15T12:53:12.6371436+10:00",
+        "result": "success",
+        "role": "unpublished",
+        "live_theme_untouched": "130871099450"
+      }
+    },
+    "theme_role_verification": {
+      "verified_by": "2026-08-15T13:02:18+10:00",
+      "exact_cli_minute_retained": false,
+      "source": "Authenticated Shopify CLI theme list JSON after authentication refresh",
+      "live_theme": {
+        "id": "130871099450",
+        "name": "Horizon",
+        "role": "live",
+        "processing": false
+      },
+      "candidate_theme": {
+        "id": "130871427130",
+        "name": "Docked Production Candidate 2026-08",
+        "role": "unpublished",
+        "processing": false
+      }
+    },
+    "mode": "AUTO_MAXIMUM_SAFE_PROGRESS",
+    "public_prelaunch_authorisation_phrase": "AUTHORISE_DOCKED_PUBLIC_PRELAUNCH",
+    "full_launch_authorisation_phrase": "AUTHORISE_DOCKED_DOMAIN_CUTOVER_AND_LIVE_SALES",
+    "authorisation_received": false
+  },
+  "source_evidence": {
+    "theme_check": "187 files, 0 offenses",
+    "structural_validation": "62/62 passed",
+    "node_tests": "6/6 passed",
+    "copy_audit": "passed",
+    "data_validation": "Commit bb41a70d630041e95f627d05c62b7247b04257f7 validated one Draft DC-02 catalogue row, one guarded DC-02 pricing row and one safe Draft-import row. The 104-row competitor file remains historical research and the 3 redirects remain valid.",
+    "production_gate_validator": "21/21 required gates present and valid; 23 total gates",
+    "gate_summary": "5 passed, 18 blocked, 0 pending, 0 not_applicable",
+    "dependency_audit": "0 vulnerabilities",
+    "document_link_audit": "50 Markdown files, 176 relative references, 0 broken",
+    "secret_scan": "0 high-confidence matches; diff check clean",
+    "rendered_qa": "Historical detailed manual QA applies only to commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is uploaded; signed-out/direct preview remains password-protected, the password page displays one-product D2 Draft copy, and authenticated Theme Editor lists the one-product homepage composition. The inner homepage, product and commerce/browser suite were not run or passed; the gate remains blocked.",
+    "admin_catalogue": "Authenticated Shopify Admin on 2026-08-15 showed 15 total shells. Docked Cruise D2 product 7591990034490 is the sole Draft shell with inventory not tracked, channels 0 and vendor Requires verification; the other 14 shells were changed to Archived, not deleted. No product is Active and no newly supplied AI-generated concept image was uploaded.",
+    "admin_navigation": "Authenticated Theme Editor for current commit bb41a70d630041e95f627d05c62b7247b04257f7 lists the one-product homepage composition. Detailed menu/navigation rendering observations belong to historical commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 and were not rerun against the current commit.",
+    "admin_commerce_safety": "Basic plan active. Docked Cruise D2 remains Draft with inventory not tracked and channels 0; the other 14 historical shells are Archived and no product is Active. Shopify Payments requires completion; PayPal displays Active but has no account-identity or transaction evidence. Domestic and international shipping rates are configured without approval evidence; local delivery and pickup are off. Policies and sender-domain authentication remain incomplete; no test or live transaction exists.",
+    "single_product_revision": "One-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is committed and strictly uploaded to unpublished candidate 130871427130. Limited current password-page and Theme Editor evidence exists; full inner homepage, product and commerce/browser QA is not passed. Supplier files received on 2026-08-15 are component-level review material only and do not pass product, media, battery/transport, compliance, price, inventory, shipping, policy, payment, test-order, DNS, business-name or authorisation gates."
+  },
+  "evidence_schema": {
+    "description": "A gate may be passed only with actual, dated evidence applying to the exact store, theme, commit, SKU, provider or DNS zone. A template is not evidence.",
+    "type": "object_or_null",
+    "fields": {
+      "type": "Non-sensitive evidence category, such as cli_output, admin_record, legal_record, supplier_record, test_result, owner_approval or dns_query.",
+      "observed_at": "ISO 8601 date-time with timezone, or a date when the source supplies only a date.",
+      "summary": "Concise factual result without credentials or personal/payment/customer data.",
+      "reference": "Repository-relative path or redacted controlled-record identifier.",
+      "operator_or_source": "Non-sensitive operator role or authoritative source.",
+      "reviewer": "Reviewer role/name where safe.",
+      "scope": "Exact store, theme ID, commit, SKU, provider, test order or DNS records covered.",
+      "limitations": "Known limits, expiry, conditions or reasons the evidence does not pass the gate."
+    }
+  },
+  "brand_name_resolution": {
+    "status": "blocked",
+    "evidence": {
+      "type": "public_register_screening",
+      "observed_at": "2026-08-14",
+      "summary": "Preliminary ASIC public-register search displayed exact DOCKED as registered to another holder; lawful use is unresolved. The preliminary trademark searches do not constitute clearance.",
+      "reference": "docs/BUSINESS_NAME_AND_TRADEMARK.md",
+      "operator_or_source": "ASIC public register and IP Australia public search",
+      "reviewer": "Codex preliminary screen",
+      "scope": "Public Docked brand for the proposed Australian ecommerce store",
+      "limitations": "Not legal advice or clearance; current extract and documented lawful resolution are required."
+    }
+  },
+  "shopify_store_created": {
+    "status": "passed",
+    "evidence": {
+      "type": "rendered_storefront_observation",
+      "observed_at": "2026-08-14",
+      "summary": "The owner supplied cfbexf-h4.myshopify.com and a signed-out browser request resolved to its Shopify password page at /password, titled Docked, with Opening soon content.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Project owner and public Shopify storefront",
+      "reviewer": "Codex",
+      "scope": "Existence of the Shopify storefront at cfbexf-h4.myshopify.com",
+      "limitations": "This proves storefront existence and password protection only. It does not prove Admin ownership/access, legal identity, plan, theme library, settings or merchant readiness."
+    }
+  },
+  "shopify_admin_authenticated": {
+    "status": "passed",
+    "evidence": {
+      "type": "cli_output",
+      "observed_at": "2026-08-14",
+      "summary": "Shopify CLI 4.5.2 authenticated as Briant Ginty to cfbexf-h4.myshopify.com and returned existing and candidate theme metadata.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Shopify CLI 4.5.2",
+      "reviewer": "Codex",
+      "scope": "Admin/CLI access to cfbexf-h4.myshopify.com",
+      "limitations": "Authentication and theme access do not verify the legal seller, paid plan, banking, payments, content or other launch gates."
+    }
+  },
+  "storefront_password_enabled": {
+    "status": "passed",
+    "evidence": {
+      "type": "rendered_storefront_observation",
+      "observed_at": "2026-08-14",
+      "summary": "Signed-out access redirected to https://cfbexf-h4.myshopify.com/password and displayed Shopify's Opening soon password page.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Public Shopify storefront",
+      "reviewer": "Codex",
+      "scope": "Signed-out storefront access at cfbexf-h4.myshopify.com",
+      "limitations": "Password protection was observed publicly; a paid plan was subsequently verified, but publication remains blocked by the other launch gates."
+    }
+  },
+  "shopify_paid_plan_selected": {
+    "status": "passed",
+    "evidence": {
+      "type": "admin_record",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "Authenticated Shopify Admin Plan details showed the Basic plan active, billed at the promotional $1 AUD per month until 15 November 2026, with Change plan and Cancel plan controls.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin",
+      "reviewer": "Codex",
+      "scope": "Plan state for cfbexf-h4.myshopify.com",
+      "limitations": "Paid-plan selection satisfies only this gate; it does not authorise publication, password removal, product activation or live payments."
+    }
+  },
+  "theme_preview_uploaded": {
+    "status": "passed",
+    "evidence": {
+      "type": "cli_output",
+      "observed_at": "2026-08-15T12:53:12.6371436+10:00",
+      "summary": "The interim 5cc3edcce9fe76c09c630eb859d2cebc3d61fa6f strict push failed Shopify schema validation from 2026-08-15T12:48:17+10:00 to 2026-08-15T12:49:53+10:00 because templates/index.json products_to_show was below Shopify's minimum of 2; it is not a successful upload. Corrected one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 strictly pushed successfully from 2026-08-15T12:52:11.7607489+10:00 to 2026-08-15T12:53:12.6371436+10:00. Candidate 130871427130 remained unpublished, preview/editor URLs were unchanged and live Horizon 130871099450 was untouched.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify CLI 4.5.2",
+      "reviewer": "Codex",
+      "scope": "Repository-root theme at commit bb41a70d630041e95f627d05c62b7247b04257f7 on release/docked-shopify-production-2026-08 uploaded to cfbexf-h4.myshopify.com as unpublished theme 130871427130",
+      "limitations": "Upload is not publication. Only the password page and authenticated Theme Editor received limited current observation; the inner homepage, product route and full commerce/browser suite were not run or passed."
+    }
+  },
+  "rendered_qa_passed": {
+    "status": "blocked",
+    "evidence": {
+      "type": "test_result",
+      "observed_at": "2026-08-15",
+      "summary": "Detailed responsive and interaction evidence remains historical for commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. For current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7, signed-out/direct preview remained password-protected; the password page displayed “Pool time, powered — soon.” and D2 Draft wording; and authenticated Theme Editor listed the one-product homepage composition.",
+      "reference": "docs/POST_LAUNCH_QA.md",
+      "operator_or_source": "Authenticated Codex in-app Browser; repository screenshots are qualified historical evidence only",
+      "reviewer": "Codex",
+      "scope": "Unpublished Shopify theme 130871427130 at current commit bb41a70d630041e95f627d05c62b7247b04257f7, with historical detailed evidence separately retained for 5f46487d1f53e45f5706ae945eeb5a09064893e3",
+      "limitations": "Current evidence covers only the password page and Theme Editor composition listing. The inner homepage, product route, route/menu/contact/account interactions, multi-browser, accessibility, Lighthouse, checkout, mailbox delivery and commerce testing did not run or pass."
+    }
+  },
+  "support_email_verified": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_record_and_failed_test_setup",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "Shopify Notifications contains support@docked.com.au, but Email domain authentication reports Needs setup and Shopify states it will use a shopifyemail.com backup sender if authentication or DMARC is not set up. Earlier Contact form acceptance is recorded, but end-to-end mailbox delivery is not.",
+      "reference": "docs/POST_LAUNCH_QA.md",
+      "operator_or_source": "Project owner, authenticated Shopify Admin and connected Gmail attempt",
+      "reviewer": "Codex",
+      "scope": "Support mailbox and Shopify sender address for cfbexf-h4.myshopify.com",
+      "limitations": "Form acceptance is not mailbox-delivery evidence. No successful external send/receipt/reply, Contact mailbox receipt, order/refund notification or delivered-header SPF/DKIM/DMARC result exists."
+    }
+  },
+  "approved_products_available": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_record",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "Authenticated Shopify Admin showed 15 total shells. Docked Cruise D2, product ID 7591990034490, is the sole Draft shell with inventory not tracked, channels 0 and vendor Requires verification; the other 14 shells were changed to Archived, not deleted. No product is Active.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin",
+      "reviewer": "Codex",
+      "scope": "Docked Cruise D2 product 7591990034490 and the 14 archived historical shells in cfbexf-h4.myshopify.com",
+      "limitations": "Supplier files received on 2026-08-15 are component-level review material only. No exact finished-product supplier/model/SKU, stock, cost, final price, licensed documentary media, final manual, safety, compliance, battery transport, shipping or activation evidence is approved."
+    }
+  },
+  "licensed_product_media_available": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_and_repository_record",
+      "observed_at": "2026-08-15",
+      "summary": "No licensed exact-SKU documentary product photography or video is approved. Newly supplied concept images were identified as AI-generated references and were not uploaded to Shopify.",
+      "reference": "docs/ASSET_LICENCES.md",
+      "operator_or_source": "Authenticated Shopify Admin and repository asset register",
+      "reviewer": "Codex",
+      "scope": "Product media proposed for the Shopify catalogue",
+      "limitations": "AI-generated concept imagery, theme artwork and QA screenshots are not exact-SKU documentary media or product-media licence evidence."
+    }
+  },
+  "product_compliance_approved": {
+    "status": "blocked",
+    "evidence": {
+      "type": "supplier_document_review",
+      "observed_at": "2026-08-15",
+      "summary": "Supplier compliance and battery files were received and reviewed as component-level material only. They do not establish compliance of the exact finished Docked Cruise D2 lounger or its complete two-battery retail configuration.",
+      "reference": "docs/COMPLIANCE_REGISTER.md",
+      "operator_or_source": "Supplier files supplied by the project owner; preliminary Codex evidence-boundary review",
+      "reviewer": "Codex",
+      "scope": "Proposed Docked Cruise D2 and supplied propeller/battery component documents",
+      "limitations": "Exact-model finished-product linkage, Australian electrical/charger/RCM position, load evidence, reconciled runtime/power/speed claims, final battery transport classification and carrier acceptance remain unresolved. Receipt is not approval."
+    }
+  },
+  "product_liability_insurance_reviewed": {
+    "status": "blocked",
+    "evidence": null
+  },
+  "final_prices_approved": {
+    "status": "blocked",
+    "evidence": null
+  },
+  "inventory_approved": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_record",
+      "observed_at": "2026-08-15",
+      "summary": "Inventory is not tracked for sole Draft candidate Docked Cruise D2; the other 14 historical shells are Archived and no Active stock exists.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin",
+      "reviewer": "Codex",
+      "scope": "Docked Cruise D2 product 7591990034490 in cfbexf-h4.myshopify.com",
+      "limitations": "Inventory not tracked is neither zero-stock evidence nor approval of available saleable stock."
+    }
+  },
+  "shipping_approved": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_record",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "The General shipping profile currently contains Domestic Express at $15 with a 1–2 business-day claim, Domestic Standard at $11 or free from $100 with a 3–5 business-day claim, and Standard international at $20 with a 3–5 business-day claim for a 27-country zone. Local delivery and pickup remain off; carrier accounts show None.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin",
+      "reviewer": "Codex",
+      "scope": "Shipping and delivery configuration for cfbexf-h4.myshopify.com",
+      "limitations": "The configured rates and delivery claims have no recorded owner approval, pack measurements, carrier quotation, remote-area rules, battery acceptance or checkout address tests. International shipping must remain disabled for the initial launch."
+    }
+  },
+  "policies_approved": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_content_record",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "All 12 planned Shopify Pages exist with the recorded visibility controls. Shopify Policies currently shows only an Automated Privacy policy; Return and refund, Terms of service, Shipping policy and Legal notice each show No policy set, Contact information is Required, and no return/cancellation rule is set.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin and repository drafts",
+      "reviewer": "Codex",
+      "scope": "Planned Shopify pages and policies",
+      "limitations": "Creation and template assignment are not policy approval. No final owner/adviser approval or authorised public-version verification exists; six approval-dependent pages remain hidden."
+    }
+  },
+  "gst_and_tax_invoice_testing": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_record",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "Australia is collecting through Basic Tax and the prices-include-sales-tax checkbox is checked. The charge-sales-tax-on-shipping checkbox is currently unchecked; no transaction or invoice has tested the resulting treatment.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin and owner-supplied GST registration fact",
+      "reviewer": "Codex",
+      "scope": "Australian tax settings for cfbexf-h4.myshopify.com",
+      "limitations": "No qualified configuration review or product, discount, shipping, cancellation, full/partial refund or tax-invoice reconciliation has run."
+    }
+  },
+  "shopify_payments_verified": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_record",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "Shopify Payments still shows Complete setup and states that more business information is required before setup. No merchant, bank, payout, test-mode or transaction evidence exists.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin",
+      "reviewer": "Codex",
+      "scope": "Payment provider state for cfbexf-h4.myshopify.com",
+      "limitations": "Merchant, identity, bank, payout, accepted-method and test-transaction verification has not occurred."
+    }
+  },
+  "paypal_express_verified": {
+    "status": "blocked",
+    "evidence": {
+      "type": "admin_record",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "Shopify Payments settings display PayPal as Active. The connected account identity, authorised-business ownership, support details, currency, return/cancellation behaviour and supported test/refund flow have not been verified.",
+      "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
+      "operator_or_source": "Authenticated Shopify Admin",
+      "reviewer": "Codex",
+      "scope": "PayPal Express status for cfbexf-h4.myshopify.com",
+      "limitations": "A genuine authorised PayPal Business connection and supported test flow, or owner-approved deferral, is required."
+    }
+  },
+  "test_order_passed": {
+    "status": "blocked",
+    "evidence": null
+  },
+  "refund_test_passed": {
+    "status": "blocked",
+    "evidence": null
+  },
+  "dns_access_available": {
+    "status": "blocked",
+    "evidence": {
+      "type": "public_dns_query",
+      "observed_at": "2026-08-15T10:42:00+10:00",
+      "summary": "Shopify Admin Domains still shows only cfbexf-h4.myshopify.com as connected and primary. Public DNS still uses the four GitHub Pages apex A records and www CNAME bginty.github.io, and the legacy finance site remains live. No authenticated DNS-provider write access or complete private-zone export is evidenced.",
+      "reference": "docs/DOMAIN_CUTOVER_RECORD.md",
+      "operator_or_source": "Public recursive DNS and HTTPS observations",
+      "reviewer": "Codex",
+      "scope": "docked.com.au public records and legacy web response",
+      "limitations": "Read-only public queries do not prove DNS write access and cannot enumerate the complete private zone."
+    }
+  },
+  "owner_final_authorisation": {
+    "status": "blocked",
+    "evidence": null
+  }
+}

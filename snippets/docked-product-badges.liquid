@@ -1,0 +1,25 @@
+{%- comment -%}
+  Renders only badges supported by product metafields.
+  Required argument: product.
+{%- endcomment -%}
+{%- liquid
+  assign adult_only = product.metafields.custom.adult_only.value
+  assign powered_metafield = product.metafields.custom.powered
+  assign powered = product.metafields.custom.powered.value
+  assign occupancy = product.metafields.custom.verified_occupancy.value
+-%}
+{%- if adult_only or powered_metafield != blank or occupancy != blank -%}
+  <div class="docked-badges" aria-label="Product attributes">
+    {%- if adult_only -%}
+      <span class="docked-badge docked-badge--adult">Adults 18+</span>
+    {%- endif -%}
+    {%- if powered -%}
+      <span class="docked-badge docked-badge--powered">Powered</span>
+    {%- elsif powered_metafield != blank -%}
+      <span class="docked-badge">Non-powered</span>
+    {%- endif -%}
+    {%- if occupancy != blank -%}
+      <span class="docked-badge">Verified occupancy: {{ occupancy | escape }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

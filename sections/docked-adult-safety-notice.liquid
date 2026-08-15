@@ -1,0 +1,43 @@
+<section class="docked-section color-{{ section.settings.color_scheme }} gradient" aria-labelledby="AdultSafety-{{ section.id }}">
+  <div class="docked-section__inner docked-safety-page">
+    <div class="docked-badge-row">
+      <span class="docked-badge docked-badge--adult">Adults 18+</span>
+      <span class="docked-badge docked-badge--pool">Pool use only</span>
+    </div>
+    <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 id="AdultSafety-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <div class="docked-safety-notice docked-safety-notice--page" role="note">
+      <strong>{{ section.settings.warning_heading | escape }}</strong>
+      <p>{{ section.settings.warning_text | escape }}</p>
+    </div>
+    <ul class="docked-safety-page__list" role="list">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+      {%- endfor -%}
+    </ul>
+    <div class="docked-detail-card docked-detail-card--important">
+      <h3>Warnings are only one layer of safety.</h3>
+      <p>A website disclaimer does not replace a safe product, required product testing, permanent product markings, packaging warnings, a compliant instruction manual, product liability insurance, or the seller's legal obligations.</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Adult Pool Safety Notice",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Read before every use" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Adult pool safety notice" },
+    { "type": "text", "id": "warning_heading", "label": "Warning heading", "default": "Warning - adult recreational pool product, ages 18+" },
+    { "type": "textarea", "id": "warning_text", "label": "Primary warning", "default": "This product is not a life-saving device or personal flotation device. It is intended for competent adult swimmers in calm, controlled swimming pools only. Never use alone. Do not use in oceans, rivers, lakes, moving water, waves or currents. Follow the supplied instructions and all verified user, occupancy and weight limits. Inspect the product before every use and stop using it if it is damaged, leaking or operating abnormally." },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-2" }
+  ],
+  "blocks": [
+    { "type": "warning", "name": "Safety point", "settings": [{ "type": "textarea", "id": "text", "label": "Text", "default": "Adults aged 18 years and over only." }] }
+  ],
+  "max_blocks": 16,
+  "presets": [{ "name": "Adult Pool Safety Notice", "blocks": [{ "type": "warning" }, { "type": "warning" }, { "type": "warning" }] }]
+}
+{% endschema %}

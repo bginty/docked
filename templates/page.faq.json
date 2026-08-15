@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": { "type": "main-page", "settings": { "padding_top": 28, "padding_bottom": 0 } },
+    "faq": {
+      "type": "docked-faq",
+      "blocks": {
+        "available": { "type": "question", "settings": { "question": "When will the Docked lounger be available?", "answer": "<p>The lounger remains Draft until supplier identity, the final sample, safety and compliance evidence, load testing, pricing, imagery, shipping, stock and payment checks are complete.</p>" } },
+        "adult": { "type": "question", "settings": { "question": "Who is the Docked lounger for?", "answer": "<p>Docked intends to market the lounger for adults aged 18 and over. It is not a life-saving device or personal flotation device and may be used only in the environment approved for the exact final product.</p>" } },
+        "where": { "type": "question", "settings": { "question": "Where can the lounger be used?", "answer": "<p>Unless approved documentation states otherwise, the lounger is intended for a calm, controlled swimming pool only - never oceans, rivers, lakes, moving water, waves or currents.</p>" } },
+        "specs": { "type": "question", "settings": { "question": "How does Docked verify specifications?", "answer": "<p>A specification is published only after it is reconciled to the exact final product, supplier documents, testing and compliance evidence. Unknown or conflicting fields stay hidden.</p>" } },
+        "shipping": { "type": "question", "settings": { "question": "What does shipping cost?", "answer": "<p>Rates and eligible destinations will be shown at Shopify checkout only after carrier and dangerous-goods requirements are configured and tested. Docked does not claim free shipping before it is confirmed.</p>" } },
+        "returns": { "type": "question", "settings": { "question": "How do returns work?", "answer": "<p>Contact support@docked.com.au before returning anything. Change-of-mind conditions are separate from rights and remedies under the Australian Consumer Law.</p>" } },
+        "warranty": { "type": "question", "settings": { "question": "Do Australian Consumer Law guarantees apply?", "answer": "<p>Yes. Our goods come with guarantees that cannot be excluded under the Australian Consumer Law. Product warranty terms do not replace those rights.</p>" } },
+        "support": { "type": "question", "settings": { "question": "How can I contact Docked?", "answer": "<p>Email support@docked.com.au. The Heidelberg Heights address is for correspondence and authorised returns only; there is no public showroom or walk-in service. Mailbox operation must be verified before launch.</p>" } }
+      },
+      "block_order": ["available", "adult", "where", "specs", "shipping", "returns", "warranty", "support"],
+      "settings": { "heading": "Frequently asked questions", "link_label": "", "color_scheme": "scheme-1" }
+    }
+  },
+  "order": ["main", "faq"]
+}

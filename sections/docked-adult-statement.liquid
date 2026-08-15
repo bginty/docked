@@ -1,0 +1,39 @@
+<section class="docked-section docked-adult-statement color-{{ section.settings.color_scheme }} gradient" aria-labelledby="AdultStatement-{{ section.id }}">
+  <div class="docked-section__inner docked-adult-statement__inner">
+    <span class="docked-adult-statement__badge" aria-hidden="true">18+</span>
+    <div>
+      <p class="docked-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 id="AdultStatement-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <div class="rte docked-lede">{{ section.settings.text }}</div>
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <a class="button button--secondary" href="{{ section.settings.link | default: '/pages/safety-and-care' }}">{{ section.settings.link_label | escape }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .docked-adult-statement { color: #fff; background: #06283d; }
+  .docked-adult-statement h2 { margin: 0 0 1rem; color: #fff; font-size: clamp(3.4rem, 6vw, 6.4rem); }
+  .docked-adult-statement .docked-eyebrow { color: #13bfe6; }
+  .docked-adult-statement__inner { display: grid; gap: 2.4rem; align-items: center; }
+  .docked-adult-statement__badge { display: grid; place-items: center; width: 9rem; height: 9rem; color: #06283d; background: #13bfe6; border-radius: 50%; font-size: 3.2rem; font-weight: 900; }
+  @media screen and (min-width: 990px) { .docked-adult-statement__inner { grid-template-columns: auto 1fr auto; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Adult-only statement",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Adults only · Pool use only" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One lounger. Verified before launch." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Docked is preparing one adult motorised pool lounger. Supplier files, the final sample, safety evidence and every customer-facing claim must reconcile before ordering opens.</p>" },
+    { "type": "text", "id": "link_label", "label": "Button label", "default": "Read Safety & Care" },
+    { "type": "url", "id": "link", "label": "Button link" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colour scheme", "default": "scheme-3" }
+  ],
+  "presets": [{ "name": "Adult-only statement" }]
+}
+{% endschema %}

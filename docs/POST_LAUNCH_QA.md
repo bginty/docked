@@ -1,0 +1,179 @@
+# Docked rendered preview and post-launch QA
+
+Status: **PARTIAL PREVIEW QA COMPLETE — FULL RENDERED GATE AND PUBLIC LAUNCH BLOCKED**
+Last updated: 15 August 2026 (Australia/Sydney)
+
+This file records actual rendered evidence only after a permanent Shopify preview or authorised public release exists. Prepared tests and target scores are not passing results. Current one-product commit `bb41a70d630041e95f627d05c62b7247b04257f7` passed Theme Check (187 files/0 offenses), structural validation (62/62), production gate validation (21/21 required gates; 23 total with 5 passed and 18 blocked), Node tests (6/6), copy/data audit, dependency audit (0 vulnerabilities), document-link audit (50 files/176 references/0 broken at the pre-record-update baseline), secret scan and diff checks. It is strictly uploaded to the unpublished candidate. Detailed partial manual in-app-browser QA remains historical for earlier commit `5f46487d1f53e45f5706ae945eeb5a09064893e3`.
+
+**Current revision boundary:** one-product commit `bb41a70d630041e95f627d05c62b7247b04257f7` is committed and strictly uploaded to candidate theme `130871427130`. Current evidence is limited: signed-out/direct preview remains password-protected; the password page displays **“Pool time, powered — soon.”** and D2 Draft wording; and the authenticated Theme Editor lists the one-product homepage composition. The inner homepage, product route and commerce/browser suite were not run. Authenticated Admin showed 15 total product shells: Docked Cruise D2, product ID `7591990034490`, remains the sole Draft shell with inventory not tracked, channels 0 and vendor `Requires verification`; the other 14 are Archived, not deleted. No newly supplied AI-generated concept image was uploaded. Full multi-browser, accessibility, Lighthouse, product, checkout, contact-delivery and commerce QA has not passed.
+
+## Target identity
+
+| Field | Current value |
+| --- | --- |
+| Store | `cfbexf-h4.myshopify.com`, confirmed through authenticated Shopify CLI 4.5.2 |
+| Release branch | `release/docked-shopify-production-2026-08` |
+| Starting commit | `895958891c8ec2780eba7ff224c5d0259d0de9dd` |
+| Current uploaded theme-source commit | `bb41a70d630041e95f627d05c62b7247b04257f7` |
+| Current one-product source revision | Strictly uploaded; password page and Theme Editor observed only; full rendered QA blocked |
+| Initial brand-refresh uploaded source | `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818` |
+| Previous exact uploaded source | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
+| Theme ID/name | `130871427130` / `Docked Production Candidate 2026-08` (unpublished) |
+| Permanent preview URL | `https://cfbexf-h4.myshopify.com?preview_theme_id=130871427130` |
+| Historical preview QA observation window/operator | 14 August 2026 AEST. Historical timestamped screenshot artefacts span 08:41–10:11; the older exact-source push ran 10:43:36–10:44:47. The historical `5f46487…` brand-refresh push and subsequent rendered observations completed later that date, but exact CLI/action times were not retained / Codex using the authenticated in-app Browser |
+| Public domain | `docked.com.au`, still the legacy GitHub Pages site |
+| Public launch timestamp/operator | Not applicable |
+
+Do not commit a preview URL if it embeds a secret. A redacted URL and theme ID are sufficient in Git; retain authenticated details in the controlled evidence location.
+
+## Preview execution procedure
+
+For the remaining automated suite, set the URL locally only when its access context can reach the candidate:
+
+```powershell
+$env:SHOPIFY_PREVIEW_URL='<actual permanent Shopify preview URL>'
+npm run test:storefront
+```
+
+Do not save the environment variable in a tracked file. Run against the exact candidate theme and commit, signed out where possible, with the store password protections intact. Save redacted screenshots, machine reports and the test manifest under `docs/qa/production-preview/` when generated.
+
+Current execution result: **Limited current candidate observation only; full QA blocked.** For `bb41a70d630041e95f627d05c62b7247b04257f7`, password protection and one-product password-page/editor composition were observed, but the inner homepage, product and commerce/browser suite did not run. The detailed manual QA below is historical for `5f46487d1f53e45f5706ae945eeb5a09064893e3`. `npm run test:storefront` was attempted historically with the permanent preview URL, but the runner stopped before launching a browser or executing any assertion because Playwright is not installed; that attempt is a blocked preflight, not an automated test result.
+
+## Required browser and viewport matrix
+
+The pass cells below are historical results for `5f46487d1f53e45f5706ae945eeb5a09064893e3`. They were not rerun against current commit `bb41a70d630041e95f627d05c62b7247b04257f7`; only its password page and Theme Editor composition received limited observation.
+
+| Platform/browser | 320 | 360 | 375 | 390 | 768 | 1024 | 1440 | Status/evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Codex in-app Browser (real browser engine; exact engine/version not recorded) | Historical pass after fix and `5f46487…` recheck | Pass | Pass | Pass | Pass | Pass | Pass | Historical `5f46487…` run had `scrollWidth` equal to `innerWidth` at every width; screenshot capture timed out |
+| Current Chrome | Required | Required | Required | Required | Required | Required | Required | Not run |
+| Current Edge | Representative | Representative | Representative | Representative | Required | Required | Required | Not run |
+| Current Firefox | Representative | Representative | Representative | Representative | Required | Required | Required | Not run |
+| Android Chrome | Required where device/emulation available | Required | Required | Required | Required | — | — | Not run |
+| Desktop Safari/WebKit equivalent | — | — | — | — | Required | Required | Required | Not run |
+| Mobile Safari/WebKit equivalent | Required | Required | Required | Required | Required | — | — | Not run |
+
+Record actual browser/engine versions, physical device versus emulation, OS, viewport, theme ID, commit and timestamp. Do not report Safari itself if only a WebKit equivalent was used.
+
+Saved evidence:
+
+- [Homepage at 320 px](qa/production-preview/homepage-320.png)
+- [Homepage at 768 px](qa/production-preview/homepage-768.png)
+- [Homepage at 1440 px](qa/production-preview/homepage-1440.png)
+- [Home route capture (historical filename; actual file is 1424 px wide and is not 390 px evidence)](qa/production-preview/home-390.png)
+- [Powered Pool Floats collection capture (historical filename; actual file is 1424 px wide and is not 390 px evidence)](qa/production-preview/powered-collection-390.png)
+- [Safety and Care historical pre-fix 404 capture (historical filename; actual file is 1424 px wide and is not 390 px evidence)](qa/production-preview/safety-390.png)
+- [Safety and Care after page/template creation](qa/production-preview/safety-current-desktop.jpg)
+- [FAQ with rendered questions](qa/production-preview/faq-current-desktop.jpg)
+- [Contact form Shopify success confirmation](qa/production-preview/contact-success-current-desktop.jpg)
+- [Unknown-route 404 capture (historical filename; actual file is 1424 px wide and is not 390 px evidence)](qa/production-preview/not-found-390.png)
+
+The Safety and Care screenshot records the earlier missing-page regression and is not the current route result. The four retained files whose names end in `-390.png` are 1424 px wide; their filenames are historical only and they must not be used as proof of a 390 px viewport. Current post-fix page, FAQ and Contact-form observations are recorded in [the machine-readable rendered QA summary](qa/production-preview/rendered-qa.json).
+
+The initial 320 px run found horizontal overflow. The mobile wordmark was constrained to `11rem`, the candidate was re-pushed to theme `130871427130`, and the 320 px retest passed with no horizontal overflow. Following the historical `5f46487d1f53e45f5706ae945eeb5a09064893e3` integrated one-word push, a fresh seven-width run also found no viewport overflow: every tested width had document/body `scrollWidth` equal to `innerWidth`, with exact 320 px viewport/document/body readings of `320/320/320`. At 320 px the header/hero/note/footer measured `110 × 25.71`, `288 × 345.6`, `248 × 79.4` and `220 × 51.44` px; the wordmark viewBox was `0 0 650 152`. Header widths at 320/360/375/390/768/1024/1440 were `110/157.575/163.963/180/180/180/180` px, and footer widths were `220/220/220/152/216/220/220` px. At 1440 px the header/footer/hero widths were `180/220/552.14` px. Screenshot/CDP capture timed out, so that historical brand run is recorded as DOM, geometry and computed-style evidence only; no new screenshot artifact was created.
+
+## Functional and content record
+
+Unless a row explicitly names `bb41a70…`, rendered pass observations in this table are historical for `5f46487…` and do not pass the current candidate.
+
+| Area | Actual result | Limits / evidence |
+| --- | --- | --- |
+| Homepage and header | Pass in the in-app Browser | Tested at all seven required widths; current header main fill navy `#06283D`, wake cyan `#13BFE6`; 320 px integrated wordmark measured `110 × 25.71` px with viewBox `0 0 650 152`; older screenshots above, no new screenshot from latest run |
+| Desktop navigation | Pass in the in-app Browser | Updated Main menu rendered with `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` |
+| Mobile menu | Historical pass after `5f46487…` brand push | At 320 px with `innerWidth` / document `scrollWidth` / body `scrollWidth` of `320/320/320`, the menu opened and showed `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` without overflow |
+| Footer navigation | Pass for mapped candidate blocks after exact-commit push | Explore rendered `Powered Pool Floats`, `Adult Pool Loungers`, `Adult Pool Games`, `Floating Bars and Coolers`, `Pumps, Care and Repair`, `Pool Party Bundles`, `Shop All`. Help and policies rendered `Search`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`, `Track Your Order`, `Accessibility`. Native Privacy policy rendered separately through `show_policy`; `footer-legal-menu` remains unused and did not render |
+| Search and predictive search | Pass in the in-app Browser | Manual interaction passed; exhaustive search-result relevance not assessed |
+| Collections | Partial pass | Powered Pool Floats empty collection route rendered; all seven planned collections are empty; filter/sort/pagination behaviour was not testable |
+| Product page/gallery/variants/quantity | Not run | Docked Cruise D2 is the sole Draft candidate, with inventory not tracked and channels 0; the other 14 shells are Archived. The current commit is uploaded, but no current product-route/gallery/variant/quantity test ran |
+| Product/adult/safety warnings | Partial pass | Safety and Care renders candidate safety content and warnings with one H1; no approved product route exists, so card/purchase-control/product-detail warnings remain untested |
+| Draft-product safeguard | Pass for observed Admin state only | Docked Cruise D2 remains Draft with channels 0 and inventory not tracked; 14 superseded shells are Archived, not deleted; no product is Active or purchasable |
+| Cart | Partial pass | Empty cart route and cart drawer passed; add, quantity, remove and multi-item flows were unavailable |
+| Checkout | Disabled as intended for current state | Checkout controls were disabled; no checkout entry, shipping, GST, payment or order test ran |
+| Contact | Submission accepted; mailbox delivery not verified | Shopify accepted a controlled submission at `?contact_posted=true` and displayed **Thanks for contacting us**; this does not prove receipt by `support@docked.com.au` |
+| FAQ and Safety and Care | Partial pass | Both candidate templates render with one H1 and no 404; FAQ contains eight items and an accordion opened successfully |
+| 404 | Pass in the in-app Browser | Unknown route rendered the intended 404; screenshot retained above |
+| Customer accounts | Partial entry-point pass | Signed-out account button opened Shopify's new account dialog with Sign in with Shop, email form (submit disabled until email), marketing opt-in and Orders/Profile quick links. No credentials were entered; authentication, post-submit errors, logout and order history remain untested |
+| Brand asset rendering | Partial pass in the in-app Browser | Header/footer home links exposed accessible name `Docked — home`; footer wordmark rendered white with cyan wake on scheme 3; 320 px footer wordmark measured `220 × 51.44` px. Favicon resolved from the theme asset and Organization JSON-LD used an absolute `docked-mark.svg` asset URL. The password page rendered the hidden `Docked` name, favicon, H1 and modal on the initial brand push; final source changed only wordmark geometry |
+| Hero brand art | Partial pass in the in-app Browser | At 320 px the hero art measured `288 × 345.6` px and its note `248 × 79.4` px; navy mark, `18+` seal and complete preview-art accessible label were present. At 1440 px hero width was `552.14` px. This is not a substitute for the full accessibility audit |
+| Responsive overflow | Historical pass after repair in the tested in-app Browser | Real 320 px defect fixed with `11rem` mobile wordmark and retested; after the historical `5f46487…` brand push all seven widths had matching `innerWidth`/`scrollWidth`, including exact 320 px viewport/document/body readings of `320/320/320` |
+| Images/runtime output | Pass on tested routes | No broken images, console errors, console warnings, Liquid errors or mixed content observed on tested routes |
+| Legacy finance copy | Pass on tested routes | None observed on the tested candidate routes; favicon and Organization JSON-LD logo were checked, but the full sitemap/metadata/structured-data audit remains incomplete |
+| Claims/payment badges/urgency | Not fully audited | The current inner homepage/product route was not rendered or audited. Supplier component documents do not approve the conflicting load, runtime, power or speed claims; do not infer a content pass |
+| AUD/GST-inclusive prices | Not run in rendered commerce | No Active product price or checkout/invoice flow exists |
+| International/local service | Not approved | Unapproved domestic and 27-country international rates and delivery-time claims are configured; Australia remains the only observed active market; local delivery and pickup are off |
+
+## Accessibility record
+
+Status: **Partial visual responsive/reflow inspection only; accessibility not passed**.
+
+Test WCAG 2.2 AA-relevant keyboard operation, landmarks/headings, accessible names, errors, live regions, drawers/dialogs, contrast, 200%/400% zoom, reflow at 320px, reduced motion, image alternatives and representative screen-reader flows. Record tooling and manual results; an automated scan alone is not a pass.
+
+| Route | Automated result | Keyboard/manual result | Screen reader | Evidence |
+| --- | --- | --- | --- | --- |
+| Home | Not run | Responsive/reflow visual observation at 320–1440 px; header/footer home accessible names and hero-art label inspected, but keyboard audit not run | Not run | Manual Browser DOM/geometry observations and the truthfully qualified older screenshots listed above |
+| Collection | Not run | Route rendered; no reliable 390 px screenshot was retained and keyboard audit was not run | Not run | `qa/production-preview/powered-collection-390.png` is 1424 px wide despite its historical filename |
+| Product | Not run | Not run | Not run |  |
+| Cart | Not run | Not run | Not run |  |
+| Safety and Care | Not run | Candidate content/warnings rendered with one H1; keyboard audit not run | Not run | `qa/production-preview/rendered-qa.json`; the PNG is historical pre-fix evidence |
+| Password/prelaunch | Not run | Not run | Not run |  |
+| 404 | Not run | Branded 404 rendered; no reliable 390 px screenshot was retained and keyboard audit was not run | Not run | `qa/production-preview/not-found-390.png` is 1424 px wide despite its historical filename |
+
+## Lighthouse record
+
+Record actual mobile/desktop Performance, Accessibility, Best Practices and SEO scores, tool/version, run count, throttling and URL. Do not enter targets as results.
+
+| Route/profile | Performance | Accessibility | Best Practices | SEO | Evidence |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Homepage mobile | Not run | Not run | Not run | Not run |  |
+| Homepage desktop | Not run | Not run | Not run | Not run |  |
+| Product mobile | Not run | Not run | Not run | Not run |  |
+| Product desktop | Not run | Not run | Not run | Not run |  |
+| Collection mobile | Not run | Not run | Not run | Not run |  |
+| Cart mobile | Not run | Not run | Not run | Not run |  |
+| Safety page | Not run | Not run | Not run | Not run |  |
+
+## Commerce and notification QA
+
+Use Shopify-supported test mode/test gateway and approved test SKUs only. Never use a real card or real PayPal transaction without separate explicit authority.
+
+| Scenario | Status | Evidence required |
+| --- | --- | --- |
+| Approved powered product, if one exists | Not run | Product/order/inventory/shipping/warning record |
+| Approved non-powered product, if one exists | Not run | Product/order/inventory/shipping/warning record |
+| Multi-item and quantity >1 | Not run | Cart/order totals and inventory reconciliation |
+| Genuine discount, if planned | Not run | Discount basis and GST reconciliation |
+| Melbourne, Sydney, Brisbane, Adelaide and Perth metro shipping | Not run | Rate, tax and service result |
+| Regional Victoria and supported remote postcode | Not run | Acceptance/exclusion, rate and wording |
+| Successful and declined payment | Not run | Redacted provider/order status |
+| Cancellation, full refund and applicable partial refund | Not run | Payment, order, inventory, GST, invoice and notification reconciliation |
+| Tax Invoice | Not run | Automatic delivery with legal seller and ABN; qualified review |
+| Customer and staff notifications | Not run | Redacted delivery records |
+| Account order history/status page | Not run | Signed-out/signed-in flow evidence |
+
+## Support email QA
+
+The mailbox gate requires end-to-end delivery evidence in both directions; DNS records or a visible address alone are not a pass.
+
+| Scenario | Status | Passing evidence |
+| --- | --- | --- |
+| External message to `support@docked.com.au` | Attempt blocked before send: connected Gmail account reported **Mail service not enabled** | External sender record plus receipt in the support mailbox |
+| Reply from `support@docked.com.au` | Not run | Sent-mail record plus receipt by the external sender |
+| Contact-form delivery | Shopify accepted controlled submission at `?contact_posted=true` and showed its success confirmation; mailbox receipt unverified | Shopify submission result plus receipt in the support mailbox |
+| Order-notification delivery | Not run | Redacted test-order notification and mailbox receipt |
+| Refund-notification delivery | Not run | Redacted test-refund notification and mailbox receipt |
+| Sender-domain authentication | On 15 August, Admin Notifications showed `support@docked.com.au` and **Email domain authentication — Needs setup**, with a Shopify backup sender warning | Complete domain authentication and review delivered-message headers/provider configuration |
+| SPF | DNS observed; operational result not tested | Alignment/authentication result from delivered-message headers |
+| DKIM | Unverified | Selector/provider evidence plus delivered-message signature result |
+| DMARC | DNS observed; operational result not tested | Alignment result and policy review for the actual sender |
+
+## Public post-launch smoke test
+
+Run this section immediately after an authorised public release, without placing a real order unless separately authorised. Current state: **Not applicable; no launch occurred**.
+
+Verify apex and `www`, HTTPS/TLS, primary redirect, home, navigation, collections, only approved Active products, search, cart, checkout entry/mode, enabled payment display, shipping, GST, contact, support email, policies, Safety and Care, mobile menu, 404, legacy redirects, unrelated legacy route 404s, sitemap, robots, canonicals, structured data, Open Graph, console, images, links, performance and accessibility. Confirm old finance content is no longer served only after the new release is actually public.
+
+Record every failure with severity, owner, reproduction, evidence and disposition. If a critical theme, commerce or DNS failure meets the agreed threshold, use [Production rollback](PRODUCTION_ROLLBACK.md); do not improvise a destructive rollback.
+
+## Current conclusion
+
+Historical partial manual rendered QA passed the tested routes and responsive widths for source `5f46487d1f53e45f5706ae945eeb5a09064893e3` after one repaired 320 px overflow defect. Those Browser observations do not pass current one-product commit `bb41a70d630041e95f627d05c62b7247b04257f7`. The current commit is strictly uploaded, and limited evidence confirms password protection, the one-product password-page copy and the Theme Editor's one-product homepage composition; the inner homepage, product and commerce/browser suite did not run. No AI concept image was uploaded. Historical menu, route, Safety and Care, eight-item FAQ and controlled Contact observations remain historical, mailbox receipt is unverified and sender-domain authentication reports **Needs setup**. Supplier component-level evidence receipt does not pass product, media, battery/transport, compliance or any downstream commerce gate. Full rendered QA, visual screenshot coverage, accessibility, Lighthouse, product, checkout, GST/invoice, email and live-site smoke tests are **not passed**. The theme cannot be published and live sales cannot be enabled on this evidence. See [Production launch gates](PRODUCTION_LAUNCH_GATES.md) and [Shopify deployment record](SHOPIFY_DEPLOYMENT_RECORD.md).

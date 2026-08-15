@@ -1,0 +1,35 @@
+{%- if product != blank -%}
+  <docked-sticky-atc
+    class="docked-sticky-atc"
+    data-source-button="ProductSubmitButton-{{ section.id }}"
+    {% if settings.prelaunch_mode %}data-fixed-label{% endif %}
+  >
+    <div class="docked-sticky-atc__details">
+      <span class="docked-sticky-atc__eyebrow">
+        {%- if product.metafields.custom.adult_only.value -%}
+          Adults 18+ &middot; Pool use only
+        {%- elsif settings.prelaunch_mode -%}
+          Product preview
+        {%- elsif cart.taxes_included -%}
+          GST included
+        {%- else -%}
+          {{ product.vendor | escape }}
+        {%- endif -%}
+      </span>
+      <strong>{{ product.title | escape }}</strong>
+    </div>
+    <button
+      type="button"
+      class="button docked-sticky-atc__button"
+      {% if settings.prelaunch_mode or product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+    >
+      {%- if settings.prelaunch_mode -%}
+        Coming soon
+      {%- elsif product.selected_or_first_available_variant.available -%}
+        Add to cart
+      {%- else -%}
+        Sold out
+      {%- endif -%}
+    </button>
+  </docked-sticky-atc>
+{%- endif -%}

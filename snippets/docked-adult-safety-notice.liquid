@@ -1,0 +1,36 @@
+{%- comment -%}
+  Reusable draft safety notice. Product-specific instructions and limits must come
+  from approved metafields and supplier evidence before product activation.
+  Arguments: product, compact (boolean)
+{%- endcomment -%}
+{%- assign adult_only = product.metafields.custom.adult_only.value -%}
+{%- assign powered_float = product.metafields.custom.powered_float.value -%}
+{%- assign product_warnings = product.metafields.custom.safety_warnings.value -%}
+{%- if adult_only or powered_float or product_warnings != blank -%}
+  <aside class="docked-safety-notice{% if compact %} docked-safety-notice--compact{% endif %}" aria-label="Product safety notice">
+    {%- if adult_only -%}
+      <div class="docked-safety-notice__title">
+        <span class="docked-safety-notice__icon" aria-hidden="true">!</span>
+        <strong>Warning — adult recreational pool product, ages 18+</strong>
+      </div>
+      <p>
+        This product is not a life-saving device or personal flotation device. It is intended for competent adult swimmers in calm, controlled swimming pools only. Never use alone. Do not use in oceans, rivers, lakes, moving water, waves or currents. Follow the supplied instructions and all verified user, occupancy and weight limits. Inspect the product before every use and stop using it if it is damaged, leaking or operating abnormally.
+      </p>
+    {%- endif -%}
+    {%- if powered_float -%}
+      <div class="docked-powered-warning">
+        <strong>Powered product warning</strong>
+        <p>
+          Switch the propulsion system off before entering, exiting, lifting, inspecting or handling the float. Keep hair, fingers, hands, feet, jewellery, swimwear ties and loose clothing away from propellers, guards, water intakes and moving components. Never operate a damaged or obstructed motor. Use only the supplied or specifically approved battery and charger. Never charge the product in or near water. Ensure the product, battery compartment and charging connection are fully dry before charging.
+        </p>
+      </div>
+    {%- endif -%}
+    {%- if product_warnings != blank -%}
+      <div class="rte docked-safety-notice__verified">
+        <strong>Product-specific warnings</strong>
+        {{ product.metafields.custom.safety_warnings | metafield_tag }}
+      </div>
+    {%- endif -%}
+    <a class="docked-text-link" href="{{ settings.safety_page.url | default: '/pages/safety-and-care' }}">Read Safety &amp; Care</a>
+  </aside>
+{%- endif -%}

@@ -1,0 +1,281 @@
+{
+  "schema_version": "1.0.0",
+  "observation_window": {
+    "historical_started_at": "2026-08-14T08:41:00+10:00",
+    "historical_latest_timestamped_artifact_at": "2026-08-14T10:11:30+10:00",
+    "historical_ended_at": "2026-08-14T10:45:00+10:00",
+    "latest_brand_qa_date": "2026-08-14",
+    "timezone": "Australia/Sydney",
+    "limitations": "Timestamped screenshots and detailed route/viewport results apply to historical commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is uploaded, but only its password page and authenticated Theme Editor composition received limited observation; the inner homepage, product and commerce/browser suite did not run."
+  },
+  "record_updated_at": "2026-08-15",
+  "theme_source_commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
+  "theme_source_commit_scope": "historical_detailed_rendered_evidence",
+  "current_uploaded_theme_source_commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
+  "initial_brand_refresh_theme_source_commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
+  "previous_exact_theme_source_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
+  "historical_strict_push_window": {
+    "commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
+    "started_at": "2026-08-14T10:43:36+10:00",
+    "finished_at": "2026-08-14T10:44:47+10:00",
+    "result": "success",
+    "returned_role": "unpublished"
+  },
+  "initial_brand_refresh_strict_push": {
+    "commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
+    "completed_on": "2026-08-14",
+    "timezone": "Australia/Sydney",
+    "exact_start_end_timestamps_retained": false,
+    "result": "success",
+    "returned_role": "unpublished"
+  },
+  "historical_integrated_strict_push": {
+    "commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
+    "completed_on": "2026-08-14",
+    "timezone": "Australia/Sydney",
+    "exact_start_end_timestamps_retained": false,
+    "result": "success",
+    "returned_role": "unpublished",
+    "live_theme_untouched": "130871099450"
+  },
+  "current_single_product_revision": {
+    "state": "committed_and_strictly_pushed_limited_rendered_evidence",
+    "commit": "bb41a70d630041e95f627d05c62b7247b04257f7",
+    "failed_push": {
+      "commit": "5cc3edcce9fe76c09c630eb859d2cebc3d61fa6f",
+      "started_at": "2026-08-15T12:48:17+10:00",
+      "finished_at": "2026-08-15T12:49:53+10:00",
+      "result": "failed",
+      "reason": "Shopify schema validation rejected templates/index.json products_to_show below the minimum of 2."
+    },
+    "successful_push": {
+      "started_at": "2026-08-15T12:52:11.7607489+10:00",
+      "finished_at": "2026-08-15T12:53:12.6371436+10:00",
+      "result": "success",
+      "role": "unpublished",
+      "live_theme_untouched": "130871099450"
+    },
+    "planned_product": "Docked Cruise D2",
+    "shopify_product_id": "7591990034490",
+    "admin_observed_on": "2026-08-15",
+    "admin_state": {
+      "total_shells": 15,
+      "draft_shells": 1,
+      "archived_shells": 14,
+      "active_shells": 0,
+      "d2_inventory_tracking": "not_tracked",
+      "d2_sales_channels": 0,
+      "d2_vendor": "Requires verification",
+      "archived_shells_deleted": false,
+      "new_ai_concept_images_uploaded": false
+    },
+    "limited_current_evidence": {
+      "signed_out_direct_preview": "password_protected",
+      "password_page_heading": "Pool time, powered — soon.",
+      "password_page_d2_draft_wording": true,
+      "authenticated_theme_editor": "one_product_homepage_composition_listed",
+      "inner_homepage_product_commerce_browser_qa": "not_run"
+    },
+    "required_next_step": "Rerun the full rendered QA suite against exact uploaded commit bb41a70d630041e95f627d05c62b7247b04257f7.",
+    "historical_evidence_applies_to_revision": false
+  },
+  "store": "cfbexf-h4.myshopify.com",
+  "theme_id": "130871427130",
+  "theme_name": "Docked Production Candidate 2026-08",
+  "theme_role": "unpublished",
+  "browser": "Codex in-app Chromium browser",
+  "prelaunch_mode": true,
+  "automated_runner": {
+    "status": "blocked_before_assertions",
+    "command": "npm run test:storefront",
+    "preview_url_supplied": true,
+    "reason": "The Playwright package is not installed, so no browser launched and no automated assertion ran.",
+    "additional_limit": "An isolated runner would not share the authenticated in-app-browser storefront-password context."
+  },
+  "viewport_matrix": {
+    "widths_checked": [320, 360, 375, 390, 768, 1024, 1440],
+    "homepage_after_fix": {
+      "horizontal_overflow": false,
+      "broken_images": 0,
+      "duplicate_ids": 0,
+      "h1_count": 1,
+      "old_finance_copy": false
+    },
+    "historical_brand_refresh": {
+      "all_widths_scroll_width_matched_inner_width": true,
+      "width_320": {
+        "inner_width": 320,
+        "document_scroll_width": 320,
+        "body_scroll_width": 320,
+        "header_wordmark_px": {"width": 110, "height": 25.71},
+        "wordmark_view_box": "0 0 650 152",
+        "hero_art_px": {"width": 288, "height": 345.6},
+        "hero_note_px": {"width": 248, "height": 79.4},
+        "footer_wordmark_px": {"width": 220, "height": 51.44},
+        "horizontal_overflow": false
+      },
+      "header_widths_by_viewport_px": {
+        "320": 110,
+        "360": 157.575,
+        "375": 163.963,
+        "390": 180,
+        "768": 180,
+        "1024": 180,
+        "1440": 180
+      },
+      "footer_widths_by_viewport_px": {
+        "320": 220,
+        "360": 220,
+        "375": 220,
+        "390": 152,
+        "768": 216,
+        "1024": 220,
+        "1440": 220
+      },
+      "width_1440": {
+        "inner_width": 1440,
+        "document_scroll_width": 1440,
+        "body_scroll_width": 1440,
+        "header_wordmark_width": 180,
+        "footer_wordmark_width": 220,
+        "hero_art_width": 552.14,
+        "desktop_navigation": "intact"
+      }
+    },
+    "limitations": "Historical results for uploaded commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 only. One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The latest screenshot/CDP capture timed out and produced no new artifact. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence. Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 requires a complete rendered rerun."
+  },
+  "regressions": [
+    {
+      "id": "mobile-header-320-overflow",
+      "status": "fixed_and_retested",
+      "initial_scroll_width": 343,
+      "viewport_width": 320,
+      "final_scroll_width": 319,
+      "fix": "Cap .docked-wordmark-fallback to 11rem at max-width 360px."
+    },
+    {
+      "id": "missing-safety-and-faq-pages",
+      "status": "fixed_and_retested",
+      "routes": ["/pages/safety-and-care", "/pages/faq"],
+      "result": "candidate templates rendered with one h1 and no 404",
+      "fix": "Created the Shopify Page records and assigned the safety-and-care and faq template suffixes."
+    }
+  ],
+  "pages": {
+    "total": 12,
+    "visible_behind_password": 6,
+    "hidden_pending_approval": 6,
+    "template_suffixes_assigned": 12,
+    "visible_titles": ["Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
+    "hidden_titles": ["Shipping and Delivery", "Returns and Refunds", "Warranty", "About Docked", "Privacy Policy", "Terms of Service"],
+    "privacy_resource_distinction": "The hidden Privacy Policy title is a custom Shopify Page. It is distinct from Shopify's existing native /policies/privacy-policy resource, which is reachable behind the storefront password but remains unapproved."
+  },
+  "routes": {
+    "/": {"status": "partial_pass", "broken_images": 0, "console_errors": 0, "liquid_errors": 0, "mixed_content": 0, "old_finance_copy": false},
+    "/collections/powered-pool-floats": {"status": "partial_pass", "products": 0, "broken_images": 0, "console_errors": 0},
+    "/cart": {"status": "partial_pass", "cart_state": "empty", "checkout_control": "disabled", "checkout_label": "Ordering not yet open"},
+    "/pages/contact": {"status": "partial_pass", "submission": "accepted_by_shopify", "result_url_query": "contact_posted=true", "confirmation": "Thanks for contacting us", "delivery_test": "unverified"},
+    "/pages/safety-and-care": {"status": "partial_pass", "result": "candidate safety content rendered", "h1_count": 1, "safety_warnings_present": true},
+    "/pages/faq": {"status": "partial_pass", "result": "candidate FAQ content rendered", "h1_count": 1, "faq_items": 8, "accordion_interaction": "passed"},
+    "/products/docked-cruise-s1": {"status": "pass", "result": "404", "add_to_cart_forms": 0, "reason": "Draft product is not public"},
+    "/this-route-should-404-20260814": {"status": "pass", "result": "branded 404"}
+  },
+  "interactions": {
+    "mobile_menu": "historical_pass_after_5f46487_brand_push_at_320px_with_updated_six_links_and_no_overflow",
+    "desktop_navigation": "passed",
+    "search_dialog": "passed",
+    "predictive_collection_search": "passed",
+    "empty_cart_drawer": "passed",
+    "faq_accordion": "passed",
+    "contact_form_submission": "accepted_by_shopify_delivery_unverified",
+    "customer_account_entry": "partial_pass_dialog_opened_no_credentials_entered",
+    "product_and_checkout_flows": "not_run"
+  },
+  "brand_rendering": {
+    "header_home_accessible_name": "Docked — home",
+    "footer_home_accessible_name": "Docked — home",
+    "header_main_fill": "#06283D",
+    "header_wake_fill": "#13BFE6",
+    "footer_wordmark": "white with cyan wake on scheme3",
+    "hero": {
+      "mark": "navy",
+      "adult_seal": "18+",
+      "preview_art_accessible_label": "complete"
+    },
+    "favicon": "resolved from theme asset",
+    "password_page_on_initial_brand_push": {
+      "hidden_name": "Docked",
+      "favicon": "theme asset resolved",
+      "h1": "rendered",
+      "modal": "rendered",
+      "final_commit_change_scope": "wordmark SVG geometry only"
+    },
+    "organization_json_ld_logo": "absolute docked-mark.svg theme asset URL",
+    "console_errors": 0,
+    "console_warnings": 0,
+    "screenshot_capture": "timed_out_no_new_artifact",
+    "evidence_type": "authenticated Browser DOM, geometry and computed-style observations"
+  },
+  "customer_accounts": {
+    "entry_state": "partial_pass",
+    "signed_out_dialog": {
+      "sign_in_with_shop": true,
+      "email_form": true,
+      "email_submit_disabled_until_input": true,
+      "marketing_opt_in": true,
+      "quick_links": ["Orders", "Profile"]
+    },
+    "credentials_entered": false,
+    "authentication": "not_run",
+    "post_submit_errors": "not_run",
+    "logout": "not_run",
+    "order_history": "not_run"
+  },
+  "menus": {
+    "observed_on": "2026-08-14",
+    "main": {
+      "items": ["Home", "Shop", "Contact", "How It Works", "Safety and Care", "FAQ"],
+      "rendered_candidate_verification": "historical_pass_desktop_and_320px_mobile_after_5f46487_brand_push",
+      "updated_mobile_contents_verification": "passed_exact_six_links_without_overflow"
+    },
+    "existing_footer": {
+      "items": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
+      "admin_configuration": "verified"
+    },
+    "footer_shopping": {
+      "id": "198327042106",
+      "items": "seven planned collections",
+      "admin_configuration": "verified"
+    },
+    "footer_support": {
+      "id": "198327074874",
+      "items": "duplicated from support footer",
+      "admin_configuration": "verified"
+    },
+    "footer_legal": {
+      "id": "198327107642",
+      "items": ["Privacy Policy"],
+      "privacy_item_type": "existing_native_shopify_policy_resource_not_hidden_custom_page",
+      "unapproved_terms_withheld": true,
+      "admin_configuration": "verified"
+    },
+    "source_mapping": {
+      "explore": "footer-shopping-menu",
+      "help_and_policies": "footer-support-menu",
+      "upload_state": "historical_commit_5f46487d1f53e45f5706ae945eeb5a09064893e3_pushed_strictly_and_rendered_current_bb41a70_not_rerun",
+      "rendered_explore": ["Powered Pool Floats", "Adult Pool Loungers", "Adult Pool Games", "Floating Bars and Coolers", "Pumps, Care and Repair", "Pool Party Bundles", "Shop All"],
+      "rendered_help_and_policies": ["Search", "Contact", "How It Works", "Safety and Care", "FAQ", "Track Your Order", "Accessibility"],
+      "native_privacy_policy_link": "rendered_separately_through_show_policy",
+      "footer_legal_resource": "unused_not_rendered"
+    }
+  },
+  "redirects": {
+    "/index.html": {"target": "/", "result": "homepage_content"},
+    "/about.html": {"target": "/pages/about-docked", "result": "target_404_while_page_hidden", "status": "blocked_pending_business_name_resolution"},
+    "/privacy.html": {"target": "/policies/privacy-policy", "result": "existing_native_shopify_privacy_policy_resource_reached_behind_password_unapproved"}
+  },
+  "accessibility": "not_run_beyond_incidental_dom_observations_including_header_footer_home_names_and_hero_label_no_accessibility_suite_or_manual_keyboard_screen_reader_audit",
+  "lighthouse": "not_run",
+  "rendered_qa_gate": "blocked",
+  "gate_reason": "Current one-product commit bb41a70d630041e95f627d05c62b7247b04257f7 is uploaded, but only password-page and Theme Editor evidence exists; the full inner homepage, product and commerce/browser QA did not run or pass."
+}

@@ -1,0 +1,147 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "sku": {
+          "type": "sku",
+          "settings": {
+            "text_style": "uppercase"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 0,
+            "show_inventory_quantity": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description"
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "sku",
+        "inventory",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_position": "left",
+        "gallery_layout": "stacked",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "docked_details": {
+      "type": "docked-product-details",
+      "settings": {
+        "color_scheme": "scheme-2"
+      }
+    },
+    "product_faq": {
+      "type": "docked-faq",
+      "blocks": {
+        "limits": {
+          "type": "question",
+          "settings": {
+            "question": "Where are the verified limits and warnings?",
+            "answer": "<p>Use the verified specifications, Safety section and approved manual shown for this exact product. Unknown information stays hidden and must not be assumed.</p>"
+          }
+        },
+        "compatibility": {
+          "type": "question",
+          "settings": {
+            "question": "Which components are included?",
+            "answer": "<p>The batteries, propulsion units, charging equipment, pump, fittings and manual will be listed only after the final production sample and package contents are reconciled. Use only the components approved for this exact product.</p>"
+          }
+        },
+        "missing_information": {
+          "type": "question",
+          "settings": {
+            "question": "What if required product information is missing?",
+            "answer": "<p>Do not purchase or use the product on an assumption. Ordering remains unavailable until required product evidence is approved; contact support for clarification.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "limits",
+        "compatibility",
+        "missing_information"
+      ],
+      "settings": {
+        "eyebrow": "Product questions",
+        "heading": "Check before you choose.",
+        "text": "<p>Answers must follow the approved listing, warnings and manual for this exact product.</p>",
+        "link_label": "Read all FAQs",
+        "link": "shopify://pages/faq",
+        "color_scheme": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclosures",
+    "docked_details",
+    "product_faq"
+  ]
+}
