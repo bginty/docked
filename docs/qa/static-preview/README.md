@@ -1,5 +1,7 @@
 # Static preview QA
 
+Reference-layout candidate QA: 15 August 2026 (local only)
+
 Feature-board candidate observation window: 15 August 2026, 20:15–20:20 AEST
 
 Feature-board production observation window: 15 August 2026, 20:42–20:44 AEST
@@ -10,9 +12,25 @@ Initial-launch production observation window: 15 August 2026, 17:31:41–17:36:2
 
 Current deployed source commit: `06d4bd1941517b79c10a72a59d581969afd58f31`; public Pages output commit: `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`.
 
-## Feature-board revision
+## Screenshot-reference candidate
 
-The current working tree adds `assets/images/product/cruise-d2-features.jpg` from the owner-supplied supplier file `C:\Users\61412\Desktop\1000047443.png` (405,229 bytes, 1536 × 1536, SHA-256 `93E1A9A811B851185F1B9335850A99561B8B54994A2FD46AA147F0E912A7054C`). The source is JPEG/JFIF despite its `.png` filename. The 507,583-byte public derivative is also 1536 × 1536 JPEG/JFIF and has SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523`.
+The current local candidate implements the owner-approved screenshot hierarchy without changing the product evidence or checkout provider:
+
+- the complete Cruise D2 feature board is the first major visual immediately below the header and is shown without cropping;
+- the sales sequence is product label, headline, supporting copy, `$649` price with `AUD`, primary purchase action, secondary feature action and the concise feature line;
+- the visible offer uses `$649 AUD` and `Free shipping`; the superseded `A$` notation and geographic shipping qualifier are absent from the candidate's customer-facing source;
+- the company name, ABN and support email have been removed from the homepage sales content and consolidated in the bottom footer; and
+- the mobile purchase action resolves to `#checkout`.
+
+Rendered Browser QA was performed locally at requested outer viewports of 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. Captures are in [`reference-layout/`](./reference-layout/). The PayPal Hosted Button rendered `Docked Cruise D2` at `$649.00 AUD` in the inspected 390- and 1440-pixel views. Static validation passed 41/41 and the Node suite passed 10/10. No checkout control was activated, no buyer or payment data was entered and no payment was submitted.
+
+This is candidate evidence only. A source commit, production allowlist commit, GitHub Pages deployment and live-domain verification for this reference-layout revision are still pending. The deployed commit identifiers above continue to identify the preceding production revision.
+
+No new console-clean, Lighthouse-score or automated accessibility claim is made for this candidate. Those checks require their own recorded evidence and are not inferred from the responsive screenshots.
+
+## Previously deployed feature-board revision
+
+The deployed feature-board revision added `assets/images/product/cruise-d2-features.jpg` from the owner-supplied supplier file `C:\Users\61412\Desktop\1000047443.png` (405,229 bytes, 1536 × 1536, SHA-256 `93E1A9A811B851185F1B9335850A99561B8B54994A2FD46AA147F0E912A7054C`). The source is JPEG/JFIF despite its `.png` filename. The 507,583-byte public derivative is also 1536 × 1536 JPEG/JFIF and has SHA-256 `3BA244A638F4B9A0A612A6A01AD98D9B940BFCF8B2881593F3F76D272835A523`.
 
 The owner confirmed the supplier source, product identity and publication authority, and separately confirmed the six retained product facts. The candidate deterministically replaces the source's unsupported safety/stability sentence with “Maximum supported load: 160 kg.” No independent speed/performance test or 160 kg load-bearing test was reviewed.
 
@@ -33,7 +51,7 @@ Captured evidence is stored in `docs/qa/static-preview/feature-revision/`: `home
 
 The source revision is commit `06d4bd1941517b79c10a72a59d581969afd58f31`. Its exact public allowlist is production commit `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`, deployed successfully by Pages run #99. Live evidence files added after deployment are `live-homepage-390.png`, `live-feature-390.png` and `live-checkout-390.png`.
 
-## Browser checks
+## Previously deployed browser checks
 
 - The current homepage rendered its supplier-image hero, product overview, ordering card, product gallery and PayPal Hosted Button in the inspected desktop viewport.
 - It had one visible H1, a main landmark, complete accessible names for the product images and no horizontal overflow (`scrollWidth` equalled `clientWidth`).
@@ -44,9 +62,9 @@ The source revision is commit `06d4bd1941517b79c10a72a59d581969afd58f31`. Its ex
 
 ## Responsive matrix
 
-The initial static launch passed same-origin responsive checks at 320, 375, 390, 768, 1024 and 1440 CSS pixels. Those measurements predate the current product-media revision and are retained only as historical baseline evidence.
+The screenshot-reference candidate passed local rendered inspection at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. Its seven captures are in `docs/qa/static-preview/reference-layout/`. They document the intended responsive hierarchy and are not live-production evidence.
 
-For the current revision, CSS/source contracts and the deterministic tests cover the mobile navigation, stacked hero actions and mobile ordering bar. The live browser was fixed at a desktop viewport, so a fresh rendered 320–768px matrix was not claimed. The six PNG files in this folder remain historical visual references from earlier layouts and are not evidence for the current revision.
+The initial static launch also passed same-origin responsive checks at 320, 375, 390, 768, 1024 and 1440 CSS pixels. Those measurements and the six PNG files in this folder predate both the feature-board revision and the screenshot-reference candidate, and remain historical baseline evidence only.
 
 ## PayPal hosted checkout
 
@@ -54,15 +72,18 @@ Hosted button ID: `FGAUDYCA2LX36`
 
 - Button rendered: passed.
 - Product name: `Docked Cruise D2` — passed.
-- Unit price: `A$649.00` — passed.
+- Candidate website price: `$649 AUD` — passed.
 - Currency and quantity-one total: `$649.00 AUD` — passed.
-- Delivery information: card flow requested address fields and exposed countries worldwide — passed for the owner's worldwide-delivery instruction.
-- Shipping charge: no additional shipping amount appeared; owner separately approved free shipping worldwide.
+- Candidate shipping copy: `Free shipping`, with no geographic qualifier — passed.
+- Inspected candidate viewports: 390 and 1440 CSS pixels — passed.
+- Mobile purchase target: `#checkout` — passed.
 - Real payment: not run.
 - Card, address and identity fields: no data entered.
 - Return to `thank-you.html`: not verified because no real payment was authorised.
 
 ## Production-domain verification
+
+This section records the preceding deployed feature-board revision. The screenshot-reference candidate described above has not yet been committed, promoted or checked on the live domain.
 
 - GitHub Pages workflow [run #99](https://github.com/bginty/docked/actions/runs/31880122836) completed successfully for exact commit `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`; deployment ID `5919624892` reached `success` at `2026-08-15T10:41:09Z`.
 - `https://docked.com.au/` returned `Docked Cruise D2 | Motorised Inflatable Water Lounger Australia` over a valid TLS connection; `https://www.docked.com.au/` continued to redirect to the HTTPS apex.

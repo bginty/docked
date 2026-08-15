@@ -67,8 +67,7 @@ test('homepage has the one-product PayPal ordering contract', () => {
   assert.equal((index.match(/18\+/g) ?? []).length, 1);
   assert.match(index, /handled securely by PayPal/i);
   assert.match(index, /does not collect card details/i);
-  assert.match(index, /Free worldwide shipping/);
-  assert.match(index, /cruise-d2-pool-1200\.webp/);
+  assert.match(index, /Free shipping/);
   assert.match(index, /cruise-d2-overview-1200\.webp/);
   assert.match(index, /cruise-d2-controls-1200\.webp/);
   assert.match(index, /cruise-d2-features\.jpg/);
@@ -90,6 +89,68 @@ test('homepage has the one-product PayPal ordering contract', () => {
   ]) assert.match(marketing, pattern);
   assert.doesNotMatch(index, /unverified performance|original brand illustrations|the Docked approach|confirmed before dispatch/i);
   assert.doesNotMatch(index, /\b(?:in stock|sale|limited time|only \d+ left|rating|reviews?)\b/i);
+});
+
+test('approved top-of-page sequence and offer language remain exact', () => {
+  const index = read('index.html');
+  const site = read('assets/js/site.js');
+  const customerFacingFiles = [...pages, 'assets/js/product-config.js', 'assets/js/site.js', 'site.webmanifest'];
+  const obsoleteOfferLanguage = [];
+  for (const file of customerFacingFiles) {
+    const source = read(file);
+    if (/A(?:\s|&nbsp;)*(?:\$|&#0*36;|&#x0*24;|&dollar;)/i.test(source)) obsoleteOfferLanguage.push(`${file}: A$ prefix`);
+    if (/\bworldwide\b/i.test(source)) obsoleteOfferLanguage.push(`${file}: worldwide`);
+  }
+  assert.deepEqual(obsoleteOfferLanguage, []);
+
+  const headerEnd = index.search(/<\/header\s*>/i);
+  assert.ok(headerEnd >= 0, 'homepage must have a closing header');
+  const closingHeader = index.slice(headerEnd).match(/^<\/header\s*>/i)?.[0] ?? '';
+  const afterHeader = index.slice(headerEnd + closingHeader.length);
+  const firstImage = afterHeader.match(/<img\b[^>]*>/i)?.[0] ?? '';
+  assert.match(firstImage, /\bdata-cruise-d2-feature-image\b/i, 'feature graphic must be the first image after the header');
+
+  const sequence = [
+    afterHeader.search(/<img\b(?=[^>]*\bdata-cruise-d2-feature-image\b)[^>]*>/i),
+    afterHeader.search(/<p\b[^>]*class=["'][^"']*\beyebrow\b[^"']*["'][^>]*>\s*Docked Cruise D2\s*<\/p>/i),
+    afterHeader.search(/<h1\b[^>]*\bid=["']hero-title["']/i),
+    afterHeader.search(/A motorised inflatable water lounger with dual joystick control\./i),
+    afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-offer\b/i),
+    afterHeader.search(/Buy Cruise D2\s*—\s*\$649/i),
+    afterHeader.search(/Explore the features/i),
+    afterHeader.search(/Electric propulsion[\s\S]{0,260}Up to 5\s*km\/h[\s\S]{0,260}160\s*kg capacity[\s\S]{0,260}Dual joystick steering/i),
+  ];
+  sequence.forEach((position, indexInSequence) => {
+    assert.ok(position >= 0, `approved hero item ${indexInSequence + 1} is missing`);
+    if (indexInSequence > 0) assert.ok(position > sequence[indexInSequence - 1], `approved hero item ${indexInSequence + 1} is out of order`);
+  });
+  const firstSectionEnd = afterHeader.search(/<\/section\s*>/i);
+  assert.ok(firstSectionEnd > sequence[0], 'feature graphic must live in the first major section after the header');
+  assert.ok(afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-copy\b/i) > sequence[0], 'feature graphic must precede hero copy in the DOM');
+
+  const priceTargets = [...index.matchAll(/<([a-z][a-z0-9]*)\b(?=[^>]*\bdata-product-price\b)[^>]*>([\s\S]*?)<\/\1>/gi)]
+    .map((match) => visibleText(match[2]));
+  assert.ok(priceTargets.length >= 3, `expected repeated price targets, found ${priceTargets.length}`);
+  assert.deepEqual([...new Set(priceTargets)], ['$649']);
+  const heroOffer = index.match(/<div\b[^>]*class=["'][^"']*\bhero-offer\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i)?.[1] ?? '';
+  assert.equal(visibleText(heroOffer), '$649 AUD · Free shipping');
+  assert.match(index, />\s*Buy Cruise D2\s*—\s*\$649\s*</i);
+  assert.match(site, /setText\(\s*["']\[data-product-price\]["']\s*,\s*["']\$["']\s*\+\s*audAmount\s*\)/);
+  assert.equal(productConfig().price, 649);
+  assert.equal(productConfig().currency, 'AUD');
+});
+
+test('homepage legal identity and support details occur only in the footer', () => {
+  const index = read('index.html');
+  const footerStart = index.search(/<footer\b/i);
+  const footerEnd = index.search(/<\/footer\s*>/i);
+  assert.ok(footerStart >= 0 && footerEnd > footerStart, 'homepage must have a footer');
+  const beforeFooter = index.slice(0, footerStart);
+  const footer = index.slice(footerStart, footerEnd + 9);
+  assert.doesNotMatch(beforeFooter, /Ginty United Investments Pty Ltd/i);
+  assert.doesNotMatch(beforeFooter, /ABN\s*78\s*606\s*187\s*106/i);
+  assert.doesNotMatch(beforeFooter, /support@docked\.com\.au/i);
+  assert.match(footer, /Sold by Ginty United Investments Pty Ltd[\s\S]*ABN\s*78\s*606\s*187\s*106[\s\S]*support@docked\.com\.au/i);
 });
 
 test('all homepage purchase calls to action share the real checkout target', () => {

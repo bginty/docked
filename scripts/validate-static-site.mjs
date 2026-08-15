@@ -101,6 +101,13 @@ if (missing.length === 0) {
     'assets/js/site.js',
   ];
   const publicText = publicTextFiles.map((file) => `${file}\n${read(file)}`).join('\n').toLowerCase();
+  const customerFacingTextFiles = [
+    ...requiredPages,
+    'site.webmanifest',
+    'assets/js/product-config.js',
+    'assets/js/site.js',
+  ];
+  const customerFacingTextByFile = new Map(customerFacingTextFiles.map((file) => [file, read(file)]));
 
   const financeTerms = [
     'mortgage', 'loan', 'broker', 'borrowing', 'affordability', 'refinance',
@@ -120,6 +127,20 @@ if (missing.length === 0) {
   ];
   const placeholderHits = placeholders.filter((term) => publicText.includes(term));
   assert('checkout.no-placeholders', placeholderHits.length === 0, placeholderHits.length ? `Found: ${placeholderHits.join(', ')}` : 'No placeholder checkout or draft copy');
+
+  const australianDollarPrefix = /A(?:\s|&nbsp;)*(?:\$|&#0*36;|&#x0*24;|&dollar;)/i;
+  const obsoleteOfferLanguage = [];
+  for (const [file, source] of customerFacingTextByFile) {
+    if (australianDollarPrefix.test(source)) obsoleteOfferLanguage.push(`${file}: A$ prefix`);
+    if (/\bworldwide\b/i.test(source)) obsoleteOfferLanguage.push(`${file}: worldwide`);
+  }
+  assert(
+    'content.current-price-shipping-language',
+    obsoleteOfferLanguage.length === 0,
+    obsoleteOfferLanguage.length
+      ? `Remove obsolete customer-facing wording: ${obsoleteOfferLanguage.join('; ')}`
+      : 'Public HTML, product configuration, runtime JavaScript, and manifest contain neither A$ nor worldwide',
+  );
 
   const productImageHashes = new Map([
     ['assets/images/product/cruise-d2-pool-1200.webp', '20DF5BEB0C943D520B8046C0AECB17D91327C8B40D32E70B6CC86A3E53D62345'],
@@ -209,7 +230,7 @@ if (missing.length === 0) {
     purchaseControlIssues.length ? purchaseControlIssues.join('; ') : `${purchaseCtas.length} purchase CTAs share #checkout and the checkout target exists`,
   );
 
-  assert('product.config', productConfig?.name === 'Docked Cruise D2' && Number(productConfig?.price) === 649 && productConfig?.currency === 'AUD', 'Config identifies Docked Cruise D2 at A$649 AUD');
+  assert('product.config', productConfig?.name === 'Docked Cruise D2' && Number(productConfig?.price) === 649 && productConfig?.currency === 'AUD', 'Config identifies Docked Cruise D2 at 649 AUD');
   assert('product.checkout-mode', checkoutEnabled ? publicClientId.length >= 40 && hostedButtonId.length >= 8 : productConfig?.checkoutEnabled === false, checkoutEnabled ? 'Exactly one checkout mode is configured: PayPal hosted button' : 'Checkout is explicitly disabled');
 
   assert(
@@ -219,23 +240,78 @@ if (missing.length === 0) {
       : index.includes('Online ordering is not yet available.'),
     checkoutEnabled ? 'Hosted-checkout and card-data disclosures are visible' : 'Ordering-unavailable notice is visible',
   );
+  const priceTargets = [...index.matchAll(/<([a-z][a-z0-9]*)\b(?=[^>]*\bdata-product-price\b)[^>]*>([\s\S]*?)<\/\1>/gi)];
+  const priceTargetValues = priceTargets.map((match) => visibleText(match[2]));
+  const heroOffer = index.match(/<div\b[^>]*class=["'][^"']*\bhero-offer\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i)?.[1] ?? '';
+  const primaryBuyCopy = purchaseCtas.filter((text) => /^Buy Cruise D2\b/i.test(text));
+  assert(
+    'product.price-presentation',
+    priceTargets.length >= 3 && priceTargetValues.every((value) => value === '$649') &&
+      visibleText(heroOffer) === '$649 AUD · Free shipping' && primaryBuyCopy.includes('Buy Cruise D2 — $649') &&
+      /setText\(\s*["']\[data-product-price\]["']\s*,\s*["']\$["']\s*\+\s*audAmount\s*\)/.test(siteScript),
+    `Price targets=${priceTargetValues.join(' | ') || '(none)'}; hero offer="${visibleText(heroOffer) || '(missing)'}"; primary CTA=${primaryBuyCopy.join(' | ') || '(missing)'}`,
+  );
   assert(
     'shipping.owner-approved-offer',
-    /market\s*:\s*['"]Worldwide['"]/.test(config) &&
-      index.includes('Free worldwide shipping') &&
-      read('shipping-returns.html').includes('Free standard shipping is included worldwide'),
-    'Worldwide market and free-shipping wording match the owner-approved offer',
+    /\bFree shipping\b/i.test(index) && /\bFree shipping\b/i.test(read('shipping-returns.html')),
+    'Homepage and shipping policy use the approved “Free shipping” language without a geographic qualifier',
   );
   const checkoutSection = index.slice(index.search(/<section\b[^>]*\bid=["']checkout["']/i), index.indexOf('</section>', index.search(/<section\b[^>]*\bid=["']checkout["']/i)) + 10);
   const conciseAdultWarning = /18\+/i.test(checkoutSection) && /competent swimmers/i.test(checkoutSection) && /calm, controlled swimming pools/i.test(checkoutSection) && /not a life-saving device/i.test(checkoutSection);
   assert('product.adult-warning', conciseAdultWarning && (index.match(/18\+/g) ?? []).length === 1, 'One concise adult-use safety notice is visible near checkout');
   assert('product.price-target', /data-product-price/.test(index), 'Homepage exposes the single configured price target');
+  const headerEnd = index.search(/<\/header\s*>/i);
+  const afterHeader = headerEnd >= 0 ? index.slice(headerEnd + index.slice(headerEnd).match(/^<\/header\s*>/i)?.[0].length) : '';
+  const firstPostHeaderImage = afterHeader.match(/<img\b[^>]*>/i)?.[0] ?? '';
+  const featureImagePosition = afterHeader.search(/<img\b(?=[^>]*\bdata-cruise-d2-feature-image\b)[^>]*>/i);
+  const heroCopyPosition = afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-copy\b/i);
+  const heroTitlePosition = afterHeader.search(/<h1\b[^>]*\bid=["']hero-title["']/i);
+  const featureLabelPosition = afterHeader.search(/<p\b[^>]*class=["'][^"']*\beyebrow\b[^"']*["'][^>]*>\s*Docked Cruise D2\s*<\/p>/i);
+  const firstSectionEnd = afterHeader.search(/<\/section\s*>/i);
+  const approvedHeroSequence = [
+    featureImagePosition,
+    featureLabelPosition,
+    heroTitlePosition,
+    afterHeader.search(/A motorised inflatable water lounger with dual joystick control\./i),
+    afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-offer\b/i),
+    afterHeader.search(/Buy Cruise D2\s*—\s*\$649/i),
+    afterHeader.search(/Explore the features/i),
+    afterHeader.search(/Electric propulsion[\s\S]{0,260}Up to 5\s*km\/h[\s\S]{0,260}160\s*kg capacity[\s\S]{0,260}Dual joystick steering/i),
+  ];
+  const sequenceIsOrdered = approvedHeroSequence.every((position, indexInSequence) =>
+    position >= 0 && (indexInSequence === 0 || position > approvedHeroSequence[indexInSequence - 1]));
+  assert(
+    'content.mobile-first-hero-order',
+    headerEnd >= 0 && /\bdata-cruise-d2-feature-image\b/i.test(firstPostHeaderImage) &&
+      featureImagePosition >= 0 && firstSectionEnd > featureImagePosition &&
+      heroCopyPosition > featureImagePosition && heroTitlePosition > featureImagePosition && sequenceIsOrdered,
+    `Hero sequence positions: ${approvedHeroSequence.join(', ')}; first post-header image=${/\bdata-cruise-d2-feature-image\b/i.test(firstPostHeaderImage) ? 'approved feature image' : firstPostHeaderImage || '(missing)'}`,
+  );
+
+  const footerStart = index.search(/<footer\b/i);
+  const footerEnd = footerStart >= 0 ? index.search(/<\/footer\s*>/i) : -1;
+  const homepageBeforeFooter = footerStart >= 0 ? index.slice(0, footerStart) : index;
+  const homepageFooter = footerStart >= 0 && footerEnd > footerStart ? index.slice(footerStart, footerEnd + 9) : '';
+  const legalIdentityPatterns = [
+    /Ginty United Investments Pty Ltd/i,
+    /ABN\s*78\s*606\s*187\s*106/i,
+    /support@docked\.com\.au/i,
+  ];
+  const legalIdentityOutsideFooter = legalIdentityPatterns.filter((pattern) => pattern.test(homepageBeforeFooter)).map(String);
+  const footerHasLegalBlock = /Sold by Ginty United Investments Pty Ltd[\s\S]*ABN\s*78\s*606\s*187\s*106[\s\S]*support@docked\.com\.au/i.test(homepageFooter);
+  assert(
+    'content.homepage-legal-details-footer-only',
+    footerStart >= 0 && footerEnd > footerStart && legalIdentityOutsideFooter.length === 0 && footerHasLegalBlock,
+    legalIdentityOutsideFooter.length
+      ? `Homepage legal/support details found above footer: ${legalIdentityOutsideFooter.join(', ')}`
+      : `Footer legal block=${footerHasLegalBlock ? 'present' : 'missing or out of order'}`,
+  );
   assert(
     'content.product-first',
-    /cruise-d2-pool-1200\.webp/.test(index) && /cruise-d2-overview-1200\.webp/.test(index) && /cruise-d2-controls-1200\.webp/.test(index) &&
+    /cruise-d2-overview-1200\.webp/.test(index) && /cruise-d2-controls-1200\.webp/.test(index) &&
       /cruise-d2-features\.jpg/.test(index) && /\bdata-cruise-d2-feature-image\b/.test(index) &&
       !/unverified performance|original brand illustrations|the Docked approach|confirmed before dispatch/i.test(publicText),
-    'Homepage uses the registered product media and feature image with no internal compliance-preview copy',
+    'Homepage uses the approved lead feature graphic and supporting product imagery with no internal compliance-preview copy',
   );
 
   const configurationText = JSON.stringify(productConfig ?? {});

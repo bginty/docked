@@ -198,7 +198,7 @@
         maximumFractionDigits: 0,
         minimumFractionDigits: 0
       }).format(priceNumber);
-      setText("[data-product-price]", "A$" + audAmount);
+      setText("[data-product-price]", "$" + audAmount);
     }
 
     document.querySelectorAll("[data-support-email]").forEach(function (link) {
@@ -396,8 +396,8 @@
     var supportLink = document.createElement("a");
     paragraph.className = "checkout-fallback";
     paragraph.append(document.createTextNode(message + " "));
-    supportLink.href = "mailto:" + (product && product.supportEmail ? product.supportEmail : "support@docked.com.au");
-    supportLink.textContent = "Email Docked Support";
+    supportLink.href = "/contact.html";
+    supportLink.textContent = "Contact Docked Support";
     paragraph.appendChild(supportLink);
     checkoutRoot.appendChild(paragraph);
   }
