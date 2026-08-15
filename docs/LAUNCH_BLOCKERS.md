@@ -1,7 +1,7 @@
 # Docked launch blockers
 
-Status: **STOP — 0 ACTIVE PRODUCTS; 15 DRAFT CONCEPTS**  
-Last updated: 14 August 2026
+Status: **STOP — 0 ACTIVE PRODUCTS; 1 CURRENT PLANNED DRAFT; ACTIVE PROHIBITED**
+Last updated: 15 August 2026
 
 These blockers prevent product activation, live payment capture and a claim that Docked is “Production Live”. A polished theme, password page or Draft catalogue does not resolve them.
 
@@ -12,8 +12,8 @@ These items require the owner’s identity, authority, accounts, commercial judg
 - [ ] **Resolve the exact DOCKED business-name conflict before publication.** A 14 August 2026 preliminary ASIC public-register search displayed exact **DOCKED** as Registered to DOMINIC PRONESTI, not GINTY UNITED INVESTMENTS PTY LTD. Obtain a current extract and appropriate Australian advice, then evidence an authorised resolution or adopt a cleared replacement brand. The exact IP Australia quick search returned zero results and the broader “Dock” search returned 170; neither result constitutes trademark clearance. Complete the relevant similarity/class/goods-and-services review and filing decision for the final brand.
 - [ ] **Supply and verify business banking and payment-provider details.** Complete Shopify Payments merchant verification and connect/authorise the genuine PayPal Business account. No bank or payment credential belongs in Git.
 - [ ] Approve and execute each supplier agreement and purchasing commitment after supplier identity and terms are verified.
-- [ ] Select the exact supplier model and final SKU/variant range for each product; concept names are not purchase authority.
-- [ ] Approve final landed cost, commercially viable GST-inclusive retail price, freight model, inventory commitment and launch quantity for each SKU. Draft RRPs are not final prices.
+- [ ] Select and approve the exact final supplier model, production revision and SKU/variant for DC-02; the concept name is not purchase authority.
+- [ ] Approve final landed cost, commercially viable GST-inclusive retail price, freight model, inventory commitment and launch quantity for DC-02. Draft RRPs are not final prices.
 - [ ] Approve the customer-facing warranty promise, change-of-mind policy, shipping offer, dispatch service level and any bundle structure after adviser/operations review.
 - [ ] Obtain and accept suitable product-liability insurance terms for the exact categories and products to be supplied.
 - [ ] Approve the final product copy, warnings, specifications, imagery and release record only after supplier and specialist reviews are complete.
@@ -23,7 +23,7 @@ Confirmed owner-supplied facts—legal entity, ABN, ACN, GST status, corresponde
 
 ## Supplier and manufacturer evidence blockers
 
-No supplier dossier has been received. Every final SKU is blocked until the supplier/manufacturer provides evidence for the exact production version.
+Supplier files were received on 15 August 2026, but they remain under scope, authenticity, model and revision review. They are component reports only and do not identify or approve one reconciled final DC-02 production SKU. There is no 160 kg load/weight-bearing test, and the supplied/creative materials conflict on runtime (30 or 90 minutes), rated power (46 or 66 W) and speed (5 km/h or 1.6 m/s). AI concept PNGs are not product photography or exact-SKU evidence. DC-02 remains blocked until the supplier/manufacturer provides an accepted whole-product dossier for the exact production version and every included component.
 
 - [ ] Supplier legal name, registration, address and authorised contact.
 - [ ] Manufacturer legal identity, manufacturing location and supplier/manufacturer relationship.
@@ -37,6 +37,10 @@ No supplier dossier has been received. Every final SKU is blocked until the supp
 - [ ] For powered floats: motor/controller specification, guards, intakes, stop/fail-safe behaviour, turning/stopping and entanglement evidence.
 - [ ] For each charger/electrical product: model, ratings, Australian plug, test reports, responsible-supplier information, registration/certification and lawful RCM basis as applicable.
 - [ ] For each battery: chemistry, maker/model, voltage, capacity, watt-hours, charging/storage/damage/disposal instructions and model-specific transport evidence.
+- [ ] Reconcile and evidence the exact two-battery configuration supplied with DC-02; each included battery requires applicable identity, safety, charging and transport evidence.
+- [ ] Identify and evidence the complimentary air pump as an included component, including its exact model, electrical/charging architecture, instructions, warnings and applicable Australian compliance basis.
+- [ ] Provide an exact-model load/weight-bearing test before any 160 kg capacity claim is approved.
+- [ ] Resolve the 30/90-minute runtime, 46/66 W power and 5 km/h/1.6 m/s speed conflicts against the final sampled SKU and accepted reports; publish none of these values while unresolved.
 - [ ] Water-ingress evidence for each claimed component; no unsupported whole-product waterproof claim.
 - [ ] Radio function/frequency/power and applicable EMC/radiocommunications evidence for any wireless controller.
 - [ ] Supplier warranty, spare parts, replacement process, defect escalation and recall contact.
@@ -80,17 +84,12 @@ These can be completed only after the required owner/supplier/adviser inputs exi
 
 ## Product-level blockers
 
-| Concept IDs | Products | Blocking evidence/review |
+| Concept ID | Product | Blocking evidence/review |
 | --- | --- | --- |
-| DC-01–DC-03 | Docked Cruise S1, Docked Cruise D2, Docked Shade D2 | Final supplier/model/SKU; aquatic and flotation/PFD classification; load/occupancy; propulsion/guard/controller; electrical/charger/RCM; battery/transport; radio if present; Shade canopy; licensed media; price/stock/owner approval |
-| DC-04–DC-08 | Docked Drift Mesh Lounge, Docked Recline Pool Chair, Docked Stretch Full-Length Lounge, Docked Social Two-Person Island, Docked Party Deck | Final supplier/model/SKU; aquatic and flotation/PFD classification; valve/construction; verified occupancy/load; instructions/warnings; licensed media; price/stock/owner approval |
-| DC-09 | Docked Rally Pool Volleyball Set | Final supplier/model/SKU; aquatic classification; cord/net/anchor entanglement; pool size/depth; warnings; licensed media; price/stock/owner approval |
-| DC-10–DC-11 | Docked Chill Floating Cooler, Docked Drinks Dock | Final supplier/model/SKU; aquatic classification; capacity/stability; not-a-flotation-device and no-glass warnings; licensed media; price/stock/owner approval |
-| DC-12 | Docked Inflate Rechargeable Air Pump | Final supplier/model/SKU; electrical/EESS/RCM; battery/transport; charging/overinflation instructions; media; price/stock/owner approval |
-| DC-13 | Docked Double-Action Manual Pump | Final supplier/model/SKU; pressure/method compatibility; safe-use instructions; media; price/stock/owner approval |
-| DC-14 | Docked Restore PVC Repair Kit | Final supplier/model/SKU; contents/material/chemical evidence; safety/application/compatibility instructions; media; price/stock/owner approval |
-| DC-15 | Docked Dry Storage Pouch | Final supplier/model/SKU; exact water-ingress performance test, rating and limitations; approved claim/instructions; media; price/stock/owner approval |
+| DC-02 | Docked Cruise D2 | Final supplier/model/SKU and whole-product dossier; aquatic and flotation/PFD classification; exact-model occupancy/load test (160 kg unsupported); propulsion/guard/controller and ingress evidence; reconciled runtime/power/speed; electrical/charger/RCM; separate evidence for both included batteries and the complimentary pump; battery transport/carrier acceptance; licensed exact-SKU photography; price/stock/shipping/insurance/owner approval |
+
+The other 14 concepts are withdrawn from the current product plan. Historical competitor research and register entries remain recoverable at baseline commit `306e5dd`; they are not current products and must not be recreated, imported, activated, advertised or linked from current navigation.
 
 ## Activation rule
 
-A product may move from Draft to Active only when its individual approval record is complete and every applicable item above is closed with evidence. Closing one SKU does not approve another model, variant, battery, charger, supplier or production revision. Until then, customer checkout and live payment capture must not be represented as available.
+DC-02 may not be created or retained as a customer-visible Draft, and may not move to Active, until its individual approval record is complete and every applicable item above is closed with evidence. Closing one component report does not approve the whole product, another model, variant, battery, charger, pump, supplier or production revision. Until then, customer checkout and live payment capture must not be represented as available.

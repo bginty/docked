@@ -1,9 +1,11 @@
 # Docked SKU approval workflow
 
-Status: **DRAFT GATE — ALL 15 CONCEPTS AT STAGE 0**  
-Last updated: 13 August 2026
+Status: **DRAFT GATE — DC-02 AT STAGE 0; ACTIVE PROHIBITED**
+Last updated: 15 August 2026
 
 This workflow controls movement from a named concept to a Shopify Active product. It applies to the exact supplier model, SKU, variant, production revision and component set. No approval is inherited from another product, supplier declaration or similar test report.
+
+DC-02 / **Docked Cruise D2** retains its existing concept ID and is the sole current planned Draft product. The other 14 concepts are withdrawn from the current plan; their workflow history remains recoverable at baseline commit `306e5dd`. Supplier component files received on 15 August 2026 do not move DC-02 beyond Stage 0: they remain under review, do not approve a final SKU and do not permit Active status.
 
 ## Status model
 
@@ -33,6 +35,8 @@ Required controls:
 - Powered/Battery flags describe only the intended concept and are not certifications.
 - Compliance, photography, copy and owner approval marked blocked/pending.
 
+The Stage 0 record must state that no 160 kg load test was supplied; runtime (30/90 minutes), power (46/66 W) and speed (5 km/h/1.6 m/s) conflict; AI concept PNGs are not exact-SKU product photography; and the complimentary pump and each of the two included batteries require applicable component evidence.
+
 ## Stage 1 — identity and commercial gate
 
 Exit requires:
@@ -50,7 +54,9 @@ Do not place a commercial order where safety evidence is a condition “after sh
 
 The product/compliance lead checks every applicable line in `docs/PRODUCT_EVIDENCE_CHECKLIST.md` and records it in `docs/COMPLIANCE_REGISTER.md`.
 
-Exit requires final packaging, labels, English manual, material evidence, applicable reports, capacity/load evidence, traceability, packed measures, media licences and category-specific evidence tied to the exact production configuration. Missing, ambiguous, expired or model-mismatched evidence fails the gate.
+Exit requires final packaging, labels, English manual, material evidence, applicable reports, capacity/load evidence, traceability, packed measures, media licences and category-specific evidence tied to the exact production configuration. Component reports are accepted only for the exact components they identify and must reconcile to the final whole-product configuration. Missing, ambiguous, expired or model-mismatched evidence fails the gate.
+
+For DC-02, Stage 2 cannot pass until an exact-model load/weight-bearing test resolves the proposed 160 kg claim; the 30/90-minute runtime, 46/66 W power and 5 km/h/1.6 m/s speed conflicts are reconciled; and the complimentary pump and both included batteries have their own applicable identity, safety, electrical, charging and transport evidence.
 
 ## Stage 3 — classification and specialist gate
 
@@ -70,9 +76,10 @@ Exit requires final packaging, labels, English manual, material evidence, applic
 - ACMA/EMC/radio review if any transmitter/receiver is present.
 - Written carrier acceptance for the exact packed battery configuration.
 
-### Other category gates
+### Included-component gates
 
-- Canopy, net/cord/anchor, floating-container, pump, repair-kit and storage-pouch evidence/review as applicable.
+- Exact complimentary-pump architecture, instructions, warnings, electrical/charging scope and Australian compliance review as applicable.
+- Exact identity, ratings, safety, charging and transport review for each of the two included batteries and the final packed configuration.
 
 Only a competent reviewer may mark an applicability decision approved. The reviewer’s name, date, evidence reference and review scope are mandatory.
 
@@ -80,8 +87,8 @@ Only a competent reviewer may mark an applicability decision approved. The revie
 
 Exit requires:
 
-1. The inspected sample matches supplier model, production revision, materials, battery, charger, controller and reports.
-2. Product, packaging, labels, manual, SKU/barcode and included items reconcile.
+1. The inspected sample matches supplier model, production revision, materials, both batteries, charger/charging method, complimentary pump, controller and reports.
+2. Product, packaging, labels, manual, SKU/barcode and every included item reconcile.
 3. Required warnings/markings are present and have the necessary permanence/durability evidence.
 4. Batch/serial code links successfully from received unit to supplier lot and a test customer order.
 5. Receiving inspection and non-conformance quarantine work.
@@ -95,7 +102,7 @@ Exit requires:
 - supplier/manual, Australian product-safety and legal review of the applicable Draft warnings;
 - critical warning near Add to Cart, full warnings in the product Safety section and complete warning set on Safety and Care;
 - specifications rendered only from verified fields;
-- accurate licensed final-product photography/video, using clearly adult models for aquatic products;
+- accurate licensed final-product photography/video, using clearly adult models for aquatic products; AI concept PNGs cannot satisfy this requirement or be presented as documentary product photography;
 - no competitor assets, fake reviews, unsupported badges, child-focused content or unsafe use; and
 - content/manual/packaging reconciliation signed and dated.
 
@@ -167,18 +174,6 @@ Immediately stop sale and reopen the workflow for a suspected safety issue, regu
 
 | Concept ID | Product title | Final SKU | Current stage | Active permitted? |
 | --- | --- | --- | --- | --- |
-| DC-01 | Docked Cruise S1 | Requires verification | 0 — Draft concept | No |
-| DC-02 | Docked Cruise D2 | Requires verification | 0 — Draft concept | No |
-| DC-03 | Docked Shade D2 | Requires verification | 0 — Draft concept | No |
-| DC-04 | Docked Drift Mesh Lounge | Requires verification | 0 — Draft concept | No |
-| DC-05 | Docked Recline Pool Chair | Requires verification | 0 — Draft concept | No |
-| DC-06 | Docked Stretch Full-Length Lounge | Requires verification | 0 — Draft concept | No |
-| DC-07 | Docked Social Two-Person Island | Requires verification | 0 — Draft concept | No |
-| DC-08 | Docked Party Deck | Requires verification | 0 — Draft concept | No |
-| DC-09 | Docked Rally Pool Volleyball Set | Requires verification | 0 — Draft concept | No |
-| DC-10 | Docked Chill Floating Cooler | Requires verification | 0 — Draft concept | No |
-| DC-11 | Docked Drinks Dock | Requires verification | 0 — Draft concept | No |
-| DC-12 | Docked Inflate Rechargeable Air Pump | Requires verification | 0 — Draft concept | No |
-| DC-13 | Docked Double-Action Manual Pump | Requires verification | 0 — Draft concept | No |
-| DC-14 | Docked Restore PVC Repair Kit | Requires verification | 0 — Draft concept | No |
-| DC-15 | Docked Dry Storage Pouch | Requires verification | 0 — Draft concept | No |
+| DC-02 | Docked Cruise D2 | Requires verification | 0 — Draft; supplier component files received 15 August 2026 and under review | No — Active prohibited |
+
+The other 14 concepts are withdrawn from the current plan and are not eligible to advance. Use baseline commit `306e5dd` only if their historical records are needed for audit; any future revival requires a new documented range decision and a fresh Stage 0 review.

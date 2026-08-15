@@ -1,9 +1,9 @@
 # Docked product evidence checklist
 
 Status: **DRAFT — NO PRODUCT APPROVED FOR SALE**  
-Last updated: 13 August 2026
+Last updated: 15 August 2026
 
-This checklist is the evidence gate for every proposed Docked product. It records what must be obtained; it does not certify a product, approve a claim, or decide whether a standard applies. The 15 initial concepts remain Draft until the evidence for the exact production model and SKU has been reviewed and approved through `docs/SKU_APPROVAL_WORKFLOW.md`.
+This checklist is the evidence gate for DC-02 / Docked Cruise D2, the sole current planned Docked Draft product. It records what must be obtained; it does not certify the product, approve a claim, or decide whether a standard applies. Supplier component files received on 15 August 2026 remain under review. They do not approve a final production model/SKU or permit Active status; DC-02 must remain Draft until all gates in [SKU approval workflow](SKU_APPROVAL_WORKFLOW.md) pass.
 
 ## Evidence acceptance rules
 
@@ -29,21 +29,21 @@ Complete these items for every supplier and every final SKU.
 | Manufacturer identity | Legal manufacturer, manufacturing address and relationship to supplier | Not received |
 | Manufacturing information | Factory/site details and quality-control information where available | Not received |
 | Commercial authority | Executed purchase agreement and model-specific commercial invoice | Not received |
-| Product identity | Final model, SKU, variant list and barcode where applicable | Not received |
+| Product identity | Final model, SKU, variant list and barcode where applicable | Final SKU not received; component identifiers only are under review |
 | Traceability | Batch, lot or serial method; production date coding; order-to-unit lookup | Not received |
 | Final packaging | All panels, inserts, markings and barcodes for the Australian product | Not received |
 | Product labels | Artwork, location, permanence/durability evidence and final production sample | Not received |
 | English manual | Final setup, use, warnings, care, maintenance, storage and disposal instructions | Not received |
 | Materials | Bill of materials or verified material declaration, including PVC specification where relevant | Not received |
 | Chemical evidence | Applicable chemical test reports tied to the exact materials and colourways | Not received |
-| Capacity evidence | Verified occupancy and maximum load, including test method and results where applicable | Not received |
+| Capacity evidence | Verified occupancy and maximum load, including test method and results where applicable | Not received — no 160 kg load/weight-bearing test supplied |
 | Mechanical evidence | Applicable mechanical, physical, seam, handle, attachment and stability reports | Not received |
 | Valve evidence | Valve construction, non-return operation, stopper attachment/profile and test evidence where applicable | Not received |
 | Warranty | Supplier warranty, exclusions, claim route and response times | Not received |
 | Parts and service | Spare-parts list, approved replacement process and repair guidance | Not received |
 | Defect escalation | Named defect/safety escalation contact and response procedure | Not received |
 | Recall support | Recall contact, affected-unit trace method, stock hold and remedy support | Not received |
-| Photography licence | Written licence identifying each approved product image and permitted uses/term | Not received |
+| Photography licence | Written licence identifying each approved product image and permitted uses/term | Not received — AI concept PNGs are not exact-SKU product photography |
 | Video licence | Written licence identifying each approved video and permitted uses/term | Not received |
 | Australian shipping | Carrier acceptance for the final packed product and all components | Not received |
 
@@ -73,7 +73,7 @@ Apply the relevant line to each powered float and to the rechargeable air pump. 
 
 | Evidence or decision | Required result | Current state |
 | --- | --- | --- |
-| Motor system | Model, motor count, ratings, guards, intakes, attachment and obstruction-clearing method | Not received |
+| Motor system | Model, motor count, ratings, guards, intakes, attachment and obstruction-clearing method | Supplier material received 15 August 2026 and under review; 46/66 W conflict unresolved |
 | Propulsion hazards | Guard effectiveness and model-specific hair, finger, clothing and entanglement risk controls | Not received |
 | Control system | Controller type, fail-safe/stop behaviour and safe turning/stopping envelope | Not received |
 | Charger identity | Charger model, Australian input/output ratings, Australian plug and supplied cable | Not received |
@@ -81,9 +81,9 @@ Apply the relevant line to each powered float and to the rechargeable air pump. 
 | Electrical evidence | Applicable reports, certificate/registration, responsible-supplier details and lawful RCM basis | Not received |
 | Water ingress | Exact component rating and supporting test report; no whole-product “waterproof” inference | Not received |
 | Charging controls | Confirmation and instructions that charging does not occur during use, in/near water or while wet | Not received |
-| Battery identity | Chemistry, cell/pack manufacturer, model and supplier | Not received |
-| Battery ratings | Voltage, capacity and calculated/declared watt-hours reconciled across documents | Not received |
-| Battery transport | Model-specific UN 38.3/test-summary and other applicable transport evidence | Not received |
+| Battery identity | Chemistry, cell/pack manufacturer, model and supplier | Component files received 15 August 2026 and under review; both included batteries must be identified and matched to the final SKU |
+| Battery ratings | Voltage, capacity and calculated/declared watt-hours reconciled across documents | Component files received and under review; two-battery configuration not reconciled |
+| Battery transport | Model-specific UN 38.3/test-summary and other applicable transport evidence | Component files received and under review; exact two-battery packed configuration and carrier acceptance not approved |
 | Battery safety | Approved charging, storage-charge, damage, swelling, heat, wetting, fire and disposal instructions | Not received |
 | Carrier approval | Written acceptance for the exact battery configuration and shipping service | Not received |
 | Radio/EMC assessment | Controller radio functionality/frequency/power and written ACMA/EMC applicability review | Not started |
@@ -124,27 +124,17 @@ Apply the relevant line to each powered float and to the rechargeable air pump. 
 | Warranty and returns | Supplier support, Docked policy and Australian Consumer Law review | Blocked |
 | Owner release | Signed product, price, claim, imagery and launch approval | Blocked |
 
-## Initial concept evidence status
+## Current product evidence status
 
 `Concept ID` is an internal register key, not a commercial SKU.
 
+The received files are exact-component reports only, not a reconciled whole-product dossier. They do not resolve runtime (30/90 minutes), rated power (46/66 W) or speed (5 km/h/1.6 m/s). The complimentary pump and each of the two included batteries require their own applicable identity, safety, electrical, charging and transport evidence. AI concept PNGs are not product photography or evidence of the final supplied SKU.
+
 | Concept ID | Product title | Evidence scope | Current status |
 | --- | --- | --- | --- |
-| DC-01 | Docked Cruise S1 | Core + aquatic + powered/electrical/battery + possible radio | Draft — all evidence pending |
-| DC-02 | Docked Cruise D2 | Core + aquatic + powered/electrical/battery + possible radio | Draft — all evidence pending |
-| DC-03 | Docked Shade D2 | Core + aquatic + powered/electrical/battery + possible radio + canopy | Draft — all evidence pending |
-| DC-04 | Docked Drift Mesh Lounge | Core + aquatic/inflatable | Draft — all evidence pending |
-| DC-05 | Docked Recline Pool Chair | Core + aquatic/inflatable | Draft — all evidence pending |
-| DC-06 | Docked Stretch Full-Length Lounge | Core + aquatic/inflatable | Draft — all evidence pending |
-| DC-07 | Docked Social Two-Person Island | Core + aquatic/inflatable/multi-occupant | Draft — all evidence pending |
-| DC-08 | Docked Party Deck | Core + aquatic/inflatable/multi-occupant | Draft — all evidence pending |
-| DC-09 | Docked Rally Pool Volleyball Set | Core + aquatic/game/cord-net hazards | Draft — all evidence pending |
-| DC-10 | Docked Chill Floating Cooler | Core + aquatic/floating-container hazards | Draft — all evidence pending |
-| DC-11 | Docked Drinks Dock | Core + aquatic/floating-container hazards | Draft — all evidence pending |
-| DC-12 | Docked Inflate Rechargeable Air Pump | Core + powered/electrical/battery | Draft — all evidence pending |
-| DC-13 | Docked Double-Action Manual Pump | Core + pump/inflation | Draft — all evidence pending |
-| DC-14 | Docked Restore PVC Repair Kit | Core + material/chemical/repair instructions | Draft — all evidence pending |
-| DC-15 | Docked Dry Storage Pouch | Core + performance/claim testing | Draft — all evidence pending |
+| DC-02 | Docked Cruise D2 | Core + aquatic + powered/electrical/battery + possible radio; included complimentary pump and two batteries assessed as components | Draft — supplier component files received 15 August 2026 and under review; final SKU not approved; 160 kg test absent; claim conflicts unresolved; Active prohibited |
+
+The other 14 concepts are withdrawn from the current plan. Their prior evidence-status entries and competitor-research context remain recoverable at baseline commit `306e5dd`; they are not current products and must not be imported or activated.
 
 ## Close-out
 

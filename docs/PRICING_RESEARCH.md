@@ -1,18 +1,29 @@
 # Docked pricing research
 
-**Research date:** 13 August 2026  
+**Original research date:** 13 August 2026
+**Current-scope review:** 15 August 2026
 **Currency:** Australian dollars (AUD)  
 **Validation status:** **Share with caveats - market orientation only; no price is approved**
 
 ## Executive conclusion
 
-The draft RRPs are working hypotheses, not launch prices. Unpowered lounge and accessory markets are reasonably populated and price-transparent, but the directly comparable powered-float market is thin. All 10 powered observations are cross-border importer listings: five Ubuy headline prices exclude shipping and customs, while five Desertcart prices state that delivery, duties and taxes are included. Those prices are directionally useful but not interchangeable landed-Australia offers.
+The current commercial plan contains one product only: `DC-02 / Docked Cruise D2`. Its `$649` GST-inclusive value is provisional and **Pending**, not an approved launch price. The historical 15-category benchmark remains useful as an audit trail, but only the powered dual-motor comparator set is relevant to the current pricing decision. The other 14 concept prices are withdrawn from the current plan and their Shopify product shells were archived, not deleted, on 15 August 2026.
 
-No SKU can pass commercial approval until landed cost, outbound freight, payment fees, warranty/returns exposure, packaging, stock and other variable-cost inputs are completed. Every proposed price remains blocked in [PRICE_APPROVAL_REGISTER.md](PRICE_APPROVAL_REGISTER.md).
+The directly comparable powered-float market is thin. All 10 historical powered observations are cross-border importer listings: five Ubuy headline prices exclude shipping and customs, while five Desertcart prices state that delivery, duties and taxes are included. Those prices are directionally useful but not interchangeable landed-Australia offers. None establishes the exact DC-02 configuration, Australian compliance, local stock, warranty value or delivered cost.
+
+DC-02 cannot pass commercial approval until the exact supplier model/SKU, landed cost, two-battery and complimentary-pump package, outbound dangerous-goods freight, payment fees, warranty/returns exposure, packaging, stock and other variable-cost inputs are completed. Its price remains blocked in [PRICE_APPROVAL_REGISTER.md](PRICE_APPROVAL_REGISTER.md).
+
+## Current DC-02 pricing decision
+
+| Product | Current status | Provisional RRP inc GST | Historical comparator | Decision |
+| --- | --- | ---: | --- | --- |
+| DC-02 / Docked Cruise D2 | Draft; exact SKU and claims unapproved | $649 | Three cross-border “powered dual motor” observations; `$409–$656` range and `$575` median | Pending — no owner approval, landed cost, margin or contribution |
+
+The proposed quantity of 20 is an intended order quantity, not evidence of stock or volume economics. Unsupported `160 kg`, `30/90 min`, `46/66 W`, `1.6 m/s/5 km/h`, thrust and dimensional claims cannot be used to defend a premium.
 
 ## Scope and reproducible method
 
-- The benchmarks below use all 104 genuine price-bearing observations in [`competitor-pricing.csv`](../data/competitor-pricing.csv), mapped into the 15 named Docked comparison categories.
+- The historical benchmarks below use all 104 genuine price-bearing observations in [`competitor-pricing.csv`](../data/competitor-pricing.csv), mapped into the former 15-concept comparison plan.
 - The rows cover 53 retailers and 101 unique URLs. Three category pages each support two distinct, separately priced products; there is no exact duplicate row.
 - Each row is one product-price observation captured on 13 August 2026. Clearance, sale, member, marketplace, unavailable, from-price and import qualifiers are retained.
 - Statistics use the listed AUD price. For an even row count, the median is the arithmetic mean of the two middle sorted values.
@@ -20,9 +31,9 @@ No SKU can pass commercial approval until landed cost, outbound freight, payment
 - A delivered price is recorded only where the source states a fixed inclusion. Postcode freight, remote-area surcharges, membership conditions and unknown import costs are not imputed.
 - Product, warranty, return and performance statements are paraphrased and labelled as source claims where they have not been independently verified.
 
-## Category benchmarks and draft positioning
+## Historical category benchmarks and draft positioning
 
-Draft RRPs include GST. Position versus median is descriptive only and does not constitute approval.
+These rows preserve the 13 August 2026 research basis. Draft RRPs include GST. Position versus median is descriptive only and does not constitute approval. Only DC-02 remains in the current plan.
 
 | Category | n | Listed-price range | Median | Named Docked concept | Draft RRP inc GST | Position vs median |
 | --- | ---: | ---: | ---: | --- | ---: | ---: |
@@ -44,15 +55,15 @@ Draft RRPs include GST. Position versus median is descriptive only and does not 
 
 ## Interpretation
 
-### Powered range
+### Powered range — current relevance limited to DC-02
 
-The single-motor draft is 82.1% above its five-row median. The dual-motor draft is much closer to its benchmark, while the canopy draft carries a material premium over only two observations. All powered evidence is cross-border, samples are small and half the headline prices omit freight/customs. A premium could be defensible only after Docked verifies the exact product, local compliance, adult fit, control/safety system, Australian support, warranty, parts and delivered availability.
+The historical dual-motor draft is 12.9% above its three-row median. All powered evidence is cross-border, samples are small and half the broader powered headline prices omit freight/customs. A premium could be defensible only after Docked verifies the exact DC-02 product, local compliance, adult fit, control/safety system, Australian support, warranty, parts and delivered availability. The former single-motor and canopy concepts are historical only.
 
-### Adult loungers and islands
+### Adult loungers and islands — historical only
 
 The market mixes clearance inflatables, marketplace goods, established retail brands and premium fabric-covered products. The full-length lounge and party-island drafts sit close to very dispersed medians. The mesh, chair and two-person drafts are above theirs; the two-person concept has the largest premium in the range. Size, construction, verified capacity, materials, comfort and local warranty value would all need evidence before that premium could be defended.
 
-### Games, pumps and care
+### Games, pumps and care — historical only
 
 The cooler, manual pump and repair-kit drafts are close enough to common retail points to test after costs are known. The tray and rechargeable-pump drafts sit below their medians and may lack contribution headroom. Volleyball and the storage pouch sit materially above their medians; each needs a stronger verified offer or a lower cost/price structure. The pouch must not carry any waterproof, water-resistant or submersible claim without exact test evidence, limitations and approved instructions.
 
@@ -80,9 +91,9 @@ Overall assessment: **Share with caveats.** The dataset is traceable and adequat
 - Many unpowered offers are generic, novelty-led or not consistently adult-positioned. Restrained design, adult sizing and reliable capacity information could create separation only when substantiated.
 - Accessories are commoditised. Verified compatibility, instructions and useful consent-based bundles may be more defensible than standalone price premiums.
 
-## Draft RRP planning bands
+## Historical draft RRP planning bands
 
-These addendum-supplied working bands are planning limits, not approvals, and never override unit economics.
+These addendum-supplied working bands preserve historical research only, are not approvals and never override unit economics. DC-02 is the only current row; the complimentary pump is an included component, not a separate current product.
 
 | Category | Draft band inc GST | Named-concept draft |
 | --- | ---: | ---: |
@@ -104,9 +115,9 @@ These addendum-supplied working bands are planning limits, not approvals, and ne
 
 ## Unit-economics gate
 
-[`pricing-calculator.csv`](../data/pricing-calculator.csv) contains 15 row-local formula models. Retail ex GST and GST are calculated from the draft price. Gross profit, margin, payment fee, warranty allowance and contribution remain blank until every required cost/rate input exists; blank is not zero.
+[`pricing-calculator.csv`](../data/pricing-calculator.csv) now contains one row-local formula model for DC-02. Retail ex GST and GST are calculated from the provisional price. Gross profit, margin, payment fee, warranty allowance and contribution remain blank until every required cost/rate input exists; blank is not zero.
 
-Missing inputs for every concept include supplier/landed cost, freight/duty/brokerage, warehousing, outbound delivery, Shopify/payment fees, returns/replacement/warranty allowance, advertising, packaging, volume, discounting and bundle mix.
+Missing DC-02 inputs include the exact final configuration and invoice, supplier/landed cost, freight/duty/brokerage, two-battery dangerous-goods treatment, warehousing, outbound delivery, Shopify/payment fees, returns/replacement/warranty allowance, insurance, advertising, packaging, confirmed stock, discounting and bundle treatment.
 
 If the commercially viable price is materially above a defensible market position, record:
 

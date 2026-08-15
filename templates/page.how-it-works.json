@@ -11,7 +11,7 @@
         "store": { "type": "step", "settings": { "heading": "Switch off, dry and store", "text": "<p>Follow the manual for exiting, disconnection, charging, cleaning, inspection, drying and storage.</p>" } }
       },
       "block_order": ["manual", "inflate", "connect", "use", "store"],
-      "settings": { "heading": "How powered floats work", "color_scheme": "scheme-2" }
+      "settings": { "heading": "How the Docked lounger will work", "color_scheme": "scheme-2" }
     }
   },
   "order": ["main", "steps"]

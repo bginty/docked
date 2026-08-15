@@ -14,11 +14,12 @@ import {
 test('the committed theme passes every structural launch guard', () => {
   const report = validateTheme(THEME_ROOT);
   assert.equal(report.ok, true, `Theme validation failed:\n${formatReport(report)}`);
-  assert.equal(report.stats.catalogueRows, 15);
-  assert.equal(report.stats.draftProducts, 15);
+  assert.equal(report.stats.catalogueRows, 1);
+  assert.equal(report.stats.draftProducts, 1);
   assert.equal(report.stats.activeProducts, 0);
-  assert.equal(report.stats.shopifyImportRows, 15);
-  assert.equal(report.stats.shopifyImportDraftProducts, 15);
+  assert.equal(report.stats.shopifyImportRows, 1);
+  assert.equal(report.stats.shopifyImportDraftProducts, 1);
+  assert.equal(report.stats.pricingRows, 1);
 });
 
 test('the configured storefront copy audit is clean', () => {
@@ -29,7 +30,7 @@ test('the configured storefront copy audit is clean', () => {
 
 test('remaining product and interaction requirements have dedicated passing gates', () => {
   const requiredChecks = [
-    'product.compatible-accessories',
+    'product.single-product-no-cross-sell',
     'product.faq-surface',
     'product.enabled-payment-icons',
     'cards.verified-availability',
@@ -57,6 +58,9 @@ test('remaining product and interaction requirements have dedicated passing gate
     'contact.address-escaping',
     'newsletter.section-scoped-ids',
     'brand.identity-contract',
+    'home.single-product-layout',
+    'catalogue.single-product-evidence-gate',
+    'pricing.single-product-guarded',
   ];
   const report = validateTheme(THEME_ROOT);
   const passedCodes = new Set(report.passed.map((check) => check.code));
@@ -99,6 +103,6 @@ test('the Shopify import contract rejects schema, publication and concept drift'
   const publishedProduct = source.replace(',false,draft', ',true,active');
   assert.notEqual(auditShopifyDraftProductImport(publishedProduct).lockFailures.length, 0);
 
-  const alteredConcept = source.replace('docked-cruise-s1', 'docked-cruise-s1-unapproved');
+  const alteredConcept = source.replace('docked-cruise-d2', 'docked-cruise-d2-unapproved');
   assert.equal(auditShopifyDraftProductImport(alteredConcept).plannedConcepts, false);
 });

@@ -1466,7 +1466,7 @@
         "type": "text",
         "id": "prelaunch_message",
         "label": "Prelaunch notice",
-        "default": "Preview catalogue — products are not yet available to order"
+        "default": "Product preview — the lounger is not yet available to order"
       },
       {
         "type": "checkbox",
@@ -1492,7 +1492,7 @@
         "type": "richtext",
         "id": "age_confirmation_text",
         "label": "Adult confirmation text",
-        "default": "<p>Our aquatic products are marketed for adult pool leisure. Confirm that you are 18 years or older to continue.</p>"
+        "default": "<p>The planned Docked lounger is intended for adult pool leisure. Confirm that you are 18 years or older to continue.</p>"
       },
       {
         "type": "url",

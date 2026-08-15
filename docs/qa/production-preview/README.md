@@ -1,6 +1,8 @@
 # Production candidate preview evidence
 
-Observed 14 August 2026 against unpublished Shopify theme `130871427130` at `cfbexf-h4.myshopify.com`. Historical exact source `0b8d127b83d68930992643d666a7d26c1f1b067d` was strictly pushed from 10:43:36 to 10:44:47 AEST. Initial brand-refresh source `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818` and current integrated one-word source `5f46487d1f53e45f5706ae945eeb5a09064893e3` were subsequently pushed successfully with `--strict`; exact CLI start/end timestamps were not retained. The storefront remained password-protected, the candidate remained unpublished in prelaunch mode and live `Horizon` theme `130871099450` remained untouched. This folder is evidence for partial rendered QA, not a production-launch approval.
+Observed 14 August 2026 against unpublished Shopify theme `130871427130` at `cfbexf-h4.myshopify.com`. Historical exact source `0b8d127b83d68930992643d666a7d26c1f1b067d` was strictly pushed from 10:43:36 to 10:44:47 AEST. Initial brand-refresh source `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818` and uploaded integrated one-word source `5f46487d1f53e45f5706ae945eeb5a09064893e3` were subsequently pushed successfully with `--strict`; exact CLI start/end timestamps were not retained. The storefront remained password-protected, the candidate remained unpublished in prelaunch mode and live `Horizon` theme `130871099450` remained untouched. This folder is historical evidence for partial rendered QA, not a production-launch approval.
+
+**Superseded candidate scope:** on 15 August 2026, the repository was narrowed in the working tree to one planned product, Docked Cruise D2. That source revision has not yet been committed, pushed to theme `130871427130` or rendered. Authenticated Admin showed D2 (product ID `7591990034490`) as the sole Draft shell with inventory not tracked, channels 0 and vendor `Requires verification`; the other 14 shells were Archived, not deleted. No newly supplied AI-generated concept image was uploaded. All checks and artifacts below must be treated as historical and rerun against the exact future one-product candidate commit.
 
 ## Completed checks
 
@@ -25,7 +27,7 @@ Observed 14 August 2026 against unpublished Shopify theme `130871427130` at `cfb
 
 ## Blocking results and unrun scope
 
-- No public product page, variant, quantity, inventory, add/remove item, checkout or GST/invoice test is possible because all 15 concepts remain Draft and no SKU is approved.
+- No public product page, variant, quantity, inventory, add/remove item, checkout or GST/invoice test is possible because Docked Cruise D2 remains Draft with channels 0, the other 14 historical shells are Archived and no SKU is approved.
 - Current Edge, Firefox, Android Chrome, Safari/WebKit-equivalent and physical-device runs were not completed.
 - The latest brand-refresh screenshot/CDP capture timed out. No new screenshot artifact was retained, so current-brand visual screenshot coverage remains incomplete despite the DOM/geometry/computed-style observations.
 - `npm run test:storefront` was attempted with the preview URL but stopped before any assertion because Playwright is not installed. Automated accessibility, screen-reader, Lighthouse and checkout tests were not completed.

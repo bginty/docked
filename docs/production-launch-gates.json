@@ -39,19 +39,20 @@
   },
   "source_evidence": {
     "theme_check": "187 files, 0 offenses",
-    "structural_validation": "58/58 passed",
+    "structural_validation": "62/62 passed",
     "node_tests": "6/6 passed",
     "copy_audit": "passed",
-    "data_validation": "15 Draft catalogue rows, 104 competitor rows, 15 pricing rows and 3 redirects validated",
+    "data_validation": "The current working tree validated one Draft DC-02 catalogue row, one guarded DC-02 pricing row and one safe Draft-import row. The 104-row competitor file remains historical research and the 3 redirects remain valid. The one-product revision is not yet committed, pushed or rendered.",
     "production_gate_validator": "21/21 required gates present and valid; 23 total gates",
     "gate_summary": "5 passed, 18 blocked, 0 pending, 0 not_applicable",
     "dependency_audit": "0 vulnerabilities",
-    "document_link_audit": "48 Markdown files, 172 relative references, 0 broken; excludes two intentional upstream pull-request-template placeholders",
+    "document_link_audit": "50 Markdown files, 176 relative references, 0 broken",
     "secret_scan": "0 high-confidence matches; diff check clean",
-    "rendered_qa": "partial manual in-app-browser QA at 320, 360, 375, 390, 768, 1024 and 1440 px after current integrated one-word commit 5f46487d1f53e45f5706ae945eeb5a09064893e3; every width had document/body scrollWidth equal to innerWidth, with exact 320 px viewport/document/body readings of 320/320/320; final 320 px header/hero/note/footer geometry was 110x25.71, 288x345.6, 248x79.4 and 220x51.44 px; header/footer Docked — home accessible names, navy/cyan/white logo presentation, hero 18+ treatment, theme favicon and absolute Organization JSON-LD logo URL observed; no console errors/warnings; latest screenshot capture timed out; full multi-browser, visual screenshot, accessibility, Lighthouse, product, checkout and mailbox-delivery QA not passed",
-    "admin_catalogue": "15 Draft product shells; inventory not tracked; no images; channels 0; no Active products; seven planned empty collections created; three redirects imported; 12 planned Pages created with all intended template suffixes verified; six visible behind password and six hidden pending approval",
+    "rendered_qa": "Historical partial manual in-app-browser QA at 320, 360, 375, 390, 768, 1024 and 1440 px applies only to uploaded commit 5f46487d1f53e45f5706ae945eeb5a09064893e3. The current one-product working-tree revision has not been committed, pushed to theme 130871427130 or rendered, so the complete rendered suite must be rerun after the strict candidate push; the gate remains blocked.",
+    "admin_catalogue": "Authenticated Shopify Admin on 2026-08-15 showed 15 total shells. Docked Cruise D2 product 7591990034490 is the sole Draft shell with inventory not tracked, channels 0 and vendor Requires verification; the other 14 shells were changed to Archived, not deleted. No product is Active and no newly supplied AI-generated concept image was uploaded.",
     "admin_navigation": "Current commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 was strictly pushed to unpublished theme 130871427130. The 320 px mobile menu rendered Home, Shop, Contact, How It Works, Safety and Care and FAQ without overflow, and desktop navigation remained intact. Explore rendered all seven planned collection links; Help and policies rendered Search, Contact, How It Works, Safety and Care, FAQ, Track Your Order and Accessibility. The native Privacy policy link rendered separately through show_policy. Footer legal ID 198327107642 remains an unused Admin resource; unapproved Terms were withheld.",
-    "admin_commerce_safety": "Basic plan active. All 15 products remain Draft with inventory not tracked and channels 0. Shopify Payments requires completion; PayPal displays Active but has no account-identity or transaction evidence. Domestic and international shipping rates are configured without approval evidence; local delivery and pickup are off. Policies and sender-domain authentication remain incomplete; no test or live transaction exists."
+    "admin_commerce_safety": "Basic plan active. Docked Cruise D2 remains Draft with inventory not tracked and channels 0; the other 14 historical shells are Archived and no product is Active. Shopify Payments requires completion; PayPal displays Active but has no account-identity or transaction evidence. Domestic and international shipping rates are configured without approval evidence; local delivery and pickup are off. Policies and sender-domain authentication remain incomplete; no test or live transaction exists.",
+    "single_product_revision": "Repository source is being narrowed to one planned D2 product but the working-tree revision is not yet committed, pushed to unpublished candidate 130871427130 or rendered. Supplier files received on 2026-08-15 are component-level review material only and do not pass product, media, battery/transport, compliance, price, inventory, shipping, policy, payment, test-order, DNS, business-name or authorisation gates."
   },
   "evidence_schema": {
     "description": "A gate may be passed only with actual, dated evidence applying to the exact store, theme, commit, SKU, provider or DNS zone. A template is not evidence.",
@@ -142,7 +143,7 @@
       "operator_or_source": "Authenticated Shopify CLI 4.5.2",
       "reviewer": "Codex",
       "scope": "Repository-root theme at commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 on release/docked-shopify-production-2026-08 uploaded to cfbexf-h4.myshopify.com as unpublished theme 130871427130",
-      "limitations": "Upload is not publication. Post-push brand, navigation and responsive rendering was verified in one authenticated in-app browser, but the screenshot capture timed out and only partial manual rendered QA exists; the full rendered gate has not passed."
+      "limitations": "Upload is not publication. Post-push brand, navigation and responsive rendering was verified in one authenticated in-app browser, but the screenshot capture timed out and only partial manual rendered QA exists. A newer one-product working-tree revision has not yet been committed, uploaded or rendered, so the full rendered gate has not passed."
     }
   },
   "rendered_qa_passed": {
@@ -150,12 +151,12 @@
     "evidence": {
       "type": "test_result",
       "observed_at": "2026-08-14",
-      "summary": "The storefront password was entered only in the authenticated in-app Browser and manual candidate QA ran at 320, 360, 375, 390, 768, 1024 and 1440 px. After current integrated one-word source 5f46487d1f53e45f5706ae945eeb5a09064893e3 was pushed, every width had document/body scrollWidth equal to innerWidth; exact 320 px viewport/document/body readings were 320/320/320 and the six-link mobile menu opened without overflow. At 320 px, integrated header wordmark/hero/note/footer geometry was 110x25.71, 288x345.6, 248x79.4 and 220x51.44 px, with wordmark viewBox 0 0 650 152. Header widths across the seven viewports were 110/157.575/163.963/180/180/180/180 px and footer widths were 220/220/220/152/216/220/220 px; final 1440 px header/footer/hero widths were 180/220/552.14 px with navigation intact. Header/footer Docked — home accessible names, navy/cyan/white logo presentation, hero 18+ seal and label, theme favicon and absolute Organization JSON-LD logo URL were observed; no console errors or warnings appeared. The password page rendered its hidden Docked name, favicon, H1 and modal on the initial brand push; final source changed only wordmark geometry. Earlier route, menu, FAQ, Contact and customer-account-entry observations remain recorded.",
+      "summary": "Historical manual candidate QA ran at 320, 360, 375, 390, 768, 1024 and 1440 px against uploaded source 5f46487d1f53e45f5706ae945eeb5a09064893e3 and found no final viewport overflow or console errors/warnings in the tested in-app Browser scope. A newer one-product working-tree revision has not been committed, pushed to candidate theme 130871427130 or rendered; all relevant checks must be rerun after its strict unpublished-candidate push.",
       "reference": "docs/POST_LAUNCH_QA.md",
       "operator_or_source": "Authenticated Codex in-app Browser; repository screenshots are qualified historical evidence only",
       "reviewer": "Codex",
       "scope": "Unpublished Shopify theme 130871427130",
-      "limitations": "Only one in-app browser engine was used and its exact version was not recorded. Latest screenshot/CDP capture timed out, so there is no new visual screenshot artifact. No customer credentials were entered, so authentication, post-submit errors, logout and order history remain untested. Full multi-browser, accessibility, Lighthouse, product, checkout, contact mailbox delivery and commerce testing did not pass."
+      "limitations": "The retained results are historical and do not cover the current one-product source revision. Only one in-app browser engine was used and its exact version was not recorded. Latest screenshot/CDP capture timed out, so there is no new visual screenshot artifact. No customer credentials were entered, so authentication, post-submit errors, logout and order history remain untested. Full multi-browser, accessibility, Lighthouse, product, checkout, contact mailbox delivery and commerce testing did not pass."
     }
   },
   "support_email_verified": {
@@ -176,30 +177,39 @@
     "evidence": {
       "type": "admin_record",
       "observed_at": "2026-08-15T10:42:00+10:00",
-      "summary": "Fifteen concept shells are present in Shopify as Draft with inventory not tracked, no images, channels 0 and no Active products.",
+      "summary": "Authenticated Shopify Admin showed 15 total shells. Docked Cruise D2, product ID 7591990034490, is the sole Draft shell with inventory not tracked, channels 0 and vendor Requires verification; the other 14 shells were changed to Archived, not deleted. No product is Active.",
       "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
       "operator_or_source": "Authenticated Shopify Admin",
       "reviewer": "Codex",
-      "scope": "All 15 imported concept products in cfbexf-h4.myshopify.com",
-      "limitations": "No supplier/model/SKU, stock, cost, final price, media, manual, safety, compliance, shipping or activation evidence is approved."
+      "scope": "Docked Cruise D2 product 7591990034490 and the 14 archived historical shells in cfbexf-h4.myshopify.com",
+      "limitations": "Supplier files received on 2026-08-15 are component-level review material only. No exact finished-product supplier/model/SKU, stock, cost, final price, licensed documentary media, final manual, safety, compliance, battery transport, shipping or activation evidence is approved."
     }
   },
   "licensed_product_media_available": {
     "status": "blocked",
     "evidence": {
       "type": "admin_and_repository_record",
-      "observed_at": "2026-08-14",
-      "summary": "All 15 Draft products have no images. The asset register contains no licensed exact-SKU product photography or video.",
+      "observed_at": "2026-08-15",
+      "summary": "No licensed exact-SKU documentary product photography or video is approved. Newly supplied concept images were identified as AI-generated references and were not uploaded to Shopify.",
       "reference": "docs/ASSET_LICENCES.md",
       "operator_or_source": "Authenticated Shopify Admin and repository asset register",
       "reviewer": "Codex",
       "scope": "Product media proposed for the Shopify catalogue",
-      "limitations": "Theme artwork and QA screenshots are not product-media licence evidence."
+      "limitations": "AI-generated concept imagery, theme artwork and QA screenshots are not exact-SKU documentary media or product-media licence evidence."
     }
   },
   "product_compliance_approved": {
     "status": "blocked",
-    "evidence": null
+    "evidence": {
+      "type": "supplier_document_review",
+      "observed_at": "2026-08-15",
+      "summary": "Supplier compliance and battery files were received and reviewed as component-level material only. They do not establish compliance of the exact finished Docked Cruise D2 lounger or its complete two-battery retail configuration.",
+      "reference": "docs/COMPLIANCE_REGISTER.md",
+      "operator_or_source": "Supplier files supplied by the project owner; preliminary Codex evidence-boundary review",
+      "reviewer": "Codex",
+      "scope": "Proposed Docked Cruise D2 and supplied propeller/battery component documents",
+      "limitations": "Exact-model finished-product linkage, Australian electrical/charger/RCM position, load evidence, reconciled runtime/power/speed claims, final battery transport classification and carrier acceptance remain unresolved. Receipt is not approval."
+    }
   },
   "product_liability_insurance_reviewed": {
     "status": "blocked",
@@ -213,12 +223,12 @@
     "status": "blocked",
     "evidence": {
       "type": "admin_record",
-      "observed_at": "2026-08-14",
-      "summary": "Inventory is not tracked for the 15 Draft product shells; no Active stock exists.",
+      "observed_at": "2026-08-15",
+      "summary": "Inventory is not tracked for sole Draft candidate Docked Cruise D2; the other 14 historical shells are Archived and no Active stock exists.",
       "reference": "docs/SHOPIFY_DEPLOYMENT_RECORD.md",
       "operator_or_source": "Authenticated Shopify Admin",
       "reviewer": "Codex",
-      "scope": "All 15 imported Draft product shells",
+      "scope": "Docked Cruise D2 product 7591990034490 in cfbexf-h4.myshopify.com",
       "limitations": "Inventory not tracked is neither zero-stock evidence nor approval of available saleable stock."
     }
   },

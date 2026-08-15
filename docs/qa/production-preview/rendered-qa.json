@@ -6,9 +6,9 @@
     "historical_ended_at": "2026-08-14T10:45:00+10:00",
     "latest_brand_qa_date": "2026-08-14",
     "timezone": "Australia/Sydney",
-    "limitations": "Timestamped screenshots span the earlier historical window. The current brand-refresh push and rendered QA completed later on 14 August 2026 AEST, but exact CLI and per-action timestamps were not retained. The latest screenshot/CDP capture timed out, so no new screenshot artifact was created."
+    "limitations": "Timestamped screenshots span the earlier historical window. The uploaded brand-refresh push and rendered QA completed later on 14 August 2026 AEST, but exact CLI and per-action timestamps were not retained. The latest screenshot/CDP capture timed out, so no new screenshot artifact was created. A newer one-product working-tree revision has not been committed, pushed or rendered, so this entire record is historical."
   },
-  "record_updated_at": "2026-08-14",
+  "record_updated_at": "2026-08-15",
   "theme_source_commit": "5f46487d1f53e45f5706ae945eeb5a09064893e3",
   "initial_brand_refresh_theme_source_commit": "6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818",
   "previous_exact_theme_source_commit": "0b8d127b83d68930992643d666a7d26c1f1b067d",
@@ -35,6 +35,25 @@
     "result": "success",
     "returned_role": "unpublished",
     "live_theme_untouched": "130871099450"
+  },
+  "current_single_product_revision": {
+    "state": "working_tree_not_committed_not_pushed_not_rendered",
+    "planned_product": "Docked Cruise D2",
+    "shopify_product_id": "7591990034490",
+    "admin_observed_on": "2026-08-15",
+    "admin_state": {
+      "total_shells": 15,
+      "draft_shells": 1,
+      "archived_shells": 14,
+      "active_shells": 0,
+      "d2_inventory_tracking": "not_tracked",
+      "d2_sales_channels": 0,
+      "d2_vendor": "Requires verification",
+      "archived_shells_deleted": false,
+      "new_ai_concept_images_uploaded": false
+    },
+    "required_next_step": "After validation, commit and strictly push the exact one-product revision to unpublished theme 130871427130, then rerun the full rendered QA suite.",
+    "historical_evidence_applies_to_revision": false
   },
   "store": "cfbexf-h4.myshopify.com",
   "theme_id": "130871427130",
@@ -99,7 +118,7 @@
         "desktop_navigation": "intact"
       }
     },
-    "limitations": "One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The latest screenshot/CDP capture timed out and produced no new artifact. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence."
+    "limitations": "Historical results for uploaded commit 5f46487d1f53e45f5706ae945eeb5a09064893e3 only. One Chromium-family browser only; no Edge, Firefox, Android Chrome, Safari/WebKit-equivalent or physical-device run. Manual viewport observations are recorded separately from screenshots. The latest screenshot/CDP capture timed out and produced no new artifact. The four retained files named *-390.png are actually 1424 px wide and are not 390 px screenshot evidence. The one-product revision requires a complete rerun after push."
   },
   "regressions": [
     {
@@ -233,5 +252,6 @@
   },
   "accessibility": "not_run_beyond_incidental_dom_observations_including_header_footer_home_names_and_hero_label_no_accessibility_suite_or_manual_keyboard_screen_reader_audit",
   "lighthouse": "not_run",
-  "rendered_qa_gate": "blocked"
+  "rendered_qa_gate": "blocked",
+  "gate_reason": "The retained results are historical; the current one-product source revision has not been committed, pushed to the unpublished candidate or rendered."
 }

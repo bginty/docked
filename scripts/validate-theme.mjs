@@ -32,29 +32,13 @@ const REQUIRED_ROUTES = [
 const REQUIRED_HOME_SECTION_TYPES = [
   'docked-hero',
   'docked-adult-statement',
-  'docked-collection-grid',
-  'docked-powered-comparison',
+  'featured-collection',
   'docked-how-it-works',
   'docked-safety-callout',
-  'docked-float-finder',
   'docked-faq',
 ];
 const EXPECTED_PRODUCT_IMPORTS = [
-  ['Docked Cruise S1', 'docked-cruise-s1', 'Powered pool float concept'],
   ['Docked Cruise D2', 'docked-cruise-d2', 'Powered pool lounger concept'],
-  ['Docked Shade D2', 'docked-shade-d2', 'Powered canopy lounger concept'],
-  ['Docked Drift Mesh Lounge', 'docked-drift-mesh-lounge', 'Adult pool lounger concept'],
-  ['Docked Recline Pool Chair', 'docked-recline-pool-chair', 'Adult pool chair concept'],
-  ['Docked Stretch Full-Length Lounge', 'docked-stretch-full-length-lounge', 'Adult pool lounger concept'],
-  ['Docked Social Two-Person Island', 'docked-social-two-person-island', 'Adult pool island concept'],
-  ['Docked Party Deck', 'docked-party-deck', 'Adult pool island concept'],
-  ['Docked Rally Pool Volleyball Set', 'docked-rally-pool-volleyball-set', 'Adult pool game concept'],
-  ['Docked Chill Floating Cooler', 'docked-chill-floating-cooler', 'Floating cooler concept'],
-  ['Docked Drinks Dock', 'docked-drinks-dock', 'Floating drink holder concept'],
-  ['Docked Inflate Rechargeable Air Pump', 'docked-inflate-rechargeable-air-pump', 'Rechargeable air pump concept'],
-  ['Docked Double-Action Manual Pump', 'docked-double-action-manual-pump', 'Manual air pump concept'],
-  ['Docked Restore PVC Repair Kit', 'docked-restore-pvc-repair-kit', 'PVC repair kit concept'],
-  ['Docked Dry Storage Pouch', 'docked-dry-storage-pouch', 'Storage pouch concept'],
 ];
 const EXPECTED_PRODUCTS = EXPECTED_PRODUCT_IMPORTS.map(([title]) => title);
 const SHOPIFY_DRAFT_IMPORT_HEADERS = [
@@ -732,8 +716,18 @@ function validateRoutesAndComposition(root, report) {
     report,
     missingHomeSections.length === 0,
     'home.required-sections',
-    'Homepage contains the required Docked merchandising, safety and finder sections',
+    'Homepage contains the required single-product preview, safety and FAQ sections',
     missingHomeSections,
+  );
+  const featuredCollections = homeTypes.filter((type) => type === 'featured-collection').length;
+  const obsoleteRangeSections = ['docked-collection-grid', 'docked-powered-comparison', 'docked-float-finder']
+    .filter((type) => homeTypes.includes(type));
+  addCheck(
+    report,
+    featuredCollections === 1 && obsoleteRangeSections.length === 0,
+    'home.single-product-layout',
+    'Homepage presents one featured product range without multi-category finder or comparison surfaces',
+    { featuredCollections, obsoleteRangeSections },
   );
   addCheck(
     report,
@@ -755,11 +749,9 @@ function validateRoutesAndComposition(root, report) {
   const complementary = Object.values(mainProduct?.blocks ?? {}).find((block) => block.type === 'complementary');
   addCheck(
     report,
-    complementary &&
-      /compatible accessories/i.test(complementary.settings?.block_heading ?? complementary.settings?.heading ?? '') &&
-      complementary.settings?.enable_quick_add === false,
-    'product.compatible-accessories',
-    'Product template includes a complementary “Compatible accessories” block with quick add disabled',
+    !complementary && !productTypes.includes('related-products'),
+    'product.single-product-no-cross-sell',
+    'Product template contains no complementary-product or related-product cross-sell surface',
   );
 
   const faqSurface = Object.values(product.sections ?? {}).find((section) => /faq/i.test(section.type ?? ''));
@@ -1698,6 +1690,11 @@ export function auditCopy(root = THEME_ROOT) {
     /\bguaranteed results?\b/i,
     /\b(?:4\.[0-9]|5(?:\.0)?)\s*(?:\/\s*5|stars?)\b/i,
     /\b\d{2,}\+?\s+(?:verified\s+)?reviews?\b/i,
+    /\b160\s*kg\b/i,
+    /\b(?:30|90)[- ]?minutes?\b/i,
+    /\b(?:46|66)\s*w\b/i,
+    /\b1\.6\s*m\/s\b/i,
+    /\b5(?:\.0)?\s*kph\b/i,
   ];
 
   for (const file of copyAuditFiles(root)) {
@@ -1751,7 +1748,7 @@ function validateCopy(root, report) {
     report,
     findings.length === 0,
     'copy.clean',
-    'Configured storefront copy contains no legacy finance language, fake urgency, fabricated reviews or unsupported superlatives',
+    'Configured storefront copy contains no legacy finance language, fake urgency, fabricated reviews or unresolved supplier performance claims',
     findings,
   );
   report.stats.copyFiles = copyAuditFiles(root).length;
@@ -1775,9 +1772,9 @@ function validateCatalogue(root, report) {
   const draftCount = statuses.filter((status) => status.trim().toLowerCase() === 'draft').length;
   addCheck(
     report,
-    products.length === 15 && draftCount === 15 && activeCount === 0,
+    products.length === 1 && draftCount === 1 && activeCount === 0,
     'catalogue.draft-only',
-    'Catalogue contains 15 Draft products and 0 Active products',
+    'Catalogue contains one Draft product and 0 Active products',
     { rows: products.length, draft: draftCount, active: activeCount },
   );
 
@@ -1788,22 +1785,62 @@ function validateCatalogue(root, report) {
     .filter((handle, index, handles) => handle && handles.indexOf(handle) !== index);
   addCheck(
     report,
-    missingProducts.length === 0 && new Set(actualNames).size === 15 && duplicateHandles.length === 0,
+    missingProducts.length === 0 && new Set(actualNames).size === 1 && duplicateHandles.length === 0,
     'catalogue.range',
-    'Catalogue contains the complete named launch range with unique handles',
+    'Catalogue contains only the selected Docked Cruise D2 concept with a unique handle',
     { missingProducts, duplicateHandles: [...new Set(duplicateHandles)] },
   );
 
-  const pouch = products.find((product) => product['Product title'] === 'Docked Dry Storage Pouch');
+  const selectedProduct = products.find((product) => product['Product title'] === 'Docked Cruise D2');
   addCheck(
     report,
-    pouch && /do not claim waterproof or water resistant until/i.test(pouch.Notes) && /blocked/i.test(pouch['Compliance status']),
-    'catalogue.pouch-claim-gate',
-    'Storage pouch ingress claims remain blocked pending exact evidence',
+    selectedProduct &&
+      selectedProduct.SKU === '' &&
+      selectedProduct.Supplier === '' &&
+      selectedProduct.Stock === '' &&
+      /30 versus 90 minute runtime/i.test(selectedProduct.Notes) &&
+      /46 versus 66 W/i.test(selectedProduct.Notes) &&
+      /No 160 kg load test was received/i.test(selectedProduct.Notes) &&
+      /blocked|under review/i.test(selectedProduct['Compliance status']),
+    'catalogue.single-product-evidence-gate',
+    'Selected lounger remains Draft with commercial identifiers blank and conflicting claims explicitly blocked',
   );
   report.stats.catalogueRows = products.length;
   report.stats.draftProducts = draftCount;
   report.stats.activeProducts = activeCount;
+}
+
+function validatePricingCalculator(root, report) {
+  const calculatorPath = path.join(root, 'data', 'pricing-calculator.csv');
+  addCheck(report, fs.existsSync(calculatorPath), 'pricing.exists', 'Single-product pricing calculator CSV exists');
+  if (!fs.existsSync(calculatorPath)) return;
+
+  let rows;
+  try {
+    rows = parseCsv(fs.readFileSync(calculatorPath, 'utf8'));
+  } catch (error) {
+    addCheck(report, false, 'pricing.parse', 'Pricing calculator CSV parses', error.message);
+    return;
+  }
+  addCheck(report, true, 'pricing.parse', 'Pricing calculator CSV parses');
+
+  const row = rows[0];
+  const formulaValues = row ? Object.values(row).filter((value) => value.startsWith('=')) : [];
+  const nonLocalReferences = formulaValues.flatMap((formula) => formula.match(/\b[A-Q](?:[3-9]|[1-9][0-9]+)\b/g) ?? []);
+  addCheck(
+    report,
+    rows.length === 1 &&
+      row?.named_sku === 'Docked Cruise D2' &&
+      row?.draft_retail_price_inc_gst_aud === '649' &&
+      row?.landed_product_cost_ex_gst_aud === '' &&
+      row?.owner_approval === 'Pending' &&
+      formulaValues.length === 8 &&
+      nonLocalReferences.length === 0,
+    'pricing.single-product-guarded',
+    'Pricing calculator contains one pending D2 row with blank landed cost and row-2-local guarded formulas',
+    { rows: rows.length, formulaCount: formulaValues.length, nonLocalReferences },
+  );
+  report.stats.pricingRows = rows.length;
 }
 
 function validateShopifyDraftImport(root, report) {
@@ -1836,7 +1873,7 @@ function validateShopifyDraftImport(root, report) {
     report,
     audit.plannedConcepts,
     'shopify-import.planned-concepts',
-    'Shopify import contains exactly the 15 planned concept title, handle and product-type tuples',
+    'Shopify import contains only the selected Docked Cruise D2 Draft-shell tuple',
     {
       rows: audit.rows,
       missingConcepts: audit.missingConcepts,
@@ -1973,6 +2010,7 @@ export function validateTheme(root = THEME_ROOT, options = {}) {
     validateMetafieldGates(resolvedRoot, report);
     validateCopy(resolvedRoot, report);
     validateCatalogue(resolvedRoot, report);
+    validatePricingCalculator(resolvedRoot, report);
     validateShopifyDraftImport(resolvedRoot, report);
     validatePrelaunchLocks(resolvedRoot, report);
   }

@@ -1,7 +1,7 @@
 # Docked asset provenance and licence register
 
-Status: **REPOSITORY ASSETS RECORDED — PRODUCT MEDIA STILL BLOCKED**  
-Last updated: 14 August 2026
+Status: **REPOSITORY ASSETS RECORDED — EXACT-SKU PRODUCT MEDIA BLOCKED**
+Last updated: 15 August 2026
 
 This register covers assets shipped with the theme source. It does not grant permission to use a supplier's, marketplace seller's or competitor's media. No Desertcart, Amazon or other retailer product photography, copy, reviews, branding or page design has been imported.
 
@@ -46,16 +46,31 @@ Three JPG logo references supplied on 14 August 2026 were reviewed only for broa
 
 If the reference artwork is ever proposed for public use, record its creator, rights holder, written licence, permitted channels, territory and term before importing it into the controlled asset workflow.
 
+## Supplier product-image package reviewed 15 August 2026
+
+Four PNGs supplied in `Pics.zip` were inspected as potential DC-02 media. Each is `1254 × 1254`, has no camera EXIF, and contains a C2PA/`caBX` manifest identifying OpenAI Media Service API / `gpt-image` v2.0 and `trainedAlgorithmicMedia`, with a creation date of 14 August 2026. Visual details and numeric callouts also conflict between files and with the unresolved supplier statements.
+
+| Internal asset ID | Supplied filename/description | SHA-256 | Review result | Permitted use |
+| --- | --- | --- | --- | --- |
+| DC02-AI-01 | `ChatGPT Image ...02_15.png` | `486DBD184F386B1472AEE77B36CF11C4BB826B48FCB5647139A1DC1462F2EC3E` | AI concept render; exact product geometry and included features not verified | Internal moodboard/evidence review only; not public |
+| DC02-AI-02 | `ChatGPT Image ...02_32.png` | `C6B9CDC55D7A5921313EA4F28EF33A00E3FFB58F972ECEED698B5B0D04E73E86` | AI concept render; includes unsupported feature/performance callouts | Internal moodboard/evidence review only; not public |
+| DC02-AI-03 | `Girl.png` / adult-woman concept scene | `CAE11BD49147FE0DE4D49900B7CBBD55AD18CCD4F161EDDB9031F19C430E01AE` | Synthetic adult lifestyle concept; no documentary product match or model-release basis | Internal moodboard/evidence review only; not public |
+| DC02-AI-04 | `Man.png` / adult-man concept scene | `DEAE3AEE4B7530E07BD47E9DB45B2C454EBB2E686E631722019F56BA28198CA9` | Synthetic adult lifestyle concept; no documentary product match or model-release basis | Internal moodboard/evidence review only; not public |
+
+These assets are **rejected as storefront product or lifestyle media**. They may not be presented as documentary photographs of the sold product, used to prove design or included features, uploaded to Shopify product media, placed in SEO/social feeds or used in ads. AI provenance does not itself resolve copyright, likeness, model-release, brand or product-accuracy rights. No child is depicted in the reviewed files, but that does not make them approved adult-only creative.
+
+The files conflict on cup-holder/controller/motor/product geometry and show or state unapproved `160 kg`, `90-minute`, `46/66 W`, speed/movement and water-jet/propeller claims. The claims remain blocked in [Approved product claims](APPROVED_PRODUCT_CLAIMS.md).
+
 ## Product and lifestyle media
 
-No licensed exact-SKU product photography or video has been supplied. Consequently:
+No licensed documentary photography or video of the exact final production DC-02 SKU has been supplied. Consequently:
 
-- all products remain Draft;
+- DC-02 remains Draft;
 - any abstract placeholder is preview-only and must not be represented as the product;
 - no supplier or marketplace image may be uploaded until written permission covers Docked's intended channels, territories, edits and duration; and
 - aquatic-product media must show adults only, controlled pool use and behaviour consistent with the approved manual and warning set.
 
-Authenticated Shopify Admin inspection on 14 August 2026 confirmed that all 15 imported concept products are Draft with **no product images** and channels 0. The import therefore created no new product-media licence claim. Inventory is not tracked; this is not evidence of zero or available stock.
+Authenticated Shopify Admin inspection on 14 August 2026 recorded 15 imported concept products as Draft with **no product images** and channels 0. On 15 August 2026, DC-02 remained the sole Draft product and the other 14 product shells were archived, not deleted. The import created no product-media licence claim. Inventory was not tracked; this is not evidence of zero or available stock.
 
 The QA image files under `docs/qa/production-preview/` are dated captures of the unpublished theme interface. They are test evidence only, are not exact-SKU product media, and must not be reused as product photography or public campaign creative.
 

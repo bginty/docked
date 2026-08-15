@@ -13,6 +13,7 @@ This record contains non-sensitive Shopify deployment metadata only. It must nev
 | Release branch | `release/docked-shopify-production-2026-08` |
 | Starting commit | `895958891c8ec2780eba7ff224c5d0259d0de9dd` |
 | Current uploaded theme-source commit | `5f46487d1f53e45f5706ae945eeb5a09064893e3` |
+| Current local source revision | One-product Docked Cruise D2 working-tree revision; not yet committed, pushed to candidate theme `130871427130` or rendered |
 | Initial brand-refresh uploaded source | `6d87c6c76ff20cb90e1a2af8735e9fd9c96d1818` |
 | Previous exact uploaded source | `0b8d127b83d68930992643d666a7d26c1f1b067d` |
 | Draft pull request | [bginty/docked#1](https://github.com/bginty/docked/pull/1) |
@@ -48,7 +49,7 @@ Authenticated Admin inspection confirmed AUD, Australia/Melbourne, metric units 
 - [x] Record the current published Shopify theme name/ID and preserve it.
 - [x] Use an unpublished creation flow and exact candidate ID; no publish, live overwrite or force flag was used.
 - [x] Re-run Theme Check (187 files, 0 offenses).
-- [x] Re-run structural validation (58/58), production gate validation (21/21 required; 23 total) and Node tests (6/6).
+- [x] Re-run structural validation (62/62), production gate validation (21/21 required; 23 total) and Node tests (6/6).
 - [x] Re-run copy/data audits, dependency audit, documentation links, secret scan and diff checks; all clean.
 - [x] Confirm `.gitignore` excludes local Shopify authentication/environment artefacts.
 - [x] Confirm the exact current CLI syntax and candidate name.
@@ -101,8 +102,8 @@ Paste only a redacted CLI result or controlled evidence reference here. Do not p
 | Pages | All 12 planned Pages exist and all intended template suffixes were assigned and verified in Admin. Visible only behind password: Contact, How It Works, Safety and Care, FAQ, Track Your Order, Accessibility. Hidden pending applicable approvals: Shipping and Delivery, Returns and Refunds, Warranty, About Docked, Privacy Policy, Terms of Service. The hidden custom Privacy Policy Page is distinct from Shopify's native policy resource; neither is approved |
 | Menus | Main menu `Home`, `Shop`, `Contact`, `How It Works`, `Safety and Care`, `FAQ` rendered on desktop and in the earlier 390 px mobile check, then was rechecked open at 320 px after the current brand push with no overflow. Candidate Explore rendered `Powered Pool Floats`, `Adult Pool Loungers`, `Adult Pool Games`, `Floating Bars and Coolers`, `Pumps, Care and Repair`, `Pool Party Bundles`, `Shop All`. Help and policies rendered `Search`, `Contact`, `How It Works`, `Safety and Care`, `FAQ`, `Track Your Order`, `Accessibility`. Shopify's native Privacy policy link rendered separately through `show_policy`. Footer shopping menu ID `198327042106` and Footer support menu ID `198327074874` supply the two mapped blocks. Footer legal menu ID `198327107642` remains an unused Admin resource and did not render; unapproved Terms were withheld |
 | Redirects | All 3 prepared redirects imported successfully. `/index.html` served homepage content; `/privacy.html` reached Shopify's privacy policy; `/about.html` correctly targets `/pages/about-docked` but remains 404 while About Docked is intentionally hidden pending the business-name gate |
-| Products | 15 concepts imported and verified **Draft**; inventory not tracked, no images, channels 0, vendor `Requires verification`, no approved SKU claims; none approved/Active |
-| Product media | No licensed exact-SKU product media supplied |
+| Products | On 15 August 2026, authenticated Admin showed 15 total shells. `Docked Cruise D2`, product ID `7591990034490`, remains the sole **Draft** shell with inventory not tracked, channels 0 and vendor `Requires verification`; the other 14 shells were changed to **Archived**, not deleted. None is approved or Active |
+| Product media | No licensed exact-SKU documentary media is approved. None of the newly supplied AI-generated concept images was uploaded |
 | Shipping | General profile contains unapproved Domestic Express `$15` / `1–2 business days`, Domestic Standard `$11` or free from `$100` / `3–5 business days`, and Standard international `$20` / `3–5 business days` for 27 countries. Carrier accounts: **None**; local pickup/delivery off; owner/carrier/package/battery/remote-area/checkout evidence absent |
 | Payments | Shopify Payments requires more business information and shows **Complete setup**. PayPal displays **Active**, but its authorised account identity, currency, support details and test/refund behaviour are not verified. No test mode, test transaction or live-capture evidence exists |
 | Policies | Shopify Policies shows only an **Automated** Privacy policy. Return and refund, Terms of service, Shipping policy and Legal notice show **No policy set**; Contact information is **Required** and no return/cancellation rule is set. Custom policy Pages remain hidden drafts and no policy is launch-approved |
@@ -111,7 +112,11 @@ Paste only a redacted CLI result or controlled evidence reference here. Do not p
 | Markets | Australia is the only active market observed. An international shipping zone for 27 countries exists but Shopify states those countries must be added to a market before selling; international launch remains unapproved |
 | Domains | Only the `cfbexf-h4.myshopify.com` primary domain is connected; no custom domain is connected |
 
+Supplier files received on 15 August 2026 remain component-level review material. They do not establish the exact finished lounger, its two-battery retail configuration, Australian electrical/charger/RCM position, battery transport classification and carrier acceptance, load capacity, runtime/power/speed claims, exact-SKU media rights, final price, stock, shipping, policy approval, payments or test orders. Receipt therefore passes no launch gate. The accompanying AI-generated concept images were reviewed as references only and were not uploaded to Shopify.
+
 ## Preview and rendered-QA record
+
+**Current revision boundary:** the repository catalogue and storefront configuration are now a one-product Docked Cruise D2 working-tree revision. It has not yet been committed, pushed to candidate theme `130871427130` or rendered. Every observation in this section is historical evidence for the still-uploaded commit `5f46487d1f53e45f5706ae945eeb5a09064893e3`; rendered QA must be rerun against the exact future one-product commit after a strict unpublished-candidate push.
 
 The permanent preview URL exists and the storefront password was entered only in the authenticated in-app Browser. Manual responsive QA ran against the unpublished candidate at 320, 360, 375, 390, 768, 1024 and 1440 px. The initial real 320 px run exposed horizontal overflow; the mobile wordmark was constrained to `11rem`, theme `130871427130` was re-pushed, and the 320 px retest had no overflow.
 
@@ -123,7 +128,7 @@ After the current push, the candidate was observed at all seven required widths 
 
 Screenshots are retained in `docs/qa/production-preview/`. Full multi-browser, accessibility, Lighthouse, product, checkout, contact-delivery, customer-account and commerce QA remains required.
 
-Rendered QA status: **Partial manual in-app-browser QA completed; full rendered-QA gate remains blocked**.
+Rendered QA status: **Historical partial manual in-app-browser QA retained; revised one-product candidate not yet pushed or rendered; full rendered-QA gate remains blocked**.
 
 ## Publication record
 

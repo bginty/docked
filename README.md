@@ -1,8 +1,8 @@
 # Docked Shopify storefront
 
-Docked is an Australian, adult-focused pool leisure storefront built as a native Shopify Online Store 2.0 theme. It supports powered pool floats, adult loungers, pool games, floating bars and coolers, pumps/care products and future genuine bundles.
+Docked is an Australian, adult-focused pool leisure storefront built as a native Shopify Online Store 2.0 theme. Its current commercial plan is limited to one rechargeable motorised pool lounger, tracked internally as `DC-02 / Docked Cruise D2` until the final supplier model and SKU are approved.
 
-The repository is deliberately **prelaunch by default**. Products are concepts/Draft records, purchasing controls are locked, and no live-payment or product-availability claim is made until supplier, compliance, imagery, commercial, operational and merchant gates pass.
+The repository is deliberately **prelaunch by default**. The sole planned product is a Draft concept, purchasing controls are locked, and no live-payment or product-availability claim is made until supplier, compliance, imagery, commercial, operational and merchant gates pass.
 
 ## Foundation and provenance
 
@@ -17,14 +17,14 @@ Dawn `main` is not used because it can include unreleased code. Future updates m
 ## What is included
 
 - Original Docked wordmark, mark, wake and product-feature SVG system
-- Responsive, editable multi-section homepage
+- Responsive, editable single-product homepage
 - Native Dawn cart drawer/page, product forms, predictive search and storefront filtering
 - Draft/prelaunch locks on product forms, quick-add, dynamic checkout and cart checkout controls
-- Verified-metafield-only specifications and powered-float comparison
+- Verified-metafield-only product specifications
 - Adult-only merchandising badges and optional age confirmation (off by default)
 - Visible universal, powered and category-specific safety components
 - Branded product, collection, cart, search, contact, FAQ, safety, how-it-works, tracking, password and 404 templates
-- A 15-concept Draft catalogue, Australian competitor research and guarded pricing calculator
+- One-product Draft catalogue, historical Australian competitor research and a guarded D2 pricing calculator
 - Supplier, compliance, operations, GST, payments, SEO, analytics, rollback and launch runbooks
 
 No competitor photography, copied listing copy, fabricated review, aggregate rating, artificial scarcity or invented product specification is included.
@@ -52,9 +52,9 @@ Never use `--allow-live` or publish from an unreviewed working tree. Preview bro
 
 Theme code cannot create or verify merchant records, products, menus, policies, payments, taxes, shipping or DNS. Follow [SHOPIFY_ADMIN_SETUP.md](docs/SHOPIFY_ADMIN_SETUP.md) and [OWNER_ACTIONS.md](OWNER_ACTIONS.md). In particular:
 
-1. Create all catalogue records as **Draft** and leave unknown fields blank.
+1. Keep Docked Cruise D2 **Draft** and leave unknown fields blank; archive, rather than delete, the 14 superseded Draft concept shells.
 2. Define/populate only evidence-approved `custom.*` metafields.
-3. Create the seven collections and configure the `main-menu` and `footer` navigation resources.
+3. Keep only the single-product merchandising destination in customer navigation; the former multi-category collections are not part of the current range.
 4. Assign the supplied alternate templates to the matching Shopify pages.
 5. Keep `prelaunch_mode` enabled and the theme unpublished/password-protected.
 6. Complete customer-account, GST/tax invoice, shipping, support, payment/refund and safety/compliance QA.

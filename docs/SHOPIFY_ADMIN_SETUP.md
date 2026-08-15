@@ -1,7 +1,7 @@
 # Shopify Admin setup
 
 Status: **RUNBOOK ONLY — SHOPIFY ADMIN NOT INSPECTED OR CONFIGURED BY THIS REPOSITORY AUDIT**  
-Last updated: 13 August 2026
+Last updated: 15 August 2026
 
 Use this checklist in the correct Docked Shopify store after an unpublished theme upload. Record redacted evidence for every completed gate. A checked-in setting or Draft catalogue row does not prove the corresponding Admin setting is live.
 
@@ -37,9 +37,11 @@ If any compatibility or flow check fails, leave customer accounts disabled or us
 
 ## 3. Draft product creation
 
-Create only **Draft** products from approved catalogue records. No product may become Active merely because its concept row imports successfully.
+Create or retain only **DC-02 / Docked Cruise D2** as the sole current planned **Draft** product. Keep it unavailable to the Online Store and every other sales channel; Active status is prohibited until its complete release record passes. The complimentary pump and two batteries are included components, not separate Shopify products. No product may become Active merely because its concept row imports successfully.
 
-For each product, set and verify:
+Authenticated Shopify Admin verification on 15 August 2026 recorded the other 14 product shells as Archived rather than deleted. Verify they remain Archived and absent from every sales channel, collection, menu, search/feed surface and recommendation. Do not delete the repository audit trail: the prior 15-concept plan remains recoverable at baseline commit `306e5dd`.
+
+For DC-02 and any genuine variant, set and verify only after the relevant source has been approved:
 
 - title, handle, actual brand/vendor, product type, collections and status Draft;
 - final SKU, barcode where applicable, genuine variants and option values;
@@ -48,7 +50,7 @@ For each product, set and verify:
 - licensed exact-SKU media, useful alt text, SEO title/description and approved manual; and
 - all evidence-backed metafields and product-specific warnings.
 
-Keep unknown values blank. Do not convert draft RRPs, concept names, supplier claims or placeholders into production facts.
+Keep unknown values blank. Supplier component reports received on 15 August 2026 remain under review and do not establish a final SKU. Do not enter the unsupported 160 kg capacity or choose between the conflicting 30/90-minute runtime, 46/66 W power or 5 km/h/1.6 m/s speed claims. Do not convert draft RRPs, concept names, supplier claims, AI concept PNGs or placeholders into production facts or exact-SKU product photography.
 
 ## 4. Product metafields
 
@@ -67,32 +69,20 @@ Confirm boolean, number, measurement, list, rich-text and URL types against the 
 
 ## 5. Collections
 
-Create these collections and handles, then verify no unapproved product becomes visible through an automated rule:
+Use one current merchandising collection and verify no Draft or withdrawn product becomes visible through an automated rule:
 
 | Collection | Handle |
 | --- | --- |
 | Powered Pool Floats | `powered-pool-floats` |
-| Adult Pool Loungers | `adult-pool-loungers` |
-| Adult Pool Games | `adult-pool-games` |
-| Floating Bars and Coolers | `floating-bars-and-coolers` |
-| Pumps, Care and Repair | `pumps-care-and-repair` |
-| Pool Party Bundles | `pool-party-bundles` |
-| Shop All | `all` |
 
-Check collection titles, descriptions, SEO, adult-only framing, product order and empty states. Products stay Draft until their individual release gate passes.
+The Shopify `/collections/all` route may remain as a system route but is not a second planned category. Remove the withdrawn collection handles from current menus and theme assignments, and archive or remove unused Admin collections after recording their IDs. Check the remaining collection title, description, SEO, adult-only framing and empty state. DC-02 remains Draft and hidden until its release gate passes.
 
 ## 6. Navigation
 
 Desktop and mobile must use the same logical hierarchy:
 
 - **Shop**
-  - Powered Floats
-  - Adult Loungers
-  - Pool Games
-  - Bars and Coolers
-  - Pumps and Care
-  - Bundles
-  - Shop All
+  - Powered Pool Floats
 - How It Works
 - Safety and Care
 - FAQ
@@ -103,21 +93,7 @@ Also verify search and cart access, policy/help footer links and the customer-ac
 
 ## 7. Shopify Search & Discovery
 
-Configure native collection/search filters, using the official Shopify Search & Discovery capability where required:
-
-- product category;
-- price;
-- motor configuration;
-- seated or full-length;
-- single or multi-person;
-- canopy or no canopy;
-- colour;
-- in-stock status;
-- powered or non-powered;
-- maximum verified capacity; and
-- included accessories.
-
-Expose a filter only when genuine structured product data supports it. Test no-result states, filter combinations, mobile controls, keyboard access and Australian/American motorised/motorized search synonyms. Do not add child-targeted synonyms; follow the [adult-only merchandising policy](ADULT_ONLY_MERCHANDISING_POLICY.md).
+Do not expose comparison filters that create no meaningful choice for a single current product. Configure only search/sorting behaviour supported by genuine structured DC-02 data, and keep capacity, runtime, power, speed and component claims absent while unresolved. Test no-result states, mobile controls, keyboard access and Australian/American motorised/motorized search synonyms. Do not add child-targeted synonyms; follow the [adult-only merchandising policy](ADULT_ONLY_MERCHANDISING_POLICY.md).
 
 ## 8. Markets and language
 

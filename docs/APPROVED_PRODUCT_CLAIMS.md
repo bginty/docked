@@ -1,9 +1,11 @@
 # Docked approved product claims register
 
 Status: **BLOCKED — NO PHYSICAL PRODUCT CLAIM IS APPROVED**  
-Last updated: 13 August 2026
+Last updated: 15 August 2026
 
-This register is the only source for claims that may move from preview copy to a live product listing. At present, no supplier evidence, exact product model, test report, final packaging, final manual or product-specific approval has been received. Accordingly, the approved physical-product claim set is empty.
+This register is the only source for claims that may move from preview copy to a live product listing. `DC-02 / Docked Cruise D2` is the sole current planned product and remains Draft. Supplier files received on 15 August 2026 contain component-level material, but they do not identify and approve one reconciled production lounger, its two-battery configuration, complimentary air pump, charger, final packaging and final manual. Receipt is not acceptance: the approved physical-product claim set remains empty.
+
+The previous 15-concept catalogue is historical research only. On 15 August 2026, the fourteen superseded Shopify Draft shells were archived, not deleted, and must not be treated as current products.
 
 ## Confirmed business facts
 
@@ -28,16 +30,14 @@ The following is approved only as brand direction or Draft preview language. It 
 
 | Language | Classification | Live-use condition |
 | --- | --- | --- |
-| “Pool time, powered.” | Draft brand tagline; not a physical-product claim | May appear in theme preview; a live context must not imply every product is powered |
+| “Pool time, powered.” | Draft brand tagline; not a physical-product claim | Unpublished preview only while the exact powered configuration remains unapproved |
 | “Cruise. Recline. Repeat.” | Draft brand line; not a physical-product claim | May appear in theme preview subject to final content approval |
 | “Shop Docked” | Call to action | Use only where the destination is valid; no live checkout implication while products are Draft |
 | “Built for grown-up pool time.” | Draft adult-audience positioning | Does not establish legal classification, capacity, quality or fitness |
 | “Adult pool leisure” / “Adults 18+ only” | Required merchandising audience for aquatic products | Describes intended audience only; it is not a waiver and does not remove safety obligations |
 | “Designed for adult pool relaxation” / “Premium pool lounging for adults” / “Adult pool entertaining” | Draft positioning | “Designed”, “premium” and similar language must not be paired with unsupported performance specifics |
 | “For controlled swimming-pool use” / “Pool use only” | Draft intended-use restriction | Must match the exact final manual, packaging and product-specific safety/legal review before live use |
-| “Rechargeable motorised lounging for slow laps and long afternoons.” | Draft category positioning | Blocked from a live product claim until the exact product is verified as rechargeable and motorised |
-| “Discover rechargeable motorised pool floats, adult loungers and poolside products designed for slow laps, long afternoons and better summer entertaining.” | Draft homepage range copy | Preview only until stocked range facts and final product evidence support the statement |
-| “From powered loungers to floating coolers and adult pool games, Docked brings together a curated range for relaxing and entertaining in the pool.” | Draft collection introduction | Preview only until those genuine products are approved and stocked |
+| “Rechargeable motorised lounging for slow laps and long afternoons.” | Draft category positioning | Blocked from live use until the final DC-02 configuration is verified as rechargeable and motorised and the performance implication is approved |
 
 The words “adult”, “18+” and “pool use only” must never be presented as proof that the aquatic-toy mandatory standard, swimming/flotation-aid rules, PFD rules or another obligation is inapplicable.
 
@@ -49,7 +49,25 @@ The words “adult”, “18+” and “pool use only” must never be presented
 | --- | --- | --- | --- | --- | --- |
 | — | No physical-product claims approved | — | — | — | Blocked |
 
-Draft catalogue prices are not approved selling prices. Product concept names and the Powered/Battery flags in the draft catalogue describe intended architecture only; they are not certifications or verified specifications.
+The provisional `$649` GST-inclusive planning price is not an approved selling price. The concept name and Powered/Battery flags describe intended architecture only; they are not certifications or verified specifications.
+
+## Received evidence and unresolved claims
+
+The 15 August 2026 supplier package is recorded for review, not as approval. Component documents refer to a propeller family and a lithium-ion battery pack; they have not been reconciled to the exact complete DC-02 production unit or all included components. The supplied imagery is AI-generated concept material and is not documentary evidence.
+
+| Claim presented in supplied material | Current decision | Reason it may not be published |
+| --- | --- | --- |
+| Maximum load `160 kg` | Unapproved / blocked | The owner states no product load or weight-bearing test was supplied |
+| Runtime `30 minutes` or `90 minutes` | Unapproved / blocked | Conflicting figures; no accepted exact-configuration runtime test and conditions |
+| Rated power `46 W` or `66 W` | Unapproved / blocked | Conflicting figures and unclear whole-product versus component scope |
+| Speed `1.6 m/s` or `5 km/h` | Unapproved / blocked | Conflicting values and no accepted exact-SKU test method or conditions |
+| Thrust `2.8 kg` | Unapproved / blocked | Scope, terminology, test method and exact production configuration are not established |
+| Dimensions `157 × 195 × 460 mm` or `167 × 109 × 60 cm` | Unapproved / blocked | The figures appear to describe different components/configurations and are not reconciled to an approved SKU |
+| Two lithium batteries included | Unapproved product-content claim | Both pack identities, production traceability, connection architecture, charger and final transport configuration remain unresolved |
+| Complimentary air pump included | Unapproved product-content claim | Final pump model, electrical/safety evidence, packaging and inclusion in the ordered SKU are not accepted |
+| Dual joystick control, dual propellers, cup holders, Type-C charging, water jets or 360° movement | Unapproved / blocked | Supplier copy and AI concept imagery are not exact-SKU verification; final sample/manual evidence is required |
+
+Until reconciliation and approval, keep the corresponding product title copy, body copy, SEO, structured data, media alt text, metafields and comparison values blank or non-specific. No AI image or overseas mark may be used to bridge an evidence gap.
 
 ## Claims blocked pending exact evidence
 

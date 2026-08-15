@@ -1,11 +1,13 @@
 # Docked production rollback
 
 Status: **PREPARED — UNPUBLISHED CANDIDATE ONLY; NO PRODUCTION CUTOVER HAS OCCURRED**
-Last updated: 14 August 2026 (Australia/Sydney)
+Last updated: 15 August 2026 (Australia/Sydney)
 
 The public site still uses the legacy GitHub Pages deployment, so no immediate rollback is required. This plan defines three independent recovery methods for a future authorised Shopify release. It supplements the original [Rollback plan](ROLLBACK_PLAN.md) and does not authorise a publication, DNS write or deletion.
 
-Current commerce safety state: the Docked candidate remains unpublished and password-protected; all 15 product shells are Draft with inventory not tracked, no images and channels 0; the seven planned collections are empty; Domestic Australia has no shipping rates, no international zone exists, local delivery/pickup are off, and no payment provider or live capture is active. Only the `myshopify.com` domain is connected. No commerce or DNS rollback is presently required.
+Current commerce safety state: the Docked candidate remains unpublished and password-protected. Authenticated Admin on 15 August showed 15 total product shells: `Docked Cruise D2` (product ID `7591990034490`) is the sole Draft shell with inventory not tracked, channels 0 and vendor `Requires verification`; the other 14 were changed to Archived, not deleted. No product is Active and no newly supplied AI-generated concept image was uploaded. Unapproved domestic and international rates remain configured; local delivery/pickup are off. Shopify Payments is incomplete, PayPal has not been transaction-verified and no live capture or test order is evidenced. Only the `myshopify.com` domain is connected. No commerce or DNS rollback is presently required.
+
+The repository's one-product source revision has not yet been committed, pushed to unpublished candidate theme `130871427130` or rendered. Existing preview QA is historical and must be rerun after the exact revision is pushed. Supplier component-level evidence receipt does not change the rollback posture and passes no launch gate.
 
 ## Recovery assets verified in the project record
 

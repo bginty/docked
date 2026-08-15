@@ -1,9 +1,9 @@
 # Docked launch checklist
 
 Status: **STOP — NOT PRODUCTION LIVE**  
-Last updated: 13 August 2026
+Last updated: 15 August 2026
 
-Current verified repository state: theme/catalogue preparation is in progress; the catalogue register contains 15 Draft concepts and no Active products. Shopify Admin, payment providers, product evidence, licensed product media, shipping, support mailbox, live checkout, published theme and production domain have not been verified. An unchecked item is a launch blocker unless explicitly marked post-launch.
+Current verified repository state: theme/catalogue preparation is in progress; authenticated Shopify Admin reconciliation on 15 August 2026 confirmed DC-02 / Docked Cruise D2 as the sole Draft product, 0 Active products, and the other 14 product shells Archived rather than deleted. Their source history remains recoverable at baseline commit `306e5dd`. Payment providers, accepted exact-SKU evidence, licensed product photography, shipping, complete support-mailbox testing, live checkout, published theme and production domain have not been verified. An unchecked item is a launch blocker unless explicitly marked post-launch.
 
 This checklist is an evidence index, not permission to self-certify. Complete each row with the named operator/reviewer, timestamp and a redacted evidence location. A passing theme test does not approve a product, payment account or legal/compliance decision.
 
@@ -38,7 +38,7 @@ Follow [Shopify Admin setup](SHOPIFY_ADMIN_SETUP.md).
 - [ ] Primary market is Australia; international markets are disabled unless separately approved.
 - [ ] Theme uses the approved Shopify Online Store 2.0 release and remains unpublished until all gates pass.
 - [ ] Store has completed the required Dawn v16 customer-account compatibility/upgrade gate; signed-out, sign-in, account menu, order history and sign-out flows pass or accounts remain deliberately disabled.
-- [ ] Seven intended collections and approved handles exist and are reviewed: Powered Pool Floats, Adult Pool Loungers, Adult Pool Games, Floating Bars and Coolers, Pumps, Care and Repair, Pool Party Bundles, and Shop All.
+- [ ] The sole current merchandising collection, **Powered Pool Floats** (`powered-pool-floats`), is reviewed; the Shopify `/collections/all` route may remain as a system route but must not imply a second category or expose Draft/withdrawn products.
 - [ ] Desktop/mobile navigation and footer link only to real approved resources; no empty social account or misleading payment icon appears.
 - [ ] Theme editor controls, fallback states and section reordering work without code changes.
 - [ ] Password/prelaunch mode presents truthful availability and does not permit or imply live orders.
@@ -56,10 +56,10 @@ Follow [Shopify Admin setup](SHOPIFY_ADMIN_SETUP.md).
 
 ## 5. Catalogue, products and pricing
 
-Planned catalogue: 7 collections; 3 powered-float concepts; 5 adult-lounger/island/deck concepts; 1 pool-game concept; 6 cooler/pump/care/accessory concepts; 0 Active; 15 Draft. Confirm actual Shopify counts immediately before launch.
+Planned catalogue: 1 current merchandising collection; DC-02 / Docked Cruise D2 as the sole current planned Draft product; 0 Active. The complimentary pump and two batteries are included components, not separate product concepts. Authenticated Admin verification on 15 August 2026 recorded one Draft DC-02 and 14 Archived historical shells; confirm that exact state remains immediately before launch.
 
-- [ ] Every product has a final supplier, manufacturer, model/revision, SKU, barcode where applicable, variant architecture and signed supply authority.
-- [ ] Each product/variant appears in exactly the intended collections with the actual brand/vendor disclosed; Docked manufacture is not implied unless true.
+- [ ] DC-02 has a final supplier, manufacturer, model/revision, SKU, barcode where applicable, genuine variant architecture and signed supply authority.
+- [ ] DC-02 appears only in the intended collection with the actual brand/vendor disclosed; Docked manufacture is not implied unless true; the complimentary pump and two batteries remain included components unless separately approved as products.
 - [ ] Every proposed Active SKU has a completed [SKU approval workflow](SKU_APPROVAL_WORKFLOW.md), [Compliance register](COMPLIANCE_REGISTER.md) and owner release.
 - [ ] Draft catalogue reconciles to Shopify; no Draft/unlisted product appears in navigation, search, collection, feed, recommendation, sitemap or advertising.
 - [ ] Final landed cost, GST-inclusive RRP, margin/freight model and launch stock are owner-approved in [Price approval register](PRICE_APPROVAL_REGISTER.md).
@@ -69,6 +69,8 @@ Planned catalogue: 7 collections; 3 powered-float concepts; 5 adult-lounger/isla
 - [ ] Product cards accurately show title, actual brand, AUD/GST-inclusive price, Adult 18+, powered state, verified occupancy and stock state.
 
 ## 6. Evidence, classification, safety and product media
+
+Supplier component files received on 15 August 2026 remain under scope, authenticity, model and revision review and do not approve a final DC-02 SKU. No 160 kg load test was received. Runtime (30/90 minutes), power (46/66 W) and speed (5 km/h/1.6 m/s) conflict and must remain unpublished until reconciled. AI concept PNGs are not exact-SKU product photography. Both included batteries and the complimentary pump require their own applicable component evidence. DC-02 must remain Draft and Active status is prohibited while any of these gaps remains.
 
 - [ ] [Supplier onboarding](SUPPLIER_ONBOARDING.md) dossier is accepted for every supplier/SKU.
 - [ ] Australian product-safety/legal classification is complete for every aquatic product; aquatic-toy, swimming/flotation aid, PFD and other mandatory-standard applicability is resolved.
@@ -80,16 +82,16 @@ Planned catalogue: 7 collections; 3 powered-float concepts; 5 adult-lounger/isla
 - [ ] Full approved warnings reconcile across permanent product marking, packaging, manual, product page and Safety & Care page under [Safety copy register](SAFETY_COPY_REGISTER.md).
 - [ ] Critical adult/pool-use warning sits visibly near Add to Cart; powered warning is separate; no warning is only tiny/collapsed.
 - [ ] Final product manuals download correctly and match the exact revision.
-- [ ] Every image/video has a valid record in [Asset licences](ASSET_LICENCES.md), depicts the exact SKU, uses adult models only for aquatic products and passes safety review.
+- [ ] Every image/video has a valid record in [Asset licences](ASSET_LICENCES.md), depicts the exact SKU, uses adult models only for aquatic products and passes safety review; AI concept PNGs are excluded from documentary product photography.
 - [ ] No placeholder, competitor, marketplace, scraped, hotlinked or unlicensed image/copy/review appears on an Active product or live campaign.
 - [ ] Product recall process, named contacts and order-to-batch/batch-to-order lookup pass a tabletop exercise under [Product recall plan](PRODUCT_RECALL_PLAN.md).
 
 ## 7. Storefront commerce and checkout
 
-- [ ] Home, all collection templates, product, How It Works, Safety & Care, Shipping, Returns, Warranty, FAQ, About, Contact, Track Order, Privacy, Terms, Accessibility, cart, search, 404 and password pages exist and render correctly.
-- [ ] Collection filters/sorting and Search & Discovery configuration work for the approved catalogue and yield useful empty/no-result states.
+- [ ] Home, the sole current collection template, product, How It Works, Safety & Care, Shipping, Returns, Warranty, FAQ, About, Contact, Track Order, Privacy, Terms, Accessibility, cart, search, 404 and password pages exist and render correctly.
+- [ ] Search & Discovery and collection sorting work for the approved single-product catalogue; filters that add no useful choice are disabled and empty/no-result states are truthful.
 - [ ] Product gallery, zoom, video, thumbnails, variant/quantity selectors, inventory, product form, Add to Cart, error state and mobile sticky Add to Cart pass.
-- [ ] Product comparison hides when fewer than two real products are selected and hides a row unless all compared products have verified values.
+- [ ] Product comparison is hidden for the single-product range and cannot imply that withdrawn concepts are available.
 - [ ] Cart drawer and cart page support update/remove/subtotal/continue shopping, keyboard/focus/Escape/screen-reader status and error recovery without hidden fees or preselected extras.
 - [ ] Shopify-hosted checkout only; no custom card form or non-approved payment stack.
 - [ ] Customer, address, shipping, tax, discount, order confirmation, cancellation and abandoned-checkout flows pass on mobile/desktop.
@@ -167,7 +169,7 @@ No DNS change until every prior launch gate passes and owner authorises the cuto
 
 | Status | May be used only when |
 | --- | --- |
-| **Catalogue Architecture Complete** | Theme collection/product/filter/search/comparison/adult/safety architecture and Draft catalogue are complete and tested; no invented data or unapproved Active product exists. This does not mean Shopify Admin objects or sales are live. |
+| **Catalogue Architecture Complete** | Theme single-collection/product/search/adult/safety architecture and the sole current Draft product are complete and tested; comparisons and meaningless filters are hidden; no invented data, withdrawn concept or unapproved Active product exists. This does not mean Shopify Admin objects or sales are live. |
 | **Code Complete — Owner Action Required** | Theme and catalogue deliverables/tests are complete, while products remain Draft and owner/supplier/compliance/banking/media/price/operational gates are accurately listed. Use password/unpublished mode. |
 | **Production Live** | Every applicable checkbox above is evidenced, owner launch authority is recorded, theme/products/payments/shipping/support/domain are actually live and live-site QA passes. |
 
@@ -179,7 +181,7 @@ Current permitted status is **not Production Live**. The final project report mu
 | --- | --- | --- | --- | --- |
 | Engineering | Exact release source tests | Passed — structural validator, Node tests, copy audit and Theme Check; theme upload not run because no store is configured | `scripts/validate-theme.mjs`; `tests/theme-structure.test.mjs`; local QA output | Codex / 14 August 2026 |
 | Owner/legal | Brand, legal, policies and launch authority | Blocked |  |  |
-| Product safety | Each proposed Active SKU approved | Blocked — 0 approved |  |  |
+| Product safety | DC-02 and every included component approved | Blocked — supplier component files under review; no final SKU or 160 kg load test; claim conflicts unresolved; 0 approved |  |  |
 | Commercial | Costs, prices, stock, shipping and warranty | Blocked |  |  |
 | Finance | Payments, payout, GST and invoices | Blocked |  |  |
 | Operations | Fulfilment, returns, support and recall | Blocked |  |  |
