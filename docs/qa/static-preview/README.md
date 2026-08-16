@@ -1,6 +1,6 @@
 # Static preview QA
 
-Summer-feedback candidate local automated and rendered QA: 16 August 2026
+Summer-feedback local and production QA: 16 August 2026, live observation through approximately 10:05 AEST
 
 Reference-layout local and production QA: 15 August 2026
 
@@ -12,15 +12,15 @@ Current deployed product-led revision observation window: 15 August 2026, 18:03�
 
 Initial-launch production observation window: 15 August 2026, 17:31:41–17:36:28 AEST
 
-Current deployed reviewed source implementation commit: `777b09037e0f78e627cef09e710b05f0c4d88ff6`; public Pages output commit: `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. The summer-feedback source is committed and pushed as `be6d391743feec1ef869694b9ad67d42f02497d0`; its isolated eight-file production candidate is pushed as `5be6e075d6d72bf6ebc8c96b131b7fa257465868`, but it is not on `main` and is not live.
+Current deployed reviewed source implementation commit: `be6d391743feec1ef869694b9ad67d42f02497d0`; later evidence-only source HEAD at deployment: `54d9a21`; exact public Pages output commit: `5be6e075d6d72bf6ebc8c96b131b7fa257465868`. The owner entered `AUTHORISE_PUBLISH_SUMMER_REVISION_5BE6E07` in the active session before the exact eight-file production commit was fast-forwarded to `main` without force.
 
-## Summer-feedback candidate — local QA passed, deployment pending
+## Summer-feedback revision — local and live QA passed
 
-The owner-approved summer-feedback revision is recorded in [`summer-feedback/`](./summer-feedback/). It keeps the current Docked logo, `Cruise D2` name, `$649 AUD · Free shipping` offer and PayPal Hosted Button configuration while adding the brighter palette, approved man and woman lifestyle-image derivatives, simplified copy hierarchy, accessible three-panel slideshow and a contextual persistent `#checkout` call to action. The purchase bar hides whenever the hero action, checkout or final action is visible and appears only when no alternate purchase surface is in view.
+The owner-approved and deployed summer-feedback revision is recorded in [`summer-feedback/`](./summer-feedback/). It keeps the current Docked logo, `Cruise D2` name, `$649 AUD · Free shipping` offer and PayPal Hosted Button configuration while adding the brighter palette, approved man and woman lifestyle-image derivatives, simplified copy hierarchy, accessible three-panel slideshow and a contextual persistent `#checkout` call to action. The purchase bar hides whenever the hero action, checkout or final action is visible and appears only when no alternate purchase surface is in view.
 
-The feature-board and both lifestyle sources contain C2PA provenance identifying `gpt-image v2.0` / `trainedAlgorithmicMedia`. Their public derivatives use deterministic processing but retain that AI source provenance. The candidate labels the feature board visibly as “Supplier product illustration” and each lifestyle image as “Supplier lifestyle illustration”; their alt text also identifies them as illustrations.
+The feature-board and both lifestyle sources contain C2PA provenance identifying `gpt-image v2.0` / `trainedAlgorithmicMedia`. Their public derivatives use deterministic processing but retain that AI source provenance. The live page labels the feature board visibly as “Supplier product illustration” and each lifestyle image as “Supplier lifestyle illustration”; their alt text also identifies them as illustrations.
 
-The candidate feature board removes the unsupported “Strong and stable design for a safe and comfortable ride.” paragraph with a deterministic pool-water patch and adds no replacement claim. The supplied depiction, retained callouts and overall layout are preserved. No independent speed/performance or 160 kg load-bearing test was supplied or reviewed, so owner approval is not treated as technical substantiation for the removed qualitative safety/comfort wording.
+The deployed feature board removes the unsupported “Strong and stable design for a safe and comfortable ride.” paragraph with a deterministic pool-water patch and adds no replacement claim. The supplied depiction, retained callouts and overall layout are preserved. No independent speed/performance or 160 kg load-bearing test was supplied or reviewed, so owner approval is not treated as technical substantiation for the removed qualitative safety/comfort wording.
 
 Recorded local automated results:
 
@@ -31,7 +31,9 @@ Recorded local automated results:
 
 Fresh local Browser QA passed at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. All seven viewports had no horizontal overflow or broken image, showed the three visible supplier-illustration disclosures, kept the man illustration at a 1.5 rendered aspect ratio with `min-height: 0px`, and applied the contextual purchase-bar rule correctly. At 390 pixels, gallery click and `ArrowRight` navigation reached `Poolside`; the mobile menu opened and closed with `Escape`; two PayPal iframes rendered `Docked Cruise D2` at `$649.00 AUD`; and the persistent CTA reached `#checkout` with the heading approximately 112 pixels from the viewport top and the bar hidden. Six screenshots are in [`summer-feedback/`](./summer-feedback/).
 
-No first-party Docked console error was observed. PayPal emitted `ncps_standalone_paylater_ineligible` and Apple Pay configuration messages from its third-party integration. No payment or Lighthouse run was performed. Public promotion awaits explicit owner authorisation; live-domain QA remains pending. Nothing in the historical sections below is evidence for this reviewed candidate.
+No first-party Docked console error was observed locally. Local PayPal emitted `ncps_standalone_paylater_ineligible` and Apple Pay configuration messages from its third-party integration. No payment or Lighthouse run was performed.
+
+After owner authorization, Pages [run #101](https://github.com/bginty/docked/actions/runs/31915757230) completed successfully for exact production commit `5be6e075d6d72bf6ebc8c96b131b7fa257465868` at 09:51:00 AEST on 16 August 2026. Deployment ID `5925876775`, status ID `16863925709`, reached `success` at 09:50:59 AEST. All eight production paths returned `200` and matched the deployed files byte-for-byte or after expected text normalization; 24 local references across seven public pages returned `200`, with no finance copy. The seven-width live matrix passed with no horizontal overflow or visible broken image, all three illustration disclosures visible, the man illustration at a 1.5 ratio with `min-height: 0px`, `$649`, two PayPal iframes and correct contextual-bar visibility. The only recorded live console diagnostic was PayPal's third-party `ncps_standalone_paylater_ineligible`.
 
 ## Screenshot-reference production revision
 
@@ -83,7 +85,9 @@ The source revision is commit `06d4bd1941517b79c10a72a59d581969afd58f31`. Its ex
 
 ## Responsive matrix
 
-The screenshot-reference revision passed local and live rendered inspection at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. Its seven local full-page captures and three 390-pixel live captures are in `docs/qa/static-preview/reference-layout/`. At every live size, document `scrollWidth` equalled `clientWidth`, the feature image remained contained and the secondary hero action was visible.
+The summer-feedback revision passed local and live rendered inspection at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels. At every live size there was no horizontal overflow or visible broken image, all three illustration disclosures were visible, the man illustration retained its 1.5 ratio with `min-height: 0px`, and the contextual purchase bar was hidden at the hero, checkout and final action while visible mid-page. At 390 pixels, keyboard gallery navigation reached `Poolside`, the mobile menu opened and closed with `Escape`, and the persistent CTA reached `#checkout` with its heading approximately 112 pixels from the viewport top. Three live captures and six local captures are in `docs/qa/static-preview/summer-feedback/`.
+
+The preceding screenshot-reference revision passed its historical local and live rendered inspection at the same seven widths. Its captures remain in `docs/qa/static-preview/reference-layout/`.
 
 The initial static launch also passed same-origin responsive checks at 320, 375, 390, 768, 1024 and 1440 CSS pixels. Those measurements and the six PNG files in this folder predate both the feature-board revision and the screenshot-reference candidate, and remain historical baseline evidence only.
 
@@ -104,21 +108,24 @@ Hosted button ID: `FGAUDYCA2LX36`
 
 ## Production-domain verification
 
-- GitHub Pages workflow [run #100](https://github.com/bginty/docked/actions/runs/31883818055) completed successfully for exact production commit `dbc68d18e2dd0cfda79ebd9567a854d1c1323bde`. Run ID `31883818055` was created at `2026-08-15T12:07:55Z` and completed at `2026-08-15T12:08:17Z`.
-- Deployment ID `5920263065`, status ID `16849484631`, reached `success`; it was created at `2026-08-15T12:08:05Z` and completed at `2026-08-15T12:08:17Z`.
+- GitHub Pages workflow [run #101](https://github.com/bginty/docked/actions/runs/31915757230) completed successfully for exact production commit `5be6e075d6d72bf6ebc8c96b131b7fa257465868` at 09:51:00 AEST on 16 August 2026.
+- Deployment ID `5925876775`, status ID `16863925709`, reached `success` at 09:50:59 AEST.
+- All eight deployed paths returned `200` and matched the local production files byte-for-byte or after expected text normalization; 24 local references across seven public pages returned `200`, and no finance copy was found.
 - `https://docked.com.au/` returned `200` over HTTPS; `https://www.docked.com.au/` redirected to the HTTPS apex.
-- The complete Cruise D2 feature image was the first major visual and remained contained at all seven inspected live viewports.
+- The complete Cruise D2 feature image was the first major visual, and all three supplier-illustration disclosures were visible at all seven inspected live viewports.
 - The live offer rendered `$649` with `AUD · Free shipping`. No `A$` notation or `worldwide` shipping qualifier was visible.
 - Ginty United Investments Pty Ltd, ABN 78 606 187 106 and `support@docked.com.au` did not appear above the bottom footer.
-- The live PayPal Hosted Button rendered `Docked Cruise D2` at `$649.00 AUD`, and the purchase CTA resolved to `#checkout`. No checkout control was activated, no payment data was entered and no transaction was completed.
-- At requested viewports of 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels, document `scrollWidth` equalled `clientWidth`, the feature image remained contained and the secondary hero action remained visible.
-- Live evidence files are `live-homepage-390.png`, `live-checkout-390.png` and `live-footer-bottom-390.png` in `docs/qa/static-preview/reference-layout/`.
-- HTTPS availability passed, but enforcement did not: plain `http://docked.com.au/` returned `200` instead of redirecting, and GitHub's Pages API reported `https_enforced: false`.
+- The live PayPal Hosted Button rendered two iframes and displayed `Docked Cruise D2` at `$649.00 AUD`; the persistent purchase CTA resolved to `#checkout`. No payment data was entered and no transaction was completed.
+- At requested viewports of 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels there was no horizontal overflow or visible broken image; the man illustration retained its 1.5 ratio with `min-height: 0px`; and the contextual bar hid at the hero, checkout and final action while appearing mid-page.
+- At 390 pixels, gallery keyboard navigation reached `Poolside`, the mobile menu opened and closed with `Escape`, and the persistent CTA placed the checkout heading approximately 112 pixels from the viewport top before hiding.
+- Live evidence files are `live-hero-390.jpg`, `live-lifestyle-390.jpg` and `live-checkout-390.jpg` in `docs/qa/static-preview/summer-feedback/`.
+- No first-party Docked console error was observed; the only recorded live diagnostic was PayPal's third-party `ncps_standalone_paylater_ineligible`.
+- HTTPS availability passed, but enforcement did not: plain `http://docked.com.au/` returned `200` instead of redirecting, and no HSTS header was present.
 
 ## Limits
 
-- The deployed revision uses deterministic derivatives of owner-approved supplier imagery. The summer-feedback candidate's feature-board and lifestyle sources are C2PA-declared `gpt-image v2.0` / `trainedAlgorithmicMedia`, so their deterministic public derivatives are visibly labelled supplier illustrations rather than presented as documentary photographs. Source custody, processing and derivative hashes are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`.
+- The deployed revision uses deterministic derivatives of owner-approved supplier imagery. The summer-feedback feature-board and lifestyle sources are C2PA-declared `gpt-image v2.0` / `trainedAlgorithmicMedia`, so their deterministic public derivatives are visibly labelled supplier illustrations rather than presented as documentary photographs. Source custody, processing and derivative hashes are recorded in `docs/STATIC_SITE_ASSET_REGISTER.md`.
 - Lighthouse was not run because a Lighthouse executable was not installed in the workspace. No target score is reported as achieved.
-- No console-clean result is claimed for the screenshot-reference production revision.
+- No universally console-clean result is claimed: there was no first-party Docked error, but PayPal emitted `ncps_standalone_paylater_ineligible` during the live pass.
 - A real payment, PayPal seller-account transaction record, payment email and refund were not tested or claimed.
 - GitHub Pages has deployed and the production-domain checks above are complete. HTTP-to-HTTPS enforcement remains an infrastructure follow-up and is not reported as passed.
