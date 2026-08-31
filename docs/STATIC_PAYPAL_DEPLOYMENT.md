@@ -1,8 +1,8 @@
 # Docked static PayPal deployment record
 
-Status: authorized summer-feedback revision is live on `docked.com.au`; exact eight-file production commit deployed successfully; HTTP-to-HTTPS enforcement remains pending
+Status: `$299` price revision is live on `docked.com.au`; website and PayPal amounts match; exact four-file production commit deployed successfully; HTTP-to-HTTPS enforcement remains pending
 
-Last updated: 16 August 2026 (AEST)
+Last updated: 31 August 2026 (AEST)
 
 ## Deployment scope
 
@@ -16,7 +16,30 @@ Last updated: 16 August 2026 (AEST)
 
 The public production commit contains only the 31-file static web output. Development tests, source-image custody files, processing scripts, evidence records, screenshots and Shopify history remain on the working branch and in Git history; they are not copied into the Pages root.
 
-## Summer-feedback revision — authorized, deployed and live-verified
+## $299 price revision — deployed and live-verified
+
+The owner stated that the PayPal product price had been changed to `$299` and explicitly instructed that the website price be updated. Before the website change, logged-out rendered inspection confirmed that the PayPal Hosted Button already displayed `Docked Cruise D2` at `$299.00 AUD` while Docked's own page still displayed `$649`. The website revision therefore aligned every current customer-facing offer surface with the authoritative hosted-button amount.
+
+The reviewed source implementation is commit `f454fde58805c5d6b8b46b2e953398601fb91386` on `codex/docked-static-paypal-launch`. Its exact four-file public payload is production commit `6086b28690b28cc5df01d521982bfa4d4e6d02a8`, pushed to `codex/docked-static-pages-production` and fast-forwarded to `main` without force. The previous production commit is `5be6e075d6d72bf6ebc8c96b131b7fa257465868`.
+
+The exact price-release allowlist is:
+
+- `assets/js/product-config.js`
+- `index.html`
+- `shipping-returns.html`
+- `terms.html`
+
+The product configuration is the runtime source of truth for rendered price targets and Product/Offer JSON-LD. Static homepage fallbacks, purchase actions, metadata, the Shipping & Returns page, and the Terms page now all use `$299 AUD`. The validator and tests reject the stale `$649` price in customer-facing files.
+
+Local verification passed before promotion: `npm run validate` passed 51/51 checks, `npm test` passed 15/15, the four JavaScript syntax checks passed, and `git diff --check` passed. Local Browser QA at 320, 390, and 1440 CSS pixels showed `$299` on the website, `$299.00 AUD` in PayPal, no stale `$649`, no horizontal overflow, and no broken image.
+
+GitHub Pages [run #102](https://github.com/bginty/docked/actions/runs/33383154217), run ID `33383154217`, completed successfully for exact production commit `6086b28690b28cc5df01d521982bfa4d4e6d02a8` at 20:36:34 AEST on 31 August 2026. Build, report-build-status, and deploy jobs all passed; deploy job ID `99459811102` completed successfully.
+
+Logged-out live QA repeated the 320, 390, and 1440 CSS-pixel matrix. At every width, the Docked offer displayed `$299` with `AUD · Free shipping`, PayPal displayed `Docked Cruise D2` at `$299.00 AUD`, no visible `$649` remained, document `scrollWidth` equalled `clientWidth`, and no broken image was detected. The Shipping & Returns and Terms pages both displayed `$299 AUD` and no `$649 AUD`. Live Product/Offer JSON-LD contained price `299` and currency `AUD`. All four changed public files matched the reviewed production files after expected CRLF-to-LF normalization.
+
+No buyer data was entered, the checkout control was not activated, and no payment was submitted. PayPal emitted its third-party `ncps_standalone_paylater_ineligible` diagnostic; no first-party Docked error was observed. The HTTPS apex returned `200` and `www` returned `301` to it. Plain HTTP still returned `200` without redirecting and no HSTS header was present, so HTTPS enforcement remains pending. Evidence and the live 390-pixel screenshot are in `docs/qa/static-preview/price-299/`.
+
+## Historical summer-feedback revision — authorized, deployed and live-verified
 
 The owner approved implementing the unambiguous visual and merchandising changes supplied in `Website Ideas.eml`, while retaining the existing Docked logo and `Cruise D2` product name. The reviewed source implementation is commit `be6d391743feec1ef869694b9ad67d42f02497d0`, pushed to `origin/codex/docked-static-paypal-launch`; later evidence-only source HEAD at the time of deployment was `54d9a21`. Its exact eight-file public payload is production commit `5be6e075d6d72bf6ebc8c96b131b7fa257465868`, pushed to `origin/codex/docked-static-pages-production` and then fast-forwarded to `main` without force after the owner entered `AUTHORISE_PUBLISH_SUMMER_REVISION_5BE6E07` in the active session.
 
@@ -99,8 +122,8 @@ The owner supplied the official PayPal Hosted Buttons embed with public client-s
 The hosted button was tested without entering payment details or completing a transaction:
 
 - product: `Docked Cruise D2`;
-- live website amount: `$649 AUD`;
-- PayPal quantity-one total: `$649.00 AUD`;
+- live website amount: `$299 AUD`;
+- PayPal quantity-one total: `$299.00 AUD`;
 - quantity selector: 1 to 10;
 - payment surface offered PayPal, Pay in 4, Apple Pay and debit/credit card, subject to PayPal and buyer eligibility;
 - live site disclosure: `Free shipping`, with no geographic qualifier;
@@ -119,33 +142,33 @@ The public identifier in the SDK URL and the hosted-button ID are intentionally 
 | Repository identity | Passed | `origin` is `https://github.com/bginty/docked.git`; branch was created from exact `origin/main`. |
 | Pages source | Passed | Existing platform workflow `pages-build-deployment` (workflow ID `286250434`) serves `main` at repository root. |
 | Backup refs | Passed | Archive branch and peeled annotated tag both resolve to the exact legacy commit. |
-| Static validation | Passed locally | Summer-feedback production revision: `npm run validate` passed 51/51, including byte-locked media, C2PA disclosures, hosted-button, shipping, links, claims, contextual CTA and secret gates. |
-| Node tests | Passed locally | Summer-feedback production revision: `npm test` passed 15/15. |
+| Static validation | Passed locally | Current `$299` production revision: `npm run validate` passed 51/51, including the stale-price and secret gates. |
+| Node tests | Passed locally | Current `$299` production revision: `npm test` passed 15/15. |
 | Local browser QA | Passed with stated limits | See `docs/qa/static-preview/README.md`. |
 | Summer-feedback experience | Passed locally and live | Bright summer palette, feature-board-first hierarchy, lifestyle illustrations, three-panel gallery and contextual purchase action rendered on the exact production commit. |
-| Responsive live matrix | Passed | At all seven live viewports there was no horizontal overflow or visible broken image, all three illustration disclosures were visible, the man illustration retained a 1.5 ratio with `min-height: 0px`, and the contextual purchase bar followed its visibility rule. |
+| Responsive live matrix | Passed | Current price-release QA passed at 320, 390, and 1440 CSS pixels with no horizontal overflow, broken image, or stale price; the earlier seven-width layout evidence remains preserved. |
 | Seller-detail placement | Passed live | Company name, ABN and support email are outside homepage sales content and grouped in the bottom footer. |
 | Supplier product imagery | Passed for the deployed revision | Owner confirmed the supplied imagery and approved its use. The feature-board and lifestyle sources are C2PA `gpt-image v2.0` / `trainedAlgorithmicMedia`; their deterministic public derivatives are visibly labelled supplier illustrations. Hashes, processing and source custody are in `docs/STATIC_SITE_ASSET_REGISTER.md`. |
-| PayPal product/price/currency | Passed locally and live | The hosted widget showed Docked Cruise D2 and `$649.00 AUD`; no payment was submitted. |
+| PayPal product/price/currency | Passed locally and live | The hosted widget showed Docked Cruise D2 and `$299.00 AUD`; no payment was submitted. |
 | Shipping offer copy | Passed live | Customer-facing copy says `Free shipping` with no geographic qualifier; no `worldwide` copy was visible. |
 | Real payment | Not run | No real payment was authorised or completed. |
-| Working-branch implementation push | Passed | Reviewed implementation commit `be6d391743feec1ef869694b9ad67d42f02497d0` is pushed to `origin/codex/docked-static-paypal-launch`; later evidence-only source HEAD was `54d9a21`. |
-| Owner production authorization | Passed | Exact phrase `AUTHORISE_PUBLISH_SUMMER_REVISION_5BE6E07` was received in the active session before the non-force `main` push. |
-| Production promotion | Passed | Exact eight-file commit `5be6e075d6d72bf6ebc8c96b131b7fa257465868` was fast-forwarded to `main` without force; Pages [run #101](https://github.com/bginty/docked/actions/runs/31915757230) and deployment ID `5925876775` completed successfully. |
-| Public file and link audit | Passed | All eight deployed paths returned `200` and matched locally byte-for-byte or after expected text normalization; 24 local references across seven pages returned `200`; no finance copy was found. |
-| Public rendered verification | Passed with stated limits | Seven-width live QA passed; PayPal rendered two iframes and `Docked Cruise D2` at `$649.00 AUD`; no payment was submitted. |
-| Public HTTPS verification | HTTPS live; enforcement pending | Valid HTTPS returned the current storefront; `www` redirected to the HTTPS apex. Plain `http://docked.com.au/` still returned `200` instead of redirecting, and GitHub's Pages API reported `https_enforced: false`. |
+| Working-branch implementation push | Passed | Reviewed price implementation commit `f454fde58805c5d6b8b46b2e953398601fb91386` is pushed to `origin/codex/docked-static-paypal-launch`. |
+| Owner production instruction | Passed | In the active session, the owner stated that PayPal had been changed to `$299` and instructed that the website price be updated. |
+| Production promotion | Passed | Exact four-file commit `6086b28690b28cc5df01d521982bfa4d4e6d02a8` was fast-forwarded to `main` without force; Pages [run #102](https://github.com/bginty/docked/actions/runs/33383154217) completed successfully. |
+| Public file and link audit | Passed for price-release scope | All four changed public paths matched locally after expected text normalization; both affected policy pages rendered the current amount. |
+| Public rendered verification | Passed with stated limits | Three-width live QA passed; PayPal displayed `Docked Cruise D2` at `$299.00 AUD`; no payment was submitted. |
+| Public HTTPS verification | HTTPS live; enforcement pending | Valid HTTPS returned the current storefront; `www` redirected to the HTTPS apex. Plain `http://docked.com.au/` still returned `200` instead of redirecting, and no HSTS header was present. |
 
 ## Final deployment record
 
-- Reviewed static-site implementation commit: `be6d391743feec1ef869694b9ad67d42f02497d0` (pushed)
-- Evidence-only working-branch HEAD at deployment: `54d9a21`
-- Owner authorization: `AUTHORISE_PUBLISH_SUMMER_REVISION_5BE6E07`, received in the active session before production promotion
-- Production commit: `5be6e075d6d72bf6ebc8c96b131b7fa257465868` (exact eight changed public files)
-- GitHub Pages run: workflow `pages build and deployment`, run `101`, run ID `31915757230`, [successful](https://github.com/bginty/docked/actions/runs/31915757230), completed 16 August 2026 at 09:51:00 AEST
-- GitHub Pages deployment: deployment ID `5925876775`, status ID `16863925709`, completed with `success` at 09:50:59 AEST
-- Production tag: `docked-static-paypal-launch-2026-08` remains the immutable initial-launch tag (annotated tag object `c9510d884b79248d98f837047d10cc7fd9762c3d`, peeled commit `a4d9075e13a90a03a8587b5641626f0d42a36160`); it was not moved for this product-media revision.
-- Live verification: completed after Pages run #101 at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels; observation window ended approximately 10:05 AEST
+- Reviewed price implementation commit: `f454fde58805c5d6b8b46b2e953398601fb91386` (pushed)
+- Owner instruction: update the website after changing the PayPal product price to `$299`, received in the active session before production promotion
+- Production commit: `6086b28690b28cc5df01d521982bfa4d4e6d02a8` (exact four changed public files)
+- Previous production commit: `5be6e075d6d72bf6ebc8c96b131b7fa257465868`
+- GitHub Pages run: workflow `pages build and deployment`, run `102`, run ID `33383154217`, [successful](https://github.com/bginty/docked/actions/runs/33383154217), completed 31 August 2026 at 20:36:34 AEST
+- GitHub Pages deploy job: job ID `99459811102`, completed with `success`
+- Production tag: `docked-static-paypal-launch-2026-08` remains the immutable initial-launch tag (annotated tag object `c9510d884b79248d98f837047d10cc7fd9762c3d`, peeled commit `a4d9075e13a90a03a8587b5641626f0d42a36160`); it was not moved for this price revision.
+- Live verification: completed after Pages run #102 at 320, 390, and 1440 CSS pixels; observation window ended approximately 20:41 AEST
 - Logged-out production URL: `https://docked.com.au`
 
-The live audit confirmed the authorized summer-feedback homepage, `$649` / `AUD · Free shipping` offer, three visible supplier-illustration disclosures, gallery, contextual `#checkout` action and production PayPal Hosted Button at `$649.00 AUD`. At every inspected live viewport there was no horizontal overflow or visible broken image, and the contextual bar hid at the hero, checkout and final action while appearing mid-page. All eight production files and 24 local references passed the live HTTP/hash audit, with no finance copy. The HTTPS apex returned `200` and `www` redirected to it. Plain HTTP still returned `200` without redirecting and no HSTS header was present, so HTTPS enforcement remains pending. A real payment, seller-side transaction record, payment email, refund and PayPal return URL remain deliberately untested. No Lighthouse, automated accessibility or universally console-clean result is claimed.
+The live audit confirmed the unchanged summer storefront with a `$299` / `AUD · Free shipping` offer and the production PayPal Hosted Button at `$299.00 AUD`. No visible `$649` remained. At every inspected viewport there was no horizontal overflow or broken image. The changed homepage, product configuration, Shipping & Returns page, and Terms page matched the reviewed production files after expected line-ending normalization. Product/Offer JSON-LD reported `299` and `AUD`. The HTTPS apex returned `200` and `www` redirected to it. Plain HTTP still returned `200` without redirecting and no HSTS header was present, so HTTPS enforcement remains pending. A real payment, seller-side transaction record, payment email, refund, and PayPal return URL remain deliberately untested. No Lighthouse, automated accessibility, or universally console-clean result is claimed.

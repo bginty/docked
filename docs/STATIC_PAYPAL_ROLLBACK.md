@@ -1,11 +1,11 @@
 # Docked static GitHub Pages rollback
 
-Last updated: 15 August 2026 (AEST)
+Last updated: 31 August 2026 (AEST)
 
 ## Recovery point
 
-- Current product-led production commit: `480b5ed11d65bc5c932a54aaf66f99f91fa1e994`
-- Immediate prior static storefront commit: `5aceddc9726d7d2617c8e2e09c1b4f290f87e633`
+- Current `$299` production commit: `6086b28690b28cc5df01d521982bfa4d4e6d02a8`
+- Immediate prior `$649` production commit: `5be6e075d6d72bf6ebc8c96b131b7fa257465868`
 - Historical finance snapshot: `b26add982e5f4c7cfab2b13f74a14500d7199530`
 - Historical archive branch: `archive/docked-finance-site-2026-08`
 - Historical archive tag: `docked-finance-site-before-pool-rebuild`
@@ -13,22 +13,22 @@ Last updated: 15 August 2026 (AEST)
 
 The finance snapshot, branch and tag are retained only as historical evidence. They are not an approved website rollback target and must never be restored, merged or pushed to `main`. Every production rollback must keep the public domain on a Cruise D2 storefront or on a newly prepared neutral maintenance/ordering-unavailable page with no mortgage, lending or finance content.
 
-## Non-destructive presentation rollback
+## Non-destructive price-release rollback
 
-If only the product-media/conversion revision fails, restore the exact immediate prior static storefront tree in a new commit. This keeps the initial static PayPal storefront live while removing the current presentation revision.
+The PayPal Hosted Button amount is managed remotely. Do not restore the prior `$649` website files while PayPal still displays `$299.00 AUD`; that would recreate a customer-facing price mismatch. If the owner deliberately restores PayPal to `$649` and the rendered widget is independently verified at `$649.00 AUD`, restore only the four prior website price files in a new commit. If PayPal cannot be verified or website and checkout amounts differ, use commerce containment instead.
 
 Do not force-push and do not delete the failed Docked commit. From a clean, up-to-date checkout:
 
 ```powershell
 git fetch origin --prune
-git switch -c codex/docked-product-media-rollback origin/main
-git restore --source=5aceddc9726d7d2617c8e2e09c1b4f290f87e633 --staged --worktree -- .
-git commit -m "revert: restore prior Docked static storefront"
-git push -u origin codex/docked-product-media-rollback
-git push origin codex/docked-product-media-rollback:main
+git switch -c codex/docked-price-rollback origin/main
+git restore --source=5be6e075d6d72bf6ebc8c96b131b7fa257465868 --staged --worktree -- assets/js/product-config.js index.html shipping-returns.html terms.html
+git commit -m "revert: restore prior verified Docked price"
+git push -u origin codex/docked-price-rollback
+git push origin codex/docked-price-rollback:main
 ```
 
-After Pages deploys, verify that the A$649 PayPal storefront still renders and the supplier-image/conversion revision is absent.
+After Pages deploys, verify that every website amount matches the remotely configured PayPal amount, both policy pages agree, and no stale competing price remains.
 
 ## Non-destructive commerce withdrawal
 
@@ -47,7 +47,7 @@ Only after the exact containment commit has been reviewed should it be fast-forw
 
 1. Wait for GitHub Pages to finish deploying the revert commit.
 2. Confirm `https://docked.com.au` returns HTTPS successfully.
-3. Confirm the intended target is served: the prior A$649 static storefront after a presentation rollback, or the reviewed Cruise D2 ordering-unavailable/neutral maintenance experience after commerce withdrawal.
+3. Confirm the intended target is served: a website whose displayed amount exactly matches the verified PayPal Hosted Button, or the reviewed Cruise D2 ordering-unavailable/neutral maintenance experience after commerce withdrawal.
 4. Confirm `www.docked.com.au` redirects consistently.
 5. Confirm `CNAME` remains `docked.com.au`.
 6. Do not alter MX, SPF, DKIM, DMARC, nameservers or other email/domain records.
