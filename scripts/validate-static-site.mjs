@@ -133,17 +133,19 @@ if (missing.length === 0) {
   assert('checkout.no-placeholders', placeholderHits.length === 0, placeholderHits.length ? `Found: ${placeholderHits.join(', ')}` : 'No placeholder checkout or draft copy');
 
   const australianDollarPrefix = /A(?:\s|&nbsp;)*(?:\$|&#0*36;|&#x0*24;|&dollar;)/i;
+  const stalePrice = /(?:\$\s*649\b|\b649\s*AUD\b|\bprice\s*:\s*649\b)/i;
   const obsoleteOfferLanguage = [];
   for (const [file, source] of customerFacingTextByFile) {
     if (australianDollarPrefix.test(source)) obsoleteOfferLanguage.push(`${file}: A$ prefix`);
     if (/\bworldwide\b/i.test(source)) obsoleteOfferLanguage.push(`${file}: worldwide`);
+    if (stalePrice.test(source)) obsoleteOfferLanguage.push(`${file}: stale 649 price`);
   }
   assert(
     'content.current-price-shipping-language',
     obsoleteOfferLanguage.length === 0,
     obsoleteOfferLanguage.length
       ? `Remove obsolete customer-facing wording: ${obsoleteOfferLanguage.join('; ')}`
-      : 'Public HTML, product configuration, runtime JavaScript, and manifest contain neither A$ nor worldwide',
+      : 'Public HTML, product configuration, runtime JavaScript, and manifest contain neither A$, worldwide, nor the stale 649 price',
   );
 
   const productImageHashes = new Map([
@@ -279,7 +281,7 @@ if (missing.length === 0) {
     purchaseControlIssues.length ? purchaseControlIssues.join('; ') : `${purchaseCtas.length} purchase CTAs share #checkout and the checkout target exists`,
   );
 
-  assert('product.config', productConfig?.name === 'Docked Cruise D2' && Number(productConfig?.price) === 649 && productConfig?.currency === 'AUD', 'Config identifies Docked Cruise D2 at 649 AUD');
+  assert('product.config', productConfig?.name === 'Docked Cruise D2' && Number(productConfig?.price) === 299 && productConfig?.currency === 'AUD', 'Config identifies Docked Cruise D2 at 299 AUD');
   assert('product.checkout-mode', checkoutEnabled ? publicClientId.length >= 40 && hostedButtonId.length >= 8 : productConfig?.checkoutEnabled === false, checkoutEnabled ? 'Exactly one checkout mode is configured: PayPal hosted button' : 'Checkout is explicitly disabled');
 
   assert(
@@ -295,15 +297,15 @@ if (missing.length === 0) {
   const primaryBuyCopy = purchaseCtas.filter((text) => /^Buy Cruise D2\b/i.test(text));
   assert(
     'product.price-presentation',
-    priceTargets.length >= 3 && priceTargetValues.every((value) => value === '$649') &&
-      visibleText(heroOffer) === '$649 AUD · Free shipping' && primaryBuyCopy.includes('Buy Cruise D2 — $649') &&
+    priceTargets.length >= 3 && priceTargetValues.every((value) => value === '$299') &&
+      visibleText(heroOffer) === '$299 AUD · Free shipping' && primaryBuyCopy.includes('Buy Cruise D2 — $299') &&
       /setText\(\s*["']\[data-product-price\]["']\s*,\s*["']\$["']\s*\+\s*audAmount\s*\)/.test(siteScript),
     `Price targets=${priceTargetValues.join(' | ') || '(none)'}; hero offer="${visibleText(heroOffer) || '(missing)'}"; primary CTA=${primaryBuyCopy.join(' | ') || '(missing)'}`,
   );
   assert(
     'shipping.owner-approved-offer',
-    /\bFree shipping\b/i.test(index) && /\bFree shipping\b/i.test(read('shipping-returns.html')),
-    'Homepage and shipping policy use the approved “Free shipping” language without a geographic qualifier',
+    /\bFree shipping\b/i.test(index) && /\$299\s+AUD\b/i.test(read('shipping-returns.html')) && /\$299\s+AUD\b/i.test(read('terms.html')),
+    'Homepage, shipping policy, and terms use the approved $299 AUD offer and “Free shipping” language',
   );
   const checkoutSection = index.slice(index.search(/<section\b[^>]*\bid=["']checkout["']/i), index.indexOf('</section>', index.search(/<section\b[^>]*\bid=["']checkout["']/i)) + 10);
   const conciseAdultWarning = /18\+/i.test(checkoutSection) && /competent swimmers/i.test(checkoutSection) && /calm, controlled swimming pools/i.test(checkoutSection) && /not a life-saving device/i.test(checkoutSection);
@@ -321,7 +323,7 @@ if (missing.length === 0) {
     heroTitlePosition,
     afterHeader.search(/A motorised inflatable water lounger with dual joystick control\./i),
     afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-offer\b/i),
-    afterHeader.search(/Buy Cruise D2\s*—\s*\$649/i),
+    afterHeader.search(/Buy Cruise D2\s*—\s*\$299/i),
     afterHeader.search(/Explore the features/i),
     afterHeader.search(/Electric propulsion[\s\S]{0,260}Up to 5\s*km\/h[\s\S]{0,260}160\s*kg capacity[\s\S]{0,260}Dual joystick steering/i),
   ];

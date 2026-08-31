@@ -10,7 +10,7 @@ window.DOCKED_PRODUCT = Object.freeze({
     "https://docked.com.au/assets/images/product/cruise-d2-controls-1200.webp",
     "https://docked.com.au/assets/images/product/cruise-d2-features.jpg"
   ]),
-  price: 649,
+  price: 299,
   currency: "AUD",
   minimumAge: 18,
   supportEmail: "support@docked.com.au",

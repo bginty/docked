@@ -107,8 +107,11 @@ test('approved top-of-page sequence and offer language remain exact', () => {
     const source = read(file);
     if (/A(?:\s|&nbsp;)*(?:\$|&#0*36;|&#x0*24;|&dollar;)/i.test(source)) obsoleteOfferLanguage.push(`${file}: A$ prefix`);
     if (/\bworldwide\b/i.test(source)) obsoleteOfferLanguage.push(`${file}: worldwide`);
+    if (/(?:\$\s*649\b|\b649\s*AUD\b|\bprice\s*:\s*649\b)/i.test(source)) obsoleteOfferLanguage.push(`${file}: stale 649 price`);
   }
   assert.deepEqual(obsoleteOfferLanguage, []);
+  assert.match(read('shipping-returns.html'), /\$299\s+AUD\b/i);
+  assert.match(read('terms.html'), /\$299\s+AUD\b/i);
 
   const headerEnd = index.search(/<\/header\s*>/i);
   assert.ok(headerEnd >= 0, 'homepage must have a closing header');
@@ -122,7 +125,7 @@ test('approved top-of-page sequence and offer language remain exact', () => {
     afterHeader.search(/<h1\b[^>]*\bid=["']hero-title["']/i),
     afterHeader.search(/A motorised inflatable water lounger with dual joystick control\./i),
     afterHeader.search(/<div\b[^>]*class=["'][^"']*\bhero-offer\b/i),
-    afterHeader.search(/Buy Cruise D2\s*—\s*\$649/i),
+    afterHeader.search(/Buy Cruise D2\s*—\s*\$299/i),
     afterHeader.search(/Explore the features/i),
     afterHeader.search(/Electric propulsion[\s\S]{0,260}Up to 5\s*km\/h[\s\S]{0,260}160\s*kg capacity[\s\S]{0,260}Dual joystick steering/i),
   ];
@@ -137,12 +140,12 @@ test('approved top-of-page sequence and offer language remain exact', () => {
   const priceTargets = [...index.matchAll(/<([a-z][a-z0-9]*)\b(?=[^>]*\bdata-product-price\b)[^>]*>([\s\S]*?)<\/\1>/gi)]
     .map((match) => visibleText(match[2]));
   assert.ok(priceTargets.length >= 3, `expected repeated price targets, found ${priceTargets.length}`);
-  assert.deepEqual([...new Set(priceTargets)], ['$649']);
+  assert.deepEqual([...new Set(priceTargets)], ['$299']);
   const heroOffer = index.match(/<div\b[^>]*class=["'][^"']*\bhero-offer\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i)?.[1] ?? '';
-  assert.equal(visibleText(heroOffer), '$649 AUD · Free shipping');
-  assert.match(index, />\s*Buy Cruise D2\s*—\s*\$649\s*</i);
+  assert.equal(visibleText(heroOffer), '$299 AUD · Free shipping');
+  assert.match(index, />\s*Buy Cruise D2\s*—\s*\$299\s*</i);
   assert.match(site, /setText\(\s*["']\[data-product-price\]["']\s*,\s*["']\$["']\s*\+\s*audAmount\s*\)/);
-  assert.equal(productConfig().price, 649);
+  assert.equal(productConfig().price, 299);
   assert.equal(productConfig().currency, 'AUD');
 });
 
