@@ -57,7 +57,7 @@ test("education and pending research are usable without an account", async ({
   await page.goto("/results");
   await expect(
     page.getByText(
-      "No live publications. No demonstration figures are included.",
+      "No accessible live publications. No demonstration figures are included.",
     ),
   ).toBeVisible();
   await page.getByRole("button", { name: "Apply filters" }).click();
