@@ -24,3 +24,14 @@
 - https://resend.com/docs/api-reference/emails/send-email
 
 No hosted project has been linked, changed or purchased. Current installed versions are recorded in package.json and the lockfile.
+
+## Phase 2 decisions
+
+14. Preserve both the completed implementation and original migration. Add one ordered security/lifecycle migration; a forward repair or verified restore is safer than destructive rollback of ledger evidence.
+15. Frozen prospective strategies require both the material configuration hash and full deployed code commit to match. Missing/conflicting provenance disables evaluation, publication, dispatch and observations. New parameters require a new version; code changes also require a reviewed version/approval record.
+16. Quota reservations commit before external calls. Ingestion uses direct/session PostgreSQL connections and a session advisory lock; transaction pooling is rejected. Unknown provider quota remains null and requires an independent explicit local cap. Remote DB connections require TLS.
+17. Marketing, service authentication, analytics and education consent remain distinct. Anonymous analytics is unmeasured. Completion events use database uniqueness; account deletion removes behavioural analytics and mutable personal payloads while retaining pseudonymous audit evidence subject to reviewed retention.
+18. Production email remains impossible in preview. The local mail adapter writes only reserved test/invalid recipient messages, and local Supabase SMTP is the required confirmation sink. Delivery retries use a stable HMAC unsubscribe token and a conservative bounded provider-idempotency window.
+19. The worker drains at most ten jobs per invocation. Observation failures are separately recorded so independent account-erasure work can continue. Provider polling still uses five-minute slots; missed decision/freshness windows remain missed and must be measured before enabling a tighter cadence.
+20. TypeScript is pinned to 6.0.3 because the current TypeScript ESLint 8.71.0 peer range is >=4.8.4 and <6.1. The prior 7.0.2 exceeded that range. This is an explicit compatible-toolchain adjustment, not a forced install or skipped lint rule. CI now runs lint and the complete dependency audit.
+21. Staff screenshots without a real Auth service show the actual denied state. Isolated status-card fixtures exercise UI only, never create a public performance record, and cannot substitute for authenticated browser acceptance.
