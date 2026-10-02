@@ -1,0 +1,96 @@
+-- Canonical source; copied to a CLI-created migration. PostgreSQL 17 / Supabase.
+create schema if not exists private;
+revoke all on schema private from public, anon, authenticated;
+create type public.evidence_type as enum ('retrospective_backtest','forward_paper','live_published','demo');
+create table public.profiles (id uuid primary key references auth.users(id) on delete cascade, country text not null, state text not null, age_attested boolean not null default false, accepted_version text not null, timezone text not null default 'Australia/Melbourne', odds_format text not null default 'decimal' check(odds_format in ('decimal','fractional','american')), sports text[] not null default '{}', leagues text[] not null default '{}', bookmakers text[] not null default '{}', created_at timestamptz not null default now(), disabled_at timestamptz);
+create table public.notification_preferences (user_id uuid primary key references public.profiles(id) on delete cascade, paused boolean not null default false, digest text not null default 'off' check(digest in ('off','weekly','twice_weekly')), edge_alerts boolean not null default false, education boolean not null default false, quiet_start int not null default 21 check(quiet_start between 0 and 23), quiet_end int not null default 8 check(quiet_end between 0 and 23), updated_at timestamptz not null default now());
+create table private.roles(user_id uuid primary key references auth.users(id) on delete cascade, role text not null check(role in ('owner','admin','analyst','editor','auditor')), assigned_by uuid, assigned_at timestamptz not null default now());
+create table private.consent_events(id uuid primary key default gen_random_uuid(), user_id uuid, purpose text not null, granted boolean not null, version text not null, actor text not null, created_at timestamptz not null default now());
+create index on private.consent_events(user_id,purpose,created_at desc);
+create table private.region_policies(id uuid primary key default gen_random_uuid(), country text not null, state text not null, version text not null, effective_from timestamptz not null, effective_to timestamptz not null, review_at timestamptz not null, approved boolean not null default false, minimum_age int not null check(minimum_age>=18), features text[] not null default '{}', operators text[] not null default '{}', notices text[] not null default '{}', evidence text not null, communication_rules jsonb not null default '{}', check(effective_to>effective_from),unique(country,state,version));
+create table private.bookmaker_eligibility(id uuid primary key default gen_random_uuid(), bookmaker text not null, operator_group text not null, region_policy_id uuid not null references private.region_policies(id), approved boolean not null default false, effective_from timestamptz not null, effective_to timestamptz not null, rights_reference text not null, unique(bookmaker,region_policy_id,effective_from));
+create table private.sports(id text primary key, name text not null, enabled boolean not null default false);
+create table private.competitions(id text primary key, sport_id text not null references private.sports(id), enabled boolean not null default false, rules jsonb not null);
+create table private.events(id text primary key, competition_id text not null references private.competitions(id), participants jsonb not null, start_at timestamptz not null, status text not null default 'scheduled', source_mappings jsonb not null, unique(competition_id,participants,start_at));
+create table private.markets(id text primary key, event_id text not null references private.events(id), rules jsonb not null, rules_hash text not null, unique(event_id,rules_hash));
+create table private.selections(id text primary key, market_id text not null references private.markets(id), name text not null, unique(market_id,name));
+create table private.source_health(provider text primary key, healthy boolean not null default false, last_success timestamptz, last_failure timestamptz, failure_reason text, credits_remaining bigint, credits_used bigint not null default 0, circuit_until timestamptz, rights_reference text, capabilities jsonb not null default '{}');
+create table private.odds_snapshots(id text primary key, market_id text not null references private.markets(id), provider text not null, bookmaker text not null, source_at timestamptz not null, snapshot_at timestamptz not null, received_at timestamptz not null default now(), payload jsonb not null, raw_private_path text, provenance text not null, evidence public.evidence_type not null, check(source_at<=snapshot_at and snapshot_at<=received_at));
+create index on private.odds_snapshots(market_id,snapshot_at desc);
+create table private.strategy_versions(id text primary key, config jsonb not null, config_hash text not null unique, frozen_at timestamptz, research_approved_at timestamptz, paper_approved_at timestamptz, owner_approved_at timestamptz, active boolean not null default false, approval_evidence text);
+create table private.validation_runs(id uuid primary key default gen_random_uuid(), strategy_id text not null references private.strategy_versions(id), evidence public.evidence_type not null, manifest jsonb not null, report jsonb not null, contaminated boolean not null default false, code_commit text not null, seed bigint not null, created_at timestamptz not null default now());
+create table private.candidate_decisions(id uuid primary key default gen_random_uuid(), event_id text not null references private.events(id), strategy_id text not null references private.strategy_versions(id), decision_at timestamptz not null, window_seconds int not null check(window_seconds in (21600,3600)), payload jsonb not null, rejection_reasons jsonb not null default '[]', status text not null default 'review' check(status in ('review','rejected','published')), unique(event_id,strategy_id,window_seconds));
+create table private.tip_publications(id uuid primary key default gen_random_uuid(), candidate_id uuid not null unique references private.candidate_decisions(id), event_id text not null references private.events(id), strategy_id text not null references private.strategy_versions(id), evidence public.evidence_type not null, selection text not null, market_rules jsonb not null, probability numeric not null check(probability>0 and probability<1), odds numeric not null check(odds>1), minimum_odds numeric not null check(minimum_odds>1), estimated_ev numeric not null, config_hash text not null, sources jsonb not null, publication_payload jsonb not null, benchmark_stake numeric not null default 1 check(benchmark_stake=1), published_at timestamptz not null default clock_timestamp(), approved_by uuid not null, region_policy_id uuid not null references private.region_policies(id), unique(event_id,strategy_id,evidence));
+create unique index one_benchmark_per_event_evidence on private.tip_publications(event_id,evidence);
+create table private.tip_status_events(id uuid primary key default gen_random_uuid(), tip_id uuid not null references private.tip_publications(id), status text not null check(status in ('active','suspended','expired','withdrawn')), reason text not null, actor uuid, created_at timestamptz not null default now());
+create table private.settlement_events(id uuid primary key default gen_random_uuid(), tip_id uuid not null references private.tip_publications(id), result text not null check(result in ('won','lost','void','disputed')), source text not null, source_event_id text not null, revision text not null, evidence jsonb not null, created_at timestamptz not null default now(), unique(tip_id,source,source_event_id,revision));
+create table private.correction_events(id uuid primary key default gen_random_uuid(), tip_id uuid not null references private.tip_publications(id), settlement_id uuid references private.settlement_events(id), replacement_settlement_id uuid references private.settlement_events(id), reason text not null check(length(reason)>10), actor uuid not null, created_at timestamptz not null default now());
+create table private.closing_snapshots(id uuid primary key default gen_random_uuid(), tip_id uuid not null references private.tip_publications(id), probability numeric not null check(probability>0 and probability<1), source_at timestamptz not null, cutoff timestamptz not null, rules_hash text not null, provenance jsonb not null, unique(tip_id));
+create table private.availability_observations(id uuid primary key default gen_random_uuid(), tip_id uuid not null references private.tip_publications(id), observed_at timestamptz not null, target_minutes int not null check(target_minutes in (1,5,15,60)), odds numeric, qualifies boolean, source_resolution_seconds int not null, source_at timestamptz, unique(tip_id,target_minutes), check(source_resolution_seconds<=target_minutes*60));
+create table public.saved_tips(user_id uuid not null references public.profiles(id) on delete cascade, tip_id uuid not null references private.tip_publications(id), created_at timestamptz not null default now(), primary key(user_id,tip_id));
+create table public.personal_entries(id uuid primary key default gen_random_uuid(), user_id uuid not null references public.profiles(id) on delete cascade, label text not null check(length(label)<=160), odds numeric not null check(odds>1), result text not null check(result in ('pending','won','lost','void')), created_at timestamptz not null default now());
+create table private.articles(id text primary key, title text not null, body text not null, status text not null default 'draft' check(status in ('draft','fact_checked','approved','scheduled','published','corrected','archived')), revision int not null default 1, evidence jsonb not null default '[]', expires_at timestamptz, scheduled_at timestamptz, published_at timestamptz, actor uuid);
+create table private.article_revisions(id uuid primary key default gen_random_uuid(), article_id text not null references private.articles(id), revision int not null, payload jsonb not null, actor uuid not null, reason text not null, created_at timestamptz not null default now(), unique(article_id,revision));
+create table private.schedules(id text primary key, config jsonb not null, enabled boolean not null default false, last_success timestamptz, next_run timestamptz, updated_by uuid);
+create table private.outbox(id uuid primary key default gen_random_uuid(), dedupe_key text not null unique, kind text not null, user_id uuid, payload jsonb not null, state text not null default 'queued' check(state in ('queued','leased','sent','suppressed','dead')), available_at timestamptz not null default now(), expires_at timestamptz not null, lease_until timestamptz, lease_token uuid, attempts int not null default 0, last_error text, created_at timestamptz not null default now());
+create index on private.outbox(state,available_at) where state in ('queued','leased');
+create table private.delivery_attempts(id uuid primary key default gen_random_uuid(), outbox_id uuid not null references private.outbox(id), user_id uuid, kind text not null, local_day date, provider_id text, status text not null, latency_ms bigint, created_at timestamptz not null default now());
+create index on private.delivery_attempts(user_id,local_day,kind);
+create table private.job_runs(id uuid primary key default gen_random_uuid(), dedupe_key text not null unique, kind text not null, state text not null default 'queued', payload jsonb not null default '{}', lease_until timestamptz, lease_token uuid, attempts int not null default 0, available_at timestamptz not null default now(), last_success timestamptz, duration_ms bigint, failure_reason text, owner_action text, created_at timestamptz not null default now());
+create table private.feature_flags(key text primary key, enabled boolean not null default false, reason text not null, updated_by uuid, updated_at timestamptz not null default now());
+insert into private.feature_flags(key,reason) values ('publication','Launch gates pending'),('sending','Sending authority pending'),('ads','Off by default'),('affiliates','Off by default'),('paid_plans','Fresh opt-in required'),('registration','Legal/support configuration pending');
+create table private.sponsor_campaigns(id uuid primary key default gen_random_uuid(), name text not null, disclosure text not null, policy_id uuid references private.region_policies(id), approved boolean not null default false, starts_at timestamptz, ends_at timestamptz);
+create table private.audit_events(id uuid primary key default gen_random_uuid(), actor text not null, action text not null, subject text not null, details jsonb not null default '{}', created_at timestamptz not null default clock_timestamp());
+create table private.launch_record(singleton boolean primary key default true check(singleton), launched_at timestamptz not null, actor uuid not null, authority text not null);
+create table private.unsubscribe_tokens(token_hash text primary key, user_id uuid not null references public.profiles(id) on delete cascade, created_at timestamptz not null default now());
+create table private.webhook_receipts(provider text not null, event_id text not null, received_at timestamptz not null default now(), primary key(provider,event_id));
+create table private.rate_limits(key text primary key, count int not null, reset_at timestamptz not null);
+create table private.analytics_events(id uuid primary key default gen_random_uuid(), user_id uuid, event text not null check(event in ('signup','activated','saved_tip','digest_click','visit','unsubscribe')), cohort date, channel text, created_at timestamptz not null default now());
+
+create function private.immutable() returns trigger language plpgsql set search_path='' as $$ begin raise exception 'Append-only evidence: insert a linked correction'; end $$;
+do $$ declare t text; begin foreach t in array array['tip_publications','settlement_events','correction_events','tip_status_events','audit_events','consent_events','article_revisions','launch_record','validation_runs'] loop execute format('create trigger immutable before update or delete on private.%I for each row execute function private.immutable()',t); end loop; end $$;
+create function private.publication_guard() returns trigger language plpgsql set search_path='' as $$
+declare e private.events; s private.strategy_versions; r private.region_policies; actor_role text; q jsonb;
+begin
+ select * into e from private.events where id=new.event_id for share;
+ select * into s from private.strategy_versions where id=new.strategy_id for share;
+ select * into r from private.region_policies where id=new.region_policy_id for share;
+ select role into actor_role from private.roles where user_id=new.approved_by;
+ if actor_role is null or actor_role not in ('owner','admin','analyst') then raise exception 'Approval role required'; end if;
+ if new.evidence in ('demo','retrospective_backtest') then raise exception 'Demo/backtest cannot enter publication ledger'; end if;
+ if e.status<>'scheduled' or e.start_at<=clock_timestamp()+interval '10 minutes' then raise exception 'Event not safely pre-start'; end if;
+ if not s.active or s.frozen_at is null or s.research_approved_at is null or new.config_hash<>s.config_hash then raise exception 'Strategy not approved'; end if;
+ if new.evidence='live_published' and (s.paper_approved_at is null or s.owner_approved_at is null) then raise exception 'Paper/release approval missing'; end if;
+ if not coalesce((select enabled from private.feature_flags where key='publication'),false) then raise exception 'Publication paused'; end if;
+ if not r.approved or r.effective_from>now() or r.effective_to<=now() or r.review_at<=now() or not ('tips'=any(r.features)) then raise exception 'Region restricted'; end if;
+ if jsonb_array_length(new.sources)<3 then raise exception 'Offer plus two references required'; end if;
+ for q in select * from jsonb_array_elements(new.sources) loop
+  if (q->>'sourceAt')::timestamptz>clock_timestamp() or (q->>'sourceAt')::timestamptz<clock_timestamp()-interval '3 minutes' then raise exception 'Stale/future evidence'; end if;
+ end loop;
+ if new.odds<new.minimum_odds or new.estimated_ev<0.03 or new.estimated_ev>0.20 then raise exception 'Price does not qualify'; end if;
+ new.published_at=clock_timestamp(); return new;
+end $$;
+create trigger publication_guard before insert on private.tip_publications for each row execute function private.publication_guard();
+create function private.publish_outbox() returns trigger language plpgsql set search_path='' as $$ begin
+ insert into private.outbox(dedupe_key,kind,payload,expires_at) values ('publication:'||new.id,'publication',jsonb_build_object('tipId',new.id),new.published_at+interval '3 minutes');
+ insert into private.audit_events(actor,action,subject) values (new.approved_by::text,'publish',new.id::text); return new; end $$;
+create trigger publication_outbox after insert on private.tip_publications for each row execute function private.publish_outbox();
+create function private.no_strategy_rewrite() returns trigger language plpgsql set search_path='' as $$ begin if old.frozen_at is not null and (new.config<>old.config or new.config_hash<>old.config_hash or new.frozen_at is distinct from old.frozen_at) then raise exception 'Frozen configuration is immutable';end if;return new;end $$;
+create trigger frozen_strategy before update on private.strategy_versions for each row execute function private.no_strategy_rewrite();
+
+-- Data API members have read-only access; audited writes go through authenticated server handlers.
+alter table public.profiles enable row level security;
+alter table public.notification_preferences enable row level security;
+alter table public.saved_tips enable row level security;
+alter table public.personal_entries enable row level security;
+revoke all on public.profiles,public.notification_preferences,public.saved_tips,public.personal_entries from anon,authenticated;
+grant select on public.profiles,public.notification_preferences,public.saved_tips,public.personal_entries to authenticated;
+create policy own_profile on public.profiles for select to authenticated using((select auth.uid())=id and disabled_at is null);
+create policy own_preferences on public.notification_preferences for select to authenticated using((select auth.uid())=user_id);
+create policy own_saved on public.saved_tips for select to authenticated using((select auth.uid())=user_id);
+create policy own_personal on public.personal_entries for select to authenticated using((select auth.uid())=user_id);
+do $$ declare t record;begin for t in select tablename from pg_tables where schemaname='private' loop execute format('alter table private.%I enable row level security',t.tablename);end loop;end $$;
+revoke all on all tables in schema private from public,anon,authenticated;
+revoke all on all functions in schema private from public,anon,authenticated;
+alter default privileges in schema private revoke all on tables from public,anon,authenticated;
+alter default privileges in schema private revoke execute on functions from public,anon,authenticated;

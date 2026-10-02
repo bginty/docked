@@ -10,3 +10,10 @@ Thumbs.db
 .DS_Store
 tmp/
 .pages-deploy/
+.next/
+test-results/
+playwright-report/
+*.tsbuildinfo
+research-output/
+private-data/
+.supabase/
