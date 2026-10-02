@@ -1,5 +1,6 @@
 import type { EmailProvider } from "./contracts";
 export class ResendEmail implements EmailProvider {
+  constructor(private fetcher: typeof fetch = fetch) {}
   async send(m: {
     to: string;
     subject: string;
@@ -15,7 +16,7 @@ export class ResendEmail implements EmailProvider {
       !process.env.EMAIL_SENDER_IDENTITY
     )
       throw new Error("Real sending disabled");
-    const response = await fetch("https://api.resend.com/emails", {
+    const response = await this.fetcher("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.EMAIL_API_KEY}`,

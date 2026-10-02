@@ -38,42 +38,14 @@ export function AdminControls() {
         </ApiForm>
       </section>
       <section className="card">
-        <h2>Strategy activation</h2>
-        <ApiForm
-          endpoint="/api/admin"
-          action="strategy_paper_start"
-          submit="Start private forward paper"
-        >
-          <Field label="Frozen strategy version" name="id" required />
-          <Field
-            label="Reviewed research run UUID"
-            name="researchRun"
-            required
-          />
-          <Field label="Owner review evidence" name="reason" required />
-        </ApiForm>
+        <h2>Strategy governance</h2>
         <p>
-          Owner only. Actual uncontaminated research and forward-paper evidence
-          are required.
+          Use the audited lifecycle to register, validate, freeze and review
+          strategy versions.
         </p>
-        <ApiForm
-          endpoint="/api/admin"
-          action="strategy_activate"
-          submit="Approve strategy"
-        >
-          <Field label="Strategy version" name="id" required />
-          <Field
-            label="Research validation run UUID"
-            name="researchRun"
-            required
-          />
-          <Field label="Forward paper run UUID" name="paperRun" required />
-          <Field
-            label="Owner review evidence and reason"
-            name="reason"
-            required
-          />
-        </ApiForm>
+        <a className="button ghost" href="/admin/strategies">
+          Open strategy lifecycle
+        </a>
       </section>
       <section className="card">
         <h2>Append settlement correction</h2>

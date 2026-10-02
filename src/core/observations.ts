@@ -1,18 +1,36 @@
-import { evaluate, strategyV1, type Quote, type Rules } from "./pricing";
-export function observePublication(input: {
-  rules: Rules;
-  startAt: string;
-  observedAt: string;
-  publishedAt: string;
-  selection: string;
-  bookmaker: string;
-  minimumOdds: string;
-  quotes: Quote[];
-  resolutionSeconds: number;
-}) {
+import Decimal from "decimal.js";
+import {
+  evaluate,
+  strategyV1,
+  type Quote,
+  type Rules,
+  type Strategy,
+} from "./pricing";
+export function observePublication(
+  input: {
+    rules: Rules;
+    startAt: string;
+    observedAt: string;
+    publishedAt: string;
+    selection: string;
+    bookmaker: string;
+    minimumOdds: string;
+    quotes: Quote[];
+    resolutionSeconds: number;
+  },
+  config: Strategy = strategyV1,
+) {
   const at = Date.parse(input.observedAt),
     start = Date.parse(input.startAt);
-  if (!Number.isFinite(at) || !Number.isFinite(start) || at >= start)
+  if (
+    !Number.isFinite(at) ||
+    !Number.isFinite(start) ||
+    at >= start ||
+    !Number.isFinite(Date.parse(input.publishedAt)) ||
+    at < Date.parse(input.publishedAt) ||
+    !Number.isFinite(input.resolutionSeconds) ||
+    input.resolutionSeconds <= 0
+  )
     return null;
   const result = evaluate(
     {
@@ -22,7 +40,7 @@ export function observePublication(input: {
       quotes: input.quotes,
     },
     {
-      ...strategyV1,
+      ...config,
       windowsSeconds: [(start - at) / 1000],
       windowToleranceSeconds: 0,
     },
@@ -37,7 +55,7 @@ export function observePublication(input: {
     (c) =>
       c.selection === input.selection &&
       c.offer.bookmaker === input.bookmaker &&
-      Number(c.offer.prices[c.selection]) >= Number(input.minimumOdds),
+      new Decimal(c.offer.prices[c.selection]).gte(input.minimumOdds),
   );
   const elapsed = (at - Date.parse(input.publishedAt)) / 1000;
   // A five-minute source cannot manufacture one-minute measurements. Late samples stay missing.
@@ -51,6 +69,7 @@ export function observePublication(input: {
     odds: offer.prices[input.selection],
     probability: point.probability,
     sourceAt: offer.sourceAt,
+    observedAt: offer.receivedAt,
     referenceSourceAt: point.referenceSourceAt,
     qualifies,
     targets,

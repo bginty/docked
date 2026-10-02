@@ -788,6 +788,130 @@ th {
   color: var(--muted);
   margin-bottom: 30px;
 }
+.safe-json {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.edge-card {
+  min-width: 0;
+}
+.edge-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.edge-card-top .small-note {
+  margin: 0;
+  font-size: 9px;
+}
+.edge-card .edge-event {
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.edge-card h3,
+.edge-card h2 {
+  margin: 0 0 10px;
+  font-size: 30px;
+  overflow-wrap: anywhere;
+}
+.edge-market {
+  font-size: 12px !important;
+}
+.edge-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 22px 0;
+}
+.edge-facts dt,
+.edge-prices span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.edge-facts dd {
+  margin: 0;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.edge-facts small,
+.edge-prices small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.edge-prices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  border-block: 1px solid var(--line);
+  padding-block: 18px;
+}
+.edge-prices strong {
+  display: block;
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1.2;
+  margin-block: 5px;
+  overflow-wrap: anywhere;
+}
+.edge-freshness,
+.edge-warning {
+  font-size: 12px !important;
+  margin-block: 18px;
+}
+.edge-warning {
+  border-left: 2px solid var(--amber);
+  padding-left: 12px;
+}
+.edge-evidence summary {
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding-block: 12px;
+}
+.edge-evidence p {
+  font-size: 12px;
+}
+.status-suspended,
+.status-expired,
+.status-price_below_minimum {
+  color: #655321;
+  background: #f2ead5;
+  border-color: #d7c89d;
+}
+.no-edge-resources {
+  margin-top: 20px;
+}
+.plain-list {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+.plain-list li {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+  font-size: 14px;
+}
+.plain-list small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+.detail-list > div {
+  min-width: 0;
+}
+.article-card small {
+  font-size: 11px;
+  color: var(--muted);
+}
 @media (max-width: 900px) {
   .header-inner {
     gap: 25px;

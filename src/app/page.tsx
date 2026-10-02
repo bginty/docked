@@ -1,14 +1,24 @@
 import Link from "next/link";
 import { articles } from "@/content/articles";
-import { Empty } from "@/components/ui";
-import { serviceStatus, regionAccess, publicTips } from "@/server/queries";
+import { EdgeCard } from "@/components/edge-card";
+import { NoEdge } from "@/components/no-edge";
+import {
+  serviceStatus,
+  regionAccess,
+  publicTips,
+  monitoringContext,
+} from "@/server/queries";
+import { identity } from "@/server/auth";
 import { boardState } from "@/core/policy";
 export const dynamic = "force-dynamic";
+export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
-  const [status, region, tips] = await Promise.all([
+  const [status, region, tips, monitoring, viewer] = await Promise.all([
     serviceStatus(),
     regionAccess(),
     publicTips(),
+    monitoringContext(),
+    identity(),
   ]);
   const state = status.strategy
     ? boardState({ ...status, region: region.allowed })
@@ -112,17 +122,25 @@ export default async function Home() {
         {active.length ? (
           <div className="grid three">
             {active.slice(0, 3).map((t) => (
-              <Link key={t.id} href={`/tips/${t.id}`} className="card">
-                <span className="pill">Live published</span>
-                <h3>{t.selection}</h3>
-                <p>
-                  Publication odds {t.odds} · minimum {t.minimum_odds}
-                </p>
-              </Link>
+              <EdgeCard
+                headingLevel={3}
+                key={t.id}
+                tip={t}
+                timezone={viewer?.profile.timezone}
+                format={viewer?.profile.odds_format}
+              />
             ))}
           </div>
         ) : (
-          <Empty title={state.title}>{state.detail}</Empty>
+          <NoEdge
+            state={state}
+            monitoring={monitoring}
+            timezone={viewer?.profile.timezone}
+            latest={articles[0]}
+            completed={tips.filter((t) =>
+              ["won", "lost", "void"].includes(t.result),
+            )}
+          />
         )}
         <p className="muted small-note">
           A pending or unavailable feed does not imply that a live scan found no

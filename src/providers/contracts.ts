@@ -13,23 +13,38 @@ export type Capabilities = {
   display: boolean;
   export: boolean;
 };
+export type ProviderStatus = "NOT_CONFIGURED" | "DISABLED" | "READY";
+export type OddsDiagnostics = {
+  eventsReceived: number;
+  marketsReceived: number;
+  validMarkets: number;
+  rejectedMarkets: number;
+  staleMarkets: number;
+  mappingFailures: number;
+  sourceTimestampAgeSeconds: number | null;
+  errors: string[];
+};
+export type OddsFetchResult = {
+  raw: unknown;
+  quotes: Quote[];
+  remaining: number | null;
+  used: number | null;
+  lastRequestCost: number | null;
+  receivedAt: string;
+  snapshotAt: string;
+  historicalSnapshotId: string | null;
+  stats: OddsDiagnostics;
+};
 export interface OddsProvider {
   id: string;
+  status: ProviderStatus;
   capabilities: Capabilities;
-  fetch(
-    sport: string,
-    asOf?: string,
-  ): Promise<{
-    raw: unknown;
-    quotes: Quote[];
-    remaining: number;
-    used: number;
-    receivedAt: string;
-  }>;
+  fetch(sport: string, asOf?: string): Promise<OddsFetchResult>;
 }
 export interface ResultsProvider {
   id: string;
   authorised: boolean;
+  status: ProviderStatus;
   result(eventId: string, rules: Rules): Promise<Result | null>;
 }
 export interface EmailProvider {
@@ -52,6 +67,7 @@ export interface NotificationProvider {
 export class PendingResultsProvider implements ResultsProvider {
   id = "pending-authorised-results";
   authorised = false;
+  status = "NOT_CONFIGURED" as const;
   async result() {
     return null;
   }

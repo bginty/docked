@@ -13,7 +13,7 @@ export async function editorialReport(kind: string, at: string) {
       : end.minus({ months: 1 });
   const sql = db();
   const tips =
-    await sql`select p.*,e.competition_id,coalesce(s.result,'pending') result,s.created_at settled_at,(select count(*) from private.availability_observations a where a.tip_id=p.id) observations from private.tip_publications p join private.events e on e.id=p.event_id left join lateral (select result,created_at from private.settlement_events where tip_id=p.id order by created_at desc limit 1) s on true where p.evidence='live_published' and p.published_at>=${from.toUTC().toISO()!} and p.published_at<${end.toUTC().toISO()!} order by p.published_at`;
+    await sql`select p.*,e.competition_id,coalesce(s.result,'pending') result,s.created_at settled_at,(select count(*) from private.availability_observations a where a.tip_id=p.id and a.observed_at<=${at}) observations from private.tip_publications p join private.events e on e.id=p.event_id left join lateral (select result,created_at from private.settlement_events where tip_id=p.id and created_at<=${at} order by created_at desc limit 1) s on true where p.evidence='live_published' and p.published_at>=${from.toUTC().toISO()!} and p.published_at<${end.toUTC().toISO()!} order by p.published_at`;
   const rows: LedgerRow[] = tips.map((t) => ({
     id: t.id,
     eventId: t.event_id,

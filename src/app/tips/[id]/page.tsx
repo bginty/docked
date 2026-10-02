@@ -5,6 +5,7 @@ import { PageHeading, Notice } from "@/components/ui";
 import { ApiForm } from "@/components/forms";
 import { identity } from "@/server/auth";
 import { oddsDisplay } from "@/core/pricing";
+import { EdgeCard } from "@/components/edge-card";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Publication record",
@@ -30,7 +31,7 @@ export default async function Tip({
   return (
     <div className="page">
       <PageHeading
-        eyebrow={`LIVE PUBLISHED / ${tip.availability}`}
+        eyebrow={`LIVE PUBLISHED / ${tip.display_status.replaceAll("_", " ").toUpperCase()}`}
         title={tip.selection}
       />
       <p>
@@ -40,6 +41,7 @@ export default async function Tip({
         })}{" "}
         {timezone}
       </p>
+      <EdgeCard tip={tip} timezone={timezone} format={format} detail />
       <div className="grid two">
         <section className="card">
           <h2>Immutable publication</h2>
@@ -74,7 +76,7 @@ export default async function Tip({
             ))}
           </dl>
           <p>
-            Qualifies under the recorded reference method. Estimates and
+            Met the recorded reference method at publication. Estimates and
             obtainability remain uncertain; liquidity and individual limits are
             unknown.
           </p>

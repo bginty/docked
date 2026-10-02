@@ -8,12 +8,20 @@ import {
   type Evidence,
   type Strategy,
 } from "@/core/pricing";
-import { ledger, type LedgerRow } from "@/core/ledger";
+import Decimal from "decimal.js";
+import { ledger, closingValue, type LedgerRow } from "@/core/ledger";
 import { settle, type Result } from "@/core/settlement";
+import { observePublication } from "@/core/observations";
+import { validateDataset } from "./dataset";
 export type HistoricalEvent = {
   rules: Rules;
   startAt: string;
-  snapshots: { observedAt: string; quotes: Quote[] }[];
+  snapshots: {
+    observedAt: string;
+    quotes: Quote[];
+    archiveRetrievedAt?: string;
+    availabilityEvidence?: string;
+  }[];
   result: Result | null;
 };
 export type Manifest = {
@@ -32,6 +40,16 @@ export type Manifest = {
   from: string;
   to: string;
   historicalUniverseEvidence: string;
+  fixture?: boolean;
+  provider?: { odds: string; results: string };
+  datasetHashes?: {
+    canonical: string;
+    rawFiles: { name: string; sha256: string }[];
+  };
+  freezeArtifactHash?: string;
+  reviewedBy?: string;
+  sourceResolutionSeconds?: number;
+  holdoutProvenance?: string;
 };
 export function replay(
   events: HistoricalEvent[],
@@ -39,8 +57,11 @@ export function replay(
   config: Strategy = strategyV1,
   delaySeconds = 300,
 ) {
+  const validation = validateDataset(events, manifest, config);
+  if (!validation.valid) throw new Error(validation.errors.join("; "));
   if (
-    (hash(config) !== hash(strategyV1) || delaySeconds !== 300) &&
+    (hash({ ...config, version: strategyV1.version }) !== hash(strategyV1) ||
+      delaySeconds !== 300) &&
     !["development", "validation"].includes(manifest.split)
   )
     throw new Error("Sensitivity is prohibited on held-out/subsequent splits");
@@ -68,6 +89,21 @@ export function replay(
   const decisions: unknown[] = [],
     immediate: LedgerRow[] = [],
     delayed: LedgerRow[] = [];
+  const availability: {
+    eventId: string;
+    minutes: number;
+    observedAt: string;
+    odds: string;
+    qualifies: boolean;
+    sourceAt: string;
+  }[] = [];
+  const closing: {
+    eventId: string;
+    observedAt: string;
+    probability: string;
+    clv: string | null;
+    sourceAt: string;
+  }[] = [];
   let missing = 0,
     delaySkipped = 0,
     calibrationCount = 0,
@@ -76,10 +112,13 @@ export function replay(
     marketBrier = 0,
     marketLogLoss = 0;
   const excluded: string[] = [];
-  for (const e of [...events].sort((a, b) =>
-    a.startAt.localeCompare(b.startAt),
+  for (const e of [...events].sort(
+    (a, b) => Date.parse(a.startAt) - Date.parse(b.startAt),
   )) {
-    if (e.startAt < manifest.from || e.startAt >= manifest.to) {
+    if (
+      Date.parse(e.startAt) < Date.parse(manifest.from) ||
+      Date.parse(e.startAt) >= Date.parse(manifest.to)
+    ) {
       excluded.push(`${e.rules.eventId}:outside_split`);
       continue;
     }
@@ -87,8 +126,8 @@ export function replay(
     for (const seconds of config.windowsSeconds) {
       const at = new Date(Date.parse(e.startAt) - seconds * 1000).toISOString();
       const snapshot = [...e.snapshots]
-        .filter((s) => s.observedAt <= at)
-        .sort((a, b) => b.observedAt.localeCompare(a.observedAt))[0];
+        .filter((s) => Date.parse(s.observedAt) <= Date.parse(at))
+        .sort((a, b) => Date.parse(b.observedAt) - Date.parse(a.observedAt))[0];
       if (!snapshot) {
         missing++;
         decisions.push({
@@ -147,7 +186,9 @@ export function replay(
         id: hash({ event: e.rules.eventId, at }),
         eventId: e.rules.eventId,
         publishedAt: at,
-        settledAt: e.result?.observedAt,
+        settledAt: e.result
+          ? new Date(e.result.observedAt).toISOString()
+          : undefined,
         odds: c.offer.prices[c.selection],
         stake: "1",
         evidence: manifest.evidence,
@@ -157,12 +198,68 @@ export function replay(
         ev: c.ev,
       };
       immediate.push(row);
+      const observations = [...e.snapshots]
+        .filter((s) => Date.parse(s.observedAt) > Date.parse(at))
+        .sort((a, b) => Date.parse(a.observedAt) - Date.parse(b.observedAt));
+      const seenTargets = new Set<number>();
+      for (const s of observations) {
+        const obs = observePublication(
+          {
+            rules: e.rules,
+            startAt: e.startAt,
+            observedAt: s.observedAt,
+            publishedAt: at,
+            selection: c.selection,
+            bookmaker: c.offer.bookmaker,
+            minimumOdds: c.minimumOdds,
+            quotes: s.quotes,
+            resolutionSeconds: manifest.sourceResolutionSeconds ?? 300,
+          },
+          config,
+        );
+        if (!obs) continue;
+        for (const minutes of obs.targets)
+          if (!seenTargets.has(minutes)) {
+            availability.push({
+              eventId: e.rules.eventId,
+              minutes,
+              observedAt: s.observedAt,
+              odds: obs.odds,
+              qualifies: obs.qualifies,
+              sourceAt: obs.sourceAt,
+            });
+            seenTargets.add(minutes);
+          }
+        const secondsBefore =
+          (Date.parse(e.startAt) - Date.parse(s.observedAt)) / 1000;
+        if (
+          secondsBefore > 600 &&
+          secondsBefore <= 780 &&
+          !closing.some((x) => x.eventId === e.rules.eventId)
+        ) {
+          const clv = closingValue(
+            row.odds,
+            obs.probability,
+            obs.referenceSourceAt,
+            e.startAt,
+            true,
+          );
+          closing.push({
+            eventId: e.rules.eventId,
+            observedAt: s.observedAt,
+            probability: obs.probability,
+            clv,
+            sourceAt: obs.referenceSourceAt,
+          });
+          if (clv !== null) row.clv = clv;
+        }
+      }
       const after = new Date(
         Date.parse(at) + delaySeconds * 1000,
       ).toISOString();
       const later = [...e.snapshots]
-        .filter((s) => s.observedAt >= after)
-        .sort((a, b) => a.observedAt.localeCompare(b.observedAt))[0];
+        .filter((s) => Date.parse(s.observedAt) >= Date.parse(after))
+        .sort((a, b) => Date.parse(a.observedAt) - Date.parse(b.observedAt))[0];
       if (
         !later ||
         Date.parse(later.observedAt) - Date.parse(at) >
@@ -193,14 +290,24 @@ export function replay(
           x.selection === c.selection &&
           x.offer.bookmaker === c.offer.bookmaker,
       );
-      if (!d) {
+      if (!d || new Decimal(d.offer.prices[d.selection]).lt(c.minimumOdds)) {
         delaySkipped++;
         continue;
       }
+      const close = closing.find((v) => v.eventId === row.eventId);
       delayed.push({
         ...row,
         odds: d.offer.prices[d.selection],
-        publishedAt: later.observedAt,
+        publishedAt: new Date(later.observedAt).toISOString(),
+        clv: close
+          ? (closingValue(
+              d.offer.prices[d.selection],
+              close.probability,
+              close.sourceAt,
+              e.startAt,
+              true,
+            ) ?? undefined)
+          : undefined,
       });
     }
   }
@@ -212,12 +319,43 @@ export function replay(
           ? "CONTAMINATED RETROSPECTIVE EVALUATION"
           : "Retrospective evaluation; holdout provenance requires independent review",
     manifest,
+    validation,
+    strategy: {
+      version: config.version,
+      configHash: hash(config),
+      config,
+      dispatchDelaySeconds: delaySeconds,
+    },
     decisions,
     excluded,
     coverage: {
-      events: events.length,
       missingWindows: missing,
       delayedSkipped: delaySkipped,
+      ...validation.coverage,
+    },
+    availability: {
+      definition:
+        "First actual fresh observation within 60 seconds after each target; absent measurements stay unknown",
+      observations: availability,
+      targets: [5, 15, 60].map((minutes) => {
+        const measured = availability.filter((v) => v.minutes === minutes);
+        return {
+          minutes,
+          eligibleSelections: immediate.length,
+          measured: measured.length,
+          missing: immediate.length - measured.length,
+          qualifying: measured.filter((v) => v.qualifies).length,
+          rate: measured.length
+            ? measured.filter((v) => v.qualifies).length / measured.length
+            : null,
+        };
+      }),
+    },
+    closing: {
+      definition:
+        "Pre-start proxy: first fresh observation T-13 to T-10 minutes, after selection only; never used by decision engine",
+      observations: closing,
+      missing: immediate.length - closing.length,
     },
     immediate: ledger(immediate, manifest.evidence),
     delayed: ledger(delayed, manifest.evidence),

@@ -35,6 +35,7 @@ export function config(env: Record<string, string | undefined> = process.env) {
       !!env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     registration: env.REGISTRATION_ENABLED === "true",
     publication: env.PUBLICATION_ENABLED === "true",
+    paper: env.FORWARD_PAPER_ENABLED === "true",
     sending: production && env.SENDING_ENABLED === "true",
   };
 }

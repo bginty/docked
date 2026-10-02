@@ -12,11 +12,13 @@ import {
 import { eligible, type RegionPolicy } from "../src/core/policy";
 import { hash } from "../src/core/pricing";
 import { ResendEmail } from "../src/providers/email";
-import { randomBytes } from "node:crypto";
+import { unsubscribeToken, retryIsSafe } from "../src/core/delivery";
+import { processAccountDeletion } from "../src/server/account-deletion";
 import { currentTip, expandPublication } from "../src/server/dispatch";
 import { ingestSport, evaluateDue } from "../src/server/ingestion";
 import { collectObservations } from "../src/server/observations";
 import { editorialReport } from "../src/server/editorial-report";
+import { drainJobs, isolatedObservation } from "../src/core/worker-runner";
 const mode = process.argv[2] ?? "once";
 async function main() {
   const settings = config();
@@ -36,12 +38,14 @@ async function main() {
   await sql`update private.outbox set state='dead',last_error='Lease exhausted after repeated crashes' where state='leased' and lease_until<now() and attempts>=5`;
   await sql`update private.job_runs set state='dead',failure_reason='Lease exhausted after repeated crashes' where state='leased' and lease_until<now() and attempts>=5`;
   const now = new Date().toISOString();
-  await collectObservations();
+  await isolatedObservation(collectObservations, async () => {
+    await sql`insert into private.audit_events(actor,action,subject,details) values('worker','observation_failure','service','{"reason":"Observation collection failed; review source/configuration"}')`;
+  });
   await sql.begin(async (tx) => {
     const due =
       await tx`select id from private.articles where status='scheduled' and scheduled_at<=now() and (expires_at is null or expires_at>now()) for update skip locked`;
     for (const a of due) {
-      await tx`update private.articles set status='published',published_at=now() where id=${a.id}`;
+      await tx`update private.articles set status='published',published_at=coalesce(published_at,now()) where id=${a.id}`;
       await tx`insert into private.audit_events(actor,action,subject) values('worker','scheduled_article_published',${a.id})`;
     }
   });
@@ -69,11 +73,13 @@ async function main() {
     ])
       await sql`insert into private.job_runs(dedupe_key,kind,payload) values(${`ingest:${sport}:${Math.floor(Date.now() / 300000)}`},'ingest',${sql.json({ sport })}) on conflict do nothing`;
   }
-  const job = await leaseJob();
-  if (job) {
+  await drainJobs(leaseJob, async (job) => {
     const start = Date.now();
     try {
-      if (job.kind === "ingest") {
+      if (job.kind === "account_deletion") {
+        if (typeof job.payload.userId === "string")
+          await processAccountDeletion(job.payload.userId);
+      } else if (job.kind === "ingest") {
         await ingestSport(job.payload.sport);
         await evaluateDue();
       } else if (job.kind === "board-refresh") {
@@ -97,7 +103,7 @@ async function main() {
         "Job handler failed; inspect configuration without logging secrets",
       );
     }
-  }
+  });
   const item = await leaseOutbox();
   if (!item) return;
   if (item.kind === "publication") {
@@ -108,21 +114,39 @@ async function main() {
     await sql`update private.outbox set state='suppressed',last_error='Missing recipient' where id=${item.id} and lease_token=${item.lease_token}`;
     return;
   }
-  const token = randomBytes(32).toString("hex");
-  await sql`insert into private.unsubscribe_tokens(token_hash,user_id) values(${hash(token)},${item.user_id})`;
+  // Only real-send eligible deployments prepare a durable reservation. Preview
+  // cannot reach the external adapter. A reservation survives a process crash.
+  let token = "";
+  if (settings.sending) {
+    token = unsubscribeToken(
+      item.id,
+      item.user_id,
+      process.env.UNSUBSCRIBE_SECRET ?? "",
+    );
+    await sql.begin(async (tx) => {
+      await tx`select pg_advisory_xact_lock(6729381)`;
+      const recipients =
+        await tx`select p.id,p.timezone from public.profiles p join private.outbox o on o.user_id=p.id where o.id=${item.id} and o.state='leased' and o.lease_token=${item.lease_token} and o.lease_until>now() and p.disabled_at is null for share of p`;
+      if (!recipients.length) return;
+      await tx`insert into private.unsubscribe_tokens(token_hash,user_id) values(${hash(token)},${item.user_id}) on conflict do nothing`;
+      await tx`insert into private.delivery_attempts(outbox_id,user_id,kind,local_day,status) select ${item.id},${item.user_id},${item.kind},${localDay(new Date().toISOString(), recipients[0].timezone)},'reserved' where not exists(select 1 from private.delivery_attempts where outbox_id=${item.id} and status in ('reserved','sent'))`;
+    });
+  }
   await sql.begin(async (tx) => {
     await tx`select pg_advisory_xact_lock(6729381)`;
     // Match unsubscribe/preference lock order: recipient first, then outbox.
     await tx`select user_id from public.notification_preferences where user_id=${item.user_id} for update`;
     const locked =
-      await tx`select state,lease_token from private.outbox where id=${item.id} for update`;
+      await tx`select state,lease_token,lease_until from private.outbox where id=${item.id} for update`;
     if (
       locked[0]?.state !== "leased" ||
-      locked[0]?.lease_token !== item.lease_token
+      locked[0]?.lease_token !== item.lease_token ||
+      !locked[0]?.lease_until ||
+      new Date(locked[0].lease_until).getTime() <= Date.now()
     )
       return;
     const profiles =
-      await tx`select p.*,n.*,u.email from public.profiles p join public.notification_preferences n on n.user_id=p.id join auth.users u on u.id=p.id where p.id=${item.user_id} and p.disabled_at is null for update of n`;
+      await tx`select p.*,n.*,u.email from public.profiles p join public.notification_preferences n on n.user_id=p.id join auth.users u on u.id=p.id where p.id=${item.user_id} and p.disabled_at is null and u.email_confirmed_at is not null for update of n`;
     const p = profiles[0];
     if (!p) {
       await tx`update private.outbox set state='suppressed',last_error='Account unavailable' where id=${item.id}`;
@@ -150,14 +174,28 @@ async function main() {
       : null;
     const consent =
       await tx`select granted from private.consent_events where user_id=${p.id} and purpose=${item.kind} order by created_at desc limit 1`;
-    const day = localDay(now, p.timezone);
+    const day = localDay(new Date().toISOString(), p.timezone);
     const count =
-      await tx`select count(*) from private.delivery_attempts where user_id=${p.id} and local_day=${day} and kind='edge' and status in ('sent','reserved')`;
+      await tx`select count(*) from private.delivery_attempts where user_id=${p.id} and local_day=${day} and kind='edge' and status in ('sent','reserved') and outbox_id<>${item.id}`;
     const budget =
-      await tx`select count(*) from private.delivery_attempts where created_at>=date_trunc('day',now()) and status in ('sent','reserved')`;
+      await tx`select count(*) from private.delivery_attempts where created_at>=date_trunc('day',now()) and status in ('sent','reserved') and outbox_id<>${item.id}`;
+    const attempts =
+      await tx`select created_at,status from private.delivery_attempts where outbox_id=${item.id} and status in ('reserved','sent') order by created_at limit 1`;
+    if (attempts[0]?.status === "sent") {
+      await tx`update private.outbox set state='sent',lease_until=null where id=${item.id}`;
+      return;
+    }
+    if (attempts[0] && !retryIsSafe(attempts[0].created_at)) {
+      await tx`update private.outbox set state='dead',last_error='Provider idempotency window expired; manual reconciliation required' where id=${item.id}`;
+      return;
+    }
     const kind = ["edge", "digest", "education", "service"].includes(item.kind)
       ? item.kind
-      : "digest";
+      : null;
+    if (!kind) {
+      await tx`update private.outbox set state='suppressed',last_error='Unsupported notification kind' where id=${item.id}`;
+      return;
+    }
     const fresh = kind === "edge" ? await currentTip(item.payload.tipId) : null;
     const dispatchNow = new Date().toISOString();
     const decision = dispatchDecision({
@@ -190,6 +228,8 @@ async function main() {
       globalBudgetRemaining: 1000 - Number(budget[0].count),
     });
     if (decision !== "send") {
+      // Retain a reservation across ambiguous prior sends and quiet-hour retry.
+      // Conservative budget accounting is preferable to resetting idempotency.
       if (decision === "defer_quiet_hours") {
         await tx`update private.outbox set state='queued',available_at=${nextQuietEnd(dispatchNow, p.timezone, p.quiet_end)},lease_until=null,last_error='Deferred to local quiet-hour end' where id=${item.id} and lease_token=${item.lease_token}`;
         return;
@@ -213,7 +253,7 @@ async function main() {
         unsubscribeUrl: `${settings.siteUrl}/api/unsubscribe?token=${token}`,
         idempotencyKey: item.dedupe_key,
       });
-      await tx`insert into private.delivery_attempts(outbox_id,user_id,kind,local_day,provider_id,status) values(${item.id},${p.id},${kind},${day},${sent.id},'sent')`;
+      await tx`update private.delivery_attempts set provider_id=${sent.id},status='sent',local_day=${day},latency_ms=${Date.now() - new Date(item.created_at).getTime()} where outbox_id=${item.id} and status='reserved'`;
       await tx`update private.outbox set state='sent',lease_until=null where id=${item.id} and lease_token=${item.lease_token}`;
     } catch {
       await tx`update private.outbox set state=case when attempts>=5 then 'dead' else 'queued' end,available_at=now()+power(2,attempts)*interval '10 seconds',last_error='Provider send failed',lease_until=null where id=${item.id} and lease_token=${item.lease_token}`;

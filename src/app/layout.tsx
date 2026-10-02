@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { config } from "@/server/config";
+import { AnalyticsObserver } from "@/components/analytics-observer";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
   title: {
@@ -17,13 +18,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Docked — Only when the price offers value.",
     description: "Transparent sports-pricing research. No guaranteed returns.",
-    images: ["/social-card.svg"],
+    type: "website",
+    siteName: "Docked",
+    locale: "en_AU",
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Docked — Only when the price offers value.",
+    description: "Transparent sports-pricing research. No guaranteed returns.",
+    images: ["/opengraph-image"],
   },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
+        <AnalyticsObserver />
         <a className="skip-link" href="#main">
           Skip to content
         </a>
@@ -74,6 +85,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <nav aria-label="Research links">
               <Link href="/methodology">Methodology</Link>
+              <Link href="/sports">Sports and research scope</Link>
               <Link href="/data-status">Data status</Link>
               <Link href="/about">About Docked</Link>
               <Link href="/contact">Contact</Link>

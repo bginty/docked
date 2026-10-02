@@ -58,6 +58,20 @@ export default async function Admin() {
         research gates. Auditors have read-only access enforced by every
         mutation handler.
       </Notice>
+      <nav aria-label="Operations dashboards" className="actions">
+        <Link className="button ghost" href="/admin/data-health">
+          Data health
+        </Link>
+        <Link className="button ghost" href="/admin/forward-paper">
+          Forward paper
+        </Link>
+        <Link className="button ghost" href="/admin/strategies">
+          Strategy lifecycle
+        </Link>
+        <Link className="button ghost" href="/admin/analytics">
+          Acquisition and retention
+        </Link>
+      </nav>
       <div className="admin-grid">
         <section className="card">
           <h2>Global controls</h2>

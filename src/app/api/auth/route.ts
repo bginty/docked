@@ -4,6 +4,7 @@ import { authClient, sameOrigin } from "@/server/auth";
 import { config } from "@/server/config";
 import { db, rateLimit } from "@/server/db";
 import { hash } from "@/core/pricing";
+import { recordAnalytics } from "@/server/analytics";
 const schema = z.object({
   action: z.enum([
     "signup",
@@ -25,6 +26,7 @@ const schema = z.object({
   terms: z.boolean().optional(),
   digest: z.boolean().optional(),
   education: z.boolean().optional(),
+  analytics: z.boolean().optional(),
   edgeAlerts: z.boolean().optional(),
   factorId: z.string().uuid().optional(),
   code: z
@@ -81,7 +83,19 @@ export async function POST(request: Request) {
   const client = (await authClient())!;
   const sql = db();
   if (v.action === "logout") {
-    await client.auth.signOut({ scope: "global" });
+    const { data: session } = await client.auth.getSession();
+    const token = session.session?.access_token;
+    const verified = token ? await client.auth.getUser(token) : null;
+    // Revoke database-backed sessions first so an Auth-provider error cannot
+    // leave copied JWTs usable against either the application or RLS.
+    if (verified?.data.user && !verified.error)
+      await sql`delete from auth.sessions where user_id=${verified.data.user.id}`;
+    const { error } = await client.auth.signOut({ scope: "global" });
+    if (error && !verified?.data.user)
+      return NextResponse.json(
+        { error: "Sign-out could not be confirmed. Please retry." },
+        { status: 503 },
+      );
     return NextResponse.json({ ok: true, redirect: "/" });
   }
   if (v.action === "mfa_enroll") {
@@ -190,8 +204,10 @@ export async function POST(request: Request) {
       ok: true,
       message: "Check your email for account instructions.",
     });
-  await sql.begin(async (tx) => {
-    await tx`insert into public.profiles(id,country,state,age_attested,accepted_version) values(${data.user!.id},${v.country!},${v.state!},true,'2026-10-draft') on conflict do nothing`;
+  const created = await sql.begin(async (tx) => {
+    const inserted =
+      await tx`insert into public.profiles(id,country,state,age_attested,accepted_version) values(${data.user!.id},${v.country!},${v.state!},true,'2026-10-draft') on conflict do nothing returning id`;
+    if (!inserted.length) return false;
     await tx`insert into public.notification_preferences(user_id,digest,education,edge_alerts) values(${data.user!.id},${v.digest ? "weekly" : "off"},${!!v.education},${!!v.edgeAlerts}) on conflict do nothing`;
     for (const [purpose, granted] of Object.entries({
       terms: true,
@@ -199,9 +215,13 @@ export async function POST(request: Request) {
       digest: !!v.digest,
       education: !!v.education,
       edge: !!v.edgeAlerts,
+      analytics: !!v.analytics,
     }))
       await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${data.user!.id},${purpose},${granted},'2026-10-draft',${data.user!.id})`;
+    return true;
   });
+  if (created)
+    await recordAnalytics(data.user.id, "signup_completed", undefined, true);
   return NextResponse.json({
     ok: true,
     message:

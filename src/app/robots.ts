@@ -13,6 +13,12 @@ export default function robots(): MetadataRoute.Robots {
               "/demo",
               "/login",
               "/join",
+              "/recover",
+              "/reset-password",
+              "/mfa",
+              "/unsubscribe",
+              "/auth/",
+              "/tips/",
             ],
           }
         : { disallow: "/" }),

@@ -1,3 +1,4 @@
+import "server-only";
 import postgres from "postgres";
 let connection: ReturnType<typeof postgres> | undefined;
 export function db() {
@@ -5,7 +6,11 @@ export function db() {
   return (connection ??= postgres(process.env.DATABASE_URL, {
     max: 5,
     prepare: false,
-    ssl: process.env.APP_ENV === "production" ? "require" : undefined,
+    ssl: ["localhost", "127.0.0.1", "[::1]"].includes(
+      new URL(process.env.DATABASE_URL).hostname,
+    )
+      ? undefined
+      : "require",
   }));
 }
 export async function rateLimit(key: string, limit = 20, seconds = 60) {

@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { db } from "./db";
+import { verifiedSessionClaims } from "@/core/auth-policy";
 export async function authClient() {
   if (
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
@@ -20,7 +21,9 @@ export async function authClient() {
               jar.set(name, value, {
                 ...options,
                 sameSite: "lax",
-                secure: process.env.APP_ENV === "production",
+                secure:
+                  new URL(process.env.SITE_URL ?? "http://localhost:3000")
+                    .protocol === "https:",
               }),
             );
           } catch {
@@ -34,24 +37,23 @@ export async function authClient() {
 export async function identity() {
   const c = await authClient();
   if (!c) return null;
+  const { data: session } = await c.auth.getSession();
+  const token = session.session?.access_token;
+  if (!token) return null;
   const {
     data: { user },
     error,
-  } = await c.auth.getUser();
+  } = await c.auth.getUser(token);
   if (error || !user || !user.email_confirmed_at || user.is_anonymous)
     return null;
   const sql = db();
   const p =
     await sql`select * from public.profiles where id=${user.id} and disabled_at is null`;
   if (!p.length) return null;
-  const { data: session } = await c.auth.getSession();
-  const token = session.session?.access_token;
-  if (!token) return null;
-  const claims = JSON.parse(
-    Buffer.from(token.split(".")[1], "base64url").toString(),
-  );
+  const claims = verifiedSessionClaims(token, user.id);
+  if (!claims) return null;
   const active =
-    await sql`select id from auth.sessions where id=${claims.session_id} and user_id=${user.id}`;
+    await sql`select id from auth.sessions where id=${claims.sessionId} and user_id=${user.id} and (not_after is null or not_after>now())`;
   if (!active.length) return null;
   return { user, profile: p[0], aal: claims.aal as string };
 }

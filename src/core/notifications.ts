@@ -36,7 +36,8 @@ export function dispatchDecision(input: {
 }) {
   const p = input.preferences,
     t = DateTime.fromISO(input.now, { zone: "utc" }).setZone(p.timezone);
-  if (!t.isValid) return "invalid_timezone";
+  if (!t.isValid || !Number.isFinite(Date.parse(input.now)))
+    return "invalid_timezone";
   if (input.environment !== "production" || !input.sendingEnabled)
     return "preview_or_sending_paused";
   if (
@@ -53,6 +54,7 @@ export function dispatchDecision(input: {
     (!p.edgeAlerts ||
       !input.fresh ||
       !input.startAt ||
+      !Number.isFinite(Date.parse(input.startAt)) ||
       Date.parse(input.startAt) - Date.parse(input.now) <= 600000)
   )
     return "edge_invalid";
@@ -61,6 +63,12 @@ export function dispatchDecision(input: {
     (input.kind === "education" && !p.education)
   )
     return "not_opted_in";
+  if (
+    !Number.isFinite(input.globalBudgetRemaining) ||
+    !Number.isFinite(input.sentToday) ||
+    input.sentToday < 0
+  )
+    return "budget_unknown";
   if (input.kind === "edge" && input.sentToday >= 2) return "daily_cap";
   const quiet =
     p.quietStart > p.quietEnd

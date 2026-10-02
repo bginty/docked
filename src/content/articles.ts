@@ -1,4 +1,4 @@
-export const articles = [
+const drafts = [
   {
     slug: "value-versus-winners",
     title: "A good prediction is not always a good price.",
@@ -22,6 +22,10 @@ export const articles = [
       [
         "Choosing not to participate",
         "Understanding a calculation does not create an obligation to bet. You can use the research without wagering. Never treat an apparent edge as income or a reason to recover a loss. If gambling is affecting your wellbeing, pause and use the support resources on our Safer Gambling page.",
+      ],
+      [
+        "Check the sensitivity before trusting the sign",
+        "Using the same fictional 2.00 price, a 55% estimate gives +10% EV, a 50% estimate gives 0%, and a 48% estimate gives −4%. A seven-point estimation difference changes the conclusion entirely. Ask where the probability came from, whether the entire market was observed at the same time, and whether the offered bookmaker helped create its own reference. If those questions have no documented answer, the number should not be presented as reliable evidence of value.",
       ],
     ],
   },
@@ -48,6 +52,10 @@ export const articles = [
         "What to check",
         "Read the market period and settlement rules, source time, minimum odds and current status. A watchlist target only describes a hypothetical price condition; it is not an approved active tip. Do not increase stakes or use another account to compensate for a missed quote. Missing an opportunity is an acceptable outcome.",
       ],
+      [
+        "Compare the same price convention",
+        "The calculation uses decimal odds, including the returned stake. A display in fractional or American format is a conversion, not a different opportunity. Convert back to decimal before comparing a quote with the recorded threshold, and retain enough precision to avoid rounding below the rule. If the market or probability estimate has changed, an old minimum is not a new assessment. Read the current status alongside the locked publication minimum; a suspended record cannot be revived by finding the same number elsewhere.",
+      ],
     ],
   },
   {
@@ -72,6 +80,10 @@ export const articles = [
       [
         "Less activity can be useful",
         "An informative service can explain its process, publish complete results and teach uncertainty without encouraging daily wagering. Pause messages, choose a weekly digest or simply read occasionally. No streak, reward or obligation should depend on betting frequency. If notifications make it harder to disengage, turn them off.",
+      ],
+      [
+        "What an honest quiet-day report contains",
+        "A useful report identifies the scan period, configured competitions and markets, whether sources were healthy, and the reasons candidates were rejected. It separates a successful scan with no qualifying candidates from a scan that failed. Any results shown should belong to actual earlier publications, with losing entries retained. The next-fixture list also requires verified event data. Educational reading and methodology remain useful when those lists are empty; neither needs a manufactured selection to justify visiting the site.",
       ],
     ],
   },
@@ -99,6 +111,10 @@ export const articles = [
         "Independence matters",
         "Two brands can share ownership or trading infrastructure. Counting related sources as independent can exaggerate agreement. The offered bookmaker and its related skins must not contribute to their own reference. Even genuinely independent sources can share information and errors. A margin-free reference remains an estimate, not a claim of certainty or a reason to risk money.",
       ],
+      [
+        "Try an asymmetric complete market",
+        "Consider fictional decimal prices 1.80 and 2.10. The reciprocals are about 0.55556 and 0.47619, summing to 1.03175. Proportional normalisation gives approximately 0.53846 and 0.46154, which sum to one. These are different from simply subtracting half the overround from each raw probability. The choice of margin-removal method matters and must be declared in advance. Do this calculation separately for each complete reference vector, then apply the documented source weights.",
+      ],
     ],
   },
   {
@@ -125,6 +141,10 @@ export const articles = [
         "Do not chase",
         "A loss does not make a subsequent win due. Increasing exposure to recover losses can create serious harm. Tracking should help you understand risk and decide to stop, not create pressure to continue. Optional personal records remain separate from Docked’s official ledger. You never need to wager to follow this research.",
       ],
+      [
+        "A run length is not a forecast",
+        "For an illustrative independent event with win probability 50%, four specified consecutive losses have probability 0.5 to the fourth power, or 6.25%. That is not the probability of seeing at least one four-loss run somewhere in a season, which has many possible starting positions. It also does not describe correlated fixtures or uncertain probabilities. A report should distinguish this kind of arithmetic example from a measured forecast and should never use it to imply that a win becomes due after four losses.",
+      ],
     ],
   },
   {
@@ -150,6 +170,10 @@ export const articles = [
         "Interpret cautiously",
         "Calibration asks whether probability estimates correspond to outcome frequencies across the full eligible universe. Checking only selected winners would be biased. Dependence and changing markets limit conclusions from small samples. A transparent service preserves negative and inconclusive findings and does not turn an estimated advantage into a guaranteed-income claim.",
       ],
+      [
+        "Read a tiny ledger without hiding unresolved entries",
+        "Take four fictional one-unit records: a win at 2.20, a loss at 1.80, a void and a pending selection. Settled non-void profit is +1.20 −1 = +0.20 units, divided by two settled non-void units for 10% ROI. Total recorded turnover is four units; one unit is void and one is pending. Reporting +10% without those denominators would hide how little is settled. Later settlement changes the measurable sample, not the original prices or the fact that the earlier summary had limited coverage.",
+      ],
     ],
   },
   {
@@ -174,6 +198,10 @@ export const articles = [
       [
         "What remains unknown",
         "The reference can itself be biased. Limits, liquidity, delays and regional access can separate a quoted benchmark from an obtainable price. Positive CLV is useful evidence to investigate alongside calibration, actual results and availability. It is not proof of future profitability and should never be used to pressure someone to keep betting.",
+      ],
+      [
+        "Make the closing protocol auditable",
+        "Write down the close cutoff before examining returns. Preserve the exact snapshot identifier, source time, market rules and independently normalised reference vector. Reject post-start observations and show how many published entries lack an acceptable close. An average from only the measured subset can differ from the complete ledger, so both counts belong beside the statistic. If a result correction arrives later, retain that correction separately; it must not rewrite the closing evidence or turn a missing measurement into a convenient value.",
       ],
     ],
   },
@@ -201,8 +229,19 @@ export const articles = [
         "A fictional comparison",
         "Imagine a profitable replay and an unprofitable first paper month. Combining their returns into one headline would conceal their different origins. Report each separately, with its own sample size, exclusions and uncertainty. Demo fixtures are a fourth category used only for software checks and illustrations. They must never enter any performance claim. Research that finds no reliable advantage is still a valid result.",
       ],
+      [
+        "Ask what existed before the result",
+        "For a backtest, request dataset hashes, data availability timestamps, the strategy configuration and code commit, development/validation/test splits and the full exclusion log. For forward paper, request a freeze timestamp and immutable pre-event decisions. For live publications, request the original publication time and a complete archive with later availability, settlement and correction events. A screenshot of a return chart does not answer these provenance questions. If parameters changed after viewing held-out results, disclose the contamination and create a new version before evaluating again.",
+      ],
     ],
   },
 ];
+export const articles = drafts.map((article) => ({
+  ...article,
+  minutes: Math.max(
+    1,
+    Math.ceil(article.sections.flat().join(" ").split(/\s+/).length / 200),
+  ),
+}));
 export const safetyNote =
   "All worked examples are fictional. Gambling can cause financial and personal harm. You can use Docked without betting. Never chase losses or treat betting as income.";

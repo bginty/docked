@@ -6,25 +6,52 @@ export type Result = {
   revision: string;
   authorised: boolean;
   eventId: string;
-  status: "final" | "cancelled" | "postponed" | "abandoned" | "disputed";
+  status:
+    | "final"
+    | "cancelled"
+    | "postponed"
+    | "rescheduled"
+    | "abandoned"
+    | "disputed"
+    | "manual_review"
+    | "void";
   rules: Rules;
   scores: Record<string, number>;
   observedAt: string;
+  scheduledStartAt?: string;
+  supersedesRevision?: string;
+  // A void is an explicit reviewed settlement instruction, never inferred
+  // from a postponed/cancelled fixture or missing score.
+  reason?: string;
+  settlementBasis?: string;
 };
 export function settle(
   rules: Rules,
   selection: string,
   result: Result,
 ): "won" | "lost" | "void" | "pending" | "disputed" {
+  if (!result.authorised || result.eventId !== rules.eventId) return "pending";
   if (
-    !result.authorised ||
-    result.eventId !== rules.eventId ||
-    result.status !== "final"
+    !result.source.trim() ||
+    !result.sourceEventId.trim() ||
+    !result.revision.trim() ||
+    !Number.isFinite(Date.parse(result.observedAt))
   )
-    return result.status === "disputed" ? "disputed" : "pending";
+    return "disputed";
+  if (!rules.outcomes.includes(selection) || hash(result.rules) !== hash(rules))
+    return "disputed";
+  if (result.status === "void")
+    return result.reason?.trim() && result.settlementBasis?.trim()
+      ? "void"
+      : "disputed";
+  if (result.status !== "final")
+    return ["disputed", "manual_review"].includes(result.status)
+      ? "disputed"
+      : "pending";
   if (
-    !rules.outcomes.includes(selection) ||
-    hash(result.rules) !== hash(rules) ||
+    rules.participants.length !== 2 ||
+    Object.keys(result.scores).sort().join("\u0000") !==
+      [...rules.participants].sort().join("\u0000") ||
     rules.participants.some(
       (p) => !Number.isInteger(result.scores[p]) || result.scores[p] < 0,
     )

@@ -33,10 +33,11 @@ export default async function Dashboard() {
       </div>
     );
   const sql = db();
-  const [prefs, saved, personal] = await Promise.all([
+  const [prefs, saved, personal, analyticsConsent] = await Promise.all([
     sql`select * from public.notification_preferences where user_id=${who.user.id}`,
     sql`select tip_id from public.saved_tips where user_id=${who.user.id}`,
     sql`select * from public.personal_entries where user_id=${who.user.id} order by created_at desc`,
+    sql`select granted from private.consent_events where user_id=${who.user.id} and purpose='analytics' order by created_at desc limit 1`,
   ]);
   const p = prefs[0];
   return (
@@ -55,6 +56,13 @@ export default async function Dashboard() {
         <Link href="/api/member">Export account data</Link>
         <Link href="/mfa">MFA settings</Link>
       </nav>
+      {!who.profile.onboarding_completed_at && (
+        <Notice>
+          Complete your preferences below to finish onboarding. Every optional
+          communication and analytics choice is yours; leaving them off does not
+          prevent reading or account use.
+        </Notice>
+      )}
       <div className="grid two">
         <section id="saved" className="card">
           <h2>Saved tips</h2>
@@ -133,6 +141,13 @@ export default async function Dashboard() {
             <Check name="paused" checked={p?.paused}>
               Pause all optional communications.
             </Check>
+            <Check
+              name="analytics"
+              checked={analyticsConsent[0]?.granted === true}
+            >
+              Allow optional usage analytics. This choice is separate from email
+              and alert consent.
+            </Check>
             <p className="small-note">
               Quiet hours: 21:00–08:00 in your timezone. Stale alerts are
               discarded.
@@ -167,6 +182,49 @@ export default async function Dashboard() {
               {r.label} · {r.odds} · {r.result}
             </p>
           ))}
+        </section>
+        <section className="card">
+          <h2>Country, region and eligibility</h2>
+          <p>
+            Current declaration: {who.profile.country} / {who.profile.state}. A
+            location declaration does not grant access to restricted tips.
+            Changing it pauses optional communications while server-side
+            eligibility is checked again.
+          </p>
+          <ApiForm
+            endpoint="/api/member"
+            action="jurisdiction"
+            submit="Update region and pause alerts"
+          >
+            <label>
+              Country
+              <select
+                name="country"
+                defaultValue={who.profile.country}
+                required
+              >
+                <option value="AU">Australia</option>
+                <option value="NZ">New Zealand</option>
+                <option value="GB">United Kingdom</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+              </select>
+            </label>
+            <Field
+              label="State / region"
+              name="state"
+              value={who.profile.state}
+              required
+            />
+            <Check name="age" required>
+              I meet the applicable legal age in my country/state and am at
+              least 18.
+            </Check>
+            <Check name="terms" required>
+              I accept the current <Link href="/terms">Terms</Link> and
+              acknowledge the <Link href="/privacy">Privacy notice</Link>.
+            </Check>
+          </ApiForm>
         </section>
         <section className="card">
           <h2>Account controls</h2>

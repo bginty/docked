@@ -93,7 +93,7 @@ export async function POST(request: Request) {
           throw new Error("Invalid transition");
         if (v.to === "scheduled" && !v.scheduledAt)
           throw new Error("Schedule required");
-        await tx`update private.articles set status=${v.to},evidence=${tx.json([v.evidence])},scheduled_at=${v.scheduledAt ?? null},published_at=case when ${v.to}='published' then now() else published_at end where id=${v.id}`;
+        await tx`update private.articles set status=${v.to},evidence=${tx.json([v.evidence])},scheduled_at=${v.scheduledAt ?? null},published_at=case when ${v.to}='published' then coalesce(published_at,now()) else published_at end where id=${v.id}`;
         await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},${"article_" + v.to},${v.id},${tx.json({ evidence: v.evidence })})`;
       });
       return NextResponse.json({ ok: true, message: "Workflow updated." });
@@ -103,8 +103,8 @@ export async function POST(request: Request) {
         "schedule",
         "suspend_region",
         "suspend_provider",
-        "strategy_activate",
-        "strategy_paper_start",
+        "strategy_create",
+        "strategy_transition",
         "correction",
         "retry_job",
       ].includes(body.action)

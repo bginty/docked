@@ -85,7 +85,22 @@ test("hash mismatches, missing rights and production evidence classes rejected",
 test("contaminated real-data reports labelled", () => {
   const e = events();
   assert.match(
-    replay(e, { ...manifest(e), evidence: "retrospective_backtest" }).label,
+    replay(e, {
+      ...manifest(e),
+      evidence: "retrospective_backtest",
+      fixture: false,
+      provider: {
+        odds: "fictional-contract-test-only",
+        results: "fictional-contract-test-only",
+      },
+      reviewedBy: "fixture-test",
+      sourceResolutionSeconds: 300,
+      freezeArtifactHash: hash("fictional-freeze"),
+      datasetHashes: {
+        canonical: hash(e),
+        rawFiles: [{ name: "fictional-fixture-only", sha256: hash(e) }],
+      },
+    }).label,
     /CONTAMINATED/,
   );
 });

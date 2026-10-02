@@ -50,50 +50,39 @@ export async function adminOperation(body: Record<string, unknown>) {
     });
     return "Provider suspended.";
   }
-  if (body.action === "strategy_activate") {
-    await requireRole(["owner"]);
+  if (body.action === "strategy_create") {
     const v = z
       .object({
-        id: z.string(),
-        researchRun: z.string().uuid(),
-        paperRun: z.string().uuid(),
+        id: z.string().regex(/^[a-z0-9][a-z0-9._-]{2,80}$/),
+        codeCommit: z.string().regex(/^[0-9a-f]{40}$/),
       })
       .parse(body);
+    const strategy = { ...strategyV1, version: v.id };
     await sql.begin(async (tx) => {
-      const runs =
-        await tx`select id,evidence,contaminated from private.validation_runs where strategy_id=${v.id} and id in (${v.researchRun},${v.paperRun})`;
-      if (
-        !runs.some(
-          (r) =>
-            r.id === v.researchRun &&
-            r.evidence === "retrospective_backtest" &&
-            !r.contaminated,
-        ) ||
-        !runs.some((r) => r.id === v.paperRun && r.evidence === "forward_paper")
-      )
-        throw new Error("Reviewed research and forward paper required");
-      const updated =
-        await tx`update private.strategy_versions set active=true,research_approved_at=now(),paper_approved_at=now(),owner_approved_at=now(),approval_evidence=${reason} where id=${v.id} and frozen_at is not null and config_hash=${hash(strategyV1)} returning id`;
-      if (!updated.length) throw new Error("Strategy/config mismatch");
-      await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'strategy_owner_approval',${v.id},${tx.json({ reason, researchRun: v.researchRun, paperRun: v.paperRun })})`;
+      await tx`insert into private.strategy_versions(id,config,config_hash,code_commit) values(${v.id},${tx.json(strategy)},${hash(strategy)},${v.codeCommit})`;
+      await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'strategy_draft_created',${v.id},${tx.json({ reason, codeCommit: v.codeCommit, configHash: hash(strategy) })})`;
     });
-    return "Strategy activated with evidence references. Global publication remains separately controlled.";
+    return "Draft created. A different material configuration requires a separately reviewed code version and research.";
   }
-  if (body.action === "strategy_paper_start") {
-    await requireRole(["owner"]);
+  if (body.action === "strategy_transition") {
     const v = z
-      .object({ id: z.string(), researchRun: z.string().uuid() })
+      .object({
+        id: z.string().min(1),
+        to: z.enum([
+          "RESEARCH",
+          "VALIDATED",
+          "FROZEN_FOR_FORWARD_PAPER",
+          "FORWARD_PAPER",
+          "APPROVED_FOR_LIVE",
+          "RETIRED",
+        ]),
+        codeCommit: z.string().regex(/^[0-9a-f]{40}$/),
+        validationRun: z.union([z.string().uuid(), z.literal("")]).optional(),
+      })
       .parse(body);
-    await sql.begin(async (tx) => {
-      const run =
-        await tx`select id from private.validation_runs where id=${v.researchRun} and strategy_id=${v.id} and evidence='retrospective_backtest' and not contaminated`;
-      if (!run.length) throw new Error("Reviewed research required");
-      const changed =
-        await tx`update private.strategy_versions set active=true,research_approved_at=now(),approval_evidence=${reason} where id=${v.id} and config_hash=${hash(strategyV1)} and frozen_at is not null returning id`;
-      if (!changed.length) throw new Error("Frozen strategy missing");
-      await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'forward_paper_start',${v.id},${tx.json({ reason, researchRun: v.researchRun })})`;
-    });
-    return "Prospective paper research enabled. Live release still requires paper and owner approval.";
+    const result =
+      await sql`select private.transition_strategy(${v.id},${v.to},${who.user.id},${reason},${v.codeCommit},${v.validationRun || null}::uuid) state`;
+    return `Strategy moved to ${result[0].state}. Data, region and publication switches remain independent gates.`;
   }
   if (body.action === "correction") {
     await requireRole(["owner", "admin"]);

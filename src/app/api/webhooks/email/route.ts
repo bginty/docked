@@ -26,6 +26,7 @@ export async function POST(request: Request) {
         await tx`insert into private.webhook_receipts(provider,event_id) values('resend',${id}) on conflict do nothing returning event_id`;
       if (!receipt.length) return;
       if (["email.bounced", "email.complained"].includes(event.type)) {
+        await tx`insert into private.audit_events(actor,action,subject) values('provider-webhook',${event.type},'delivery')`;
         const recipients =
           await tx`select distinct user_id from private.delivery_attempts where provider_id=${event.data.email_id}`;
         for (const r of recipients) {

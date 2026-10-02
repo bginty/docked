@@ -3,7 +3,16 @@ import { notFound } from "next/navigation";
 import { PageHeading, Empty, Notice, Metric } from "@/components/ui";
 import { ApiForm, Check, Field } from "@/components/forms";
 import { articles } from "@/content/articles";
-import { serviceStatus, regionAccess, publicTips } from "@/server/queries";
+import {
+  serviceStatus,
+  regionAccess,
+  publicTips,
+  monitoringContext,
+} from "@/server/queries";
+import { identity } from "@/server/auth";
+import { EdgeCard } from "@/components/edge-card";
+import { NoEdge } from "@/components/no-edge";
+import { readingRoom } from "@/server/cms";
 import { boardState } from "@/core/policy";
 import { ledger, type LedgerRow } from "@/core/ledger";
 import { config } from "@/server/config";
@@ -28,6 +37,20 @@ const titles: Record<string, string> = {
   unsubscribe: "Pause optional communications",
   mfa: "Protect privileged access",
 };
+const descriptions: Record<string, string> = {
+  edges:
+    "Current eligible price observations, minimum odds, source freshness and complete publication records. Estimated EV is not guaranteed profit.",
+  results:
+    "The complete Docked live publication ledger, including losses, voids, corrections and fixed one-unit performance accounting.",
+  research:
+    "How Docked separates historical research, forward paper validation and live publications, with dataset and validation gates.",
+  methodology:
+    "Docked’s versioned pricing method: complete markets, independent references, margin removal, fresh observations and immutable records.",
+  learn:
+    "Practical educational resources on decimal odds, bookmaker margin, estimated value, uncertainty and transparent results.",
+  about:
+    "Docked’s purpose, evidence standards and commitment to transparent sports-pricing research.",
+};
 export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
@@ -37,7 +60,22 @@ export async function generateMetadata({
   const { section } = await params;
   return {
     title: titles[section] ?? "Not found",
+    description:
+      descriptions[section] ??
+      `${titles[section] ?? "Docked"}. Information and controls for Docked sports-pricing research.`,
     alternates: { canonical: `/${section}` },
+    openGraph: {
+      title: titles[section],
+      description: descriptions[section],
+      url: `/${section}`,
+      images: ["/opengraph-image"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: titles[section],
+      description: descriptions[section],
+      images: ["/opengraph-image"],
+    },
     ...([
       "join",
       "login",
@@ -61,45 +99,50 @@ export default async function Page({
   const query = await searchParams;
   if (!titles[section]) notFound();
   let content: React.ReactNode;
-  let eyebrow = "DOCKED / " + section.replaceAll("-", " ").toUpperCase();
+  const eyebrow = "DOCKED / " + section.replaceAll("-", " ").toUpperCase();
   if (section === "edges") {
-    const [region, status, tips] = await Promise.all([
-      regionAccess(),
-      serviceStatus(),
-      publicTips(),
-    ]);
+    const [region, status, tips, monitoring, viewer, catalogue] =
+      await Promise.all([
+        regionAccess(),
+        serviceStatus(),
+        publicTips(),
+        monitoringContext(),
+        identity(),
+        readingRoom(),
+      ]);
     const state = boardState({ ...status, region: region.allowed });
+    const activeTips = tips.filter((t) => t.display_status === "active");
     content = (
       <>
         <p className="lede">
           One selection per event. Fixed decision windows. No daily quota.
         </p>
-        <div className="filters">
-          <label>
-            Coverage
-            <select defaultValue="all">
-              <option value="all">All approved coverage</option>
-              <option disabled>Football · research only</option>
-              <option disabled>NBA · research only</option>
-              <option disabled>NFL · unsupported tie rules</option>
-            </select>
-          </label>
+        <div className="inline-links">
+          <Link href="/sports">Coverage and market rules</Link>
+          <Link href="/results">Completed publications</Link>
+          <Link href="/data-status">Feed health</Link>
         </div>
-        {tips.length ? (
+        {activeTips.length ? (
           <div className="grid two">
-            {tips.map((t) => (
-              <Link className="card" key={t.id} href={`/tips/${t.id}`}>
-                <span className="pill">{t.availability}</span>
-                <h2>{t.selection}</h2>
-                <p>
-                  {t.odds} publication odds · estimated EV{" "}
-                  {(Number(t.estimated_ev) * 100).toFixed(1)}%
-                </p>
-              </Link>
+            {activeTips.map((t) => (
+              <EdgeCard
+                key={t.id}
+                tip={t}
+                timezone={viewer?.profile.timezone}
+                format={viewer?.profile.odds_format}
+              />
             ))}
           </div>
         ) : (
-          <Empty title={state.title}>{state.detail}</Empty>
+          <NoEdge
+            state={state}
+            monitoring={monitoring}
+            timezone={viewer?.profile.timezone}
+            latest={catalogue[0] ?? articles[0]}
+            completed={tips.filter((t) =>
+              ["won", "lost", "void"].includes(t.result),
+            )}
+          />
         )}
         <Notice>
           Prices and regional availability require fresh checks. A watchlist
@@ -109,7 +152,7 @@ export default async function Page({
       </>
     );
   } else if (section === "results") {
-    const tips = await publicTips();
+    const [tips, access] = await Promise.all([publicTips(), regionAccess()]);
     let rows: LedgerRow[] = tips.map((t) => ({
       id: t.id,
       eventId: t.event_id,
@@ -153,6 +196,14 @@ export default async function Page({
           withdrawals.
         </p>
         <span className="pill">LIVE PUBLISHED · FIXED ONE-UNIT BENCHMARK</span>
+        {!access.allowed && (
+          <Notice>
+            Publication records are unavailable in this view until your verified
+            account has an approved regional policy. An inaccessible record is
+            not a zero-result sample. Educational definitions remain available
+            below.
+          </Notice>
+        )}
         <form className="filters">
           <label>
             From
@@ -163,9 +214,9 @@ export default async function Page({
             <input type="date" name="to" defaultValue={query.to} />
           </label>
           <label>
-            Sport
+            Competition
             <select name="sport" defaultValue={query.sport ?? ""}>
-              <option value="">All sports</option>
+              <option value="">All competitions</option>
               {[...new Set(tips.map((t) => t.competition_id))].map((s) => (
                 <option key={s}>{s}</option>
               ))}
@@ -188,7 +239,7 @@ export default async function Page({
         <div className="metrics">
           <Metric
             label="Settled publications"
-            value={String(stats.settled)}
+            value={access.allowed ? String(stats.settled) : "N/A"}
             note="No retrospective additions"
           />
           <Metric
@@ -209,7 +260,12 @@ export default async function Page({
         </div>
         <LedgerChart curve={stats.curve} />
         {Object.keys(stats.months).length > 0 && (
-          <div className="table-wrap">
+          <div
+            className="table-wrap"
+            tabIndex={0}
+            role="region"
+            aria-label="Monthly net units table, scroll horizontally if needed"
+          >
             <table>
               <caption>Monthly net units · losing months included</caption>
               <thead>
@@ -229,7 +285,12 @@ export default async function Page({
             </table>
           </div>
         )}
-        <div className="table-wrap">
+        <div
+          className="table-wrap"
+          tabIndex={0}
+          role="region"
+          aria-label="Live publication ledger table, scroll horizontally if needed"
+        >
           <table>
             <caption>Complete live publication ledger</caption>
             <thead>
@@ -242,7 +303,7 @@ export default async function Page({
               </tr>
             </thead>
             <tbody>
-              {tips.length ? (
+              {rows.length ? (
                 tips
                   .filter((t) => rows.some((r) => r.id === t.id))
                   .map((t) => (
@@ -259,7 +320,11 @@ export default async function Page({
               ) : (
                 <tr>
                   <td colSpan={5}>
-                    No live publications. No demonstration figures are included.
+                    {!access.allowed
+                      ? "No accessible live publications. No demonstration figures are included."
+                      : tips.length
+                        ? "No publications match these filters."
+                        : "No live publications. No demonstration figures are included."}
                   </td>
                 </tr>
               )}
@@ -267,14 +332,25 @@ export default async function Page({
           </table>
         </div>
         <div className="metrics">
-          <Metric label="Total turnover" value={`${stats.turnover} units`} />
+          <Metric
+            label="Total turnover"
+            value={access.allowed ? `${stats.turnover} units` : "N/A"}
+          />
           <Metric
             label="Pending / void stakes"
-            value={`${stats.pendingStake} / ${stats.voidStake}`}
+            value={
+              access.allowed
+                ? `${stats.pendingStake} / ${stats.voidStake}`
+                : "N/A"
+            }
           />
           <Metric
             label="Wins / losses / voids"
-            value={`${stats.won} / ${stats.lost} / ${stats.voids}`}
+            value={
+              access.allowed
+                ? `${stats.won} / ${stats.lost} / ${stats.voids}`
+                : "N/A"
+            }
           />
           <Metric label="Average odds" value={stats.averageOdds ?? "N/A"} />
         </div>
@@ -300,9 +376,22 @@ export default async function Page({
           independently audited execution. No sample currently supports a
           profitability claim.
         </Notice>
+        <section id="weekly-performance" className="card">
+          <h2>Weekly performance</h2>
+          <p>
+            Weekly review uses the complete live ledger, including losses, voids
+            and corrections. No editorial weekly report has been published in
+            this preview. Use the date filters above to inspect an actual
+            period; an empty period has no measurable ROI.
+          </p>
+          <Link className="text-link" href="/learn/estimated-ev-and-returns">
+            Understand return calculations ↗
+          </Link>
+        </section>
       </>
     );
-  } else if (section === "learn")
+  } else if (section === "learn") {
+    const catalogue = await readingRoom();
     content = (
       <>
         <p className="lede">
@@ -310,7 +399,7 @@ export default async function Page({
           you. All worked examples are fictional.
         </p>
         <div className="grid two">
-          {articles.map((a) => (
+          {catalogue.map((a) => (
             <Link
               className="article-card"
               href={`/learn/${a.slug}`}
@@ -321,13 +410,22 @@ export default async function Page({
               </span>
               <h2>{a.title}</h2>
               <p>{a.summary}</p>
+              <small>
+                {a.published ? "Published editorial" : "Educational draft"} ·{" "}
+                {a.author}
+              </small>
               <span className="article-arrow">↗</span>
             </Link>
           ))}
         </div>
+        {!catalogue.length && (
+          <Empty title="Reading room temporarily unavailable">
+            Editorial state could not be verified. Please try again later.
+          </Empty>
+        )}
       </>
     );
-  else if (section === "research")
+  } else if (section === "research")
     content = (
       <>
         <p className="lede">
@@ -442,6 +540,14 @@ export default async function Page({
         </p>
         <div className="status-table">
           {[
+            [
+              "Odds provider configuration",
+              `ODDS_PROVIDER_STATUS=${s.oddsProviderStatus}`,
+            ],
+            [
+              "Results provider configuration",
+              `RESULTS_PROVIDER_STATUS=${s.resultsProviderStatus}`,
+            ],
             ["Odds feed", s.feed ? "Fresh" : "Not connected / unavailable"],
             ["Authorised results", "Pending source and settlement review"],
             ["Historical validation", s.strategy ? "Approved" : "Pending"],
@@ -576,6 +682,11 @@ export default async function Page({
                 <Check name="edgeAlerts">
                   Send optional qualifying edge alerts when eligible. Maximum
                   two per local day; quiet hours apply.
+                </Check>
+                <Check name="analytics">
+                  Allow optional usage analytics to improve Docked. No
+                  sportsbook passwords, wagering amounts or personal losses are
+                  collected.
                 </Check>
               </>
             )}
