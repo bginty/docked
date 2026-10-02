@@ -23,10 +23,16 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
   ] as const) {
     const html = fixtures[status];
     await page.setContent(
-      `<!doctype html><html lang="en"><head><title>Isolated fixture review</title></head><body><main class="page"><h1>Fictional UI fixture</h1>${html}</main></body></html>`,
+      `<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>Isolated fixture review</title></head><body><main class="page"><h1>Fictional UI fixture</h1>${html}</main></body></html>`,
     );
     await page.addStyleTag({
       path: path.join(process.cwd(), "src/app/globals.css"),
+    });
+    await page.addStyleTag({
+      path: path.join(process.cwd(), "src/app/sports-visuals.css"),
+    });
+    await page.addStyleTag({
+      path: path.join(process.cwd(), "src/app/sports-experience.css"),
     });
     expect(
       await page.evaluate(
@@ -41,16 +47,22 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
       ).violations,
     ).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/phase2/fixture-edge-${status}-320.png`,
+      path: `docs/qa/visual-sports/after/regression-edge-${status}-320.png`,
       fullPage: true,
     });
   }
   const html = fixtures.no_edge;
   await page.setContent(
-    `<!doctype html><html lang="en"><head><title>Isolated no-edge fixture</title></head><body><main class="page"><h1>Fictional state review</h1>${html}</main></body></html>`,
+    `<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>Isolated no-edge fixture</title></head><body><main class="page"><h1>Fictional state review</h1>${html}</main></body></html>`,
   );
   await page.addStyleTag({
     path: path.join(process.cwd(), "src/app/globals.css"),
+  });
+  await page.addStyleTag({
+    path: path.join(process.cwd(), "src/app/sports-visuals.css"),
+  });
+  await page.addStyleTag({
+    path: path.join(process.cwd(), "src/app/sports-experience.css"),
   });
   await expect(
     page.getByRole("heading", { name: "No qualifying edge right now." }),
@@ -63,7 +75,7 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
     ).violations,
   ).toEqual([]);
   await page.screenshot({
-    path: "docs/qa/phase2/no-edge-isolated-fixture-320.png",
+    path: "docs/qa/visual-sports/after/regression-no-edge-isolated-fixture-320.png",
     fullPage: true,
   });
 });
@@ -151,7 +163,7 @@ test("preview public pages remain truthful, accessible and usable without an acc
       route,
     ).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/phase2/${name}-390.png`,
+      path: `docs/qa/visual-sports/after/regression-${name}-390.png`,
       fullPage: true,
     });
   }

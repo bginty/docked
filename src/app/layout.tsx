@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import "./sports-visuals.css";
+import "./sports-experience.css";
 import { config } from "@/server/config";
 import { AnalyticsObserver } from "@/components/analytics-observer";
+import { SportIcon } from "@/components/sport-icon";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
   title: {
@@ -39,7 +42,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           Skip to content
         </a>
         <div className="topline">
-          <span>INDEPENDENT THINKING. ACCOUNTABLE RECORDS.</span>
+          <span>SPORT. PRICE. EDGE.</span>
           <span>18+ · Research preview</span>
         </div>
         <header className="site-header">
@@ -53,11 +56,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <nav aria-label="Main navigation">
               <Link href="/edges">Edges</Link>
               <Link href="/results">Results</Link>
+              <Link href="/sports">
+                <SportIcon sport="football" size={17} />
+                Sports
+              </Link>
               <Link href="/research">Research</Link>
               <Link href="/learn">Learn</Link>
+              <Link href="/methodology">Methodology</Link>
             </nav>
             <div className="account-nav">
-              <Link href="/login">Log in</Link>
+              <Link href="/login">Sign in</Link>
               <Link className="button small" href="/join">
                 Join free <span aria-hidden="true">↗</span>
               </Link>

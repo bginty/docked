@@ -2,7 +2,15 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: Phase 2
+## Current milestone: visual sports identity
+
+The sports identity milestone continues from clean Phase 2 commit `8fa346c`. It adds a cinematic football homepage, ten photographic sport categories and substantive sport pages, a consistent pictogram system, photographic editorial/edge/results context and responsive navigation. Coverage labels remain derived from the existing configuration: football and basketball are research; the other eight sports are coming soon. No sport is labelled LIVE.
+
+See [VISUAL_IDENTITY.md](VISUAL_IDENTITY.md) for implementation and scope, [IMAGE_RIGHTS.md](IMAGE_RIGHTS.md) for the twelve delivered assets and [visual QA](qa/visual-sports/README.md) for before/after evidence. The pricing engine, strategy rules, historical controls, server authentication and production state are unchanged. Local preview remains http://localhost:3000.
+
+Final visual validation: TypeScript, lint, 77 platform tests, 26 PostgreSQL tests, 16 browser tests and the production build passed. Browser checks cover five widths from 390 to 1920 pixels, plus existing 320px journeys. Two accessibility regressions were repaired. Repeated runtime image-optimizer stalls were removed from the delivery path using 49 prebuilt responsive WebPs, with decode/hash checks and a cancelled-image/revisit regression. Normal tested pages report zero axe violations, console/page errors and runtime optimizer requests. Authenticated dashboards remain access-gated pending the dedicated preview authentication environment; screenshots distinguish those gates from authenticated UI.
+
+## Phase 2 checkpoint (preserved)
 
 Phase 2 continued from clean A–F commit `261cd83`; it did not restart the project. Senior review found and repaired material auth/RLS, consent, strategy provenance, matching, quota, historical replay, immutable evidence, correction, queue, CMS and result-visibility issues. Additive implementation now includes admin data health, explicit strategy lifecycle, separate forward-paper reporting, privacy analytics and a safe local mail adapter. See [PHASE2_REVIEW.md](PHASE2_REVIEW.md) for findings and regression evidence, and [qa/phase2/README.md](qa/phase2/README.md) for final measured validation.
 
@@ -24,14 +32,14 @@ Exact next action: make the dedicated local Supabase stack available with an app
 
 ## Delivered local implementation
 
-| Milestone | Implemented | Boundary |
-| --- | --- | --- |
-| A | Repository audit, rollback branch/tag, archived storefront, Next/TypeScript shell, SQL migration/RLS, Supabase Auth handlers, retired URLs | No hosted migration or domain change |
-| B | Replaceable provider contracts, The Odds API adapter, canonical mappings, shared ingestion, quota/circuit controls, deterministic pricing, isolated fixtures | Odds credentials, actual mappings and reviewed rights are absent |
-| C | Analyst publication with immutable evidence/atomic outbox, accounts/preferences/saved tips/personal records, settlement/corrections, filtered one-unit results and measured availability/closing diagnostics | Full hosted authenticated journey and authorised outcome source are pending |
-| D | Reproducible import/replay/freeze CLI, manifest hashes, no-look-ahead checks, delayed benchmark, baseline calibration, day-block uncertainty, development sensitivity, prospective paper controls | No licensed dataset, completed study, paper track record or strategy approval |
-| E | Eight evergreen articles, 12-week calendar, CMS workflow, durable schedules/jobs, reviewed report drafts, consent-aware edge/onboarding dispatch, admin controls | Optional digest/social schedules produce drafts; campaign recipient review/expansion is an operator integration step, not an active campaign |
-| F | Local optimized build, platform/PostgreSQL/browser checks, screenshots, local restore drill, cost model and deployment/rollback runbooks | Hosted security/auth/email/load/backup checks and release authority remain gates |
+| Milestone | Implemented                                                                                                                                                                                                  | Boundary                                                                                                                                     |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| A         | Repository audit, rollback branch/tag, archived storefront, Next/TypeScript shell, SQL migration/RLS, Supabase Auth handlers, retired URLs                                                                   | No hosted migration or domain change                                                                                                         |
+| B         | Replaceable provider contracts, The Odds API adapter, canonical mappings, shared ingestion, quota/circuit controls, deterministic pricing, isolated fixtures                                                 | Odds credentials, actual mappings and reviewed rights are absent                                                                             |
+| C         | Analyst publication with immutable evidence/atomic outbox, accounts/preferences/saved tips/personal records, settlement/corrections, filtered one-unit results and measured availability/closing diagnostics | Full hosted authenticated journey and authorised outcome source are pending                                                                  |
+| D         | Reproducible import/replay/freeze CLI, manifest hashes, no-look-ahead checks, delayed benchmark, baseline calibration, day-block uncertainty, development sensitivity, prospective paper controls            | No licensed dataset, completed study, paper track record or strategy approval                                                                |
+| E         | Eight evergreen articles, 12-week calendar, CMS workflow, durable schedules/jobs, reviewed report drafts, consent-aware edge/onboarding dispatch, admin controls                                             | Optional digest/social schedules produce drafts; campaign recipient review/expansion is an operator integration step, not an active campaign |
+| F         | Local optimized build, platform/PostgreSQL/browser checks, screenshots, local restore drill, cost model and deployment/rollback runbooks                                                                     | Hosted security/auth/email/load/backup checks and release authority remain gates                                                             |
 
 These are implementation scope commits. Verification applies to the assembled branch, not a claim that each intermediate commit is a deployable release.
 

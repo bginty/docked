@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
+    "images:build": "node scripts/build-sport-images.mjs",
     "start": "node scripts/start-preview.mjs",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/platform/*.test.ts",

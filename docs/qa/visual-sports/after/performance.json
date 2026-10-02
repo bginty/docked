@@ -1,0 +1,93 @@
+{
+  "phase": "after",
+  "recordedAt": "2026-10-02T23:02:09.053Z",
+  "buildId": "clk6RldtqJMhZT-lWqwXa",
+  "browser": "153.0.8010.12",
+  "method": "Local Chromium headless; 3 fresh browser contexts per viewport; warmed standalone server; 1440x1000 and 390x1000 CSS px; deviceScaleFactor 1; no CPU/network throttling; page networkidle plus 1200ms observation; viewport emulation is not mobile hardware. Transferred bytes = NavigationTiming + ResourceTiming transferSize, including headers where exposed. Local lab comparison, not field Core Web Vitals or a production/network forecast.",
+  "results": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "runs": [
+        {
+          "lcp": 472,
+          "cls": 0,
+          "lcpElement": "IMG.",
+          "domContentLoaded": 67.10000000009313,
+          "transferredBytes": 925256,
+          "resourceRequests": 46,
+          "imageTransferBytes": 630926
+        },
+        {
+          "lcp": 444,
+          "cls": 0,
+          "lcpElement": "IMG.",
+          "domContentLoaded": 62.89999999990687,
+          "transferredBytes": 925249,
+          "resourceRequests": 46,
+          "imageTransferBytes": 630926
+        },
+        {
+          "lcp": 404,
+          "cls": 0,
+          "lcpElement": "IMG.",
+          "domContentLoaded": 60.89999999990687,
+          "transferredBytes": 925255,
+          "resourceRequests": 46,
+          "imageTransferBytes": 630926
+        }
+      ],
+      "median": {
+        "lcp": 444,
+        "cls": 0,
+        "domContentLoaded": 62.89999999990687,
+        "transferredBytes": 925255,
+        "imageTransferBytes": 630926
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "runs": [
+        {
+          "lcp": 276,
+          "cls": 0,
+          "lcpElement": "IMG.",
+          "domContentLoaded": 60.60000000009313,
+          "transferredBytes": 450987,
+          "resourceRequests": 44,
+          "imageTransferBytes": 158400
+        },
+        {
+          "lcp": 280,
+          "cls": 0,
+          "lcpElement": "IMG.",
+          "domContentLoaded": 59.6999999997206,
+          "transferredBytes": 450989,
+          "resourceRequests": 44,
+          "imageTransferBytes": 158400
+        },
+        {
+          "lcp": 276,
+          "cls": 0,
+          "lcpElement": "IMG.",
+          "domContentLoaded": 59.39999999990687,
+          "transferredBytes": 450988,
+          "resourceRequests": 44,
+          "imageTransferBytes": 158400
+        }
+      ],
+      "median": {
+        "lcp": 276,
+        "cls": 0,
+        "domContentLoaded": 59.6999999997206,
+        "transferredBytes": 450988,
+        "imageTransferBytes": 158400
+      }
+    }
+  ]
+}

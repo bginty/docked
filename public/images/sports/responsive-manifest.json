@@ -1,0 +1,507 @@
+{
+  "version": 1,
+  "sourceManifest": "/images/sports/manifest.json",
+  "sourceManifestSha256": "21a180696c997f4435a777c82ace05ecc8a3cb123de765381fec03e1e73ef018",
+  "sourceManifestHashEncoding": "UTF-8 canonical JSON: recursively sorted object keys, original array order, no whitespace",
+  "transformation": "Aspect-preserving downscale and WebP encoding only; no crop, recolour, compositing or upscaling",
+  "provenance": "Every derivative inherits its master photograph licence or AI-generated origin, credit and usage notes",
+  "encoder": {
+    "sharp": "0.35.5",
+    "libvips": "8.18.7",
+    "webp": "1.6.0",
+    "quality": 75,
+    "effort": 6
+  },
+  "derivatives": [
+    {
+      "path": "/images/sports/responsive/afl-320.webp",
+      "master": "/images/sports/afl.webp",
+      "masterSha256": "6d60feb969526c0af3cdce42141844249c2737aa2c5f470e83440eb42fef5908",
+      "width": 320,
+      "height": 213,
+      "bytes": 16918,
+      "sha256": "5310113cffa4a61359f62554bb94af102e17f535fc7c66beca69aa6af4f9998e",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/afl-480.webp",
+      "master": "/images/sports/afl.webp",
+      "masterSha256": "6d60feb969526c0af3cdce42141844249c2737aa2c5f470e83440eb42fef5908",
+      "width": 480,
+      "height": 320,
+      "bytes": 33744,
+      "sha256": "2e1ff75ca20dd40c770006a0deb10a77dd5115166fb0a0432841039af8abf982",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/afl-640.webp",
+      "master": "/images/sports/afl.webp",
+      "masterSha256": "6d60feb969526c0af3cdce42141844249c2737aa2c5f470e83440eb42fef5908",
+      "width": 640,
+      "height": 426,
+      "bytes": 54492,
+      "sha256": "b6de862add99c8825aa60aed4bd05870bc2178577aef63553c8e760bfd68dfe9",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/afl-960.webp",
+      "master": "/images/sports/afl.webp",
+      "masterSha256": "6d60feb969526c0af3cdce42141844249c2737aa2c5f470e83440eb42fef5908",
+      "width": 960,
+      "height": 640,
+      "bytes": 95040,
+      "sha256": "63e2748d63dc322b371f4b298d5aea441a211078a7f96d823745c688d947a9aa",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/atmosphere-football-320.webp",
+      "master": "/images/sports/atmosphere-football.webp",
+      "masterSha256": "201d3950922f8842e4b5e5d6fc5d917d35cfdfc999d5a8b6359681cff1b4842a",
+      "width": 320,
+      "height": 213,
+      "bytes": 8918,
+      "sha256": "b94b1079ede37a80e7c0fb28a7a095317f600d6513ef9a21a9645e02e6d06e8b",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/atmosphere-football-480.webp",
+      "master": "/images/sports/atmosphere-football.webp",
+      "masterSha256": "201d3950922f8842e4b5e5d6fc5d917d35cfdfc999d5a8b6359681cff1b4842a",
+      "width": 480,
+      "height": 320,
+      "bytes": 16488,
+      "sha256": "0b5a89d239b3ecb3ef8d9e544f1073e6973cabdd7c68bf57dd950f4fea1264f8",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/atmosphere-football-640.webp",
+      "master": "/images/sports/atmosphere-football.webp",
+      "masterSha256": "201d3950922f8842e4b5e5d6fc5d917d35cfdfc999d5a8b6359681cff1b4842a",
+      "width": 640,
+      "height": 426,
+      "bytes": 27462,
+      "sha256": "1065659a706233af1d2099d96165f3c22ca5ceb5ef3a5dc612dd0ceb4f97e391",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/atmosphere-football-960.webp",
+      "master": "/images/sports/atmosphere-football.webp",
+      "masterSha256": "201d3950922f8842e4b5e5d6fc5d917d35cfdfc999d5a8b6359681cff1b4842a",
+      "width": 960,
+      "height": 640,
+      "bytes": 49866,
+      "sha256": "83ce95bac7d15f9ef20fb47b170defcc7ad440beec8366f4cbbe165af55b84e2",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/baseball-320.webp",
+      "master": "/images/sports/baseball.webp",
+      "masterSha256": "1548826b419794332cc9566bc4249e53130feb28b4b085eef5dd9779d79164dc",
+      "width": 320,
+      "height": 240,
+      "bytes": 9698,
+      "sha256": "3787289ff95bc31b4a38504760470d27c5f00f67427f82c9e7dc427c584b775a",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/baseball-480.webp",
+      "master": "/images/sports/baseball.webp",
+      "masterSha256": "1548826b419794332cc9566bc4249e53130feb28b4b085eef5dd9779d79164dc",
+      "width": 480,
+      "height": 360,
+      "bytes": 19524,
+      "sha256": "e8ecaa2cf9d845260a07a8c74f55dc4c2fe92f7f6d0ef254967609a38aa63c56",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/baseball-640.webp",
+      "master": "/images/sports/baseball.webp",
+      "masterSha256": "1548826b419794332cc9566bc4249e53130feb28b4b085eef5dd9779d79164dc",
+      "width": 640,
+      "height": 480,
+      "bytes": 34632,
+      "sha256": "2275d560a140212ce458059c4fa3e1cc702b592aab99d8dd7e1226bf09203eda",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/baseball-960.webp",
+      "master": "/images/sports/baseball.webp",
+      "masterSha256": "1548826b419794332cc9566bc4249e53130feb28b4b085eef5dd9779d79164dc",
+      "width": 960,
+      "height": 720,
+      "bytes": 60144,
+      "sha256": "b71c4f0d04b8160646e323df029ff95240c150373463dd8e0d93c8edfc28ee96",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/basketball-320.webp",
+      "master": "/images/sports/basketball.webp",
+      "masterSha256": "a077c6dd802eac8cd34ed6c2cdfc8d4b56b70375a642408d4cc024a0fb854a6a",
+      "width": 320,
+      "height": 240,
+      "bytes": 17360,
+      "sha256": "4c59d23f60d49870a0dd397d6bf8815549a72d8e751bdee8d9379898d5d8d3fe",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/basketball-480.webp",
+      "master": "/images/sports/basketball.webp",
+      "masterSha256": "a077c6dd802eac8cd34ed6c2cdfc8d4b56b70375a642408d4cc024a0fb854a6a",
+      "width": 480,
+      "height": 360,
+      "bytes": 33936,
+      "sha256": "fae2059105ac7b8835601c30ccf5e9e93779a795a124a8c0bf0cdf5b622fc495",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/basketball-640.webp",
+      "master": "/images/sports/basketball.webp",
+      "masterSha256": "a077c6dd802eac8cd34ed6c2cdfc8d4b56b70375a642408d4cc024a0fb854a6a",
+      "width": 640,
+      "height": 480,
+      "bytes": 59232,
+      "sha256": "6cc97806d335e5799592c9327fedc6cf2324efa46f99c60874e02f1df9313f62",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/basketball-960.webp",
+      "master": "/images/sports/basketball.webp",
+      "masterSha256": "a077c6dd802eac8cd34ed6c2cdfc8d4b56b70375a642408d4cc024a0fb854a6a",
+      "width": 960,
+      "height": 720,
+      "bytes": 100210,
+      "sha256": "5f4b4cbdababd9ec08eaf677583e0a8f515bcb94c60ef6d5e59717d3c220ad92",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/cricket-320.webp",
+      "master": "/images/sports/cricket.webp",
+      "masterSha256": "9392193aa8a19506bb7d6bf5f0c7961858a4d25957de3cce9beae0f2e3abbb5d",
+      "width": 320,
+      "height": 178,
+      "bytes": 6514,
+      "sha256": "1c43be92a0e1e0fa91a2c7b3dd6685c10f6c01cc0079bae6ab2a17cf4a59238f",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/cricket-480.webp",
+      "master": "/images/sports/cricket.webp",
+      "masterSha256": "9392193aa8a19506bb7d6bf5f0c7961858a4d25957de3cce9beae0f2e3abbb5d",
+      "width": 480,
+      "height": 266,
+      "bytes": 11734,
+      "sha256": "6cbd5879840cafc532a83d6a399cb32465dfb95157563f1a0ec8b13ae878f9af",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/cricket-640.webp",
+      "master": "/images/sports/cricket.webp",
+      "masterSha256": "9392193aa8a19506bb7d6bf5f0c7961858a4d25957de3cce9beae0f2e3abbb5d",
+      "width": 640,
+      "height": 355,
+      "bytes": 20324,
+      "sha256": "3ce9e715cd1c1fc0e259d9fa98d8514a49175ed7a1715132ac062352c4a5e963",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/cricket-960.webp",
+      "master": "/images/sports/cricket.webp",
+      "masterSha256": "9392193aa8a19506bb7d6bf5f0c7961858a4d25957de3cce9beae0f2e3abbb5d",
+      "width": 960,
+      "height": 532,
+      "bytes": 34012,
+      "sha256": "bbeb853e729c08ed9b8a17d225d5738d5645921db6dd95bf87ec3a45a29da8c8",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/football-320.webp",
+      "master": "/images/sports/football.webp",
+      "masterSha256": "edf1e5a7b2d26c1897610f2894d3ecddf9181c5c585088e57aa9f0e099931263",
+      "width": 320,
+      "height": 186,
+      "bytes": 5310,
+      "sha256": "ffb615c822a79baa3429671806e94bf15cbf34616dab8e4bc193b2e3ea804099",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/football-480.webp",
+      "master": "/images/sports/football.webp",
+      "masterSha256": "edf1e5a7b2d26c1897610f2894d3ecddf9181c5c585088e57aa9f0e099931263",
+      "width": 480,
+      "height": 280,
+      "bytes": 11632,
+      "sha256": "ad6b0e1b214b4ecd9c712d55721a0a48734728e05ad987faf71a79072aa9f95c",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/football-640.webp",
+      "master": "/images/sports/football.webp",
+      "masterSha256": "edf1e5a7b2d26c1897610f2894d3ecddf9181c5c585088e57aa9f0e099931263",
+      "width": 640,
+      "height": 373,
+      "bytes": 22686,
+      "sha256": "e9da2893f87d3ddfefe21df6c001951ad86698f677ffe5c50f5819b5dc8669f0",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/football-960.webp",
+      "master": "/images/sports/football.webp",
+      "masterSha256": "edf1e5a7b2d26c1897610f2894d3ecddf9181c5c585088e57aa9f0e099931263",
+      "width": 960,
+      "height": 560,
+      "bytes": 41458,
+      "sha256": "75ddd7a8cfeb8c3d5c9d85816d9ad4e9a92ea168303bd44ff93cbb212dfc6148",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/hero-football-320.webp",
+      "master": "/images/sports/hero-football.webp",
+      "masterSha256": "c823b138874c6ab21aff447629183a75ae4413c0ae6d8b17fd0c8cf304f1f181",
+      "width": 320,
+      "height": 186,
+      "bytes": 5192,
+      "sha256": "e503b4af9d11e728595cd1422f07620a71f7271306d0173716d2c11021ccb5a7",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/hero-football-480.webp",
+      "master": "/images/sports/hero-football.webp",
+      "masterSha256": "c823b138874c6ab21aff447629183a75ae4413c0ae6d8b17fd0c8cf304f1f181",
+      "width": 480,
+      "height": 280,
+      "bytes": 11834,
+      "sha256": "7f25186634d558e5a619d3a84462b2c400d9f289fea96d26ee289074eb90e912",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/hero-football-640.webp",
+      "master": "/images/sports/hero-football.webp",
+      "masterSha256": "c823b138874c6ab21aff447629183a75ae4413c0ae6d8b17fd0c8cf304f1f181",
+      "width": 640,
+      "height": 373,
+      "bytes": 20530,
+      "sha256": "9bf2e2e3630af9fd59546b03bbf95d7be1f67bd9a6f61da1dba533e60b243389",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/hero-football-960.webp",
+      "master": "/images/sports/hero-football.webp",
+      "masterSha256": "c823b138874c6ab21aff447629183a75ae4413c0ae6d8b17fd0c8cf304f1f181",
+      "width": 960,
+      "height": 559,
+      "bytes": 43480,
+      "sha256": "eb6d999d2bfba0b3085562a88fe4c4c61ce82f97efbfeacf57037764c37f56c3",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/hero-football-1280.webp",
+      "master": "/images/sports/hero-football.webp",
+      "masterSha256": "c823b138874c6ab21aff447629183a75ae4413c0ae6d8b17fd0c8cf304f1f181",
+      "width": 1280,
+      "height": 746,
+      "bytes": 69000,
+      "sha256": "2a28b4f0cf15b01c015c92a3fcafbfb4af50287ec7290a3ab5858a4d3af39921",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/horse-racing-320.webp",
+      "master": "/images/sports/horse-racing.webp",
+      "masterSha256": "d7d05410364b764cefe1fed1e8edace10365f9536681a39e0f762161f3424838",
+      "width": 320,
+      "height": 213,
+      "bytes": 8444,
+      "sha256": "f017985ba3f3fd0a1b6ff5e2c1d5f61a7d742542fd0f2dfd7914bbd89ba6b8a5",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/horse-racing-480.webp",
+      "master": "/images/sports/horse-racing.webp",
+      "masterSha256": "d7d05410364b764cefe1fed1e8edace10365f9536681a39e0f762161f3424838",
+      "width": 480,
+      "height": 320,
+      "bytes": 16476,
+      "sha256": "f979374137d76628d2f22b7f6c530f8ce5a6e6ccc8ea3780d2c4d69dd6758a8b",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/horse-racing-640.webp",
+      "master": "/images/sports/horse-racing.webp",
+      "masterSha256": "d7d05410364b764cefe1fed1e8edace10365f9536681a39e0f762161f3424838",
+      "width": 640,
+      "height": 426,
+      "bytes": 27918,
+      "sha256": "e05bd5a78a5d9bd6b4d41515c6adae6748dd94d14ba9d2b55985b1cc4cf93cfa",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/horse-racing-960.webp",
+      "master": "/images/sports/horse-racing.webp",
+      "masterSha256": "d7d05410364b764cefe1fed1e8edace10365f9536681a39e0f762161f3424838",
+      "width": 960,
+      "height": 640,
+      "bytes": 51866,
+      "sha256": "442da952842a68187429d54eb50a0d3e888c9715b845ac52c3b103f4b637d5c6",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/ice-hockey-320.webp",
+      "master": "/images/sports/ice-hockey.webp",
+      "masterSha256": "53ae7c91eefd4de8f7760a659548ca7f942fc18bad32ea3983ba03ac50f33bb0",
+      "width": 320,
+      "height": 214,
+      "bytes": 5696,
+      "sha256": "51c3eab2d3d8f187ae1cc4ecb399f3aa49d45195a13c014ad69c26c77b98d006",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/ice-hockey-480.webp",
+      "master": "/images/sports/ice-hockey.webp",
+      "masterSha256": "53ae7c91eefd4de8f7760a659548ca7f942fc18bad32ea3983ba03ac50f33bb0",
+      "width": 480,
+      "height": 320,
+      "bytes": 10556,
+      "sha256": "e1b46a98fb36e0eaf867356565011d9e92d8bd653db48ee75e26c8d74a578c69",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/ice-hockey-640.webp",
+      "master": "/images/sports/ice-hockey.webp",
+      "masterSha256": "53ae7c91eefd4de8f7760a659548ca7f942fc18bad32ea3983ba03ac50f33bb0",
+      "width": 640,
+      "height": 427,
+      "bytes": 17900,
+      "sha256": "b6585eee7bbf94bd4479f3e2d91222d9af2c086eab534443813449caa6bb8fb5",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/ice-hockey-960.webp",
+      "master": "/images/sports/ice-hockey.webp",
+      "masterSha256": "53ae7c91eefd4de8f7760a659548ca7f942fc18bad32ea3983ba03ac50f33bb0",
+      "width": 960,
+      "height": 640,
+      "bytes": 28854,
+      "sha256": "d1822bbb6e9815fe9487f508e07e99ae78a5bc717be4e6bb1402f387cfcd48b6",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/motorsport-320.webp",
+      "master": "/images/sports/motorsport.webp",
+      "masterSha256": "4cc5aae23c3e64dca82b6549224c59899d79fd14c7263a8a2e55abded8dd5d99",
+      "width": 320,
+      "height": 200,
+      "bytes": 4940,
+      "sha256": "05b81a8a480612fd2bf430aa147d088d44435b549699118adf521144d6ffa11b",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/motorsport-480.webp",
+      "master": "/images/sports/motorsport.webp",
+      "masterSha256": "4cc5aae23c3e64dca82b6549224c59899d79fd14c7263a8a2e55abded8dd5d99",
+      "width": 480,
+      "height": 300,
+      "bytes": 9684,
+      "sha256": "70b2d1bede88747d15ee25361c1e2e6fc278e043854498ea308f9276a41f5105",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/motorsport-640.webp",
+      "master": "/images/sports/motorsport.webp",
+      "masterSha256": "4cc5aae23c3e64dca82b6549224c59899d79fd14c7263a8a2e55abded8dd5d99",
+      "width": 640,
+      "height": 400,
+      "bytes": 21884,
+      "sha256": "1be0a01e84c7d351a41e68d61d951d5d35ca437f4b9f4415883eaa2317582e4a",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/motorsport-960.webp",
+      "master": "/images/sports/motorsport.webp",
+      "masterSha256": "4cc5aae23c3e64dca82b6549224c59899d79fd14c7263a8a2e55abded8dd5d99",
+      "width": 960,
+      "height": 600,
+      "bytes": 46986,
+      "sha256": "7f8c0390e4b6fd16692d5072bb77ff2cbbad4aea815504faa9648aed8ec361c0",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/nfl-320.webp",
+      "master": "/images/sports/nfl.webp",
+      "masterSha256": "fdd8e318ad72083a8b7e5e0701001b2676be3fbeee02e47a0eb363cc1e694982",
+      "width": 320,
+      "height": 439,
+      "bytes": 20232,
+      "sha256": "2cf22abd09b83058ba1d9a6934e1320062e3a3dbd051de77117e5aff39b08e32",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/nfl-480.webp",
+      "master": "/images/sports/nfl.webp",
+      "masterSha256": "fdd8e318ad72083a8b7e5e0701001b2676be3fbeee02e47a0eb363cc1e694982",
+      "width": 480,
+      "height": 659,
+      "bytes": 39230,
+      "sha256": "1a4f82f04e79756e1a61167e6a2c2c0dc406cf674f2a5592b26e7ccff2708386",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/nfl-640.webp",
+      "master": "/images/sports/nfl.webp",
+      "masterSha256": "fdd8e318ad72083a8b7e5e0701001b2676be3fbeee02e47a0eb363cc1e694982",
+      "width": 640,
+      "height": 878,
+      "bytes": 64482,
+      "sha256": "b616fb18010fb92cd16c6d770f64e5f6cb0ade6d56d3f660bd77f9aed1025c0f",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/nfl-960.webp",
+      "master": "/images/sports/nfl.webp",
+      "masterSha256": "fdd8e318ad72083a8b7e5e0701001b2676be3fbeee02e47a0eb363cc1e694982",
+      "width": 960,
+      "height": 1318,
+      "bytes": 111734,
+      "sha256": "1a3ed4ba8cf17c5dfa7e85e6812fa85be6d864403d999e4e516bf5345371cb0b",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/tennis-320.webp",
+      "master": "/images/sports/tennis.webp",
+      "masterSha256": "d883a20704b493d23c4c9974497e199c9ee1d27f607b22534cc8a24ede0b725f",
+      "width": 320,
+      "height": 160,
+      "bytes": 11696,
+      "sha256": "a1fc1fe41a2e0415e46d707ae97e1914398db5af32fa9e3b304fc993803758fa",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/tennis-480.webp",
+      "master": "/images/sports/tennis.webp",
+      "masterSha256": "d883a20704b493d23c4c9974497e199c9ee1d27f607b22534cc8a24ede0b725f",
+      "width": 480,
+      "height": 240,
+      "bytes": 22474,
+      "sha256": "4c9b07771939e954140aff1c9e49584eb6317d595dd8d8cfee64d831ce93e262",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/tennis-640.webp",
+      "master": "/images/sports/tennis.webp",
+      "masterSha256": "d883a20704b493d23c4c9974497e199c9ee1d27f607b22534cc8a24ede0b725f",
+      "width": 640,
+      "height": 320,
+      "bytes": 36998,
+      "sha256": "627ef0c9d69c87518cd8388b327fb7fa2b821c042e8479d8e2a6a2ba06301489",
+      "quality": 75
+    },
+    {
+      "path": "/images/sports/responsive/tennis-960.webp",
+      "master": "/images/sports/tennis.webp",
+      "masterSha256": "d883a20704b493d23c4c9974497e199c9ee1d27f607b22534cc8a24ede0b725f",
+      "width": 960,
+      "height": 479,
+      "bytes": 64016,
+      "sha256": "f180eaf8d46d2c1d8a5d976c38c135ea90aeecbce6bfcea2d959d9b6619917c3",
+      "quality": 75
+    }
+  ]
+}

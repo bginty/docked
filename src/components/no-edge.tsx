@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Empty } from "./ui";
+import { SportImage } from "./sport-image";
+import { SportIcon } from "./sport-icon";
 import { localEventTime } from "@/core/tip-presentation";
 export type MonitoringContext = {
   available: boolean;
@@ -21,17 +22,32 @@ export function NoEdge({
 }) {
   return (
     <div className="no-edge-panel">
-      <Empty
-        title={
-          state.code === "no_edge"
-            ? "No qualifying edge right now."
-            : state.title
-        }
-      >
-        {state.code === "no_edge"
-          ? "Docked publishes only when the configured threshold and every eligibility check are met. There is no daily tip quota."
-          : state.detail}
-      </Empty>
+      <div className="no-edge-visual">
+        <SportImage
+          sport="football"
+          variant="atmosphere"
+          className="no-edge-photo"
+          sizes="(max-width: 1280px) 90vw, 1150px"
+        />
+        <div className="no-edge-message">
+          <span className="no-edge-emblem">
+            <SportIcon sport="football" size={26} />
+          </span>
+          <h2>
+            {state.code === "no_edge"
+              ? "No qualifying edge right now."
+              : state.title}
+          </h2>
+          <p>
+            {state.code === "no_edge"
+              ? "Docked publishes only when the configured threshold and every eligibility check are met. There is no daily tip quota."
+              : state.detail}
+          </p>
+          <Link className="text-link" href="/data-status">
+            See data status <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      </div>
       <div className="grid two no-edge-resources">
         <section className="card">
           <h3>Markets being monitored</h3>

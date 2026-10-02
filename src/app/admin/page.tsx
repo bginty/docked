@@ -5,6 +5,7 @@ import { db } from "@/server/db";
 import { PageHeading, Notice } from "@/components/ui";
 import { ApiForm, Field } from "@/components/forms";
 import { editorialSchedules } from "@/core/notifications";
+import { SportIcon } from "@/components/sport-icon";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Operations",
@@ -102,7 +103,9 @@ export default async function Admin() {
           )}
         </section>
         <section className="card">
-          <h2>Candidate review</h2>
+          <h2 className="sport-context-heading">
+            <SportIcon sport="football" size={24} /> Candidate review
+          </h2>
           {candidates.length ? (
             candidates.map((c) => (
               <div key={c.id}>
@@ -163,7 +166,9 @@ export default async function Admin() {
           ) : (
             <p>No source has completed ingestion.</p>
           )}
-          <h3>Strategy reviews</h3>
+          <h3 className="sport-context-heading">
+            <SportIcon sport="basketball" size={22} /> Strategy reviews
+          </h3>
           {strategies.length ? (
             strategies.map((s) => (
               <p key={s.id}>

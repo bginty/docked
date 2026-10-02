@@ -5,6 +5,7 @@ import { PageHeading, Notice } from "@/components/ui";
 import { publishedArticle } from "@/server/cms";
 import { articleStructuredData, safeJsonLd } from "@/content/editorial";
 import { ShareLink } from "@/components/share-link";
+import { ArticleImage } from "@/components/article-image";
 export const dynamic = "force-dynamic";
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -48,7 +49,7 @@ export default async function Article({
   const a = await publishedArticle(slug);
   if (!a) notFound();
   return (
-    <article className="page prose">
+    <article className="page prose sports-editorial">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -69,6 +70,12 @@ export default async function Article({
       >
         {a.summary}
       </PageHeading>
+      <ArticleImage
+        slug={a.slug}
+        className="article-feature-lead"
+        sizes="(max-width: 760px) 90vw, 820px"
+        preload
+      />
       <p className="article-meta">
         {a.author} ·{" "}
         {a.published

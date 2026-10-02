@@ -21,12 +21,23 @@ test("desktop and mobile home, keyboard access, no storefront and accessibility"
     await expect(
       page.getByRole("link", { name: "Skip to content" }),
     ).toBeFocused();
+    const skipBounds = await page
+      .getByRole("link", { name: "Skip to content" })
+      .boundingBox();
+    const brandBounds = await page
+      .getByRole("link", { name: "Docked home" })
+      .boundingBox();
+    expect(skipBounds).not.toBeNull();
+    expect(brandBounds).not.toBeNull();
+    expect(skipBounds!.y + skipBounds!.height).toBeLessThanOrEqual(
+      brandBounds!.y,
+    );
     const axe = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
       .analyze();
     expect(axe.violations).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/platform/home-${width}.png`,
+      path: `docs/qa/visual-sports/after/regression-home-${width}.png`,
       fullPage: true,
     });
   }

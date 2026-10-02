@@ -4,6 +4,7 @@ import { config } from "@/server/config";
 import { db } from "@/server/db";
 import { PageHeading, Empty, Notice } from "@/components/ui";
 import { ApiForm, Field, Check } from "@/components/forms";
+import { SportIcon } from "@/components/sport-icon";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Your dashboard",
@@ -108,11 +109,17 @@ export default async function Dashboard() {
                 <option value="american">American</option>
               </select>
             </label>
-            <Field
-              label="Sports · comma-separated"
-              name="sports"
-              value={who.profile.sports.join(",")}
-            />
+            <div className="sport-preference-field">
+              <span className="preference-sport-icons" aria-hidden="true">
+                <SportIcon sport="football" size={20} />
+                <SportIcon sport="basketball" size={20} />
+              </span>
+              <Field
+                label="Sports · comma-separated"
+                name="sports"
+                value={who.profile.sports.join(",")}
+              />
+            </div>
             <Field
               label="Leagues · comma-separated"
               name="leagues"

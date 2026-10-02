@@ -1,0 +1,190 @@
+{
+  "buildId": "clk6RldtqJMhZT-lWqwXa",
+  "recordedAt": "2026-10-02T23:02:51.923Z",
+  "stats": {
+    "startTime": "2026-10-02T22:56:44.739Z",
+    "duration": 260542.098,
+    "expected": 16,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+      "file": "experience.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 7538
+        }
+      ]
+    },
+    {
+      "title": "article metadata, real PNG social card and allowlisted sports pages",
+      "file": "experience.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3964
+        }
+      ]
+    },
+    {
+      "title": "preview public pages remain truthful, accessible and usable without an account",
+      "file": "experience.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 19259
+        }
+      ]
+    },
+    {
+      "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+      "file": "journeys.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 11548
+        }
+      ]
+    },
+    {
+      "title": "education and pending research are usable without an account",
+      "file": "journeys.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4190
+        }
+      ]
+    },
+    {
+      "title": "restricted public/API, protected admin and no fake signup success",
+      "file": "journeys.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1754
+        }
+      ]
+    },
+    {
+      "title": "retired product routes, legacy support and invalid unsubscribe",
+      "file": "journeys.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1566
+        }
+      ]
+    },
+    {
+      "title": "secondary routes pass automated accessibility scan",
+      "file": "journeys.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 9359
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 390px",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 30969
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 430px",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 30457
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 768px",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 38230
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 1366px",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 36578
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 1920px",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 41483
+        }
+      ]
+    },
+    {
+      "title": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 12397
+        }
+      ]
+    },
+    {
+      "title": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2656
+        }
+      ]
+    },
+    {
+      "title": "atmospheric no-edge imagery preserves restricted and outage meanings",
+      "file": "visual-sports.test.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4640
+        }
+      ]
+    }
+  ]
+}

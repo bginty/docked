@@ -1,0 +1,201 @@
+/* Sports photography is context only. Evidence, eligibility and controls stay text first. */
+.sports-section-heading {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 70px);
+  margin-bottom: 32px;
+}
+.sports-section-heading .page-heading {
+  margin-bottom: 0;
+}
+.sports-section-heading .page-heading h1 {
+  margin-bottom: 0;
+}
+.sport-image.sports-page-banner {
+  width: 100%;
+  aspect-ratio: 2.25;
+  border-radius: 3px;
+}
+.sports-page-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgb(20 43 53 / 18%), transparent);
+  pointer-events: none;
+}
+.no-edge-visual {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--navy);
+  color: #fff;
+  min-height: 300px;
+  display: grid;
+  align-items: center;
+  border-radius: 3px;
+}
+.sport-image.no-edge-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  z-index: -2;
+}
+.no-edge-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgb(9 26 32 / 96%) 0%,
+    rgb(9 26 32 / 85%) 52%,
+    rgb(9 26 32 / 62%) 100%
+  );
+}
+.no-edge-message {
+  padding: clamp(28px, 4vw, 48px);
+  max-width: 780px;
+}
+.no-edge-emblem {
+  display: inline-flex;
+  color: #c8e6d5;
+  margin-bottom: 20px;
+}
+.no-edge-message h2 {
+  color: #fff;
+  font-size: clamp(28px, 3.5vw, 40px);
+  margin-bottom: 18px;
+}
+.no-edge-message p {
+  color: #e3ece8;
+  font-size: 15px;
+  max-width: 610px;
+}
+.no-edge-message .text-link {
+  color: #c8e6d5;
+}
+.edge-card .edge-event {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.edge-sport-icon {
+  flex: 0 0 auto;
+  color: var(--teal);
+}
+.reading-photo-card.article-card {
+  padding: 0;
+  border: 1px solid var(--line);
+  background: #fbfcf8;
+  min-width: 0;
+}
+.sport-image.reading-card-image {
+  aspect-ratio: 2.2;
+  width: 100%;
+}
+.reading-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(22px, 3vw, 32px);
+}
+.reading-card-body h2 {
+  font-size: clamp(28px, 3vw, 35px);
+  line-height: 1.14;
+  margin-block: 12px 18px;
+}
+.reading-card-body .article-arrow {
+  padding-top: 12px;
+  color: var(--teal);
+}
+.sports-editorial.prose {
+  max-width: 950px;
+}
+.sports-editorial .page-heading,
+.sports-editorial > .article-meta,
+.sports-editorial > section,
+.sports-editorial > .notice {
+  max-width: 680px;
+  margin-inline: auto;
+}
+.sports-editorial > .text-link {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+}
+.sports-editorial .page-heading {
+  margin-top: 24px;
+}
+.sport-image.article-feature-lead {
+  aspect-ratio: 1.9;
+  margin-block: 32px 22px;
+  width: 100%;
+  border-radius: 3px;
+}
+.sports-editorial > .article-meta {
+  margin-bottom: 30px;
+}
+.sport-preference-field {
+  position: relative;
+}
+.preference-sport-icons {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  right: 0;
+  top: 0;
+  color: var(--teal);
+}
+.sport-preference-field label {
+  padding-top: 30px;
+}
+.sport-context-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sport-context-heading .sport-icon {
+  flex: 0 0 auto;
+  color: var(--teal);
+}
+.competition-filter-label,
+.competition-filter-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.competition-filter-icons {
+  color: var(--teal);
+}
+@media (max-width: 650px) {
+  .sports-section-heading {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .sport-image.sports-page-banner {
+    aspect-ratio: 2.8;
+  }
+  .no-edge-visual {
+    min-height: 300px;
+  }
+  .no-edge-visual::before {
+    background: rgb(9 26 32 / 85%);
+  }
+  .no-edge-message {
+    padding: 28px 24px;
+  }
+  .no-edge-message p {
+    font-size: 14px;
+  }
+  .sport-image.reading-card-image {
+    aspect-ratio: 1.9;
+  }
+  .sport-image.article-feature-lead {
+    aspect-ratio: 1.45;
+    margin-block: 24px 20px;
+  }
+}

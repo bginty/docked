@@ -68,4 +68,26 @@ fixtures.no_edge = renderToStaticMarkup(
     latest: educationalDrafts()[0],
   }),
 );
+for (const state of [
+  {
+    code: "restricted",
+    title: "Not available in your region",
+    detail:
+      "Educational resources remain available. Actionable tips require an approved country and state policy.",
+  },
+  {
+    code: "outage",
+    title: "Provider feed unavailable",
+    detail:
+      "Fresh market data could not be verified. Publication remains paused.",
+  },
+]) {
+  fixtures[state.code] = renderToStaticMarkup(
+    createElement(NoEdge, {
+      state,
+      monitoring: { available: false, markets: [], events: [] },
+      latest: educationalDrafts()[0],
+    }),
+  );
+}
 process.stdout.write(JSON.stringify(fixtures));

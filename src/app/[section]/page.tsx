@@ -17,6 +17,9 @@ import { boardState } from "@/core/policy";
 import { ledger, type LedgerRow } from "@/core/ledger";
 import { config } from "@/server/config";
 import { LedgerChart } from "@/components/ledger-chart";
+import { SportImage } from "@/components/sport-image";
+import { ArticleImage } from "@/components/article-image";
+import { SportIcon } from "@/components/sport-icon";
 const titles: Record<string, string> = {
   edges: "The opportunity board",
   results: "The complete record",
@@ -214,7 +217,13 @@ export default async function Page({
             <input type="date" name="to" defaultValue={query.to} />
           </label>
           <label>
-            Competition
+            <span className="competition-filter-label">
+              Competition
+              <span className="competition-filter-icons" aria-hidden="true">
+                <SportIcon sport="football" size={17} />
+                <SportIcon sport="basketball" size={17} />
+              </span>
+            </span>
             <select name="sport" defaultValue={query.sport ?? ""}>
               <option value="">All competitions</option>
               {[...new Set(tips.map((t) => t.competition_id))].map((s) => (
@@ -401,20 +410,29 @@ export default async function Page({
         <div className="grid two">
           {catalogue.map((a) => (
             <Link
-              className="article-card"
+              className="article-card reading-photo-card"
               href={`/learn/${a.slug}`}
               key={a.slug}
             >
-              <span className="eyebrow">
-                {a.category} / {a.minutes} MIN
-              </span>
-              <h2>{a.title}</h2>
-              <p>{a.summary}</p>
-              <small>
-                {a.published ? "Published editorial" : "Educational draft"} ·{" "}
-                {a.author}
-              </small>
-              <span className="article-arrow">↗</span>
+              <ArticleImage
+                slug={a.slug}
+                className="reading-card-image"
+                sizes="(max-width: 650px) 90vw, (max-width: 1280px) 43vw, 560px"
+              />
+              <div className="reading-card-body">
+                <span className="eyebrow">
+                  {a.category} / {a.minutes} MIN
+                </span>
+                <h2>{a.title}</h2>
+                <p>{a.summary}</p>
+                <small>
+                  {a.published ? "Published editorial" : "Educational draft"} ·{" "}
+                  {a.author}
+                </small>
+                <span className="article-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </div>
             </Link>
           ))}
         </div>
@@ -937,7 +955,20 @@ export default async function Page({
     );
   return (
     <div className="page">
-      <PageHeading eyebrow={eyebrow} title={titles[section]} />
+      {section === "edges" || section === "results" ? (
+        <div className="sports-section-heading">
+          <PageHeading eyebrow={eyebrow} title={titles[section]} />
+          <SportImage
+            sport={section === "edges" ? "football" : "basketball"}
+            variant="header"
+            className="sports-page-banner"
+            sizes="(max-width: 650px) 90vw, (max-width: 1280px) 40vw, 480px"
+            preload
+          />
+        </div>
+      ) : (
+        <PageHeading eyebrow={eyebrow} title={titles[section]} />
+      )}
       {content}
     </div>
   );

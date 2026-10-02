@@ -10,6 +10,10 @@ import {
 } from "@/server/queries";
 import { identity } from "@/server/auth";
 import { boardState } from "@/core/policy";
+import { SportImage } from "@/components/sport-image";
+import { ArticleImage } from "@/components/article-image";
+import { ExploreSports } from "@/components/explore-sports";
+import { SportIcon } from "@/components/sport-icon";
 export const dynamic = "force-dynamic";
 export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
@@ -30,68 +34,46 @@ export default async function Home() {
   );
   return (
     <>
-      <section className="hero">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="status-dot" /> SPORTS PRICING, WITH PERSPECTIVE
-          </p>
+      <section className="cinematic-hero">
+        <SportImage
+          sport="football"
+          variant="hero"
+          className="hero-photo"
+          sizes="100vw"
+          preload
+        />
+        <div className="cinematic-hero-inner">
+          <p className="eyebrow">DOCKED / SPORT. PRICE. EDGE.</p>
           <h1>
             Only when
             <br />
-            the price
-            <br />
-            offers <em>value.</em>
+            the price offers <em>value.</em>
           </h1>
           <p className="hero-description">
-            See opportunities when our method estimates a market edge. Every
-            published tip tracked. No guaranteed returns.
+            Free sports analysis and alerts when our method estimates a market
+            edge.
+          </p>
+          <p className="hero-proof">
+            <span>Every published tip tracked.</span>
+            <span>No guaranteed returns.</span>
           </p>
           <div className="actions">
             <Link className="button" href="/join">
               Join free <span aria-hidden="true">↗</span>
             </Link>
             <Link className="button ghost" href="/results">
-              View our record
+              View results
             </Link>
           </div>
           <p className="small-note">
             Free for the first 12 months from launch. No card required.
           </p>
         </div>
-        <div className="hero-panel">
-          <div className="panel-top">
-            <span>THE DOCKED APPROACH</span>
-            <span className="tiny-label">RESEARCH V1</span>
-          </div>
-          <div className="price-art" aria-hidden="true">
-            <div className="art-grid" />
-            <svg viewBox="0 0 500 250">
-              <path d="M0 172 C60 168 75 145 130 151 S210 102 265 126 S335 83 390 94 S455 56 500 42" />
-              <path
-                className="reference-line"
-                d="M0 185 C65 164 94 187 140 161 S245 160 290 140 S367 133 413 117 S475 128 500 102"
-              />
-              <circle cx="390" cy="94" r="6" />
-            </svg>
-            <div className="art-label">PRICE ≠ PROBABILITY</div>
-          </div>
-          <h2>
-            A price is a question.
-            <br />
-            The evidence comes first.
-          </h2>
-          <p>
-            Independent references. Fixed decision rules. A complete record,
-            including the losses.
-          </p>
-          <div className="panel-bottom">
-            <span>Concept illustration · no performance data</span>
-            <Link href="/methodology" aria-label="Read the methodology">
-              ↗
-            </Link>
-          </div>
-        </div>
+        <p className="hero-photo-caption">
+          The game sets the stage. Evidence sets the standard.
+        </p>
       </section>
+      <ExploreSports />
       <div className="service-strip">
         <span>
           <i className="status-dot amber" />{" "}
@@ -240,20 +222,37 @@ export default async function Home() {
         <div className="grid three">
           {articles.slice(0, 3).map((a) => (
             <Link
-              className="article-card"
+              className="article-card sport-article-card"
               href={`/learn/${a.slug}`}
               key={a.slug}
             >
-              <span className="eyebrow">
-                {a.category} / {a.minutes} MIN READ
-              </span>
-              <h3>{a.title}</h3>
-              <p>{a.summary}</p>
-              <span className="article-arrow" aria-hidden="true">
-                ↗
-              </span>
+              <ArticleImage
+                slug={a.slug}
+                sizes="(max-width: 650px) 90vw, 30vw"
+              />
+              <div className="article-card-copy">
+                <span className="eyebrow">
+                  {a.category} / {a.minutes} MIN READ
+                </span>
+                <h3>{a.title}</h3>
+                <p>{a.summary}</p>
+                <span className="article-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </div>
             </Link>
           ))}
+        </div>
+        <div className="sports-identity-strip" aria-hidden="true">
+          <span>
+            <SportIcon sport="football" /> Sport in perspective
+          </span>
+          <span>
+            <SportIcon sport="basketball" /> Every price has a context
+          </span>
+          <span>
+            <SportIcon sport="tennis" /> Every record matters
+          </span>
         </div>
       </section>
       <section className="join-band">

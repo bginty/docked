@@ -6,6 +6,7 @@ import {
   type TipPresentation,
 } from "@/core/tip-presentation";
 import { QuoteStatus } from "./quote-status";
+import { SportIcon } from "./sport-icon";
 
 export function EdgeCard({
   tip,
@@ -47,7 +48,18 @@ export function EdgeCard({
         />
         <span className="small-note">LIVE PUBLICATION RECORD</span>
       </div>
-      <p className="edge-event">{tip.participants.join(" vs ")}</p>
+      <p className="edge-event">
+        <SportIcon
+          sport={
+            tip.market_rules.market.startsWith("nba_")
+              ? "basketball"
+              : tip.market_rules.market
+          }
+          className="edge-sport-icon"
+          size={22}
+        />
+        <span>{tip.participants.join(" vs ")}</span>
+      </p>
       <Heading>{tip.selection}</Heading>
       <p className="edge-market">
         {market} · {tip.market_rules.settlement.replaceAll("_", " ")}

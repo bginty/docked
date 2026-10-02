@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/contact",
     "/safer-gambling",
     "/sports",
+    // Canonical sport pages only; /sports/nba permanently redirects to basketball.
     ...sports.map((s) => `/sports/${s.slug}`),
     ...leagues.map((l) => `/leagues/${l.slug}`),
     ...articles.map((a) => `/learn/${a.slug}`),
