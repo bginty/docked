@@ -124,7 +124,7 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
       </p>
       <section className="app-panel" id="preferences">
         <h2>Choose what reaches you.</h2>
-        <form className="app-form" onSubmit={save}>
+        <form className="app-form" method="post" onSubmit={save}>
           {preferences.map(([key, label]) => (
             <label className="check" key={key}>
               <input

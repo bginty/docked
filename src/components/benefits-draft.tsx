@@ -97,7 +97,7 @@ export function DisabledBenefitsDraft({
         Save the reviewed details for later approval. Unknown facts must be
         resolved before saving. Every date below is UTC.
       </p>
-      <form className="app-form" onSubmit={save}>
+      <form className="app-form" method="post" onSubmit={save}>
         <fieldset>
           <legend>Draft and eligibility</legend>
           <label>

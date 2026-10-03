@@ -100,7 +100,7 @@ export function ApprovedEdgeMedia({
           ))}
         </fieldset>
       )}
-      <form className="app-form" onSubmit={upload}>
+      <form className="app-form" method="post" onSubmit={upload}>
         <NativeImagePicker />
         <label>
           Upload image for review

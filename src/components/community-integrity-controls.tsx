@@ -51,7 +51,7 @@ export function CommunityIntegrityControls({
           ? "Capture a reviewed ranking snapshot"
           : "Append an integrity decision"}
       </h2>
-      <form className="app-form" onSubmit={submit}>
+      <form className="app-form" method="post" onSubmit={submit}>
         {snapshot ? (
           <>
             <label>
@@ -106,6 +106,7 @@ export function CommunityIntegrityControls({
         <details>
           <summary>Inspect an existing snapshot</summary>
           <form
+            method="post"
             className="app-form"
             onSubmit={(e) => {
               e.preventDefault();

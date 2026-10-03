@@ -164,7 +164,7 @@ export function ReportForm({
         Report
       </button>
       {open && (
-        <form className="app-form" onSubmit={report}>
+        <form className="app-form" method="post" onSubmit={report}>
           <label>
             Reason
             <select name="reason" required>
@@ -233,7 +233,7 @@ function CommentForm({
     }
   }
   return (
-    <form className="app-form" onSubmit={send}>
+    <form className="app-form" method="post" onSubmit={send}>
       <label>
         {parentId ? "Reply" : "Add a comment"}
         <textarea
@@ -519,7 +519,7 @@ export function ProfileEditor({ profile }: { profile: SocialProfile | null }) {
   return (
     <section className="app-panel" id="edit">
       <h2>Your community profile</h2>
-      <form className="app-form" onSubmit={save}>
+      <form className="app-form" method="post" onSubmit={save}>
         <label>
           Username
           <input
@@ -615,7 +615,7 @@ function AvatarUpload({ onUploaded }: { onUploaded: () => Promise<void> }) {
   return (
     <details>
       <summary>Upload an avatar for review</summary>
-      <form className="app-form" onSubmit={upload}>
+      <form className="app-form" method="post" onSubmit={upload}>
         <label>
           Avatar image
           <input

@@ -1,5 +1,5 @@
 "use client";
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 export function ApiForm({
   endpoint,
@@ -17,10 +17,14 @@ export function ApiForm({
   defaults?: Record<string, unknown>;
 }) {
   const [message, setMessage] = useState(""),
-    [busy, setBusy] = useState(false);
+    [busy, setBusy] = useState(false),
+    [ready, setReady] = useState(false);
   const router = useRouter();
+  // Server-rendered forms stay inert until their JSON submission handler is ready.
+  useEffect(() => setReady(true), []);
   async function send(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!ready || disabled || busy) return;
     setBusy(true);
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -63,11 +67,18 @@ export function ApiForm({
     }
   }
   return (
-    <form onSubmit={send} className="form-stack">
+    <form
+      onSubmit={send}
+      method="post"
+      action={endpoint}
+      data-api-ready={ready ? "true" : "false"}
+      className="form-stack"
+    >
       {children}
-      <button className="button" disabled={disabled || busy}>
+      <button className="button" disabled={!ready || disabled || busy}>
         {busy ? "Working…" : submit}
       </button>
+      <noscript>Enable JavaScript to submit this form securely.</noscript>
       <p role="status" className="form-message">
         {message}
       </p>

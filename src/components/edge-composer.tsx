@@ -261,7 +261,7 @@ export function EdgeComposer({
           </button>
         </div>
       ) : (
-        <form className="app-form" onSubmit={inspect}>
+        <form className="app-form" method="post" onSubmit={inspect}>
           <div className="form-split">
             <label>
               Sport
@@ -469,7 +469,7 @@ export function EdgeComposer({
         />
       )}
       {review && (
-        <form className="app-form compose-review" onSubmit={submit}>
+        <form className="app-form compose-review" method="post" onSubmit={submit}>
           <h2>Integrity review</h2>
           {moved && (
             <div className="price-moved" role="alert">

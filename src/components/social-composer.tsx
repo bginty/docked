@@ -89,7 +89,7 @@ export function SocialComposer() {
           <p>
             Discussion is social content, not a verified performance record.
           </p>
-          <form className="app-form" onSubmit={post}>
+          <form className="app-form" method="post" onSubmit={post}>
             <div className="form-split">
               <label>
                 Post type
@@ -154,7 +154,7 @@ export function SocialComposer() {
           </form>
           <details>
             <summary>Attach an image (social use only)</summary>
-            <form className="app-form" onSubmit={upload}>
+            <form className="app-form" method="post" onSubmit={upload}>
               <NativeImagePicker />
               <label>
                 Image

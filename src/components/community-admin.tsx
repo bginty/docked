@@ -50,7 +50,7 @@ export function ModerationPanel({
               {r.targetType} · {r.targetId} · {r.status} · {r.createdAt}
             </p>
             {canWrite && (
-              <form className="app-form" onSubmit={moderate}>
+              <form className="app-form" method="post" onSubmit={moderate}>
                 <input type="hidden" name="reportId" value={r.id} />
                 <input type="hidden" name="targetId" value={r.targetId} />
                 <input type="hidden" name="targetType" value={r.targetType} />
@@ -107,7 +107,7 @@ export function ModerationPanel({
             )}
             <p className="small-note">{m.id}</p>
             {canWrite && (
-              <form className="app-form" onSubmit={moderate}>
+              <form className="app-form" method="post" onSubmit={moderate}>
                 <input type="hidden" name="targetId" value={m.id} />
                 <input type="hidden" name="targetType" value="media" />
                 <label>
