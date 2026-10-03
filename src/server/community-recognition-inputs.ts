@@ -1,3 +1,4 @@
+import { authUsersRelation } from "@/core/auth-relations";
 import "server-only";
 import type postgres from "postgres";
 import {
@@ -23,7 +24,7 @@ export async function recognitionInputs(
       and not exists(select 1 from private.social_mutes where actor_id=${viewer}::uuid and target_id=p.id))) viewer_visible,
     post.id post_id from private.community_edges e
     join private.social_profiles p on p.id=e.profile_id join public.profiles member on member.id=p.user_id
-    join auth.users u on u.id=p.user_id join private.events ev on ev.id=e.event_id
+    join ${tx.unsafe(authUsersRelation())} u on u.id=p.user_id join private.events ev on ev.id=e.event_id
     join private.market_references reference on reference.id=e.market_reference_id
     join private.social_posts post on post.community_edge_id=e.id
     left join lateral(select id,result,created_at from private.community_settlements where edge_id=e.id and created_at<=${asOf}::timestamptz order by created_at desc,id desc limit 1)s on true
@@ -54,7 +55,7 @@ export async function recognitionInputs(
     select a.*,p.joined_at,(${viewer}::uuid is null or (private.social_profile_visible(${viewer}::uuid,p.id,false)
       and not exists(select 1 from private.social_mutes where actor_id=${viewer}::uuid and target_id=p.id))) viewer_visible
     from activity a join private.social_profiles p on p.id=a.actor_id
-    join private.social_posts post on post.id=a.post_id join public.profiles member on member.id=p.user_id join auth.users u on u.id=p.user_id
+    join private.social_posts post on post.id=a.post_id join public.profiles member on member.id=p.user_id join ${tx.unsafe(authUsersRelation())} u on u.id=p.user_id
     where a.created_at<${asOf}::timestamptz and p.status='active' and p.visibility='members' and not p.is_official
     and member.disabled_at is null and u.email_confirmed_at is not null and not coalesce(u.is_anonymous,false) and u.email not like '%@example.invalid'
     and (u.banned_until is null or u.banned_until<=${asOf}::timestamptz)

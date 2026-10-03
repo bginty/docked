@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeading, Empty, Notice, Metric } from "@/components/ui";
 import { ApiForm, Check, Field } from "@/components/forms";
-import { articles } from "@/content/articles";
 import {
   serviceStatus,
   regionAccess,
@@ -13,7 +12,10 @@ import { identity } from "@/server/auth";
 import { EdgeCard } from "@/components/edge-card";
 import { NoEdge } from "@/components/no-edge";
 import { readingRoom } from "@/server/cms";
-import { boardState } from "@/core/policy";
+import { publicBoardState } from "@/core/public-presentation";
+import { environmentPresentation } from "@/server/presentation";
+import { currentConsentVersions } from "@/core/auth-readiness";
+import { OperatorDetails } from "@/components/operator-details";
 import { ledger, type LedgerRow } from "@/core/ledger";
 import { config } from "@/server/config";
 import { LedgerChart } from "@/components/ledger-chart";
@@ -126,7 +128,10 @@ export default async function Page({
         identity(),
         readingRoom(),
       ]);
-    const state = boardState({ ...status, region: region.allowed });
+    const state = publicBoardState(
+      { ...status, region: region.allowed },
+      !!viewer,
+    );
     const activeTips = tips.filter((t) => t.display_status === "active");
     content = (
       <>
@@ -154,7 +159,7 @@ export default async function Page({
             state={state}
             monitoring={monitoring}
             timezone={viewer?.profile.timezone}
-            latest={catalogue[0] ?? articles[0]}
+            latest={catalogue[0]}
             completed={tips.filter((t) =>
               ["won", "lost", "void"].includes(t.result),
             )}
@@ -403,8 +408,8 @@ export default async function Page({
           <p>
             Weekly review uses the complete live ledger, including losses, voids
             and corrections. No editorial weekly report has been published in
-            this preview. Use the date filters above to inspect an actual
-            period; an empty period has no measurable ROI.
+            this view. Use the date filters above to inspect an actual period;
+            an empty period has no measurable ROI.
           </p>
           <Link className="text-link" href="/learn/estimated-ev-and-returns">
             Understand return calculations ↗
@@ -672,6 +677,7 @@ export default async function Page({
       </>
     );
   } else if (["join", "login", "recover", "reset-password"].includes(section)) {
+    const environment = await environmentPresentation();
     const action =
       section === "join"
         ? "signup"
@@ -695,8 +701,10 @@ export default async function Page({
           {section === "join" && (
             <>
               <Notice>
-                Registration is pending service and legal configuration. This
-                preview does not collect registrations.
+                {environment.registrationAvailable
+                  ? "Registration is open. Required account notices are separate from optional communications."
+                  : (environment.reason ??
+                    "Public registration is not open yet.")}
               </Notice>
               <h2>Free means free.</h2>
               <p>
@@ -726,7 +734,11 @@ export default async function Page({
                     : "Log in"
             }
             disabled={
-              !config().auth || (action === "signup" && !config().registration)
+              !environment.accountConfigured ||
+              (action === "signup" && !environment.registrationAvailable) ||
+              (action === "recover" &&
+                environment.production &&
+                !environment.emailAvailable)
             }
           >
             {action !== "reset" && (
@@ -766,8 +778,10 @@ export default async function Page({
                   least 18.
                 </Check>
                 <Check name="terms" required>
-                  I accept the <Link href="/terms">Terms</Link> and acknowledge
-                  the <Link href="/privacy">Privacy notice</Link>.
+                  I accept the <Link href="/terms">Terms</Link>.
+                </Check>
+                <Check name="privacy" required>
+                  I accept the <Link href="/privacy">Privacy notice</Link>.
                 </Check>
                 <Check name="digest">Send me the optional weekly digest.</Check>
                 <Check name="education">
@@ -790,9 +804,16 @@ export default async function Page({
             <Link href="/recover">Forgot password?</Link>
             <Link href="/join">Join free</Link>
           </div>
-          {!config().auth && (
+          {!environment.accountConfigured && (
             <p className="small-note">Account service pending configuration.</p>
           )}
+          {action === "recover" &&
+            environment.production &&
+            !environment.emailAvailable && (
+              <p role="status">
+                Account email is not enabled. No recovery message will be sent.
+              </p>
+            )}
         </div>
       </div>
     );
@@ -909,11 +930,7 @@ export default async function Page({
           Questions about methodology, accessibility or a record correction are
           welcome.
         </p>
-        <Notice>
-          The operating entity, support ownership and response process for the
-          new research service require verification before public launch. No
-          working contact submission is claimed in this preview.
-        </Notice>
+        <OperatorDetails />
         <p>
           For a former product order, use{" "}
           <Link href="/legacy-support">Legacy product support</Link>. Do not
@@ -926,8 +943,7 @@ export default async function Page({
     content = (
       <div className="prose">
         <p className="lede">
-          Docked is being built to make sports-pricing research easier to
-          inspect.
+          Docked makes sports-pricing research easier to inspect.
         </p>
         <h2>Transparency over volume</h2>
         <p>
@@ -949,30 +965,39 @@ export default async function Page({
           automatic betting.
         </p>
         <Notice>
-          Research validation is pending. Operator/support verification and
-          launch approval are outstanding. No profitable history is claimed.
+          Research validation is pending. No profitable history is claimed.
         </Notice>
+        <OperatorDetails />
       </div>
     );
-  else
+  else {
+    let policyVersion: string | null = null;
+    try {
+      const versions = currentConsentVersions();
+      policyVersion = section === "privacy" ? versions.privacy : versions.terms;
+    } catch {
+      /* Unapproved documents remain visibly pending. */
+    }
     content = (
       <div className="prose">
         <Notice>
-          PREVIEW PRIVACY / TERMS DRAFT · Invited testing is active. Verified
-          entity/support details, retention periods and legal review remain
-          required before public registration or Play submission.
+          {config().production
+            ? policyVersion
+              ? `Document version: ${policyVersion}.`
+              : "POLICY APPROVAL PENDING · Public registration remains closed until the operator approves the Terms and Privacy documents."
+            : "PREVIEW PRIVACY / TERMS DRAFT · Invited testing is active. Verified entity/support details, retention periods and legal review remain required before public registration or Play submission."}
         </Notice>
+        <OperatorDetails />
         {section === "privacy" ? (
           <>
             <h2>Information used</h2>
             <p>
-              The invited beta collects account email and identifiers, username,
-              country/state, age attestation, invitation/access records, consent
-              versions and selected preferences. Passwords are submitted
-              securely to the authentication service. An invitation confirms
-              test access; it does not verify email ownership or age. No
-              identity documents, sportsbook passwords, payment details or
-              precise GPS location are requested.
+              When account services are enabled, Docked collects account email
+              and identifiers, username, country/state, age attestation, access
+              records, consent versions and selected preferences. Passwords are
+              submitted securely to the authentication service. Age is
+              self-attested. No identity documents, sportsbook passwords,
+              payment details or precise GPS location are requested.
             </p>
             <p>
               Community features store your profile, posts, comments, optional
@@ -983,31 +1008,33 @@ export default async function Page({
               preferences are not public. Uploaded images enter private
               moderation review; selecting a photo does not itself upload it.
             </p>
-            <p>
-              Confirmed DEMO / PREVIEW PRICE records retain their synthetic
-              selection, captured reference and timestamps in separate immutable
-              tables. They never count toward genuine performance, rankings or
-              official results. Optional personal tracking is self-reported and
-              separate from the official ledger.
-            </p>
+            {!config().production && (
+              <p>
+                Confirmed DEMO / PREVIEW PRICE records retain their synthetic
+                selection, captured reference and timestamps in separate
+                immutable tables. They never count toward genuine performance,
+                rankings or official results. Optional personal tracking is
+                self-reported and separate from the official ledger.
+              </p>
+            )}
             <h2>Your controls</h2>
             <p>
               Marketing consent is separate, optional and unticked. Onboarding
-              lets you choose in-app updates; external email and Android push
-              are disabled in this beta. You can change preferences, pause
-              messages, export account data or request deletion in your
-              dashboard. Account access and sessions are revoked first; identity
-              erasure is retried if the authentication service is unavailable.
-              Personal social content and relationships are removed or
-              pseudonymised.
+              lets you choose in-app updates. Optional outbound messages and
+              Android push are not enabled. Necessary verification and recovery
+              email is separate and requires configured delivery. You can change
+              preferences, pause messages, export account data or request
+              deletion in your dashboard. Account access and sessions are
+              revoked first; identity erasure is retried if the authentication
+              service is unavailable. Personal social content and relationships
+              are removed or pseudonymised.
             </p>
             <p>
-              Necessary audit, consent and permanent-record evidence, including
-              synthetic preview records, may survive under a pseudonymous
-              identifier. This does not mean every mention of you in another
-              member's content is automatically erased. Exact lawful bases,
-              retention periods and any legal-hold process remain under owner
-              review. Read the{" "}
+              Necessary audit, consent and permanent-record evidence may survive
+              under a pseudonymous identifier. This does not mean every mention
+              of you in another member's content is automatically erased. Exact
+              lawful bases, retention periods and any legal-hold process remain
+              under owner review. Read the{" "}
               <Link href="/account-deletion">
                 account deletion instructions
               </Link>{" "}
@@ -1015,15 +1042,14 @@ export default async function Page({
             </p>
             <h2>Providers and safeguards</h2>
             <p>
-              This beta uses Supabase for authentication and database storage
-              and Vercel for the hosted HTTPS application. Service providers
-              process data to operate those services; security, rate-limit and
-              hosting records support abuse prevention and diagnosis. The
-              preview is isolated from production. No odds/results provider or
-              external email delivery is enabled. The owner must confirm the
-              final processor terms, processing locations, subprocessors,
-              retention schedule and monitored privacy contact before public
-              registration or Play submission.
+              Docked uses Supabase for authentication and database storage and
+              Vercel for the hosted HTTPS application. Service providers process
+              data to operate those services; security, rate-limit and hosting
+              records support abuse prevention and diagnosis. Test environments
+              are isolated from production. No odds/results provider is enabled.
+              The owner must confirm the final processor terms, processing
+              locations, subprocessors, retention schedule and monitored privacy
+              contact before public registration or Play submission.
             </p>
             <h2>Measurement</h2>
             <p>
@@ -1033,7 +1059,7 @@ export default async function Page({
               fixture activity is excluded from genuine acquisition metrics. No
               optimisation of amounts wagered or customer losses, and no
               transfer of the previous product mailing list, is part of this
-              beta.
+              service.
             </p>
           </>
         ) : (
@@ -1071,6 +1097,7 @@ export default async function Page({
         )}
       </div>
     );
+  }
   return (
     <div className="page">
       {section === "edges" || section === "results" ? (

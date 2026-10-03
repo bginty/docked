@@ -10,10 +10,11 @@ import type { RecognitionCandidate } from "../../src/core/community-recognition"
 
 // Disposable SQL projection test only. No real database, Auth session or sporting record.
 let pg: PGlite;
-type Tag = (
+type RelationFragment = { relation: string };
+type Tag = ((
   parts: TemplateStringsArray,
   ...values: unknown[]
-) => Promise<unknown[]>;
+) => Promise<unknown[]>) & { unsafe: (relation: string) => RelationFragment };
 let read: (
   tx: Tag,
   viewer: string | null,
@@ -25,13 +26,36 @@ const author = randomUUID(),
   post = randomUUID(),
   edge = randomUUID();
 const now = "2026-10-05T12:00:00Z";
-const tag: Tag = async (parts, ...values) =>
-  (
-    await pg.query(
-      parts.reduce((text, part, i) => text + (i ? `$${i}` : "") + part, ""),
-      values,
-    )
-  ).rows;
+const fragments = new WeakSet<RelationFragment>();
+const tag: Tag = Object.assign(
+  async (parts: TemplateStringsArray, ...values: unknown[]) => {
+    const parameters: unknown[] = [];
+    const query = parts.reduce((text, part, i) => {
+      if (!i) return part;
+      const value = values[i - 1];
+      if (
+        value &&
+        typeof value === "object" &&
+        fragments.has(value as RelationFragment)
+      )
+        return text + (value as RelationFragment).relation + part;
+      parameters.push(value);
+      return text + `$${parameters.length}` + part;
+    }, "");
+    return (await pg.query(query, parameters)).rows;
+  },
+  {
+    unsafe: (relation: string) => {
+      assert.ok(
+        ["auth.users", "private.runtime_auth_users"].includes(relation),
+        "Only fixed reviewed Auth projections can be SQL fragments",
+      );
+      const fragment = Object.freeze({ relation });
+      fragments.add(fragment);
+      return fragment;
+    },
+  },
+);
 before(async () => {
   // Strip the server-only marker in this test namespace only, preserving the actual production SQL.
   const built = await build({

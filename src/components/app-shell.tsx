@@ -6,6 +6,7 @@ import { AppIcon, type AppIconName } from "./app-icon";
 import { PwaStatus } from "./pwa-status";
 import { BrandLogo } from "./brand-logo";
 import { brand } from "@/brand/brand";
+import { useEnvironmentPresentation } from "./environment-context";
 const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/edges", label: "Edges", icon: "edge" },
   { href: "/feed", label: "Feed", icon: "feed" },
@@ -94,6 +95,7 @@ export function AppShell({
   authenticated?: boolean;
 }) {
   const path = usePathname();
+  const { production } = useEnvironmentPresentation();
   const destination = appDestination(path);
   const shell = useEditingViewport(authenticated);
   if (!authenticated) return <div className="community-public">{children}</div>;
@@ -133,7 +135,7 @@ export function AppShell({
           <Link href="/">Public site</Link>
         </div>
         <p className="small-note">
-          18+ · Research preview
+          18+ · {production ? "Sports research" : "Research preview"}
           <br />
           No guaranteed returns.
         </p>
@@ -144,7 +146,7 @@ export function AppShell({
             <Link className="brand" href="/edges" aria-label="Docked Edges">
               <BrandLogo surface="dark" decorative />
             </Link>
-            <span className="app-preview-label">PREVIEW</span>
+            {!production && <span className="app-preview-label">PREVIEW</span>}
           </div>
           <nav aria-label="App utilities">
             <Link

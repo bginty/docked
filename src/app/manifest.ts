@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Docked",
     description:
       "Sports discussion and transparent verified records. No guaranteed returns.",
-    start_url: "/home",
+    start_url: "/app",
     scope: "/",
     display: "standalone",
     background_color: brand.colors.navy,

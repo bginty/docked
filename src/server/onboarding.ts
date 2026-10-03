@@ -1,9 +1,10 @@
+import { authUsersRelation } from "@/core/auth-relations";
 import { db } from "./db";
 export async function scheduleOnboarding(userId: string) {
   const sql = db();
   await sql.begin(async (tx) => {
     const rows =
-      await tx`select p.id,n.education from public.profiles p join public.notification_preferences n on n.user_id=p.id join auth.users u on u.id=p.id where p.id=${userId} and p.disabled_at is null and u.email_confirmed_at is not null`;
+      await tx`select p.id,n.education from public.profiles p join public.notification_preferences n on n.user_id=p.id join ${tx.unsafe(authUsersRelation())} u on u.id=p.id where p.id=${userId} and p.disabled_at is null and u.email_confirmed_at is not null`;
     if (!rows[0]) return;
     const items = [
       {

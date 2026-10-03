@@ -78,13 +78,13 @@ test("education and pending research are usable without an account", async ({
     page.getByRole("heading", { name: "The complete record" }),
   ).toBeVisible();
 });
-test("restricted public/API, protected admin and no fake signup success", async ({
+test("anonymous public/API gates, protected admin and no fake signup success", async ({
   page,
   request,
 }) => {
   await page.goto("/edges");
   await expect(
-    page.getByRole("heading", { name: "Not available in your region" }),
+    page.getByRole("heading", { name: "Research validation pending" }),
   ).toBeVisible();
   const edges = await request.get("/api/edges");
   expect((await edges.json()).tips).toEqual([]);

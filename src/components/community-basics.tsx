@@ -33,7 +33,7 @@ export function AccessGate({
       <p>
         {configured
           ? "Your account and region permissions are checked before community records or private controls are shown."
-          : "Account service is NOT_CONFIGURED in this preview. Community records and private controls are unavailable until the dedicated Docked environment is connected."}
+          : "Account service is NOT_CONFIGURED. Community records and private controls are unavailable until the dedicated Docked environment is connected."}
       </p>
       <div className="actions">
         <Link className="button" href="/login">

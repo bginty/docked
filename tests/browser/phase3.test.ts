@@ -650,7 +650,8 @@ test("PWA serves an offline shell without caching private pages or APIs", async 
     await page.request.get("/manifest.webmanifest")
   ).json();
   expect(manifest.display).toBe("standalone");
-  expect(manifest.start_url).toBe("/home");
+  expect(manifest.start_url).toBe("/app");
+  expect(manifest.id).toBe("/home");
   expect(manifest.icons).toHaveLength(3);
   const keys = await page.evaluate(async () => {
     const names = await caches.keys();

@@ -41,7 +41,8 @@ export function databaseConnectionOptions(
   };
   const file =
     env.DATABASE_SSL_CA_FILE ||
-    (env.DOCKED_HOSTED_PREVIEW === "true"
+    (env.DOCKED_HOSTED_PREVIEW === "true" ||
+    env.DOCKED_HOSTED_PRODUCTION === "true"
       ? join(process.cwd(), "certs", "supabase-prod-ca-2021.crt")
       : undefined);
   if (file) {

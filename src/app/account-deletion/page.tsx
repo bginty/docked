@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { OperatorDetails } from "@/components/operator-details";
+import { config } from "@/server/config";
 export const metadata: Metadata = {
   title: "Delete your Docked account",
   robots: { index: false, follow: false },
@@ -33,16 +35,17 @@ export default function AccountDeletionInformation() {
         Necessary consent, moderation and permanent-record audit evidence may be
         retained without an active public identity. A losing Edge is not removed
         selectively. The final legal retention schedule and operator contact
-        remain under owner review for this Preview.
+        remain under owner review.
       </p>
       <h2>Unable to sign in?</h2>
       <p>
         Use <Link href="/recover">password recovery</Link> where delivery is
-        configured. Invited Preview testers without a working recovery mailbox
-        should contact the beta organiser through the channel used for their
-        invitation. A verified public support contact is required before Play
-        submission.
+        configured.{" "}
+        {config().production
+          ? "Use the support contact below if recovery is unavailable."
+          : "Invited Preview testers without a working recovery mailbox should contact the beta organiser through the channel used for their invitation."}
       </p>
+      <OperatorDetails />
       <Link href="/privacy">Read the privacy notice</Link>
     </div>
   );

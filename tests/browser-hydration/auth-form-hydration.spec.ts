@@ -1,4 +1,33 @@
 import { test, expect } from "@playwright/test";
+import { execFileSync } from "node:child_process";
+import { bundleCommunityFixture } from "../fixtures/bundle-community";
+
+let html = "",
+  bundle = "";
+test.beforeAll(async () => {
+  html = execFileSync(
+    process.execPath,
+    [
+      "--import",
+      "tsx",
+      "-e",
+      `
+    const React = require('react'); global.React = React;
+    const {renderToString} = require('react-dom/server');
+    const {AppRouterContext} = require('next/dist/shared/lib/app-router-context.shared-runtime');
+    const {AuthFormHydrationView} = require('./tests/fixtures/auth-form-hydration-view.tsx');
+    process.stdout.write(renderToString(React.createElement(AppRouterContext.Provider,{value:{}},React.createElement(AuthFormHydrationView))));
+  `,
+    ],
+    { encoding: "utf8" },
+  );
+  bundle = await bundleCommunityFixture(
+    "tests/fixtures/auth-form-hydration.tsx",
+  );
+});
+function documentHtml() {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Isolated account hydration</title></head><body><main id="auth-form-fixture">${html}</main><script defer src="/hydration-fixture.js"></script></body></html>`;
+}
 
 const fictionalEmail = "docked-preview-hydration-test@example.invalid";
 const fictionalPassword = "fictional-hydration-regression-only";
@@ -32,8 +61,14 @@ test("authentication waits for hydration and submits exactly one JSON request", 
         body: JSON.stringify({ message: "Fictional submission intercepted." }),
       });
     }
-    if (request.resourceType() === "script") await scriptsReady;
-    return route.continue();
+    if (url.pathname === "/hydration-fixture.js") {
+      await scriptsReady;
+      return route.fulfill({
+        contentType: "application/javascript",
+        body: bundle,
+      });
+    }
+    return route.fulfill({ contentType: "text/html", body: documentHtml() });
   });
   try {
     await page.goto("/login", { waitUntil: "commit" });
@@ -105,7 +140,12 @@ test("JavaScript-disabled authentication stays disabled and forced native submis
         body: "<!doctype html><title>Intercepted fictional form</title><p>Intercepted locally.</p>",
       });
     }
-    return route.continue();
+    if (url.pathname === "/hydration-fixture.js")
+      return route.fulfill({
+        contentType: "application/javascript",
+        body: bundle,
+      });
+    return route.fulfill({ contentType: "text/html", body: documentHtml() });
   });
   try {
     await page.goto("/login", { waitUntil: "domcontentloaded" });

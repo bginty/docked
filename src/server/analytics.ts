@@ -1,3 +1,4 @@
+import { authUsersRelation } from "@/core/auth-relations";
 import "server-only";
 import { db } from "./db";
 import type { AnalyticsEvent } from "../core/analytics";
@@ -16,8 +17,8 @@ export async function recordAnalytics(
     await sql`insert into private.analytics_events(user_id,event,cohort,channel)
       select p.id,${event},p.created_at,${channel ?? null} from public.profiles p
       where p.id=${userId} and p.disabled_at is null
-      and exists(select 1 from auth.users u where u.id=p.id and coalesce(u.raw_app_meta_data->>'preview_fixture','false')<>'true' and lower(coalesce(u.email,'')) not like '%@example.invalid')
-      and (${event}<>'email_verified' or exists(select 1 from auth.users u where u.id=p.id and u.email_confirmed_at is not null and coalesce(u.raw_app_meta_data->>'email_ownership_verified','true')<>'false' and coalesce(u.raw_app_meta_data->>'preview_invitation_confirmed','false')<>'true'))
+      and exists(select 1 from ${sql.unsafe(authUsersRelation())} u where u.id=p.id and coalesce(u.raw_app_meta_data->>'preview_fixture','false')<>'true' and lower(coalesce(u.email,'')) not like '%@example.invalid')
+      and (${event}<>'email_verified' or exists(select 1 from ${sql.unsafe(authUsersRelation())} u where u.id=p.id and u.email_confirmed_at is not null and coalesce(u.raw_app_meta_data->>'email_ownership_verified','true')<>'false' and coalesce(u.raw_app_meta_data->>'preview_invitation_confirmed','false')<>'true'))
       and coalesce((select granted from private.consent_events where user_id=p.id and purpose='analytics' order by created_at desc limit 1),false)
       and (not ${once} or not exists(select 1 from private.analytics_events where user_id=p.id and event=${event})) on conflict do nothing`;
   } catch {

@@ -1,3 +1,4 @@
+import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { authClient, sameOrigin } from "@/server/auth";
@@ -9,6 +10,23 @@ import { previewAuthEmailAllowed } from "@/server/preview-auth";
 import { boundedCommunityBody } from "@/core/community-social";
 import { signupUsername } from "@/core/preview-testers";
 import { redeemPreviewInvitation } from "@/server/preview-invitations";
+import {
+  currentConsentVersions,
+  explicitSignupConsent,
+  productionAuthRequestDenial,
+} from "@/core/auth-readiness";
+import {
+  persistSignupProfile,
+  type SignupTransaction,
+} from "@/server/signup-profile";
+import type { TransactionSql } from "postgres";
+function signupTransaction(tx: TransactionSql): SignupTransaction {
+  return {
+    query: async (text, parameters) => [...(await tx.unsafe(text, parameters))],
+    savepoint: async (run) =>
+      tx.savepoint(async (nested) => run(signupTransaction(nested))),
+  };
+}
 const schema = z.object({
   action: z.enum([
     "signup",
@@ -69,6 +87,15 @@ export async function POST(request: Request) {
     );
   const v = parsed.data;
   const invited = v.action === "signup" && !!v.invitationCode;
+  const productionDenial = productionAuthRequestDenial(
+    v.action,
+    v.invitationCode,
+  );
+  if (productionDenial)
+    return NextResponse.json(
+      { error: productionDenial },
+      { status: invited ? 403 : 503 },
+    );
   if (
     !config().production &&
     ["signup", "recover", "resend"].includes(v.action) &&
@@ -117,7 +144,7 @@ export async function POST(request: Request) {
     // Revoke database-backed sessions first so an Auth-provider error cannot
     // leave copied JWTs usable against either the application or RLS.
     if (verified?.data.user && !verified.error)
-      await sql`delete from auth.sessions where user_id=${verified.data.user.id}`;
+      await sql`delete from ${sql.unsafe(authSessionsRelation())} where user_id=${verified.data.user.id}`;
     const { error } = await client.auth.signOut({ scope: "global" });
     if (error && !verified?.data.user)
       return NextResponse.json(
@@ -251,9 +278,8 @@ export async function POST(request: Request) {
   if (
     !v.country ||
     !v.state ||
-    !v.age ||
-    !v.terms ||
-    (v.app && (!v.privacy || !v.username))
+    !explicitSignupConsent(v) ||
+    (v.app && !v.username)
   )
     return NextResponse.json(
       {
@@ -262,6 +288,31 @@ export async function POST(request: Request) {
       },
       { status: 400 },
     );
+  let versions;
+  try {
+    versions = currentConsentVersions();
+  } catch {
+    return NextResponse.json(
+      { error: "Registration awaits approved Terms and Privacy documents." },
+      { status: 503 },
+    );
+  }
+  if (
+    v.username &&
+    (
+      await sql`select 1 from private.social_handle_history where handle=${v.username}`
+    ).length
+  )
+    return NextResponse.json(
+      { error: "Username is unavailable. Choose another name." },
+      { status: 409 },
+    );
+  // An existing Auth identity (including an unconfirmed one without an app profile)
+  // must not gain attacker-supplied consent/preferences through another signup.
+  const existingIdentity =
+    (
+      await sql`select 1 from ${sql.unsafe(authUsersRelation())} where lower(email)=lower(${v.email}) limit 1`
+    ).length > 0;
   const { data, error } = await client.auth.signUp({
     email: v.email,
     password: v.password,
@@ -275,32 +326,48 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   // Supabase may deliberately return an obfuscated existing user; never overwrite a profile or consents.
-  if (data.user.identities?.length === 0)
+  if (existingIdentity || data.user.identities?.length === 0)
     return NextResponse.json({
       ok: true,
       message: "Check your email for account instructions.",
+      ...(v.app ? { redirect: "/app/check-email?type=verification" } : {}),
     });
-  const created = await sql.begin(async (tx) => {
-    const inserted =
-      await tx`insert into public.profiles(id,country,state,age_attested,accepted_version) values(${data.user!.id},${v.country!},${v.state!},true,'2026-10-draft') on conflict do nothing returning id`;
-    if (!inserted.length) return false;
-    await tx`insert into public.notification_preferences(user_id,digest,education,edge_alerts) values(${data.user!.id},${v.digest ? "weekly" : "off"},${!!v.education},${!!v.edgeAlerts}) on conflict do nothing`;
-    for (const [purpose, granted] of Object.entries({
-      terms: true,
-      privacy: true,
-      age_attestation: true,
-      marketing: !!v.marketing,
-      digest: !!v.digest,
-      education: !!v.education,
-      edge: !!v.edgeAlerts,
-      analytics: !!v.analytics,
-    }))
-      await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${data.user!.id},${purpose},${granted},'2026-10-draft',${data.user!.id})`;
-    if (v.app && v.username)
-      await tx`insert into private.social_profiles(user_id,handle,display_name) values(${data.user!.id},${v.username},${v.username})`;
-    return true;
-  });
-  if (created)
+  let provisioned;
+  try {
+    provisioned = await sql.begin(async (tx) =>
+      persistSignupProfile(
+        signupTransaction(tx),
+        data.user!.id,
+        {
+          country: v.country!,
+          state: v.state!,
+          username: v.username,
+          marketing: v.marketing,
+          digest: v.digest,
+          education: v.education,
+          analytics: v.analytics,
+          edgeAlerts: v.edgeAlerts,
+        },
+        versions,
+      ),
+    );
+  } catch {
+    // Creation can have an uncertain outcome. Never delete an Auth identity to
+    // compensate; an operator may reconcile it only after ownership is proven.
+    try {
+      await sql`insert into private.audit_events(actor,action,subject,details) values('account-service','signup_profile_repair_required',${data.user.id},'{"reason":"Application profile provisioning failed"}'::jsonb)`;
+    } catch {
+      /* Database failure remains visible in the response. */
+    }
+    return NextResponse.json(
+      {
+        error:
+          "Account setup could not be completed. Do not resubmit repeatedly; contact support for account recovery.",
+      },
+      { status: 503 },
+    );
+  }
+  if (provisioned.created)
     await recordAnalytics(data.user.id, "signup_completed", undefined, true);
   return NextResponse.json({
     ok: true,

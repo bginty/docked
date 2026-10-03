@@ -8,6 +8,7 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import { appSports } from "@/core/app-auth";
+import { useEnvironmentPresentation } from "./environment-context";
 
 export function AppAuthField({
   label,
@@ -44,6 +45,12 @@ export function AppAuthForm({
   mode: "login" | "signup" | "recover" | "reset" | "resend";
 }) {
   const router = useRouter();
+  const environment = useEnvironmentPresentation();
+  const unavailable =
+    environment.production &&
+    (!environment.accountConfigured ||
+      (mode === "signup" && !environment.registrationAvailable) ||
+      (["recover", "resend"].includes(mode) && !environment.emailAvailable));
   const [ready, setReady] = useState(false),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
@@ -59,7 +66,7 @@ export function AppAuthForm({
   }[mode];
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!ready || busy) return;
+    if (!ready || busy || unavailable) return;
     const form = event.currentTarget;
     const data = new FormData(form);
     const body: Record<string, unknown> = {
@@ -79,7 +86,8 @@ export function AppAuthForm({
       form.querySelector<HTMLInputElement>("[name=confirmPassword]")?.focus();
       return;
     }
-    if (!invited) delete body.invitationCode;
+    if (!invited || !environment.invitationAllowed || environment.production)
+      delete body.invitationCode;
     setBusy(true);
     setMessage("");
     try {
@@ -211,30 +219,34 @@ export function AppAuthForm({
           <Consent name="marketing">
             Optional: send me Docked marketing updates. I can unsubscribe.
           </Consent>
-          <label className="app-auth-check">
-            <input
-              type="checkbox"
-              checked={invited}
-              onChange={(e) => setInvited(e.target.checked)}
-            />
-            <span>I have a Preview invitation</span>
-          </label>
-          {invited && (
-            <>
-              <AppAuthField
-                label="Private invitation code"
-                name="invitationCode"
-                autoComplete="off"
-                spellCheck={false}
-                autoCapitalize="none"
-                required
+          {!environment.production && environment.invitationAllowed && (
+            <label className="app-auth-check">
+              <input
+                type="checkbox"
+                checked={invited}
+                onChange={(e) => setInvited(e.target.checked)}
               />
-              <p className="app-auth-hint">
-                Your invitation confirms test access, not email ownership. No
-                email is sent. Keep the code private.
-              </p>
-            </>
+              <span>I have a Preview invitation</span>
+            </label>
           )}
+          {!environment.production &&
+            environment.invitationAllowed &&
+            invited && (
+              <>
+                <AppAuthField
+                  label="Private invitation code"
+                  name="invitationCode"
+                  autoComplete="off"
+                  spellCheck={false}
+                  autoCapitalize="none"
+                  required
+                />
+                <p className="app-auth-hint">
+                  Your invitation confirms test access, not email ownership. No
+                  email is sent. Keep the code private.
+                </p>
+              </>
+            )}
         </>
       )}
       {mode === "login" && (
@@ -242,7 +254,19 @@ export function AppAuthForm({
           Forgot password?
         </Link>
       )}
-      <button className="button app-auth-submit" disabled={!ready || busy}>
+      {unavailable && (
+        <p className="app-auth-hint" role="status">
+          {mode === "signup"
+            ? (environment.reason ?? "Public registration is not open yet.")
+            : !environment.accountConfigured
+              ? "Account services are unavailable."
+              : "Account email is not enabled. No message will be sent."}
+        </p>
+      )}
+      <button
+        className="button app-auth-submit"
+        disabled={!ready || busy || unavailable}
+      >
         {busy ? "Please wait…" : label}
       </button>
       <p className="app-auth-message" role="status" aria-live="polite">
@@ -278,6 +302,7 @@ export function AppOnboardingForm({
   preferences: AppOnboardingPreferences;
 }) {
   const router = useRouter();
+  const { production } = useEnvironmentPresentation();
   const essentialsRequired = legalRequired || usernameRequired;
   const [step, setStep] = useState(essentialsRequired ? 0 : 1),
     [ready, setReady] = useState(false),
@@ -381,8 +406,9 @@ export function AppOnboardingForm({
           {legalRequired && (
             <>
               <p className="app-auth-hint">
-                Preview access is for invited adults. It is not public regional
-                approval.
+                {production
+                  ? "Your account does not grant access to features restricted in your region."
+                  : "Preview access is for invited adults. It is not public regional approval."}
               </p>
               <AppAuthField
                 label="Country code"
@@ -532,9 +558,9 @@ export function AppOnboardingForm({
             </label>
           ))}
           <p className="app-auth-hint">
-            In-app preferences only for this beta. Android push is not
-            configured, so no device permission is requested. Official Edge
-            alerts remain off until validation.
+            In-app preferences only. Android push is not configured, so no
+            device permission is requested. Official Edge alerts remain off
+            until validation.
           </p>
         </>
       )}

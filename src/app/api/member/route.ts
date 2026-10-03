@@ -5,6 +5,7 @@ import { requireIdentity, sameOrigin, authClient } from "@/server/auth";
 import { db, rateLimit } from "@/server/db";
 import { publicTips } from "@/server/queries";
 import { processAccountDeletion } from "@/server/account-deletion";
+import { currentConsentVersions } from "@/core/auth-readiness";
 import { recordAnalytics } from "@/server/analytics";
 import { exportCommunityData } from "@/server/community-social";
 import { saveAppOnboarding } from "@/server/app-onboarding";
@@ -96,11 +97,12 @@ export async function POST(request: Request) {
           terms: z.literal(true),
         })
         .parse(body);
+      const versions = currentConsentVersions();
       await sql.begin(async (tx) => {
-        await tx`update public.profiles set country=${v.country},state=${v.state},age_attested=true,accepted_version='2026-10-draft' where id=${who.user.id}`;
+        await tx`update public.profiles set country=${v.country},state=${v.state},age_attested=true,accepted_version=${versions.terms} where id=${who.user.id}`;
         await tx`update public.notification_preferences set paused=true,updated_at=now() where user_id=${who.user.id}`;
         await tx`update private.outbox set state='suppressed',last_error='Jurisdiction changed; review preferences' where user_id=${who.user.id} and kind<>'service' and state in ('queued','leased')`;
-        await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${who.user.id},'terms',true,'2026-10-draft',${who.user.id})`;
+        await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${who.user.id},'terms',true,${versions.terms},${who.user.id})`;
         await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'jurisdiction_changed',${who.user.id},${tx.json({ country: v.country, state: v.state })})`;
       });
       return NextResponse.json({

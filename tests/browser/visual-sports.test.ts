@@ -85,7 +85,7 @@ for (const width of [390, 430, 768, 1366, 1920]) {
       ).toBe(true);
       if (route === "/edges") {
         await expect(
-          page.getByRole("heading", { name: "Not available in your region" }),
+          page.getByRole("heading", { name: "Research validation pending" }),
         ).toBeVisible();
         await expect(
           page.getByRole("heading", { name: "No qualifying edge right now." }),

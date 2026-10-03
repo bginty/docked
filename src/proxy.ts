@@ -1,9 +1,9 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { authCookieOptions } from "@/core/auth-cookies";
-import { assertHostedPreview } from "@/core/hosted-preview";
+import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 export async function proxy(request: NextRequest) {
-  assertHostedPreview(process.env);
+  assertDeploymentEnvironment(process.env);
   let response = NextResponse.next({ request });
   if (
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||

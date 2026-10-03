@@ -499,7 +499,7 @@ export async function enqueueCommunityNotification(
 
 /** Internal worker only. Each transaction advances at most 100 recipients of one durable job. */
 export async function processCommunityNotifications(
-  options: { previewOnly?: boolean } = {},
+  options: { previewOnly?: boolean; communityOnly?: boolean } = {},
 ) {
   if (!process.env.DATABASE_URL) return { processed: 0, queued: 0 };
   const batchSize = options.previewOnly ? 10 : 100;
@@ -507,6 +507,7 @@ export async function processCommunityNotifications(
     await setPreviewCommunityContext(tx);
     const jobs =
       await tx`select j.*,p.author_id,p.official_tip_id,p.community_edge_id,p.created_at post_created_at,p.deleted_at,p.moderation_status from private.social_notification_jobs j join private.social_posts p on p.id=j.post_id join private.social_profiles author on author.id=p.author_id where j.completed_at is null
+      and (${!options.communityOnly} or (p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration') and not author.is_official))
       and (${!options.previewOnly} or (p.official_tip_id is null and p.community_edge_id is null and p.kind<>'official' and not author.is_official and author.status='active' and private.preview_tester_policy(author.user_id,'community_social') is not null))
       order by j.created_at,j.id limit 1 for update of j skip locked`;
     const job = jobs[0];

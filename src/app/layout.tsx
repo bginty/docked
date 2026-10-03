@@ -11,7 +11,9 @@ import "./app-auth.css";
 import "./beta-experience.css";
 import "./phase5-edges.css";
 import { NativeBridge } from "@/components/native-bridge";
-import { config } from "@/server/config";
+import { environmentPresentation } from "@/server/presentation";
+import { EnvironmentProvider } from "@/components/environment-context";
+import { headerAccountLabel } from "@/core/public-presentation";
 import { AnalyticsObserver } from "@/components/analytics-observer";
 import { SportIcon } from "@/components/sport-icon";
 import { BrandLogo } from "@/components/brand-logo";
@@ -66,100 +68,111 @@ export const viewport: Viewport = {
   viewportFit: "cover",
   themeColor: brand.colors.navy,
 };
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const environment = await environmentPresentation();
   return (
     <html lang="en">
       <body>
-        <AnalyticsObserver />
-        <NativeBridge />
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-        <div className="topline">
-          <span>{brand.tagline}</span>
-          <span>18+ · Research preview</span>
-        </div>
-        <header className="site-header">
-          <div className="header-inner">
-            <Link className="brand" href="/" aria-label="Docked home">
-              <BrandLogo decorative />
-            </Link>
-            <nav className="public-primary-nav" aria-label="Main navigation">
-              <Link href="/edges">Edges</Link>
-              <Link href="/results">Results</Link>
-              <Link href="/sports">
-                <SportIcon sport="football" size={17} />
-                Sports
-              </Link>
-              <Link href="/research">Research</Link>
-              <Link href="/community">Community</Link>
-              <Link href="/learn">Learn</Link>
-              <Link href="/methodology">Methodology</Link>
-            </nav>
-            <div className="account-nav">
-              <Link href="/login">Sign in</Link>
-              <Link className="button small" href="/join">
-                Join free <span aria-hidden="true">↗</span>
-              </Link>
-            </div>
+        <EnvironmentProvider value={environment}>
+          <AnalyticsObserver />
+          <NativeBridge />
+          <a className="skip-link" href="#main">
+            Skip to content
+          </a>
+          <div className="topline">
+            <span>{brand.tagline}</span>
+            <span>
+              18+ ·{" "}
+              {environment.production ? "Sports research" : "Research preview"}
+            </span>
           </div>
-          <details className="public-mobile-more">
-            <summary>Explore Docked</summary>
-            <nav aria-label="Explore Docked">
-              <Link href="/edges">Edges</Link>
-              <Link href="/results">Results</Link>
-              <Link href="/sports">Sports</Link>
-              <Link href="/community">Community</Link>
-              <Link href="/learn">Learn</Link>
-              <Link href="/research">Research</Link>
-              <Link href="/methodology">Methodology</Link>
-            </nav>
-          </details>
-        </header>
-        {!config().production && (
-          <div className="preview-banner">
-            PREVIEW · Historical validation pending · Live tips and outbound
-            alerts are off
-          </div>
-        )}
-        <main id="main">{children}</main>
-        <footer>
-          <div className="footer-grid">
-            <div>
+          <header className="site-header">
+            <div className="header-inner">
               <Link className="brand" href="/" aria-label="Docked home">
-                <BrandLogo surface="dark" decorative />
+                <BrandLogo decorative />
               </Link>
-              <p className="brand-tagline">{brand.tagline}</p>
-              <p className="muted">
-                Informational analysis. No wagering, wallets or guaranteed
-                returns.
+              <nav className="public-primary-nav" aria-label="Main navigation">
+                <Link href="/edges">Edges</Link>
+                <Link href="/results">Results</Link>
+                <Link href="/sports">
+                  <SportIcon sport="football" size={17} />
+                  Sports
+                </Link>
+                <Link href="/research">Research</Link>
+                <Link href="/community">Community</Link>
+                <Link href="/learn">Learn</Link>
+                <Link href="/methodology">Methodology</Link>
+              </nav>
+              <div className="account-nav">
+                <Link href="/login">Sign in</Link>
+                <Link className="button small" href="/join">
+                  {headerAccountLabel(environment)}{" "}
+                  <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
+            </div>
+            <details className="public-mobile-more">
+              <summary>Explore Docked</summary>
+              <nav aria-label="Explore Docked">
+                <Link href="/edges">Edges</Link>
+                <Link href="/results">Results</Link>
+                <Link href="/sports">Sports</Link>
+                <Link href="/community">Community</Link>
+                <Link href="/learn">Learn</Link>
+                <Link href="/research">Research</Link>
+                <Link href="/methodology">Methodology</Link>
+              </nav>
+            </details>
+          </header>
+          {!environment.production && (
+            <div className="preview-banner">
+              PREVIEW · Historical validation pending · Live tips and outbound
+              alerts are off
+            </div>
+          )}
+          <main id="main">{children}</main>
+          <footer>
+            <div className="footer-grid">
+              <div>
+                <Link className="brand" href="/" aria-label="Docked home">
+                  <BrandLogo surface="dark" decorative />
+                </Link>
+                <p className="brand-tagline">{brand.tagline}</p>
+                <p className="muted">
+                  Informational analysis. No wagering, wallets or guaranteed
+                  returns.
+                </p>
+              </div>
+              <nav aria-label="Research links">
+                <Link href="/methodology">Methodology</Link>
+                <Link href="/sports">Sports and research scope</Link>
+                <Link href="/data-status">Data status</Link>
+                <Link href="/about">About Docked</Link>
+                <Link href="/contact">Contact</Link>
+              </nav>
+              <nav aria-label="Policy links">
+                <Link href="/safer-gambling">Safer Gambling</Link>
+                <Link href="/terms">Terms</Link>
+                <Link href="/privacy">Privacy</Link>
+                <Link href="/legacy-support">Legacy product support</Link>
+              </nav>
+            </div>
+            <div className="footer-base">
+              <p>
+                Gambling can cause harm. Never chase losses. You can use Docked
+                without betting.
+              </p>
+              <p>
+                All core features free for 12 months from public launch. No
+                card. No automatic conversion.
               </p>
             </div>
-            <nav aria-label="Research links">
-              <Link href="/methodology">Methodology</Link>
-              <Link href="/sports">Sports and research scope</Link>
-              <Link href="/data-status">Data status</Link>
-              <Link href="/about">About Docked</Link>
-              <Link href="/contact">Contact</Link>
-            </nav>
-            <nav aria-label="Policy links">
-              <Link href="/safer-gambling">Safer Gambling</Link>
-              <Link href="/terms">Terms</Link>
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/legacy-support">Legacy product support</Link>
-            </nav>
-          </div>
-          <div className="footer-base">
-            <p>
-              Gambling can cause harm. Never chase losses. You can use Docked
-              without betting.
-            </p>
-            <p>
-              All core features free for 12 months from public launch. No card.
-              No automatic conversion.
-            </p>
-          </div>
-        </footer>
+          </footer>
+        </EnvironmentProvider>
       </body>
     </html>
   );

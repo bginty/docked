@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { articles } from "@/content/articles";
+import { readingRoom } from "@/server/cms";
+import { environmentPresentation } from "@/server/presentation";
 import { EdgeCard } from "@/components/edge-card";
 import { NoEdge } from "@/components/no-edge";
 import {
@@ -9,7 +10,10 @@ import {
   monitoringContext,
 } from "@/server/queries";
 import { identity } from "@/server/auth";
-import { boardState } from "@/core/policy";
+import {
+  activeHomepageTips,
+  publicBoardState,
+} from "@/core/public-presentation";
 import { SportImage } from "@/components/sport-image";
 import { ArticleImage } from "@/components/article-image";
 import { ExploreSports } from "@/components/explore-sports";
@@ -17,21 +21,21 @@ import { SportIcon } from "@/components/sport-icon";
 export const dynamic = "force-dynamic";
 export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
-  const [status, region, tips, monitoring, viewer] = await Promise.all([
-    serviceStatus(),
-    regionAccess(),
-    publicTips(),
-    monitoringContext(),
-    identity(),
-  ]);
-  const state = status.strategy
-    ? boardState({ ...status, region: region.allowed })
-    : boardState({ ...status, region: true });
-  const active = tips.filter(
-    (t) =>
-      t.availability === "active" &&
-      new Date(t.start_at).getTime() > Date.now() + 600000,
+  const [status, region, tips, monitoring, viewer, articles, environment] =
+    await Promise.all([
+      serviceStatus(),
+      regionAccess(),
+      publicTips(),
+      monitoringContext(),
+      identity(),
+      readingRoom(),
+      environmentPresentation(),
+    ]);
+  const state = publicBoardState(
+    { ...status, region: region.allowed },
+    !!viewer,
   );
+  const active = activeHomepageTips(tips);
   return (
     <>
       <section className="cinematic-hero">
@@ -59,7 +63,10 @@ export default async function Home() {
           </p>
           <div className="actions">
             <Link className="button" href="/join">
-              Join free <span aria-hidden="true">↗</span>
+              {environment.production && !environment.registrationAvailable
+                ? "Account access"
+                : "Join free"}{" "}
+              <span aria-hidden="true">↗</span>
             </Link>
             <Link className="button ghost" href="/results">
               View results
@@ -269,7 +276,10 @@ export default async function Home() {
           </p>
         </div>
         <Link className="button light" href="/join">
-          Join free ↗
+          {environment.production && !environment.registrationAvailable
+            ? "Check account availability"
+            : "Join free"}{" "}
+          ↗
         </Link>
       </section>
     </>

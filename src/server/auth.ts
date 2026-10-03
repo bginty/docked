@@ -1,3 +1,4 @@
+import { authSessionsRelation } from "@/core/auth-relations";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { db } from "./db";
@@ -6,9 +7,9 @@ import {
   conclusiveAuthFailure,
 } from "@/core/auth-policy";
 import { authCookieOptions } from "@/core/auth-cookies";
-import { assertHostedPreview } from "@/core/hosted-preview";
+import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 export async function authClient() {
-  assertHostedPreview(process.env);
+  assertDeploymentEnvironment(process.env);
   if (
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
     !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
@@ -60,7 +61,7 @@ export async function identity() {
   const claims = verifiedSessionClaims(token, user.id);
   if (!claims) return null;
   const active =
-    await sql`select id from auth.sessions where id=${claims.sessionId} and user_id=${user.id} and (not_after is null or not_after>now())`;
+    await sql`select id from ${sql.unsafe(authSessionsRelation())} where id=${claims.sessionId} and user_id=${user.id} and (not_after is null or not_after>now())`;
   if (!active.length) return null;
   return {
     user,

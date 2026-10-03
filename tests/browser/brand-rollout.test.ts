@@ -545,7 +545,8 @@ test("Edge Signal PWA/favicon/offline artwork serves approved supplied bytes", a
   expect(response.status()).toBe(200);
   const manifest = await response.json();
   expect(manifest.name).toContain("Docked");
-  expect(manifest.start_url).toBe("/home");
+  expect(manifest.start_url).toBe("/app");
+  expect(manifest.id).toBe("/home");
   expect(manifest.icons.length).toBeGreaterThan(0);
   for (const icon of manifest.icons) {
     if (icon.purpose !== "maskable") {

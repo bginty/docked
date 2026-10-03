@@ -18,7 +18,7 @@ export function NoEdge({
   monitoring: MonitoringContext;
   completed?: { id: string; selection: string; result: string }[];
   timezone?: string;
-  latest: { slug: string; title: string; summary: string };
+  latest?: { slug: string; title: string; summary: string };
 }) {
   return (
     <div className="no-edge-panel">
@@ -111,11 +111,15 @@ export function NoEdge({
             <Link href="/results#weekly-performance">Weekly performance</Link>
             <Link href="/methodology">Methodology</Link>
           </div>
-          <p className="eyebrow">LATEST READING</p>
-          <h3>
-            <Link href={`/learn/${latest.slug}`}>{latest.title}</Link>
-          </h3>
-          <p>{latest.summary}</p>
+          {latest && (
+            <>
+              <p className="eyebrow">LATEST READING</p>
+              <h3>
+                <Link href={`/learn/${latest.slug}`}>{latest.title}</Link>
+              </h3>
+              <p>{latest.summary}</p>
+            </>
+          )}
         </section>
       </div>
     </div>

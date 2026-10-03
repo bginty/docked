@@ -5,6 +5,10 @@ import { requireIdentity } from "./auth";
 import { setCommunityClaims } from "./community-social";
 import { previewCommunityContext } from "@/core/preview-community";
 import { appOnboardingSchema } from "@/core/preview-testers";
+import {
+  currentConsentVersions,
+  legalConsentRequired,
+} from "@/core/auth-readiness";
 export type AppOnboardingState = {
   completed: boolean;
   legalRequired: boolean;
@@ -29,16 +33,26 @@ export async function appOnboardingState(
   const who = await requireIdentity();
   if (who.user.id !== userId) throw Error("Own account required");
   const sql = db();
+  const versions = currentConsentVersions();
   const [row] = await sql`select p.*,o.interests,o.completed_at,s.handle,
     n.official_edges,n.followed_members,n.social,
     coalesce((select granted from private.consent_events where user_id=p.id and purpose='privacy' order by created_at desc,id desc limit 1),false) privacy,
+    (select version from private.consent_events where user_id=p.id and purpose='privacy' order by created_at desc,id desc limit 1) privacy_version,
     case when ${!!previewCommunityContext(process.env)} and exists(select 1 from private.preview_tester_access g join private.region_policies r on r.id=g.policy_id where g.user_id=p.id and g.revoked_at is null and g.expires_at>clock_timestamp() and r.preview_community_only and r.approved and r.effective_from<=clock_timestamp() and r.effective_to>clock_timestamp() and r.review_at>clock_timestamp()) then 18
     else (select minimum_age from private.region_policies where not preview_community_only and country=p.country and state=p.state and approved and effective_from<=clock_timestamp() and effective_to>clock_timestamp() and review_at>clock_timestamp() order by effective_from desc,id desc limit 1) end minimum_age
     from public.profiles p left join private.app_onboarding o on o.user_id=p.id left join private.social_profiles s on s.user_id=p.id
     left join private.social_notification_preferences n on n.profile_id=s.id where p.id=${userId} and p.disabled_at is null`;
   if (!row) throw Error("Own account unavailable");
-  const legalRequired =
-    !row.age_attested || !row.accepted_version || !row.privacy;
+  const legalRequired = legalConsentRequired(
+    {
+      ageAttested: row.age_attested,
+      termsVersion: row.accepted_version,
+      privacyGranted: row.privacy,
+      privacyVersion: row.privacy_version,
+    },
+    versions,
+    process.env.APP_ENV === "production",
+  );
   return {
     completed: !!row.completed_at && !legalRequired,
     legalRequired,
@@ -62,6 +76,7 @@ export async function saveAppOnboarding(input: unknown) {
     who = await requireIdentity();
   if (!DateTime.now().setZone(v.timezone).isValid)
     throw Error("Valid timezone required");
+  const versions = currentConsentVersions();
   await db().begin(async (tx) => {
     await setCommunityClaims(tx, who);
     const [p] =
@@ -69,9 +84,17 @@ export async function saveAppOnboarding(input: unknown) {
     const [active] = await tx`select private.active_member_session() active`;
     if (!p || !active.active) throw Error("Active account required");
     const [consent] =
-      await tx`select granted from private.consent_events where user_id=${who.user.id} and purpose='privacy' order by created_at desc,id desc limit 1`;
-    const legalRequired =
-      !p.age_attested || !p.accepted_version || !consent?.granted;
+      await tx`select granted,version from private.consent_events where user_id=${who.user.id} and purpose='privacy' order by created_at desc,id desc limit 1`;
+    const legalRequired = legalConsentRequired(
+      {
+        ageAttested: p.age_attested,
+        termsVersion: p.accepted_version,
+        privacyGranted: consent?.granted === true,
+        privacyVersion: consent?.version,
+      },
+      versions,
+      process.env.APP_ENV === "production",
+    );
     if (
       legalRequired &&
       (v.age !== true ||
@@ -89,13 +112,13 @@ export async function saveAppOnboarding(input: unknown) {
     // Existing accepted jurisdiction changes use the dedicated, alert-pausing endpoint.
     await tx`update public.profiles set sports=${v.sports},timezone=${v.timezone},country=${legalRequired ? v.country! : p.country},state=${legalRequired ? v.state! : p.state},
       age_attested=case when ${legalRequired} then true else age_attested end,
-      accepted_version=case when ${legalRequired} then '2026-10-draft' else accepted_version end,
+      accepted_version=case when ${legalRequired} then ${versions.terms} else accepted_version end,
       onboarding_completed_at=coalesce(onboarding_completed_at,clock_timestamp()) where id=${who.user.id}`;
     // Locks and wall-clock checks inside this gate reject expired/revoked preview grants and age>18 policies.
     await tx`select private.community_assert_access(${who.user.id},'community_social')`;
     if (legalRequired)
       for (const purpose of ["age_attestation", "terms", "privacy"])
-        await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${who.user.id},${purpose},true,'2026-10-draft',${who.user.id})`;
+        await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${who.user.id},${purpose},true,${purpose === "privacy" ? versions.privacy : versions.terms},${who.user.id})`;
     if (!existingSocial)
       await tx`insert into private.social_profiles(user_id,handle,display_name) values(${who.user.id},${v.username!},${v.username!})`;
     const [social] =
@@ -112,6 +135,8 @@ export async function saveAppOnboarding(input: unknown) {
     ok: true,
     redirect: "/edges",
     message:
-      "Preferences saved. External notifications remain disabled in preview.",
+      process.env.APP_ENV === "production"
+        ? "Preferences saved."
+        : "Preferences saved. External notifications remain disabled in preview.",
   };
 }

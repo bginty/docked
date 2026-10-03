@@ -2,9 +2,9 @@ import {
   hostedPreviewEnvironmentBound,
   referencesDockedPreviewProject,
 } from "@/core/preview-auth";
-import { assertHostedPreview } from "@/core/hosted-preview";
+import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 export function config(env: Record<string, string | undefined> = process.env) {
-  assertHostedPreview(env);
+  assertDeploymentEnvironment(env);
   if (env.AUTO_PUBLISH_DOCKED_EDGES === "true")
     throw new Error(
       "Automatic Docked publication is not implemented or approved",

@@ -1,4 +1,5 @@
-# Deploy with scripts/prepare-hosted-preview.mjs, never from the full workspace.
+# Deploy only the reviewed source export. --production requires approved isolation.
+# node scripts/prepare-hosted-preview.mjs [--production]
 .git
 .github
 .codex*
