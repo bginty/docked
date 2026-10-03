@@ -41,6 +41,8 @@ type Session = {
   page: Page;
   scope: RequestScope;
   errors: { console: number; page: number; forbidden: number };
+  runtimeErrors: string[];
+  deletionRequests: { seen: boolean; statuses: number[] };
 };
 let stage = "guard",
   browser: Browser | undefined,
@@ -87,6 +89,18 @@ async function go(page: Page, path: string) {
     "same-origin-ui",
   );
 }
+async function openCompose(s: Session) {
+  // This existing client-effect request proves the tab handlers are hydrated;
+  // DOMContentLoaded alone can precede the interactive composer on a cold load.
+  const ready = s.page.waitForResponse(
+    (r) =>
+      r.request().method() === "GET" &&
+      r.url() === origin + "/api/community-edges?view=options",
+  );
+  void ready.catch(() => {});
+  await go(s.page, "/compose");
+  await ready;
+}
 async function mutation(
   page: Page,
   endpoint: string,
@@ -103,6 +117,9 @@ async function mutation(
       return false;
     }
   });
+  // If a UI click fails first, keep the later response timeout from becoming an
+  // unhandled raw Playwright exception; the awaited promise still rejects below.
+  void pending.catch(() => {});
   await click();
   const response = await pending;
   const value = await response.json();
@@ -112,9 +129,15 @@ async function mutation(
   );
   return value;
 }
-async function openSession(account: BetaAccount, phoneScale = 1): Promise<Session> {
+async function openSession(
+  account: BetaAccount,
+  phoneScale = 1,
+): Promise<Session> {
   const context = await browser!.newContext({
-    viewport: phoneScale === 3 ? { width: 360, height: 720 } : { width: 412, height: 915 },
+    viewport:
+      phoneScale === 3
+        ? { width: 360, height: 720 }
+        : { width: 412, height: 915 },
     deviceScaleFactor: phoneScale,
     isMobile: true,
     hasTouch: true,
@@ -132,7 +155,8 @@ async function openSession(account: BetaAccount, phoneScale = 1): Promise<Sessio
     commentIds: new Set(),
     reviewIds: new Set(),
   };
-  const errors = { console: 0, page: 0, forbidden: 0 };
+  const errors = { console: 0, page: 0, forbidden: 0 },
+    runtimeErrors: string[] = [];
   await context.route("**/*", (route) => {
     const r = route.request();
     if (!allowedRequest(r.url(), r.method(), r.postData(), scope)) {
@@ -145,8 +169,39 @@ async function openSession(account: BetaAccount, phoneScale = 1): Promise<Sessio
   page.on("console", (e) => {
     if (e.type() === "error") errors.console++;
   });
-  page.on("pageerror", () => errors.page++);
-  const s = { context, page, scope, errors };
+  page.on("pageerror", (error) => {
+    errors.page++;
+    if (runtimeErrors.length < 10)
+      runtimeErrors.push(`${new URL(page.url()).pathname}: ${error.message}`);
+  });
+  const deletionRequests = { seen: false, statuses: [] as number[] };
+  page.on("request", (request) => {
+    if (
+      request.method() === "POST" &&
+      request.url() === origin + "/api/member"
+    ) {
+      try {
+        if (request.postDataJSON()?.action === "delete")
+          deletionRequests.seen = true;
+      } catch {
+        /* no request body retained */
+      }
+    }
+  });
+  page.on("response", (response) => {
+    if (
+      response.request().method() === "POST" &&
+      response.url() === origin + "/api/member"
+    ) {
+      try {
+        if (response.request().postDataJSON()?.action === "delete")
+          deletionRequests.statuses.push(response.status());
+      } catch {
+        /* no request body retained */
+      }
+    }
+  });
+  const s = { context, page, scope, errors, runtimeErrors, deletionRequests };
   sessions.push(s);
   return s;
 }
@@ -306,6 +361,7 @@ async function makePost(
   kind = "discussion",
   sport?: string,
 ) {
+  stage = `social-post-readback-${s.scope.account.kind}`;
   const prior = await jsonGet(s.context, "/api/community?view=profile");
   const matches = prior.posts.filter(
     (p: { author: { id: string }; body: string }) =>
@@ -322,10 +378,12 @@ async function makePost(
     await go(s.page, `/community/posts/${id}`);
     return id;
   }
-  await go(s.page, "/compose");
+  stage = `social-compose-open-${s.scope.account.kind}`;
+  await openCompose(s);
   await s.page
     .getByRole("button", { name: "Create post", exact: true })
     .click();
+  stage = `social-compose-fields-${s.scope.account.kind}`;
   await s.page.locator('[name="kind"]').selectOption(kind);
   if (sport) await s.page.locator('[name="sport"]').selectOption(sport);
   await s.page
@@ -353,7 +411,25 @@ async function makePost(
 }
 async function fixtureFlow(s: Session) {
   stage = `preview-edge-${s.scope.account.kind}`;
-  await go(s.page, "/compose");
+  const existingId = journal.accounts[s.scope.account.kind]?.fixtureId;
+  if (existingId) {
+    const stored = await jsonGet(s.context, "/api/preview-edges");
+    const exported = await jsonGet(s.context, "/api/member");
+    check(
+      stored.records.some(
+        (record: { id: string; status: string }) =>
+          record.id === existingId && record.status === "PREVIEW_ONLY",
+      ) &&
+        exported.previewFixtureEvidence?.reviews.some(
+          (review: { record_id: string | null }) =>
+            review.record_id === existingId,
+        ),
+      "previous-own-preview-record-and-export-preserved",
+    );
+    await checkpoint(`fixture-preserved-on-resume-${s.scope.account.kind}`);
+    return;
+  }
+  await openCompose(s);
   await s.page
     .getByRole("button", { name: "DEMO Edge flow", exact: true })
     .click();
@@ -405,6 +481,13 @@ async function fixtureFlow(s: Session) {
     ),
     "own-preview-record-retained",
   );
+  const exported = await jsonGet(s.context, "/api/member");
+  check(
+    exported.previewFixtureEvidence?.reviews.some(
+      (r: { record_id: string | null }) => r.record_id === submitted.id,
+    ),
+    "preview-record-in-own-account-export",
+  );
   const real = await jsonGet(s.context, "/api/top-docked");
   check(
     real.status === "RESTRICTED" && real.rows.length === 0,
@@ -425,6 +508,23 @@ async function fixtureFlow(s: Session) {
 async function socialFlow(s: Session, seed: BetaAccount, postId: string) {
   stage = "real-social-actions";
   await go(s.page, `/community/posts/${postId}`);
+  await s.page.waitForFunction(
+    () =>
+      document
+        .querySelector(".social-card")
+        ?.getAttribute("data-social-ready") === "true",
+  );
+  // LocalTimestamp's real client rendering gives readiness evidence; no arbitrary
+  // sleep and no production handler injection are used for this cold navigation.
+  await s.page.waitForFunction(() => {
+    const time = document.querySelector(".social-card time");
+    const value = time?.getAttribute("datetime");
+    return (
+      !!value &&
+      time?.textContent ===
+        new Date(value).toLocaleString(undefined, { timeZoneName: "short" })
+    );
+  });
   const card = s.page.locator(".social-card").first();
   await mutation(s.page, "/api/community", "react", () =>
     card.getByRole("button", { name: /reactions$/ }).click(),
@@ -483,6 +583,12 @@ async function socialFlow(s: Session, seed: BetaAccount, postId: string) {
     card.getByRole("button", { name: "Send report", exact: true }).click(),
   );
   await go(s.page, `/profile/${seed.username}`);
+  await s.page.waitForFunction(
+    () =>
+      document
+        .querySelector(".profile-hero [data-profile-actions-ready]")
+        ?.getAttribute("data-profile-actions-ready") === "true",
+  );
   await mutation(s.page, "/api/community", "follow", () =>
     s.page.getByRole("button", { name: "Follow", exact: true }).first().click(),
   );
@@ -506,6 +612,12 @@ async function socialFlow(s: Session, seed: BetaAccount, postId: string) {
     menu.getByRole("button", { name: "Mute", exact: true }).click(),
   );
   await s.page.reload({ waitUntil: "domcontentloaded" });
+  await s.page.waitForFunction(
+    () =>
+      document
+        .querySelector(".profile-hero [data-profile-actions-ready]")
+        ?.getAttribute("data-profile-actions-ready") === "true",
+  );
   const menuAgain = s.page.locator(".profile-hero details").first();
   await menuAgain.locator("summary").click();
   await mutation(s.page, "/api/community", "mute", () =>
@@ -521,14 +633,18 @@ async function screenshot(
   viewport: { width: number; height: number; deviceScaleFactor?: number },
 ) {
   stage = "screenshots-accessibility";
-  await s.page.setViewportSize({ width: viewport.width, height: viewport.height });
+  await s.page.setViewportSize({
+    width: viewport.width,
+    height: viewport.height,
+  });
   await go(s.page, path);
-  await s.page.locator('[data-authenticated="true"]').waitFor();
   await s.page.waitForFunction(
     () =>
       !document.querySelector(".app-screen-loading") &&
-      document.querySelectorAll("h1").length === 1,
+      document.querySelectorAll("h1").length === 1 &&
+      document.querySelectorAll('[data-authenticated="true"]').length === 1,
   );
+  await s.page.locator('[data-authenticated="true"]').waitFor();
   await s.page.evaluate(async () => {
     await document.fonts.ready;
   });
@@ -651,19 +767,52 @@ async function run() {
       f.getByRole("button", { name: "Log in", exact: true }).click(),
     );
     const own = await jsonGet(s.context, "/api/member");
-    check(own.profile?.id === journal.accounts["qa-a"]?.userId, "revoked-test-user-still-authenticated");
+    check(
+      own.profile?.id === journal.accounts["qa-a"]?.userId,
+      "revoked-test-user-still-authenticated",
+    );
+    check(
+      own.previewFixtureEvidence?.reviews.some(
+        (r: { record_id: string | null }) =>
+          r.record_id === journal.accounts["qa-a"]?.fixtureId,
+      ),
+      "revoked-tester-retains-own-export-rights",
+    );
     check(
       (await get(s.context, "/api/preview-edges")).status() === 403,
       "revoked-fixture-api-denied",
     );
-    const deniedInput = { action: "review", fixtureId: "demo-football", selection: "DEMO Harbour FC" };
-    check(allowedRequest(origin + "/api/preview-edges", "POST", JSON.stringify(deniedInput), s.scope), "scoped-revoked-write-probe");
-    const denied = await s.context.request.post(origin + "/api/preview-edges", { data: deniedInput, headers: { Origin: origin }, maxRedirects: 0 });
-    check(denied.status() === 400 && (await denied.json()).ok === false, "revoked-fixture-submission-path-denied");
+    const deniedInput = {
+      action: "review",
+      fixtureId: "demo-football",
+      selection: "DEMO Harbour FC",
+    };
+    check(
+      allowedRequest(
+        origin + "/api/preview-edges",
+        "POST",
+        JSON.stringify(deniedInput),
+        s.scope,
+      ),
+      "scoped-revoked-write-probe",
+    );
+    const denied = await s.context.request.post(origin + "/api/preview-edges", {
+      data: deniedInput,
+      headers: { Origin: origin },
+      maxRedirects: 0,
+    });
+    check(
+      denied.status() === 400 && (await denied.json()).ok === false,
+      "revoked-fixture-submission-path-denied",
+    );
     const feed = await jsonGet(s.context, "/api/community?view=feed");
     check(
       feed.status === "restricted" && feed.posts.length === 0,
       "revoked-social-api-denied",
+    );
+    check(
+      s.errors.page === 0 && s.errors.console === 0 && s.errors.forbidden === 0,
+      "revoked-session-browser-and-scope-clean",
     );
     await checkpoint("operator-revocation-enforced");
     return;
@@ -697,6 +846,16 @@ async function run() {
       const f = s.page
         .locator('form[action="/api/member"]')
         .filter({ has: s.page.locator('[name="confirm"]') });
+      await f.waitFor({ state: "visible" });
+      await s.page.waitForFunction(() =>
+        Array.from(
+          document.querySelectorAll('form[action="/api/member"]'),
+        ).some(
+          (form) =>
+            form.querySelector('[name="confirm"]') &&
+            form.getAttribute("data-api-ready") === "true",
+        ),
+      );
       await f.locator('[name="confirm"]').fill("DELETE");
       const deletion = await mutation(s.page, "/api/member", "delete", () =>
         f
@@ -725,7 +884,37 @@ async function run() {
       await fixtureFlow(s);
       const seed = fixture.accounts.find((a) => a.kind === "seed-a")!;
       const post = journal.accounts["seed-a"]!.posts[0];
-      await socialFlow(s, seed, post);
+      if (
+        !journal.checkpoints.includes(
+          "comment-reply-like-save-follow-unfollow-mute-unmute-report",
+        )
+      ) {
+        await socialFlow(s, seed, post);
+      } else {
+        const stored = (
+          await jsonGet(s.context, `/api/community?view=post&id=${post}`)
+        ).posts[0];
+        const profile = (
+          await jsonGet(
+            s.context,
+            `/api/community?view=profile&handle=${seed.username}`,
+          )
+        ).profile;
+        check(
+          stored?.isReacted &&
+            stored?.isSaved &&
+            stored.comments.filter(
+              (comment: { author: { id: string }; body: string }) =>
+                comment.author.id === journal.accounts[a.kind]!.profileId &&
+                comment.body.startsWith("[PREVIEW TEST COMMENT]"),
+            ).length === 2 &&
+            profile &&
+            !profile.isFollowing &&
+            !profile.isMuted &&
+            !profile.isBlocked,
+          "completed-social-actions-retained-on-resume",
+        );
+      }
       await makePost(
         s,
         "[PREVIEW TEST POST] QA flow verification: a real saved discussion in the isolated beta. No fixture, price, advice or performance claim.",
@@ -740,13 +929,24 @@ async function run() {
         `/community/posts/${post}`,
         "/profile",
         "/notifications",
+        "/dashboard",
       ];
-      for (const path of screenshotPaths) await screenshot(s, path, { width: 412, height: 915 });
+      for (const path of screenshotPaths)
+        await screenshot(s, path, { width: 412, height: 915 });
       const playPhone = await openSession(a, 3);
       // Transfer this exact QA session in memory only; no storage-state file or owner credentials.
       await playPhone.context.addCookies(await s.context.cookies());
-      check((await jsonGet(playPhone.context, "/api/member")).profile?.id === journal.accounts[a.kind]!.userId, "same-qa-session-in-scaled-phone-context");
-      for (const path of screenshotPaths) await screenshot(playPhone, path, { width: 360, height: 720, deviceScaleFactor: 3 });
+      check(
+        (await jsonGet(playPhone.context, "/api/member")).profile?.id ===
+          journal.accounts[a.kind]!.userId,
+        "same-qa-session-in-scaled-phone-context",
+      );
+      for (const path of screenshotPaths)
+        await screenshot(playPhone, path, {
+          width: 360,
+          height: 720,
+          deviceScaleFactor: 3,
+        });
       await playPhone.context.close();
       await go(s.page, `/profile/${seed.username}`);
       const menu = s.page.locator(".profile-hero details").first();
@@ -812,6 +1012,34 @@ void run()
   })
   .catch(async (error: unknown) => {
     await mkdir(directory, { recursive: true });
+    // Private diagnostics retain the failed static locator without exposing
+    // credentials/invitations that Playwright can echo from fill operations.
+    if (fixture && error instanceof Error) {
+      let diagnostic =
+        error.message +
+        "\n" +
+        JSON.stringify(
+          sessions.map((s) => ({
+            accountKind: s.scope.account.kind,
+            runtimeErrors: s.runtimeErrors,
+            deletionRequests: s.deletionRequests,
+          })),
+        );
+      for (const account of fixture.accounts)
+        for (const secret of [
+          account.password,
+          account.email,
+          account.invitationCode,
+        ])
+          diagnostic = diagnostic
+            .replaceAll(secret, "[REDACTED]")
+            .replaceAll(encodeURIComponent(secret), "[REDACTED]");
+      await writeFile(
+        "private-data/phase45-beta/browser-diagnostic.txt",
+        diagnostic,
+        { mode: 0o600 },
+      );
+    }
     await writeFile(
       resolve(directory, "results.json"),
       JSON.stringify(
@@ -832,6 +1060,10 @@ void run()
           results,
           ownerUsed: false,
           rawErrorWithheld: true,
+          browserErrors: sessions.map((s) => ({
+            accountKind: s.scope.account.kind,
+            ...s.errors,
+          })),
         },
         null,
         2,

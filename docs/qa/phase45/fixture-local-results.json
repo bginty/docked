@@ -3,7 +3,7 @@
   "hostedExecution": false,
   "platform": { "passed": 3, "failed": 0 },
   "database": {
-    "passed": 4,
+    "passed": 5,
     "failed": 0,
     "engine": "PGlite with all project migrations"
   },
@@ -17,12 +17,22 @@
     "consoleErrors": "Not separately collected in the two isolated fixtures; the hosted runner records them"
   },
   "hostedRunnerGuard": { "passed": 2, "failed": 0 },
+  "coldLoadHydrationRegression": {
+    "passed": 2,
+    "failed": 0,
+    "durationSeconds": 7.3,
+    "scope": "Real SSR markup plus production React hydration for composer/social/profile controls; all network intercepted",
+    "realAccounts": false,
+    "realApiWrites": false,
+    "hydrationErrors": 0,
+    "pageErrors": 0
+  },
   "typecheck": "PASS",
   "scopedLint": "PASS",
   "limitations": [
     "Browser endpoints intercepted with explicit DEMO data",
     "No provider or sporting-performance validation",
-    "Hosted runner has not been executed"
+    "Hosted acceptance attempts and subsequent fixes are recorded separately under docs/qa/phase45/hosted"
   ],
   "initialHarnessIssue": "Exact text-label select locator timed out; corrected to the existing accessible combobox role/name. Both cases then passed without application changes."
 }

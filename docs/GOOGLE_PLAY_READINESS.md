@@ -1,5 +1,10 @@
 # Google Play readiness — blocked
 
+The [proposed community rules and moderation operating plan](COMMUNITY_RULES_REVIEW_DRAFT.md)
+is an unpublished owner-review draft. It has not been rolled into member terms,
+accepted by users or staffed. Approval, a versioned terms/consent rollout and a
+verified moderation/appeals operation remain submission prerequisites.
+
 Checked against official sources on 3 October 2026. Docked has no approved Play listing, signing identity, verified production App Links, Firebase configuration or completed native Auth acceptance. No purchase, account registration, production upload or policy submission was made.
 
 The separately authorised HTTPS preview APK is a sideloaded testing artifact using the existing preview package and debug signing identity. It is not a Google Play release or approval of the eventual production architecture. The Gradle release gate remains in place.

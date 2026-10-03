@@ -179,6 +179,7 @@ async function main() {
         "--plan",
         "--migrate",
         "--prepare-invitations",
+        "--prepare-social-taxonomy",
         "--revoke-qa-a",
         "--cleanup",
       ].includes(mode) ||
@@ -323,6 +324,50 @@ async function main() {
     }
     if (state.migrations !== 11)
       throw Error("Reviewed Phase45 migrations required");
+    if (mode === "--prepare-social-taxonomy") {
+      stage = "disabled-social-taxonomy";
+      const ids = ["football", "basketball"];
+      const before =
+        await sql`select id,name,enabled from private.sports where id=any(${ids}) order by id`;
+      await receipt("social-taxonomy-preimage", {
+        rows: before,
+        scope:
+          "Only two generic social labels. Existing rows must remain unchanged; new rows must be disabled.",
+      });
+      const inserted = await sql.begin(async (tx) => {
+        const rows =
+          await tx`insert into private.sports(id,name,enabled) values('football','Football',false),('basketball','Basketball',false) on conflict(id) do nothing returning id,name,enabled`;
+        await tx`insert into private.audit_events(actor,action,subject,details) values('phase45-reviewed-operator','preview_social_taxonomy','disabled_generic_labels',${tx.json({ ids: rows.map((r) => String(r.id)), enabled: false, projectRef: project, reason: "Reviewed DEMO social tag labels only; no sporting data or provider activation." })})`;
+        return rows;
+      });
+      const afterRows =
+        await sql`select id,name,enabled from private.sports where id=any(${ids}) order by id`;
+      for (const row of before) {
+        const preserved = afterRows.find((r) => r.id === row.id);
+        if (JSON.stringify(preserved) !== JSON.stringify(row))
+          throw Error("Existing taxonomy row changed");
+      }
+      if (afterRows.length !== 2 || inserted.some((r) => r.enabled !== false))
+        throw Error("Disabled taxonomy verification failed");
+      const afterOwner = await owner(sql);
+      if (
+        afterOwner.hash !== protectedOwner.hash ||
+        afterOwner.credentialHash !== protectedOwner.credentialHash
+      )
+        throw Error("Protected owner changed");
+      state = await baseline(sql);
+      await receipt("social-taxonomy", {
+        inserted: inserted.length,
+        rows: afterRows,
+        existingRowsPreserved: true,
+        ownerUnchanged: true,
+        state,
+      });
+      console.log(
+        "Two generic social labels verified; new rows disabled, existing rows preserved, closed controls unchanged.",
+      );
+      return;
+    }
     if (mode === "--prepare-invitations") {
       stage = "fresh-roster";
       if ((await sql`select id from auth.users`).length !== 1)
@@ -461,6 +506,28 @@ async function main() {
       (await sql`select id from auth.users where email=any(${qaEmails})`).length
     )
       throw Error("QA Auth erasure incomplete");
+    const qaInvitationIds = j.accounts
+      .filter((a) => a.disposable)
+      .map((a) => a.invitationId);
+    const qaIdentities =
+      await sql`select reserved_user_id from private.preview_beta_invitations where id=any(${qaInvitationIds}) and reserved_user_id is not null`;
+    const qaIds = qaIdentities.map((r) => String(r.reserved_user_id));
+    if (qaIds.length !== 2 || new Set(qaIds).size !== 2)
+      throw Error("Two unique retained QA identity references required");
+    const qaHandles = j.accounts
+      .filter((a) => a.disposable)
+      .map((a) => a.username);
+    const [residue] = await sql`select
+      (select count(*)::int from auth.sessions where user_id=any(${qaIds}::uuid[])) sessions,
+      (select count(*)::int from auth.refresh_tokens where user_id=any(${qaIds}::text[])) refresh_tokens,
+      (select count(*)::int from public.profiles where id=any(${qaIds}::uuid[])) profiles,
+      (select count(*)::int from private.preview_tester_access where user_id=any(${qaIds}::uuid[])) grants,
+      (select count(*)::int from private.app_onboarding where user_id=any(${qaIds}::uuid[])) onboarding,
+      (select count(*)::int from private.analytics_events where user_id=any(${qaIds}::uuid[])) analytics,
+      (select count(*)::int from private.social_profiles where user_id=any(${qaIds}::uuid[]) or handle=any(${qaHandles})) identifiable_social_profiles,
+      (select count(*)::int from private.preview_beta_invitations where id=any(${qaInvitationIds}) and (token_hash is not null or email_hash is not null or redeemed_user_id is not null)) retained_invitation_credentials`;
+    if (Object.values(residue).some((value) => value !== 0))
+      throw Error("QA private residue requires review");
     const after = await owner(sql);
     if (
       after.hash !== j.ownerHash ||
@@ -478,6 +545,7 @@ async function main() {
       privateCredentialsRedacted: true,
       ownerProfileConsentAndCredentialsUnchanged: true,
       counts,
+      residue,
       state,
     });
     console.log(
