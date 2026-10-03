@@ -1,5 +1,5 @@
 // Read-only, exact-target application snapshot. Not a full Auth/storage disaster-recovery backup.
-import { readFile, writeFile, readdir } from "node:fs/promises";
+import { readFile, writeFile, readdir, mkdir } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -20,6 +20,11 @@ const modes = {
     count: 8,
     privateFile: "android-session-before-migration.json",
     receipt: "docs/qa/android-https-preview/session-migration-preimage.json",
+  },
+  "--snapshot-phase5": {
+    count: 11,
+    privateFile: "phase5-before-migration.json",
+    receipt: "docs/qa/phase5/migration-preimage.json",
   },
 } as const;
 async function main() {
@@ -56,7 +61,7 @@ async function main() {
           (select count(*)::int from private.feature_flags where enabled) as enabled_flags`
         )[0];
         if (
-          mode.count >= 7 &&
+          [7, 8].includes(mode.count) &&
           (migrations.at(-1)?.version !==
             (mode.count === 7 ? "20261003030722" : "20261003061548") ||
             Object.values(state).some((value) => value !== 0))
@@ -64,6 +69,19 @@ async function main() {
           throw Error(
             "Android preview requires the verified closed empty-account seven-migration state",
           );
+        if (mode.count === 11) {
+          if (migrations.at(-1)?.version !== "20261003121502")
+            throw Error(
+              "Phase 5 requires the reviewed eleven-migration preimage",
+            );
+          const [guard] = await tx`select
+            (select count(*)::int from private.feature_flags where key in ('publication','sending','forward_paper') and enabled) active_gates,
+            (select count(*)::int from private.tip_publications) official_records`;
+          if (guard.active_gates !== 0 || guard.official_records !== 0)
+            throw Error("Phase 5 closed publication preimage changed");
+          // Real invited accounts and labelled demo community content are preserved.
+          // An empty-account assumption from the early Android setup is inapplicable.
+        }
         const tables =
           await tx`select schemaname,tablename from pg_tables where schemaname in ('public','private','preview_auth') order by 1,2`;
         const data: Record<string, unknown> = {};
@@ -119,6 +137,7 @@ async function main() {
       mode: 0o600,
       flag: "wx",
     });
+    await mkdir(resolve(mode.receipt, ".."), { recursive: true });
     await writeFile(
       mode.receipt,
       JSON.stringify(

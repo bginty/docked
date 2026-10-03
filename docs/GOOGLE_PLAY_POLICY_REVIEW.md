@@ -1,5 +1,13 @@
 # Docked Preview — Google Play policy review
 
+## Phase 5 readiness update — 4 October 2026
+
+The owner now confirms physical Samsung S24 v5 installation works. This supersedes the earlier installation-unverified handoff only; it does not establish Phase 5 data stability or complete every device interaction check. No Play upload, paid developer account, release signing change or country declaration is authorised here.
+
+Recommended next distribution milestone is **Android closed testing**, after real licensed fixtures populate, market data has a measured stable trial, Preview Tester onboarding works, moderation/support owners exist, declarations accurately include odds/community features, and final device checks pass. Missing provider evidence currently blocks that readiness claim. Official strategy may remain UNVALIDATED with clear research messaging during an otherwise approved friends-and-family test.
+
+The new feature inventory includes factual Watchlists, private research candidates, community attention ranking and conservative community weekly recognition. No prizes or cash/wager-volume points are introduced. These features must be included in the existing policy/classification review below; labels do not replace an assessment of actual functionality.
+
 Reviewed 3 October 2026 against the official pages linked below. **Draft assessment, not legal advice, Google approval, a submitted declaration, or authority to release.** Closed testing is the intended track. Production, affiliates, advertising, paid plans, prizes and competitions remain off.
 
 ## Product facts to disclose

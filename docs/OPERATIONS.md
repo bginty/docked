@@ -1,8 +1,26 @@
 # Admin and operations guide
 
-## Initial isolated environment
+## Phase 5 operating boundary — 4 October 2026
 
-Use a dedicated Docked preview Supabase project or local Supabase stack. Do not use an Oura database. Migrations have not been applied to any hosted database. Inspect CLI help for your installed version, apply the checked migration only to an explicitly identified empty preview database, run advisors, then run the full auth journey. Supabase CLI created `supabase/migrations/20261002113546_docked_platform.sql`; canonical schema is `db/schema.sql` and the test checks equality.
+Docked Preview is the dedicated Sydney project `bckkllmndoxzpzdqrevb` in organisation `ernfnkcbalhyqpsrzdwa`. Existing accounts and prior migrations are preserved. The current implementation and acceptance evidence are recorded in [BUILD_STATUS.md](BUILD_STATUS.md) and [qa/phase5](qa/phase5). The Oura organisation/project is unrelated and must never be used.
+
+The Phase 5 ingestion path is separately gated by the exact preview identity, `MARKET_DATA_POLLING_ENABLED`, a dedicated provider key, reviewed effective-dated configuration, display/storage/derived rights, bounded raw retention, canonical mappings and a monthly quota ceiling. `THE_ODDS_API_KEY` and `ODDSPAPI_API_KEY` remain server-only. Provider keys are currently absent; no real fixture, price, outcome or historical dataset has been acquired.
+
+The intended daily flow is scheduled ingestion → canonical market observations → versioned Market Reference → scanner → candidate review → gated publication → consented delivery → subsequent price observation → authorised outcomes → settlement → complete performance. The scanner operates on stored observations; opening the app spends no provider credits. Configure a supervised backend trigger only after the owner has approved the provider scope and budget. No hosted recurring trigger has been activated by this phase.
+
+For that future supervisor, invoke `node --conditions=react-server --import tsx scripts/market-data.ts --sync-authorised-preview` on the reviewed ingestion cadence, and `npm run worker -- once` on a one-minute trigger. The importer serialises through a session lock, persists quota reservations/poll receipts and refuses calls sooner than the approved interval. The worker drains durable candidate jobs. Keep the credentials in the backend environment, supervise failures/restarts and measure elapsed time before choosing a hosting timeout. The owner reviews candidates in the app; a personal ChatGPT reminder or open phone/browser is not part of execution.
+
+`POST /api/internal/edge-scanner` requires the dedicated worker bearer secret. `npm run worker -- once` uses the same durable jobs. Scanner runtime and the database feature flag both default off. A trigger is not publication authority. `AUTO_PUBLISH_DOCKED_EDGES=true` is rejected. Research approval records research only; paper/live approval repeats current price, strategy, rights, jurisdiction, freshness and immutable-publication checks. See [EDGE_SCANNER.md](EDGE_SCANNER.md) and [EDGE_APPROVAL_WORKFLOW.md](EDGE_APPROVAL_WORKFLOW.md).
+
+Use `/admin/daily`, `/admin/data-health`, `/admin/edge-scanner` and `/admin/candidate-edges` after staff MFA. Operational alerts stay in the private admin store; no external message is sent. Unknown quota and missing observations stay unknown. Fix mapping incidents through reviewed configuration; do not type replacement prices or probabilities into a candidate. Keep results pending until a separately authorised source is available.
+
+Raw market-data payload expiry is enforced by a bounded database purge, also called independently of polling activation by the worker. Run it on a supervised schedule before enabling ingestion. Canonical snapshots, derived references and official/community evidence have separate retention purposes and rights requirements; expiry of a raw payload never licenses deletion of a losing immutable record. See [DATA_RIGHTS.md](DATA_RIGHTS.md).
+
+For additive preview migrations, capture a private preimage, verify the exact linked project, run the CLI dry run, apply only the reviewed ordered migration, and verify original account fingerprints plus closed publication/delivery gates. `scripts/hosted-preview/phase5-operator.ts` implements these bounded operations. Recover with a forward repair or restore into a new isolated environment; never drop audit tables to roll back a feature.
+
+## Original environment setup (preserved background)
+
+Use a dedicated Docked preview Supabase project or local Supabase stack. Do not use an Oura database. Supabase CLI created the original `supabase/migrations/20261002113546_docked_platform.sql`; canonical initial schema is `db/schema.sql` and the test checks equality. Later migrations are additive and ordered. The original empty-database setup is complete on the dedicated preview; it must not be repeated over existing accounts.
 
 Set .env.local from .env.example. Next loads .env.local automatically; CLIs require environment variables (for example `node --env-file=.env.local --import tsx scripts/worker.ts once`). Keep DATABASE_URL and secret keys out of logs and client bundles. Use port 3000 consistently with SITE_URL. Auth redirects must be allowlisted. Enable email confirmation, disable anonymous accounts, enforce strong passwords/rate limits and configure short JWT expiry. Preview signup/recovery can only target a localhost Supabase mail sink; no real email is sent from preview.
 

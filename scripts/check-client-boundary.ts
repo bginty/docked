@@ -1,8 +1,13 @@
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
-const markers = ["SUPABASE", "ODDS", "EMAIL"].map(
-  (name) => `DOCKED_BUILD_CANARY_${name}_20261002`,
-);
+const markers = [
+  "SUPABASE",
+  "ODDS",
+  "ODDSPAPI",
+  "RESULTS",
+  "SCANNER",
+  "EMAIL",
+].map((name) => `DOCKED_BUILD_CANARY_${name}_20261002`);
 async function inspect(directory: string): Promise<number> {
   let checked = 0;
   for (const entry of await readdir(directory, { withFileTypes: true })) {

@@ -1,4 +1,48 @@
-# Operating-cost model — checked 2 October 2026
+# Phase 5 ingestion cost model — checked 4 October 2026
+
+**No purchases. Full operating cost UNKNOWN.** USD/month, before tax/FX. Provider cost follows monitored competitions, markets, source sets, active hours and cadence; it is not multiplied by registered members. Ingest once and serve authorised canonical views to many members. Current data trial spend is $0 because no provider request was made. Existing account invoices were not inspected.
+
+### Planning scenarios
+
+The Odds API current featured-market formula is `keys × active hours/day × 60/interval minutes × 30 days × markets × regions`. A key may represent a competition rather than a whole sport. One market per key below. The extra 20% is an explicit request reserve, not measured usage or a promise to cover unknown results/history costs.
+
+| Assumption                                       | Lean beta | Normal beta | Early production | Higher-frequency production |
+| ------------------------------------------------ | --------: | ----------: | ---------------: | --------------------------: |
+| Approved competition keys                        |         2 |           3 |                3 |                           6 |
+| Active hours/day                                 |         4 |          12 |               18 |                          24 |
+| Poll interval minutes                            |        15 |          15 |                5 |                           2 |
+| Regions                                          |         1 |           1 |                1 |                           2 |
+| Monthly current-odds credits                     |       960 |       4,320 |           19,440 |                     259,200 |
+| Credits with 20% reserve                         |     1,152 |       5,184 |           23,328 |                     311,040 |
+| Smallest listed paid tier covering this estimate | 20k / $30 |   20k / $30 |       100k / $59 |                   5m / $119 |
+| Hosting + two-project DB priced floor            |       $55 |         $55 |              $55 |                         $55 |
+| Conditional subtotal before UNKNOWN categories   |       $85 |         $85 |             $114 |                        $174 |
+| Complete monthly bill                            |   UNKNOWN |     UNKNOWN |          UNKNOWN |                     UNKNOWN |
+
+Current prices: [The Odds API](https://the-odds-api.com/#pricing) (free 500 credits/month, no history; paid monthly tiers above), [Vercel](https://vercel.com/pricing) ($20 Pro developer seat including $20 usage credit), [Supabase](https://supabase.com/pricing) ($25 Pro, $10 compute credit covers one Micro, second Micro $10). These are hypothetical future paid floors, not subscriptions requested or bought. A temporary 500-credit trial is smaller than even the lean continuous scenario. OddsPapi paid scenarios are **UNKNOWN pending a real account quote**; its dynamic pricing page's unloaded zeros are not a price.
+
+The scanner starts with a configurable 15-minute research cadence, independently of provider polling. It does not relax the 180-second source-age limit: many scans will correctly reject old observations. Near-event refreshes and 1/5/15/60-minute price monitoring require a separate quota forecast; no continuous freshness is promised at sparse polling frequency. No NFL research coverage or strategy expansion is assumed in the number of keys.
+
+### Additional categories (all scenarios)
+
+| Category                                 | Current / future treatment                                                                                               |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Hosting overage / durable worker trigger | UNKNOWN from measured CPU, transfer, execution/cron needs; a local worker is not an operating hosted scheduler           |
+| Database/auth scaling                    | $35 two-Micro paid floor above only; actual compute/MAU/storage capacity UNKNOWN                                         |
+| Raw/canonical/object storage             | UNKNOWN retained bytes, rights and retention; measure snapshots × sources × bytes plus indexes/backups                   |
+| Email                                    | $0 external delivery in this phase; future consented volume/product approval separately budgeted in audience model below |
+| Push                                     | Disabled; future provider/volume UNKNOWN                                                                                 |
+| Historical odds                          | No recurring acquisition enabled; exact per-run manifest/budget/owner approval in HISTORICAL_DATA_PLAN                   |
+| Results data                             | UNKNOWN, especially historical outcome/correction archive; no guessing or odds-only settlement                           |
+| Monitoring                               | UNKNOWN external uptime, retention and on-call needs; existing consoles do not prove operational coverage                |
+| Analytics                                | No separate vendor bought; internal events add database/retention load, UNKNOWN                                          |
+| Domain                                   | UNKNOWN existing renewal invoice; DNS unchanged                                                                          |
+| Backups                                  | Pro daily seven-day DB allowance; offsite/raw/object recovery UNKNOWN, no optional PITR purchase                         |
+| Other infrastructure                     | UNKNOWN CI, private storage and supervised worker hosting                                                                |
+
+The earlier 1k/10k/50k/100k audience estimates below remain labelled planning scenarios for web/email demand. They are not additional provider charges to add to the Phase 5 ingestion scenarios. Add shared current + historical + metadata/outcome credits before selecting a plan; never charge two whole subscriptions for one shared account by accident.
+
+## Earlier audience model — checked 2 October 2026
 
 USD per month, excluding tax and foreign-exchange charges. **The full operating cost is UNKNOWN.** The figures below are conditional, priced infrastructure floors; they exclude unquoted results rights and unmeasured capacity. They are not capacity guarantees or forecasts of tips, engagement or profit. No subscriptions, credits or services were purchased. This local preview sends no external email and makes no licensed-provider calls.
 
