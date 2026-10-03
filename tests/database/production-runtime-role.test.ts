@@ -27,11 +27,13 @@ before(async () => {
   create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
   create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;
   grant usage on schema auth to authenticated;grant execute on all functions in schema auth to authenticated;`);
-  for (const file of (await readdir("supabase/migrations"))
+  const migrations = (await readdir("supabase/migrations"))
     .filter((f) => f.endsWith(".sql"))
-    .sort()) {
-    if (file === "20261003214310_production_community_runtime_role.sql")
-      continue;
+    .sort();
+  const runtimeFile = "20261003214310_production_community_runtime_role.sql";
+  // Establish the managed Auth ownership fixture immediately before migration 13,
+  // then apply its successors in order; later ACL migrations depend on docked_app.
+  for (const file of migrations.filter((f) => f < runtimeFile)) {
     await pg.exec(await readFile(`supabase/migrations/${file}`, "utf8"));
   }
   await pg.query(
@@ -53,7 +55,7 @@ before(async () => {
     grant postgres to migration_operator;
     set role migration_operator;`);
   const runtimeMigration = await readFile(
-    "supabase/migrations/20261003214310_production_community_runtime_role.sql",
+    `supabase/migrations/${runtimeFile}`,
     "utf8",
   );
   await pg.exec(
@@ -65,6 +67,9 @@ before(async () => {
   );
   await pg.exec("rollback;set role migration_operator");
   await pg.exec(runtimeMigration);
+  for (const file of migrations.filter((f) => f > runtimeFile)) {
+    await pg.exec(await readFile(`supabase/migrations/${file}`, "utf8"));
+  }
   await pg.exec(
     "insert into private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence) values('XX','ROLE_TEST','isolated-test',now()-interval '1 day',now()+interval '1 day',now()+interval '1 day',true,18,array['community_social','public_profiles'],'Isolated PostgreSQL regression only; not a legal approval')",
   );

@@ -103,6 +103,74 @@ async function capture(
         .count()),
       `${label}-${width}-genuine-fixtures-present`,
     );
+    const field = async (name: string) =>
+      (
+        await page
+          .getByText(name, { exact: true })
+          .locator("..")
+          .locator("dd")
+          .innerText()
+      ).trim();
+    check(
+      (await field("Account access status")) === "NOT_INCLUDED",
+      `${label}-${width}-actual-history-not-included`,
+    );
+    const successes = Number(await field("Successful HTTP responses"));
+    const attempts = Number(await field("Recorded attempts"));
+    check(
+      Number.isInteger(successes) &&
+        successes > 0 &&
+        Number.isInteger(attempts) &&
+        attempts > successes,
+      `${label}-${width}-successful-retry-and-failed-attempt-retained`,
+    );
+    check(
+      (await field("Last error code")) === "TRIAL_REQUEST_FAILED" &&
+        Number.isFinite(Date.parse(await field("Last failed fetch (UTC)"))) &&
+        Number.isFinite(Date.parse(await field("Last successful fetch (UTC)"))),
+      `${label}-${width}-original-sanitized-failure-preserved`,
+    );
+    check(
+      (await field("Trial charges reported by provider")) === "Unknown",
+      `${label}-${width}-unreported-failure-charge-remains-unknown`,
+    );
+    const references = page.locator(
+      'section[aria-labelledby="trial-health-title"] > details.card',
+    );
+    let unconfiguredReferences = 0;
+    for (let index = 0; index < (await references.count()); index++) {
+      const reference = references.nth(index);
+      const referenceField = async (name: string) =>
+        (
+          await reference
+            .getByText(name, { exact: true })
+            .locator("..")
+            .locator("dd")
+            .innerText()
+        ).trim();
+      if ((await referenceField("Status")) !== "NOT_CONFIGURED") continue;
+      if (unconfiguredReferences === 0)
+        await reference.locator("summary").click();
+      unconfiguredReferences++;
+      for (const metric of [
+        "Availability reference",
+        "Availability sources",
+        "Pricing sources",
+        "Eligible observations",
+        "Excluded observations",
+        "Stale observations",
+        "Outliers",
+        "Source age at evaluation (seconds)",
+      ])
+        check(
+          (await referenceField(metric)) === "Unknown",
+          `${label}-${width}-unconfigured-reference-${index}-${metric.toLowerCase().replaceAll(" ", "-")}-unmeasured`,
+        );
+    }
+    check(
+      unconfiguredReferences > 0,
+      `${label}-${width}-actual-unconfigured-reference-evidence`,
+    );
   } else {
     check(
       await page.getByText(/MODEL_PROBABILITY_UNAVAILABLE/).isVisible(),

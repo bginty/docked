@@ -1,4 +1,8 @@
 import {
+  projectTrialReferenceDiagnostic,
+  normalizeTrialReferenceDiagnostic,
+} from "@/core/provider-trial-reference-diagnostic";
+import {
   trialRequestAuthority,
   completeTrialRequest,
 } from "./provider-trial-database";
@@ -173,37 +177,26 @@ export async function captureTrialDiagnostics(trialId: string) {
           policy?.id ?? "00000000-0000-0000-0000-000000000000",
           cfg,
         );
-        const r = loaded.result.reference,
-          rejections = loaded.result.rejections;
-        diagnostics.push({
-          marketId: market.id,
-          selection,
-          status: loaded.result.status,
-          methodVersion: cfg.version,
-          availabilityPrice: r?.decimalPrice ?? null,
-          availabilitySources: r?.availability.sourceCount ?? null,
-          pricingSources: r?.pricing?.sourceIds.length ?? null,
-          eligibleObservations: r
-            ? new Set([
-                ...r.availability.sourceIds,
-                ...(r.pricing?.sourceIds ?? []),
-              ]).size
-            : null,
-          excludedObservations: new Set(rejections.map((x) => x.sourceId)).size,
-          staleObservations: rejections.filter((x) =>
-            x.reason.includes("stale"),
-          ).length,
-          outliers: rejections.filter((x) => x.reason.includes("outlier"))
-            .length,
-          sourceAgeSeconds: r
-            ? Math.max(
-                0,
-                (Date.parse(loaded.market.observed_at) -
-                  Date.parse(r.sourceAt)) /
-                  1000,
-              )
-            : null,
-        });
+        diagnostics.push(
+          projectTrialReferenceDiagnostic({
+            marketId: market.id,
+            selection,
+            methodVersion: cfg.version,
+            observedAt: new Date(loaded.market.observed_at).toISOString(),
+            result: loaded.result,
+            sourceIds: loaded.sources.map((source) => source.id),
+            authorityAllowed:
+              !!policy &&
+              loaded.sources.some(
+                (source) =>
+                  source.approved &&
+                  source.licensed &&
+                  source.mappingVerified &&
+                  source.feedHealthy &&
+                  source.priceClass === "STANDARD_VERIFIED",
+              ),
+          }),
+        );
       }
     const references = {
       evaluated: diagnostics.length,
@@ -383,6 +376,13 @@ export async function providerTrialHealth(): Promise<ProviderTrialHealth> {
       references: diagnostic?.payload.references
         ? {
             ...diagnostic.payload.references,
+            diagnostics: Array.isArray(
+              diagnostic.payload.references.diagnostics,
+            )
+              ? diagnostic.payload.references.diagnostics.map(
+                  normalizeTrialReferenceDiagnostic,
+                )
+              : [],
             observedAt: iso(diagnostic.observed_at),
           }
         : base.references,

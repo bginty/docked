@@ -1,0 +1,33 @@
+{
+  "scope": "Complete isolated PostgreSQL/PGlite suite, including actual postgres driver with in-memory protocol transport",
+  "command": "node --import tsx --test --test-concurrency=2 tests/database/*.test.ts",
+  "capturedAt": "2026-10-03T23:46:26.2655950Z",
+  "initialRun": {
+    "failed": 12,
+    "tests": 141,
+    "passed": 129,
+    "cause": "production-runtime-role harness applied migrations14–15 before role-creating migration13",
+    "preservedLog": "private-data/phase5a/database-final.log"
+  },
+  "repair": {
+    "runtimeOrAppliedMigrationChanged": false,
+    "file": "tests/database/production-runtime-role.test.ts",
+    "change": "Apply predecessors, establish non-owned managed Auth fixture, preserve failing-schema preflight, then apply runtime migration13 and successors in order",
+    "focusedPassed": 12,
+    "formatting": "PASS",
+    "lint": "PASS"
+  },
+  "finalRun": {
+    "skipped": 0,
+    "failed": 0,
+    "passed": 141,
+    "tests": 141,
+    "durationMs": 97386.4628,
+    "rawEvidence": "private-data/phase5a/database-final-repair.tap"
+  },
+  "limits": [
+    "All fixtures and Auth sessions in this suite are isolated local test data",
+    "No provider requests or hosted database mutations performed by this validation run",
+    "Genuine hosted acceptance and quota observations are recorded separately"
+  ]
+}
