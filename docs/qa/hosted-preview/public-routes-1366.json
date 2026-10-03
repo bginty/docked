@@ -1,0 +1,80 @@
+{
+  "recordedAt": "2026-10-03T02:32:05.408Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "authenticated": false,
+  "fixtureInjection": false,
+  "results": [
+    {
+      "route": "/",
+      "screenshot": "homepage-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "route": "/edges",
+      "screenshot": "edges-unconfigured-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "route": "/results",
+      "screenshot": "results-empty-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "route": "/methodology",
+      "screenshot": "methodology-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "route": "/learn/minimum-odds",
+      "screenshot": "article-educational-draft-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "route": "/join",
+      "screenshot": "signup-unsubmitted-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "route": "/dashboard",
+      "screenshot": "member-anonymous-gate-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "route": "/admin",
+      "screenshot": "admin-anonymous-gate-1366.png",
+      "status": 200,
+      "width": 1366,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0
+    }
+  ]
+}

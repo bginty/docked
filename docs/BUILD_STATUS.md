@@ -2,7 +2,15 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: Phase 3 community integration
+## Current milestone: isolated hosted preview acceptance
+
+The owner authorised a new Docked organisation and a $0/month Free Sydney project. **Docked Preview** `bckkllmndoxzpzdqrevb` is created in organisation `ernfnkcbalhyqpsrzdwa`; all five original migrations plus the session-helper grant hardening migration are applied. Actual hosted inspection confirms RLS on all 79 application tables and the intended browser grants. Database TLS now verifies both certificate chain and hostname; the actual shared app helper passed a hosted query.
+
+Local TypeScript/lint, 115 platform tests, 62 PostgreSQL tests, 27 existing browser tests and production build passed. Three additional actual-hosted public smoke cases passed across 390px/1366px, with no axe violations, overflow or console/page errors. Eighteen new screenshots and a scan of 503 public/build files are recorded. The app runs at localhost:3000 against hosted Supabase; no public frontend deployment or production/DNS change occurred.
+
+**Full authenticated hosted acceptance is incomplete.** The exact-recipient SQL mail capture and 16-case genuine account suite are prepared. An initial capture probe safely rejected a provider-field mismatch; the corrected hook awaits a fresh successful canary. Supabase's 2 capture-events/hour quota remains unchanged while the owner's temporary quota decision is pending. Hosted signup and capture are now closed, proof cleared and captured-message count zero; the installed hook prevents SMTP fallback. No external emails, real sporting records, publication, forward paper or commercial feature was activated. See [hosted acceptance record](qa/hosted-preview/README.md) for completed evidence, the Free-plan advisor warning, unrun cases and exact continuation. Dedicated preview credentials are now present only in ignored local files; odds/results/history credentials and approvals remain absent.
+
+## Preserved milestone: Phase 3 community integration
 
 Phase 3 continues from the clean visual checkpoint `e54adf2` on `codex/docked-value-platform`, protected by local rollback tag `docked-before-phase3-2026-10-03`. The implementation adds an authenticated mobile app shell; canonical official Edges pinned above discussion; private social profiles, follows, blocks, mute, comments, reactions, saves and moderation; provider-verified immutable community Edges; profiles and Top Docked; consent-aware in-app notifications; and a PWA offline shell. Official strategy calculations and historical validation controls remain separate and unchanged.
 

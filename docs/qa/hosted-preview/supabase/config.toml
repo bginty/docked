@@ -1,0 +1,27 @@
+# Safe closed configuration for ONLY the independently verified Docked Preview.
+# Do not use an implicit linked project; pass the recorded project reference.
+project_id = "docked-preview-hosted"
+[api]
+schemas = ["public", "graphql_public"]
+auto_expose_new_tables = false
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback", "http://localhost:3000/auth/callback?next=/reset-password"]
+enable_signup = false
+enable_anonymous_sign_ins = false
+jwt_expiry = 900
+minimum_password_length = 12
+[auth.email]
+enable_signup = false
+enable_confirmations = true
+double_confirm_changes = true
+secure_password_change = true
+[auth.sms]
+enable_signup = false
+[auth.mfa.totp]
+enroll_enabled = true
+verify_enabled = true
+[auth.hook.send_email]
+enabled = true
+uri = "pg-functions://postgres/preview_auth/capture_email"
+# CLI 2.119 config push does not manage email-hook quota. Inspect separately.

@@ -1,0 +1,871 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "result": {
+    "lints": [
+      {
+        "name": "unindexed_foreign_keys",
+        "title": "Unindexed foreign keys",
+        "level": "INFO",
+        "facing": "EXTERNAL",
+        "categories": [
+          "PERFORMANCE"
+        ],
+        "description": "Identifies foreign key constraints without a covering index, which can impact database performance.",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0001_unindexed_foreign_keys",
+        "count": 47,
+        "findings": [
+          {
+            "detail": "Table \\`private.bookmaker_eligibility\\` has a foreign key \\`bookmaker_eligibility_region_policy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "bookmaker_eligibility",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "bookmaker_eligibility_region_policy_id_fkey",
+              "fkey_columns": [
+                4
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.candidate_decisions\\` has a foreign key \\`candidate_decisions_strategy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "candidate_decisions",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "candidate_decisions_strategy_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_corrections\\` has a foreign key \\`community_corrections_edge_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_corrections",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_corrections_edge_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_corrections\\` has a foreign key \\`community_corrections_old_settlement_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_corrections",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_corrections_old_settlement_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_edges\\` has a foreign key \\`community_edges_event_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_edges_event_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_edges\\` has a foreign key \\`community_edges_market_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_edges_market_id_fkey",
+              "fkey_columns": [
+                4
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_edges\\` has a foreign key \\`community_edges_quote_evidence_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_edges_quote_evidence_id_fkey",
+              "fkey_columns": [
+                6
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_edges\\` has a foreign key \\`community_edges_region_policy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_edges_region_policy_id_fkey",
+              "fkey_columns": [
+                23
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_edges\\` has a foreign key \\`community_edges_snapshot_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_edges_snapshot_id_fkey",
+              "fkey_columns": [
+                5
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_edges\\` has a foreign key \\`community_edges_verification_rule_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_edges_verification_rule_fkey",
+              "fkey_columns": [
+                17
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.community_settlements\\` has a foreign key \\`community_settlements_source_approval_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "community_settlements",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "community_settlements_source_approval_id_fkey",
+              "fkey_columns": [
+                5
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.competition_prizes\\` has a foreign key \\`competition_prizes_competition_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "competition_prizes",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "competition_prizes_competition_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.competition_qualifications\\` has a foreign key \\`competition_qualifications_rule_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "competition_qualifications",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "competition_qualifications_rule_id_fkey",
+              "fkey_columns": [
+                4
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.competition_rankings\\` has a foreign key \\`competition_rankings_competition_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "competition_rankings",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "competition_rankings_competition_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.competition_rankings\\` has a foreign key \\`competition_rankings_rule_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "competition_rankings",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "competition_rankings_rule_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.competitions\\` has a foreign key \\`competitions_sport_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "competitions",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "competitions_sport_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.correction_events\\` has a foreign key \\`correction_events_replacement_settlement_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "correction_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "correction_events_replacement_settlement_id_fkey",
+              "fkey_columns": [
+                4
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.correction_events\\` has a foreign key \\`correction_events_settlement_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "correction_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "correction_events_settlement_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.correction_events\\` has a foreign key \\`correction_events_tip_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "correction_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "correction_events_tip_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.delivery_attempts\\` has a foreign key \\`delivery_attempts_outbox_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "delivery_attempts",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "delivery_attempts_outbox_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.leaderboard_snapshots\\` has a foreign key \\`leaderboard_snapshots_previous_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "leaderboard_snapshots",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "leaderboard_snapshots_previous_id_fkey",
+              "fkey_columns": [
+                9
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.member_subscriptions\\` has a foreign key \\`member_subscriptions_plan_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "member_subscriptions",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "member_subscriptions_plan_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.plan_prices\\` has a foreign key \\`plan_prices_plan_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "plan_prices",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "plan_prices_plan_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.prize_award_events\\` has a foreign key \\`prize_award_events_competition_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "prize_award_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "prize_award_events_competition_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.prize_award_events\\` has a foreign key \\`prize_award_events_prize_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "prize_award_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "prize_award_events_prize_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.prize_award_events\\` has a foreign key \\`prize_award_events_ranking_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "prize_award_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "prize_award_events_ranking_id_fkey",
+              "fkey_columns": [
+                5
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_comments\\` has a foreign key \\`social_comments_parent_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_comments",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_comments_parent_id_fkey",
+              "fkey_columns": [
+                4
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_handle_history\\` has a foreign key \\`social_handle_history_profile_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_handle_history",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_handle_history_profile_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_moderation_events\\` has a foreign key \\`social_moderation_events_report_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_moderation_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_moderation_events_report_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_mutes\\` has a foreign key \\`social_mutes_target_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_mutes",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_mutes_target_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_notification_jobs\\` has a foreign key \\`social_notification_jobs_post_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_notification_jobs",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_notification_jobs_post_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_notifications\\` has a foreign key \\`social_notifications_actor_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_notifications",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_notifications_actor_id_fkey",
+              "fkey_columns": [
+                3
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_notifications\\` has a foreign key \\`social_notifications_post_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_notifications",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_notifications_post_id_fkey",
+              "fkey_columns": [
+                5
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_post_media\\` has a foreign key \\`social_post_media_media_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_post_media",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_post_media_media_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_profiles\\` has a foreign key \\`social_profiles_avatar_media_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_profiles",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_profiles_avatar_media_id_fkey",
+              "fkey_columns": [
+                6
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_reactions\\` has a foreign key \\`social_reactions_post_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_reactions",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_reactions_post_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.social_saved\\` has a foreign key \\`social_saved_post_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "social_saved",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "social_saved_post_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.sponsor_campaigns\\` has a foreign key \\`sponsor_campaigns_policy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "sponsor_campaigns",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "sponsor_campaigns_policy_id_fkey",
+              "fkey_columns": [
+                4
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.strategy_transitions\\` has a foreign key \\`strategy_transitions_strategy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "strategy_transitions",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "strategy_transitions_strategy_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.strategy_transitions\\` has a foreign key \\`strategy_transitions_validation_run_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "strategy_transitions",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "strategy_transitions_validation_run_id_fkey",
+              "fkey_columns": [
+                10
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.tip_publications\\` has a foreign key \\`tip_publications_region_policy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "tip_publications",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "tip_publications_region_policy_id_fkey",
+              "fkey_columns": [
+                18
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.tip_publications\\` has a foreign key \\`tip_publications_strategy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "tip_publications",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "tip_publications_strategy_id_fkey",
+              "fkey_columns": [
+                4
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.tip_status_events\\` has a foreign key \\`tip_status_events_tip_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "tip_status_events",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "tip_status_events_tip_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.unsubscribe_tokens\\` has a foreign key \\`unsubscribe_tokens_user_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "unsubscribe_tokens",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "unsubscribe_tokens_user_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`private.validation_runs\\` has a foreign key \\`validation_runs_strategy_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "validation_runs",
+              "type": "table",
+              "schema": "private",
+              "fkey_name": "validation_runs_strategy_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`public.personal_entries\\` has a foreign key \\`personal_entries_user_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "personal_entries",
+              "type": "table",
+              "schema": "public",
+              "fkey_name": "personal_entries_user_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Table \\`public.saved_tips\\` has a foreign key \\`saved_tips_tip_id_fkey\\` without a covering index. This can lead to suboptimal query performance.",
+            "metadata": {
+              "name": "saved_tips",
+              "type": "table",
+              "schema": "public",
+              "fkey_name": "saved_tips_tip_id_fkey",
+              "fkey_columns": [
+                2
+              ]
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          }
+        ]
+      },
+      {
+        "name": "unused_index",
+        "title": "Unused Index",
+        "level": "INFO",
+        "facing": "EXTERNAL",
+        "categories": [
+          "PERFORMANCE"
+        ],
+        "description": "Detects if an index has never been used and may be a candidate for removal.",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index",
+        "count": 25,
+        "findings": [
+          {
+            "detail": "Index \\`consent_events_user_id_purpose_created_at_idx\\` on table \\`private.consent_events\\` has not been used",
+            "metadata": {
+              "name": "consent_events",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`odds_snapshots_market_id_snapshot_at_idx\\` on table \\`private.odds_snapshots\\` has not been used",
+            "metadata": {
+              "name": "odds_snapshots",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`outbox_state_available_at_idx\\` on table \\`private.outbox\\` has not been used",
+            "metadata": {
+              "name": "outbox",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`delivery_attempts_user_id_local_day_kind_idx\\` on table \\`private.delivery_attempts\\` has not been used",
+            "metadata": {
+              "name": "delivery_attempts",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`provider_poll_runs_provider_started_at_idx\\` on table \\`private.provider_poll_runs\\` has not been used",
+            "metadata": {
+              "name": "provider_poll_runs",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_competitions_created\\` on table \\`private.community_competitions\\` has not been used",
+            "metadata": {
+              "name": "community_competitions",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_deals_created\\` on table \\`private.community_deals\\` has not been used",
+            "metadata": {
+              "name": "community_deals",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`commercial_approvals_region\\` on table \\`private.commercial_approvals\\` has not been used",
+            "metadata": {
+              "name": "commercial_approvals",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_follows_target_id_created_at_idx\\` on table \\`private.social_follows\\` has not been used",
+            "metadata": {
+              "name": "social_follows",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_blocks_target_id_actor_id_idx\\` on table \\`private.social_blocks\\` has not been used",
+            "metadata": {
+              "name": "social_blocks",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_posts_created_at_id_idx\\` on table \\`private.social_posts\\` has not been used",
+            "metadata": {
+              "name": "social_posts",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_posts_author_id_created_at_id_idx\\` on table \\`private.social_posts\\` has not been used",
+            "metadata": {
+              "name": "social_posts",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_posts_sport_created_at_idx\\` on table \\`private.social_posts\\` has not been used",
+            "metadata": {
+              "name": "social_posts",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_comments_post_id_created_at_id_idx\\` on table \\`private.social_comments\\` has not been used",
+            "metadata": {
+              "name": "social_comments",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_reports_status_created_at_idx\\` on table \\`private.social_reports\\` has not been used",
+            "metadata": {
+              "name": "social_reports",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_notifications_recipient_id_created_at_id_idx\\` on table \\`private.social_notifications\\` has not been used",
+            "metadata": {
+              "name": "social_notifications",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`social_notification_jobs_created_at_idx\\` on table \\`private.social_notification_jobs\\` has not been used",
+            "metadata": {
+              "name": "social_notification_jobs",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_edges_submitted_at_id_idx\\` on table \\`private.community_edges\\` has not been used",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_edges_profile_id_submitted_at_idx\\` on table \\`private.community_edges\\` has not been used",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_edges_sport_submitted_at_idx\\` on table \\`private.community_edges\\` has not been used",
+            "metadata": {
+              "name": "community_edges",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_edge_status_edge_id_created_at_id_idx\\` on table \\`private.community_edge_status\\` has not been used",
+            "metadata": {
+              "name": "community_edge_status",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_result_sources_provider_created_at_id_idx\\` on table \\`private.community_result_sources\\` has not been used",
+            "metadata": {
+              "name": "community_result_sources",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`community_settlements_edge_id_created_at_id_idx\\` on table \\`private.community_settlements\\` has not been used",
+            "metadata": {
+              "name": "community_settlements",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`leaderboard_snapshots_rule_version_period_sport_created_at_idx\\` on table \\`private.leaderboard_snapshots\\` has not been used",
+            "metadata": {
+              "name": "leaderboard_snapshots",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          },
+          {
+            "detail": "Index \\`leaderboard_notification_jobs_created_at_idx\\` on table \\`private.leaderboard_notification_jobs\\` has not been used",
+            "metadata": {
+              "name": "leaderboard_notification_jobs",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-03T01:59:28.021Z"
+          }
+        ]
+      }
+    ]
+  }
+}

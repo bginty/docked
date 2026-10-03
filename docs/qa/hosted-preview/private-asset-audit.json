@@ -1,0 +1,36 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T02:31:09.952Z",
+  "status": "PASS",
+  "scopes": {
+    "browserAssets": {
+      "files": 30,
+      "secretKeyFiles": 0,
+      "databasePasswordFiles": 0
+    },
+    "publicFiles": {
+      "files": 70,
+      "secretKeyFiles": 0,
+      "databasePasswordFiles": 0
+    },
+    "prerenderedPayloads": {
+      "files": 303,
+      "secretKeyFiles": 0,
+      "databasePasswordFiles": 0
+    },
+    "copiedBrowserAssets": {
+      "files": 30,
+      "secretKeyFiles": 0,
+      "databasePasswordFiles": 0
+    },
+    "copiedPublicFiles": {
+      "files": 70,
+      "secretKeyFiles": 0,
+      "databasePasswordFiles": 0
+    }
+  },
+  "standaloneEnvironmentFilePresent": false,
+  "standaloneServerOnlySecretKeyPresent": false,
+  "standaloneServerOnlyDatabasePasswordPresent": false,
+  "limitation": "Inspects completed local browser/static/prerender outputs and separate server-only environment copy; does not assert hosted CDN or dynamic-response behavior."
+}

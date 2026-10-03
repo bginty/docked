@@ -1,0 +1,282 @@
+{
+  "stats": {
+    "startTime": "2026-10-03T02:19:11.267Z",
+    "duration": 524427.291,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 13376
+        }
+      ]
+    },
+    {
+      "title": "article metadata, real PNG social card and allowlisted sports pages",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5757
+        }
+      ]
+    },
+    {
+      "title": "preview public pages remain truthful, accessible and usable without an account",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 24631
+        }
+      ]
+    },
+    {
+      "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 11149
+        }
+      ]
+    },
+    {
+      "title": "education and pending research are usable without an account",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3808
+        }
+      ]
+    },
+    {
+      "title": "restricted public/API, protected admin and no fake signup success",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1641
+        }
+      ]
+    },
+    {
+      "title": "retired product routes, legacy support and invalid unsubscribe",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1104
+        }
+      ]
+    },
+    {
+      "title": "secondary routes pass automated accessibility scan",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 6795
+        }
+      ]
+    },
+    {
+      "title": "Phase3 public gates and disabled previews remain accessible at 390px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 28213
+        }
+      ]
+    },
+    {
+      "title": "Phase3 public gates and disabled previews remain accessible at 430px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 27068
+        }
+      ]
+    },
+    {
+      "title": "Phase3 public gates and disabled previews remain accessible at 768px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 32116
+        }
+      ]
+    },
+    {
+      "title": "Phase3 public gates and disabled previews remain accessible at 1366px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 26932
+        }
+      ]
+    },
+    {
+      "title": "Phase3 public gates and disabled previews remain accessible at 1920px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 32134
+        }
+      ]
+    },
+    {
+      "title": "DEMO app hierarchy, all outcomes, provisional ranking and touch navigation",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 21537
+        }
+      ]
+    },
+    {
+      "title": "DEMO verified Edge review requires permanent confirmation again when provider price moves",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5520
+        }
+      ]
+    },
+    {
+      "title": "DEMO unsupported and promotional claims stay social-only; social interactions use distinct actions",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5105
+        }
+      ]
+    },
+    {
+      "title": "DEMO notification consent and moderation are separate from record corrections",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4118
+        }
+      ]
+    },
+    {
+      "title": "DEMO administrative drafts remain disabled and leaderboard captures are auditable",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 7943
+        }
+      ]
+    },
+    {
+      "title": "PWA serves an offline shell without caching private pages or APIs",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2225
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 390px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 35781
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 430px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 41669
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 768px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 44499
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 1366px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 46537
+        }
+      ]
+    },
+    {
+      "title": "sports identity remains accessible and honest at 1920px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 53205
+        }
+      ]
+    },
+    {
+      "title": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 16580
+        }
+      ]
+    },
+    {
+      "title": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3183
+        }
+      ]
+    },
+    {
+      "title": "atmospheric no-edge imagery preserves restricted and outage meanings",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 6396
+        }
+      ]
+    }
+  ]
+}

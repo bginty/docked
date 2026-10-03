@@ -1,0 +1,487 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "organizationId": "ernfnkcbalhyqpsrzdwa",
+  "capturedAt": "2026-10-03T02:09:03.142Z",
+  "evidence": "hosted-read-only-catalog",
+  "authAccountsOrSessionsSelected": false,
+  "resultSets": [
+    {
+      "index": 0,
+      "rows": []
+    },
+    {
+      "index": 1,
+      "rows": [
+        {
+          "database_name": "postgres",
+          "connection_role": "postgres",
+          "server_version": "17.11",
+          "server_encoding": "UTF8",
+          "table_access_method": "heap"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "rows": [
+        {
+          "ssl": true,
+          "tls_version": "TLSv1.3",
+          "cipher": "TLS_AES_256_GCM_SHA384"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "rows": [
+        {
+          "table_name": "sessions",
+          "column_name": "id",
+          "data_type": "uuid",
+          "present": true
+        },
+        {
+          "table_name": "sessions",
+          "column_name": "not_after",
+          "data_type": "timestamp with time zone",
+          "present": true
+        },
+        {
+          "table_name": "sessions",
+          "column_name": "user_id",
+          "data_type": "uuid",
+          "present": true
+        },
+        {
+          "table_name": "users",
+          "column_name": "email_confirmed_at",
+          "data_type": "timestamp with time zone",
+          "present": true
+        },
+        {
+          "table_name": "users",
+          "column_name": "id",
+          "data_type": "uuid",
+          "present": true
+        },
+        {
+          "table_name": "users",
+          "column_name": "is_anonymous",
+          "data_type": "boolean",
+          "present": true
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "rows": [
+        {
+          "auth_uid_present": true,
+          "auth_jwt_present": true,
+          "uuid_present": true,
+          "unicode_normalization_available": true
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "rows": [
+        {
+          "server_can_check_sessions": true,
+          "server_can_revoke_sessions": true,
+          "server_can_check_verified_users": true
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "rows": [
+        {
+          "rolname": "anon",
+          "rolsuper": false,
+          "rolbypassrls": false,
+          "rolcanlogin": false
+        },
+        {
+          "rolname": "authenticated",
+          "rolsuper": false,
+          "rolbypassrls": false,
+          "rolcanlogin": false
+        },
+        {
+          "rolname": "postgres",
+          "rolsuper": false,
+          "rolbypassrls": true,
+          "rolcanlogin": true
+        },
+        {
+          "rolname": "service_role",
+          "rolsuper": false,
+          "rolbypassrls": true,
+          "rolcanlogin": false
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "rows": [
+        {
+          "rolname": "authenticated",
+          "nspname": "private",
+          "can_use": true,
+          "can_create": false
+        },
+        {
+          "rolname": "anon",
+          "nspname": "private",
+          "can_use": false,
+          "can_create": false
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "rows": []
+    },
+    {
+      "index": 9,
+      "rows": [
+        {
+          "nspname": "private",
+          "table_count": "75",
+          "rls_enabled": "75"
+        },
+        {
+          "nspname": "public",
+          "table_count": "4",
+          "rls_enabled": "4"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "rows": []
+    },
+    {
+      "index": 11,
+      "rows": [
+        {
+          "rolname": "authenticated",
+          "relname": "notification_preferences",
+          "privilege": "SELECT"
+        },
+        {
+          "rolname": "authenticated",
+          "relname": "personal_entries",
+          "privilege": "SELECT"
+        },
+        {
+          "rolname": "authenticated",
+          "relname": "profiles",
+          "privilege": "SELECT"
+        },
+        {
+          "rolname": "authenticated",
+          "relname": "saved_tips",
+          "privilege": "SELECT"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "rows": [
+        {
+          "rolname": "anon",
+          "proname": "active_member_session",
+          "arguments": ""
+        },
+        {
+          "rolname": "authenticated",
+          "proname": "active_member_session",
+          "arguments": ""
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "rows": [
+        {
+          "proname": "active_member_session",
+          "owner": "postgres",
+          "prosecdef": true,
+          "proconfig": [
+            "search_path=\"\""
+          ]
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "rows": [
+        {
+          "schemaname": "public",
+          "tablename": "notification_preferences",
+          "policyname": "own_preferences",
+          "roles": [
+            "authenticated"
+          ],
+          "cmd": "SELECT",
+          "qual": "((( SELECT auth.uid() AS uid) = user_id) AND (EXISTS ( SELECT 1\n   FROM profiles p\n  WHERE (p.id = notification_preferences.user_id))))",
+          "with_check": null
+        },
+        {
+          "schemaname": "public",
+          "tablename": "personal_entries",
+          "policyname": "own_personal",
+          "roles": [
+            "authenticated"
+          ],
+          "cmd": "SELECT",
+          "qual": "((( SELECT auth.uid() AS uid) = user_id) AND (EXISTS ( SELECT 1\n   FROM profiles p\n  WHERE (p.id = personal_entries.user_id))))",
+          "with_check": null
+        },
+        {
+          "schemaname": "public",
+          "tablename": "profiles",
+          "policyname": "own_profile",
+          "roles": [
+            "authenticated"
+          ],
+          "cmd": "SELECT",
+          "qual": "((( SELECT auth.uid() AS uid) = id) AND (disabled_at IS NULL) AND ( SELECT private.active_member_session() AS active_member_session))",
+          "with_check": null
+        },
+        {
+          "schemaname": "public",
+          "tablename": "saved_tips",
+          "policyname": "own_saved",
+          "roles": [
+            "authenticated"
+          ],
+          "cmd": "SELECT",
+          "qual": "((( SELECT auth.uid() AS uid) = user_id) AND (EXISTS ( SELECT 1\n   FROM profiles p\n  WHERE (p.id = saved_tips.user_id))))",
+          "with_check": null
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "rows": [
+        {
+          "nspname": "private",
+          "relname": "candidate_decisions",
+          "tgname": "candidate_evidence_guard",
+          "tgenabled": "O",
+          "function_name": "candidate_evidence_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_corrections",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_edges",
+          "tgname": "community_edge_guard",
+          "tgenabled": "O",
+          "function_name": "community_edge_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_edges",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_quote_evidence",
+          "tgname": "community_quote_evidence_guard",
+          "tgenabled": "O",
+          "function_name": "community_quote_evidence_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_quote_evidence",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_settlements",
+          "tgname": "community_settlement_correction",
+          "tgenabled": "O",
+          "function_name": "community_settlement_correction"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_settlements",
+          "tgname": "community_settlement_guard",
+          "tgenabled": "O",
+          "function_name": "community_settlement_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "community_settlements",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "correction_events",
+          "tgname": "correction_guard",
+          "tgenabled": "O",
+          "function_name": "correction_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "correction_events",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "leaderboard_snapshots",
+          "tgname": "community_snapshot_guard",
+          "tgenabled": "O",
+          "function_name": "community_snapshot_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "leaderboard_snapshots",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "leaderboard_snapshots",
+          "tgname": "leaderboard_notification_job",
+          "tgenabled": "O",
+          "function_name": "leaderboard_notification_job"
+        },
+        {
+          "nspname": "private",
+          "relname": "settlement_events",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "settlement_events",
+          "tgname": "social_queue_settlement",
+          "tgenabled": "O",
+          "function_name": "social_queue_official_status"
+        },
+        {
+          "nspname": "private",
+          "relname": "social_post_media",
+          "tgname": "social_media_link_guard",
+          "tgenabled": "O",
+          "function_name": "social_media_link_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "social_posts",
+          "tgname": "social_post_guard",
+          "tgenabled": "O",
+          "function_name": "social_post_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "social_posts",
+          "tgname": "social_queue_notification",
+          "tgenabled": "O",
+          "function_name": "social_queue_notification"
+        },
+        {
+          "nspname": "private",
+          "relname": "social_profiles",
+          "tgname": "social_identity_guard",
+          "tgenabled": "O",
+          "function_name": "social_identity_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "social_profiles",
+          "tgname": "social_official_guard",
+          "tgenabled": "O",
+          "function_name": "social_official_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "strategy_versions",
+          "tgname": "frozen_strategy",
+          "tgenabled": "O",
+          "function_name": "no_strategy_rewrite"
+        },
+        {
+          "nspname": "private",
+          "relname": "tip_publications",
+          "tgname": "immutable",
+          "tgenabled": "O",
+          "function_name": "immutable"
+        },
+        {
+          "nspname": "private",
+          "relname": "tip_publications",
+          "tgname": "publication_guard",
+          "tgenabled": "O",
+          "function_name": "publication_guard"
+        },
+        {
+          "nspname": "private",
+          "relname": "tip_publications",
+          "tgname": "publication_outbox",
+          "tgenabled": "O",
+          "function_name": "publish_outbox"
+        },
+        {
+          "nspname": "private",
+          "relname": "tip_publications",
+          "tgname": "social_official_edge_projection",
+          "tgenabled": "O",
+          "function_name": "social_official_edge_projection"
+        },
+        {
+          "nspname": "public",
+          "relname": "profiles",
+          "tgname": "social_account_erasure",
+          "tgenabled": "O",
+          "function_name": "social_account_erasure"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "rows": [
+        {
+          "migration_history_present": true
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "rows": []
+    },
+    {
+      "index": 18,
+      "rows": [
+        {
+          "proname": "active_member_session",
+          "proacl": [
+            "=X/postgres",
+            "postgres=X/postgres",
+            "authenticated=X/postgres"
+          ]
+        }
+      ]
+    }
+  ]
+}

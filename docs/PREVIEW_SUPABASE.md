@@ -1,12 +1,14 @@
 # Docked preview database and account lifecycle
 
-Reviewed 2 October 2026. **No hosted Docked Supabase project is configured.** The configured connector's read-only project inventory returned only an unrelated Oura CRM UAT project. No keys, tables, migrations, advisors or data were accessed in that project. No remote writes were made. Only `.env.example` exists in Docked; no relevant process credential names were present. Docker was not installed/available on this host, so the local Supabase services and real GoTrue lifecycle could not be started.
+Updated 3 October 2026: dedicated **Docked Preview** (`bckkllmndoxzpzdqrevb`) now exists in the new Docked organisation (`ernfnkcbalhyqpsrzdwa`), Sydney, on the owner-approved $0/month Free plan. Six migrations, actual hosted catalog/RLS, verified TLS and public browser/API checks passed. The application runs locally against that hosted backend. **Full authenticated acceptance remains pending; do not equate provisioning with a passed account lifecycle.** Current findings, quota decision and exact continuation are in the [hosted acceptance record](qa/hosted-preview/README.md).
+
+Preserved baseline before this provisioning: on 2 October the connector exposed only unrelated Oura CRM UAT; no Oura keys, tables, migrations, advisors or data were accessed. Docker was unavailable, and no Docked backend credentials existed at that checkpoint. Oura remains untouched.
 
 The PostgreSQL tests apply all ordered migrations to a fresh embedded PostgreSQL database with a deliberately minimal Auth-schema test harness. These prove SQL/RLS invariants and migration order; they **do not prove hosted Auth, mail delivery, session refresh or a complete authenticated browser lifecycle**. The fixture accounts and paper selections exist only in an isolated test process, never in the application database or public results. Phase 3 rechecked credential availability on 3 October: no Docked credentials or Docker runtime were available; no hosted project was accessed.
 
 ## Safe local setup
 
-The CLI-generated `supabase/config.toml` is specific to `docked-preview-local`, uses PostgreSQL 17 and a local SMTP sink, requires email confirmation, disables anonymous sign-in, enables TOTP, uses 15-minute access tokens and requires 12-character passwords. It exposes only `public` and `graphql_public`, never `private`. Automatic grants for newly exposed tables are disabled; migrations grant only the reviewed member reads. No external SMTP credentials are configured. Signup/recovery handlers reject a non-loopback Auth URL in preview even if keys are supplied.
+The CLI-generated `supabase/config.toml` is specific to `docked-preview-local`, uses PostgreSQL 17 and a local SMTP sink, requires email confirmation, disables anonymous sign-in, enables TOTP, uses 15-minute access tokens and requires 12-character passwords. It exposes only `public` and `graphql_public`, never `private`. Automatic grants for newly exposed tables are disabled; migrations grant only the reviewed member reads. No external SMTP credentials are configured. Signup/recovery reject hosted preview Auth unless the exact Docked project, reserved recipient and current SQL-hook proof pass the [separate hosted gate](qa/hosted-preview/AUTH_GATE.md).
 
 1. Install and run an approved local Docker-compatible runtime. Do not connect a shared or production database.
 2. From this repository inspect `npx supabase start --help`, then run `npx supabase start`. This applies the ordered migrations on first startup. Read `npx supabase status` privately; do not paste secret keys into chat or commit them.
@@ -32,7 +34,7 @@ Create a project-specific read/write deployment identity and secrets scope. Neve
 | `REGISTRATION_ENABLED`                                            | `false` until an isolated Auth mail-sink path is verified                                                                                                                                               |
 | `PUBLICATION_ENABLED`, `FORWARD_PAPER_ENABLED`, `SENDING_ENABLED` | All `false`                                                                                                                                                                                             |
 
-Configure exact callback/recovery allowlist URLs, mandatory email confirmation, anonymous accounts off, strong passwords/rate limits, 15-minute JWT expiry and staff TOTP. At present Docked intentionally blocks signup/recovery against hosted Auth in preview because a hosted mail sink has not been proven. Use the local stack for the full email lifecycle, or implement and independently verify a hosted catch-all SMTP sink before changing this gate. Do not set production mode to bypass it.
+Configure exact callback/recovery allowlist URLs, mandatory email confirmation, anonymous accounts off, strong passwords/rate limits, 15-minute JWT expiry and staff TOTP. The current hosted acceptance is explicitly bound to localhost:3000 and a capture-only SQL Send Email hook with exact reserved recipients. A fresh real canary capture must prove that hook before the app permits signup/recovery. The hook replaces SMTP; no external SMTP or email-provider credentials are configured. Do not set production mode to bypass the gate. Remote database connections now require certificate and hostname verification; set `DATABASE_SSL_CA_FILE` to the absolute reviewed public CA path described in `certs/README.md`.
 
 ## Migration, recovery and advisor procedure
 
@@ -43,8 +45,9 @@ Apply these migrations in filename order:
 3. `20261003002609_phase3_membership_and_rewards.sql`
 4. `20261003002709_phase3_social_core.sql`
 5. `20261003002935_phase3_community_edge_ledger.sql`
+6. `20261003021118_session_helper_execute_hardening.sql`
 
-The original migrations are unchanged. `db/schema.sql` preserves the original bootstrap snapshot; **all ordered migrations** define the current schema. Existing strategy timestamps do not silently become Phase 2 approvals: that migration leaves existing unfrozen strategies inactive with lifecycle DRAFT, and retires legacy frozen versions with an audit entry preserving their original evidence. A new reviewed version is required for Phase 2 operation. Phase 3 creates the protected system account and canonical official discussion projections, but creates no community selections, sporting outcomes, prizes, paid subscriptions or performance history. Apply all five before running the Phase 3 app.
+The original migrations are unchanged. `db/schema.sql` preserves the original bootstrap snapshot; **all ordered migrations** define the current schema. Existing strategy timestamps do not silently become Phase 2 approvals: that migration leaves existing unfrozen strategies inactive with lifecycle DRAFT, and retires legacy frozen versions with an audit entry preserving their original evidence. A new reviewed version is required for Phase 2 operation. Phase 3 creates the protected system account and canonical official discussion projections, but creates no community selections, sporting outcomes, prizes, paid subscriptions or performance history. Apply all six before running the current app. Preview-only capture DDL is separately guarded and must never be added to production migrations.
 
 For an empty verified preview, inspect CLI `link`, `db push` and `migration list` help; link only the recorded Docked Preview ref, inspect the planned migration list and a dry run, then apply. Never run a reset on an existing cloud project. On a populated environment first create a restorable backup and test restoration into another dedicated disposable Docked preview. Recovery prefers restoring the verified backup or a forward repair migration; do not drop ledger/audit tables or edit migration history to imitate rollback. Local-only `db reset --local` is destructive and is for a confirmed disposable test stack only.
 
@@ -52,7 +55,7 @@ Run Supabase security and performance advisors once a dedicated project exists; 
 
 ## Account acceptance checklist
 
-Record actual results/screenshots, not assumed success. Pending until a local Auth stack is available:
+Record actual results/screenshots, not assumed success. These account cases remain pending the controlled hosted capture run (or a real local Auth stack):
 
 1. Visitor creates an account; age/terms/country/state are required and digest, education, alerts and analytics are unchecked. Unverified login/dashboard access fails.
 2. Confirmation arrives **only** in the local inbox; follow it, sign in, and check the remotely verified user plus active `auth.sessions` record. Confirmation schedules one idempotent service welcome; optional education remains separate.
@@ -71,7 +74,7 @@ References checked: [Supabase changelog](https://supabase.com/changelog), [local
 
 ## Exact CLI commands after target verification
 
-These flags were checked against installed Supabase CLI 2.119.0. The commands below are instructions; remote commands were **not executed**.
+These are setup/recovery instructions. The actual hosted run used Supabase CLI 2.119.0, an explicit verified session-pooler database URL, reviewed `db push --dry-run --skip-vault`, then `db push --skip-vault --yes`; all six recorded migrations are confirmed in the current acceptance record. Never replay creation or reset an existing project merely to repeat a checklist.
 
 For the dedicated local stack, after Docker is running:
 
