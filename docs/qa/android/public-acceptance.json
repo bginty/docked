@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-10-03T04:25:16.227Z",
+  "buildId": "yJojDyngkNjNiQ7akKDf4",
+  "platform": "Android36 emulator / actual Capacitor WebView",
+  "mode": "public",
+  "checks": [
+    {
+      "check": "designated-emulator",
+      "status": "PASS"
+    },
+    {
+      "check": "designated-installed-package",
+      "status": "PASS"
+    },
+    {
+      "check": "designated-inspection-apk",
+      "status": "PASS"
+    },
+    {
+      "check": "native-process",
+      "status": "PASS"
+    },
+    {
+      "check": "real-capacitor-webview",
+      "status": "PASS"
+    },
+    {
+      "check": "native-public-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "native-status-visible",
+      "status": "PASS"
+    },
+    {
+      "check": "native-public-screenshot-is-anonymous",
+      "status": "PASS"
+    },
+    {
+      "check": "native-landscape-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "native-content-deep-link",
+      "status": "PASS"
+    },
+    {
+      "check": "native-back-navigation",
+      "status": "FAIL",
+      "detailCode": "redacted-see-local-checkpoint"
+    }
+  ],
+  "externalEmailSent": false,
+  "pushSent": false
+}

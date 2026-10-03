@@ -1,0 +1,312 @@
+{
+  "recordedAt": "2026-10-03T04:22:41.872Z",
+  "buildId": "yJojDyngkNjNiQ7akKDf4",
+  "startTime": "2026-10-03T04:10:35.373Z",
+  "duration": 539153.346,
+  "expected": 30,
+  "skipped": 0,
+  "unexpected": 0,
+  "flaky": 0,
+  "tests": [
+    {
+      "test": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 11592
+        }
+      ]
+    },
+    {
+      "test": "article metadata, real PNG social card and allowlisted sports pages",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 6433
+        }
+      ]
+    },
+    {
+      "test": "preview public pages remain truthful, accessible and usable without an account",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 27421
+        }
+      ]
+    },
+    {
+      "test": "desktop and mobile home, keyboard access, no storefront and accessibility",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 14928
+        }
+      ]
+    },
+    {
+      "test": "education and pending research are usable without an account",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5195
+        }
+      ]
+    },
+    {
+      "test": "restricted public/API, protected admin and no fake signup success",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1865
+        }
+      ]
+    },
+    {
+      "test": "retired product routes, legacy support and invalid unsubscribe",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1895
+        }
+      ]
+    },
+    {
+      "test": "secondary routes pass automated accessibility scan",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 14932
+        }
+      ]
+    },
+    {
+      "test": "Phase3 public gates and disabled previews remain accessible at 390px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 34121
+        }
+      ]
+    },
+    {
+      "test": "Phase3 public gates and disabled previews remain accessible at 430px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 32189
+        }
+      ]
+    },
+    {
+      "test": "Phase3 public gates and disabled previews remain accessible at 768px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 34076
+        }
+      ]
+    },
+    {
+      "test": "Phase3 public gates and disabled previews remain accessible at 1366px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 44911
+        }
+      ]
+    },
+    {
+      "test": "Phase3 public gates and disabled previews remain accessible at 1920px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 38666
+        }
+      ]
+    },
+    {
+      "test": "DEMO app hierarchy, all outcomes, provisional ranking and touch navigation",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 17283
+        }
+      ]
+    },
+    {
+      "test": "DEMO verified Edge review requires permanent confirmation again when provider price moves",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4333
+        }
+      ]
+    },
+    {
+      "test": "DEMO unsupported and promotional claims stay social-only; social interactions use distinct actions",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4166
+        }
+      ]
+    },
+    {
+      "test": "DEMO notification consent and moderation are separate from record corrections",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3582
+        }
+      ]
+    },
+    {
+      "test": "DEMO administrative drafts remain disabled and leaderboard captures are auditable",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 6318
+        }
+      ]
+    },
+    {
+      "test": "PWA serves an offline shell without caching private pages or APIs",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2464
+        }
+      ]
+    },
+    {
+      "test": "web deep-link aliases preserve canonical visibility routes",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1697
+        }
+      ]
+    },
+    {
+      "test": "reference card hierarchy and unavailable data remain honest at mobile widths",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 8003
+        }
+      ]
+    },
+    {
+      "test": "reference composer sends canonical market selection only and reconfirms a moved benchmark",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3296
+        }
+      ]
+    },
+    {
+      "test": "sports identity remains accessible and honest at 390px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 35259
+        }
+      ]
+    },
+    {
+      "test": "sports identity remains accessible and honest at 430px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 33824
+        }
+      ]
+    },
+    {
+      "test": "sports identity remains accessible and honest at 768px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 35836
+        }
+      ]
+    },
+    {
+      "test": "sports identity remains accessible and honest at 1366px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 36985
+        }
+      ]
+    },
+    {
+      "test": "sports identity remains accessible and honest at 1920px",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 39082
+        }
+      ]
+    },
+    {
+      "test": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 11194
+        }
+      ]
+    },
+    {
+      "test": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2874
+        }
+      ]
+    },
+    {
+      "test": "atmospheric no-edge imagery preserves restricted and outage meanings",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 6007
+        }
+      ]
+    }
+  ]
+}

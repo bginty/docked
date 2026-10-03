@@ -1,0 +1,25 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "organizationId": "ernfnkcbalhyqpsrzdwa",
+  "operation": "--inspect",
+  "capturedAt": "2026-10-03T04:30:29.9944358Z",
+  "signupDisabled": true,
+  "emailSignInEnabled": true,
+  "siteIsLoopback": true,
+  "emailConfirmationRequired": true,
+  "anonymousSigninsDisabled": true,
+  "phoneSignupsDisabled": true,
+  "captureHookEnabled": true,
+  "captureHookUriMatches": true,
+  "customSmtpConfigured": false,
+  "beforeEmailQuota": 2,
+  "rateLimits": {
+    "rate_limit_anonymous_users": 30,
+    "rate_limit_email_sent": 2,
+    "rate_limit_sms_sent": 30,
+    "rate_limit_token_refresh": 150,
+    "rate_limit_verify": 30,
+    "rate_limit_otp": 30,
+    "rate_limit_web3": 30
+  }
+}

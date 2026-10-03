@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-03T04:29:04.265Z",
+  "status": "passed",
+  "durationMs": 8431.377,
+  "tests": [
+    {
+      "project": "revocation",
+      "test": "existing member loses community access after actual QA policy revocation",
+      "status": "passed",
+      "durationMs": 6054,
+      "checkpoints": [
+        "login-memberB",
+        "login-accepted-memberB",
+        "dashboard-ready-memberB"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

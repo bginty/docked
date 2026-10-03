@@ -1,0 +1,29 @@
+{
+  "recordedAt": "2026-10-03T03:11:49.081Z",
+  "status": "passed",
+  "durationMs": 19865.987999999998,
+  "tests": [
+    {
+      "project": "lifecycle",
+      "test": "real login private export pause recovery and password replacement",
+      "status": "passed",
+      "durationMs": 14868,
+      "checkpoints": [
+        "login-memberA",
+        "awaiting-captured-recovery-memberA",
+        "login-memberA"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "lifecycle",
+      "test": "real one-click unsubscribe without delivery",
+      "status": "passed",
+      "durationMs": 1524,
+      "checkpoints": [],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Docked preview database and account lifecycle
 
-Updated 3 October 2026: dedicated **Docked Preview** (`bckkllmndoxzpzdqrevb`) now exists in the new Docked organisation (`ernfnkcbalhyqpsrzdwa`), Sydney, on the owner-approved $0/month Free plan. Six migrations, actual hosted catalog/RLS, verified TLS and public browser/API checks passed. The application runs locally against that hosted backend. **Full authenticated acceptance remains pending; do not equate provisioning with a passed account lifecycle.** Current findings, quota decision and exact continuation are in the [hosted acceptance record](qa/hosted-preview/README.md).
+Updated 3 October 2026, Phase 4: dedicated **Docked Preview** (`bckkllmndoxzpzdqrevb`) exists in the Docked organisation (`ernfnkcbalhyqpsrzdwa`), Sydney, on the owner-approved $0/month Free plan. Seven migrations are applied and all 83 application tables have RLS. The frontend runs locally against this hosted backend. Genuine signup, verification, onboarding, recovery, social controls and all four staff MFA roles have passed; the complete current acceptance and teardown receipts are in [HOSTED_ACCEPTANCE.md](HOSTED_ACCEPTANCE.md) and [Phase 4 QA](qa/phase4/README.md). The [earlier provisioning record](qa/hosted-preview/README.md) is preserved as a historical checkpoint.
 
 Preserved baseline before this provisioning: on 2 October the connector exposed only unrelated Oura CRM UAT; no Oura keys, tables, migrations, advisors or data were accessed. Docker was unavailable, and no Docked backend credentials existed at that checkpoint. Oura remains untouched.
 
@@ -46,8 +46,9 @@ Apply these migrations in filename order:
 4. `20261003002709_phase3_social_core.sql`
 5. `20261003002935_phase3_community_edge_ledger.sql`
 6. `20261003021118_session_helper_execute_hardening.sql`
+7. `20261003030722_phase4_market_reference.sql`
 
-The original migrations are unchanged. `db/schema.sql` preserves the original bootstrap snapshot; **all ordered migrations** define the current schema. Existing strategy timestamps do not silently become Phase 2 approvals: that migration leaves existing unfrozen strategies inactive with lifecycle DRAFT, and retires legacy frozen versions with an audit entry preserving their original evidence. A new reviewed version is required for Phase 2 operation. Phase 3 creates the protected system account and canonical official discussion projections, but creates no community selections, sporting outcomes, prizes, paid subscriptions or performance history. Apply all six before running the current app. Preview-only capture DDL is separately guarded and must never be added to production migrations.
+The original migrations are unchanged. `db/schema.sql` preserves the original bootstrap snapshot; **all ordered migrations** define the current schema. Existing strategy timestamps do not silently become Phase 2 approvals: that migration leaves existing unfrozen strategies inactive with lifecycle DRAFT, and retires legacy frozen versions with an audit entry preserving their original evidence. A new reviewed version is required for Phase 2 operation. Phase 3 creates the protected system account and canonical official discussion projections, but creates no community selections, sporting outcomes, prizes, paid subscriptions or performance history. Phase 4 adds versioned reference evidence and separate erasable personal notes without relabelling legacy records. Apply all seven before running the current app. Preview-only capture DDL is separately guarded and must never be added to production migrations.
 
 For an empty verified preview, inspect CLI `link`, `db push` and `migration list` help; link only the recorded Docked Preview ref, inspect the planned migration list and a dry run, then apply. Never run a reset on an existing cloud project. On a populated environment first create a restorable backup and test restoration into another dedicated disposable Docked preview. Recovery prefers restoring the verified backup or a forward repair migration; do not drop ledger/audit tables or edit migration history to imitate rollback. Local-only `db reset --local` is destructive and is for a confirmed disposable test stack only.
 
@@ -55,7 +56,7 @@ Run Supabase security and performance advisors once a dedicated project exists; 
 
 ## Account acceptance checklist
 
-Record actual results/screenshots, not assumed success. These account cases remain pending the controlled hosted capture run (or a real local Auth stack):
+Record actual results/screenshots, not assumed success. The Phase 4 hosted receipts above record the executed cases; this reusable checklist describes what a future isolated run must verify, not a claim that it has already run in every environment:
 
 1. Visitor creates an account; age/terms/country/state are required and digest, education, alerts and analytics are unchecked. Unverified login/dashboard access fails.
 2. Confirmation arrives **only** in the local inbox; follow it, sign in, and check the remotely verified user plus active `auth.sessions` record. Confirmation schedules one idempotent service welcome; optional education remains separate.
@@ -74,7 +75,7 @@ References checked: [Supabase changelog](https://supabase.com/changelog), [local
 
 ## Exact CLI commands after target verification
 
-These are setup/recovery instructions. The actual hosted run used Supabase CLI 2.119.0, an explicit verified session-pooler database URL, reviewed `db push --dry-run --skip-vault`, then `db push --skip-vault --yes`; all six recorded migrations are confirmed in the current acceptance record. Never replay creation or reset an existing project merely to repeat a checklist.
+These are setup/recovery instructions. The actual hosted run used Supabase CLI 2.119.0, an explicit verified session-pooler database URL, reviewed `db push --dry-run --skip-vault`, then `db push --skip-vault --yes`; all seven recorded migrations are confirmed in the current acceptance record. Never replay creation or reset an existing project merely to repeat a checklist.
 
 For the dedicated local stack, after Docker is running:
 

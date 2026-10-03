@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-10-03T03:52:40.563Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "database": true,
+  "oddsProviderStatus": "NOT_CONFIGURED",
+  "resultsProviderStatus": "NOT_CONFIGURED",
+  "feed": false,
+  "strategy": false,
+  "publication": false,
+  "anonymousEdgeCount": 0,
+  "anonymousMemberStatus": 401,
+  "anonymousAdminStatus": 403,
+  "note": "Read-only APIRequestContext requests; expected401/403 denial probes do not execute in the page and therefore do not pollute browser console counts."
+}

@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-03T04:15:15.663Z",
+  "status": "passed",
+  "durationMs": 23098.009,
+  "tests": [
+    {
+      "project": "deletion",
+      "test": "export then deletion revokes an already genuine second session",
+      "status": "passed",
+      "durationMs": 17481,
+      "checkpoints": [
+        "login-memberA",
+        "login-accepted-memberA",
+        "dashboard-ready-memberA",
+        "login-memberA",
+        "login-accepted-memberA",
+        "dashboard-ready-memberA"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

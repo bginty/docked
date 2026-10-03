@@ -1,0 +1,19 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "checkedAt": "2026-10-03T03:51:09.860Z",
+  "type": "performance",
+  "lints": [
+    {
+      "name": "unindexed_foreign_keys",
+      "level": "INFO",
+      "count": 53,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0001_unindexed_foreign_keys"
+    },
+    {
+      "name": "unused_index",
+      "level": "INFO",
+      "count": 18,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+    }
+  ]
+}

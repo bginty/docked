@@ -1,0 +1,19 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "closedAt": "2026-10-03T03:13:19.746Z",
+  "capturedActions": [
+    {
+      "action": "recovery",
+      "count": 1
+    },
+    {
+      "action": "signup",
+      "count": 10
+    }
+  ],
+  "captureEnabled": false,
+  "captureProofPresent": false,
+  "remainingCapturedMessages": 0,
+  "applicationRegistration": false,
+  "note": "Hook remains enabled to prevent SMTP fallback; genuine signup/recovery checks completed before purge."
+}

@@ -1,0 +1,6 @@
+Connecting to remote database...
+Do you want to push these migrations to the remote database?
+ • 20261003030722_phase4_market_reference.sql
+ [Y/n] y
+Applying migration 20261003030722_phase4_market_reference.sql...
+{"upToDate":false,"dryRun":false,"migrations":["20261003030722_phase4_market_reference.sql"],"seeds":[],"roles":[],"message":"Finished supabase db push."}

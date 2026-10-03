@@ -1,0 +1,34 @@
+{
+  "recordedAt": "2026-10-03T03:58:30.481Z",
+  "status": "passed",
+  "durationMs": 48082.634000000005,
+  "tests": [
+    {
+      "project": "privileged",
+      "test": "genuine MFA and staff boundary: admin",
+      "status": "passed",
+      "durationMs": 28252,
+      "checkpoints": [
+        "login-admin",
+        "login-accepted-admin",
+        "dashboard-ready-admin",
+        "admin-mfa-quarantine-review"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "privileged",
+      "test": "genuine MFA and staff boundary: auditor",
+      "status": "passed",
+      "durationMs": 16210,
+      "checkpoints": [
+        "login-auditor",
+        "login-accepted-auditor",
+        "dashboard-ready-auditor"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

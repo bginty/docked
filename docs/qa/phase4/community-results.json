@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-03T03:50:16.530Z",
+  "status": "passed",
+  "durationMs": 128923.37000000001,
+  "tests": [
+    {
+      "project": "community",
+      "test": "social controls continuation after recorded interaction and privacy checks",
+      "status": "passed",
+      "durationMs": 77214,
+      "checkpoints": [
+        "login-memberA",
+        "login-accepted-memberA",
+        "dashboard-ready-memberA",
+        "social-profile-memberA",
+        "login-memberB",
+        "login-accepted-memberB",
+        "dashboard-ready-memberB",
+        "social-profile-memberB",
+        "social-security-boundaries",
+        "safe-image-quarantine",
+        "login-restricted",
+        "login-accepted-restricted",
+        "dashboard-ready-restricted"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

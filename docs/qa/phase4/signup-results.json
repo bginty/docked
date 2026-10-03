@@ -1,0 +1,91 @@
+{
+  "recordedAt": "2026-10-03T03:10:55.213Z",
+  "status": "passed",
+  "durationMs": 197393.513,
+  "tests": [
+    {
+      "project": "signup",
+      "test": "genuine signup verification and onboarding: memberA",
+      "status": "passed",
+      "durationMs": 26211,
+      "checkpoints": [
+        "signup-memberA",
+        "awaiting-captured-signup-memberA"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "signup",
+      "test": "genuine signup verification and onboarding: memberB",
+      "status": "passed",
+      "durationMs": 12576,
+      "checkpoints": [
+        "signup-memberB",
+        "awaiting-captured-signup-memberB"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "signup",
+      "test": "genuine signup verification and onboarding: restricted",
+      "status": "passed",
+      "durationMs": 12449,
+      "checkpoints": [
+        "signup-restricted",
+        "awaiting-captured-signup-restricted"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "signup",
+      "test": "genuine signup verification and onboarding: analyst",
+      "status": "passed",
+      "durationMs": 10058,
+      "checkpoints": [
+        "signup-analyst",
+        "awaiting-captured-signup-analyst"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "signup",
+      "test": "genuine signup verification and onboarding: editor",
+      "status": "passed",
+      "durationMs": 91613,
+      "checkpoints": [
+        "signup-editor",
+        "awaiting-captured-signup-editor"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "signup",
+      "test": "genuine signup verification and onboarding: admin",
+      "status": "passed",
+      "durationMs": 24087,
+      "checkpoints": [
+        "signup-admin",
+        "awaiting-captured-signup-admin"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    },
+    {
+      "project": "signup",
+      "test": "genuine signup verification and onboarding: auditor",
+      "status": "passed",
+      "durationMs": 17903,
+      "checkpoints": [
+        "signup-auditor",
+        "awaiting-captured-signup-auditor"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

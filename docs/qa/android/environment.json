@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-10-03T04:26:05.2512095Z",
+  "status": "BLOCKED_ENVIRONMENT",
+  "emulator": "Medium_Phone_API_36.0",
+  "requestedRamMB": 4096,
+  "virtualCores": 4,
+  "competingBrowserOrBuildRuns": false,
+  "memoryKB": {
+    "SwapTotal": 3010360,
+    "MemTotal": 4013820,
+    "MemAvailable": 2068800,
+    "SwapFree": 2797792
+  },
+  "systemAnrPackages": [
+    "com.android.systemui",
+    "com.google.android.dialer",
+    "com.google.android.inputmethod.latin"
+  ],
+  "foreground": "Application Not Responding: com.android.systemui",
+  "appLaunchStatus": "timeout",
+  "failedCheckpoint": "native-back-navigation",
+  "genuineNativeLoginAttempted": false,
+  "credentialsEntered": false,
+  "externalEmailSent": false,
+  "pushSent": false,
+  "evidence": "environment-anr.png"
+}

@@ -1,0 +1,79 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T04:29:41.301Z",
+  "checks": [
+    {
+      "account": "memberA",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 2
+    },
+    {
+      "account": "memberB",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 1
+    },
+    {
+      "account": "restricted",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 1
+    },
+    {
+      "account": "analyst",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 1
+    },
+    {
+      "account": "editor",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 1
+    },
+    {
+      "account": "admin",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 1
+    },
+    {
+      "account": "auditor",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 1
+    },
+    {
+      "account": "canary",
+      "status": "PASS",
+      "auth": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "identifiable_social_profiles": 0,
+      "erasure_audits": 1
+    }
+  ],
+  "note": "Only the eight reserved QA identities were erased through the existing application erasure service. Immutable pseudonymous audit records retained."
+}

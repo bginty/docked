@@ -1,5 +1,7 @@
 # Docked Preview acceptance record
 
+Historical provisioning checkpoint, preserved unchanged below. Phase 4 supersedes its pending quota/account status: see [current hosted acceptance](../../HOSTED_ACCEPTANCE.md) and [Phase 4 evidence](../phase4/README.md).
+
 3 October 2026, branch `codex/docked-value-platform`, continuing clean Phase 3 checkpoint `cd4a6d5`. **Provisioning and hosted public/database checks are complete. Full authenticated hosted acceptance is NOT COMPLETE.**
 
 ## Verified target and cost

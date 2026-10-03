@@ -1,0 +1,349 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T04:28:34.574Z",
+  "checks": [
+    {
+      "name": "exact project and organisation",
+      "status": "PASS"
+    },
+    {
+      "name": "real verified accounts already onboarded",
+      "status": "PASS"
+    },
+    {
+      "name": "anonymous profiles read denied",
+      "status": "PASS",
+      "httpStatus": 401
+    },
+    {
+      "name": "anonymous notification_preferences read denied",
+      "status": "PASS",
+      "httpStatus": 401
+    },
+    {
+      "name": "anonymous saved_tips read denied",
+      "status": "PASS",
+      "httpStatus": 401
+    },
+    {
+      "name": "anonymous personal_entries read denied",
+      "status": "PASS",
+      "httpStatus": 401
+    },
+    {
+      "name": "genuine member password login",
+      "status": "PASS"
+    },
+    {
+      "name": "user-editable admin claims accepted only as untrusted metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "member profiles ownership isolation",
+      "status": "PASS",
+      "httpStatus": 200,
+      "rows": 1
+    },
+    {
+      "name": "member profiles cross-user query empty",
+      "status": "PASS",
+      "httpStatus": 200
+    },
+    {
+      "name": "member profiles POST denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member profiles PATCH denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member profiles DELETE denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member notification_preferences ownership isolation",
+      "status": "PASS",
+      "httpStatus": 200,
+      "rows": 1
+    },
+    {
+      "name": "member notification_preferences cross-user query empty",
+      "status": "PASS",
+      "httpStatus": 200
+    },
+    {
+      "name": "member notification_preferences POST denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member notification_preferences PATCH denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member notification_preferences DELETE denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member saved_tips ownership isolation",
+      "status": "PASS",
+      "httpStatus": 200,
+      "rows": 0
+    },
+    {
+      "name": "member saved_tips cross-user query empty",
+      "status": "PASS",
+      "httpStatus": 200
+    },
+    {
+      "name": "member saved_tips POST denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member saved_tips PATCH denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member saved_tips DELETE denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member personal_entries ownership isolation",
+      "status": "PASS",
+      "httpStatus": 200,
+      "rows": 0
+    },
+    {
+      "name": "member personal_entries cross-user query empty",
+      "status": "PASS",
+      "httpStatus": 200
+    },
+    {
+      "name": "member personal_entries POST denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member personal_entries PATCH denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "member personal_entries DELETE denied",
+      "status": "PASS",
+      "httpStatus": 403
+    },
+    {
+      "name": "private roles unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private roles POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private roles PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private roles DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private odds_snapshots unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private odds_snapshots POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private odds_snapshots PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private odds_snapshots DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private tip_publications unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private tip_publications POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private tip_publications PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private tip_publications DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edges unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edges POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edges PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edges DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private social_posts unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private social_posts POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private social_posts PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private social_posts DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_references unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_references POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_references PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_references DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_methodologies unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_methodologies POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_methodologies PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_methodologies DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_movements unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_movements POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_movements PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private market_reference_movements DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edge_personal_notes unavailable through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edge_personal_notes POST denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edge_personal_notes PATCH denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "private community_edge_personal_notes DELETE denied",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "mail credentials never exposed through REST",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "protected private RPC inaccessible",
+      "status": "PASS",
+      "httpStatus": 406
+    },
+    {
+      "name": "genuine global signout",
+      "status": "PASS"
+    },
+    {
+      "name": "previously issued JWT cannot read after session revocation",
+      "status": "PASS",
+      "httpStatus": 200
+    },
+    {
+      "name": "revoked refresh token cannot restore session",
+      "status": "PASS"
+    }
+  ]
+}

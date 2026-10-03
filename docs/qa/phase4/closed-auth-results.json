@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-03T04:00:25.871Z",
+  "status": "passed",
+  "durationMs": 9704.764,
+  "tests": [
+    {
+      "project": "closed-auth",
+      "test": "closed registration preserves existing login and denies unsupported email changes",
+      "status": "passed",
+      "durationMs": 3661,
+      "checkpoints": [
+        "login-memberB",
+        "login-accepted-memberB",
+        "dashboard-ready-memberB"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

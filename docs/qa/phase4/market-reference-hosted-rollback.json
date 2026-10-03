@@ -1,0 +1,36 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T04:13:06.003Z",
+  "fixtureMode": "ROLLBACK_ONLY_FICTIONAL",
+  "genuineAuth": true,
+  "genuineAdministratorMfa": true,
+  "rolledBack": true,
+  "checks": [
+    "reference_price_override_denied",
+    "community_price_override_denied",
+    "cross_user_submission_denied",
+    "protected_references_and_ledger_immutable",
+    "social_projection_atomic_link",
+    "settlement_before_event_denied",
+    "positive_settlement_after_actual_clock",
+    "top_docked_immutable_2_50_benchmark_ignores_99_promo"
+  ],
+  "settlement": "passed",
+  "before": {
+    "events": 0,
+    "odds_snapshots": 0,
+    "market_references": 0,
+    "community_edges": 0,
+    "community_settlements": 0,
+    "official_publications": 0
+  },
+  "after": {
+    "events": 0,
+    "odds_snapshots": 0,
+    "market_references": 0,
+    "community_edges": 0,
+    "community_settlements": 0,
+    "official_publications": 0
+  },
+  "evidenceLimit": "Database constraints and deterministic accounting only; no sporting research or performance evidence."
+}

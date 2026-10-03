@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-10-03T04:04:09.5049392Z",
+  "suite": "PostgreSQL / PGlite - all ordered migrations",
+  "migrationCount": 7,
+  "tests": 72,
+  "passed": 72,
+  "failed": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "durationMilliseconds": 49753.7378,
+  "exitCode": 0,
+  "scope": "Disposable local PostgreSQL fixtures only; no hosted mutations or real sporting evidence. Includes actual postgres.js JSON parameter serialization and rollback-helper regression.",
+  "typecheck": "PASS",
+  "scopedLint": "PASS"
+}

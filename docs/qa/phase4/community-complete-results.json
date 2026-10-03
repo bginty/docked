@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-03T04:28:07.158Z",
+  "status": "passed",
+  "durationMs": 134711.118,
+  "tests": [
+    {
+      "project": "community",
+      "test": "complete social lifecycle: memberB and editor without MFA elevation",
+      "status": "passed",
+      "durationMs": 128788,
+      "checkpoints": [
+        "login-memberB",
+        "login-accepted-memberB",
+        "dashboard-ready-memberB",
+        "social-profile-memberB",
+        "login-editor",
+        "login-accepted-editor",
+        "dashboard-ready-editor",
+        "social-profile-editor",
+        "social-security-boundaries",
+        "safe-image-quarantine",
+        "login-restricted",
+        "login-accepted-restricted",
+        "dashboard-ready-restricted"
+      ],
+      "safeCodes": [],
+      "blocked": []
+    }
+  ]
+}

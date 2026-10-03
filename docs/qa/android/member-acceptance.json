@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-03T04:27:00.522Z",
+  "status": "BLOCKED_ENVIRONMENT",
+  "executed": false,
+  "reason": "Android System UI, keyboard and dialer ANRs persisted during the final isolated emulator run.",
+  "credentialsEntered": false,
+  "plannedChecks": [
+    "genuine-login",
+    "private-export",
+    "authenticated-navigation",
+    "session-persists-process-restart",
+    "native-share",
+    "photo-picker-cancellation",
+    "camera-cancellation",
+    "logout",
+    "old-session-denial"
+  ],
+  "externalEmailSent": false,
+  "pushSent": false
+}

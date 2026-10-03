@@ -1,0 +1,14 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "checkedAt": "2026-10-03T04:31:07.547Z",
+  "type": "security",
+  "lints": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 79,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    }
+  ],
+  "note": "Final advisor returned only SQL RLS information. The earlier Free-plan leaked-password-protection warning was not returned; no password-protection upgrade or configuration change was made."
+}

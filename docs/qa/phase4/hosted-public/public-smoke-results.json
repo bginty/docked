@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-10-03T03:53:34.622Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "http://localhost:3000",
+  "scope": "Read-only genuine hosted data; anonymous browsers; no DEMO or account actions",
+  "status": "passed",
+  "durationMs": 57346.664000000004,
+  "tests": [
+    {
+      "test": "read-only hosted public API health and anonymous privacy boundary",
+      "status": "passed",
+      "durationMs": 228,
+      "safeCodes": []
+    },
+    {
+      "test": "genuine hosted public desktop-mobile accessibility and captures at 390px",
+      "status": "passed",
+      "durationMs": 26940,
+      "safeCodes": []
+    },
+    {
+      "test": "genuine hosted public desktop-mobile accessibility and captures at 1366px",
+      "status": "passed",
+      "durationMs": 26266,
+      "safeCodes": []
+    }
+  ]
+}
