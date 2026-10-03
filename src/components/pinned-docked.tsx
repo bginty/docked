@@ -83,6 +83,7 @@ export async function PinnedDocked({
         </>
       ) : (
         <PinnedDockedEmpty
+          compact={compact}
           regionAllowed={region.allowed}
           feedReady={status.feed}
           view={view}

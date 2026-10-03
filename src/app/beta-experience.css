@@ -2,6 +2,24 @@
   display: grid;
   gap: 14px;
 }
+.pinned-empty.pinned-empty--compact {
+  min-height: 0;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.community-shell .pinned-empty--compact h3 {
+  font-size: 17px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+.pinned-empty--compact p {
+  margin: 0 0 8px;
+}
+.pinned-empty--compact .inline-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
 .beta-reading .app-panel,
 .preview-fixture-composer {
   margin: 0;

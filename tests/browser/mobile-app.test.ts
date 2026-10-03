@@ -43,6 +43,7 @@ async function fixture(page: Page, view: string, width = 390) {
     "community-app.css",
     "native.css",
     "mobile-app.css",
+    "beta-experience.css",
   ])
     await page.addStyleTag({ path: path.resolve("src/app", file) });
   await page.addStyleTag({

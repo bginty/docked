@@ -281,7 +281,7 @@ export function renderDemo(
             }}
           />
         ) : (
-          <PinnedDockedEmpty regionAllowed={false} feedReady={false} />
+          <PinnedDockedEmpty compact regionAllowed={false} feedReady={false} />
         )}
       </div>
     ) : view === "compose" || view === "mobile-compose" || view === "mobile-preview-edge" ? (

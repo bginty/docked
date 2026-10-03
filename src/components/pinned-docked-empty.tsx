@@ -6,17 +6,21 @@ export function PinnedDockedEmpty({
   regionAllowed,
   feedReady,
   view = "featured",
+  compact = false,
 }: {
   regionAllowed: boolean;
   feedReady: boolean;
   view?: EdgeView;
+  compact?: boolean;
 }) {
   return (
-    <div className="pinned-empty">
-      <OfficialBadge />
+    <div className={`pinned-empty${compact ? " pinned-empty--compact" : ""}`}>
+      {!compact && <OfficialBadge />}
       <h3>
         {!regionAllowed
-          ? "Official Edges require approved regional access"
+          ? compact
+            ? "Official Edges need regional approval"
+            : "Official Edges require approved regional access"
           : view === "recent"
             ? "No recent official records"
             : view === "upcoming"
@@ -27,7 +31,9 @@ export function PinnedDockedEmpty({
       </h3>
       <p>
         {!regionAllowed
-          ? "Eligibility is checked against your verified account and current country/state policy. No actionable records are shown without that approval."
+          ? compact
+            ? "Country/state approval is required for actionable records. Preview community access does not enable official tips."
+            : "Eligibility is checked against your verified account and current country/state policy. No actionable records are shown without that approval."
           : view === "recent"
             ? "The complete official record includes every published outcome. No results have been added to fill this view."
             : view === "upcoming"
@@ -39,8 +45,8 @@ export function PinnedDockedEmpty({
       <div className="inline-links">
         <Link href="/results">Results, including losses</Link>
         <Link href="/methodology">Methodology</Link>
-        <Link href="/sports">Monitored sports</Link>
-        <Link href="/research">Research</Link>
+        {!compact && <Link href="/sports">Monitored sports</Link>}
+        {!compact && <Link href="/research">Research</Link>}
       </div>
     </div>
   );
