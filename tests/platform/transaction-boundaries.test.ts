@@ -57,7 +57,7 @@ test("server transaction callbacks never reacquire global DB, identity, policy o
         : ts.isPropertyAccessExpression(call.expression)
           ? call.expression.name.text
           : "";
-      if (!["begin", "withCommunityActor"].includes(name)) continue;
+      if (!["begin", "withCommunityActor", "reservedTransaction"].includes(name)) continue;
       for (const callback of call.arguments.filter(
         (a) => ts.isArrowFunction(a) || ts.isFunctionExpression(a),
       )) {

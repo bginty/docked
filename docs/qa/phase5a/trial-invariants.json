@@ -1,11 +1,19 @@
 {
   "scope": "Local isolated Phase 5A trial invariants; no provider network requests",
   "migration": "20261003225203_phase5a_manual_provider_trial.sql",
-  "database": { "file": "tests/database/phase5a-trial.test.ts", "passed": 8, "failed": 0 },
-  "platform": { "file": "tests/platform/phase5a-trial.test.ts", "passed": 5, "failed": 0 },
+  "database": {
+    "file": "tests/database/phase5a-trial.test.ts",
+    "passed": 8,
+    "failed": 0
+  },
+  "platform": {
+    "file": "tests/platform/phase5a-trial.test.ts",
+    "passed": 6,
+    "failed": 0
+  },
   "coverage": [
     "Browser and production-runtime role denial",
-    "Genuine staff MFA for reviewed rights and permit creation",
+    "Current staff-session/MFA checks using isolated fixtures",
     "Exact manual scope, token, cost and one-use permit",
     "Unknown quota allows only free sports bootstrap",
     "Cumulative non-refundable reservation ceiling and 25 attempts",
@@ -20,6 +28,18 @@
   "limits": [
     "PGlite serializes local transactions; no hosted concurrency test is claimed here",
     "No provider rights, plan, quota or responses are inferred from these fictional tests",
-    "Full-suite and hosted acceptance receipts are reported separately"
-  ]
+    "Full-suite and hosted acceptance receipts are reported separately",
+    "Genuine hosted MFA and the failed provider request are documented separately from isolated fixture tests"
+  ],
+  "recovery": {
+    "passed": 6,
+    "migration": "20261003232606_phase5a_reviewed_driver_recovery.sql",
+    "failed": 0,
+    "file": "tests/database/phase5a-recovery.test.ts"
+  },
+  "transactionBoundaries": {
+    "passed": 3,
+    "failed": 0,
+    "file": "tests/platform/transaction-boundaries.test.ts"
+  }
 }

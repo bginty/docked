@@ -95,7 +95,10 @@ async function main() {
       ![
         "inspect",
         "snapshot",
+        "snapshot-repair",
         "apply",
+        "apply-repair",
+        "review-repair",
         "provision",
         "mfa",
         "configure",
@@ -153,7 +156,7 @@ async function main() {
       const trials =
         await sql`select decision,rights_reference,reviewed_at,next_review_at,effective_to,credit_cap,attempt_cap,revoked_at from private.provider_trials`;
       const requests =
-        await sql`select scope,reserved_credits,reported_credits,remaining,used,status,started_at,headers_at,completed_at,error_code,diagnostics from private.provider_trial_requests order by started_at`;
+        await sql`select id,scope,reserved_credits,reported_credits,remaining,used,status,started_at,headers_at,completed_at,error_code,diagnostics from private.provider_trial_requests order by started_at`;
       const counts =
         await sql`select e.competition_id,count(distinct e.id)::int events,count(distinct m.id)::int markets,count(distinct q.id)::int snapshots from private.events e join private.market_data_event_mappings map on map.event_id=e.id and map.provider='the-odds-api' left join private.markets m on m.event_id=e.id left join private.odds_snapshots q on q.market_id=m.id and q.provider='the-odds-api' group by e.competition_id order by e.competition_id`;
       const sources =
@@ -162,8 +165,25 @@ async function main() {
         await sql`select observed_at,payload from private.provider_trial_diagnostics order by observed_at`;
       const health =
         await sql`select provider,healthy,last_success,last_failure,failure_reason,credits_remaining,credits_used,circuit_until,rights_reference,capabilities,diagnostics from private.source_health where provider='the-odds-api'`;
+      const quality = (
+        await sql`select
+        (select count(*)::int from private.market_data_event_mappings where provider='the-odds-api') mapped_events,
+        (select count(*)::int from (select provider_event_id from private.market_data_event_mappings where provider='the-odds-api' group by provider_event_id having count(*)>1)x) duplicate_provider_events,
+        (select count(*)::int from private.market_data_payloads where provider='the-odds-api') retained_raw_responses,
+        (select count(*)::int from private.market_data_payloads where provider='the-odds-api' and retain_until<=clock_timestamp()) expired_raw_responses,
+        (select min(retain_until) from private.market_data_payloads where provider='the-odds-api') earliest_raw_expiry,
+        (select count(*)::int from private.odds_snapshots where provider='the-odds-api' and evidence::text='market_data' and jsonb_typeof(payload)<>'object') invalid_snapshot_json,
+        (select count(*)::int from private.odds_snapshots where provider='the-odds-api' and evidence::text='market_data' and source_at>received_at) future_source_timestamps,
+        (select count(*)::int from private.odds_snapshots where provider='the-odds-api' and evidence::text='market_data' and received_at-source_at>interval '180 seconds') stale_at_receipt,
+        (select count(*)::int from private.odds_snapshots where provider='the-odds-api' and evidence::text='market_data' and clock_timestamp()-source_at>interval '180 seconds') stale_at_report,
+        (select count(*)::int from private.events e join private.market_data_event_mappings m on m.event_id=e.id where m.provider='the-odds-api' and e.status='manual_review') events_in_manual_review`
+      )[0];
+      const reviews =
+        migrations.length >= 15
+          ? await sql`select request_id,reviewed_at,reason_code,repair_code_commit,evidence_reference,evidence_sha256 from private.provider_trial_failure_reviews order by reviewed_at`
+          : [];
       const access =
-        await sql`select c.relname,c.relrowsecurity,has_table_privilege('anon',c.oid,'SELECT,INSERT,UPDATE,DELETE') anon_access,has_table_privilege('authenticated',c.oid,'SELECT,INSERT,UPDATE,DELETE') authenticated_access from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='private' and c.relname in('provider_trials','provider_trial_permits','provider_trial_requests','provider_trial_diagnostics','market_data_payloads') order by c.relname`;
+        await sql`select c.relname,c.relrowsecurity,has_table_privilege('anon',c.oid,'SELECT,INSERT,UPDATE,DELETE') anon_access,has_table_privilege('authenticated',c.oid,'SELECT,INSERT,UPDATE,DELETE') authenticated_access from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='private' and c.relname in('provider_trials','provider_trial_permits','provider_trial_requests','provider_trial_diagnostics','provider_trial_failure_reviews','market_data_payloads') order by c.relname`;
       await receipt("trial-report", {
         baseline,
         migrationCount: migrations.length,
@@ -173,6 +193,8 @@ async function main() {
         sources,
         diagnostics,
         health,
+        quality,
+        reviews,
         access,
       });
       console.log(
@@ -199,7 +221,7 @@ async function main() {
       );
       return;
     }
-    if (mode === "snapshot") {
+    if (mode === "snapshot" || mode === "snapshot-repair") {
       stage = "snapshot";
       execFileSync(
         process.execPath,
@@ -208,7 +230,9 @@ async function main() {
           "--import",
           "tsx",
           "scripts/hosted-preview/snapshot-before-migration.ts",
-          "--snapshot-phase5a",
+          mode === "snapshot-repair"
+            ? "--snapshot-phase5a-driver-repair"
+            : "--snapshot-phase5a",
         ],
         {
           env: process.env,
@@ -220,22 +244,29 @@ async function main() {
       console.log("Private recovery preimage saved.");
       return;
     }
-    if (mode === "apply") {
+    if (mode === "apply" || mode === "apply-repair") {
       stage = "migration-scope";
+      const repair = mode === "apply-repair";
       if (
-        migrations.length !== 12 ||
-        migrations.at(-1)?.version !== "20261003143903" ||
+        migrations.length !== (repair ? 14 : 12) ||
+        migrations.at(-1)?.version !==
+          (repair ? "20261003225203" : "20261003143903") ||
         (await readFile("supabase/.temp/project-ref", "utf8")).trim() !==
           project
       )
         throw Error("Unexpected migration baseline");
       const snapshot = JSON.parse(
         await readFile(
-          "private-data/hosted-preview/phase5a-before-migration.json",
+          repair
+            ? "private-data/hosted-preview/phase5a-before-driver-repair.json"
+            : "private-data/hosted-preview/phase5a-before-migration.json",
           "utf8",
         ),
       );
-      if (snapshot.projectRef !== project || snapshot.migrations.length !== 12)
+      if (
+        snapshot.projectRef !== project ||
+        snapshot.migrations.length !== (repair ? 14 : 12)
+      )
         throw Error("Recovery preimage required");
       const pending = (await readdir("supabase/migrations"))
         .filter(
@@ -244,13 +275,20 @@ async function main() {
         )
         .sort();
       if (
+        !repair &&
         JSON.stringify(pending) !==
-        JSON.stringify([
-          "20261003214310_production_community_runtime_role.sql",
-          "20261003225203_phase5a_manual_provider_trial.sql",
-        ])
+          JSON.stringify([
+            "20261003214310_production_community_runtime_role.sql",
+            "20261003225203_phase5a_manual_provider_trial.sql",
+          ])
       )
         throw Error("Unexpected migration scope");
+      if (
+        repair &&
+        (pending.length !== 1 ||
+          !/^\d{14}_phase5a_reviewed_driver_recovery\.sql$/.test(pending[0]))
+      )
+        throw Error("Unexpected repair scope");
       const ids = (await sql`select id from auth.users order by id`).map((r) =>
           String(r.id),
         ),
@@ -274,9 +312,13 @@ async function main() {
         windowsHide: true,
         timeout: 120000,
       });
-      await writeFile(`${directory}/migration-dry-run.txt`, dry, {
-        mode: 0o600,
-      });
+      await writeFile(
+        `${directory}/${repair ? "driver-repair" : "migration"}-dry-run.txt`,
+        dry,
+        {
+          mode: 0o600,
+        },
+      );
       stage = "migration-apply";
       execFileSync(process.execPath, [...args, "--yes"], {
         env,
@@ -286,7 +328,7 @@ async function main() {
       });
       if ((await fingerprint(sql, ids)) !== before)
         throw Error("Existing accounts changed");
-      await receipt("migration", {
+      await receipt(repair ? "driver-repair-migration" : "migration", {
         pending,
         existingAccountsPreserved: true,
         migrations:
@@ -435,7 +477,7 @@ async function main() {
       j.password = "[ERASED]";
       delete j.accessToken;
       delete j.totpSecret;
-      j.operatorToken = "[REVOKED]";
+      j.operatorToken = "[ERASED LOCALLY; ISSUER DELETED]";
       await save(j);
       await receipt("cleanup", {
         ...left,
@@ -468,7 +510,30 @@ async function main() {
     await sql.begin(async (tx) => {
       await tx`select set_config('request.jwt.claims',${JSON.stringify(claims)},true)`;
       await tx`select private.scanner_assert_actor(true)`;
-      if (mode === "metadata") {
+      if (mode === "review-repair") {
+        stage = "review-driver-repair";
+        const commit = process.argv[4];
+        const head = execFileSync("git", ["rev-parse", "HEAD"], {
+          encoding: "utf8",
+          windowsHide: true,
+        }).trim();
+        if (!commit || !/^[a-f0-9]{40}$/.test(commit) || commit !== head)
+          throw Error("Exact committed repair required");
+        const evidencePath = "docs/qa/phase5a/driver-diagnostic.json";
+        const evidence = await readFile(evidencePath, "utf8");
+        const diagnostic = JSON.parse(evidence);
+        if (
+          diagnostic.rootBegin !== "function" ||
+          diagnostic.reservedBegin !== "undefined" ||
+          diagnostic.encoded_string_type !== "string" ||
+          diagnostic.native_object_type !== "object"
+        )
+          throw Error("Reproduced driver evidence required");
+        const failures =
+          await tx`select id from private.provider_trial_requests where trial_id=${j.trialId!} and status='FAILED' order by started_at`;
+        if (failures.length !== 1) throw Error("Exact legacy failure required");
+        await tx`insert into private.provider_trial_failure_reviews(request_id,trial_id,reviewed_by,reason_code,repair_code_commit,evidence_reference,evidence_sha256) values(${failures[0].id},${j.trialId!},${j.id!},'SERVER_TRANSACTION_COMPATIBILITY',${commit},${evidencePath},${hash(evidence)})`;
+      } else if (mode === "metadata") {
         stage = "metadata";
         const [record] =
           await tx`select * from private.market_data_config where id=${j.configId!} and provider='the-odds-api' and enabled for share`;

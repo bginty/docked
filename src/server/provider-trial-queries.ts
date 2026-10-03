@@ -2,3 +2,6 @@
 export const completeTrialRequestSQL = `update private.provider_trial_requests
 set status=$3,completed_at=clock_timestamp(),error_code=$4,diagnostics=$5::jsonb
 where permit_id=$1 and poll_run_id=$2 and completed_at is null returning id`;
+
+/** An unreported attempt makes the complete reported total unknown. */
+export const trialQuotaSummarySQL = `select count(*)::int attempts,count(*) filter(where status='SUCCESS')::int successes,coalesce(sum(reserved_credits),0)::int reserved,case when count(*) filter(where reported_credits is null)>0 then null else sum(reported_credits)::int end reported,coalesce(sum(greatest(reserved_credits,coalesce(reported_credits,0))),0)::int charged,coalesce(sum(reserved_credits) filter(where started_at >=date_trunc('day',clock_timestamp() at time zone 'UTC') at time zone 'UTC'),0)::int reserved_today,case when count(*) filter(where reported_credits is null and started_at >=date_trunc('day',clock_timestamp() at time zone 'UTC') at time zone 'UTC')>0 then null else sum(reported_credits) filter(where started_at >=date_trunc('day',clock_timestamp() at time zone 'UTC') at time zone 'UTC')::int end reported_today,max(completed_at) filter(where status='SUCCESS') success_at,max(completed_at) filter(where status='FAILED') failure_at from private.provider_trial_requests where trial_id=$1`;

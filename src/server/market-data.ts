@@ -1,3 +1,9 @@
+import { reservedTransaction } from "./reserved-transaction";
+import {
+  newTrialProgress,
+  trackedTrialFetch,
+  trialFailureDiagnostics,
+} from "@/core/provider-trial-diagnostics";
 import "server-only";
 import type { JSONValue } from "postgres";
 import { hash, type Rules } from "@/core/pricing";
@@ -126,6 +132,7 @@ export async function ingestCurrentMarketData(trial?: {
   if (!credential) throw new Error("MARKET_DATA_STATUS=NOT_CONFIGURED");
   const connection = await db().reserve();
   let runId: string | undefined;
+  const progress = newTrialProgress();
   try {
     const [lock] =
       await connection`select pg_try_advisory_lock(6729383) acquired`;
@@ -166,11 +173,12 @@ export async function ingestCurrentMarketData(trial?: {
           trial.permitId,
           trial.tokenHash,
           credential,
+          progress,
         )
       : {
           key: credential,
           observeQuota: async (quota) => {
-            await connection.begin(async (tx) => {
+            await reservedTransaction(connection, async (tx) => {
               const extra = Math.max(
                 0,
                 (quota.lastRequestCost ?? quota.reservedCost) -
@@ -181,7 +189,7 @@ export async function ingestCurrentMarketData(trial?: {
             });
           },
           reserve: async (cost, scope) => {
-            await connection.begin(async (tx) => {
+            await reservedTransaction(connection, async (tx) => {
               const [active] =
                 await tx`select * from private.market_data_config where id=${record.id} for share`;
               await tx`insert into private.source_health(provider,rights_reference,capabilities) values(${provider},${cfg.rights.reference},${tx.json({ display: true, retention: true, derived: true, community_standard_prices: false })}) on conflict(provider) do nothing`;
@@ -234,13 +242,23 @@ export async function ingestCurrentMarketData(trial?: {
       : cfg;
     const batch =
       trial && permit.operation === "events"
-        ? await fetchTrialEvents(scoped, permit.competition, authority)
-        : await fetchCurrentMarketData(scoped, authority);
+        ? await fetchTrialEvents(
+            scoped,
+            permit.competition,
+            authority,
+            trackedTrialFetch(progress),
+          )
+        : await fetchCurrentMarketData(
+            scoped,
+            authority,
+            trackedTrialFetch(progress),
+          );
+    progress.stage = "DATA_PERSISTENCE";
     let imported = 0,
       insertedQuotes = 0,
       mappingRejected = 0;
     const acceptedQuoteIds: string[] = [];
-    await connection.begin(async (tx) => {
+    await reservedTransaction(connection, async (tx) => {
       const [active] =
         await tx`select * from private.market_data_config where id=${record.id} for share`;
       const [clock] = await tx`select clock_timestamp() at`;
@@ -315,7 +333,9 @@ export async function ingestCurrentMarketData(trial?: {
         acceptedQuoteIds.push(q.id);
       }
       batch.stats.mappingFailures += mappingRejected;
-      const healthy = !trial || (trialMappingAccepted(mappingRejected) && batch.remaining!==0);
+      const healthy =
+        !trial ||
+        (trialMappingAccepted(mappingRejected) && batch.remaining !== 0);
       await tx`update private.source_health set healthy=${healthy},last_success=case when ${healthy} then ${batch.receivedAt}::timestamptz else last_success end,last_failure=case when ${healthy} then last_failure else clock_timestamp() end,failure_reason=${healthy ? null : batch.remaining === 0 ? "provider_quota_exhausted" : "trial_mapping_rejected"},circuit_until=case when not ${healthy} then greatest(circuit_until,clock_timestamp()+interval '5 minutes') when ${!!trial} then circuit_until else null end,credits_remaining=coalesce(${batch.remaining},credits_remaining),credits_used=coalesce(${batch.used},credits_used),diagnostics=${tx.json(batch.stats)} where provider=${provider}`;
       await tx`update private.provider_poll_runs set status='success',completed_at=clock_timestamp(),diagnostics=diagnostics||${tx.json(batch.stats)} where id=${runId!}`;
     });
@@ -327,6 +347,7 @@ export async function ingestCurrentMarketData(trial?: {
         } catch {
           await connection`insert into private.audit_events(actor,action,subject,details) values('market-data','classification_review_required',${quote.id},${connection.json({ provider })})`;
         }
+    progress.stage = "COMPLETING";
     if (trial)
       await completeTrialRequest(
         connection,
@@ -340,12 +361,18 @@ export async function ingestCurrentMarketData(trial?: {
         },
       );
     return {
-      status: trial && batch.remaining===0 ? 'QUOTA_EXHAUSTED' : trial && !trialMappingAccepted(mappingRejected) ? "BLOCKED_MAPPING" : "READY",
+      status:
+        trial && batch.remaining === 0
+          ? "QUOTA_EXHAUSTED"
+          : trial && !trialMappingAccepted(mappingRejected)
+            ? "BLOCKED_MAPPING"
+            : "READY",
       events: imported,
       quotes: insertedQuotes,
       mappingRejected,
     };
   } catch (error) {
+    const failure = trialFailureDiagnostics(error, progress);
     const ownedFailure =
       trial && runId
         ? await completeTrialRequest(
@@ -353,7 +380,7 @@ export async function ingestCurrentMarketData(trial?: {
             trial.permitId,
             runId,
             false,
-            {},
+            failure,
           )
         : !trial;
     if (runId) {

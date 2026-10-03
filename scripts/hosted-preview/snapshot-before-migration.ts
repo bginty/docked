@@ -6,6 +6,11 @@ import { pathToFileURL } from "node:url";
 import { db } from "../../src/server/db";
 const directory = pathToFileURL(resolve("private-data/hosted-preview") + sep);
 const modes = {
+  "--snapshot-phase5a-driver-repair": {
+    count: 14,
+    privateFile: "phase5a-before-driver-repair.json",
+    receipt: "docs/qa/phase5a/driver-repair-preimage.json",
+  },
   "--snapshot-phase5a": {
     count: 12,
     privateFile: "phase5a-before-migration.json",
@@ -74,13 +79,17 @@ async function main() {
           throw Error(
             "Android preview requires the verified closed empty-account seven-migration state",
           );
-        if (mode.count === 11 || mode.count === 12) {
+        if (mode.count === 11 || mode.count === 12 || mode.count === 14) {
           if (
             migrations.at(-1)?.version !==
-            (mode.count === 12 ? "20261003143903" : "20261003121502")
+            (mode.count === 14
+              ? "20261003225203"
+              : mode.count === 12
+                ? "20261003143903"
+                : "20261003121502")
           )
             throw Error(
-              "Phase 5 requires the reviewed eleven-migration preimage",
+              "Phase 5 requires the exact reviewed migration preimage",
             );
           const [guard] = await tx`select
             (select count(*)::int from private.feature_flags where key in ('publication','sending','forward_paper') and enabled) active_gates,

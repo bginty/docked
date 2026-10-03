@@ -1,3 +1,4 @@
+import { reservedTransaction } from "./reserved-transaction";
 import {
   evaluateReference,
   validateReferenceStrategy,
@@ -93,7 +94,7 @@ export async function ingestSport(sport: string) {
           ]),
       ),
     };
-    const reservation = await connection.begin(async (tx) => {
+    const reservation = await reservedTransaction(connection, async (tx) => {
       const rows =
         await tx`insert into private.provider_poll_runs(provider,sport,status,error_code,quota_charge) values('the-odds-api',${sport},'failed','request_in_progress_or_interrupted',${cost}) returning id`;
       await tx`update private.source_health set credits_remaining=case when credits_remaining is null then null else greatest(0,credits_remaining-${cost}) end where provider='the-odds-api'`;
@@ -115,7 +116,7 @@ export async function ingestSport(sport: string) {
     const rawPath = path.join("private-data", `${hash(result.raw)}.json`);
     await mkdir("private-data", { recursive: true });
     await writeFile(rawPath, JSON.stringify(result.raw));
-    await connection.begin(async (tx) => {
+    await reservedTransaction(connection, async (tx) => {
       for (const q of result.quotes) {
         const market =
           await tx`select id from private.markets where event_id=${q.rules.eventId} and rules_hash=${hash(q.rules)}`;

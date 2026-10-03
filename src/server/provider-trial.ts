@@ -1,5 +1,19 @@
+import {
+  trialRequestAuthority,
+  completeTrialRequest,
+} from "./provider-trial-database";
+export {
+  trialRequestAuthority,
+  completeTrialRequest,
+} from "./provider-trial-database";
+import {
+  newTrialProgress,
+  trackedTrialFetch,
+  trialFailureDiagnostics,
+} from "@/core/provider-trial-diagnostics";
+import { reservedTransaction } from "./reserved-transaction";
 import "server-only";
-import type postgres from "postgres";
+
 import type { JSONValue } from "postgres";
 import type { ProviderTrialHealth } from "@/core/provider-trial-health";
 import {
@@ -7,72 +21,18 @@ import {
   trialTokenHash,
   trialExecutionAvailable,
 } from "@/core/provider-trial";
-import {
-  fetchTrialSports,
-  fetchTrialScores,
-  type MarketDataRequestAuthority,
-} from "@/providers/market-data";
+import { fetchTrialSports, fetchTrialScores } from "@/providers/market-data";
 import { oddsApiCredential } from "@/providers/credentials";
 import { db } from "./db";
 import { requireRole } from "./auth";
 import { loadMarketReference } from "./market-reference";
 import { validateMarketDataConfig } from "@/core/market-data";
 import { marketReferenceV1 } from "@/core/market-reference";
-import { completeTrialRequestSQL } from "./provider-trial-queries";
+import { trialQuotaSummarySQL } from "./provider-trial-queries";
 
-type Sql = postgres.Sql | postgres.ReservedSql;
 const iso = (v: Date | string | null | undefined) =>
   v ? new Date(v).toISOString() : null;
 const n = (v: unknown) => (v === null || v === undefined ? null : Number(v));
-/** Shared committed quota reservation. The provider adapter cannot request before this resolves. */
-export function trialRequestAuthority(
-  sql: Sql,
-  pollId: string,
-  permitId: string,
-  tokenHash: string,
-  key: string,
-): MarketDataRequestAuthority {
-  return {
-    key,
-    reserve: async (cost, scope) => {
-      await sql`select private.reserve_provider_trial(${permitId},${tokenHash},${scope},${cost},${pollId})`;
-    },
-    observeQuota: async (q) => {
-      await sql.begin(async (tx) => {
-        const [request] =
-          await tx`select r.* from private.provider_trial_requests r join private.provider_trials t on t.id=r.trial_id where r.permit_id=${permitId} and r.poll_run_id=${pollId} for update of t,r`;
-        if (!request || request.headers_at || request.completed_at)
-          throw Error("Trial response authority unavailable");
-        const extra = Math.max(
-          0,
-          (q.lastRequestCost ?? request.reserved_credits) -
-            request.reserved_credits,
-        );
-        await tx`update private.provider_trial_requests set reported_credits=${q.lastRequestCost},remaining=${q.remaining},used=${q.used},headers_at=clock_timestamp() where id=${request.id}`;
-        await tx`update private.provider_poll_runs set quota_charge=quota_charge+${extra} where id=${pollId}`;
-        await tx`update private.source_health set credits_remaining=case when ${q.remaining}::bigint is not null then ${q.remaining}::bigint when credits_remaining is null then null else greatest(0,credits_remaining-${extra}) end,credits_used=coalesce(${q.used},credits_used),healthy=case when ${q.remaining}::bigint=0 then false else healthy end,failure_reason=case when ${q.remaining}::bigint=0 then 'provider_quota_exhausted' else failure_reason end,circuit_until=case when ${extra}>0 then clock_timestamp()+interval '30 days' else circuit_until end where provider='the-odds-api'`;
-      });
-      if (q.lastRequestCost !== null && q.lastRequestCost > q.reservedCost)
-        throw Error("Provider cost differed from reviewed reservation");
-    },
-  };
-}
-export async function completeTrialRequest(
-  sql: Sql,
-  permitId: string,
-  pollId: string,
-  success: boolean,
-  diagnostics: Record<string, unknown>,
-) {
-  const rows = await sql.unsafe(completeTrialRequestSQL, [
-    permitId,
-    pollId,
-    success ? "SUCCESS" : "FAILED",
-    success ? null : "TRIAL_REQUEST_FAILED",
-    JSON.stringify(diagnostics),
-  ]);
-  return rows.length === 1;
-}
 /** Called only by the protected manual endpoint; a permit is consumed even if transport later fails. */
 export async function executeProviderTrial(permitId: string, token: string) {
   if (!providerTrialEnvironment(process.env))
@@ -105,6 +65,7 @@ export async function executeProviderTrial(permitId: string, token: string) {
   }
   const sql = await db().reserve();
   let pollId: string | undefined;
+  const progress = newTrialProgress();
   try {
     const [poll] =
       await sql`insert into private.provider_poll_runs(provider,sport,status,diagnostics) values('the-odds-api','trial_sports','failed','{"purpose":"manual_trial","operation":"sports"}') returning id`;
@@ -112,9 +73,11 @@ export async function executeProviderTrial(permitId: string, token: string) {
     if (permit.operation === "scores") {
       const result = await fetchTrialScores(
         permit.competition,
-        trialRequestAuthority(sql, pollId, permitId, tokenHash, key),
+        trialRequestAuthority(sql, pollId, permitId, tokenHash, key, progress),
+        trackedTrialFetch(progress),
       );
-      await sql.begin(async (tx) => {
+      progress.stage = "DATA_PERSISTENCE";
+      await reservedTransaction(sql, async (tx) => {
         const [c] =
           await tx`select c.* from private.market_data_config c join private.provider_trials t on t.rights_reference=c.rights_reference where c.id=${permit.config_id} and t.id=${permit.trial_id} for share of c,t`;
         if (
@@ -128,6 +91,7 @@ export async function executeProviderTrial(permitId: string, token: string) {
         for (const raw of result.rawRecords)
           await tx`insert into private.market_data_payloads(id,provider,payload,received_at,rights_reference,retain_until) values(${raw.id},'the-odds-api',${tx.json(raw.payload as JSONValue)},${raw.receivedAt},${c.rights_reference},${new Date(Math.min(new Date(c.effective_to).getTime(), Date.parse(raw.receivedAt) + cfg.rights.rawRetentionDays * 86400000))}) on conflict do nothing`;
       });
+      progress.stage = "COMPLETING";
       const diagnostics = {
         events: result.scores.length,
         completed: result.scores.filter((s) => s.completed).length,
@@ -139,8 +103,10 @@ export async function executeProviderTrial(permitId: string, token: string) {
       return { status: "READY", operation: "scores", ...diagnostics };
     }
     const result = await fetchTrialSports(
-      trialRequestAuthority(sql, pollId, permitId, tokenHash, key),
+      trialRequestAuthority(sql, pollId, permitId, tokenHash, key, progress),
+      trackedTrialFetch(progress),
     );
+    progress.stage = "COMPLETING";
     const sports = result.sports.map((s) => ({
       key: s.key,
       active: s.active,
@@ -157,10 +123,11 @@ export async function executeProviderTrial(permitId: string, token: string) {
       plan: "UNKNOWN",
       resetAt: null,
     };
-  } catch {
+  } catch (error) {
+    const failure = trialFailureDiagnostics(error, progress);
     if (
       pollId &&
-      (await completeTrialRequest(sql, permitId, pollId, false, {}))
+      (await completeTrialRequest(sql, permitId, pollId, false, failure))
     )
       await sql`update private.source_health set healthy=false,last_failure=clock_timestamp(),failure_reason='manual_trial_failed',circuit_until=greatest(circuit_until,clock_timestamp()+interval '5 minutes') where provider='the-odds-api'`;
     if (pollId)
@@ -341,8 +308,7 @@ export async function providerTrialHealth(): Promise<ProviderTrialHealth> {
         ledgerAvailable: true,
         requests: { ...base.requests, attempted: 0, successful: 0 },
       };
-    const [q] =
-      await db()`select count(*)::int attempts,count(*) filter(where status='SUCCESS')::int successes,coalesce(sum(reserved_credits),0)::int reserved,sum(reported_credits)::int reported,coalesce(sum(greatest(reserved_credits,coalesce(reported_credits,0))),0)::int charged,coalesce(sum(reserved_credits) filter(where started_at >=date_trunc('day',clock_timestamp() at time zone 'UTC') at time zone 'UTC'),0)::int reserved_today,sum(reported_credits) filter(where started_at >=date_trunc('day',clock_timestamp() at time zone 'UTC') at time zone 'UTC')::int reported_today,max(completed_at) filter(where status='SUCCESS') success_at,max(completed_at) filter(where status='FAILED') failure_at from private.provider_trial_requests where trial_id=${trial.id}`;
+    const [q] = await db().unsafe(trialQuotaSummarySQL, [trial.id]);
     const [health] =
       await db()`select credits_remaining,circuit_until from private.source_health where provider='the-odds-api'`;
     const [last] =

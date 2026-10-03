@@ -10,6 +10,11 @@ import {
 } from "../../src/core/provider-trial";
 import { scannerWorkerAuthorized } from "../../src/server/scanner-auth";
 import manifest from "../../config/hosted-preview.json";
+import {
+  newTrialProgress,
+  trackedTrialFetch,
+  trialFailureDiagnostics,
+} from "../../src/core/provider-trial-diagnostics";
 const env = {
   DOCKED_HOSTED_PREVIEW: "true",
   APP_ENV: "preview",
@@ -131,4 +136,39 @@ test("known exhausted account or lifetime ceiling blocks even free repeated meta
     }),
     true,
   );
+});
+
+test("failure evidence records fixed stages and classes without messages, URLs, tokens or arbitrary SQL states", async () => {
+  const progress = newTrialProgress();
+  const fake = "fictional-secret-must-not-persist";
+  const fetcher = trackedTrialFetch(progress, async () => new Response("[]"));
+  await fetcher("https://example.invalid/?apiKey=" + fake);
+  progress.stage = "QUOTA_PERSISTENCE";
+  const error = Object.assign(new TypeError(fake), {
+    code: "42501",
+    detail: fake,
+    query: fake,
+  });
+  assert.deepEqual(trialFailureDiagnostics(error, progress), {
+    failureStage: "QUOTA_PERSISTENCE",
+    httpResponseReceived: true,
+    httpStatus: 200,
+    errorClass: "TypeError",
+    sqlState: "42501",
+  });
+  const unknown = trialFailureDiagnostics(
+    { name: fake, code: fake, message: fake },
+    progress,
+  );
+  assert.equal(unknown.errorClass, "UnknownError");
+  assert.equal(unknown.sqlState, null);
+  assert.equal(JSON.stringify(unknown).includes(fake), false);
+  const failed = newTrialProgress();
+  await assert.rejects(
+    trackedTrialFetch(failed, async () => {
+      throw new Error(fake);
+    })("https://example.invalid"),
+  );
+  assert.equal(failed.stage, "HTTP_REQUEST");
+  assert.equal(failed.httpResponseReceived, false);
 });

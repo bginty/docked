@@ -2,6 +2,10 @@
 
 Prepared 4 October 2026 (Australia/Sydney), before any provider request in this phase. Branch: `codex/docked-value-platform`; initial clean source: `21e472b3670c1e6da1893e6ec4522100f87cb602`.
 
+**Owner clarification, 4 October 2026:** use the **Free plan for now**, with a public allowance of **500 credits/month**. History is **NOT_INCLUDED**: no historical probe, sample or purchase. The current requested sequence is therefore at most **9 credits** (three one-region H2H calls, plus three optional two-credit scores inspections). Remaining balance and actual usage require recorded response headers; the monthly allowance is not an inferred balance.
+
+The original predeclared envelope was 19 credits, including a conditional ten-credit historical sample only if a paid entitlement already existed. That conditional branch is now withdrawn. The smaller nine-credit sequence below supersedes it; the cumulative 250-credit/25-attempt safety ceiling is retained as a ceiling, not a spending target or authority to retry.
+
 ## Decision and limits
 
 Rights decision: **APPROVED_FOR_PREVIEW_TRIAL** under the dated review in [DATA_RIGHTS](DATA_RIGHTS.md). This is an engineering decision for the owner's described consumer application, not production activation or a strategy validation. No clarification is required for the limited application uses currently reviewed. New raw-feed/export products or bookmaker-logo use are excluded.
@@ -15,13 +19,13 @@ Rights decision: **APPROVED_FOR_PREVIEW_TRIAL** under the dated review in [DATA_
 
 ## Predeclared request sequence
 
-1. Once guard tests and the exact hosted identity checks pass, make one quota-free `/v4/sports` request. Save response time, selected active catalogue keys and usage headers privately. Plan name/paid historical entitlement remain UNKNOWN unless independently demonstrated; a balance alone does not identify the contract.
+1. Once guard tests and the exact hosted identity checks pass, make one quota-free `/v4/sports` request. Save response time, selected active catalogue keys and usage headers privately. The owner has confirmed Free, while actual remaining credits stay unmeasured until a valid response. A balance alone must not imply paid historical entitlement.
 2. Select only `soccer_epl`, optional active `soccer_spain_la_liga`, and `basketball_nba`; use one `au` region and `h2h` decimal prices, upcoming events only. Start with **one competition/request**, inspect before continuing. Three such calls forecast at most three credits; empty responses may cost less but reservations are not refunded speculatively.
 3. For `americanfootball_nfl`, use a quota-free event catalogue request while exact moneyline tie/overtime rules remain unsupported. Do not fetch/construct NFL market benchmarks to bypass that restriction.
 4. If account response/entitlement supports it, inspect at most one recent score response per selected sport (up to six credits across football/NBA/NFL with `daysFrom=3`). A completed flag and scores do not establish full cancellation, correction or overtime settlement authority.
-5. Only with demonstrated existing historical entitlement, make at most one one-region/h2h historical odds sample (ten credits). No purchase or broad backtest. Preserve request-as-of, returned snapshot, receipt time, mapping/missingness and replay limitations; no profitability inference.
+5. **No historical call:** the confirmed Free plan excludes history. Record **NOT_INCLUDED** without probing the endpoint, sampling, buying or running a backtest. The existing replay preparation remains available for a separately authorised future dataset.
 
-The initial planned paid envelope is at most **19 credits**, within the hard ceiling. Additional calls require another explicit scoped manual permit, observed remaining balance and the same cumulative cap. No automatic retries or schedule.
+The revised planned credit envelope is at most **9 credits**, within the hard ceiling. Quota-free catalogues still count against the manual attempt limit. Additional calls require another explicit scoped manual permit, observed remaining balance and the same cumulative cap. No automatic retries or schedule. Failed or uncertain attempts remain recorded and are not erased to repeat the sequence; distinguish a planned reservation, an HTTP attempt and an observed provider charge in the final receipts.
 
 ## Acceptance and truthful fallbacks
 
