@@ -6,7 +6,7 @@ import "server-only";
 import { createHash, randomUUID } from "node:crypto";
 import type postgres from "postgres";
 import { z } from "zod";
-import { db, rateLimit } from "./db";
+import { db } from "./db";
 import { requireRole } from "./auth";
 import { communityAccess } from "./community-policy";
 import { withCommunityActor, setCommunityClaims } from "./community-social";
@@ -202,10 +202,9 @@ export async function reviewCommunityEdge(
     "community_edges",
     true,
     async (tx, who, profileId) => {
-      if (!(await rateLimit(`community-edge-review:${profileId}`, 20)))
-        throw new Error("Rate limit");
       return (await currentReview(tx, who, profileId, draft)).review;
     },
+    { scope: "community-edge-review", limit: 20 },
   );
 }
 export async function submitCommunityEdge(input: unknown) {
@@ -214,8 +213,6 @@ export async function submitCommunityEdge(input: unknown) {
     "community_edges",
     true,
     async (tx, who, profileId) => {
-      if (!(await rateLimit(`community-edge-submit:${profileId}`, 10)))
-        throw new Error("Rate limit");
       const requestHash = digest(draft);
       try {
         const previous =
@@ -274,12 +271,15 @@ export async function submitCommunityEdge(input: unknown) {
       await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'community_edge_submitted',${id},${tx.json({ snapshotId: e.snapshotId, verificationRule: "community-market-reference-v2", standardUnits: "1.00", confirmedPermanent: true })})`;
       return { id, created: true };
     },
+    { scope: "community-edge-submit", limit: 10 },
   );
 }
 
 /** Trusted ingestion hook: classification is read only from retained provider metadata, never from caller claims. */
-export async function registerCommunityQuoteEvidence(snapshotId: string) {
-  const sql = db();
+export async function registerCommunityQuoteEvidence(
+  snapshotId: string,
+  sql: Sql = db(),
+) {
   const rows =
     await sql`insert into private.community_quote_evidence(snapshot_id,provider_event_id,observed_start_at,classification,classification_version,classification_evidence,rights_reference,metadata)
     values(${snapshotId},'',clock_timestamp(),'UNKNOWN_REVIEW','','','','{}') on conflict(snapshot_id) do nothing returning id`;

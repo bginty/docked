@@ -2,6 +2,10 @@ import "server-only";
 import { createHash } from "node:crypto";
 import { encodeCommunityImage } from "./community-image";
 import { communityImageMaxBytes } from "@/core/community-media";
+import {
+  rateLimitedAction,
+  type ActionRateBudget,
+} from "@/core/rate-limited-action";
 import { setPreviewCommunityContext } from "./preview-community";
 import type { TransactionSql } from "postgres";
 import { z } from "zod";
@@ -60,15 +64,22 @@ export async function withCommunityActor<T>(
     who: CommunityActor,
     profileId: string,
   ) => Promise<T>,
+  budget?: ActionRateBudget,
 ): Promise<T> {
   const who = await requireIdentity();
   await requireCommunityAccess(feature);
-  return (await db().begin(async (tx) => {
-    await setCommunityClaims(tx, who);
-    const rows =
-      await tx`select private.community_actor(${who.user.id},${feature},${requirePosting}) as id`;
-    return callback(tx, who, String(rows[0].id));
-  })) as T;
+  return rateLimitedAction(
+    who.user.id,
+    budget,
+    rateLimit,
+    async () =>
+      (await db().begin(async (tx) => {
+        await setCommunityClaims(tx, who);
+        const rows =
+          await tx`select private.community_actor(${who.user.id},${feature},${requirePosting}) as id`;
+        return callback(tx, who, String(rows[0].id));
+      })) as T,
+  );
 }
 async function profiles(
   tx: CommunityTransaction,
@@ -1161,8 +1172,6 @@ export async function mutateCommunityNotifications(input: unknown) {
     "community_social",
     false,
     async (tx, who, profileId) => {
-      if (!(await rateLimit(`social:notifications:${who.user.id}`, 30)))
-        throw new Error("Action rate limit");
       if (action.action === "read") {
         await tx`update private.social_notifications set read_at=coalesce(read_at,clock_timestamp()) where recipient_id=${profileId} and (${action.id ?? null}::uuid is null or id=${action.id ?? null})`;
         return { ok: true, message: "Notifications marked read." };
@@ -1183,5 +1192,6 @@ export async function mutateCommunityNotifications(input: unknown) {
           "In-app preferences saved. External email and push remain disabled.",
       };
     },
+    { scope: "social:notifications", limit: 30 },
   );
 }

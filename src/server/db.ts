@@ -3,6 +3,7 @@ import postgres from "postgres";
 import { databaseConnectionOptions } from "./database-tls";
 import { databasePoolOptions } from "./database-pool";
 import { assertHostedPreview } from "@/core/hosted-preview";
+import { rateLimitQuery } from "./rate-limit-query";
 let connection: ReturnType<typeof postgres> | undefined;
 export function db() {
   assertHostedPreview(process.env);
@@ -14,7 +15,6 @@ export function db() {
 }
 export async function rateLimit(key: string, limit = 20, seconds = 60) {
   const sql = db();
-  const rows =
-    await sql`insert into private.rate_limits(key,count,reset_at) values(${key},1,now()+${seconds}*interval '1 second') on conflict(key) do update set count=case when private.rate_limits.reset_at<=now() then 1 else private.rate_limits.count+1 end,reset_at=case when private.rate_limits.reset_at<=now() then now()+${seconds}*interval '1 second' else private.rate_limits.reset_at end returning count`;
+  const rows = await sql.unsafe(rateLimitQuery, [key, seconds]);
   return rows[0].count <= limit;
 }

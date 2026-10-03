@@ -64,7 +64,7 @@ export function AppShell({
           <Link className="brand" href="/home">
             DOCKED.
           </Link>
-          <span className="app-preview-label">PREVIEW · FREE FIRST</span>
+          <span className="app-preview-label">PREVIEW</span>
           <nav aria-label="App utilities">
             <Link href="/search" aria-label="Search Docked">
               <AppIcon name="search" />

@@ -835,7 +835,8 @@ body:has(.community-shell[data-authenticated="true"]) > footer {
     font-size: 22px;
   }
   .app-preview-label {
-    display: none;
+    font-size: 10px;
+    letter-spacing: 0.08em;
   }
   .app-topbar nav {
     gap: 8px;

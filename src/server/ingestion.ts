@@ -130,7 +130,7 @@ export async function ingestSport(sport: string) {
     for (const quote of result.quotes)
       if (quote.communityMetadata) {
         try {
-          await registerCommunityQuoteEvidence(quote.id);
+          await registerCommunityQuoteEvidence(quote.id, connection);
         } catch {
           try {
             await connection`insert into private.audit_events(actor,action,subject,details) values('community-verifier','community_quote_rejected',${quote.id},'{"reason":"metadata_or_rights_verification_failed"}')`;
