@@ -73,7 +73,7 @@ test.beforeAll(async () => {
             { filter: /.*/, namespace: "timestamp-fixture" },
             (args) => ({
               contents: readFileSync(args.path, "utf8"),
-              loader: args.path.endsWith(".tsx") ? "tsx" : "js",
+              loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : args.path.endsWith(".json") ? "json" : "js",
               resolveDir: path.dirname(args.path),
             }),
           );

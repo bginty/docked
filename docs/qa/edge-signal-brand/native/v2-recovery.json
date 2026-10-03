@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-10-03T08:30:05.5863609Z",
+  "status": "UNRECOVERED",
+  "artifact": "Docked-Preview-S24-v2.apk",
+  "expectedBytes": 6716374,
+  "expectedSha256": "a0bbd4ee89109fd1a1ee17b4401eb1c786d8d957bd858ee4b7642e9f0af27be0",
+  "hashVerifiedImmediatelyBeforeV3Build": true,
+  "cause": "Prior named APK was kept within a Gradle-owned output directory; packaging removed that directory content. Separate version filenames were insufficient preservation.",
+  "searches": [
+    "Entire Docked workspace, including build outputs/intermediates and private archives",
+    "Desktop and Downloads APK subfolders",
+    "Desktop DockedWebsite.zip: zero APK entries"
+  ],
+  "connectedDevices": 0,
+  "knownEmulator": "Medium_Phone_API_36.0",
+  "knownEmulatorState": "STOPPED_NOT_STARTED",
+  "emulatorRecoveryEvidence": "Historical apk-build.json says finalApkReinstalledOnEmulator=false. Installed preflight hash was9c28c40be90c4c2acd36bc931b4c7b9927e55b8581bcf63364a920bd25c7f9a4, not the lost final v2 hash.",
+  "reconstructionAttempted": false,
+  "priorAuditReceiptsPreserved": true,
+  "prevention": "Before future Gradle calls, preserve and verify every existing APK in debug/preview outputs and durable delivery using content-hash archives outside Gradle. Copy/hash failure or preexisting archive corruption aborts before Gradle.",
+  "regression": "Three named APKs across debug/preview survive simulated output cleanup; corrupted archive refuses continuation."
+}

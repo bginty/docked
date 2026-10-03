@@ -97,6 +97,7 @@ async function fixture(page: Page, view = "home", width = 390) {
     '<!doctype html><html lang="en"><head><title>DEMO isolated community review</title><meta name="robots" content="noindex,nofollow"></head><body><main id="demo-root"></main></body></html>',
   );
   for (const file of [
+    "brand-theme.css",
     "globals.css",
     "sports-visuals.css",
     "sports-experience.css",

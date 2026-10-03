@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-03T08:27:05.1277017Z",
+  "artifact": "android/app/build/outputs/apk/preview/Docked-Preview-S24-v3-Edge-Signal.apk",
+  "bytes": 9262110,
+  "sha256": "d34678b205e7a4ad21589345d642cde64bb49c865ce076df66c929cc70f97df0",
+  "current": {
+    "package": "au.com.docked.app.preview",
+    "label": "Docked Preview",
+    "versionCode": 3,
+    "versionName": "1.2-preview",
+    "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+    "debuggable": false,
+    "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+    "arm64Compatible": true,
+    "minimumSdk": 24,
+    "targetSdk": 36
+  },
+  "priorVersionCode": 1,
+  "samePackageAndSigningCertificate": true,
+  "cleartextDisabledInPackagedResources": true,
+  "compiledNetworkPolicyPath": "res/8G.xml",
+  "status": "PASS"
+}

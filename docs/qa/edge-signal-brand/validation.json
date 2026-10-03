@@ -1,0 +1,53 @@
+{
+  "recordedAt": "2026-10-03T08:32:35.867Z",
+  "branch": "codex/docked-value-platform",
+  "webSourceCommit": "5ee5c56b769abb875ee2fe6a00c0519288777841",
+  "artifactPreservationCommit": "49c995b50757c07bc66d8a48cca9a26cd65d17a9",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "productionBuild": {
+    "status": "PASS",
+    "buildId": "jDLu7yngsT1Rlq2dGC6-S"
+  },
+  "platform": {
+    "tests": 188,
+    "passed": 188,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 29189.206
+  },
+  "browser": {
+    "distinctPassed": 47,
+    "initialPassed": 40,
+    "initialHarnessFailures": 7,
+    "focusedRerunsPassed": 7,
+    "publicStates": 72,
+    "isolatedMemberFixtureStates": 24
+  },
+  "hosted": {
+    "cases": 12,
+    "status": "PASS",
+    "anonymousOnly": true
+  },
+  "apk": {
+    "path": "artifacts/android/Docked-Preview-S24-v3-Edge-Signal.apk",
+    "bytes": 9262110,
+    "sha256": "d34678b205e7a4ad21589345d642cde64bb49c865ce076df66c929cc70f97df0",
+    "scannedEntries": 988,
+    "status": "PASS",
+    "physicalS24": "UNVERIFIED",
+    "priorFinalV2": "UNRECOVERED"
+  },
+  "unchanged": [
+    "src/core",
+    "src/server",
+    "database schemas",
+    "dependency manifests",
+    "production DNS"
+  ],
+  "limits": [
+    "No new authenticated hosted lifecycle performed for this visual task.",
+    "No native iOS project exists.",
+    "Prior final v2 APK was removed by Gradle; source and historical receipts preserved."
+  ]
+}

@@ -2,7 +2,15 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: independently connected Android HTTPS preview
+## Current milestone: approved Edge Signal branding
+
+Continued from clean `d10e974` on the existing branch. The supplied Desktop production pack is preserved locally and its runtime assets are versioned unchanged. Web headers, authentication, member navigation, official profiles, metadata/social images, PWA icons/offline screens and Android launcher/splash resources use the approved artwork and **BUILT FOR AN EDGE** tagline. Central theme tokens apply the approved navy, blue, mint, gray and white palette, with self-hosted Sora and accessible semantic colours. Product logic, functional icons, APIs, authentication and data behaviour are preserved.
+
+Implementation source commit: `5ee5c56`. TypeScript, lint, production build, all 188 platform tests, 47 distinct local browser cases (including corrective harness reruns), and 12 hosted responsive checks passed. The existing stable Preview alias serves this branding. The new v3 APK is at `artifacts/android/Docked-Preview-S24-v3-Edge-Signal.apk`; physical S24 acceptance remains pending. Exact asset hashes, deployment/artifact identity and the full file inventory are in [the Edge Signal implementation report](qa/edge-signal-brand/README.md).
+
+Preservation incident: Gradle cleared the old final v2 APK from its output directory during the v3 build; it has not been recovered. Prior source and audit evidence remain intact. Current and future deliveries now live outside Gradle, with verified backups required before each build. The report distinguishes current v3 verification, historical v2 receipt comparison and the unavailable v2 binary recheck. Previous milestone receipts below remain historical evidence.
+
+## Preserved milestone: independently connected Android HTTPS preview
 
 Continued from clean `1c4546c` on the existing branch. The new **Docked Preview** APK opens the actual application at `https://docked-preview-s24-briant-ginty.vercel.app/home` over ordinary internet, without ADB forwarding, a laptop or a local web server after installation. The isolated Vercel `docked-preview` project connects only to **Docked Preview Supabase `bckkllmndoxzpzdqrevb`**. Nine ordered migrations are applied; all 84 application tables have RLS. Preview variables are isolated from production. Existing `docked.com.au`, DNS, Oura and Google Play remain unchanged. Two empty-project bootstrap deployments were unexpectedly classified Production by Vercel and removed; the [hosting incident and final target verification](qa/android-https-preview/README.md) record this explicitly.
 

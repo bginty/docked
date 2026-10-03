@@ -251,6 +251,7 @@ test("atmospheric no-edge imagery preserves restricted and outage meanings", asy
       `<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>Isolated state review</title></head><body><main class="page"><h1>Fictional state review</h1>${fixtures[state]}</main></body></html>`,
     );
     for (const file of [
+      "brand-theme.css",
       "globals.css",
       "sports-visuals.css",
       "sports-experience.css",

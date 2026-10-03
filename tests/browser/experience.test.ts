@@ -26,6 +26,7 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
     await page.setContent(
       `<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>Isolated fixture review</title></head><body><main class="page"><h1>Fictional UI fixture</h1>${html}</main></body></html>`,
     );
+    await page.addStyleTag({ path: path.join(process.cwd(), "src/app/brand-theme.css") });
     await page.addStyleTag({
       path: path.join(process.cwd(), "src/app/globals.css"),
     });
@@ -56,6 +57,7 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
   await page.setContent(
     `<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>Isolated no-edge fixture</title></head><body><main class="page"><h1>Fictional state review</h1>${html}</main></body></html>`,
   );
+  await page.addStyleTag({ path: path.join(process.cwd(), "src/app/brand-theme.css") });
   await page.addStyleTag({
     path: path.join(process.cwd(), "src/app/globals.css"),
   });

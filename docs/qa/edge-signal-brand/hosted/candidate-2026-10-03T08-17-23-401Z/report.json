@@ -1,0 +1,673 @@
+{
+  "origin": "https://docked-preview-bktyvjl8r-briant-s-projects.vercel.app",
+  "sourceCommit": "5ee5c56",
+  "deploymentId": "dpl_98W8eekf5UHSkD1oNWNe39wRVUNb",
+  "startedAt": "2026-10-03T08:17:23.402Z",
+  "account": "anonymous; no accounts or writes",
+  "assets": [
+    {
+      "path": "/brand/logos/docked-primary.png",
+      "status": 200,
+      "bytes": 304445,
+      "sha256": "f5d1c59d41bd545cdce8bee252fdfb1bcc76e5a190f3d82a09a583b4969da160",
+      "expectedSha256": "f5d1c59d41bd545cdce8bee252fdfb1bcc76e5a190f3d82a09a583b4969da160",
+      "identical": true
+    },
+    {
+      "path": "/brand/logos/docked-primary-on-dark.png",
+      "status": 200,
+      "bytes": 238134,
+      "sha256": "0d4e0b3755928905918a26bcf1e8408d484e90e4f04d552b82c800ebeb2fdcc7",
+      "expectedSha256": "0d4e0b3755928905918a26bcf1e8408d484e90e4f04d552b82c800ebeb2fdcc7",
+      "identical": true
+    },
+    {
+      "path": "/brand/logos/docked-mark.png",
+      "status": 200,
+      "bytes": 230423,
+      "sha256": "fac28c9c0433d885b20832994c1d1b1bc6c49f44b5a93656cdf7fa51334ea313",
+      "expectedSha256": "fac28c9c0433d885b20832994c1d1b1bc6c49f44b5a93656cdf7fa51334ea313",
+      "identical": true
+    },
+    {
+      "path": "/brand/fonts/Sora-Variable.ttf",
+      "status": 200,
+      "bytes": 111400,
+      "sha256": "84ff7096ae3ec6c8be47d906d1a0ba4de7f2ce78c615275c77301964a316e16c",
+      "expectedSha256": "84ff7096ae3ec6c8be47d906d1a0ba4de7f2ce78c615275c77301964a316e16c",
+      "identical": true
+    },
+    {
+      "path": "/brand/social/docked-hero-built-for-an-edge.png",
+      "status": 200,
+      "bytes": 975647,
+      "sha256": "90e44268594c994d0268b2a73dbd8322a20a77d0743a5a7614cdf16f302b1483",
+      "expectedSha256": "90e44268594c994d0268b2a73dbd8322a20a77d0743a5a7614cdf16f302b1483",
+      "identical": true
+    },
+    {
+      "path": "/opengraph-image",
+      "status": 200,
+      "bytes": 975647,
+      "sha256": "90e44268594c994d0268b2a73dbd8322a20a77d0743a5a7614cdf16f302b1483",
+      "expectedSha256": "90e44268594c994d0268b2a73dbd8322a20a77d0743a5a7614cdf16f302b1483",
+      "identical": true
+    },
+    {
+      "path": "/favicon.ico",
+      "status": 200,
+      "bytes": 11897,
+      "sha256": "3e451db6d49cc113cb4aa2aca5826fcd6bc5c331d6a2137a0bcbec349c94b80e",
+      "expectedSha256": "3e451db6d49cc113cb4aa2aca5826fcd6bc5c331d6a2137a0bcbec349c94b80e",
+      "identical": true
+    }
+  ],
+  "checks": [
+    {
+      "path": "/api/status",
+      "status": 200,
+      "body": {
+        "feed": false,
+        "strategy": false,
+        "publication": false,
+        "database": true,
+        "oddsProviderStatus": "NOT_CONFIGURED",
+        "resultsProviderStatus": "NOT_CONFIGURED",
+        "reason": "Source health is unavailable; no new tips can publish."
+      }
+    },
+    {
+      "path": "/api/community-edges/share?id=00000000-0000-4000-8000-000000000000",
+      "status": 403,
+      "expectedStatus": 403
+    },
+    {
+      "path": "/api/member",
+      "status": 401,
+      "expectedStatus": 401
+    }
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "width": 390,
+      "startedAt": "2026-10-03T08:17:29.765Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/",
+      "visual": {
+        "heading": "BUILT FORAN EDGE",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 150,
+            "height": 35.625,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 44
+          }
+        ]
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:17:37.055Z"
+    },
+    {
+      "route": "/home",
+      "width": 390,
+      "startedAt": "2026-10-03T08:17:37.338Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/home",
+      "visual": {
+        "heading": "Sport. Perspective. Evidence.",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 150,
+            "height": 35.625,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:17:40.412Z"
+    },
+    {
+      "route": "/login",
+      "width": 390,
+      "startedAt": "2026-10-03T08:17:40.610Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/login",
+      "visual": {
+        "heading": "Welcome back",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 150,
+            "height": 35.625,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-mark.png",
+            "width": 52,
+            "height": 44.1875,
+            "naturalWidth": 800,
+            "naturalHeight": 680,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:17:43.737Z"
+    },
+    {
+      "route": "/edges",
+      "width": 390,
+      "startedAt": "2026-10-03T08:17:43.983Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/edges",
+      "visual": {
+        "heading": "The opportunity board",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 150,
+            "height": 35.625,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 3
+          }
+        ]
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:17:47.494Z"
+    },
+    {
+      "route": "/results",
+      "width": 390,
+      "startedAt": "2026-10-03T08:17:47.619Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/results",
+      "visual": {
+        "heading": "The complete record",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 150,
+            "height": 35.625,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 2
+          }
+        ]
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:17:50.843Z"
+    },
+    {
+      "route": "/learn/value-versus-winners",
+      "width": 390,
+      "startedAt": "2026-10-03T08:17:51.009Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/learn/value-versus-winners",
+      "visual": {
+        "heading": "A good prediction is not always a good price.",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 150,
+            "height": 35.625,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:17:54.442Z"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "startedAt": "2026-10-03T08:17:54.630Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/",
+      "visual": {
+        "heading": "BUILT FORAN EDGE",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 44
+          }
+        ]
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:18:02.991Z"
+    },
+    {
+      "route": "/home",
+      "width": 1440,
+      "startedAt": "2026-10-03T08:18:03.207Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/home",
+      "visual": {
+        "heading": "Sport. Perspective. Evidence.",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:18:05.823Z"
+    },
+    {
+      "route": "/login",
+      "width": 1440,
+      "startedAt": "2026-10-03T08:18:05.991Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/login",
+      "visual": {
+        "heading": "Welcome back",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-mark.png",
+            "width": 52,
+            "height": 44.1875,
+            "naturalWidth": 800,
+            "naturalHeight": 680,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:18:09.418Z"
+    },
+    {
+      "route": "/edges",
+      "width": 1440,
+      "startedAt": "2026-10-03T08:18:09.634Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/edges",
+      "visual": {
+        "heading": "The opportunity board",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 3
+          }
+        ]
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:18:15.523Z"
+    },
+    {
+      "route": "/results",
+      "width": 1440,
+      "startedAt": "2026-10-03T08:18:15.710Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/results",
+      "visual": {
+        "heading": "The complete record",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "nodes": 1
+          }
+        ]
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:18:19.430Z"
+    },
+    {
+      "route": "/learn/value-versus-winners",
+      "width": 1440,
+      "startedAt": "2026-10-03T08:18:19.586Z",
+      "errors": [],
+      "requestFailures": [],
+      "blockedRequests": [],
+      "renderedPath": "/learn/value-versus-winners",
+      "visual": {
+        "heading": "A good prediction is not always a good price.",
+        "font": "Sora, system-ui, sans-serif",
+        "soraLoaded": true,
+        "overflow": false,
+        "logos": [
+          {
+            "path": "/brand/logos/docked-primary.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          },
+          {
+            "path": "/brand/logos/docked-primary-on-dark.png",
+            "width": 170,
+            "height": 40.375,
+            "naturalWidth": 1600,
+            "naturalHeight": 380,
+            "filter": "none",
+            "shadow": "none",
+            "transform": "none"
+          }
+        ],
+        "brokenImages": []
+      },
+      "accessibility": {
+        "violations": [],
+        "incomplete": []
+      },
+      "passed": true,
+      "completedAt": "2026-10-03T08:18:23.718Z"
+    }
+  ],
+  "failures": [],
+  "completedAt": "2026-10-03T08:18:23.876Z",
+  "passed": true
+}

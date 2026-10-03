@@ -77,6 +77,7 @@ test.beforeAll(async () => {
 });
 async function styles(page: Page) {
   for (const file of [
+    "brand-theme.css",
     "globals.css",
     "sports-visuals.css",
     "sports-experience.css",

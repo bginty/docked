@@ -1,0 +1,502 @@
+{
+  "recordedAt": "2026-10-03T08:21:47.538Z",
+  "scope": "Isolated local optimized build; no hosted Auth/database writes or real sporting data",
+  "buildId": "jDLu7yngsT1Rlq2dGC6-S",
+  "webSourceCommit": "5ee5c56",
+  "initial": {
+    "report": "browser-first-run.json",
+    "stats": {
+      "startTime": "2026-10-03T08:06:25.404Z",
+      "duration": 889027.504,
+      "expected": 40,
+      "skipped": 0,
+      "unexpected": 7,
+      "flaky": 0
+    },
+    "failedCases": [
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 320px / light OS preference",
+        "status": "unexpected",
+        "results": [
+          "failed"
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 390px / light OS preference",
+        "status": "unexpected",
+        "results": [
+          "failed"
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 768px / light OS preference",
+        "status": "unexpected",
+        "results": [
+          "failed"
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 1440px / light OS preference",
+        "status": "unexpected",
+        "results": [
+          "failed"
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 390px / dark OS preference",
+        "status": "unexpected",
+        "results": [
+          "failed"
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 1440px / dark OS preference",
+        "status": "unexpected",
+        "results": [
+          "failed"
+        ]
+      },
+      {
+        "file": "journeys.test.ts",
+        "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+        "status": "unexpected",
+        "results": [
+          "failed"
+        ]
+      }
+    ]
+  },
+  "correctiveReruns": [
+    {
+      "report": "brand-fixture-rerun.json",
+      "stats": {
+        "startTime": "2026-10-03T08:13:06.684Z",
+        "duration": 87745.091,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "repair": "Allow only explicit empty provider/media fixture GET responses; all mutations remain rejected. Console errors are not suppressed."
+    },
+    {
+      "report": "brand-header-rerun.json",
+      "stats": {
+        "startTime": "2026-10-03T08:15:18.295Z",
+        "duration": 27666.208,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "repair": "Scope header geometry locator to .site-header because both supplied header/footer logos are accessible home links."
+    }
+  ],
+  "combined": {
+    "uniqueCases": 47,
+    "passed": 47,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "statement": "47 distinct cases passed across the original full run and seven focused corrective reruns; not a claim that the initial full run was clean."
+  },
+  "brandMatrix": {
+    "publicRouteStates": 72,
+    "isolatedMemberViews": 24,
+    "widths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "darkOsPreferenceWidths": [
+      390,
+      1440
+    ],
+    "memberFixtures": "Explicitly fictional UI; no account or DB operation"
+  },
+  "finalCases": [
+    {
+      "file": "brand-native.test.ts",
+      "title": "approved offline branding remains readable and self-contained at 390px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-native.test.ts",
+      "title": "approved offline branding remains readable and self-contained at 1366px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 320px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 320px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 390px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 390px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 768px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 768px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 1440px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 1440px / light OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 390px / dark OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 390px / dark OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 1440px / dark OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 1440px / dark OS preference",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal PWA/favicon/offline artwork serves approved supplied bytes",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "article metadata, real PNG social card and allowlisted sports pages",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "preview public pages remain truthful, accessible and usable without an account",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "education and pending research are usable without an account",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "restricted public/API, protected admin and no fake signup success",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "retired product routes, legacy support and invalid unsubscribe",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "secondary routes pass automated accessibility scan",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 390px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 430px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 768px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 1366px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 1920px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO app hierarchy, all outcomes, provisional ranking and touch navigation",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO verified Edge review requires permanent confirmation again when provider price moves",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO unsupported and promotional claims stay social-only; social interactions use distinct actions",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO notification consent and moderation are separate from record corrections",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO administrative drafts remain disabled and leaderboard captures are auditable",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "PWA serves an offline shell without caching private pages or APIs",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "reference-price.test.ts",
+      "title": "web deep-link aliases preserve canonical visibility routes",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "reference-price.test.ts",
+      "title": "reference card hierarchy and unavailable data remain honest at mobile widths",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "reference-price.test.ts",
+      "title": "reference composer sends canonical market selection only and reconfirms a moved benchmark",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "timestamp-hydration.test.ts",
+      "title": "UTC server markup hydrates safely into Australia/Sydney local time",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "timestamp-hydration.test.ts",
+      "title": "UTC server markup hydrates safely into America/New_York local time",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 390px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 430px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 768px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 1366px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 1920px",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "atmospheric no-edge imagery preserves restricted and outage meanings",
+      "status": "expected",
+      "results": [
+        "passed"
+      ]
+    }
+  ]
+}

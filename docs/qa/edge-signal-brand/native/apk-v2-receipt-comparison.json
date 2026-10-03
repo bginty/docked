@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-10-03T08:28:51.6115874Z",
+  "status": "PASS_RECEIPT_COMPARISON_ONLY",
+  "currentArtifact": "android/app/build/outputs/apk/preview/Docked-Preview-S24-v3-Edge-Signal.apk",
+  "currentSha256": "d34678b205e7a4ad21589345d642cde64bb49c865ce076df66c929cc70f97df0",
+  "historicalReceipt": "docs/qa/android-https-preview/apk-details.json",
+  "historicalV2Sha256": "a0bbd4ee89109fd1a1ee17b4401eb1c786d8d957bd858ee4b7642e9f0af27be0",
+  "priorVersionCode": 2,
+  "currentVersionCode": 3,
+  "samePackageAndSigningCertificate": true,
+  "priorBinaryRecheck": "UNAVAILABLE",
+  "limitation": "The exact v2 APK was verified before the v3 build but removed from Gradle output during packaging. This compares preserved historical audit data; it does not recheck the unavailable v2 binary."
+}

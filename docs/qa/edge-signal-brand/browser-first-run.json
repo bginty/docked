@@ -1,0 +1,2019 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\playwright.config.ts",
+    "rootDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "brand-native.test.ts",
+      "file": "brand-native.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "approved offline branding remains readable and self-contained at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2640,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:06:28.687Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fdcb93416ad35fe5476e-0118db23203fb02237f8",
+          "file": "brand-native.test.ts",
+          "line": 20,
+          "column": 7
+        },
+        {
+          "title": "approved offline branding remains readable and self-contained at 1366px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2555,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:06:32.065Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fdcb93416ad35fe5476e-560514429d3142e3e244",
+          "file": "brand-native.test.ts",
+          "line": 20,
+          "column": 7
+        }
+      ]
+    },
+    {
+      "title": "brand-rollout.test.ts",
+      "file": "brand-rollout.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Edge Signal public routes at 320px / light OS preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 42546,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:06:34.854Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99c1786182206999042e-292278b71a1dd6e89b09",
+          "file": "brand-rollout.test.ts",
+          "line": 166,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal isolated member UI at 320px / light OS preference",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10214,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                      "column": 22,
+                      "line": 159
+                    },
+                    "snippet": "  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                        "column": 22,
+                        "line": 159
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:07:20.165Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--289ef-t-320px-light-OS-preference\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--289ef-t-320px-light-OS-preference\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--289ef-t-320px-light-OS-preference\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                    "column": 22,
+                    "line": 159
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "99c1786182206999042e-1bcaec0d91a6eb322a51",
+          "file": "brand-rollout.test.ts",
+          "line": 185,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal public routes at 390px / light OS preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 43088,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:07:36.697Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99c1786182206999042e-a24fc55d72462da8a319",
+          "file": "brand-rollout.test.ts",
+          "line": 166,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal isolated member UI at 390px / light OS preference",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6454,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                      "column": 22,
+                      "line": 159
+                    },
+                    "snippet": "  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                        "column": 22,
+                        "line": 159
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:08:27.915Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--00a9f-t-390px-light-OS-preference\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--00a9f-t-390px-light-OS-preference\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--00a9f-t-390px-light-OS-preference\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                    "column": 22,
+                    "line": 159
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "99c1786182206999042e-a23f845d48657005cfd5",
+          "file": "brand-rollout.test.ts",
+          "line": 185,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal public routes at 768px / light OS preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 37649,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:08:38.408Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99c1786182206999042e-cd7df23edf9e4610c455",
+          "file": "brand-rollout.test.ts",
+          "line": 166,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal isolated member UI at 768px / light OS preference",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5517,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                      "column": 22,
+                      "line": 159
+                    },
+                    "snippet": "  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                        "column": 22,
+                        "line": 159
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:09:20.134Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--afc97-t-768px-light-OS-preference\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--afc97-t-768px-light-OS-preference\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--afc97-t-768px-light-OS-preference\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                    "column": 22,
+                    "line": 159
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "99c1786182206999042e-a4a452941291cb18d5ab",
+          "file": "brand-rollout.test.ts",
+          "line": 185,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal public routes at 1440px / light OS preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 38429,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:09:29.659Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99c1786182206999042e-d6e04ef7f5c50e6a3321",
+          "file": "brand-rollout.test.ts",
+          "line": 166,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal isolated member UI at 1440px / light OS preference",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6043,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                      "column": 22,
+                      "line": 159
+                    },
+                    "snippet": "  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                        "column": 22,
+                        "line": 159
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:10:11.130Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--a2bbd--1440px-light-OS-preference\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--a2bbd--1440px-light-OS-preference\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--a2bbd--1440px-light-OS-preference\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                    "column": 22,
+                    "line": 159
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "99c1786182206999042e-f4cd6ed9354bbf5bd6bc",
+          "file": "brand-rollout.test.ts",
+          "line": 185,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal public routes at 390px / dark OS preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 37407,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:10:20.920Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99c1786182206999042e-f31e007e467809bc0221",
+          "file": "brand-rollout.test.ts",
+          "line": 166,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal isolated member UI at 390px / dark OS preference",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5799,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                      "column": 22,
+                      "line": 159
+                    },
+                    "snippet": "  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                        "column": 22,
+                        "line": 159
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:11:02.678Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--0b8ba-at-390px-dark-OS-preference\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--0b8ba-at-390px-dark-OS-preference\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--0b8ba-at-390px-dark-OS-preference\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                    "column": 22,
+                    "line": 159
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "99c1786182206999042e-c0b3e9d1e2d72125a169",
+          "file": "brand-rollout.test.ts",
+          "line": 185,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal public routes at 1440px / dark OS preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 38306,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:11:12.728Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99c1786182206999042e-863e40c0f8179df97d5d",
+          "file": "brand-rollout.test.ts",
+          "line": 166,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal isolated member UI at 1440px / dark OS preference",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7219,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                      "column": 22,
+                      "line": 159
+                    },
+                    "snippet": "  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                        "column": 22,
+                        "line": 159
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 3\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   \"Failed to load resource: the server responded with a status of 400 (Bad Request)\",\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  157 |   const axe = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  158 |   expect(axe.violations).toEqual([]);\n> 159 |   expect(log.errors).toEqual([]);\n      |                      ^\n  160 |   expect(log.failedAssets).toEqual([]);\n  161 |   expect(log.fontRequests, \"Brand fonts must be self-hosted\").toEqual([]);\n  162 |   return { brand, font, contrast, overflow, accessibilityViolations: axe.violations.length, ...log };\n    at checks (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:159:22)\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:203:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:11:55.332Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--a2849-t-1440px-dark-OS-preference\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--a2849-t-1440px-dark-OS-preference\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\brand-rollout-Edge-Signal--a2849-t-1440px-dark-OS-preference\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts",
+                    "column": 22,
+                    "line": 159
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "99c1786182206999042e-9779b3a4f232bb205e1b",
+          "file": "brand-rollout.test.ts",
+          "line": 185,
+          "column": 7
+        },
+        {
+          "title": "Edge Signal PWA/favicon/offline artwork serves approved supplied bytes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3682,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:12:05.900Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "99c1786182206999042e-f72ff5a48326af0aeaf5",
+          "file": "brand-rollout.test.ts",
+          "line": 214,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "experience.test.ts",
+      "file": "experience.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11259,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:12:12.908Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7fb3ea5b0e6be00232e8-42a472555f301b080488",
+          "file": "experience.test.ts",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "title": "article metadata, real PNG social card and allowlisted sports pages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4467,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:12:24.222Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7fb3ea5b0e6be00232e8-515f99600fb2203f8bfe",
+          "file": "experience.test.ts",
+          "line": 85,
+          "column": 5
+        },
+        {
+          "title": "preview public pages remain truthful, accessible and usable without an account",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23635,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:12:28.739Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "7fb3ea5b0e6be00232e8-56556a796a29d4e13de1",
+          "file": "experience.test.ts",
+          "line": 122,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "journeys.test.ts",
+      "file": "journeys.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2716,
+                  "error": {
+                    "message": "Error: locator.boundingBox: Error: strict mode violation: getByRole('link', { name: 'Docked home' }) resolved to 2 elements:\n    1) <a href=\"/\" class=\"brand\" aria-label=\"Docked home\">…</a> aka getByRole('banner').getByRole('link', { name: 'Docked home' })\n    2) <a href=\"/\" class=\"brand\" aria-label=\"Docked home\">…</a> aka getByRole('contentinfo').getByRole('link', { name: 'Docked home' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Docked home' })\u001b[22m\n",
+                    "stack": "Error: locator.boundingBox: Error: strict mode violation: getByRole('link', { name: 'Docked home' }) resolved to 2 elements:\n    1) <a href=\"/\" class=\"brand\" aria-label=\"Docked home\">…</a> aka getByRole('banner').getByRole('link', { name: 'Docked home' })\n    2) <a href=\"/\" class=\"brand\" aria-label=\"Docked home\">…</a> aka getByRole('contentinfo').getByRole('link', { name: 'Docked home' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Docked home' })\u001b[22m\n\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\journeys.test.ts:30:8",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\journeys.test.ts",
+                      "column": 8,
+                      "line": 30
+                    },
+                    "snippet": "  28 |     const brandBounds = await page\n  29 |       .getByRole(\"link\", { name: \"Docked home\" })\n> 30 |       .boundingBox();\n     |        ^\n  31 |     expect(skipBounds).not.toBeNull();\n  32 |     expect(brandBounds).not.toBeNull();\n  33 |     expect(skipBounds!.y + skipBounds!.height).toBeLessThanOrEqual("
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\journeys.test.ts",
+                        "column": 8,
+                        "line": 30
+                      },
+                      "message": "Error: locator.boundingBox: Error: strict mode violation: getByRole('link', { name: 'Docked home' }) resolved to 2 elements:\n    1) <a href=\"/\" class=\"brand\" aria-label=\"Docked home\">…</a> aka getByRole('banner').getByRole('link', { name: 'Docked home' })\n    2) <a href=\"/\" class=\"brand\" aria-label=\"Docked home\">…</a> aka getByRole('contentinfo').getByRole('link', { name: 'Docked home' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Docked home' })\u001b[22m\n\n\n  28 |     const brandBounds = await page\n  29 |       .getByRole(\"link\", { name: \"Docked home\" })\n> 30 |       .boundingBox();\n     |        ^\n  31 |     expect(skipBounds).not.toBeNull();\n  32 |     expect(brandBounds).not.toBeNull();\n  33 |     expect(skipBounds!.y + skipBounds!.height).toBeLessThanOrEqual(\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\journeys.test.ts:30:8"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:12:52.433Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\journeys-desktop-and-mobil-bef8f-torefront-and-accessibility\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\journeys-desktop-and-mobil-bef8f-torefront-and-accessibility\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\journeys-desktop-and-mobil-bef8f-torefront-and-accessibility\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\journeys.test.ts",
+                    "column": 8,
+                    "line": 30
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "f8440772d0e5dabff982-c7939d70a4065c6c63c9",
+          "file": "journeys.test.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "education and pending research are usable without an account",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5211,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:12:59.019Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f8440772d0e5dabff982-1e14f57d2b42a5c76e2a",
+          "file": "journeys.test.ts",
+          "line": 47,
+          "column": 5
+        },
+        {
+          "title": "restricted public/API, protected admin and no fake signup success",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1970,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:13:05.190Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f8440772d0e5dabff982-b726c3aa8c491d8170c6",
+          "file": "journeys.test.ts",
+          "line": 80,
+          "column": 5
+        },
+        {
+          "title": "retired product routes, legacy support and invalid unsubscribe",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1968,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:13:07.203Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f8440772d0e5dabff982-093b5dc0e6946ed311c1",
+          "file": "journeys.test.ts",
+          "line": 107,
+          "column": 5
+        },
+        {
+          "title": "secondary routes pass automated accessibility scan",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15165,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:13:09.219Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f8440772d0e5dabff982-c6b962c2baf4b45b1569",
+          "file": "journeys.test.ts",
+          "line": 127,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "phase3.test.ts",
+      "file": "phase3.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Phase3 public gates and disabled previews remain accessible at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34307,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:13:24.479Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-996eddf70ac3cb70c2e0",
+          "file": "phase3.test.ts",
+          "line": 135,
+          "column": 7
+        },
+        {
+          "title": "Phase3 public gates and disabled previews remain accessible at 430px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34570,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:14:02.136Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-bafaf5c159b7dc8b5b35",
+          "file": "phase3.test.ts",
+          "line": 135,
+          "column": 7
+        },
+        {
+          "title": "Phase3 public gates and disabled previews remain accessible at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 31828,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:14:36.753Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-7c046f03109c80015214",
+          "file": "phase3.test.ts",
+          "line": 135,
+          "column": 7
+        },
+        {
+          "title": "Phase3 public gates and disabled previews remain accessible at 1366px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 39579,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:15:08.634Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-037ad61bdf3d6b3a4efe",
+          "file": "phase3.test.ts",
+          "line": 135,
+          "column": 7
+        },
+        {
+          "title": "Phase3 public gates and disabled previews remain accessible at 1920px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34307,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:15:48.261Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-60c0d40b659ad37d336a",
+          "file": "phase3.test.ts",
+          "line": 135,
+          "column": 7
+        },
+        {
+          "title": "DEMO app hierarchy, all outcomes, provisional ranking and touch navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18830,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:16:22.610Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-b7da35d839dbd0ae8f3b",
+          "file": "phase3.test.ts",
+          "line": 205,
+          "column": 5
+        },
+        {
+          "title": "DEMO verified Edge review requires permanent confirmation again when provider price moves",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5056,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:16:41.475Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-8f89e260c2b06ace3b40",
+          "file": "phase3.test.ts",
+          "line": 305,
+          "column": 5
+        },
+        {
+          "title": "DEMO unsupported and promotional claims stay social-only; social interactions use distinct actions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4337,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:16:46.567Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-6b49fcd276d495fa87af",
+          "file": "phase3.test.ts",
+          "line": 432,
+          "column": 5
+        },
+        {
+          "title": "DEMO notification consent and moderation are separate from record corrections",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4629,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:16:50.946Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-b60c3554f8fa19dbe6db",
+          "file": "phase3.test.ts",
+          "line": 517,
+          "column": 5
+        },
+        {
+          "title": "DEMO administrative drafts remain disabled and leaderboard captures are auditable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6910,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:16:55.623Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-1b8deb9c2fc36cbd992d",
+          "file": "phase3.test.ts",
+          "line": 568,
+          "column": 5
+        },
+        {
+          "title": "PWA serves an offline shell without caching private pages or APIs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2348,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:17:02.584Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-af80d77df205e8ac9a4f",
+          "file": "phase3.test.ts",
+          "line": 636,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "reference-price.test.ts",
+      "file": "reference-price.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "web deep-link aliases preserve canonical visibility routes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1605,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:17:04.989Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e8c391b04d156cff1c32-f83a0061cdfbc1d861d4",
+          "file": "reference-price.test.ts",
+          "line": 12,
+          "column": 5
+        },
+        {
+          "title": "reference card hierarchy and unavailable data remain honest at mobile widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8571,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:17:06.773Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e8c391b04d156cff1c32-ba36d056d519ae53edab",
+          "file": "reference-price.test.ts",
+          "line": 89,
+          "column": 5
+        },
+        {
+          "title": "reference composer sends canonical market selection only and reconfirms a moved benchmark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4107,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:17:15.399Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e8c391b04d156cff1c32-21dbdf16802615bdb3df",
+          "file": "reference-price.test.ts",
+          "line": 128,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "timestamp-hydration.test.ts",
+      "file": "timestamp-hydration.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "UTC server markup hydrates safely into Australia/Sydney local time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 969,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:17:19.573Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "562f485f99e134556dc2-3d41f619fd3137b0adff",
+          "file": "timestamp-hydration.test.ts",
+          "line": 91,
+          "column": 7
+        },
+        {
+          "title": "UTC server markup hydrates safely into America/New_York local time",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 994,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:17:22.518Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "562f485f99e134556dc2-b67565c665197b3ae098",
+          "file": "timestamp-hydration.test.ts",
+          "line": 91,
+          "column": 7
+        }
+      ]
+    },
+    {
+      "title": "visual-sports.test.ts",
+      "file": "visual-sports.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "sports identity remains accessible and honest at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 48655,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:17:23.583Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-d05b59478e9b6217be8a",
+          "file": "visual-sports.test.ts",
+          "line": 43,
+          "column": 7
+        },
+        {
+          "title": "sports identity remains accessible and honest at 430px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 42472,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:18:12.295Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-d57647e9fbd653d15bfd",
+          "file": "visual-sports.test.ts",
+          "line": 43,
+          "column": 7
+        },
+        {
+          "title": "sports identity remains accessible and honest at 768px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 38592,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:18:54.815Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-f824b5246a463ed1feaa",
+          "file": "visual-sports.test.ts",
+          "line": 43,
+          "column": 7
+        },
+        {
+          "title": "sports identity remains accessible and honest at 1366px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 41451,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:19:33.448Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-4fc4060f29ad8424c38e",
+          "file": "visual-sports.test.ts",
+          "line": 43,
+          "column": 7
+        },
+        {
+          "title": "sports identity remains accessible and honest at 1920px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 38910,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:20:14.946Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-34c811638724c82e294e",
+          "file": "visual-sports.test.ts",
+          "line": 43,
+          "column": 7
+        },
+        {
+          "title": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11486,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:20:53.896Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-d1121635a1b696f0c9f5",
+          "file": "visual-sports.test.ts",
+          "line": 141,
+          "column": 5
+        },
+        {
+          "title": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3247,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:21:05.419Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-89dadf7ce30f3806a021",
+          "file": "visual-sports.test.ts",
+          "line": 192,
+          "column": 5
+        },
+        {
+          "title": "atmospheric no-edge imagery preserves restricted and outage meanings",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4944,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T08:21:08.691Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "900c5e9c0a65e0efc5b7-1f7520203ee61c4d210f",
+          "file": "visual-sports.test.ts",
+          "line": 233,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T08:06:25.404Z",
+    "duration": 889027.504,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 7,
+    "flaky": 0
+  }
+}

@@ -10,7 +10,7 @@ test("desktop and mobile home, keyboard access, no storefront and accessibility"
     await page.setViewportSize({ width, height: 1000 });
     await page.goto("/");
     await expect(
-      page.getByRole("heading", { name: "Only when the price offers value." }),
+      page.getByRole("heading", { name: "BUILT FOR AN EDGE" }),
     ).toBeVisible();
     expect(
       await page.evaluate(
@@ -26,6 +26,7 @@ test("desktop and mobile home, keyboard access, no storefront and accessibility"
       .getByRole("link", { name: "Skip to content" })
       .boundingBox();
     const brandBounds = await page
+      .locator(".site-header")
       .getByRole("link", { name: "Docked home" })
       .boundingBox();
     expect(skipBounds).not.toBeNull();

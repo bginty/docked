@@ -50,7 +50,7 @@ test("hosted Android config binds one approved origin and whitelists only public
   const html = renderOfflineShell(target);
   assert.ok(html.includes(`${manifest.origin}/home`));
   assert.doesNotMatch(
-    html,
+    html.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, "approved-image"),
     /localhost|ADB|reverse port|Connect the reviewed preview/,
   );
   assert.match(html, /window\.addEventListener\("online", reconnect\)/);
