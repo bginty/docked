@@ -1,0 +1,28 @@
+{
+  "scope": "Local synthetic preview fixture software verification only",
+  "hostedExecution": false,
+  "platform": { "passed": 3, "failed": 0 },
+  "database": {
+    "passed": 4,
+    "failed": 0,
+    "engine": "PGlite with all project migrations"
+  },
+  "browser": {
+    "passed": 2,
+    "failed": 0,
+    "viewport": "390x844",
+    "realApiWrites": false,
+    "axeViolations": 0,
+    "pageErrorsObserved": 0,
+    "consoleErrors": "Not separately collected in the two isolated fixtures; the hosted runner records them"
+  },
+  "hostedRunnerGuard": { "passed": 2, "failed": 0 },
+  "typecheck": "PASS",
+  "scopedLint": "PASS",
+  "limitations": [
+    "Browser endpoints intercepted with explicit DEMO data",
+    "No provider or sporting-performance validation",
+    "Hosted runner has not been executed"
+  ],
+  "initialHarnessIssue": "Exact text-label select locator timed out; corrected to the existing accessible combobox role/name. Both cases then passed without application changes."
+}

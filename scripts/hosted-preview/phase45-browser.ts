@@ -93,6 +93,7 @@ async function mutation(
   action: string,
   click: () => Promise<unknown>,
 ) {
+  stage = `ui-${action.replaceAll("_", "-")}`;
   const pending = page.waitForResponse((r) => {
     if (r.url() !== origin + endpoint || r.request().method() !== "POST")
       return false;
@@ -520,7 +521,7 @@ async function screenshot(
   viewport: { width: number; height: number; deviceScaleFactor?: number },
 ) {
   stage = "screenshots-accessibility";
-  await s.page.setViewportSize(viewport);
+  await s.page.setViewportSize({ width: viewport.width, height: viewport.height });
   await go(s.page, path);
   await s.page.locator('[data-authenticated="true"]').waitFor();
   await s.page.waitForFunction(

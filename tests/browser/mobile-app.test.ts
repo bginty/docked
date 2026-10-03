@@ -108,6 +108,24 @@ for (const width of [360, 390, 412, 1366]) {
         `/${view}`,
       );
       await expect(page.locator("h1")).toHaveCount(1);
+      await page.evaluate(() => document.fonts.ready);
+      const logo = page.locator(".app-brand-lockup .canonical-logo");
+      const name = logo.locator(".canonical-logo-name");
+      const logoBox = (await logo.boundingBox())!;
+      const nameBox = (await name.boundingBox())!;
+      const previewBox = (await page
+        .locator(".app-brand-lockup .app-preview-label")
+        .boundingBox())!;
+      expect(
+        nameBox.x + nameBox.width,
+        "Wordmark stays within its allocated logo width",
+      ).toBeLessThanOrEqual(logoBox.x + logoBox.width + 1);
+      expect(
+        nameBox.x + nameBox.width <= previewBox.x ||
+          nameBox.y + nameBox.height <= previewBox.y ||
+          previewBox.y + previewBox.height <= nameBox.y,
+        "Wordmark and Preview badge must not overlap",
+      ).toBe(true);
       if (width <= 760) {
         expect(
           (await page.locator(".app-topbar").boundingBox())!.height,
