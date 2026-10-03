@@ -27,6 +27,16 @@ export async function communityAction(
   return result;
 }
 export function ProfileActions({ profile }: { profile: SocialProfile }) {
+  // Refresh confirmed client state when a server refresh changes this relationship.
+  // This also keeps repeated controls for one member consistent after an update.
+  return (
+    <ProfileActionControls
+      key={`${profile.id}:${profile.isFollowing}:${profile.followNotifications ?? false}`}
+      profile={profile}
+    />
+  );
+}
+function ProfileActionControls({ profile }: { profile: SocialProfile }) {
   const router = useRouter(),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),

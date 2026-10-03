@@ -46,7 +46,7 @@ export async function GET(request: Request) {
           </div>
           <div
             style={{ fontSize: 24, display: "flex" }}
-          >{`${edge.marketId.slice(0, 65)} · ${edge.bookmaker.slice(0, 50)}`}</div>
+          >{`${(edge.marketLabel ?? edge.marketId).slice(0, 100)} · ${edge.bookmaker.slice(0, 50)}`}</div>
           <div
             style={{ fontSize: 32, color: "#c8e6d5", display: "flex" }}
           >{`${edge.odds} verified standard odds · 1.00 unit · ${edge.result.replaceAll("_", " ")}`}</div>

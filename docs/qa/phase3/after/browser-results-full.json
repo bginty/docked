@@ -1,0 +1,231 @@
+{
+  "recordedAt": "2026-10-03T01:17:04.120Z",
+  "buildId": "h_B18PJV4WBBRiBIcb7zA",
+  "scope": "Real anonymous local-preview routes and clearly labelled isolated DEMO client interaction fixtures. No real authenticated Supabase session, provider data or external delivery was simulated on application routes.",
+  "stats": {
+    "startTime": "2026-10-03T01:09:06.353Z",
+    "duration": 463855.104,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "file": "experience.test.ts",
+      "title": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 7836,
+      "attempts": 1
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "article metadata, real PNG social card and allowlisted sports pages",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 4439,
+      "attempts": 1
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "preview public pages remain truthful, accessible and usable without an account",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 21883,
+      "attempts": 1
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 10237,
+      "attempts": 1
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "education and pending research are usable without an account",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 4296,
+      "attempts": 1
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "restricted public/API, protected admin and no fake signup success",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 1405,
+      "attempts": 1
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "retired product routes, legacy support and invalid unsubscribe",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 1328,
+      "attempts": 1
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "secondary routes pass automated accessibility scan",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 7075,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 390px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 25292,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 430px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 27088,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 768px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 26137,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 1366px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 27368,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 1920px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 28252,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO app hierarchy, all outcomes, provisional ranking and touch navigation",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 18209,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO verified Edge review requires permanent confirmation again when provider price moves",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 4947,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO unsupported and promotional claims stay social-only; social interactions use distinct actions",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 4406,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO notification consent and moderation are separate from record corrections",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 4427,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO administrative drafts remain disabled and leaderboard captures are auditable",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 6781,
+      "attempts": 1
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "PWA serves an offline shell without caching private pages or APIs",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 2741,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 390px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 39894,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 430px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 38031,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 768px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 38018,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 1366px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 41817,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 1920px",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 41585,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 14629,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 3995,
+      "attempts": 1
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "atmospheric no-edge imagery preserves restricted and outage meanings",
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 4707,
+      "attempts": 1
+    }
+  ]
+}

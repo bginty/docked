@@ -2,7 +2,21 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: visual sports identity
+## Current milestone: Phase 3 community integration
+
+Phase 3 continues from the clean visual checkpoint `e54adf2` on `codex/docked-value-platform`, protected by local rollback tag `docked-before-phase3-2026-10-03`. The implementation adds an authenticated mobile app shell; canonical official Edges pinned above discussion; private social profiles, follows, blocks, mute, comments, reactions, saves and moderation; provider-verified immutable community Edges; profiles and Top Docked; consent-aware in-app notifications; and a PWA offline shell. Official strategy calculations and historical validation controls remain separate and unchanged.
+
+Community pricing is fail-closed. No odds key, current standard-price classification contract, authorised results source, dedicated Supabase credentials or genuine historical data is configured. Missing data does not become a competitive record or zero performance. The official strategy remains **UNVALIDATED** and forward paper remains **NOT STARTED**. No production, DNS, live email, billing, prize or affiliate action was performed.
+
+Free functionality and the original first-year growth strategy are preserved. Pro, subscriptions, competitions, prizes and deals have reviewed draft schemas and admin interfaces but **cannot activate** through runtime flags or ordinary direct database writes. No payment details are collected and no automatic month-13 conversion exists.
+
+Implementation and validation evidence: [community architecture](COMMUNITY_ARCHITECTURE.md), [Edge integrity](EDGE_INTEGRITY.md), [odds verification](ODDS_VERIFICATION.md), [Top Docked](TOP_DOCKED.md), [membership](MEMBERSHIP_ENTITLEMENTS.md), [moderation](MODERATION.md), [notifications](NOTIFICATIONS.md), [privacy retention](PRIVACY_RETENTION.md), [Phase 3 QA](PHASE3_QA.md). QA distinguishes actual unconfigured routes from explicitly labelled isolated DEMO success states; neither fixture tests nor UI readiness establishes a profitable strategy or hosted acceptance.
+
+Final local validation passed: TypeScript, lint, 105 platform/unit/integration tests, 49 PostgreSQL/PGlite tests, the complete 27-case browser suite and all 11 affected Phase 3 browser cases repeated after the final UI repairs. Production build `xlc1Befe4FdeUzigRM4DH` and the 27-asset browser credential-canary scan passed. Dependency audit reported zero vulnerabilities; source secret scan reported no findings. The five-width Phase 3 route matrix reports no axe violations, overflow or console/page errors. Local median LCP was unchanged at 464 ms desktop and 268 ms at 390px; desktop DOMContentLoaded increased by 361.8 ms, documented with the full measurement limits and screenshots in the QA evidence.
+
+Next external step remains a dedicated Docked local Supabase stack with a safe mail sink, following [PREVIEW_SUPABASE.md](PREVIEW_SUPABASE.md). Apply all five ordered migrations, create only isolated test accounts, and exercise the complete real Auth/account/community lifecycle. A supplied project must be verified by organisation, project reference and purpose before any remote mutation. Oura is out of scope. Supplier standard-price metadata and separate results rights, current regional legal approval, retention basis, hosted concurrency/load/security checks and explicit deployment authority remain release gates.
+
+## Preserved milestone: visual sports identity
 
 The sports identity milestone continues from clean Phase 2 commit `8fa346c`. It adds a cinematic football homepage, ten photographic sport categories and substantive sport pages, a consistent pictogram system, photographic editorial/edge/results context and responsive navigation. Coverage labels remain derived from the existing configuration: football and basketball are research; the other eight sports are coming soon. No sport is labelled LIVE.
 

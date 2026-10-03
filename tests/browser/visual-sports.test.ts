@@ -7,7 +7,7 @@ import { sports } from "../../src/content/sports";
 
 const evidenceDirectory = path.join(
   process.cwd(),
-  "docs/qa/visual-sports/after",
+  "docs/qa/phase3/after/sports-regression",
 );
 const routes = {
   homepage: "/",

@@ -2,7 +2,7 @@
 
 Reviewed 2 October 2026. **No hosted Docked Supabase project is configured.** The configured connector's read-only project inventory returned only an unrelated Oura CRM UAT project. No keys, tables, migrations, advisors or data were accessed in that project. No remote writes were made. Only `.env.example` exists in Docked; no relevant process credential names were present. Docker was not installed/available on this host, so the local Supabase services and real GoTrue lifecycle could not be started.
 
-The Phase 2 PostgreSQL tests apply both ordered migrations to a fresh embedded PostgreSQL database with a deliberately minimal Auth-schema test harness. These prove SQL/RLS invariants and migration order; they **do not prove hosted Auth, mail delivery, session refresh or a complete authenticated browser lifecycle**. The fixture accounts and paper selections exist only in an isolated test process, never in the application database or public results.
+The PostgreSQL tests apply all ordered migrations to a fresh embedded PostgreSQL database with a deliberately minimal Auth-schema test harness. These prove SQL/RLS invariants and migration order; they **do not prove hosted Auth, mail delivery, session refresh or a complete authenticated browser lifecycle**. The fixture accounts and paper selections exist only in an isolated test process, never in the application database or public results. Phase 3 rechecked credential availability on 3 October: no Docked credentials or Docker runtime were available; no hosted project was accessed.
 
 ## Safe local setup
 
@@ -36,7 +36,15 @@ Configure exact callback/recovery allowlist URLs, mandatory email confirmation, 
 
 ## Migration, recovery and advisor procedure
 
-Order: `20261002113546_docked_platform.sql`, then `20261002122714_phase2_security_and_validation.sql`. The original migration is unchanged. `db/schema.sql` preserves the original bootstrap snapshot; **both ordered migrations** define the current schema. Existing strategy timestamps do not silently become Phase 2 approvals: the additive migration leaves existing unfrozen strategies inactive with lifecycle DRAFT, and retires legacy frozen versions with an audit entry preserving their original evidence. A new reviewed version is required for Phase 2 operation.
+Apply these migrations in filename order:
+
+1. `20261002113546_docked_platform.sql`
+2. `20261002122714_phase2_security_and_validation.sql`
+3. `20261003002609_phase3_membership_and_rewards.sql`
+4. `20261003002709_phase3_social_core.sql`
+5. `20261003002935_phase3_community_edge_ledger.sql`
+
+The original migrations are unchanged. `db/schema.sql` preserves the original bootstrap snapshot; **all ordered migrations** define the current schema. Existing strategy timestamps do not silently become Phase 2 approvals: that migration leaves existing unfrozen strategies inactive with lifecycle DRAFT, and retires legacy frozen versions with an audit entry preserving their original evidence. A new reviewed version is required for Phase 2 operation. Phase 3 creates the protected system account and canonical official discussion projections, but creates no community selections, sporting outcomes, prizes, paid subscriptions or performance history. Apply all five before running the Phase 3 app.
 
 For an empty verified preview, inspect CLI `link`, `db push` and `migration list` help; link only the recorded Docked Preview ref, inspect the planned migration list and a dry run, then apply. Never run a reset on an existing cloud project. On a populated environment first create a restorable backup and test restoration into another dedicated disposable Docked preview. Recovery prefers restoring the verified backup or a forward repair migration; do not drop ledger/audit tables or edit migration history to imitate rollback. Local-only `db reset --local` is destructive and is for a confirmed disposable test stack only.
 
@@ -55,6 +63,9 @@ Record actual results/screenshots, not assumed success. Pending until a local Au
 7. Delete account: profile immediately disabled; sessions revoked; preferences paused; mutable outbox payloads and delivery identifiers scrubbed; personal/saved data, tokens and analytics removed; durable identity-erasure job queued. Simulate remote Auth failure and retry through worker. Access stays denied while retry is pending. Successful Auth deletion cascades profile data.
 8. Retained immutable consent, staff/publication and audit evidence uses pseudonymous identifiers, **not anonymous data**. A reviewed retention period and legal basis remain release requirements. Provider backups follow their separately reviewed expiry.
 9. Assign analyst/editor/admin/auditor only from a trusted operator path, enrol TOTP and prove role boundaries. Auditors can inspect, not mutate; editors cannot publish tips; analysts cannot advance strategy or correct settlement. Verify revoked/expired/disabled sessions on API handlers and direct Data API reads.
+10. For isolated fictional account testing only, install a short-lived test region policy covering each intended community feature explicitly. A tips approval does not approve social posting, public profiles, community Edges or leaderboards. The existing 18+ attestation cannot satisfy a higher age threshold. Never treat a test policy as legal approval.
+11. Exercise social identity, graph, private media quarantine, moderation, notifications and erasure with two members and every staff role. Verify blocked/private profiles cannot leak through direct-ID posts, media or graph lists. Canonical performance survives pseudonymisation without restoring personal fields.
+12. Community Edge acceptance requires a separately approved standard-price metadata contract, current source-health rights/capabilities, canonical mappings and operator approvals. A plain odds API key is insufficient. Keep synthetic odds/outcomes confined to disposable test databases and fixture processes; no production fixture-import switch exists.
 
 References checked: [Supabase changelog](https://supabase.com/changelog), [local configuration](https://supabase.com/docs/guides/local-development/cli/config), [Auth sessions](https://supabase.com/docs/guides/auth/sessions), [server-side Auth guidance](https://supabase.com/docs/guides/auth/server-side/advanced-guide). The changelog's September PostgreSQL maintenance notice should be reviewed when selecting the preview project version; this repository does not use ltree, legacy PGP ciphers, floating-point btree_gist indexes or custom operators.
 

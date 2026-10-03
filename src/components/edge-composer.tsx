@@ -316,7 +316,11 @@ export function EdgeComposer({
               >
                 <option value="">Choose market</option>
                 {markets.map((s) => (
-                  <option key={s}>{s}</option>
+                  <option key={s} value={s}>
+                    {data.options.find(
+                      (q) => q.eventId === event && q.marketId === s,
+                    )?.marketLabel ?? s}
+                  </option>
                 ))}
               </select>
             </label>
@@ -396,7 +400,8 @@ export function EdgeComposer({
           )}
           <h3>{review.eventLabel}</h3>
           <p>
-            {review.selection} · {review.marketId} · {review.bookmaker}
+            {review.selection} · {review.marketLabel ?? review.marketId} ·{" "}
+            {review.bookmaker}
           </p>
           <dl className="edge-facts">
             <div>

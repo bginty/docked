@@ -35,10 +35,24 @@ This build did not amend DNS, MX/SPF/DKIM/DMARC, main, GitHub Pages, any unrelat
 - [x] Provider NOT_CONFIGURED states, durable quota accounting, authorised results-import boundary and real-data research workflow prepared.
 - [x] Explicit frozen strategy lifecycle, deployed-code provenance and isolated forward-paper dashboard implemented.
 - [x] Privacy event taxonomy, account consent/export/deletion support and acquisition/retention architecture prepared.
-- [ ] Dedicated Docked Supabase project or local Docker stack available; both migrations applied to that service.
+- [ ] Dedicated Docked Supabase project or local Docker stack available; all ordered migrations applied to that service.
 - [ ] Hosted/local service advisors and full real GoTrue confirmation/recovery/session/account browser lifecycle completed using a proven mail sink.
 - [ ] Docked-only provider contracts, keys, approved mappings and licensed historical/outcome data supplied.
 - [ ] Historical study, untouched hold-out review and genuine forward-paper evidence completed; strategy still unvalidated.
 - [ ] Hosted queue concurrency, session-pooler lock behaviour, private-storage restoration and external monitoring verified.
 
 Use [PHASE2_REVIEW.md](PHASE2_REVIEW.md) and [PREVIEW_SUPABASE.md](PREVIEW_SUPABASE.md) for the evidence and exact next steps. Passing local tests does not close these external gates.
+
+## Phase 3 community release gates
+
+- [ ] Dedicated Docked Auth/DB environment and mail sink; real two-member and staff journeys including revoke/delete/restore verified.
+- [ ] Each community feature has current country/state approval, reviewed age requirements, Terms/Privacy and public-record retention basis. No implicit inheritance from tips or an older policy.
+- [ ] Provider contract explicitly supports current, generally available standard prices and supplies versioned promotion classification. Missing or unknown metadata remains ineligible.
+- [ ] Sporting outcome source separately authorised; initial supported market and correction rules approved. Pending records are not self-settled.
+- [ ] Hosted transaction/concurrency and connection-pool tests cover market ingestion, cutoff waits, notification caps, retries and account revocation.
+- [ ] Media moderation staffing, abuse/report escalation, privacy redaction, encrypted backups and retention/erasure operations assigned and rehearsed.
+- [ ] Full authenticated accessibility and representative-volume/load tests, plus independent security review. Local empty-route and DEMO fixture results do not close these gates.
+- [ ] Measured leaderboard query limits and snapshot refresh/worker ownership agreed before growth beyond the initial preview; archive/audit evidence retained after corrections.
+- [ ] Exact preview commit and deployment target reviewed; production release authority obtained separately. Phase 3 does not authorise DNS or deployment.
+
+Commercial switches stay **OFF**. Before any future Pro, competition, prize, deal or affiliate activation: record current jurisdiction-specific legal, tax/permit, sponsor, privacy/marketing, responsible-design and platform review; freeze official rules; obtain explicit business approval and implement the separate reviewed activation release. No card, subscription, prize award, affiliate link or real message is enabled by this milestone.

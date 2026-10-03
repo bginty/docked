@@ -13,6 +13,7 @@ import { settle } from "@/core/settlement";
 import type { ResultsProvider } from "@/providers/contracts";
 import {
   communityRuleV1,
+  communityMarketLabel,
   permanentEdgeStatement,
   verifyCommunityQuote,
   type CommunityEdge,
@@ -142,6 +143,7 @@ function option(e: CommunityQuoteEvidence): CommunityQuoteOption {
   return {
     snapshotId,
     marketId,
+    marketLabel: communityMarketLabel(e.canonicalRules),
     sport,
     competition,
     eventId,
@@ -388,6 +390,7 @@ function edgeFromRow(row: Row): CommunityEdge {
     displayName: String(row.display_name),
     snapshotId: String(row.snapshot_id),
     marketId: String(row.market_id),
+    marketLabel: communityMarketLabel(rules),
     sport: String(row.sport),
     competition: String(row.competition),
     eventId: String(row.event_id),

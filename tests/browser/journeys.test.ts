@@ -37,7 +37,7 @@ test("desktop and mobile home, keyboard access, no storefront and accessibility"
       .analyze();
     expect(axe.violations).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/visual-sports/after/regression-home-${width}.png`,
+      path: `docs/qa/phase3/after/sports-regression/regression-home-${width}.png`,
       fullPage: true,
     });
   }

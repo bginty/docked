@@ -26,6 +26,7 @@ export type CommunityResult =
 export type CommunityQuoteOption = {
   snapshotId: string;
   marketId: string;
+  marketLabel?: string;
   sport: string;
   competition: string;
   eventId: string;
@@ -86,6 +87,12 @@ const supportedCompetitions: Record<string, string> = {
   soccer_spain_la_liga: "football_1x2",
   basketball_nba: "nba_moneyline",
 };
+/** Presentation only: matching and submission always retain the canonical IDs/rules. */
+export function communityMarketLabel(rules: Rules) {
+  const name =
+    rules.market === "football_1x2" ? "Full-time result" : "Moneyline";
+  return `${name} · ${rules.settlement.replaceAll("_", " ")}`;
+}
 function validInstant(value: string) {
   return (
     /(?:Z|[+-]\d{2}:\d{2})$/.test(value) && Number.isFinite(Date.parse(value))

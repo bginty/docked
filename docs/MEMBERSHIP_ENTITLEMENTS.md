@@ -1,0 +1,13 @@
+# Free membership and future Pro
+
+Phase 3 keeps Docked Free. `src/core/membership.ts` is the versioned client-safe catalogue; the private database plan/price/entitlement/subscription/event tables prepare a future provider adapter. No payment provider is connected, no card fields exist and no purchase/cancel-renew endpoint can activate a paid plan.
+
+Free includes community, follows, social posts, verified community Edge submission where independently eligible, profiles, Top Docked, core official Edges, standard alerts, results, methodology, education, basic tracking and safety/corrections. An entitlement never bypasses regional approval, provider rights, authentication, freshness or strategy validation. Payment cannot change ranking, verification, results visibility or safety information.
+
+The first 12 months start only from the existing immutable `private.launch_record`. Until that record exists the growth year is NOT_STARTED. The anniversary uses calendar months, clamping leap day to the final day of February. No deployment creates a launch record. The anniversary never triggers billing or removes core Free capabilities, and no automatic month-13 conversion exists.
+
+Future Pro possibilities are labelled unavailable: additional reviewed analysis products, advanced filters/statistics, personal analytics/watchlists, alert controls, ad-free and early access. They are proposals, not a paid offer or a promised betting return. Official results remain canonical and complete regardless of any later product tier.
+
+`PAID_PLANS_ENABLED=false` and `PRO_ENTITLEMENTS_ENABLED=false`. Setting either true makes configuration fail. Database checks independently prohibit Pro activation, active paid subscriptions, payment-provider/customer references and rank/safety override entitlements. Subscription lifecycle fields describe future incomplete, trial, active, past-due, grace, cancel-at-period-end, cancelled and expired states; this release accepts only Free/incomplete/cancelled/expired records. No successful billing event is fabricated.
+
+Activation needs a separate reviewed implementation, explicit commercial authority, effective regional policies, recorded legal/privacy review, selected provider and hosted webhook/idempotency/cancellation tests. A future migration must deliberately replace the disabled constraints; an environment toggle alone is insufficient. Sensitive writes require server-side owner/admin role and MFA; auditors only inspect. Personal subscription references are designed to be removed with account deletion; retained event metadata needs its own lawful retention review.

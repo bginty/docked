@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   verifyCommunityQuote,
   communityRuleV1,
+  communityMarketLabel,
   type CommunityQuoteEvidence,
 } from "../../src/core/community-edge";
 const now = "2026-10-03T10:00:00Z";
@@ -58,6 +59,22 @@ const context = {
   bookmakerAllowed: true,
   feedHealthy: true,
 };
+test("community market labels retain the canonical settlement distinction", () => {
+  const rules = quote().canonicalRules;
+  assert.equal(
+    communityMarketLabel(rules),
+    "Full-time result · regulation 90 plus stoppage",
+  );
+  assert.equal(
+    communityMarketLabel({
+      ...rules,
+      market: "nba_moneyline",
+      settlement: "full_game_including_overtime",
+    }),
+    "Moneyline · full game including overtime",
+  );
+  assert.equal(rules.settlement, "regulation_90_plus_stoppage");
+});
 test("standard observed quote verifies; ordinary account limits alone do not imply promotion", () => {
   assert.equal(verifyCommunityQuote(quote(), context).eligible, true);
   assert.equal(

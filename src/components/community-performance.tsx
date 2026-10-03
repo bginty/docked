@@ -43,7 +43,7 @@ export function CommunityEdgeCard({ edge }: { edge: CommunityEdge }) {
           <Link href={`/community/edges/${edge.id}`}>{edge.selection}</Link>
         </h3>
         <p>
-          {edge.marketId} · {edge.bookmaker}
+          {edge.marketLabel ?? edge.marketId} · {edge.bookmaker}
         </p>
         <dl className="edge-facts">
           <div>
