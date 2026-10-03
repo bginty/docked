@@ -1,18 +1,11 @@
 {
   "name": "Docked",
   "short_name": "Docked",
-  "description": "Powered pool relaxation for laid-back summer days.",
+  "description": "Sports intelligence. Community. Transparency.",
   "start_url": "/",
   "scope": "/",
-  "display": "standalone",
-  "background_color": "#f8f5ee",
-  "theme_color": "#06283d",
-  "icons": [
-    {
-      "src": "/assets/images/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    }
-  ]
+  "display": "browser",
+  "background_color": "#0B1F3B",
+  "theme_color": "#0B1F3B",
+  "icons": [{ "src": "/assets/brand/docked-master.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" }]
 }
