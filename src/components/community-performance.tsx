@@ -7,7 +7,14 @@ import type {
 import type { CommunityEdge } from "@/core/community-edge";
 import { SportIcon } from "./sport-icon";
 import { CommunityEmpty } from "./community-basics";
-export function CommunityEdgeCard({ edge }: { edge: CommunityEdge }) {
+export function CommunityEdgeCard({
+  edge,
+  compact = false,
+}: {
+  edge: CommunityEdge;
+  compact?: boolean;
+}) {
+  if (compact) return <CompactCommunityEdgeCard edge={edge} />;
   return (
     <article className="social-card">
       <div className="social-author">
@@ -122,6 +129,111 @@ export function CommunityEdgeCard({ edge }: { edge: CommunityEdge }) {
       <Link className="text-link" href={`/community/edges/${edge.id}`}>
         Record, evidence and discussion
       </Link>
+    </article>
+  );
+}
+export function CompactCommunityEdgeCard({ edge }: { edge: CommunityEdge }) {
+  const reference = edge.pricingModel === "market_reference_v1";
+  return (
+    <article className="social-card compact-edge-card compact-community-edge">
+      <div className="compact-edge-meta">
+        <span>
+          <SportIcon sport={edge.sport} size={18} /> COMMUNITY EDGE
+        </span>
+        <span className={`status-chip ${edge.result.toLowerCase()}`}>
+          {edge.result.replaceAll("_", " ")}
+        </span>
+      </div>
+      <div className="social-author-name">
+        {edge.interactionsAllowed ? (
+          <Link href={`/profile/${edge.handle}`}>{edge.displayName}</Link>
+        ) : (
+          <strong>{edge.displayName}</strong>
+        )}
+        <span className="social-author-meta">
+          {edge.interactionsAllowed
+            ? `@${edge.handle}`
+            : "Identity unavailable"}
+        </span>
+      </div>
+      <p className="edge-event">{edge.eventLabel}</p>
+      <h3 className="compact-edge-selection">
+        <Link href={`/community/edges/${edge.id}`}>{edge.selection}</Link>
+      </h3>
+      <p className="edge-market">{edge.marketLabel ?? edge.marketId}</p>
+      <div className="compact-edge-prices">
+        <div>
+          <span>
+            {reference
+              ? "Submission market reference"
+              : "Verified standard odds"}
+          </span>
+          <strong>{edge.odds}</strong>
+          <small>Locked · decimal</small>
+        </div>
+        <div>
+          <span>Fixed benchmark</span>
+          <strong>{edge.units} unit</strong>
+        </div>
+        {reference && edge.dockedFairPrice && (
+          <div>
+            <span>Docked fair price</span>
+            <strong>{edge.dockedFairPrice}</strong>
+            <small>Estimate at submission</small>
+          </div>
+        )}
+        {reference && edge.minimumEdgePrice && (
+          <div>
+            <span>Minimum at submission</span>
+            <strong>{edge.minimumEdgePrice}+</strong>
+          </div>
+        )}
+      </div>
+      <p className="small-note">
+        Starts{" "}
+        <time dateTime={edge.startAt}>
+          {new Date(edge.startAt).toLocaleString("en-AU", { timeZone: "UTC" })}{" "}
+          UTC
+        </time>
+      </p>
+      <p className="small-note">
+        Submitted{" "}
+        <time dateTime={edge.submittedAt}>
+          {new Date(edge.submittedAt).toLocaleString("en-AU", {
+            timeZone: "UTC",
+          })}{" "}
+          UTC
+        </time>{" "}
+        ·{" "}
+        {reference
+          ? "Methodology UNVALIDATED"
+          : `${edge.bookmaker} · original bookmaker methodology`}
+      </p>
+      {(edge.personalPrice || edge.personalBookmaker) && (
+        <p className="promotion-label">
+          Member-reported: {edge.personalBookmaker ?? "Bookmaker unspecified"} ·{" "}
+          {edge.personalPrice ?? "Price unspecified"}
+          {edge.personalPromotional ? " · promotional" : ""}. Unverified;
+          excluded from grading.
+        </p>
+      )}
+      {edge.integrity === "REVIEW" && (
+        <p className="promotion-label">INTEGRITY REVIEW · Not ranked</p>
+      )}
+      <div className="compact-edge-footer">
+        <Link className="text-link" href={`/community/edges/${edge.id}`}>
+          Record and evidence ↗
+        </Link>
+        {edge.corrections > 0 && (
+          <Link href={`/community/edges/${edge.id}#corrections`}>
+            {edge.corrections} visible correction
+            {edge.corrections === 1 ? "" : "s"}
+          </Link>
+        )}
+        <p className="edge-warning">
+          Permanent record. Losses remain visible. No guaranteed profit.
+        </p>
+      </div>
     </article>
   );
 }

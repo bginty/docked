@@ -8,6 +8,33 @@ import {
   safeSharePath,
 } from "../../src/core/native-navigation";
 const id = "00000000-0000-4000-8000-000000000123";
+test("mobile app tabs are exact deep links without expanding push or auth authority", () => {
+  for (const path of ["/edges", "/feed", "/following", "/points", "/my-edge"]) {
+    assert.equal(nativeDeepLink(`docked:/${path}`), path);
+    assert.equal(
+      nativeDeepLink(
+        `https://preview.example.test${path}`,
+        "https://preview.example.test",
+      ),
+      path,
+    );
+    assert.equal(safeSharePath(path), path);
+    assert.equal(nativeDeepLink(`docked:/${path}?access_token=secret`), null);
+    assert.equal(nativeDeepLink(`docked:/${path}#secret`), null);
+    assert.equal(
+      nativeDeepLink(
+        `https://foreign.example${path}`,
+        "https://preview.example.test",
+      ),
+      null,
+    );
+    assert.equal(
+      nativeNotificationRoute({ type: "official_edge", path }),
+      null,
+    );
+    assert.equal(nativeNotificationRoute({ type: "system", path }), null);
+  }
+});
 test("native links canonicalize official results and community records without importing session tokens", () => {
   assert.equal(nativeDeepLink(`docked://edges/${id}`), `/tips/${id}`);
   assert.equal(

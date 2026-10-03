@@ -15,15 +15,11 @@ export function NativeBridge() {
   const router = useRouter();
   const [native, setNative] = useState(false),
     [online, setOnline] = useState(true),
-    [message, setMessage] = useState(""),
-    [haptics, setHaptics] = useState(false);
+    [message, setMessage] = useState("");
   useEffect(() => {
     if (!isDockedNative()) return;
     setNative(true);
     document.documentElement.classList.add("docked-native");
-    try {
-      setHaptics(localStorage.getItem("docked-native-haptics") === "true");
-    } catch {}
     let alive = true;
     const cleanup: (() => void)[] = [];
     const external = (event: MouseEvent) => {
@@ -119,44 +115,59 @@ export function NativeBridge() {
       document.documentElement.classList.remove("docked-native");
     };
   }, [router]);
-  if (!native) return null;
+  if (!native || (online && !message)) return null;
   return (
-    <aside className="native-status" aria-label="Android development status">
-      <p className="native-preview-identity">
-        <strong>PREVIEW</strong>
-        <span>Docked testing environment</span>
-      </p>
+    <aside className="native-status" aria-label="Android connection status">
       {!online && (
         <p role="alert">
           Offline. Current prices and private content cannot be verified.
           Reconnect before submitting.
         </p>
       )}
-      <details>
-        <summary>Android preview settings</summary>
-        <p>
-          Push and app badges: NOT_CONFIGURED. No device registration or
-          notification permission is requested.
-        </p>
-        <label className="check">
-          <input
-            type="checkbox"
-            checked={haptics}
-            onChange={(e) => {
-              setHaptics(e.target.checked);
-              try {
-                localStorage.setItem(
-                  "docked-native-haptics",
-                  String(e.target.checked),
-                );
-              } catch {}
-            }}
-          />
-          Enable light confirmation haptics; reduced-motion settings take
-          priority.
-        </label>
-        <p role="status">{message}</p>
-      </details>
+      {message && <p role="status">{message}</p>}
     </aside>
+  );
+}
+
+/** Account settings surface; native capabilities are never requested on mount. */
+export function NativeAppSettings() {
+  const [native, setNative] = useState(false);
+  const [haptics, setHaptics] = useState(false);
+  useEffect(() => {
+    if (!isDockedNative()) return;
+    setNative(true);
+    try {
+      setHaptics(localStorage.getItem("docked-native-haptics") === "true");
+    } catch {}
+  }, []);
+  if (!native) return null;
+  return (
+    <section
+      className="native-app-settings app-panel"
+      aria-labelledby="native-settings-title"
+    >
+      <h2 id="native-settings-title">Android settings</h2>
+      <p className="form-help">
+        Push and app badges: NOT_CONFIGURED. No device registration or
+        notification permission is requested.
+      </p>
+      <label className="check">
+        <input
+          type="checkbox"
+          checked={haptics}
+          onChange={(e) => {
+            setHaptics(e.target.checked);
+            try {
+              localStorage.setItem(
+                "docked-native-haptics",
+                String(e.target.checked),
+              );
+            } catch {}
+          }}
+        />
+        Enable light confirmation haptics; reduced-motion settings take
+        priority.
+      </label>
+    </section>
   );
 }

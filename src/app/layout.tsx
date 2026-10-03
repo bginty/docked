@@ -6,6 +6,7 @@ import "./sports-visuals.css";
 import "./sports-experience.css";
 import "./community-app.css";
 import "./native.css";
+import "./mobile-app.css";
 import { NativeBridge } from "@/components/native-bridge";
 import { config } from "@/server/config";
 import { AnalyticsObserver } from "@/components/analytics-observer";
@@ -14,7 +15,11 @@ import { BrandLogo } from "@/components/brand-logo";
 import { brand } from "@/brand/brand";
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
-  appleWebApp: { capable: true, statusBarStyle: "default", title: "Docked" },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Docked",
+  },
   icons: {
     apple: "/brand/icons/docked-app-icon-180.png",
     icon: [
@@ -76,7 +81,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link className="brand" href="/" aria-label="Docked home">
               <BrandLogo decorative />
             </Link>
-            <nav aria-label="Main navigation">
+            <nav className="public-primary-nav" aria-label="Main navigation">
               <Link href="/edges">Edges</Link>
               <Link href="/results">Results</Link>
               <Link href="/sports">
@@ -95,6 +100,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             </div>
           </div>
+          <details className="public-mobile-more">
+            <summary>Explore Docked</summary>
+            <nav aria-label="Explore Docked">
+              <Link href="/edges">Edges</Link>
+              <Link href="/results">Results</Link>
+              <Link href="/sports">Sports</Link>
+              <Link href="/community">Community</Link>
+              <Link href="/learn">Learn</Link>
+              <Link href="/research">Research</Link>
+              <Link href="/methodology">Methodology</Link>
+            </nav>
+          </details>
         </header>
         {!config().production && (
           <div className="preview-banner">

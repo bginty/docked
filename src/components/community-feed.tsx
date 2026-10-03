@@ -1,52 +1,72 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { CommunityFeed } from "@/core/community-social";
 import { SocialCard, ProfileActions } from "./social-interactions";
 import { CommunityEmpty, OfficialBadge, SportChips } from "./community-basics";
+import { SocialTimeline } from "./social-timeline";
 export function FeedTabs({
   base,
   tab = "for_you",
   sport,
+  compact = false,
+  action,
 }: {
   base: string;
   tab?: string;
   sport?: string;
+  compact?: boolean;
+  action?: ReactNode;
 }) {
   return (
     <>
-      <nav className="community-tabs" aria-label="Community feed order">
-        {[
-          ["for_you", "For you"],
-          ["following", "Following"],
-          ["latest", "Latest"],
-        ].map(([id, label]) => (
-          <Link
-            key={id}
-            href={`${base}?tab=${id}${sport ? `&sport=${sport}` : ""}`}
-            aria-current={tab === id ? "page" : undefined}
-          >
-            {label}
-          </Link>
-        ))}
-        <Link href="/top-docked">Top Docked</Link>
-        <Link href="/sports">Sports</Link>
-      </nav>
-      <SportChips base={base} selected={sport} query={`tab=${tab}&`} />
+      <div className={compact ? "feed-toolbar" : undefined}>
+        <nav className="community-tabs" aria-label="Community feed order">
+          {[
+            ["for_you", "For you"],
+            ...(!compact ? [["following", "Following"]] : []),
+            ["latest", "Latest"],
+          ].map(([id, label]) => (
+            <Link
+              key={id}
+              href={`${base}?tab=${id}${sport ? `&sport=${encodeURIComponent(sport)}` : ""}`}
+              aria-current={tab === id ? "page" : undefined}
+            >
+              {label}
+            </Link>
+          ))}
+          {!compact && (
+            <>
+              <Link href="/top-docked">Top Docked</Link>
+              <Link href="/sports">Sports</Link>
+            </>
+          )}
+        </nav>
+        {compact && action}
+      </div>
+      {compact ? (
+        <div className="feed-secondary-toolbar">
+          <details className="feed-filters">
+            <summary>Filter by sport{sport ? ` · ${sport}` : ""}</summary>
+            <SportChips base={base} selected={sport} query={`tab=${tab}&`} />
+          </details>
+          <FeedOrder tab={tab} />
+        </div>
+      ) : (
+        <SportChips base={base} selected={sport} query={`tab=${tab}&`} />
+      )}
     </>
   );
 }
-export function FeedContent({
-  feed,
-  base,
+function FeedOrder({
   tab,
-  sport,
+  expanded = false,
 }: {
-  feed: CommunityFeed;
-  base: string;
   tab: string;
-  sport?: string;
+  expanded?: boolean;
 }) {
   return (
-    <>
+    <details className="feed-explainer" open={expanded}>
+      <summary>Feed order</summary>
       <p className="form-help">
         {tab === "latest"
           ? "Latest: newest visible posts first."
@@ -54,10 +74,36 @@ export function FeedContent({
             ? "Following: recent visible posts from the members you follow."
             : "For you: transparent discovery using approved content, interests and freshness. No loss, wager or chasing signals."}
       </p>
-      {feed.posts.length ? (
+    </details>
+  );
+}
+export function FeedContent({
+  feed,
+  base,
+  tab,
+  sport,
+  compact = false,
+}: {
+  feed: CommunityFeed;
+  base: string;
+  tab: string;
+  sport?: string;
+  compact?: boolean;
+}) {
+  return (
+    <>
+      {!compact && <FeedOrder tab={tab} expanded />}
+      {compact ? (
+        <SocialTimeline
+          feed={feed}
+          base={base}
+          tab={tab === "following" || tab === "latest" ? tab : "for_you"}
+          sport={sport}
+        />
+      ) : feed.posts.length ? (
         <div className="app-feed">
           {feed.posts.map((post) => (
-            <SocialCard key={post.id} post={post} />
+            <SocialCard key={post.id} post={post} compact={compact} />
           ))}
         </div>
       ) : (
@@ -73,12 +119,12 @@ export function FeedContent({
             : feed.message}
         </CommunityEmpty>
       )}
-      {feed.nextCursor && (
+      {!compact && feed.nextCursor && (
         <Link
           className="button ghost"
-          href={`${base}?tab=${tab}${sport ? `&sport=${sport}` : ""}&cursor=${encodeURIComponent(feed.nextCursor)}`}
+          href={`${base}?tab=${tab}${sport ? `&sport=${encodeURIComponent(sport)}` : ""}&cursor=${encodeURIComponent(feed.nextCursor)}`}
         >
-          Older posts
+          {compact ? "Load older posts" : "Older posts"}
         </Link>
       )}
     </>

@@ -26,6 +26,8 @@ export async function communityAction(
     throw new Error(
       result.error ?? result.message ?? "This action was not confirmed.",
     );
+  if (typeof window !== "undefined")
+    window.dispatchEvent(new Event("docked:community-updated"));
   return result;
 }
 export function ProfileActions({ profile }: { profile: SocialProfile }) {
@@ -297,11 +299,19 @@ function Comment({ comment }: { comment: SocialComment }) {
     </div>
   );
 }
-export function SocialCard({ post }: { post: SocialPost }) {
+export function SocialCard({
+  post,
+  compact = false,
+  initialCommentsOpen = false,
+}: {
+  post: SocialPost;
+  compact?: boolean;
+  initialCommentsOpen?: boolean;
+}) {
   const router = useRouter(),
     [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false),
-    [showComments, setShowComments] = useState(false);
+    [showComments, setShowComments] = useState(initialCommentsOpen);
   async function action(action: string, extra: Record<string, unknown> = {}) {
     setBusy(true);
     try {
@@ -328,11 +338,20 @@ export function SocialCard({ post }: { post: SocialPost }) {
     }
   }
   return (
-    <article className="social-card">
-      <div className="social-author">
+    <article className={`social-card ${compact ? "compact-social-card" : ""}`}>
+      <div className={`social-author ${compact ? "social-author-row" : ""}`}>
         <span className="avatar" aria-hidden="true">
           {post.author.isOfficial ? (
             <BrandLogo variant="mark" className="brand-avatar" decorative />
+          ) : post.author.avatarUrl ? (
+            <img
+              className="profile-avatar-image"
+              src={post.author.avatarUrl}
+              width={40}
+              height={40}
+              alt=""
+              loading="lazy"
+            />
           ) : (
             post.author.displayName.slice(0, 1).toUpperCase()
           )}
@@ -346,11 +365,17 @@ export function SocialCard({ post }: { post: SocialPost }) {
           </Link>
           <span className="social-author-meta">
             @{post.author.handle} · {post.kind}
+            {compact && (
+              <>
+                {" "}
+                · <LocalTimestamp value={post.createdAt} />
+              </>
+            )}
           </span>
         </div>
         {post.author.isOfficial && <OfficialBadge />}
       </div>
-      <LocalTimestamp value={post.createdAt} />
+      {!compact && <LocalTimestamp value={post.createdAt} />}
       {post.claimLabel === "promotional_price" && (
         <p className="promotion-label">
           PROMOTIONAL PRICE — NOT LEADERBOARD ELIGIBLE
@@ -408,14 +433,16 @@ export function SocialCard({ post }: { post: SocialPost }) {
           onClick={() => action("react", { enabled: !post.isReacted })}
         >
           <AppIcon name="heart" size={18} />
-          {post.reactionCount} reactions
+          <span className="social-action-count">{post.reactionCount}</span>
+          <span className={compact ? "sr-only" : undefined}> reactions</span>
         </button>
         <button
           aria-expanded={showComments}
           onClick={() => setShowComments(!showComments)}
         >
           <AppIcon name="comment" size={18} />
-          {post.commentCount} comments
+          <span className="social-action-count">{post.commentCount}</span>
+          <span className={compact ? "sr-only" : undefined}> comments</span>
         </button>
         <button
           disabled={busy}
@@ -423,11 +450,13 @@ export function SocialCard({ post }: { post: SocialPost }) {
           onClick={() => action("save", { enabled: !post.isSaved })}
         >
           <AppIcon name="save" size={18} />
-          {post.isSaved ? "Saved" : "Save"}
+          <span className={compact ? "sr-only" : undefined}>
+            {post.isSaved ? "Saved" : "Save"}
+          </span>
         </button>
         <button onClick={share}>
           <AppIcon name="share" size={18} />
-          Share
+          <span className={compact ? "sr-only" : undefined}>Share</span>
         </button>
         <details>
           <summary>More</summary>

@@ -1,43 +1,50 @@
 .native-status {
-  padding: 8px max(20px, env(safe-area-inset-right));
+  padding: 8px max(16px, var(--app-safe-right)) 8px
+    max(16px, var(--app-safe-left));
   font-size: 0.8rem;
   background: var(--surface-info);
   border-bottom: 1px solid var(--border-subtle);
 }
 .native-status p {
   max-width: 65rem;
+  margin: 0 auto;
 }
-.native-preview-identity {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin: 0 0 0.25rem;
-}
-.native-preview-identity strong {
-  padding: 0.15rem 0.45rem;
-  border-radius: 3px;
-  background: var(--surface-dark);
-  color: var(--brand-white);
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
+/* Capacitor publishes CSS insets on old WebViews and uses env() on new ones.
+   App chrome owns its insets; only public/native pages pad the body. */
+:root {
+  --app-safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --app-safe-right: var(
+    --safe-area-inset-right,
+    env(safe-area-inset-right, 0px)
+  );
+  --app-safe-bottom: var(
+    --safe-area-inset-bottom,
+    env(safe-area-inset-bottom, 0px)
+  );
+  --app-safe-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
 }
 .docked-native body {
-  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top));
-  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left));
-  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right));
-  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
+  padding: var(--app-safe-top) var(--app-safe-right) var(--app-safe-bottom)
+    var(--app-safe-left);
 }
-.docked-native .app-bottom-nav {
-  padding-bottom: max(
-    8px,
-    var(--safe-area-inset-bottom, env(safe-area-inset-bottom))
-  );
+.docked-native body:has(.community-shell[data-authenticated="true"]) {
+  padding: 0;
 }
-.docked-native .community-shell {
-  padding-bottom: calc(
-    90px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom))
-  );
+.docked-native body:has(.community-shell) > .native-status {
+  padding-top: calc(8px + var(--app-safe-top));
+}
+.native-app-settings .check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-block: 12px;
+  min-height: 44px;
+  font-size: 14px;
+}
+.native-app-settings .check input {
+  flex: none;
+  width: 20px;
+  height: 20px;
 }
 .docked-native input,
 .docked-native textarea,

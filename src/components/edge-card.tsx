@@ -16,6 +16,7 @@ export function EdgeCard({
   now = Date.now(),
   detail = false,
   headingLevel = 2,
+  compact = false,
 }: {
   tip: TipPresentation;
   timezone?: string;
@@ -23,6 +24,7 @@ export function EdgeCard({
   now?: number;
   detail?: boolean;
   headingLevel?: 2 | 3;
+  compact?: boolean;
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
   const reference = tip.pricing_model === "market_reference_v1";
@@ -38,6 +40,93 @@ export function EdgeCard({
       : tip.market_rules.market === "nba_moneyline"
         ? "Moneyline"
         : tip.market_rules.market;
+  if (compact && !detail)
+    return (
+      <article
+        className="card edge-card compact-edge-card"
+        aria-label={`${tip.participants.join(" vs ")}: ${tip.selection}`}
+      >
+        <div className="compact-edge-meta">
+          <span>
+            <SportIcon
+              sport={
+                tip.market_rules.market.startsWith("nba_")
+                  ? "basketball"
+                  : tip.market_rules.market
+              }
+              size={18}
+            />{" "}
+            DOCKED · OFFICIAL
+          </span>
+          <time dateTime={new Date(tip.start_at).toISOString()}>
+            {localEventTime(tip.start_at, timezone)}
+          </time>
+        </div>
+        <p className="edge-event">{tip.participants.join(" vs ")}</p>
+        <Heading className="compact-edge-selection">{tip.selection}</Heading>
+        <p className="edge-market">
+          {market} · {tip.market_rules.settlement.replaceAll("_", " ")}
+        </p>
+        <QuoteStatus
+          status={tip.display_status}
+          sourceAt={sourceAt ? new Date(sourceAt).toISOString() : null}
+          startAt={new Date(tip.start_at).toISOString()}
+          initialNow={now}
+        />
+        <div className="compact-edge-prices">
+          <div className="take-price">
+            <span>Minimum acceptable price</span>
+            <strong>TAKE {oddsDisplay(tip.minimum_odds, format)}+</strong>
+          </div>
+          <div>
+            <span>
+              {reference ? "CURRENT MARKET" : "Current observed price"}
+            </span>
+            <strong>
+              {current === null ? "Unavailable" : oddsDisplay(current, format)}
+            </strong>
+          </div>
+          <div>
+            <span>
+              {reference ? "Docked fair price" : "Reference fair odds"}
+            </span>
+            <strong>
+              {oddsDisplay(tip.publication_payload.fairOdds, format)}
+            </strong>
+            <small>Locked estimate</small>
+          </div>
+          <div>
+            <span>Estimated EV at publication</span>
+            <strong>{(Number(tip.estimated_ev) * 100).toFixed(2)}%</strong>
+          </div>
+        </div>
+        <p className="small-note">
+          {reference ? "Publication market reference" : "Publication odds"}:{" "}
+          {tip.odds} decimal ·{" "}
+          {reference
+            ? "Methodology UNVALIDATED"
+            : tip.publication_payload.offer.bookmaker}
+        </p>
+        <p className="edge-freshness">
+          Source age at page load: {sourceAge(sourceAt, now)} · {timezone}
+        </p>
+        {tip.result !== "pending" && (
+          <p className="edge-settlement">
+            Settlement: <strong>{tip.result}</strong>
+          </p>
+        )}
+        <div className="compact-edge-footer">
+          <Link href={`/tips/${tip.id}`} className="text-link">
+            View details and corrections ↗
+          </Link>
+          <p className="edge-warning">
+            Estimated EV is not guaranteed profit.
+            {tip.display_status !== "active" &&
+              " Archived record; not an active instruction."}
+          </p>
+        </div>
+      </article>
+    );
   return (
     <article
       className="card edge-card"
@@ -141,7 +230,15 @@ export function EdgeCard({
         )}
         . Check the latest price before relying on this record.
       </p>
-      {tip.published_at && <p className="small-note">Published <time dateTime={new Date(tip.published_at).toISOString()}>{localEventTime(tip.published_at,timezone)}</time> · immutable decision record</p>}
+      {tip.published_at && (
+        <p className="small-note">
+          Published{" "}
+          <time dateTime={new Date(tip.published_at).toISOString()}>
+            {localEventTime(tip.published_at, timezone)}
+          </time>{" "}
+          · immutable decision record
+        </p>
+      )}
       <details className="edge-evidence" open={detail}>
         <summary>Why it qualified at publication</summary>
         <dl className="edge-facts">

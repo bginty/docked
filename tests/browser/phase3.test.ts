@@ -102,6 +102,8 @@ async function fixture(page: Page, view = "home", width = 390) {
     "sports-visuals.css",
     "sports-experience.css",
     "community-app.css",
+    "native.css",
+    "mobile-app.css",
   ])
     await page.addStyleTag({ path: path.join(process.cwd(), "src/app", file) });
   await page.addStyleTag({

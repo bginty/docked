@@ -3,6 +3,15 @@
 import { createRoot } from "react-dom/client";
 import { AppShell } from "../../src/components/app-shell";
 import {
+  FollowingContent,
+  PointsContent,
+  MyEdgeContent,
+} from "../../src/components/app-member-ui";
+import { EdgeBoardHeader } from "../../src/components/edge-board-header";
+import { FeedTabs, FeedContent } from "../../src/components/community-feed";
+import { PinnedDockedEmpty } from "../../src/components/pinned-docked-empty";
+import { topDockedRuleV1 } from "../../src/core/top-docked";
+import {
   AppHeading,
   OfficialBadge,
 } from "../../src/components/community-basics";
@@ -147,8 +156,9 @@ export function renderDemo(
   profileOverrides?: Partial<SocialProfile>,
 ) {
   Object.assign(window, {
-    demoPath:
-      view === "compose"
+    demoPath: view.startsWith("mobile-")
+      ? `/${view === "mobile-edge-record" ? "edges" : view.slice(7)}`
+      : view === "compose"
         ? "/compose"
         : view === "profile"
           ? "/profile"
@@ -161,7 +171,100 @@ export function renderDemo(
                 : "/home",
   });
   const body =
-    view === "compose" ? (
+    view === "mobile-points" ? (
+      <PointsContent
+        month={null}
+        lifetime={null}
+        board={{
+          status: "RESTRICTED",
+          message: "DEMO: no authorised leaderboard or performance data.",
+          rule: topDockedRuleV1,
+          period: "month",
+          asOf: now.toISOString(),
+          sport: null,
+          rows: [],
+          availableSports: [],
+        }}
+      />
+    ) : view === "mobile-my-edge" ? (
+      <MyEdgeContent
+        profile={{ ...demoProfile, isOwn: true }}
+        status="ready"
+        message=""
+        performance={null}
+      />
+    ) : view === "mobile-following" ? (
+      <FollowingContent
+        filter="all"
+        feed={{
+          status: "ready",
+          message: "",
+          viewer: { ...demoProfile, isOwn: true },
+          posts: [],
+          profiles: [],
+          nextCursor: null,
+        }}
+        graph={null}
+        discovery={{
+          profiles: [],
+          nextCursor: null,
+          message: "No real members are loaded in this isolated fixture.",
+        }}
+      />
+    ) : view === "mobile-feed" ? (
+      <div className="feed-screen">
+        <AppHeading eyebrow="FEED" title="Your sporting perspective." />
+        <FeedTabs
+          base="/feed"
+          compact
+          action={
+            <a className="button feed-compose-link" href="/compose">
+              Write post
+            </a>
+          }
+        />
+        <FeedContent
+          base="/feed"
+          tab="for_you"
+          compact
+          feed={{
+            status: "ready",
+            message: "",
+            viewer: demoProfile,
+            posts: (window as any).demoTimelinePosts ?? [
+              demoPost,
+              {
+                ...demoPost,
+                id: "33333333-3333-4333-8333-333333333334",
+                body: "DEMO long-content check. Regulation and overtime settlement rules remain part of the permanent record. ".repeat(
+                  3,
+                ),
+              },
+            ],
+            profiles: [],
+            nextCursor: "fixture-cursor",
+          }}
+        />
+      </div>
+    ) : view === "mobile-edges" || view === "mobile-edge-record" ? (
+      <div className="mobile-edge-board">
+        <EdgeBoardHeader
+          query={{}}
+          tab="docked"
+          view="featured"
+          status={{ strategy: false, feed: false, publication: false }}
+        />
+        {view === "mobile-edge-record" ? (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: (window as any).demoCompactHtml,
+            }}
+          />
+        ) : (
+          <PinnedDockedEmpty regionAllowed={false} feedReady={false} />
+        )}
+      </div>
+    ) : view === "compose" || view === "mobile-compose" ? (
       <>
         <AppHeading eyebrow="DEMO COMPOSER" title="Share a perspective." />
         <SocialComposer />

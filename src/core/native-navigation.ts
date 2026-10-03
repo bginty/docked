@@ -5,6 +5,10 @@ const community = new RegExp(`^/community/(posts|edges)/(${id})$`);
 const shortPost = new RegExp(`^/community/(${id})$`);
 const staticPaths = new Set([
   "/home",
+  "/feed",
+  "/following",
+  "/points",
+  "/my-edge",
   "/edges",
   "/community",
   "/top-docked",

@@ -38,6 +38,18 @@
   --focus-ring: var(--brand-blue);
   --focus-ring-on-dark: var(--brand-mint);
 
+  /* Authenticated mobile app semantics; public marketing keeps its light theme. */
+  --app-canvas: var(--brand-navy);
+  --app-raised: var(--surface-dark-raised);
+  --app-text: var(--brand-white);
+  --app-text-secondary: var(--brand-cool-gray);
+  --app-border: var(--border-on-dark);
+  --app-selected: color-mix(in srgb, var(--brand-blue) 45%, var(--brand-white));
+  --app-header-height: 56px;
+  --app-nav-height: 64px;
+  --app-gutter: 16px;
+  --app-card-radius: 14px;
+
   /* Functional states are separate from brand accents and never imply validation. */
   --status-success-text: #00644f;
   --status-success-surface: #e6fff7;

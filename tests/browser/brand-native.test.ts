@@ -2,6 +2,11 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import path from "node:path";
+
+const evidence = process.env.DOCKED_QA_ROOT
+  ? path.join(process.env.DOCKED_QA_ROOT, "brand-native")
+  : "docs/qa/edge-signal-brand/native";
 
 const shells: [string, string][] = JSON.parse(
   execFileSync(
@@ -48,9 +53,9 @@ for (const width of [390, 1366]) {
         ),
       ).toBe(true);
       expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
-      mkdirSync("docs/qa/edge-signal-brand/native", { recursive: true });
+      mkdirSync(evidence, { recursive: true });
       await page.screenshot({
-        path: `docs/qa/edge-signal-brand/native/${name}-${width}.png`,
+        path: path.join(evidence, `${name}-${width}.png`),
         fullPage: true,
       });
     }

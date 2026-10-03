@@ -60,6 +60,14 @@ for (const status of [
       detail: true,
     }),
   );
+  fixtures[`compact_${status}`] = renderToStaticMarkup(
+    createElement(EdgeCard, {
+      tip,
+      timezone: "Australia/Melbourne",
+      now: Date.parse("2026-10-02T06:01:00Z"),
+      compact: true,
+    }),
+  );
 }
 fixtures.no_edge = renderToStaticMarkup(
   createElement(NoEdge, {

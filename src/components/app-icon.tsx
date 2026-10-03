@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 export type AppIconName =
   | "home"
+  | "feed"
+  | "points"
   | "edge"
   | "plus"
   | "community"
@@ -16,6 +18,18 @@ export type AppIconName =
   | "settings"
   | "arrow";
 const paths: Record<AppIconName, ReactNode> = {
+  feed: (
+    <>
+      <rect x="4" y="3" width="16" height="18" rx="3" />
+      <path d="M8 8h8M8 12h8M8 16h5" />
+    </>
+  ),
+  points: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m12 6 1.9 3.8 4.1.6-3 2.9.7 4.1-3.7-1.9-3.7 1.9.7-4.1-3-2.9 4.1-.6Z" />
+    </>
+  ),
   home: (
     <>
       <path d="m3 10 9-7 9 7v10H3Z" />
