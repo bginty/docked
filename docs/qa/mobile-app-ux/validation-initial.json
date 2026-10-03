@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-10-03T11:02:08.457Z",
+  "sourceCommit": "bdef27942096d7463b469231cdd8410a9d5b130c",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "productionWebBuild": "PASS",
+  "platform": {
+    "passed": 195,
+    "failed": 0
+  },
+  "databaseRls": {
+    "passed": 82,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 56,
+    "failed": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "includesNewMobileCases": 9
+  },
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "clientSecretScan": {
+    "status": "PASS",
+    "filesScanned": 50,
+    "bytesScanned": 1707069,
+    "findings": [],
+    "errors": [],
+    "knownSourceFiles": 2,
+    "knownSecretValues": 4
+  },
+  "visualViewportWidths": [
+    320,
+    360,
+    390,
+    412,
+    430,
+    768,
+    1366,
+    1440,
+    1920
+  ],
+  "notes": [
+    "Full browser run passed outside Windows sandbox; two earlier sandboxed runs were interrupted after stalling and are not counted as completed runs.",
+    "Mobile keyboard/safe-area behavior verified in browser fixtures; physical Samsung S24 not connected.",
+    "No authentication/API/RLS/pricing/provider/ledger rules changed. Hosted real-session acceptance is reported separately."
+  ]
+}

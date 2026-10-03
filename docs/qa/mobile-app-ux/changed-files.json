@@ -1,0 +1,2104 @@
+{
+  "baseCommit": "0b1de08",
+  "branch": "codex/docked-value-platform",
+  "webSourceCommit": "6cd166187c30596d3f97d793606a2398adf6f43c",
+  "implementationCommits": [
+    "bdef279",
+    "6cd1661",
+    "aa27504"
+  ],
+  "files": [
+    {
+      "path": "android/app/build.gradle",
+      "status": "M"
+    },
+    {
+      "path": "artifacts/android/manifest-v3.json",
+      "status": "A"
+    },
+    {
+      "path": "artifacts/android/manifest.json",
+      "status": "M"
+    },
+    {
+      "path": "artifacts/android/README.md",
+      "status": "M"
+    },
+    {
+      "path": "capacitor.config.ts",
+      "status": "M"
+    },
+    {
+      "path": "config/android-preview.json",
+      "status": "M"
+    },
+    {
+      "path": "docs/BUILD_STATUS.md",
+      "status": "M"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/apk-audit.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/apk-build.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/apk-details-v3-comparison.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/apk-extraction.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/apk-strong-secret-scan.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/assets-secret-scan.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/BUILD_COMMANDS.md",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/apk-audit.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/apk-build.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/apk-details-v3-comparison.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/apk-extraction.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/apk-strong-secret-scan.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/artifact-manifest.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/assets-secret-scan.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/native-config-and-preservation.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/preflight.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/preservation.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/initial-candidate/README.md",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/native-config-and-preservation.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/preflight.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/android/README.md",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/article-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/article-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/article-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/article-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/article-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/article-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/community-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/community-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/community-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/community-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/community-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/community-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/compose-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/compose-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/compose-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/compose-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/compose-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/compose-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/dashboard-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/dashboard-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/dashboard-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/dashboard-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/dashboard-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/dashboard-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-1440-dark.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-1440-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-320-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-390-dark.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-390-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-768-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-compose-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-compose-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-compose-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-compose-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-compose-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-compose-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-1440-dark-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-1440-light-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-390-dark-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-390-light-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-home-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-notifications-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-notifications-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-notifications-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-notifications-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-notifications-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-notifications-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-1440-dark-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-1440-light-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-390-dark-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-390-light-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/DEMO-profile-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/edges-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/edges-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/edges-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/edges-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/edges-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/edges-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/home-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/home-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/home-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/home-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/home-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/home-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-1440-dark-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-1440-light-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-320-light-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-390-dark-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-390-light-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/homepage-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/join-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/join-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/join-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/join-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/join-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/join-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/login-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/login-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/login-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/login-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/login-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/login-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/notifications-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/notifications-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/notifications-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/notifications-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/notifications-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/notifications-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/offline.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/profile-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/profile-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/profile-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/profile-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/profile-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/profile-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/public-1440-dark.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/public-1440-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/public-320-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/public-390-dark.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/public-390-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/public-768-light.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/results-1440-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/results-1440-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/results-320-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/results-390-dark.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/results-390-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-browser/results-768-light.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-native/native-offline-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-native/native-offline-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-native/pwa-offline-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand-native/pwa-offline-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/brand320-rerun.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/browser-final-results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/browser-results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/CHANGED_FILES.md",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/changed-files.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/deployment-source-audit.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/deployment-source-final-audit.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/evidence-secret-scan.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T10-58-24-688Z/edges-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T10-58-24-688Z/edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T10-58-24-688Z/results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T10-59-58-178Z/edges-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T10-59-58-178Z/edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T10-59-58-178Z/results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-01-00-174Z/edges-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-01-00-174Z/edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-01-00-174Z/results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/edges-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/failure-following-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/feed-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/feed-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/following-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/following-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-03-16-169Z/results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/edges-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/edges-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/edges-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/edges-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/edges-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/feed-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/feed-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/feed-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/feed-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/feed-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/feed-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/following-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/following-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/following-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/following-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/following-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/following-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/my-edge-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/my-edge-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/my-edge-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/my-edge-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/my-edge-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/my-edge-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/points-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/points-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/points-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/points-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/points-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/points-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-05-36-501Z/results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/edges-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/edges-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/edges-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/edges-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/edges-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/feed-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/feed-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/feed-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/feed-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/feed-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/feed-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/following-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/following-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/following-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/following-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/following-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/following-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/my-edge-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/my-edge-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/my-edge-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/my-edge-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/my-edge-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/my-edge-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/points-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/points-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/points-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/points-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/points-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/points-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosted/2026-10-03T11-13-47-878Z/results.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosting-audit.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/hosting-initial-audit.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/local-validation-exits.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-1366.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-360.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-390.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-412.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-360-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-360.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-edges-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-360-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-360.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-feed-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-360-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-360.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-1366.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-360.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-360.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-390.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-412.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-following-suggestions-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-360-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-360.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-my-edge-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-official-member-identity-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-360-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-360.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-412-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-points-412.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/mobile-app/DEMO-safe-area-keyboard.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/OPERATOR_ACCEPTANCE.md",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/operator/cleanup.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/operator/plan.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/operator/provision.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/README.md",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/reference-ui/DEMO-reference-cards-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/reference-ui/DEMO-reference-cards-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/reference-ui/DEMO-reference-cards-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/reference-ui/DEMO-reference-reconfirmation-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/validation-initial.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/validation.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/audit-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/audit-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/audit-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/audit-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/audit-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/community-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/community-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/community-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/community-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/community-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/competitions-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/competitions-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/competitions-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/competitions-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/competitions-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/compose-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/compose-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/compose-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/compose-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/compose-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/deals-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/deals-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/deals-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/deals-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/deals-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-disabled-deal-draft-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-1366-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-1920-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-390-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-430-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-768-viewport.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-home-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-leaderboard-audit-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-moderation-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-notifications-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-permanent-submitted-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-price-moved-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-profile-loss-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-social-promotional-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/DEMO-top-docked-provisional-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/home-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/home-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/home-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/home-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/home-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/membership-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/membership-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/membership-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/membership-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/membership-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/moderation-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/moderation-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/moderation-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/moderation-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/moderation-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/notifications-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/notifications-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/notifications-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/notifications-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/notifications-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/offline-shell.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/profile-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/profile-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/profile-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/profile-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/profile-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/public-1366.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/public-1920.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/public-390.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/public-430.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/public-768.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/search-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/search-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/search-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/search-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/search-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/admin-locked-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/admin-locked-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/admin-locked-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/admin-locked-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/admin-locked-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/article-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/article-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/article-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/article-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/article-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/browser-1366.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/browser-1920.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/browser-390.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/browser-430.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/browser-768.json",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/edges-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/edges-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/edges-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/edges-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/fixture-no_edge-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/fixture-outage-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/fixture-restricted-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/homepage-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/homepage-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/homepage-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/homepage-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/homepage-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/learn-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/learn-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/learn-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/learn-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/learn-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/member-locked-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/member-locked-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/member-locked-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/member-locked-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/member-locked-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-admin-dashboard-locked-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-article-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-data-health-locked-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-edge-active-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-edge-expired-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-edge-price_below_minimum-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-edge-settled-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-edge-suspended-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-edges-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-forward-paper-locked-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-home-1440.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-home-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-home-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-homepage-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-member-dashboard-locked-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-methodology-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-no-edge-isolated-fixture-320.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-results-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/regression-signup-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/results-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/results-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/results-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/results-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/results-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-basketball-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-basketball-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-basketball-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-basketball-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-basketball-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-football-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-football-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-football-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-football-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-football-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-tennis-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-tennis-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-tennis-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-tennis-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sport-tennis-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sports-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sports-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sports-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sports-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/sports-regression/sports-768.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/top-1366.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/top-1920.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/top-390.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/top-430.png",
+      "status": "A"
+    },
+    {
+      "path": "docs/qa/mobile-app-ux/web-regression/top-768.png",
+      "status": "A"
+    },
+    {
+      "path": "scripts/android-debug.mjs",
+      "status": "M"
+    },
+    {
+      "path": "scripts/configure-hosted-preview.mjs",
+      "status": "M"
+    },
+    {
+      "path": "scripts/hosted-preview/mobile-ux-acceptance.ts",
+      "status": "A"
+    },
+    {
+      "path": "scripts/hosted-preview/mobile-ux-browser.ts",
+      "status": "A"
+    },
+    {
+      "path": "src/app/brand-theme.css",
+      "status": "M"
+    },
+    {
+      "path": "src/app/dashboard/page.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/app/feed/loading.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/app/feed/page.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/app/following/loading.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/app/following/page.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/app/home/page.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/app/manifest.ts",
+      "status": "M"
+    },
+    {
+      "path": "src/app/mobile-app.css",
+      "status": "A"
+    },
+    {
+      "path": "src/app/my-edge/loading.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/app/my-edge/page.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/app/native.css",
+      "status": "M"
+    },
+    {
+      "path": "src/app/points/loading.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/app/points/page.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/components/app-edge-board.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/app-icon.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/app-member-screens.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/components/app-member-ui.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/components/app-screen-loading.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/components/app-shell.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/community-feed.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/community-performance.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/edge-board-header.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/components/edge-card.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/native-bridge.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/pinned-docked-empty.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/components/pinned-docked.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/social-interactions.tsx",
+      "status": "M"
+    },
+    {
+      "path": "src/components/social-timeline.tsx",
+      "status": "A"
+    },
+    {
+      "path": "src/core/native-navigation.ts",
+      "status": "M"
+    },
+    {
+      "path": "src/proxy.ts",
+      "status": "M"
+    },
+    {
+      "path": "tests/browser/brand-native.test.ts",
+      "status": "M"
+    },
+    {
+      "path": "tests/browser/brand-rollout.test.ts",
+      "status": "M"
+    },
+    {
+      "path": "tests/browser/mobile-app.test.ts",
+      "status": "A"
+    },
+    {
+      "path": "tests/browser/phase3.test.ts",
+      "status": "M"
+    },
+    {
+      "path": "tests/fixtures/bundle-community.ts",
+      "status": "A"
+    },
+    {
+      "path": "tests/fixtures/community-demo.tsx",
+      "status": "M"
+    },
+    {
+      "path": "tests/fixtures/render-experience.ts",
+      "status": "M"
+    },
+    {
+      "path": "tests/hosted/mobile-ux/guard.ts",
+      "status": "A"
+    },
+    {
+      "path": "tests/platform/mobile-card-presentation.test.ts",
+      "status": "A"
+    },
+    {
+      "path": "tests/platform/mobile-ux-acceptance-guard.test.ts",
+      "status": "A"
+    },
+    {
+      "path": "tests/platform/native-navigation.test.ts",
+      "status": "M"
+    }
+  ]
+}

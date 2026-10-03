@@ -1,0 +1,77 @@
+{
+  "recordedAt": "2026-10-03T11:03:28.840Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "status": "FAIL",
+  "accountKind": "one disposable operator-provisioned QA account",
+  "genuinePasswordSession": true,
+  "fixtureInjection": false,
+  "mutations": "ordinary login/logout only",
+  "ownerUsed": false,
+  "trace": false,
+  "loginScreenshots": false,
+  "completedViews": 3,
+  "expectedViews": 15,
+  "checks": [
+    {
+      "width": 390,
+      "checkpoint": "genuine-login-own-id-secure-cookies"
+    },
+    {
+      "width": 390,
+      "checkpoint": "read-only-closed-sports-and-admin-gates"
+    }
+  ],
+  "results": [
+    {
+      "path": "/edges",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "edges-390.png"
+    },
+    {
+      "path": "/feed",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "feed-390.png"
+    },
+    {
+      "path": "/following",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1
+        }
+      ],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "following-390.png"
+    }
+  ],
+  "failedStage": "accessibility-and-evidence",
+  "failedWidth": 390,
+  "failedRoute": "/following",
+  "failedCheckpoint": "accessibility-console-clean",
+  "failureDom": {
+    "route": "/following",
+    "authenticatedShells": 1,
+    "visibleAuthenticatedShells": 1,
+    "headings": 1,
+    "visibleHeadings": 1,
+    "loadingBranches": 0,
+    "feedBodies": 0,
+    "visibleFeedBodies": 0
+  }
+}

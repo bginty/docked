@@ -1,0 +1,773 @@
+{
+  "sourceCommit": "6cd166187c30596d3f97d793606a2398adf6f43c",
+  "buildId": "BDZAG7Au8p0FB2Dhlo6Yr",
+  "fullRun": {
+    "stats": {
+      "startTime": "2026-10-03T11:10:12.238Z",
+      "duration": 1009335.786,
+      "expected": 59,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "tests": [
+      {
+        "file": "brand-native.test.ts",
+        "title": "approved offline branding remains readable and self-contained at 390px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2493,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-native.test.ts",
+        "title": "approved offline branding remains readable and self-contained at 1366px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2464,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal public routes at 320px / light OS preference",
+        "status": "unexpected",
+        "results": [
+          {
+            "status": "timedOut",
+            "durationMs": 241720,
+            "errors": [
+              {
+                "message": "Test timeout of 240000ms exceeded."
+              },
+              {
+                "message": "Error: page.goto: Test timeout of 240000ms exceeded.\nCall log:\n  - navigating to \"http://localhost:3000/community\", waiting until \"networkidle\"\n\n\n  357 |       receipts = [];\n  358 |     for (const [name, route] of Object.entries(routes)) {\n> 359 |       const response = await page.goto(route, { waitUntil: \"networkidle\" });\n      |                                   ^\n  360 |       expect(response?.status()).toBe(200);\n  361 |       await expect(page.locator(\"h1\")).toHaveCount(1);\n  362 |       const result = await checks(page, log);\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\brand-rollout.test.ts:359:35"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 320px / light OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 13110,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal public routes at 390px / light OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 41797,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 390px / light OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 10812,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal public routes at 768px / light OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 33480,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 768px / light OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 8923,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal public routes at 1440px / light OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 38395,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 1440px / light OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 11073,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal public routes at 390px / dark OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 32314,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 390px / dark OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 11197,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal public routes at 1440px / dark OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 39052,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal isolated member UI at 1440px / dark OS preference",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 9876,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "brand-rollout.test.ts",
+        "title": "Edge Signal PWA/favicon/offline artwork serves approved supplied bytes",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3016,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "experience.test.ts",
+        "title": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 9299,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "experience.test.ts",
+        "title": "article metadata, real PNG social card and allowlisted sports pages",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3954,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "experience.test.ts",
+        "title": "preview public pages remain truthful, accessible and usable without an account",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 20081,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "journeys.test.ts",
+        "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 9840,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "journeys.test.ts",
+        "title": "education and pending research are usable without an account",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4383,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "journeys.test.ts",
+        "title": "restricted public/API, protected admin and no fake signup success",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1723,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "journeys.test.ts",
+        "title": "retired product routes, legacy support and invalid unsubscribe",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1108,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "journeys.test.ts",
+        "title": "secondary routes pass automated accessibility scan",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 6670,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "approved five-tab mobile composition, contrast and content clearance at 360px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 11940,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "approved five-tab mobile composition, contrast and content clearance at 390px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 11343,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "approved five-tab mobile composition, contrast and content clearance at 412px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 10762,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "approved five-tab mobile composition, contrast and content clearance at 1366px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 8124,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "mobile null metrics, profile controls and compact locked quotes remain honest",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2512,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "mobile safe insets and keyboard occlusion preserve controls",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2327,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "all app destinations reject anonymous data access and preserve direct URL routing",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 9377,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "continuous feed appends unique posts and clears revoked or changed account content",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1979,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "bounded timeline continues from the first unconsumed page without dropping posts",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2545,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 360px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3604,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 390px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 5581,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 412px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3673,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "mobile-app.test.ts",
+        "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 1366px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3948,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "Phase3 public gates and disabled previews remain accessible at 390px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 22735,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "Phase3 public gates and disabled previews remain accessible at 430px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 22403,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "Phase3 public gates and disabled previews remain accessible at 768px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 23635,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "Phase3 public gates and disabled previews remain accessible at 1366px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 24742,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "Phase3 public gates and disabled previews remain accessible at 1920px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 25283,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "DEMO app hierarchy, all outcomes, provisional ranking and touch navigation",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 19544,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "DEMO verified Edge review requires permanent confirmation again when provider price moves",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3567,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "DEMO unsupported and promotional claims stay social-only; social interactions use distinct actions",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3342,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "DEMO notification consent and moderation are separate from record corrections",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3358,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "DEMO administrative drafts remain disabled and leaderboard captures are auditable",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 5497,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "phase3.test.ts",
+        "title": "PWA serves an offline shell without caching private pages or APIs",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2019,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "reference-price.test.ts",
+        "title": "web deep-link aliases preserve canonical visibility routes",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1538,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "reference-price.test.ts",
+        "title": "reference card hierarchy and unavailable data remain honest at mobile widths",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 6050,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "reference-price.test.ts",
+        "title": "reference composer sends canonical market selection only and reconfirms a moved benchmark",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2686,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "timestamp-hydration.test.ts",
+        "title": "UTC server markup hydrates safely into Australia/Sydney local time",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 641,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "timestamp-hydration.test.ts",
+        "title": "UTC server markup hydrates safely into America/New_York local time",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 460,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "sports identity remains accessible and honest at 390px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 31925,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "sports identity remains accessible and honest at 430px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 30304,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "sports identity remains accessible and honest at 768px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 32777,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "sports identity remains accessible and honest at 1366px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 34096,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "sports identity remains accessible and honest at 1920px",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 34953,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 11106,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2934,
+            "errors": []
+          }
+        ]
+      },
+      {
+        "file": "visual-sports.test.ts",
+        "title": "atmospheric no-edge imagery preserves restricted and outage meanings",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4860,
+            "errors": []
+          }
+        ]
+      }
+    ]
+  },
+  "unchangedIsolatedRerun": {
+    "recordedAt": "2026-10-03T11:18:18.333Z",
+    "sourceCommit": "6cd166187c30596d3f97d793606a2398adf6f43c",
+    "buildId": "BDZAG7Au8p0FB2Dhlo6Yr",
+    "origin": "http://localhost:3000",
+    "test": "Edge Signal public routes at 320px / light OS preference",
+    "status": "PASS",
+    "testsPassed": 1,
+    "testsFailed": 0,
+    "testDurationSeconds": 38.4,
+    "runnerDurationSeconds": 45.2,
+    "routeCount": 12,
+    "account": "anonymous; no account or credentials used",
+    "fixtures": false,
+    "sourceOrTestChanges": false,
+    "timeoutChanged": false,
+    "consoleOrPageErrors": 0,
+    "accessibilityViolations": 0,
+    "horizontalOverflow": false,
+    "failedBrandAssets": 0,
+    "externalFontRequests": 0,
+    "reporter": "list only; ongoing full-suite JSON report was not overwritten",
+    "consoleLog": "private-data/mobile-brand320-rerun.log",
+    "detailedReceipt": "docs/qa/mobile-app-ux/brand-browser/public-320-light.json",
+    "interpretation": "The earlier full-suite timeout did not reproduce in the isolated unchanged case. This pass does not establish the cause of that timeout; retain the original failed result separately."
+  },
+  "distinctCasesWithPassingEvidence": 60,
+  "fullRunInitiallyGreen": false,
+  "knownLimitation": "One 320px public case timed out waiting for community networkidle; passed unchanged on isolated rerun. Underlying cause remains unconfirmed.",
+  "preservedOriginalTraceDirectory": "private-data/mobile-app-ux/local-browser-timeout"
+}

@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-10-03T11:14:10.8228684Z",
+  "status": "PRESERVED",
+  "candidateSha256": "f1d6089fc749626ade061b472e2aab6ac44c13e808c8fe8be78182718bf8238b",
+  "candidateBytes": 9262106,
+  "binaryArchiveVerified": true,
+  "artifactManifestSha256": "de91bd636ab1c6256c0150d64b1d02d5fa662184800f29c94ac650f16fa4d6be",
+  "auditCopies": [
+    {
+      "file": "apk-audit.json",
+      "sha256": "cdf22cfd66ecf9c97f1dc13870e77bf2a9ed63d0e452b4aa27a1ef26527b5ad3"
+    },
+    {
+      "file": "apk-build.json",
+      "sha256": "9dfeeafe451cf7b88ba0a913d1f95c6fa84916325faacbc7d509f7b94acb814d"
+    },
+    {
+      "file": "apk-details-v3-comparison.json",
+      "sha256": "59fbd004f9a860ae4b505b22a5849482e456ec525e539a583a0b2ef8c0407265"
+    },
+    {
+      "file": "apk-extraction.json",
+      "sha256": "a252abbc02ddd53b8765078b817693b61b77082bde0db810beb09ddec6415913"
+    },
+    {
+      "file": "apk-strong-secret-scan.json",
+      "sha256": "a38ca1f59640e634fe57dd8dbf18634f8c855aec1bf37ff4f774f329a67ee0e2"
+    },
+    {
+      "file": "assets-secret-scan.json",
+      "sha256": "39e4e7d42fe6ba0fd91982f61c4d78f14d78b502ba34fd5bee62c678b7b4cef9"
+    },
+    {
+      "file": "native-config-and-preservation.json",
+      "sha256": "5fab402e7671547ef96537a79724c825450bd295cfbd757ab71aad4a5952384e"
+    },
+    {
+      "file": "preflight.json",
+      "sha256": "d4e048bebf51ef9cfb9284b0f4871fd41e9b440b980eb8e46f55d10713bb4b75"
+    }
+  ],
+  "classification": "INITIAL_CANDIDATE_NOT_FINAL_DELIVERY"
+}

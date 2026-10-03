@@ -1,0 +1,244 @@
+{
+  "recordedAt": "2026-10-03T11:06:37.239Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "status": "FAIL",
+  "accountKind": "one disposable operator-provisioned QA account",
+  "genuinePasswordSession": true,
+  "fixtureInjection": false,
+  "mutations": "ordinary login/logout only",
+  "ownerUsed": false,
+  "trace": false,
+  "loginScreenshots": false,
+  "completedViews": 15,
+  "expectedViews": 15,
+  "checks": [
+    {
+      "width": 390,
+      "checkpoint": "genuine-login-own-id-secure-cookies"
+    },
+    {
+      "width": 390,
+      "checkpoint": "read-only-closed-sports-and-admin-gates"
+    },
+    {
+      "width": 390,
+      "checkpoint": "logout-private-api-denial-and-no-external-mutations"
+    },
+    {
+      "width": 412,
+      "checkpoint": "genuine-login-own-id-secure-cookies"
+    },
+    {
+      "width": 412,
+      "checkpoint": "read-only-closed-sports-and-admin-gates"
+    },
+    {
+      "width": 412,
+      "checkpoint": "logout-private-api-denial-and-no-external-mutations"
+    },
+    {
+      "width": 1366,
+      "checkpoint": "genuine-login-own-id-secure-cookies"
+    },
+    {
+      "width": 1366,
+      "checkpoint": "read-only-closed-sports-and-admin-gates"
+    },
+    {
+      "width": 1366,
+      "checkpoint": "logout-private-api-denial-and-no-external-mutations"
+    }
+  ],
+  "cycles": [
+    {
+      "width": 390,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "width": 412,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    },
+    {
+      "width": 1366,
+      "consoleErrors": 0,
+      "pageErrors": 0
+    }
+  ],
+  "results": [
+    {
+      "path": "/edges",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "edges-390.png"
+    },
+    {
+      "path": "/feed",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "feed-390.png"
+    },
+    {
+      "path": "/following",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1,
+          "selectors": [
+            ".official-badge"
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "following-390.png"
+    },
+    {
+      "path": "/points",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "points-390.png"
+    },
+    {
+      "path": "/my-edge",
+      "width": 390,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "my-edge-390.png"
+    },
+    {
+      "path": "/edges",
+      "width": 412,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "edges-412.png"
+    },
+    {
+      "path": "/feed",
+      "width": 412,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "feed-412.png"
+    },
+    {
+      "path": "/following",
+      "width": 412,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1,
+          "selectors": [
+            ".official-badge"
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "following-412.png"
+    },
+    {
+      "path": "/points",
+      "width": 412,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "points-412.png"
+    },
+    {
+      "path": "/my-edge",
+      "width": 412,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "my-edge-412.png"
+    },
+    {
+      "path": "/edges",
+      "width": 1366,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "edges-1366.png"
+    },
+    {
+      "path": "/feed",
+      "width": 1366,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "feed-1366.png"
+    },
+    {
+      "path": "/following",
+      "width": 1366,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "following-1366.png"
+    },
+    {
+      "path": "/points",
+      "width": 1366,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "points-1366.png"
+    },
+    {
+      "path": "/my-edge",
+      "width": 1366,
+      "status": 200,
+      "refreshed": true,
+      "axeViolations": [],
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "screenshot": "my-edge-1366.png"
+    }
+  ],
+  "failedStage": "complete-matrix-quality",
+  "failedWidth": 1366,
+  "failedRoute": "/my-edge",
+  "failedCheckpoint": "accessibility-and-entire-cycle-console-clean"
+}

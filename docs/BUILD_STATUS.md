@@ -2,7 +2,13 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: approved Edge Signal branding
+## Current milestone: approved mobile application UX
+
+Continued from clean `0b1de08` with the existing approved brand and technical base. The five canonical mobile tabs are Edges, Feed, Following, Points and My Edge; `/home` opens Edges while legacy feed query links remain usable. A compact navy shell, safe-area-aware navigation, compact records/social timelines and existing account controls replace the mobile website hierarchy. Points/levels and sport-follow persistence remain explicitly unavailable; no sporting data or performance has been inserted. APIs, pricing, RLS, authentication and benchmark integrity are preserved. Validation, Preview/APK receipts and the exact file inventory are in [the mobile UX report](qa/mobile-app-ux/README.md).
+
+Final web source `6cd1661` is on the isolated Preview alias. Genuine hosted acceptance passed all 15 screen/viewport checks and three login/logout cycles; its temporary account was erased and the retained owner is unchanged. The production web build, typecheck/lint, 195 platform tests, 82 database/RLS tests and final Android build passed. The v4 APK is `artifacts/android/Docked-Preview-S24-v4-Mobile-App.apk` (4 / 1.3-preview); actual v3 signing/package compatibility and complete archive/secret audits passed. Physical Samsung S24 verification is still pending. Production, DNS and external sending remain untouched.
+
+## Preserved milestone: approved Edge Signal branding
 
 Continued from clean `d10e974` on the existing branch. The supplied Desktop production pack is preserved locally and its runtime assets are versioned unchanged. Web headers, authentication, member navigation, official profiles, metadata/social images, PWA icons/offline screens and Android launcher/splash resources use the approved artwork and **BUILT FOR AN EDGE** tagline. Central theme tokens apply the approved navy, blue, mint, gray and white palette, with self-hosted Sora and accessible semantic colours. Product logic, functional icons, APIs, authentication and data behaviour are preserved.
 

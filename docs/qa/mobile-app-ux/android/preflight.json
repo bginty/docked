@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-03T10:46:49.7409828Z",
+  "status": "PREPARED_NOT_BUILT",
+  "v4Build": "NOT_RUN",
+  "physicalS24": "UNVERIFIED",
+  "deviceInventory": "NO_CONNECTED_DEVICES",
+  "deviceActions": "READ_ONLY_ADB_INVENTORY_ONLY",
+  "installedPlatforms": [
+    34,
+    35,
+    36
+  ],
+  "installedBuildTools": [
+    "34.0.0",
+    "35.0.0",
+    "36.0.0"
+  ],
+  "javaVersion": "21.0.6",
+  "priorArtifact": "artifacts/android/Docked-Preview-S24-v3-Edge-Signal.apk",
+  "priorBytes": 9262110,
+  "priorSha256": "d34678b205e7a4ad21589345d642cde64bb49c865ce076df66c929cc70f97df0",
+  "preservationRegression": "PASS 1/1",
+  "awaiting": "Root-verified new preview deployment receipt before build"
+}
