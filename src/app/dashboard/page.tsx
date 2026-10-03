@@ -50,6 +50,9 @@ export default async function Dashboard() {
         </p>
       </PageHeading>
       <nav className="tab-nav" aria-label="Dashboard sections">
+        <Link href="/home">Docked home</Link>
+        <Link href="/profile">Community profile</Link>
+        <Link href="/notifications">Notification centre</Link>
         <a href="#saved">Saved tips</a>
         <a href="#preferences">Preferences</a>
         <a href="#personal">Personal tracking</a>

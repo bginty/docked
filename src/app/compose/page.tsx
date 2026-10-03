@@ -1,0 +1,46 @@
+import { AppShell } from "@/components/app-shell";
+import {
+  AppHeading,
+  AccessGate,
+  IntegrityNote,
+} from "@/components/community-basics";
+import { SocialComposer } from "@/components/social-composer";
+import { appViewer } from "@/server/app-view";
+import { communityProfile } from "@/server/community-social";
+import Link from "next/link";
+export const dynamic = "force-dynamic";
+export const metadata = {
+  title: "Create a post or Edge",
+  robots: { index: false, follow: false },
+};
+export default async function Compose() {
+  const { who, configured } = await appViewer();
+  const social = who ? await communityProfile() : null;
+  return (
+    <AppShell authenticated={!!who}>
+      <AppHeading eyebrow="CREATE" title="Share a perspective. Own the record.">
+        A social post starts a discussion. An Edge becomes a permanent,
+        structured pre-event record.
+      </AppHeading>
+      {who ? (
+        social?.status === "ready" && !social.profile ? (
+          <section className="app-empty">
+            <h2>Create your community identity first.</h2>
+            <p>
+              Choose a handle and profile visibility before publishing a post or
+              permanent Edge.
+            </p>
+            <Link className="button" href="/profile">
+              Create your profile
+            </Link>
+          </section>
+        ) : (
+          <SocialComposer />
+        )
+      ) : (
+        <AccessGate configured={configured} />
+      )}
+      <IntegrityNote />
+    </AppShell>
+  );
+}

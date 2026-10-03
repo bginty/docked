@@ -1,12 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
 import "./sports-visuals.css";
 import "./sports-experience.css";
+import "./community-app.css";
 import { config } from "@/server/config";
 import { AnalyticsObserver } from "@/components/analytics-observer";
 import { SportIcon } from "@/components/sport-icon";
 export const metadata: Metadata = {
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "Docked" },
+  icons: { apple: "/icons/docked-192.png", icon: "/icons/docked-192.png" },
   metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
   title: {
     default: "Docked — Only when the price offers value.",
@@ -33,6 +37,7 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
 };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#142b35" };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -61,6 +66,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 Sports
               </Link>
               <Link href="/research">Research</Link>
+              <Link href="/community">Community</Link>
               <Link href="/learn">Learn</Link>
               <Link href="/methodology">Methodology</Link>
             </nav>

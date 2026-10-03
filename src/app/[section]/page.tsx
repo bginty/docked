@@ -20,6 +20,7 @@ import { LedgerChart } from "@/components/ledger-chart";
 import { SportImage } from "@/components/sport-image";
 import { ArticleImage } from "@/components/article-image";
 import { SportIcon } from "@/components/sport-icon";
+import { AppEdgeBoard } from "@/components/app-edge-board";
 const titles: Record<string, string> = {
   edges: "The opportunity board",
   results: "The complete record",
@@ -104,6 +105,8 @@ export default async function Page({
   let content: React.ReactNode;
   const eyebrow = "DOCKED / " + section.replaceAll("-", " ").toUpperCase();
   if (section === "edges") {
+    const appMember = config().database && config().auth ? await identity() : null;
+    if (appMember) return <AppEdgeBoard query={query} timezone={appMember.profile.timezone} format={appMember.profile.odds_format}/>;
     const [region, status, tips, monitoring, viewer, catalogue] =
       await Promise.all([
         regionAccess(),
