@@ -12,6 +12,7 @@ import { AppIcon } from "./app-icon";
 import { OfficialBadge } from "./community-basics";
 import { LocalTimestamp } from "./local-timestamp";
 import { BrandLogo } from "./brand-logo";
+import { useClientReady } from "./use-client-ready";
 export async function communityAction(
   body: Record<string, unknown>,
   endpoint = "/api/community",
@@ -41,6 +42,7 @@ export function ProfileActions({ profile }: { profile: SocialProfile }) {
   );
 }
 function ProfileActionControls({ profile }: { profile: SocialProfile }) {
+  const ready = useClientReady();
   const router = useRouter(),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),
@@ -79,11 +81,11 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
       </Link>
     );
   return (
-    <div>
+    <div data-profile-actions-ready={ready}>
       <div className="actions">
         <button
           className="button small"
-          disabled={busy}
+          disabled={!ready || busy}
           onClick={() => act("follow", !following)}
         >
           {following ? "Unfollow" : "Follow"}
@@ -92,13 +94,13 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
           <summary>Member controls</summary>
           <div className="social-menu">
             <button
-              disabled={busy}
+              disabled={!ready || busy}
               onClick={() => act("mute", !profile.isMuted)}
             >
               {profile.isMuted ? "Unmute" : "Mute"}
             </button>
             <button
-              disabled={busy}
+              disabled={!ready || busy}
               onClick={() => act("block", !profile.isBlocked)}
             >
               {profile.isBlocked ? "Unblock" : "Block"}
@@ -112,7 +114,7 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
           <input
             type="checkbox"
             checked={notify}
-            disabled={busy}
+            disabled={!ready || busy}
             onChange={(e) => act("follow", true, e.target.checked)}
           />
           <span>
@@ -308,6 +310,7 @@ export function SocialCard({
   compact?: boolean;
   initialCommentsOpen?: boolean;
 }) {
+  const ready = useClientReady();
   const router = useRouter(),
     [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false),
@@ -338,7 +341,10 @@ export function SocialCard({
     }
   }
   return (
-    <article className={`social-card ${compact ? "compact-social-card" : ""}`}>
+    <article
+      className={`social-card ${compact ? "compact-social-card" : ""}`}
+      data-social-ready={ready}
+    >
       <div className={`social-author ${compact ? "social-author-row" : ""}`}>
         <span className="avatar" aria-hidden="true">
           {post.author.isOfficial ? (
@@ -428,7 +434,7 @@ export function SocialCard({
       )}
       <div className="social-actions">
         <button
-          disabled={busy}
+          disabled={!ready || busy}
           aria-pressed={post.isReacted}
           onClick={() => action("react", { enabled: !post.isReacted })}
         >
@@ -437,6 +443,7 @@ export function SocialCard({
           <span className={compact ? "sr-only" : undefined}> reactions</span>
         </button>
         <button
+          disabled={!ready}
           aria-expanded={showComments}
           onClick={() => setShowComments(!showComments)}
         >
@@ -445,7 +452,7 @@ export function SocialCard({
           <span className={compact ? "sr-only" : undefined}> comments</span>
         </button>
         <button
-          disabled={busy}
+          disabled={!ready || busy}
           aria-pressed={post.isSaved}
           onClick={() => action("save", { enabled: !post.isSaved })}
         >
@@ -454,7 +461,7 @@ export function SocialCard({
             {post.isSaved ? "Saved" : "Save"}
           </span>
         </button>
-        <button onClick={share}>
+        <button disabled={!ready} onClick={share}>
           <AppIcon name="share" size={18} />
           <span className={compact ? "sr-only" : undefined}>Share</span>
         </button>
@@ -463,7 +470,10 @@ export function SocialCard({
           <div className="social-menu">
             <ReportForm postId={post.id} />
             {post.author.isOwn && (
-              <button disabled={busy} onClick={() => action("delete_post")}>
+              <button
+                disabled={!ready || busy}
+                onClick={() => action("delete_post")}
+              >
                 Delete social commentary
               </button>
             )}

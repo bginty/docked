@@ -1,24 +1,24 @@
 "use client";
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { communityAction } from "./social-interactions";
 import { EdgeComposer } from "./edge-composer";
 import { NativeImagePicker } from "./native-image-picker";
 import { PreviewEdgeComposer } from "./preview-edge-composer";
+import { useClientReady } from "./use-client-ready";
 export function SocialComposer({
   previewFixtures = false,
 }: {
   previewFixtures?: boolean;
 }) {
   const [mode, setMode] = useState<"social" | "edge" | "preview">("edge"),
-    [ready, setReady] = useState(false),
     [body, setBody] = useState(""),
     [mediaIds, setMedia] = useState<string[]>([]),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),
     [key, setKey] = useState(() => crypto.randomUUID());
   const router = useRouter();
-  useEffect(() => setReady(true), []);
+  const ready = useClientReady();
   async function upload(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);

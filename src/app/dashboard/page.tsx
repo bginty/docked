@@ -47,10 +47,8 @@ export default async function Dashboard() {
     <AppShell authenticated>
       <div className="app-settings">
         <AppHeading eyebrow="YOUR ACCOUNT" title="Settings & saved">
-          <p>
-            Your saved tips and preferences. Personal tracking never changes
-            Docked’s official record.
-          </p>
+          Your saved tips and preferences. Personal tracking never changes
+          Docked’s official record.
         </AppHeading>
         <nav className="tab-nav" aria-label="Dashboard sections">
           <Link href="/my-edge">My Edge</Link>
