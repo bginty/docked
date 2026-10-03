@@ -47,6 +47,7 @@ const artifactOutput = path.join(
 );
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
+const hostedFilename = "Docked-Preview-S24-v4-Mobile-App.apk";
 preserveAndroidApks(artifactDelivery, artifactArchive);
 for (const variant of ["debug", "preview"]) {
   preserveAndroidApks(
@@ -70,16 +71,14 @@ if (hosted) {
   const output = path.join(root, "android/app/build/outputs/apk/preview");
   copyFileSync(
     path.join(output, "app-preview.apk"),
-    path.join(output, "Docked-Preview-S24-v3-Edge-Signal.apk"),
+    path.join(output, hostedFilename),
   );
   mkdirSync(artifactDelivery, { recursive: true });
   copyFileSync(
     path.join(output, "app-preview.apk"),
-    path.join(artifactDelivery, "Docked-Preview-S24-v3-Edge-Signal.apk"),
+    path.join(artifactDelivery, hostedFilename),
   );
-  console.log(
-    "Created artifacts/android/Docked-Preview-S24-v3-Edge-Signal.apk",
-  );
+  console.log(`Created artifacts/android/${hostedFilename}`);
 }
 preserveAndroidApks(artifactOutput, artifactArchive);
 preserveAndroidApks(artifactDelivery, artifactArchive);

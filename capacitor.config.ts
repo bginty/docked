@@ -26,7 +26,7 @@ const config: CapacitorConfig = {
   plugins: {
     CapacitorHttp: { enabled: false },
     CapacitorCookies: { enabled: false },
-    SystemBars: { insetsHandling: "css", style: "LIGHT", hidden: false },
+    SystemBars: { insetsHandling: "css", style: "DARK", hidden: false },
     SplashScreen: {
       launchShowDuration: 800,
       backgroundColor: brand.colors.navy,

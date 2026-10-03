@@ -160,6 +160,11 @@ if (mode === "--configure-env") {
   }
   console.log(JSON.stringify(summary));
 } else if (mode === "--audit") {
+  const reportPath =
+    process.argv[3] ?? "docs/qa/android-https-preview/hosting-audit.json";
+  // Keep prior milestone receipts immutable when auditing a later preview.
+  if (!/^docs\/qa\/[a-z0-9-]+\/hosting-audit\.json$/.test(reportPath))
+    throw new Error("Audit receipt must stay in a named QA milestone directory");
   const active = JSON.parse(
     await readFile("private-data/hosted-deploy/active-deployment.json", "utf8"),
   );
@@ -193,10 +198,25 @@ if (mode === "--configure-env") {
   });
   const status = await statusResponse.json();
   const homeResponse = await fetch(`${config.origin}/home`, {
+    redirect: "manual",
+    signal: AbortSignal.timeout(30000),
+  });
+  // App Router may stream the established loading boundary before redirecting.
+  // Accept only its exact same-origin Edges destination, never an arbitrary URL.
+  const homeEntry = await homeResponse.text();
+  const headerRedirect =
+    [307, 308].includes(homeResponse.status) &&
+    homeResponse.headers.get("location") === "/edges";
+  const streamedRedirect =
+    homeResponse.status === 200 &&
+    /<meta id="__next-page-redirect" http-equiv="refresh" content="[01];url=\/edges"\s*\/>/.test(homeEntry);
+  if (!headerRedirect && !streamedRedirect)
+    throw new Error("Preview app entry must redirect only to the Edges tab");
+  const edgesResponse = await fetch(`${config.origin}/edges`, {
     redirect: "error",
     signal: AbortSignal.timeout(30000),
   });
-  const home = await homeResponse.text();
+  const home = await edgesResponse.text();
   if (
     !statusResponse.ok ||
     status.database !== true ||
@@ -205,8 +225,8 @@ if (mode === "--configure-env") {
     status.publication !== false ||
     status.oddsProviderStatus !== "NOT_CONFIGURED" ||
     status.resultsProviderStatus !== "NOT_CONFIGURED" ||
-    !homeResponse.ok ||
-    !home.includes("Sport. Perspective. Evidence.") ||
+    !edgesResponse.ok ||
+    !home.includes("The opportunity board") ||
     home.includes("Connect the reviewed preview")
   )
     throw new Error("Public preview health/content check failed");
@@ -244,7 +264,7 @@ if (mode === "--configure-env") {
     ],
   };
   await writeFile(
-    "docs/qa/android-https-preview/hosting-audit.json",
+    reportPath,
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(JSON.stringify(report));
