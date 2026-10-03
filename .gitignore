@@ -16,6 +16,7 @@ playwright-report/
 *.tsbuildinfo
 research-output/
 private-data/
+artifacts/android/*.apk
 mobile/generated/
 .supabase/
 **/supabase/.temp/

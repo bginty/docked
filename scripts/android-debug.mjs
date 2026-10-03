@@ -1,7 +1,8 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, copyFileSync } from "node:fs";
+import { existsSync, copyFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { resolveAndroidTarget } from "./android-preview-config.mjs";
+import { preserveAndroidApks } from "./preserve-android-apks.mjs";
 
 // Uses the installed SDK/JDK. Does not accept new SDK licenses;
 // Gradle can provision a missing build package under an existing license.
@@ -39,6 +40,20 @@ function run(command, args, cwd = root) {
   });
   if (result.error || result.status !== 0) process.exit(result.status || 1);
 }
+const artifactOutput = path.join(
+  root,
+  "android/app/build/outputs/apk",
+  hosted ? "preview" : "debug",
+);
+const artifactArchive = path.join(root, "private-data/android/apk-archive");
+const artifactDelivery = path.join(root, "artifacts/android");
+preserveAndroidApks(artifactDelivery, artifactArchive);
+for (const variant of ["debug", "preview"]) {
+  preserveAndroidApks(
+    path.join(root, "android/app/build/outputs/apk", variant),
+    artifactArchive,
+  );
+}
 run("node", ["scripts/build-app-icons.mjs"]);
 run("node", ["scripts/build-mobile-shell.mjs"]);
 run("npx", ["cap", "sync", "android"]);
@@ -57,7 +72,14 @@ if (hosted) {
     path.join(output, "app-preview.apk"),
     path.join(output, "Docked-Preview-S24-v3-Edge-Signal.apk"),
   );
+  mkdirSync(artifactDelivery, { recursive: true });
+  copyFileSync(
+    path.join(output, "app-preview.apk"),
+    path.join(artifactDelivery, "Docked-Preview-S24-v3-Edge-Signal.apk"),
+  );
   console.log(
-    "Created android/app/build/outputs/apk/preview/Docked-Preview-S24-v3-Edge-Signal.apk",
+    "Created artifacts/android/Docked-Preview-S24-v3-Edge-Signal.apk",
   );
 }
+preserveAndroidApks(artifactOutput, artifactArchive);
+preserveAndroidApks(artifactDelivery, artifactArchive);

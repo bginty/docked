@@ -10,7 +10,9 @@ $env:ANDROID_HOME="$env:LOCALAPPDATA\Android\Sdk"
 npm run android:hosted-preview
 ```
 
-The output is `android/app/build/outputs/apk/preview/Docked-Preview-S24-v2.apk`, labelled **Docked Preview**, package `au.com.docked.app.preview`, version code 2. It uses the existing debug signing identity for an in-place upgrade from version 1. The preview variant disables Android debugging and WebView inspection and packages an HTTPS-only network policy. Its first request opens the actual application's `/home` route. If connectivity is unavailable, its bundled recovery page retries that same preview over Wi-Fi/mobile data. A normal installation needs the APK and internet access; it needs no USB, ADB, laptop, Android Studio or local server afterwards.
+The current deliverable is `artifacts/android/Docked-Preview-S24-v3-Edge-Signal.apk`, labelled **Docked Preview**, package `au.com.docked.app.preview`, version code 3 / `1.2-preview`. Gradle also writes its build-output copy. The existing signing identity is retained for preview upgrades. The preview variant disables Android debugging and WebView inspection and packages an HTTPS-only network policy. Its first request opens the actual application's `/home` route. If connectivity is unavailable, its branded bundled recovery page retries that same preview over Wi-Fi/mobile data. A normal installation needs the APK and internet access; it needs no USB, ADB, laptop, Android Studio or local server afterwards.
+
+Gradle can clear its output directory even when an older APK has a different filename. Before any build, the runner now copies and SHA-256 verifies existing delivery, debug and preview APKs into `private-data/android/apk-archive/<sha256>/`; failure stops the build. Successful hosted builds also copy to `artifacts/android/` and archive the resulting APK. Never treat a Gradle output directory as durable storage. The Edge Signal build exposed this issue and the old final v2 binary was not recovered; its original source and audit receipts remain intact. [Current verification and incident record](qa/edge-signal-brand/native/NATIVE_BRANDING.md).
 
 Verify the actual built artifact before handing it over:
 
