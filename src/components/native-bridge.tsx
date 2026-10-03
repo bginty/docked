@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { nativeAuthCallback, nativeDeepLink } from "@/core/native-navigation";
+import { brand } from "@/brand/brand";
 export function isDockedNative() {
   return (
     typeof window !== "undefined" &&
@@ -47,7 +48,7 @@ export function NativeBridge() {
       event.preventDefault();
       void import("@capacitor/browser")
         .then(({ Browser }) =>
-          Browser.open({ url: url.href, toolbarColor: "#142b35" }),
+          Browser.open({ url: url.href, toolbarColor: brand.colors.navy }),
         )
         .catch(() =>
           setMessage("The external browser could not open this link."),

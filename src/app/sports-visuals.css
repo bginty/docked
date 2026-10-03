@@ -1,10 +1,10 @@
-/* Original Docked sports identity: photography supplies context; facts stay on clean surfaces. */
+/* Sports photography supplies context; approved brand and product evidence lead. */
 .sport-image {
   display: block;
   position: relative;
   overflow: hidden;
   aspect-ratio: 16/10;
-  background: #203b43;
+  background: var(--surface-dark);
   isolation: isolate;
 }
 .sport-image img {
@@ -53,12 +53,12 @@
 }
 .cinematic-hero {
   position: relative;
-  min-height: 690px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: #0e2029;
-  color: #fff;
+  background: var(--surface-dark);
+  color: var(--brand-white);
   isolation: isolate;
 }
 .cinematic-hero .hero-photo {
@@ -66,6 +66,7 @@
   inset: 0;
   aspect-ratio: auto;
   z-index: -3;
+  opacity: 0.3;
 }
 .cinematic-hero::before {
   content: "";
@@ -75,16 +76,16 @@
   background:
     linear-gradient(
       90deg,
-      rgba(6, 22, 30, 0.93) 0%,
-      rgba(7, 24, 31, 0.84) 34%,
-      rgba(9, 27, 35, 0.32) 68%,
-      rgba(9, 27, 35, 0.12)
+      var(--overlay-navy-dense) 0%,
+      var(--overlay-navy-strong) 34%,
+      var(--overlay-navy-soft) 68%,
+      var(--overlay-navy-faint)
     ),
     linear-gradient(
       0deg,
-      rgba(5, 18, 25, 0.85),
-      transparent 46%,
-      rgba(5, 18, 25, 0.12)
+      var(--overlay-navy-strong),
+      var(--color-transparent) 46%,
+      var(--overlay-navy-faint)
     );
 }
 .cinematic-hero::after {
@@ -95,44 +96,45 @@
   z-index: -1;
   background: linear-gradient(
     115deg,
-    rgba(190, 223, 214, 0.08),
-    transparent 28%
+    var(--overlay-mint-faint),
+    var(--color-transparent) 28%
   );
 }
 .cinematic-hero-inner {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 74px 5% 86px;
+  padding: 56px 5% 62px;
 }
 .cinematic-hero .eyebrow {
-  color: #c8e6d5;
+  color: var(--brand-mint);
   margin-bottom: 26px;
   font-size: 11px;
 }
 .cinematic-hero h1 {
   max-width: 750px;
-  font-size: clamp(68px, 6.6vw, 100px);
-  letter-spacing: -0.065em;
+  font-size: clamp(62px, 6.2vw, 90px);
+  letter-spacing: -0.05em;
   line-height: 1.01;
   margin-bottom: 26px;
-  font-weight: 500;
+  font-weight: 700;
   text-wrap: balance;
 }
 .cinematic-hero h1 em {
-  font-family: Georgia, serif;
-  color: #cde5d1;
-  font-weight: 400;
+  font-family: var(--font-brand);
+  font-style: normal;
+  color: var(--brand-mint);
+  font-weight: 600;
 }
 .cinematic-hero .hero-description {
-  color: #eef3ef;
+  color: var(--text-on-dark);
   max-width: 440px;
   font-size: 17px;
   line-height: 1.7;
   margin-bottom: 19px;
 }
 .hero-proof {
-  color: #e0e9e4;
+  color: var(--text-on-dark-muted);
   font-size: 12px;
   letter-spacing: 0.01em;
   max-width: 440px;
@@ -147,24 +149,27 @@
   text-transform: uppercase;
   letter-spacing: 0.07em;
   font-size: 12px;
-  background: #d8ead8;
-  border-color: #d8ead8;
-  color: #142b35;
+  background: var(--action-primary);
+  border-color: var(--action-primary);
+  color: var(--action-primary-text);
 }
 .cinematic-hero .button:hover {
-  background: #f2f7ea;
-  border-color: #f2f7ea;
+  background: var(--action-primary-hover);
+  border-color: var(--action-primary-hover);
 }
 .cinematic-hero .button.ghost {
-  background: rgba(8, 28, 35, 0.48);
-  border-color: #b6c9c8;
-  color: #fff;
+  background: var(--surface-dark);
+  border-color: var(--text-on-dark-muted);
+  color: var(--brand-white);
 }
 .cinematic-hero .button.ghost:hover {
-  background: #243d46;
+  background: var(--surface-dark-raised);
+}
+.cinematic-hero :focus-visible {
+  outline-color: var(--focus-ring-on-dark);
 }
 .cinematic-hero .small-note {
-  color: #d6e0dc;
+  color: var(--text-on-dark-muted);
   font-size: 11px;
   margin-top: 21px;
 }
@@ -175,7 +180,7 @@
   font-size: 9px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #edf2f0;
+  color: var(--text-on-dark);
   margin: 0;
   display: flex;
   align-items: center;
@@ -185,7 +190,7 @@
   content: "";
   width: 35px;
   height: 1px;
-  background: #bfd6cc;
+  background: var(--text-on-dark-muted);
 }
 .sports-explore {
   padding-bottom: 50px;
@@ -212,13 +217,13 @@
 .sport-tile {
   position: relative;
   grid-column: span 2;
-  aspect-ratio: 1.34;
+  aspect-ratio: 1.65;
   display: flex;
   align-items: flex-end;
   padding: 25px;
   overflow: hidden;
-  color: #fff;
-  background: #152e39;
+  color: var(--brand-white);
+  background: var(--surface-dark);
   border-radius: 3px;
   isolation: isolate;
 }
@@ -231,6 +236,7 @@
   inset: 0;
   aspect-ratio: auto;
   z-index: -2;
+  opacity: 0.82;
 }
 .sport-tile::after {
   content: "";
@@ -239,9 +245,9 @@
   z-index: -1;
   background: linear-gradient(
     0deg,
-    rgba(5, 20, 28, 0.96),
-    rgba(8, 26, 34, 0.35) 57%,
-    rgba(7, 22, 28, 0.06)
+    var(--overlay-navy-dense),
+    var(--overlay-navy-soft) 57%,
+    var(--overlay-navy-faint)
   );
 }
 .sport-tile:hover {
@@ -277,20 +283,20 @@
   font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 0.13em;
-  border: 1px solid rgba(216, 235, 228, 0.6);
+  border: 1px solid var(--overlay-white-line);
   padding: 5px 8px;
-  color: #eef5ef;
-  background: rgba(8, 29, 37, 0.46);
+  color: var(--text-on-dark);
+  background: var(--overlay-navy-medium);
   line-height: 1.4;
 }
 .coverage-tag.research {
-  background: #d9e8dc;
-  color: #203b37;
-  border-color: #d9e8dc;
+  background: var(--surface-info);
+  color: var(--text-info);
+  border-color: var(--surface-info);
 }
 .sport-tile-arrow {
   font-size: 21px;
-  color: #dfede8;
+  color: var(--text-on-dark-muted);
   font-weight: 400;
 }
 .sports-grid-note {
@@ -350,18 +356,18 @@
 .process-section {
   background-image: linear-gradient(
     90deg,
-    transparent 49.85%,
-    rgba(20, 109, 97, 0.06) 50%,
-    transparent 50.15%
+    var(--color-transparent) 49.85%,
+    var(--overlay-blue-faint) 50%,
+    var(--color-transparent) 50.15%
   );
 }
 @media (min-width: 1600px) {
   .cinematic-hero {
-    min-height: 760px;
+    min-height: 520px;
   }
   .cinematic-hero-inner {
-    padding-top: 95px;
-    padding-bottom: 105px;
+    padding-top: 64px;
+    padding-bottom: 70px;
   }
 }
 @media (max-width: 1100px) {
@@ -380,11 +386,11 @@
     margin-left: auto;
   }
   .cinematic-hero {
-    min-height: 650px;
+    min-height: 480px;
   }
   .cinematic-hero h1 {
     max-width: 650px;
-    font-size: 78px;
+    font-size: 70px;
   }
   .sport-tile {
     padding: 20px;
@@ -395,19 +401,27 @@
 }
 @media (max-width: 760px) {
   .cinematic-hero {
-    min-height: 620px;
+    min-height: 480px;
   }
   .cinematic-hero-inner {
-    padding: 54px 6% 65px;
+    padding: 44px 6% 54px;
   }
   .cinematic-hero h1 {
-    font-size: 68px;
+    font-size: 62px;
     max-width: 540px;
   }
   .cinematic-hero::before {
     background:
-      linear-gradient(90deg, rgba(6, 22, 30, 0.9), rgba(7, 24, 31, 0.62) 80%),
-      linear-gradient(0deg, rgba(5, 18, 25, 0.65), transparent);
+      linear-gradient(
+        90deg,
+        var(--overlay-navy-strong),
+        var(--overlay-navy-readable) 80%
+      ),
+      linear-gradient(
+        0deg,
+        var(--overlay-navy-readable),
+        var(--color-transparent)
+      );
   }
   .sports-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -416,7 +430,7 @@
   .sport-tile,
   .sport-tile:nth-child(n + 7) {
     grid-column: auto;
-    aspect-ratio: 0.9;
+    aspect-ratio: 1.15;
     padding: 18px;
   }
   .sport-tile h3 {
@@ -467,13 +481,13 @@
     height: 15px;
   }
   .cinematic-hero {
-    min-height: 650px;
+    min-height: 480px;
   }
   .cinematic-hero-inner {
-    padding: 52px 6% 70px;
+    padding: 42px 6% 60px;
   }
   .cinematic-hero h1 {
-    font-size: clamp(51px, 14vw, 64px);
+    font-size: clamp(44px, 12.5vw, 60px);
     line-height: 1.04;
     max-width: 370px;
   }
@@ -510,7 +524,7 @@
   }
   .sport-tile,
   .sport-tile:nth-child(n + 7) {
-    aspect-ratio: 0.79;
+    aspect-ratio: 0.95;
     padding: 16px 12px;
   }
   .sport-tile h3 {

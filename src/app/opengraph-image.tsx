@@ -1,35 +1,18 @@
-import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 export const alt =
-  "Docked — sports pricing with perspective. Transparent research. No guaranteed returns.";
-export const size = { width: 1200, height: 630 };
+  "Docked — BUILT FOR AN EDGE. Sports intelligence and community.";
+export const size = { width: 2244, height: 508 };
 export const contentType = "image/png";
-export default function Image() {
-  return new ImageResponse(
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        background: "#142b35",
-        color: "#f5f5ef",
-        padding: 70,
-      }}
-    >
-      <div style={{ display: "flex", fontSize: 32, letterSpacing: 5 }}>
-        DOCKED.
-      </div>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", fontSize: 70 }}>Only when the price</div>
-        <div style={{ display: "flex", fontSize: 70, color: "#c8e6d5" }}>
-          offers value.
-        </div>
-      </div>
-      <div style={{ display: "flex", fontSize: 25, color: "#c8e6d5" }}>
-        Transparent research. No guaranteed returns.
-      </div>
-    </div>,
-    size,
+// Serve the approved export unchanged: no recreated wordmark or altered artwork.
+export default async function Image() {
+  const bytes = await readFile(
+    path.join(
+      process.cwd(),
+      "public/brand/social/docked-hero-built-for-an-edge.png",
+    ),
   );
+  return new Response(new Uint8Array(bytes), {
+    headers: { "Content-Type": contentType },
+  });
 }

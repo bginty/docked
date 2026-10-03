@@ -21,7 +21,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgb(20 43 53 / 18%), transparent);
+  background: linear-gradient(
+    100deg,
+    var(--overlay-navy-faint),
+    var(--color-transparent)
+  );
   pointer-events: none;
 }
 .no-edge-visual {
@@ -29,7 +33,7 @@
   isolation: isolate;
   overflow: hidden;
   background: var(--navy);
-  color: #fff;
+  color: var(--brand-white);
   min-height: 300px;
   display: grid;
   align-items: center;
@@ -50,9 +54,9 @@
   z-index: -1;
   background: linear-gradient(
     90deg,
-    rgb(9 26 32 / 96%) 0%,
-    rgb(9 26 32 / 85%) 52%,
-    rgb(9 26 32 / 62%) 100%
+    var(--overlay-navy-dense) 0%,
+    var(--overlay-navy-strong) 52%,
+    var(--overlay-navy-readable) 100%
   );
 }
 .no-edge-message {
@@ -61,21 +65,21 @@
 }
 .no-edge-emblem {
   display: inline-flex;
-  color: #c8e6d5;
+  color: var(--brand-mint);
   margin-bottom: 20px;
 }
 .no-edge-message h2 {
-  color: #fff;
+  color: var(--brand-white);
   font-size: clamp(28px, 3.5vw, 40px);
   margin-bottom: 18px;
 }
 .no-edge-message p {
-  color: #e3ece8;
+  color: var(--text-on-dark-muted);
   font-size: 15px;
   max-width: 610px;
 }
 .no-edge-message .text-link {
-  color: #c8e6d5;
+  color: var(--brand-mint);
 }
 .edge-card .edge-event {
   display: flex;
@@ -89,7 +93,7 @@
 .reading-photo-card.article-card {
   padding: 0;
   border: 1px solid var(--line);
-  background: #fbfcf8;
+  background: var(--surface-card);
   min-width: 0;
 }
 .sport-image.reading-card-image {
@@ -183,7 +187,7 @@
     min-height: 300px;
   }
   .no-edge-visual::before {
-    background: rgb(9 26 32 / 85%);
+    background: var(--overlay-navy-strong);
   }
   .no-edge-message {
     padding: 28px 24px;

@@ -25,6 +25,7 @@ import {
 } from "./community-performance";
 import { appViewer } from "@/server/app-view";
 import { NativeShare } from "./native-share";
+import { BrandLogo } from "./brand-logo";
 const periods: [RankingPeriod, string][] = [
   ["7d", "7D"],
   ["30d", "30D"],
@@ -95,7 +96,13 @@ export async function MemberProfile({
           <section className="profile-hero">
             <div className="profile-top">
               <span className="avatar" aria-hidden="true">
-                {p.avatarUrl ? (
+                {p.isOfficial ? (
+                  <BrandLogo
+                    variant="mark"
+                    className="brand-avatar"
+                    decorative
+                  />
+                ) : p.avatarUrl ? (
                   <img
                     className="profile-avatar-image"
                     src={p.avatarUrl}

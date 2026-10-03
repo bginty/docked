@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getCommunityEdge } from "@/server/community-edges";
+import { brand } from "@/brand/brand";
+import { onDarkWordmarkData } from "@/brand/server-artwork";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   try {
@@ -8,6 +10,7 @@ export async function GET(request: Request) {
     );
     if (!record) throw new Error("Unavailable");
     const edge = record.edge;
+    const wordmark = await onDarkWordmarkData();
     return new ImageResponse(
       <div
         style={{
@@ -17,8 +20,8 @@ export async function GET(request: Request) {
           width: "100%",
           height: "100%",
           padding: 56,
-          background: "#142b35",
-          color: "#f5f5ef",
+          background: brand.colors.navy,
+          color: brand.colors.white,
           fontFamily: "sans-serif",
         }}
       >
@@ -29,8 +32,10 @@ export async function GET(request: Request) {
             fontSize: 30,
           }}
         >
-          <span>DOCKED.</span>
-          <span style={{ color: "#c8e6d5" }}>COMMUNITY · PERMANENT RECORD</span>
+          <img src={wordmark} width={240} height={57} alt="Docked" />
+          <span style={{ color: brand.colors.mint }}>
+            COMMUNITY · PERMANENT RECORD
+          </span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <div style={{ fontSize: 23, display: "flex" }}>
@@ -48,7 +53,7 @@ export async function GET(request: Request) {
             style={{ fontSize: 24, display: "flex" }}
           >{`${(edge.marketLabel ?? edge.marketId).slice(0, 100)} · ${edge.bookmaker.slice(0, 50)}`}</div>
           <div
-            style={{ fontSize: 32, color: "#c8e6d5", display: "flex" }}
+            style={{ fontSize: 32, color: brand.colors.mint, display: "flex" }}
           >{`${edge.odds} verified standard odds · 1.00 unit · ${edge.result.replaceAll("_", " ")}`}</div>
         </div>
         <div
@@ -66,7 +71,7 @@ export async function GET(request: Request) {
             Status captured {new Date().toISOString()}. Check the permanent
             record for updates.
           </div>
-          <div style={{ display: "flex", color: "#c8e6d5" }}>
+          <div style={{ display: "flex", color: brand.colors.mint }}>
             Member opinion. Past performance does not guarantee future results.
           </div>
         </div>

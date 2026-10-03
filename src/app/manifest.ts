@@ -1,16 +1,17 @@
 import type { MetadataRoute } from "next";
+import { brand } from "@/brand/brand";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/home",
-    name: "Docked — Sport. Price. Community.",
+    name: `Docked — ${brand.tagline}`,
     short_name: "Docked",
     description:
       "Sports discussion and transparent verified records. No guaranteed returns.",
     start_url: "/home",
     scope: "/",
     display: "standalone",
-    background_color: "#f5f5ef",
-    theme_color: "#142b35",
+    background_color: brand.colors.white,
+    theme_color: brand.colors.navy,
     lang: "en",
     icons: [
       {

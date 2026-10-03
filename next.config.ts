@@ -12,7 +12,15 @@ const retired = [
 const config: NextConfig = {
   poweredByHeader: false,
   output: "standalone",
-  outputFileTracingIncludes: { "/*": ["./certs/supabase-prod-ca-2021.crt"] },
+  outputFileTracingIncludes: {
+    "/*": ["./certs/supabase-prod-ca-2021.crt"],
+    "/api/community-edges/share": [
+      "./public/brand/logos/docked-primary-on-dark.png",
+    ],
+    "/opengraph-image": [
+      "./public/brand/social/docked-hero-built-for-an-edge.png",
+    ],
+  },
   async redirects() {
     return [
       ...retired.map((source) => ({

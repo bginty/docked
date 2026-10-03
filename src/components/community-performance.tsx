@@ -191,19 +191,25 @@ export function PerformanceChart({
           x2="630"
           y1={190 - ((0 - min) / span) * 150}
           y2={190 - ((0 - min) / span) * 150}
-          stroke="#92a499"
+          stroke="var(--border-control)"
           strokeDasharray="4 4"
         />
         <polyline
           points={points}
           fill="none"
-          stroke="#146d61"
+          stroke="var(--brand-blue)"
           strokeWidth="3"
         />
-        <text x="30" y="220" fontSize="12" fill="#53666b">
+        <text x="30" y="220" fontSize="12" fill="var(--muted)">
           Start · 0 units
         </text>
-        <text x="630" y="220" fontSize="12" textAnchor="end" fill="#53666b">
+        <text
+          x="630"
+          y="220"
+          fontSize="12"
+          textAnchor="end"
+          fill="var(--muted)"
+        >
           {performance.netUnits} units
         </text>
       </svg>

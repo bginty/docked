@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { AppIcon, type AppIconName } from "./app-icon";
 import { PwaStatus } from "./pwa-status";
+import { BrandLogo } from "./brand-logo";
+import { brand } from "@/brand/brand";
 const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/home", label: "Home", icon: "home" },
   { href: "/edges", label: "Edges", icon: "edge" },
@@ -23,10 +25,10 @@ export function AppShell({
   return (
     <div className="community-shell" data-authenticated="true">
       <aside className="app-sidebar">
-        <Link className="brand" href="/home">
-          DOCKED.
+        <Link className="brand" href="/home" aria-label="Docked home">
+          <BrandLogo surface="dark" decorative />
         </Link>
-        <p className="eyebrow">SPORT. PRICE. COMMUNITY.</p>
+        <p className="eyebrow">{brand.tagline}</p>
         <nav aria-label="App navigation">
           {nav.map((n) => (
             <Link
@@ -61,8 +63,8 @@ export function AppShell({
       </aside>
       <div className="app-workspace">
         <header className="app-topbar">
-          <Link className="brand" href="/home">
-            DOCKED.
+          <Link className="brand" href="/home" aria-label="Docked home">
+            <BrandLogo variant="mark" decorative />
           </Link>
           <span className="app-preview-label">PREVIEW</span>
           <nav aria-label="App utilities">

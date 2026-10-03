@@ -43,15 +43,15 @@ export default async function Home() {
           preload
         />
         <div className="cinematic-hero-inner">
-          <p className="eyebrow">DOCKED / SPORT. PRICE. EDGE.</p>
+          <p className="eyebrow">SPORTS INTELLIGENCE · COMMUNITY</p>
           <h1>
-            Only when
+            BUILT FOR
             <br />
-            the price offers <em>value.</em>
+            AN EDGE
           </h1>
           <p className="hero-description">
-            Free sports analysis and alerts when our method estimates a market
-            edge.
+            Sports intelligence, transparent research and a community built
+            around evidence.
           </p>
           <p className="hero-proof">
             <span>Every published tip tracked.</span>
@@ -73,7 +73,6 @@ export default async function Home() {
           The game sets the stage. Evidence sets the standard.
         </p>
       </section>
-      <ExploreSports />
       <div className="service-strip">
         <span>
           <i className="status-dot amber" />{" "}
@@ -129,6 +128,7 @@ export default async function Home() {
           opportunities.
         </p>
       </section>
+      <ExploreSports />
       <section className="section process-section">
         <div>
           <p className="eyebrow">A METHOD YOU CAN QUESTION</p>

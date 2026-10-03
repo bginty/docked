@@ -5,6 +5,8 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
+. (Join-Path $PSScriptRoot 'android-offline-branding.ps1')
+$approvedImage = if ($Mode -eq 'Hosted') { 'data:image/png;base64,' + [Convert]::ToBase64String([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath 'public/brand/logos/docked-primary-on-dark.png'))) } else { '' }
 $secretValues = [System.Collections.Generic.List[string]]::new()
 if (Test-Path -LiteralPath '.env.local') {
   foreach ($line in Get-Content -LiteralPath '.env.local') {
@@ -24,6 +26,7 @@ $findings = 0
 $config = $null
 $packagedEnvironment = $null
 $hostedPagesSafe = $true
+$verifiedHostedPages = 0
 try {
   foreach ($entry in $archive.Entries) {
     $count++
@@ -37,7 +40,10 @@ try {
     foreach ($secretValue in $secretValues) { if ($text.Contains($secretValue)) { $findings++ } }
     if ($entry.FullName -eq 'assets/capacitor.config.json') { $config = $text | ConvertFrom-Json }
     if ($entry.FullName -eq 'assets/public/preview-environment.json') { $packagedEnvironment = $text | ConvertFrom-Json }
-    if ($Mode -eq 'Hosted' -and $entry.FullName -in @('assets/public/index.html','assets/public/offline.html') -and $text -match 'localhost:3000|ADB|Connect the reviewed preview|reverse port') { $hostedPagesSafe = $false }
+    if ($Mode -eq 'Hosted' -and $entry.FullName -in @('assets/public/index.html','assets/public/offline.html')) {
+      if (Test-AndroidOfflineBranding -Html $text -ApprovedImage $approvedImage) { $verifiedHostedPages++ }
+      else { $hostedPagesSafe = $false }
+    }
   }
 } finally { $archive.Dispose() }
 $inspectionDisabled = $config.android.webContentsDebuggingEnabled -eq $false
@@ -50,7 +56,7 @@ if ($Mode -eq 'Hosted') {
   $expectedEnvironment = $expectedText | ConvertFrom-Json
   $approvedHostedOrigin = $config.server.url -eq ($expectedEnvironment.origin + '/home') -and
     $config.server.cleartext -eq $false -and $config.android.allowMixedContent -eq $false -and
-    -not $config.server.allowNavigation -and $hostedPagesSafe -and
+    -not $config.server.allowNavigation -and $hostedPagesSafe -and $verifiedHostedPages -eq 2 -and
     $packagedEnvironment.origin -eq $expectedEnvironment.origin -and
     $packagedEnvironment.supabaseProjectRef -eq $expectedEnvironment.supabaseProjectRef -and
     $packagedEnvironment.deploymentId -eq $expectedEnvironment.deploymentId
@@ -66,6 +72,7 @@ $result = [ordered]@{
   noAttachedOrigin = $noAttachedOrigin
   mode = $Mode
   approvedHostedOrigin = $approvedHostedOrigin
+  approvedEmbeddedBrandingPages = $verifiedHostedPages
   previewOrigin = $expectedEnvironment.origin
   supabaseProjectRef = $expectedEnvironment.supabaseProjectRef
   status = $(if ($findings -eq 0 -and $inspectionDisabled -and (($Mode -eq 'Bundled' -and $noAttachedOrigin) -or ($Mode -eq 'Hosted' -and $approvedHostedOrigin))) { 'PASS' } else { 'FAIL' })

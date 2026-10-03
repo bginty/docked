@@ -1,0 +1,7 @@
+# Approved supplier assets and instructions must survive checkout byte-for-byte.
+source-assets/brand/docked_production_brand_pack/** -text
+public/brand/** -text
+src/brand/brand-tokens.json -text
+src/brand/README_FOR_CODEX.md -text
+src/app/icon.svg -text
+public/icons/docked.svg -text

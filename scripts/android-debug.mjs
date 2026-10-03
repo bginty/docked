@@ -39,6 +39,7 @@ function run(command, args, cwd = root) {
   });
   if (result.error || result.status !== 0) process.exit(result.status || 1);
 }
+run("node", ["scripts/build-app-icons.mjs"]);
 run("node", ["scripts/build-mobile-shell.mjs"]);
 run("npx", ["cap", "sync", "android"]);
 run(
@@ -54,9 +55,9 @@ if (hosted) {
   const output = path.join(root, "android/app/build/outputs/apk/preview");
   copyFileSync(
     path.join(output, "app-preview.apk"),
-    path.join(output, "Docked-Preview-S24-v2.apk"),
+    path.join(output, "Docked-Preview-S24-v3-Edge-Signal.apk"),
   );
   console.log(
-    "Created android/app/build/outputs/apk/preview/Docked-Preview-S24-v2.apk",
+    "Created android/app/build/outputs/apk/preview/Docked-Preview-S24-v3-Edge-Signal.apk",
   );
 }

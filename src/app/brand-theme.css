@@ -1,0 +1,133 @@
+/* Approved Edge Signal primitives. The supplied artwork is never recoloured. */
+@font-face {
+  font-family: "Sora";
+  src: url("/brand/fonts/Sora-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --brand-navy: #0b1f3b;
+  --brand-blue: #2563ff;
+  --brand-mint: #00e6b8;
+  --brand-cool-gray: #cbd5e1;
+  --brand-white: #ffffff;
+  --font-brand: "Sora", system-ui, sans-serif;
+
+  --surface-page: #f8fafc;
+  --surface-card: var(--brand-white);
+  --surface-subtle: #f1f5f9;
+  --surface-info: #eaf0ff;
+  --surface-info-hover: #dde7ff;
+  --surface-dark: var(--brand-navy);
+  --surface-dark-raised: #193454;
+  --text-primary: var(--brand-navy);
+  --text-muted: #475569;
+  --text-info: #1749c7;
+  --text-on-dark: var(--brand-white);
+  --text-on-dark-muted: var(--brand-cool-gray);
+  --border-subtle: var(--brand-cool-gray);
+  --border-control: #64748b;
+  --border-on-dark: #647b9b;
+  --action-primary: var(--brand-blue);
+  --action-primary-hover: #164ade;
+  --action-primary-text: var(--brand-white);
+  --action-link: var(--text-info);
+  --focus-ring: var(--brand-blue);
+  --focus-ring-on-dark: var(--brand-mint);
+
+  /* Functional states are separate from brand accents and never imply validation. */
+  --status-success-text: #00644f;
+  --status-success-surface: #e6fff7;
+  --status-success-border: #00866a;
+  --status-warning-text: #854d0e;
+  --status-warning-surface: #fff5db;
+  --status-warning-border: #b7791f;
+  --status-critical-text: #b42318;
+  --status-critical-surface: #fff0ef;
+  --status-critical-border: #c24135;
+
+  --color-transparent: transparent;
+  --mask-solid: #000000;
+  --overlay-navy-faint: rgb(11 31 59 / 12%);
+  --overlay-navy-soft: rgb(11 31 59 / 32%);
+  --overlay-navy-medium: rgb(11 31 59 / 48%);
+  --overlay-navy-readable: rgb(11 31 59 / 68%);
+  --overlay-navy-strong: rgb(11 31 59 / 86%);
+  --overlay-navy-dense: rgb(11 31 59 / 96%);
+  --overlay-white-border: rgb(255 255 255 / 20%);
+  --overlay-white-line: rgb(255 255 255 / 60%);
+  --overlay-blue-faint: rgb(37 99 255 / 6%);
+  --overlay-mint-faint: rgb(0 230 184 / 8%);
+
+  /* Existing layout contracts now resolve exclusively to the approved theme. */
+  --navy: var(--brand-navy);
+  --ink: var(--text-primary);
+  --muted: var(--text-muted);
+  --paper: var(--surface-page);
+  --white: var(--brand-white);
+  --teal: var(--action-link);
+  --mint: var(--brand-mint);
+  --line: var(--border-subtle);
+  --amber: var(--status-warning-text);
+}
+
+.brand-logo {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: none;
+  box-shadow: none;
+  transform: none;
+}
+.brand-logo--wordmark {
+  width: 170px;
+  min-width: 90px;
+  aspect-ratio: 80 / 19;
+}
+.brand-logo--mark {
+  width: 44px;
+  aspect-ratio: 20 / 17;
+}
+.brand-avatar {
+  width: 32px;
+  min-width: 20px;
+}
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  color: var(--brand-navy);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.auth-brand .brand-logo--mark {
+  width: 52px;
+}
+.brand-tagline {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+.app-sidebar .brand-logo--wordmark {
+  width: 170px;
+}
+.app-topbar .brand-logo--mark {
+  width: 40px;
+}
+@media (max-width: 650px) {
+  .header-inner .brand-logo--wordmark {
+    width: 150px;
+  }
+}
+@media (max-width: 380px) {
+  .header-inner .brand-logo--wordmark {
+    width: 132px;
+  }
+}

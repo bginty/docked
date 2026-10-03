@@ -33,19 +33,19 @@ export function LedgerChart({
           y1={y(0)}
           x2="760"
           y2={y(0)}
-          stroke="#a7b5ac"
+          stroke="var(--border-control)"
           strokeDasharray="4 4"
         />
         <polyline
           points={points}
           fill="none"
-          stroke="#146d61"
+          stroke="var(--brand-blue)"
           strokeWidth="2.5"
         />
-        <text x="0" y="25" fill="#53666b" fontSize="12">
+        <text x="0" y="25" fill="var(--muted)" fontSize="12">
           {high.toFixed(2)}
         </text>
-        <text x="0" y="175" fill="#53666b" fontSize="12">
+        <text x="0" y="175" fill="var(--muted)" fontSize="12">
           {low.toFixed(2)}
         </text>
       </svg>

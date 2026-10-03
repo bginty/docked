@@ -21,6 +21,8 @@ import { SportImage } from "@/components/sport-image";
 import { ArticleImage } from "@/components/article-image";
 import { SportIcon } from "@/components/sport-icon";
 import { AppEdgeBoard } from "@/components/app-edge-board";
+import { BrandLogo } from "@/components/brand-logo";
+import { brand } from "@/brand/brand";
 const titles: Record<string, string> = {
   edges: "The opportunity board",
   results: "The complete record",
@@ -681,6 +683,10 @@ export default async function Page({
     content = (
       <div className="split-page">
         <div>
+          <div className="auth-brand">
+            <BrandLogo variant="mark" />
+            <p className="brand-tagline">{brand.tagline}</p>
+          </div>
           <p className="lede">
             {section === "join"
               ? "Save your reading, personalise your view and choose your own communication preferences."

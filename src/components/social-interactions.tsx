@@ -11,6 +11,7 @@ import type {
 import { AppIcon } from "./app-icon";
 import { OfficialBadge } from "./community-basics";
 import { LocalTimestamp } from "./local-timestamp";
+import { BrandLogo } from "./brand-logo";
 export async function communityAction(
   body: Record<string, unknown>,
   endpoint = "/api/community",
@@ -330,7 +331,11 @@ export function SocialCard({ post }: { post: SocialPost }) {
     <article className="social-card">
       <div className="social-author">
         <span className="avatar" aria-hidden="true">
-          {post.author.displayName.slice(0, 1).toUpperCase()}
+          {post.author.isOfficial ? (
+            <BrandLogo variant="mark" className="brand-avatar" decorative />
+          ) : (
+            post.author.displayName.slice(0, 1).toUpperCase()
+          )}
         </span>
         <div>
           <Link

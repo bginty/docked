@@ -46,8 +46,12 @@ try {
       "utf8",
     );
     assert.ok(html.includes(target.entryUrl));
+    // The supplied PNG can coincidentally encode words such as ADB. Validate its
+    // exact bytes before excluding only that image from the human-copy check.
+    const approvedImage = `data:image/png;base64,${readFileSync("public/brand/logos/docked-primary-on-dark.png").toString("base64")}`;
+    assert.ok(html.includes(approvedImage));
     assert.doesNotMatch(
-      html,
+      html.replaceAll(approvedImage, "approved-image"),
       /localhost:3000|ADB|Connect the reviewed preview|reverse port/i,
     );
   }

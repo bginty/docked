@@ -1,8 +1,8 @@
 .native-status {
   padding: 8px max(20px, env(safe-area-inset-right));
   font-size: 0.8rem;
-  background: #e7ece5;
-  border-bottom: 1px solid #ccd8d0;
+  background: var(--surface-info);
+  border-bottom: 1px solid var(--border-subtle);
 }
 .native-status p {
   max-width: 65rem;
@@ -17,8 +17,8 @@
 .native-preview-identity strong {
   padding: 0.15rem 0.45rem;
   border-radius: 3px;
-  background: #142b35;
-  color: #fff;
+  background: var(--surface-dark);
+  color: var(--brand-white);
   letter-spacing: 0.08em;
   font-size: 0.7rem;
 }
@@ -53,14 +53,14 @@
   }
 }
 .reference-prices .take-price {
-  background: #142b35;
-  color: #fff;
+  background: var(--surface-dark);
+  color: var(--brand-white);
   padding: 1rem;
   border-radius: 12px;
 }
 .reference-prices .take-price small,
 .reference-prices .take-price span {
-  color: #dbebe3;
+  color: var(--text-on-dark-muted);
 }
 .reference-prices .take-price strong {
   font-size: clamp(1.5rem, 5vw, 2rem);
@@ -71,11 +71,11 @@
 .reference-fair span {
   display: block;
   font-size: 0.8rem;
-  color: #52615b;
+  color: var(--text-muted);
 }
 .reference-preview {
-  border: 1px solid #9bb5a6;
-  background: #edf4ee;
+  border: 1px solid var(--border-control);
+  background: var(--surface-info);
   border-radius: 12px;
   padding: 1rem;
 }

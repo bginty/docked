@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import "./brand-theme.css";
 import "./globals.css";
 import "./sports-visuals.css";
 import "./sports-experience.css";
@@ -9,23 +10,35 @@ import { NativeBridge } from "@/components/native-bridge";
 import { config } from "@/server/config";
 import { AnalyticsObserver } from "@/components/analytics-observer";
 import { SportIcon } from "@/components/sport-icon";
+import { BrandLogo } from "@/components/brand-logo";
+import { brand } from "@/brand/brand";
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   appleWebApp: { capable: true, statusBarStyle: "default", title: "Docked" },
-  icons: { apple: "/icons/docked-192.png", icon: "/icons/docked-192.png" },
+  icons: {
+    apple: "/brand/icons/docked-app-icon-180.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      {
+        url: "/brand/icons/docked-mark-32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+    ],
+  },
   metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: "Docked — Only when the price offers value.",
+    default: `Docked — ${brand.tagline}`,
     template: "%s | Docked",
   },
   description:
-    "Transparent sports-pricing research. Every published tip tracked. No guaranteed returns.",
+    "Sports intelligence, transparent research and community. Built for an edge. No guaranteed returns.",
   robots:
     process.env.APP_ENV === "production"
       ? { index: true, follow: true }
       : { index: false, follow: false },
   openGraph: {
-    title: "Docked — Only when the price offers value.",
+    title: `Docked — ${brand.tagline}`,
     description: "Transparent sports-pricing research. No guaranteed returns.",
     type: "website",
     siteName: "Docked",
@@ -34,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Docked — Only when the price offers value.",
+    title: `Docked — ${brand.tagline}`,
     description: "Transparent sports-pricing research. No guaranteed returns.",
     images: ["/opengraph-image"],
   },
@@ -43,7 +56,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#142b35",
+  themeColor: brand.colors.navy,
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -55,16 +68,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           Skip to content
         </a>
         <div className="topline">
-          <span>SPORT. PRICE. EDGE.</span>
+          <span>{brand.tagline}</span>
           <span>18+ · Research preview</span>
         </div>
         <header className="site-header">
           <div className="header-inner">
             <Link className="brand" href="/" aria-label="Docked home">
-              <span className="brand-symbol" aria-hidden="true">
-                D
-              </span>
-              DOCKED<span className="brand-dot">.</span>
+              <BrandLogo decorative />
             </Link>
             <nav aria-label="Main navigation">
               <Link href="/edges">Edges</Link>
@@ -96,10 +106,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <footer>
           <div className="footer-grid">
             <div>
-              <Link className="brand" href="/">
-                DOCKED.
+              <Link className="brand" href="/" aria-label="Docked home">
+                <BrandLogo surface="dark" decorative />
               </Link>
-              <p>Only when the price offers value.</p>
+              <p className="brand-tagline">{brand.tagline}</p>
               <p className="muted">
                 Informational analysis. No wagering, wallets or guaranteed
                 returns.

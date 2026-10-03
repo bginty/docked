@@ -1,5 +1,6 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 import { resolveAndroidTarget } from "./scripts/android-preview-config.mjs";
+import brand from "./src/brand/brand-tokens.json";
 
 const target = resolveAndroidTarget();
 const config: CapacitorConfig = {
@@ -7,7 +8,7 @@ const config: CapacitorConfig = {
   appName: "Docked Preview",
   webDir: target.webDir,
   loggingBehavior: "none",
-  backgroundColor: "#f7f7ef",
+  backgroundColor: brand.colors.navy,
   zoomEnabled: true,
   android: {
     path: "android",
@@ -28,7 +29,7 @@ const config: CapacitorConfig = {
     SystemBars: { insetsHandling: "css", style: "LIGHT", hidden: false },
     SplashScreen: {
       launchShowDuration: 800,
-      backgroundColor: "#142b35",
+      backgroundColor: brand.colors.navy,
       showSpinner: false,
     },
   },
