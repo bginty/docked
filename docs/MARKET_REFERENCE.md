@@ -1,5 +1,11 @@
 # Market Reference v1 — unvalidated methodology
 
+## Phase 5 integration boundary
+
+Current licensed observations may now carry the separate `market_data` discriminator. They retain the same source/ownership/classification/freshness gates and cannot enter publication records merely because ingestion succeeded. An immutable reviewed data configuration can provide the exact availability/pricing cohorts; absent cohorts continue to produce `NOT_CONFIGURED`. Factual fixture display has its own `market_data` regional approval and exposes no model probability or estimated EV.
+
+`MarketBaselineModel` (`market-reference-baseline-v1`) wraps this exact engine's margin-free pricing cohort. It records config/code/model/evidence hashes, input source IDs, `asOfTime` and actual `generatedAt`. It is explicitly `RESEARCH_BASELINE`, `UNVALIDATED`, `advantageClaim=false`; uncertainty is null rather than fabricated. This is a reproducible market-derived benchmark, not independent predictive alpha. The historical `model-baseline` command uses the existing dated-rights/knowledge-time adapter and frozen study binding. Results and later closing observations cannot enter an earlier estimate. Legacy V1 mathematics and immutable prior records are unchanged.
+
 Phase 4 introduces `market-reference-v1.0.0` in `src/core/market-reference.ts`. It is an engineering hypothesis, not validated evidence of profitability, liquidity or a price any individual can obtain. The shipped cohorts are empty, so the default is **NOT_CONFIGURED**. No commercial provider was activated and no sporting performance was generated.
 
 ## Distinct reference purposes

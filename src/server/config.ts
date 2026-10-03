@@ -5,6 +5,10 @@ import {
 import { assertHostedPreview } from "@/core/hosted-preview";
 export function config(env: Record<string, string | undefined> = process.env) {
   assertHostedPreview(env);
+  if (env.AUTO_PUBLISH_DOCKED_EDGES === "true")
+    throw new Error(
+      "Automatic Docked publication is not implemented or approved",
+    );
   const production = env.APP_ENV === "production";
   if (env.PREVIEW_AUTH_CAPTURE_MODE || env.PREVIEW_AUTH_PROJECT_REF) {
     if (!hostedPreviewEnvironmentBound(env))

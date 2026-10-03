@@ -1,5 +1,33 @@
 # Odds and results integration readiness
 
+## Phase 5 current market-data path
+
+`MARKET_DATA_STATUS` is separate from legacy publication odds and results status. Both provider keys remain absent, no feed was activated and no provider endpoint was called during implementation. The admin data-health page shows each purpose separately, including the new scanner candidate count. A configured key alone cannot establish reviewed rights or healthy data.
+
+`src/providers/market-data.ts` discovers current provider-scoped fixtures, then reuses the existing complete-market validators. It supports bounded EPL/La Liga/NBA catalogues and NFL fixture facts; NFL cannot enter the unchanged pricing/settlement strategy. Exact competition, participant and provider IDs replace fuzzy matching. OddsPapi requires reviewed sport, tournament, market and outcome-ID mappings. Fixture `updatedAt` is not a price timestamp; missing source observations and old price-change times are never relabelled fresh.
+
+Polling requires `MARKET_DATA_POLLING_ENABLED=true`, a supported `MARKET_DATA_PROVIDER`, exact `MARKET_DATA_PROJECT_REF`, the reviewed HTTPS origin/Preview target/database binding, an immutable current `private.market_data_config` approval and its monthly budget. Legacy publication, paper, sending and odds polling stay false. `THE_ODDS_API_KEY` is preferred; the legacy importer/trial accepts `ODDS_API_KEY`, refusing conflicting aliases. Hosted market-data mode forbids the old key/path. OddsPapi uses `ODDSPAPI_API_KEY`. None may use `NEXT_PUBLIC_`.
+
+Every actual request reserves conservative cost in `provider_poll_runs` before I/O under a session advisory lock. Failures remain charged; known balances decrement and missing balances stay null. A reviewed local budget is required even with unknown supplier balance. The Odds API forecast uses region count; OddsPapi discovery and each fixture odds request cost one. Request caps, timeouts, redirect refusal and an 8 MB response bound limit each run. No automatic account/quota request is made.
+
+Raw responses live privately in PostgreSQL with receipt-aware hashes and expiry capped by both reviewed retention and rights expiry. `purgeExpiredMarketData()` and `--purge-expired` delete expired raw bodies in bounded batches even when polling is disabled. Canonical observations retain hashes/provenance. The retention worker must remain scheduled before activation. Repeated identical payloads retain distinct genuine receipts. Changed mappings/start times move canonical events to manual review; terminal/review events never silently reactivate.
+
+Snapshots carry `evidence=market_data`, not paper/live publication. Reference eligibility still requires independent source classification, ownership, regional permission, licence, timestamps and health. Default classification is `UNKNOWN_REVIEW`. An affirmative standard-price configuration requires reviewed endpoint/source evidence plus matching independent database approval; bookmaker names, prices, plans and HTTP success are insufficient. Neither existing provider schema universally proves each price non-promotional, so no positive configuration is supplied.
+
+`monitoredMarkets` and `GET /api/market-data` expose bounded fixture facts with optional availability references. They require distinct current `market_data` regional approval; social tester grants never qualify. No model probability/fair price/EV is exposed. Missing cohorts mean null references; missing keys mean `NOT_CONFIGURED`; absent approval means `DISABLED`; outages/stale data mean `UNAVAILABLE`.
+
+Authorised editors can inspect an optional deterministic draft at `/api/admin/market-data-editorial?window=weekend`, linked from data health. It retains event IDs, observation time, provider, configuration version/hash and displayed subset count. Its count explicitly describes only the bounded fetched subset, never provider-wide coverage. Missing evidence returns no draft. This read-only aid neither saves nor publishes; the existing CMS revision, approval and correction controls remain required. New market-data configuration, raw, fixture and model-identity hashes use the Phase 5 UTF-8/normalized-number serializer, with SQL parity tests; legacy strategy/reference hashes remain unchanged.
+
+Prepared operator workflows, not activated:
+
+```powershell
+node --conditions=react-server --import tsx scripts/market-data.ts --status
+node --conditions=react-server --import tsx scripts/market-data.ts --sync-authorised-preview
+node --conditions=react-server --import tsx scripts/market-data.ts --purge-expired
+```
+
+Parser contracts were checked against [The Odds API V4 docs](https://the-odds-api.com/liveapi/guides/v4/), [OddsPapi fixtures](https://oddspapi.io/en/docs/get-fixtures), [OddsPapi current odds](https://oddspapi.io/en/docs/get-odds) and [OddsPapi quota semantics](https://oddspapi.io/en/docs/requests-and-quota). This review does not establish supplier rights or activate a feed.
+
 No provider key was supplied or used. No request was made to a paid odds endpoint, no plan purchased and no results website scraped. Current state: `ODDS_PROVIDER_STATUS=NOT_CONFIGURED` and `RESULTS_PROVIDER_STATUS=NOT_CONFIGURED`.
 
 ## The Odds API

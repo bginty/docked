@@ -1,3 +1,4 @@
+import { oddsApiCredential } from "@/providers/credentials";
 export type ProviderStatus =
   "NOT_CONFIGURED" | "DISABLED" | "PENDING_RIGHTS" | "READY" | "UNAVAILABLE";
 export function providerReadiness(
@@ -10,7 +11,13 @@ export function providerReadiness(
       : env.RESULTS_PROVIDER === "authorised-file"
         ? "READY"
         : "UNAVAILABLE";
-  if (!env.ODDS_API_KEY) return "NOT_CONFIGURED";
+  let key: string | undefined;
+  try {
+    key = oddsApiCredential(env);
+  } catch {
+    return "UNAVAILABLE";
+  }
+  if (!key) return "NOT_CONFIGURED";
   if (!env.ODDS_RIGHTS_REFERENCE) return "PENDING_RIGHTS";
   if (env.ODDS_POLLING_ENABLED !== "true") return "DISABLED";
   return "READY";

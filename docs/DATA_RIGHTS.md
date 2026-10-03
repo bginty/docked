@@ -1,13 +1,36 @@
 # Data rights register
 
+## Phase 5 review — 4 October 2026
+
+**No source activated.** Review of current primary terms found stronger evidence than the original pending register below. [The Odds API terms](https://the-odds-api.com/terms-and-conditions.html), updated 31 August 2026, allow qualifying integrated commercial apps, indefinite storage, research, derived calculations/display and model training. They prohibit standalone raw feed redistribution; attribution is optional. Docked's precise service must fit those conditions. Record the owner's approved use, licence version, territories, retention and source capabilities before ingestion; this document does not flip any approval flag.
+
+[OddsPapi terms](https://oddspapi.io/en/legal/terms) prohibit standalone resale/repackaging and bind access to the account plan. Exact Docked storage, derived reference display, historical export, attribution and audit-evidence retention permissions remain **UNCONFIRMED**. Request written clarification through the owner before activating those purposes. API access or a paid subscription alone is insufficient.
+
+### Retention layers
+
+| Layer                         | Purpose and access                                       | Retention/activation rule                                                                                                                                             |
+| ----------------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Raw licensed payload          | Private ingestion diagnostics, hashing, mapping audit    | Shortest approved period; scoped private storage, never public APIs/static assets/APK. No indefinite raw retention by default                                         |
+| Canonical market snapshot     | Exact event/rules/selection/source/receipt evidence      | Effective licence controls storage; preserve missingness and source provenance. No raw-feed export through member endpoints                                           |
+| Derived Market Reference      | Versioned pricing/availability calculation               | Retain permitted provenance and hash; sufficient disjoint standard-source evidence required; derived display permission separate from ingest                          |
+| Official publication evidence | Permanent publication/price/model/rules/accounting audit | Never delete losing publications; obtain rights compatible with permanent permitted evidence **before** activation                                                    |
+| Community submission evidence | Immutable benchmark and transparent corrections          | Separate from claimed price; preserve permitted pseudonymous evidence after account erasure while removing unnecessary personal data                                  |
+| Historical research dataset   | Manifest-bound reproducibility and chronological replay  | Explicit historical/research/storage authority, content hashes, source availability clocks, split/config/code versions; no public dataset download without permission |
+
+If a licence requires deletion incompatible with immutable audit evidence, do not activate that source for competitive/publication use. Use a separately approved minimal derived-evidence policy or a different supplier; do not silently remove records. Rights revocation blocks new ingest/display/reference use and triggers reviewed handling of existing licensed payloads. Dataset/payload retention is not a licence to retain member personal data indefinitely.
+
+Fixtures and factual Watchlist copy need display permission even though they are not Edges. Competitive standard-price classification, independently owned cohorts, results rights and jurisdiction permission remain separate affirmative gates. No scraped bookmaker or unlicensed results feed is used. See [provider evaluation](ODDS_PROVIDER_EVALUATION.md) and [historical plan](HISTORICAL_DATA_PLAN.md).
+
+## Original implementation register (historical context)
+
 Status: no commercial ingestion authorised by this build. A paid plan does not itself establish all rights required for the proposed use.
 
-| Source                              | Intended purpose                          | Technical capability                                                                     | Permission status                                                              |
-| ----------------------------------- | ----------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| The Odds API, **the-odds-api.com**  | current and timestamped historical prices | adapter implemented; shared per-sport fetch; historical endpoint rejects later snapshots | pending coverage, display, retention, derived output, export and budget review |
+| Source                              | Intended purpose                          | Technical capability                                                                               | Permission status                                                              |
+| ----------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| The Odds API, **the-odds-api.com**  | current and timestamped historical prices | adapter implemented; shared per-sport fetch; historical endpoint rejects later snapshots           | pending coverage, display, retention, derived output, export and budget review |
 | Authorised result source            | settlement and historical outcomes        | ResultsProvider plus authorised canonical-file boundary, revision chains and explicit adjudication | supplier not selected; historical odds are not historical results              |
-| Football-Data                       | possible future research only             | no importer and no scraping                                                              | specific commercial permission required                                        |
-| Locally authored fictional fixtures | arithmetic and software tests             | test directory and research demo CLI only                                                | no real performance; production publication/import blocked                     |
+| Football-Data                       | possible future research only             | no importer and no scraping                                                                        | specific commercial permission required                                        |
+| Locally authored fictional fixtures | arithmetic and software tests             | test directory and research demo CLI only                                                          | no real performance; production publication/import blocked                     |
 
 Each source activation needs: contracting entity, licence/reference, countries, sports/markets, permitted purposes, complete settlement rules, retention/deletion terms, derived publication rights, raw export rights, source timestamp/resolution, operator independence evidence, quotas and billing approval. Track approved capabilities in source_health. All permissions default false where not affirmatively known.
 

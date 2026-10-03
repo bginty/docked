@@ -28,6 +28,7 @@ import {
   referenceSensitivity,
 } from "../../src/research/reference-replay";
 import type { Manifest } from "../../src/research/replay";
+import { researchModelBaseline } from "../../src/research/model-baseline";
 import { defaultStudySplits } from "../../src/research/dataset";
 import {
   assertResearchFreeze,
@@ -156,6 +157,44 @@ function manifest(data: HistoricalReferenceEvent[]): Manifest {
     referenceRegion: "XX:FIXTURE",
   };
 }
+
+test("versioned ModelProvider baseline ignores later outcomes and closing prices and rejects future-known features", () => {
+  const data = events(),
+    generatedAt = "2026-10-03T12:00:00.000Z";
+  const run = (input: HistoricalReferenceEvent[]) =>
+    researchModelBaseline(
+      input,
+      { ...manifest(input), codeCommit: "a".repeat(40) },
+      config,
+      generatedAt,
+    );
+  const initial = run(data);
+  assert.ok(
+    initial.estimates.some((x) => (x as { status: string }).status === "READY"),
+  );
+  const later = structuredClone(data);
+  later[0].result!.scores = { "Fictional A": 0, "Fictional B": 200 };
+  const closing = snapshot("2026-10-02T06:50:00.000Z");
+  for (const source of closing.sources)
+    source.prices = { "Fictional A": "1.1", "Fictional B": "8" };
+  later[0].snapshots.push(closing);
+  assert.deepEqual(run(later).estimates, initial.estimates);
+  const future = structuredClone(data);
+  for (const shot of future[0].snapshots)
+    for (const source of shot.sources)
+      source.ownership.knownAt = "2026-10-02T08:00:00.000Z";
+  assert.ok(
+    run(future).estimates.every(
+      (x) => (x as { status: string }).status !== "READY",
+    ),
+  );
+  const ready = initial.estimates.find(
+    (x) => (x as { status: string }).status === "READY",
+  ) as { generatedAt: string; asOfTime: string; validationStatus: string };
+  assert.equal(ready.generatedAt, generatedAt);
+  assert.notEqual(ready.generatedAt, ready.asOfTime);
+  assert.equal(ready.validationStatus, "UNVALIDATED");
+});
 
 test("reference replay uses the same configured core and retains publication benchmark accounting", () => {
   const data = events();
@@ -597,10 +636,14 @@ test("reference CLI validates, replays, stresses and reports only explicit priva
     const audit = path.join(directory, "audit.json");
     const replay = path.join(directory, "replay.json");
     const stress = path.join(directory, "stress.json");
+    const baseline = path.join(directory, "baseline.json");
     const report = path.join(directory, "report.md");
     await Promise.all([
       writeFile(input, JSON.stringify(data)),
-      writeFile(metadata, JSON.stringify(manifest(data))),
+      writeFile(
+        metadata,
+        JSON.stringify({ ...manifest(data), codeCommit: "a".repeat(40) }),
+      ),
       writeFile(strategy, JSON.stringify(config)),
     ]);
     const run = (...args: string[]) =>
@@ -628,6 +671,15 @@ test("reference CLI validates, replays, stresses and reports only explicit priva
     assert.equal(
       JSON.parse(await readFile(stress, "utf8")).thresholds.length,
       3,
+    );
+    run("model-baseline", input, metadata, baseline, strategy);
+    const baselineReport = JSON.parse(await readFile(baseline, "utf8"));
+    assert.match(baselineReport.label, /FICTIONAL/);
+    assert.equal(baselineReport.model.advantageClaim, false);
+    assert.ok(
+      baselineReport.estimates.some(
+        (e: { status: string }) => e.status === "READY",
+      ),
     );
     run("report", replay, report);
     assert.match(

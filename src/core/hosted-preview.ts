@@ -1,4 +1,5 @@
 import { dockedPreviewOrigin, previewDatabaseBound } from "./preview-auth";
+import { marketDataEnvironment } from "./market-data-environment";
 
 type Environment = Record<string, string | undefined>;
 export const hostedPreviewDisabledFlags = [
@@ -31,6 +32,7 @@ export function assertHostedPreview(env: Environment) {
       "Hosted Docked Preview configuration must remain isolated and closed",
     );
   };
+  if (env.AUTO_PUBLISH_DOCKED_EDGES === "true") fail();
   if (
     env.APP_ENV !== "preview" ||
     env.SUPABASE_ENV !== "preview" ||
@@ -68,6 +70,26 @@ export function assertHostedPreview(env: Environment) {
     fail();
   for (const name of hostedPreviewDisabledFlags)
     if (env[name] !== "false") fail();
+  if (
+    env.MARKET_DATA_POLLING_ENABLED &&
+    !["true", "false"].includes(env.MARKET_DATA_POLLING_ENABLED)
+  )
+    fail();
+  if (env.MARKET_DATA_POLLING_ENABLED === "true" && !marketDataEnvironment(env))
+    fail();
+  if (
+    (env.THE_ODDS_API_KEY?.trim() || env.ODDSPAPI_API_KEY?.trim()) &&
+    !marketDataEnvironment(env)
+  )
+    fail();
+  if (
+    marketDataEnvironment(env) &&
+    ((env.MARKET_DATA_PROVIDER === "the-odds-api" &&
+      env.ODDSPAPI_API_KEY?.trim()) ||
+      (env.MARKET_DATA_PROVIDER === "odds-papi" &&
+        env.THE_ODDS_API_KEY?.trim()))
+  )
+    fail();
   for (const name of [
     "PREVIEW_AUTH_CAPTURE_MODE",
     "PREVIEW_AUTH_PROJECT_REF",

@@ -1,5 +1,7 @@
 # Strategy V1 — unvalidated research hypothesis
 
+Phase 5 does not change these parameters, approvals or prior records. A separate current-data catalogue can include unsupported NFL fixture facts without expanding this strategy. `MarketBaselineModel` is an explicitly unvalidated wrapper around the versioned MarketReference pricing probability, not an independent predictive model. Research candidates are private observations; they cannot become paper/live performance without the existing validation, code-freeze, jurisdiction and owner gates.
+
 Executable source: `src/core/pricing.ts`. `hash(strategyV1)` is the canonical SHA-256 config hash. JSON object keys are sorted recursively. Decisions in research and ingestion use the same evaluator.
 
 - Universe: EPL, La Liga and NBA candidate markets only. NFL remains disabled until tie treatment is supported.

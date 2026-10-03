@@ -467,7 +467,17 @@ export async function reconcileCommunityResults(
       await sql`select * from private.community_edges where event_id=${eventId}`;
   let settled = 0;
   for (const edge of edges) {
-    const result = await provider.result(eventId, edge.market_rules as Rules);
+    const result = await provider
+      .result(eventId, edge.market_rules as Rules)
+      .catch(async () => {
+        // Record an actual adapter failure without storing external error text, guessing
+        // an outcome, or sending a notification. This call is outside settlement locks.
+        await sql.begin(async (tx) => {
+          await tx`insert into private.audit_events(actor,action,subject,details) values('results-ingestion','results_ingestion_failure',${eventId},${tx.json({ provider: provider.id, reason: "provider_unavailable" })})`;
+          await tx`insert into private.operational_alerts(dedupe_key,kind,severity,message,href,payload,expires_at) values(${"results-failure:" + provider.id + ":" + new Date().toISOString().slice(0, 10)},'results_ingestion_failure','critical','An authorised results adapter failed. Settlement remains pending.','/admin/daily',${tx.json({ provider: provider.id })},clock_timestamp()+interval '2 days') on conflict do nothing`;
+        });
+        throw Error("Results provider unavailable; settlement remains pending");
+      });
     if (!result || result.source !== provider.id) continue;
     const outcome =
       result.status === "manual_review"

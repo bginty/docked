@@ -1,5 +1,15 @@
 # Validation and reproducibility
 
+## Phase 5 baseline preparation
+
+The CLI adds `model-baseline` using `MarketBaselineModel` and the same strict `HistoricalReferenceEvent[]` as reference replay. It selects each last actual pre-decision snapshot, requires schedule/status knowledge at that decision, applies all dated rights/ownership/mapping/classification/region proofs, then calls the shared reference engine. It never passes results or later closing prices to the model. The report distinguishes historical `asOfTime` from actual computation `generatedAt`. Model/config/source evidence/code hashes and explicit null uncertainty are retained. This market-derived benchmark does not establish independent alpha or replace a study's declared comparison design.
+
+```powershell
+npm run research -- model-baseline private-data/reference-events.json private-data/reference-manifest.json research-output/baseline.json private-data/reference-strategy.json
+```
+
+Real baseline runs require the same clean frozen commit, exact config/region/date split and immutable manifest linkage as replay. Fixture outputs are explicitly fictional; no real baseline, historical dataset or performance validation was run. Existing legacy/reference commands and held-out sensitivity denial remain intact. Focused offline regressions cover unchanged shared probability, future-source rejection, later-result/closing-price independence and future-issued approvals. Provider fixtures exercise request reservation, missing timestamps, unsupported rules and exact identity without any network request.
+
 No historical or forward performance validation has occurred. The required fictional arithmetic returns −0.80 units and −16.00% ROI. It exists only in tests and `npm run research -- demo`; it is excluded from every public performance query.
 
 ## Phase 4 research support boundary

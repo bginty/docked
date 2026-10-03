@@ -24,6 +24,11 @@ import {
   purgeCommunityRetention,
 } from "../src/server/community-social";
 import { processLeaderboardNotifications } from "../src/server/top-docked";
+import {
+  scheduleEdgeScans,
+  scannerMaintenance,
+  runEdgeScan,
+} from "../src/server/edge-scanner";
 const mode = process.argv[2] ?? "once";
 async function main() {
   const settings = config();
@@ -43,6 +48,15 @@ async function main() {
   await sql`update private.outbox set state='dead',last_error='Lease exhausted after repeated crashes' where state='leased' and lease_until<now() and attempts>=5`;
   await sql`update private.job_runs set state='dead',failure_reason='Lease exhausted after repeated crashes' where state='leased' and lease_until<now() and attempts>=5`;
   const now = new Date().toISOString();
+  await isolatedObservation(
+    async () => {
+      await scheduleEdgeScans();
+      await scannerMaintenance();
+    },
+    async () => {
+      await sql`insert into private.audit_events(actor,action,subject,details) values('worker','scanner_maintenance_failure','service','{"reason":"Scanner scheduling or bounded retention failed; inspect private operational records"}')`;
+    },
+  );
   await isolatedObservation(collectObservations, async () => {
     await sql`insert into private.audit_events(actor,action,subject,details) values('worker','observation_failure','service','{"reason":"Observation collection failed; review source/configuration"}')`;
   });
@@ -91,7 +105,9 @@ async function main() {
   await drainJobs(leaseJob, async (job) => {
     const start = Date.now();
     try {
-      if (job.kind === "account_deletion") {
+      if (job.kind === "edge-scan") {
+        if (!(await runEdgeScan(job))) return;
+      } else if (job.kind === "account_deletion") {
         if (typeof job.payload.userId === "string")
           await processAccountDeletion(job.payload.userId);
       } else if (job.kind === "ingest") {

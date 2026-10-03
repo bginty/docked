@@ -17,6 +17,7 @@ import { currentBookmakerApprovals } from "./bookmaker-approvals";
 import { revalidateBookmakers } from "@/core/bookmaker-approval";
 import { frozenCodeMatches } from "@/core/code-provenance";
 import { registerCommunityQuoteEvidence } from "./community-edges";
+import { oddsApiCredential } from "@/providers/credentials";
 export async function ingestSport(sport: string) {
   if (
     !["direct", "session"].includes(process.env.DATABASE_CONNECTION_MODE ?? "")
@@ -100,7 +101,7 @@ export async function ingestSport(sport: string) {
     });
     pollId = reservation[0].id;
     const provider = new TheOddsApi({
-      key: process.env.ODDS_API_KEY!,
+      key: oddsApiCredential(process.env)!,
       rights: h.rights_reference,
       remaining: Math.min(
         remaining ?? Infinity,

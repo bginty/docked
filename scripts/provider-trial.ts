@@ -3,6 +3,7 @@ import path from "node:path";
 import { TheOddsApi, type Mapping } from "../src/providers/odds-api";
 import { OddsPapi, type OddsPapiMapping } from "../src/providers/odds-papi";
 import { runProviderTrial } from "../src/providers/comparison";
+import { oddsApiCredential } from "../src/providers/credentials";
 type TrialConfiguration = {
   competition: string;
   asOf?: string;
@@ -38,7 +39,7 @@ async function main() {
     throw new Error("Approved trial/retention rights required");
   const providers = [
     new TheOddsApi({
-      key: process.env.ODDS_API_KEY ?? "",
+      key: oddsApiCredential(process.env) ?? "",
       rights: config.rights,
       allowPolling: true,
       remaining: config.theOddsApi.remaining,

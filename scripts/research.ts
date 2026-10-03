@@ -5,6 +5,8 @@ import { hash, strategyV1 } from "../src/core/pricing";
 import { type Manifest } from "../src/research/replay";
 import { ledger, type LedgerRow } from "../src/core/ledger";
 import { defaultStudySplits } from "../src/research/dataset";
+import { researchModelBaseline } from "../src/research/model-baseline";
+import { validateReferenceStrategy } from "../src/core/reference-pricing";
 import {
   assertResearchFreeze,
   researchWorkflow,
@@ -138,6 +140,7 @@ async function main() {
     command === "validate-data" ||
     command === "replay" ||
     command === "sensitivity" ||
+    command === "model-baseline" ||
     command === "stress-test"
   ) {
     if (!input || !manifestFile)
@@ -175,16 +178,23 @@ async function main() {
       )
         throw new Error("Replay requires clean frozen code commit");
     }
-    const payload = researchWorkflow(
-      ["import", "validate-data"].includes(command)
-        ? "validate-data"
-        : command === "sensitivity" || command === "stress-test"
-          ? "stress-test"
-          : "replay",
-      events,
-      manifest,
-      config,
-    );
+    const payload =
+      command === "model-baseline"
+        ? researchModelBaseline(
+            events,
+            manifest,
+            validateReferenceStrategy(config),
+          )
+        : researchWorkflow(
+            ["import", "validate-data"].includes(command)
+              ? "validate-data"
+              : command === "sensitivity" || command === "stress-test"
+                ? "stress-test"
+                : "replay",
+            events,
+            manifest,
+            config,
+          );
     if (
       "validation" in payload &&
       payload.validation &&
@@ -210,7 +220,7 @@ async function main() {
     return;
   }
   console.log(
-    "Commands: freeze-strategy [configuration.json] [study-splits.json] [reference-region] | demo | import/validate-data/replay/stress-test data.json manifest.json research-output/report.json [configuration.json] | report research-output/replay.json research-output/report.md",
+    "Commands: freeze-strategy [configuration.json] [study-splits.json] [reference-region] | demo | import/validate-data/replay/stress-test/model-baseline data.json manifest.json research-output/report.json [configuration.json] | report research-output/replay.json research-output/report.md",
   );
 }
 main().catch((e) => {
