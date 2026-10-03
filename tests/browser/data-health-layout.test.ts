@@ -39,12 +39,14 @@ for (const width of [360, 412, 1366])
     ])
       await page.addStyleTag({ path: path.resolve("src/app", file) });
     await page.addScriptTag({ content: bundle });
-    for (const populated of [false, true]) {
+    for (const populated of [false, true, "approved", "unavailable"] as const) {
       await page.evaluate(
         (value) =>
           (
             window as unknown as {
-              renderDataHealthFixture: (value: boolean) => void;
+              renderDataHealthFixture: (
+                value: boolean | "approved" | "unavailable",
+              ) => void;
             }
           ).renderDataHealthFixture(value),
         populated,
@@ -58,7 +60,7 @@ for (const width of [360, 412, 1366])
       await expect(
         page.getByRole("link", { name: "Open scanner review" }),
       ).toHaveAttribute("href", "/admin/edge-scanner");
-      if (populated) {
+      if (populated === true) {
         const hash = "abcdef0123456789".repeat(4);
         await expect(
           page.getByText(`DEMO-reviewed-configuration-${hash}`, {
@@ -66,14 +68,14 @@ for (const width of [360, 412, 1366])
           }),
         ).toBeVisible();
         const measurement = page.locator("pre.safe-json").last();
-      await expect(measurement).toContainText(
-        `"configurationHash": "${hash}"`,
-      );
-      // A diagnostic record must occupy less than half this viewport, while
-      // complete hashes remain readable in the keyboard-scrollable table.
-      expect((await page.locator("tbody tr").boundingBox())!.height).toBeLessThan(
-        page.viewportSize()!.height / 2,
-      );
+        await expect(measurement).toContainText(
+          `"configurationHash": "${hash}"`,
+        );
+        // A diagnostic record must occupy less than half this viewport, while
+        // complete hashes remain readable in the keyboard-scrollable table.
+        expect(
+          (await page.locator("tbody tr").boundingBox())!.height,
+        ).toBeLessThan(page.viewportSize()!.height / 2);
         const table = page.getByRole("region", {
           name: "Recent provider poll attempts",
         });
@@ -90,8 +92,55 @@ for (const width of [360, 412, 1366])
         }
       } else
         await expect(
-          page.getByRole("heading", { name: "No configured provider" }),
+          page.getByRole("heading", {
+            name: "No recorded provider health measurements",
+          }),
         ).toBeVisible();
+      await expect(
+        page.getByRole("heading", {
+          name: "The Odds API · controlled Preview trial",
+        }),
+      ).toBeVisible();
+      if (populated === false)
+        await expect(
+          page.getByText("PENDING_RIGHTS", { exact: true }),
+        ).toBeVisible();
+      if (populated === "approved") {
+        await expect(
+          page.getByText("APPROVED_FOR_PREVIEW_TRIAL", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          page.getByText(
+            "No request is recorded in the trial ledger. Account quota has not been inferred.",
+          ),
+        ).toBeVisible();
+        await expect(
+          page.getByText("NOT_TESTED", { exact: true }),
+        ).toBeVisible();
+      }
+      if (populated === "unavailable")
+        await expect(
+          page.getByText(
+            "Request history unavailable. No request or credit total is inferred.",
+          ),
+        ).toBeVisible();
+      if (populated === true) {
+        await page
+          .getByText("DEMO selection · Reference unavailable", { exact: true })
+          .click();
+        await expect(
+          page.getByText("DEMO-reference-v1", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          page.getByText("DEMO_QUOTA_EXHAUSTED", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          page.getByText("DEMO Harbour vs DEMO City", { exact: true }),
+        ).toBeVisible();
+      }
+      await expect(
+        page.getByText(/MODEL_PROBABILITY_UNAVAILABLE/),
+      ).toBeVisible();
       expect(
         await page.evaluate(
           () => document.documentElement.scrollWidth <= innerWidth + 1,
@@ -102,7 +151,7 @@ for (const width of [360, 412, 1366])
         path: path.join(
           evidenceRoot,
           "data-health",
-          `DEMO-${populated ? "long-diagnostics" : "not-configured"}-${width}.png`,
+          `DEMO-${typeof populated === "string" ? populated : populated ? "long-diagnostics" : "not-configured"}-${width}.png`,
         ),
         fullPage: true,
       });

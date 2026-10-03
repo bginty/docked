@@ -15,6 +15,8 @@ import {
 import {
   canonicalProviderEventId,
   fetchCurrentMarketData,
+  fetchTrialEvents,
+  type MarketDataRequestAuthority,
   fixtureRules,
 } from "@/providers/market-data";
 import { oddsApiCredential } from "@/providers/credentials";
@@ -23,6 +25,11 @@ import { db } from "./db";
 import { regionAccess } from "./queries";
 import { loadMarketReference } from "./market-reference";
 import { registerCommunityQuoteEvidence } from "./community-edges";
+import {
+  providerTrialEnvironment,
+  trialMappingAccepted,
+} from "@/core/provider-trial";
+import { trialRequestAuthority, completeTrialRequest } from "./provider-trial";
 const iso = (v: Date | string) => (v instanceof Date ? v.toISOString() : v);
 function key(provider: string) {
   return provider === "the-odds-api"
@@ -46,11 +53,21 @@ export async function marketDataReadiness() {
   };
   try {
     if (!provider || !key(provider)) return base;
-    if (!marketDataEnvironment(process.env))
+    if (
+      !marketDataEnvironment(process.env) &&
+      !providerTrialEnvironment(process.env)
+    )
       return { ...base, status: "DISABLED" as const };
     const [record] =
       await db()`select * from private.market_data_config where provider=${provider} and enabled and effective_from<=clock_timestamp() and effective_to>clock_timestamp() order by created_at desc limit 1`;
     if (!record) return { ...base, status: "PENDING_RIGHTS" as const };
+    if (
+      providerTrialEnvironment(process.env) &&
+      !(
+        await db()`select private.provider_trial_active(${record.rights_reference}) allowed`
+      )[0]?.allowed
+    )
+      return { ...base, status: "PENDING_RIGHTS" as const };
     const cfg = validateMarketDataConfig(record.configuration);
     if (
       cfg.provider !== provider ||
@@ -94,8 +111,15 @@ export async function purgeExpiredMarketData() {
 }
 
 /** No publication, strategy approval, results settlement or messaging occurs in this importer. */
-export async function ingestCurrentMarketData() {
-  if (!marketDataEnvironment(process.env))
+export async function ingestCurrentMarketData(trial?: {
+  permitId: string;
+  tokenHash: string;
+}) {
+  if (
+    trial
+      ? !providerTrialEnvironment(process.env)
+      : !marketDataEnvironment(process.env)
+  )
     throw new Error("Market data preview authority is disabled");
   const provider = process.env.MARKET_DATA_PROVIDER!;
   const credential = key(provider);
@@ -107,8 +131,13 @@ export async function ingestCurrentMarketData() {
       await connection`select pg_try_advisory_lock(6729383) acquired`;
     if (!lock.acquired) return { status: "BUSY", events: 0, quotes: 0 };
     await connection`select private.purge_expired_market_payloads()`;
+    const [permit] = trial
+      ? await connection`select * from private.provider_trial_permits where id=${trial.permitId} and token_hash=${trial.tokenHash}`
+      : [];
+    if (trial && (!permit || !["odds", "events"].includes(permit.operation)))
+      throw Error("Manual ingestion permit unavailable");
     const [record] =
-      await connection`select * from private.market_data_config where provider=${provider} and enabled and effective_from<=clock_timestamp() and effective_to>clock_timestamp() order by created_at desc limit 1`;
+      await connection`select * from private.market_data_config where provider=${provider} and enabled and effective_from<=clock_timestamp() and effective_to>clock_timestamp() and (${!trial} or id=${permit?.config_id ?? null}) order by created_at desc limit 1`;
     if (!record)
       throw new Error("Reviewed market data configuration is unavailable");
     const cfg = validateMarketDataConfig(record.configuration);
@@ -121,6 +150,7 @@ export async function ingestCurrentMarketData() {
     const [recent] =
       await connection`select started_at from private.provider_poll_runs where provider=${provider} order by started_at desc limit 1`;
     if (
+      !trial &&
       recent &&
       Date.now() - new Date(recent.started_at).getTime() <
         cfg.pollIntervalSeconds * 1000
@@ -129,59 +159,83 @@ export async function ingestCurrentMarketData() {
     const [run] =
       await connection`insert into private.provider_poll_runs(provider,sport,status,diagnostics) values(${provider},'market_data','failed',${connection.json({ purpose: "market_data", configId: record.id, configHash: record.config_hash })}) returning id`;
     runId = String(run.id);
-    const batch = await fetchCurrentMarketData(cfg, {
-      key: credential,
-      observeQuota: async (quota) => {
-        await connection.begin(async (tx) => {
-          const extra = Math.max(
-            0,
-            (quota.lastRequestCost ?? quota.reservedCost) - quota.reservedCost,
-          );
-          await tx`update private.provider_poll_runs set quota_charge=quota_charge+${extra} where id=${runId!}`;
-          await tx`update private.source_health set credits_remaining=case when ${quota.remaining}::bigint is not null then ${quota.remaining}::bigint when credits_remaining is null then null else greatest(0,credits_remaining-${extra}) end,credits_used=coalesce(${quota.used},credits_used) where provider=${provider}`;
-        });
-      },
-      reserve: async (cost, scope) => {
-        await connection.begin(async (tx) => {
-          const [active] =
-            await tx`select * from private.market_data_config where id=${record.id} for share`;
-          await tx`insert into private.source_health(provider,rights_reference,capabilities) values(${provider},${cfg.rights.reference},${tx.json({ display: true, retention: true, derived: true, community_standard_prices: false })}) on conflict(provider) do nothing`;
-          const [health] =
-            await tx`select * from private.source_health where provider=${provider} for update`;
-          const [clock] = await tx`select clock_timestamp() at`;
-          if (
-            !active?.enabled ||
-            active.config_hash !== record.config_hash ||
-            new Date(active.effective_from) > clock.at ||
-            new Date(active.effective_to) <= clock.at
-          )
-            throw new Error("Market data approval expired or revoked");
-          if (
-            health.rights_reference !== cfg.rights.reference ||
-            health.capabilities?.display !== true ||
-            health.capabilities?.retention !== true ||
-            (health.circuit_until && health.circuit_until > clock.at)
-          )
-            throw new Error("Provider rights or outage circuit blocks polling");
-          const [spent] =
-            await tx`select coalesce(sum(quota_charge),0) total from private.provider_poll_runs where provider=${provider} and started_at>=date_trunc('month',clock_timestamp() at time zone 'UTC') at time zone 'UTC'`;
-          const budget = pollBudget({
-            limit: cfg.monthlyCreditLimit,
-            spent: Number(spent.total),
-            remaining:
-              health.credits_remaining === null
-                ? null
-                : Number(health.credits_remaining),
-            cost,
-          });
-          if (!budget.allowed)
-            throw new Error("Market data request budget unavailable");
-          await tx`update private.provider_poll_runs set quota_charge=quota_charge+${cost},diagnostics=diagnostics||${tx.json({ lastScope: scope })} where id=${runId!}`;
-          // Failed requests remain charged. Unknown provider balances remain NULL.
-          await tx`update private.source_health set credits_remaining=case when credits_remaining is null then null else greatest(0,credits_remaining-${cost}) end where provider=${provider}`;
-        });
-      },
-    });
+    const authority: MarketDataRequestAuthority = trial
+      ? trialRequestAuthority(
+          connection,
+          runId!,
+          trial.permitId,
+          trial.tokenHash,
+          credential,
+        )
+      : {
+          key: credential,
+          observeQuota: async (quota) => {
+            await connection.begin(async (tx) => {
+              const extra = Math.max(
+                0,
+                (quota.lastRequestCost ?? quota.reservedCost) -
+                  quota.reservedCost,
+              );
+              await tx`update private.provider_poll_runs set quota_charge=quota_charge+${extra} where id=${runId!}`;
+              await tx`update private.source_health set credits_remaining=case when ${quota.remaining}::bigint is not null then ${quota.remaining}::bigint when credits_remaining is null then null else greatest(0,credits_remaining-${extra}) end,credits_used=coalesce(${quota.used},credits_used) where provider=${provider}`;
+            });
+          },
+          reserve: async (cost, scope) => {
+            await connection.begin(async (tx) => {
+              const [active] =
+                await tx`select * from private.market_data_config where id=${record.id} for share`;
+              await tx`insert into private.source_health(provider,rights_reference,capabilities) values(${provider},${cfg.rights.reference},${tx.json({ display: true, retention: true, derived: true, community_standard_prices: false })}) on conflict(provider) do nothing`;
+              const [health] =
+                await tx`select * from private.source_health where provider=${provider} for update`;
+              const [clock] = await tx`select clock_timestamp() at`;
+              if (
+                !active?.enabled ||
+                active.config_hash !== record.config_hash ||
+                new Date(active.effective_from) > clock.at ||
+                new Date(active.effective_to) <= clock.at
+              )
+                throw new Error("Market data approval expired or revoked");
+              if (
+                health.rights_reference !== cfg.rights.reference ||
+                health.capabilities?.display !== true ||
+                health.capabilities?.retention !== true ||
+                (health.circuit_until && health.circuit_until > clock.at)
+              )
+                throw new Error(
+                  "Provider rights or outage circuit blocks polling",
+                );
+              const [spent] =
+                await tx`select coalesce(sum(quota_charge),0) total from private.provider_poll_runs where provider=${provider} and started_at>=date_trunc('month',clock_timestamp() at time zone 'UTC') at time zone 'UTC'`;
+              const budget = pollBudget({
+                limit: cfg.monthlyCreditLimit,
+                spent: Number(spent.total),
+                remaining:
+                  health.credits_remaining === null
+                    ? null
+                    : Number(health.credits_remaining),
+                cost,
+              });
+              if (!budget.allowed)
+                throw new Error("Market data request budget unavailable");
+              await tx`update private.provider_poll_runs set quota_charge=quota_charge+${cost},diagnostics=diagnostics||${tx.json({ lastScope: scope })} where id=${runId!}`;
+              // Failed requests remain charged. Unknown provider balances remain NULL.
+              await tx`update private.source_health set credits_remaining=case when credits_remaining is null then null else greatest(0,credits_remaining-${cost}) end where provider=${provider}`;
+            });
+          },
+        };
+    const scoped = trial
+      ? {
+          ...cfg,
+          competitions: cfg.competitions.filter(
+            (c) => c.providerCompetitionId === permit.competition,
+          ),
+          maxRequestsPerRun: 1,
+        }
+      : cfg;
+    const batch =
+      trial && permit.operation === "events"
+        ? await fetchTrialEvents(scoped, permit.competition, authority)
+        : await fetchCurrentMarketData(scoped, authority);
     let imported = 0,
       insertedQuotes = 0,
       mappingRejected = 0;
@@ -194,7 +248,11 @@ export async function ingestCurrentMarketData() {
         !active?.enabled ||
         active.config_hash !== record.config_hash ||
         new Date(active.effective_from) > clock.at ||
-        new Date(active.effective_to) <= clock.at
+        new Date(active.effective_to) <= clock.at ||
+        (trial &&
+          !(
+            await tx`select private.provider_trial_active(${cfg.rights.reference}) allowed`
+          )[0]?.allowed)
       )
         throw new Error("Market data rights revoked before persistence");
       for (const raw of batch.rawRecords) {
@@ -257,7 +315,8 @@ export async function ingestCurrentMarketData() {
         acceptedQuoteIds.push(q.id);
       }
       batch.stats.mappingFailures += mappingRejected;
-      await tx`update private.source_health set healthy=true,last_success=${batch.receivedAt},failure_reason=null,circuit_until=null,credits_remaining=coalesce(${batch.remaining},credits_remaining),credits_used=coalesce(${batch.used},credits_used),diagnostics=${tx.json(batch.stats)} where provider=${provider}`;
+      const healthy = !trial || (trialMappingAccepted(mappingRejected) && batch.remaining!==0);
+      await tx`update private.source_health set healthy=${healthy},last_success=case when ${healthy} then ${batch.receivedAt}::timestamptz else last_success end,last_failure=case when ${healthy} then last_failure else clock_timestamp() end,failure_reason=${healthy ? null : batch.remaining === 0 ? "provider_quota_exhausted" : "trial_mapping_rejected"},circuit_until=case when not ${healthy} then greatest(circuit_until,clock_timestamp()+interval '5 minutes') when ${!!trial} then circuit_until else null end,credits_remaining=coalesce(${batch.remaining},credits_remaining),credits_used=coalesce(${batch.used},credits_used),diagnostics=${tx.json(batch.stats)} where provider=${provider}`;
       await tx`update private.provider_poll_runs set status='success',completed_at=clock_timestamp(),diagnostics=diagnostics||${tx.json(batch.stats)} where id=${runId!}`;
     });
     // Independent classification guard reads trusted retained payload and source approvals.
@@ -268,16 +327,39 @@ export async function ingestCurrentMarketData() {
         } catch {
           await connection`insert into private.audit_events(actor,action,subject,details) values('market-data','classification_review_required',${quote.id},${connection.json({ provider })})`;
         }
+    if (trial)
+      await completeTrialRequest(
+        connection,
+        trial.permitId,
+        runId!,
+        trialMappingAccepted(mappingRejected),
+        {
+          ...batch.stats,
+          eventsImported: imported,
+          quotesImported: insertedQuotes,
+        },
+      );
     return {
-      status: "READY",
+      status: trial && batch.remaining===0 ? 'QUOTA_EXHAUSTED' : trial && !trialMappingAccepted(mappingRejected) ? "BLOCKED_MAPPING" : "READY",
       events: imported,
       quotes: insertedQuotes,
       mappingRejected,
     };
   } catch (error) {
+    const ownedFailure =
+      trial && runId
+        ? await completeTrialRequest(
+            connection,
+            trial.permitId,
+            runId,
+            false,
+            {},
+          )
+        : !trial;
     if (runId) {
       await connection`update private.provider_poll_runs set completed_at=clock_timestamp(),status='failed',error_code='market_data_poll_failed' where id=${runId}`;
-      await connection`update private.source_health set healthy=false,last_failure=clock_timestamp(),failure_reason='market_data_poll_failed',circuit_until=clock_timestamp()+interval '5 minutes' where provider=${provider}`;
+      if (ownedFailure)
+        await connection`update private.source_health set healthy=false,last_failure=clock_timestamp(),failure_reason='market_data_poll_failed',circuit_until=greatest(circuit_until,clock_timestamp()+interval '5 minutes') where provider=${provider}`;
     }
     throw error;
   } finally {
@@ -304,7 +386,10 @@ export async function monitoredMarkets(
   };
   try {
     if (!provider || !key(provider)) return empty;
-    if (!marketDataEnvironment(process.env))
+    if (
+      !marketDataEnvironment(process.env) &&
+      !providerTrialEnvironment(process.env)
+    )
       return {
         ...empty,
         status: "DISABLED",
@@ -327,6 +412,13 @@ export async function monitoredMarkets(
           message: "Current data display rights await review.",
         };
       const cfg = validateMarketDataConfig(record.configuration);
+      if (
+        providerTrialEnvironment(process.env) &&
+        !(
+          await tx`select private.provider_trial_active(${record.rights_reference}) allowed`
+        )[0]?.allowed
+      )
+        throw Error("Current trial rights unavailable");
       if (phase5Hash(cfg) !== record.config_hash)
         throw new Error("Configuration mismatch");
       const [health] =

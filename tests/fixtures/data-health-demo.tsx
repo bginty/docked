@@ -4,6 +4,8 @@ import {
   DataHealthPanel,
   type DataHealthView,
 } from "../../src/components/data-health-panel";
+import { trialHealthFixture } from "./provider-trial-health";
+import { ScannerDataOnly } from "../../src/components/scanner-data-only";
 
 const hash = "abcdef0123456789".repeat(4);
 const base: DataHealthView = {
@@ -15,6 +17,7 @@ const base: DataHealthView = {
   candidateCount: null,
   scannerCandidateCount: null,
   incidents: [],
+  trial: trialHealthFixture(),
   marketData: {
     status: "NOT_CONFIGURED",
     provider: null,
@@ -33,6 +36,7 @@ const diagnostics = {
 };
 const long: DataHealthView = {
   ...base,
+  trial: trialHealthFixture("measured"),
   marketData: {
     ...base.marketData,
     status: "UNAVAILABLE",
@@ -65,11 +69,29 @@ const long: DataHealthView = {
 };
 const root = createRoot(document.getElementById("demo-root")!);
 Object.assign(window, {
-  renderDataHealthFixture: (populated: boolean) =>
+  renderDataHealthFixture: (populated: boolean | "approved" | "unavailable") =>
     root.render(
       <>
         <p>ISOLATED DEMO · diagnostic layout only · no real provider records</p>
-        <DataHealthPanel health={populated ? long : base} />
+        <DataHealthPanel
+          health={
+            typeof populated === "string"
+              ? { ...base, trial: trialHealthFixture(populated) }
+              : populated
+                ? long
+                : base
+          }
+        />
+        <section className="page">
+          <ScannerDataOnly
+            data={{
+              status: populated === true ? "MARKET_DATA_READY" : "NOT_RUN",
+              modelStatus: "MODEL_PROBABILITY_UNAVAILABLE",
+              marketsEvaluated: populated === true ? 1 : null,
+              observedAt: populated === true ? "2026-10-04T00:15:00Z" : null,
+            }}
+          />
+        </section>
       </>,
     ),
 });

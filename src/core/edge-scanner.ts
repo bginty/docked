@@ -237,6 +237,12 @@ export function scannerMetrics(value: unknown): ScannerMetrics {
   };
 }
 export type ScannerDashboard = {
+  dataOnly?: {
+    status: "NOT_RUN" | "MARKET_DATA_READY" | "MARKET_DATA_UNAVAILABLE";
+    modelStatus: "MODEL_PROBABILITY_UNAVAILABLE";
+    observedAt: string | null;
+    marketsEvaluated: number | null;
+  };
   configured: boolean;
   status: "RUNNING" | "PAUSED" | "DEGRADED";
   lastSuccessfulScan: string | null;

@@ -2,7 +2,12 @@ import { db } from "./db";
 import { config } from "./config";
 import { providerReadiness, freshTimestamp } from "@/core/data-health";
 import { marketDataReadiness } from "./market-data";
+import { providerTrialHealth } from "./provider-trial";
 export async function dataHealth() {
+  const [marketData, trial] = await Promise.all([
+    marketDataReadiness(),
+    providerTrialHealth(),
+  ]);
   const base = {
     oddsStatus: providerReadiness(process.env, "odds"),
     resultsStatus: providerReadiness(process.env, "results"),
@@ -10,7 +15,8 @@ export async function dataHealth() {
     providers: [] as Record<string, unknown>[],
     polls: [] as Record<string, unknown>[],
     candidateCount: null as number | null,
-    marketData: await marketDataReadiness(),
+    marketData,
+    trial,
     scannerCandidateCount: null as number | null,
     incidents: [] as string[],
   };

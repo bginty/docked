@@ -6,6 +6,11 @@ import { pathToFileURL } from "node:url";
 import { db } from "../../src/server/db";
 const directory = pathToFileURL(resolve("private-data/hosted-preview") + sep);
 const modes = {
+  "--snapshot-phase5a": {
+    count: 12,
+    privateFile: "phase5a-before-migration.json",
+    receipt: "docs/qa/phase5a/migration-preimage.json",
+  },
   "--snapshot-phase4": {
     count: 6,
     privateFile: "phase4-before-migration.json",
@@ -69,8 +74,11 @@ async function main() {
           throw Error(
             "Android preview requires the verified closed empty-account seven-migration state",
           );
-        if (mode.count === 11) {
-          if (migrations.at(-1)?.version !== "20261003121502")
+        if (mode.count === 11 || mode.count === 12) {
+          if (
+            migrations.at(-1)?.version !==
+            (mode.count === 12 ? "20261003143903" : "20261003121502")
+          )
             throw Error(
               "Phase 5 requires the reviewed eleven-migration preimage",
             );

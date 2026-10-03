@@ -197,7 +197,7 @@ export function MonitoredFixtures({
                         market.freshness === "FRESH" &&
                         market.standardStatus === "STANDARD_VERIFIED"
                           ? `Market reference ${market.referencePrice}`
-                          : "Price unavailable"}
+                          : "Reference unavailable"}
                       </span>
                       <small>
                         {market.freshness === "STALE" ? (

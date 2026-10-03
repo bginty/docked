@@ -23,6 +23,7 @@ import {
 } from "@/core/edge-scanner";
 import { recognitionRuleV1 } from "@/core/community-recognition";
 import { recognitionAudit } from "@/server/community-recognition";
+import { ScannerDataOnly } from "./scanner-data-only";
 const labels: Record<string, string> = {
   events: "Events",
   markets: "Markets",
@@ -42,6 +43,7 @@ export function ScannerSummary({ data }: { data: ScannerDashboard }) {
           ? "Durable server jobs; current cached data only. Approval remains a separate operation."
           : "Scanner is NOT_CONFIGURED. No scan statistics are inferred."}
       </p>
+      {data.dataOnly && <ScannerDataOnly data={data.dataOnly} />}
       <dl className="scanner-metrics">
         <div>
           <dt>Provider</dt>
@@ -345,7 +347,7 @@ export async function ScannerAdminPage({
                 className="button ghost"
                 href={`/admin/candidate-edges?${new URLSearchParams({ cursor: queue.nextCursor, ...(query.status ? { status: query.status } : {}) })}`}
               >
-              More candidates
+                More candidates
               </Link>
             )}
             {canWrite && !id && <ManualCandidateForm />}

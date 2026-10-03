@@ -1,0 +1,25 @@
+{
+  "scope": "Local isolated Phase 5A trial invariants; no provider network requests",
+  "migration": "20261003225203_phase5a_manual_provider_trial.sql",
+  "database": { "file": "tests/database/phase5a-trial.test.ts", "passed": 8, "failed": 0 },
+  "platform": { "file": "tests/platform/phase5a-trial.test.ts", "passed": 5, "failed": 0 },
+  "coverage": [
+    "Browser and production-runtime role denial",
+    "Genuine staff MFA for reviewed rights and permit creation",
+    "Exact manual scope, token, cost and one-use permit",
+    "Unknown quota allows only free sports bootstrap",
+    "Cumulative non-refundable reservation ceiling and 25 attempts",
+    "Rights and permit expiry and revocation",
+    "Immutable observed charges and overcharge withdrawal",
+    "Interrupted request serialization and failure withdrawal",
+    "Completion bound to the invocation owning the reservation",
+    "Exact Preview environment, disabled general polling and publication",
+    "Canonical mapping conflicts stop the trial",
+    "Known account and cumulative quota exhaustion stop further requests"
+  ],
+  "limits": [
+    "PGlite serializes local transactions; no hosted concurrency test is claimed here",
+    "No provider rights, plan, quota or responses are inferred from these fictional tests",
+    "Full-suite and hosted acceptance receipts are reported separately"
+  ]
+}

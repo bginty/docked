@@ -15,6 +15,8 @@ import { publishReference } from "./reference-publication";
 import { finishJob } from "./queue";
 import { config } from "./config";
 import { purgeExpiredMarketData } from "./market-data";
+import { providerTrialEnvironment } from "@/core/provider-trial";
+import { providerTrialDataOnly } from "./provider-trial";
 import { deployedCodeCommit, frozenCodeMatches } from "@/core/code-provenance";
 import {
   evaluateReference,
@@ -95,6 +97,8 @@ async function evaluateCanonical(
     selection?: string;
   },
 ) {
+  if (providerTrialEnvironment(process.env))
+    return { ready: false as const, reason: "MODEL_PROBABILITY_UNAVAILABLE" };
   const [strategy] =
     await tx`select * from private.strategy_versions where id=${input.strategyId} for share`;
   if (
@@ -521,6 +525,7 @@ export async function scannerDashboard(): Promise<ScannerDashboard> {
         ? Number(health[0].credits_remaining)
         : null,
     metrics: scannerMetrics(runs[0]?.metrics),
+    dataOnly: await providerTrialDataOnly(),
     schedules: schedules.map((s) => ({
       ...scannerScheduleSchema.parse(s.configuration),
       nextAt: s.next_run ? iso(s.next_run) : null,
