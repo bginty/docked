@@ -18,9 +18,31 @@ test("platform icon exports retain the supplied master and supplied legacy sizes
     readFileSync("android/app/src/main/res/drawable-nodpi/docked_launcher.png"),
     readFileSync("public/brand/icons/docked-app-icon-1024.png"),
   );
+  const master = readFileSync("public/brand/icons/docked-app-icon-1024.png");
+  assert.equal(createHash("sha256").update(master).digest("hex"), "aa8f37eec82cef4974f5d1e5561591c2f620404c0218a1f0ffaf3cd9aefa180f", "The installed S24 master must remain unchanged.");
   assert.deepEqual(
-    readFileSync("public/icons/docked.svg"),
-    readFileSync("public/brand/logos/docked-mark.svg"),
+    readFileSync("public/brand/canonical/docked-master.png"),
+    master,
+  );
+  for (const filename of ["public/icons/docked.svg", "src/app/icon.svg"]) {
+    const svg = readFileSync(filename, "utf8");
+    const embedded = svg.match(/data:image\/png;base64,([A-Za-z0-9+/=]+)/)?.[1];
+    assert.ok(embedded, "SVG must embed the master raster.");
+    assert.ok(
+      Buffer.from(embedded, "base64").equals(master),
+      "SVG master bytes differ.",
+    );
+    assert.doesNotMatch(
+      svg,
+      /<(?:path|polygon|rect)/,
+      "No replacement mark geometry is allowed.",
+    );
+  }
+  const logo = readFileSync("src/components/brand-logo.tsx", "utf8");
+  assert.match(logo, /src=\{brandAssets.mark\}/);
+  assert.doesNotMatch(
+    logo,
+    /markWhite|wordmarkOnDark|docked-primary|docked-mark/,
   );
 });
 
@@ -54,11 +76,9 @@ test("adaptive and splash raster marks stay inside platform safe areas", async (
 test("branded native offline shell preserves hashed CSP and has no remote asset dependency", () => {
   const html = renderOfflineShell({
     mode: "hosted",
-    entryUrl: "https://preview.example.test/home",
+    entryUrl: "https://preview.example.test/app",
   });
-  const original = readFileSync(
-    "public/brand/logos/docked-primary-on-dark.png",
-  );
+  const original = readFileSync("public/brand/icons/docked-app-icon-1024.png");
   const image = html.match(
     /src="data:image\/png;base64,([A-Za-z0-9+/=]+)"/,
   )?.[1];
@@ -75,7 +95,7 @@ test("branded native offline shell preserves hashed CSP and has no remote asset 
     assert.ok(html.includes(`${tag}-src 'sha256-${digest}'`));
   }
   assert.match(html, /Nothing has been submitted or queued/);
-  assert.match(html, /https:\/\/preview\.example\.test\/home/);
+  assert.match(html, /https:\/\/preview\.example\.test\/app/);
   assert.equal(
     readFileSync("public/offline.html", "utf8"),
     renderPublicOfflineShell(),

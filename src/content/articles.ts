@@ -1,3 +1,4 @@
+import { betaEducation } from "./beta-education";
 const drafts = [
   {
     slug: "value-versus-winners",
@@ -236,7 +237,7 @@ const drafts = [
     ],
   },
 ];
-export const articles = drafts.map((article) => ({
+export const articles = [...drafts, ...betaEducation].map((article) => ({
   ...article,
   minutes: Math.max(
     1,

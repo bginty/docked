@@ -14,11 +14,21 @@ const hash = (file) =>
 
 // Gradle owns and can empty its entire output directory. Archive every APK
 // outside that directory before any build, and fail before Gradle on a mismatch.
-export function preserveAndroidApks(outputDirectory, archiveDirectory) {
+export function preserveAndroidApks(
+  outputDirectory,
+  archiveDirectory,
+  extensions = [".apk"],
+) {
   if (!existsSync(outputDirectory)) return [];
   const preserved = [];
   for (const entry of readdirSync(outputDirectory, { withFileTypes: true })) {
-    if (!entry.isFile() || !entry.name.toLowerCase().endsWith(".apk")) continue;
+    if (
+      !entry.isFile() ||
+      !extensions.some((extension) =>
+        entry.name.toLowerCase().endsWith(extension),
+      )
+    )
+      continue;
     const source = path.join(outputDirectory, entry.name);
     const digest = hash(source);
     const directory = path.join(archiveDirectory, digest);

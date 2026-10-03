@@ -44,11 +44,11 @@ test("hosted Android config binds one approved origin and whitelists only public
     () => JSON.stringify(manifest),
     now,
   );
-  assert.equal(target.entryUrl, `${manifest.origin}/home`);
+  assert.equal(target.entryUrl, `${manifest.origin}/app`);
   assert.equal(target.inspect, false);
   assert.equal(target.cleartext, false);
   const html = renderOfflineShell(target);
-  assert.ok(html.includes(`${manifest.origin}/home`));
+  assert.ok(html.includes(`${manifest.origin}/app`));
   assert.doesNotMatch(
     html.replace(/data:image\/png;base64,[A-Za-z0-9+/=]+/g, "approved-image"),
     /localhost|ADB|reverse port|Connect the reviewed preview/,
@@ -101,6 +101,6 @@ test("hosted Android build fails closed without current preview identity and dis
       CAPACITOR_PREVIEW_MODE: "local",
       CAPACITOR_PREVIEW_DEBUGGING: "1",
     }).entryUrl,
-    "http://localhost:3000/home",
+    "http://localhost:3000/app",
   );
 });

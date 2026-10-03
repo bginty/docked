@@ -132,7 +132,7 @@ export function resolveAndroidTarget(
   return Object.freeze({
     mode,
     origin,
-    entryUrl: origin ? `${origin}/home` : null,
+    entryUrl: origin ? `${origin}/app` : null,
     inspect,
     cleartext: mode === "local",
     webDir: `mobile/generated/${mode}`,

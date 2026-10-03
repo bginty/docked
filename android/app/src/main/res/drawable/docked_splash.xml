@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/dockedBackground" />
-    <item android:width="240dp" android:height="57dp" android:gravity="center">
+    <item android:width="144dp" android:height="144dp" android:gravity="center">
         <bitmap android:src="@drawable/docked_wordmark" android:gravity="fill" />
     </item>
 </layer-list>

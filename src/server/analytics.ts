@@ -1,6 +1,7 @@
 import "server-only";
 import { db } from "./db";
 import type { AnalyticsEvent } from "../core/analytics";
+import { acquisitionAccountsQuery } from "./acquisition-query";
 
 // No URL, IP, form value, bookmaker account, stake or loss enters this store.
 // Consent and active account are checked again on every write.
@@ -15,6 +16,8 @@ export async function recordAnalytics(
     await sql`insert into private.analytics_events(user_id,event,cohort,channel)
       select p.id,${event},p.created_at,${channel ?? null} from public.profiles p
       where p.id=${userId} and p.disabled_at is null
+      and exists(select 1 from auth.users u where u.id=p.id and coalesce(u.raw_app_meta_data->>'preview_fixture','false')<>'true' and lower(coalesce(u.email,'')) not like '%@example.invalid')
+      and (${event}<>'email_verified' or exists(select 1 from auth.users u where u.id=p.id and u.email_confirmed_at is not null and coalesce(u.raw_app_meta_data->>'email_ownership_verified','true')<>'false' and coalesce(u.raw_app_meta_data->>'preview_invitation_confirmed','false')<>'true'))
       and coalesce((select granted from private.consent_events where user_id=p.id and purpose='analytics' order by created_at desc limit 1),false)
       and (not ${once} or not exists(select 1 from private.analytics_events where user_id=p.id and event=${event})) on conflict do nothing`;
   } catch {
@@ -26,9 +29,7 @@ export async function acquisitionMetrics() {
   const sql = db();
   const [accounts, events, retention, sources, delivery, engagement] =
     await Promise.all([
-      sql`select count(*) as signups,count(*) filter(where u.email_confirmed_at is not null) as verified,
-      count(*) filter(where p.onboarding_completed_at is not null) as activated from public.profiles p
-      join auth.users u on u.id=p.id where p.disabled_at is null`,
+      sql.unsafe(acquisitionAccountsQuery),
       sql`select event,count(*) as events,count(distinct user_id) as members from private.analytics_events where created_at>=now()-interval '30 days' group by event order by event`,
       sql`select d.days,
       count(*) filter(where p.created_at<=now()-(d.days+7)*interval '1 day') as eligible_members,

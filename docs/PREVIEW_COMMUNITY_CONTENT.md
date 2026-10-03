@@ -1,0 +1,27 @@
+# Preview community content and Weekend Watchlist
+
+Five new evergreen drafts supplement the existing eight articles: reading a Docked Edge, permanent records, units/ROI, Top Docked qualification, and promotional-price exclusions. They use the existing article/CMS metadata pipeline, carry draft status and author attribution, and contain no current result or genuine performance claim. Arithmetic examples are explicitly fictional. Existing drafts and corrections remain preserved.
+
+`weekendWatchlistSchema` defines the reusable version-1 editorial type. It accepts an event, sport, start, rationale and information to evaluate; it rejects extra price, EV, minimum or fair-price fields. Publication requires either a licensed source or owner-approved manually entered factual source, a HTTPS reference, authorisation reference, reviewer, observation/review times, publish time, expiry and corrections. Future, expired, withdrawn, stale or incomplete entries are not shown. This type is rendered as **WATCHLIST — NOT A DOCKED EDGE**. There are currently zero approved entries; no sporting event has been invented to fill it. An owner-reviewed content change may supply schema-valid entries; there is no public self-publishing Watchlist API.
+
+The compact Edges and Feed empty views link to useful evergreen material and research. Regional/provider/strategy restrictions remain visible. The absence of a permitted scan is never relabelled “no qualifying opportunity”.
+
+## Controlled social seeding plan
+
+Use `src/content/preview-social-seed.ts` as the reviewed copy manifest. Four posts are prefixed **[PREVIEW TEST POST]** and make no current sporting or performance claim. They are not imported by application feed/query code.
+
+1. The reviewed operator run creates invitations for two **new** entitled preview identities named `DEMO Harbour Tester` and `DEMO Court Tester`, with handles `demo_seeda_<run prefix>` and `demo_seedb_<run prefix>`. Two separate disposable `DEMO QA-A`/`DEMO QA-B` accounts test deletion and revocation. Do not impersonate the official account, use an existing owner account or create apparently genuine public members. Keep exact Auth UUIDs and credentials only in ignored operator storage.
+2. Confirm the dedicated Docked Preview project and hosted closed environment, capability grants, separate privacy acceptance and current sessions. Production policy rows, genuine market/reference tables, official results and real Top Docked remain unchanged.
+3. Publish only the reviewed four seed posts through normal app composer actions. Add explicitly labelled QA discussion/comment/reply through the same authorization and moderation handlers. Follow/save/react tests are real preview database actions; do not manufacture follower counts or seed performance. Dispose of the QA content after acceptance while retaining only the obvious seed accounts/posts.
+4. Record the returned post/comment/profile IDs in an ignored private receipt. Repeating a run must first verify existing IDs and ownership; do not duplicate content or create another roster after an ambiguous response. The ordinary composer supplies idempotency keys. A successful write whose response was lost requires operator reconciliation before retry. No emails, outside notifications, real providers or purchases are involved.
+5. Verify Feed/Following/profile rendering and actual access denial after entitlement revocation. Retained demonstration posts must keep the prefix and obvious test identity. Cleanup uses existing social deletion/account-erasure flows; immutable canonical records are never touched.
+
+The manifest and plan are prepared locally. Actual remote accounts/content require the parent operator's coordinated preview run and an explicit receipt; these documents do not claim that seeding has occurred.
+
+## Hosted acceptance runner
+
+`scripts/hosted-preview/phase45-browser.ts` accepts `--run` only with `DOCKED_PHASE45_ACCEPTANCE=bckkllmndoxzpzdqrevb` and `DOCKED_PHASE45_WRITES=INVITED_TEST_ACCOUNTS_ONLY`. It reads only the new ignored `private-data/phase45-beta/acceptance.json` roster from the operator, checks its project/organisation/canonical origin, exact reserved addresses, explicit test names and expiry, and checks the current closed service status before writes. It never loads the owner's credentials.
+
+Invitation signup exercises `/app/signup` and the three onboarding steps. The invitation grants test access without asserting email ownership; no verification email is sent. Browser routing permits only the exact frontend and narrowly scoped ordinary actions involving verified members/posts from this run. No canonical Edge, settlement, administrative, provider, upload or external operation is permitted. Login/invitation screens are not captured, and raw errors, HTML, traces, cookies and credentials are not written to reports.
+
+The runner captures five tabs, composer, profile, discussion and notifications at 412×915 and 1080×2160, plus the clearly labelled DEMO review. It checks accessibility and browser errors, performs real social interactions, saves fixture records, then deletes QA-B through ordinary account controls. QA-A is retained for the operator's explicit revocation; `--verify-revoked` verifies its private fixture and social APIs deny access before cleanup. Sanitized receipts are written under `docs/qa/phase45/hosted/<timestamp>`; private progress remains in the ignored roster directory. The operator must independently verify deletion, immutable pseudonymous retention and owner isolation after execution.

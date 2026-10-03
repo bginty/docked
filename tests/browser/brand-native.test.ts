@@ -14,7 +14,7 @@ const shells: [string, string][] = JSON.parse(
     [
       "--input-type=module",
       "-e",
-      `import {renderOfflineShell,renderPublicOfflineShell} from './scripts/build-mobile-shell.mjs';process.stdout.write(JSON.stringify([['native-offline',renderOfflineShell({mode:'hosted',entryUrl:'https://preview.example.test/home'})],['pwa-offline',renderPublicOfflineShell()]]));`,
+      `import {renderOfflineShell,renderPublicOfflineShell} from './scripts/build-mobile-shell.mjs';process.stdout.write(JSON.stringify([['native-offline',renderOfflineShell({mode:'hosted',entryUrl:'https://preview.example.test/app'})],['pwa-offline',renderPublicOfflineShell()]]));`,
     ],
     { encoding: "utf8", maxBuffer: 2 * 1024 * 1024 },
   ),
@@ -35,13 +35,15 @@ for (const width of [390, 1366]) {
     page.on("request", (request) => requests.push(request.url()));
     for (const [name, html] of shells) {
       await page.setContent(html);
-      await expect(page.getByRole("img", { name: "Docked" })).toBeVisible();
+      await expect(page.locator(".brand img")).toBeVisible();
+      await expect(page.locator(".brand strong")).toHaveText("DOCKED");
+      await expect(page.locator(".brand img")).toHaveAttribute("alt", "");
       expect(
         await page
-          .getByRole("img", { name: "Docked" })
+          .locator(".brand img")
           .evaluate(
             (image: HTMLImageElement) =>
-              image.complete && image.naturalWidth === 1600,
+              image.complete && image.naturalWidth === 1024 && image.naturalHeight === 1024,
           ),
       ).toBe(true);
       await expect(

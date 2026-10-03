@@ -7,12 +7,15 @@ import { resolveAndroidTarget } from "./android-preview-config.mjs";
 // sibling CSS/JS requests. Keep the error document self-contained and hash-bound.
 const hash = (value) => createHash("sha256").update(value).digest("base64");
 const brand = JSON.parse(readFileSync("src/brand/brand-tokens.json", "utf8"));
-const logo = `data:image/png;base64,${readFileSync("public/brand/logos/docked-primary-on-dark.png").toString("base64")}`;
+const canonical = JSON.parse(readFileSync("src/brand/canonical-logo.json", "utf8"));
+const logo = `data:image/png;base64,${readFileSync(canonical.source).toString("base64")}`;
 function shellStyle() {
   const variables = Object.entries(brand.colors)
     .map(([name, value]) => `--brand-${name}:${value}`)
     .join(";");
-  return `:root{${variables};--brand-font:${brand.fontFamily}}\n${readFileSync("mobile/www/shell.css", "utf8").trim()}`;
+  // HTML parsing normalises CRLF to LF before CSP evaluates inline hashes.
+  // Emit and hash the same canonical bytes on Windows and Unix.
+  return `:root{${variables};--brand-font:${brand.fontFamily}}\n${readFileSync("mobile/www/shell.css", "utf8").replace(/\r\n?/g, "\n").trim()}`;
 }
 function brandShell(template) {
   return template
@@ -28,6 +31,7 @@ export function renderPublicOfflineShell() {
 export function renderOfflineShell(target) {
   const style = shellStyle();
   const script = readFileSync("mobile/www/offline.js", "utf8")
+    .replace(/\r\n?/g, "\n")
     .trim()
     .replace("__DOCKED_RETRY_URL__", JSON.stringify(target.entryUrl));
   const csp = `default-src 'none'; img-src data:; style-src 'sha256-${hash(style)}'; script-src 'sha256-${hash(script)}'; base-uri 'none'; form-action 'none'`;

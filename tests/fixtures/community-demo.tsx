@@ -284,10 +284,10 @@ export function renderDemo(
           <PinnedDockedEmpty regionAllowed={false} feedReady={false} />
         )}
       </div>
-    ) : view === "compose" || view === "mobile-compose" ? (
+    ) : view === "compose" || view === "mobile-compose" || view === "mobile-preview-edge" ? (
       <>
         <AppHeading eyebrow="DEMO COMPOSER" title="Share a perspective." />
-        <SocialComposer />
+        <SocialComposer previewFixtures={view === "mobile-preview-edge"} />
       </>
     ) : view === "profile" ? (
       <>

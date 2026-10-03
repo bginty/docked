@@ -148,8 +148,10 @@ function monitor(page: Page) {
 async function suppliedAsset(page: Page, url: string) {
   const file = new URL(url, page.url()).pathname;
   const original =
-    file === "/favicon.ico"
-      ? "/brand/icons/favicon.ico"
+    file === "/brand/canonical/docked-master.png"
+      ? "/brand/icons/docked-app-icon-1024.png"
+      : file === "/favicon.ico"
+      ? "/brand/icons/docked-app-icon-32.png"
       : file === "/icons/docked-192.png"
         ? "/brand/icons/docked-app-icon-192.png"
         : file === "/icons/docked-512.png"
@@ -164,6 +166,18 @@ async function suppliedAsset(page: Page, url: string) {
   const response = await page.request.get(file);
   expect(response.status(), file).toBe(200);
   const bytes = await response.body();
+  if (file === "/favicon.ico") {
+    expect(bytes.readUInt16LE(2)).toBe(1);
+    expect(bytes.readUInt16LE(4)).toBe(1);
+    expect([bytes[6], bytes[7]]).toEqual([32, 32]);
+    const offset = bytes.readUInt32LE(18), length = bytes.readUInt32LE(14);
+    expect(offset).toBe(22);
+    expect(bytes.length).toBe(offset + length);
+    expect(length).toBe(approved.bytes);
+    expect(createHash("sha256").update(bytes.subarray(offset)).digest("hex")).toBe(approved.sha256);
+    checkedAssets.add(file);
+    return;
+  }
   expect(bytes.length, `${file} bytes`).toBe(approved.bytes);
   expect(
     createHash("sha256").update(bytes).digest("hex"),
@@ -173,7 +187,7 @@ async function suppliedAsset(page: Page, url: string) {
 }
 
 async function brandIdentity(page: Page) {
-  const logos = page.locator("img.brand-logo:visible");
+  const logos = page.locator(".brand-logo:visible > img");
   expect(
     await logos.count(),
     "At least one supplied brand asset must be visible",
@@ -578,9 +592,9 @@ test("Edge Signal PWA/favicon/offline artwork serves approved supplied bytes", a
     createHash("sha256")
       .update(Buffer.from(offline.source.split(",")[1], "base64"))
       .digest("hex"),
-  ).toBe(sources.assets["/brand/logos/docked-primary-on-dark.png"].sha256);
-  expect([offline.naturalWidth, offline.naturalHeight]).toEqual([1600, 380]);
-  expect(Math.abs(offline.width / offline.height - 1600 / 380)).toBeLessThan(
+  ).toBe(sources.assets["/brand/icons/docked-app-icon-1024.png"].sha256);
+  expect([offline.naturalWidth, offline.naturalHeight]).toEqual([1024, 1024]);
+  expect(Math.abs(offline.width / offline.height - 1)).toBeLessThan(
     0.03,
   );
   expect([offline.filter, offline.transform, offline.shadow]).toEqual([

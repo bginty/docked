@@ -3,6 +3,7 @@ import { publicTips, serviceStatus, regionAccess } from "@/server/queries";
 import { EdgeCard } from "./edge-card";
 import { OfficialBadge } from "./community-basics";
 import { PinnedDockedEmpty } from "./pinned-docked-empty";
+import { BetaReading } from "./beta-reading";
 export async function PinnedDocked({
   timezone = "Australia/Melbourne",
   format = "decimal",
@@ -87,6 +88,7 @@ export async function PinnedDocked({
           view={view}
         />
       )}
+      {compact && !active.length && <BetaReading watchlist />}
     </section>
   );
 }

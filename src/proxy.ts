@@ -32,6 +32,9 @@ export async function proxy(request: NextRequest) {
 }
 export const config = {
   matcher: [
+    "/app/:path*",
+    "/api/app-session",
+    "/api/preview-edges",
     "/dashboard/:path*",
     "/admin/:path*",
     "/edges",

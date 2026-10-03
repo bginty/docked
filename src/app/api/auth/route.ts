@@ -6,17 +6,26 @@ import { db, rateLimit } from "@/server/db";
 import { hash } from "@/core/pricing";
 import { recordAnalytics } from "@/server/analytics";
 import { previewAuthEmailAllowed } from "@/server/preview-auth";
+import { boundedCommunityBody } from "@/core/community-social";
+import { signupUsername } from "@/core/preview-testers";
+import { redeemPreviewInvitation } from "@/server/preview-invitations";
 const schema = z.object({
   action: z.enum([
     "signup",
     "login",
     "recover",
+    "resend",
     "reset",
     "logout",
     "mfa_enroll",
     "mfa_verify",
   ]),
   email: z.string().email().max(254).optional(),
+  app: z.boolean().optional(),
+  username: signupUsername.optional(),
+  invitationCode: z.string().max(100).optional(),
+  privacy: z.boolean().optional(),
+  marketing: z.boolean().optional(),
   password: z.string().min(12).max(128).optional(),
   country: z
     .string()
@@ -46,7 +55,10 @@ export async function POST(request: Request) {
       },
       { status: 503 },
     );
-  const parsed = schema.safeParse(await request.json().catch(() => null));
+  const payload = await boundedCommunityBody(request, 16000)
+    .then((bytes) => JSON.parse(new TextDecoder().decode(bytes)))
+    .catch(() => null);
+  const parsed = schema.safeParse(payload);
   if (!parsed.success)
     return NextResponse.json(
       {
@@ -56,10 +68,12 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   const v = parsed.data;
+  const invited = v.action === "signup" && !!v.invitationCode;
   if (
     !config().production &&
-    ["signup", "recover"].includes(v.action) &&
-    !(await previewAuthEmailAllowed(v.email))
+    ["signup", "recover", "resend"].includes(v.action) &&
+    !invited &&
+    !(await previewAuthEmailAllowed(v.email, v.app))
   )
     return NextResponse.json(
       {
@@ -79,6 +93,21 @@ export async function POST(request: Request) {
       { error: "Please wait before trying again." },
       { status: 429 },
     );
+  if (invited) {
+    try {
+      return NextResponse.json(await redeemPreviewInvitation(v), {
+        headers: { "Cache-Control": "private, no-store" },
+      });
+    } catch {
+      return NextResponse.json(
+        {
+          error:
+            "Preview invitation unavailable. Check the approved email, unused invitation code, username and required legal acceptances.",
+        },
+        { status: 403, headers: { "Cache-Control": "private, no-store" } },
+      );
+    }
+  }
   const client = (await authClient())!;
   const sql = db();
   if (v.action === "logout") {
@@ -95,7 +124,10 @@ export async function POST(request: Request) {
         { error: "Sign-out could not be confirmed. Please retry." },
         { status: 503 },
       );
-    return NextResponse.json({ ok: true, redirect: "/" });
+    return NextResponse.json({
+      ok: true,
+      redirect: v.app ? "/app/login" : "/",
+    });
   }
   if (v.action === "mfa_enroll") {
     const {
@@ -134,13 +166,47 @@ export async function POST(request: Request) {
     );
   }
   if (v.action === "recover") {
-    if (v.email)
-      await client.auth.resetPasswordForEmail(v.email, {
-        redirectTo: `${config().siteUrl}/auth/callback?next=/reset-password`,
-      });
+    if (!v.email)
+      return NextResponse.json({ error: "Email required" }, { status: 400 });
+    const { error } = await client.auth.resetPasswordForEmail(v.email, {
+      redirectTo: `${config().siteUrl}/auth/callback?next=${v.app ? "/app/reset-password" : "/reset-password"}`,
+    });
+    if (error)
+      return NextResponse.json(
+        {
+          error:
+            "Recovery service is unavailable. No delivery has been confirmed.",
+        },
+        { status: 503 },
+      );
     return NextResponse.json({
       ok: true,
       message: "If the account exists, recovery instructions will be sent.",
+      ...(v.app ? { redirect: "/app/check-email?type=recovery" } : {}),
+    });
+  }
+  if (v.action === "resend") {
+    if (!v.email)
+      return NextResponse.json({ error: "Email required" }, { status: 400 });
+    const { error } = await client.auth.resend({
+      type: "signup",
+      email: v.email,
+      options: {
+        emailRedirectTo: `${config().siteUrl}/auth/callback${v.app ? "?next=/app/verified" : ""}`,
+      },
+    });
+    if (error)
+      return NextResponse.json(
+        {
+          error:
+            "Verification service is unavailable. No delivery has been confirmed.",
+        },
+        { status: 503 },
+      );
+    return NextResponse.json({
+      ok: true,
+      message: "If eligible, verification instructions will be sent.",
+      ...(v.app ? { redirect: "/app/check-email?type=verification" } : {}),
     });
   }
   if (v.action === "reset") {
@@ -150,7 +216,10 @@ export async function POST(request: Request) {
     return NextResponse.json(
       error
         ? { error: "Recovery session invalid or expired" }
-        : { ok: true, redirect: "/dashboard" },
+        : {
+            ok: true,
+            redirect: v.app ? "/app/password-updated" : "/dashboard",
+          },
     );
   }
   if (!v.email || !v.password)
@@ -166,7 +235,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       error
         ? { error: "Sign-in failed. Check credentials and email verification." }
-        : { ok: true, redirect: "/dashboard" },
+        : { ok: true, redirect: v.app ? "/app" : "/dashboard" },
     );
   }
   const flags =
@@ -179,7 +248,13 @@ export async function POST(request: Request) {
       },
       { status: 503 },
     );
-  if (!v.country || !v.state || !v.age || !v.terms)
+  if (
+    !v.country ||
+    !v.state ||
+    !v.age ||
+    !v.terms ||
+    (v.app && (!v.privacy || !v.username))
+  )
     return NextResponse.json(
       {
         error:
@@ -190,7 +265,9 @@ export async function POST(request: Request) {
   const { data, error } = await client.auth.signUp({
     email: v.email,
     password: v.password,
-    options: { emailRedirectTo: `${config().siteUrl}/auth/callback` },
+    options: {
+      emailRedirectTo: `${config().siteUrl}/auth/callback${v.app ? "?next=/app/verified" : ""}`,
+    },
   });
   if (error || !data.user)
     return NextResponse.json(
@@ -211,12 +288,16 @@ export async function POST(request: Request) {
     for (const [purpose, granted] of Object.entries({
       terms: true,
       privacy: true,
+      age_attestation: true,
+      marketing: !!v.marketing,
       digest: !!v.digest,
       education: !!v.education,
       edge: !!v.edgeAlerts,
       analytics: !!v.analytics,
     }))
       await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${data.user!.id},${purpose},${granted},'2026-10-draft',${data.user!.id})`;
+    if (v.app && v.username)
+      await tx`insert into private.social_profiles(user_id,handle,display_name) values(${data.user!.id},${v.username},${v.username})`;
     return true;
   });
   if (created)
@@ -225,5 +306,6 @@ export async function POST(request: Request) {
     ok: true,
     message:
       "Check your email to verify your account. Age self-attestation does not verify identity or regional eligibility.",
+    ...(v.app ? { redirect: "/app/check-email?type=verification" } : {}),
   });
 }

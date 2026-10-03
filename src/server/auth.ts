@@ -1,7 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { db } from "./db";
-import { verifiedSessionClaims } from "@/core/auth-policy";
+import {
+  verifiedSessionClaims,
+  conclusiveAuthFailure,
+} from "@/core/auth-policy";
 import { authCookieOptions } from "@/core/auth-cookies";
 import { assertHostedPreview } from "@/core/hosted-preview";
 export async function authClient() {
@@ -34,15 +37,22 @@ export async function authClient() {
 export async function identity() {
   const c = await authClient();
   if (!c) return null;
-  const { data: session } = await c.auth.getSession();
+  const { data: session, error: sessionError } = await c.auth.getSession();
+  if (sessionError) {
+    if (conclusiveAuthFailure(sessionError)) return null;
+    throw new Error("Authentication service temporarily unavailable");
+  }
   const token = session.session?.access_token;
   if (!token) return null;
   const {
     data: { user },
     error,
   } = await c.auth.getUser(token);
-  if (error || !user || !user.email_confirmed_at || user.is_anonymous)
-    return null;
+  if (error) {
+    if (conclusiveAuthFailure(error)) return null;
+    throw new Error("Authentication service temporarily unavailable");
+  }
+  if (!user || !user.email_confirmed_at || user.is_anonymous) return null;
   const sql = db();
   const p =
     await sql`select * from public.profiles where id=${user.id} and disabled_at is null`;

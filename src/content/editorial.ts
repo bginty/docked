@@ -1,4 +1,5 @@
 import { articles } from "./articles";
+import { betaEducation } from "./beta-education";
 export type EditorialArticle = {
   slug: string;
   title: string;
@@ -21,9 +22,15 @@ export function educationalDrafts(): EditorialArticle[] {
       Math.ceil(a.sections.flat().join(" ").split(/\s+/).length / 200),
     ),
     published: false,
-    createdAt: "2026-10-02",
+    createdAt: betaEducation.some((draft) => draft.slug === a.slug)
+      ? "2026-10-03"
+      : "2026-10-02",
     publishedAt: null,
-    updatedAt: a.slug === "bookmaker-margin" ? "2026-10-03" : "2026-10-02",
+    updatedAt:
+      a.slug === "bookmaker-margin" ||
+      betaEducation.some((draft) => draft.slug === a.slug)
+        ? "2026-10-03"
+        : "2026-10-02",
     author: "Docked editorial",
     corrections: [],
   }));

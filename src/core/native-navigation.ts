@@ -4,6 +4,16 @@ const record = new RegExp(`^/(tips|edges|results)/(${id})$`);
 const community = new RegExp(`^/community/(posts|edges)/(${id})$`);
 const shortPost = new RegExp(`^/community/(${id})$`);
 const staticPaths = new Set([
+  "/app",
+  "/app/login",
+  "/app/signup",
+  "/app/forgot-password",
+  "/app/reset-password",
+  "/app/onboarding",
+  "/app/check-email",
+  "/app/verified",
+  "/app/password-updated",
+  "/app/link-expired",
   "/home",
   "/feed",
   "/following",
@@ -88,12 +98,50 @@ export function nativeAuthCallback(value: string): string | null {
   if (
     !code ||
     !/^[A-Za-z0-9_-]{8,512}$/.test(code) ||
-    (next !== null && next !== "/reset-password")
+    (next !== null &&
+      !["/reset-password", "/app/reset-password", "/app/verified"].includes(
+        next,
+      ))
   )
     return null;
   const query = new URLSearchParams({ code });
   if (next) query.set("next", next);
   return `/auth/callback?${query}`;
+}
+/** Presentation context only. This mapping never accepts a caller's next URL or credentials. */
+export function nativeAppRoute(pathname: string): string | null {
+  const routes: Record<string, string> = {
+    "/": "/app",
+    "/login": "/app/login",
+    "/join": "/app/signup",
+    "/recover": "/app/forgot-password",
+    "/forgot-password": "/app/forgot-password",
+    "/reset-password": "/app/reset-password",
+  };
+  return routes[pathname] ?? null;
+}
+export function nativeSessionDestination(
+  status: number,
+  input: unknown,
+  pathname: string,
+): string | null {
+  // Auth/verification screens and the entry gate own their own transitions.
+  if (
+    pathname === "/app" ||
+    pathname.startsWith("/app/") ||
+    status !== 200 ||
+    !input ||
+    typeof input !== "object"
+  )
+    return null;
+  const session = input as {
+    authenticated?: unknown;
+    onboardingRequired?: unknown;
+  };
+  if (session.authenticated === false) return "/app/login";
+  if (session.authenticated === true && session.onboardingRequired === true)
+    return "/app/onboarding";
+  return null;
 }
 export function safeSharePath(path: string): string | null {
   if (!path.startsWith("/") || path.startsWith("//")) return null;

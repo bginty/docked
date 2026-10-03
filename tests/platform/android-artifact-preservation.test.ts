@@ -20,6 +20,7 @@ test("APK archive survives a cleared Gradle output and refuses corrupted prior c
       ["preview", "fixture-v2.apk", "Isolated v2 test bytes."],
       ["preview", "fixture-v3.apk", "Different v3 test bytes."],
       ["debug", "fixture-v1.apk", "Isolated debug test bytes."],
+      ["preview", "fixture-v5.aab", "Isolated closed-test bundle bytes."],
     ] as const;
     const outputs = ["preview", "debug"].map((variant) =>
       path.join(fixture, variant),
@@ -33,9 +34,9 @@ test("APK archive survives a cleared Gradle output and refuses corrupted prior c
     };
     populate();
     const saved = outputs.flatMap((output) =>
-      preserveAndroidApks(output, archive),
+      preserveAndroidApks(output, archive, [".apk", ".aab"]),
     );
-    assert.equal(saved.length, 3);
+    assert.equal(saved.length, 4);
     for (const output of outputs) {
       assert.ok(path.resolve(output).startsWith(fixture + path.sep));
       rmSync(output, { recursive: true });
@@ -51,12 +52,17 @@ test("APK archive survives a cleared Gradle output and refuses corrupted prior c
     }
     populate();
     assert.deepEqual(
-      outputs.flatMap((output) => preserveAndroidApks(output, archive)),
+      outputs.flatMap((output) =>
+        preserveAndroidApks(output, archive, [".apk", ".aab"]),
+      ),
       saved,
     );
     writeFileSync(saved[0].path, "corrupt");
     assert.throws(
-      () => outputs.flatMap((output) => preserveAndroidApks(output, archive)),
+      () =>
+        outputs.flatMap((output) =>
+          preserveAndroidApks(output, archive, [".apk", ".aab"]),
+        ),
       /hash mismatch; build stopped/,
     );
   } finally {

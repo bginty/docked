@@ -1,0 +1,75 @@
+.beta-reading {
+  display: grid;
+  gap: 14px;
+}
+.beta-reading .app-panel,
+.preview-fixture-composer {
+  margin: 0;
+}
+.beta-reading h2,
+.preview-fixture-composer h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.beta-reading p,
+.preview-fixture-composer p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.beta-reading-links {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+.beta-reading-links li + li {
+  border-top: 1px solid var(--line);
+}
+.beta-reading-links a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding-block: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+}
+.beta-watchlist .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.preview-fixture-composer {
+  scroll-margin-top: calc(var(--app-header-height) + 24px);
+}
+.preview-price-review {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--border-control);
+  border-radius: var(--app-card-radius);
+}
+.preview-fixture-composer .card {
+  margin-top: 12px;
+}
+.preview-fixture-composer select {
+  min-height: 48px;
+  max-width: 100%;
+}
+@media (max-width: 760px) {
+  .community-shell[data-authenticated="true"] .beta-reading .app-panel {
+    padding: 16px;
+  }
+  .community-shell[data-authenticated="true"] .beta-reading h2 {
+    font-size: 18px;
+  }
+  .community-shell[data-authenticated="true"] .beta-reading-links li + li {
+    border-color: var(--app-border);
+  }
+  .community-shell[data-authenticated="true"] .preview-price-review {
+    background: var(--surface-card);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+  }
+  .community-shell[data-authenticated="true"] .preview-price-review p,
+  .community-shell[data-authenticated="true"] .preview-price-review .check,
+  .community-shell[data-authenticated="true"] .preview-price-review h3 {
+    color: var(--text-primary);
+  }
+}

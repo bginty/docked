@@ -3,6 +3,7 @@ import { existsSync, copyFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { resolveAndroidTarget } from "./android-preview-config.mjs";
 import { preserveAndroidApks } from "./preserve-android-apks.mjs";
+import { closedTestPreflight } from "./android-closed-test-config.mjs";
 
 // Uses the installed SDK/JDK. Does not accept new SDK licenses;
 // Gradle can provision a missing build package under an existing license.
@@ -16,7 +17,8 @@ if (!sdk || !java || !existsSync(path.join(sdk, "platforms", "android-36")))
   );
 const attached = process.argv.includes("--attach-local");
 const inspect = process.argv.includes("--inspect-webview");
-const hosted = process.argv.includes("--hosted-preview");
+const closedTest = process.argv.includes("--closed-test");
+const hosted = process.argv.includes("--hosted-preview") || closedTest;
 if (hosted && (attached || inspect))
   throw new Error(
     "Hosted preview cannot enable local attachment or inspection.",
@@ -30,6 +32,7 @@ const env = {
   CAPACITOR_PREVIEW_DEBUGGING: inspect ? "1" : "",
 };
 resolveAndroidTarget(env);
+if (closedTest) closedTestPreflight(env);
 const windows = process.platform === "win32";
 function run(command, args, cwd = root) {
   const result = spawnSync(command, args, {
@@ -42,13 +45,20 @@ function run(command, args, cwd = root) {
 }
 const artifactOutput = path.join(
   root,
-  "android/app/build/outputs/apk",
-  hosted ? "preview" : "debug",
+  closedTest
+    ? "android/app/build/outputs/bundle"
+    : "android/app/build/outputs/apk",
+  closedTest ? "closedTest" : hosted ? "preview" : "debug",
 );
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
-const hostedFilename = "Docked-Preview-S24-v4-Mobile-App.apk";
-preserveAndroidApks(artifactDelivery, artifactArchive);
+const hostedFilename = "Docked-Preview-S24-v5-App-Entry.apk";
+preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);
+preserveAndroidApks(
+  path.join(root, "android/app/build/outputs/bundle/closedTest"),
+  artifactArchive,
+  [".aab"],
+);
 for (const variant of ["debug", "preview"]) {
   preserveAndroidApks(
     path.join(root, "android/app/build/outputs/apk", variant),
@@ -61,13 +71,26 @@ run("npx", ["cap", "sync", "android"]);
 run(
   windows ? "gradlew.bat" : "./gradlew",
   [
-    hosted ? ":app:assemblePreview" : ":app:assembleDebug",
+    closedTest
+      ? ":app:bundleClosedTest"
+      : hosted
+        ? ":app:assemblePreview"
+        : ":app:assembleDebug",
     "--no-daemon",
     "--max-workers=2",
   ],
   path.join(root, "android"),
 );
-if (hosted) {
+if (closedTest) {
+  mkdirSync(artifactDelivery, { recursive: true });
+  copyFileSync(
+    path.join(artifactOutput, "app-closedTest.aab"),
+    path.join(artifactDelivery, "Docked-Preview-v5-Closed-Test.aab"),
+  );
+  console.log(
+    "Created artifacts/android/Docked-Preview-v5-Closed-Test.aab. No Play upload was performed.",
+  );
+} else if (hosted) {
   const output = path.join(root, "android/app/build/outputs/apk/preview");
   copyFileSync(
     path.join(output, "app-preview.apk"),
@@ -80,5 +103,5 @@ if (hosted) {
   );
   console.log(`Created artifacts/android/${hostedFilename}`);
 }
-preserveAndroidApks(artifactOutput, artifactArchive);
-preserveAndroidApks(artifactDelivery, artifactArchive);
+preserveAndroidApks(artifactOutput, artifactArchive, [".apk", ".aab"]);
+preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);

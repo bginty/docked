@@ -45,3 +45,44 @@ export function verifiedSessionClaims(token: string, userId: string) {
     return null;
   }
 }
+/** An administrator/invitation confirmation is access provisioning, not proof of email ownership. */
+export function isEmailOwnershipVerified(
+  user:
+    | {
+        email_confirmed_at?: string | null;
+        app_metadata?: Record<string, unknown>;
+      }
+    | null
+    | undefined,
+) {
+  return (
+    !!user?.email_confirmed_at &&
+    user.app_metadata?.email_ownership_verified !== false &&
+    user.app_metadata?.preview_invitation_confirmed !== true
+  );
+}
+
+/** Only an explicit authentication rejection means signed out; outages are unknown. */
+export function conclusiveAuthFailure(error: unknown) {
+  if (!error || typeof error !== "object") return false;
+  const failure = error as { name?: string; status?: number; code?: string };
+  if (
+    failure.name === "AuthRetryableFetchError" ||
+    !failure.status ||
+    failure.status >= 500 ||
+    failure.status === 429
+  )
+    return false;
+  if (failure.name === "AuthSessionMissingError") return true;
+  if (failure.status === 401 || failure.status === 403) return true;
+  return (
+    failure.status === 400 &&
+    [
+      "refresh_token_not_found",
+      "refresh_token_already_used",
+      "session_not_found",
+      "bad_jwt",
+      "user_not_found",
+    ].includes(failure.code ?? "")
+  );
+}

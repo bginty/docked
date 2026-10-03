@@ -7,6 +7,8 @@ import { publicTips } from "@/server/queries";
 import { processAccountDeletion } from "@/server/account-deletion";
 import { recordAnalytics } from "@/server/analytics";
 import { exportCommunityData } from "@/server/community-social";
+import { saveAppOnboarding } from "@/server/app-onboarding";
+import { boundedCommunityBody } from "@/core/community-social";
 const preferenceSchema = z.object({
   timezone: z.string().refine((v) => DateTime.now().setZone(v).isValid),
   oddsFormat: z.enum(["decimal", "fractional", "american"]),
@@ -23,15 +25,25 @@ export async function GET() {
   try {
     const who = await requireIdentity(),
       sql = db();
-    const [preferences, saved, personal, consent, analytics, community] =
-      await Promise.all([
-        sql`select * from public.notification_preferences where user_id=${who.user.id}`,
-        sql`select tip_id,created_at from public.saved_tips where user_id=${who.user.id}`,
-        sql`select * from public.personal_entries where user_id=${who.user.id}`,
-        sql`select purpose,granted,version,created_at from private.consent_events where user_id=${who.user.id}`,
-        sql`select event,channel,created_at from private.analytics_events where user_id=${who.user.id} order by created_at`,
-        exportCommunityData(who.user.id),
-      ]);
+    const [
+      preferences,
+      saved,
+      personal,
+      consent,
+      analytics,
+      community,
+      appOnboarding,
+      previewAccess,
+    ] = await Promise.all([
+      sql`select * from public.notification_preferences where user_id=${who.user.id}`,
+      sql`select tip_id,created_at from public.saved_tips where user_id=${who.user.id}`,
+      sql`select * from public.personal_entries where user_id=${who.user.id}`,
+      sql`select purpose,granted,version,created_at from private.consent_events where user_id=${who.user.id}`,
+      sql`select event,channel,created_at from private.analytics_events where user_id=${who.user.id} order by created_at`,
+      exportCommunityData(who.user.id),
+      sql`select interests,version,completed_at from private.app_onboarding where user_id=${who.user.id}`,
+      sql`select capabilities,created_at,expires_at,revoked_at from private.preview_tester_access where user_id=${who.user.id} order by created_at`,
+    ]);
     return NextResponse.json(
       {
         profile: who.profile,
@@ -41,6 +53,8 @@ export async function GET() {
         consent,
         analytics,
         community,
+        appOnboarding,
+        previewAccess,
       },
       {
         headers: {
@@ -64,7 +78,11 @@ export async function POST(request: Request) {
       sql = db();
     if (!(await rateLimit(`member:${who.user.id}`, 30)))
       return NextResponse.json({ error: "Rate limit" }, { status: 429 });
-    const body = await request.json();
+    const body = JSON.parse(
+      new TextDecoder().decode(await boundedCommunityBody(request, 16000)),
+    );
+    if (body.action === "app_onboarding")
+      return NextResponse.json(await saveAppOnboarding(body));
     if (body.action === "jurisdiction") {
       const v = z
         .object({

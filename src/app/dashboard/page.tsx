@@ -242,7 +242,7 @@ export default async function Dashboard() {
               </Check>
             </ApiForm>
           </section>
-          <section className="card">
+          <section className="card" id="account-controls">
             <h2>Account controls</h2>
             <p>
               Deletion disables access and revokes sessions. Minimal retained

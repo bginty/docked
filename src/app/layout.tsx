@@ -7,6 +7,8 @@ import "./sports-experience.css";
 import "./community-app.css";
 import "./native.css";
 import "./mobile-app.css";
+import "./app-auth.css";
+import "./beta-experience.css";
 import { NativeBridge } from "@/components/native-bridge";
 import { config } from "@/server/config";
 import { AnalyticsObserver } from "@/components/analytics-observer";
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       {
-        url: "/brand/icons/docked-mark-32.png",
+        url: "/brand/icons/docked-app-icon-32.png",
         sizes: "32x32",
         type: "image/png",
       },

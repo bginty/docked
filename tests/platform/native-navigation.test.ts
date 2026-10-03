@@ -3,11 +3,87 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
   nativeAuthCallback,
+  nativeAppRoute,
+  nativeSessionDestination,
   nativeDeepLink,
   nativeNotificationRoute,
   safeSharePath,
 } from "../../src/core/native-navigation";
 const id = "00000000-0000-4000-8000-000000000123";
+test("native app entry, recovery and expired-session transitions retain UI context without new authority", () => {
+  for (const route of [
+    "/app",
+    "/app/login",
+    "/app/signup",
+    "/app/onboarding",
+    "/app/forgot-password",
+    "/app/reset-password",
+    "/app/check-email",
+    "/app/verified",
+    "/app/password-updated",
+    "/app/link-expired",
+  ]) {
+    assert.equal(nativeDeepLink(`docked:/${route}`), route);
+    assert.equal(
+      nativeNotificationRoute({ type: "system", path: route }),
+      null,
+    );
+  }
+  assert.equal(nativeAppRoute("/"), "/app");
+  assert.equal(nativeAppRoute("/login"), "/app/login");
+  assert.equal(nativeAppRoute("/join"), "/app/signup");
+  assert.equal(nativeAppRoute("/recover"), "/app/forgot-password");
+  assert.equal(nativeAppRoute("/api/auth"), null);
+  assert.equal(nativeAppRoute("//foreign.example"), null);
+  for (const next of ["/app/reset-password", "/app/verified"]) {
+    const query = new URLSearchParams({ code: "valid_code_123", next });
+    assert.equal(
+      nativeAuthCallback(`docked://auth/callback?${query}`),
+      `/auth/callback?${query}`,
+    );
+  }
+  assert.equal(
+    nativeAuthCallback(
+      "docked://auth/callback?code=valid_code_123&next=/app/admin",
+    ),
+    null,
+  );
+  assert.equal(
+    nativeSessionDestination(200, { authenticated: false }, "/edges"),
+    "/app/login",
+  );
+  assert.equal(
+    nativeSessionDestination(
+      200,
+      { authenticated: true, onboardingRequired: true },
+      "/feed",
+    ),
+    "/app/onboarding",
+  );
+  assert.equal(
+    nativeSessionDestination(
+      200,
+      { authenticated: true, onboardingRequired: false },
+      "/feed",
+    ),
+    null,
+  );
+  for (const response of [
+    [503, { authenticated: false }],
+    [401, { authenticated: false }],
+    [200, {}],
+    [200, { authenticated: "false" }],
+  ] as const)
+    assert.equal(nativeSessionDestination(response[0], response[1], "/edges"), null);
+  assert.equal(
+    nativeSessionDestination(
+      200,
+      { authenticated: false },
+      "/app/reset-password",
+    ),
+    null,
+  );
+});
 test("mobile app tabs are exact deep links without expanding push or auth authority", () => {
   for (const path of ["/edges", "/feed", "/following", "/points", "/my-edge"]) {
     assert.equal(nativeDeepLink(`docked:/${path}`), path);

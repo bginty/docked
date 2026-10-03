@@ -28,7 +28,9 @@ const config: CapacitorConfig = {
     CapacitorCookies: { enabled: false },
     SystemBars: { insetsHandling: "css", style: "DARK", hidden: false },
     SplashScreen: {
-      launchShowDuration: 800,
+      launchShowDuration: 0,
+      launchAutoHide: true,
+      launchFadeOutDuration: 150,
       backgroundColor: brand.colors.navy,
       showSpinner: false,
     },

@@ -1,0 +1,24 @@
+{
+  "status": "DRAFT_OWNER_REVIEW_REQUIRED",
+  "purpose": "Google Play closed testing only; no upload performed",
+  "master": "public/brand/icons/docked-app-icon-1024.png",
+  "masterSha256": "aa8f37eec82cef4974f5d1e5561591c2f620404c0218a1f0ffaf3cd9aefa180f",
+  "files": [
+    {
+      "path": "artifacts/playstore/docked-preview-feature-1024x500.png",
+      "bytes": 97610,
+      "width": 1024,
+      "height": 500,
+      "sha256": "ea93838da7f70fbac8694fbff89e25802f5ceeb7a0ce2611dfdaa8b8fc6c2827",
+      "opaque": true
+    },
+    {
+      "path": "artifacts/playstore/docked-preview-icon-512.png",
+      "bytes": 107080,
+      "width": 512,
+      "height": 512,
+      "sha256": "52307bf2dd8d8cfeca76ff03c25070171bd23381d031d8c3ad2c2a87d3650223",
+      "opaque": true
+    }
+  ]
+}

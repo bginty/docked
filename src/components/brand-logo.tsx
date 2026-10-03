@@ -1,6 +1,6 @@
 import { brandAssets } from "@/brand/brand";
 
-/** Supplied raster artwork only. Dimensions preserve its original aspect ratio. */
+/** The installed Android icon is the master. Never substitute a legacy D variant. */
 export function BrandLogo({
   variant = "wordmark",
   surface = "light",
@@ -13,21 +13,25 @@ export function BrandLogo({
   decorative?: boolean;
 }) {
   const mark = variant === "mark";
-  const src = mark
-    ? surface === "dark"
-      ? brandAssets.markWhite
-      : brandAssets.mark
-    : surface === "dark"
-      ? brandAssets.wordmarkOnDark
-      : brandAssets.wordmark;
   return (
-    <img
-      className={`brand-logo brand-logo--${variant} ${className}`.trim()}
-      src={src}
-      alt={decorative ? "" : "Docked"}
-      width={mark ? 800 : 1600}
-      height={mark ? 680 : 380}
-      decoding="async"
-    />
+    <span
+      className={`brand-logo brand-logo--${variant} canonical-logo canonical-logo--${surface} ${className}`.trim()}
+      role={decorative ? undefined : "img"}
+      aria-label={decorative ? undefined : "Docked"}
+      aria-hidden={decorative || undefined}
+    >
+      <img
+        src={brandAssets.mark}
+        alt=""
+        width={1024}
+        height={1024}
+        decoding="async"
+      />
+      {!mark && (
+        <span className="canonical-logo-name" aria-hidden="true">
+          DOCKED
+        </span>
+      )}
+    </span>
   );
 }

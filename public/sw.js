@@ -1,6 +1,6 @@
 /* Docked web app v1. Only the public offline shell is cached. Never cache pages,
    API responses, authenticated RSC payloads, odds or member media. */
-const CACHE="docked-public-offline-edge-signal-v2";
+const CACHE="docked-public-offline-master-d-v3";
 const OFFLINE="/offline.html";
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.add(OFFLINE))));
 self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith("docked-public-offline-")&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));

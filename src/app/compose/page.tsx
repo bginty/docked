@@ -7,6 +7,7 @@ import {
 import { SocialComposer } from "@/components/social-composer";
 import { appViewer } from "@/server/app-view";
 import { communityProfile } from "@/server/community-social";
+import { previewTesterCapabilities } from "@/server/preview-testers";
 import Link from "next/link";
 export const dynamic = "force-dynamic";
 export const metadata = {
@@ -16,6 +17,7 @@ export const metadata = {
 export default async function Compose() {
   const { who, configured } = await appViewer();
   const social = who ? await communityProfile() : null;
+  const previewCapabilities = who ? await previewTesterCapabilities() : [];
   return (
     <AppShell authenticated={!!who}>
       <AppHeading eyebrow="CREATE" title="Share a perspective. Own the record.">
@@ -35,7 +37,11 @@ export default async function Compose() {
             </Link>
           </section>
         ) : (
-          <SocialComposer />
+          <SocialComposer
+            previewFixtures={previewCapabilities.includes(
+              "preview_market_fixtures",
+            )}
+          />
         )
       ) : (
         <AccessGate configured={configured} />

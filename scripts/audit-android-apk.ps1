@@ -6,7 +6,8 @@ param(
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 . (Join-Path $PSScriptRoot 'android-offline-branding.ps1')
-$approvedImage = if ($Mode -eq 'Hosted') { 'data:image/png;base64,' + [Convert]::ToBase64String([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath 'public/brand/logos/docked-primary-on-dark.png'))) } else { '' }
+$canonicalLogo = Get-Content -LiteralPath 'src/brand/canonical-logo.json' -Raw | ConvertFrom-Json
+$approvedImage = if ($Mode -eq 'Hosted') { 'data:image/png;base64,' + [Convert]::ToBase64String([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $canonicalLogo.source))) } else { '' }
 $secretValues = [System.Collections.Generic.List[string]]::new()
 if (Test-Path -LiteralPath '.env.local') {
   foreach ($line in Get-Content -LiteralPath '.env.local') {
@@ -54,7 +55,7 @@ if ($Mode -eq 'Hosted') {
   $expectedText = & node --input-type=module -e "import {resolveAndroidTarget} from './scripts/android-preview-config.mjs'; console.log(JSON.stringify(resolveAndroidTarget({CAPACITOR_PREVIEW_MODE:'hosted'}).manifest));"
   if ($LASTEXITCODE -ne 0) { throw 'APK audit requires a current verified preview manifest.' }
   $expectedEnvironment = $expectedText | ConvertFrom-Json
-  $approvedHostedOrigin = $config.server.url -eq ($expectedEnvironment.origin + '/home') -and
+  $approvedHostedOrigin = $config.server.url -eq ($expectedEnvironment.origin + '/app') -and
     $config.server.cleartext -eq $false -and $config.android.allowMixedContent -eq $false -and
     -not $config.server.allowNavigation -and $hostedPagesSafe -and $verifiedHostedPages -eq 2 -and
     $packagedEnvironment.origin -eq $expectedEnvironment.origin -and

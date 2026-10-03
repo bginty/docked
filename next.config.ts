@@ -10,15 +10,16 @@ const retired = [
   "/checkout",
 ];
 const config: NextConfig = {
+  agentRules: false,
   poweredByHeader: false,
   output: "standalone",
   outputFileTracingIncludes: {
     "/*": ["./certs/supabase-prod-ca-2021.crt"],
     "/api/community-edges/share": [
-      "./public/brand/logos/docked-primary-on-dark.png",
+      "./public/brand/canonical/docked-master.png",
     ],
     "/opengraph-image": [
-      "./public/brand/social/docked-hero-built-for-an-edge.png",
+      "./public/brand/canonical/docked-social.png",
     ],
   },
   async redirects() {

@@ -33,6 +33,11 @@ export function ApiForm({
       ...Object.fromEntries(data),
       action,
     };
+    if (
+      endpoint === "/api/auth" &&
+      document.documentElement.classList.contains("docked-native")
+    )
+      body.app = true;
     form
       .querySelectorAll<HTMLInputElement>("input[type=checkbox]")
       .forEach((x) => {

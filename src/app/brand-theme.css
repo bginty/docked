@@ -101,6 +101,13 @@
   min-width: 90px;
   aspect-ratio: 80 / 19;
 }
+/* Phase 4.5 canonical identity: exact installed app icon plus plain name text. */
+.brand-logo.canonical-logo { display: inline-flex; align-items: center; gap: 7%; overflow: visible; aspect-ratio: auto; container-type: inline-size; }
+.canonical-logo > img { display: block; width: 25%; height: auto; aspect-ratio: 1; object-fit: contain; flex: 0 0 25%; border-radius: 22%; }
+.canonical-logo.brand-logo--mark { aspect-ratio: 1; }
+.canonical-logo.brand-logo--mark > img { width: 100%; flex-basis: 100%; }
+.canonical-logo .canonical-logo-name { color: var(--brand-navy); font-family: var(--font-brand, Arial, sans-serif); font-weight: 800; font-size: 19cqw; line-height: 1; letter-spacing: -.045em; }
+.canonical-logo--dark .canonical-logo-name { color: var(--brand-white); }
 .brand-logo--mark {
   width: 44px;
   aspect-ratio: 20 / 17;

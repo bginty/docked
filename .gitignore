@@ -17,6 +17,9 @@ playwright-report/
 research-output/
 private-data/
 artifacts/android/*.apk
+artifacts/android/*.aab
+*.jks
+*.keystore
 mobile/generated/
 .supabase/
 **/supabase/.temp/

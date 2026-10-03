@@ -4,8 +4,13 @@ import { useRouter } from "next/navigation";
 import { communityAction } from "./social-interactions";
 import { EdgeComposer } from "./edge-composer";
 import { NativeImagePicker } from "./native-image-picker";
-export function SocialComposer() {
-  const [mode, setMode] = useState<"social" | "edge">("edge"),
+import { PreviewEdgeComposer } from "./preview-edge-composer";
+export function SocialComposer({
+  previewFixtures = false,
+}: {
+  previewFixtures?: boolean;
+}) {
+  const [mode, setMode] = useState<"social" | "edge" | "preview">("edge"),
     [body, setBody] = useState(""),
     [mediaIds, setMedia] = useState<string[]>([]),
     [busy, setBusy] = useState(false),
@@ -75,8 +80,18 @@ export function SocialComposer() {
         >
           Create post
         </button>
+        {previewFixtures && (
+          <button
+            aria-pressed={mode === "preview"}
+            onClick={() => setMode("preview")}
+          >
+            DEMO Edge flow
+          </button>
+        )}
       </div>
-      {mode === "edge" ? (
+      {mode === "preview" && previewFixtures ? (
+        <PreviewEdgeComposer />
+      ) : mode === "edge" ? (
         <EdgeComposer
           onSocial={(reasoning) => {
             setBody(reasoning);

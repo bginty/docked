@@ -4,6 +4,7 @@ import type { CommunityFeed } from "@/core/community-social";
 import { SocialCard, ProfileActions } from "./social-interactions";
 import { CommunityEmpty, OfficialBadge, SportChips } from "./community-basics";
 import { SocialTimeline } from "./social-timeline";
+import { BetaReading } from "./beta-reading";
 export function FeedTabs({
   base,
   tab = "for_you",
@@ -127,6 +128,7 @@ export function FeedContent({
           {compact ? "Load older posts" : "Older posts"}
         </Link>
       )}
+      {compact && feed.posts.length === 0 && <BetaReading />}
     </>
   );
 }

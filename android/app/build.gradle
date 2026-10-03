@@ -7,13 +7,22 @@ android {
         applicationId "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "1.3"
+        versionCode 5
+        versionName "1.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
              // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    signingConfigs {
+        closedTestUpload {
+            def keyPath = System.getenv('DOCKED_UPLOAD_KEYSTORE')
+            if (keyPath) storeFile file(keyPath)
+            storePassword System.getenv('DOCKED_UPLOAD_STORE_PASSWORD')
+            keyAlias System.getenv('DOCKED_UPLOAD_ALIAS')
+            keyPassword System.getenv('DOCKED_UPLOAD_KEY_PASSWORD')
         }
     }
     buildTypes {
@@ -35,17 +44,35 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        // Explicit closed-test-only package. Never inherits debug signing or its
+        // localhost resource overlay. Owner upload key is required before build.
+        closedTest {
+            initWith release
+            applicationIdSuffix ".preview"
+            versionNameSuffix "-preview"
+            signingConfig signingConfigs.closedTestUpload
+            debuggable false
+            matchingFallbacks = ['release']
+        }
     }
 }
 
 // The current SSR attachment uses Capacitor's development-only server.url.
-// No release APK/AAB can be produced until the packaged-client architecture,
-// domain ownership, signing, auth links and Google Play review are approved.
+// Production release remains blocked. The separate closedTest variant requires
+// exact isolated HTTPS assets and a real owner-controlled upload certificate.
 gradle.taskGraph.whenReady { graph ->
     if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('release') }) {
         throw new GradleException('Docked release is BLOCKED: development foundation only. See docs/GOOGLE_PLAY_READINESS.md.')
     }
-    if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('preview') }) {
+    if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('closedtest') }) {
+        def signing = providers.exec {
+            workingDir rootProject.projectDir.parentFile
+            commandLine 'node', 'scripts/android-closed-test-config.mjs'
+            ignoreExitValue = true
+        }
+        if (signing.result.get().exitValue != 0) throw new GradleException('Closed testing is BLOCKED: verified owner upload key required. See docs/ANDROID_CLOSED_TEST_BUILD.md.')
+    }
+    if (graph.allTasks.any { it.project == project && (it.name.toLowerCase().contains('preview') || it.name.toLowerCase().contains('closedtest')) }) {
         def verification = providers.exec {
             workingDir rootProject.projectDir.parentFile
             commandLine 'node', 'scripts/verify-android-preview-assets.mjs'

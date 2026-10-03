@@ -32,7 +32,10 @@ export async function GET(request: Request) {
             fontSize: 30,
           }}
         >
-          <img src={wordmark} width={240} height={57} alt="Docked" />
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <img src={wordmark} width={57} height={57} alt="" />
+            <span>DOCKED</span>
+          </div>
           <span style={{ color: brand.colors.mint }}>
             COMMUNITY · PERMANENT RECORD
           </span>

@@ -10,6 +10,8 @@ import { appViewer } from "@/server/app-view";
 import { topDockedBoard } from "@/server/top-docked";
 import { topDockedRuleV1, type RankingPeriod } from "@/core/top-docked";
 import { NativeShare } from "@/components/native-share";
+import { PreviewTopDocked } from "@/components/preview-top-docked";
+import { previewTesterCapabilities } from "@/server/preview-testers";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Top Docked",
@@ -31,10 +33,18 @@ export default async function TopDocked({
   const period = periods.some(([id]) => id === q.period)
     ? (q.period as RankingPeriod)
     : "month";
-  const [{ who }, board] = await Promise.all([
+  const [{ who }, previewCapabilities] = await Promise.all([
     appViewer(),
-    topDockedBoard(period, q.sport),
+    previewTesterCapabilities(),
   ]);
+  // An explicit isolated preview entitlement never grants a real leaderboard read.
+  if (previewCapabilities.includes("preview_top_docked"))
+    return (
+      <AppShell authenticated={!!who}>
+        <PreviewTopDocked />
+      </AppShell>
+    );
+  const board = await topDockedBoard(period, q.sport);
   return (
     <AppShell authenticated={!!who}>
       <AppHeading eyebrow="TOP DOCKED" title="The record earns the rank.">

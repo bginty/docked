@@ -1,7 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { nativeAuthCallback, nativeDeepLink } from "@/core/native-navigation";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  nativeAppRoute,
+  nativeAuthCallback,
+  nativeDeepLink,
+  nativeSessionDestination,
+} from "@/core/native-navigation";
 import { brand } from "@/brand/brand";
 export function isDockedNative() {
   return (
@@ -13,6 +18,7 @@ export function isDockedNative() {
 }
 export function NativeBridge() {
   const router = useRouter();
+  const pathname = usePathname();
   const [native, setNative] = useState(false),
     [online, setOnline] = useState(true),
     [message, setMessage] = useState("");
@@ -31,7 +37,14 @@ export function NativeBridge() {
       } catch {
         return;
       }
-      if (url.origin === location.origin) return;
+      if (url.origin === location.origin) {
+        const appRoute = nativeAppRoute(url.pathname);
+        if (appRoute) {
+          event.preventDefault();
+          router.push(appRoute);
+        }
+        return;
+      }
       if (url.protocol !== "https:" || url.username || url.password) {
         event.preventDefault();
         setMessage(
@@ -81,12 +94,18 @@ export function NativeBridge() {
             else void App.minimizeApp();
           }),
           App.addListener("appStateChange", ({ isActive }) => {
-            if (alive && isActive) router.refresh();
+            if (alive && isActive) {
+              router.refresh();
+              window.dispatchEvent(new Event("docked-app-resume"));
+            }
           }),
           Network.addListener("networkStatusChange", (status) => {
             if (alive) {
               setOnline(status.connected);
-              if (status.connected) router.refresh();
+              if (status.connected) {
+                router.refresh();
+                window.dispatchEvent(new Event("docked-app-resume"));
+              }
             }
           }),
         ]);
@@ -115,6 +134,53 @@ export function NativeBridge() {
       document.documentElement.classList.remove("docked-native");
     };
   }, [router]);
+  useEffect(() => {
+    if (!isDockedNative()) return;
+    const mapped = nativeAppRoute(pathname);
+    if (mapped) {
+      router.replace(mapped);
+      return;
+    }
+    const controller = new AbortController();
+    let checking = false;
+    async function checkSession() {
+      if (
+        checking ||
+        !navigator.onLine ||
+        pathname === "/app" ||
+        pathname.startsWith("/app/")
+      )
+        return;
+      checking = true;
+      try {
+        const response = await fetch("/api/app-session", {
+          credentials: "same-origin",
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        const destination = nativeSessionDestination(
+          response.status,
+          response.ok ? await response.json() : null,
+          pathname,
+        );
+        if (!controller.signal.aborted && destination)
+          router.replace(destination);
+      } catch {
+        /* Offline/service failure does not mean that a session expired. */
+      } finally {
+        checking = false;
+      }
+    }
+    void checkSession();
+    const resume = () => {
+      void checkSession();
+    };
+    window.addEventListener("docked-app-resume", resume);
+    return () => {
+      controller.abort();
+      window.removeEventListener("docked-app-resume", resume);
+    };
+  }, [pathname, router]);
   if (!native || (online && !message)) return null;
   return (
     <aside className="native-status" aria-label="Android connection status">
