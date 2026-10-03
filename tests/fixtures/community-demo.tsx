@@ -68,6 +68,22 @@ export const demoProfile: SocialProfile = {
   isBlocked: false,
   isOwn: false,
 };
+// Presentation stress cases only: no seeded users, relationships or performance.
+const demoSuggestedProfiles: SocialProfile[] = [
+  {
+    ...demoProfile,
+    id: "11111111-1111-4111-8111-111111111112",
+    handle: "demo_official",
+    displayName: "DEMO Docked Official",
+    isOfficial: true,
+  },
+  {
+    ...demoProfile,
+    id: "11111111-1111-4111-8111-111111111113",
+    handle: "demo_long_member",
+    displayName: "DEMO Alexandria Montgomery Sports Perspective",
+  },
+];
 export const demoReview: CommunityReview = {
   snapshotId: "demo-snapshot",
   marketId: "football_1x2",
@@ -157,7 +173,7 @@ export function renderDemo(
 ) {
   Object.assign(window, {
     demoPath: view.startsWith("mobile-")
-      ? `/${view === "mobile-edge-record" ? "edges" : view.slice(7)}`
+      ? `/${view === "mobile-edge-record" ? "edges" : view === "mobile-following-suggestions" ? "following" : view.slice(7)}`
       : view === "compose"
         ? "/compose"
         : view === "profile"
@@ -188,12 +204,13 @@ export function renderDemo(
       />
     ) : view === "mobile-my-edge" ? (
       <MyEdgeContent
-        profile={{ ...demoProfile, isOwn: true }}
+        profile={{ ...demoProfile, ...profileOverrides, isOwn: true }}
         status="ready"
         message=""
         performance={null}
       />
-    ) : view === "mobile-following" ? (
+    ) : view === "mobile-following" ||
+      view === "mobile-following-suggestions" ? (
       <FollowingContent
         filter="all"
         feed={{
@@ -206,7 +223,10 @@ export function renderDemo(
         }}
         graph={null}
         discovery={{
-          profiles: [],
+          profiles:
+            view === "mobile-following-suggestions"
+              ? demoSuggestedProfiles
+              : [],
           nextCursor: null,
           message: "No real members are loaded in this isolated fixture.",
         }}

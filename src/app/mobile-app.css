@@ -200,6 +200,78 @@
 .member-copy strong {
   font-size: 14px;
 }
+/* Identity always gets its own row. Follow controls must not squeeze a name
+   or the official badge into the remaining width of a mobile flex row. */
+.member-list > .member-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: start;
+}
+.member-list > .member-row > .member-copy {
+  grid-column: 2;
+}
+.member-list > .member-row > :not(.member-avatar):not(.member-copy) {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+.member-copy .official-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  margin: 5px 0 0;
+  padding: 5px 8px;
+  color: var(--text-info);
+  background: var(--surface-info);
+  font-size: 10px;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+.member-copy .official-badge svg {
+  flex-shrink: 0;
+}
+.member-list .actions {
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+}
+.member-list .actions > .button {
+  min-height: 44px;
+}
+.member-list .actions > details {
+  flex: 1;
+  min-width: min(100%, 170px);
+}
+.member-list .actions > details > summary {
+  min-height: 44px;
+  padding: 10px 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.member-list .social-menu {
+  --ink: var(--text-primary);
+  --muted: var(--text-muted);
+  --line: var(--border-subtle);
+  color: var(--text-primary);
+  background: var(--surface-card);
+  border-radius: 8px;
+}
+.member-list .social-menu button:not(.button) {
+  min-height: 44px;
+  padding: 8px 10px;
+  color: var(--text-primary);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-control);
+  border-radius: 6px;
+  font-size: 13px;
+}
+.member-list .social-menu :focus-visible {
+  outline-color: var(--focus-ring);
+}
+.member-list > .member-row > div > .form-help:empty {
+  display: none;
+}
 .member-rank {
   min-width: 20px;
   font-variant-numeric: tabular-nums;
