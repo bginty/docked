@@ -1,0 +1,227 @@
+{
+  "recordedAt": "2026-10-03T06:53:46.019Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "status": "failed",
+  "durationMs": 210824.912,
+  "fixtureInjection": false,
+  "tests": [
+    {
+      "project": "desktop",
+      "test": "actual database and provider status remain closed; anonymous APIs protect private records",
+      "status": "passed",
+      "durationMs": 3077,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous homepage: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 11979,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous app-home: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 5505,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous edges: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 5592,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous post: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 6136,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous community: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 6511,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous top-docked: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 4563,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous profile: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 6874,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous notifications: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 5666,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous dashboard: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 7413,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous signup-closed: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 4730,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous login: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 5732,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous results: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 6117,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous methodology: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 6112,
+      "codes": []
+    },
+    {
+      "project": "desktop",
+      "test": "anonymous article: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 5503,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "actual database and provider status remain closed; anonymous APIs protect private records",
+      "status": "passed",
+      "durationMs": 1784,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous homepage: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 6951,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous app-home: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 3781,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous edges: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 4038,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous post: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 4273,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous community: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 4825,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous top-docked: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 3815,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous profile: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 2437,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous notifications: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 2981,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous dashboard: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 2578,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous signup-closed: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 3008,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous login: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 3058,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous results: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 3531,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous methodology: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 2843,
+      "codes": []
+    },
+    {
+      "project": "mobile",
+      "test": "anonymous article: real HTTPS page, access, accessibility and assets",
+      "status": "passed",
+      "durationMs": 5150,
+      "codes": []
+    },
+    {
+      "project": "authenticated",
+      "test": "optional disposable members: login, social consent, privacy, export and revocation",
+      "status": "failed",
+      "durationMs": 34163,
+      "codes": []
+    }
+  ]
+}

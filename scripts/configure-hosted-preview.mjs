@@ -90,7 +90,16 @@ if (mode === "--configure-env") {
   );
   console.log(JSON.stringify(report));
 } else if (mode === "--remove-unexpected-first-deployment") {
-  const id = "dpl_67an1iQjWgqzS6wb7mvnNbhR2nWK";
+  const id = process.argv[3];
+  if (
+    ![
+      "dpl_67an1iQjWgqzS6wb7mvnNbhR2nWK",
+      "dpl_7Ca6F1Mt8PcZpui4jTtXCB852ZW4",
+    ].includes(id)
+  )
+    throw new Error(
+      "Only the two accidental isolated bootstrap deployments may be removed",
+    );
   const deployment = await api(`/v13/deployments/${id}`);
   if (
     deployment.projectId !== config.projectId ||
@@ -102,6 +111,143 @@ if (mode === "--configure-env") {
   console.log(
     "Removed only the new isolated project's mistakenly classified first deployment; existing production was not touched.",
   );
+} else if (["--inspect-deployment", "--assign-android-alias"].includes(mode)) {
+  const id = process.argv[3];
+  if (!/^dpl_[A-Za-z0-9]+$/.test(id ?? ""))
+    throw new Error("Deployment id required");
+  const deployed = await api(`/v13/deployments/${id}`);
+  if (
+    deployed.projectId !== config.projectId ||
+    deployed.name !== config.projectName
+  )
+    throw new Error("Deployment belongs to another project");
+  const summary = {
+    id,
+    projectId: deployed.projectId,
+    target: deployed.target,
+    readyState: deployed.readyState,
+    url: deployed.url,
+    aliases: deployed.alias,
+    sourceCommit: deployed.meta?.dockedSourceCommit,
+  };
+  if (mode === "--assign-android-alias") {
+    if (deployed.target !== null || deployed.readyState !== "READY")
+      throw new Error(
+        "Only ready Preview deployments may receive the Android alias",
+      );
+    const host = new URL(config.origin).hostname;
+    if (host !== "docked-preview-s24-briant-ginty.vercel.app")
+      throw new Error("Preview hostname denied");
+    const existing = await fetch(
+      `https://api.vercel.com/v4/aliases/${host}?teamId=${config.teamId}`,
+      {
+        redirect: "error",
+        headers: { Authorization: `Bearer ${auth.token}` },
+        signal: AbortSignal.timeout(30000),
+      },
+    );
+    if (existing.ok) {
+      const alias = await existing.json();
+      if (alias.projectId !== config.projectId)
+        throw new Error("Alias is already owned by a different project");
+    } else if (existing.status !== 404)
+      throw new Error("Alias ownership could not be verified");
+    await api(`/v2/deployments/${id}/aliases`, "POST", { alias: host });
+    await writeFile(
+      "private-data/hosted-deploy/active-deployment.json",
+      JSON.stringify({ ...summary, origin: config.origin }, null, 2),
+    );
+  }
+  console.log(JSON.stringify(summary));
+} else if (mode === "--audit") {
+  const active = JSON.parse(
+    await readFile("private-data/hosted-deploy/active-deployment.json", "utf8"),
+  );
+  const deployed = await api(`/v13/deployments/${active.id}`);
+  const inventory = await api(
+    `/v6/deployments?projectId=${config.projectId}&limit=100`,
+  );
+  const environment = await api(`/v9/projects/${config.projectId}/env`);
+  const alias = await api(`/v4/aliases/${new URL(config.origin).hostname}`);
+  if (
+    deployed.projectId !== config.projectId ||
+    deployed.target !== null ||
+    deployed.readyState !== "READY" ||
+    alias.projectId !== config.projectId ||
+    alias.deploymentId !== active.id
+  )
+    throw new Error("Ready preview deployment/alias identity mismatch");
+  const productionDeployments = inventory.deployments.filter(
+    (entry) => entry.target === "production",
+  );
+  const productionVariables = (environment.envs ?? []).filter((entry) =>
+    entry.target?.includes("production"),
+  );
+  if (productionDeployments.length || productionVariables.length)
+    throw new Error(
+      "Unexpected production configuration exists on isolated preview project",
+    );
+  const statusResponse = await fetch(`${config.origin}/api/status`, {
+    redirect: "error",
+    signal: AbortSignal.timeout(30000),
+  });
+  const status = await statusResponse.json();
+  const homeResponse = await fetch(`${config.origin}/home`, {
+    redirect: "error",
+    signal: AbortSignal.timeout(30000),
+  });
+  const home = await homeResponse.text();
+  if (
+    !statusResponse.ok ||
+    status.database !== true ||
+    status.feed !== false ||
+    status.strategy !== false ||
+    status.publication !== false ||
+    status.oddsProviderStatus !== "NOT_CONFIGURED" ||
+    status.resultsProviderStatus !== "NOT_CONFIGURED" ||
+    !homeResponse.ok ||
+    !home.includes("Sport. Perspective. Evidence.") ||
+    home.includes("Connect the reviewed preview")
+  )
+    throw new Error("Public preview health/content check failed");
+  const report = {
+    checkedAt: new Date().toISOString(),
+    projectId: config.projectId,
+    projectName: config.projectName,
+    teamId: config.teamId,
+    origin: config.origin,
+    deploymentId: active.id,
+    target: "preview",
+    readyState: deployed.readyState,
+    sourceCommit: deployed.meta?.dockedSourceCommit,
+    supabaseProjectRef: config.supabaseProjectRef,
+    productionDeployments: productionDeployments.length,
+    productionEnvironmentVariables: productionVariables.length,
+    previewEnvironmentVariables: (environment.envs ?? []).filter(
+      (entry) => entry.target?.length === 1 && entry.target[0] === "preview",
+    ).length,
+    activeDeployments: inventory.deployments.map(({ uid, target, state }) => ({
+      id: uid,
+      target,
+      state,
+    })),
+    publicHttpsHealth: status,
+    actualHomeRendered: true,
+    foundationInstructionsPresent: false,
+    existingProductionTouched: false,
+    productionDnsChanged: false,
+    bootstrapIncident:
+      "Two initial deployments were automatically classified production by Vercel in this new isolated project despite explicit preview/staging requests. Both were removed. No production-scoped credentials were configured. A build guard now refuses non-preview compilation.",
+    removedBootstrapDeployments: [
+      "dpl_67an1iQjWgqzS6wb7mvnNbhR2nWK",
+      "dpl_7Ca6F1Mt8PcZpui4jTtXCB852ZW4",
+    ],
+  };
+  await writeFile(
+    "docs/qa/android-https-preview/hosting-audit.json",
+    JSON.stringify(report, null, 2) + "\n",
+  );
+  console.log(JSON.stringify(report));
 } else if (mode === "--inspect") {
   console.log(
     JSON.stringify({

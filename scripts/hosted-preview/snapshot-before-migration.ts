@@ -5,14 +5,33 @@ import { resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
 import { db } from "../../src/server/db";
 const directory = pathToFileURL(resolve("private-data/hosted-preview") + sep);
+const modes = {
+  "--snapshot-phase4": {
+    count: 6,
+    privateFile: "phase4-before-migration.json",
+    receipt: "docs/qa/phase4/migration-preimage.json",
+  },
+  "--snapshot-android-preview": {
+    count: 7,
+    privateFile: "android-preview-before-migration.json",
+    receipt: "docs/qa/android-https-preview/migration-preimage.json",
+  },
+  "--snapshot-session-hardening": {
+    count: 8,
+    privateFile: "android-session-before-migration.json",
+    receipt: "docs/qa/android-https-preview/session-migration-preimage.json",
+  },
+} as const;
 async function main() {
   let sql: ReturnType<typeof db> | undefined;
   try {
     const connection = JSON.parse(
       await readFile(new URL("connection.json", directory), "utf8"),
     );
+    const mode = modes[process.argv[2] as keyof typeof modes];
     if (
-      process.argv[2] !== "--snapshot-phase4" ||
+      !mode ||
+      process.argv.length !== 3 ||
       connection.projectRef !== "bckkllmndoxzpzdqrevb" ||
       connection.organizationId !== "ernfnkcbalhyqpsrzdwa" ||
       process.env.DATABASE_URL !== connection.databaseUrl ||
@@ -26,8 +45,25 @@ async function main() {
       async (tx) => {
         const migrations =
           await tx`select version,name from supabase_migrations.schema_migrations order by version`;
-        if (migrations.length !== 6)
-          throw Error("Expected six-migration preimage");
+        if (migrations.length !== mode.count)
+          throw Error("Unexpected migration preimage count");
+        const state = (
+          await tx`select
+          (select count(*)::int from auth.users) as auth_users,
+          (select count(*)::int from auth.sessions) as sessions,
+          (select count(*)::int from public.profiles) as profiles,
+          (select count(*)::int from private.region_policies where approved) as approved_policies,
+          (select count(*)::int from private.feature_flags where enabled) as enabled_flags`
+        )[0];
+        if (
+          mode.count >= 7 &&
+          (migrations.at(-1)?.version !==
+            (mode.count === 7 ? "20261003030722" : "20261003061548") ||
+            Object.values(state).some((value) => value !== 0))
+        )
+          throw Error(
+            "Android preview requires the verified closed empty-account seven-migration state",
+          );
         const tables =
           await tx`select schemaname,tablename from pg_tables where schemaname in ('public','private','preview_auth') order by 1,2`;
         const data: Record<string, unknown> = {};
@@ -42,7 +78,27 @@ async function main() {
           await tx`select n.nspname,c.relname,t.tgname,pg_get_triggerdef(t.oid) definition from pg_trigger t join pg_class c on c.oid=t.tgrelid join pg_namespace n on n.oid=c.relnamespace where not t.tgisinternal and n.nspname in ('public','private','preview_auth') order by 1,2,3`;
         const policies =
           await tx`select * from pg_policies where schemaname in ('public','private','preview_auth') order by schemaname,tablename,policyname`;
-        return { migrations, data, functions, constraints, triggers, policies };
+        const columns =
+          await tx`select table_schema,table_name,column_name,ordinal_position,data_type,udt_name,column_default,is_nullable from information_schema.columns where table_schema in ('public','private','preview_auth') order by 1,2,4`;
+        const indexes =
+          await tx`select schemaname,tablename,indexname,indexdef from pg_indexes where schemaname in ('public','private','preview_auth') order by 1,2,3`;
+        const grants =
+          await tx`select n.nspname,c.relname,c.relrowsecurity,c.relforcerowsecurity,c.relacl::text from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname in ('public','private','preview_auth') and c.relkind in ('r','v','m','S') order by 1,2`;
+        const schemaGrants =
+          await tx`select nspname,nspacl::text from pg_namespace where nspname in ('public','private','preview_auth') order by 1`;
+        return {
+          migrations,
+          state,
+          data,
+          functions,
+          constraints,
+          triggers,
+          policies,
+          columns,
+          indexes,
+          grants,
+          schemaGrants,
+        };
       },
     );
     const migrationHashes: Record<string, string> = {};
@@ -59,21 +115,18 @@ async function main() {
       migrationHashes,
       ...snapshot,
     });
+    await writeFile(new URL(mode.privateFile, directory), payload, {
+      mode: 0o600,
+      flag: "wx",
+    });
     await writeFile(
-      new URL("phase4-before-migration.json", directory),
-      payload,
-      {
-        mode: 0o600,
-        flag: "wx",
-      },
-    );
-    await writeFile(
-      "docs/qa/phase4/migration-preimage.json",
+      mode.receipt,
       JSON.stringify(
         {
           projectRef: connection.projectRef,
           recordedAt,
           migrationCount: snapshot.migrations.length,
+          state: snapshot.state,
           applicationTables: Object.keys(snapshot.data).length,
           sha256: createHash("sha256").update(payload).digest("hex"),
           migrationHashes,
@@ -85,7 +138,7 @@ async function main() {
       ) + "\n",
     );
     console.log(
-      "Six-migration application preimage saved privately; hash receipt contains no account data.",
+      "Application preimage saved privately; hash receipt contains only counts and catalog hashes, no account data.",
     );
   } catch (error) {
     await writeFile(

@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-03T07:37:34.068Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "timezone": "Australia/Sydney",
+  "locale": "en-AU",
+  "browserIssues": [],
+  "results": [
+    {
+      "view": "timestamp-post-comment-sydney",
+      "timeCount": 2,
+      "violations": [],
+      "artifacts": {
+        "files": 36,
+        "bytes": 991290
+      }
+    },
+    {
+      "view": "timestamp-notifications-sydney",
+      "timeCount": 1,
+      "violations": [],
+      "artifacts": {
+        "files": 28,
+        "bytes": 973514
+      }
+    },
+    {
+      "notificationItems": 1,
+      "notificationEvidence": "Explicit operator QA system notice via normal in-app enqueue; no invented member activity"
+    }
+  ],
+  "qaCommentaryRemoved": true
+}

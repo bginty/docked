@@ -1,0 +1,101 @@
+{
+  "recordedAt": "2026-10-03T07:37:22.645Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "authenticated": true,
+  "accountKind": "disposable operator-provisioned QA",
+  "fixtureInjection": false,
+  "results": [
+    {
+      "route": "/home",
+      "screenshot": "member-home-mobile.png",
+      "status": 200,
+      "width": 390,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "violations": [],
+      "artifacts": {
+        "files": 36,
+        "bytes": 1046615
+      }
+    },
+    {
+      "route": "/community",
+      "screenshot": "member-community-mobile.png",
+      "status": 200,
+      "width": 390,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "violations": [],
+      "artifacts": {
+        "files": 30,
+        "bytes": 983110
+      }
+    },
+    {
+      "route": "/compose",
+      "screenshot": "member-compose-mobile.png",
+      "status": 200,
+      "width": 390,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "violations": [],
+      "artifacts": {
+        "files": 11,
+        "bytes": 535666
+      }
+    },
+    {
+      "route": "/profile",
+      "screenshot": "member-profile-mobile.png",
+      "status": 200,
+      "width": 390,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "violations": [],
+      "artifacts": {
+        "files": 20,
+        "bytes": 965891
+      }
+    },
+    {
+      "route": "/notifications",
+      "screenshot": "member-notifications-mobile.png",
+      "status": 200,
+      "width": 390,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "violations": [],
+      "artifacts": {
+        "files": 26,
+        "bytes": 970590
+      }
+    },
+    {
+      "route": "/dashboard",
+      "screenshot": "member-dashboard-mobile.png",
+      "status": 200,
+      "width": 390,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "violations": [],
+      "artifacts": {
+        "files": 39,
+        "bytes": 1025314
+      }
+    },
+    {
+      "route": "/home",
+      "screenshot": "member-home-320.png",
+      "status": 200,
+      "width": 320,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "violations": [],
+      "artifacts": {
+        "files": 34,
+        "bytes": 1038137
+      }
+    }
+  ]
+}

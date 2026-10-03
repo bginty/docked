@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "docked-android-preview",
+  "environment": "preview",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "supabaseProjectRef": "bckkllmndoxzpzdqrevb",
+  "applicationId": "au.com.docked.app.preview",
+  "deploymentId": "dpl_28LrxCbuMSD2EVypPEAuFtd2EVeG",
+  "verifiedAt": "2026-10-03T07:05:41.373Z",
+  "safety": {
+    "emailSending": false,
+    "pushSending": false,
+    "billing": false,
+    "competitions": false,
+    "prizes": false,
+    "deals": false,
+    "affiliates": false,
+    "forwardPaper": false,
+    "productionSupabaseAllowed": false,
+    "oddsProviderStatus": "NOT_CONFIGURED",
+    "resultsProviderStatus": "NOT_CONFIGURED",
+    "strategyStatus": "UNVALIDATED"
+  }
+}

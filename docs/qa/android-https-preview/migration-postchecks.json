@@ -1,0 +1,54 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T06:28:41.360Z",
+  "profiles": 0,
+  "sessions": 0,
+  "tableRls": true,
+  "authUsers": 0,
+  "anonHelper": false,
+  "anonSelect": false,
+  "migrations": [
+    {
+      "name": "docked_platform",
+      "version": "20261002113546"
+    },
+    {
+      "name": "phase2_security_and_validation",
+      "version": "20261002122714"
+    },
+    {
+      "name": "phase3_membership_and_rewards",
+      "version": "20261003002609"
+    },
+    {
+      "name": "phase3_social_core",
+      "version": "20261003002709"
+    },
+    {
+      "name": "phase3_community_edge_ledger",
+      "version": "20261003002935"
+    },
+    {
+      "name": "session_helper_execute_hardening",
+      "version": "20261003021118"
+    },
+    {
+      "name": "phase4_market_reference",
+      "version": "20261003030722"
+    },
+    {
+      "name": "hosted_preview_tester_community",
+      "version": "20261003061548"
+    }
+  ],
+  "enabledFlags": 0,
+  "memberHelper": false,
+  "memberInsert": false,
+  "testerGrants": 0,
+  "communityEdges": 0,
+  "tipPublications": 0,
+  "approvedPolicies": 0,
+  "marketReferences": 0,
+  "securityDefiners": 1,
+  "unprotectedTables": 0
+}

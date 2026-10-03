@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "sourceCommit": "226bf6b",
+  "completedAt": "2026-10-03T07:33:11.6013238Z",
+  "completedAtSource": "Playwright .last-run.json modification time in UTC",
+  "scope": "Isolated browser hydration regression for the actual LocalTimestamp component; no application routes, Auth sessions or hosted data writes.",
+  "command": "EXTERNAL_PREVIEW=1 npx playwright test tests/browser/timestamp-hydration.test.ts --reporter=line --output=test-results/timestamp-hydration",
+  "passed": 2,
+  "failed": 0,
+  "elapsedSeconds": 4.9,
+  "serverRendering": "Actual React renderToString in a separate Node process with TZ=UTC",
+  "instant": "2026-10-03T23:30:00.123Z",
+  "initialText": "2026-10-03 23:30:00 UTC",
+  "browserContexts": [
+    { "locale": "en-AU", "timezoneId": "Australia/Sydney", "status": "PASS" },
+    { "locale": "en-US", "timezoneId": "America/New_York", "status": "PASS" }
+  ],
+  "assertions": [
+    "Server HTML and first hydration render use deterministic UTC text.",
+    "After hydration, text matches the same browser's local date formatting with a short timezone name.",
+    "The exact original datetime attribute is preserved.",
+    "There are no recoverable hydration errors, page errors or console errors."
+  ],
+  "integration": [
+    "Social post timestamps",
+    "Social comment timestamps",
+    "Notification timestamps"
+  ],
+  "checks": {
+    "typecheck": { "command": "npm run typecheck", "status": "PASS", "exitCode": 0 },
+    "scopedEslint": { "status": "PASS", "exitCode": 0, "scope": "Three changed timestamp source files and the new regression test" },
+    "diffWhitespace": { "status": "PASS", "exitCode": 0, "scope": "The same four files" }
+  },
+  "initialHarnessFailures": [
+    {
+      "cause": "Playwright's JSX fixture transform returned fixture descriptors when the test attempted direct component SSR in the runner.",
+      "repair": "Run actual React SSR in a separate Node process using tsx; preserve the real component and hydration assertions."
+    },
+    {
+      "cause": "The Windows sandbox denied esbuild parent-directory enumeration while preparing the isolated browser bundle.",
+      "repair": "Use the existing Node-read fixture resolver pattern to load exact resolved module files."
+    }
+  ],
+  "limits": "This receipt establishes the isolated regression and static checks. Actual hosted populated-post/comment/notification acceptance is recorded separately after deployment. The APK was not changed or rebuilt."
+}

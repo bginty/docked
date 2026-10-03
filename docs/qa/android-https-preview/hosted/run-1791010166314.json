@@ -1,0 +1,17 @@
+{
+  "recordedAt": "2026-10-03T06:49:26.313Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "status": "failed",
+  "durationMs": 25191.211000000003,
+  "fixtureInjection": false,
+  "tests": [
+    {
+      "project": "desktop",
+      "test": "actual database and provider status remain closed; anonymous APIs protect private records",
+      "status": "failed",
+      "durationMs": 10628,
+      "codes": []
+    }
+  ]
+}

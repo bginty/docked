@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-03T07:00:11Z",
+  "status": "BLOCKED_ENVIRONMENT",
+  "scope": "One bounded API 36 emulator attempt against the preflight HTTPS APK. No physical Samsung S24 result is claimed.",
+  "apkSha256": "9c28c40be90c4c2acd36bc931b4c7b9927e55b8581bcf63364a920bd25c7f9a4",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "deploymentId": "dpl_39eJhKFdVbTrWuBjYwYkbr1bWBHq",
+  "emulator": "Medium_Phone_API_36.0",
+  "ramMB": 4096,
+  "virtualCores": 4,
+  "bootCompletedMs": 121513,
+  "installationUpgrade": "SUCCESS",
+  "adbForwardMappings": [],
+  "adbReverseMappings": [],
+  "launchStatus": "timeout",
+  "launchWaitMs": 15322,
+  "observedApplication": "Real HTTPS /home sign-in gate, PREVIEW indicator and Android preview settings rendered behind the System UI ANR overlay. No disconnected foundation or ADB setup page appeared.",
+  "foregroundFailure": "Application Not Responding: com.android.systemui",
+  "otherSystemAnrPackagesObserved": [
+    "com.google.android.gms",
+    "com.android.phone",
+    "com.google.android.googlequicksearchbox:search",
+    "com.google.android.as",
+    "com.google.android.inputmethod.latin",
+    "com.google.android.gms.persistent"
+  ],
+  "memoryKB": {
+    "MemTotal": 4013808,
+    "MemAvailable": 2236604,
+    "SwapTotal": 3010352,
+    "SwapFree": 2945840
+  },
+  "credentialsEntered": false,
+  "nativeLoginAttempted": false,
+  "nativeLifecycleInteraction": "NOT_RUN_AFTER_SYSTEM_ANR",
+  "screenshots": [
+    "native/preflight-launch.png",
+    "native/preflight-system-anr.png"
+  ],
+  "cleanup": {
+    "emulatorStopped": true,
+    "forwardingCreated": false,
+    "qaAccountReleasedWithoutUse": true,
+    "durableTesterUntouched": true
+  }
+}

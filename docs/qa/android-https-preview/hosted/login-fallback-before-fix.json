@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-10-03T07:11:28.920Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "documentStatus": 200,
+  "javascriptDisabled": true,
+  "fictionalCredentialsOnly": true,
+  "form": {
+    "method": "get",
+    "actionPath": "/login"
+  },
+  "submitDisabled": false,
+  "attempted": {
+    "method": "GET",
+    "pathname": "/login",
+    "emailInQuery": true,
+    "passwordInQuery": true,
+    "blockedBeforeNetwork": true
+  }
+}

@@ -16,11 +16,13 @@ Verify the actual built artifact before handing it over:
 
 ```powershell
 New-Item -ItemType Directory -Force docs/qa/android-https-preview | Out-Null
-powershell -NoProfile -File scripts/audit-android-apk.ps1 -Mode Hosted -Apk android/app/build/outputs/apk/preview/Docked-Preview-S24-v2.apk -Report docs/qa/android-https-preview/apk-audit.json
-powershell -NoProfile -File scripts/android-apk-details.ps1
+& ./scripts/audit-android-apk.ps1 -Mode Hosted -Apk android/app/build/outputs/apk/preview/Docked-Preview-S24-v2.apk -Report docs/qa/android-https-preview/apk-audit.json
+& ./scripts/android-apk-details.ps1
+$taskExtract = & ./scripts/extract-android-apk.ps1
+node scripts/audit-preview-secrets.mjs $taskExtract
 ```
 
-The audits inspect every ZIP entry for credentials and forbidden files, check the exact attached origin, inspect the compiled cleartext policy and debuggable state, verify the APK signature, and compare package/signing/version against the preserved version-1 APK. The resulting evidence supplies the final byte size and SHA-256. A successful compile alone does not establish real-device cold/warm launch, account persistence, navigation, offline restoration, keyboard, sharing or photo-picker acceptance. Record these separately against the actual hosted APK.
+The audits inspect every ZIP entry for credentials and forbidden files, check the exact attached origin, resolve and inspect the compiled cleartext policy and debuggable state, verify the APK signature, and compare package/signing/version against the preserved version-1 APK. The extraction helper gives every entry a unique indexed filename because Android's optimized resources can have names that differ only by case; ordinary Windows ZIP extraction may silently omit files or fail partway. The strong scan must cover every extracted entry, including binary/encoded secret checks. Its inputs stay in ignored `private-data` and no credential values are printed. The resulting evidence supplies the final byte size and SHA-256. A successful compile alone does not establish real-device cold/warm launch, account persistence, navigation, offline restoration, keyboard, sharing or photo-picker acceptance. Record these separately against the actual hosted APK.
 
 ## Separate developer modes
 
@@ -51,5 +53,7 @@ After testing, rebuild with `npm run android:debug` **and reinstall that default
 ## Preserved foundation evidence
 
 The earlier Phase 4 default debug APK built successfully with inspection disabled and no attached origin. Its 990 ZIP entries passed the credential/configuration audit with zero findings. The explicit release dry-run was rejected as intended. Exact artifact size, SHA-256, test receipts, emulator findings and remaining native checks are preserved in [foundation Android QA evidence](qa/android/README.md). Those receipts describe the old disconnected APK, not acceptance of the new hosted artifact. Browser tests do not establish native behaviour. Physical-device accessibility and unexecuted native lifecycle cases remain pending.
+
+The new independently connected S24 artifact, final signature/secret audits and bounded emulator findings are recorded separately in [HTTPS Android QA](qa/android-https-preview/ANDROID_QA.md). Use its exact final APK path and checksum for delivery.
 
 From the repository root, `android/gradlew.bat -p android :app:assembleRelease --dry-run --no-daemon --max-workers=2` must fail with the explicit Docked release-blocked reason. Do not remove this gate to produce a store artifact. The generated instrumented package assertion now targets `au.com.docked.app.preview`; its device execution remains pending the stable-device prerequisite. Re-run the dependency audit, type check, lint, native allowlist regressions and production web build after native bridge changes.

@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-03T07:38:57.695Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "status": "FAIL",
+  "filesScanned": 1586,
+  "bytesScanned": 345868529,
+  "knownSecretValues": 7,
+  "findings": [
+    "scripts/hosted-preview/cleanup-android-qa.ts"
+  ],
+  "scope": "All tracked and non-ignored repository files, including screenshots and public evidence; compares configured database/server credentials, current disposable and owner tester passwords, and authorized Vercel CLI session. Secret values never reported. Separate generic artifact audits apply."
+}

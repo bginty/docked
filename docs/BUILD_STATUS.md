@@ -2,7 +2,19 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: Phase 4 reference pricing, hosted acceptance and Android foundation
+## Current milestone: independently connected Android HTTPS preview
+
+Continued from clean `1c4546c` on the existing branch. The new **Docked Preview** APK opens the actual application at `https://docked-preview-s24-briant-ginty.vercel.app/home` over ordinary internet, without ADB forwarding, a laptop or a local web server after installation. The isolated Vercel `docked-preview` project connects only to **Docked Preview Supabase `bckkllmndoxzpzdqrevb`**. Nine ordered migrations are applied; all 84 application tables have RLS. Preview variables are isolated from production. Existing `docked.com.au`, DNS, Oura and Google Play remain unchanged. Two empty-project bootstrap deployments were unexpectedly classified Production by Vercel and removed; the [hosting incident and final target verification](qa/android-https-preview/README.md) record this explicitly.
+
+The deliverable is `android/app/build/outputs/apk/preview/Docked-Preview-S24-v2.apk`, **6,716,374 bytes**, SHA-256 `a0bbd4ee89109fd1a1ee17b4401eb1c786d8d957bd858ee4b7642e9f0af27be0`. Package `au.com.docked.app.preview`, version code 2 and the matching signing certificate support an in-place upgrade of the earlier preview. Compiled cleartext, Android debugging and WebView inspection are disabled; all 984 archive entries passed the complete secret audit. The APK uses a stable HTTPS alias, so reviewed server fixes do not require rebuilding it. [Android evidence and exact provenance](qa/android-https-preview/ANDROID_QA.md).
+
+One dedicated owner tester is provisioned with a seven-day, exact-account social/profile permission expiring **10 October 2026, 17:36 Sydney**. Its credentials are in ignored `private-data/android-preview/tester-credentials.txt`. The owner must complete their own age, country/state and terms onboarding; optional consent is off. This grants no staff role, sporting publication or general legal approval. Separate disposable QA accounts exercise the hosted lifecycle and are erased afterward; final receipts are in [the current QA report](qa/android-https-preview/README.md).
+
+The current repair includes verified TLS/server-only credentials, Secure authentication cookies, wall-clock session revocation, one-connection transaction deadlock fixes, safe pre-hydration POST forms, bounded in-app social notifications and a visible mobile PREVIEW marker. Real odds/results/history remain **NOT_CONFIGURED**, strategy **UNVALIDATED**, forward paper **OFF**. Signup/recovery delivery, email/push, billing, competitions/prizes and deals/affiliates remain closed. No sporting or performance data was invented.
+
+Local and real HTTPS validation are recorded in [validation.md](qa/android-https-preview/validation.md), with prior failures retained and regression checks for repairs. The native emulator displayed the actual remote application without forwarding but suffered Android System UI and service ANRs, so reliable device lifecycle acceptance is **BLOCKED_ENVIRONMENT**. Physical Samsung S24 acceptance is **PENDING**. Next action: install the delivered APK over the prior preview, disconnect the development computer, sign in with the private tester credentials, complete personal onboarding and follow [the physical-device checklist](qa/android-https-preview/S24_ACCEPTANCE.md).
+
+## Preserved milestone: Phase 4 reference pricing, hosted acceptance and Android foundation
 
 Continued from clean commit `a19a94d` without replacing completed work. Docked Preview is the sole remote target: `bckkllmndoxzpzdqrevb`, Docked organisation `ernfnkcbalhyqpsrzdwa`, Sydney, Free plan ($0/month). Seven ordered migrations are applied; all 83 application tables have RLS. The frontend remains local at `http://localhost:3000` against the hosted backend. No public frontend, production, DNS or Oura changes were made.
 

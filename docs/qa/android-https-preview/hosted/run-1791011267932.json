@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-03T07:07:47.932Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "status": "failed",
+  "durationMs": 74630.119,
+  "fixtureInjection": false,
+  "tests": [
+    {
+      "project": "authenticated",
+      "test": "optional disposable members: login, social consent, privacy, export and revocation",
+      "status": "failed",
+      "durationMs": 20496,
+      "codes": []
+    },
+    {
+      "project": "member-evidence",
+      "test": "optional real member: six mobile app views and accessibility evidence",
+      "status": "passed",
+      "durationMs": 47583,
+      "codes": []
+    }
+  ]
+}

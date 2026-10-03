@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-03T07:37:34.251Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "status": "passed",
+  "durationMs": 41040.965000000004,
+  "fixtureInjection": false,
+  "tests": [
+    {
+      "project": "member-evidence",
+      "test": "optional real member: six mobile app views and accessibility evidence",
+      "status": "passed",
+      "durationMs": 27506,
+      "codes": []
+    },
+    {
+      "project": "timezone-evidence",
+      "test": "optional real member: populated post, comment and in-app timestamps hydrate across timezones",
+      "status": "passed",
+      "durationMs": 9179,
+      "codes": []
+    }
+  ]
+}

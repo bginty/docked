@@ -1,0 +1,51 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T07:38:35.325Z",
+  "checks": {
+    "qa_auth": 0,
+    "qa_sessions": 0,
+    "qa_profiles": 0,
+    "qa_grants": 0,
+    "qa_identifiable_social": 0,
+    "retained_deleted_commentary": 0,
+    "retained_deleted_media": 0,
+    "qa_policy_approved": 0
+  },
+  "finalState": {
+    "migration_count": 9,
+    "latest_migration": "20261003062615",
+    "protected_tables": 84,
+    "unprotected_tables": 0,
+    "auth_users": 1,
+    "auth_sessions": 0,
+    "profiles": 1,
+    "tester_grants": 1,
+    "staff_roles": 0,
+    "ordinary_approved_policies": 0,
+    "preview_approved_policies": 1,
+    "enabled_flags": 0,
+    "sporting_events": 0,
+    "odds_snapshots": 0,
+    "market_references": 0,
+    "official_publications": 0,
+    "community_edges": 0,
+    "sent_outbox": 0,
+    "delivery_attempts": 0,
+    "enabled_capture_configurations": 0,
+    "captured_mail": 0,
+    "anon_tester_read": false,
+    "member_tester_write": false
+  },
+  "durableProfileConsentPreferencesGrantAndCredentialUnchanged": true,
+  "note": "Only exact disposable QA A/B were erased through the existing disable/account-erasure service. QA policy withdrawn; password copies redacted. Pseudonymous audit/tombstones preserved.",
+  "additionalResidueChecks": {
+    "qa_refresh_tokens": 0,
+    "qa_analytics": 0,
+    "retained_deleted_comments": 0,
+    "retained_deleted_notifications": 0,
+    "retained_deleted_identity_fields": 0
+  },
+  "retainedPseudonymousConsentAuditRows": 3,
+  "retentionNote": "Existing append-only consent/audit records retain random erased-user UUIDs under the documented retention policy; no Auth/profile identity mapping remains. No immutable records were deleted or altered.",
+  "residueVerifiedAt": "2026-10-03T07:40:42.864Z"
+}

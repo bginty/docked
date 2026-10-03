@@ -42,7 +42,7 @@ for (const name of [
   environment[name] = "false";
 
 export default defineConfig({
-  testDir: "tests/browser",
+  testDir: "tests/browser-hydration",
   testMatch: "auth-form-hydration.spec.ts",
   workers: 1,
   retries: 0,

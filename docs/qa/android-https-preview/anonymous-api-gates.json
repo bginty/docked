@@ -1,0 +1,32 @@
+{
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "recordedAt": "2026-10-03T06:54:42.904921Z",
+  "checks": [
+    {
+      "path": "/api/member",
+      "status": 401,
+      "cacheControl": "no-store, private",
+      "frameOptions": "DENY",
+      "nosniff": "nosniff"
+    },
+    {
+      "path": "/api/community?view=feed",
+      "status": 200,
+      "cacheControl": "no-store, private",
+      "frameOptions": "DENY",
+      "nosniff": "nosniff"
+    },
+    {
+      "path": "/api/admin/benefits",
+      "status": 403,
+      "cacheControl": "no-store, private",
+      "frameOptions": "DENY",
+      "nosniff": "nosniff"
+    }
+  ],
+  "communityProjection": {
+    "posts": 0,
+    "viewerPresent": false,
+    "status": "sign_in_required"
+  }
+}

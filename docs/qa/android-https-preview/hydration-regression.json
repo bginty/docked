@@ -1,0 +1,16 @@
+{
+  "sourceCommit": "63b275dc9e34b7f0562f54248681a25883845e1d",
+  "command": "node node_modules/@playwright/test/cli.js test --config playwright.hydration.config.ts",
+  "stats": {
+    "startTime": "2026-10-03T07:20:15.472Z",
+    "duration": 124912.794,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "fictionalInterceptedRequestsOnly": true,
+  "actualAuthRequests": 0,
+  "teardown": "Exact owned test server stopped after Windows teardown stalled."
+}
