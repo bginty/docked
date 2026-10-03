@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "scope": "isolated local presentation and regression testing; not production deployment or genuine account acceptance",
+  "sourceCommit": "1e2991624125aaea413515c30d3be9b0460533cb",
+  "finalBuildId": "cKNo4yyY_hO4MjaFIHLUx",
+  "broadRun": {
+    "buildId": "4dz_Dr92x5yICPsKu9mlk",
+    "receipt": "browser-final.json",
+    "passed": 79,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "durationSeconds": 1146.973,
+    "sourceScope": "final backend changes; before production-only Accounts header label"
+  },
+  "finalHeaderRun": {
+    "buildId": "cKNo4yyY_hO4MjaFIHLUx",
+    "receipt": "header-final.json",
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "durationSeconds": 10.649,
+    "widths": [320, 390, 1366],
+    "scope": "shared production label projected into actual rendered header; surrounding Preview context retained",
+    "mobileMinimumHeight": 44,
+    "mobileMinimumWidth": 24,
+    "mobileSignInActualWidth": 38.375,
+    "desktopTargetSpacing": "centered 24px squares clear of all other visible header controls",
+    "consoleErrors": 0,
+    "axeViolations": 0
+  },
+  "standaloneHydration": {
+    "receipt": "auth-hydration.json",
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 8.002,
+    "scope": "actual ApiForm SSR and production React hydration; fictional requests fully intercepted"
+  },
+  "mainCasesTotal": 82,
+  "singleFullFinalSourceRun": false,
+  "typecheck": "PASS",
+  "fullLint": "PASS",
+  "finalTestScopedLint": "PASS",
+  "optimizedBuild": "PASS",
+  "clientCanaryCheck": {
+    "status": "PASS",
+    "browserAssets": 50,
+    "serverCanaries": 6,
+    "leakedCanaries": 0
+  },
+  "independentCredentialAudit": {
+    "receipt": "../final-browser-secret-audit.json",
+    "status": "PASS",
+    "files": 161,
+    "findings": 0,
+    "errors": 0
+  },
+  "pngFilesRetained": 362,
+  "realCredentialsUsed": false,
+  "environmentFileModified": false,
+  "externalApplicationFetchAttempts": 0,
+  "localServerStopped": true,
+  "port3000ClosedVerified": true,
+  "finalBuildPreserved": true,
+  "intermediateFailuresRetained": [
+    "production-header-probe.json",
+    "header-initial-desktop-target-check.json",
+    "header-interim-mobile-width-check.json"
+  ],
+  "limitations": [
+    "No real authentication, email, provider, database or production deployment acceptance performed by this suite.",
+    "Conditional production label projection is presentation evidence, not a production environment override.",
+    "Operator facts and production registration/email/policy readiness remain separate release dependencies."
+  ]
+}

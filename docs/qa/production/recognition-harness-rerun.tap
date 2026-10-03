@@ -1,0 +1,25 @@
+TAP version 13
+# Subtest: real recognition SQL excludes banned authors and banned/reported/young-style ineligible actor projections
+ok 1 - real recognition SQL excludes banned authors and banned/reported/young-style ineligible actor projections
+  ---
+  duration_ms: 13509.3543
+  ...
+# Subtest: real recognition SQL excludes missing/demo source evidence from discovery and sample counts
+ok 2 - real recognition SQL excludes missing/demo source evidence from discovery and sample counts
+  ---
+  duration_ms: 120.7473
+  ...
+# Subtest: real recognition SQL withholds blocked authors, rejects moderation/promotion, and keeps global winner input
+ok 3 - real recognition SQL withholds blocked authors, rejects moderation/promotion, and keeps global winner input
+  ---
+  duration_ms: 137.166
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17882.0088

@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-03T21:54:16.946Z",
+  "staticSource": "baf3c87611eee8f45ca08ad3649242739b1f1a34",
+  "readOnly": true,
+  "apex": {
+    "chain": [
+      {
+        "url": "https://docked.com.au/",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "finalUrl": "https://docked.com.au/",
+    "status": 200,
+    "transitionCopy": true,
+    "fullWordmark": true
+  },
+  "www": {
+    "chain": [
+      {
+        "url": "https://www.docked.com.au/",
+        "status": 301,
+        "location": "https://docked.com.au/"
+      },
+      {
+        "url": "https://docked.com.au/",
+        "status": 200,
+        "location": null
+      }
+    ],
+    "finalUrl": "https://docked.com.au/",
+    "status": 200,
+    "transitionCopy": true,
+    "fullWordmark": true
+  },
+  "preview": {
+    "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+    "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+    "deploymentId": "dpl_5Up2hMH7mksYzkC5EfnDnknm7EBj",
+    "target": null,
+    "readyState": "READY",
+    "sourceCommit": "38f90a13b5cd8834460b1ecdd6e2ff61ec949dd0",
+    "expectedSourceCommit": "38f90a13b5cd8834460b1ecdd6e2ff61ec949dd0",
+    "retirementSourceDeploymentCount": 0,
+    "recentDeploymentCount": 12,
+    "postRetirementDeployments": [],
+    "listComplete": true,
+    "health": {
+      "httpStatus": 200,
+      "body": {
+        "feed": false,
+        "strategy": false,
+        "publication": false,
+        "database": true,
+        "oddsProviderStatus": "NOT_CONFIGURED",
+        "resultsProviderStatus": "NOT_CONFIGURED",
+        "reason": "Source health is unavailable; no new tips can publish."
+      }
+    }
+  },
+  "status": "PASS"
+}

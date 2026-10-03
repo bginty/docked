@@ -1,0 +1,226 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/browser/production-header.test.ts",
+      "--output=test-results/production-header-final",
+      "--reporter=list,json"
+    ],
+    "configFile": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\playwright.config.ts",
+    "rootDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/test-results/production-header-final",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "production-header.test.ts",
+      "file": "production-header.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "production closed-registration label fits the rendered public header at 320px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3370,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T22:28:50.546Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aefc2f047a538bbb09c8-b36cea1ec45e199d99ae",
+          "file": "production-header.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "production closed-registration label fits the rendered public header at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2091,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T22:28:56.600Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aefc2f047a538bbb09c8-8bba1485d56ecb6da96b",
+          "file": "production-header.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "production closed-registration label fits the rendered public header at 1366px",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2031,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m24\u001b[39m\nReceived:    \u001b[31m22.390625\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m24\u001b[39m\nReceived:    \u001b[31m22.390625\u001b[39m\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\production-header.test.ts:58:27",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\production-header.test.ts",
+                      "column": 27,
+                      "line": 58
+                    },
+                    "snippet": "  56 |     for (const control of await page.locator(\".account-nav a\").all()) {\n  57 |       const box = await control.boundingBox();\n> 58 |       expect(box!.height).toBeGreaterThanOrEqual(width <= 760 ? 44 : 24);\n     |                           ^\n  59 |     }\n  60 |     expect(\n  61 |       (await new AxeBuilder({ page }).include(\".site-header\").analyze())"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\production-header.test.ts",
+                        "column": 27,
+                        "line": 58
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m24\u001b[39m\nReceived:    \u001b[31m22.390625\u001b[39m\n\n  56 |     for (const control of await page.locator(\".account-nav a\").all()) {\n  57 |       const box = await control.boundingBox();\n> 58 |       expect(box!.height).toBeGreaterThanOrEqual(width <= 760 ? 44 : 24);\n     |                           ^\n  59 |     }\n  60 |     expect(\n  61 |       (await new AxeBuilder({ page }).include(\".site-header\").analyze())\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\production-header.test.ts:58:27"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T22:28:58.722Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\production-header-final\\production-header-producti-018f2-red-public-header-at-1366px\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\production-header-final\\production-header-producti-018f2-red-public-header-at-1366px\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\production-header-final\\production-header-producti-018f2-red-public-header-at-1366px\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\production-header.test.ts",
+                    "column": 27,
+                    "line": 58
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "aefc2f047a538bbb09c8-8a30874f090f32585d4c",
+          "file": "production-header.test.ts",
+          "line": 9,
+          "column": 7
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T22:28:48.192Z",
+    "duration": 13126.333999999999,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

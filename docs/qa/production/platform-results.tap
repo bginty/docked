@@ -1,0 +1,1305 @@
+TAP version 13
+# Subtest: analytics accepts the finite taxonomy and rejects sensitive free-form payloads
+ok 1 - analytics accepts the finite taxonomy and rejects sensitive free-form payloads
+  ---
+  duration_ms: 14.5801
+  ...
+# Subtest: browser telemetry cannot forge successful community or account actions
+ok 2 - browser telemetry cannot forge successful community or account actions
+  ---
+  duration_ms: 0.7832
+  ...
+# Subtest: APK archive survives a cleared Gradle output and refuses corrupted prior copies
+ok 3 - APK archive survives a cleared Gradle output and refuses corrupted prior copies
+  ---
+  duration_ms: 177.0711
+  ...
+# Subtest: closed-test signing refuses absent credentials, source-tree keys and debug keys
+ok 4 - closed-test signing refuses absent credentials, source-tree keys and debug keys
+  ---
+  duration_ms: 11.0582
+  ...
+# Subtest: closed-test build has an independent upload signing gate while production stays blocked
+ok 5 - closed-test build has an independent upload signing gate while production stays blocked
+  ---
+  duration_ms: 8.1697
+  ...
+# Subtest: hosted Android config binds one approved origin and whitelists only public metadata
+ok 6 - hosted Android config binds one approved origin and whitelists only public metadata
+  ---
+  duration_ms: 67.7811
+  ...
+# Subtest: hosted Android build fails closed without current preview identity and disabled services
+ok 7 - hosted Android build fails closed without current preview identity and disabled services
+  ---
+  duration_ms: 3.2055
+  ...
+# Subtest: authentication callbacks retain only reviewed app and legacy destinations
+ok 8 - authentication callbacks retain only reviewed app and legacy destinations
+  ---
+  duration_ms: 3.5777
+  ...
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 9 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 4.9802
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 10 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 4.4971
+  ...
+# Subtest: platform icon exports retain the supplied master and supplied legacy sizes
+ok 11 - platform icon exports retain the supplied master and supplied legacy sizes
+  ---
+  duration_ms: 47.9144
+  ...
+# Subtest: adaptive and splash raster marks stay inside platform safe areas
+ok 12 - adaptive and splash raster marks stay inside platform safe areas
+  ---
+  duration_ms: 229.0555
+  ...
+# Subtest: branded native offline shell preserves hashed CSP and has no remote asset dependency
+ok 13 - branded native offline shell preserves hashed CSP and has no remote asset dependency
+  ---
+  duration_ms: 63.0598
+  ...
+# Subtest: prospective strategy execution requires the exact frozen deployed commit
+ok 14 - prospective strategy execution requires the exact frozen deployed commit
+  ---
+  duration_ms: 5.4165
+  ...
+# Subtest: community market labels retain the canonical settlement distinction
+ok 15 - community market labels retain the canonical settlement distinction
+  ---
+  duration_ms: 4.3654
+  ...
+# Subtest: standard observed quote verifies; ordinary account limits alone do not imply promotion
+ok 16 - standard observed quote verifies; ordinary account limits alone do not imply promotion
+  ---
+  duration_ms: 5.3972
+  ...
+# Subtest: missing classification and each promotional mechanism fail closed
+ok 17 - missing classification and each promotional mechanism fail closed
+  ---
+  duration_ms: 5.586
+  ...
+# Subtest: claimed larger price, demo, missing rights and provider outage cannot create verified record
+ok 18 - claimed larger price, demo, missing rights and provider outage cannot create verified record
+  ---
+  duration_ms: 2.2555
+  ...
+# Subtest: cutoff is strict; timestamp freshness/order, event reschedule and complete mapping enforced
+ok 19 - cutoff is strict; timestamp freshness/order, event reschedule and complete mapping enforced
+  ---
+  duration_ms: 1.2339
+  ...
+# Subtest: community quarantine codec decodes pixels, bounds size and strips private metadata
+ok 20 - community quarantine codec decodes pixels, bounds size and strips private metadata
+  ---
+  duration_ms: 554.2468
+  ...
+# Subtest: community quarantine rejects malformed, non-raster, oversized-byte and oversized-pixel inputs
+ok 21 - community quarantine rejects malformed, non-raster, oversized-byte and oversized-pixel inputs
+  ---
+  duration_ms: 253.4588
+  ...
+# Subtest: production Auth projections are fixed and Preview retains its existing schema
+ok 22 - production Auth projections are fixed and Preview retains its existing schema
+  ---
+  duration_ms: 3.7428
+  ...
+# Subtest: community maintenance drains bounded deletion jobs before independent retention and in-app work
+ok 23 - community maintenance drains bounded deletion jobs before independent retention and in-app work
+  ---
+  duration_ms: 5.5973
+  ...
+# Subtest: remote erasure failure records retry outcome but cannot strand the next account or in-app work
+ok 24 - remote erasure failure records retry outcome but cannot strand the next account or in-app work
+  ---
+  duration_ms: 1.6081
+  ...
+# Subtest: malformed deletion identity never invokes Auth and unacknowledged jobs do not claim success
+ok 25 - malformed deletion identity never invokes Auth and unacknowledged jobs do not claim success
+  ---
+  duration_ms: 3.0819
+  ...
+# Subtest: restricted runner opts out of all official and ledger fanout while default worker semantics stay unchanged
+ok 26 - restricted runner opts out of all official and ledger fanout while default worker semantics stay unchanged
+  ---
+  duration_ms: 25.2864
+  ...
+# Subtest: recognition uses completed UTC weeks and never awards pending, losing, void or low-sample records
+ok 27 - recognition uses completed UTC weeks and never awards pending, losing, void or low-sample records
+  ---
+  duration_ms: 14.5465
+  ...
+# Subtest: engagement deduplicates people, excludes self, young/ineligible accounts and future observations
+ok 28 - engagement deduplicates people, excludes self, young/ineligible accounts and future observations
+  ---
+  duration_ms: 1.5735
+  ...
+# Subtest: sliding burst detection crosses minute boundaries and holds recognition
+ok 29 - sliding burst detection crosses minute boundaries and holds recognition
+  ---
+  duration_ms: 1.0102
+  ...
+# Subtest: viewer-blocked engagement does not trend while the global weekly decision stays stable
+ok 30 - viewer-blocked engagement does not trend while the global weekly decision stays stable
+  ---
+  duration_ms: 1.1524
+  ...
+# Subtest: weekly ranking is not a longshot prize; blocked winner is withheld rather than replaced
+ok 31 - weekly ranking is not a longshot prize; blocked winner is withheld rather than replaced
+  ---
+  duration_ms: 39.4082
+  ...
+# Subtest: weekly ranking ignores after-week engagement and rejects invalid/duplicate canonical data
+ok 32 - weekly ranking ignores after-week engagement and rejects invalid/duplicate canonical data
+  ---
+  duration_ms: 2.1375
+  ...
+# Subtest: market-reference API input rejects all competitive price/source overrides
+ok 33 - market-reference API input rejects all competitive price/source overrides
+  ---
+  duration_ms: 21.1388
+  ...
+# Subtest: private quarantine review permits MFA staff including read-only auditors independently of public region activation
+ok 34 - private quarantine review permits MFA staff including read-only auditors independently of public region activation
+  ---
+  duration_ms: 3.0026
+  ...
+# Subtest: anonymous community upload and notification requests reject before accessing body bytes
+ok 35 - anonymous community upload and notification requests reject before accessing body bytes
+  ---
+  duration_ms: 13117.188
+  ...
+# Subtest: reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+ok 36 - reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+  ---
+  duration_ms: 9.7977
+  ...
+# Subtest: social-only input cannot supply verification, official ownership, settlement or cash stake fields
+ok 37 - social-only input cannot supply verification, official ownership, settlement or cash stake fields
+  ---
+  duration_ms: 13.7458
+  ...
+# Subtest: separate in-app preferences cannot enable outbound email or push
+ok 38 - separate in-app preferences cannot enable outbound email or push
+  ---
+  duration_ms: 4.4184
+  ...
+# Subtest: following a member does not implicitly opt into individual notifications
+ok 39 - following a member does not implicitly opt into individual notifications
+  ---
+  duration_ms: 3.9047
+  ...
+# Subtest: social cursor accepts only an exact timestamp and UUID pair
+ok 40 - social cursor accepts only an exact timestamp and UUID pair
+  ---
+  duration_ms: 7.7896
+  ...
+# Subtest: body cap counts streamed bytes without relying on missing or forged Content-Length
+ok 41 - body cap counts streamed bytes without relying on missing or forged Content-Length
+  ---
+  duration_ms: 81.7832
+  ...
+# Subtest: missing providers stay NOT_CONFIGURED and unknown/future timestamp never becomes fresh
+ok 42 - missing providers stay NOT_CONFIGURED and unknown/future timestamp never becomes fresh
+  ---
+  duration_ms: 3.7969
+  ...
+# Subtest: independent local budget fails closed and preserves unknown provider quota
+ok 43 - independent local budget fails closed and preserves unknown provider quota
+  ---
+  duration_ms: 0.8093
+  ...
+# Subtest: actual Postgres.js parsing cannot downgrade remote certificate verification through URL TLS options
+ok 44 - actual Postgres.js parsing cannot downgrade remote certificate verification through URL TLS options
+  ---
+  duration_ms: 59.0422
+  ...
+# Subtest: explicit remote TLS and URL target also override ambient PostgreSQL TLS/host/port variables
+ok 45 - explicit remote TLS and URL target also override ambient PostgreSQL TLS/host/port variables
+  ---
+  duration_ms: 6.5576
+  ...
+# Subtest: reviewed absolute CA is loaded; missing, relative, malformed or private-key material never falls back
+ok 46 - reviewed absolute CA is loaded; missing, relative, malformed or private-key material never falls back
+  ---
+  duration_ms: 502.6645
+  ...
+# Subtest: certificate identity stays bound to the requested host, including IP targets
+ok 47 - certificate identity stays bound to the requested host, including IP targets
+  ---
+  duration_ms: 4.543
+  ...
+# Subtest: hosted preview resolves the traced public CA without a host-specific absolute path
+ok 48 - hosted preview resolves the traced public CA without a host-specific absolute path
+  ---
+  duration_ms: 75.9235
+  ...
+# Subtest: local-only databases preserve plaintext development; ambiguous multi-host and non-PostgreSQL targets fail
+ok 49 - local-only databases preserve plaintext development; ambiguous multi-host and non-PostgreSQL targets fail
+  ---
+  duration_ms: 6.5702
+  ...
+# Subtest: retry unsubscribe payload is stable for provider idempotency and distinct across recipients
+ok 50 - retry unsubscribe payload is stable for provider idempotency and distinct across recipients
+  ---
+  duration_ms: 10.9925
+  ...
+# Subtest: preview email adapter makes zero external calls even if sending flag is true
+ok 51 - preview email adapter makes zero external calls even if sending flag is true
+  ---
+  duration_ms: 1.9841
+  ...
+# Subtest: malformed event start and unknown budget cannot dispatch
+ok 52 - malformed event start and unknown budget cannot dispatch
+  ---
+  duration_ms: 56.0941
+  ...
+# Subtest: local mail sink never sends, rejects real recipients and enforces idempotent bodies
+ok 53 - local mail sink never sends, rejects real recipients and enforces idempotent bodies
+  ---
+  duration_ms: 124.7301
+  ...
+# Subtest: unrun or partially measured scans preserve unknowns rather than reporting zero performance
+ok 54 - unrun or partially measured scans preserve unknowns rather than reporting zero performance
+  ---
+  duration_ms: 28.1799
+  ...
+# Subtest: scanner cadence preserves unknown quota and only accelerates within the approved event horizon
+ok 55 - scanner cadence preserves unknown quota and only accelerates within the approved event horizon
+  ---
+  duration_ms: 40.6657
+  ...
+# Subtest: candidate idempotency binds source snapshots and strategy window, not a refreshed observation clock
+ok 56 - candidate idempotency binds source snapshots and strategy window, not a refreshed observation clock
+  ---
+  duration_ms: 4.7315
+  ...
+# Subtest: research lifecycle never grants paper or live approval and manual inputs cannot override the engine
+ok 57 - research lifecycle never grants paper or live approval and manual inputs cannot override the engine
+  ---
+  duration_ms: 6.2878
+  ...
+# Subtest: candidate expiry is bounded by source age, pre-event cutoff and the review window
+ok 58 - candidate expiry is bounded by source age, pre-event cutoff and the review window
+  ---
+  duration_ms: 1.2296
+  ...
+# Subtest: worker authorization rejects Unicode byte-length mismatch without throwing and has no fallback credential
+ok 59 - worker authorization rejects Unicode byte-length mismatch without throwing and has no fallback credential
+  ---
+  duration_ms: 4.6062
+  ...
+# Subtest: a missing current quote never falls back to publication odds or an active claim
+ok 60 - a missing current quote never falls back to publication odds or an active claim
+  ---
+  duration_ms: 95.5794
+  ...
+# Subtest: edge card distinguishes measured current odds from the immutable publication and shows local time
+ok 61 - edge card distinguishes measured current odds from the immutable publication and shows local time
+  ---
+  duration_ms: 10.6417
+  ...
+# Subtest: no-edge and unavailable-feed experiences do not invent coverage, events or completed results
+ok 62 - no-edge and unavailable-feed experiences do not invent coverage, events or completed results
+  ---
+  duration_ms: 62.9961
+  ...
+# Subtest: an already open card becomes suspended or expired with time and never promotes a blocked status
+ok 63 - an already open card becomes suspended or expired with time and never promotes a blocked status
+  ---
+  duration_ms: 0.6591
+  ...
+# Subtest: CMS visibility rejects draft, withdrawn, expired and future-dated publications
+ok 64 - CMS visibility rejects draft, withdrawn, expired and future-dated publications
+  ---
+  duration_ms: 0.7803
+  ...
+# Subtest: a CMS outage stays distinguishable from a missing article and cannot disclose the backend error
+ok 65 - a CMS outage stays distinguishable from a missing article and cannot disclose the backend error
+  ---
+  duration_ms: 4.7043
+  ...
+# Subtest: educational drafts do not claim published Article provenance; structured data cannot terminate script
+ok 66 - educational drafts do not claim published Article provenance; structured data cannot terminate script
+  ---
+  duration_ms: 2.8158
+  ...
+# Subtest: hosted build refuses platform production, missing scope and local execution before compilation
+ok 67 - hosted build refuses platform production, missing scope and local execution before compilation
+  ---
+  duration_ms: 10891.0071
+  ...
+# Subtest: reviewed community-only production is isolated and does not treat inert keys as activation
+ok 68 - reviewed community-only production is isolated and does not treat inert keys as activation
+  ---
+  duration_ms: 12.48
+  ...
+# Subtest: production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+ok 69 - production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+  ---
+  duration_ms: 18.7581
+  ...
+# Subtest: production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+ok 70 - production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+  ---
+  duration_ms: 3.2635
+  ...
+# Subtest: database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+ok 71 - database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+  ---
+  duration_ms: 76.7656
+  ...
+# Subtest: plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+ok 72 - plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+  ---
+  duration_ms: 6881.307
+  ...
+# Subtest: preview tester context is explicit, project-bound and restricted to social features without operators
+ok 73 - preview tester context is explicit, project-bound and restricted to social features without operators
+  ---
+  duration_ms: 6.073
+  ...
+# Subtest: HTTPS Auth issue, refresh and deletion cookies are consistently private and secure
+ok 74 - HTTPS Auth issue, refresh and deletion cookies are consistently private and secure
+  ---
+  duration_ms: 10.5591
+  ...
+# Subtest: hosted preview accepts only the exact project and canonical external HTTPS origin
+ok 75 - hosted preview accepts only the exact project and canonical external HTTPS origin
+  ---
+  duration_ms: 6.5184
+  ...
+# Subtest: hosted mode rejects missing safety controls, provider activation and capture reuse
+ok 76 - hosted mode rejects missing safety controls, provider activation and capture reuse
+  ---
+  duration_ms: 6.0535
+  ...
+# Subtest: serverless database pool is opt-in and actual driver receives bounded settings
+ok 77 - serverless database pool is opt-in and actual driver receives bounded settings
+  ---
+  duration_ms: 8.8682
+  ...
+# Subtest: multipart budget fits hosted requests and streamed oversized bodies cannot bypass it
+ok 78 - multipart budget fits hosted requests and streamed oversized bodies cannot bypass it
+  ---
+  duration_ms: 72.2306
+  ...
+# Subtest: modern key storage is explicit and cannot turn Preview into provider readiness
+ok 79 - modern key storage is explicit and cannot turn Preview into provider readiness
+  ---
+  duration_ms: 35.299
+  ...
+# Subtest: the actual importer and readiness reader never reach DB or fetch with an inert stored key
+ok 80 - the actual importer and readiness reader never reach DB or fetch with an inert stored key
+  ---
+  duration_ms: 1558.8804
+  ...
+# Subtest: required losing arithmetic fixture is precise
+ok 81 - required losing arithmetic fixture is precise
+  ---
+  duration_ms: 51.1686
+  ...
+# Subtest: voids/pending disclosed and excluded from ROI denominator
+ok 82 - voids/pending disclosed and excluded from ROI denominator
+  ---
+  duration_ms: 1.6504
+  ...
+# Subtest: withdrawal does not erase settlement
+ok 83 - withdrawal does not erase settlement
+  ---
+  duration_ms: 1.4526
+  ...
+# Subtest: reject mixed evidence and duplicate benchmarks
+ok 84 - reject mixed evidence and duplicate benchmarks
+  ---
+  duration_ms: 6.952
+  ...
+# Subtest: empty metrics and missing closing observations are N/A
+ok 85 - empty metrics and missing closing observations are N/A
+  ---
+  duration_ms: 0.8115
+  ...
+# Subtest: editorial draft retains bounded source provenance and never turns missing data into a story or publication
+ok 86 - editorial draft retains bounded source provenance and never turns missing data into a story or publication
+  ---
+  duration_ms: 6.9972
+  ...
+# Subtest: current data adapter reserves before its one actual request and reuses canonical quote checks without inventing standard classification
+ok 87 - current data adapter reserves before its one actual request and reuses canonical quote checks without inventing standard classification
+  ---
+  duration_ms: 239.4313
+  ...
+# Subtest: unknown budget rejection and provider failures cannot bypass the durable reservation boundary
+ok 88 - unknown budget rejection and provider failures cannot bypass the durable reservation boundary
+  ---
+  duration_ms: 8.5377
+  ...
+# Subtest: catalog rejects duplicates and mismatches, preserves unsupported NFL as facts without a pricing strategy
+ok 89 - catalog rejects duplicates and mismatches, preserves unsupported NFL as facts without a pricing strategy
+  ---
+  duration_ms: 7.515
+  ...
+# Subtest: each authoritative quota response is persisted before another request, including error responses
+ok 90 - each authoritative quota response is persisted before another request, including error responses
+  ---
+  duration_ms: 24.9761
+  ...
+# Subtest: missing and future market observations do not become current quotes; expired ownership cannot normalize a quote
+ok 91 - missing and future market observations do not become current quotes; expired ownership cannot normalize a quote
+  ---
+  duration_ms: 22.2042
+  ...
+# Subtest: same unchanged payload received later has distinct retained observation identity
+ok 92 - same unchanged payload received later has distinct retained observation identity
+  ---
+  duration_ms: 12.2745
+  ...
+# Subtest: OddsPapi discovery remains fixture-only without reviewed market/outcome mapping and never treats fixture updatedAt as a quote
+ok 93 - OddsPapi discovery remains fixture-only without reviewed market/outcome mapping and never treats fixture updatedAt as a quote
+  ---
+  duration_ms: 7.3288
+  ...
+# Subtest: provider aliases refuse conflicting values and preview market data cannot open legacy publication or unrelated projects
+ok 94 - provider aliases refuse conflicting values and preview market data cannot open legacy publication or unrelated projects
+  ---
+  duration_ms: 5.5078
+  ...
+# Subtest: watchlist windows are explicit UTC and weekend boundaries do not invent fixture dates
+ok 95 - watchlist windows are explicit UTC and weekend boundaries do not invent fixture dates
+  ---
+  duration_ms: 1.5404
+  ...
+# Subtest: baseline model exactly reuses shared reference probability and retains research-only provenance
+ok 96 - baseline model exactly reuses shared reference probability and retains research-only provenance
+  ---
+  duration_ms: 25.6334
+  ...
+# Subtest: golden normal markets use independent lower median, separate fair probability and a reproducible evidence hash
+ok 97 - golden normal markets use independent lower median, separate fair probability and a reproducible evidence hash
+  ---
+  duration_ms: 72.0719
+  ...
+# Subtest: golden missing, stale, suspended, promotional, exchange and outage sources are excluded without inventing availability
+ok 98 - golden missing, stale, suspended, promotional, exchange and outage sources are excluded without inventing availability
+  ---
+  duration_ms: 54.5572
+  ...
+# Subtest: golden outlier cannot become benchmark and divergent markets close instead of averaging disagreement away
+ok 99 - golden outlier cannot become benchmark and divergent markets close instead of averaging disagreement away
+  ---
+  duration_ms: 22.653
+  ...
+# Subtest: golden complete three-way vector works and a missing draw outcome cannot establish its own market
+ok 100 - golden complete three-way vector works and a missing draw outcome cannot establish its own market
+  ---
+  duration_ms: 8.576
+  ...
+# Subtest: ownership exclusion, duplicate evidence, incomplete rights and future/look-ahead data fail closed
+ok 101 - ownership exclusion, duplicate evidence, incomplete rights and future/look-ahead data fail closed
+  ---
+  duration_ms: 9.9821
+  ...
+# Subtest: official candidate uses fair/minimum/current/reference terminology and leaves the legacy evaluator unchanged
+ok 102 - official candidate uses fair/minimum/current/reference terminology and leaves the legacy evaluator unchanged
+  ---
+  duration_ms: 52.8708
+  ...
+# Subtest: golden price movement never rewrites the publication benchmark, cannot reactivate or duplicate a bet
+ok 103 - golden price movement never rewrites the publication benchmark, cannot reactivate or duplicate a bet
+  ---
+  duration_ms: 5.7916
+  ...
+# Subtest: reference observation preserves captured accounting and probability, honours cutoff and leaves late samples missing
+ok 104 - reference observation preserves captured accounting and probability, honours cutoff and leaves late samples missing
+  ---
+  duration_ms: 23.5898
+  ...
+# Subtest: all commercial flags reject activation, including Pro without billing
+ok 105 - all commercial flags reject activation, including Pro without billing
+  ---
+  duration_ms: 5.2905
+  ...
+# Subtest: free growth year uses recorded launch only and never auto converts or removes Free
+ok 106 - free growth year uses recorded launch only and never auto converts or removes Free
+  ---
+  duration_ms: 3.4588
+  ...
+# Subtest: prize review cannot skip integrity/eligibility or silently substitute an awarded winner
+ok 107 - prize review cannot skip integrity/eligibility or silently substitute an awarded winner
+  ---
+  duration_ms: 1.4597
+  ...
+# Subtest: commercial drafts reject wagering volume mechanics, cash ranking and thin samples
+ok 108 - commercial drafts reject wagering volume mechanics, cash ranking and thin samples
+  ---
+  duration_ms: 15.8053
+  ...
+# Subtest: community policy cannot inherit a tips-only approval, expired review or unknown region
+ok 109 - community policy cannot inherit a tips-only approval, expired review or unknown region
+  ---
+  duration_ms: 1.1148
+  ...
+# Subtest: social analytics taxonomy excludes cash, loss targeting and arbitrary private payloads
+ok 110 - social analytics taxonomy excludes cash, loss targeting and arbitrary private payloads
+  ---
+  duration_ms: 1.4761
+  ...
+# Subtest: compact official card keeps current reference, captured benchmark and minimum distinct
+ok 111 - compact official card keeps current reference, captured benchmark and minimum distinct
+  ---
+  duration_ms: 86.2729
+  ...
+# Subtest: compact official card fails closed for missing or aged current data; full detail stays available
+ok 112 - compact official card fails closed for missing or aged current data; full detail stays available
+  ---
+  duration_ms: 31.2386
+  ...
+# Subtest: compact community record retains losses, corrections and captured odds when a personal price differs
+ok 113 - compact community record retains losses, corrections and captured odds when a personal price differs
+  ---
+  duration_ms: 13.0394
+  ...
+# Subtest: edge presentation filters preserve source and safely encode competition and cursor
+ok 114 - edge presentation filters preserve source and safely encode competition and cursor
+  ---
+  duration_ms: 28.7638
+  ...
+# Subtest: mobile UX fixture binds the fresh disposable identity, project, origin and expiry
+ok 115 - mobile UX fixture binds the fresh disposable identity, project, origin and expiry
+  ---
+  duration_ms: 16.0412
+  ...
+# Subtest: mobile UX browser permits only exact-origin reads and ordinary auth actions
+ok 116 - mobile UX browser permits only exact-origin reads and ordinary auth actions
+  ---
+  duration_ms: 3.213
+  ...
+# Subtest: native app entry, recovery and expired-session transitions retain UI context without new authority
+ok 117 - native app entry, recovery and expired-session transitions retain UI context without new authority
+  ---
+  duration_ms: 9.1533
+  ...
+# Subtest: mobile app tabs are exact deep links without expanding push or auth authority
+ok 118 - mobile app tabs are exact deep links without expanding push or auth authority
+  ---
+  duration_ms: 1.9665
+  ...
+# Subtest: native links canonicalize official results and community records without importing session tokens
+ok 119 - native links canonicalize official results and community records without importing session tokens
+  ---
+  duration_ms: 1.0729
+  ...
+# Subtest: native auth callbacks accept only a code for the original same-origin PKCE exchange
+ok 120 - native auth callbacks accept only a code for the original same-origin PKCE exchange
+  ---
+  duration_ms: 0.9444
+  ...
+# Subtest: push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+ok 121 - push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+  ---
+  duration_ms: 0.8676
+  ...
+# Subtest: Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+ok 122 - Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+  ---
+  duration_ms: 10.8416
+  ...
+# Subtest: native offline fallback needs no network subresources and has exact CSP hashes
+ok 123 - native offline fallback needs no network subresources and has exact CSP hashes
+  ---
+  duration_ms: 111.7026
+  ...
+# Subtest: bundled shell cannot initiate an unconfigured connection
+ok 124 - bundled shell cannot initiate an unconfigured connection
+  ---
+  duration_ms: 75.7028
+  ...
+# Subtest: native push contract remains NOT_CONFIGURED even after every real dispatch gate would pass
+ok 125 - native push contract remains NOT_CONFIGURED even after every real dispatch gate would pass
+  ---
+  duration_ms: 85.0877
+  ...
+# Subtest: native social push respects per-follow opt-in, quiet hours, expiry and allowlisted paths
+ok 126 - native social push respects per-follow opt-in, quiet hours, expiry and allowlisted paths
+  ---
+  duration_ms: 3.9335
+  ...
+# Subtest: five-minute source never manufactures one-minute availability
+ok 127 - five-minute source never manufactures one-minute availability
+  ---
+  duration_ms: 53.1558
+  ...
+# Subtest: availability preserves a below-minimum quote; stale and post-start observations stay missing
+ok 128 - availability preserves a below-minimum quote; stale and post-start observations stay missing
+  ---
+  duration_ms: 9.3866
+  ...
+# Subtest: revoked, expired or ownership-changed reference sources cannot continue to qualify an old snapshot
+ok 129 - revoked, expired or ownership-changed reference sources cannot continue to qualify an old snapshot
+  ---
+  duration_ms: 33.9656
+  ...
+# Subtest: ambiguous duplicate offers cannot depend on array ordering
+ok 130 - ambiguous duplicate offers cannot depend on array ordering
+  ---
+  duration_ms: 3.6858
+  ...
+# Subtest: unknown operator identity and cross-sport market rules fail closed
+ok 131 - unknown operator identity and cross-sport market rules fail closed
+  ---
+  duration_ms: 2.7492
+  ...
+# Subtest: stored configuration must match supported engine and cannot weaken safety
+ok 132 - stored configuration must match supported engine and cannot weaken safety
+  ---
+  duration_ms: 19.8602
+  ...
+# Subtest: non-finite payoff, threshold and tick are rejected and report hashes survive JSON
+ok 133 - non-finite payoff, threshold and tick are rejected and report hashes survive JSON
+  ---
+  duration_ms: 1.9371
+  ...
+# Subtest: observations before publication or with unknown resolution cannot manufacture availability
+ok 134 - observations before publication or with unknown resolution cannot manufacture availability
+  ---
+  duration_ms: 10.7153
+  ...
+# Subtest: provider matches equivalent timestamp representations and records diagnostics
+ok 135 - provider matches equivalent timestamp representations and records diagnostics
+  ---
+  duration_ms: 93.6091
+  ...
+# Subtest: unknown quota stays null and blocks a subsequent network request
+ok 136 - unknown quota stays null and blocks a subsequent network request
+  ---
+  duration_ms: 6.7762
+  ...
+# Subtest: provider rejects mismatched competition and duplicate outcome corruption
+ok 137 - provider rejects mismatched competition and duplicate outcome corruption
+  ---
+  duration_ms: 7.6379
+  ...
+# Subtest: provider stale markets and missing configuration are explicit
+ok 138 - provider stale markets and missing configuration are explicit
+  ---
+  duration_ms: 19.7521
+  ...
+# Subtest: current source freshness cannot borrow a bookmaker-wide timestamp; historical fallback stays labelled
+ok 139 - current source freshness cannot borrow a bookmaker-wide timestamp; historical fallback stays labelled
+  ---
+  duration_ms: 7.8127
+  ...
+# Subtest: historical response cannot come from after requested time and receipt is not backdated
+ok 140 - historical response cannot come from after requested time and receipt is not backdated
+  ---
+  duration_ms: 12.1852
+  ...
+# Subtest: offset snapshot times cannot bypass as-of ordering
+ok 141 - offset snapshot times cannot bypass as-of ordering
+  ---
+  duration_ms: 177.4742
+  ...
+# Subtest: import rejects future receipt inside an old snapshot before outcomes are revealed
+ok 142 - import rejects future receipt inside an old snapshot before outcomes are revealed
+  ---
+  duration_ms: 20.3087
+  ...
+# Subtest: delayed entry must retain original minimum price despite revised probability
+ok 143 - delayed entry must retain original minimum price despite revised probability
+  ---
+  duration_ms: 67.8774
+  ...
+# Subtest: closing proxy never selects earlier tips; missing availability remains null
+ok 144 - closing proxy never selects earlier tips; missing availability remains null
+  ---
+  duration_ms: 44.3898
+  ...
+# Subtest: results require separate rights, preserve revisions and leave unavailable outcome pending
+ok 145 - results require separate rights, preserve revisions and leave unavailable outcome pending
+  ---
+  duration_ms: 8.2923
+  ...
+# Subtest: cancellation, rescheduling and abandoned outcomes do not guess void; ties follow rules
+ok 146 - cancellation, rescheduling and abandoned outcomes do not guess void; ties follow rules
+  ---
+  duration_ms: 2.439
+  ...
+# Subtest: hosted beta accepts only its fresh exact invited roster and labelled seed identities
+ok 147 - hosted beta accepts only its fresh exact invited roster and labelled seed identities
+  ---
+  duration_ms: 26.6284
+  ...
+# Subtest: hosted beta browser requests cannot target owners, external hosts, real ledgers or seed deletion
+ok 148 - hosted beta browser requests cannot target owners, external hosts, real ledgers or seed deletion
+  ---
+  duration_ms: 4.8583
+  ...
+# Subtest: durable next-run follows local DST and disabled schedules stay off
+ok 149 - durable next-run follows local DST and disabled schedules stay off
+  ---
+  duration_ms: 88.4898
+  ...
+# Subtest: effective dated policy restricts unknown, expired and mismatched jurisdictions
+ok 150 - effective dated policy restricts unknown, expired and mismatched jurisdictions
+  ---
+  duration_ms: 0.8439
+  ...
+# Subtest: unavailable feed is not no-edge
+ok 151 - unavailable feed is not no-edge
+  ---
+  duration_ms: 1.0394
+  ...
+# Subtest: dispatch checks consent, preview, daily cap, current edge and expiry
+ok 152 - dispatch checks consent, preview, daily cap, current edge and expiry
+  ---
+  duration_ms: 6.4087
+  ...
+# Subtest: quiet hours discard edges and IANA handling follows DST
+ok 153 - quiet hours discard edges and IANA handling follows DST
+  ---
+  duration_ms: 2.8782
+  ...
+# Subtest: production refuses demo, preview credentials and automatic monetisation
+ok 154 - production refuses demo, preview credentials and automatic monetisation
+  ---
+  duration_ms: 2.8448
+  ...
+# Subtest: hosted capture needs exact project-bound direct or Sydney session connection and explicit preview intent
+ok 155 - hosted capture needs exact project-bound direct or Sydney session connection and explicit preview intent
+  ---
+  duration_ms: 7.2337
+  ...
+# Subtest: connection parser rejects transaction ports, credential-host tricks, unknown options and ambient-port fallbacks
+ok 156 - connection parser rejects transaction ports, credential-host tricks, unknown options and ambient-port fallbacks
+  ---
+  duration_ms: 2.5612
+  ...
+# Subtest: only an exact reserved allowlisted address is eligible; matching a prefix/domain alone cannot send
+ok 157 - only an exact reserved allowlisted address is eligible; matching a prefix/domain alone cannot send
+  ---
+  duration_ms: 0.96
+  ...
+# Subtest: missing, altered, expired, revoked or future capture proof fails closed
+ok 158 - missing, altered, expired, revoked or future capture proof fails closed
+  ---
+  duration_ms: 3.0148
+  ...
+# Subtest: local mail-sink behavior remains available and production cannot repurpose the verified preview project
+ok 159 - local mail-sink behavior remains available and production cannot repurpose the verified preview project
+  ---
+  duration_ms: 6.3483
+  ...
+# Subtest: authentication outages remain unknown while expired or revoked sessions fail closed
+ok 160 - authentication outages remain unknown while expired or revoked sessions fail closed
+  ---
+  duration_ms: 4.1938
+  ...
+# Subtest: invitation signup requires separate legal acceptances, reserved-safe username and defaults marketing off
+ok 161 - invitation signup requires separate legal acceptances, reserved-safe username and defaults marketing off
+  ---
+  duration_ms: 14.8239
+  ...
+# Subtest: capabilities are explicit, unique and cannot become genuine features or production privileges
+ok 162 - capabilities are explicit, unique and cannot become genuine features or production privileges
+  ---
+  duration_ms: 3.5837
+  ...
+# Subtest: onboarding canonicalizes selected sports without duplicating choices or fabricating legal consent
+ok 163 - onboarding canonicalizes selected sports without duplicating choices or fabricating legal consent
+  ---
+  duration_ms: 11.77
+  ...
+# Subtest: administrator confirmation never counts as proof of email ownership; legacy staff/session exports remain intact
+ok 164 - administrator confirmation never counts as proof of email ownership; legacy staff/session exports remain intact
+  ---
+  duration_ms: 2.2405
+  ...
+# Subtest: preview fanout is deferred, limited per actor and globally, and runs one injected batch
+ok 165 - preview fanout is deferred, limited per actor and globally, and runs one injected batch
+  ---
+  duration_ms: 8.8301
+  ...
+# Subtest: ordinary/local/production/wrong-project/open-service environments cannot schedule preview work
+ok 166 - ordinary/local/production/wrong-project/open-service environments cannot schedule preview work
+  ---
+  duration_ms: 2.18
+  ...
+# Subtest: ineligible or rate-limited actors cannot trigger a batch
+ok 167 - ineligible or rate-limited actors cannot trigger a batch
+  ---
+  duration_ms: 1.7791
+  ...
+# Subtest: grant/session revocation and changed safety flags are rechecked after response
+ok 168 - grant/session revocation and changed safety flags are rechecked after response
+  ---
+  duration_ms: 4.6426
+  ...
+# Subtest: batch and audit failures never reject a successfully saved user mutation
+ok 169 - batch and audit failures never reject a successfully saved user mutation
+  ---
+  duration_ms: 3.2286
+  ...
+# Subtest: preview fixture uses the existing independent reference engine and cannot become current provider evidence
+ok 170 - preview fixture uses the existing independent reference engine and cannot become current provider evidence
+  ---
+  duration_ms: 62.321
+  ...
+# Subtest: preview confirmation binds the saved reference and expires without accepting arbitrary odds, keys or selection
+ok 171 - preview confirmation binds the saved reference and expires without accepting arbitrary odds, keys or selection
+  ---
+  duration_ms: 10.5548
+  ...
+# Subtest: watchlist requires current reviewed factual provenance and cannot include official pricing fields
+ok 172 - watchlist requires current reviewed factual provenance and cannot include official pricing fields
+  ---
+  duration_ms: 12.4669
+  ...
+# Subtest: artifact scanner loads only the two known credential files and excludes public keys
+ok 173 - artifact scanner loads only the two known credential files and excludes public keys
+  ---
+  duration_ms: 74.9327
+  ...
+# Subtest: exact secrets are found in plain, URI, JSON, HTML/RSC and UTF-16 assets without returning values
+ok 174 - exact secrets are found in plain, URI, JSON, HTML/RSC and UTF-16 assets without returning values
+  ---
+  duration_ms: 21.1063
+  ...
+# Subtest: generic signatures flag privileged keys, JWTs, credentials, private keys and canaries
+ok 175 - generic signatures flag privileged keys, JWTs, credentials, private keys and canaries
+  ---
+  duration_ms: 6.4085
+  ...
+# Subtest: explicit target audit scans compressed JS and extracted APK bytes but refuses unreadable paths and archives
+ok 176 - explicit target audit scans compressed JS and extracted APK bytes but refuses unreadable paths and archives
+  ---
+  duration_ms: 235.5232
+  ...
+# Subtest: compressed containers cannot conceal unscanned archive entries
+ok 177 - compressed containers cannot conceal unscanned archive entries
+  ---
+  duration_ms: 451.8955
+  ...
+# Subtest: filenames containing secret values are redacted and safe scanned content passes
+ok 178 - filenames containing secret values are redacted and safe scanned content passes
+  ---
+  duration_ms: 209.4008
+  ...
+# Subtest: CLI reports filenames and counts without credentials, never changes inputs and refuses invalid known sources
+ok 179 - CLI reports filenames and counts without credentials, never changes inputs and refuses invalid known sources
+  ---
+  duration_ms: 4181.1466
+  ...
+# Subtest: binary arithmetic and minimum price rounds upward
+ok 180 - binary arithmetic and minimum price rounds upward
+  ---
+  duration_ms: 9.9232
+  ...
+# Subtest: margin removal normalises complete vectors
+ok 181 - margin removal normalises complete vectors
+  ---
+  duration_ms: 2.225
+  ...
+# Subtest: decimal, fractional and American conversions
+ok 182 - decimal, fractional and American conversions
+  ---
+  duration_ms: 1.0464
+  ...
+# Subtest: complete state payoff supports pushes without binary coercion
+ok 183 - complete state payoff supports pushes without binary coercion
+  ---
+  duration_ms: 1.5283
+  ...
+# Subtest: one independent benchmark and stable config hash
+ok 184 - one independent benchmark and stable config hash
+  ---
+  duration_ms: 18.577
+  ...
+# Subtest: target and related skin cannot reference themselves
+ok 185 - target and related skin cannot reference themselves
+  ---
+  duration_ms: 4.7873
+  ...
+# Subtest: stale quote rejected
+ok 186 - stale quote rejected
+  ---
+  duration_ms: 3.0856
+  ...
+# Subtest: future quote rejected
+ok 187 - future quote rejected
+  ---
+  duration_ms: 2.1024
+  ...
+# Subtest: mismatch quote rejected
+ok 188 - mismatch quote rejected
+  ---
+  duration_ms: 2.461
+  ...
+# Subtest: incomplete quote rejected
+ok 189 - incomplete quote rejected
+  ---
+  duration_ms: 5.7326
+  ...
+# Subtest: suspended quote rejected
+ok 190 - suspended quote rejected
+  ---
+  duration_ms: 1.8693
+  ...
+# Subtest: source skew rejects independently fresh but asynchronous quotes
+ok 191 - source skew rejects independently fresh but asynchronous quotes
+  ---
+  duration_ms: 2.0799
+  ...
+# Subtest: missed decision windows and pre-start safety do not create extra tips
+ok 192 - missed decision windows and pre-start safety do not create extra tips
+  ---
+  duration_ms: 0.7956
+  ...
+# Subtest: unsupported non-binary market fails closed
+ok 193 - unsupported non-binary market fails closed
+  ---
+  duration_ms: 0.4862
+  ...
+# Subtest: production Auth mail is off by default and independent of optional delivery
+ok 194 - production Auth mail is off by default and independent of optional delivery
+  ---
+  duration_ms: 4.0676
+  ...
+# Subtest: a Preview invitation cannot bypass production mail or registration gates
+ok 195 - a Preview invitation cannot bypass production mail or registration gates
+  ---
+  duration_ms: 0.6373
+  ...
+# Subtest: all signup paths require explicit age, Terms and separate Privacy acceptance
+ok 196 - all signup paths require explicit age, Terms and separate Privacy acceptance
+  ---
+  duration_ms: 0.9947
+  ...
+# Subtest: production policy versions never default to draft and require operator readiness
+ok 197 - production policy versions never default to draft and require operator readiness
+  ---
+  duration_ms: 4.5377
+  ...
+# Subtest: safe UI registration projection includes database authority and cannot expose credentials
+ok 198 - safe UI registration projection includes database authority and cannot expose credentials
+  ---
+  duration_ms: 1.6705
+  ...
+# Subtest: changed production legal versions require fresh explicit acceptance
+ok 199 - changed production legal versions require fresh explicit acceptance
+  ---
+  duration_ms: 0.6832
+  ...
+# Subtest: only genuine username collisions are recoverable during signup provisioning
+ok 200 - only genuine username collisions are recoverable during signup provisioning
+  ---
+  duration_ms: 1.4683
+  ...
+# Subtest: production environment preparation keeps credentials private and all initial activation closed
+ok 201 - production environment preparation keeps credentials private and all initial activation closed
+  ---
+  duration_ms: 3061.0059
+  ...
+# Subtest: production export requires approved identities and exports only committed deployable sources
+ok 202 - production export requires approved identities and exports only committed deployable sources
+  ---
+  duration_ms: 10706.2388
+  ...
+# Subtest: production export rejects every unreviewed manifest boundary before preparing any source
+ok 203 - production export rejects every unreviewed manifest boundary before preparing any source
+  ---
+  duration_ms: 37606.2103
+  ...
+# Subtest: OddsPapi trial uses exact canonical mapping, retains unknown quota and never invents standard classification
+ok 204 - OddsPapi trial uses exact canonical mapping, retains unknown quota and never invents standard classification
+  ---
+  duration_ms: 143.5987
+  ...
+# Subtest: OddsPapi disabled, unknown/exhausted quota, failure reservation and cooldown never leak keys or make extra calls
+ok 205 - OddsPapi disabled, unknown/exhausted quota, failure reservation and cooldown never leak keys or make extra calls
+  ---
+  duration_ms: 5.2981
+  ...
+# Subtest: OddsPapi historical source chooses last known point before decision, preserving actual retrieval time
+ok 206 - OddsPapi historical source chooses last known point before decision, preserving actual retrieval time
+  ---
+  duration_ms: 10.9458
+  ...
+# Subtest: comparison distinguishes missing data, actual failures, mapping disagreement, source ages and matched-price outliers
+ok 207 - comparison distinguishes missing data, actual failures, mapping disagreement, source ages and matched-price outliers
+  ---
+  duration_ms: 15.4569
+  ...
+# Subtest: homepage selection uses current derived eligibility and cutoff, never original active state
+ok 208 - homepage selection uses current derived eligibility and cutoff, never original active state
+  ---
+  duration_ms: 12.7758
+  ...
+# Subtest: anonymous jurisdiction is unknown while signed-in restrictions and research gates remain visible
+ok 209 - anonymous jurisdiction is unknown while signed-in restrictions and research gates remain visible
+  ---
+  duration_ms: 1.5686
+  ...
+# Subtest: operator facts require explicit input and safe public destinations
+ok 210 - operator facts require explicit input and safe public destinations
+  ---
+  duration_ms: 2.1278
+  ...
+# Subtest: production robots use the configured canonical origin and exclude private routes; preview stays unindexed
+ok 211 - production robots use the configured canonical origin and exclude private routes; preview stays unindexed
+  ---
+  duration_ms: 2.4771
+  ...
+# Subtest: versioned ModelProvider baseline ignores later outcomes and closing prices and rejects future-known features
+ok 212 - versioned ModelProvider baseline ignores later outcomes and closing prices and rejects future-known features
+  ---
+  duration_ms: 218.0872
+  ...
+# Subtest: reference replay uses the same configured core and retains publication benchmark accounting
+ok 213 - reference replay uses the same configured core and retains publication benchmark accounting
+  ---
+  duration_ms: 83.6914
+  ...
+# Subtest: historical archive availability is explicit and later download never becomes prospective evidence
+ok 214 - historical archive availability is explicit and later download never becomes prospective evidence
+  ---
+  duration_ms: 34.7245
+  ...
+# Subtest: future or expired rights, ownership, classification, mapping and eligibility cannot qualify
+ok 215 - future or expired rights, ownership, classification, mapping and eligibility cannot qualify
+  ---
+  duration_ms: 277.9321
+  ...
+# Subtest: missing historical metadata, future feed health and source-file/hash tampering fail closed
+ok 216 - missing historical metadata, future feed health and source-file/hash tampering fail closed
+  ---
+  duration_ms: 23.787
+  ...
+# Subtest: later and closing snapshots cannot decide or reprice an earlier selection
+ok 217 - later and closing snapshots cannot decide or reprice an earlier selection
+  ---
+  duration_ms: 70.4315
+  ...
+# Subtest: a later-known rescheduled start cannot generate an earlier historical decision
+ok 218 - a later-known rescheduled start cannot generate an earlier historical decision
+  ---
+  duration_ms: 7.5701
+  ...
+# Subtest: historical scheduled-state evidence is required and cancellation cannot silently reopen
+ok 219 - historical scheduled-state evidence is required and cancellation cannot silently reopen
+  ---
+  duration_ms: 60.5519
+  ...
+# Subtest: promotional and shared-ownership sources cannot become historical availability benchmarks
+ok 220 - promotional and shared-ownership sources cannot become historical availability benchmarks
+  ---
+  duration_ms: 57.0476
+  ...
+# Subtest: availability follows the frozen research region while approved pricing sources remain separate
+ok 221 - availability follows the frozen research region while approved pricing sources remain separate
+  ---
+  duration_ms: 43.4557
+  ...
+# Subtest: sparse delayed/availability data stays unknown and a price recovery cannot reopen a selection
+ok 222 - sparse delayed/availability data stays unknown and a price recovery cannot reopen a selection
+  ---
+  duration_ms: 161.3765
+  ...
+# Subtest: unlicensed results and pre-start cancellation stay pending until an explicit reviewed void
+ok 223 - unlicensed results and pre-start cancellation stay pending until an explicit reviewed void
+  ---
+  duration_ms: 81.7394
+  ...
+# Subtest: held-out reference replay permits fixed rules but refuses sensitivity and unapproved variants
+ok 224 - held-out reference replay permits fixed rules but refuses sensitivity and unapproved variants
+  ---
+  duration_ms: 32.2877
+  ...
+# Subtest: development stresses disclose every variant and preserve original archive lineage
+ok 225 - development stresses disclose every variant and preserve original archive lineage
+  ---
+  duration_ms: 206.2616
+  ...
+# Subtest: freeze binds actual configuration, code, timestamp and exact study window
+ok 226 - freeze binds actual configuration, code, timestamp and exact study window
+  ---
+  duration_ms: 18.0308
+  ...
+# Subtest: freeze rejects overlapping or relabelled holdout periods
+ok 227 - freeze rejects overlapping or relabelled holdout periods
+  ---
+  duration_ms: 2.4962
+  ...
+# Subtest: research dispatch keeps reference and legacy source schemas distinct
+ok 228 - research dispatch keeps reference and legacy source schemas distinct
+  ---
+  duration_ms: 47.6847
+  ...
+# Subtest: reference CLI validates, replays, stresses and reports only explicit private fixtures
+ok 229 - reference CLI validates, replays, stresses and reports only explicit private fixtures
+  ---
+  duration_ms: 25448.0087
+  ...
+# Subtest: reference cards distinguish current availability, fair estimate and immutable threshold; missing reference never falls back to bookmaker odds
+ok 230 - reference cards distinguish current availability, fair estimate and immutable threshold; missing reference never falls back to bookmaker odds
+  ---
+  duration_ms: 6709.9044
+  ...
+# Subtest: sensitivity rejects held-out tuning and reports all development variants
+ok 231 - sensitivity rejects held-out tuning and reports all development variants
+  ---
+  duration_ms: 380.0668
+  ...
+# Subtest: legacy stress honors the supplied configuration and preserves derived source lineage
+ok 232 - legacy stress honors the supplied configuration and preserves derived source lineage
+  ---
+  duration_ms: 80.8492
+  ...
+# Subtest: same decision library in replay and live; delayed entry remains separate
+ok 233 - same decision library in replay and live; delayed entry remains separate
+  ---
+  duration_ms: 14.6206
+  ...
+# Subtest: no future snapshot look-ahead and archive gaps remain gaps
+ok 234 - no future snapshot look-ahead and archive gaps remain gaps
+  ---
+  duration_ms: 15.7782
+  ...
+# Subtest: hash mismatches, missing rights and production evidence classes rejected
+ok 235 - hash mismatches, missing rights and production evidence classes rejected
+  ---
+  duration_ms: 15.6458
+  ...
+# Subtest: contaminated real-data reports labelled
+ok 236 - contaminated real-data reports labelled
+  ---
+  duration_ms: 18.5989
+  ...
+# Subtest: quota forecast is shared rather than per-user
+ok 237 - quota forecast is shared rather than per-user
+  ---
+  duration_ms: 0.8598
+  ...
+# Subtest: provider will not call network without rights/budget
+ok 238 - provider will not call network without rights/budget
+  ---
+  duration_ms: 3.8544
+  ...
+# Subtest: private fictional CLI import/replay/report preserves evidence and detects alteration
+ok 239 - private fictional CLI import/replay/report preserves evidence and detects alteration
+  ---
+  duration_ms: 17728.8601
+  ...
+# Subtest: visual sport coverage follows configured competitions and never implies live validation
+ok 240 - visual sport coverage follows configured competitions and never implies live validation
+  ---
+  duration_ms: 7.8341
+  ...
+# Subtest: ten sport pages have substantive distinct rules, valid reading links and canonical league links
+ok 241 - ten sport pages have substantive distinct rules, valid reading links and canonical league links
+  ---
+  duration_ms: 2.0016
+  ...
+# Subtest: registered sport photos select the next generated size and fall back to their native asset
+ok 242 - registered sport photos select the next generated size and fall back to their native asset
+  ---
+  duration_ms: 46.4992
+  ...
+# Subtest: sport image loading rejects remote, unregistered, transformed and traversal sources
+ok 243 - sport image loading rejects remote, unregistered, transformed and traversal sources
+  ---
+  duration_ms: 2.295
+  ...
+# Subtest: sport image loading rejects invalid dimensions instead of constructing invalid URLs
+ok 244 - sport image loading rejects invalid dimensions instead of constructing invalid URLs
+  ---
+  duration_ms: 1.0098
+  ...
+# Subtest: one-unit arithmetic retains losses/voids and drawdown; no settled sample remains unknown
+ok 245 - one-unit arithmetic retains losses/voids and drawdown; no settled sample remains unknown
+  ---
+  duration_ms: 56.4559
+  ...
+# Subtest: versioned community reference records retain their captured benchmark alongside legacy records
+ok 246 - versioned community reference records retain their captured benchmark alongside legacy records
+  ---
+  duration_ms: 4.5168
+  ...
+# Subtest: tiny samples provisional; popularity/demo/official/promo records never qualify
+ok 247 - tiny samples provisional; popularity/demo/official/promo records never qualify
+  ---
+  duration_ms: 3.2084
+  ...
+# Subtest: ranking preserves sub-cent precision and reproducible deterministic ties
+ok 248 - ranking preserves sub-cent precision and reproducible deterministic ties
+  ---
+  duration_ms: 11.251
+  ...
+# Subtest: integrity-reviewed losses remain in metrics but prevent qualification
+ok 249 - integrity-reviewed losses remain in metrics but prevent qualification
+  ---
+  duration_ms: 2.0737
+  ...
+# Subtest: invalid timestamps, lookahead settlement, duplicate IDs and nonunit stake rejected
+ok 250 - invalid timestamps, lookahead settlement, duplicate IDs and nonunit stake rejected
+  ---
+  duration_ms: 0.983
+  ...
+# Subtest: period UTC boundaries and corrections recompute from retained canonical evidence
+ok 251 - period UTC boundaries and corrections recompute from retained canonical evidence
+  ---
+  duration_ms: 13.7554
+  ...
+# Subtest: Rising requires comparable frozen scope and actual earlier qualified evidence, not a new month or rolling window
+ok 252 - Rising requires comparable frozen scope and actual earlier qualified evidence, not a new month or rolling window
+  ---
+  duration_ms: 9.9142
+  ...
+# Subtest: leaderboard notifications require a real comparable prior snapshot and new qualification or qualified ranking improvement
+ok 253 - leaderboard notifications require a real comparable prior snapshot and new qualification or qualified ranking improvement
+  ---
+  duration_ms: 14.2926
+  ...
+# Subtest: server transaction callbacks never reacquire global DB, identity, policy or analytics connections
+ok 254 - server transaction callbacks never reacquire global DB, identity, policy or analytics connections
+  ---
+  duration_ms: 1932.1049
+  ...
+# Subtest: notification and Edge actions retain explicit per-user limits on their transaction boundary
+ok 255 - notification and Edge actions retain explicit per-user limits on their transaction boundary
+  ---
+  duration_ms: 108.0302
+  ...
+# Subtest: reserved provider ingestion passes its existing connection to the evidence consumer
+ok 256 - reserved provider ingestion passes its existing connection to the evidence consumer
+  ---
+  duration_ms: 34.863
+  ...
+# Subtest: signed webhook accepts unchanged payload and rejects tampering/replay age
+ok 257 - signed webhook accepts unchanged payload and rejects tampering/replay age
+  ---
+  duration_ms: 97.1178
+  ...
+# Subtest: worker drains queued sports in one invocation and respects a hard work bound
+ok 258 - worker drains queued sports in one invocation and respects a hard work bound
+  ---
+  duration_ms: 5.2327
+  ...
+# Subtest: observation failure records an incident and does not prevent independent cleanup
+ok 259 - observation failure records an incident and does not prevent independent cleanup
+  ---
+  duration_ms: 1.2233
+  ...
+1..259
+# tests 259
+# suites 0
+# pass 259
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 97293.3799

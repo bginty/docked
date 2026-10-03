@@ -1,5 +1,15 @@
 # Engineering decisions — started 2 October 2026
 
+## Storefront retirement and production isolation — 4 October 2026
+
+- Act on the owner's later explicit instruction to retire the unused storefront. Replace its deployed GitHub Pages output with a minimal approved-brand transition page; preserve source history, the existing-order support link and the new application branch. No product catalogue, checkout JavaScript, payment integration or old product imagery remains in that output.
+- Distinguish this completed public-site change from the pending application launch. Pages source `baf3c87611eee8f45ca08ad3649242739b1f1a34` passed live browser checks and HTTPS `www` canonical redirection. Keep the existing DNS/email records; the static page uses no forms, scripts, tracking or external sending. [Retirement evidence](qa/production/retirement/README.md).
+- Disable Git-triggered Vercel deployment in the static source. Read-only verification confirms the linked Docked Preview project retains the accepted application deployment and did not deploy the new static `main`. An optional, explicitly labelled Preview link is allowed; automatic redirection into Preview is not.
+- Never restore the retired storefront as a public rollback. The accepted neutral transition page is the fallback until an application production deployment has been accepted; no rollback may erase new account or ledger data.
+- Prepare production as a distinct reviewed manifest, hosting project, Supabase project and least-privilege runtime role. Empty identities and missing verified operator/policy facts fail closed. Preview credentials, invitations, test records and the unrelated Oura project cannot become production resources. Keep provider polling, scanner, publication, forward paper, optional sending and commercial switches off. A supplied inert provider key is not activation authority.
+- Permit inert modern provider-key storage in the exact reviewed Preview with `MARKET_DATA_POLLING_ENABLED=false` explicitly set. Previously, storing a key required the polling environment and could break an otherwise closed Preview deployment. The narrow storage exception preserves all rights, quota, project, legacy-polling and publication gates; it cannot request data. Wrong identities or missing/malformed polling flags still fail closed. Actual importer regressions prove zero database/fetch calls in this state.
+- Public account signup and authentication email readiness are separate from optional notification sending. Production requires approved policy versions and verified transactional delivery before public registration; no external test email or paid service is authorised by source preparation. Exact remaining owner inputs are in [PRODUCTION_RELEASE.md](PRODUCTION_RELEASE.md).
+
 ## Phase 5 decisions — 4 October 2026
 
 - Keep the original strategy and reference engine. The initial `ModelProvider` is a transparent market-consensus research baseline, not proprietary predictive advantage. Its observations, as-of clock, configuration hash and code commit are recorded; validation stays UNVALIDATED.

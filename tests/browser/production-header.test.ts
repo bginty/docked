@@ -55,7 +55,54 @@ for (const width of [320, 390, 1366])
     expect(geometry.accountRight).toBeLessThanOrEqual(width);
     for (const control of await page.locator(".account-nav a").all()) {
       const box = await control.boundingBox();
-      expect(box!.height).toBeGreaterThanOrEqual(width <= 760 ? 44 : 24);
+      if (width <= 760) {
+        expect(box!.height).toBeGreaterThanOrEqual(44);
+        expect(box!.width).toBeGreaterThanOrEqual(24);
+      } else {
+        // WCAG 2.5.8 permits a smaller target with sufficient spacing. Use
+        // centered 24px squares (stricter than its circles) and include every
+        // visible header target, not just the adjacent account button.
+        expect(
+          await control.evaluate((target) => {
+            const expanded = (element: Element) => {
+              const box = element.getBoundingClientRect();
+              const halfWidth = Math.max(box.width, 24) / 2;
+              const halfHeight = Math.max(box.height, 24) / 2;
+              const x = box.x + box.width / 2;
+              const y = box.y + box.height / 2;
+              return {
+                left: x - halfWidth,
+                right: x + halfWidth,
+                top: y - halfHeight,
+                bottom: y + halfHeight,
+              };
+            };
+            const bounds = target.getBoundingClientRect();
+            if (!bounds.width || !bounds.height) return false;
+            const own = expanded(target);
+            return [
+              ...document.querySelectorAll(
+                ".site-header a, .site-header button, .site-header summary",
+              ),
+            ]
+              .filter(
+                (other) =>
+                  other !== target &&
+                  other.getBoundingClientRect().width > 0 &&
+                  other.getBoundingClientRect().height > 0,
+              )
+              .every((other) => {
+                const adjacent = expanded(other);
+                return (
+                  own.right <= adjacent.left ||
+                  own.left >= adjacent.right ||
+                  own.bottom <= adjacent.top ||
+                  own.top >= adjacent.bottom
+                );
+              });
+          }),
+        ).toBe(true);
+      }
     }
     expect(
       (await new AxeBuilder({ page }).include(".site-header").analyze())

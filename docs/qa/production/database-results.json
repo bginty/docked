@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "recordedAt": "2026-10-03T22:14:22.140Z",
+  "command": "npx tsx --test --test-concurrency=1 tests/database/*.test.ts",
+  "environment": "isolated local PGlite PostgreSQL; no hosted calls",
+  "tests": 126,
+  "passed": 126,
+  "failed": 0,
+  "skipped": 0,
+  "durationMs": 225879.8253,
+  "evidence": "database-results.tap",
+  "migration": {
+    "path": "supabase/migrations/20261003214310_production_community_runtime_role.sql",
+    "sha256": "ab9e423ec1c5ef0142edc04f26e2e779544d73ab7ce9ef5aaa42f5365b35191d",
+    "appliedToHosted": false
+  },
+  "priorAttempt": {
+    "tests": 126,
+    "passed": 123,
+    "failed": 3,
+    "cause": "Isolated recognition adapter lacked fixed Auth relation fragment support; no production assertion was weakened.",
+    "evidence": "database-initial-failure.tap",
+    "focusedRerun": {
+      "passed": 3,
+      "failed": 0,
+      "evidence": "recognition-harness-rerun.tap"
+    }
+  },
+  "roleChecks": [
+    "non-owned managed Auth tables with RLS and separate Auth schema owner",
+    "non-superuser migration role with existing SELECT/DELETE and no Auth schema or DELETE grant options",
+    "managed missing Auth column fail-closed preflight",
+    "restricted private Auth projections; browser and credential-column denial",
+    "no role/feature/region/ledger escalation",
+    "post-lock wall-clock session expiry denial",
+    "bounded account-deletion queues and retention",
+    "revocation and pseudonymous account erasure"
+  ],
+  "typecheck": "PASS",
+  "scope": "Source readiness only; production provisioning, genuine hosted acceptance and maintenance scheduling are not performed."
+}

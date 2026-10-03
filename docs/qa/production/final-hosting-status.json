@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-10-03T22:21:49.550Z",
+  "readOnly": true,
+  "sourceCommit": "1e2991624125aaea413515c30d3be9b0460533cb",
+  "publicSite": {
+    "origin": "https://docked.com.au",
+    "status": 200,
+    "holdingPage": true
+  },
+  "preview": {
+    "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+    "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+    "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "deploymentId": "dpl_5Up2hMH7mksYzkC5EfnDnknm7EBj",
+    "state": "READY",
+    "sourceCommit": "38f90a13b5cd8834460b1ecdd6e2ff61ec949dd0",
+    "target": null,
+    "httpStatus": 200,
+    "health": {
+      "feed": false,
+      "strategy": false,
+      "publication": false,
+      "database": true,
+      "oddsProviderStatus": "NOT_CONFIGURED",
+      "resultsProviderStatus": "NOT_CONFIGURED",
+      "reason": "Source health is unavailable; no new tips can publish."
+    }
+  },
+  "recentDeployments": [
+    {
+      "id": "dpl_12oHPbfkJVSG1QAikkqhAT884jtN",
+      "state": "ERROR",
+      "target": null,
+      "sourceCommit": "00089c5899b1d0126a03306a9210641be933aeb4",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_5Up2hMH7mksYzkC5EfnDnknm7EBj",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "38f90a13b5cd8834460b1ecdd6e2ff61ec949dd0",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_FXLCguCaS7t2KAjHigbRJ8ptzy1P",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "7dcab1653300de2c073949e3915f5286474a2ad6",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_8Zs6gWmRJC4kL9sUL7WvLRYXXR3y",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "f1d55a954644b122b57ccbed1b54207194552390",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_AWsjRYtbzih7AFiF8ftQQXikGgDa",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "944499fcc0e5f3a3d6ab8bc4784ac0ecb0cbbd1c",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_J6UfdR9DPMx5YSkLjk93LHcPP1gn",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "6cd166187c30596d3f97d793606a2398adf6f43c",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_JAYYcsWXXhR3Xyk9nMzgMFRVpp4R",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "bdef27942096d7463b469231cdd8410a9d5b130c",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_98W8eekf5UHSkD1oNWNe39wRVUNb",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "5ee5c56b769abb875ee2fe6a00c0519288777841",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_EMjGsHntMShpCLn5jiDCH2f1wxHW",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "226bf6b05c6a8d666e83c8570eeb81fd1580d9a0",
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "id": "dpl_AXm9Qk1jqJAHbJA6P21cM8jon43u",
+      "state": "READY",
+      "target": null,
+      "sourceCommit": "63b275dc9e34b7f0562f54248681a25883845e1d",
+      "branch": "codex/docked-value-platform"
+    }
+  ],
+  "productionApplicationDeployed": false,
+  "dnsChanged": false,
+  "providerRequestsMade": false
+}

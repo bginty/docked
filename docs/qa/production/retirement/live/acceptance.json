@@ -1,0 +1,52 @@
+{
+  "origin": "https://docked.com.au",
+  "recordedAt": "2026-10-03T21:50:44.127Z",
+  "receipts": [
+    {
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "brokenImages": 0,
+      "axeViolations": 0,
+      "consoleErrors": 0
+    },
+    {
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "brokenImages": 0,
+      "axeViolations": 0,
+      "consoleErrors": 0
+    },
+    {
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "brokenImages": 0,
+      "axeViolations": 0,
+      "consoleErrors": 0
+    }
+  ],
+  "retired": [
+    {
+      "path": "/shipping-returns.html",
+      "status": 200
+    },
+    {
+      "path": "/warranty.html",
+      "status": 200
+    },
+    {
+      "path": "/thank-you.html",
+      "status": 200
+    },
+    {
+      "path": "/assets/js/product-config.js",
+      "status": 404
+    },
+    {
+      "path": "/assets/images/product/cruise-d2-features.jpg",
+      "status": 404
+    }
+  ]
+}

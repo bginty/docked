@@ -1,0 +1,28 @@
+{
+  "checkedOn": "2026-10-04",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "scope": "Read-only catalogue inspection of Docked Preview for production migration compatibility; no account rows, credentials or mutations",
+  "migrationRole": {
+    "name": "postgres",
+    "superuser": false,
+    "createRole": true,
+    "bypassRls": true,
+    "authOwnerMembership": false
+  },
+  "authTables": [
+    {"name": "auth.users", "owner": "supabase_auth_admin", "rls": true, "forceRls": false, "policies": 0, "postgresSelect": true, "postgresDelete": true, "postgresSelectGrantOption": true, "postgresDeleteGrantOption": false},
+    {"name": "auth.sessions", "owner": "supabase_auth_admin", "rls": true, "forceRls": false, "policies": 0, "postgresSelect": true, "postgresDelete": true, "postgresSelectGrantOption": true, "postgresDeleteGrantOption": false}
+  ],
+  "managedAuthAcl": {
+    "postgresAuthSchemaUsageGrantOption": false,
+    "postgresUidExecuteGrantOption": false,
+    "postgresJwtExecuteGrantOption": false,
+    "authSchemaPublicUsage": false,
+    "uidAndJwtPublicExecute": true
+  },
+  "existingFunctions": [
+    {"name": "private.active_member_session", "owner": "postgres", "securityDefiner": true},
+    {"name": "private.disable_account", "owner": "postgres", "securityDefiner": false}
+  ],
+  "finding": "A new application role cannot rely on migrations adding policies to managed Auth tables or delegating DELETE. Production setup requires narrow private projections and revocation helpers, tested against separately owned RLS Auth tables. Production identity must be checked again when provisioned."
+}

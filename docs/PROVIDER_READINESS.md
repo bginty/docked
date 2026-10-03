@@ -1,8 +1,12 @@
 # Odds and results integration readiness
 
+## Key storage update — 4 October 2026
+
+The owner supplied `THE_ODDS_API_KEY` in Vercel's sensitive Preview environment. Metadata confirmed its presence without retrieving its value. `MARKET_DATA_POLLING_ENABLED=false` is explicitly configured and verified for Docked Preview. The key has not been tested against the supplier, copied into production or used for any request. Current market data has no selected/approved provider configuration; results remain unconfigured. The accepted stable Preview deployment predates this storage change. Storing a key does not approve display/retention rights, a request budget or strategy validation. [Configuration receipt](qa/production/preview-polling-closed.json).
+
 ## Phase 5 current market-data path
 
-`MARKET_DATA_STATUS` is separate from legacy publication odds and results status. Both provider keys remain absent, no feed was activated and no provider endpoint was called during implementation. The admin data-health page shows each purpose separately, including the new scanner candidate count. A configured key alone cannot establish reviewed rights or healthy data.
+`MARKET_DATA_STATUS` is separate from legacy publication odds and results status. Both provider keys were absent during Phase 5 implementation; no feed was activated and no provider endpoint was called. The admin data-health page shows each purpose separately, including the new scanner candidate count. A configured key alone cannot establish reviewed rights or healthy data.
 
 `src/providers/market-data.ts` discovers current provider-scoped fixtures, then reuses the existing complete-market validators. It supports bounded EPL/La Liga/NBA catalogues and NFL fixture facts; NFL cannot enter the unchanged pricing/settlement strategy. Exact competition, participant and provider IDs replace fuzzy matching. OddsPapi requires reviewed sport, tournament, market and outcome-ID mappings. Fixture `updatedAt` is not a price timestamp; missing source observations and old price-change times are never relabelled fresh.
 
@@ -30,7 +34,7 @@ node --conditions=react-server --import tsx scripts/market-data.ts --purge-expir
 
 Parser contracts were checked against [The Odds API V4 docs](https://the-odds-api.com/liveapi/guides/v4/), [OddsPapi fixtures](https://oddspapi.io/en/docs/get-fixtures), [OddsPapi current odds](https://oddspapi.io/en/docs/get-odds) and [OddsPapi quota semantics](https://oddspapi.io/en/docs/requests-and-quota). This review does not establish supplier rights or activate a feed.
 
-No provider key was supplied or used. No request was made to a paid odds endpoint, no plan purchased and no results website scraped. Current state: `ODDS_PROVIDER_STATUS=NOT_CONFIGURED` and `RESULTS_PROVIDER_STATUS=NOT_CONFIGURED`.
+At the original Phase 5 acceptance, no provider key was supplied or used: `ODDS_PROVIDER_STATUS=NOT_CONFIGURED` and `RESULTS_PROVIDER_STATUS=NOT_CONFIGURED`. No request was made to a paid odds endpoint, no plan purchased and no results website scraped. The later key-storage update above does not activate any feed.
 
 ## The Odds API
 

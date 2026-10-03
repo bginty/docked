@@ -1,12 +1,25 @@
 # Release gates
 
+## Current public-site status — 4 October 2026
+
+- [x] Owner explicitly authorised removing the old storefront and replacing it with a neutral transition page.
+- [x] GitHub Pages run `37156304851` deployed `main` commit `baf3c87611eee8f45ca08ad3649242739b1f1a34`; old commerce scripts/product assets are removed and retired HTML routes show the holding page.
+- [x] Live 320/412/1,440-pixel browser checks passed with no accessibility, console, image or overflow failures; five retired paths were checked. HTTPS `www` redirects to the apex.
+- [x] Existing website/email DNS preserved; read-only Vercel verification confirms the separate Preview still serves the application and did not redeploy static `main`.
+- [ ] Dedicated application production resources and exact spending/cost acknowledgements supplied; production manifest approved only from verified identities.
+- [ ] Verified operator/contact details, reviewed Terms/Privacy/retention versions, regional community policies and operational ownership supplied.
+- [ ] Final new-application production deployment, secrets boundary, public/member acceptance and precise domain cutover completed.
+- [ ] Public signup enabled only after independent transactional Auth email readiness and account lifecycle acceptance.
+
+The **transition page is live; the new application production launch is pending**. Its optional Preview link does not convert test accounts, the Android Preview package or unvalidated sporting research into production. [Completed retirement evidence](qa/production/retirement/README.md) and [application release runbook](PRODUCTION_RELEASE.md).
+
 ## Phase 5 readiness — 4 October 2026
 
 - [x] Existing source and all prior milestones preserved; rollback tag `docked-before-phase5-2026-10-04` recorded before changes.
 - [x] Provider evaluation, rights/retention design, historical matrix and ingestion-based cost assumptions documented from official sources.
 - [x] Phase 5 local validation: 233 platform, 109 PostgreSQL/RLS and final 76 browser tests; typecheck, lint, build and client/dependency checks passed.
 - [x] Isolated Preview migration/deployment and 198 genuine hosted role/MFA assertions passed; disposable QA identities erased, existing four accounts preserved. Remaining advisor/physical/data limits are explicit in the Phase 5 report.
-- [ ] Dedicated provider key, account quota and approved exact trial scope supplied; no credentials detected in local or hosted Preview configuration.
+- [ ] Provider account quota and approved exact trial scope supplied. No credentials were present at the original Phase 5 audit; a sensitive Preview-only `THE_ODDS_API_KEY` was subsequently supplied. Its value has not been retrieved and no provider activation or trial has occurred.
 - [ ] Real fixture/market trial completed, quality evidence reviewed and provider chosen. Both providers remain INSUFFICIENT_EVIDENCE.
 - [ ] Owner approves versioned provider rights, canonical competition/bookmaker mappings, source independence and price classification.
 - [ ] Supervised backend ingestion/scanner/retention trigger configured and operational alerts assigned; activation remains off.
@@ -17,7 +30,7 @@
 
 Software and hosted acceptance results are maintained in [the Phase 5 evidence folder](qa/phase5). Passing software checks does not close the external data, legal or research gates above.
 
-Neither actionable-tip launch nor public education release is authorised by a completed interface.
+A completed interface alone does not authorise release. The later owner instruction authorises application launch preparation and the completed transition-page replacement; it does not close the data, legal, account or operational gates.
 
 ## Actionable-tip release — all required
 
@@ -43,7 +56,7 @@ May keep tips, registration and outbound communications disabled. Still requires
 
 ACMA guidance checked 2 October 2026 states most reforms commence 1 January 2027: https://www.acma.gov.au/about-interactive-gambling-act. It discusses advertising restrictions, an opt-out register, inducement restrictions and activity-based affiliate commissions. This source does not resolve Docked's service classification or every commencement provision. Legal counsel must review actual Acts, instruments, local state rules and applicability before any activation. Set policy review deadlines before 1 January 2027 (recommended internal checkpoint: 1 December 2026) and leave advertising, affiliates and paid plans off.
 
-This build did not amend DNS, MX/SPF/DKIM/DMARC, main, GitHub Pages, any unrelated domain or external service. No paid service, campaign or production migration was executed.
+Earlier build milestones did not change production. The subsequently authorised retirement updated `main` and GitHub Pages only. DNS, MX/SPF/DKIM/DMARC and unrelated services remain unchanged; no paid service, campaign or application production migration was executed.
 
 ## Phase 2 preview acceptance gates
 
