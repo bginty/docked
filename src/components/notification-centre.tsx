@@ -8,6 +8,7 @@ import type {
 } from "@/core/community-social";
 import { communityAction } from "./social-interactions";
 import { CommunityEmpty } from "./community-basics";
+import { LocalTimestamp } from "./local-timestamp";
 const preferences: [keyof NotificationPreferences, string][] = [
   ["officialEdges", "Official Edge and status updates"],
   ["followedMembers", "Followed member posts and Edges"],
@@ -94,9 +95,7 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
                       {n.type.replaceAll("_", " ")} ·{" "}
                       {n.readAt ? "Read" : "Unread"}
                     </p>
-                    <time dateTime={n.createdAt}>
-                      {new Date(n.createdAt).toLocaleString()}
-                    </time>
+                    <LocalTimestamp value={n.createdAt} />
                     {!n.readAt && (
                       <div>
                         <button

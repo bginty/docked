@@ -10,6 +10,7 @@ import type {
 } from "@/core/community-social";
 import { AppIcon } from "./app-icon";
 import { OfficialBadge } from "./community-basics";
+import { LocalTimestamp } from "./local-timestamp";
 export async function communityAction(
   body: Record<string, unknown>,
   endpoint = "/api/community",
@@ -278,9 +279,7 @@ function Comment({ comment }: { comment: SocialComment }) {
           ? "COMMENTARY REMOVED BY MODERATION"
           : comment.body}
       </p>
-      <time dateTime={comment.createdAt}>
-        {new Date(comment.createdAt).toLocaleString()}
-      </time>
+      <LocalTimestamp value={comment.createdAt} />
       <div className="actions">
         {!comment.parentId && comment.moderationStatus === "visible" && (
           <button onClick={() => setReply(!reply)}>Reply</button>
@@ -346,9 +345,7 @@ export function SocialCard({ post }: { post: SocialPost }) {
         </div>
         {post.author.isOfficial && <OfficialBadge />}
       </div>
-      <time dateTime={post.createdAt}>
-        {new Date(post.createdAt).toLocaleString()}
-      </time>
+      <LocalTimestamp value={post.createdAt} />
       {post.claimLabel === "promotional_price" && (
         <p className="promotion-label">
           PROMOTIONAL PRICE — NOT LEADERBOARD ELIGIBLE
