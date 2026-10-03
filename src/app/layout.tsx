@@ -9,6 +9,7 @@ import "./native.css";
 import "./mobile-app.css";
 import "./app-auth.css";
 import "./beta-experience.css";
+import "./phase5-edges.css";
 import { NativeBridge } from "@/components/native-bridge";
 import { config } from "@/server/config";
 import { AnalyticsObserver } from "@/components/analytics-observer";

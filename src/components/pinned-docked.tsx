@@ -11,6 +11,7 @@ export async function PinnedDocked({
   view = "featured",
   sport,
   competition,
+  showReading = true,
 }: {
   timezone?: string;
   format?: "decimal" | "fractional" | "american";
@@ -18,6 +19,7 @@ export async function PinnedDocked({
   view?: "featured" | "upcoming" | "recent";
   sport?: string;
   competition?: string;
+  showReading?: boolean;
 }) {
   const [tips, status, region] = await Promise.all([
     publicTips(),
@@ -54,7 +56,7 @@ export async function PinnedDocked({
               ? "Recent official records"
               : "DOCKED EDGES"}
         </h2>
-        <Link href="/results">Complete official record</Link>
+        <Link href="/results">{compact ? "Official history" : "Complete official record"}</Link>
       </div>
       {active.length ? (
         <>
@@ -89,7 +91,7 @@ export async function PinnedDocked({
           view={view}
         />
       )}
-      {compact && !active.length && <BetaReading watchlist />}
+      {showReading && compact && !active.length && <BetaReading watchlist />}
     </section>
   );
 }

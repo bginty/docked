@@ -21,6 +21,7 @@ const explicit = new Set([
   ".vercelignore",
   "certs/supabase-prod-ca-2021.crt",
   "scripts/guard-hosted-build.mjs",
+  "config/hosted-preview.json",
 ]);
 const allowed = (file) =>
   explicit.has(file) || roots.some((prefix) => file.startsWith(prefix));

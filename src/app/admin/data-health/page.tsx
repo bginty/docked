@@ -30,9 +30,31 @@ export default async function DataHealth() {
         title="Know what the feed can support."
       />
       <p>
-        ODDS_PROVIDER_STATUS={h.oddsStatus} · RESULTS_PROVIDER_STATUS=
+        Legacy publication odds: {h.oddsStatus} · RESULTS_PROVIDER_STATUS=
         {h.resultsStatus}
       </p>
+      <section className="card">
+        <h2>Current market-data ingestion</h2>
+        <p>
+          MARKET_DATA_STATUS={h.marketData.status} · Provider:{" "}
+          {h.marketData.provider ?? "N/A"}
+        </p>
+        <p>
+          Reviewed rights/configuration:{" "}
+          {h.marketData.rightsApproved
+            ? h.marketData.configurationVersion
+            : "Pending"}{" "}
+          · Last successful poll: {h.marketData.lastSuccess ?? "N/A"} · Quota
+          remaining: {h.marketData.remaining ?? "N/A"}
+        </p>
+        <p>
+          Market observations are separate from research candidates, forward
+          paper and live publications.
+        </p>
+        <Link href="/api/admin/market-data-editorial?window=weekend">
+          Review optional factual editorial draft
+        </Link>
+      </section>
       <Notice>
         Unknown values remain N/A. A successful HTTP request alone does not
         establish valid markets, current prices or permission to publish.
@@ -78,10 +100,13 @@ export default async function DataHealth() {
           </section>
         )}
         <section className="card">
-          <h2>Candidate opportunities</h2>
+          <h2>Candidate review activity</h2>
           <p>
-            {h.candidateCount ?? "N/A"} awaiting review from the last 24 hours
+            Legacy publication decisions awaiting review:{" "}
+            {h.candidateCount ?? "N/A"}. Scanner candidates captured in the last
+            24 hours: {h.scannerCandidateCount ?? "N/A"}.
           </p>
+          <Link href="/admin/scanner">Open scanner review</Link>
           <h3>Operational incidents</h3>
           {h.incidents.length ? (
             h.incidents.map((i, n) => <p key={n}>{i}</p>)

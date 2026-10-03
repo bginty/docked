@@ -11,6 +11,10 @@ import { EdgeBoardHeader, edgeBoardHref } from "./edge-board-header";
 import { EdgeCard } from "./edge-card";
 import { CommunityEdgeCard } from "./community-performance";
 import { PinnedDocked } from "./pinned-docked";
+import { communityRecognition } from "@/server/community-recognition";
+import { monitoredMarkets } from "@/server/market-data";
+import { TrendingEdges, WeeklyEdge, MonitoredFixtures, RecentEdgeResults } from "./edge-discovery";
+import { BetaReading } from "./beta-reading";
 
 export async function AppEdgeBoard({
   query,
@@ -32,8 +36,8 @@ export async function AppEdgeBoard({
         : "featured";
   const href = (change: Record<string, string>) =>
     edgeBoardHref(query, tab, view, change);
-  const [official, community, status] = await Promise.all([
-    tab === "settled" ? publicTips() : Promise.resolve([]),
+  const [official, community, status, recognition, monitored, weekend, completed] = await Promise.all([
+    publicTips(),
     tab !== "docked"
       ? listCommunityEdges({
           sport: query.sport,
@@ -44,6 +48,10 @@ export async function AppEdgeBoard({
         })
       : Promise.resolve(null),
     serviceStatus(),
+    tab === "docked" ? communityRecognition() : Promise.resolve(null),
+    tab === "docked" ? monitoredMarkets({ window: view === "upcoming" ? "upcoming" : "today", limit: 5 }) : Promise.resolve(null),
+    tab === "docked" && view === "featured" ? monitoredMarkets({ window: "weekend", limit: 3 }) : Promise.resolve(null),
+    tab === "docked" ? listCommunityEdges({ settled: true, limit: 10 }) : Promise.resolve(null),
   ]);
   const communityEdges = (community?.edges ?? []).filter(
     (edge) =>
@@ -70,22 +78,28 @@ export async function AppEdgeBoard({
     <AppShell authenticated>
       <div className="mobile-edge-board">
         <EdgeBoardHeader query={query} tab={tab} view={view} status={status} />
-        <p className="form-help">
-          {view === "featured"
-            ? "Current official publications or pending community opinions. These records remain separate."
-            : view === "upcoming"
+        {view !== "featured" && <p className="form-help">
+          {view === "upcoming"
               ? "Published records for future events, ordered by start time within this page. A record is not a new recommendation."
               : "Recent records include every outcome, including losses and reviews."}
-        </p>
+        </p>}
         {tab === "docked" ? (
-          <PinnedDocked
+          <><PinnedDocked
             timezone={timezone}
             format={format}
             compact
             view={view}
             sport={query.sport}
             competition={query.competition}
+            showReading={false}
           />
+          {view !== "recent" && recognition && <TrendingEdges data={recognition} />}
+          {view !== "recent" && monitored && <MonitoredFixtures data={monitored} />}
+          {weekend && <MonitoredFixtures data={weekend} weekend />}
+          {recognition && <WeeklyEdge data={recognition} />}
+          <RecentEdgeResults official={official} community={completed?.edges ?? []} />
+          <BetaReading />
+          </>
         ) : (
           <>
             {!!settledOfficial.length && (
