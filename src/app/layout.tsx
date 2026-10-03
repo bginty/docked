@@ -4,6 +4,8 @@ import "./globals.css";
 import "./sports-visuals.css";
 import "./sports-experience.css";
 import "./community-app.css";
+import "./native.css";
+import { NativeBridge } from "@/components/native-bridge";
 import { config } from "@/server/config";
 import { AnalyticsObserver } from "@/components/analytics-observer";
 import { SportIcon } from "@/components/sport-icon";
@@ -37,12 +39,18 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
 };
-export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#142b35" };
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#142b35",
+};
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
         <AnalyticsObserver />
+        <NativeBridge />
         <a className="skip-link" href="#main">
           Skip to content
         </a>

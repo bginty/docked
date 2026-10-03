@@ -116,7 +116,9 @@ export function communityPerformance(
       r.demo ||
       r.official ||
       r.classification !== "STANDARD_VERIFIED" ||
-      r.ruleVersion !== "community-standard-v1" ||
+      !["community-standard-v1", "community-market-reference-v2"].includes(
+        r.ruleVersion,
+      ) ||
       Date.parse(r.submittedAt) >= Date.parse(r.startAt) - 600000
     )
       throw new Error(

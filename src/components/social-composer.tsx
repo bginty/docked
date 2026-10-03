@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { communityAction } from "./social-interactions";
 import { EdgeComposer } from "./edge-composer";
+import { NativeImagePicker } from "./native-image-picker";
 export function SocialComposer() {
   const [mode, setMode] = useState<"social" | "edge">("edge"),
     [body, setBody] = useState(""),
@@ -154,6 +155,7 @@ export function SocialComposer() {
           <details>
             <summary>Attach an image (social use only)</summary>
             <form className="app-form" onSubmit={upload}>
+              <NativeImagePicker />
               <label>
                 Image
                 <input

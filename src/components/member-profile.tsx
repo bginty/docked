@@ -24,6 +24,7 @@ import {
   CommunityEdgeCard,
 } from "./community-performance";
 import { appViewer } from "@/server/app-view";
+import { NativeShare } from "./native-share";
 const periods: [RankingPeriod, string][] = [
   ["7d", "7D"],
   ["30d", "30D"],
@@ -121,6 +122,10 @@ export async function MemberProfile({
                 </p>
               </div>
               <ProfileActions profile={p} />
+              <NativeShare
+                path={`/profile/${p.handle}`}
+                title="Docked member profile"
+              />
             </div>
             <p className="profile-bio">{p.bio}</p>
             <div className="profile-counts">

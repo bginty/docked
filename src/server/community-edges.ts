@@ -1,3 +1,7 @@
+import {
+  communityReferenceDraftSchema as draftSchema,
+  communitySubmitSchema,
+} from "@/core/community-reference-input";
 import "server-only";
 import { createHash, randomUUID } from "node:crypto";
 import type postgres from "postgres";
@@ -7,20 +11,24 @@ import { requireRole } from "./auth";
 import { communityAccess } from "./community-policy";
 import { withCommunityActor, setCommunityClaims } from "./community-social";
 import { config } from "./config";
-import { providerReadiness, freshTimestamp } from "@/core/data-health";
-import type { Quote, Rules } from "@/core/pricing";
+import { providerReadiness } from "@/core/data-health";
+import {
+  configuredMarketReference,
+  loadMarketReference,
+  retainMarketReference,
+  referenceProjection,
+} from "./market-reference";
+import type { MarketReference } from "@/core/market-reference";
+import type { Rules } from "@/core/pricing";
 import { settle } from "@/core/settlement";
 import type { ResultsProvider } from "@/providers/contracts";
 import {
   communityRuleV1,
   communityMarketLabel,
   permanentEdgeStatement,
-  verifyCommunityQuote,
   type CommunityEdge,
-  type CommunityQuoteEvidence,
   type CommunityQuoteOption,
   type CommunityReview,
-  type PriceClass,
   type QuoteOptionsResponse,
 } from "@/core/community-edge";
 
@@ -40,201 +48,96 @@ export class CommunityEdgeError extends Error {
     super(message);
   }
 }
-const draftSchema = z
-  .object({
-    snapshotId: z.string().min(1).max(200),
-    selection: z.string().min(1).max(150),
-  })
-  .strict();
-export const communitySubmitSchema = draftSchema
-  .extend({
-    reviewToken: z.string().regex(/^[a-f0-9]{64}$/),
-    confirmedPermanent: z.literal(true),
-    idempotencyKey: z.string().uuid(),
-    reasoning: z.string().max(4000).optional(),
-    mediaIds: z
-      .array(z.string().uuid())
-      .max(4)
-      .refine((ids) => new Set(ids).size === ids.length, "Duplicate media")
-      .optional(),
-  })
-  .strict();
+export { communitySubmitSchema } from "@/core/community-reference-input";
 
-async function quoteRows(
-  sql: Sql,
-  marketId?: string,
-  bookmaker?: string,
-  provider?: string,
-) {
-  return sql`select distinct on (q.market_id,q.bookmaker,q.provider) q.*,m.rules canonical_rules,e.id event_id,e.start_at,e.status event_status,e.participants,e.competition_id,c.sport_id,e.source_mappings,
-    v.id quote_evidence_id,v.classification,v.classification_version,v.classification_evidence,v.observed_start_at,v.provider_event_id,v.metadata,v.rights_reference,
-    h.healthy,h.last_success,h.rights_reference source_rights,h.capabilities
-    from private.odds_snapshots q join private.markets m on m.id=q.market_id join private.events e on e.id=m.event_id join private.competitions c on c.id=e.competition_id
-    left join private.community_quote_evidence v on v.snapshot_id=q.id left join private.source_health h on h.provider=q.provider
-    where q.evidence in ('forward_paper','live_published') and e.start_at>clock_timestamp()
-      and (${marketId ?? null}::text is null or q.market_id=${marketId ?? null}) and (${bookmaker ?? null}::text is null or q.bookmaker=${bookmaker ?? null}) and (${provider ?? null}::text is null or q.provider=${provider ?? null})
-    order by q.market_id,q.bookmaker,q.provider,q.source_at desc,q.received_at desc,q.id desc limit 300`;
-}
-function evidence(row: Row, selection: string): CommunityQuoteEvidence {
-  const q = row.payload as Quote,
-    rules = row.canonical_rules as Rules;
-  const metadata = row.metadata as { promotionFlags?: string[] } | null;
-  const capabilities = row.capabilities as Record<string, boolean> | null;
+function referenceOption(
+  loaded: Awaited<ReturnType<typeof loadMarketReference>>,
+): CommunityQuoteOption {
+  if (loaded.result.status !== "READY")
+    throw new CommunityEdgeError(
+      "UNVERIFIED",
+      "A current standard market reference is unavailable.",
+    );
+  const r = loaded.result.reference,
+    m = loaded.market;
   return {
-    snapshotId: String(row.id),
-    marketId: String(row.market_id),
-    sport: String(row.sport_id),
-    competition: String(row.competition_id),
-    eventId: String(row.event_id),
-    eventLabel: (row.participants as string[]).join(" vs "),
-    startAt: iso(row.start_at),
-    selection,
-    bookmaker: String(row.bookmaker),
-    odds: q.prices[selection] ?? "",
-    sourceAt: iso(row.source_at),
-    receivedAt: iso(row.received_at),
+    pricingModel: "market_reference_v1",
+    marketReference: referenceProjection(r),
+    dockedFairPrice: r.pricing?.fairPrice ?? null,
+    minimumEdgePrice: null,
+    snapshotId: r.evidenceHash,
+    marketId: m.id,
+    marketLabel: communityMarketLabel(m.rules),
+    sport: m.sport_id,
+    competition: m.competition_id,
+    eventId: m.event_id,
+    eventLabel: m.rules.participants.join(" vs "),
+    startAt: m.start_at.toISOString(),
+    selection: r.selection,
+    bookmaker: "Market reference",
+    odds: r.decimalPrice,
+    sourceAt: r.sourceAt,
+    receivedAt: r.receivedAt,
     cutoffAt: new Date(
-      Date.parse(iso(row.start_at)) - communityRuleV1.cutoffSeconds * 1000,
+      m.start_at.getTime() - loaded.configuration.cutoffSeconds * 1000,
     ).toISOString(),
-    classification:
-      (row.classification as PriceClass | null) ?? "UNKNOWN_REVIEW",
-    ruleVersion: communityRuleV1.version,
-    provider: String(row.provider),
-    providerEventId: String(row.provider_event_id ?? ""),
-    snapshotAt: iso(row.snapshot_at),
-    rules: q.rules,
-    canonicalRules: rules,
-    observedStartAt: row.observed_start_at ? iso(row.observed_start_at) : "",
-    prices: q.prices,
-    suspended: q.suspended,
-    eventStatus: String(row.event_status),
-    provenance: row.quote_evidence_id ? "docked_current_provider" : "unknown",
-    licensed:
-      !!row.rights_reference &&
-      row.rights_reference === row.source_rights &&
-      row.provenance === row.source_rights &&
-      capabilities?.display === true &&
-      capabilities?.retention === true &&
-      capabilities?.community_standard_prices === true,
-    providerClassification: row.classification as PriceClass | null,
-    classificationEvidence: row.classification_evidence as string | null,
-    classificationVersion: row.classification_version as string | null,
-    promotionFlags: metadata?.promotionFlags ?? [],
+    classification: "STANDARD_VERIFIED",
+    ruleVersion: "community-market-reference-v2",
   };
 }
-function option(e: CommunityQuoteEvidence): CommunityQuoteOption {
-  const {
-    snapshotId,
-    marketId,
-    sport,
-    competition,
-    eventId,
-    eventLabel,
-    startAt,
-    selection,
-    bookmaker,
-    odds,
-    sourceAt,
-    receivedAt,
-    cutoffAt,
-    classification,
-    ruleVersion,
-  } = e;
-  return {
-    snapshotId,
-    marketId,
-    marketLabel: communityMarketLabel(e.canonicalRules),
-    sport,
-    competition,
-    eventId,
-    eventLabel,
-    startAt,
-    selection,
-    bookmaker,
-    odds,
-    sourceAt,
-    receivedAt,
-    cutoffAt,
-    classification,
-    ruleVersion,
-  };
-}
-function reviewFor(
-  e: CommunityQuoteEvidence,
-  profileId: string,
-): CommunityReview {
-  const summary = option(e);
-  return {
-    ...summary,
-    reviewToken: digest({ profileId, ...summary }),
-    permanentStatement: permanentEdgeStatement,
-  };
-}
-async function bookmakerAllowed(sql: Sql, policyId: string, bookmaker: string) {
-  const rows =
-    await sql`select id from private.bookmaker_eligibility where region_policy_id=${policyId} and bookmaker=${bookmaker} and approved and effective_from<=clock_timestamp() and effective_to>clock_timestamp() for share`;
-  return rows.length > 0;
-}
-
 export async function communityQuoteOptions(): Promise<QuoteOptionsResponse> {
   if (
     !config().database ||
     !config().auth ||
-    providerReadiness(process.env, "odds") !== "READY"
+    !configuredMarketReference().availabilityBookmakers.length
   )
     return {
       status: "NOT_CONFIGURED",
       message:
-        "Verified community Edges need an authorised current odds provider and known standard-price metadata. Posting a discussion remains separate.",
+        "A reviewed market-reference source configuration and authorised current provider evidence are required. Discussion remains available separately.",
       options: [],
     };
   if (!(await communityAccess("community_edges")).allowed)
     return {
       status: "RESTRICTED",
       message:
-        "Community Edge submission is not approved for your region or account.",
+        "Community Edge submission is unavailable for this account or region.",
       options: [],
     };
   try {
     return await withCommunityActor(
       "community_edges",
       true,
-      async (tx, who, profileId) => {
-        const policies =
-          await tx`select id,operators from private.region_policies where country=${who.profile.country} and state=${who.profile.state} and approved and effective_from<=now() and effective_to>now() and review_at>now() and 'community_edges'=any(features) order by effective_from desc limit 1 for share`;
-        if (!policies[0])
+      async (tx, who) => {
+        const [policy] =
+          await tx`select id from private.region_policies where country=${who.profile.country} and state=${who.profile.state} and approved and effective_from<=clock_timestamp() and effective_to>clock_timestamp() and review_at>clock_timestamp() and 'community_edges'=any(features) order by effective_from desc,id desc limit 1 for share`;
+        if (!policy)
           return {
             status: "RESTRICTED" as const,
             message: "Current regional approval is required.",
             options: [],
           };
-        const books =
-          await tx`select bookmaker from private.bookmaker_eligibility where region_policy_id=${policies[0].id} and approved and effective_from<=now() and effective_to>now()`;
-        const approved = new Set(books.map((b) => b.bookmaker));
-        const rows = await quoteRows(tx),
-          now = new Date().toISOString(),
-          options: CommunityQuoteOption[] = [];
-        for (const row of rows)
-          for (const selection of (row.canonical_rules as Rules).outcomes) {
-            const e = evidence(row, selection);
-            const verdict = verifyCommunityQuote(e, {
-              now,
-              regionAllowed: true,
-              bookmakerAllowed:
-                approved.has(e.bookmaker) &&
-                policies[0].operators.includes(e.bookmaker),
-              feedHealthy: !!row.healthy && freshTimestamp(row.last_success),
-            });
-            if (verdict.eligible) options.push(option(e));
+        const markets =
+          await tx`select m.id,m.rules from private.markets m join private.events e on e.id=m.event_id where e.status='scheduled' and e.start_at>clock_timestamp()+interval '10 minutes' and e.start_at<clock_timestamp()+interval '7 days' order by e.start_at,m.id limit 60`;
+        const options: CommunityQuoteOption[] = [];
+        for (const market of markets)
+          for (const selection of (market.rules as Rules).outcomes) {
+            const loaded = await loadMarketReference(
+              tx,
+              market.id,
+              selection,
+              policy.id,
+            );
+            if (loaded.result.status === "READY")
+              options.push(referenceOption(loaded));
           }
-        void profileId;
         return {
           status: options.length
             ? ("READY" as const)
             : ("NO_VERIFIED_PRICES" as const),
           message: options.length
-            ? "Select a current standard price, then review the permanent record."
-            : "No eligible current standard-price evidence is available. Unknown or promotional prices cannot enter the ledger.",
+            ? "Select an event, market and selection, then confirm the server-calculated benchmark."
+            : "No reliable current market reference is available. No competitive record can be submitted.",
           options,
         };
       },
@@ -243,59 +146,52 @@ export async function communityQuoteOptions(): Promise<QuoteOptionsResponse> {
     return {
       status: "NO_VERIFIED_PRICES",
       message:
-        "Verified prices are unavailable. No competitive record can be submitted from missing evidence.",
+        "Current market reference unavailable. No competitive record has been created.",
       options: [],
     };
   }
 }
-
 async function currentReview(
   sql: Sql,
   who: { profile: Row },
   profileId: string,
   draft: z.infer<typeof draftSchema>,
 ) {
-  const selected =
-    await sql`select market_id,bookmaker,provider,payload from private.odds_snapshots where id=${draft.snapshotId}`;
-  if (!selected[0])
+  const [policy] =
+    await sql`select id from private.region_policies where country=${String(who.profile.country)} and state=${String(who.profile.state)} and approved and effective_from<=clock_timestamp() and effective_to>clock_timestamp() and review_at>clock_timestamp() and 'community_edges'=any(features) order by effective_from desc,id desc limit 1 for share`;
+  if (!policy)
     throw new CommunityEdgeError(
       "UNVERIFIED",
-      "The selected provider observation is unavailable.",
+      "Current regional approval is required.",
     );
-  // Locks are shared with every odds-snapshot insertion, including the preserved official ingestion path.
-  await sql`select id from private.markets where id=${selected[0].market_id} for update`;
-  const rows = await quoteRows(
-    sql,
-    selected[0].market_id,
-    selected[0].bookmaker,
-    selected[0].provider,
-  );
-  if (!rows[0])
+  const loaded = await loadMarketReference(
+      sql,
+      draft.marketId,
+      draft.selection,
+      policy.id,
+    ),
+    e = referenceOption(loaded);
+  if (loaded.result.status !== "READY")
     throw new CommunityEdgeError(
-      "POST_CUTOFF",
-      "EDGE SUBMISSIONS CLOSED or current prices unavailable.",
+      "UNVERIFIED",
+      "Current reference unavailable.",
     );
-  const policies =
-    await sql`select * from private.region_policies where country=${String(who.profile.country)} and state=${String(who.profile.state)} and approved and effective_from<=clock_timestamp() and effective_to>clock_timestamp() and review_at>clock_timestamp() and 'community_edges'=any(features) order by effective_from desc limit 1 for share`;
-  const policy = policies[0],
-    e = evidence(rows[0], draft.selection);
-  const verdict = verifyCommunityQuote(e, {
-    now: new Date().toISOString(),
-    regionAllowed: !!policy,
-    bookmakerAllowed:
-      !!policy &&
-      policy.operators.includes(e.bookmaker) &&
-      (await bookmakerAllowed(sql, policy.id, e.bookmaker)),
-    feedHealthy: !!rows[0].healthy && freshTimestamp(rows[0].last_success),
+  const r = loaded.result.reference;
+  // A new clock alone does not force reconfirmation; price, config and exact source changes do.
+  const reviewToken = digest({
+    profileId,
+    marketId: e.marketId,
+    selection: e.selection,
+    odds: e.odds,
+    configHash: r.configHash,
+    availability: r.availability.sourceIds,
+    pricing: r.pricing?.sourceIds ?? [],
   });
-  if (!verdict.eligible)
-    throw new CommunityEdgeError(verdict.classification, verdict.reason);
   return {
     e,
-    review: reviewFor(e, profileId),
+    loaded,
+    review: { ...e, reviewToken, permanentStatement: permanentEdgeStatement },
     policyId: policy.id as string,
-    quoteEvidenceId: rows[0].quote_evidence_id as string,
-    previousOdds: (selected[0].payload as Quote).prices[draft.selection],
   };
 }
 export async function reviewCommunityEdge(
@@ -338,20 +234,29 @@ export async function submitCommunityEdge(input: unknown) {
         throw error;
       }
       const current = await currentReview(tx, who, profileId, draft);
-      if (
-        current.review.reviewToken !== draft.reviewToken ||
-        current.e.snapshotId !== draft.snapshotId
-      )
+      if (current.review.reviewToken !== draft.reviewToken)
         throw new CommunityEdgeError(
           "PRICE_MOVED",
           "The observation changed. Review and confirm the current verified price before submitting.",
           current.review,
-          current.previousOdds,
+          undefined,
         );
       const e = current.e,
         id = randomUUID();
-      await tx`insert into private.community_edges(id,profile_id,event_id,market_id,snapshot_id,quote_evidence_id,provider,provider_event_id,bookmaker,selection,market_rules,sport,competition,odds,verification_rule,start_at,source_at,snapshot_at,received_at,region_policy_id,confirmed_permanent,review_hash,idempotency_key,request_hash)
-      values(${id},${profileId},${e.eventId},${e.marketId},${e.snapshotId},${current.quoteEvidenceId},${e.provider},${e.providerEventId},${e.bookmaker},${e.selection},${tx.json(e.rules)},${e.sport},${e.competition},${e.odds},${communityRuleV1.version},${e.startAt},${e.sourceAt},${e.snapshotAt},${e.receivedAt},${current.policyId},true,${draft.reviewToken},${draft.idempotencyKey},${requestHash})`;
+      const referenceId = await retainMarketReference(tx, current.loaded);
+      const personal = {
+        ...(draft.personalBookmaker
+          ? { bookmaker: draft.personalBookmaker }
+          : {}),
+        ...(draft.personalPrice ? { price: draft.personalPrice } : {}),
+        ...(draft.personalPromotional !== undefined
+          ? { promotional: draft.personalPromotional }
+          : {}),
+      };
+      await tx`insert into private.community_edges(id,profile_id,event_id,market_id,provider,provider_event_id,bookmaker,selection,market_rules,sport,competition,odds,verification_rule,start_at,source_at,snapshot_at,received_at,region_policy_id,confirmed_permanent,review_hash,idempotency_key,request_hash,pricing_model,market_reference_id)
+      values(${id},${profileId},${e.eventId},${e.marketId},'docked-market-reference',${e.eventId},'Market reference',${e.selection},${tx.json(current.loaded.market.rules)},${e.sport},${e.competition},${e.odds},'community-market-reference-v2',${e.startAt},${e.sourceAt},${current.loaded.result.reference!.snapshotAt},${e.receivedAt},${current.policyId},true,${draft.reviewToken},${draft.idempotencyKey},${requestHash},'market_reference_v1',${referenceId})`;
+      if (Object.keys(personal).length)
+        await tx`insert into private.community_edge_personal_notes(edge_id,metadata) values(${id},${tx.json(personal)})`;
       await tx`insert into private.community_edge_status(edge_id,status,actor,reason) values(${id},'PENDING',${who.user.id},'Permanent verified community record submitted')`;
       // Optional approved owned images are commentary only; they never enter quote verification.
       const mediaIds = draft.mediaIds ?? [];
@@ -366,7 +271,7 @@ export async function submitCommunityEdge(input: unknown) {
         await tx`insert into private.social_posts(author_id,kind,body,sport,community_edge_id,claim_label,idempotency_key) values(${profileId},'edge',${draft.reasoning ?? ""},${e.sport},${id},'social_only',${draft.idempotencyKey}) returning id`;
       for (let position = 0; position < mediaIds.length; position++)
         await tx`insert into private.social_post_media(post_id,media_id,position) values(${posts[0].id},${mediaIds[position]},${position})`;
-      await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'community_edge_submitted',${id},${tx.json({ snapshotId: e.snapshotId, verificationRule: communityRuleV1.version, standardUnits: "1.00", confirmedPermanent: true })})`;
+      await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'community_edge_submitted',${id},${tx.json({ snapshotId: e.snapshotId, verificationRule: "community-market-reference-v2", standardUnits: "1.00", confirmedPermanent: true })})`;
       return { id, created: true };
     },
   );
@@ -383,7 +288,20 @@ export async function registerCommunityQuoteEvidence(snapshotId: string) {
 
 function edgeFromRow(row: Row): CommunityEdge {
   const rules = row.market_rules as Rules;
+  const reference = row.reference_payload as MarketReference | null,
+    personal = row.personal_metadata as
+      { bookmaker?: string; price?: string; promotional?: boolean } | undefined;
   return {
+    pricingModel: row.pricing_model as CommunityEdge["pricingModel"],
+    ...(reference
+      ? {
+          marketReference: referenceProjection(reference),
+          dockedFairPrice: reference.pricing?.fairPrice ?? null,
+        }
+      : {}),
+    personalBookmaker: personal?.bookmaker ?? null,
+    personalPrice: personal?.price ?? null,
+    personalPromotional: personal?.promotional ?? false,
     id: String(row.id),
     profileId: String(row.profile_id),
     handle: String(row.handle),
@@ -453,7 +371,8 @@ export async function listCommunityEdges(
           cursorTime = z.string().datetime().parse(cursor.at);
           cursorId = z.string().uuid().parse(cursor.id);
         }
-        const rows = await tx`select e.*,
+        const rows =
+          await tx`select e.*,(select n.metadata from private.community_edge_personal_notes n where n.edge_id=e.id and private.social_profile_visible(${profileId},p.id,false)) personal_metadata,
         case when private.social_profile_visible(${profileId}::uuid,p.id,false) then p.handle else 'member-'||left(p.id::text,8) end handle,
         case when private.social_profile_visible(${profileId}::uuid,p.id,false) then p.display_name else 'Community member' end display_name,
         private.social_profile_visible(${profileId}::uuid,p.id,false) interactions_allowed,s.result,s.created_at settled_at,
@@ -504,7 +423,8 @@ export async function getCommunityEdge(id: string) {
     "community_edges",
     false,
     async (tx, _who, viewerId) => {
-      const rows = await tx`select e.*,
+      const rows =
+        await tx`select e.*,(select n.metadata from private.community_edge_personal_notes n where n.edge_id=e.id and private.social_profile_visible(${viewerId},p.id,false)) personal_metadata,
       case when private.social_profile_visible(${viewerId}::uuid,p.id,false) then p.handle else 'member-'||left(p.id::text,8) end handle,
       case when private.social_profile_visible(${viewerId}::uuid,p.id,false) then p.display_name else 'Community member' end display_name,
       private.social_profile_visible(${viewerId}::uuid,p.id,false) interactions_allowed,s.result,s.created_at settled_at,(select count(*) from private.community_corrections where edge_id=e.id) corrections,

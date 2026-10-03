@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { isDockedNative } from "./native-bridge";
 type InstallEvent = Event & {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: string }>;
@@ -9,6 +10,7 @@ export function PwaStatus() {
     [update, setUpdate] = useState<ServiceWorker | null>(null),
     [install, setInstall] = useState<InstallEvent | null>(null);
   useEffect(() => {
+    if (isDockedNative()) return;
     const onOnline = () => setOffline(!navigator.onLine);
     onOnline();
     const onInstall = (event: Event) => {

@@ -105,8 +105,16 @@ export default async function Page({
   let content: React.ReactNode;
   const eyebrow = "DOCKED / " + section.replaceAll("-", " ").toUpperCase();
   if (section === "edges") {
-    const appMember = config().database && config().auth ? await identity() : null;
-    if (appMember) return <AppEdgeBoard query={query} timezone={appMember.profile.timezone} format={appMember.profile.odds_format}/>;
+    const appMember =
+      config().database && config().auth ? await identity() : null;
+    if (appMember)
+      return (
+        <AppEdgeBoard
+          query={query}
+          timezone={appMember.profile.timezone}
+          format={appMember.profile.odds_format}
+        />
+      );
     const [region, status, tips, monitoring, viewer, catalogue] =
       await Promise.all([
         regionAccess(),
@@ -496,8 +504,67 @@ export default async function Page({
     content = (
       <div className="prose">
         <p className="lede">
-          Strategy V1 is a testable market-reference discrepancy method. Its
-          defaults are hypotheses, not proven profitable settings.
+          Docked separates an observed market price, a probability-based fair
+          price and a minimum acceptable price. Both the original Strategy V1
+          research rules and the new market-reference hypothesis remain
+          unvalidated. Neither is evidence of a profitable strategy.
+        </p>
+        <h2>Market-reference model · UNVALIDATED</h2>
+        <p>
+          The new model uses two explicitly approved source groups: complete,
+          margin-adjusted markets for the probability estimate, and independent
+          standard prices for an availability benchmark. The market reference is
+          the conservative lower median of eligible standard prices, never the
+          highest bookmaker quote. A personal boost or screenshot cannot set
+          that benchmark. Missing source rights, classification, mappings,
+          freshness or required coverage suppress the calculation.
+        </p>
+        <dl className="edge-facts">
+          <div>
+            <dt>TAKE X+</dt>
+            <dd>
+              The minimum acceptable price, including the configured
+              estimated-EV threshold.
+            </dd>
+          </div>
+          <div>
+            <dt>CURRENT MARKET</dt>
+            <dd>
+              The latest eligible availability benchmark; it can move or become
+              unavailable.
+            </dd>
+          </div>
+          <div>
+            <dt>Docked fair price</dt>
+            <dd>
+              A separate estimate derived from probability, with no promise of
+              profit.
+            </dd>
+          </div>
+          <div>
+            <dt>Submission / publication reference</dt>
+            <dd>
+              The immutable benchmark used to grade that record. Later prices do
+              not rewrite it.
+            </dd>
+          </div>
+        </dl>
+        <p>
+          The default source configuration is empty and NOT_CONFIGURED. No live
+          source connection, forward record or strategy validation is implied.
+          The hypothesis needs licensed data, a frozen configuration, genuine
+          research and forward validation before any live approval. Members may
+          add a personal bookmaker or price as labelled social context; it never
+          changes competitive settlement, ROI or ranking.
+        </p>
+        <h2>Original Strategy V1 research specification</h2>
+        <p>
+          The following numbered rules describe the preserved original
+          bookmaker-comparison engine. Its reference exclusion and thresholds
+          have not been silently changed to fit the new model. Existing records
+          retain their original methodology labels and locked evidence; adopting
+          material new rules requires a new strategy version and fresh
+          validation.
         </p>
         <h2>1. Match the entire market</h2>
         <p>

@@ -17,6 +17,8 @@ export type ProviderStatus = "NOT_CONFIGURED" | "DISABLED" | "READY";
 /** Trusted adapter output, never accepted from member input or inferred from an h2h market label. */
 export type CommunityProviderMetadata = {
   sourceKind: "current_provider";
+  /** Separate instrument identity; absent legacy metadata cannot enter a new MarketReference. */
+  sourceType?: "bookmaker" | "exchange";
   receivedByDocked: true;
   providerEventId: string;
   observedStartAt: string;
@@ -27,6 +29,8 @@ export type CommunityProviderMetadata = {
 };
 export type ProviderQuote = Quote & {
   communityMetadata?: CommunityProviderMetadata;
+  sourceTimestampKind?:
+    "market_observation" | "bookmaker_legacy" | "price_change";
 };
 export type OddsDiagnostics = {
   eventsReceived: number;

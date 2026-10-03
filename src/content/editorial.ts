@@ -23,7 +23,7 @@ export function educationalDrafts(): EditorialArticle[] {
     published: false,
     createdAt: "2026-10-02",
     publishedAt: null,
-    updatedAt: "2026-10-02",
+    updatedAt: a.slug === "bookmaker-margin" ? "2026-10-03" : "2026-10-02",
     author: "Docked editorial",
     corrections: [],
   }));

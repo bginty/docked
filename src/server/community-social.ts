@@ -1,6 +1,6 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import { createRequire } from "node:module";
+import { encodeCommunityImage } from "./community-image";
 import type { TransactionSql } from "postgres";
 import { z } from "zod";
 import { db, rateLimit } from "./db";
@@ -654,32 +654,8 @@ export async function uploadCommunityMedia(file: File, alt: string) {
     throw new Error(
       "JPEG, PNG or WebP up to 5 MB and useful alt text required",
     );
-  const require = createRequire(import.meta.url),
-    nextRequire = createRequire(require.resolve("next/package.json")),
-    sharp = nextRequire("sharp") as typeof import("sharp").default;
   const input = Buffer.from(await file.arrayBuffer());
-  const metadata = await sharp(input, {
-    limitInputPixels: 16_000_000,
-    failOn: "warning",
-  }).metadata();
-  if (
-    !["jpeg", "png", "webp"].includes(metadata.format ?? "") ||
-    (metadata.pages ?? 1) > 1
-  )
-    throw new Error("Static raster image required");
-  const encoded = await sharp(input, {
-    limitInputPixels: 16_000_000,
-    failOn: "warning",
-  })
-    .rotate()
-    .resize({
-      width: 2048,
-      height: 2048,
-      fit: "inside",
-      withoutEnlargement: true,
-    })
-    .webp({ quality: 82 })
-    .toBuffer({ resolveWithObject: true });
+  const encoded = await encodeCommunityImage(input);
   return withCommunityActor(
     "community_social",
     true,
@@ -718,6 +694,7 @@ export async function exportCommunityData(userId: string) {
     notificationSettings,
     notifications,
     media,
+    personalEdgeNotes,
   ] = await Promise.all([
     sql`select id,kind,body,sport,official_tip_id,community_edge_id,claim_label,moderation_status,created_at,deleted_at from private.social_posts where author_id=${id}`,
     sql`select id,post_id,parent_id,body,moderation_status,created_at,deleted_at from private.social_comments where author_id=${id}`,
@@ -728,6 +705,7 @@ export async function exportCommunityData(userId: string) {
     sql`select * from private.social_notification_preferences where profile_id=${id}`,
     sql`select id,type,title,href,created_at,read_at from private.social_notifications where recipient_id=${id}`,
     sql`select id,sha256,width,height,alt,status,created_at from private.social_media where owner_id=${id}`,
+    sql`select n.edge_id,n.metadata,n.created_at from private.community_edge_personal_notes n join private.community_edges e on e.id=n.edge_id where e.profile_id=${id}`,
   ]);
   return {
     profile: own[0],
@@ -740,6 +718,7 @@ export async function exportCommunityData(userId: string) {
     notificationSettings,
     notifications,
     media,
+    personalEdgeNotes,
   };
 }
 

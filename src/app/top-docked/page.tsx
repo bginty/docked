@@ -9,6 +9,7 @@ import { LeaderboardTable } from "@/components/community-performance";
 import { appViewer } from "@/server/app-view";
 import { topDockedBoard } from "@/server/top-docked";
 import { topDockedRuleV1, type RankingPeriod } from "@/core/top-docked";
+import { NativeShare } from "@/components/native-share";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Top Docked",
@@ -76,6 +77,10 @@ export default async function TopDocked({
             Calculated {board.asOf} · {board.rule.version}
           </p>
           <LeaderboardTable rows={board.rows} />
+          <NativeShare
+            path="/top-docked"
+            title="Docked community leaderboard"
+          />
         </>
       ) : (
         <CommunityEmpty

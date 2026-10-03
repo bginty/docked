@@ -50,6 +50,8 @@ export type Manifest = {
   reviewedBy?: string;
   sourceResolutionSeconds?: number;
   holdoutProvenance?: string;
+  /** Required by the separate MarketReference research adapter, not legacy V1. */
+  referenceRegion?: string;
 };
 export function replay(
   events: HistoricalEvent[],

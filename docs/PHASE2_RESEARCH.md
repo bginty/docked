@@ -1,5 +1,7 @@
 # Phase 2 research preparation
 
+The ordered workflow below describes the preserved legacy V1 input and pricing model. Phase 4 adds an explicit MarketReference branch with a stricter historical evidence schema, reference-region freeze binding and the same prospective reference evaluator/observer. Use [VALIDATION.md](VALIDATION.md#phase-4-research-support-boundary) for its exact inputs and commands; legacy quotes or reports cannot be relabelled as new-model evidence.
+
 No licensed historical data has been imported, no genuine result calculated, and no strategy edge established. All regression fixtures are explicitly fictional, stay outside public queries, and are deleted by the CLI integration test. The original V1 parameter values remain unchanged.
 
 ## Workflow

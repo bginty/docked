@@ -1,3 +1,8 @@
+import {
+  evaluateReference,
+  validateReferenceStrategy,
+} from "@/core/reference-pricing";
+import { loadMarketReference } from "./market-reference";
 import { db } from "./db";
 import { TheOddsApi, type Mapping } from "@/providers/odds-api";
 import { evaluate, hash, validateStrategy, type Quote } from "@/core/pricing";
@@ -156,6 +161,45 @@ export async function evaluateDue() {
     await sql`select * from private.strategy_versions where lifecycle in ('FORWARD_PAPER','APPROVED_FOR_LIVE') and active and frozen_at is not null and research_approved_at is not null`;
   for (const strategy of strategies) {
     if (!frozenCodeMatches(strategy.code_commit, process.env)) continue;
+    if (strategy.config.method === "market-reference-independent-cohorts") {
+      const cfg = validateReferenceStrategy(strategy.config);
+      if (strategy.config_hash !== hash(cfg)) continue;
+      const events =
+        await sql`select m.id market_id,m.rules from private.markets m join private.events e on e.id=m.event_id where e.status='scheduled' and e.start_at>now()+interval '10 minutes' and e.start_at<=now()+interval '6 hours' order by m.id`;
+      for (const event of events)
+        await sql.begin(async (tx) => {
+          const [policy] =
+            await tx`select id from private.region_policies where approved and effective_from<=now() and effective_to>now() and review_at>now() and 'tips'=any(features) order by country,state limit 1 for share`;
+          if (!policy) return;
+          const loaded = await loadMarketReference(
+            tx,
+            event.market_id,
+            event.rules.outcomes[0],
+            policy.id,
+            cfg.marketReference,
+          );
+          const at = loaded.market.observed_at.toISOString(),
+            start = loaded.market.start_at.toISOString();
+          const result = evaluateReference(
+            {
+              rules: loaded.market.rules,
+              startAt: start,
+              decisionAt: at,
+              sources: loaded.sources,
+            },
+            cfg,
+          );
+          const window = cfg.windowsSeconds.find(
+            (w) =>
+              Math.abs((Date.parse(start) - Date.parse(at)) / 1000 - w) <=
+              cfg.windowToleranceSeconds,
+          );
+          if (window === undefined) return;
+          const candidate = result.candidates[0];
+          await tx`insert into private.candidate_decisions(event_id,strategy_id,decision_at,window_seconds,payload,rejection_reasons,status) values(${loaded.market.event_id},${strategy.id},${at},${window},${tx.json(candidate ? { ...candidate, pricingModel: "market_reference_v1", marketId: event.market_id, regionPolicyId: policy.id, codeCommit: strategy.code_commit } : { pricingModel: "market_reference_v1", marketId: event.market_id, universe: result.universe })},${tx.json(result.rejections)},${candidate ? "review" : "rejected"}) on conflict do nothing`;
+        });
+      continue;
+    }
     const cfg = validateStrategy(strategy.config);
     if (strategy.config_hash !== hash(cfg)) continue;
     const h =

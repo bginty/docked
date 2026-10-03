@@ -109,7 +109,7 @@ const drafts = [
       ],
       [
         "Independence matters",
-        "Two brands can share ownership or trading infrastructure. Counting related sources as independent can exaggerate agreement. The offered bookmaker and its related skins must not contribute to their own reference. Even genuinely independent sources can share information and errors. A margin-free reference remains an estimate, not a claim of certainty or a reason to risk money.",
+        "Two brands can share ownership or trading infrastructure. Counting related sources as independent can exaggerate agreement. In Docked’s original bookmaker-comparison model, the offered bookmaker and related skins cannot contribute to their own reference. The newer, unvalidated market-reference model separates approved probability sources from the standard-price availability benchmark; that benchmark is not a member’s personal quote. Each version must disclose its source groups. Even independent sources can share errors. A margin-free reference remains an estimate, not a claim of certainty or a reason to risk money.",
       ],
       [
         "Try an asymmetric complete market",

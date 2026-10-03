@@ -7,6 +7,7 @@ import {
 } from "@/core/tip-presentation";
 import { QuoteStatus } from "./quote-status";
 import { SportIcon } from "./sport-icon";
+import { NativeShare } from "./native-share";
 
 export function EdgeCard({
   tip,
@@ -24,6 +25,13 @@ export function EdgeCard({
   headingLevel?: 2 | 3;
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
+  const reference = tip.pricing_model === "market_reference_v1";
+  const current = reference
+    ? (tip.current_market_reference?.decimalPrice ?? null)
+    : tip.current_odds;
+  const sourceAt = reference
+    ? (tip.current_market_reference?.sourceAt ?? null)
+    : tip.current_source_at;
   const market =
     tip.market_rules.market === "football_1x2"
       ? "Match result · 1X2"
@@ -38,11 +46,7 @@ export function EdgeCard({
       <div className="edge-card-top">
         <QuoteStatus
           status={tip.display_status}
-          sourceAt={
-            tip.current_source_at
-              ? new Date(tip.current_source_at).toISOString()
-              : null
-          }
+          sourceAt={sourceAt ? new Date(sourceAt).toISOString() : null}
           startAt={new Date(tip.start_at).toISOString()}
           initialNow={now}
         />
@@ -75,48 +79,69 @@ export function EdgeCard({
           </dd>
         </div>
         <div>
-          <dt>Where</dt>
+          <dt>{reference ? "Price basis" : "Where"}</dt>
           <dd>
-            {tip.publication_payload.offer.bookmaker}
+            {reference
+              ? "Independent market reference"
+              : tip.publication_payload.offer.bookmaker}
             <small>
-              Eligibility checked for this region. Personal limits unknown.
+              {reference
+                ? "Compare your available price with the minimum. Execution is not guaranteed."
+                : "Original bookmaker methodology · personal limits unknown."}
             </small>
           </dd>
         </div>
       </dl>
-      <div className="edge-prices">
+      <div className={`edge-prices ${reference ? "reference-prices" : ""}`}>
+        {reference && (
+          <div className="take-price">
+            <span>Minimum acceptable price</span>
+            <strong>TAKE {oddsDisplay(tip.minimum_odds, format)}+</strong>
+            <small>Decimal {tip.minimum_odds}+ · do not accept less</small>
+          </div>
+        )}
         <div>
-          <span>Current observed price</span>
+          <span>{reference ? "CURRENT MARKET" : "Current observed price"}</span>
           <strong>
-            {tip.current_odds === null
-              ? "Unavailable"
-              : oddsDisplay(tip.current_odds, format)}
+            {current === null ? "Unavailable" : oddsDisplay(current, format)}
           </strong>
           <small>
-            {tip.current_odds === null
+            {current === null
               ? "No verified current quote"
-              : `${format} · decimal ${tip.current_odds}`}
+              : `${format} · decimal ${current}`}
           </small>
         </div>
-        <div>
-          <span>Minimum acceptable price</span>
-          <strong>{oddsDisplay(tip.minimum_odds, format)}</strong>
-          <small>Decimal {tip.minimum_odds} · do not accept less</small>
-        </div>
+        {!reference && (
+          <div>
+            <span>Minimum acceptable price</span>
+            <strong>{oddsDisplay(tip.minimum_odds, format)}</strong>
+            <small>Decimal {tip.minimum_odds} · do not accept less</small>
+          </div>
+        )}
       </div>
+      {reference && (
+        <p className="reference-fair">
+          Docked fair price{" "}
+          <strong>
+            {oddsDisplay(tip.publication_payload.fairOdds, format)}
+          </strong>
+          <span> Locked estimate at publication · methodology UNVALIDATED</span>
+        </p>
+      )}
       <p className="edge-freshness">
-        Source age at page load: {sourceAge(tip.current_source_at, now)}
-        {tip.current_source_at && (
+        Source age at page load: {sourceAge(sourceAt, now)}
+        {sourceAt && (
           <>
             {" "}
             ·{" "}
-            <time dateTime={new Date(tip.current_source_at).toISOString()}>
-              {localEventTime(tip.current_source_at, timezone)}
+            <time dateTime={new Date(sourceAt).toISOString()}>
+              {localEventTime(sourceAt, timezone)}
             </time>
           </>
         )}
         . Check the latest price before relying on this record.
       </p>
+      {tip.published_at && <p className="small-note">Published <time dateTime={new Date(tip.published_at).toISOString()}>{localEventTime(tip.published_at,timezone)}</time> · immutable decision record</p>}
       <details className="edge-evidence" open={detail}>
         <summary>Why it qualified at publication</summary>
         <dl className="edge-facts">
@@ -125,7 +150,7 @@ export function EdgeCard({
             <dd>{(Number(tip.probability) * 100).toFixed(2)}%</dd>
           </div>
           <div>
-            <dt>Reference fair odds</dt>
+            <dt>{reference ? "Docked fair price" : "Reference fair odds"}</dt>
             <dd>{tip.publication_payload.fairOdds}</dd>
           </div>
           <div>
@@ -133,17 +158,42 @@ export function EdgeCard({
             <dd>{(Number(tip.estimated_ev) * 100).toFixed(2)}%</dd>
           </div>
           <div>
-            <dt>Publication odds</dt>
+            <dt>
+              {reference
+                ? "Market reference at publication"
+                : "Publication odds"}
+            </dt>
             <dd>{tip.odds} decimal</dd>
           </div>
         </dl>
-        <p>
-          The recorded price exceeded the minimum calculated from complete,
-          margin-adjusted reference markets. Related bookmakers and the offered
-          bookmaker are excluded from their own reference. These are the
-          estimates locked at publication; later observations do not rewrite
-          them.
-        </p>
+        {reference ? (
+          <p>
+            The market reference is an observed availability benchmark. The
+            Docked fair price is a separate probability estimate; the minimum
+            includes the configured edge threshold. Publication values are
+            immutable. Current observations do not rewrite settlement or
+            research evidence. This methodology remains UNVALIDATED.
+          </p>
+        ) : (
+          <p>
+            The recorded price exceeded the minimum calculated from complete,
+            margin-adjusted reference markets. Related bookmakers and the
+            offered bookmaker are excluded from their own reference. These are
+            the estimates locked at publication; later observations do not
+            rewrite them.
+          </p>
+        )}
+        {reference && tip.publication_market_reference && (
+          <p className="small-note">
+            Methodology {tip.publication_market_reference.methodologyVersion} ·{" "}
+            {tip.publication_market_reference.sourceCount} independent sources
+            at publication · source time{" "}
+            {localEventTime(
+              tip.publication_market_reference.sourceAt,
+              timezone,
+            )}
+          </p>
+        )}
       </details>
       <p className="edge-warning">
         Estimated EV is not guaranteed profit.{" "}
@@ -160,6 +210,12 @@ export function EdgeCard({
         <Link href={`/tips/${tip.id}`} className="text-link">
           Full publication and corrections ↗
         </Link>
+      )}
+      {detail && (
+        <NativeShare
+          path={`/tips/${tip.id}`}
+          title="Docked official publication record"
+        />
       )}
     </article>
   );

@@ -1,6 +1,11 @@
 import { z } from "zod";
 import { db } from "./db";
 import { requireRole } from "./auth";
+import {
+  referenceStrategyV2,
+  validateReferenceStrategy,
+} from "@/core/reference-pricing";
+import { configuredMarketReference } from "./market-reference";
 import { strategyV1, hash } from "@/core/pricing";
 import { DateTime } from "luxon";
 import { nextScheduleAt } from "@/core/notifications";
@@ -57,7 +62,14 @@ export async function adminOperation(body: Record<string, unknown>) {
         codeCommit: z.string().regex(/^[0-9a-f]{40}$/),
       })
       .parse(body);
-    const strategy = { ...strategyV1, version: v.id };
+    const strategy =
+      body.pricingModel === "market_reference_v1"
+        ? validateReferenceStrategy({
+            ...referenceStrategyV2,
+            version: v.id,
+            marketReference: configuredMarketReference(),
+          })
+        : { ...strategyV1, version: v.id };
     await sql.begin(async (tx) => {
       await tx`insert into private.strategy_versions(id,config,config_hash,code_commit) values(${v.id},${tx.json(strategy)},${hash(strategy)},${v.codeCommit})`;
       await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'strategy_draft_created',${v.id},${tx.json({ reason, codeCommit: v.codeCommit, configHash: hash(strategy) })})`;

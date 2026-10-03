@@ -16,12 +16,26 @@
     "db:test": "tsx --test tests/database/*.test.ts",
     "validate": "npm run typecheck && npm test && npm run db:test",
     "lint": "eslint src scripts tests --max-warnings=0",
-    "check:client": "tsx scripts/check-client-boundary.ts"
+    "check:client": "tsx scripts/check-client-boundary.ts",
+    "android:sync": "node scripts/build-mobile-shell.mjs && cap sync android",
+    "android:open": "cap open android",
+    "android:debug": "node scripts/android-debug.mjs",
+    "android:preview": "node scripts/android-debug.mjs --attach-local",
+    "android:inspect": "node scripts/android-debug.mjs --attach-local --inspect-webview"
   },
   "engines": {
     "node": ">=22"
   },
   "dependencies": {
+    "@capacitor/android": "8.5.2",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/browser": "8.0.5",
+    "@capacitor/camera": "8.2.5",
+    "@capacitor/core": "8.5.2",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/network": "8.0.1",
+    "@capacitor/share": "8.0.3",
+    "@capacitor/splash-screen": "8.0.2",
     "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "2.117.2",
     "decimal.js": "10.6.0",
@@ -31,11 +45,13 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "0.0.1",
+    "sharp": "0.35.4",
     "svix": "2.6.1",
     "zod": "4.6.5"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
+    "@capacitor/cli": "8.5.2",
     "@electric-sql/pglite": "0.5.8",
     "@playwright/test": "1.63.0",
     "@types/luxon": "3.7.6",
@@ -49,5 +65,10 @@
     "tsx": "4.23.15",
     "typescript": "6.0.3",
     "typescript-eslint": "8.71.0"
+  },
+  "overrides": {
+    "xcode": {
+      "uuid": "11.1.1"
+    }
   }
 }

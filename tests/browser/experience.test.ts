@@ -47,7 +47,7 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
       ).violations,
     ).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/phase3/after/sports-regression/regression-edge-${status}-320.png`,
+      path: `docs/qa/phase4/web-regression/sports-regression/regression-edge-${status}-320.png`,
       fullPage: true,
     });
   }
@@ -75,7 +75,7 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
     ).violations,
   ).toEqual([]);
   await page.screenshot({
-    path: "docs/qa/phase3/after/sports-regression/regression-no-edge-isolated-fixture-320.png",
+    path: "docs/qa/phase4/web-regression/sports-regression/regression-no-edge-isolated-fixture-320.png",
     fullPage: true,
   });
 });
@@ -163,7 +163,7 @@ test("preview public pages remain truthful, accessible and usable without an acc
       route,
     ).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/phase3/after/sports-regression/regression-${name}-390.png`,
+      path: `docs/qa/phase4/web-regression/sports-regression/regression-${name}-390.png`,
       fullPage: true,
     });
   }

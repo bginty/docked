@@ -195,6 +195,7 @@ function providerPayload() {
         markets: [
           {
             key: "h2h",
+            last_update: now as string | undefined,
             outcomes: Object.entries(q.prices).map(([name, price]) => ({
               name,
               price: Number(price),
@@ -268,7 +269,7 @@ test("provider rejects mismatched competition and duplicate outcome corruption",
 });
 test("provider stale markets and missing configuration are explicit", async () => {
   const payload = providerPayload();
-  payload[0].bookmakers[0].last_update = "2026-10-02T05:50:00.000Z";
+  payload[0].bookmakers[0].markets[0].last_update = "2026-10-02T05:50:00.000Z";
   const r = await provider(payload).fetch("basketball_nba");
   assert.equal(r.stats.staleMarkets, 1);
   assert.equal(r.stats.validMarkets, 2);
@@ -287,6 +288,23 @@ test("provider stale markets and missing configuration are explicit", async () =
   );
   assert.equal(p.status, "NOT_CONFIGURED");
   await assert.rejects(() => p.fetch("basketball_nba"), /NOT_CONFIGURED/);
+});
+test("current source freshness cannot borrow a bookmaker-wide timestamp; historical fallback stays labelled", async () => {
+  const data = providerPayload();
+  data[0].bookmakers[0].markets[0].last_update = undefined;
+  const current = await provider(data).fetch("basketball_nba");
+  assert.equal(current.quotes.length, 2);
+  assert.ok(current.stats.errors.includes("missing_market_source_timestamp"));
+  const archived = await provider({ timestamp: now, data }).fetch(
+    "basketball_nba",
+    now,
+  );
+  assert.equal(archived.quotes.length, 3);
+  assert.equal(
+    archived.quotes.find((q) => q.bookmaker === "offer")?.sourceTimestampKind,
+    "bookmaker_legacy",
+  );
+  assert.equal(current.quotes[0].sourceTimestampKind, "market_observation");
 });
 test("historical response cannot come from after requested time and receipt is not backdated", async () => {
   const future = provider({

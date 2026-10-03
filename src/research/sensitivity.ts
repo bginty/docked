@@ -1,14 +1,18 @@
 import Decimal from "decimal.js";
 import { replay, type HistoricalEvent, type Manifest } from "./replay";
-import { hash, strategyV1 } from "@/core/pricing";
-export function sensitivity(events: HistoricalEvent[], manifest: Manifest) {
+import { hash, strategyV1, type Strategy } from "@/core/pricing";
+export function sensitivity(
+  events: HistoricalEvent[],
+  manifest: Manifest,
+  config: Strategy = strategyV1,
+) {
   if (!["development", "validation"].includes(manifest.split))
     throw new Error(
       "Sensitivity requires development/validation; never tune a held-out split",
     );
-  const base = replay(events, manifest);
+  const base = replay(events, manifest, config);
   const thresholds = ["0.02", "0.03", "0.05"].map((minEV) => {
-    const cfg = { ...strategyV1, minEV };
+    const cfg = { ...config, minEV };
     const r = replay(events, { ...manifest, configHash: hash(cfg) }, cfg);
     return {
       minEV,
@@ -18,10 +22,10 @@ export function sensitivity(events: HistoricalEvent[], manifest: Manifest) {
     };
   });
   const delays = [300, 600, 900].map((seconds) => {
-    const r = replay(events, manifest, strategyV1, seconds);
+    const r = replay(events, manifest, config, seconds);
     return {
       minimumSeconds: seconds,
-      maximumSeconds: strategyV1.maxDelayedSeconds,
+      maximumSeconds: config.maxDelayedSeconds,
       metrics: r.delayed,
       missing: r.coverage.delayedSkipped,
     };
@@ -42,9 +46,32 @@ export function sensitivity(events: HistoricalEvent[], manifest: Manifest) {
           quotes: s.quotes.filter((q) => q.operator !== operator),
         })),
       }));
-      const r = replay(reduced, { ...manifest, dataHash: hash(reduced) });
+      const derivedHash = hash(reduced);
+      const r = replay(
+        reduced,
+        {
+          ...manifest,
+          dataHash: derivedHash,
+          ...(manifest.datasetHashes
+            ? {
+                datasetHashes: {
+                  ...manifest.datasetHashes,
+                  canonical: derivedHash,
+                },
+              }
+            : {}),
+        },
+        config,
+      );
       return {
         removedOperator: operator,
+        lineage: {
+          sourceDatasetHash: manifest.dataHash,
+          sourceManifestHash: hash(manifest),
+          derivedDatasetHash: derivedHash,
+          transformation: "remove_named_operator_without_substitution",
+          rawFiles: manifest.datasetHashes?.rawFiles ?? [],
+        },
         metrics: r.immediate,
         coverage: r.coverage,
       };

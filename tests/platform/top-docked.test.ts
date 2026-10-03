@@ -64,6 +64,33 @@ test("one-unit arithmetic retains losses/voids and drawdown; no settled sample r
   assert.equal(pending.netUnits, null);
   assert.equal(pending.roi, null);
 });
+
+test("versioned community reference records retain their captured benchmark alongside legacy records", () => {
+  const legacy = record("legacy", { odds: "2.50", result: "LOST" });
+  const reference = record("reference", {
+    odds: "1.95",
+    ruleVersion: "community-market-reference-v2",
+  });
+  const records = [legacy, reference];
+  const row = calculateTopDocked(records, options).rows[0];
+  assert.equal(row.performance.netUnits, "-0.05");
+  assert.equal(row.performance.roi, "-2.50");
+  assert.equal(row.performance.won, 1);
+  assert.equal(row.performance.lost, 1);
+  assert.equal(row.qualification, "PROVISIONAL");
+  assert.equal(row.rank, null);
+  assert.equal(legacy.ruleVersion, "community-standard-v1");
+  assert.equal(reference.ruleVersion, "community-market-reference-v2");
+  assert.equal(reference.odds, "1.95");
+  assert.throws(
+    () => communityPerformance([{ ...reference, units: "2" }]),
+    /one-unit/,
+  );
+  assert.throws(
+    () => communityPerformance([{ ...reference, ruleVersion: "unknown-v3" }]),
+    /canonical eligible/,
+  );
+});
 test("tiny samples provisional; popularity/demo/official/promo records never qualify", () => {
   const rows = calculateTopDocked(
     [

@@ -51,6 +51,39 @@ test("sensitivity rejects held-out tuning and reports all development variants",
   assert.equal(s.missingReferences.length, 3);
   assert.equal(s.priceAndFeeStress[0].roi, null);
 });
+test("legacy stress honors the supplied configuration and preserves derived source lineage", () => {
+  const data = events();
+  const config = {
+    ...strategyV1,
+    version: "reference-v1.0.1-research",
+    windowsSeconds: [3600],
+  };
+  const input: Manifest = {
+    ...manifest(data),
+    split: "development",
+    configHash: hash(config),
+    datasetHashes: {
+      canonical: hash(data),
+      rawFiles: [
+        {
+          name: "fictional-archive.json",
+          sha256: hash("authored fixture bytes"),
+        },
+      ],
+    },
+  };
+  const report = sensitivity(data, input, config);
+  assert.equal(
+    report.thresholds.every((value) => value.immediate.count === 0),
+    true,
+  );
+  for (const removal of report.missingReferences) {
+    assert.equal(removal.lineage.sourceDatasetHash, input.dataHash);
+    assert.equal(removal.lineage.sourceManifestHash, hash(input));
+    assert.deepEqual(removal.lineage.rawFiles, input.datasetHashes!.rawFiles);
+    assert.notEqual(removal.lineage.derivedDatasetHash, input.dataHash);
+  }
+});
 test("same decision library in replay and live; delayed entry remains separate", () => {
   const e = events(),
     r = replay(e, manifest(e));

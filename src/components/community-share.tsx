@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { NativeShare } from "./native-share";
 export function CommunityShare({ id }: { id: string }) {
   const [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
@@ -8,8 +9,8 @@ export function CommunityShare({ id }: { id: string }) {
       <h2>Share the complete record</h2>
       <p>
         The card identifies this as a community opinion, shows the verified
-        standard price and current outcome, and timestamps its status. Check the
-        permanent record for later corrections.
+        locked submission benchmark and current outcome, and timestamps its
+        status. Check the permanent record for later corrections.
       </p>
       <button
         className="button ghost"
@@ -50,6 +51,10 @@ export function CommunityShare({ id }: { id: string }) {
         Download community share card
       </button>
       <p role="status">{message}</p>
+      <NativeShare
+        path={`/community/edges/${id}`}
+        title="Docked community record"
+      />
     </section>
   );
 }

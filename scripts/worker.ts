@@ -233,7 +233,9 @@ async function main() {
         { country: p.country, state: p.state, ageAttested: p.age_attested },
         "communications",
         dispatchNow,
-        fresh?.candidate.offer.bookmaker,
+        fresh?.tip.pricing_model === "market_reference_v1"
+          ? undefined
+          : fresh?.candidate.offer.bookmaker,
       ),
       fresh: !!fresh,
       startAt: fresh?.tip.start_at.toISOString(),

@@ -1,3 +1,4 @@
+import { inspectReferenceTip } from "./reference-publication";
 import { db } from "./db";
 import { evaluate, hash, validateStrategy, type Quote } from "@/core/pricing";
 import Decimal from "decimal.js";
@@ -13,7 +14,15 @@ export async function inspectTip(tipId: string) {
     await sql`select p.*,e.start_at,e.status event_status,s.config strategy_config,s.code_commit strategy_code_commit,s.lifecycle,s.config_hash strategy_hash,s.active,s.paper_approved_at,s.owner_approved_at,r.country,r.state,r.approved,r.effective_from,r.effective_to,r.review_at,r.operators,r.features from private.tip_publications p join private.events e on e.id=p.event_id join private.strategy_versions s on s.id=p.strategy_id join private.region_policies r on r.id=p.region_policy_id where p.id=${tipId}`;
   const t = rows[0];
   if (!t || t.evidence !== "live_published") return null;
-  const unavailable = { tip: t, candidate: null, observation: null };
+  if (t.pricing_model === "market_reference_v1")
+    return sql.begin((tx) => inspectReferenceTip(tx, t));
+  const unavailable = {
+    tip: t,
+    candidate: null,
+    observation: null,
+    reference: null,
+    referenceStatus: null,
+  };
   if (!frozenCodeMatches(t.strategy_code_commit, process.env))
     return unavailable;
   const cfg = validateStrategy(t.strategy_config);
@@ -87,7 +96,13 @@ export async function inspectTip(tipId: string) {
     },
     cfg,
   );
-  return { tip: t, candidate, observation };
+  return {
+    tip: t,
+    candidate,
+    observation,
+    reference: null,
+    referenceStatus: null,
+  };
 }
 export async function currentTip(tipId: string) {
   const inspection = await inspectTip(tipId);
@@ -114,7 +129,7 @@ export async function expandPublication(
       await tx`select id from private.outbox where id=${outboxId} and state='leased' and lease_token=${leaseToken} and lease_until>now() and expires_at>now() for update`;
     if (!leased.length) return;
     const members =
-      await tx`select p.id from public.profiles p join public.notification_preferences n on n.user_id=p.id where p.disabled_at is null and p.age_attested and p.country=${t.country} and p.state=${t.state} and n.edge_alerts and not n.paused and (cardinality(p.sports)=0 or ${sport}=any(p.sports)) and (cardinality(p.leagues)=0 or ${t.market_rules.competition}=any(p.leagues)) and (cardinality(p.bookmakers)=0 or ${t.publication_payload.offer.bookmaker}=any(p.bookmakers))`;
+      await tx`select p.id from public.profiles p join public.notification_preferences n on n.user_id=p.id where p.disabled_at is null and p.age_attested and p.country=${t.country} and p.state=${t.state} and n.edge_alerts and not n.paused and (cardinality(p.sports)=0 or ${sport}=any(p.sports)) and (cardinality(p.leagues)=0 or ${t.market_rules.competition}=any(p.leagues)) and (${t.pricing_model === "market_reference_v1"} or cardinality(p.bookmakers)=0 or ${t.publication_payload.offer.bookmaker}=any(p.bookmakers))`;
     for (const m of members)
       await tx`insert into private.outbox(dedupe_key,kind,user_id,payload,expires_at) values(${`edge:${tipId}:${m.id}`},'edge',${m.id},${tx.json({ tipId, editorialApproval: t.approved_by, subject: "Docked: qualifying price observation", text: `${t.selection}. Publication odds ${t.odds}; minimum ${t.minimum_odds}. Check current status before considering any action. Estimated values are uncertain. No guaranteed returns.` })},least(now()+interval '3 minutes',${t.start_at}::timestamptz-interval '10 minutes')) on conflict do nothing`;
     await tx`update private.outbox set state='sent',last_error='Recipient jobs created; no email sent by expansion' where id=${outboxId} and lease_token=${leaseToken}`;

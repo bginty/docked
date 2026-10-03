@@ -43,11 +43,18 @@ export function CommunityEdgeCard({ edge }: { edge: CommunityEdge }) {
           <Link href={`/community/edges/${edge.id}`}>{edge.selection}</Link>
         </h3>
         <p>
-          {edge.marketLabel ?? edge.marketId} · {edge.bookmaker}
+          {edge.marketLabel ?? edge.marketId} ·{" "}
+          {edge.pricingModel === "market_reference_v1"
+            ? "Market reference methodology"
+            : `${edge.bookmaker} · original bookmaker methodology`}
         </p>
         <dl className="edge-facts">
           <div>
-            <dt>Verified standard odds</dt>
+            <dt>
+              {edge.pricingModel === "market_reference_v1"
+                ? "Submission market reference"
+                : "Verified standard odds"}
+            </dt>
             <dd>{edge.odds}</dd>
           </div>
           <div>
@@ -77,6 +84,22 @@ export function CommunityEdgeCard({ edge }: { edge: CommunityEdge }) {
             </dd>
           </div>
         </dl>
+        {edge.pricingModel === "market_reference_v1" && (
+          <p className="form-help">
+            Locked benchmark for this permanent 1.00-unit record. Methodology
+            UNVALIDATED; the market reference is not a guaranteed execution
+            price.
+          </p>
+        )}
+        {(edge.personalPrice || edge.personalBookmaker) && (
+          <p className="promotion-label">
+            Member-reported social context:{" "}
+            {edge.personalBookmaker ?? "Bookmaker unspecified"} ·{" "}
+            {edge.personalPrice ?? "Price unspecified"}
+            {edge.personalPromotional ? " · promotional" : ""}. Unverified and
+            excluded from competitive grading.
+          </p>
+        )}
         <p className="small-note">
           {edge.classification.replaceAll("_", " ")} · {edge.ruleVersion}
         </p>

@@ -24,6 +24,13 @@ export type PriceClass = (typeof priceClasses)[number];
 export type CommunityResult =
   "PENDING" | "WON" | "LOST" | "VOID" | "DISPUTED" | "MANUAL_REVIEW";
 export type CommunityQuoteOption = {
+  pricingModel?: "legacy_bookmaker_v1" | "market_reference_v1";
+  marketReference?: import("./tip-presentation").MarketReferencePresentation;
+  dockedFairPrice?: string | null;
+  minimumEdgePrice?: string | null;
+  personalBookmaker?: string | null;
+  personalPrice?: string | null;
+  personalPromotional?: boolean;
   snapshotId: string;
   marketId: string;
   marketLabel?: string;

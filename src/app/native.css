@@ -1,0 +1,80 @@
+.native-status {
+  padding: 8px max(20px, env(safe-area-inset-right));
+  font-size: 0.8rem;
+  background: #e7ece5;
+  border-bottom: 1px solid #ccd8d0;
+}
+.native-status p {
+  max-width: 65rem;
+}
+.docked-native body {
+  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top));
+  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left));
+  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right));
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
+}
+.docked-native .app-bottom-nav {
+  padding-bottom: max(
+    8px,
+    var(--safe-area-inset-bottom, env(safe-area-inset-bottom))
+  );
+}
+.docked-native .community-shell {
+  padding-bottom: calc(
+    90px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom))
+  );
+}
+.docked-native input,
+.docked-native textarea,
+.docked-native select {
+  scroll-margin-block: 100px;
+}
+.native-share p:empty {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .docked-native * {
+    scroll-behavior: auto !important;
+  }
+}
+.reference-prices .take-price {
+  background: #142b35;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+}
+.reference-prices .take-price small,
+.reference-prices .take-price span {
+  color: #dbebe3;
+}
+.reference-prices .take-price strong {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+.reference-fair {
+  font-size: 1rem;
+}
+.reference-fair span {
+  display: block;
+  font-size: 0.8rem;
+  color: #52615b;
+}
+.reference-preview {
+  border: 1px solid #9bb5a6;
+  background: #edf4ee;
+  border-radius: 12px;
+  padding: 1rem;
+}
+.reference-preview strong {
+  font-size: 1.5rem;
+}
+.social-price-context summary {
+  cursor: pointer;
+}
+.social-price-context label {
+  margin-top: 1rem;
+}
+.native-photo-picker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

@@ -1,3 +1,4 @@
+import { publishReference } from "./reference-publication";
 import { db } from "./db";
 import {
   evaluate,
@@ -36,6 +37,8 @@ export async function publish(
       throw new Error(
         "Frozen strategy code does not match the deployed commit",
       );
+    if (versions[0].config.method === "market-reference-independent-cohorts")
+      return publishReference(tx, c, versions[0], who.user.id, evidence);
     const strategy = validateStrategy(versions[0].config);
     if (
       strategy.version !== c.strategy_id ||

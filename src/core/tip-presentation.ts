@@ -1,6 +1,10 @@
 export type TipDisplayStatus =
   "active" | "price_below_minimum" | "expired" | "suspended" | "settled";
 export type TipPresentation = {
+  pricing_model?: "legacy_bookmaker_v1" | "market_reference_v1";
+  publication_market_reference?: MarketReferencePresentation | null;
+  current_market_reference?: MarketReferencePresentation | null;
+  published_at?: string | Date;
   id: string;
   participants: string[];
   selection: string;
@@ -19,6 +23,15 @@ export type TipPresentation = {
   current_odds: string | null;
   current_source_at: string | Date | null;
   current_observed_at: string | Date | null;
+};
+export type MarketReferencePresentation = {
+  methodologyVersion: string;
+  configHash: string;
+  decimalPrice: string;
+  sourceAt: string;
+  observedAt: string;
+  sourceCount: number;
+  validationStatus: "UNVALIDATED";
 };
 export const tipStatusLabels: Record<TipDisplayStatus, string> = {
   active: "ACTIVE",

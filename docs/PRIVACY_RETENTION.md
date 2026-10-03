@@ -28,3 +28,7 @@ Canonical community Edge records, official records, verification, settlement, co
 Administrative audit reasons and third-party reports may mention personal information. Staff must avoid unnecessary personal data. A scoped legal-review and redaction workflow is still needed for third-party narratives and lawful holds; account erasure does not falsely claim it has identified every occurrence of a person's name in other users' text.
 
 Local tests verify pseudonymization, session revocation, personal-content purge, other-member preservation and surviving referenced ledger rows. Hosted Supabase backup retention, point-in-time recovery, provider erasure, data residency and advisor checks remain deployment-specific dependencies. No unrelated or production project was inspected or altered for this work.
+
+## Phase 4 optional price claims
+
+Personal bookmaker names, claimed promotional odds and promotional flags are stored in private `community_edge_personal_notes`, outside immutable Edge accounting. They are social commentary only, included in the owner's export and erased when the account is disabled or deleted. Canonical benchmark references and pseudonymous settlement history retain no copy of those optional claims. Their display follows social visibility/blocking rules; their absence never removes a loss or changes performance.

@@ -1,6 +1,7 @@
 "use client";
 import { useState, type FormEvent } from "react";
 import type { SocialMedia } from "@/core/community-social";
+import { NativeImagePicker } from "./native-image-picker";
 
 /** Optional social illustration only; never input to price verification. */
 export function ApprovedEdgeMedia({
@@ -100,6 +101,7 @@ export function ApprovedEdgeMedia({
         </fieldset>
       )}
       <form className="app-form" onSubmit={upload}>
+        <NativeImagePicker />
         <label>
           Upload image for review
           <input

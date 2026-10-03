@@ -9,7 +9,7 @@ import { execFileSync } from "node:child_process";
 let demoBundle = "";
 let demoOfficialHtml = "";
 const fixtureErrors = new WeakMap<Page, string[]>();
-const qa = path.join(process.cwd(), "docs/qa/phase3/after");
+const qa = path.join(process.cwd(), "docs/qa/phase4/web-regression");
 test.beforeAll(async () => {
   await mkdir(qa, { recursive: true });
   demoOfficialHtml = JSON.parse(

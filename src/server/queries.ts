@@ -1,3 +1,6 @@
+import { referenceProjection } from "./market-reference";
+import type { MarketReference } from "@/core/market-reference";
+import type { MarketReferencePresentation } from "@/core/tip-presentation";
 import { config } from "./config";
 import { db } from "./db";
 import { identity } from "./auth";
@@ -6,6 +9,10 @@ import { inspectTip } from "./dispatch";
 import { freshTimestamp, providerReadiness } from "@/core/data-health";
 import type { Rules } from "@/core/pricing";
 export type PublicTip = {
+  pricing_model?: "legacy_bookmaker_v1" | "market_reference_v1";
+  publication_reference?: MarketReference | null;
+  publication_market_reference?: MarketReferencePresentation | null;
+  current_market_reference?: MarketReferencePresentation | null;
   id: string;
   event_id: string;
   selection: string;
@@ -76,7 +83,7 @@ export async function publicTips() {
   const sql = db();
   const rows = await sql<
     PublicTip[]
-  >`select p.id,p.event_id,p.selection,p.odds,p.minimum_odds,p.probability,p.estimated_ev,p.published_at,p.strategy_id,p.evidence,p.market_rules,p.benchmark_stake,
+  >`select p.id,p.event_id,p.selection,p.odds,p.minimum_odds,p.probability,p.estimated_ev,p.published_at,p.strategy_id,p.evidence,p.market_rules,p.benchmark_stake,p.pricing_model,p.publication_payload->'reference' publication_reference,
   jsonb_build_object('fairOdds',p.publication_payload->>'fairOdds','configHash',p.config_hash,'offer',jsonb_build_object('bookmaker',p.publication_payload->'offer'->>'bookmaker','sourceAt',p.publication_payload->'offer'->>'sourceAt')) publication_payload,e.start_at,e.competition_id,e.participants,
   coalesce((select status from private.tip_status_events where tip_id=p.id order by created_at desc limit 1),'active') availability,
   coalesce((select result from private.settlement_events where tip_id=p.id order by created_at desc limit 1),'pending') result,
@@ -102,13 +109,29 @@ export async function publicTips() {
           ? "settled"
           : expired
             ? "expired"
-            : observation && Number(observation.odds) < Number(t.minimum_odds)
-              ? "price_below_minimum"
-              : inspection?.candidate
-                ? "active"
-                : "suspended";
+            : inspection?.referenceStatus
+              ? (
+                  {
+                    ACTIVE: "active",
+                    "PRICE BELOW MINIMUM": "price_below_minimum",
+                    EXPIRED: "expired",
+                    SUSPENDED: "suspended",
+                    SETTLED: "settled",
+                  } as const
+                )[inspection.referenceStatus]
+              : observation && Number(observation.odds) < Number(t.minimum_odds)
+                ? "price_below_minimum"
+                : inspection?.candidate
+                  ? "active"
+                  : "suspended";
       return {
         ...t,
+        publication_market_reference: t.publication_reference
+          ? referenceProjection(t.publication_reference)
+          : null,
+        current_market_reference: inspection?.reference
+          ? referenceProjection(inspection.reference)
+          : null,
         availability: display_status,
         current_odds: observation?.odds ?? null,
         current_source_at: observation ? new Date(observation.sourceAt) : null,

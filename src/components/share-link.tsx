@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { isDockedNative } from "./native-bridge";
+import { safeSharePath } from "@/core/native-navigation";
 export function ShareLink() {
   const [message, setMessage] = useState("");
   async function copy() {
@@ -7,8 +9,20 @@ export function ShareLink() {
       const url = new URL(location.href);
       url.search = "";
       url.hash = "";
-      await navigator.clipboard.writeText(url.toString());
-      setMessage("Link copied.");
+      if (isDockedNative()) {
+        const route = safeSharePath(url.pathname);
+        if (!route) throw new Error("Unsupported article address");
+        const { Share } = await import("@capacitor/share");
+        await Share.share({
+          title: document.title,
+          url: `docked://${route.slice(1)}`,
+          dialogTitle: "Share Docked article",
+        });
+        setMessage("Share sheet closed.");
+      } else {
+        await navigator.clipboard.writeText(url.toString());
+        setMessage("Link copied.");
+      }
       if (navigator.doNotTrack !== "1")
         void fetch("/api/analytics", { cache: "no-store" })
           .then((r) => r.json())

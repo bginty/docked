@@ -6,8 +6,9 @@ import type {
   OddsFetchResult,
   OddsDiagnostics,
   ProviderStatus,
+  ProviderQuote,
 } from "./contracts";
-import type { Quote, Rules } from "@/core/pricing";
+import type { Rules } from "@/core/pricing";
 import { hash, removeMargin, strategyV1 } from "@/core/pricing";
 const timestamp = z.string().datetime({ offset: true });
 const outcome = z.object({
@@ -23,7 +24,7 @@ const event = z.object({
   bookmakers: z.array(
     z.object({
       key: z.string().min(1),
-      last_update: timestamp,
+      last_update: timestamp.optional(),
       markets: z.array(
         z.object({
           key: z.string().min(1),
@@ -169,7 +170,7 @@ export class TheOddsApi implements OddsProvider {
         sourceTimestampAgeSeconds: null,
         errors: [],
       };
-      const quotes: Quote[] = [];
+      const quotes: ProviderQuote[] = [];
       const ids = rawEvents
         .map((e) => event.safeParse(e))
         .filter((e) => e.success)
@@ -255,7 +256,17 @@ export class TheOddsApi implements OddsProvider {
               reject("incomplete_or_duplicate_outcomes", true);
               continue;
             }
+            // Current bookmaker-wide timestamps can describe another market.
+            // Historical legacy snapshots retain their original timestamp kind.
+            if (!asOf && !m.last_update) {
+              reject("missing_market_source_timestamp");
+              continue;
+            }
             const sourceAt = m.last_update ?? b.last_update;
+            if (!sourceAt) {
+              reject("missing_market_source_timestamp");
+              continue;
+            }
             const age = (at - Date.parse(sourceAt)) / 1000;
             if (age < 0 || !Number.isFinite(age)) {
               reject("future_source_timestamp");
@@ -303,6 +314,9 @@ export class TheOddsApi implements OddsProvider {
               snapshotAt,
               receivedAt,
               suspended: false,
+              sourceTimestampKind: m.last_update
+                ? "market_observation"
+                : "bookmaker_legacy",
             });
             stats.validMarkets++;
           }

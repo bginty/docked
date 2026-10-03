@@ -1,19 +1,31 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { hash, strategyV1, validateStrategy } from "../src/core/pricing";
-import {
-  replay,
-  type HistoricalEvent,
-  type Manifest,
-} from "../src/research/replay";
+import { hash, strategyV1 } from "../src/core/pricing";
+import { type Manifest } from "../src/research/replay";
 import { ledger, type LedgerRow } from "../src/core/ledger";
-import { sensitivity } from "../src/research/sensitivity";
-import { validateDataset, defaultStudySplits } from "../src/research/dataset";
-const [command, input, manifestFile, output = "research-output/report.json"] =
-  process.argv.slice(2);
+import { defaultStudySplits } from "../src/research/dataset";
+import {
+  assertResearchFreeze,
+  researchWorkflow,
+  validateResearchFreeze,
+  validateResearchStrategy,
+} from "../src/research/strategy";
+const [
+  command,
+  input,
+  manifestFile,
+  output = "research-output/report.json",
+  configurationFile,
+] = process.argv.slice(2);
 async function main() {
   if (command === "freeze" || command === "freeze-strategy") {
+    const config = input
+      ? validateResearchStrategy(JSON.parse(await readFile(input, "utf8")))
+      : strategyV1;
+    const studySplits = manifestFile
+      ? JSON.parse(await readFile(manifestFile, "utf8"))
+      : defaultStudySplits;
     const dirty = execFileSync("git", ["status", "--porcelain"], {
       encoding: "utf8",
     }).trim();
@@ -25,16 +37,19 @@ async function main() {
     await writeFile(
       "research-output/freeze.json",
       JSON.stringify(
-        {
-          config: strategyV1,
-          configHash: hash(strategyV1),
+        validateResearchFreeze({
+          config,
+          configHash: hash(config),
           frozenAt: new Date().toISOString(),
           codeCommit: execFileSync("git", ["rev-parse", "HEAD"], {
             encoding: "utf8",
           }).trim(),
-          studySplits: defaultStudySplits,
+          studySplits,
+          ...(process.argv.slice(2)[3]
+            ? { referenceRegion: process.argv.slice(2)[3] }
+            : {}),
           status: "FROZEN_RULE_ARTIFACT_NOT_VALIDATION_APPROVAL",
-        },
+        }),
         null,
         2,
       ),
@@ -127,17 +142,20 @@ async function main() {
   ) {
     if (!input || !manifestFile)
       throw new Error(
-        "Usage: npm run research -- replay data.json manifest.json [output.json]",
+        "Usage: npm run research -- replay data.json manifest.json [output.json] [configuration.json]",
       );
-    const events = JSON.parse(
-      await readFile(input, "utf8"),
-    ) as HistoricalEvent[];
+    const events = JSON.parse(await readFile(input, "utf8"));
     const manifest = JSON.parse(
       await readFile(manifestFile, "utf8"),
     ) as Manifest;
     if (process.env.APP_ENV === "production" && manifest.evidence === "demo")
       throw new Error("Production demo import prohibited");
-    let config = strategyV1;
+    const requested = configurationFile
+      ? validateResearchStrategy(
+          JSON.parse(await readFile(configurationFile, "utf8")),
+        )
+      : undefined;
+    let config = requested ?? strategyV1;
     if (
       manifest.evidence !== "demo" &&
       !["import", "validate-data"].includes(command)
@@ -145,12 +163,7 @@ async function main() {
       const frozen = JSON.parse(
         await readFile("research-output/freeze.json", "utf8"),
       );
-      if (
-        hash(frozen) !== manifest.freezeArtifactHash ||
-        frozen.configHash !== manifest.configHash ||
-        frozen.codeCommit !== manifest.codeCommit
-      )
-        throw new Error("Freeze artifact/provenance mismatch");
+      config = assertResearchFreeze(frozen, manifest, requested);
       const currentCommit = execFileSync("git", ["rev-parse", "HEAD"], {
         encoding: "utf8",
       }).trim();
@@ -161,18 +174,22 @@ async function main() {
         }).trim()
       )
         throw new Error("Replay requires clean frozen code commit");
-      config = validateStrategy(frozen.config) as typeof strategyV1;
     }
-    const payload = ["import", "validate-data"].includes(command)
-      ? {
-          manifest,
-          validation: validateDataset(events, manifest, config),
-          label: "DATA QUALITY AUDIT ONLY — no strategy results revealed",
-        }
-      : command === "sensitivity" || command === "stress-test"
-        ? sensitivity(events, manifest)
-        : replay(events, manifest, config);
-    if ("validation" in payload && !payload.validation.valid)
+    const payload = researchWorkflow(
+      ["import", "validate-data"].includes(command)
+        ? "validate-data"
+        : command === "sensitivity" || command === "stress-test"
+          ? "stress-test"
+          : "replay",
+      events,
+      manifest,
+      config,
+    );
+    if (
+      "validation" in payload &&
+      payload.validation &&
+      !payload.validation.valid
+    )
       throw new Error(payload.validation.errors.join("; "));
     const report = {
       ...payload,
@@ -193,7 +210,7 @@ async function main() {
     return;
   }
   console.log(
-    "Commands: freeze-strategy | demo | import/validate-data/replay/stress-test data.json manifest.json research-output/report.json | report research-output/replay.json research-output/report.md",
+    "Commands: freeze-strategy [configuration.json] [study-splits.json] [reference-region] | demo | import/validate-data/replay/stress-test data.json manifest.json research-output/report.json [configuration.json] | report research-output/replay.json research-output/report.md",
   );
 }
 main().catch((e) => {

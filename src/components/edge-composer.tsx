@@ -8,9 +8,10 @@ import type {
 import { permanentEdgeStatement } from "@/core/community-edge";
 import { AppIcon } from "./app-icon";
 import { ApprovedEdgeMedia } from "./approved-edge-media";
+import { lightNativeFeedback } from "./native-share";
 const initial: QuoteOptionsResponse = {
   status: "NO_VERIFIED_PRICES",
-  message: "Loading provider-observed standard prices…",
+  message: "Loading the current independent market reference…",
   options: [],
 };
 export function EdgeComposer({
@@ -33,10 +34,25 @@ export function EdgeComposer({
     [moved, setMoved] = useState<string | null>(null),
     [idempotencyKey, setKey] = useState(""),
     [submitted, setSubmitted] = useState<string | null>(null),
-    [mediaIds, setMediaIds] = useState<string[]>([]);
-  const selected = data.options.find(
-    (q) => `${q.snapshotId}:${q.selection}` === selection,
-  );
+    [mediaIds, setMediaIds] = useState<string[]>([]),
+    [personalBookmaker, setPersonalBookmaker] = useState(""),
+    [personalPrice, setPersonalPrice] = useState(""),
+    [personalPromotional, setPersonalPromotional] = useState(false);
+  const selected =
+    data.options.find(
+      (q) =>
+        q.pricingModel === "market_reference_v1" &&
+        q.eventId === event &&
+        q.marketId === market &&
+        q.selection === outcome,
+    ) ??
+    data.options.find((q) => `${q.snapshotId}:${q.selection}` === selection);
+  const displayedReference =
+    review?.pricingModel === "market_reference_v1" &&
+    review.marketId === selected?.marketId &&
+    review.selection === selected?.selection
+      ? review
+      : selected;
   async function load() {
     setBusy(true);
     try {
@@ -126,7 +142,9 @@ export function EdgeComposer({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           action: "review",
-          snapshotId: selected.snapshotId,
+          ...(selected.pricingModel === "market_reference_v1"
+            ? { marketId: selected.marketId }
+            : { snapshotId: selected.snapshotId }),
           selection: selected.selection,
         }),
       });
@@ -160,13 +178,22 @@ export function EdgeComposer({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           action: "submit",
-          snapshotId: review.snapshotId,
+          ...(review.pricingModel === "market_reference_v1"
+            ? { marketId: review.marketId }
+            : { snapshotId: review.snapshotId }),
           selection: review.selection,
           reviewToken: review.reviewToken,
           confirmedPermanent: true,
           idempotencyKey,
           reasoning: reasoning.trim() || undefined,
           mediaIds,
+          ...(review.pricingModel === "market_reference_v1"
+            ? {
+                personalBookmaker: personalBookmaker.trim() || undefined,
+                personalPrice: personalPrice.trim() || undefined,
+                personalPromotional,
+              }
+            : {}),
         }),
       });
       const value = await r.json();
@@ -184,6 +211,7 @@ export function EdgeComposer({
           value.error ?? value.message ?? "Submission was not confirmed.",
         );
       setSubmitted(value.edge?.id ?? value.id ?? null);
+      void lightNativeFeedback();
       setMessage(
         "Your permanent community Edge has been recorded. Settlement remains pending until an authorised result is available.",
       );
@@ -343,28 +371,46 @@ export function EdgeComposer({
               </select>
             </label>
           </div>
-          <label>
-            Bookmaker · provider-observed standard odds
-            <select
-              required
-              disabled={!outcome}
-              value={selection}
-              onChange={(e) => {
-                setSelection(e.target.value);
-                resetReview();
-              }}
-            >
-              <option value="">Choose verified price</option>
-              {books.map((q) => (
-                <option
-                  key={`${q.snapshotId}:${q.selection}`}
-                  value={`${q.snapshotId}:${q.selection}`}
-                >
-                  {q.bookmaker} · {q.odds}
-                </option>
-              ))}
-            </select>
-          </label>
+          {books.some((q) => q.pricingModel !== "market_reference_v1") && (
+            <label>
+              Bookmaker · provider-observed standard odds
+              <select
+                required
+                disabled={!outcome}
+                value={selection}
+                onChange={(e) => {
+                  setSelection(e.target.value);
+                  resetReview();
+                }}
+              >
+                <option value="">Choose verified price</option>
+                {books.map((q) => (
+                  <option
+                    key={`${q.snapshotId}:${q.selection}`}
+                    value={`${q.snapshotId}:${q.selection}`}
+                  >
+                    {q.bookmaker} · {q.odds}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {selected?.pricingModel === "market_reference_v1" && (
+            <div className="reference-preview">
+              <strong>CURRENT MARKET {displayedReference?.odds}</strong>
+              <p>
+                Server-calculated standard market reference. You cannot type or
+                choose the competitive price. It will be checked again at
+                submission.
+              </p>
+              <p className="small-note">
+                Methodology{" "}
+                {displayedReference?.marketReference?.methodologyVersion ??
+                  displayedReference?.ruleVersion}{" "}
+                · UNVALIDATED
+              </p>
+            </div>
+          )}
           <label>
             Reasoning (optional)
             <textarea
@@ -374,6 +420,42 @@ export function EdgeComposer({
               placeholder="Explain the sporting context and uncertainty."
             />
           </label>
+          <details className="app-panel social-price-context">
+            <summary>Optional personal price — social context only</summary>
+            <p>
+              Your own bookmaker or price does not change the permanent
+              benchmark, settlement, ROI, or Top Docked ranking. Promotions
+              remain clearly labelled.
+            </p>
+            <label>
+              Personal bookmaker (optional)
+              <input
+                maxLength={100}
+                value={personalBookmaker}
+                onChange={(e) => setPersonalBookmaker(e.target.value)}
+              />
+            </label>
+            <label>
+              Personal decimal price (optional)
+              <input
+                type="number"
+                min="1.01"
+                max="1000"
+                step="0.01"
+                inputMode="decimal"
+                value={personalPrice}
+                onChange={(e) => setPersonalPrice(e.target.value)}
+              />
+            </label>
+            <label className="check">
+              <input
+                type="checkbox"
+                checked={personalPromotional}
+                onChange={(e) => setPersonalPromotional(e.target.checked)}
+              />
+              This personal price is a boost or promotion.
+            </label>
+          </details>
           <button className="button" disabled={!selected || busy}>
             Review verified Edge
           </button>
@@ -401,11 +483,17 @@ export function EdgeComposer({
           <h3>{review.eventLabel}</h3>
           <p>
             {review.selection} · {review.marketLabel ?? review.marketId} ·{" "}
-            {review.bookmaker}
+            {review.pricingModel === "market_reference_v1"
+              ? "Independent market reference"
+              : review.bookmaker}
           </p>
           <dl className="edge-facts">
             <div>
-              <dt>Verified odds</dt>
+              <dt>
+                {review.pricingModel === "market_reference_v1"
+                  ? "Submission market reference"
+                  : "Verified odds"}
+              </dt>
               <dd>{review.odds}</dd>
             </div>
             <div>
@@ -429,6 +517,14 @@ export function EdgeComposer({
               <dd>{review.classification.replaceAll("_", " ")}</dd>
             </div>
           </dl>
+          {review.pricingModel === "market_reference_v1" && (
+            <p className="form-help">
+              Methodology UNVALIDATED. Your competitive benchmark is{" "}
+              {review.odds}; personal prices and images never change this
+              record. Source count:{" "}
+              {review.marketReference?.sourceCount ?? "Unavailable"}.
+            </p>
+          )}
           <p className="permanent-notice">{permanentEdgeStatement}</p>
           <label className="check">
             <input
@@ -445,7 +541,11 @@ export function EdgeComposer({
             execution.
           </p>
           <button className="button" disabled={!confirmed || busy}>
-            {busy ? "Checking and submitting…" : "Submit at verified price"}
+            {busy
+              ? "Checking and submitting…"
+              : review.pricingModel === "market_reference_v1"
+                ? "Submit at market reference"
+                : "Submit at verified price"}
           </button>
         </form>
       )}
