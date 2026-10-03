@@ -958,40 +958,82 @@ export default async function Page({
     content = (
       <div className="prose">
         <Notice>
-          PRE-LAUNCH DRAFT · Requires verified entity/support details and legal
-          review before registration or public release.
+          PREVIEW PRIVACY / TERMS DRAFT · Invited testing is active. Verified
+          entity/support details, retention periods and legal review remain
+          required before public registration or Play submission.
         </Notice>
         {section === "privacy" ? (
           <>
             <h2>Information used</h2>
             <p>
-              Account email, country/state, age attestation, acceptance records
-              and selected preferences support account access and eligibility.
-              Optional personal tracking is self-reported and separate from the
-              official ledger. No identity documents, sportsbook passwords or
-              payment details are requested.
+              The invited beta collects account email and identifiers, username,
+              country/state, age attestation, invitation/access records, consent
+              versions and selected preferences. Passwords are submitted
+              securely to the authentication service. An invitation confirms
+              test access; it does not verify email ownership or age. No
+              identity documents, sportsbook passwords, payment details or
+              precise GPS location are requested.
+            </p>
+            <p>
+              Community features store your profile, posts, comments, optional
+              photos, follows, reactions, saves, blocks, mutes, reports and
+              in-app notification settings/activity. Approved profile and social
+              content can be visible to other eligible members under the
+              visibility and blocking rules. Saves, reports and private
+              preferences are not public. Uploaded images enter private
+              moderation review; selecting a photo does not itself upload it.
+            </p>
+            <p>
+              Confirmed DEMO / PREVIEW PRICE records retain their synthetic
+              selection, captured reference and timestamps in separate immutable
+              tables. They never count toward genuine performance, rankings or
+              official results. Optional personal tracking is self-reported and
+              separate from the official ledger.
             </p>
             <h2>Your controls</h2>
             <p>
-              Optional communications start off. You can change preferences,
-              pause messages, export account data or request deletion in your
-              dashboard. Minimal audit and consent evidence may need retention;
-              exact legal bases and retention periods require review before
-              launch.
+              Marketing consent is separate, optional and unticked. Onboarding
+              lets you choose in-app updates; external email and Android push
+              are disabled in this beta. You can change preferences, pause
+              messages, export account data or request deletion in your
+              dashboard. Account access and sessions are revoked first; identity
+              erasure is retried if the authentication service is unavailable.
+              Personal social content and relationships are removed or
+              pseudonymised.
+            </p>
+            <p>
+              Necessary audit, consent and permanent-record evidence, including
+              synthetic preview records, may survive under a pseudonymous
+              identifier. This does not mean every mention of you in another
+              member's content is automatically erased. Exact lawful bases,
+              retention periods and any legal-hold process remain under owner
+              review. Read the{" "}
+              <Link href="/account-deletion">
+                account deletion instructions
+              </Link>{" "}
+              for access and support limitations.
             </p>
             <h2>Providers and safeguards</h2>
             <p>
-              The planned service uses Supabase for authentication/database and
-              a separately approved email provider. Preview and production are
-              isolated. Provider feed payloads are private. Cross-border
-              processing locations and subprocessors must be confirmed before
-              collection begins.
+              This beta uses Supabase for authentication and database storage
+              and Vercel for the hosted HTTPS application. Service providers
+              process data to operate those services; security, rate-limit and
+              hosting records support abuse prevention and diagnosis. The
+              preview is isolated from production. No odds/results provider or
+              external email delivery is enabled. The owner must confirm the
+              final processor terms, processing locations, subprocessors,
+              retention schedule and monitored privacy contact before public
+              registration or Play submission.
             </p>
             <h2>Measurement</h2>
             <p>
-              Optional attribution and engagement measurement must be separately
-              consented. No optimisation of amounts wagered or customer losses.
-              No transfer of the previous product mailing list.
+              First-party attribution and engagement measurement requires
+              separate analytics consent. Security and account operations are
+              still recorded where needed to run the service. Labelled internal
+              fixture activity is excluded from genuine acquisition metrics. No
+              optimisation of amounts wagered or customer losses, and no
+              transfer of the previous product mailing list, is part of this
+              beta.
             </p>
           </>
         ) : (

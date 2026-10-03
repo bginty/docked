@@ -60,7 +60,7 @@ Use the canonical app-icon D recorded in the brand documentation; never redraw i
 
 - Store icon: 512×512, 32-bit PNG, up to 1024 KB; use exact master-derived supplied asset.
 - Feature graphic: 1024×500, JPEG or 24-bit PNG with no alpha. Use the Docked palette, concise sports/community positioning and modest master mark. No fake product statistics.
-- Phone screenshots: capture actual UI, JPEG or 24-bit PNG without alpha, 320–3840 px, longest dimension at most twice shortest. Capture at least two; planned set: Edges, Feed, Following, Points, My Edge, community post, member profile. A 1080×2160 viewport fits the constraint; do not stretch S24 screenshots to change the interface.
+- Phone screenshots: capture actual UI, JPEG or 24-bit PNG without alpha, 320–3840 px, longest dimension at most twice shortest. Capture at least two; planned set: Edges, Feed, Following, Points, My Edge, community post, member profile. A 360×720 CSS phone viewport at 3× device scale produces exact 1080×2160 screenshots. Keep mobile layout; do not use a desktop-width 1080 CSS viewport or stretch S24 screenshots.
 - Keep account details private and label preview seed users. Provide useful alt descriptions. Review 7-inch/tablet/other form factors only if distributed there.
 
 Source: [Google asset requirements](https://support.google.com/googleplay/android-developer/answer/9866151?hl=en). Final screenshots and actual files are indexed in the Phase 4.5 QA report; this specification is not a claim of an uploaded listing.

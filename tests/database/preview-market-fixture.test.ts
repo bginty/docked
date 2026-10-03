@@ -5,6 +5,7 @@ import { randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
 import { buildPreviewFixture } from "../../src/core/preview-market-fixture";
 import { hash } from "../../src/core/pricing";
+import { previewFixtureExportQuery } from "../../src/server/preview-export-query";
 const user = "c0000000-0000-4000-8000-000000000001",
   other = "c0000000-0000-4000-8000-000000000002";
 const profile = "c0000000-0000-4000-8000-000000000011",
@@ -238,5 +239,50 @@ test("account erasure retains immutable fixture evidence with only a pseudonymou
         )
       ).rows[0].allowed,
       false,
+    );
+  }));
+test("account export includes only own reviewed and submitted fixtures after capability revocation", async () =>
+  transaction(async () => {
+    const draft = await insert(),
+      submitted = await insert();
+    await submit(submitted);
+    await pg.exec(
+      `update private.preview_tester_access set revoked_at=clock_timestamp(),revoked_by='fixture-operator',revocation_reason='Export must remain available' where user_id='${user}'`,
+    );
+    const own = (
+      await pg.query<{
+        review_id: string;
+        record_id: string | null;
+        payload: unknown;
+      }>(previewFixtureExportQuery, [user])
+    ).rows;
+    assert.ok(
+      own.some((r) => r.review_id === draft.review.id && r.record_id === null),
+    );
+    assert.ok(
+      own.some(
+        (r) =>
+          r.review_id === submitted.review.id &&
+          typeof r.record_id === "string",
+      ),
+    );
+    assert.deepEqual(
+      own.find((r) => r.review_id === submitted.review.id)!.payload,
+      submitted.payload,
+    );
+    assert.equal(
+      (await pg.query(previewFixtureExportQuery, [other])).rows.length,
+      0,
+    );
+    assert.equal(
+      /token_hash|email_hash|granted_by|created_by|payload_hash/.test(
+        previewFixtureExportQuery,
+      ),
+      false,
+    );
+    await pg.query("select private.disable_account($1)", [user]);
+    assert.equal(
+      (await pg.query(previewFixtureExportQuery, [user])).rows.length,
+      0,
     );
   }));

@@ -9,6 +9,7 @@ import { recordAnalytics } from "@/server/analytics";
 import { exportCommunityData } from "@/server/community-social";
 import { saveAppOnboarding } from "@/server/app-onboarding";
 import { boundedCommunityBody } from "@/core/community-social";
+import { exportPreviewFixtureData } from "@/server/preview-export";
 const preferenceSchema = z.object({
   timezone: z.string().refine((v) => DateTime.now().setZone(v).isValid),
   oddsFormat: z.enum(["decimal", "fractional", "american"]),
@@ -34,6 +35,7 @@ export async function GET() {
       community,
       appOnboarding,
       previewAccess,
+      previewFixtureEvidence,
     ] = await Promise.all([
       sql`select * from public.notification_preferences where user_id=${who.user.id}`,
       sql`select tip_id,created_at from public.saved_tips where user_id=${who.user.id}`,
@@ -43,6 +45,7 @@ export async function GET() {
       exportCommunityData(who.user.id),
       sql`select interests,version,completed_at from private.app_onboarding where user_id=${who.user.id}`,
       sql`select capabilities,created_at,expires_at,revoked_at from private.preview_tester_access where user_id=${who.user.id} order by created_at`,
+      exportPreviewFixtureData(who.user.id),
     ]);
     return NextResponse.json(
       {
@@ -55,6 +58,7 @@ export async function GET() {
         community,
         appOnboarding,
         previewAccess,
+        previewFixtureEvidence,
       },
       {
         headers: {
