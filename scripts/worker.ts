@@ -10,9 +10,9 @@ import {
   nextScheduleAt,
 } from "../src/core/notifications";
 import { eligible, type RegionPolicy } from "../src/core/policy";
-import { hash } from "../src/core/pricing";
 import { ResendEmail } from "../src/providers/email";
-import { unsubscribeToken, retryIsSafe } from "../src/core/delivery";
+import { retryIsSafe } from "../src/core/delivery";
+import { prepareOutboxUnsubscribe } from "../src/server/unsubscribe-preparation";
 import { processAccountDeletion } from "../src/server/account-deletion";
 import { currentTip, expandPublication } from "../src/server/dispatch";
 import { ingestSport, evaluateDue } from "../src/server/ingestion";
@@ -133,18 +133,17 @@ async function main() {
   // cannot reach the external adapter. A reservation survives a process crash.
   let token = "";
   if (settings.sending) {
-    token = unsubscribeToken(
-      item.id,
-      item.user_id,
-      process.env.UNSUBSCRIBE_SECRET ?? "",
-    );
     await sql.begin(async (tx) => {
       await tx`select pg_advisory_xact_lock(6729381)`;
-      const recipients =
-        await tx`select p.id,p.timezone from public.profiles p join private.outbox o on o.user_id=p.id where o.id=${item.id} and o.state='leased' and o.lease_token=${item.lease_token} and o.lease_until>now() and p.disabled_at is null for share of p`;
-      if (!recipients.length) return;
-      await tx`insert into private.unsubscribe_tokens(token_hash,user_id) values(${hash(token)},${item.user_id}) on conflict do nothing`;
-      await tx`insert into private.delivery_attempts(outbox_id,user_id,kind,local_day,status) select ${item.id},${item.user_id},${item.kind},${localDay(new Date().toISOString(), recipients[0].timezone)},'reserved' where not exists(select 1 from private.delivery_attempts where outbox_id=${item.id} and status in ('reserved','sent'))`;
+      const prepared = await prepareOutboxUnsubscribe(tx, {
+        outboxId: item.id,
+        userId: item.user_id,
+        leaseToken: item.lease_token,
+        secret: process.env.UNSUBSCRIBE_SECRET ?? "",
+      });
+      if (!prepared) return;
+      token = prepared.token;
+      await tx`insert into private.delivery_attempts(outbox_id,user_id,kind,local_day,status) select ${item.id},${item.user_id},${item.kind},${localDay(new Date().toISOString(), prepared.timezone)},'reserved' where not exists(select 1 from private.delivery_attempts where outbox_id=${item.id} and status in ('reserved','sent'))`;
     });
   }
   await sql.begin(async (tx) => {

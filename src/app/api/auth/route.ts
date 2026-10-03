@@ -5,6 +5,7 @@ import { config } from "@/server/config";
 import { db, rateLimit } from "@/server/db";
 import { hash } from "@/core/pricing";
 import { recordAnalytics } from "@/server/analytics";
+import { previewAuthEmailAllowed } from "@/server/preview-auth";
 const schema = z.object({
   action: z.enum([
     "signup",
@@ -56,6 +57,18 @@ export async function POST(request: Request) {
     );
   const v = parsed.data;
   if (
+    !config().production &&
+    ["signup", "recover"].includes(v.action) &&
+    !(await previewAuthEmailAllowed(v.email))
+  )
+    return NextResponse.json(
+      {
+        error:
+          "Preview email requires a local authentication mail sink or verified, unexpired Docked Preview capture approval for this exact test recipient.",
+      },
+      { status: 503 },
+    );
+  if (
     !(await rateLimit(
       `auth:${hash(v.email ?? request.headers.get("x-forwarded-for") ?? "unknown")}`,
       6,
@@ -65,20 +78,6 @@ export async function POST(request: Request) {
     return NextResponse.json(
       { error: "Please wait before trying again." },
       { status: 429 },
-    );
-  if (
-    !config().production &&
-    ["signup", "recover"].includes(v.action) &&
-    !["localhost", "127.0.0.1"].includes(
-      new URL(process.env.NEXT_PUBLIC_SUPABASE_URL!).hostname,
-    )
-  )
-    return NextResponse.json(
-      {
-        error:
-          "Preview email is restricted to a local authentication mail sink.",
-      },
-      { status: 503 },
     );
   const client = (await authClient())!;
   const sql = db();

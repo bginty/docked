@@ -1,6 +1,18 @@
+import {
+  hostedPreviewEnvironmentBound,
+  referencesDockedPreviewProject,
+} from "@/core/preview-auth";
 export function config(env: Record<string, string | undefined> = process.env) {
   const production = env.APP_ENV === "production";
+  if (env.PREVIEW_AUTH_CAPTURE_MODE || env.PREVIEW_AUTH_PROJECT_REF) {
+    if (!hostedPreviewEnvironmentBound(env))
+      throw new Error(
+        "Hosted preview Auth requires the exact reviewed Docked Preview environment binding",
+      );
+  }
   if (production) {
+    if (referencesDockedPreviewProject(env))
+      throw new Error("Docked Preview cannot run in production mode");
     if (env.DEMO_MODE === "true" || env.SUPABASE_ENV !== "production")
       throw new Error("Production rejects demo/preview configuration");
     for (const key of [

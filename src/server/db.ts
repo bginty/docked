@@ -1,16 +1,13 @@
 import "server-only";
 import postgres from "postgres";
+import { databaseConnectionOptions } from "./database-tls";
 let connection: ReturnType<typeof postgres> | undefined;
 export function db() {
   if (!process.env.DATABASE_URL) throw new Error("Database not configured");
   return (connection ??= postgres(process.env.DATABASE_URL, {
     max: 5,
     prepare: false,
-    ssl: ["localhost", "127.0.0.1", "[::1]"].includes(
-      new URL(process.env.DATABASE_URL).hostname,
-    )
-      ? undefined
-      : "require",
+    ...databaseConnectionOptions(process.env.DATABASE_URL),
   }));
 }
 export async function rateLimit(key: string, limit = 20, seconds = 60) {
