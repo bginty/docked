@@ -1,0 +1,69 @@
+{
+  "status": "PASS_WITH_RETAINED_INITIAL_FAILURE_HISTORY",
+  "scope": "Local compiled anonymous routes and isolated labelled DEMO components. Actual authenticated hosted acceptance is separate.",
+  "initialBroadSuite": {
+    "buildId": "aiM44fOUDwSX-lXNrq-Zi",
+    "report": "browser-first-results.json",
+    "review": "browser-first-review.json",
+    "total": 67,
+    "passed": 64,
+    "failed": 3,
+    "skipped": 0,
+    "durationMs": 1305709.259,
+    "failureResolution": "Both offline CSP cases and the 320px public journey pass in the final seven-case run. Original reports and local traces remain retained."
+  },
+  "interimTargetedSuite": {
+    "buildId": "0R9d4bc1vYUNUEDZpIN24",
+    "report": "browser-targeted-initial-results.json",
+    "review": "browser-targeted-initial-review.json",
+    "passed": 8,
+    "failed": 2,
+    "explanation": "Repeated global-networkidle timeout and a test selector targeting the intentionally hidden desktop topbar logo. Replaced global silence with strict rendered-product readiness and selected the required visible wordmark. No product safety or accessibility assertion was removed."
+  },
+  "harnessCorrectionCheck": {
+    "report": "browser-harness-results.json",
+    "passed": 2,
+    "failed": 0,
+    "durationSeconds": 46.0
+  },
+  "finalPresentationSuite": {
+    "sourceCommit": "f1d55a9",
+    "buildId": "TGqQXvHMsH62dqhRKsI4d",
+    "report": "browser-final-results.json",
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 87207.177,
+    "cases": [
+      "Native and PWA offline frames at 390px and 1366px: no remote assets, strict CSP, approved image, accessibility and console checks.",
+      "Public brand routes at 320px: HTTP200, exact destination, ready content/fonts/images, approved assets, no console errors, overflow or Axe violations.",
+      "All five app composition views at 360px, 390px, 412px and 1366px: labelled isolated data, touch targets, safe-area clearance, wordmark containment/Preview separation, accessibility and console checks."
+    ],
+    "screenshots": "final/brand-native, final/brand-browser, final/mobile-app",
+    "limitation": "The anonymous dashboard route tests its gate. It does not prove authenticated dashboard markup; actual hosted session evidence is maintained separately."
+  },
+  "unchangedAccountScreens": {
+    "report": "browser-targeted-initial-results.json",
+    "passedCases": 3,
+    "widths": [320, 412, 1366],
+    "buildId": "0R9d4bc1vYUNUEDZpIN24",
+    "scope": "App account routes, autofill, unchecked marketing, accessible chrome, screenshots and console checks. These app account components did not change in the later presentation repairs."
+  },
+  "separateAuthenticationHydration": {
+    "report": "auth-hydration-results.json",
+    "review": "auth-hydration-review.json",
+    "passed": 2,
+    "failed": 0,
+    "configuration": "Dedicated guarded fictional configuration on localhost:3107; every Auth submission intercepted; teardown verified."
+  },
+  "newComposerAndProfileHydration": {
+    "owner": "quant_data",
+    "sourceCommit": "f1d55a9",
+    "report": "fixture-local-results.json#coldLoadHydrationRegression",
+    "passed": 2,
+    "failed": 0,
+    "durationSeconds": 7.3,
+    "note": "Separate owner-produced SSR hydration evidence for composer and social/profile controls; not included in the counts above."
+  },
+  "interpretation": "All original failures have passing focused regressions. This receipt does not claim a single clean 67-case run on the final source."
+}

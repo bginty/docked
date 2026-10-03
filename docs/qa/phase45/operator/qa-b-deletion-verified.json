@@ -1,0 +1,33 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T13:31:24.830Z",
+  "readOnly": true,
+  "account": "exact disposable Phase45 QA-B",
+  "counts": {
+    "auth_users": 0,
+    "profiles": 0,
+    "disabled_profiles": 0,
+    "sessions": 0,
+    "refresh_tokens": 0,
+    "grants": 0,
+    "active_grants": 0,
+    "onboarding": 0,
+    "linked_social_profiles": 0,
+    "erasure_completion_events": 1
+  },
+  "jobs": [
+    {
+      "state": "queued",
+      "attempts": 0,
+      "payload_cleared": true,
+      "has_failure_reason": false
+    }
+  ],
+  "retention": {
+    "pseudonymous_profile": 1,
+    "labelled_synthetic_record": 1,
+    "canonical_community_edges": 0,
+    "official_publications": 0
+  },
+  "invitationStatus": "redeemed"
+}

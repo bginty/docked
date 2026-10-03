@@ -1,0 +1,34 @@
+{
+  "scope": "Local compiled application; anonymous routes and explicitly labelled isolated DEMO fixtures only. No genuine account actions.",
+  "buildId": "aiM44fOUDwSX-lXNrq-Zi",
+  "report": "browser-first-results.json",
+  "passed": 64,
+  "failed": 3,
+  "skipped": 0,
+  "durationMs": 1305709.259,
+  "issues": [
+    {
+      "code": "OFFLINE_CSP_LINE_ENDINGS",
+      "affectedCases": 2,
+      "finding": "Windows CRLF inline CSS was hashed before HTML parsing normalised it to LF. The browser correctly blocked the mismatched stylesheet, causing an oversized unstyled logo.",
+      "fix": "Canonicalise CSS and JavaScript line endings before rendering and hashing. Keep strict hash-bound CSP unchanged.",
+      "regression": "Five focused native/offline/brand platform tests passed; the retained first browser run loaded the pre-fix shell. Final browser verification is recorded separately."
+    },
+    {
+      "code": "FIRST_320_NETWORKIDLE_TIMEOUT",
+      "affectedCases": 1,
+      "finding": "The /community document returned 200 in 486ms and rendered. Its resources completed. Trace retained two unfinished /login and /join RSC prefetch requests from the prior document, started 27 seconds earlier. An independent GET returned 200 in 169ms. Subsequent width matrices passed.",
+      "fix": "No timeout or readiness assertions were relaxed. Repeat the exact case against the final build and report its outcome separately."
+    },
+    {
+      "code": "WORDMARK_PREVIEW_OVERLAP",
+      "affectedCases": 0,
+      "finding": "Visual screenshot inspection found the canonical wordmark extended beyond its allocated width and overlapped the Preview badge, despite existing layout tests passing.",
+      "fix": "Reduce the name text's container-relative size while preserving the exact approved D image. Add geometry checks for logo containment and Preview separation.",
+      "regression": "Focused 390px composition case passed across all five views with geometry, accessibility and console checks (28.2 seconds). All-width final verification is recorded separately.",
+      "commit": "d5023b5"
+    }
+  ],
+  "retainedTraces": "private-data/phase45/browser-first (ignored local evidence; original files retained)",
+  "note": "First-run screenshots describe this earlier build. Final repaired views and reports are kept separately; this receipt does not claim a clean 67-case first run."
+}

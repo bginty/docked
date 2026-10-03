@@ -1,0 +1,189 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config=private-data/phase45/auth-hydration.playwright.config.ts"
+    ],
+    "configFile": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\private-data\\phase45\\auth-hydration.playwright.config.ts",
+    "rootDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser-hydration",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/test-results/phase45-auth-hydration",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser-hydration",
+        "testIgnore": [],
+        "testMatch": [
+          "auth-form-hydration.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\docs\\qa\\phase45\\auth-hydration-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "auth-form-hydration.spec.ts",
+      "file": "auth-form-hydration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "authentication waits for hydration and submits exactly one JSON request",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6985,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <button disabled class=\"button\">Log in</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <button disabled class=\"button\">Log in</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser-hydration\\auth-form-hydration.spec.ts:58:26",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser-hydration\\auth-form-hydration.spec.ts",
+                      "column": 26,
+                      "line": 58
+                    },
+                    "snippet": "  56 |     releaseScripts();\n  57 |     await expect(form).toHaveAttribute(\"data-api-ready\", \"true\");\n> 58 |     await expect(submit).toBeEnabled();\n     |                          ^\n  59 |     await submit.click();\n  60 |     await expect(form.getByRole(\"status\")).toHaveText(\n  61 |       \"Fictional submission intercepted.\","
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser-hydration\\auth-form-hydration.spec.ts",
+                        "column": 26,
+                        "line": 58
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: locator('[name=\"password\"]') }).getByRole('button', { name: 'Log in', exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <button disabled class=\"button\">Log in</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n\n  56 |     releaseScripts();\n  57 |     await expect(form).toHaveAttribute(\"data-api-ready\", \"true\");\n> 58 |     await expect(submit).toBeEnabled();\n     |                          ^\n  59 |     await submit.click();\n  60 |     await expect(form.getByRole(\"status\")).toHaveText(\n  61 |       \"Fictional submission intercepted.\",\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser-hydration\\auth-form-hydration.spec.ts:58:26"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T13:16:16.862Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\phase45-auth-hydration\\auth-form-hydration-authen-980d2-ts-exactly-one-JSON-request\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\phase45-auth-hydration\\auth-form-hydration-authen-980d2-ts-exactly-one-JSON-request\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser-hydration\\auth-form-hydration.spec.ts",
+                    "column": 26,
+                    "line": 58
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1d666e6b6e9b99621478-18f2641381d44e016f25",
+          "file": "auth-form-hydration.spec.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "JavaScript-disabled authentication stays disabled and forced native submission never puts credentials in the URL",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1176,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T13:16:26.766Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1d666e6b6e9b99621478-8ab6d6bce05c65a6b77a",
+          "file": "auth-form-hydration.spec.ts",
+          "line": 77,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-03T13:16:14.433Z",
+    "duration": 13933.525000000001,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

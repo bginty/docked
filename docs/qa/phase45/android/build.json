@@ -1,0 +1,39 @@
+{
+  "recordedAt": "2026-10-03T13:30:07.786Z",
+  "status": "PASS",
+  "command": "npm run android:hosted-preview",
+  "gradleDurationSeconds": 85,
+  "gradleTasks": 373,
+  "executedTasks": 50,
+  "upToDateTasks": 323,
+  "artifact": "artifacts/android/Docked-Preview-S24-v5-App-Entry.apk",
+  "bytes": 9597678,
+  "sha256": "3e7af19503c376e8601ca9eef164a17d8a385b73f36aecff19a4a2629929552b",
+  "sourceCommit": "f1d55a954644b122b57ccbed1b54207194552390",
+  "previewReceipt": {
+    "schemaVersion": 1,
+    "kind": "docked-android-preview",
+    "environment": "preview",
+    "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+    "supabaseProjectRef": "bckkllmndoxzpzdqrevb",
+    "applicationId": "au.com.docked.app.preview",
+    "deploymentId": "dpl_8Zs6gWmRJC4kL9sUL7WvLRYXXR3y",
+    "verifiedAt": "2026-10-03T13:25:38.784Z",
+    "safety": {
+      "emailSending": false,
+      "pushSending": false,
+      "billing": false,
+      "competitions": false,
+      "prizes": false,
+      "deals": false,
+      "affiliates": false,
+      "forwardPaper": false,
+      "productionSupabaseAllowed": false,
+      "oddsProviderStatus": "NOT_CONFIGURED",
+      "resultsProviderStatus": "NOT_CONFIGURED",
+      "strategyStatus": "UNVALIDATED"
+    }
+  },
+  "generatedTrackedSourceDrift": false,
+  "deviceOrEmulatorRun": false
+}

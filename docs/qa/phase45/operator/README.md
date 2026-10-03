@@ -1,0 +1,24 @@
+# Preview access operator evidence
+
+On 3 October 2026, the reviewed operator verified the exact Docked Preview project and organisation, saved an exclusive private application/schema preimage, and applied only migrations `20261003121257` and `20261003121502` using the installed CLI after dry-run. The linked project was checked and Vault updates were explicitly skipped.
+
+- `migration-preimage.json`: SHA-256 and scope of the ignored recovery preimage. This is not a full Auth/storage disaster-recovery backup.
+- `migration.json`: actual nine-to-eleven migration result, unchanged owner and closed sporting/email/commercial boundaries.
+- `plan.json`: latest read-only exact-target/catalog verification. New private tables and functions have no anonymous/member privileges; all application tables retain RLS.
+- `invitations.json`: four invitation rows, zero Auth users created by the operator, and one audited owner capability grant ending at the existing **10 October 2026 06:36:23.296 UTC** expiry. The owner’s profile, legal choices, password and credential file were unchanged.
+- `advisors.json`: actual Supabase advisor results. Private RLS without policies is intentional deny-all access. Existing leaked-password protection remains a warning; informational foreign-key index tuning remains recorded, including four new preview foreign keys. No Auth settings or subscriptions were changed.
+- `social-taxonomy-preimage.json` / `social-taxonomy.json`: two absent generic labels were inserted on 3 October at 13:02 UTC, both disabled. Existing rows were preserved, the owner fingerprint matched, and closed-state checks passed. This supports football/basketball demo-post tags without sporting data or provider activation.
+
+The new invitation fixture is ignored at `private-data/phase45-beta/acceptance.json`. It is used only by the reviewed browser runner against the canonical preview. Two temporary QA identities are disposable. Two labelled DEMO seed identities may remain, without real performance or analytics. All signup/onboarding happens through the actual application; invitation provisioning does not prove email ownership and does not send email.
+
+Local focused verification after the final fixture annotation passed **19 tests**: nine entitlement/invitation/RLS/MFA/expiry/erasure cases, four isolated fixture integrity/erasure cases, five Auth/schema/consent cases and one actual acquisition-query regression. The preserved staff/session matrix also passed separately. Hosted signup and social acceptance are reported by the browser evidence, not inferred from these tests.
+
+The subsequent full sequential suites passed **209 platform tests and 96 PostgreSQL tests**, with no failures or skips; the sanitized receipt is `../full-validation.json`. Later targeted tests are reported independently, rather than folded into this completed run.
+
+Hosted application acceptance passed on the final deployment; its receipt is `../hosted/2026-10-03T13-28-01-477Z/results.json`. Exact QA-A capability revocation was then tested while genuine login and own-data export remained available (`../hosted/2026-10-03T13-31-08-562Z/results.json`). The original deletion timeout diagnostic is preserved: the confirmation field was populated before the existing form was ready. The corrected browser sequence subsequently completed actual QA-B erasure; `qa-b-deletion-verified.json` independently confirms the result.
+
+After explicit browser release and the parent's successful actual-secret scan, cleanup completed on **3 October 2026 at 13:32:46 UTC**. `cleanup.json` verifies zero disposable QA Auth/profile/session/grant/onboarding/analytics residue, revoked demo-seed sessions, redacted new credential copies, and an unchanged owner profile, consent, password and credential file. Three Auth identities remain: the protected owner and two visibly DEMO seed accounts. Exactly four labelled preview discussion posts remain.
+
+`final-residue-and-seeds.json` independently verifies no QA social text/media/interactions or identifying handles, zero seed sessions/refresh tokens, two DEMO profiles and four labelled posts. **Three** immutable synthetic submissions remain pseudonymously: one from QA-A and two from QA-B. Both current browser-journal IDs are present. All three have matching canonical payload hashes, nested fixture/preview labels and four authored synthetic sources; none joins the real ledger. The initial assumed total of two was corrected to the actual retained count. No records were removed to make the count fit.
+
+All eleven migrations and RLS/private privilege checks remain valid. Genuine events, odds, publications, community Edges, references, analytics, staff roles, enabled feature flags, ordinary jurisdiction approvals and delivery attempts remain zero. No production deployment, DNS or email settings were changed by this operator.

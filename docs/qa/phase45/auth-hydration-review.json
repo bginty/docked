@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "report": "auth-hydration-results.json",
+  "passed": 2,
+  "failed": 0,
+  "durationSeconds": 11.5,
+  "configuration": "Existing playwright.hydration.config.ts with separate evidence paths. Dedicated localhost:3107 server, fictional public Auth configuration, server secrets blank and operational gates disabled.",
+  "submissions": "All fictional authentication submissions intercepted in the browser. No real account created or authenticated.",
+  "checks": [
+    "Before hydration the login button is disabled and click/Enter submit nothing.",
+    "After hydration exactly one JSON POST is sent without URL credentials.",
+    "With JavaScript disabled, login remains disabled and a forced native form submission uses POST without credentials in the URL."
+  ],
+  "teardown": "Completed successfully; an independent fetch confirmed port3107 was closed.",
+  "initialEnvironmentMismatch": {
+    "report": "auth-hydration-closed-server-results.json",
+    "explanation": "The first attempt used the ordinary closed local server. Its NOT_CONFIGURED login correctly stayed disabled after hydration, while the forced-native POST check passed. The configured-success case requires the existing isolated fake-config environment; no product control was weakened."
+  }
+}

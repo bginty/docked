@@ -2,7 +2,15 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: approved mobile application UX
+## Current milestone: Phase 4.5 invited Android beta
+
+Continued from clean `80f2ed5`. The byte-exact installed blue D is now the canonical brand source. Dedicated `/app` entry resolves to app login or Edges, with compact account screens, required age/terms/privacy, separate unticked marketing and short onboarding. Expiring, auditable Preview Tester capabilities and invitations are restricted to the exact isolated Docked project. Clearly labelled DEMO community content and immutable preview-price records remain separate from genuine publication, performance and rankings. Five educational articles and a source-controlled, currently empty Weekend Watchlist are prepared.
+
+Final web source `f1d55a9` is on the isolated Preview alias. Genuine invited signup/onboarding, social writes, fixture submission/export, returning login and 20 authenticated screenshot checks passed; separate actual revocation denies protected operations while retaining own-account export. No accessibility or console/page errors occurred in the final hosted run. Acceptance found and repaired lost pre-hydration social taps, invalid dashboard paragraph nesting, offline CSP line-ending mismatch and wordmark overlap. Full local platform tests passed 209/209 and PostgreSQL/RLS tests 96/96, with one additional passing database export regression. Original browser failures and their passing focused repairs are retained rather than described as one fully green final broad run.
+
+The built v5 APK is `artifacts/android/Docked-Preview-S24-v5-App-Entry.apk`, version 5 / `1.4-preview`, using the same package and certificate as v4. The owner confirmed physical v4 operation; physical **v5 remains unverified**. Signed AAB generation is blocked only on the owner's upload key and Play/legal decisions. Detailed final test, deployment, cleanup, APK, screenshots and owner-action evidence is in [the Phase 4.5 report](qa/phase45/README.md). Production, DNS, Oura and external email remain untouched; providers, research, forward paper and live publication remain closed.
+
+## Preserved milestone: approved mobile application UX
 
 Continued from clean `0b1de08` with the existing approved brand and technical base. The five canonical mobile tabs are Edges, Feed, Following, Points and My Edge; `/home` opens Edges while legacy feed query links remain usable. A compact navy shell, safe-area-aware navigation, compact records/social timelines and existing account controls replace the mobile website hierarchy. Points/levels and sport-follow persistence remain explicitly unavailable; no sporting data or performance has been inserted. APIs, pricing, RLS, authentication and benchmark integrity are preserved. Validation, Preview/APK receipts and the exact file inventory are in [the mobile UX report](qa/mobile-app-ux/README.md).
 

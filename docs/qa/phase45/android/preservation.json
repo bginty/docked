@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-03T13:30:07.779Z",
+  "status": "PASS",
+  "records": [
+    {
+      "version": "v3",
+      "artifact": "artifacts/android/Docked-Preview-S24-v3-Edge-Signal.apk",
+      "sha256": "d34678b205e7a4ad21589345d642cde64bb49c865ce076df66c929cc70f97df0",
+      "archiveVerified": true
+    },
+    {
+      "version": "v4",
+      "artifact": "artifacts/android/Docked-Preview-S24-v4-Mobile-App.apk",
+      "sha256": "18fb07bcb4f1fc8d43ac1b1b9c974b56f902ec0a76e2ff4f53558a993af8e19e",
+      "archiveVerified": true
+    },
+    {
+      "version": "v5",
+      "artifact": "artifacts/android/Docked-Preview-S24-v5-App-Entry.apk",
+      "sha256": "3e7af19503c376e8601ca9eef164a17d8a385b73f36aecff19a4a2629929552b",
+      "archiveVerified": true
+    }
+  ]
+}

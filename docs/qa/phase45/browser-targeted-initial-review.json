@@ -1,0 +1,20 @@
+{
+  "buildId": "0R9d4bc1vYUNUEDZpIN24",
+  "report": "browser-targeted-initial-results.json",
+  "passed": 8,
+  "failed": 2,
+  "durationMs": 329172.85,
+  "findings": [
+    "The same 320px global-networkidle timeout reproduced while the destination document and resources returned 200 and rendered. The test now waits for DOMContentLoaded and independently asserts the exact canonical route, visible main, one nonempty h1, no app loading boundary, loaded fonts and every image decoded. Existing 200, asset hashes, console, overflow and accessibility assertions remain.",
+    "The new desktop logo geometry test selected the intentionally hidden mobile topbar logo. It now requires exactly one visible wordmark, selecting the sidebar on desktop and the topbar on mobile, then checks containment and Preview separation."
+  ],
+  "harnessRegressionReport": "browser-harness-results.json",
+  "harnessRegression": {
+    "passed": 2,
+    "failed": 0,
+    "durationSeconds": 46.0,
+    "cases": ["320px full public brand journey", "1366px all five app composition views"]
+  },
+  "retainedTraces": "private-data/phase45/browser-targeted-initial",
+  "note": "This interim run is not presented as a clean 10-case result. Final-build verification is recorded separately."
+}

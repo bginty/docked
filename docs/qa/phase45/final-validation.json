@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-10-03T13:34:39.3359597Z",
+  "sourceCommit": "f1d55a954644b122b57ccbed1b54207194552390",
+  "typecheck": "PASS",
+  "wholeRepositoryLint": "PASS",
+  "productionBuild": "PASS",
+  "buildId": "TGqQXvHMsH62dqhRKsI4d",
+  "buildLogSha256": "eb7a2a586c12b332178297738ba292b5399cc4dffe91503a14007d9f62ccf7d2",
+  "dependencyAudit": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 51,
+      "dev": 230,
+      "optional": 70,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 315
+    }
+  },
+  "fullSuites": "full-validation.json",
+  "browserHistory": "browser-acceptance.json",
+  "hostedEvidence": "hosted/README.md",
+  "androidEvidence": "android/README.md",
+  "actualCredentialAudit": "actual-secret-audit.json"
+}

@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "runId": "b3aed1a5-ab17-4741-8143-632e1f175402",
+  "recordedAt": "2026-10-03T13:31:12.657Z",
+  "mode": "--verify-revoked",
+  "ownerUsed": false,
+  "externalEmail": false,
+  "fixtureInjection": false,
+  "checkpoints": [
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-b",
+    "fixture-isolation-qa-b",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-b",
+    "fixture-isolation-qa-b",
+    "qa-b-deleted-after-permanent-fixture",
+    "invited-session-onboarding-qa-a",
+    "fixture-isolation-qa-a",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-a",
+    "fixture-preserved-on-resume-qa-a",
+    "comment-reply-like-save-follow-unfollow-mute-unmute-report",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-a",
+    "fixture-preserved-on-resume-qa-a",
+    "block-enforced-without-ledger-change",
+    "invited-session-onboarding-qa-a",
+    "returning-app-login-no-onboarding",
+    "operator-revocation-enforced"
+  ],
+  "results": [],
+  "browserErrors": [
+    {
+      "accountKind": "qa-a",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    }
+  ],
+  "cleanup": "QA A awaits operator revocation/cleanup; QA B application deletion tested; two obvious test seed profiles retained."
+}

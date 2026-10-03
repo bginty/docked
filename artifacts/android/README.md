@@ -1,13 +1,17 @@
 # Docked Android preview delivery
 
-[Download Docked Preview v4 — Mobile App](Docked-Preview-S24-v4-Mobile-App.apk)
+[Download Docked Preview v5 — App Entry](Docked-Preview-S24-v5-App-Entry.apk)
 
-9,262,110 bytes · SHA-256 `18fb07bcb4f1fc8d43ac1b1b9c974b56f902ec0a76e2ff4f53558a993af8e19e`
+9,597,678 bytes · SHA-256 `3e7af19503c376e8601ca9eef164a17d8a385b73f36aecff19a4a2629929552b`
 
-This is a sideload preview, package `au.com.docked.app.preview`, versionCode 4 (`1.3-preview`). It connects to the isolated Docked HTTPS preview over internet access; it does not require a laptop, ADB forwarding or a local server after installation. Debugging and cleartext are disabled. The package and signing certificate match the actual preserved v3 APK, allowing an in-place upgrade. Physical S24 acceptance has not been run.
+This sideload preview is package `au.com.docked.app.preview`, versionCode 5 (`1.4-preview`). It opens the isolated HTTPS preview at `/app`, which routes to app login, onboarding or Edges. Internet access is required; a laptop, ADB forwarding and local server are not required after installation. Android debugging, WebView inspection and cleartext are disabled. The package and signing certificate match the actual preserved v4 APK for an in-place upgrade.
 
-The binary is Git-ignored and stored outside Gradle outputs. [Current manifest](manifest.json) and [v4 artifact audits](../../docs/qa/mobile-app-ux/android/README.md) record its identity and exact checks. Every existing delivery/debug/preview APK is verified in a content-hash archive before Gradle can run.
+**V5 physical-device and emulator acceptance remain unverified.** The user reported that v4 works on their physical Samsung S24; that does not establish v5 lifecycle, keyboard, native share or photo-picker acceptance.
 
-This final v4 includes the verified receipt for the corrected mobile preview deployment. The earlier undelivered v4 candidate and its exact receipts remain in a separate [historical archive record](../../docs/qa/mobile-app-ux/android/initial-candidate/README.md).
+The APK is Git-ignored and stored outside Gradle outputs. [V5 manifest](manifest-v5.json), [current manifest](manifest.json) and [v5 build/security audits](../../docs/qa/phase45/android/README.md) identify the exact artifact. Builds verify all existing delivery/debug/preview artifacts in a content-hash archive before invoking Gradle.
+
+[Preserved v4 — Mobile App](Docked-Preview-S24-v4-Mobile-App.apk) remains unchanged: 9,262,110 bytes, SHA-256 `18fb07bcb4f1fc8d43ac1b1b9c974b56f902ec0a76e2ff4f53558a993af8e19e`. Its [original manifest](manifest-v4.json) and [historical audits](../../docs/qa/mobile-app-ux/android/README.md) are retained, including the [undelivered first candidate](../../docs/qa/mobile-app-ux/android/initial-candidate/README.md).
 
 [Preserved v3 — Edge Signal](Docked-Preview-S24-v3-Edge-Signal.apk) remains unchanged: 9,262,110 bytes, SHA-256 `d34678b205e7a4ad21589345d642cde64bb49c865ce076df66c929cc70f97df0`. Its [original manifest](manifest-v3.json) and [historical audit](../../docs/qa/edge-signal-brand/native/README.md) remain available. That report includes the earlier v2 binary loss; v2 must not be described as preserved.
+
+A signed Play AAB requires separate owner-controlled upload signing credentials. The guarded [closed-test workflow](../../docs/ANDROID_CLOSED_TEST_BUILD.md) is prepared; no AAB or Play upload was produced.

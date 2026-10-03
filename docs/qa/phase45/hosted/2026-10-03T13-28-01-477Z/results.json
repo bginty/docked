@@ -1,0 +1,257 @@
+{
+  "status": "PASS",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "runId": "b3aed1a5-ab17-4741-8143-632e1f175402",
+  "recordedAt": "2026-10-03T13:29:21.021Z",
+  "mode": "--run",
+  "ownerUsed": false,
+  "externalEmail": false,
+  "fixtureInjection": false,
+  "checkpoints": [
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-b",
+    "fixture-isolation-qa-b",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-b",
+    "fixture-isolation-qa-b",
+    "qa-b-deleted-after-permanent-fixture",
+    "invited-session-onboarding-qa-a",
+    "fixture-isolation-qa-a",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-a",
+    "fixture-preserved-on-resume-qa-a",
+    "comment-reply-like-save-follow-unfollow-mute-unmute-report",
+    "invited-session-onboarding-seed-a",
+    "invited-session-onboarding-seed-b",
+    "invited-session-onboarding-qa-a",
+    "fixture-preserved-on-resume-qa-a",
+    "block-enforced-without-ledger-change",
+    "invited-session-onboarding-qa-a",
+    "returning-app-login-no-onboarding"
+  ],
+  "results": [
+    {
+      "route": "/edges",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-edges-412.png",
+      "violations": []
+    },
+    {
+      "route": "/feed",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-feed-412.png",
+      "violations": []
+    },
+    {
+      "route": "/following",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-following-412.png",
+      "violations": []
+    },
+    {
+      "route": "/points",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-points-412.png",
+      "violations": []
+    },
+    {
+      "route": "/my-edge",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-my-edge-412.png",
+      "violations": []
+    },
+    {
+      "route": "/compose",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-compose-412.png",
+      "violations": []
+    },
+    {
+      "route": "/community/posts/864fa780-3263-401e-a307-e385131dda56",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-community-posts-864fa780-3263-401e-a307-e385131dda56-412.png",
+      "violations": []
+    },
+    {
+      "route": "/profile",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-profile-412.png",
+      "violations": []
+    },
+    {
+      "route": "/notifications",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-notifications-412.png",
+      "violations": []
+    },
+    {
+      "route": "/dashboard",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-dashboard-412.png",
+      "violations": []
+    },
+    {
+      "route": "/edges",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-edges-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/feed",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-feed-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/following",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-following-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/points",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-points-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/my-edge",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-my-edge-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/compose",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-compose-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/community/posts/864fa780-3263-401e-a307-e385131dda56",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-community-posts-864fa780-3263-401e-a307-e385131dda56-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/profile",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-profile-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/notifications",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-notifications-360@3x.png",
+      "violations": []
+    },
+    {
+      "route": "/dashboard",
+      "viewport": {
+        "width": 360,
+        "height": 720,
+        "deviceScaleFactor": 3
+      },
+      "screenshot": "-dashboard-360@3x.png",
+      "violations": []
+    }
+  ],
+  "browserErrors": [
+    {
+      "accountKind": "seed-a",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    },
+    {
+      "accountKind": "seed-b",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    },
+    {
+      "accountKind": "qa-a",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    },
+    {
+      "accountKind": "qa-a",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    }
+  ],
+  "cleanup": "QA A awaits operator revocation/cleanup; QA B application deletion tested; two obvious test seed profiles retained."
+}

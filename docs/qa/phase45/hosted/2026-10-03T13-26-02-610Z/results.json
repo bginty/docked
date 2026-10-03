@@ -1,0 +1,59 @@
+{
+  "status": "FAIL",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "stage": "screenshots-accessibility",
+  "checkpoint": "browser-or-operator-error",
+  "errorKind": "failed-check",
+  "results": [
+    {
+      "route": "/edges",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-edges-412.png",
+      "violations": []
+    },
+    {
+      "route": "/feed",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-feed-412.png",
+      "violations": []
+    },
+    {
+      "route": "/following",
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "screenshot": "-following-412.png",
+      "violations": []
+    }
+  ],
+  "ownerUsed": false,
+  "rawErrorWithheld": true,
+  "browserErrors": [
+    {
+      "accountKind": "seed-a",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    },
+    {
+      "accountKind": "seed-b",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    },
+    {
+      "accountKind": "qa-a",
+      "console": 0,
+      "page": 0,
+      "forbidden": 0
+    }
+  ]
+}

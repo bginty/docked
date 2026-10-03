@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-10-03T12:52:58.754Z",
+  "sequential": true,
+  "concurrency": 1,
+  "suites": [
+    {
+      "suite": "platform",
+      "exitCode": 0,
+      "tests": 209,
+      "passed": 209,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 166568,
+      "logSha256": "92cc2638562ef8b66d40820e648141915e4ea3817a4503d1395015718bb06cb8"
+    },
+    {
+      "suite": "database",
+      "exitCode": 0,
+      "tests": 96,
+      "passed": 96,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 166475,
+      "logSha256": "a73a14f84095ff0c75c22ef42fad6c2531cd55351d6cbd982befd1d69b821c14"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "recordedAt": "2026-10-03T13:20:46.4782030Z",
+  "command": "npm run android:closed-test:check",
+  "exitCode": 1,
+  "status": "OWNER_ACTION_REQUIRED",
+  "message": "Upload keystore, alias and password environment variables are required.",
+  "requiredInputs": [
+    "DOCKED_UPLOAD_KEYSTORE",
+    "DOCKED_UPLOAD_ALIAS",
+    "DOCKED_UPLOAD_STORE_PASSWORD",
+    "DOCKED_UPLOAD_KEY_PASSWORD"
+  ],
+  "keyCreated": false,
+  "aabBuilt": false,
+  "playUploadPerformed": false,
+  "interpretation": "The signing guard correctly refused to build a Play bundle without owner-controlled upload signing credentials. The sideload certificate is deliberately ineligible for this workflow."
+}

@@ -1,0 +1,82 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "checkedAt": "2026-10-03T12:42:47Z",
+  "security": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 84,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "performance": [
+    {
+      "name": "unindexed_foreign_keys",
+      "level": "INFO",
+      "count": 58,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0001_unindexed_foreign_keys",
+      "newPhase45Tables": [
+        {
+          "name": "preview_beta_invitations",
+          "type": "table",
+          "schema": "private",
+          "fkey_name": "preview_beta_invitations_policy_id_fkey",
+          "fkey_columns": [
+            3
+          ]
+        },
+        {
+          "name": "preview_beta_invitations",
+          "type": "table",
+          "schema": "private",
+          "fkey_name": "preview_beta_invitations_redeemed_user_id_fkey",
+          "fkey_columns": [
+            16
+          ]
+        },
+        {
+          "name": "preview_fixture_edges",
+          "type": "table",
+          "schema": "private",
+          "fkey_name": "preview_fixture_edges_session_id_fkey",
+          "fkey_columns": [
+            3
+          ]
+        },
+        {
+          "name": "preview_market_sessions",
+          "type": "table",
+          "schema": "private",
+          "fkey_name": "preview_market_sessions_profile_id_fkey",
+          "fkey_columns": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "name": "unused_index",
+      "level": "INFO",
+      "count": 12,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index",
+      "newPhase45Tables": [
+        {
+          "name": "preview_beta_invitations",
+          "type": "table",
+          "schema": "private"
+        }
+      ]
+    }
+  ],
+  "review": {
+    "privateNoPolicies": "Intentional server-only deny-all RLS; browser roles have no private privileges. Do not add permissive policies to silence this notice.",
+    "passwordProtection": "Existing disabled leaked-password protection remains a launch security dependency; no Auth configuration or plan changed.",
+    "foreignKeys": "INFO performance follow-up, including four new Phase45 foreign keys. Preview-scale tables are bounded; tune using workload measurements before expansion."
+  }
+}

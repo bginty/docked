@@ -1,0 +1,49 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "readOnly": true,
+  "passed": true,
+  "evidence": "Independent post-cleanup read-only transaction; actual counts preserved without deleting immutable synthetic records to match an assumed count.",
+  "credentialCopiesRedacted": true,
+  "residue": {
+    "identifiable_qa_profiles": 0,
+    "qa_post_content": 0,
+    "qa_comment_content": 0,
+    "qa_media": 0,
+    "qa_reactions": 0,
+    "qa_saves": 0,
+    "qa_notifications": 0,
+    "identifiable_qa_handle_history": 0,
+    "qa_reporter_links": 0,
+    "seed_sessions": 0,
+    "seed_refresh_tokens": 0
+  },
+  "retained": {
+    "synthetic_seed_identities": 2,
+    "labelled_seed_profiles": 2,
+    "labelled_seed_posts": 4,
+    "pseudonymous_preview_entries": 3,
+    "qa_a_preview_entries": 1,
+    "qa_b_preview_entries": 2,
+    "current_journal_entries_retained": 2,
+    "verified_synthetic_entries": 3,
+    "staff_roles": 0,
+    "official_publications": 0,
+    "canonical_community_edges": 0,
+    "real_events": 0,
+    "real_odds": 0,
+    "enabled_flags": 0,
+    "ordinary_approvals": 0,
+    "outbound_attempts": 0,
+    "sent_outbox": 0,
+    "analytics_events": 0
+  },
+  "syntheticChecks": [
+    "Exact released QA profile scope; profiles now pseudonymous with no Auth link",
+    "Both current journal submission IDs remain",
+    "All three entries retain matching source-session and entry hashes",
+    "Canonical SHA-256 of each stored payload matches its immutable stored hash",
+    "All three payloads and nested references carry preview/fixture flags and DEMO / PREVIEW PRICE labels",
+    "Every source list has exactly four authored-preview-fixture sources with fixture provenance"
+  ],
+  "recordedAt": "2026-10-03T13:36:04.878Z"
+}
