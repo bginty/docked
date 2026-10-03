@@ -229,6 +229,36 @@
 .scanner-form-grid label {
   min-width: 0;
 }
+/* Operational status tokens and hashes must wrap without hiding evidence.
+   Wide poll tables retain their labelled, keyboard-focusable local scroller. */
+.data-health-panel {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.data-health-panel .grid > *,
+.data-health-panel .detail-list,
+.data-health-panel .safe-json {
+  min-width: 0;
+  max-width: 100%;
+}
+.data-health-panel .table-wrap {
+  max-width: 100%;
+}
+.data-health-panel table {
+  min-width: 720px;
+}
+.data-health-panel th,
+.data-health-panel td {
+  white-space: normal;
+  vertical-align: top;
+}
+.data-health-panel td {
+  min-width: 8rem;
+  max-width: 24rem;
+}
+.data-health-panel td:last-child {
+  min-width: 16rem;
+}
 @media (max-width: 760px) {
   .community-shell .edge-history-link { color: var(--app-selected); }
   .community-shell .mobile-edge-board .app-page-heading { margin-bottom: 12px; }
