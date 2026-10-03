@@ -55,7 +55,11 @@ try {
     !(Date.parse(receipt.expiresAt) > Date.now())
   )
     throw new Error("Readiness gate");
-  const ca = await readFile(process.env.DATABASE_SSL_CA_FILE ?? path.join(root, "certs/supabase-prod-ca-2021.crt"), "utf8");
+  const ca = await readFile(
+    process.env.DATABASE_SSL_CA_FILE ??
+      path.join(root, "certs/supabase-prod-ca-2021.crt"),
+    "utf8",
+  );
   sql = postgres(process.env.DATABASE_URL, {
     host: database.hostname,
     port: Number(database.port || 5432),
@@ -67,7 +71,10 @@ try {
     connect_timeout: 10,
     idle_timeout: 5,
   });
+  let databaseNow;
   const items = await sql.begin("read only", async (tx) => {
+    const [clock] = await tx`select clock_timestamp() as now`;
+    databaseNow = clock.now.toISOString();
     const configuration =
       await tx`select c.project_ref,c.hook_verified_at,c.hook_function_sha256,
       encode(sha256(convert_to(pg_get_functiondef('preview_auth.capture_email(jsonb)'::regprocedure),'UTF8')),'hex') actual_hash
@@ -96,6 +103,7 @@ try {
   const value = {
     projectRef,
     exportedAt: new Date().toISOString(),
+    databaseNow,
     messages: items.map((row) => ({
       email: row.email,
       type: row.type,

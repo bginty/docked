@@ -85,9 +85,7 @@ for (const label of ["analyst", "editor", "admin", "auditor"] as const)
       });
       await expect(review).toHaveCount(1);
       await expect(review.getByRole("img")).toBeVisible();
-      await review
-        .getByLabel("Media action", { exact: true })
-        .selectOption("approve");
+      await review.locator('select[name="decision"]').selectOption("approve");
       await review
         .getByLabel("Review reason", { exact: true })
         .fill(

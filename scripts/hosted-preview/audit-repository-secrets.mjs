@@ -1,5 +1,6 @@
 // Read-only repository scan against this task's actual private values; never print them.
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, readdir } from "node:fs/promises";
+import path from "node:path";
 import { execFileSync } from "node:child_process";
 const connection = JSON.parse(
   await readFile("private-data/hosted-preview/connection.json", "utf8"),
@@ -29,6 +30,14 @@ const canary = JSON.parse(
   await readFile("private-data/hosted-preview/canary.json", "utf8"),
 );
 values.push(canary.password);
+try {
+  const factors = JSON.parse(
+    await readFile("private-data/hosted-preview/mfa.json", "utf8"),
+  );
+  for (const factor of Object.values(factors)) values.push(factor.secret);
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+}
 const needles = [
   ...new Set(
     values
@@ -53,6 +62,16 @@ const files = [
 ];
 const findings = [];
 let inspected = 0;
+async function browserFiles(directory) {
+  const result = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) result.push(...(await browserFiles(file)));
+    else result.push(file);
+  }
+  return result;
+}
+files.push(...(await browserFiles(".next/static")));
 for (const file of files) {
   let bytes;
   try {
@@ -72,7 +91,7 @@ const report = {
   findings,
 };
 await writeFile(
-  "docs/qa/hosted-preview/repository-secret-audit.json",
+  "docs/qa/phase4/repository-secret-audit.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(

@@ -78,6 +78,13 @@ try {
       !!data.session?.access_token,
   );
   const token = data.session.access_token;
+  const spoof = await client.auth.updateUser({
+    data: { role: "admin", roles: ["admin"], aal: "aal2" },
+  });
+  check(
+    "user-editable admin claims accepted only as untrusted metadata",
+    !spoof.error,
+  );
   for (const [table, column] of [
     ["profiles", "id"],
     ["notification_preferences", "user_id"],
@@ -128,10 +135,14 @@ try {
   }
   for (const table of [
     "roles",
-    "provider_snapshots",
+    "odds_snapshots",
     "tip_publications",
     "community_edges",
     "social_posts",
+    "market_references",
+    "market_reference_methodologies",
+    "market_reference_movements",
+    "community_edge_personal_notes",
   ]) {
     const response = await rest(
       `${table}?select=*`,
@@ -145,6 +156,20 @@ try {
       [401, 403, 406].includes(response.status),
       { httpStatus: response.status },
     );
+    for (const method of ["POST", "PATCH", "DELETE"]) {
+      const write = await rest(
+        `${table}?id=eq.${state.accounts.memberB.id}`,
+        token,
+        method,
+        method === "DELETE" ? undefined : { id: state.accounts.memberB.id },
+        "private",
+      );
+      check(
+        `private ${table} ${method} denied`,
+        [401, 403, 406].includes(write.status),
+        { httpStatus: write.status },
+      );
+    }
   }
   const capture = await rest(
     "captured_mail?select=*",
@@ -193,7 +218,7 @@ try {
   process.exitCode = 1;
 } finally {
   await writeFile(
-    new URL("docs/qa/hosted-preview/rest-results.json", root),
+    new URL("docs/qa/phase4/rest-results.json", root),
     JSON.stringify(
       { projectRef: project, recordedAt: new Date().toISOString(), checks },
       null,

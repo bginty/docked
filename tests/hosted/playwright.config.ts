@@ -11,6 +11,7 @@ export default defineConfig({
   maxFailures: 1,
   forbidOnly: true,
   timeout: 120000,
+  expect: { timeout: 30000 },
   globalSetup: "./setup.ts",
   outputDir: path.resolve("private-data/hosted-preview/artifacts"),
   preserveOutput: "never",
@@ -18,6 +19,8 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     headless: true,
+    actionTimeout: 30000,
+    navigationTimeout: 60000,
     trace: "off",
     screenshot: "off",
     video: "off",
@@ -29,5 +32,6 @@ export default defineConfig({
     "privileged",
     "revocation",
     "deletion",
+    "closed-auth",
   ].map((name) => ({ name, testMatch: `${name}.spec.ts` })),
 });

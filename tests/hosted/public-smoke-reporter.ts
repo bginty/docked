@@ -45,7 +45,7 @@ export default class PublicSmokeReporter implements Reporter {
       );
       return;
     }
-    const directory = path.resolve("docs/qa/hosted-preview");
+    const directory = path.resolve("docs/qa/phase4/hosted-public");
     await mkdir(directory, { recursive: true });
     await writeFile(
       path.join(directory, "public-smoke-results.json"),

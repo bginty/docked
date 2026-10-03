@@ -103,9 +103,11 @@ public static class DockedPreviewCredential {
     projectRef = $previewRef; organizationId = $previewOrg; operation = $Mode;
     capturedAt = [DateTime]::UtcNow.ToString('o');
     signupDisabled = $previewConfig.disable_signup;
+    emailSignInEnabled = ($previewConfig.external_email_enabled -eq $true);
     siteIsLoopback = ($previewConfig.site_url -eq 'http://localhost:3000');
     emailConfirmationRequired = ($previewConfig.mailer_autoconfirm -eq $false);
     anonymousSigninsDisabled = ($previewConfig.external_anonymous_users_enabled -eq $false);
+    phoneSignupsDisabled = ($previewConfig.external_phone_enabled -eq $false);
     captureHookEnabled = $previewConfig.hook_send_email_enabled;
     captureHookUriMatches = ($previewConfig.hook_send_email_uri -eq 'pg-functions://postgres/preview_auth/capture_email');
     customSmtpConfigured = (-not [string]::IsNullOrEmpty($previewConfig.smtp_host));

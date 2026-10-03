@@ -47,7 +47,12 @@ export async function login(page: Page, label: Label) {
     (r) => r.url().endsWith("/api/auth") && r.request().method() === "POST",
   );
   await page.getByRole("button", { name: "Log in", exact: true }).click();
-  check((await response).status() === 200, "login-response");
+  const loginResponse = await response;
+  check(
+    loginResponse.status() === 200 && (await loginResponse.json()).ok === true,
+    "login-response",
+  );
+  phase(`login-accepted-${label}`);
   await expect(page).toHaveURL(/\/dashboard$/);
   check(
     (await page.context().cookies()).some((c) =>
@@ -58,6 +63,7 @@ export async function login(page: Page, label: Label) {
   await expect(
     page.getByRole("heading", { name: "Follow the evidence." }),
   ).toBeVisible();
+  phase(`dashboard-ready-${label}`);
 }
 export async function api(
   page: Page,
@@ -119,7 +125,7 @@ export async function verifyCapturedMail(
           (m) =>
             m.email === a.email &&
             m.type === type &&
-            Date.parse(m.receivedAt) >= after - 1000,
+            Date.parse(m.receivedAt) >= after,
         )
         .at(-1);
       if (mail) {
@@ -155,6 +161,29 @@ export async function verifyCapturedMail(
   throw new Error(
     "Hosted capture export unavailable before verification deadline",
   );
+}
+// The checkpoint and captured events share the hosted database clock. Local
+// machine clock skew must not make a fresh genuine message appear stale.
+export async function captureCheckpoint(page: Page) {
+  const requested = Date.now();
+  while (Date.now() - requested < 30000) {
+    const mailbox = await privateRead<{
+      projectRef: string;
+      exportedAt: string;
+      databaseNow?: string;
+    }>("mailbox.json");
+    if (
+      mailbox.projectRef === PROJECT &&
+      mailbox.databaseNow &&
+      Date.parse(mailbox.exportedAt) >= requested
+    ) {
+      const checkpoint = Date.parse(mailbox.databaseNow);
+      check(Number.isFinite(checkpoint), "capture-database-clock");
+      return checkpoint;
+    }
+    await page.waitForTimeout(500);
+  }
+  throw new Error("Fresh capture clock checkpoint unavailable");
 }
 export async function rememberIdentity(
   page: Page,

@@ -180,6 +180,48 @@ try {
     console.log(
       "Allowlisted preview app registration configured. All sending/publication/paper/commercial flags remain off.",
     );
+  } else if (mode === "close-capture") {
+    const counts =
+      await sql`select action,count(*)::int as count from preview_auth.captured_mail group by action order by action`;
+    await sql.begin(async (tx) => {
+      await tx`update preview_auth.configuration set enabled=false,hook_verified_at=null,hook_verified_event_id=null,hook_function_sha256=null where singleton`;
+      await tx`update private.feature_flags set enabled=false,reason='Hosted Auth capture acceptance complete; registration closed',updated_at=clock_timestamp() where key='registration'`;
+      await tx`delete from preview_auth.captured_mail`;
+    });
+    const envPath = new URL("../../.env.local", import.meta.url);
+    let env = await readFile(envPath, "utf8");
+    for (const [key, value] of Object.entries({
+      REGISTRATION_ENABLED: "false",
+      PREVIEW_AUTH_CAPTURE_MODE: "",
+      PREVIEW_AUTH_PROJECT_REF: "",
+    }))
+      env = env.replace(new RegExp(`^${key}=.*$`, "m"), `${key}=${value}`);
+    await writeFile(envPath, env, { mode: 0o600 });
+    await write("mailbox.json", {
+      projectRef,
+      messages: [],
+      closedAt: new Date().toISOString(),
+    });
+    await writeFile(
+      new URL("../../docs/qa/phase4/capture-closure.json", import.meta.url),
+      JSON.stringify(
+        {
+          projectRef,
+          closedAt: new Date().toISOString(),
+          capturedActions: counts,
+          captureEnabled: false,
+          captureProofPresent: false,
+          remainingCapturedMessages: 0,
+          applicationRegistration: false,
+          note: "Hook remains enabled to prevent SMTP fallback; genuine signup/recovery checks completed before purge.",
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+    console.log(
+      "Capture closed, proof cleared, private messages purged and app registration disabled. Hosted Auth signup/quota must be independently verified.",
+    );
   } else if (mode === "grant-roles") {
     const fixture = await read("acceptance.json"),
       state = await read("state.json");
@@ -255,7 +297,10 @@ try {
         },
       },
     );
-    const started = new Date();
+    // Compare capture times on the same database clock. Host clock skew must not
+    // discard a genuine hook event, nor justify accepting an older event.
+    const [probeStart] = await sql`select clock_timestamp() as started`;
+    const started = probeStart.started;
     const { data, error } = await client.auth.signUp({
       ...canary,
       options: { emailRedirectTo: `${siteOrigin}/auth/callback` },

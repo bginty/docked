@@ -1,6 +1,7 @@
 import { test } from "@playwright/test";
 import {
   account,
+  captureCheckpoint,
   api,
   check,
   expect,
@@ -39,7 +40,7 @@ test("real login private export pause recovery and password replacement", async 
   await logout(page);
   await page.goto("/recover");
   await page.locator('[name="email"]').fill(a.email);
-  const after = Date.now(),
+  const after = await captureCheckpoint(page),
     sent = page.waitForResponse(
       (r) => r.url().endsWith("/api/auth") && r.request().method() === "POST",
     );

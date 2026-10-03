@@ -2,6 +2,7 @@ import { test } from "@playwright/test";
 import { LABELS } from "./guard";
 import {
   account,
+  captureCheckpoint,
   check,
   expect,
   fixture,
@@ -26,7 +27,7 @@ for (const label of LABELS)
     await page.locator('[name="state"]').fill(a.state);
     await page.locator('[name="age"]').check();
     await page.locator('[name="terms"]').check();
-    const after = Date.now(),
+    const after = await captureCheckpoint(page),
       pending = page.waitForResponse(
         (r) => r.url().endsWith("/api/auth") && r.request().method() === "POST",
       );

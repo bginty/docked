@@ -157,7 +157,7 @@ async function main() {
         "Inspects completed local browser/static/prerender outputs and separate server-only environment copy; does not assert hosted CDN or dynamic-response behavior.",
     };
     await writeFile(
-      new URL("docs/qa/hosted-preview/private-asset-audit.json", root),
+      new URL("docs/qa/phase4/private-asset-audit.json", root),
       JSON.stringify(report, null, 2) + "\n",
     );
     console.log(JSON.stringify(report));

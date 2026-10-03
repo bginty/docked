@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 const project = "bckkllmndoxzpzdqrevb";
-const evidence = path.resolve("docs/qa/hosted-preview");
+const evidence = path.resolve("docs/qa/phase4/hosted-public");
 function check(value: unknown, code: string): asserts value {
   if (!value) throw new Error(`Hosted public check failed: ${code}`);
 }

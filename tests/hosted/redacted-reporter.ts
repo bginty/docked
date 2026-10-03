@@ -10,6 +10,7 @@ import type {
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 export default class RedactedReporter implements Reporter {
+  private privateErrors: { message?: string; stack?: string }[] = [];
   private readonly discovery = process.argv.includes("--list");
   private results: {
     project: string;
@@ -27,6 +28,13 @@ export default class RedactedReporter implements Reporter {
       );
   }
   onTestEnd(test: TestCase, result: TestResult) {
+    if (result.errors.length) {
+      // Operator-only diagnostic; never emitted or included in sanitized receipts.
+      this.privateErrors = result.errors.map((error) => ({
+        message: error.message,
+        stack: error.stack,
+      }));
+    }
     const row = {
       project: test.parent.project()?.name ?? "hosted",
       test: test.title,
@@ -81,6 +89,12 @@ export default class RedactedReporter implements Reporter {
     if (this.discovery) return;
     const directory = path.resolve("private-data/hosted-preview");
     await mkdir(directory, { recursive: true });
+    if (this.privateErrors.length)
+      await writeFile(
+        path.join(directory, "last-browser-errors.json"),
+        JSON.stringify(this.privateErrors, null, 2),
+        { mode: 0o600 },
+      );
     const summary = JSON.stringify(
       {
         recordedAt: new Date().toISOString(),
