@@ -6,10 +6,11 @@ import path from "node:path";
 import { createRequire } from "node:module";
 import { existsSync, readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
+import { evidenceRoot } from "./evidence";
 let demoBundle = "";
 let demoOfficialHtml = "";
 const fixtureErrors = new WeakMap<Page, string[]>();
-const qa = path.join(process.cwd(), "docs/qa/phase4/web-regression");
+const qa = path.join(evidenceRoot, "web-regression");
 test.beforeAll(async () => {
   await mkdir(qa, { recursive: true });
   demoOfficialHtml = JSON.parse(

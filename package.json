@@ -21,7 +21,8 @@
     "android:open": "cap open android",
     "android:debug": "node scripts/android-debug.mjs",
     "android:preview": "node scripts/android-debug.mjs --attach-local",
-    "android:inspect": "node scripts/android-debug.mjs --attach-local --inspect-webview"
+    "android:inspect": "node scripts/android-debug.mjs --attach-local --inspect-webview",
+    "android:hosted-preview": "node scripts/android-debug.mjs --hosted-preview"
   },
   "engines": {
     "node": ">=22"

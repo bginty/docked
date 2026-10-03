@@ -1,6 +1,9 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { authCookieOptions } from "@/core/auth-cookies";
+import { assertHostedPreview } from "@/core/hosted-preview";
 export async function proxy(request: NextRequest) {
+  assertHostedPreview(process.env);
   let response = NextResponse.next({ request });
   if (
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
@@ -17,7 +20,7 @@ export async function proxy(request: NextRequest) {
           items.forEach(({ name, value }) => request.cookies.set(name, value));
           response = NextResponse.next({ request });
           items.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options),
+            response.cookies.set(name, value, authCookieOptions(options)),
           );
         },
       },

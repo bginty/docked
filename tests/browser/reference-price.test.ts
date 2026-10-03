@@ -6,8 +6,9 @@ import { existsSync, readFileSync, mkdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { referenceReview } from "../fixtures/reference-ui";
+import { evidenceRoot } from "./evidence";
 let bundle = "";
-const evidence = "docs/qa/phase4/reference-ui";
+const evidence = path.join(evidenceRoot, "reference-ui");
 test("web deep-link aliases preserve canonical visibility routes", async ({
   page,
 }) => {

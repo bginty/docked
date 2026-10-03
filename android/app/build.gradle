@@ -7,8 +7,8 @@ android {
         applicationId "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -20,6 +20,16 @@ android {
         debug {
             applicationIdSuffix ".preview"
             versionNameSuffix "-preview"
+        }
+        // Explicit sideload-only HTTPS preview. Same identity/signing as v1 for
+        // in-place upgrades; never inherits the debug localhost resource overlay.
+        preview {
+            initWith debug
+            applicationIdSuffix ".preview"
+            versionNameSuffix "-preview"
+            signingConfig signingConfigs.debug
+            debuggable false
+            matchingFallbacks = ['debug']
         }
         release {
             minifyEnabled false
@@ -34,6 +44,16 @@ android {
 gradle.taskGraph.whenReady { graph ->
     if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('release') }) {
         throw new GradleException('Docked release is BLOCKED: development foundation only. See docs/GOOGLE_PLAY_READINESS.md.')
+    }
+    if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('preview') }) {
+        def verification = providers.exec {
+            workingDir rootProject.projectDir.parentFile
+            commandLine 'node', 'scripts/verify-android-preview-assets.mjs'
+            ignoreExitValue = true
+        }
+        if (verification.result.get().exitValue != 0) {
+            throw new GradleException('Docked hosted preview is BLOCKED: verified HTTPS manifest/assets required.')
+        }
     }
 }
 

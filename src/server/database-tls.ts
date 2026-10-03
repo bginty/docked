@@ -1,5 +1,5 @@
 import { readFileSync, statSync } from "node:fs";
-import { isAbsolute } from "node:path";
+import { isAbsolute, join } from "node:path";
 import { isIP } from "node:net";
 import { X509Certificate } from "node:crypto";
 import { checkServerIdentity, type ConnectionOptions } from "node:tls";
@@ -39,8 +39,12 @@ export function databaseConnectionOptions(
     checkServerIdentity: (_reportedHostname, certificate) =>
       checkServerIdentity(hostname, certificate),
   };
-  if (env.DATABASE_SSL_CA_FILE) {
-    const file = env.DATABASE_SSL_CA_FILE;
+  const file =
+    env.DATABASE_SSL_CA_FILE ||
+    (env.DOCKED_HOSTED_PREVIEW === "true"
+      ? join(process.cwd(), "certs", "supabase-prod-ca-2021.crt")
+      : undefined);
+  if (file) {
     if (!isAbsolute(file))
       throw new Error("DATABASE_SSL_CA_FILE must be an absolute path");
     try {

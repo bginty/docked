@@ -12,6 +12,7 @@ const retired = [
 const config: NextConfig = {
   poweredByHeader: false,
   output: "standalone",
+  outputFileTracingIncludes: { "/*": ["./certs/supabase-prod-ca-2021.crt"] },
   async redirects() {
     return [
       ...retired.map((source) => ({

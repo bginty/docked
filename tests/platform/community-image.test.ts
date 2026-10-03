@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import sharp from "sharp";
 import { encodeCommunityImage } from "../../src/server/community-image";
+import { communityImageMaxBytes } from "../../src/core/community-media";
 
 test("community quarantine codec decodes pixels, bounds size and strips private metadata", async () => {
   const source = await sharp({
@@ -33,7 +34,10 @@ test("community quarantine rejects malformed, non-raster, oversized-byte and ove
       ),
     ),
   );
-  await assert.rejects(encodeCommunityImage(Buffer.alloc(5 * 1024 * 1024 + 1)));
+  await assert.rejects(
+    encodeCommunityImage(Buffer.alloc(communityImageMaxBytes + 1)),
+    /Image byte limit/,
+  );
   const huge = await sharp({
     create: { width: 4001, height: 4000, channels: 3, background: "#187b79" },
   })

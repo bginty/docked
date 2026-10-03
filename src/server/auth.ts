@@ -2,7 +2,10 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { db } from "./db";
 import { verifiedSessionClaims } from "@/core/auth-policy";
+import { authCookieOptions } from "@/core/auth-cookies";
+import { assertHostedPreview } from "@/core/hosted-preview";
 export async function authClient() {
+  assertHostedPreview(process.env);
   if (
     !process.env.NEXT_PUBLIC_SUPABASE_URL ||
     !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
@@ -18,13 +21,7 @@ export async function authClient() {
         setAll: (items) => {
           try {
             items.forEach(({ name, value, options }) =>
-              jar.set(name, value, {
-                ...options,
-                sameSite: "lax",
-                secure:
-                  new URL(process.env.SITE_URL ?? "http://localhost:3000")
-                    .protocol === "https:",
-              }),
+              jar.set(name, value, authCookieOptions(options)),
             );
           } catch {
             /* Server component cannot refresh cookies; route handlers can. */

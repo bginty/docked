@@ -11,8 +11,22 @@ const id = "00000000-0000-4000-8000-000000000123";
 test("native links canonicalize official results and community records without importing session tokens", () => {
   assert.equal(nativeDeepLink(`docked://edges/${id}`), `/tips/${id}`);
   assert.equal(
-    nativeDeepLink(`https://docked.com.au/results/${id}`),
+    nativeDeepLink(
+      `https://preview.example.test/results/${id}`,
+      "https://preview.example.test",
+    ),
     `/tips/${id}`,
+  );
+  assert.equal(
+    nativeDeepLink(
+      "https://another-preview.example.test/home",
+      "https://preview.example.test",
+    ),
+    null,
+  );
+  assert.equal(
+    nativeDeepLink("https://docked.com.au/home", "https://docked.com.au"),
+    null,
   );
   assert.equal(
     nativeDeepLink(`docked://community/${id}`),
@@ -29,6 +43,7 @@ test("native links canonicalize official results and community records without i
   for (const url of [
     "https://evil.example/home",
     "https://docked.com.au.evil.example/home",
+    "https://docked.com.au/home",
     "javascript:alert(1)",
     "docked://home?access_token=private",
     "docked://home#refresh_token=private",
@@ -105,6 +120,16 @@ test("Android foundation blocks release, backup and arbitrary cleartext, with no
     /POST_NOTIFICATIONS|READ_EXTERNAL_STORAGE|WRITE_EXTERNAL_STORAGE/,
   );
   const config = readFileSync("capacitor.config.ts", "utf8");
-  assert.match(config, /preview !== "http:\/\/localhost:3000"/);
+  assert.match(config, /resolveAndroidTarget/);
   assert.doesNotMatch(config, /allowNavigation|SUPABASE|service_role/);
+  const previewNetwork = readFileSync(
+    "android/app/src/preview/res/xml/network_security_config.xml",
+    "utf8",
+  );
+  assert.doesNotMatch(
+    previewNetwork,
+    /cleartextTrafficPermitted="true"|localhost/,
+  );
+  assert.match(gradle, /preview \{[\s\S]*debuggable false/);
+  assert.match(gradle, /verify-android-preview-assets\.mjs/);
 });

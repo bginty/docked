@@ -122,7 +122,7 @@ export function ApprovedEdgeMedia({
           />
         </label>
         <p className="form-help">
-          JPEG, PNG or WebP, up to 5 MB. New uploads require approval before
+          JPEG, PNG or WebP, up to 4 MB. New uploads require approval before
           they can be attached.
         </p>
         <button className="button ghost small" disabled={disabled || busy}>

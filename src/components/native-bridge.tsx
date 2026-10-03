@@ -62,7 +62,7 @@ export function NativeBridge() {
     ])
       .then(async ([{ App }, { Network }, { SplashScreen }]) => {
         function open(value: string) {
-          const route = nativeDeepLink(value);
+          const route = nativeDeepLink(value, window.location.origin);
           if (route) router.push(route);
           else {
             const callback = nativeAuthCallback(value);
@@ -121,6 +121,10 @@ export function NativeBridge() {
   if (!native) return null;
   return (
     <aside className="native-status" aria-label="Android development status">
+      <p className="native-preview-identity">
+        <strong>PREVIEW</strong>
+        <span>Docked testing environment</span>
+      </p>
       {!online && (
         <p role="alert">
           Offline. Current prices and private content cannot be verified.

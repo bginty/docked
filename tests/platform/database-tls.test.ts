@@ -135,6 +135,26 @@ test("certificate identity stays bound to the requested host, including IP targe
   assert.ok(ip.checkServerIdentity!("localhost", certificate));
 });
 
+test("hosted preview resolves the traced public CA without a host-specific absolute path", () => {
+  const hosted = databaseConnectionOptions(remote, {
+    DOCKED_HOSTED_PREVIEW: "true",
+  }).ssl as ConnectionOptions;
+  const explicit = databaseConnectionOptions(remote, {
+    DATABASE_SSL_CA_FILE: caFile,
+  }).ssl as ConnectionOptions;
+  assert.equal(hosted.ca, explicit.ca);
+  assert.equal(hosted.rejectUnauthorized, true);
+  assert.equal(typeof hosted.checkServerIdentity, "function");
+  assert.throws(
+    () =>
+      databaseConnectionOptions(remote, {
+        DOCKED_HOSTED_PREVIEW: "true",
+        DATABASE_SSL_CA_FILE: path.resolve("certs/missing-test-ca.crt"),
+      }),
+    /verification remains required/,
+  );
+});
+
 test("local-only databases preserve plaintext development; ambiguous multi-host and non-PostgreSQL targets fail", async () => {
   for (const host of ["localhost", "127.0.0.1", "[::1]"]) {
     const url = `postgres://fictional:secret@${host}:54322/postgres?sslmode=require`;

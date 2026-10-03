@@ -1,12 +1,14 @@
 import "server-only";
 import postgres from "postgres";
 import { databaseConnectionOptions } from "./database-tls";
+import { databasePoolOptions } from "./database-pool";
+import { assertHostedPreview } from "@/core/hosted-preview";
 let connection: ReturnType<typeof postgres> | undefined;
 export function db() {
+  assertHostedPreview(process.env);
   if (!process.env.DATABASE_URL) throw new Error("Database not configured");
   return (connection ??= postgres(process.env.DATABASE_URL, {
-    max: 5,
-    prepare: false,
+    ...databasePoolOptions(),
     ...databaseConnectionOptions(process.env.DATABASE_URL),
   }));
 }

@@ -1,19 +1,11 @@
 import type { CapacitorConfig } from "@capacitor/cli";
+import { resolveAndroidTarget } from "./scripts/android-preview-config.mjs";
 
-const preview = process.env.CAPACITOR_PREVIEW_SERVER;
-const inspect = process.env.CAPACITOR_PREVIEW_DEBUGGING === "1";
-if (inspect && preview !== "http://localhost:3000")
-  throw new Error(
-    "WebView inspection requires the explicit local development attachment.",
-  );
-if (preview && preview !== "http://localhost:3000")
-  throw new Error(
-    "Android development attachment accepts only http://localhost:3000 through adb reverse.",
-  );
+const target = resolveAndroidTarget();
 const config: CapacitorConfig = {
   appId: "au.com.docked.app",
-  appName: "Docked",
-  webDir: "mobile/www",
+  appName: "Docked Preview",
+  webDir: target.webDir,
   loggingBehavior: "none",
   backgroundColor: "#f7f7ef",
   zoomEnabled: true,
@@ -21,12 +13,14 @@ const config: CapacitorConfig = {
     path: "android",
     allowMixedContent: false,
     useLegacyBridge: false,
-    webContentsDebuggingEnabled: inspect,
+    webContentsDebuggingEnabled: target.inspect,
   },
   server: {
     androidScheme: "https",
     errorPath: "offline.html",
-    ...(preview ? { url: preview, cleartext: true } : {}),
+    ...(target.entryUrl
+      ? { url: target.entryUrl, cleartext: target.cleartext }
+      : {}),
   },
   plugins: {
     CapacitorHttp: { enabled: false },

@@ -1,10 +1,11 @@
 import { spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, copyFileSync } from "node:fs";
 import path from "node:path";
+import { resolveAndroidTarget } from "./android-preview-config.mjs";
 
 // Uses the installed SDK/JDK. Does not accept new SDK licenses;
 // Gradle can provision a missing build package under an existing license.
-// This script never loads .env files, signs a release, or attaches an external origin.
+// This script never loads .env files or signs a production release.
 const root = process.cwd();
 const sdk = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT;
 const java = process.env.JAVA_HOME;
@@ -14,13 +15,20 @@ if (!sdk || !java || !existsSync(path.join(sdk, "platforms", "android-36")))
   );
 const attached = process.argv.includes("--attach-local");
 const inspect = process.argv.includes("--inspect-webview");
+const hosted = process.argv.includes("--hosted-preview");
+if (hosted && (attached || inspect))
+  throw new Error(
+    "Hosted preview cannot enable local attachment or inspection.",
+  );
 if (inspect && !attached)
   throw new Error("WebView inspection requires --attach-local.");
 const env = {
   ...process.env,
-  CAPACITOR_PREVIEW_SERVER: attached ? "http://localhost:3000" : "",
+  CAPACITOR_PREVIEW_MODE: hosted ? "hosted" : attached ? "local" : "bundled",
+  CAPACITOR_PREVIEW_SERVER: "",
   CAPACITOR_PREVIEW_DEBUGGING: inspect ? "1" : "",
 };
+resolveAndroidTarget(env);
 const windows = process.platform === "win32";
 function run(command, args, cwd = root) {
   const result = spawnSync(command, args, {
@@ -32,10 +40,23 @@ function run(command, args, cwd = root) {
   if (result.error || result.status !== 0) process.exit(result.status || 1);
 }
 run("node", ["scripts/build-mobile-shell.mjs"]);
-run("node", ["scripts/build-mobile-shell.mjs"]);
 run("npx", ["cap", "sync", "android"]);
 run(
   windows ? "gradlew.bat" : "./gradlew",
-  [":app:assembleDebug", "--no-daemon", "--max-workers=2"],
+  [
+    hosted ? ":app:assemblePreview" : ":app:assembleDebug",
+    "--no-daemon",
+    "--max-workers=2",
+  ],
   path.join(root, "android"),
 );
+if (hosted) {
+  const output = path.join(root, "android/app/build/outputs/apk/preview");
+  copyFileSync(
+    path.join(output, "app-preview.apk"),
+    path.join(output, "Docked-Preview-S24-v2.apk"),
+  );
+  console.log(
+    "Created android/app/build/outputs/apk/preview/Docked-Preview-S24-v2.apk",
+  );
+}

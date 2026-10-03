@@ -14,9 +14,14 @@ const staticPaths = new Set([
   "/methodology",
   "/membership",
   "/dashboard",
+  "/compose",
+  "/search",
 ]);
 /** Pure allowlist; never imports cookies, session tokens or arbitrary destinations from a deep link. */
-export function nativeDeepLink(value: string): string | null {
+export function nativeDeepLink(
+  value: string,
+  previewOrigin?: string,
+): string | null {
   let url: URL;
   try {
     url = new URL(value);
@@ -29,7 +34,9 @@ export function nativeDeepLink(value: string): string | null {
     route = `/${url.hostname}${url.pathname}`;
   else if (
     url.protocol === "https:" &&
-    url.hostname === "docked.com.au" &&
+    url.origin === previewOrigin &&
+    url.hostname !== "docked.com.au" &&
+    !url.hostname.endsWith(".docked.com.au") &&
     !url.port
   )
     route = url.pathname;
@@ -86,7 +93,7 @@ export function nativeAuthCallback(value: string): string | null {
 }
 export function safeSharePath(path: string): string | null {
   if (!path.startsWith("/") || path.startsWith("//")) return null;
-  return nativeDeepLink(`https://docked.com.au${path}`);
+  return nativeDeepLink(`docked://${path.slice(1)}`);
 }
 export const nativePushTypes = [
   "official_edge",

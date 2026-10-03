@@ -3,12 +3,23 @@ import { sameOrigin, requireIdentity } from "@/server/auth";
 import { requireCommunityAccess } from "@/server/community-policy";
 import { rateLimit } from "@/server/db";
 import { boundedCommunityBody } from "@/core/community-social";
+import { schedulePreviewNotifications } from "@/server/preview-maintenance";
 import {
   communityNotifications,
   mutateCommunityNotifications,
 } from "@/server/community-social";
 export async function GET() {
-  return NextResponse.json(await communityNotifications(), {
+  const value = await communityNotifications();
+  if (value.status === "ready") {
+    try {
+      const who = await requireIdentity();
+      await requireCommunityAccess("community_social");
+      await schedulePreviewNotifications(who);
+    } catch {
+      /* Existing read projection stays safe if eligibility changes. */
+    }
+  }
+  return NextResponse.json(value, {
     headers: { "Cache-Control": "private, no-store" },
   });
 }

@@ -4,6 +4,8 @@ import { sameOrigin, requireIdentity } from "@/server/auth";
 import { requireCommunityAccess } from "@/server/community-policy";
 import { rateLimit } from "@/server/db";
 import { boundedCommunityBody } from "@/core/community-social";
+import { communityUploadMaxBytes } from "@/core/community-media";
+import { schedulePreviewNotifications } from "@/server/preview-maintenance";
 import {
   communityFeed,
   communityProfile,
@@ -76,10 +78,13 @@ export async function POST(request: Request) {
         { status: 429 },
       );
     const length = Number(request.headers.get("content-length") ?? 0);
-    if (length > 6 * 1024 * 1024)
+    if (length > communityUploadMaxBytes)
       return NextResponse.json({ error: "Request too large" }, { status: 413 });
     if (request.headers.get("content-type")?.includes("multipart/form-data")) {
-      const bounded = await boundedCommunityBody(request, 6 * 1024 * 1024);
+      const bounded = await boundedCommunityBody(
+        request,
+        communityUploadMaxBytes,
+      );
       const data = await new Response(bounded, {
           headers: { "Content-Type": request.headers.get("content-type")! },
         }).formData(),
@@ -93,12 +98,13 @@ export async function POST(request: Request) {
     if (length > 20000)
       return NextResponse.json({ error: "Request too large" }, { status: 413 });
     const bounded = await boundedCommunityBody(request, 20000);
-    return NextResponse.json(
-      await mutateCommunity(JSON.parse(new TextDecoder().decode(bounded))),
-      {
-        headers: { "Cache-Control": "private, no-store" },
-      },
+    const result = await mutateCommunity(
+      JSON.parse(new TextDecoder().decode(bounded)),
     );
+    await schedulePreviewNotifications(who);
+    return NextResponse.json(result, {
+      headers: { "Cache-Control": "private, no-store" },
+    });
   } catch (error) {
     return NextResponse.json(
       {

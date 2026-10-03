@@ -1,0 +1,27 @@
+# Deploy with scripts/prepare-hosted-preview.mjs, never from the full workspace.
+.git
+.github
+.codex*
+.env*
+.next
+.pages-deploy
+.supabase
+node_modules
+private-data
+research-output
+source-assets
+test-results
+playwright-report
+tmp
+android
+mobile
+legacy
+db
+supabase
+docs
+tests
+scripts
+*.log
+*.tsbuildinfo
+CNAME
+

@@ -4,6 +4,7 @@ import type { MarketReferencePresentation } from "@/core/tip-presentation";
 import { config } from "./config";
 import { db } from "./db";
 import { identity } from "./auth";
+import { previewCommunityPolicy } from "./preview-community";
 import { eligible, type RegionPolicy } from "@/core/policy";
 import { inspectTip } from "./dispatch";
 import { freshTimestamp, providerReadiness } from "@/core/data-health";
@@ -46,8 +47,8 @@ export async function regionAccess(feature = "tips", operator?: string) {
   if (!who) return { allowed: false, policy: null };
   const sql = db();
   const rows =
-    await sql`select * from private.region_policies where country=${who.profile.country} and state=${who.profile.state} and effective_from<=now() and effective_to>now() order by effective_from desc limit 1`;
-  if (!rows[0]) return { allowed: false, policy: null };
+    await sql`select * from private.region_policies where not preview_community_only and country=${who.profile.country} and state=${who.profile.state} and effective_from<=now() and effective_to>now() order by effective_from desc,id desc limit 1`;
+  if (!rows[0]) return previewCommunityPolicy(who, feature, operator);
   const r = rows[0];
   const p: RegionPolicy = {
     country: r.country,
@@ -62,7 +63,7 @@ export async function regionAccess(feature = "tips", operator?: string) {
     evidence: r.evidence,
     version: r.version,
   };
-  return {
+  const regular = {
     allowed: eligible(
       p,
       {
@@ -76,6 +77,9 @@ export async function regionAccess(feature = "tips", operator?: string) {
     ),
     policy: r.id as string,
   };
+  return regular.allowed
+    ? regular
+    : previewCommunityPolicy(who, feature, operator);
 }
 export async function publicTips() {
   const region = await regionAccess("tips");

@@ -1,6 +1,8 @@
 import "server-only";
 import { createHash } from "node:crypto";
 import { encodeCommunityImage } from "./community-image";
+import { communityImageMaxBytes } from "@/core/community-media";
+import { setPreviewCommunityContext } from "./preview-community";
 import type { TransactionSql } from "postgres";
 import { z } from "zod";
 import { db, rateLimit } from "./db";
@@ -47,6 +49,7 @@ export async function setCommunityClaims(
   tx: CommunityTransaction,
   who: CommunityActor,
 ) {
+  await setPreviewCommunityContext(tx);
   await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
 }
 export async function withCommunityActor<T>(
@@ -484,11 +487,17 @@ export async function enqueueCommunityNotification(
 }
 
 /** Internal worker only. Each transaction advances at most 100 recipients of one durable job. */
-export async function processCommunityNotifications() {
+export async function processCommunityNotifications(
+  options: { previewOnly?: boolean } = {},
+) {
   if (!process.env.DATABASE_URL) return { processed: 0, queued: 0 };
+  const batchSize = options.previewOnly ? 10 : 100;
   return db().begin(async (tx) => {
+    await setPreviewCommunityContext(tx);
     const jobs =
-      await tx`select j.*,p.author_id,p.official_tip_id,p.community_edge_id,p.created_at post_created_at,p.deleted_at,p.moderation_status from private.social_notification_jobs j join private.social_posts p on p.id=j.post_id where j.completed_at is null order by j.created_at,j.id limit 1 for update of j skip locked`;
+      await tx`select j.*,p.author_id,p.official_tip_id,p.community_edge_id,p.created_at post_created_at,p.deleted_at,p.moderation_status from private.social_notification_jobs j join private.social_posts p on p.id=j.post_id join private.social_profiles author on author.id=p.author_id where j.completed_at is null
+      and (${!options.previewOnly} or (p.official_tip_id is null and p.community_edge_id is null and p.kind<>'official' and not author.is_official and author.status='active' and private.preview_tester_policy(author.user_id,'community_social') is not null))
+      order by j.created_at,j.id limit 1 for update of j skip locked`;
     const job = jobs[0];
     if (!job) return { processed: 0, queued: 0 };
     if (
@@ -511,8 +520,9 @@ export async function processCommunityNotifications() {
     const recipients =
       await tx`select p.id from private.social_profiles p join private.social_notification_preferences n on n.profile_id=p.id where p.status='active' and p.user_id is not null and p.id<>${job.author_id} and n.in_app and n.updated_at<=${job.created_at}
       and (${job.official_tip_id !== null} and n.official_edges or ${job.official_tip_id === null} and n.followed_members and exists(select 1 from private.social_follows f where f.actor_id=p.id and f.target_id=${job.author_id} and f.notifications and f.created_at<=${job.created_at}))
-      and (${job.cursor_profile_id ?? null}::uuid is null or p.id>${job.cursor_profile_id ?? null}::uuid) order by p.id limit 101`;
-    const page = recipients.slice(0, 100);
+      and (${!options.previewOnly} or private.preview_tester_policy(p.user_id,'community_social') is not null)
+      and (${job.cursor_profile_id ?? null}::uuid is null or p.id>${job.cursor_profile_id ?? null}::uuid) order by p.id limit ${batchSize + 1}`;
+    const page = recipients.slice(0, batchSize);
     let queued = 0;
     for (const recipient of page) {
       const official = job.official_tip_id !== null;
@@ -541,7 +551,7 @@ export async function processCommunityNotifications() {
       });
       if (inserted) queued++;
     }
-    await tx`update private.social_notification_jobs set cursor_profile_id=${page.at(-1)?.id ?? job.cursor_profile_id ?? null},completed_at=case when ${recipients.length <= 100} then clock_timestamp() else null end where id=${job.id}`;
+    await tx`update private.social_notification_jobs set cursor_profile_id=${page.at(-1)?.id ?? job.cursor_profile_id ?? null},completed_at=case when ${recipients.length <= batchSize} then clock_timestamp() else null end where id=${job.id}`;
     return { processed: page.length, queued };
   });
 }
@@ -645,14 +655,14 @@ export async function uploadCommunityMedia(file: File, alt: string) {
     throw new Error("Media upload limit");
   if (
     file.size === 0 ||
-    file.size > 5 * 1024 * 1024 ||
+    file.size > communityImageMaxBytes ||
     !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
     !alt.trim() ||
     alt.length > 240 ||
     !safeSocialText(alt)
   )
     throw new Error(
-      "JPEG, PNG or WebP up to 5 MB and useful alt text required",
+      "JPEG, PNG or WebP up to 4 MB and useful alt text required",
     );
   const input = Buffer.from(await file.arrayBuffer());
   const encoded = await encodeCommunityImage(input);

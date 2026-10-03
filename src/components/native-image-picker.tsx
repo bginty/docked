@@ -1,6 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { isDockedNative } from "./native-bridge";
+import {
+  communityImageMaxBytes,
+  communityImageMaxMegabytes,
+} from "@/core/community-media";
 /** Fills the existing form's file input; normal authenticated quarantine upload remains unchanged. */
 export function NativeImagePicker() {
   const [native, setNative] = useState(false),
@@ -29,9 +33,14 @@ export function NativeImagePicker() {
       if (!photo.webPath) throw new Error("unavailable");
       const response = await fetch(photo.webPath),
         blob = await response.blob();
+      if (blob.size > communityImageMaxBytes) {
+        setMessage(
+          `Choose an image up to ${communityImageMaxMegabytes} MB. Nothing was uploaded.`,
+        );
+        return;
+      }
       if (
         !response.ok ||
-        blob.size > 5 * 1024 * 1024 ||
         !["image/jpeg", "image/png", "image/webp"].includes(blob.type)
       )
         throw new Error("unsupported");

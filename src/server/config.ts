@@ -2,7 +2,9 @@ import {
   hostedPreviewEnvironmentBound,
   referencesDockedPreviewProject,
 } from "@/core/preview-auth";
+import { assertHostedPreview } from "@/core/hosted-preview";
 export function config(env: Record<string, string | undefined> = process.env) {
+  assertHostedPreview(env);
   const production = env.APP_ENV === "production";
   if (env.PREVIEW_AUTH_CAPTURE_MODE || env.PREVIEW_AUTH_PROJECT_REF) {
     if (!hostedPreviewEnvironmentBound(env))

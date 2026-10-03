@@ -4,10 +4,11 @@ import { execFileSync } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { sports } from "../../src/content/sports";
+import { evidenceRoot } from "./evidence";
 
 const evidenceDirectory = path.join(
-  process.cwd(),
-  "docs/qa/phase4/web-regression/sports-regression",
+  evidenceRoot,
+  "web-regression/sports-regression",
 );
 const routes = {
   homepage: "/",

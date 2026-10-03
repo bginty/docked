@@ -1,6 +1,8 @@
 # Android authentication boundary
 
-**No new native token store or authentication bypass is introduced.** The attached debug WebView visits the same `http://localhost:3000` origin as the local Next.js server, forwarded with `adb reverse`. Existing Supabase SSR cookies, verified server identity, `auth.sessions` checks, region rules and staff MFA remain authoritative. Neither JavaScript Preferences nor localStorage receives access/refresh tokens; localStorage contains only a non-sensitive haptic preference. Existing web cookie options are inherited rather than silently replaced.
+**No new native token store or authentication bypass is introduced.** The hosted preview WebView visits the exact verified HTTPS application origin in `config/android-preview.json`; its Next.js backend is bound to Docked Preview Supabase. Existing Supabase SSR cookies, verified server identity, `auth.sessions` checks, region rules and staff MFA remain authoritative. Neither JavaScript Preferences nor localStorage receives access/refresh tokens; localStorage contains only a non-sensitive haptic preference. Existing web cookie options are inherited rather than silently replaced. The separate local developer mode still uses `http://localhost:3000` with ADB reverse; this is not required by the hosted S24 APK.
+
+An upgrade keeps the Android package/signing identity. Cookies from the former localhost origin are not copied to the new HTTPS origin: the user signs in to the actual preview there. A packaged receipt contains public identity metadata only and supplies no account or administrative capability.
 
 ## Lifecycle
 
@@ -25,4 +27,4 @@ Verified HTTPS App Links remain **BLOCKED** until an authorised deployed origin 
 
 Required native acceptance: verification in original context; login/restart persistence; refresh expiration; resume after revocation; logout; recovery; deletion and old session denial; cross-app link rejection; staff TOTP. Record each actual result rather than carrying browser PASS statuses into this list.
 
-On 3 October 2026, actual emulator bridge and anonymous/deep-link assertions passed, but repeated Android System UI/keyboard/dialer ANRs blocked the final native lifecycle run even after an isolated 4 GB/four-core restart. **No genuine account credentials were entered in Android.** Native login, persistence, export, share/media and logout are therefore unrun, not inherited from hosted-browser PASS results. See [the exact native receipts and environment evidence](qa/android/README.md).
+During the earlier Phase 4 foundation acceptance on 3 October 2026, actual emulator bridge and anonymous/deep-link assertions passed, but repeated Android System UI/keyboard/dialer ANRs blocked the native lifecycle run even after an isolated 4 GB/four-core restart. **No genuine account credentials were entered in that Android run.** Its login, persistence, export, share/media and logout cases remain unrun, not inherited from hosted-browser PASS results. See [the preserved foundation receipts](qa/android/README.md). Hosted APK acceptance is recorded separately and must not overwrite or relabel these earlier results.

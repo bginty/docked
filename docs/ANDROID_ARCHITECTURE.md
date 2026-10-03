@@ -1,27 +1,31 @@
-# Docked Android foundation
+# Docked Android preview architecture
 
-Status: **development foundation; release blocked**. This is a real Capacitor Android project, not a claim of Google Play readiness. The existing Next.js application remains the source of its screens, server-side access checks, canonical records, and design. No production site or DNS change is required or made.
+Status: **sideloaded preview only; production and Google Play release blocked**. The existing Next.js application remains the source of its screens, server-side access checks, canonical records, and design. The owner-authorised hosted mode connects Android to one verified HTTPS Docked Preview deployment, which connects only to Docked Preview Supabase `bckkllmndoxzpzdqrevb`. It requires internet access and that backend, but no laptop, USB, ADB or local server after installation. No production site or DNS change is required or made.
 
-## Why the development attachment is explicit
+## Hosted preview and separate developer modes
 
-The web application depends on server rendering, same-origin API routes and Supabase SSR cookies. A static export would remove essential authentication and authorisation behaviour. The bundled `mobile/www` contains only setup and network-error screens. By default it connects to no app service. `npm run android:preview` attaches **only** `http://localhost:3000` via `adb reverse`; `capacitor.config.ts` rejects every other server URL. Capacitor documents `server.url`, cleartext and navigation overrides as development facilities, so this mode is not treated as a distributable architecture. [Capacitor configuration](https://capacitorjs.com/docs/config)
+The web application depends on server rendering, same-origin API routes and Supabase SSR cookies. A static export would remove essential authentication and authorisation behaviour. `npm run android:hosted-preview` reads `config/android-preview.json`, a public deployment receipt written only after deployment verification. It rejects missing or stale receipts, a different Supabase project, production hosts, non-HTTPS URLs, ports, credentials, wildcard navigation and enabled delivery/commercial services. Only explicitly selected public receipt fields enter the APK. An arbitrary environment variable cannot replace its origin.
+
+The hosted APK opens the real `/home` route: the existing account gate for an anonymous visitor, or the authenticated feed with app navigation. It packages a self-contained network-error page with a retry action bound to that same HTTPS origin. No localhost fallback or setup instructions are packaged. The preview build disables Android debugging, WebView inspection, mixed content and all cleartext traffic, including localhost. Its generated assets are separate from developer assets, and a direct Gradle preview build verifies the copied receipt and configuration again.
+
+Developer modes remain explicit: `npm run android:debug` builds a disconnected bundled foundation; `npm run android:preview` attaches only `http://localhost:3000`; `npm run android:inspect` additionally enables local WebView inspection. Those are not the S24 deliverable. Capacitor documents `server.url` as a development facility; this hosted use is specifically an owner-authorised sideloaded **PREVIEW**, not a production/store architecture approval. [Capacitor configuration](https://capacitorjs.com/docs/config)
 
 A reviewed release must choose and implement a packaged client with an explicitly secured API/session boundary, or an appropriate reviewed web-origin architecture. That decision requires the real deployment origin, store/legal eligibility and complete device Auth acceptance. The Gradle release task graph fails deliberately; there is no environment flag that silently turns it into a release.
 
 ## Boundaries
 
-| Area | Implemented foundation |
-| --- | --- |
-| Identity | `au.com.docked.app`; debug application ID `au.com.docked.app.preview` |
-| Platform | Capacitor/core/Android/CLI 8.5.2; minimum API 24; target/compile API 36; Gradle 8.14.3; AGP 8.13.0; JDK 21 |
-| UI | Shared Next.js screens, Docked vector adaptive icon/splash, system-bar insets, resize for keyboard, back navigation, small opt-in haptics that respect reduced motion |
-| Network | Bundled honest error screen, network reconnection refresh, no offline submission queue, no private-page service worker in native mode |
-| Links | Strict typed route allowlist, canonical official/community records, profile/article/ranking destinations; unsupported links and session-token fragments rejected |
-| External destinations | HTTPS user-clicked links open a browser surface without the Capacitor app bridge; mixed content and wildcard navigation disabled |
-| Media | User-initiated native camera/photo selection fills the existing upload input; authenticated server quarantine and review remain mandatory; no OCR or price verification |
-| Sharing | User-initiated system share sheet for record/profile/ranking/article links; access controls still apply. Preview links use `docked://`; no link implies the current live website hosts this application. |
-| Push/badges | **NOT_CONFIGURED**. Typed notification routes only. No Firebase SDK, permissions, token registration, channel creation, notification sends or badge writes. |
-| Secrets | No `.env` copied into native assets. No service-role key, database credential, mail token or native JS session-token store. Native logging and WebView debugging disabled by default; inspection requires an explicit local-only acceptance switch. Android backup disabled. |
+| Area                  | Implemented foundation                                                                                                                                                                                                                                                       |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identity              | Preview label `Docked Preview`, application ID `au.com.docked.app.preview`, version code 2; same existing debug signing identity for an upgrade from the foundation APK. Base production identity remains gated.                                                             |
+| Platform              | Capacitor/core/Android/CLI 8.5.2; minimum API 24; target/compile API 36; Gradle 8.14.3; AGP 8.13.0; JDK 21                                                                                                                                                                   |
+| UI                    | Shared Next.js screens, Docked vector adaptive icon/splash, system-bar insets, resize for keyboard, back navigation, small opt-in haptics that respect reduced motion                                                                                                        |
+| Network               | Exact approved HTTPS origin, bundled honest error screen, manual retry/network reconnection, no offline submission queue, no private-page service worker in native mode                                                                                                      |
+| Links                 | Strict typed route allowlist, canonical official/community records, profile/article/ranking destinations; HTTPS links must match the current preview origin, and unsupported links/session-token fragments are rejected                                                      |
+| External destinations | HTTPS user-clicked links open a browser surface without the Capacitor app bridge; mixed content and wildcard navigation disabled                                                                                                                                             |
+| Media                 | User-initiated native camera/photo selection fills the existing upload input; authenticated server quarantine and review remain mandatory; no OCR or price verification                                                                                                      |
+| Sharing               | User-initiated system share sheet for record/profile/ranking/article links; access controls still apply. Preview links use `docked://`; no link implies the current live website hosts this application.                                                                     |
+| Push/badges           | **NOT_CONFIGURED**. Typed notification routes only. No Firebase SDK, permissions, token registration, channel creation, notification sends or badge writes.                                                                                                                  |
+| Secrets               | No `.env` copied into native assets. No service-role key, database credential, mail token or native JS session-token store. Native logging and WebView debugging disabled by default; inspection requires an explicit local-only acceptance switch. Android backup disabled. |
 
 Plugin versions are pinned individually in `package.json` and the lockfile. The CLI's `xcode` dependency is scoped to compatible CommonJS `uuid@11.1.1` to resolve the upstream UUID advisory; CLI sync and the dependency audit are checked after that override. iOS is not created or validated.
 

@@ -7,6 +7,7 @@ import {
 import { NotificationCentre } from "@/components/notification-centre";
 import { appViewer } from "@/server/app-view";
 import { communityNotifications } from "@/server/community-social";
+import { schedulePreviewNotifications } from "@/server/preview-maintenance";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Notifications",
@@ -17,6 +18,7 @@ export default async function Notifications() {
     appViewer(),
     communityNotifications(),
   ]);
+  if (who && data.status === "ready") await schedulePreviewNotifications(who);
   return (
     <AppShell authenticated={!!who}>
       <AppHeading eyebrow="YOUR INBOX" title="Stay in the conversation.">

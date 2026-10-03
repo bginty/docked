@@ -1,10 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { renderOfflineShell } from "../../scripts/build-mobile-shell.mjs";
+import { resolveAndroidTarget } from "../../scripts/android-preview-config.mjs";
 
 test("native offline fallback needs no network subresources and has exact CSP hashes", () => {
-  const html = readFileSync("mobile/www/offline.html", "utf8");
+  const html = renderOfflineShell(
+    resolveAndroidTarget({ CAPACITOR_PREVIEW_MODE: "local" }),
+  );
   assert.doesNotMatch(html, /<(?:script|link|img)[^>]+(?:src|href)=/i);
   for (const tag of ["script", "style"]) {
     const content = html.match(
@@ -19,4 +22,11 @@ test("native offline fallback needs no network subresources and has exact CSP ha
     html,
     /unsafe-inline|fetch\(|localStorage|sessionStorage/,
   );
+});
+
+test("bundled shell cannot initiate an unconfigured connection", () => {
+  const html = renderOfflineShell(resolveAndroidTarget({}));
+  assert.match(html, /const retryUrl = null/);
+  assert.match(html, /type="button" disabled/);
+  assert.doesNotMatch(html, /localhost:3000|https:\/\//);
 });

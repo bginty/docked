@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { evidenceRoot } from "./evidence";
 test("desktop and mobile home, keyboard access, no storefront and accessibility", async ({
   page,
 }) => {
@@ -37,7 +38,7 @@ test("desktop and mobile home, keyboard access, no storefront and accessibility"
       .analyze();
     expect(axe.violations).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/phase4/web-regression/sports-regression/regression-home-${width}.png`,
+      path: `${evidenceRoot}/web-regression/sports-regression/regression-home-${width}.png`,
       fullPage: true,
     });
   }

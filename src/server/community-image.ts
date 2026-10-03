@@ -1,8 +1,9 @@
 import sharp from "sharp";
+import { communityImageMaxBytes } from "@/core/community-media";
 
 /** Static import is traced into standalone builds; no dynamically resolved module IDs. */
 export async function encodeCommunityImage(input: Buffer) {
-  if (!input.length || input.length > 5 * 1024 * 1024)
+  if (!input.length || input.length > communityImageMaxBytes)
     throw new Error("Image byte limit");
   const options = { limitInputPixels: 16_000_000, failOn: "warning" as const };
   const metadata = await sharp(input, options).metadata();
@@ -12,7 +13,7 @@ export async function encodeCommunityImage(input: Buffer) {
   )
     throw new Error("Static raster image required");
   // Default Sharp output strips source metadata; rotate applies orientation first.
-  return sharp(input, options)
+  const encoded = await sharp(input, options)
     .rotate()
     .resize({
       width: 2048,
@@ -22,4 +23,7 @@ export async function encodeCommunityImage(input: Buffer) {
     })
     .webp({ quality: 82 })
     .toBuffer({ resolveWithObject: true });
+  if (encoded.data.length > communityImageMaxBytes)
+    throw new Error("Encoded image byte limit");
+  return encoded;
 }

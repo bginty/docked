@@ -630,7 +630,7 @@ function AvatarUpload({ onUploaded }: { onUploaded: () => Promise<void> }) {
           <input name="alt" minLength={5} maxLength={240} required />
         </label>
         <p className="form-help">
-          Static JPEG, PNG or WebP up to 5 MB. Use an image you have rights to
+          Static JPEG, PNG or WebP up to 4 MB. Use an image you have rights to
           share. Remove private identifiers. Review is required before public
           display.
         </p>
