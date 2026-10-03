@@ -1,0 +1,839 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "checkedAt": "2026-10-03T15:47:32.699Z",
+  "status": "PASS",
+  "genuineSessions": true,
+  "genuineStaffMfa": true,
+  "mockedData": false,
+  "checks": [
+    {
+      "check": "explicit-preview-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "private-disposable-roster",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-denied-/api/admin/scanner",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-denied-/api/admin/scanner?view=candidates",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-denied-/api/admin/scanner?view=daily",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-denied-/api/admin/market-data-editorial",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-worker-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-no-browser-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "scope-member",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-login-member",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-user-member",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-cookies-member",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-staff-denied-member",
+      "status": "PASS"
+    },
+    {
+      "check": "member-editorial-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "member-recognition-mutation-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "member-dashboard-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "member-dashboard-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "member-candidates-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "member-candidates-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "member-daily-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "member-daily-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "member-cross-origin-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "member-nonexistent-candidate-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "member-mutation-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "member-market-data-honest-empty",
+      "status": "PASS"
+    },
+    {
+      "check": "member-market-data-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "member-cannot-invoke-provider-ingestion",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-persistent-tabs",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-session-refresh",
+      "status": "PASS"
+    },
+    {
+      "check": "feed-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "feed-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "feed-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "feed-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "feed-persistent-tabs",
+      "status": "PASS"
+    },
+    {
+      "check": "feed-session-refresh",
+      "status": "PASS"
+    },
+    {
+      "check": "following-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "following-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "following-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "following-persistent-tabs",
+      "status": "PASS"
+    },
+    {
+      "check": "following-session-refresh",
+      "status": "PASS"
+    },
+    {
+      "check": "points-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "points-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "points-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "points-persistent-tabs",
+      "status": "PASS"
+    },
+    {
+      "check": "points-session-refresh",
+      "status": "PASS"
+    },
+    {
+      "check": "my-edge-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "my-edge-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "my-edge-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "my-edge-persistent-tabs",
+      "status": "PASS"
+    },
+    {
+      "check": "my-edge-session-refresh",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-1366-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "edges-1366-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "member-no-page-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "member-no-console-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-member",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-revoked-member",
+      "status": "PASS"
+    },
+    {
+      "check": "scope-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-login-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-user-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-cookies-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-staff-denied-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-enrolled-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-verified-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-editorial-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-no-invented-editorial-draft",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-dashboard-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-dashboard-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-candidates-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-candidates-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-daily-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-daily-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-cross-origin-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-nonexistent-candidate-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-412-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-public-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-1366-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-1366-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "edge-scanner-1366-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-412-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-1366-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-1366-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "candidate-edges-1366-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-412-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-1366-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-1366-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-operations-1366-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-real-dashboard",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-no-page-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "admin-no-console-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-revoked-admin",
+      "status": "PASS"
+    },
+    {
+      "check": "scope-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-login-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-user-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-cookies-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-staff-denied-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-enrolled-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-verified-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-editorial-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-dashboard-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-dashboard-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-candidates-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-candidates-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-daily-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-daily-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-cross-origin-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-nonexistent-candidate-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-no-page-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "analyst-no-console-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-revoked-analyst",
+      "status": "PASS"
+    },
+    {
+      "check": "scope-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-login-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-user-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-cookies-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-staff-denied-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-enrolled-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-verified-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-editorial-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-no-invented-editorial-draft",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-recognition-mutation-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-dashboard-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-dashboard-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-candidates-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-candidates-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-daily-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-daily-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-cross-origin-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-nonexistent-candidate-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-mutation-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-no-page-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "editor-no-console-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-revoked-editor",
+      "status": "PASS"
+    },
+    {
+      "check": "scope-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-login-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-user-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-cookies-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-staff-denied-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-enrolled-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-verified-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-editorial-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-recognition-mutation-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-dashboard-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-dashboard-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-candidates-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-candidates-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-daily-permission",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-daily-private-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-cross-origin-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-nonexistent-candidate-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-mutation-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-no-page-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "auditor-no-console-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-auditor",
+      "status": "PASS"
+    },
+    {
+      "check": "logout-revoked-auditor",
+      "status": "PASS"
+    }
+  ],
+  "diagnostics": [
+    {
+      "role": "anonymous",
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "role": "member",
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "role": "admin",
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "role": "analyst",
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "role": "editor",
+      "pageErrors": 0,
+      "consoleErrors": 0
+    },
+    {
+      "role": "auditor",
+      "pageErrors": 0,
+      "consoleErrors": 0
+    }
+  ],
+  "limits": [
+    "No provider credentials or genuine sporting data; populated sporting states use isolated local tests only.",
+    "S24-sized browser viewport is not a physical device test."
+  ]
+}

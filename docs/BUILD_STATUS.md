@@ -2,7 +2,15 @@
 
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current milestone: Phase 4.5 invited Android beta
+## Phase 5 implementation and hosted acceptance — 4 October 2026
+
+Continues the clean `7663490` checkpoint on the same branch. Rights-gated current-data adapters, a reproducible market baseline, durable scanner/manual-review records, discovery/recognition surfaces and provider/history/cost evidence are implemented. Reviewed source `38f90a1` is on the isolated Docked Preview alias; the additive migration is applied only to Docked Preview Supabase. Final validation passed: 233 platform tests, 109 PostgreSQL/RLS tests, 76 browser tests, 198 real hosted assertions with staff MFA, typecheck, lint and production build. Dependency audits report zero vulnerabilities; actual credential scans and browser canaries are clear. Hosted testing found and repaired mobile Data Health overflow and its scanner link. Full receipts, retained failed attempts, 28-item handoff and remaining advisory details are in [qa/phase5](qa/phase5).
+
+Providers remain NOT_CONFIGURED; no real trial, fixture/outcome import or historical evaluation occurred. Strategy V1 is UNVALIDATED, forward paper has NOT STARTED, scanner schedules/triggers are off, and official publication/sending remain off. Five final disposable QA accounts were erased and the four existing Auth accounts were verified unchanged. Production, DNS, Oura, external email and paid plans were untouched. The next owner action is a dedicated free The Odds API key plus approved bounded pilot rights/configuration; software readiness is not evidence of a sporting advantage.
+
+The owner now confirms physical Samsung S24 **v5 installation/entry works**. New Phase 5 native interactions still require physical acceptance; no device is attached to this workspace. Existing Android v5 is unchanged.
+
+## Preserved milestone: Phase 4.5 invited Android beta
 
 Continued from clean `80f2ed5`. The byte-exact installed blue D is now the canonical brand source. Dedicated `/app` entry resolves to app login or Edges, with compact account screens, required age/terms/privacy, separate unticked marketing and short onboarding. Expiring, auditable Preview Tester capabilities and invitations are restricted to the exact isolated Docked project. Clearly labelled DEMO community content and immutable preview-price records remain separate from genuine publication, performance and rankings. Five educational articles and a source-controlled, currently empty Weekend Watchlist are prepared.
 

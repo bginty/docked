@@ -1,0 +1,18 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "checkedAt": "2026-10-03T15:25:06.808Z",
+  "command": "supabase db advisors --linked --project-ref bckkllmndoxzpzdqrevb --type all --level info --fail-on error --output json",
+  "exitCode": 0,
+  "counts": {
+    "INFO:rls_enabled_no_policy": 95,
+    "WARN:auth_leaked_password_protection": 1,
+    "INFO:unindexed_foreign_keys": 74,
+    "INFO:unused_index": 14
+  },
+  "errors": 0,
+  "notes": [
+    "Private RLS tables intentionally expose no browser policies/grants.",
+    "Leaked-password protection is disabled; no Auth setting or paid plan changed.",
+    "Foreign-key and unused-index notices require measured workload review; they do not establish a security bypass."
+  ]
+}

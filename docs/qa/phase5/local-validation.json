@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-03T15:51:20.8551845Z",
+  "sourceCommit": "38f90a13b5cd8834460b1ecdd6e2ff61ec949dd0",
+  "productionBuildId": "RrfEvG4_jKqBKkYEDA8EV",
+  "platform": {
+    "log": "private-data/phase5/platform-final.log",
+    "sha256": "dad9e1082a618d75ac12a4b6d39ecb1a8ffaa9bbeb587934e49f22caea280d57",
+    "tests": 233.0,
+    "pass": 233.0,
+    "fail": 0.0,
+    "skipped": 0.0,
+    "cancelled": 0.0,
+    "duration_ms": 90955.8164
+  },
+  "database": {
+    "log": "private-data/phase5/database-final.log",
+    "sha256": "b6425f9eb27820920cb3c97bdcf77f40cf704b6738947bebe21276e54d106802",
+    "tests": 109.0,
+    "pass": 109.0,
+    "fail": 0.0,
+    "skipped": 0.0,
+    "cancelled": 0.0,
+    "duration_ms": 108278.156
+  },
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "productionBuild": "PASS",
+  "clientCanaryCheck": "PASS: 50 assets",
+  "scope": "Full platform and PostgreSQL suites passed before the final presentation-only Data Health repair; complete final browser acceptance recorded separately."
+}

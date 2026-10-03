@@ -1,0 +1,40 @@
+# Phase 5 UI and recognition evidence
+
+Local-only focused work; no provider purchase, external email, production DNS change or fabricated public records.
+
+- Pure recognition regressions: **6/6 passed** covering eligibility, deduplication, account age, viewer-hidden interest, burst timing, completed-week/sampling, longshot caps and privacy withdrawal.
+- SQL projection regressions: **3/3 passed**; disposable PostgreSQL executes actual server query text, including Auth bans, missing/DEMO source completeness, loss-inclusive sample counts, block visibility, moderation and promotional exclusions. Combined focused run: **9/9, 11.219 seconds**.
+- Final TypeScript check and scoped ESLint passed. The React review keeps staff loaders server-only, type-only imports in presentation fixtures, deterministic UTC hydration followed by local timestamps, inert pre-hydration forms, bounded source reads and per-post engagement indexing.
+- Browser fixture acceptance: **4/4 passed, 26.1 seconds**, current components and CSS bundled into isolated DEMO pages. Empty and populated discovery at 360/412/1366; admin manual/review/schedule form at 390. Zero reported axe violations, console errors or horizontal overflow. Populated watchlist includes two outcomes sharing a market ID and suppresses stale reference prices.
+- Initial browser run: 1 passed / 3 failed because the fixture omitted the real PinnedDocked parent's H2 around its H3 child. The fixture now includes the actual heading hierarchy. Assertions were retained. The first receipt remains [phase5-fixture-results.json](phase5-fixture-results.json); passing receipt [phase5-fixture-results-final.json](phase5-fixture-results-final.json).
+- Initial SQL harness attempts: Windows esbuild filesystem resolution required the existing explicit test namespace pattern; then a fictional test submission was later than its test clock and was correctly excluded. The fixture was corrected. Actual query predicates were not relaxed.
+
+Screenshots are in [phase5/](phase5/): `DEMO-empty-360/412/1366.png`, `DEMO-populated-360/412/1366.png`, and `DEMO-admin-revalidation-390.png`. Mobile empty and populated renders were visually inspected. These are synthetic interface fixtures, not hosted sporting data, account validation or performance evidence. The baseline compiled app supplied only `/offline.html` and static assets; new components/CSS came from the test bundle. Final integrated production-build and hosted testing are coordinated separately by the root agent.
+
+The new Edges hierarchy preserves the official card first, followed by community interest, factual monitored events/watchlist, complete-week recognition and recent outcomes. Public watchlists receive no model probability, fair price or estimated EV. Staff-only candidates show captured evidence and force fresh approval. No native source or APK changed.
+
+## Initial integrated browser acceptance
+
+The complete existing browser suite and new Phase 5 cases passed **73/73**, with **zero failures, skipped tests or flaky tests**, in **885.205 seconds**. The run began at `2026-10-03T15:18:19.866Z` against local production build `tc1XS1BJKQieQ9HFKWkiQ`; the preserved receipt is [browser-before-hosted-repair.json](browser-before-hosted-repair.json). The private command log is `private-data/phase5/browser-final.log`. No application or test changes were needed during this run, and the external preview server was neither restarted nor modified.
+
+Coverage includes public routing and access gates; app authentication screens and hydration; mobile navigation, keyboard/safe-area clearance and feed pagination; social/reference-price fixture interactions; local timestamp hydration in Sydney and New York; sports images and interrupted-image recovery; automated accessibility, console and overflow assertions. Isolated account/action fixtures remain explicitly DEMO and do not establish genuine hosted authentication or sporting-data acceptance.
+
+The four Phase 5 cases passed against the final source. On mobile, the official empty block is below 180px high, its heading is at most 22px, and Trending starts above 650px from the page top. Fresh `DEMO-empty-360.png`, `DEMO-populated-412.png` and `DEMO-admin-revalidation-390.png` were visually inspected. Card labels, truthful empty states, stale-price suppression and review failure recovery remain clear. Full-page captures include the fixed navigation at its viewport position; the separate content-clearance tests verify reachable final content. The complete screenshot tree contains 349 PNGs across public-route and labelled fixture evidence; these are not 349 independent tests.
+
+The original four-case fixture pass above predates the compact-density refinement. The complete 73-case run predates the additional hosted data-health finding below; genuine hosted-role acceptance is recorded separately by the parent task.
+
+## Hosted data-health finding and regression
+
+Actual staff MFA acceptance discovered page overflow at 412px on `/admin/data-health`. The original suite tested its anonymous access gate, so that pass did not exercise the authorized diagnostics content. A new isolated test of the real presenter reproduced the overflow with `RESULTS_PROVIDER_STATUS=NOT_CONFIGURED`, before any long-data fixture was introduced. The original failing receipt is [data-health-before.json](data-health-before.json); the private trace/screenshot is retained under `private-data/phase5/data-health-layout-before`.
+
+The route retains the same role/MFA check and server data read. Its presenter now contains long status tokens, identifiers, hashes, incidents and JSON within the page. Poll records retain complete values in a labelled, keyboard-focusable horizontal scroller. Poll cells wrap from the top rather than forcing a tall blank row, and the scanner link now targets the existing `/admin/edge-scanner` route.
+
+Focused final acceptance passed **3/3 in 12.364 seconds**, at 360/412/1366px: actual NOT_CONFIGURED state, deliberately long identifiers, complete hash text, zero page overflow, keyboard scrolling, axe and console assertions. The final long 412px screenshot was visually inspected at original resolution. [data-health-final.json](data-health-final.json) and [data-health/](data-health/) contain the final focused result and six labelled fixture screenshots. Typecheck and scoped ESLint passed.
+
+One intermediate test-only sizing assertion rejected a 400.375px row against an arbitrary 400px limit. The retained receipt is [data-health-row-bound-attempt.json](data-health-row-bound-attempt.json). The final regression uses a meaningful half-viewport bound (422px in its 844px viewport), retaining the complete-content, page-overflow, keyboard and accessibility assertions. Production CSS was not changed to satisfy that fractional-pixel threshold.
+
+## Final acceptance after the hosted repair
+
+The complete suite passed **76/76**, with **zero failures, skipped tests or flaky tests**, in **847.714 seconds** against production build `RrfEvG4_jKqBKkYEDA8EV`. It began at `2026-10-03T15:44:35.660Z` and includes every original 73 case plus the three new data-health regressions. [browser-final.json](browser-final.json) is the final complete receipt; the private log is `private-data/phase5/browser-after-health-repair.log`. The process exited successfully. No tests or application source changed during this final run.
+
+Fresh captures include the six data-health states in [data-health/](data-health/), the compact empty/populated discovery and scanner-review fixtures in [phase5/](phase5/), and public-route/shell regressions across the retained screenshot folders. The final long-diagnostic 412px view was inspected at original resolution: status tokens, configuration hashes, incident text and complete JSON remain visible through wrapping or the keyboard-scrollable poll region. Accessibility, console, page-overflow, content-preservation and mobile geometry assertions passed. Real hosted role/session acceptance is separate and must be read from its own receipts; this browser pass does not establish genuine provider coverage or a physical Android retest.

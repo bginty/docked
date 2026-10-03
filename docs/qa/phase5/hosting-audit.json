@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-10-03T15:46:31.992Z",
+  "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+  "projectName": "docked-preview",
+  "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "deploymentId": "dpl_5Up2hMH7mksYzkC5EfnDnknm7EBj",
+  "target": "preview",
+  "readyState": "READY",
+  "sourceCommit": "38f90a13b5cd8834460b1ecdd6e2ff61ec949dd0",
+  "supabaseProjectRef": "bckkllmndoxzpzdqrevb",
+  "productionDeployments": 0,
+  "productionEnvironmentVariables": 0,
+  "previewEnvironmentVariables": 27,
+  "activeDeployments": [
+    {
+      "id": "dpl_5Up2hMH7mksYzkC5EfnDnknm7EBj",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_FXLCguCaS7t2KAjHigbRJ8ptzy1P",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_8Zs6gWmRJC4kL9sUL7WvLRYXXR3y",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_AWsjRYtbzih7AFiF8ftQQXikGgDa",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_J6UfdR9DPMx5YSkLjk93LHcPP1gn",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_JAYYcsWXXhR3Xyk9nMzgMFRVpp4R",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_98W8eekf5UHSkD1oNWNe39wRVUNb",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_EMjGsHntMShpCLn5jiDCH2f1wxHW",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_AXm9Qk1jqJAHbJA6P21cM8jon43u",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_28LrxCbuMSD2EVypPEAuFtd2EVeG",
+      "target": null,
+      "state": "READY"
+    },
+    {
+      "id": "dpl_39eJhKFdVbTrWuBjYwYkbr1bWBHq",
+      "target": null,
+      "state": "READY"
+    }
+  ],
+  "publicHttpsHealth": {
+    "feed": false,
+    "strategy": false,
+    "publication": false,
+    "database": true,
+    "oddsProviderStatus": "NOT_CONFIGURED",
+    "resultsProviderStatus": "NOT_CONFIGURED",
+    "reason": "Source health is unavailable; no new tips can publish."
+  },
+  "actualHomeRendered": true,
+  "foundationInstructionsPresent": false,
+  "existingProductionTouched": false,
+  "productionDnsChanged": false,
+  "bootstrapIncident": "Two initial deployments were automatically classified production by Vercel in this new isolated project despite explicit preview/staging requests. Both were removed. No production-scoped credentials were configured. A build guard now refuses non-preview compilation.",
+  "removedBootstrapDeployments": [
+    "dpl_67an1iQjWgqzS6wb7mvnNbhR2nWK",
+    "dpl_7Ca6F1Mt8PcZpui4jTtXCB852ZW4"
+  ]
+}

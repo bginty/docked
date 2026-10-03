@@ -1,5 +1,22 @@
 # Release gates
 
+## Phase 5 readiness — 4 October 2026
+
+- [x] Existing source and all prior milestones preserved; rollback tag `docked-before-phase5-2026-10-04` recorded before changes.
+- [x] Provider evaluation, rights/retention design, historical matrix and ingestion-based cost assumptions documented from official sources.
+- [x] Phase 5 local validation: 233 platform, 109 PostgreSQL/RLS and final 76 browser tests; typecheck, lint, build and client/dependency checks passed.
+- [x] Isolated Preview migration/deployment and 198 genuine hosted role/MFA assertions passed; disposable QA identities erased, existing four accounts preserved. Remaining advisor/physical/data limits are explicit in the Phase 5 report.
+- [ ] Dedicated provider key, account quota and approved exact trial scope supplied; no credentials detected in local or hosted Preview configuration.
+- [ ] Real fixture/market trial completed, quality evidence reviewed and provider chosen. Both providers remain INSUFFICIENT_EVIDENCE.
+- [ ] Owner approves versioned provider rights, canonical competition/bookmaker mappings, source independence and price classification.
+- [ ] Supervised backend ingestion/scanner/retention trigger configured and operational alerts assigned; activation remains off.
+- [ ] Real results source and settlement/correction rules authorised; historical outcome coverage confirmed separately from odds.
+- [ ] Strategy validated and forward-paper study completed before official live authority. Automatic publication remains forbidden.
+- [ ] New Phase 5 native interactions checked on physical S24. Owner reports the existing v5 app works; no device is currently attached for automated native checks.
+- [ ] Android closed-testing prerequisites met: stable real data, working invited community, moderation/support ownership, reviewed Play declarations and upload signing key. Do not publish to Play during this phase.
+
+Software and hosted acceptance results are maintained in [the Phase 5 evidence folder](qa/phase5). Passing software checks does not close the external data, legal or research gates above.
+
 Neither actionable-tip launch nor public education release is authorised by a completed interface.
 
 ## Actionable-tip release — all required

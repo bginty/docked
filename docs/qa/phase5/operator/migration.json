@@ -1,0 +1,23 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T15:19:23.914Z",
+  "value": {
+    "migration": "20261003143903_phase5_edge_scanner_market_data.sql",
+    "sha256": "6952403b415f2cfcd829c49d54493f072842bdffed14a6f776d6ee2783bd1287",
+    "state": {
+      "migrations": 12,
+      "latest": "20261003143903",
+      "enabled_flags": 0,
+      "official_records": 0,
+      "real_events": 0,
+      "real_snapshots": 0,
+      "delivery_attempts": 0,
+      "external_sends": 0,
+      "ordinary_approvals": 0,
+      "unprotected_tables": 0
+    },
+    "existingAccountsPreserved": true,
+    "dryRun": true,
+    "applied": true
+  }
+}

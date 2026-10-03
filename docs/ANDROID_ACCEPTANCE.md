@@ -9,13 +9,13 @@ Preserved artifact: [Docked Preview v5](../artifacts/android/Docked-Preview-S24-
 | Area | Phase 5 evidence/status |
 | --- | --- |
 | Existing v5 physical S24 operation | User confirmed working; exact per-case observations not supplied |
-| Five tabs, shell, safe areas, back/keyboard | Existing implementation retained; broad final browser/device results belong in Phase 5 QA |
-| Compact Edges discovery empty/populated | Isolated DEMO browser fixture at 360, 412 and 1366 pixels; no live records or Auth asserted |
+| Five tabs, shell, safe areas, back/keyboard | Final 76-case browser suite passed, including navigation, safe-area/content and keyboard checks; physical native back/keyboard retest remains pending |
+| Compact Edges discovery empty/populated | Final DEMO cases passed at 360, 412 and 1366 pixels; genuine hosted member empty state also passed at 412/1366; no live records invented |
 | Scanner manual input and revalidation failure | Isolated 390-pixel browser fixture; no typed odds/probability/result controls; revalidation failure remains recoverable |
 | Real provider fixtures/current odds | Blocked by missing approved provider configuration/credentials and display rights |
 | Genuine trending/weekly recognition | No seeded real engagement or performance; algorithm and disposable SQL tested; hosted actual-data availability remains separate |
-| Signup/login/invitation/onboarding/logout/session recovery | Existing paths retained; final hosted acceptance must report actual actions and any unrun cases |
-| Profile/follow/reaction/comment/report/delete/preferences | Existing controls retained; root coordinates real-account hosted acceptance separately |
+| Signup/login/invitation/onboarding/logout/session recovery | Five genuine hosted logins, four staff MFA enrollments, member refreshes and logout/access-denial checks passed. Signup/invitation/onboarding evidence remains the earlier Phase 4.5 run; no new email-verification run claimed |
+| Profile/follow/reaction/comment/report/delete/preferences | Existing controls retained and local fixture regressions passed; final hosted QA accounts erased through the existing deletion service. No new genuine community writes were used to create engagement/performance |
 | Native sharing, picker, deep links, offline/recovery | No native changes in this phase; detailed Phase 5 physical-device retest not performed here |
 | Push, billing, prizes, affiliates, official live publication | Remain disabled; UI work does not activate transports or commercial/publication gates |
 | Play closed test | Separate policy, developer-account and owner-controlled upload-signing prerequisites remain; no store approval claimed |

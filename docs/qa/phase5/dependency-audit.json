@@ -1,0 +1,43 @@
+{
+  "recordedAt": "2026-10-03T15:50:02.4237478Z",
+  "allDependencies": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 51,
+      "dev": 230,
+      "optional": 70,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 315
+    }
+  },
+  "productionDependencies": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 51,
+      "dev": 230,
+      "optional": 70,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 315
+    }
+  },
+  "sourceLogs": [
+    "private-data/phase5/dependency-all.json",
+    "private-data/phase5/dependency-production.json"
+  ]
+}

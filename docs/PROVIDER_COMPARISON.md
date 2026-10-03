@@ -17,7 +17,7 @@ This command makes no network calls. Input `trials.json` is an array of the `Pro
 Only after separate trial authority and rights review:
 
 ```sh
-# APP_ENV=preview; ODDS_API_KEY and ODDSPAPI_API_KEY supplied securely by operator.
+# APP_ENV=preview; THE_ODDS_API_KEY and ODDSPAPI_API_KEY supplied securely by operator.
 npx tsx scripts/provider-trial.ts --run-authorised-preview-trial private-data/provider-trial.json private-data/trials.json
 ```
 
@@ -26,7 +26,7 @@ The configuration contains `competition`, optional `asOf`, documented `rights`, 
 - `theOddsApi`: approved `remaining` credit budget, `regions`, and exact existing `Mapping` (`events` and approved bookmakers/operators).
 - `oddsPapi`: approved `remaining` request budget, requested `bookmakers` and `OddsPapiMapping` (`fixtureId`, canonical `rules`/`startAt`, source `sportId`/`tournamentId`/participant IDs, `marketId`, outcome-ID-to-canonical-selection mapping, `mappingEvidence`, and approved bookmaker/operator/ownership records).
 
-The script reads keys only from environment variables, stores no persistent provider configuration, and requests each scoped provider once. Missing keys produce NOT_CONFIGURED records without requests. A single configured source remains a useful coverage observation but cannot manufacture a cross-provider comparison. Errors are reduced to safe finite codes; credential-bearing URLs and provider exceptions are never printed. Run repeated polls only under a reviewed total budget and cooldown policy; do not create parallel instances to bypass reservation guards.
+The script reads keys only from environment variables, stores no persistent provider configuration, and requests each scoped provider once. `THE_ODDS_API_KEY` is preferred; `ODDS_API_KEY` is a legacy CLI alias only, and conflicting aliases are rejected. The separate hosted current-data path rejects the legacy alias. Missing keys produce NOT_CONFIGURED records without requests. A single configured source remains a useful coverage observation but cannot manufacture a cross-provider comparison. Errors are reduced to safe finite codes; credential-bearing URLs and provider exceptions are never printed. Run repeated polls only under a reviewed total budget and cooldown policy; do not create parallel instances to bypass reservation guards.
 
 ## Reading the report
 

@@ -1,0 +1,29 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-03T14:44:45.438Z",
+  "migrationCount": 11,
+  "state": {
+    "auth_users": 4,
+    "sessions": 0,
+    "profiles": 4,
+    "approved_policies": 1,
+    "enabled_flags": 0
+  },
+  "applicationTables": 92,
+  "sha256": "d38c1c159ae85a8e345adad6f6e7f7717594f53abfc5e1253f3c623e13866071",
+  "migrationHashes": {
+    "20261002113546_docked_platform.sql": "0ce1d080577a86014fa3f0966bf60084583157c7a2bf49bd4c663e18ed7a8594",
+    "20261002122714_phase2_security_and_validation.sql": "d06aa977c3d754a6541a7347e0fbe1cdcfdce1975bd1c1cfc9108c4ecb101973",
+    "20261003002609_phase3_membership_and_rewards.sql": "8b2a175a39ec5a7f0c3f96a470c662e042e4459cd6d8f8722d6ad2ac7ac3d505",
+    "20261003002709_phase3_social_core.sql": "eb879ec56e6780bcb140f230a42783fde0f858348c635a68ded15270b414e3e6",
+    "20261003002935_phase3_community_edge_ledger.sql": "2285eaa18c23ae5d50dc988ef4c144ab17cb0317b6f51a182647627b58f4fc48",
+    "20261003021118_session_helper_execute_hardening.sql": "4d06c780ea480f8e880e143112e535d039dfaf2427b07347b26f7335abfd6453",
+    "20261003030722_phase4_market_reference.sql": "29dd45095d38bc977a91cab1be7597fbbf622ef3756c6b09b1d43445f0480e67",
+    "20261003061548_hosted_preview_tester_community.sql": "40f39bc156e493f3330af7c24bf21f7760d8291917243202ca2302e7fb997b55",
+    "20261003062615_session_wall_clock_revalidation.sql": "99af89216a8c37bcffd118143722985926b518b7dbeb5f99dd25fcb6ac4e2229",
+    "20261003121257_phase45_preview_beta_auth.sql": "db71f25e8d290bcda43dcf15654aa97ca4d878a6532c69026e06ee618228d3a9",
+    "20261003121502_phase45_preview_market_fixtures.sql": "f962de05d2377856874891d8a3f18b904ad3f20683555f63f99ef670ab3a134a",
+    "20261003143903_phase5_edge_scanner_market_data.sql": "ffc52bb595ead07aef993f9149804c6e9601bf268090fc55a4bcc780ec4aa6a0"
+  },
+  "scope": "Private application rows, function/constraint/trigger/policy preimages and versioned migrations. Auth-managed records and storage excluded. No disaster restore certification; hosted migration is transactional and recovery uses forward repair."
+}
