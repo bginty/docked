@@ -426,7 +426,7 @@ test("provider aliases refuse conflicting values and preview market data cannot 
     assert.equal(marketDataEnvironment({ ...env, ...change }), false);
     assert.throws(() => assertHostedPreview({ ...env, ...change }));
   }
-  assert.throws(() =>
+  assert.doesNotThrow(() =>
     assertHostedPreview({
       ...env,
       MARKET_DATA_POLLING_ENABLED: "false",

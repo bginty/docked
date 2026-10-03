@@ -1,4 +1,9 @@
-import { dockedPreviewOrigin, previewDatabaseBound } from "./preview-auth";
+import manifest from "../../config/hosted-preview.json";
+import {
+  dockedPreviewOrigin,
+  dockedPreviewProjectRef,
+  previewDatabaseBound,
+} from "./preview-auth";
 import { marketDataEnvironment } from "./market-data-environment";
 
 type Environment = Record<string, string | undefined>;
@@ -77,9 +82,21 @@ export function assertHostedPreview(env: Environment) {
     fail();
   if (env.MARKET_DATA_POLLING_ENABLED === "true" && !marketDataEnvironment(env))
     fail();
+  // Secret storage is not polling authority. This exception permits only inert
+  // modern keys in the exact reviewed Preview; every activation gate remains.
+  const inertProviderStorage =
+    env.MARKET_DATA_POLLING_ENABLED === "false" &&
+    env.VERCEL_ENV === "preview" &&
+    env.SITE_URL === manifest.origin &&
+    (!env.VERCEL_PROJECT_ID || env.VERCEL_PROJECT_ID === manifest.projectId) &&
+    (!env.MARKET_DATA_PROJECT_REF ||
+      env.MARKET_DATA_PROJECT_REF === dockedPreviewProjectRef) &&
+    (!env.MARKET_DATA_PROVIDER ||
+      ["the-odds-api", "odds-papi"].includes(env.MARKET_DATA_PROVIDER));
   if (
     (env.THE_ODDS_API_KEY?.trim() || env.ODDSPAPI_API_KEY?.trim()) &&
-    !marketDataEnvironment(env)
+    !marketDataEnvironment(env) &&
+    !inertProviderStorage
   )
     fail();
   if (
