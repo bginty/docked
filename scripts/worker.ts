@@ -19,6 +19,11 @@ import { ingestSport, evaluateDue } from "../src/server/ingestion";
 import { collectObservations } from "../src/server/observations";
 import { editorialReport } from "../src/server/editorial-report";
 import { drainJobs, isolatedObservation } from "../src/core/worker-runner";
+import {
+  processCommunityNotifications,
+  purgeCommunityRetention,
+} from "../src/server/community-social";
+import { processLeaderboardNotifications } from "../src/server/top-docked";
 const mode = process.argv[2] ?? "once";
 async function main() {
   const settings = config();
@@ -41,6 +46,16 @@ async function main() {
   await isolatedObservation(collectObservations, async () => {
     await sql`insert into private.audit_events(actor,action,subject,details) values('worker','observation_failure','service','{"reason":"Observation collection failed; review source/configuration"}')`;
   });
+  await isolatedObservation(
+    async () => {
+      await purgeCommunityRetention();
+      await processCommunityNotifications();
+      await processLeaderboardNotifications();
+    },
+    async () => {
+      await sql`insert into private.audit_events(actor,action,subject,details) values('worker','community_notification_failure','service','{"reason":"In-app processing failed; resumable job cursor retained"}')`;
+    },
+  );
   await sql.begin(async (tx) => {
     const due =
       await tx`select id from private.articles where status='scheduled' and scheduled_at<=now() and (expires_at is null or expires_at>now()) for update skip locked`;

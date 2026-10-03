@@ -20,7 +20,11 @@ export function config(env: Record<string, string | undefined> = process.env) {
   if (
     env.ADS_ENABLED === "true" ||
     env.AFFILIATES_ENABLED === "true" ||
-    env.PAID_PLANS_ENABLED === "true"
+    env.PAID_PLANS_ENABLED === "true" ||
+    env.PRO_ENTITLEMENTS_ENABLED === "true" ||
+    env.COMPETITIONS_ENABLED === "true" ||
+    env.PRIZES_ENABLED === "true" ||
+    env.DEALS_ENABLED === "true"
   )
     throw new Error(
       "Monetisation requires a reviewed implementation and fresh opt-in",

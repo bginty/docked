@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { analyticsInput } from "@/core/analytics";
+import { analyticsInput, clientAnalyticsAllowed } from "@/core/analytics";
 import { recordAnalytics } from "@/server/analytics";
 import { requireIdentity, sameOrigin } from "@/server/auth";
 import { db, rateLimit } from "@/server/db";
@@ -28,20 +28,7 @@ export async function POST(request: Request) {
       return new NextResponse(null, { status: 429 });
     const v = analyticsInput.parse(await request.json());
     // Completion/conversion events come only from the successful server action.
-    if (
-      [
-        "signup_completed",
-        "email_verified",
-        "onboarding_completed",
-        "tip_saved",
-        "alert_enabled",
-        "alert_disabled",
-        "digest_enabled",
-        "digest_disabled",
-        "sport_selected",
-        "bookmaker_selected",
-      ].includes(v.event)
-    )
+    if (!clientAnalyticsAllowed(v.event))
       return new NextResponse(null, { status: 400 });
     await recordAnalytics(who.user.id, v.event, v.channel);
     return new NextResponse(null, { status: 204 });

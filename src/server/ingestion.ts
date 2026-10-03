@@ -11,6 +11,7 @@ import path from "node:path";
 import { currentBookmakerApprovals } from "./bookmaker-approvals";
 import { revalidateBookmakers } from "@/core/bookmaker-approval";
 import { frozenCodeMatches } from "@/core/code-provenance";
+import { registerCommunityQuoteEvidence } from "./community-edges";
 export async function ingestSport(sport: string) {
   if (
     !["direct", "session"].includes(process.env.DATABASE_CONNECTION_MODE ?? "")
@@ -119,6 +120,20 @@ export async function ingestSport(sport: string) {
       await tx`update private.source_health set healthy=${valid},last_success=case when ${valid} then now() else last_success end,last_failure=case when ${valid} then last_failure else now() end,credits_remaining=${result.remaining},credits_used=${result.used},failure_reason=${valid ? null : "No valid mapped markets in provider response"},circuit_until=null,diagnostics=${tx.json({ ...result.stats, snapshotAt: result.snapshotAt, historicalSnapshotId: result.historicalSnapshotId })} where provider='the-odds-api'`;
       await tx`update private.provider_poll_runs set status=${valid ? "success" : "rejected"},error_code=${valid ? null : "no_valid_mapped_markets"},diagnostics=${tx.json(result.stats)},quota_charge=${Math.max(cost, result.lastRequestCost ?? cost)},completed_at=now() where id=${pollId!}`;
     });
+    // Community classification is a separate, fail-closed consumer of retained
+    // trusted adapter metadata. Failure cannot roll back official ingestion.
+    for (const quote of result.quotes)
+      if (quote.communityMetadata) {
+        try {
+          await registerCommunityQuoteEvidence(quote.id);
+        } catch {
+          try {
+            await connection`insert into private.audit_events(actor,action,subject,details) values('community-verifier','community_quote_rejected',${quote.id},'{"reason":"metadata_or_rights_verification_failed"}')`;
+          } catch {
+            /* Community diagnostics must not change official ingestion outcome. */
+          }
+        }
+      }
   } catch {
     if (pollId) {
       await connection`update private.provider_poll_runs set status='failed',error_code='provider_or_ingestion_failed',completed_at=now() where id=${pollId}`;

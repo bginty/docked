@@ -14,6 +14,20 @@ export type Capabilities = {
   export: boolean;
 };
 export type ProviderStatus = "NOT_CONFIGURED" | "DISABLED" | "READY";
+/** Trusted adapter output, never accepted from member input or inferred from an h2h market label. */
+export type CommunityProviderMetadata = {
+  sourceKind: "current_provider";
+  receivedByDocked: true;
+  providerEventId: string;
+  observedStartAt: string;
+  priceClass: "STANDARD_VERIFIED" | "PROMOTIONAL_EXCLUDED" | "UNKNOWN_REVIEW";
+  classificationVersion: string;
+  classificationEvidence: string;
+  promotionFlags: string[];
+};
+export type ProviderQuote = Quote & {
+  communityMetadata?: CommunityProviderMetadata;
+};
 export type OddsDiagnostics = {
   eventsReceived: number;
   marketsReceived: number;
@@ -26,7 +40,7 @@ export type OddsDiagnostics = {
 };
 export type OddsFetchResult = {
   raw: unknown;
-  quotes: Quote[];
+  quotes: ProviderQuote[];
   remaining: number | null;
   used: number | null;
   lastRequestCost: number | null;

@@ -6,6 +6,7 @@ import { db, rateLimit } from "@/server/db";
 import { publicTips } from "@/server/queries";
 import { processAccountDeletion } from "@/server/account-deletion";
 import { recordAnalytics } from "@/server/analytics";
+import { exportCommunityData } from "@/server/community-social";
 const preferenceSchema = z.object({
   timezone: z.string().refine((v) => DateTime.now().setZone(v).isValid),
   oddsFormat: z.enum(["decimal", "fractional", "american"]),
@@ -22,13 +23,14 @@ export async function GET() {
   try {
     const who = await requireIdentity(),
       sql = db();
-    const [preferences, saved, personal, consent, analytics] =
+    const [preferences, saved, personal, consent, analytics, community] =
       await Promise.all([
         sql`select * from public.notification_preferences where user_id=${who.user.id}`,
         sql`select tip_id,created_at from public.saved_tips where user_id=${who.user.id}`,
         sql`select * from public.personal_entries where user_id=${who.user.id}`,
         sql`select purpose,granted,version,created_at from private.consent_events where user_id=${who.user.id}`,
         sql`select event,channel,created_at from private.analytics_events where user_id=${who.user.id} order by created_at`,
+        exportCommunityData(who.user.id),
       ]);
     return NextResponse.json(
       {
@@ -38,6 +40,7 @@ export async function GET() {
         personal,
         consent,
         analytics,
+        community,
       },
       {
         headers: {
@@ -132,7 +135,11 @@ export async function POST(request: Request) {
             ? "digest_enabled"
             : "digest_disabled",
         );
-      return NextResponse.json({ ok: true, message: "Preferences saved." });
+      return NextResponse.json({
+        ok: true,
+        message: "Preferences saved.",
+        ...(!who.profile.onboarding_completed_at ? { redirect: "/home" } : {}),
+      });
     }
     if (body.action === "save") {
       const id = z.string().uuid().parse(body.tipId);
