@@ -2,6 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "regions": ["syd1"],
-  "buildCommand": "npm run build",
+  "buildCommand": "node scripts/guard-hosted-build.mjs && npm run build",
   "installCommand": "npm ci"
 }

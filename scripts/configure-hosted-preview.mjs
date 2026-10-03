@@ -89,6 +89,19 @@ if (mode === "--configure-env") {
     JSON.stringify(report, null, 2),
   );
   console.log(JSON.stringify(report));
+} else if (mode === "--remove-unexpected-first-deployment") {
+  const id = "dpl_67an1iQjWgqzS6wb7mvnNbhR2nWK";
+  const deployment = await api(`/v13/deployments/${id}`);
+  if (
+    deployment.projectId !== config.projectId ||
+    deployment.name !== config.projectName ||
+    deployment.target !== "production"
+  )
+    throw new Error("Unexpected deployment cleanup target denied");
+  await api(`/v13/deployments/${id}`, "DELETE");
+  console.log(
+    "Removed only the new isolated project's mistakenly classified first deployment; existing production was not touched.",
+  );
 } else if (mode === "--inspect") {
   console.log(
     JSON.stringify({

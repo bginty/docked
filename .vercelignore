@@ -20,8 +20,8 @@ db
 supabase
 docs
 tests
-scripts
+scripts/*
+!scripts/guard-hosted-build.mjs
 *.log
 *.tsbuildinfo
 CNAME
-
