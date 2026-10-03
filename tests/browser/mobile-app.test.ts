@@ -110,7 +110,9 @@ for (const width of [360, 390, 412, 1366]) {
       );
       await expect(page.locator("h1")).toHaveCount(1);
       await page.evaluate(() => document.fonts.ready);
-      const logo = page.locator(".app-brand-lockup .canonical-logo");
+      // Desktop uses the sidebar wordmark; mobile uses the topbar wordmark.
+      const logo = page.locator(".community-shell .canonical-logo.brand-logo--wordmark:visible");
+      await expect(logo).toHaveCount(1);
       const name = logo.locator(".canonical-logo-name");
       const logoBox = (await logo.boundingBox())!;
       const nameBox = (await name.boundingBox())!;

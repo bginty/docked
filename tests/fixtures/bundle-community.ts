@@ -4,10 +4,12 @@ import { createRequire } from "node:module";
 import path from "node:path";
 
 /** Local-only browser fixtures; no production resolution or authentication override. */
-export async function bundleCommunityFixture() {
+export async function bundleCommunityFixture(
+  entryPoint = "tests/fixtures/community-demo.tsx",
+) {
   const result = await build({
     absWorkingDir: process.cwd(),
-    entryPoints: [path.resolve("tests/fixtures/community-demo.tsx")],
+    entryPoints: [path.resolve(entryPoint)],
     tsconfigRaw: { compilerOptions: { jsx: "react-jsx" } },
     bundle: true,
     write: false,

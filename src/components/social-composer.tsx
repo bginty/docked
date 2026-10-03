@@ -1,5 +1,5 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { communityAction } from "./social-interactions";
 import { EdgeComposer } from "./edge-composer";
@@ -11,12 +11,14 @@ export function SocialComposer({
   previewFixtures?: boolean;
 }) {
   const [mode, setMode] = useState<"social" | "edge" | "preview">("edge"),
+    [ready, setReady] = useState(false),
     [body, setBody] = useState(""),
     [mediaIds, setMedia] = useState<string[]>([]),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState(""),
     [key, setKey] = useState(() => crypto.randomUUID());
   const router = useRouter();
+  useEffect(() => setReady(true), []);
   async function upload(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -69,12 +71,17 @@ export function SocialComposer({
     }
   }
   return (
-    <div>
+    <div data-composer-ready={ready}>
       <div className="community-tabs" aria-label="Content type">
-        <button aria-pressed={mode === "edge"} onClick={() => setMode("edge")}>
+        <button
+          disabled={!ready}
+          aria-pressed={mode === "edge"}
+          onClick={() => setMode("edge")}
+        >
           Post Edge
         </button>
         <button
+          disabled={!ready}
           aria-pressed={mode === "social"}
           onClick={() => setMode("social")}
         >
@@ -82,6 +89,7 @@ export function SocialComposer({
         </button>
         {previewFixtures && (
           <button
+            disabled={!ready}
             aria-pressed={mode === "preview"}
             onClick={() => setMode("preview")}
           >
