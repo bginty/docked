@@ -370,9 +370,22 @@ for (const { width, scheme } of matrix) {
     const log = monitor(page),
       receipts = [];
     for (const [name, route] of Object.entries(routes)) {
-      const response = await page.goto(route, { waitUntil: "networkidle" });
+      // Prior-document Next RSC prefetches can outlive navigation. Assert the
+      // actual destination and rendered product, rather than global network silence.
+      const response = await page.goto(route, { waitUntil: "domcontentloaded" });
       expect(response?.status()).toBe(200);
+      await expect.poll(() => new URL(page.url()).pathname).toBe(
+        route === "/home" ? "/edges" : route,
+      );
+      await expect(page.locator("main").first()).toBeVisible();
       await expect(page.locator("h1")).toHaveCount(1);
+      await expect(page.locator("h1")).toHaveText(/\S/);
+      await expect(page.locator(".app-screen-loading, .app-auth-loading")).toHaveCount(0);
+      for (const image of await page.locator("img").all()) {
+        await image.evaluate((item: HTMLImageElement) => { item.loading = "eager"; });
+        await expect(image).toHaveJSProperty("complete", true);
+        await image.evaluate((item: HTMLImageElement) => item.decode());
+      }
       const result = await checks(page, log);
       await page.screenshot({
         path: path.join(evidence, `${name}-${width}-${scheme}.png`),
