@@ -1,5 +1,42 @@
 # Data rights register
 
+## Phase 5A decision — 4 October 2026
+
+**The Odds API: APPROVED_FOR_PREVIEW_TRIAL.** Reviewer: Codex, acting under the owner's explicit Phase 5A instructions. Reference: `the-odds-api-terms-2026-08-31-phase5a-2026-10-04`. Next review: **4 November 2026**, or sooner following material terms/product changes. Production approval is not granted. [Bounded execution plan](PHASE5A_TRIAL_PLAN.md).
+
+The [official terms, Restrictions](https://the-odds-api.com/terms-and-conditions.html#restrictions), updated **31 August 2026**, permit qualifying commercial applications, indefinite retention, UI display, research and derived analytics. Standalone raw-data feeds, resale APIs and downloadable data products are prohibited. Attribution is optional. Bookmaker trademarks remain third-party property; no logo licence is inferred. Access may be revoked and terms may change. Docked retains responsibility for accuracy checks and applicable local rules.
+
+Application-specific interpretation of the requested uses:
+
+| Uses | Trial assessment |
+|---|---|
+| A server retrieval; B commercial analysis | Supported application use |
+| C raw retention; D canonical snapshots | Supported storage use |
+| E derived metrics; F prices; G analytics | Supported calculation/display |
+| H historical research; I reproducibility | Supported purpose; plan entitlement separate |
+| J community benchmark; K immutable evidence | Reasonable analysis/retention interpretation |
+| L shared ingestion/cache; M retained evidence | Reasonable application/storage interpretation |
+| N initially free, potentially paid | Within the same consumer-product boundary |
+
+No material licensing ambiguity blocks this limited trial. Standard/non-promotional price evidence, operator independence, results completeness, regional authority and actual account entitlement are separate unresolved data/operational questions. A future bulk-data product or branded bookmaker imagery needs a new review. Docked's chosen raw retention is seven days; canonical/audit retention follows its existing privacy and immutable-ledger policies, not unlimited retention of personal information.
+
+### First-party evidence retrieved before provider requests
+
+All accessed **4 October 2026, Australia/Sydney**. Except the dated terms and API V4 identity, these pages expose no publication/update version; none is invented.
+
+| Document | Official URL | Version/update shown |
+|---|---|---|
+| Terms and usage/licensing | https://the-odds-api.com/terms-and-conditions.html | 31 August 2026 |
+| API endpoints/quota/schema | https://the-odds-api.com/liveapi/guides/v4/ | V4 |
+| Historical odds | https://the-odds-api.com/historical-odds-data/ | Not shown |
+| Pricing and plan inclusions | https://the-odds-api.com/#pricing | Not shown |
+| Quota reset/billing FAQ | https://the-odds-api.com/manage/faqs.html | Not shown |
+| Market definitions | https://the-odds-api.com/sports-odds-data/betting-markets.html | Not shown |
+| Source update intervals | https://the-odds-api.com/sports-odds-data/update-intervals.html | Not shown |
+| Error handling | https://the-odds-api.com/liveapi/guides/v4/api-error-codes.html | V4 |
+
+This is a new, limited decision; the earlier unactivated reviews below remain historical context. OddsPapi is outside Phase 5A and is not activated or reevaluated.
+
 ## Phase 5 review — 4 October 2026
 
 **No source activated.** Review of current primary terms found stronger evidence than the original pending register below. [The Odds API terms](https://the-odds-api.com/terms-and-conditions.html), updated 31 August 2026, allow qualifying integrated commercial apps, indefinite storage, research, derived calculations/display and model training. They prohibit standalone raw feed redistribution; attribution is optional. Docked's precise service must fit those conditions. Record the owner's approved use, licence version, territories, retention and source capabilities before ingestion; this document does not flip any approval flag.

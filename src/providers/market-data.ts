@@ -7,7 +7,12 @@ import {
   type MarketDataConfig,
   type ProviderFixture,
 } from "@/core/market-data";
-import { TheOddsApi, quotaHeader, type Mapping } from "./odds-api";
+import {
+  TheOddsApi,
+  quotaHeader,
+  theOddsApiHasUnreviewedLifecycle,
+  type Mapping,
+} from "./odds-api";
 import { OddsPapi, type OddsPapiMapping } from "./odds-papi";
 import type { OddsDiagnostics, ProviderQuote } from "./contracts";
 
@@ -19,7 +24,7 @@ const apiFixture = z.object({
   commence_time: timestamp,
   home_team: z.string().trim().min(1),
   away_team: z.string().trim().min(1),
-  bookmakers: z.array(z.unknown()),
+  bookmakers: z.array(z.unknown()).optional(),
 });
 const papiFixture = z.object({
   fixtureId: z.string().min(1),
@@ -56,6 +61,230 @@ export type MarketDataRequestAuthority = {
     reservedCost: number;
   }) => Promise<void>;
 };
+async function readBoundedProviderPayload(
+  response: Response,
+): Promise<unknown> {
+  const length = Number(response.headers.get("content-length") ?? 0);
+  if (length > 8000000)
+    throw new Error("Provider response exceeds bounded import size");
+  const reader = response.body?.getReader();
+  if (!reader) throw new Error("Provider response missing");
+  let size = 0;
+  const chunks: Uint8Array[] = [];
+  while (true) {
+    const next = await reader.read();
+    if (next.done) break;
+    size += next.value.length;
+    if (size > 8000000) {
+      await reader.cancel();
+      throw new Error("Provider response exceeds bounded import size");
+    }
+    chunks.push(next.value);
+  }
+  try {
+    return JSON.parse(Buffer.concat(chunks).toString("utf8"));
+  } catch {
+    throw new Error("Invalid market data provider payload");
+  }
+}
+async function fetchTrialCatalog(
+  path: string,
+  scope: string,
+  authority: MarketDataRequestAuthority,
+  fetcher: typeof fetch,
+  clock: () => Date,
+  reservedCost = 0,
+) {
+  if (!authority.key.trim())
+    throw new Error("MARKET_DATA_STATUS=NOT_CONFIGURED");
+  const url = new URL(path, "https://api.the-odds-api.com");
+  url.searchParams.set("apiKey", authority.key);
+  await authority.reserve(reservedCost, scope);
+  let response: Response;
+  try {
+    response = await fetcher(url, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(15000),
+      redirect: "error",
+    });
+  } catch {
+    throw new Error("Market data provider unavailable");
+  }
+  const quota = {
+    remaining: quotaHeader(response.headers, "x-requests-remaining"),
+    used: quotaHeader(response.headers, "x-requests-used"),
+    lastRequestCost: quotaHeader(response.headers, "x-requests-last"),
+    reservedCost,
+  };
+  await authority.observeQuota?.(quota);
+  if (!response.ok)
+    throw new Error(`Market data provider HTTP ${response.status}`);
+  const payload = await readBoundedProviderPayload(response),
+    receivedAt = clock().toISOString();
+  return {
+    rawRecords: [
+      {
+        id: phase5Hash({ provider: "the-odds-api", payload, receivedAt }),
+        payload,
+        receivedAt,
+      },
+    ],
+    remaining: quota.remaining,
+    used: quota.used,
+    chargedCredits: quota.lastRequestCost ?? reservedCost,
+    receivedAt,
+  };
+}
+/** Free catalogue requests still consume one explicit, durable trial permit. */
+export async function fetchTrialSports(
+  authority: MarketDataRequestAuthority,
+  fetcher: typeof fetch = fetch,
+  clock: () => Date = () => new Date(),
+) {
+  const data = await fetchTrialCatalog(
+    "/v4/sports",
+    "sports",
+    authority,
+    fetcher,
+    clock,
+  );
+  const rawSports = z
+    .array(
+      z.object({
+        key: z.string().regex(/^[a-z0-9_]+$/),
+        group: z.string(),
+        title: z.string().min(1),
+        description: z.string(),
+        active: z.boolean(),
+        has_outrights: z.boolean(),
+      }),
+    )
+    .max(5000)
+    .safeParse(data.rawRecords[0].payload);
+  if (
+    !rawSports.success ||
+    new Set(rawSports.data.map((s) => s.key)).size !== rawSports.data.length
+  )
+    throw new Error("Invalid provider sports catalogue");
+  return {
+    ...data,
+    sports: rawSports.data.map(({ has_outrights, ...sport }) => ({
+      ...sport,
+      hasOutrights: has_outrights,
+    })),
+  };
+}
+/** Catalogue facts only. In particular, NFL fixtures never imply supported odds rules. */
+export async function fetchTrialEvents(
+  configuration: MarketDataConfig,
+  providerCompetitionId: string,
+  authority: MarketDataRequestAuthority,
+  fetcher: typeof fetch = fetch,
+  clock: () => Date = () => new Date(),
+): Promise<MarketDataBatch> {
+  const config = validateMarketDataConfig(configuration),
+    competition = config.competitions.find(
+      (c) => c.providerCompetitionId === providerCompetitionId,
+    );
+  if (
+    config.provider !== "the-odds-api" ||
+    !competition ||
+    competition.providerCompetitionId !== competition.competitionId
+  )
+    throw new Error("The Odds API competition identity mismatch");
+  const data = await fetchTrialCatalog(
+      `/v4/sports/${encodeURIComponent(providerCompetitionId)}/events`,
+      `events:${providerCompetitionId}`,
+      authority,
+      fetcher,
+      clock,
+    ),
+    fixtures = providerFixtures(
+      data.rawRecords[0].payload,
+      config,
+      competition,
+      data.receivedAt,
+    );
+  return {
+    ...data,
+    provider: "the-odds-api",
+    fixtures,
+    fixtureEvidence: Object.fromEntries(
+      fixtures.map((f) => [f.providerEventId, data.rawRecords[0].id]),
+    ),
+    quotes: [],
+    stats: {
+      ...emptyStats(),
+      // providerFixtures has validated the array; returned rows include excluded events.
+      eventsReceived: (data.rawRecords[0].payload as unknown[]).length,
+    },
+  };
+}
+/** Recent scores are diagnostic evidence, never an authorised settlement adapter. */
+export async function fetchTrialScores(
+  providerCompetitionId: string,
+  authority: MarketDataRequestAuthority,
+  fetcher: typeof fetch = fetch,
+  clock: () => Date = () => new Date(),
+) {
+  if (
+    ![
+      "soccer_epl",
+      "soccer_spain_la_liga",
+      "basketball_nba",
+      "americanfootball_nfl",
+    ].includes(providerCompetitionId)
+  )
+    throw new Error("Unsupported trial scores competition");
+  const data = await fetchTrialCatalog(
+    `/v4/sports/${encodeURIComponent(providerCompetitionId)}/scores?daysFrom=3`,
+    `scores:${providerCompetitionId}`,
+    authority,
+    fetcher,
+    clock,
+    2,
+  );
+  const scores = z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        sport_key: z.literal(providerCompetitionId),
+        commence_time: timestamp,
+        completed: z.boolean(),
+        home_team: z.string().trim().min(1),
+        away_team: z.string().trim().min(1),
+        scores: z
+          .array(
+            z.object({
+              name: z.string().trim().min(1),
+              score: z.string().regex(/^\d+$/),
+            }),
+          )
+          .length(2)
+          .nullable(),
+        last_update: timestamp.nullable(),
+      }),
+    )
+    .max(10000)
+    .safeParse(data.rawRecords[0].payload);
+  if (
+    !scores.success ||
+    new Set(scores.data.map((s) => s.id)).size !== scores.data.length ||
+    scores.data.some(
+      (s) =>
+        s.home_team === s.away_team ||
+        (s.last_update !== null &&
+          Date.parse(s.last_update) > Date.parse(data.receivedAt)) ||
+        (s.scores !== null &&
+          (new Set(s.scores.map((v) => v.name)).size !== 2 ||
+            s.scores.some(
+              (v) => ![s.home_team, s.away_team].includes(v.name),
+            ))),
+    )
+  )
+    throw new Error("Invalid provider scores payload");
+  return { ...data, scores: scores.data, settlementReady: false as const };
+}
 export function canonicalProviderEventId(
   provider: string,
   providerEventId: string,
@@ -95,12 +324,25 @@ export function providerFixtures(
   timestamp.parse(receivedAt);
   const values = z.array(z.unknown()).max(10000).parse(raw),
     seen = new Set<string>();
+  if (config.provider === "the-odds-api") {
+    if (competition.providerCompetitionId !== competition.competitionId)
+      throw new Error("The Odds API competition identity mismatch");
+    for (const value of values) {
+      const identity = z.object({ id: z.string().min(1) }).safeParse(value);
+      if (!identity.success) continue;
+      if (seen.has(identity.data.id))
+        throw new Error("Duplicate provider fixture identity");
+      seen.add(identity.data.id);
+    }
+    seen.clear();
+  }
   const from = Date.parse(receivedAt),
     to = from + config.horizonHours * 3600000;
   const fixtures: ProviderFixture[] = [];
   for (const value of values) {
     let fixture: ProviderFixture;
     if (config.provider === "the-odds-api") {
+      if (theOddsApiHasUnreviewedLifecycle(value)) continue;
       const result = apiFixture.safeParse(value);
       if (!result.success) continue;
       const v = result.data;
@@ -152,7 +394,7 @@ export function providerFixtures(
     }
     if (
       fixture.participants[0] === fixture.participants[1] ||
-      Date.parse(fixture.startAt) < from ||
+      Date.parse(fixture.startAt) <= from ||
       Date.parse(fixture.startAt) > to
     )
       continue;
@@ -164,7 +406,7 @@ export function providerFixtures(
   return fixtures
     .sort(
       (a, b) =>
-        a.startAt.localeCompare(b.startAt) ||
+        Date.parse(a.startAt) - Date.parse(b.startAt) ||
         a.providerEventId.localeCompare(b.providerEventId),
     )
     .slice(0, config.maxEvents);
@@ -217,6 +459,11 @@ export async function fetchCurrentMarketData(
   clock: () => Date = () => new Date(),
 ): Promise<MarketDataBatch> {
   const config = validateMarketDataConfig(configuration);
+  if (
+    config.provider === "the-odds-api" &&
+    config.competitions.some((c) => c.providerCompetitionId !== c.competitionId)
+  )
+    throw new Error("The Odds API competition identity mismatch");
   if (!authority.key.trim())
     throw new Error("MARKET_DATA_STATUS=NOT_CONFIGURED");
   const output: MarketDataBatch = {
@@ -284,29 +531,7 @@ export async function fetchCurrentMarketData(
     }
     if (!response.ok)
       throw new Error(`Market data provider HTTP ${response.status}`);
-    const length = Number(response.headers.get("content-length") ?? 0);
-    if (length > 8000000)
-      throw new Error("Provider response exceeds bounded import size");
-    const reader = response.body?.getReader();
-    if (!reader) throw new Error("Provider response missing");
-    let size = 0;
-    const chunks: Uint8Array[] = [];
-    while (true) {
-      const next = await reader.read();
-      if (next.done) break;
-      size += next.value.length;
-      if (size > 8000000) {
-        await reader.cancel();
-        throw new Error("Provider response exceeds bounded import size");
-      }
-      chunks.push(next.value);
-    }
-    let raw: unknown;
-    try {
-      raw = JSON.parse(Buffer.concat(chunks).toString("utf8"));
-    } catch {
-      throw new Error("Invalid market data provider payload");
-    }
+    const raw = await readBoundedProviderPayload(response);
     const receivedAt = clock().toISOString(),
       id = phase5Hash({ provider: config.provider, payload: raw, receivedAt });
     output.receivedAt = receivedAt;
@@ -363,7 +588,9 @@ export async function fetchCurrentMarketData(
       url,
       cost,
       config.provider === "odds-papi" ? 2000 : 0,
-      competition.providerCompetitionId,
+      config.provider === "the-odds-api"
+        ? `odds:${competition.providerCompetitionId}`
+        : competition.providerCompetitionId,
     );
     const fixtures = providerFixtures(
       data.raw,
@@ -374,7 +601,8 @@ export async function fetchCurrentMarketData(
     output.fixtures.push(...fixtures);
     for (const f of fixtures)
       output.fixtureEvidence[f.providerEventId] = data.id;
-    output.stats.eventsReceived += fixtures.length;
+    // Keep provider response counts separate from the bounded eligible fixture subset.
+    output.stats.eventsReceived += (data.raw as unknown[]).length;
     if (
       config.provider === "the-odds-api" &&
       competition.competitionId !== "americanfootball_nfl"

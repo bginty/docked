@@ -11,11 +11,29 @@ import type {
 import type { Rules } from "@/core/pricing";
 import { hash, removeMargin, strategyV1 } from "@/core/pricing";
 const timestamp = z.string().datetime({ offset: true });
+// V4 currently conveys suspension through a stopped market observation clock,
+// not a documented lifecycle flag. Never silently discard new lifecycle fields
+// and turn them into an open market before their semantics have been reviewed.
+const lifecycleEvidence = {
+  status: z.unknown().optional(),
+  suspended: z.unknown().optional(),
+  closed: z.unknown().optional(),
+  active: z.unknown().optional(),
+};
+export function theOddsApiHasUnreviewedLifecycle(value: unknown): boolean {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    Object.keys(lifecycleEvidence).some((key) => key in value)
+  );
+}
 const outcome = z.object({
   name: z.string().min(1),
   price: z.number().finite().gt(1),
+  ...lifecycleEvidence,
 });
 const event = z.object({
+  ...lifecycleEvidence,
   id: z.string().min(1),
   sport_key: z.string().min(1),
   commence_time: timestamp,
@@ -23,10 +41,12 @@ const event = z.object({
   away_team: z.string().min(1),
   bookmakers: z.array(
     z.object({
+      ...lifecycleEvidence,
       key: z.string().min(1),
       last_update: timestamp.optional(),
       markets: z.array(
         z.object({
+          ...lifecycleEvidence,
           key: z.string().min(1),
           last_update: timestamp.optional(),
           outcomes: z.array(outcome),
@@ -143,6 +163,7 @@ export class TheOddsApi implements OddsProvider {
         response = await this.fetcher(url, {
           signal: AbortSignal.timeout(15000),
           cache: "no-store",
+          redirect: "error",
         });
       } catch {
         throw new Error("Odds provider unavailable");
@@ -172,7 +193,7 @@ export class TheOddsApi implements OddsProvider {
       };
       const quotes: ProviderQuote[] = [];
       const ids = rawEvents
-        .map((e) => event.safeParse(e))
+        .map((e) => z.object({ id: z.string().min(1) }).safeParse(e))
         .filter((e) => e.success)
         .map((e) => e.data.id);
       const count = (values: string[], item: string) =>
@@ -195,6 +216,7 @@ export class TheOddsApi implements OddsProvider {
           0,
         );
         const match = o.mapping.events[e.id];
+        const basketball = sport === "basketball_nba";
         if (
           count(ids, e.id) !== 1 ||
           !match ||
@@ -203,7 +225,23 @@ export class TheOddsApi implements OddsProvider {
           Date.parse(match.startAt) !== Date.parse(e.commence_time) ||
           hash([...match.rules.participants].sort()) !==
             hash([e.home_team, e.away_team].sort()) ||
-          (sport === "basketball_nba"
+          e.home_team === e.away_team ||
+          match.rules.period !== "full_game" ||
+          match.rules.line !== null ||
+          match.rules.overtime !== basketball ||
+          match.rules.draw !== !basketball ||
+          match.rules.settlement !==
+            (basketball
+              ? "full_game_including_overtime"
+              : "regulation_90_plus_stoppage") ||
+          hash([...match.rules.outcomes].sort()) !==
+            hash(
+              (basketball
+                ? [e.home_team, e.away_team]
+                : [e.home_team, e.away_team, "Draw"]
+              ).sort(),
+            ) ||
+          (basketball
             ? match.rules.market !== "nba_moneyline"
             : match.rules.market !== "football_1x2")
         ) {
@@ -213,6 +251,15 @@ export class TheOddsApi implements OddsProvider {
             0,
           );
           stats.errors.push("event_mapping_rejected");
+          continue;
+        }
+        if (
+          Date.parse(e.commence_time) <= Date.parse(snapshotAt) ||
+          theOddsApiHasUnreviewedLifecycle(e)
+        ) {
+          for (const b of e.bookmakers)
+            for (const _ of b.markets)
+              reject("non_prematch_or_unreviewed_event_status");
           continue;
         }
         for (const b of e.bookmakers) {
@@ -237,6 +284,14 @@ export class TheOddsApi implements OddsProvider {
             continue;
           }
           for (const m of b.markets) {
+            if (
+              theOddsApiHasUnreviewedLifecycle(b) ||
+              theOddsApiHasUnreviewedLifecycle(m) ||
+              m.outcomes.some(theOddsApiHasUnreviewedLifecycle)
+            ) {
+              reject("unreviewed_market_status");
+              continue;
+            }
             if (
               m.key !== "h2h" ||
               count(
