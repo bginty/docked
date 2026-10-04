@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { requireRole } from "@/server/auth";
 import { researchDashboard } from "@/server/research-engine";
+import { modelDashboard } from "@/server/model-ledger";
 import { researchFactTypes } from "@/core/research-engine";
 import { AppShell } from "@/components/app-shell";
 import { AppHeading } from "@/components/community-basics";
@@ -33,7 +34,10 @@ export default async function ResearchAdmin() {
       </div>
     );
   }
-  const data = await researchDashboard();
+  const [data, model] = await Promise.all([
+    researchDashboard(),
+    modelDashboard(),
+  ]);
   return (
     <AppShell authenticated>
       <AppHeading
@@ -43,7 +47,13 @@ export default async function ResearchAdmin() {
         Structured facts, reviewed permissions and immutable as-of evidence.
       </AppHeading>
       <ResearchNavigation />
-      <ResearchDashboardView data={data} factTypes={researchFactTypes} />
+      <ResearchDashboardView
+        data={data}
+        factTypes={researchFactTypes}
+        modelObservationAvailable={
+          model.status === "READY" && Boolean(model.attempts?.total)
+        }
+      />
     </AppShell>
   );
 }

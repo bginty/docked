@@ -36,9 +36,11 @@ export function ResearchNavigation() {
 export function ResearchDashboardView({
   data,
   factTypes,
+  modelObservationAvailable = false,
 }: {
   data: ResearchDashboard;
   factTypes: readonly ResearchFactType[];
+  modelObservationAvailable?: boolean;
 }) {
   return (
     <div className="research-workspace">
@@ -77,7 +79,9 @@ export function ResearchDashboardView({
           official website is not automatically a licensed source.
         </p>
       </section>
-      <ResearchModelBoundary />
+      <ResearchModelBoundary
+        modelObservationAvailable={modelObservationAvailable}
+      />
       <section className="research-panel">
         <h2>Canonical matches</h2>
         <p>
