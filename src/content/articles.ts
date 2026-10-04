@@ -18,7 +18,7 @@ const drafts = [
       ],
       [
         "An estimate needs scrutiny",
-        "Docked’s proposed reference method removes bookmaker margin from complete markets before combining independent sources. That creates an estimated probability, not knowledge of the true chance. Sources may share errors, quotes may be stale, and a price may be unobtainable. A positive calculation is the start of a research question. It is not a promise of profit.",
+        "Docked’s official model design estimates probability from authorised sporting data and compares it with a separate market price. A model does not know the true chance: missing inputs, selection bias and changes in teams or conditions can make it wrong. The preserved bookmaker-margin comparator is a separate research method. Quotes may be stale or unobtainable. A positive calculation is a research question, not a promise of profit.",
       ],
       [
         "Choosing not to participate",
@@ -26,7 +26,7 @@ const drafts = [
       ],
       [
         "Check the sensitivity before trusting the sign",
-        "Using the same fictional 2.00 price, a 55% estimate gives +10% EV, a 50% estimate gives 0%, and a 48% estimate gives −4%. A seven-point estimation difference changes the conclusion entirely. Ask where the probability came from, whether the entire market was observed at the same time, and whether the offered bookmaker helped create its own reference. If those questions have no documented answer, the number should not be presented as reliable evidence of value.",
+        "Using the same fictional 2.00 price, a 55% estimate gives +10% EV, a 50% estimate gives 0%, and a 48% estimate gives −4%. A seven-point estimation difference changes the conclusion entirely. Ask which sporting inputs and model version produced the probability, when those inputs were available, and whether market odds have been kept separate from the independent estimate. For a market-derived research comparator, also check whether the offered bookmaker helped create its own reference. Undocumented estimates are not reliable evidence of value.",
       ],
     ],
   },
@@ -72,7 +72,7 @@ const drafts = [
       ],
       [
         "Different kinds of empty",
-        "No qualifying edge means a valid scan completed but nothing met the rules. Data feed unavailable means a scan could not be trusted. Research validation pending means the method has not passed its launch gates. Not available in your region means the service is restricted there. These states may look similar on a list, but they carry different evidence.",
+        "No qualifying edge means a valid scan completed but nothing met the rules. Data feed unavailable means a scan could not be trusted. Model probability unavailable means the independent sporting inputs or model are missing; a market price alone cannot replace them. Not available in your region means the service is restricted there. These states may look similar on a list, but they carry different evidence. None authorises a reconstructed historical record.",
       ],
       [
         "A fictional day",
@@ -110,7 +110,7 @@ const drafts = [
       ],
       [
         "Independence matters",
-        "Two brands can share ownership or trading infrastructure. Counting related sources as independent can exaggerate agreement. In Docked’s original bookmaker-comparison model, the offered bookmaker and related skins cannot contribute to their own reference. The newer, unvalidated market-reference model separates approved probability sources from the standard-price availability benchmark; that benchmark is not a member’s personal quote. Each version must disclose its source groups. Even independent sources can share errors. A margin-free reference remains an estimate, not a claim of certainty or a reason to risk money.",
+        "Two brands can share ownership or trading infrastructure. Counting related sources as independent can exaggerate agreement. In Docked’s preserved bookmaker-comparison research, the offered bookmaker and related skins cannot contribute to their own reference. Standard-price availability is also a separate benchmark, never a member’s personal quote. A market-derived probability is not the independent sporting-model probability used for an official Docked Fair estimate. Each version must disclose its inputs. Even independent sources can share errors; margin removal is neither certainty nor a reason to risk money.",
       ],
       [
         "Try an asymmetric complete market",
@@ -220,7 +220,7 @@ const drafts = [
       ],
       [
         "Forward paper",
-        "Forward paper tracking records decisions prospectively after the rules are frozen. It can expose operational problems that historical archives miss, such as delayed ingestion and quote decay. Paper entries still do not prove anyone obtained a bookmaker price. Starting a paper ledger today does not create a forward record for yesterday.",
+        "Forward paper tracking records decisions prospectively after the rules are frozen. It can expose operational problems that historical archives miss, such as delayed ingestion and quote decay. Paper entries still do not prove anyone obtained a bookmaker price. Starting a paper ledger today does not create a forward record for yesterday. Licensed historical sporting statistics can inform a model, but neither research nor paper entries become official Docked tips. The official record begins with the first genuine forward publication; a reconstructed betting ROI is not a launch requirement.",
       ],
       [
         "Live published",

@@ -12,7 +12,8 @@ test("reference cards distinguish current availability, fair estimate and immuta
   assert.match(html.ready, /TAKE 1\.94\+/);
   assert.match(html.ready, /CURRENT MARKET/);
   assert.match(html.ready, />2\.02</);
-  assert.match(html.ready, /Docked fair price/);
+  assert.match(html.ready, /Research fair odds/);
+  assert.doesNotMatch(html.ready, /Docked fair price/);
   assert.match(html.ready, /1\.8519/);
   assert.match(html.ready, /Market reference at publication/);
   assert.match(html.ready, /2\.08 decimal/);

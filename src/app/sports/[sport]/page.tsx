@@ -232,12 +232,12 @@ export default async function Sport({
           </Link>
           <Link href="/methodology">
             <span>OUR METHOD</span>
-            <h3>From a complete market to a cautious estimate.</h3>
+            <h3>Independent sporting estimates and separate market prices.</h3>
             <span aria-hidden="true">↗</span>
           </Link>
           <Link href="/research">
             <span>EVIDENCE</span>
-            <h3>What has to be proven before a strategy goes live.</h3>
+            <h3>Model research and the genuine forward record.</h3>
             <span aria-hidden="true">↗</span>
           </Link>
         </div>

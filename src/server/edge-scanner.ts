@@ -6,24 +6,23 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { db, rateLimit } from "./db";
 import { requireRole } from "./auth";
+import type { ReferenceSql } from "./market-reference";
 import {
-  loadMarketReference,
-  retainMarketReference,
-  type ReferenceSql,
-} from "./market-reference";
-import { publishReference } from "./reference-publication";
+  evaluateFootballCandidate as evaluateCanonical,
+  recordDueFootballPredictions,
+} from "./football-scanner";
+import {
+  recordFootballPrediction,
+  publishFootballCandidate,
+  modelDashboard,
+} from "./model-ledger";
+import { validateFootballEdgeStrategy } from "@/core/football-edge";
 import { finishJob } from "./queue";
 import { config } from "./config";
 import { purgeExpiredMarketData } from "./market-data";
-import { providerTrialEnvironment } from "@/core/provider-trial";
 import { providerTrialDataOnly } from "./provider-trial";
-import { deployedCodeCommit, frozenCodeMatches } from "@/core/code-provenance";
-import {
-  evaluateReference,
-  validateReferenceStrategy,
-} from "@/core/reference-pricing";
-import { hash, type Rules } from "@/core/pricing";
-import { MarketBaselineModel } from "@/providers/model";
+import { deployedCodeCommit } from "@/core/code-provenance";
+import { hash, decisionWindow } from "@/core/pricing";
 import {
   scannerActionSchema,
   scannerCadence,
@@ -32,7 +31,6 @@ import {
   scannerMetrics,
   scannerScheduleSchema,
   scannerSlot,
-  scannerStrategyAllowed,
   type ScannerCandidate,
   type ScannerDashboard,
   type ScannerMetrics,
@@ -75,122 +73,6 @@ export async function scannerAlert(
   },
 ) {
   await tx`insert into private.operational_alerts(dedupe_key,kind,severity,message,href,payload,expires_at) values(${input.key},${input.kind},${input.severity ?? "warning"},${input.message},${input.href ?? null},${tx.json(JSON.parse(JSON.stringify(input.payload ?? {})))},clock_timestamp()+interval '2 days') on conflict do nothing`;
-}
-function strategyState(s: postgres.Row) {
-  return {
-    lifecycle: s.lifecycle,
-    active: s.active,
-    frozen: !!s.frozen_at,
-    researchApproved: !!s.research_approved_at,
-    paperApproved: !!s.paper_approved_at,
-    ownerApproved: !!s.owner_approved_at,
-  };
-}
-/** The manual and automatic paths share this exact evaluator. No caller supplies odds/probability. */
-async function evaluateCanonical(
-  tx: ReferenceSql,
-  input: {
-    marketId: string;
-    strategyId: string;
-    regionPolicyId: string;
-    purpose: ScannerPurpose;
-    selection?: string;
-  },
-) {
-  if (providerTrialEnvironment(process.env))
-    return { ready: false as const, reason: "MODEL_PROBABILITY_UNAVAILABLE" };
-  const [strategy] =
-    await tx`select * from private.strategy_versions where id=${input.strategyId} for share`;
-  if (
-    !strategy ||
-    !scannerStrategyAllowed(input.purpose, strategyState(strategy)) ||
-    !frozenCodeMatches(strategy.code_commit, process.env)
-  )
-    return {
-      ready: false as const,
-      reason: "strategy_not_research_ready_or_code_mismatch",
-    };
-  const cfg = validateReferenceStrategy(strategy.config);
-  if (hash(cfg) !== strategy.config_hash)
-    return { ready: false as const, reason: "strategy_hash_mismatch" };
-  const [policy] =
-    await tx`select * from private.region_policies where id=${input.regionPolicyId} and approved and not preview_community_only and effective_from<=clock_timestamp() and least(effective_to,review_at)>clock_timestamp() for share`;
-  if (
-    !policy ||
-    !policy.features.includes(
-      input.purpose === "research" ? "market_data" : "tips",
-    )
-  )
-    return { ready: false as const, reason: "region_approval_missing" };
-  const [market] =
-    await tx`select rules from private.markets where id=${input.marketId}`;
-  if (!market)
-    return { ready: false as const, reason: "canonical_market_missing" };
-  const loaded = await loadMarketReference(
-    tx,
-    input.marketId,
-    input.selection ?? market.rules.outcomes[0],
-    input.regionPolicyId,
-    cfg.marketReference,
-  );
-  const at = iso(loaded.market.observed_at),
-    start = iso(loaded.market.start_at);
-  const evaluation = evaluateReference(
-    {
-      rules: loaded.market.rules as Rules,
-      startAt: start,
-      decisionAt: at,
-      sources: loaded.sources,
-    },
-    cfg,
-  );
-  const candidate = evaluation.candidates[0];
-  if (
-    !candidate ||
-    (input.selection && candidate.selection !== input.selection)
-  )
-    return {
-      ready: false as const,
-      reason: evaluation.rejections[0]?.reason ?? "threshold_not_met",
-      fresh: loaded.result.status === "READY",
-      stale: evaluation.rejections.some((r) => r.reason === "stale"),
-    };
-  // Rebuild for the selected candidate using the same captured clock/sources.
-  const model = await new MarketBaselineModel(cfg.marketReference).estimate({
-    rules: loaded.market.rules as Rules,
-    startAt: start,
-    observedAt: at,
-    selection: candidate.selection,
-    sources: loaded.sources,
-    asOfTime: at,
-    generatedAt: at,
-    codeCommit: strategy.code_commit,
-  });
-  if (model.status !== "READY")
-    return { ready: false as const, reason: "model_unavailable" };
-  if (
-    input.purpose === "live" &&
-    model.validationStatus !== ("VALIDATED" as string)
-  )
-    return { ready: false as const, reason: "model_not_validated_for_live" };
-  const chosen = {
-    ...loaded,
-    result: {
-      status: "READY" as const,
-      reference: candidate.reference,
-      rejections: evaluation.rejections,
-    },
-  };
-  const referenceId = await retainMarketReference(tx, chosen);
-  return {
-    ready: true as const,
-    loaded: chosen,
-    candidate,
-    strategy,
-    cfg,
-    referenceId,
-    model,
-  };
 }
 /** Enqueues durable scanner jobs only. Polling is a separate quota-reserved ingestion job. */
 export async function scheduleEdgeScans() {
@@ -252,6 +134,10 @@ export async function runEdgeScan(job: postgres.Row) {
   });
   if (run.status !== "RUNNING") return true;
   try {
+    if (!(await recordDueFootballPredictions(job, run.started_at, deadline))) {
+      await sql`update private.job_runs set state='queued',available_at=clock_timestamp()+interval '1 second',lease_until=null,lease_token=null,attempts=greatest(0,attempts-1) where id=${job.id} and lease_token=${job.lease_token} and state='leased'`;
+      return false;
+    }
     const markets = payload.marketId
       ? await sql`select m.id,m.event_id from private.markets m where m.id=${payload.marketId}`
       : await sql`select m.id,m.event_id from private.markets m join private.events e on e.id=m.event_id where e.competition_id=${payload.competition} and e.status='scheduled' and e.start_at>clock_timestamp()+interval '10 minutes' and e.start_at<=${run.started_at}::timestamptz+${Number(payload.horizonSeconds ?? 21600)}*interval '1 second' and not exists(select 1 from private.scanner_run_markets done where done.run_id=${run.id} and done.market_id=m.id) order by e.start_at,m.id limit 51`;
@@ -264,6 +150,39 @@ export async function runEdgeScan(job: postgres.Row) {
         await sql`update private.job_runs set lease_until=clock_timestamp()+interval '60 seconds' where id=${job.id} and state='leased' and lease_token=${job.lease_token} and lease_until>clock_timestamp() returning id`;
       if (!renewed.length) throw Error("Scanner lease lost");
       try {
+        // Sporting prediction/abstention commits BEFORE any market-price read.
+        // A later comparison failure cannot discard calibration evidence.
+        const [context] =
+          await sql`select s.config,e.start_at,e.status,e.competition_id,clock_timestamp() at from private.strategy_versions s cross join private.events e where s.id=${payload.strategyId} and e.id=${market.event_id}`;
+        let predictionId: string | undefined;
+        if (
+          context?.config?.method === "football-independent-model" &&
+          context.status === "scheduled"
+        ) {
+          const strategy = validateFootballEdgeStrategy(context.config);
+          const window = decisionWindow(
+            iso(context.start_at),
+            iso(context.at),
+            strategy,
+          );
+          if (
+            window !== null &&
+            strategy.competitions.includes(context.competition_id)
+          ) {
+            const prediction = await recordFootballPrediction({
+              modelVersion: strategy.modelVersion,
+              eventId: market.event_id,
+              windowSeconds: window,
+              jobId: job.id,
+              leaseToken: job.lease_token,
+              idempotencyKey: `prediction:${job.id}:${market.event_id}:${strategy.modelVersion}:${window}`,
+            });
+            predictionId =
+              prediction.status === "READY"
+                ? prediction.prediction.id
+                : prediction.id;
+          }
+        }
         const outcome = await sql.begin(async (tx) => {
           await workerClaims(tx, job);
           await tx`select id from private.scanner_runs where id=${run.id} for update`;
@@ -276,6 +195,7 @@ export async function runEdgeScan(job: postgres.Row) {
             regionPolicyId: payload.regionPolicyId,
             purpose,
             selection: payload.selection,
+            predictionId,
           });
           if (!result.ready) {
             await tx`insert into private.scanner_run_markets(run_id,market_id,event_id,outcome) values(${run.id},${market.id},${market.event_id},${tx.json(result)})`;
@@ -291,14 +211,14 @@ export async function runEdgeScan(job: postgres.Row) {
             purpose,
             sourceIds: [
               ...r.availability.sourceIds,
-              ...(r.pricing?.sourceIds ?? []),
+              `prediction:${result.model.predictionId}`,
             ],
             windowSeconds: c.window,
             regionPolicyId: payload.regionPolicyId,
           });
           const inserted =
-            await tx`insert into private.scanner_candidates(dedupe_key,run_id,event_id,market_id,strategy_id,strategy_hash,code_commit,region_policy_id,purpose,selection,market_reference_id,model_version,model_evidence,probability,fair_odds,minimum_odds,required_ev,estimated_ev,window_seconds,scanned_at,expires_at,origin,created_by,warnings)
-      values(${key},${run.id},${market.event_id},${market.id},${payload.strategyId},${c.configHash},${result.strategy.code_commit},${payload.regionPolicyId},${purpose},${c.selection},${result.referenceId},${result.model.modelVersion},${tx.json(result.model)},${c.probability},${c.fairOdds},${c.minimumOdds},${result.cfg.minEV},${c.ev},${c.window},${c.decisionAt},${scannerExpiry({ sourceAt: r.sourceAt, startAt: c.startAt, scannedAt: c.decisionAt, maxAgeSeconds: result.cfg.maxAgeSeconds, cutoffSeconds: result.cfg.marketReference.cutoffSeconds })},${payload.origin ?? "scheduled"},${payload.actorId ?? null},${tx.json(["Research baseline is market-derived, not validated predictive advantage."])}) on conflict(dedupe_key) do nothing returning id`;
+            await tx`insert into private.scanner_candidates(dedupe_key,run_id,event_id,market_id,strategy_id,strategy_hash,code_commit,region_policy_id,purpose,selection,market_reference_id,model_version,model_evidence,probability,fair_odds,minimum_odds,required_ev,estimated_ev,window_seconds,scanned_at,expires_at,origin,created_by,warnings,prediction_id)
+      values(${key},${run.id},${market.event_id},${market.id},${payload.strategyId},${c.configHash},${result.strategy.code_commit},${payload.regionPolicyId},${purpose},${c.selection},${result.referenceId},${result.model.modelVersion},${tx.json(result.model)},${c.probability},${c.fairOdds},${c.minimumOdds},${result.cfg.minEV},${c.ev},${c.window},${c.decisionAt},${scannerExpiry({ sourceAt: r.sourceAt, startAt: c.startAt, scannedAt: c.decisionAt, maxAgeSeconds: result.cfg.maxAgeSeconds, cutoffSeconds: result.cfg.marketReference.cutoffSeconds })},${payload.origin ?? "scheduled"},${payload.actorId ?? null},${tx.json(["Independent probability estimate; an estimated Edge is not guaranteed profit."])},${result.model.predictionId}) on conflict(dedupe_key) do nothing returning id`;
           if (inserted.length)
             await scannerAlert(tx, {
               key: `candidate:${inserted[0].id}`,
@@ -462,6 +382,9 @@ function candidateProjection(c: postgres.Row): ScannerCandidate {
     ),
     strategyVersion: c.strategy_id,
     modelVersion: c.model_version,
+    predictionId: c.prediction_id ?? null,
+    modelDataCutoff: c.model_evidence?.dataCutoff ?? null,
+    independentModel: c.model_evidence?.independentModel === true,
     scannedAt: iso(c.scanned_at),
     startAt: iso(c.start_at),
     expiresAt: iso(c.expires_at),
@@ -563,6 +486,7 @@ export async function dailyOperations() {
       researchValidated: !!s.research_approved_at,
       paperStarted: s.lifecycle === "FORWARD_PAPER",
     })),
+    model: await modelDashboard(),
     autoPublication: false,
     notifications: "ADMIN_ONLY_NO_EXTERNAL_SENDS" as const,
   };
@@ -571,7 +495,9 @@ export async function scannerOperation(value: unknown) {
   const action = scannerActionSchema.parse(value),
     manage = ["pause", "resume", "schedule"].includes(action.action);
   const who = await requireRole(
-    manage ? ["owner", "admin"] : ["owner", "admin", "analyst"],
+    manage || action.action === "approve" || action.action === "reject"
+      ? ["owner", "admin"]
+      : ["owner", "admin", "analyst"],
   );
   if (!(await rateLimit(`scanner:${who.user.id}`, 12, 60)))
     throw Error("Scanner action limit");
@@ -667,6 +593,7 @@ export async function scannerOperation(value: unknown) {
       regionPolicyId: candidate.region_policy_id,
       purpose: candidate.purpose,
       selection: candidate.selection,
+      predictionId: candidate.prediction_id ?? undefined,
     });
     if (!checked.ready) {
       await tx`insert into private.scanner_reviews(candidate_id,status,actor,reason) values(${candidate.id},'INVALIDATED',${who.user.id},${`Candidate no longer qualifies: ${checked.reason}`})`;
@@ -685,19 +612,10 @@ export async function scannerOperation(value: unknown) {
         evidence === "forward_paper" ? !config().paper : !config().publication
       )
         throw Error("Publication paused; review has not activated it");
-      const c = checked.candidate;
-      const [legacy] =
-        await tx`insert into private.candidate_decisions(event_id,strategy_id,decision_at,window_seconds,payload,rejection_reasons,status) values(${candidate.event_id},${candidate.strategy_id},${c.decisionAt},${c.window},${tx.json({ ...c, pricingModel: "market_reference_v1", marketId: candidate.market_id, regionPolicyId: candidate.region_policy_id, codeCommit: candidate.code_commit, scannerCandidateId: candidate.id })},'[]','review') on conflict do nothing returning *`;
-      if (!legacy)
-        throw Error(
-          "Existing canonical decision requires review; no duplicate benchmark created",
-        );
-      publicationId = await publishReference(
+      publicationId = await publishFootballCandidate(
         tx,
-        { ...legacy, start_at: checked.loaded.market.start_at },
-        checked.strategy,
-        who.user.id,
-        evidence,
+        candidate.id,
+        checked.referenceId,
       );
       const [published] =
         await tx`select market_reference_id from private.tip_publications where id=${publicationId}`;

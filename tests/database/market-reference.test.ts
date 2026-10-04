@@ -433,7 +433,7 @@ test("community benchmark is server controlled; personal promotional odds cannot
   assert.equal(version.pricing_model, "legacy_bookmaker_v1");
   assert.equal(version.odds, "2.501");
 });
-test("official publication freezes reference and cannot reactivate after suspension", async () => {
+test("legacy forward-paper publication freezes reference and cannot reactivate after suspension", async () => {
   const f = await referenceFixture(),
     ref = await f.retain(),
     strategy = {
@@ -447,11 +447,11 @@ test("official publication freezes reference and cannot reactivate after suspens
     minimum = Math.ceil((1.03 / Number(probability)) * 100) / 100,
     ev = Number(probability) * odds - 1;
   await pg.query(
-    `insert into private.strategy_versions(id,config,config_hash,code_commit,lifecycle,active,frozen_at,research_approved_at,paper_approved_at,owner_approved_at) values($1,$2,$3,$4,'APPROVED_FOR_LIVE',true,now(),now(),now(),now())`,
+    `insert into private.strategy_versions(id,config,config_hash,code_commit,lifecycle,active,frozen_at,research_approved_at,paper_approved_at,owner_approved_at) values($1,$2,$3,$4,'FORWARD_PAPER',true,now(),now(),now(),now())`,
     [strategy.version, JSON.stringify(strategy), strategyHash, "a".repeat(40)],
   );
   await pg.exec(
-    "update private.feature_flags set enabled=true where key='publication'",
+    "update private.feature_flags set enabled=true where key='forward_paper'",
   );
   await pg.query(
     "update private.region_policies set features=array_append(features,'tips') where id=$1",
@@ -465,7 +465,7 @@ test("official publication freezes reference and cannot reactivate after suspens
   ).rows[0].id;
   const publication = (
     await pg.query<{ id: string }>(
-      `insert into private.tip_publications(candidate_id,event_id,strategy_id,evidence,selection,market_rules,probability,odds,minimum_odds,estimated_ev,config_hash,sources,publication_payload,approved_by,region_policy_id,pricing_model,market_reference_id) values($1,$2,$3,'live_published',$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,'market_reference_v1',$15) returning id`,
+      `insert into private.tip_publications(candidate_id,event_id,strategy_id,evidence,selection,market_rules,probability,odds,minimum_odds,estimated_ev,config_hash,sources,publication_payload,approved_by,region_policy_id,pricing_model,market_reference_id) values($1,$2,$3,'forward_paper',$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,'market_reference_v1',$15) returning id`,
       [
         candidate,
         f.m.event,
@@ -490,6 +490,15 @@ test("official publication freezes reference and cannot reactivate after suspens
       ],
     )
   ).rows[0].id;
+  assert.equal(
+    (
+      await pg.query<{ n: number }>(
+        "select count(*)::integer n from private.official_record_boundary",
+      )
+    ).rows[0].n,
+    0,
+    "forward-paper never starts the genuine official record",
+  );
   await pg.query(
     "insert into private.market_reference_movements(tip_id,market_reference_id,status) values($1,$2,'ACTIVE')",
     [publication, ref],

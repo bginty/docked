@@ -25,10 +25,56 @@ test("compact official card keeps current reference, captured benchmark and mini
   assert.match(visible, /TAKE 1\.94\+/);
   assert.match(visible, /CURRENT MARKET 2\.02/);
   assert.match(visible, /Publication market reference: 2\.08 decimal/);
-  assert.match(visible, /Estimated EV at publication 12\.32%/);
+  assert.match(visible, /Estimated edge at publication 12\.32%/);
   assert.match(visible, /UNVALIDATED/);
   assert.doesNotMatch(visible, /9\.99|Legacy field must not be displayed/);
   assert.equal(JSON.stringify(referenceTip), original);
+});
+
+test("independent sporting card expands retained model evidence and never substitutes a market price for absent probability", () => {
+  const modelEvidence = {
+    id: "test-only-prediction",
+    modelVersion: "football-test-v1",
+    configHash: "c".repeat(64),
+    inputHash: "d".repeat(64),
+    asOfTime: "2026-10-03T11:58:00Z",
+    calculatedAt: "2026-10-03T11:58:01Z",
+    dataCutoff: "2026-10-03T10:00:00Z",
+    codeCommit: "a".repeat(40),
+  };
+  const modelTip = {
+    ...referenceTip,
+    pricing_model: "football_independent_v1" as const,
+    publication_payload: { ...referenceTip.publication_payload, modelEvidence },
+  };
+  const html = renderToStaticMarkup(
+    createElement(EdgeCard, { tip: modelTip, compact: true, now }),
+  );
+  assert.match(text(html), /TAKE 1\.94\+/);
+  assert.match(text(html), /CURRENT MARKET 2\.02/);
+  assert.match(text(html), /Docked fair price/);
+  assert.match(text(html), /Model data at publication/);
+  assert.match(text(html), /football-test-v1/);
+  assert.match(text(html), /Retained sporting-only source evidence/);
+  assert.doesNotMatch(text(html), /margin-adjusted reference markets/);
+  const absent = renderToStaticMarkup(
+    createElement(EdgeCard, {
+      tip: {
+        ...modelTip,
+        publication_payload: {
+          ...modelTip.publication_payload,
+          modelEvidence: null,
+        },
+      },
+      compact: true,
+      now,
+    }),
+  );
+  assert.match(text(absent), /TAKE unavailable/);
+  assert.match(text(absent), /Docked fair price Unavailable/);
+  assert.match(text(absent), /Estimated edge at publication Unavailable/);
+  assert.match(text(absent), /SUSPENDED/);
+  assert.doesNotMatch(text(absent), /TAKE 1\.94|12\.32%/);
 });
 
 test("compact official card fails closed for missing or aged current data; full detail stays available", () => {

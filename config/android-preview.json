@@ -5,8 +5,8 @@
   "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
   "supabaseProjectRef": "bckkllmndoxzpzdqrevb",
   "applicationId": "au.com.docked.app.preview",
-  "deploymentId": "dpl_8Zs6gWmRJC4kL9sUL7WvLRYXXR3y",
-  "verifiedAt": "2026-10-03T13:25:38.784Z",
+  "deploymentId": "dpl_2Km6vCTVhK3iwavf2E9DRmgjWpLD",
+  "verifiedAt": "2026-10-04T01:05:40.834Z",
   "safety": {
     "emailSending": false,
     "pushSending": false,
@@ -17,8 +17,10 @@
     "affiliates": false,
     "forwardPaper": false,
     "productionSupabaseAllowed": false,
-    "oddsProviderStatus": "NOT_CONFIGURED",
+    "oddsProviderStatus": "PENDING_RIGHTS",
     "resultsProviderStatus": "NOT_CONFIGURED",
-    "strategyStatus": "UNVALIDATED"
+    "strategyStatus": "UNVALIDATED",
+    "providerPolling": false,
+    "publication": false
   }
 }

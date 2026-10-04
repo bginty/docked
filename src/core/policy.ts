@@ -62,7 +62,7 @@ export function boardState(g: GateState) {
       code: "research_pending",
       title: "Research validation pending",
       detail:
-        "Historical validation and forward paper review must pass before tips can launch.",
+        "Authorised sporting inputs, model review and explicit publication approval are required. Historical Docked tips are not reconstructed.",
     };
   if (!g.feed)
     return {

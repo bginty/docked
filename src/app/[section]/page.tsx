@@ -16,19 +16,19 @@ import { publicBoardState } from "@/core/public-presentation";
 import { environmentPresentation } from "@/server/presentation";
 import { currentConsentVersions } from "@/core/auth-readiness";
 import { OperatorDetails } from "@/components/operator-details";
-import { ledger, type LedgerRow } from "@/core/ledger";
+import { OfficialRecord } from "@/components/official-docked-record";
+import { officialDockedRecord, modelMethodologyChanges } from "@/server/model-ledger";
+import { LocalTimestamp } from "@/components/local-timestamp";
 import { config } from "@/server/config";
-import { LedgerChart } from "@/components/ledger-chart";
 import { SportImage } from "@/components/sport-image";
 import { ArticleImage } from "@/components/article-image";
-import { SportIcon } from "@/components/sport-icon";
 import { AppEdgeBoard } from "@/components/app-edge-board";
 import { BrandLogo } from "@/components/brand-logo";
 import { brand } from "@/brand/brand";
 const titles: Record<string, string> = {
   edges: "The opportunity board",
-  results: "The complete record",
-  research: "Evidence before publication",
+  results: "DOCKED RECORD",
+  research: "Research, with a forward record",
   methodology: "A method you can question",
   learn: "The reading room",
   about: "Independent thinking. Accountable records.",
@@ -49,11 +49,11 @@ const descriptions: Record<string, string> = {
   edges:
     "Current eligible price observations, minimum odds, source freshness and complete publication records. Estimated EV is not guaranteed profit.",
   results:
-    "The complete Docked live publication ledger, including losses, voids, corrections and fixed one-unit performance accounting.",
+    "Docked’s genuine forward publication record, including every loss, void and correction. We do not reconstruct historical tips.",
   research:
-    "How Docked separates historical research, forward paper validation and live publications, with dataset and validation gates.",
+    "Independent sporting-model research, licensed inputs and separate forward paper tracking. The official Docked record starts with genuine publication.",
   methodology:
-    "Docked’s versioned pricing method: complete markets, independent references, margin removal, fresh observations and immutable records.",
+    "How independent sporting-model probabilities become fair prices and are compared with market prices, with versioned methods and immutable records.",
   learn:
     "Practical educational resources on decimal odds, bookmaker margin, estimated value, uncertainty and transparent results.",
   about:
@@ -173,250 +173,7 @@ export default async function Page({
       </>
     );
   } else if (section === "results") {
-    const [tips, access] = await Promise.all([publicTips(), regionAccess()]);
-    let rows: LedgerRow[] = tips.map((t) => ({
-      id: t.id,
-      eventId: t.event_id,
-      publishedAt: t.published_at.toISOString(),
-      settledAt: t.settled_at?.toISOString(),
-      odds: t.odds,
-      stake: "1",
-      evidence: "live_published",
-      result: t.result,
-      sport: t.competition_id,
-      strategy: t.strategy_id,
-      ev: t.estimated_ev,
-      clv: t.clv ?? undefined,
-      availability: t.availability,
-    }));
-    rows = rows.filter(
-      (r) =>
-        (!query.from || r.publishedAt.slice(0, 10) >= query.from) &&
-        (!query.to || r.publishedAt.slice(0, 10) <= query.to) &&
-        (!query.sport || r.sport === query.sport) &&
-        (!query.strategy || r.strategy === query.strategy),
-    );
-    const stats = ledger(rows, "live_published");
-    const measured = tips.filter(
-      (t) => rows.some((r) => r.id === t.id) && t.delayed,
-    );
-    const delayedRows = rows
-      .filter((r) =>
-        measured.some((t) => t.id === r.id && t.delayed?.qualifies),
-      )
-      .map((r) => ({
-        ...r,
-        odds: String(measured.find((t) => t.id === r.id)!.delayed!.odds),
-      }));
-    const delayedStats = ledger(delayedRows, "live_published");
-    content = (
-      <>
-        <p className="lede">
-          Live record starts when publishing launches. Every actual publication
-          will remain archived where legally permitted, including losses and
-          withdrawals.
-        </p>
-        <span className="pill">LIVE PUBLISHED · FIXED ONE-UNIT BENCHMARK</span>
-        {!access.allowed && (
-          <Notice>
-            Publication records are unavailable in this view until your verified
-            account has an approved regional policy. An inaccessible record is
-            not a zero-result sample. Educational definitions remain available
-            below.
-          </Notice>
-        )}
-        <form className="filters">
-          <label>
-            From
-            <input type="date" name="from" defaultValue={query.from} />
-          </label>
-          <label>
-            To
-            <input type="date" name="to" defaultValue={query.to} />
-          </label>
-          <label>
-            <span className="competition-filter-label">
-              Competition
-              <span className="competition-filter-icons" aria-hidden="true">
-                <SportIcon sport="football" size={17} />
-                <SportIcon sport="basketball" size={17} />
-              </span>
-            </span>
-            <select name="sport" defaultValue={query.sport ?? ""}>
-              <option value="">All competitions</option>
-              {[...new Set(tips.map((t) => t.competition_id))].map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Strategy
-            <select name="strategy" defaultValue={query.strategy ?? ""}>
-              <option value="">All strategies</option>
-              {[...new Set(tips.map((t) => t.strategy_id))].map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </label>
-          <button className="button">Apply filters</button>
-          <Link href="/results" className="text-link">
-            All time
-          </Link>
-        </form>
-        <div className="metrics">
-          <Metric
-            label="Settled publications"
-            value={access.allowed ? String(stats.settled) : "N/A"}
-            note="No retrospective additions"
-          />
-          <Metric
-            label="Net units"
-            value={stats.net ?? "N/A"}
-            note="Fixed one-unit stakes"
-          />
-          <Metric
-            label="Return on stakes"
-            value={stats.roi === null ? "N/A" : `${stats.roi}%`}
-            note="Settled non-void denominator"
-          />
-          <Metric
-            label="Maximum drawdown"
-            value={stats.drawdown ?? "N/A"}
-            note="Peak to trough"
-          />
-        </div>
-        <LedgerChart curve={stats.curve} />
-        {Object.keys(stats.months).length > 0 && (
-          <div
-            className="table-wrap"
-            tabIndex={0}
-            role="region"
-            aria-label="Monthly net units table, scroll horizontally if needed"
-          >
-            <table>
-              <caption>Monthly net units · losing months included</caption>
-              <thead>
-                <tr>
-                  <th>Month</th>
-                  <th>Net units</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(stats.months).map(([month, units]) => (
-                  <tr key={month}>
-                    <td>{month}</td>
-                    <td>{units}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        <div
-          className="table-wrap"
-          tabIndex={0}
-          role="region"
-          aria-label="Live publication ledger table, scroll horizontally if needed"
-        >
-          <table>
-            <caption>Complete live publication ledger</caption>
-            <thead>
-              <tr>
-                <th>Published</th>
-                <th>Selection</th>
-                <th>Odds</th>
-                <th>Result</th>
-                <th>Record</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.length ? (
-                tips
-                  .filter((t) => rows.some((r) => r.id === t.id))
-                  .map((t) => (
-                    <tr key={t.id}>
-                      <td>{t.published_at.toISOString().slice(0, 10)}</td>
-                      <td>{t.selection}</td>
-                      <td>{t.odds}</td>
-                      <td>{t.result}</td>
-                      <td>
-                        <Link href={`/tips/${t.id}`}>View publication</Link>
-                      </td>
-                    </tr>
-                  ))
-              ) : (
-                <tr>
-                  <td colSpan={5}>
-                    {!access.allowed
-                      ? "No accessible live publications. No demonstration figures are included."
-                      : tips.length
-                        ? "No publications match these filters."
-                        : "No live publications. No demonstration figures are included."}
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-        <div className="metrics">
-          <Metric
-            label="Total turnover"
-            value={access.allowed ? `${stats.turnover} units` : "N/A"}
-          />
-          <Metric
-            label="Pending / void stakes"
-            value={
-              access.allowed
-                ? `${stats.pendingStake} / ${stats.voidStake}`
-                : "N/A"
-            }
-          />
-          <Metric
-            label="Wins / losses / voids"
-            value={
-              access.allowed
-                ? `${stats.won} / ${stats.lost} / ${stats.voids}`
-                : "N/A"
-            }
-          />
-          <Metric label="Average odds" value={stats.averageOdds ?? "N/A"} />
-        </div>
-        <p className="muted">
-          Longest losing run: {stats.longestLosingRun ?? "N/A"} · Closing value:
-          {stats.clv === null
-            ? " N/A"
-            : ` ${(Number(stats.clv) * 100).toFixed(2)}%`}{" "}
-          · Five-minute availability:{" "}
-          {measured.length
-            ? `${measured.filter((t) => t.delayed?.qualifies).length}/${measured.length} measured quotes qualified`
-            : "N/A"}{" "}
-          · Delayed-price benchmark:{" "}
-          {delayedStats.roi === null
-            ? "N/A"
-            : `${delayedStats.net} units / ${delayedStats.roi}% ROI`}
-          . Missing measurements are never treated as zero.
-        </p>
-        <Notice>
-          ROI = net units ÷ settled non-void staked units. Void stakes are
-          returned. Pending and disputed entries are excluded until resolved.
-          Live published means timestamped before the event; it does not mean
-          independently audited execution. No sample currently supports a
-          profitability claim.
-        </Notice>
-        <section id="weekly-performance" className="card">
-          <h2>Weekly performance</h2>
-          <p>
-            Weekly review uses the complete live ledger, including losses, voids
-            and corrections. No editorial weekly report has been published in
-            this view. Use the date filters above to inspect an actual period;
-            an empty period has no measurable ROI.
-          </p>
-          <Link className="text-link" href="/learn/estimated-ev-and-returns">
-            Understand return calculations ↗
-          </Link>
-        </section>
-      </>
-    );
+    content = <OfficialRecord record={await officialDockedRecord()} filters={{ from: query.from, to: query.to, sport: query.sport, strategy: query.strategy }} />;
   } else if (section === "learn") {
     const catalogue = await readingRoom();
     content = (
@@ -465,26 +222,40 @@ export default async function Page({
     content = (
       <>
         <p className="lede">
-          A finished interface is not a validated betting strategy. Research
-          outcomes may be negative or inconclusive.
+          Sporting research informs probability estimates. The official Docked
+          record starts with genuine forward publication, not reconstructed
+          historical selections. Research outcomes may be negative or
+          inconclusive.
         </p>
-        <Empty title="Historical validation pending">
-          Licensed timestamped odds, authorised outcomes and reproducible
-          reviews have not yet been supplied.
+        <Empty title="Model research, without a manufactured record">
+          A model needs authorised sporting inputs, reproducible evaluation and
+          honest uncertainty. Missing inputs remain unavailable. No historical
+          Docked tips or return figures are created to launch the service.
         </Empty>
         <div className="metrics">
-          <Metric label="Historical research" value="Pending" />
-          <Metric label="Forward paper" value="Not started" />
-          <Metric label="Live published" value="Not launched" />
+          <Metric label="Sporting-model research" value="Separate" />
+          <Metric label="Forward paper" value="Separate" />
+          <Metric label="Official record" value="Forward only" />
           <Metric label="Profitability" value="Unproven" />
         </div>
         <div className="prose">
-          <h2>The proposed study</h2>
+          <h2>Historical sporting data can inform a model</h2>
           <p>
-            Subject to actual coverage and untouched data: 2022–2023
-            development, 2024 validation, 2025 held-out evaluation and 2026
-            year-to-date as a subsequent retrospective check. Calendar years
-            alone do not make a holdout untouched. Outcome-informed model
+            Licensed match statistics and sporting outcomes can support model
+            development and held-out probability evaluation. Only information
+            available at the decision time may be used. Calibration, Brier score
+            and log loss assess predictions; none guarantees profitable prices.
+            The Odds API supplies a separate market comparison, not the sporting
+            model’s probability estimate.
+          </p>
+          <h2>Preserved optional replay research</h2>
+          <p>
+            The existing historical-odds research tools remain available for an
+            explicitly labelled study, separate from the official record. The
+            proposed windows, subject to actual coverage and untouched data, are
+            2022–2023 development, 2024 validation, 2025 held-out evaluation and
+            2026 year-to-date as a subsequent retrospective check. Calendar
+            years alone do not make a holdout untouched. Outcome-informed model
             selection requires a contamination disclosure and a new evaluation.
           </p>
           <h2>What we will disclose</h2>
@@ -495,11 +266,14 @@ export default async function Page({
             dependence-aware uncertainty. A five-minute archive does not create
             one-minute availability evidence.
           </p>
-          <h2>Progress depends on evidence</h2>
+          <h2>What launch does and does not establish</h2>
           <p>
-            Foundation and research → approved forward paper tracking → small
-            free beta → validated expansion. These are review gates, not
-            promises that an edge will be found on a particular date.
+            A closed beta can test the product without claiming validated
+            profitability or a historical betting return. Legal eligibility,
+            account security, data rights and publication controls still apply.
+            Research and paper records cannot be promoted into the official
+            record. Every genuine published Edge, including losses, remains
+            accountable from its original publication time.
           </p>
           <Link className="text-link" href="/learn/backtest-paper-live">
             Understand the evidence categories ↗
@@ -507,31 +281,40 @@ export default async function Page({
         </div>
       </>
     );
-  else if (section === "methodology")
+  else if (section === "methodology") {
+    const changes = await modelMethodologyChanges();
     content = (
       <div className="prose">
         <p className="lede">
-          Docked separates an observed market price, a probability-based fair
-          price and a minimum acceptable price. Both the original Strategy V1
-          research rules and the new market-reference hypothesis remain
-          unvalidated. Neither is evidence of a profitable strategy.
+          An independent sporting model estimates probability. Docked converts
+          that estimate into a fair price, then compares it with a separate
+          current market price. These are different inputs. An estimated edge is
+          not evidence of guaranteed profit.
         </p>
-        <h2>Market-reference model · UNVALIDATED</h2>
+        <h2>Sporting model → probability → fair price</h2>
         <p>
-          The new model uses two explicitly approved source groups: complete,
-          margin-adjusted markets for the probability estimate, and independent
-          standard prices for an availability benchmark. The market reference is
-          the conservative lower median of eligible standard prices, never the
-          highest bookmaker quote. A personal boost or screenshot cannot set
-          that benchmark. Missing source rights, classification, mappings,
-          freshness or required coverage suppress the calculation.
+          The official model interface requires authorised sporting inputs,
+          versioned model evidence and a probability for the exact selection and
+          settlement rules. Historical sporting statistics may be model inputs;
+          later outcomes cannot leak into an earlier prediction. If licensed
+          inputs or a supported model are missing, probability, Docked Fair and
+          TAKE remain unavailable. Market odds are never silently substituted
+          for an independent sporting estimate.
+        </p>
+        <p>
+          The Odds API is a market-comparison source. A reviewed
+          market-reference configuration uses a conservative lower median of
+          eligible independent standard prices, never the highest quote. A
+          personal boost or screenshot cannot set that benchmark. Rights,
+          matching, classification, source age and required coverage are checked
+          separately from model readiness.
         </p>
         <dl className="edge-facts">
           <div>
             <dt>TAKE X+</dt>
             <dd>
-              The minimum acceptable price, including the configured
-              estimated-EV threshold.
+              (1 + required estimated edge) / model probability, rounded upward
+              to the supported price tick. It is the minimum comparison price.
             </dd>
           </div>
           <div>
@@ -544,8 +327,8 @@ export default async function Page({
           <div>
             <dt>Docked fair price</dt>
             <dd>
-              A separate estimate derived from probability, with no promise of
-              profit.
+              1 / independent model probability. This is an estimate, with no
+              promise of profit.
             </dd>
           </div>
           <div>
@@ -557,21 +340,24 @@ export default async function Page({
           </div>
         </dl>
         <p>
-          The default source configuration is empty and NOT_CONFIGURED. No live
-          source connection, forward record or strategy validation is implied.
-          The hypothesis needs licensed data, a frozen configuration, genuine
-          research and forward validation before any live approval. Members may
-          add a personal bookmaker or price as labelled social context; it never
+          Estimated edge for a supported win/loss market is probability × market
+          price − 1. Other payoffs need their own adapter. An available market
+          feed does not establish a working or validated model. Model versions,
+          input timestamps and publication rules remain reviewable; live
+          publication still requires explicit authorisation. Members may add a
+          personal bookmaker or price as labelled social context, which never
           changes competitive settlement, ROI or ranking.
         </p>
         <h2>Original Strategy V1 research specification</h2>
         <p>
-          The following numbered rules describe the preserved original
+          The following numbered rules describe the preserved legacy research
           bookmaker-comparison engine. Its reference exclusion and thresholds
           have not been silently changed to fit the new model. Existing records
           retain their original methodology labels and locked evidence; adopting
-          material new rules requires a new strategy version and fresh
-          validation.
+          material new rules requires a new strategy version and a documented
+          evaluation. This market-derived research comparator is not the
+          independent sporting model used to label a future official Docked Fair
+          estimate, and it cannot create historical official tips.
         </p>
         <h2>1. Match the entire market</h2>
         <p>
@@ -623,9 +409,14 @@ export default async function Page({
           obtainable. No confidence stars, guaranteed edges or personalised
           staking instructions are provided.
         </Notice>
+        <section aria-labelledby="model-changelog">
+          <h2 id="model-changelog">Model methodology changes</h2>
+          <p>Versions and effective times below come from recorded model lifecycle changes. A draft or research transition is not live approval or evidence of profitability. Material changes require a new version; previous publication evidence remains locked.</p>
+          {changes.length ? <div className="table-wrap" role="region" aria-label="Recorded model methodology changes" tabIndex={0}><table><thead><tr><th>Model version</th><th>Recorded effective time</th><th>Change</th></tr></thead><tbody>{changes.map(change => <tr key={`${change.modelVersion}-${change.effectiveAt}`}><td>{change.modelVersion}</td><td><LocalTimestamp value={change.effectiveAt} /></td><td>{change.reason}</td></tr>)}</tbody></table></div> : <p>No public model change records are available. No introduction date or approval is inferred.</p>}
+        </section>
       </div>
     );
-  else if (section === "data-status") {
+  } else if (section === "data-status") {
     const s = await serviceStatus();
     content = (
       <>
@@ -645,7 +436,7 @@ export default async function Page({
             ],
             ["Odds feed", s.feed ? "Fresh" : "Not connected / unavailable"],
             ["Authorised results", "Pending source and settlement review"],
-            ["Historical validation", s.strategy ? "Approved" : "Pending"],
+            ["Official strategy approval", s.strategy ? "Approved" : "Pending"],
             ["Public publication", s.publication ? "Enabled" : "Paused"],
             [
               "Outbound alerts",

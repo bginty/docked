@@ -235,8 +235,13 @@ test("free metadata still consumes the bounded 25-attempt allowance", async () =
   );
 });
 test("expired/revoked reviews and permits close requests, without rewriting immutable evidence", async () => {
-  const p = await permit("sports", "0.03 seconds");
-  await new Promise((r) => setTimeout(r, 60));
+  // Leave enough time for the insertion trigger even under a loaded full suite,
+  // then wait against the stored database deadline rather than a JS timer.
+  const p = await permit("sports", "2 seconds");
+  await pg.query(
+    `select pg_sleep(greatest(0,extract(epoch from(expires_at-clock_timestamp())))+0.02) from private.provider_trial_permits where id=$1`,
+    [p],
+  );
   await rejected(() => reserve(p), /Expired/);
   const fresh = await permit();
   await pg.query(

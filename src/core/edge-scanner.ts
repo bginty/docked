@@ -198,6 +198,9 @@ export type ScannerCandidate = {
   dataAgeSeconds: number;
   strategyVersion: string;
   modelVersion: string;
+  predictionId?: string | null;
+  modelDataCutoff?: string | null;
+  independentModel?: boolean;
   scannedAt: string;
   startAt: string;
   expiresAt: string;

@@ -67,9 +67,19 @@ export function validatePreviewManifest(input, now = Date.now()) {
   ])
     if (safety[key] !== false) fail();
   if (
-    safety.oddsProviderStatus !== "NOT_CONFIGURED" ||
+    !["NOT_CONFIGURED", "PENDING_RIGHTS"].includes(safety.oddsProviderStatus) ||
     safety.resultsProviderStatus !== "NOT_CONFIGURED" ||
     safety.strategyStatus !== "UNVALIDATED"
+  )
+    fail();
+  // Storing a trial credential does not activate general polling or publication.
+  // That state must carry explicit verified closed gates, never a false
+  // NOT_CONFIGURED label. Unknown/active provider states remain refused.
+  if (
+    (safety.oddsProviderStatus === "PENDING_RIGHTS" &&
+      (safety.providerPolling !== false || safety.publication !== false)) ||
+    ("providerPolling" in safety && safety.providerPolling !== false) ||
+    ("publication" in safety && safety.publication !== false)
   )
     fail();
   // Whitelist fields: arbitrary receipt extensions or credentials never reach assets.

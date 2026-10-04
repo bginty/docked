@@ -1,6 +1,6 @@
 import { referenceProjection } from "./market-reference";
 import type { MarketReference } from "@/core/market-reference";
-import type { MarketReferencePresentation } from "@/core/tip-presentation";
+import type { MarketReferencePresentation, ModelEvidencePresentation } from "@/core/tip-presentation";
 import { config } from "./config";
 import { db } from "./db";
 import { identity } from "./auth";
@@ -10,7 +10,7 @@ import { inspectTip } from "./dispatch";
 import { freshTimestamp, providerReadiness } from "@/core/data-health";
 import type { Rules } from "@/core/pricing";
 export type PublicTip = {
-  pricing_model?: "legacy_bookmaker_v1" | "market_reference_v1";
+  pricing_model?: "legacy_bookmaker_v1" | "market_reference_v1" | "football_independent_v1";
   publication_reference?: MarketReference | null;
   publication_market_reference?: MarketReferencePresentation | null;
   current_market_reference?: MarketReferencePresentation | null;
@@ -30,6 +30,7 @@ export type PublicTip = {
     fairOdds: string;
     configHash: string;
     offer: { bookmaker: string; sourceAt: string };
+    modelEvidence?: ModelEvidencePresentation | null;
   };
   start_at: Date;
   competition_id: string;
@@ -87,14 +88,14 @@ export async function publicTips() {
   const sql = db();
   const rows = await sql<
     PublicTip[]
-  >`select p.id,p.event_id,p.selection,p.odds,p.minimum_odds,p.probability,p.estimated_ev,p.published_at,p.strategy_id,p.evidence,p.market_rules,p.benchmark_stake,p.pricing_model,p.publication_payload->'reference' publication_reference,
-  jsonb_build_object('fairOdds',p.publication_payload->>'fairOdds','configHash',p.config_hash,'offer',jsonb_build_object('bookmaker',p.publication_payload->'offer'->>'bookmaker','sourceAt',p.publication_payload->'offer'->>'sourceAt')) publication_payload,e.start_at,e.competition_id,e.participants,
+  >`select p.id,p.event_id,p.selection,p.odds,p.minimum_odds,p.probability,p.estimated_ev,p.published_at,p.strategy_id,p.evidence,p.market_rules,p.benchmark_stake,p.pricing_model,p.publication_payload->'reference' publication_reference,p.publication_payload->'modelEvidence' model_evidence,
+  jsonb_build_object('fairOdds',p.publication_payload->>'fairOdds','configHash',p.config_hash,'modelEvidence',p.publication_payload->'modelEvidence','offer',jsonb_build_object('bookmaker',p.publication_payload->'offer'->>'bookmaker','sourceAt',p.publication_payload->'offer'->>'sourceAt')) publication_payload,e.start_at,e.competition_id,e.participants,
   coalesce((select status from private.tip_status_events where tip_id=p.id order by created_at desc limit 1),'active') availability,
   coalesce((select result from private.settlement_events where tip_id=p.id order by created_at desc limit 1),'pending') result,
   (select created_at from private.settlement_events where tip_id=p.id order by created_at desc limit 1) settled_at,
   (select p.odds*c.probability-1 from private.closing_snapshots c where c.tip_id=p.id and c.source_at<=c.cutoff and c.cutoff<e.start_at) clv,
   (select jsonb_build_object('odds',a.odds,'qualifies',a.qualifies,'at',a.observed_at) from private.availability_observations a where a.tip_id=p.id and a.target_minutes=5) delayed
-  from private.tip_publications p join private.events e on e.id=p.event_id where p.evidence='live_published' and private.publication_region_matches(p.region_policy_id,${region.policy}::uuid) order by p.published_at desc`;
+  from private.tip_publications p join private.official_docked_publications official on official.tip_id=p.id join private.events e on e.id=p.event_id where p.evidence='live_published' and private.publication_region_matches(p.region_policy_id,${region.policy}::uuid) order by p.published_at desc`;
   return Promise.all(
     rows.map(async (t) => {
       const expired = t.start_at.getTime() <= Date.now() + 600000;

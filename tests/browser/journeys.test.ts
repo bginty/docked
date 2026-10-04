@@ -70,12 +70,12 @@ test("education and pending research are usable without an account", async ({
   await page.goto("/results");
   await expect(
     page.getByText(
-      "No accessible live publications. No demonstration figures are included.",
+      "No accessible genuine official publications. Unavailable records are not zero performance.",
     ),
   ).toBeVisible();
   await page.getByRole("button", { name: "Apply filters" }).click();
   await expect(
-    page.getByRole("heading", { name: "The complete record" }),
+    page.getByRole("heading", { name: "DOCKED RECORD" }),
   ).toBeVisible();
 });
 test("anonymous public/API gates, protected admin and no fake signup success", async ({
@@ -98,6 +98,30 @@ test("anonymous public/API gates, protected admin and no fake signup success", a
     data: { action: "pause", key: "publication" },
   });
   expect(denied.status()).toBe(403);
+  const modelRead = await request.get("/api/admin/models");
+  expect(modelRead.status()).toBe(403);
+  const modelWrite = await request.post("/api/admin/models", {
+    headers: { Origin: "http://localhost:3000" },
+    data: {
+      action: "transition",
+      id: "test-only-denied",
+      to: "RESEARCH",
+      reason: "Anonymous access must stay denied",
+      evidence: {},
+    },
+  });
+  expect(modelWrite.status()).toBe(403);
+  const modelCrossOrigin = await request.post("/api/admin/models", {
+    headers: { Origin: "https://untrusted.example.invalid" },
+    data: {
+      action: "transition",
+      id: "test-only-denied",
+      to: "RESEARCH",
+      reason: "Cross-origin access must stay denied",
+      evidence: {},
+    },
+  });
+  expect(modelCrossOrigin.status()).toBe(403);
   await page.goto("/join");
   await expect(
     page.getByRole("button", { name: "Create free account" }),

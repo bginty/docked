@@ -26,7 +26,9 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
     await page.setContent(
       `<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>Isolated fixture review</title></head><body><main class="page"><h1>Fictional UI fixture</h1>${html}</main></body></html>`,
     );
-    await page.addStyleTag({ path: path.join(process.cwd(), "src/app/brand-theme.css") });
+    await page.addStyleTag({
+      path: path.join(process.cwd(), "src/app/brand-theme.css"),
+    });
     await page.addStyleTag({
       path: path.join(process.cwd(), "src/app/globals.css"),
     });
@@ -57,7 +59,9 @@ test("isolated fixture edge states and honest no-edge work at 320px without publ
   await page.setContent(
     `<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>Isolated no-edge fixture</title></head><body><main class="page"><h1>Fictional state review</h1>${html}</main></body></html>`,
   );
-  await page.addStyleTag({ path: path.join(process.cwd(), "src/app/brand-theme.css") });
+  await page.addStyleTag({
+    path: path.join(process.cwd(), "src/app/brand-theme.css"),
+  });
   await page.addStyleTag({
     path: path.join(process.cwd(), "src/app/globals.css"),
   });
@@ -136,6 +140,7 @@ test("preview public pages remain truthful, accessible and usable without an acc
     "member-dashboard-locked": "/dashboard",
     "admin-dashboard-locked": "/admin",
     "data-health-locked": "/admin/data-health",
+    "model-performance-locked": "/admin/model-performance",
     "forward-paper-locked": "/admin/forward-paper",
   })) {
     expect((await page.goto(route))?.status(), route).toBe(200);
@@ -196,7 +201,7 @@ test("preview public pages remain truthful, accessible and usable without an acc
   await page.goto("/results");
   await expect(
     page.getByText(
-      "No accessible live publications. No demonstration figures are included.",
+      "No accessible genuine official publications. Unavailable records are not zero performance.",
     ),
   ).toBeVisible();
   await expect(

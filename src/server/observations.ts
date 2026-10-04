@@ -15,7 +15,11 @@ export async function collectObservations() {
     await sql`select p.*,e.start_at,s.config strategy_config,s.code_commit strategy_code_commit,s.lifecycle,s.config_hash strategy_hash,s.active,r.approved,r.effective_from,r.effective_to,r.review_at,r.features,e.status event_status from private.tip_publications p join private.events e on e.id=p.event_id join private.strategy_versions s on s.id=p.strategy_id join private.region_policies r on r.id=p.region_policy_id where e.start_at>now()+interval '10 minutes' and p.evidence in ('live_published','forward_paper')`;
   for (const t of tips) {
     if (!frozenCodeMatches(t.strategy_code_commit, process.env)) continue;
-    if (t.pricing_model === "market_reference_v1") {
+    if (
+      ["market_reference_v1", "football_independent_v1"].includes(
+        t.pricing_model,
+      )
+    ) {
       await sql.begin(async (tx) => {
         const inspected = await inspectReferenceTip(tx, t),
           o = inspected.observation;
@@ -27,8 +31,8 @@ export async function collectObservations() {
             await tx`insert into private.availability_observations(tip_id,observed_at,target_minutes,odds,qualifies,source_resolution_seconds,source_at) values(${t.id},${o.observedAt},${minutes},${o.odds},${o.qualifies},300,${o.sourceAt}) on conflict do nothing`;
         const remaining =
           (t.start_at.getTime() - Date.parse(o.observedAt)) / 1000;
-        if (o.probability && remaining > 600 && remaining <= 780)
-          await tx`insert into private.closing_snapshots(tip_id,probability,source_at,cutoff,rules_hash,provenance) values(${t.id},${o.probability},${o.referenceSourceAt},${new Date(t.start_at.getTime() - 600000)},${hash(t.market_rules)},${tx.json({ codeCommit: t.strategy_code_commit, method: "market-reference probability cohort T-13m to T-10m", sourceIds: o.sourceIds, observedAt: o.observedAt })}) on conflict do nothing`;
+        if (o.closingProbability && remaining > 600 && remaining <= 780)
+          await tx`insert into private.closing_snapshots(tip_id,probability,source_at,cutoff,rules_hash,provenance) values(${t.id},${o.closingProbability},${o.referenceSourceAt},${new Date(t.start_at.getTime() - 600000)},${hash(t.market_rules)},${tx.json({ codeCommit: t.strategy_code_commit, method: "market-reference probability cohort T-13m to T-10m", sourceIds: o.sourceIds, observedAt: o.observedAt })}) on conflict do nothing`;
       });
       continue;
     }

@@ -1,5 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { TrendingEdges, WeeklyEdge } from "../../src/components/edge-discovery";
+import type { CommunityRecognition } from "../../src/server/community-recognition";
 import {
   rankCommunityRecognition,
   completedRecognitionWeek,
@@ -151,4 +155,38 @@ test("weekly ranking ignores after-week engagement and rejects invalid/duplicate
   assert.throws(() => rankCommunityRecognition([], "invalid"), /valid/);
   c.edge.odds = "NaN";
   assert.equal(rankCommunityRecognition([c], now).weeklyWinner, null);
+});
+
+test("trending caps eligible records at three and renders unique likes as interest, never quality", () => {
+  const ranked = rankCommunityRecognition(
+    ["d", "b", "a", "c"].map((id) => candidate(id)),
+    now,
+  );
+  assert.equal(ranked.trending.length, 3);
+  assert.deepEqual(
+    ranked.trending.map((item) => item.edge.id),
+    ["a", "b", "c"],
+  );
+  const data: CommunityRecognition = {
+    status: "READY",
+    message: "",
+    ruleVersion: "test-only-v1",
+    asOf: now,
+    trending: ranked.trending,
+    weekly: {
+      ...completedRecognitionWeek(now),
+      status: "NO_QUALIFIER",
+      winner: null,
+      snapshotId: null,
+    },
+  };
+  const html = renderToStaticMarkup(createElement(TrendingEdges, { data }));
+  assert.equal((html.match(/Eligible likes/g) ?? []).length, 3);
+  assert.match(html, /Likes measure interest, not probability or quality/);
+  assert.match(html, /seven-day account age/);
+  assert.match(html, /suspicious bursts are excluded/);
+  assert.match(
+    renderToStaticMarkup(createElement(WeeklyEdge, { data })),
+    /No qualifying Edge this week yet\./,
+  );
 });

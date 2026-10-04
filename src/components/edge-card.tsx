@@ -27,7 +27,18 @@ export function EdgeCard({
   compact?: boolean;
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
-  const reference = tip.pricing_model === "market_reference_v1";
+  const independent = tip.pricing_model === "football_independent_v1";
+  const reference = independent || tip.pricing_model === "market_reference_v1";
+  const model = tip.publication_payload.modelEvidence;
+  const hasModel = !independent || !!model;
+  const displayStatus = hasModel ? tip.display_status : "suspended";
+  const minimum = hasModel ? oddsDisplay(tip.minimum_odds, format) : null;
+  const fair = hasModel
+    ? oddsDisplay(tip.publication_payload.fairOdds, format)
+    : "Unavailable";
+  const estimatedEdge = hasModel
+    ? `${(Number(tip.estimated_ev) * 100).toFixed(2)}%`
+    : "Unavailable";
   const current = reference
     ? (tip.current_market_reference?.decimalPrice ?? null)
     : tip.current_odds;
@@ -68,7 +79,7 @@ export function EdgeCard({
           {market} · {tip.market_rules.settlement.replaceAll("_", " ")}
         </p>
         <QuoteStatus
-          status={tip.display_status}
+          status={displayStatus}
           sourceAt={sourceAt ? new Date(sourceAt).toISOString() : null}
           startAt={new Date(tip.start_at).toISOString()}
           initialNow={now}
@@ -76,7 +87,7 @@ export function EdgeCard({
         <div className="compact-edge-prices">
           <div className="take-price">
             <span>Minimum acceptable price</span>
-            <strong>TAKE {oddsDisplay(tip.minimum_odds, format)}+</strong>
+            <strong>{minimum ? `TAKE ${minimum}+` : "TAKE unavailable"}</strong>
           </div>
           <div>
             <span>
@@ -88,28 +99,33 @@ export function EdgeCard({
           </div>
           <div>
             <span>
-              {reference ? "Docked fair price" : "Reference fair odds"}
+              {independent
+                ? "Docked fair price"
+                : reference
+                  ? "Research fair odds"
+                  : "Reference fair odds"}
             </span>
-            <strong>
-              {oddsDisplay(tip.publication_payload.fairOdds, format)}
-            </strong>
+            <strong>{fair}</strong>
             <small>Locked estimate</small>
           </div>
           <div>
-            <span>Estimated EV at publication</span>
-            <strong>{(Number(tip.estimated_ev) * 100).toFixed(2)}%</strong>
+            <span>Estimated edge at publication</span>
+            <strong>{estimatedEdge}</strong>
           </div>
         </div>
         <p className="small-note">
           {reference ? "Publication market reference" : "Publication odds"}:{" "}
           {tip.odds} decimal ·{" "}
-          {reference
-            ? "Methodology UNVALIDATED"
-            : tip.publication_payload.offer.bookmaker}
+          {independent
+            ? `Independent sporting model · ${model?.modelVersion ?? "evidence unavailable"}`
+            : reference
+              ? "Methodology UNVALIDATED"
+              : tip.publication_payload.offer.bookmaker}
         </p>
         <p className="edge-freshness">
           Source age at page load: {sourceAge(sourceAt, now)} · {timezone}
         </p>
+        {independent && <ModelEvidence model={model} timezone={timezone} />}
         {tip.result !== "pending" && (
           <p className="edge-settlement">
             Settlement: <strong>{tip.result}</strong>
@@ -121,7 +137,7 @@ export function EdgeCard({
           </Link>
           <p className="edge-warning">
             Estimated EV is not guaranteed profit.
-            {tip.display_status !== "active" &&
+            {displayStatus !== "active" &&
               " Archived record; not an active instruction."}
           </p>
         </div>
@@ -134,7 +150,7 @@ export function EdgeCard({
     >
       <div className="edge-card-top">
         <QuoteStatus
-          status={tip.display_status}
+          status={displayStatus}
           sourceAt={sourceAt ? new Date(sourceAt).toISOString() : null}
           startAt={new Date(tip.start_at).toISOString()}
           initialNow={now}
@@ -185,8 +201,12 @@ export function EdgeCard({
         {reference && (
           <div className="take-price">
             <span>Minimum acceptable price</span>
-            <strong>TAKE {oddsDisplay(tip.minimum_odds, format)}+</strong>
-            <small>Decimal {tip.minimum_odds}+ · do not accept less</small>
+            <strong>{minimum ? `TAKE ${minimum}+` : "TAKE unavailable"}</strong>
+            <small>
+              {hasModel
+                ? `Decimal ${tip.minimum_odds}+ · do not accept less`
+                : "Retained model evidence unavailable"}
+            </small>
           </div>
         )}
         <div>
@@ -210,11 +230,14 @@ export function EdgeCard({
       </div>
       {reference && (
         <p className="reference-fair">
-          Docked fair price{" "}
-          <strong>
-            {oddsDisplay(tip.publication_payload.fairOdds, format)}
-          </strong>
-          <span> Locked estimate at publication · methodology UNVALIDATED</span>
+          {independent ? "Docked fair price" : "Research fair odds"}{" "}
+          <strong>{fair}</strong>
+          <span>
+            {" "}
+            {independent
+              ? "Locked independent sporting-model estimate"
+              : "Locked estimate at publication · methodology UNVALIDATED"}
+          </span>
         </p>
       )}
       <p className="edge-freshness">
@@ -244,15 +267,27 @@ export function EdgeCard({
         <dl className="edge-facts">
           <div>
             <dt>Estimated probability</dt>
-            <dd>{(Number(tip.probability) * 100).toFixed(2)}%</dd>
+            <dd>
+              {hasModel
+                ? `${(Number(tip.probability) * 100).toFixed(2)}%`
+                : "Unavailable"}
+            </dd>
           </div>
           <div>
-            <dt>{reference ? "Docked fair price" : "Reference fair odds"}</dt>
-            <dd>{tip.publication_payload.fairOdds}</dd>
+            <dt>
+              {independent
+                ? "Docked fair price"
+                : reference
+                  ? "Research fair odds"
+                  : "Reference fair odds"}
+            </dt>
+            <dd>
+              {hasModel ? tip.publication_payload.fairOdds : "Unavailable"}
+            </dd>
           </div>
           <div>
-            <dt>Estimated EV</dt>
-            <dd>{(Number(tip.estimated_ev) * 100).toFixed(2)}%</dd>
+            <dt>Estimated edge</dt>
+            <dd>{estimatedEdge}</dd>
           </div>
           <div>
             <dt>
@@ -263,12 +298,20 @@ export function EdgeCard({
             <dd>{tip.odds} decimal</dd>
           </div>
         </dl>
-        {reference ? (
+        {independent ? (
+          <p>
+            The sporting model produces its probability from retained authorised
+            sporting inputs before the market comparison. Docked Fair is 1 /
+            probability; TAKE includes the configured minimum edge. The market
+            reference is a separate price observation. These estimates can be
+            wrong and do not guarantee profit.
+          </p>
+        ) : reference ? (
           <p>
             The market reference is an observed availability benchmark. The
-            Docked fair price is a separate probability estimate; the minimum
-            includes the configured edge threshold. Publication values are
-            immutable. Current observations do not rewrite settlement or
+            research fair price is a separate market-derived estimate; the
+            minimum includes the configured edge threshold. Publication values
+            are immutable. Current observations do not rewrite settlement or
             research evidence. This methodology remains UNVALIDATED.
           </p>
         ) : (
@@ -292,9 +335,10 @@ export function EdgeCard({
           </p>
         )}
       </details>
+      {independent && <ModelEvidence model={model} timezone={timezone} />}
       <p className="edge-warning">
         Estimated EV is not guaranteed profit.{" "}
-        {tip.display_status === "active"
+        {displayStatus === "active"
           ? "Prices can change or be unavailable to you."
           : "This is an archived observation, not an active instruction to act."}
       </p>
@@ -315,5 +359,55 @@ export function EdgeCard({
         />
       )}
     </article>
+  );
+}
+
+function ModelEvidence({
+  model,
+  timezone,
+}: {
+  model: TipPresentation["publication_payload"]["modelEvidence"];
+  timezone: string;
+}) {
+  return (
+    <details className="edge-evidence">
+      <summary>Model data at publication</summary>
+      {model ? (
+        <>
+          <dl className="edge-facts">
+            <div>
+              <dt>Model version</dt>
+              <dd>{model.modelVersion}</dd>
+            </div>
+            <div>
+              <dt>Sporting input cutoff</dt>
+              <dd>{localEventTime(model.dataCutoff, timezone)}</dd>
+            </div>
+            <div>
+              <dt>Prediction as of</dt>
+              <dd>{localEventTime(model.asOfTime, timezone)}</dd>
+            </div>
+            <div>
+              <dt>Calculated</dt>
+              <dd>{localEventTime(model.calculatedAt, timezone)}</dd>
+            </div>
+          </dl>
+          <p className="small-note safe-json">
+            Retained sporting-only source evidence: {model.id}. Configuration
+            hash {model.configHash}; input hash {model.inputHash}; code{" "}
+            {model.codeCommit}.
+          </p>
+        </>
+      ) : (
+        <p>
+          Retained independent model evidence is unavailable. No probability or
+          fair-price claim is inferred from the market price.
+        </p>
+      )}
+      <p>
+        Probability estimates can be wrong. Research and paper records do not
+        become official historical tips.
+      </p>
+    </details>
   );
 }

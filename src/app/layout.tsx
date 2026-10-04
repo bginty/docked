@@ -130,7 +130,7 @@ export default async function Layout({
           </header>
           {!environment.production && (
             <div className="preview-banner">
-              PREVIEW · Historical validation pending · Live tips and outbound
+              PREVIEW · Model research in progress · Live tips and outbound
               alerts are off
             </div>
           )}

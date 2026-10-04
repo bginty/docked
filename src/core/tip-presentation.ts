@@ -1,7 +1,8 @@
 export type TipDisplayStatus =
   "active" | "price_below_minimum" | "expired" | "suspended" | "settled";
 export type TipPresentation = {
-  pricing_model?: "legacy_bookmaker_v1" | "market_reference_v1";
+  pricing_model?:
+    "legacy_bookmaker_v1" | "market_reference_v1" | "football_independent_v1";
   publication_market_reference?: MarketReferencePresentation | null;
   current_market_reference?: MarketReferencePresentation | null;
   published_at?: string | Date;
@@ -17,12 +18,23 @@ export type TipPresentation = {
   publication_payload: {
     fairOdds: string;
     offer: { bookmaker: string; sourceAt: string };
+    modelEvidence?: ModelEvidencePresentation | null;
   };
   result: string;
   display_status: TipDisplayStatus;
   current_odds: string | null;
   current_source_at: string | Date | null;
   current_observed_at: string | Date | null;
+};
+export type ModelEvidencePresentation = {
+  id: string;
+  modelVersion: string;
+  configHash: string;
+  inputHash: string;
+  asOfTime: string;
+  calculatedAt: string;
+  dataCutoff: string;
+  codeCommit: string;
 };
 export type MarketReferencePresentation = {
   methodologyVersion: string;

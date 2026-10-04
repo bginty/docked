@@ -175,7 +175,41 @@
 .competition-filter-icons {
   color: var(--teal);
 }
+.official-docked-record .metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.official-docked-record .metric {
+  min-width: 0;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.official-docked-record .metric strong {
+  font-size: clamp(18px, 2vw, 25px);
+  overflow-wrap: anywhere;
+}
+.official-docked-record .pill {
+  white-space: normal;
+  line-height: 1.5;
+}
+.official-docked-record caption {
+  padding: 12px;
+  text-align: left;
+  white-space: normal;
+}
+.official-docked-record td:first-child {
+  white-space: normal;
+  min-width: 15rem;
+  max-width: 24rem;
+}
+@media (max-width: 900px) {
+  .official-docked-record .metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 @media (max-width: 650px) {
+  .official-docked-record .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .sports-section-heading {
     grid-template-columns: 1fr;
     gap: 24px;

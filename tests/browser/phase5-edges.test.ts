@@ -65,14 +65,20 @@ for (const width of [360, 412, 1366])
       page.getByText("No eligible trending Edges yet."),
     ).toBeVisible();
     await expect(
-      page.getByText("NO EDGE OF THE WEEK YET", { exact: true }),
+      page.getByText("No qualifying Edge this week yet.", { exact: true }),
     ).toBeVisible();
     if (width <= 760) {
       const card = await page.locator(".pinned-empty--compact").boundingBox();
-      const trending = await page.getByRole("heading", { name: "Trending Community Edges" }).boundingBox();
+      const trending = await page
+        .getByRole("heading", { name: "Trending Community Edges" })
+        .boundingBox();
       expect(card!.height).toBeLessThan(180);
       expect(trending!.y).toBeLessThan(650);
-      expect(await page.locator(".pinned-docked h2").evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeLessThanOrEqual(22);
+      expect(
+        await page
+          .locator(".pinned-docked h2")
+          .evaluate((el) => parseFloat(getComputedStyle(el).fontSize)),
+      ).toBeLessThanOrEqual(22);
     }
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
     await page.screenshot({

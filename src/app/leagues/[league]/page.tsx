@@ -95,13 +95,14 @@ export default async function League({
             <div>
               <h2>Evidence before activation.</h2>
               <p>
-                Licensed current and historical odds must be paired with an
-                authorised outcome source. Coverage reports, missingness,
-                independent operator mapping and regional eligibility require
-                review. Historical development, validation, held-out research
-                and prospective paper tracking remain separate. A positive
-                estimated EV is a calculation under assumptions, not proof of
-                profitable execution.
+                Independent sporting-model inputs, current market comparisons
+                and outcome data each require appropriate rights and review.
+                Coverage, missingness, mapping and regional eligibility remain
+                explicit checks. Historical sporting statistics may support
+                model research; historical Docked tips and betting ROI are not
+                reconstructed as a launch requirement. Model research, forward
+                paper and genuine published records remain separate. A positive
+                estimated EV is not proof of profitable execution.
               </p>
             </div>
           </section>

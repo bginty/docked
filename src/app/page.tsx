@@ -152,8 +152,8 @@ export default async function Home() {
           {[
             [
               "01",
-              "Compare like with like",
-              "Match the event, market and settlement rules. Remove margin from complete, independent reference markets.",
+              "Estimate, then compare",
+              "Develop an independent sporting model from authorised data. Compare its uncertain probability estimate with a separately observed market price.",
             ],
             [
               "02",
@@ -190,9 +190,9 @@ export default async function Home() {
           {[
             [
               "01",
-              "Historical research",
-              "A replay of past data under frozen rules.",
-              "Validation pending",
+              "Model research",
+              "Sporting data informs a versioned probability model. Historical tips are never reconstructed.",
+              "Research only",
             ],
             [
               "02",
@@ -202,9 +202,9 @@ export default async function Home() {
             ],
             [
               "03",
-              "Live published",
-              "Actual public tips, timestamped before the event.",
-              "Not launched",
+              "Docked Record",
+              "The official record begins with the first genuine forward-published Edge.",
+              "Forward publications only",
             ],
           ].map(([n, t, d, s]) => (
             <article className="card" key={n}>

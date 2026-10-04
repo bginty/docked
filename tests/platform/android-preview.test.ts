@@ -104,3 +104,61 @@ test("hosted Android build fails closed without current preview identity and dis
     "http://localhost:3000/app",
   );
 });
+
+test("a stored pending-rights provider requires explicit non-polling and publication-off proof", () => {
+  const pending = {
+    ...manifest,
+    safety: {
+      ...manifest.safety,
+      oddsProviderStatus: "PENDING_RIGHTS",
+      providerPolling: false,
+      publication: false,
+    },
+  };
+  assert.equal(validatePreviewManifest(pending, now).origin, manifest.origin);
+  for (const gate of ["providerPolling", "publication"] as const) {
+    for (const value of [undefined, null, true, "false"]) {
+      assert.throws(() =>
+        validatePreviewManifest(
+          { ...pending, safety: { ...pending.safety, [gate]: value } },
+          now,
+        ),
+      );
+    }
+    assert.throws(() =>
+      validatePreviewManifest(
+        { ...manifest, safety: { ...manifest.safety, [gate]: true } },
+        now,
+      ),
+    );
+  }
+  for (const oddsProviderStatus of [
+    "READY",
+    "CONFIGURED",
+    "ACTIVE",
+    "UNKNOWN",
+    "",
+  ]) {
+    assert.throws(() =>
+      validatePreviewManifest(
+        { ...pending, safety: { ...pending.safety, oddsProviderStatus } },
+        now,
+      ),
+    );
+  }
+  assert.throws(() =>
+    validatePreviewManifest(
+      { ...pending, safety: { ...pending.safety, forwardPaper: true } },
+      now,
+    ),
+  );
+  assert.throws(() =>
+    validatePreviewManifest(
+      {
+        ...pending,
+        safety: { ...pending.safety, resultsProviderStatus: "READY" },
+      },
+      now,
+    ),
+  );
+});

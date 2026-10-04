@@ -91,8 +91,18 @@ export function ScannerCandidateCard({
   detail?: boolean;
 }) {
   const fields: [string, string][] = [
-    ["Research probability", c.probability],
-    ["Docked fair odds", c.fairOdds],
+    [
+      c.independentModel
+        ? "Docked probability"
+        : "Market-implied research probability",
+      c.probability,
+    ],
+    [
+      c.independentModel
+        ? "Docked fair odds"
+        : "Market-implied research fair odds",
+      c.fairOdds,
+    ],
     ["Minimum acceptable price", c.minimumOdds],
     ["Required EV", c.requiredEV],
     ["Captured scan reference", c.currentMarketReference],
@@ -101,6 +111,11 @@ export function ScannerCandidateCard({
     ["Source age at render", `${c.dataAgeSeconds}s`],
     ["Strategy version", c.strategyVersion],
     ["Model version", c.modelVersion],
+    [
+      "Sport data cutoff",
+      c.modelDataCutoff ?? "Not an independent sporting model",
+    ],
+    ["Prediction record", c.predictionId ?? "No independent prediction"],
   ];
   return (
     <article className="app-panel scanner-candidate">
@@ -208,7 +223,7 @@ export async function ScannerAdminPage({
             section === "scanner"
               ? "Edge Scanner"
               : section === "daily"
-                ? "Daily operations"
+                ? "Docked Today"
                 : "Candidate Edges"
           }
         >
@@ -216,6 +231,7 @@ export async function ScannerAdminPage({
           are sent by these controls.
         </AppHeading>
         <nav className="scanner-nav" aria-label="Research operations">
+          <Link href="/admin/model-performance">Model performance</Link>
           <Link href="/admin/edge-scanner">Scanner</Link>
           <Link href="/admin/candidate-edges">Candidate queue</Link>
           <Link href="/admin/daily">Daily summary</Link>
@@ -323,7 +339,9 @@ export async function ScannerAdminPage({
             {candidate ? (
               <>
                 <ScannerCandidateCard candidate={candidate} detail />
-                {canWrite && <CandidateReview candidate={candidate} />}
+                {["owner", "admin"].includes(staff.role) && (
+                  <CandidateReview candidate={candidate} />
+                )}
               </>
             ) : id ? (
               <CommunityEmpty title="Candidate unavailable">
@@ -355,6 +373,24 @@ export async function ScannerAdminPage({
         )}
         {daily && (
           <>
+            <section className="app-panel">
+              <h2>Independent football model</h2>
+              <p>
+                {daily.model.implementationStatus} · authorised sporting inputs
+                and a reviewed fitted estimator are required.
+              </p>
+              <p>
+                Evaluations retained:{" "}
+                {daily.model.attempts?.total ?? "Unavailable"}. Model version:{" "}
+                {daily.model.versions
+                  .map((v) => `${v.id} — ${v.lifecycle}`)
+                  .join(", ") || "None introduced"}
+                .
+              </p>
+              <Link href="/admin/model-performance">
+                Inspect prospective calibration
+              </Link>
+            </section>
             <section className="app-panel">
               <h2>Observed operational records</h2>
               <p>

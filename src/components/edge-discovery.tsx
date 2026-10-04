@@ -46,6 +46,10 @@ function InterestCard({
           <dt>{weekly ? "1-unit net result" : "Eligible members"}</dt>
           <dd>{weekly ? `+${item.netUnits}` : item.uniqueMembers}</dd>
         </div>
+        <div>
+          <dt>Eligible likes</dt>
+          <dd>{item.uniqueReactions}</dd>
+        </div>
       </dl>
       <p className="recognition-time">
         {weekly ? "Settled" : "Starts"}{" "}
@@ -78,7 +82,7 @@ export function TrendingEdges({ data }: { data: CommunityRecognition }) {
       </p>
       {data.trending.length ? (
         <div className="recognition-list">
-          {data.trending.map((item) => (
+          {data.trending.slice(0, 3).map((item) => (
             <InterestCard key={item.edge.id} item={item} />
           ))}
         </div>
@@ -95,10 +99,12 @@ export function TrendingEdges({ data }: { data: CommunityRecognition }) {
       <details className="edge-rule-disclosure">
         <summary>How trending works</summary>
         <p>
-          At least three eligible members, seven-day account age, unique
-          reactions and substantive comments. Self-interactions, reported
+          Up to three eligible Edges. At least three eligible members, seven-day
+          account age, unique likes and substantive comments. One member cannot
+          inflate the count by repeating an action. Self-interactions, reported
           content and suspicious bursts are excluded. Recency reduces older
-          interest. Rule {data.ruleVersion}.
+          interest. Likes measure interest, not probability or quality. Rule{" "}
+          {data.ruleVersion}.
         </p>
         <Link href="/top-docked">
           Top Docked uses settled performance separately
@@ -122,7 +128,7 @@ export function WeeklyEdge({ data }: { data: CommunityRecognition }) {
         <InterestCard item={data.weekly.winner} weekly />
       ) : (
         <div className="edge-quiet-state">
-          <strong>NO EDGE OF THE WEEK YET</strong>
+          <strong>No qualifying Edge this week yet.</strong>
           <p>
             {data.weekly.status === "WITHHELD"
               ? "This week's recognition is unavailable under current privacy or integrity checks. No replacement winner is inferred."
@@ -311,7 +317,9 @@ export function RecentEdgeResults({
           </p>
         </div>
       )}
-      <Link className="edge-history-link" href="/results">Complete official Docked results</Link>
+      <Link className="edge-history-link" href="/results">
+        Complete official Docked results
+      </Link>
     </section>
   );
 }

@@ -62,7 +62,7 @@ export const sports: readonly SportContent[] = [
       ],
       [
         "NBA scope is not all basketball",
-        "The current competition configuration contains NBA research only. It does not extend to college basketball, international competitions, alternative periods, player markets or point spreads. Each extension would need its own matched contracts, licensed data and validation. Reference-based probabilities remain uncertain; calibration, losing runs and subsequent quote availability must be assessed alongside any calculated EV.",
+        "The original basketball comparison configuration contains NBA research only. It does not extend to college basketball, international competitions, alternative periods, player markets or point spreads. Each extension needs matched contracts, licensed sporting inputs and a reviewed model. Independent model probabilities remain uncertain; calibration, losing runs and subsequent quote availability must be assessed alongside calculated EV. Market data availability alone does not establish a functioning sporting model.",
       ],
     ],
     related: "closing-line-value",
@@ -86,7 +86,7 @@ export const sports: readonly SportContent[] = [
       ],
       [
         "What must exist before coverage",
-        "Tennis is planned coverage, with no active pricing pipeline or Docked tennis selections. A future version needs licensed current and historical prices, authorised outcomes, complete reference markets, retirement and walkover tests, and a documented validation plan. Match, set and game markets would be evaluated separately. Attractive sporting imagery here is context, not evidence that those requirements have been met.",
+        "Tennis is planned coverage, with no active official Docked tennis selections. A future version needs licensed sporting inputs, current market comparisons, authorised outcomes, retirement and walkover tests, and a documented model evaluation plan. Match, set and game markets would be evaluated separately. Historical sporting statistics may support that research; historical Docked tips are not reconstructed. Sporting imagery is context, not evidence that these requirements have been met.",
       ],
     ],
     related: "losing-runs-and-variance",
@@ -110,7 +110,7 @@ export const sports: readonly SportContent[] = [
       ],
       [
         "Planned does not mean active",
-        "NFL coverage is coming soon in the product roadmap, with no launch date or validated NFL strategy implied. The installed competition list excludes NFL. Adding it changes the eligible universe and requires a documented strategy version, historical data-quality review and forward validation. There are no NFL tips or invented NFL performance records on this page.",
+        "NFL market-data readiness is separate from official publication readiness. The preserved original comparison strategy excludes NFL, and a fixture or price observation does not establish an approved NFL sporting model. A future official version needs licensed sporting inputs, supported payoff rules and documented evaluation. There is no promised launch date, reconstructed NFL tip history or invented performance record on this page.",
       ],
     ],
     related: "backtest-paper-live",
@@ -182,7 +182,7 @@ export const sports: readonly SportContent[] = [
       ],
       [
         "The current scope remains narrower",
-        "Baseball is planned coverage, not a configured extension of NBA moneyline research. Run lines, totals and pitcher-specific contracts would require their own payoff handling, source mapping and tests. Licensed histories and independent reference coverage would be reviewed before any study, followed by a frozen strategy and forward-paper evaluation. No baseball opportunities are generated in this preview.",
+        "Baseball is planned coverage, not a configured extension of NBA moneyline research. Run lines, totals and pitcher-specific contracts require their own payoff handling, source mapping and tests. Licensed sporting inputs and current market comparisons would be reviewed for a documented model and separate forward-paper evaluation. Historical baseball statistics can inform research; past Docked tips and returns are never filled in. No official baseball opportunities are implied here.",
       ],
     ],
     related: "value-versus-winners",
@@ -231,7 +231,7 @@ export const sports: readonly SportContent[] = [
       ],
       [
         "A separate research route",
-        "Motorsport is planned coverage with no configured publication market. Outright fields, qualifying markets and head-to-heads would need distinct validation, licensed histories and a complete treatment of missing starters or finishers. Docked has not created a motorsport backtest or promised a launch date. The useful starting point is a precise contract, not a confident prediction.",
+        "Motorsport is planned coverage with no configured publication market. Outright fields, qualifying markets and head-to-heads need distinct model evaluation, licensed sporting inputs, current price comparisons and complete treatment of missing starters or finishers. Docked has not reconstructed a motorsport tip history or promised a launch date. The useful starting point is a precise contract, not a confident prediction.",
       ],
     ],
     related: "backtest-paper-live",

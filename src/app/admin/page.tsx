@@ -60,6 +60,9 @@ export default async function Admin() {
         mutation handler.
       </Notice>
       <nav aria-label="Operations dashboards" className="actions">
+        <Link className="button ghost" href="/admin/model-performance">
+          Model performance
+        </Link>
         <Link className="button ghost" href="/admin/daily">
           Daily overview
         </Link>
