@@ -1,0 +1,5 @@
+
+> docked-value-platform@1.0.0 check:client
+> tsx scripts/check-client-boundary.ts
+
+PASS: server credential test markers absent from 52 browser assets. Build must use the documented canary values.

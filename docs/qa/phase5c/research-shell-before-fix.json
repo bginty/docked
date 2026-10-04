@@ -1,0 +1,21 @@
+{
+  "status": "FAIL",
+  "style": {
+    "color": "rgb(255, 255, 255)",
+    "background": "rgb(255, 255, 255)"
+  },
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "nodes": [
+        {
+          "target": [
+            ".form-help"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.48 (foreground color: #cbd5e1, background color: #ffffff, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1"
+        }
+      ]
+    }
+  ]
+}

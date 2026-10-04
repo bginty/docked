@@ -1,0 +1,1007 @@
+{
+  "recordedAt": "2026-10-04T03:11:49.535Z",
+  "buildId": "MTStmTOmO4HrtV5OyoB3y",
+  "width": 390,
+  "osPreference": "dark",
+  "account": "anonymous; no test account used",
+  "fixtures": false,
+  "routes": [
+    {
+      "route": "/",
+      "renderedPath": "/",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button light",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/home",
+      "renderedPath": "/edges",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/login",
+      "renderedPath": "/login",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 52,
+          "height": 52,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/join",
+      "renderedPath": "/join",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 52,
+          "height": 52,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/dashboard",
+      "renderedPath": "/dashboard",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 15.76216823190637,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            0.9725490196078431,
+            0.9803921568627451,
+            0.9882352941176471,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/edges",
+      "renderedPath": "/edges",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/results",
+      "renderedPath": "/results",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/community",
+      "renderedPath": "/community",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/compose",
+      "renderedPath": "/compose",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/profile",
+      "renderedPath": "/profile",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/notifications",
+      "renderedPath": "/notifications",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "route": "/learn/value-versus-winners",
+      "renderedPath": "/learn/value-versus-winners",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        },
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 42.5,
+          "height": 42.5,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "topline",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button secondary",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    }
+  ]
+}

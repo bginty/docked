@@ -1,5 +1,17 @@
 # Engineering decisions — started 2 October 2026
 
+## Phase 5C — governed research before independent pricing
+
+- Narrow the first research scope to EPL pre-match regulation 1X2. Preserve the broader platform/community; no generic all-sport model is implied.
+- Keep raw licensed datasets, normalised reported values, typed research evidence, match snapshots, active features, model predictions and market comparison separate. An adapter success is not canonical-result or probability authority.
+- Review commercial, storage, derived, model and public-display rights independently. Unknown/manual-only/expired sources cannot auto-fetch. Staff approval is audited; public origin, attribution, an RSS format or manual transcription is not a licence.
+- Use OpenFootball's CC0 dedication for a narrowly scoped free research catalogue. Pin dataset revisions and inspect real coverage locally. Do not infer timezone, original result availability or regulation finality. Inspect this path before recommending paid sports data.
+- Preserve append-only corrections, conflicting evidence and pre-match snapshots. Resolve the complete known event evidence before projecting a reviewed subset; new contradictory facts cannot disappear behind an old content-ID filter.
+- Descriptive trends need declared windows, comparable contexts, exposure/sample safeguards and thresholds. A season-to-date baseline may explicitly include the recent window; report that overlap. H2H, player availability and weather do not automatically affect probability.
+- Feature activation binds a versioned deterministic definition to a model/config; prose and LLM output never supply official probability. Recalculation preserves prior predictions and canonical calibration cohorts. The unfitted estimator remains unavailable.
+- Durable research jobs require explicit runtime, database, source, schedule, rights, freshness and quota gates. No page-triggered scraping, arbitrary endpoint URLs or automatic external sends. Source failures stay visible.
+- Research content has its own reviewed factual type and member authority. It never masquerades as an Edge, community benchmark or official result. Friends-and-family beta does not require profitable official selections.
+
 ## Phase 5B revised — forward-only and independent model
 
 - Supersede historical betting ROI/reconstructed-tip launch plans. Preserve replay for time-safe data/software/model evaluation, separate from official performance.

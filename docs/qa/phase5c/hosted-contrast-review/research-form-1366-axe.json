@@ -1,0 +1,119 @@
+{
+  "violations": [
+    {
+      "id": "target-size",
+      "impact": "serious",
+      "nodes": [
+        {
+          "target": [
+            "input[name=\"immutableEvidenceAllowed\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 23px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"PLAYER_INJURY\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"PLAYER_SUSPENSION\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"PLAYER_RETURN\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"EXPECTED_LINEUP\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"CONFIRMED_LINEUP\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"MANAGER_CHANGE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"TEAM_FORM_UPDATE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"PLAYER_FORM_UPDATE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"MATCH_RESULT\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"TEAM_STAT_UPDATE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"PLAYER_STAT_UPDATE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"REST_ADVANTAGE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"SCHEDULE_CONGESTION\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"WEATHER_UPDATE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"VENUE_CHANGE\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"MATCH_POSTPONED\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        },
+        {
+          "target": [
+            "input[value=\"MATCH_CANCELLED\"][name=\"dataTypes\"][type=\"checkbox\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient size (13px by 13px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+        }
+      ]
+    }
+  ],
+  "passes": 30
+}

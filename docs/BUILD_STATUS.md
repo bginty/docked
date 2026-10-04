@@ -1,6 +1,22 @@
 # Docked build status
 
-## Current Phase 5B revised implementation — 4 October 2026
+## Current Phase 5C — governed sports research foundation, 4 October 2026
+
+Continued the clean `ef91d413` checkpoint on `codex/docked-value-platform`. Research source versions, independent permissions, structured sporting facts/corrections, immutable prematch research snapshots, descriptive team/player trend functions, feature eligibility, a bounded dataset adapter and durable disabled scheduler are implemented. `/admin/research`, match inspection, reviewed member research, Feed/watchlist links and separate default-off research notification preferences reuse the existing application and security boundaries.
+
+**Research foundation ready; Football Model V1 blocked — accepted sporting data, fitting and an approved executor required.** No active model features, probabilities, predictions, official Edges or reconstructed performance have been created. Recalculation is an audited eligibility/abstention request, not a working probability executor. Official record start remains unset. Market Reference and an authorised regulation ResultsProvider remain unconfigured under their existing separate gates.
+
+Current first-party source research identifies two pinned **OpenFootball CC0 EPL datasets** for narrow automated research use at $0/no key. Local inspection covers 380 rows in each season; current-season absence stays missing. Missing timezone, original result clocks, canonical mappings and finality/correction evidence prevent automatic settlement/model-ready promotion. The catalogue is not enabled hosted registration. All research/market polling and publication remain off. Optional injuries, lineups, xG and news do not block the proposed goals-only V1 study.
+
+Docked Preview `bckkllmndoxzpzdqrevb` has **17 ordered migrations**, with **14 new private RLS tables** and no browser grants. No source, research fact, dataset or job was seeded. The protected application preimage, matching dry run and post-migration checks are retained. This is not a full Auth/storage disaster-recovery backup. Production, DNS, Oura, external email, paid plans and Odds API credits were untouched.
+
+Final validation: **360 platform tests**, **167 PostgreSQL/RLS tests**, typecheck, whole lint, optimized production web build, client credential markers and zero-vulnerability dependency audit passed. **89 distinct browser cases passed across retained runs**: the broad run passed 88/89, followed by six passing compiled-CSS repairs and one final copy check. This is not one full final-source green run. Hosted acceptance passed **104 staff/public and 22 member-denial assertions**, with genuine MFA, ten responsive views, zero tagged WCAG/console errors and clean rendered credential checks. Android **v7 / 1.6-preview** built and passed complete 988-entry credential/package checks; physical S24 acceptance remains unverified. [Exact evidence and retained failures](qa/phase5c/README.md).
+
+The isolated Preview alias serves `281b3ac7e0229c6314b940a5a17d4680b21721a5`. The disposable operator has been erased with zero remaining users/sessions/profiles/roles/grants; four original accounts and all 26 provider/model/event/official-record tables match the protected baseline. Hosted research sources, facts, snapshots, content, requests, model versions, sporting inputs, predictions and official record start remain empty. No external sends or feature activation occurred. Existing Supabase advisor notices, including disabled leaked-password protection, are disclosed rather than claimed resolved.
+
+See [research architecture](RESEARCH_ENGINE.md), [source decisions](RESEARCH_SOURCE_EVALUATION.md), [match files](MATCH_RESEARCH_FILE.md), [feature boundary](MODEL_FEATURE_REGISTRY.md) and [scheduler](RESEARCH_SCHEDULER.md). Source approval is distinct from product/legal permission and from model quality. Research notification transport, persistent team follows, a fitted estimator/recalculation executor and production runtime-role extension remain explicit future work.
+
+## Preserved Phase 5B revised implementation — 4 October 2026
 
 The product is **forward-only official publication**. Official start remains unset until the first genuine pre-event live Edge. No historical Docked betting record is reconstructed. Earlier milestone sections below are dated evidence, not current launch requirements.
 

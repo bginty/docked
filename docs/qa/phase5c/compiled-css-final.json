@@ -1,0 +1,340 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/browser/research-ui.test.ts",
+      "tests/browser/phase3.test.ts",
+      "--grep",
+      "DEMO research|DEMO structured|DEMO source governance|DEMO notification consent",
+      "--workers=1",
+      "--output=test-results/phase5c-compiled-final",
+      "--reporter=list,json"
+    ],
+    "configFile": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\playwright.config.ts",
+    "rootDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/test-results/phase5c-compiled-final",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "phase3.test.ts",
+      "file": "phase3.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "DEMO notification consent and moderation are separate from record corrections",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1750,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m56\u001b[39m\nReceived:    \u001b[31m49.890625\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m56\u001b[39m\nReceived:    \u001b[31m49.890625\u001b[39m\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\phase3.test.ts:551:27",
+                    "location": {
+                      "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\phase3.test.ts",
+                      "column": 27,
+                      "line": 551
+                    },
+                    "snippet": "  549 |   const header = await page.locator(\".app-topbar\").boundingBox();\n  550 |   const bottomNav = await page.locator(\".app-bottom-nav\").boundingBox();\n> 551 |   expect(lineupTarget!.y).toBeGreaterThanOrEqual(header!.y + header!.height);\n      |                           ^\n  552 |   expect(lineupTarget!.y + lineupTarget!.height).toBeLessThanOrEqual(\n  553 |     bottomNav!.y,\n  554 |   );"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\phase3.test.ts",
+                        "column": 27,
+                        "line": 551
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m56\u001b[39m\nReceived:    \u001b[31m49.890625\u001b[39m\n\n  549 |   const header = await page.locator(\".app-topbar\").boundingBox();\n  550 |   const bottomNav = await page.locator(\".app-bottom-nav\").boundingBox();\n> 551 |   expect(lineupTarget!.y).toBeGreaterThanOrEqual(header!.y + header!.height);\n      |                           ^\n  552 |   expect(lineupTarget!.y + lineupTarget!.height).toBeLessThanOrEqual(\n  553 |     bottomNav!.y,\n  554 |   );\n    at C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\phase3.test.ts:551:27"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-04T03:29:52.499Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\phase5c-compiled-final\\phase3-DEMO-notification-c-f745d-ate-from-record-corrections\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\phase5c-compiled-final\\phase3-DEMO-notification-c-f745d-ate-from-record-corrections\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\test-results\\phase5c-compiled-final\\phase3-DEMO-notification-c-f745d-ate-from-record-corrections\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\browser\\phase3.test.ts",
+                    "column": 27,
+                    "line": 551
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "ac81954bcbc44b9c413a-b60c3554f8fa19dbe6db",
+          "file": "phase3.test.ts",
+          "line": 519,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "research-ui.test.ts",
+      "file": "research-ui.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "DEMO research missing evidence, conflicts and governed source states at 360px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9584,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-04T03:29:59.152Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "929d8597fcdd2cc9190a-999ddbb57fc3ee22466e",
+          "file": "research-ui.test.ts",
+          "line": 84,
+          "column": 7
+        },
+        {
+          "title": "DEMO research missing evidence, conflicts and governed source states at 412px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9648,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-04T03:30:09.375Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "929d8597fcdd2cc9190a-ebcb28784fa658450665",
+          "file": "research-ui.test.ts",
+          "line": 84,
+          "column": 7
+        },
+        {
+          "title": "DEMO research missing evidence, conflicts and governed source states at 1366px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10121,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-04T03:30:19.068Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "929d8597fcdd2cc9190a-b8421cfe62ff80fa78b8",
+          "file": "research-ui.test.ts",
+          "line": 84,
+          "column": 7
+        },
+        {
+          "title": "DEMO structured fact form preserves unknowns, captures observed time and cannot submit probability",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3555,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-04T03:30:29.237Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "929d8597fcdd2cc9190a-b07659ba2827caa807af",
+          "file": "research-ui.test.ts",
+          "line": 170,
+          "column": 5
+        },
+        {
+          "title": "DEMO source governance defaults block use and research notifications remain separate opt-ins",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7007,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-04T03:30:32.831Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "929d8597fcdd2cc9190a-48e237bfff2d68dd8c4c",
+          "file": "research-ui.test.ts",
+          "line": 249,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T03:29:49.845Z",
+    "duration": 50356.263,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,5 +1,13 @@
 # Edge Scanner
 
+## Phase 5C research boundary
+
+Approved raw-source datasets, normalized sporting inputs, research facts, match snapshots and model features remain separate records. Research snapshot creation and a recalculation assessment do not create a prediction or Candidate Edge. The current request path deliberately records MODEL_NOT_CONFIGURED/BLOCKED_DATA when no accepted sporting bundle and fitted executor exist.
+
+Feature assessment checks only explicitly MODEL_ACTIVE definitions bound to the exact model configuration, current rights, known-at timestamps, freshness and structured evidence. Display-only H2H, trends, news, injuries and lineups cannot change Football V1. No active feature is installed. A future fitted executor must append a new prediction with the triggering research IDs and old/new lineage; it must not overwrite the earlier probability or silently change the canonical calibration cohort.
+
+The existing scanner consumes a committed independent prediction before reading Market Reference. Phase 5C does not bypass that transaction boundary. It adds the governed upstream research interface; an operational research-to-prediction executor remains blocked on accepted model data, fitting and a reviewed prediction-revision policy. Market movement and sporting-model changes remain separate evidence. Neither a research content post nor an admin explanation can supply probability, create an Edge, or activate publication. Auto-publish remains off.
+
 ## Phase 5B independent official path
 
 The current server path is runEdgeScan → recordFootballPrediction → evaluateFootballCandidate. The first call commits independently and accepts canonical event/model/window IDs and a worker lease, never prices or caller probabilities. Without a fitted estimator, an eligible configured scan retains NOT_CONFIGURED and abstains before price lookup.

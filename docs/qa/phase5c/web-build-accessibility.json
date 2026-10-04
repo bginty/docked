@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-10-04T03:29:59.4196027Z",
+  "status": "PASS",
+  "command": "node private-data/phase5c/local-qa.mjs build",
+  "sourceBaseCommit": "a76404ea0dee829f9aef22459ef5b238a756c501",
+  "finalUncommittedProductionDiff": [
+    "src/app/community-app.css",
+    "src/app/phase5c-research.css"
+  ],
+  "externalNetworkBlocked": true,
+  "databaseConfigured": false,
+  "providerConfigured": false,
+  "serverCredentialCanariesSupplied": true,
+  "typecheckExitCode": 0,
+  "lintExitCode": 0,
+  "clientBoundaryAssets": 52,
+  "physicalDeviceVerified": false,
+  "verifiedApplicationCommit": "7d22e02c823e22bef80849950d6e8257a000b9c6"
+}

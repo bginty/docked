@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "research-backend-validation-v1",
+  "scope": "Isolated local fixtures and injected fetch only; no hosted or provider activity",
+  "migration": "20261004023247_phase5c_governed_match_research.sql",
+  "privateRlsTables": 14,
+  "database": {
+    "command": "npx tsx --test tests/database/research-engine.test.ts",
+    "tests": 16,
+    "passed": 16,
+    "failed": 0,
+    "durationMs": 13510.2666
+  },
+  "schedulerAndPublicProjection": {
+    "command": "npx tsx --test tests/platform/research-presentation.test.ts tests/platform/research-scheduler.test.ts",
+    "tests": 9,
+    "passed": 9,
+    "failed": 0
+  },
+  "typecheck": "PASS",
+  "scopedLint": "PASS",
+  "independentReview": "READY - no material finding",
+  "limits": [
+    "No fitted estimator or probability executor",
+    "No research transport or scheduler activated",
+    "No new production docked_app permissions",
+    "No hosted migration applied by backend agent"
+  ]
+}

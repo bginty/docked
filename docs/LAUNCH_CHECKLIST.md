@@ -1,5 +1,16 @@
 # Release gates
 
+## Phase 5C research release boundary
+
+- [ ] Audited runtime source registrations with current commercial/storage/derived/display permissions and source-specific jurisdictions. A prepared licence catalogue is not runtime activation.
+- [ ] Quality-reviewed canonical EPL mappings, current timezone-aware fixtures and authorised regulation results/revisions. OpenFootball local research inspection alone does not meet this gate.
+- [ ] Accepted sporting training manifest, justified fit/update parameters and a reproducible independent model. No active model feature or probability is invented.
+- [ ] Reviewed quota/cadence and supervised worker before enabling research schedules; conditional requests and retry evidence inspected. All runtime automation remains off by default.
+- [ ] Editorial ownership, current source attribution/display rights, useful content priority and conservative opt-in delivery before member research publication/sending.
+- [ ] Existing Play closed-test/account-email/legal/device release gates; profitable official Edges are not prerequisites for a community beta.
+
+There is still no historical Docked betting-performance requirement. No model, source research licence or passing software test authorises production publication.
+
 ## Phase 5B revised release gates
 
 - [x] Forward-only record; no reconstructed Docked tips/ROI or historical betting-performance gate.

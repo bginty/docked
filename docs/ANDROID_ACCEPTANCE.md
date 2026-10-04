@@ -1,6 +1,14 @@
-# Android acceptance — Phase 5B
+# Android acceptance — Phase 5C
 
-## Current v6 delivery
+## Current v7 delivery
+
+[Docked Preview v7 — Match Research](../artifacts/android/Docked-Preview-S24-v7-Match-Research.apk) is 9,597,678 bytes, SHA-256 `fb1703c10e2141b26dcf6abb2969643ebff496b9ea67dc7439f059fd0a72f4d0`, versionCode 7 / `1.6-preview`. Its [build and artifact audits](qa/phase5c/android/README.md) passed, including every one of 988 APK entries and the actual v6 package/certificate upgrade comparison. V3–v6 remain byte-identical and archived. The APK opens the canonical HTTPS alias independently of a laptop; its initial receipt is distinct from the later server revision.
+
+The research UUID deep-link regression passed without widening push routes, credential callbacks or admin access. Five isolated research browser cases passed at 360/412/1366 pixels; the final six compiled-CSS checks include repaired notification controls. A final copy-only check covers disconnected and connected-empty research states separately. Actual hosted acceptance passed 104 staff/public plus 22 member-denial checks. These browser checks do not establish Android lifecycle or physical-device acceptance. The stable alias serves application revision `281b3ac7`; [exact scope](qa/phase5c/README.md).
+
+**V7 physical S24 and emulator acceptance remain unverified.** No device or emulator was used for this build. Exact offline APK HTML was rendered in desktop Chromium with no network, console or overflow failures. No signed AAB, key creation, Play upload or transport activation occurred. After the final server update, run the manual matrix below against v7 using a disposable authorized account; the owner's confirmed v5 operation does not certify v7.
+
+## Historical v6 delivery
 
 The owner confirms that v5 works on the physical Samsung S24. Its preserved APK was rehashed during Phase 5B and still matches `3e7af19503c376e8601ca9eef164a17d8a385b73f36aecff19a4a2629929552b`. This user report does not certify every native scenario or the next artifact.
 

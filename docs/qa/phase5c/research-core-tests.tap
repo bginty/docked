@@ -1,0 +1,155 @@
+TAP version 13
+# Subtest: all source rights states, explicit display permission, expiry and technical restrictions fail closed
+ok 1 - all source rights states, explicit display permission, expiry and technical restrictions fail closed
+  ---
+  duration_ms: 38.1486
+  ...
+# Subtest: source URLs reject credentials, private hosts and query tokens; factual schema rejects prose/probabilities
+ok 2 - source URLs reject credentials, private hosts and query tokens; factual schema rejects prose/probabilities
+  ---
+  duration_ms: 20.9832
+  ...
+# Subtest: unknown publication time remains unknown; knownAt boundaries prevent backdated and future facts
+ok 3 - unknown publication time remains unknown; knownAt boundaries prevent backdated and future facts
+  ---
+  duration_ms: 18.6705
+  ...
+# Subtest: immutable corrections resolve as-of and withdrawal does not resurrect prior fact
+ok 4 - immutable corrections resolve as-of and withdrawal does not resurrect prior fact
+  ---
+  duration_ms: 46.5322
+  ...
+# Subtest: corroboration deduplicates one factual grain; disagreement stays explicit including official preference
+ok 5 - corroboration deduplicates one factual grain; disagreement stays explicit including official preference
+  ---
+  duration_ms: 8.2855
+  ...
+# Subtest: match files have explicit missing sections, deterministic hashes, no postmatch/foreign facts and safe draft projection
+ok 6 - match files have explicit missing sections, deterministic hashes, no postmatch/foreign facts and safe draft projection
+  ---
+  duration_ms: 16.2026
+  ...
+# Subtest: trends require compatible context and minimum sample; duplicates cannot inflate evidence
+ok 7 - trends require compatible context and minimum sample; duplicates cannot inflate evidence
+  ---
+  duration_ms: 44.8858
+  ...
+# Subtest: zero baseline gives no relative percent or fabricated comparison label; future knowledge is excluded
+ok 8 - zero baseline gives no relative percent or fabricated comparison label; future knowledge is excluded
+  ---
+  duration_ms: 5.6133
+  ...
+# Subtest: display-only research cannot alter model, active changes need executor and create no probabilities
+ok 9 - display-only research cannot alter model, active changes need executor and create no probabilities
+  ---
+  duration_ms: 24.7
+  ...
+# Subtest: active inputs fail closed for stale, future, rumour, revoked rights and source conflict without mutating prior prediction
+ok 10 - active inputs fail closed for stale, future, rumour, revoked rights and source conflict without mutating prior prediction
+  ---
+  duration_ms: 23.5246
+  ...
+# Subtest: model-use permission does not require public disclosure, but cannot produce a public match file
+ok 11 - model-use permission does not require public disclosure, but cannot produce a public match file
+  ---
+  duration_ms: 6.6953
+  ...
+# Subtest: broken correction ancestry and source version rotation cannot restore eligibility
+ok 12 - broken correction ancestry and source version rotation cannot restore eligibility
+  ---
+  duration_ms: 2.4754
+  ...
+# Subtest: future facts cannot alter the earlier snapshot hash, and retention expiry stays unavailable
+ok 13 - future facts cannot alter the earlier snapshot hash, and retention expiry stays unavailable
+  ---
+  duration_ms: 9.2261
+  ...
+# Subtest: per-90 comparisons weight minutes and abstain when exposure is missing
+ok 14 - per-90 comparisons weight minutes and abstain when exposure is missing
+  ---
+  duration_ms: 3.9188
+  ...
+# Subtest: a target result cannot masquerade as pre-match research and negative sporting counts are rejected
+ok 15 - a target result cannot masquerade as pre-match research and negative sporting counts are rejected
+  ---
+  duration_ms: 5.2077
+  ...
+# Subtest: recent versus season-to-date uses explicit contained overlap and retains unique evidence IDs
+ok 16 - recent versus season-to-date uses explicit contained overlap and retains unique evidence IDs
+  ---
+  duration_ms: 4.3744
+  ...
+# Subtest: impossible percentages and empty weather do not create complete research
+ok 17 - impossible percentages and empty weather do not create complete research
+  ---
+  duration_ms: 4.4983
+  ...
+# Subtest: model can freeze feature definition before activation without a circular hash dependency
+ok 18 - model can freeze feature definition before activation without a circular hash dependency
+  ---
+  duration_ms: 3.4444
+  ...
+# Subtest: lower-confidence corroboration cannot masquerade as a causal model input change
+ok 19 - lower-confidence corroboration cannot masquerade as a causal model input change
+  ---
+  duration_ms: 6.4978
+  ...
+# Subtest: canonical participant labels with spaces are accepted exactly, never guessed or normalised
+ok 20 - canonical participant labels with spaces are accepted exactly, never guessed or normalised
+  ---
+  duration_ms: 5.8901
+  ...
+# Subtest: retained withdrawal tombstones prevent resurrection after licensed successor payload expires
+ok 21 - retained withdrawal tombstones prevent resurrection after licensed successor payload expires
+  ---
+  duration_ms: 9.0385
+  ...
+# Subtest: new correction remains usable using lawful hash-only ancestry after old payload/source version retires
+ok 22 - new correction remains usable using lawful hash-only ancestry after old payload/source version retires
+  ---
+  duration_ms: 6.1058
+  ...
+# Subtest: research job slots are deterministic across retries and change on kickoff/participant revision
+ok 23 - research job slots are deterministic across retries and change on kickoff/participant revision
+  ---
+  duration_ms: 6.0822
+  ...
+# Subtest: disabled/unapproved/expired/wrong endpoint paths make zero fetch calls using actual immediate clock
+ok 24 - disabled/unapproved/expired/wrong endpoint paths make zero fetch calls using actual immediate clock
+  ---
+  duration_ms: 90.4157
+  ...
+# Subtest: approved injected dataset keeps actual byte hash, unknown publication/finality and bounded request settings
+ok 25 - approved injected dataset keeps actual byte hash, unknown publication/finality and bounded request settings
+  ---
+  duration_ms: 109.2695
+  ...
+# Subtest: conditional304 carries no invented dataset; only safe supplied validators are transmitted
+ok 26 - conditional304 carries no invented dataset; only safe supplied validators are transmitted
+  ---
+  duration_ms: 13.9404
+  ...
+# Subtest: 429/503 retry information is preserved without internal retries or free extra requests
+ok 27 - 429/503 retry information is preserved without internal retries or free extra requests
+  ---
+  duration_ms: 9.5371
+  ...
+# Subtest: schema drift, wrong season, future reported result and invalid JSON degrade without facts
+ok 28 - schema drift, wrong season, future reported result and invalid JSON degrade without facts
+  ---
+  duration_ms: 21.3276
+  ...
+# Subtest: declared and streamed oversized bodies are rejected before any dataset can be returned
+ok 29 - declared and streamed oversized bodies are rejected before any dataset can be returned
+  ---
+  duration_ms: 20.5209
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4187.3989

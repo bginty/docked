@@ -1,14 +1,16 @@
 # Docked Android preview delivery
 
-[Download Docked Preview v6 — Forward Record](Docked-Preview-S24-v6-Forward-Record.apk)
+[Download Docked Preview v7 — Match Research](Docked-Preview-S24-v7-Match-Research.apk)
 
-9,597,678 bytes · SHA-256 `040afbb0a862196bebc1504800fa85bb7bc9435ae5712ef8e6f2cfbb63928dfa`
+9,597,678 bytes · SHA-256 `fb1703c10e2141b26dcf6abb2969643ebff496b9ea67dc7439f059fd0a72f4d0`
 
-This sideload preview is package `au.com.docked.app.preview`, versionCode 6 (`1.5-preview`). It opens the isolated HTTPS preview at `/app`, which routes to app login, onboarding or Edges. Internet access is required; a laptop, ADB forwarding and local server are not required after installation. Android debugging, WebView inspection and cleartext are disabled. The package and signing certificate match the actual preserved v5 APK for an in-place upgrade. The APK is a launcher: the application UI is delivered by the approved HTTPS host and can advance independently of its initial deployment receipt.
+This sideload preview is package `au.com.docked.app.preview`, versionCode 7 (`1.6-preview`). It opens the isolated HTTPS preview at `/app`, which routes to app login, onboarding or Edges. Internet access is required; a laptop, ADB forwarding and local server are not required after installation. Android debugging, WebView inspection and cleartext are disabled. The package and signing certificate match the actual preserved v6 APK for an in-place upgrade. The APK is a launcher: the application UI is delivered by the approved HTTPS host and can advance independently of its initial deployment receipt.
 
-**V6 physical-device and emulator acceptance remain unverified.** The user confirms v5 works on their physical Samsung S24; that does not establish v6 lifecycle, keyboard, native share or photo-picker acceptance.
+**V7 physical-device and emulator acceptance remain unverified.** The user confirms v5 works on their physical Samsung S24; that does not establish v7 lifecycle, keyboard, native share or photo-picker acceptance.
 
-The APK is Git-ignored and stored outside Gradle outputs. [V6 manifest](manifest-v6.json), [current manifest](manifest.json) and [v6 build/security audits](../../docs/qa/phase5b/android/README.md) identify the exact artifact. Builds verify all existing delivery/debug/preview artifacts in a content-hash archive before invoking Gradle.
+The APK is Git-ignored and stored outside Gradle outputs. [V7 manifest](manifest-v7.json), [current manifest](manifest.json) and [v7 build/security audits](../../docs/qa/phase5c/android/README.md) identify the exact artifact. Builds verify all existing delivery/debug/preview artifacts in a content-hash archive before invoking Gradle.
+
+[Preserved v6 — Forward Record](Docked-Preview-S24-v6-Forward-Record.apk) remains unchanged: 9,597,678 bytes, SHA-256 `040afbb0a862196bebc1504800fa85bb7bc9435ae5712ef8e6f2cfbb63928dfa`. Its [original manifest](manifest-v6.json) and [historical audits](../../docs/qa/phase5b/android/README.md) are retained.
 
 [Preserved v5 — App Entry](Docked-Preview-S24-v5-App-Entry.apk) remains unchanged: 9,597,678 bytes, SHA-256 `3e7af19503c376e8601ca9eef164a17d8a385b73f36aecff19a4a2629929552b`. Its [original manifest](manifest-v5.json) and [historical audits](../../docs/qa/phase45/android/README.md) are retained.
 

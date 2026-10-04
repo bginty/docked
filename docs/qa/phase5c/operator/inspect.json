@@ -1,0 +1,447 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-04T03:48:31.562Z",
+  "value": {
+    "migrations": [
+      {
+        "version": "20261002113546",
+        "name": "docked_platform"
+      },
+      {
+        "version": "20261002122714",
+        "name": "phase2_security_and_validation"
+      },
+      {
+        "version": "20261003002609",
+        "name": "phase3_membership_and_rewards"
+      },
+      {
+        "version": "20261003002709",
+        "name": "phase3_social_core"
+      },
+      {
+        "version": "20261003002935",
+        "name": "phase3_community_edge_ledger"
+      },
+      {
+        "version": "20261003021118",
+        "name": "session_helper_execute_hardening"
+      },
+      {
+        "version": "20261003030722",
+        "name": "phase4_market_reference"
+      },
+      {
+        "version": "20261003061548",
+        "name": "hosted_preview_tester_community"
+      },
+      {
+        "version": "20261003062615",
+        "name": "session_wall_clock_revalidation"
+      },
+      {
+        "version": "20261003121257",
+        "name": "phase45_preview_beta_auth"
+      },
+      {
+        "version": "20261003121502",
+        "name": "phase45_preview_market_fixtures"
+      },
+      {
+        "version": "20261003143903",
+        "name": "phase5_edge_scanner_market_data"
+      },
+      {
+        "version": "20261003214310",
+        "name": "production_community_runtime_role"
+      },
+      {
+        "version": "20261003225203",
+        "name": "phase5a_manual_provider_trial"
+      },
+      {
+        "version": "20261003232606",
+        "name": "phase5a_reviewed_driver_recovery"
+      },
+      {
+        "version": "20261004003850",
+        "name": "phase5b_independent_football_model_ledger"
+      },
+      {
+        "version": "20261004023247",
+        "name": "phase5c_governed_match_research"
+      }
+    ],
+    "closed": {
+      "enabled_flags": 0,
+      "publications": 0,
+      "external_sends": 0,
+      "ordinary_approvals": 0,
+      "model_versions": 0,
+      "predictions": 0,
+      "sporting_inputs": 0,
+      "fitted_models": 0,
+      "official_start": 0,
+      "research_sources": 0,
+      "research_facts": 0,
+      "research_snapshots": 0,
+      "research_content": 0,
+      "research_fetches": 0
+    },
+    "acl": [
+      {
+        "relname": "football_edge_policy_approvals",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_attempts",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_implementations",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_outcomes",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_transitions",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_versions",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_sporting_inputs",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_sporting_sources",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "official_docked_publications",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "official_record_boundary",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_content",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_content_reviews",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_dataset_payloads",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_dataset_snapshots",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_fact_payloads",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_facts",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_feature_versions",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_fetch_requests",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_match_snapshots",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_policies",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_recalculations",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_schedules",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_source_health",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "research_source_versions",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      }
+    ],
+    "functions": [
+      {
+        "proname": "assert_football_comparison",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "assert_football_prediction",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_candidate_check",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_implementation_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_input_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_json_hash",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_outcome_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_policy_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_prediction_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_publication_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_review_check",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_source_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_sport_only",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_strategy_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_version_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "official_record_insert_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "publish_football_candidate",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "record_official_football",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_actor",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_content_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_dataset_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_decimal",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_fact_current",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_fact_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_governance_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_hash",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_health_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_identifier",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_keys_only",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_lock_sources",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_payload_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_public_url",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_recalculation_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_request_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_schedule_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_snapshot_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_source_allowed",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_value_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "research_worker",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "set_football_policy_active",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "transition_football_model",
+        "anon_execute": false,
+        "member_execute": false
+      }
+    ],
+    "authAccounts": 4,
+    "providerRequests": 0
+  }
+}

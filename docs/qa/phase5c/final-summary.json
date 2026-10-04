@@ -1,0 +1,122 @@
+{
+  "recordedAt": "2026-10-04T03:50:07.997Z",
+  "branch": "codex/docked-value-platform",
+  "baseCommit": "ef91d41307c87872c4c5da27bd9c8aacc18c8c20",
+  "verifiedApplicationCommit": "281b3ac7e0229c6314b940a5a17d4680b21721a5",
+  "implementationCommits": [
+    "281b3ac7e0229c6314b940a5a17d4680b21721a5 Distinguish research service connectivity from model readiness",
+    "7d22e02c823e22bef80849950d6e8257a000b9c6 Improve research and notification control accessibility",
+    "a76404ea0dee829f9aef22459ef5b238a756c501 Fix research form contrast inside the mobile app shell",
+    "71f59dde1f1c830b0c487aa1e280c996dd635a66 Build governed match research engine and evidence interfaces"
+  ],
+  "researchFoundation": "IMPLEMENTED_DISABLED",
+  "footballModel": "BLOCKED_ACCEPTED_DATA_FITTING_EXECUTOR_REQUIRED",
+  "hostedRegisteredSources": 0,
+  "catalogueApprovedPinnedDatasets": 2,
+  "officialRecordStart": null,
+  "modelPredictions": 0,
+  "autoPublication": false,
+  "productionChanged": false,
+  "dnsChanged": false,
+  "ouraTouched": false,
+  "externalEmailsSent": 0,
+  "newOddsApiRequests": 0,
+  "newDataPlanSpend": 0,
+  "tests": {
+    "platform": 360,
+    "databaseRls": 167,
+    "browserUnique": 89,
+    "browserBroad": {
+      "passed": 88,
+      "total": 89
+    },
+    "compiledRepairPasses": 6,
+    "copyRegressionPasses": 1,
+    "oneFinalSourceBroadPass": false,
+    "hostedStaffPublic": 104,
+    "hostedMemberDenial": 22,
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "webBuild": "PASS",
+    "dependencyAuditVulnerabilities": 0,
+    "clientSecretAudit": "PASS",
+    "androidBuild": "PASS",
+    "physicalS24": "UNVERIFIED"
+  },
+  "preview": {
+    "recordedAt": "2026-10-04T03:46:11.894Z",
+    "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+    "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "deploymentId": "dpl_Cp1dHyFPYr5pJNY3u6YE4S85pLq2",
+    "sourceCommit": "281b3ac7e0229c6314b940a5a17d4680b21721a5",
+    "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+    "url": "https://docked-preview-dosyc7ptl-briant-s-projects.vercel.app",
+    "target": "preview",
+    "health": {
+      "feed": false,
+      "strategy": false,
+      "publication": false,
+      "database": true,
+      "oddsProviderStatus": "PENDING_RIGHTS",
+      "resultsProviderStatus": "NOT_CONFIGURED",
+      "reason": "Freshness is evaluated from the last successful shared ingestion. Individual quote age is checked again before publication."
+    },
+    "previousDeploymentId": "dpl_A7Q8oePQZH7x799u3AoVbrtegdaf",
+    "productionChanged": false,
+    "dnsChanged": false
+  },
+  "cleanup": {
+    "residue": {
+      "users": 0,
+      "sessions": 0,
+      "profiles": 0,
+      "roles": 0,
+      "grants": 0
+    },
+    "originalAccountsPreserved": 4,
+    "authAccounts": 4,
+    "closed": {
+      "enabled_flags": 0,
+      "publications": 0,
+      "external_sends": 0,
+      "ordinary_approvals": 0,
+      "model_versions": 0,
+      "predictions": 0,
+      "sporting_inputs": 0,
+      "fitted_models": 0,
+      "official_start": 0,
+      "research_sources": 0,
+      "research_facts": 0,
+      "research_snapshots": 0,
+      "research_content": 0,
+      "research_fetches": 0
+    },
+    "migrationCount": 17,
+    "providerRequests": 0
+  },
+  "preservedExistingTables": 26,
+  "apk": {
+    "recordedAt": "2026-10-04T02:58:15.4109420Z",
+    "artifact": "artifacts/android/Docked-Preview-S24-v7-Match-Research.apk",
+    "bytes": 9597678,
+    "sha256": "fb1703c10e2141b26dcf6abb2969643ebff496b9ea67dc7439f059fd0a72f4d0",
+    "current": {
+      "package": "au.com.docked.app.preview",
+      "label": "Docked Preview",
+      "versionCode": 7,
+      "versionName": "1.6-preview",
+      "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+      "debuggable": false,
+      "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+      "arm64Compatible": true,
+      "minimumSdk": 24,
+      "targetSdk": 36
+    },
+    "priorVersionCode": 6,
+    "samePackageAndSigningCertificate": true,
+    "cleartextDisabledInPackagedResources": true,
+    "compiledNetworkPolicyPath": "res/8G.xml",
+    "status": "PASS"
+  },
+  "nextAction": "Complete the $0 pinned OpenFootball canonical data-quality/training-manifest study; resolve reliable current EPL regulation-results rights in parallel before fitting and enabling a versioned independent estimator."
+}

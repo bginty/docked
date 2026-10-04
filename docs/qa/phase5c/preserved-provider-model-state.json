@@ -1,0 +1,164 @@
+{
+  "status": "PASS",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-04T03:48:33.998Z",
+  "comparison": "All retained rows compared canonically to protected pre-migration preimage",
+  "tables": [
+    {
+      "table": "private.events",
+      "rows": 27,
+      "unchanged": true,
+      "sha256": "98ef239eaeba23fb0edc5bfc2954f89294319353e20e762b378409ba86901a9e"
+    },
+    {
+      "table": "private.football_edge_policy_approvals",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.football_model_attempts",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.football_model_implementations",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.football_model_outcomes",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.football_model_transitions",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.football_model_versions",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.football_sporting_inputs",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.football_sporting_sources",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.market_data_config",
+      "rows": 1,
+      "unchanged": true,
+      "sha256": "72b8f4e5cb9f640c97192be415a4e6566a6c2b1da5f4f6bc5301f0c1e091a96d"
+    },
+    {
+      "table": "private.market_data_event_mappings",
+      "rows": 27,
+      "unchanged": true,
+      "sha256": "17d18195c018149ecfe3ba66876c03ebd2f7f4ede88c79ff58da3600483eb2a0"
+    },
+    {
+      "table": "private.market_data_fixture_observations",
+      "rows": 27,
+      "unchanged": true,
+      "sha256": "835321f3fa205756185c6f2c23a586322d151d8be2a6502a6e6d1ee96e5d926b"
+    },
+    {
+      "table": "private.market_data_payloads",
+      "rows": 7,
+      "unchanged": true,
+      "sha256": "54bd04b9d0ee743fbc3f921aa8a4f8504c0c848d9d79ecefbcc98d0544b2769e"
+    },
+    {
+      "table": "private.market_reference_methodologies",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.market_reference_movements",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.market_references",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.markets",
+      "rows": 11,
+      "unchanged": true,
+      "sha256": "49f95f78318b40bbde346de3cbf7d38d94fe6a9112f16dde8bc907fa91cc9fd0"
+    },
+    {
+      "table": "private.odds_snapshots",
+      "rows": 110,
+      "unchanged": true,
+      "sha256": "8a4e15411e8839b2653a2a379687bf32c5eaf622808d53a75f9910cf0428ba1b"
+    },
+    {
+      "table": "private.official_docked_publications",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.official_record_boundary",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "table": "private.provider_trial_diagnostics",
+      "rows": 5,
+      "unchanged": true,
+      "sha256": "c9eafd3d7606f76efc60bb7307656e045dcff9e40043e0f00968042f3baf406c"
+    },
+    {
+      "table": "private.provider_trial_failure_reviews",
+      "rows": 1,
+      "unchanged": true,
+      "sha256": "79d3d52f12b55b54f3ffff45374929b9cd5b7274bb29bcdaf143b31b8035efc9"
+    },
+    {
+      "table": "private.provider_trial_permits",
+      "rows": 9,
+      "unchanged": true,
+      "sha256": "12a6c449f48559eb0537d577cb30442f49b84eaa2ab4b8fa684b4b34de9bcb84"
+    },
+    {
+      "table": "private.provider_trial_requests",
+      "rows": 9,
+      "unchanged": true,
+      "sha256": "1d63989fd770cd319ccfde181bbd1046f4edc8964c5b60eb0d4f665edf53198e"
+    },
+    {
+      "table": "private.provider_trials",
+      "rows": 1,
+      "unchanged": true,
+      "sha256": "476eaae6f3d74e39ad641f00271c85f47729a9a49fbbc4b57bf7ef28198cd9fe"
+    },
+    {
+      "table": "private.tip_publications",
+      "rows": 0,
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}

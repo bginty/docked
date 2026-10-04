@@ -1,0 +1,127 @@
+{
+  "scope": "Isolated browser regression plus targeted final compiled-CSS acceptance. Genuine hosted authorization is recorded separately by the coordinating task.",
+  "status": "PASS_ACROSS_RETAINED_RUNS",
+  "uniqueCasesCovered": 89,
+  "singleFullFinalSourceGreenRun": false,
+  "fullRun": {
+    "receipt": "browser-final.json",
+    "startTime": "2026-10-04T03:07:29.774Z",
+    "duration": 1049090.3699999999,
+    "expected": 88,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0,
+    "limitation": "Compiled baseline preceded the two accessibility repairs; fixture tests also read current source CSS. Original notification target-size failure is retained."
+  },
+  "finalCompiled": {
+    "receipt": "compiled-css-accepted.json",
+    "startTime": "2026-10-04T03:37:11.330Z",
+    "duration": 51150.397,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "buildId": "k0aiLrjXXRMUFf7-B_PPI",
+    "reviewedSourceCommit": "7d22e02c823e22bef80849950d6e8257a000b9c6",
+    "stylesheetOrder": [
+      "/_next/static/chunks/3fvg6ewxso_lv.css"
+    ],
+    "stylesheetSha256": "254bdd47ffb510b105a3cb845ca6d97b18d06a617b386c0d1e411eefb035b48f",
+    "widths": [
+      360,
+      390,
+      412,
+      1366
+    ],
+    "screenshots": "compiled-final/",
+    "axeViolations": 0,
+    "consoleErrors": 0,
+    "horizontalOverflow": false,
+    "scopeNote": "Five research cases plus the repaired notification case. CSS is read from the exact stylesheet links and order in the compiled /notifications document; fictional component props remain isolated and mutations intercepted."
+  },
+  "repairs": [
+    {
+      "kind": "PRODUCT",
+      "change": "Reset on-dark inherited text, field and focus tokens only within white research surfaces."
+    },
+    {
+      "kind": "PRODUCT",
+      "change": "Research and app-form checkboxes have 24px minimum dimensions; research labels retain 44px minimum height."
+    },
+    {
+      "kind": "HARNESS",
+      "change": "Use real desktop workspace geometry and all 17 canonical fact types."
+    },
+    {
+      "kind": "HARNESS",
+      "change": "Assert keyboard focus clears header/navigation after bounded smooth-scroll completion, then normalize viewport for unchanged whole-document axe."
+    },
+    {
+      "kind": "ENVIRONMENT",
+      "change": "Retain Windows PNG overwrite failure and write final screenshots to a new evidence directory."
+    },
+    {
+      "kind": "PRODUCT",
+      "change": "Label research transport status as Research service / Connected, without implying source or model readiness."
+    }
+  ],
+  "retainedFailures": [
+    "research-ui-initial.json",
+    "research-shell-before-fix.json",
+    "research-targets-final.json",
+    "compiled-css-final.json",
+    "compiled-css-verified.json"
+  ],
+  "sourceVerification": {
+    "typecheckExit": 0,
+    "scopedLintExit": 0,
+    "formatExit": 0
+  },
+  "visualInspection": {
+    "desktopAndMobileExpandedForms": true,
+    "detailCropManifest": "compiled-final/detail-crops.json",
+    "notes": "Readability, missing/unknown labels, unselected permissions, complete fact-type labels and checkbox sizes inspected."
+  },
+  "safety": {
+    "databaseConfigured": false,
+    "providersConfigured": false,
+    "realAuthAccountsUsed": false,
+    "realEmailsSent": false,
+    "providerCalls": false,
+    "fixtureDataPublished": false
+  },
+  "limitations": [
+    "No claim that one full 89-case run passed against the final compiled source.",
+    "Hosted staff sessions, database rights and source availability use separate receipts.",
+    "Android v7 physical-device and emulator acceptance remain unverified."
+  ],
+  "finalPresentationCopy": {
+    "receipt": "connection-copy.json",
+    "startTime": "2026-10-04T03:43:15.207Z",
+    "duration": 13311.970000000001,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "buildId": "vozW13kJCTlvoT0uOnU8w",
+    "sourceComponentSha256": "92a4f98cfefe531317297ea8e3d09d06793f0e93cc33a9ed071bd4dd7a284d85",
+    "width": 412,
+    "states": [
+      "NOT_CONFIGURED with unknown metrics",
+      "Connected service with zero fictional fixture records and no reviewed sources",
+      "Reviewed-source fixture",
+      "Match evidence fixture",
+      "Member card",
+      "Member detail"
+    ],
+    "screenshots": "connection-copy/research-ui/",
+    "axeViolations": 0,
+    "consoleErrors": 0,
+    "horizontalOverflow": false,
+    "visuallyInspected": "connection-copy/research-ui/DEMO-connected-empty-412.png",
+    "scope": "Single existing412px case repeated after a copy-only change. Real compiled stylesheet plus isolated fictional props; no new unique case or broad rerun is claimed.",
+    "typecheckExit": 0,
+    "scopedLintExit": 0,
+    "formatExit": 0
+  }
+}

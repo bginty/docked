@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-04T02:58:15.4109420Z",
+  "artifact": "artifacts/android/Docked-Preview-S24-v7-Match-Research.apk",
+  "bytes": 9597678,
+  "sha256": "fb1703c10e2141b26dcf6abb2969643ebff496b9ea67dc7439f059fd0a72f4d0",
+  "current": {
+    "package": "au.com.docked.app.preview",
+    "label": "Docked Preview",
+    "versionCode": 7,
+    "versionName": "1.6-preview",
+    "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+    "debuggable": false,
+    "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+    "arm64Compatible": true,
+    "minimumSdk": 24,
+    "targetSdk": 36
+  },
+  "priorVersionCode": 6,
+  "samePackageAndSigningCertificate": true,
+  "cleartextDisabledInPackagedResources": true,
+  "compiledNetworkPolicyPath": "res/8G.xml",
+  "status": "PASS"
+}

@@ -1,5 +1,7 @@
 # Football sporting-data provider research
 
+**Phase 5C update:** [RESEARCH_SOURCE_EVALUATION.md](RESEARCH_SOURCE_EVALUATION.md) adds OpenFootball CC0, official club/league sources, free weather and identity data. OpenFootball is now the first free sporting-history research candidate; do not interpret the older shortlist below as proof that paid data is required. Two local pinned files were checked without creating model inputs. The preserved Phase 5B statement below describes its earlier checkpoint.
+
 Reviewed 4 October 2026 against public first-party documentation. No account, subscription, API call, dataset download or purchase was made for this review. Prices below are advertised prices, not a Docked invoice or confirmed account entitlement. Exchange conversion, tax and rightsholder fees are not estimated.
 
 **Decision: INSUFFICIENT_AUTHORISED_DATA.** No provider is configured for independent football modelling or automatic football settlement. The existing Odds API trial supplies market observations, not the required sporting training history. A reachable free endpoint does not establish commercial modelling, public display or permanent evidence-retention rights.

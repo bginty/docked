@@ -1,5 +1,11 @@
 # Docked Preview — Google Play policy review
 
+## Phase 5C research feature inventory — 4 October 2026
+
+The new feature is source-attributed match research, clearly distinguished from an approved Docked Edge. Member research is authenticated/jurisdiction-gated, published only after editorial review, and rechecked against current source display rights. Research, lineup and followed-team notification preferences are separate opt-ins; external delivery remains off. No LLM-generated official probabilities, new prizes, billing, affiliates or gambling advertisements are introduced.
+
+Research/model development does not require official live Edges before friends-and-family closed testing. Existing release signing, review access, age/territory classification, privacy/Data Safety, deletion/support, moderation, transactional email and physical-device acceptance remain necessary. The current [Google gambling policy](https://support.google.com/googleplay/android-developer/answer/9877032/) was rechecked: the odds/performance companion restriction quoted below belongs specifically to gambling advertising. This phase does not declare the whole app approved or submit it to Play. Research labels must describe the actual functionality, not conceal the existing market/community features.
+
 ## Phase 5 readiness update — 4 October 2026
 
 The owner now confirms physical Samsung S24 v5 installation works. This supersedes the earlier installation-unverified handoff only; it does not establish Phase 5 data stability or complete every device interaction check. No Play upload, paid developer account, release signing change or country declaration is authorised here.

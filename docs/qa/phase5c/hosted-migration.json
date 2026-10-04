@@ -1,0 +1,127 @@
+{
+  "status": "PASS",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-04T03:07:26.001Z",
+  "migrations": [
+    "20261002113546",
+    "20261002122714",
+    "20261003002609",
+    "20261003002709",
+    "20261003002935",
+    "20261003021118",
+    "20261003030722",
+    "20261003061548",
+    "20261003062615",
+    "20261003121257",
+    "20261003121502",
+    "20261003143903",
+    "20261003214310",
+    "20261003225203",
+    "20261003232606",
+    "20261004003850",
+    "20261004023247"
+  ],
+  "migrationHash": "8eac0a97fce84dfb34c1b00f7ba5f6270857433a8f536155cbfbd870eca75f5b",
+  "tables": [
+    {
+      "relname": "research_content",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_content_reviews",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_dataset_payloads",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_dataset_snapshots",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_fact_payloads",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_facts",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_feature_versions",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_fetch_requests",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_match_snapshots",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_policies",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_recalculations",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_schedules",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_source_health",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "research_source_versions",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    }
+  ],
+  "guard": {
+    "users": 4,
+    "publications": 0,
+    "enabled": 0,
+    "sends": 0,
+    "attempts": 0,
+    "model_versions": 0
+  },
+  "counts": {
+    "sources": 0,
+    "facts": 0,
+    "datasets": 0,
+    "content": 0,
+    "recalculations": 0
+  },
+  "productionChanged": false
+}

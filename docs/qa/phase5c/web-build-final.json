@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-10-04T03:44:40.5278244Z",
+  "status": "PASS",
+  "command": "node private-data/phase5c/local-qa.mjs build",
+  "sourceBaseCommit": "7d22e02c823e22bef80849950d6e8257a000b9c6",
+  "finalUncommittedProductionDiff": [
+    "src/components/research-admin.tsx"
+  ],
+  "verifiedApplicationCommit": "281b3ac7e0229c6314b940a5a17d4680b21721a5",
+  "buildId": "vozW13kJCTlvoT0uOnU8w",
+  "externalNetworkBlocked": true,
+  "databaseConfigured": false,
+  "providerConfigured": false,
+  "serverCredentialCanariesSupplied": true,
+  "typecheckExitCode": 0,
+  "lintExitCode": 0,
+  "physicalDeviceVerified": false
+}

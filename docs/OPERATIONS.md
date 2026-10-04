@@ -1,5 +1,17 @@
 # Admin and operations guide
 
+## Phase 5C research operations
+
+Use `/admin/research` with current staff MFA to inspect source reviews, schedules, match files, evidence and editorial drafts. Authorised analysts/admins may record typed evidence; owner/admin governance controls source/feature/policy changes. Editorial staff review factual content separately from candidate approval. Never enter a probability, fair price, settlement or article body as a structured sporting fact.
+
+The prepared OpenFootball CC0 catalogue is narrow research-dataset approval, not an enabled worker or an authoritative results source. Each registered source needs a reviewed endpoint/version, legal-use fields, actual observation clocks, retention, jurisdiction and request budget. Unknown or expired permissions stop fetching. Retained snapshots preserve what was observed; they cannot retrospectively claim that Docked knew a corrected result earlier.
+
+Run the offline `research:source-check` command to inspect a pinned OpenFootball file without network/database writes. Quality receipts remain research-only. Use the existing durable worker for future enabled research jobs after the source, policy and runtime gates pass; an app page view never starts an external fetch. See [RESEARCH_SCHEDULER](RESEARCH_SCHEDULER.md) for the actual queue/retry contract and [RESEARCH_RIGHTS](RESEARCH_RIGHTS.md) for retention/revocation.
+
+Research updates affect probability only through a frozen active feature and a reviewed estimator. The current estimator is unavailable; recalculation records must report abstention rather than an invented probability. Market Reference is fetched/compared separately after a genuine prediction has committed. Pre-match snapshots, post-match research and appended outcomes remain distinct.
+
+No source account, paid plan, external email, recurring hosted polling or public Edge has been activated by preparation. Provider/source research and exact remaining gaps are in [RESEARCH_SOURCE_EVALUATION](RESEARCH_SOURCE_EVALUATION.md). Product/legal source approval and a source's public-data licence remain different decisions.
+
 ## Phase 5B operating plan — disabled schedules
 
 Staff with current MFA use /admin/daily (Docked Today), /admin/model-performance and /admin/candidate-edges. Complete prediction cohorts are separate from paper, official and community performance. Unknown metrics stay unavailable. No sporting provider, fitted estimator or results source is configured.

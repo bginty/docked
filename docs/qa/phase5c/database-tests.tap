@@ -1,0 +1,848 @@
+TAP version 13
+# Subtest: community private tables RLS deny anonymous/member reads and writes; no new definer
+ok 1 - community private tables RLS deny anonymous/member reads and writes; no new definer
+  ---
+  duration_ms: 8373.6358
+  ...
+# Subtest: unknown provider classification, promotions and historical/demo records cannot be promoted
+ok 2 - unknown provider classification, promotions and historical/demo records cannot be promoted
+  ---
+  duration_ms: 108.4584
+  ...
+# Subtest: atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+ok 3 - atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+  ---
+  duration_ms: 97.1399
+  ...
+# Subtest: newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+ok 4 - newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+  ---
+  duration_ms: 70.1238
+  ...
+# Subtest: latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+ok 5 - latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+  ---
+  duration_ms: 36.1078
+  ...
+# Subtest: canonical records survive social tombstone, private identity and blocking
+ok 6 - canonical records survive social tombstone, private identity and blocking
+  ---
+  duration_ms: 54.4454
+  ...
+# Subtest: authorized results only, no silent correction, finite scores, append-only approval revocation
+ok 7 - authorized results only, no silent correction, finite scores, append-only approval revocation
+  ---
+  duration_ms: 89.3074
+  ...
+# Subtest: integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+ok 8 - integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+  ---
+  duration_ms: 78.4174
+  ...
+# Subtest: leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+ok 9 - leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+  ---
+  duration_ms: 37.7185
+  ...
+# Subtest: real recognition SQL excludes banned authors and banned/reported/young-style ineligible actor projections
+ok 10 - real recognition SQL excludes banned authors and banned/reported/young-style ineligible actor projections
+  ---
+  duration_ms: 6988.2289
+  ...
+# Subtest: real recognition SQL excludes missing/demo source evidence from discovery and sample counts
+ok 11 - real recognition SQL excludes missing/demo source evidence from discovery and sample counts
+  ---
+  duration_ms: 96.1764
+  ...
+# Subtest: real recognition SQL withholds blocked authors, rejects moderation/promotion, and keeps global winner input
+ok 12 - real recognition SQL withholds blocked authors, rejects moderation/promotion, and keeps global winner input
+  ---
+  duration_ms: 80.6222
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 13 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 9495.1311
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 14 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 34.9587
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 15 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 57.4718
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 16 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 119.3732
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 17 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 44.6188
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 18 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 23.1784
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 19 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 15.0858
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 20 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 27.4509
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 21 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 23.0299
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 22 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 12.4392
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 23 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 87.5969
+  ...
+# Subtest: scanner and current-data tables deny browser reads, writes, escalation and helper execution
+ok 24 - scanner and current-data tables deny browser reads, writes, escalation and helper execution
+  ---
+  duration_ms: 9805.936
+  ...
+# Subtest: staff writes require current actual MFA; analyst cannot manage and auditor cannot mutate
+ok 25 - staff writes require current actual MFA; analyst cannot manage and auditor cannot mutate
+  ---
+  duration_ms: 34.3733
+  ...
+# Subtest: candidate uses canonical probability, immutable model evidence and real worker lease; retries cannot duplicate
+ok 26 - candidate uses canonical probability, immutable model evidence and real worker lease; retries cannot duplicate
+  ---
+  duration_ms: 448.7011
+  ...
+# Subtest: research approval remains private and immutable; it cannot create paper/live publications
+ok 27 - research approval remains private and immutable; it cannot create paper/live publications
+  ---
+  duration_ms: 194.6157
+  ...
+# Subtest: approval rechecks provider outage and regional feature revocation, without discarding the candidate
+ok 28 - approval rechecks provider outage and regional feature revocation, without discarding the candidate
+  ---
+  duration_ms: 291.7065
+  ...
+# Subtest: new audit hash format matches SQL for exponent numbers, mixed-case and Unicode keys without rewriting legacy hashes
+ok 29 - new audit hash format matches SQL for exponent numbers, mixed-case and Unicode keys without rewriting legacy hashes
+  ---
+  duration_ms: 34.0667
+  ...
+# Subtest: licensed current-data receipts and canonical mappings are guarded, immutable and purge after expiry even when disabled
+ok 30 - licensed current-data receipts and canonical mappings are guarded, immutable and purge after expiry even when disabled
+  ---
+  duration_ms: 2432.7042
+  ...
+# Subtest: actual operational queries distinguish outage, mapping spike, review queue and missing results ingestion
+ok 31 - actual operational queries distinguish outage, mapping spike, review queue and missing results ingestion
+  ---
+  duration_ms: 23.0672
+  ...
+# Subtest: banned staff and revoked originating sessions cannot mutate or resume a queued manual scan
+ok 32 - banned staff and revoked originating sessions cannot mutate or resume a queued manual scan
+  ---
+  duration_ms: 198.719
+  ...
+# Subtest: empty database has no registered model, predictions, implementation or official start
+ok 33 - empty database has no registered model, predictions, implementation or official start
+  ---
+  duration_ms: 10059.836
+  ...
+# Subtest: all new model evidence is private RLS and denies browser reads/writes/function escalation
+ok 34 - all new model evidence is private RLS and denies browser reads/writes/function escalation
+  ---
+  duration_ms: 62.731
+  ...
+# Subtest: current staff MFA creates immutable proposal; member and aal1 cannot create or transition
+ok 35 - current staff MFA creates immutable proposal; member and aal1 cannot create or transition
+  ---
+  duration_ms: 150.9708
+  ...
+# Subtest: reviewed active RESEARCH policy admits research runs and abstentions, never paper/live or comparison
+ok 36 - reviewed active RESEARCH policy admits research runs and abstentions, never paper/live or comparison
+  ---
+  duration_ms: 121.1437
+  ...
+# Subtest: null-parameter proposal cannot register a fabricated fitted model
+ok 37 - null-parameter proposal cannot register a fabricated fitted model
+  ---
+  duration_ms: 37.5556
+  ...
+# Subtest: worker records abstention before comparison; missing market cannot erase it and retry cannot cherry pick
+ok 38 - worker records abstention before comparison; missing market cannot erase it and retry cannot cherry pick
+  ---
+  duration_ms: 68.9566
+  ...
+# Subtest: expired worker lease, revoked actor and post-event attempts fail closed
+ok 39 - expired worker lease, revoked actor and post-event attempts fail closed
+  ---
+  duration_ms: 37.4832
+  ...
+# Subtest: no direct READY injection or retroactive official boundary, legacy publication denied
+ok 40 - no direct READY injection or retroactive official boundary, legacy publication denied
+  ---
+  duration_ms: 25.6985
+  ...
+# Subtest: sporting input requires as-of source authority, real result fields and no price-derived fields
+ok 41 - sporting input requires as-of source authority, real result fields and no price-derived fields
+  ---
+  duration_ms: 149.61
+  ...
+# Subtest: isolated prospective pipeline preserves full vector, reviewed calibration and canonical official start
+ok 42 - isolated prospective pipeline preserves full vector, reviewed calibration and canonical official start
+  ---
+  duration_ms: 3481.3727
+  ...
+# Subtest: rollback helper uses typed JSON parameters and rolls every fixture back
+ok 43 - rollback helper uses typed JSON parameters and rolls every fixture back
+  ---
+  duration_ms: 11710.856
+  ...
+# Subtest: reference tables have RLS and no browser data/function access
+ok 44 - reference tables have RLS and no browser data/function access
+  ---
+  duration_ms: 8866.5705
+  ...
+# Subtest: server lower median is immutable; price overrides and provider outage fail closed
+ok 45 - server lower median is immutable; price overrides and provider outage fail closed
+  ---
+  duration_ms: 442.0539
+  ...
+# Subtest: community benchmark is server controlled; personal promotional odds cannot change accounting; legacy retains original version
+ok 46 - community benchmark is server controlled; personal promotional odds cannot change accounting; legacy retains original version
+  ---
+  duration_ms: 329.2591
+  ...
+# Subtest: legacy forward-paper publication freezes reference and cannot reactivate after suspension
+ok 47 - legacy forward-paper publication freezes reference and cannot reactivate after suspension
+  ---
+  duration_ms: 231.3102
+  ...
+# Subtest: reference evidence hashes and immutable methodology versions cannot be relabelled
+ok 48 - reference evidence hashes and immutable methodology versions cannot be relabelled
+  ---
+  duration_ms: 268.8711
+  ...
+# Subtest: invented probability with an empty pricing cohort is rejected before publication
+ok 49 - invented probability with an empty pricing cohort is rejected before publication
+  ---
+  duration_ms: 146.2033
+  ...
+# Subtest: missing required market-rule scalars cannot exploit SQL NULL semantics
+ok 50 - missing required market-rule scalars cannot exploit SQL NULL semantics
+  ---
+  duration_ms: 214.3276
+  ...
+# Subtest: suspended authors keep canonical benchmarks while their optional social price claims are hidden
+ok 51 - suspended authors keep canonical benchmarks while their optional social price claims are hidden
+  ---
+  duration_ms: 201.4048
+  ...
+# Subtest: account erasure removes personal promotional claims while retaining benchmark ledger
+ok 52 - account erasure removes personal promotional claims while retaining benchmark ledger
+  ---
+  duration_ms: 196.4028
+  ...
+# Subtest: ordered migrations leave all new tables RLS protected and no public private-payload grants
+ok 53 - ordered migrations leave all new tables RLS protected and no public private-payload grants
+  ---
+  duration_ms: 6001.1774
+  ...
+# Subtest: anonymous denied; active members only see own rows and cannot forge another session
+ok 54 - anonymous denied; active members only see own rows and cannot forge another session
+  ---
+  duration_ms: 29.7955
+  ...
+# Subtest: staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+ok 55 - staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+  ---
+  duration_ms: 51.141
+  ...
+# Subtest: disabled profile and revoked or expired session block every member Data API table
+ok 56 - disabled profile and revoked or expired session block every member Data API table
+  ---
+  duration_ms: 33.7619
+  ...
+# Subtest: strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+ok 57 - strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+  ---
+  duration_ms: 42.0361
+  ...
+# Subtest: paper publication is pre-event immutable and never creates public notification outbox
+ok 58 - paper publication is pre-event immutable and never creates public notification outbox
+  ---
+  duration_ms: 28.3656
+  ...
+# Subtest: mismatched candidate event and malformed EV fail closed
+ok 59 - mismatched candidate event and malformed EV fail closed
+  ---
+  duration_ms: 7.2404
+  ...
+# Subtest: correction cannot link settlements from different publications or rewrite original outcome
+ok 60 - correction cannot link settlements from different publications or rewrite original outcome
+  ---
+  duration_ms: 12.7834
+  ...
+# Subtest: account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+ok 61 - account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+  ---
+  duration_ms: 23.3696
+  ...
+# Subtest: candidate and observation evidence cannot be silently rewritten or removed
+ok 62 - candidate and observation evidence cannot be silently rewritten or removed
+  ---
+  duration_ms: 6.439
+  ...
+# Subtest: Phase 2 backup restores session policies and immutable strategy/paper evidence
+ok 63 - Phase 2 backup restores session policies and immutable strategy/paper evidence
+  ---
+  duration_ms: 3134.6441
+  ...
+# Subtest: quota reservations survive external failure and preserve unknown balances
+ok 64 - quota reservations survive external failure and preserve unknown balances
+  ---
+  duration_ms: 19.3152
+  ...
+# Subtest: policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+ok 65 - policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+  ---
+  duration_ms: 15.524
+  ...
+# Subtest: as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+ok 66 - as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+  ---
+  duration_ms: 4.7695
+  ...
+# Subtest: completion analytics cannot double count repeated or concurrent callbacks
+ok 67 - completion analytics cannot double count repeated or concurrent callbacks
+  ---
+  duration_ms: 6.8632
+  ...
+# Subtest: research sensitivity settings cannot freeze below the release floor or outside the release odds range
+ok 68 - research sensitivity settings cannot freeze below the release floor or outside the release odds range
+  ---
+  duration_ms: 38.874
+  ...
+# Subtest: repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+ok 69 - repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+  ---
+  duration_ms: 16.0763
+  ...
+# Subtest: commercial tables have RLS, no direct API grants, no card or subscription activation
+ok 70 - commercial tables have RLS, no direct API grants, no card or subscription activation
+  ---
+  duration_ms: 8011.7173
+  ...
+# Subtest: competition drafts are audited, frozen append-only, and cannot produce rankings or awards
+ok 71 - competition drafts are audited, frozen append-only, and cannot produce rankings or awards
+  ---
+  duration_ms: 49.3393
+  ...
+# Subtest: deal drafts retain disclosure and audit and cannot become active through direct SQL
+ok 72 - deal drafts retain disclosure and audit and cannot become active through direct SQL
+  ---
+  duration_ms: 15.5845
+  ...
+# Subtest: pinned driver preserves a max:1 reserved lease through transactions and serializes JSONB objects once
+ok 73 - pinned driver preserves a max:1 reserved lease through transactions and serializes JSONB objects once
+  ---
+  duration_ms: 7442.1971
+  ...
+# offline driver starting
+# offline database ready
+# {"statements":30,"last":"select 9 value"}
+# Subtest: reported totals remain unknown after a later measured success and reviewed legacy failure
+ok 74 - reported totals remain unknown after a later measured success and reviewed legacy failure
+  ---
+  duration_ms: 7447.554
+  ...
+# Subtest: one reviewed legacy bootstrap failure preserves unknown quota, original failure, attempts and budget
+ok 75 - one reviewed legacy bootstrap failure preserves unknown quota, original failure, attempts and budget
+  ---
+  duration_ms: 54.0416
+  ...
+# Subtest: browser and restricted production role cannot review; real MFA and current rights are mandatory
+ok 76 - browser and restricted production role cannot review; real MFA and current rights are mandatory
+  ---
+  duration_ms: 28.4371
+  ...
+# Subtest: new failures and observed overcharges remain closed despite the older bootstrap review
+ok 77 - new failures and observed overcharges remain closed despite the older bootstrap review
+  ---
+  duration_ms: 24.1354
+  ...
+# Subtest: review never resets source-health circuit and later role revocation blocks a preissued permit
+ok 78 - review never resets source-health circuit and later role revocation blocks a preissued permit
+  ---
+  duration_ms: 25.2513
+  ...
+# Subtest: new double-encoded diagnostics are rejected while the historical string stays unchanged
+ok 79 - new double-encoded diagnostics are rejected while the historical string stays unchanged
+  ---
+  duration_ms: 15.8416
+  ...
+# Subtest: manual trial requires real staff MFA and all browser roles lack table/function access
+ok 80 - manual trial requires real staff MFA and all browser roles lack table/function access
+  ---
+  duration_ms: 7156.9704
+  ...
+# Subtest: only free sports bootstrap can run with unknown quota, tokens/scopes/costs and replay are bound
+ok 81 - only free sports bootstrap can run with unknown quota, tokens/scopes/costs and replay are bound
+  ---
+  duration_ms: 85.0272
+  ...
+# Subtest: cumulative reservation budget never refunds a lower or unknown provider charge and cannot be reset
+ok 82 - cumulative reservation budget never refunds a lower or unknown provider charge and cannot be reset
+  ---
+  duration_ms: 96.6062
+  ...
+# Subtest: free metadata still consumes the bounded 25-attempt allowance
+ok 83 - free metadata still consumes the bounded 25-attempt allowance
+  ---
+  duration_ms: 269.1805
+  ...
+# Subtest: expired/revoked reviews and permits close requests, without rewriting immutable evidence
+ok 84 - expired/revoked reviews and permits close requests, without rewriting immutable evidence
+  ---
+  duration_ms: 2042.27
+  ...
+# Subtest: observed quota cannot rewrite reservation or be changed after capture; higher reported cost consumes budget
+ok 85 - observed quota cannot rewrite reservation or be changed after capture; higher reported cost consumes budget
+  ---
+  duration_ms: 18.8636
+  ...
+# Subtest: an interrupted request blocks concurrent attempts; a failed request withdraws data authority while preserving charge
+ok 86 - an interrupted request blocks concurrent attempts; a failed request withdraws data authority while preserving charge
+  ---
+  duration_ms: 25.9454
+  ...
+# Subtest: a denied competing invocation cannot complete or fail another request using its permit ID
+ok 87 - a denied competing invocation cannot complete or fail another request using its permit ID
+  ---
+  duration_ms: 20.9374
+  ...
+# Subtest: actual acquisition projection excludes retained operator and synthetic seeds without changing their identity metadata
+ok 88 - actual acquisition projection excludes retained operator and synthetic seeds without changing their identity metadata
+  ---
+  duration_ms: 5545.0084
+  ...
+# Subtest: capture is disabled by default and cannot be called through browser/service roles
+ok 89 - capture is disabled by default and cannot be called through browser/service roles
+  ---
+  duration_ms: 3771.0944
+  ...
+# Subtest: only explicit active recipients capture; successful hook returns no credential data
+ok 90 - only explicit active recipients capture; successful hook returns no credential data
+  ---
+  duration_ms: 53.9216
+  ...
+# Subtest: unknown, revoked, expired and non-reserved addresses fail closed
+ok 91 - unknown, revoked, expired and non-reserved addresses fail closed
+  ---
+  duration_ms: 28.9931
+  ...
+# Subtest: redirect, site, action, email-change and payload bounds reject without storing anything
+ok 92 - redirect, site, action, email-change and payload bounds reject without storing anything
+  ---
+  duration_ms: 35.213
+  ...
+# Subtest: capture RLS rejects direct out-of-allowlist inserts and owner purge erases expired/revoked credentials
+ok 93 - capture RLS rejects direct out-of-allowlist inserts and owner purge erases expired/revoked credentials
+  ---
+  duration_ms: 14.023
+  ...
+# Subtest: all capture tables enable RLS, hook remains invoker and read-only preflight parses without Auth rows
+ok 94 - all capture tables enable RLS, hook remains invoker and read-only preflight parses without Auth rows
+  ---
+  duration_ms: 80.206
+  ...
+# Subtest: GoTrue PKCE hashes retain the prefix and enforce the complete hexadecimal length bound
+ok 95 - GoTrue PKCE hashes retain the prefix and enforce the complete hexadecimal length bound
+  ---
+  duration_ms: 33.8243
+  ...
+# Subtest: diagnostic upgrade emits only static field identifiers and preserves denied values privately
+ok 96 - diagnostic upgrade emits only static field identifiers and preserves denied values privately
+  ---
+  duration_ms: 52.079
+  ...
+# Subtest: application query needs a real capture row, not only enabled configuration or proof ID
+ok 97 - application query needs a real capture row, not only enabled configuration or proof ID
+  ---
+  duration_ms: 5014.2359
+  ...
+# Subtest: live hook definition changes, revoked proof and expired configuration immediately close app authorization
+ok 98 - live hook definition changes, revoked proof and expired configuration immediately close app authorization
+  ---
+  duration_ms: 56.8273
+  ...
+# Subtest: capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+ok 99 - capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+  ---
+  duration_ms: 5724.8971
+  ...
+# Subtest: wrong project, no session, caller metadata and revoked grants cannot authorize
+ok 100 - wrong project, no session, caller metadata and revoked grants cannot authorize
+  ---
+  duration_ms: 20.9804
+  ...
+# Subtest: capability arrays cannot smuggle genuine permissions or mutate an existing grant
+ok 101 - capability arrays cannot smuggle genuine permissions or mutate an existing grant
+  ---
+  duration_ms: 10.5771
+  ...
+# Subtest: invitation reservation is one-use and identity-bound; redemption removes credential hashes
+ok 102 - invitation reservation is one-use and identity-bound; redemption removes credential hashes
+  ---
+  duration_ms: 16.8526
+  ...
+# Subtest: revoked invitation cannot reserve or reveal retained token/email hash
+ok 103 - revoked invitation cannot reserve or reveal retained token/email hash
+  ---
+  duration_ms: 16.8802
+  ...
+# Subtest: wall-clock expiry rejects reservation and capability inside an earlier transaction
+ok 104 - wall-clock expiry rejects reservation and capability inside an earlier transaction
+  ---
+  duration_ms: 90.8346
+  ...
+# Subtest: private tables are RLS-enabled with no browser read/write/function privilege
+ok 105 - private tables are RLS-enabled with no browser read/write/function privilege
+  ---
+  duration_ms: 19.3711
+  ...
+# Subtest: administrator operations require actual private role plus MFA, not metadata
+ok 106 - administrator operations require actual private role plus MFA, not metadata
+  ---
+  duration_ms: 17.7216
+  ...
+# Subtest: erasure clears personal onboarding/grants and invitation FK even outside preview context
+ok 107 - erasure clears personal onboarding/grants and invitation FK even outside preview context
+  ---
+  duration_ms: 50.585
+  ...
+# Subtest: preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+ok 108 - preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+  ---
+  duration_ms: 4709.0457
+  ...
+# Subtest: preview grant fails closed without exact trusted hosted context or live same-user session
+ok 109 - preview grant fails closed without exact trusted hosted context or live same-user session
+  ---
+  duration_ms: 34.9654
+  ...
+# Subtest: tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+ok 110 - tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+  ---
+  duration_ms: 38.4848
+  ...
+# Subtest: expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+ok 111 - expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+  ---
+  duration_ms: 36.5502
+  ...
+# Subtest: ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+ok 112 - ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+  ---
+  duration_ms: 7.3884
+  ...
+# Subtest: preview marker and grant constraints prevent scope broadening or mutable enrollment
+ok 113 - preview marker and grant constraints prevent scope broadening or mutable enrollment
+  ---
+  duration_ms: 17.1323
+  ...
+# Subtest: browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+ok 114 - browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+  ---
+  duration_ms: 9.8798
+  ...
+# Subtest: hard deletion removes tester identity mapping while retaining minimal grant audit
+ok 115 - hard deletion removes tester identity mapping while retaining minimal grant audit
+  ---
+  duration_ms: 13.1407
+  ...
+# Subtest: session expiry uses wall clock even when transaction start remains before expiry
+ok 116 - session expiry uses wall clock even when transaction start remains before expiry
+  ---
+  duration_ms: 213.1312
+  ...
+# Subtest: preview entries are immutable, audited and structurally absent from all real ledgers
+ok 117 - preview entries are immutable, audited and structurally absent from all real ledgers
+  ---
+  duration_ms: 5117.2112
+  ...
+# Subtest: direct edits, deletes, duplicates, browser writes and cross-user reviews are rejected
+ok 118 - direct edits, deletes, duplicates, browser writes and cross-user reviews are rejected
+  ---
+  duration_ms: 57.4439
+  ...
+# Subtest: wrong environment, revoked capability and tampered or current-labelled evidence fail closed
+ok 119 - wrong environment, revoked capability and tampered or current-labelled evidence fail closed
+  ---
+  duration_ms: 101.1316
+  ...
+# Subtest: account erasure retains immutable fixture evidence with only a pseudonymous owner
+ok 120 - account erasure retains immutable fixture evidence with only a pseudonymous owner
+  ---
+  duration_ms: 56.3595
+  ...
+# Subtest: account export includes only own reviewed and submitted fixtures after capability revocation
+ok 121 - account export includes only own reviewed and submitted fixtures after capability revocation
+  ---
+  duration_ms: 57.886
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 122 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 7478.563
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 123 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 38.6352
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+ok 124 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 32.5602
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 125 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 22.0894
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 126 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 53.9734
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 127 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 32.378
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 128 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 20.7249
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 129 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 416.2316
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 130 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 5.8971
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 131 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 13.1868
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 132 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 117.3428
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 133 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 38.0801
+  ...
+# Subtest: new signup persists exact separate approved policy versions and optional consents remain false
+ok 134 - new signup persists exact separate approved policy versions and optional consents remain false
+  ---
+  duration_ms: 8363.3719
+  ...
+# Subtest: retrying signup cannot append consent or change an existing profile
+ok 135 - retrying signup cannot append consent or change an existing profile
+  ---
+  duration_ms: 14.8489
+  ...
+# Subtest: a concurrent taken handle preserves account and legal evidence for username onboarding
+ok 136 - a concurrent taken handle preserves account and legal evidence for username onboarding
+  ---
+  duration_ms: 39.0124
+  ...
+# Subtest: a historical handle race also preserves the new account without stealing the name
+ok 137 - a historical handle race also preserves the new account without stealing the name
+  ---
+  duration_ms: 45.9341
+  ...
+# Subtest: other integrity errors are not disguised as username collisions
+ok 138 - other integrity errors are not disguised as username collisions
+  ---
+  duration_ms: 27.1155
+  ...
+# Subtest: 14 private research tables have RLS and no browser grants or definer escalation
+ok 139 - 14 private research tables have RLS and no browser grants or definer escalation
+  ---
+  duration_ms: 6778.6051
+  ...
+# Subtest: source governance rejects member, insufficient MFA, arbitrary URLs and unreviewed publication permissions
+ok 140 - source governance rejects member, insufficient MFA, arbitrary URLs and unreviewed publication permissions
+  ---
+  duration_ms: 78.2956
+  ...
+# Subtest: manual fact retains nullable publication clock, hash/provenance and immutable correction history
+ok 141 - manual fact retains nullable publication clock, hash/provenance and immutable correction history
+  ---
+  duration_ms: 128.1425
+  ...
+# Subtest: rights withdrawal and display prohibition withdraw current content without deleting evidence
+ok 142 - rights withdrawal and display prohibition withdraw current content without deleting evidence
+  ---
+  duration_ms: 76.2385
+  ...
+# Subtest: manual retention can exist without display permission but never becomes member-visible
+ok 143 - manual retention can exist without display permission but never becomes member-visible
+  ---
+  duration_ms: 55.6811
+  ...
+# Subtest: future target result is denied and research cannot insert canonical settlements
+ok 144 - future target result is denied and research cannot insert canonical settlements
+  ---
+  duration_ms: 44.4191
+  ...
+# Subtest: duplicate source revision cannot manufacture corroboration
+ok 145 - duplicate source revision cannot manufacture corroboration
+  ---
+  duration_ms: 60.2102
+  ...
+# Subtest: DB value boundary rejects caller-forged probability metric and duplicate lineup identities
+ok 146 - DB value boundary rejects caller-forged probability metric and duplicate lineup identities
+  ---
+  duration_ms: 81.5382
+  ...
+# Subtest: actual snapshot and editorial publication bind retained facts; later conflict blocks republishing
+ok 147 - actual snapshot and editorial publication bind retained facts; later conflict blocks republishing
+  ---
+  duration_ms: 146.1161
+  ...
+# Subtest: snapshot retains captured kickoff and participants after canonical schedule changes, while publication is denied
+ok 148 - snapshot retains captured kickoff and participants after canonical schedule changes, while publication is denied
+  ---
+  duration_ms: 65.7071
+  ...
+# Subtest: payload expiry permits bounded purge and retains immutable correction/audit metadata
+ok 149 - payload expiry permits bounded purge and retains immutable correction/audit metadata
+  ---
+  duration_ms: 335.0022
+  ...
+# Subtest: source reviews expire fail-closed and fresh source version requires matching predecessor
+ok 150 - source reviews expire fail-closed and fresh source version requires matching predecessor
+  ---
+  duration_ms: 35.0588
+  ...
+# Subtest: automatic request requires enabled flag, genuine lease and approved automation
+ok 151 - automatic request requires enabled flag, genuine lease and approved automation
+  ---
+  duration_ms: 28.3668
+  ...
+# Subtest: actual durable request reservations enforce one in-flight request and daily quota, preserving failure usage
+ok 152 - actual durable request reservations enforce one in-flight request and daily quota, preserving failure usage
+  ---
+  duration_ms: 129.1425
+  ...
+# Subtest: strict feature registry accepts display-only definition but cannot activate unconfigured model or override predictions
+ok 153 - strict feature registry accepts display-only definition but cannot activate unconfigured model or override predictions
+  ---
+  duration_ms: 35.6061
+  ...
+# Subtest: reviewed dataset persistence remains separate from facts, predictions and settlement authority
+ok 154 - reviewed dataset persistence remains separate from facts, predictions and settlement authority
+  ---
+  duration_ms: 99.796
+  ...
+# Subtest: every exposed table and private table has RLS
+ok 155 - every exposed table and private table has RLS
+  ---
+  duration_ms: 5928.4371
+  ...
+# Subtest: member cannot read another profile or escalate own row
+ok 156 - member cannot read another profile or escalate own row
+  ---
+  duration_ms: 27.0312
+  ...
+# Subtest: anonymous cannot access accounts or provider payloads
+ok 157 - anonymous cannot access accounts or provider payloads
+  ---
+  duration_ms: 5.3006
+  ...
+# Subtest: audit and launch evidence cannot be rewritten
+ok 158 - audit and launch evidence cannot be rewritten
+  ---
+  duration_ms: 15.1666
+  ...
+# Subtest: outbox deduplication and lease recovery
+ok 159 - outbox deduplication and lease recovery
+  ---
+  duration_ms: 15.9467
+  ...
+# Subtest: frozen strategy config cannot be changed
+ok 160 - frozen strategy config cannot be changed
+  ---
+  duration_ms: 5.7331
+  ...
+# Subtest: migration matches canonical schema
+ok 161 - migration matches canonical schema
+  ---
+  duration_ms: 12.4836
+  ...
+# Subtest: publication lifecycle enforces pre-start, immutable ledger, atomic outbox, withdrawal and settlement idempotency
+ok 162 - publication lifecycle enforces pre-start, immutable ledger, atomic outbox, withdrawal and settlement idempotency
+  ---
+  duration_ms: 59.5089
+  ...
+# Subtest: backup restores local immutable evidence and policy schema
+ok 163 - backup restores local immutable evidence and policy schema
+  ---
+  duration_ms: 3708.2707
+  ...
+# Subtest: single-connection action consumes durable quota before transaction and retains rejected attempts
+ok 164 - single-connection action consumes durable quota before transaction and retains rejected attempts
+  ---
+  duration_ms: 3914.2642
+  ...
+# Subtest: scoped normal leasing touches only the requested queued notification and preserves ordinary leasing
+ok 165 - scoped normal leasing touches only the requested queued notification and preserves ordinary leasing
+  ---
+  duration_ms: 4966.6481
+  ...
+# Subtest: normal preparation persists a stable hashed unsubscribe capability without delivery
+ok 166 - normal preparation persists a stable hashed unsubscribe capability without delivery
+  ---
+  duration_ms: 12.9646
+  ...
+# Subtest: preparation cannot mint tokens for another user, wrong/expired lease, expired outbox or disabled member
+ok 167 - preparation cannot mint tokens for another user, wrong/expired lease, expired outbox or disabled member
+  ---
+  duration_ms: 25.7488
+  ...
+1..167
+# tests 167
+# suites 0
+# pass 167
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 252730.5456

@@ -1,0 +1,107 @@
+{
+  "status": "PASS",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "checkedAt": "2026-10-04T03:47:34.739Z",
+  "genuineSession": true,
+  "genuineMfa": true,
+  "providerRequests": 0,
+  "trialCalls": 0,
+  "modelDataSeeded": false,
+  "checks": [
+    {
+      "check": "explicit-preview-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "fresh-disposable-session-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-research-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-research-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-model-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-password-login",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-research-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "exact-disposable-identity",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-session-cookies",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-totp-mfa",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-research-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-source_review-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-feature_review-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-fact_record-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-schedule-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-content_review-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-recalculate-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-with-mfa-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-model-transition-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "member-denial-is-not-logout",
+      "status": "PASS"
+    }
+  ],
+  "clientAssets": 0,
+  "operatorCleanupRequired": true,
+  "limits": [
+    "Viewport verification is not a physical-device test.",
+    "No model estimator, sporting dataset or live publication was activated."
+  ]
+}

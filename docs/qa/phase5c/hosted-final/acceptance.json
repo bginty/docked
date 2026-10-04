@@ -1,0 +1,435 @@
+{
+  "status": "PASS",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "checkedAt": "2026-10-04T03:47:05.839Z",
+  "genuineSession": true,
+  "genuineMfa": true,
+  "providerRequests": 0,
+  "trialCalls": 0,
+  "modelDataSeeded": false,
+  "checks": [
+    {
+      "check": "explicit-preview-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "fresh-disposable-session-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-research-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-research-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-model-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-password-login",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-research-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "exact-disposable-identity",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-session-cookies",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-totp-mfa",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-mfa-research-read",
+      "status": "PASS"
+    },
+    {
+      "check": "honest-empty-research-no-source-activation",
+      "status": "PASS"
+    },
+    {
+      "check": "retained-genuine-EPL-fixture-available",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-match-research-honest-policy-gap",
+      "status": "PASS"
+    },
+    {
+      "check": "cross-origin-research-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "research-probability-prose-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "research-unreviewed-source-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "research-llm-probability-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "denied-research-created-no-data",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-mfa-private-model-read",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-empty-model-ledger-no-fabricated-probability",
+      "status": "PASS"
+    },
+    {
+      "check": "cross-origin-model-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "arbitrary-probability-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "top-level-probability-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "no-model-live-transition-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "no-policy-activation-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "denied-inputs-created-no-model-data",
+      "status": "PASS"
+    },
+    {
+      "check": "data-api-exact-preview",
+      "status": "PASS"
+    },
+    {
+      "check": "current-browser-session-encoding",
+      "status": "PASS"
+    },
+    {
+      "check": "current-browser-session-secret-coverage",
+      "status": "PASS"
+    },
+    {
+      "check": "data-api-genuine-current-token",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-football_model_versions-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-football_model_attempts-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-official_record_boundary-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-research_source_versions-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-research_facts-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-research_fact_payloads-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-research_match_snapshots-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "private-data-api-research_recalculations-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "research-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "research-412-connection-not-model-readiness",
+      "status": "PASS"
+    },
+    {
+      "check": "research-412-model-notice-contrast",
+      "status": "PASS"
+    },
+    {
+      "check": "research-412-populated-form-contrast",
+      "status": "PASS"
+    },
+    {
+      "check": "research-412-expanded-form-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "research-412-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "research-412-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "match-research-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "match-research-412-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "match-research-412-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-412-no-invented-model",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-412-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-412-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-412-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-412-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-412-true-global-unstarted-record",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-412-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-412-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "research-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "research-1366-connection-not-model-readiness",
+      "status": "PASS"
+    },
+    {
+      "check": "research-1366-model-notice-contrast",
+      "status": "PASS"
+    },
+    {
+      "check": "research-1366-populated-form-contrast",
+      "status": "PASS"
+    },
+    {
+      "check": "research-1366-expanded-form-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "research-1366-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "research-1366-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "match-research-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "match-research-1366-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "match-research-1366-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-1366-no-invented-model",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-1366-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "model-performance-1366-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-1366-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "daily-1366-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-1366-true-global-unstarted-record",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-1366-no-horizontal-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-1366-axe",
+      "status": "PASS"
+    },
+    {
+      "check": "public-results-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "ten-real-rendered-views-no-browser-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-rendered-secret-audit",
+      "status": "PASS"
+    }
+  ],
+  "clientAssets": 19,
+  "operatorCleanupRequired": true,
+  "limits": [
+    "Viewport verification is not a physical-device test.",
+    "No model estimator, sporting dataset or live publication was activated."
+  ]
+}
