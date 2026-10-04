@@ -4,6 +4,8 @@ import { mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { bundleCommunityFixture } from "../fixtures/bundle-community";
 import { evidenceRoot } from "./evidence";
+import { researchFactTypes } from "../../src/core/research-engine";
+import { applicationStyles } from "../fixtures/application-styles";
 let bundle = "";
 test.beforeAll(async () => {
   bundle = await bundleCommunityFixture("tests/fixtures/research-demo.tsx");
@@ -41,9 +43,9 @@ async function fixture(page: Page, view: string, width: number) {
       : route.abort();
   });
   await page.setContent(
-    '<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>DEMO research UI</title></head><body><main id="demo-root" class="community-shell"></main></body></html>',
+    '<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>DEMO research UI</title></head><body><main class="community-shell"><aside class="app-sidebar" aria-label="DEMO navigation"><p class="small-note">DEMO navigation only</p></aside><div class="app-workspace"><div id="demo-root" class="app-content"></div></div></main></body></html>',
   );
-  for (const file of [
+  await applicationStyles(page, [
     "brand-theme.css",
     "globals.css",
     "sports-visuals.css",
@@ -54,8 +56,10 @@ async function fixture(page: Page, view: string, width: number) {
     "beta-experience.css",
     "phase5-edges.css",
     "phase5c-research.css",
-  ])
-    await page.addStyleTag({ path: path.resolve("src/app", file) });
+  ]);
+  await page.evaluate((types) => {
+    Object.assign(window, { researchFixtureFactTypes: types });
+  }, researchFactTypes);
   await page.addScriptTag({ content: bundle });
   await render(page, view);
   return errors;
@@ -181,12 +185,10 @@ test("DEMO structured fact form preserves unknowns, captures observed time and c
   );
   await page.getByLabel("Temperature °C", { exact: false }).fill("0");
   expect(
-    await page
-      .locator('input[name="temperatureCelsius"]')
-      .evaluate((el) => ({
-        color: getComputedStyle(el).color,
-        background: getComputedStyle(el).backgroundColor,
-      })),
+    await page.locator('input[name="temperatureCelsius"]').evaluate((el) => ({
+      color: getComputedStyle(el).color,
+      background: getComputedStyle(el).backgroundColor,
+    })),
   ).toEqual({ color: "rgb(11, 31, 59)", background: "rgb(255, 255, 255)" });
   await page
     .getByLabel("Forecast applies at", { exact: false })
@@ -268,7 +270,32 @@ test("DEMO source governance defaults block use and research notifications remai
   ])
     await expect(form.locator(`select[name="${key}"]`)).toHaveValue("UNKNOWN");
   await expect(form.locator('input[type="checkbox"]:checked')).toHaveCount(0);
-  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  for (const width of [412, 1366]) {
+    await page.setViewportSize({ width, height: 844 });
+    const targets = await form
+      .locator('input[type="checkbox"]')
+      .evaluateAll((inputs) =>
+        inputs.map((input) => {
+          const box = input.getBoundingClientRect();
+          return { width: box.width, height: box.height };
+        }),
+      );
+    expect(targets).toHaveLength(researchFactTypes.length + 1);
+    for (const target of targets) {
+      expect(target.width).toBeGreaterThanOrEqual(24);
+      expect(target.height).toBeGreaterThanOrEqual(24);
+    }
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+    await page.screenshot({
+      path: path.join(
+        evidenceRoot,
+        "research-ui",
+        `DEMO-source-form-${width}.png`,
+      ),
+      fullPage: true,
+    });
+  }
+  await page.setViewportSize({ width: 412, height: 844 });
   await render(page, "preferences");
   for (const key of ["researchUpdates", "lineupUpdates", "teamUpdates"])
     await expect(page.locator(`input[name="${key}"]`)).not.toBeChecked();

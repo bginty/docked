@@ -548,8 +548,9 @@ body:has(.community-shell[data-authenticated="true"]) > footer {
   min-height: 130px;
 }
 .app-form input[type="checkbox"] {
-  width: 20px;
-  min-height: 20px;
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
 }
 .form-help {
   font-size: 12px;

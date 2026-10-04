@@ -141,6 +141,17 @@
   border-radius: 8px;
   padding: 0.85rem;
 }
+.research-panel .check {
+  min-height: 44px;
+  align-items: center;
+}
+.research-panel input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  flex: none;
+}
 .research-panel legend {
   font-size: 0.92rem;
   font-weight: 700;

@@ -7,6 +7,7 @@ import { createRequire } from "node:module";
 import { existsSync, readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { evidenceRoot } from "./evidence";
+import { applicationStyles } from "../fixtures/application-styles";
 let demoBundle = "";
 let demoOfficialHtml = "";
 const fixtureErrors = new WeakMap<Page, string[]>();
@@ -96,7 +97,7 @@ async function fixture(page: Page, view = "home", width = 390) {
   await page.setContent(
     '<!doctype html><html lang="en"><head><title>DEMO isolated community review</title><meta name="robots" content="noindex,nofollow"></head><body><main id="demo-root"></main></body></html>',
   );
-  for (const file of [
+  await applicationStyles(page, [
     "brand-theme.css",
     "globals.css",
     "sports-visuals.css",
@@ -104,8 +105,7 @@ async function fixture(page: Page, view = "home", width = 390) {
     "community-app.css",
     "native.css",
     "mobile-app.css",
-  ])
-    await page.addStyleTag({ path: path.join(process.cwd(), "src/app", file) });
+  ]);
   await page.addStyleTag({
     content:
       ".demo-label{padding:12px;background:#62480e;color:#fff;font:700 12px/1.6 Arial,sans-serif;position:relative;z-index:60}.community-shell{min-height:90vh}",
@@ -539,6 +539,40 @@ test("DEMO notification consent and moderation are separate from record correcti
     push: false,
     dealsMarketing: false,
   });
+  await page.locator('input[name="researchUpdates"]').focus();
+  await page.keyboard.press("Tab");
+  const lineupCheckbox = page.locator('input[name="lineupUpdates"]');
+  await expect(lineupCheckbox).toBeFocused();
+  // The document scrolls smoothly. Sample settled keyboard-focus geometry,
+  // rather than the first animation frame immediately after Tab.
+  await expect
+    .poll(async () => {
+      const target = await lineupCheckbox.boundingBox();
+      const header = await page.locator(".app-topbar").boundingBox();
+      const nav = await page.locator(".app-bottom-nav").boundingBox();
+      return Boolean(
+        target &&
+        header &&
+        nav &&
+        target.y >= header.y + header.height &&
+        target.y + target.height <= nav.y,
+      );
+    })
+    .toBe(true);
+  const lineupTarget = await lineupCheckbox.boundingBox();
+  expect(lineupTarget?.width).toBeGreaterThanOrEqual(24);
+  expect(lineupTarget?.height).toBeGreaterThanOrEqual(24);
+  const header = await page.locator(".app-topbar").boundingBox();
+  const bottomNav = await page.locator(".app-bottom-nav").boundingBox();
+  expect(lineupTarget!.y).toBeGreaterThanOrEqual(header!.y + header!.height);
+  expect(lineupTarget!.y + lineupTarget!.height).toBeLessThanOrEqual(
+    bottomNav!.y,
+  );
+  // Whole-document axe runs at a known viewport, after separately checking that
+  // keyboard focus clears sticky chrome. Off-focus controls may cross the
+  // viewport edge during arbitrary scrolling; no accessibility rule is disabled.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   await accessible(page);
   await page.screenshot({
     path: path.join(qa, "DEMO-notifications-390.png"),

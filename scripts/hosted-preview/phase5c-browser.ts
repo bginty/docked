@@ -64,7 +64,11 @@ async function capture(
   await page
     .getByRole("heading", {
       level: 1,
-      ...(route.startsWith("/admin")
+      ...([
+        "/admin/research",
+        "/admin/daily",
+        "/admin/model-performance",
+      ].includes(route)
         ? {
             name:
               route === "/admin/daily"
@@ -96,6 +100,56 @@ async function capture(
       await page.getByText("NOT CONFIGURED", { exact: true }).isVisible(),
       `${label}-${width}-no-invented-model`,
     );
+  if (route === "/admin/research") {
+    check(
+      (await page
+        .locator(".research-model-blocked strong")
+        .evaluate((el) => getComputedStyle(el).color)) === "rgb(11, 31, 59)",
+      `${label}-${width}-model-notice-contrast`,
+    );
+    const panel = page.locator("details.research-panel").first();
+    await panel.locator("summary").click();
+    const field = panel.locator('input[type="text"]').first();
+    await field.fill("Unsaved acceptance contrast check");
+    const colors = await field.evaluate((el) => ({
+      foreground: getComputedStyle(el).color,
+      background: getComputedStyle(el).backgroundColor,
+    }));
+    check(
+      colors.foreground === "rgb(11, 31, 59)" &&
+        colors.background === "rgb(255, 255, 255)",
+      `${label}-${width}-populated-form-contrast`,
+    );
+    const formAxe = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+      .analyze();
+    await writeFile(
+      `${output}/${label}-form-${width}-axe.json`,
+      JSON.stringify(
+        {
+          violations: formAxe.violations.map((v) => ({
+            id: v.id,
+            impact: v.impact,
+            nodes: v.nodes.map((n) => ({
+              target: n.target,
+              failureSummary: n.failureSummary,
+            })),
+          })),
+          passes: formAxe.passes.length,
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+    await panel.screenshot({ path: `${output}/${label}-form-${width}.png` });
+    check(
+      formAxe.violations.length === 0,
+      `${label}-${width}-expanded-form-axe`,
+    );
+    await field.fill("");
+    await panel.locator("summary").click();
+    await page.evaluate(() => scrollTo(0, 0));
+  }
   check(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth + 1,
@@ -325,6 +379,22 @@ async function main() {
           research.counts.snapshots === 0,
         "honest-empty-research-no-source-activation",
       );
+      const match = research.matches[0];
+      check(!!match?.eventId, "retained-genuine-EPL-fixture-available");
+      const matchResponse = await context.request.get(
+        origin +
+          "/api/admin/research?event=" +
+          encodeURIComponent(match.eventId),
+      );
+      const matchData = await matchResponse.json();
+      check(
+        matchResponse.status() === 200 &&
+          matchData.event?.eventId === match.eventId &&
+          matchData.status === "NOT_CONFIGURED" &&
+          matchData.file === null &&
+          matchData.snapshots.length === 0,
+        "genuine-match-research-honest-policy-gap",
+      );
       check(
         (
           await context.request.post(origin + "/api/admin/research", {
@@ -521,6 +591,12 @@ async function main() {
         await capture(page, "/admin/research", "research", width);
         await capture(
           page,
+          "/admin/research/" + encodeURIComponent(match.eventId),
+          "match-research",
+          width,
+        );
+        await capture(
+          page,
           "/admin/model-performance",
           "model-performance",
           width,
@@ -530,7 +606,7 @@ async function main() {
       }
       check(
         pageErrors === 0 && consoleErrors === 0,
-        "eight-real-rendered-views-no-browser-errors",
+        "ten-real-rendered-views-no-browser-errors",
       );
       const known = await loadKnownSecrets();
       // Browser password/MFA exchange creates a different token pair from the

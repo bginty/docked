@@ -8,6 +8,7 @@ import type {
   MatchResearchFile,
   PublicResearchFact,
   ResearchSource,
+  ResearchFactType,
 } from "../../src/core/research-engine";
 import { ResearchDashboardView } from "../../src/components/research-admin";
 import { MatchResearchView } from "../../src/components/research-file";
@@ -132,6 +133,11 @@ const item: ReviewedResearchItem = {
   disclaimer: "DISPLAY_CONTEXT_ONLY",
 };
 const root = createRoot(document.getElementById("demo-root")!);
+const factTypes = (
+  window as unknown as {
+    researchFixtureFactTypes: ResearchFactType[];
+  }
+).researchFixtureFactTypes;
 Object.assign(window, {
   renderResearchFixture: (view: string) =>
     root.render(
@@ -155,7 +161,7 @@ Object.assign(window, {
         ) : view === "dashboard" ? (
           <ResearchDashboardView
             data={researchDemoDashboard}
-            factTypes={["WEATHER_UPDATE", "PLAYER_INJURY"]}
+            factTypes={factTypes}
           />
         ) : view === "source" ? (
           <ResearchDashboardView
