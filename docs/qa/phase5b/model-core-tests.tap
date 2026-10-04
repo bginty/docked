@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: independent football uses the complete model vector and never anchors to market probabilities
+ok 1 - independent football uses the complete model vector and never anchors to market probabilities
+  ---
+  duration_ms: 26.7974
+  ...
+# Subtest: malformed or incomplete sporting probabilities, later data and wrong models fail closed
+ok 2 - malformed or incomplete sporting probabilities, later data and wrong models fail closed
+  ---
+  duration_ms: 24.8408
+  ...
+# Subtest: old/research/duplicate references and push-capable rules cannot become candidates
+ok 3 - old/research/duplicate references and push-capable rules cannot become candidates
+  ---
+  duration_ms: 20.6506
+  ...
+# Subtest: model prediction commits before market reads, including no edge and provider failure
+ok 4 - model prediction commits before market reads, including no edge and provider failure
+  ---
+  duration_ms: 1.9865
+  ...
+# Subtest: football strategy versions cannot weaken safeguards, vary stakes or publish correlated selections
+ok 5 - football strategy versions cannot weaken safeguards, vary stakes or publish correlated selections
+  ---
+  duration_ms: 14.0842
+  ...
+# Subtest: football probabilities require exact complete finite distribution without price fields
+ok 6 - football probabilities require exact complete finite distribution without price fields
+  ---
+  duration_ms: 17.963
+  ...
+# Subtest: sporting snapshot rejects odds, target outcome and future-known evidence
+ok 7 - sporting snapshot rejects odds, target outcome and future-known evidence
+  ---
+  duration_ms: 38.5898
+  ...
+# Subtest: unconfigured provider cannot invent probabilities or numerical model configuration
+ok 8 - unconfigured provider cannot invent probabilities or numerical model configuration
+  ---
+  duration_ms: 5
+  ...
+# Subtest: future model injection is only a structural test boundary, with prospective provenance enforced
+ok 9 - future model injection is only a structural test boundary, with prospective provenance enforced
+  ---
+  duration_ms: 26.1263
+  ...
+# Subtest: empty calibration reports unknown metrics and empty fixed class buckets
+ok 10 - empty calibration reports unknown metrics and empty fixed class buckets
+  ---
+  duration_ms: 7.94
+  ...
+# Subtest: calibration scores all prospective predictions and keeps pending, void, abstention and failure denominators
+ok 11 - calibration scores all prospective predictions and keeps pending, void, abstention and failure denominators
+  ---
+  duration_ms: 24.5124
+  ...
+# Subtest: zero-probability realised outcome has explicit infinite loss without clipping
+ok 12 - zero-probability realised outcome has explicit infinite loss without clipping
+  ---
+  duration_ms: 3.0049
+  ...
+# Subtest: calibration binds corrections to report time and rejects duplicated decisions or broken chains
+ok 13 - calibration binds corrections to report time and rejects duplicated decisions or broken chains
+  ---
+  duration_ms: 10.3207
+  ...
+# Subtest: manual review preserves the correction chain and withdraws scoring until resolved
+ok 14 - manual review preserves the correction chain and withdraws scoring until resolved
+  ---
+  duration_ms: 6.3262
+  ...
+# Subtest: actual no-model evaluator cannot touch market data or provider transport
+ok 15 - actual no-model evaluator cannot touch market data or provider transport
+  ---
+  duration_ms: 479.3654
+  ...
+# Subtest: actual retained prediction commits before comparison; zero draw leaves home comparison valid
+ok 16 - actual retained prediction commits before comparison; zero draw leaves home comparison valid
+  ---
+  duration_ms: 161.2326
+  ...
+# Subtest: comparison failure cannot roll back the committed prediction
+ok 17 - comparison failure cannot roll back the committed prediction
+  ---
+  duration_ms: 57.7775
+  ...
+# Subtest: all-event prediction pass records abstention without requiring a market row
+ok 18 - all-event prediction pass records abstention without requiring a market row
+  ---
+  duration_ms: 44.018
+  ...
+# Subtest: actual approval API rejects numerical overrides before authentication or database access
+ok 19 - actual approval API rejects numerical overrides before authentication or database access
+  ---
+  duration_ms: 52.3311
+  ...
+# Subtest: independent monitoring uses frozen model probability with availability-only current reference
+ok 20 - independent monitoring uses frozen model probability with availability-only current reference
+  ---
+  duration_ms: 38.8915
+  ...
+# Subtest: monitoring preserves legacy pricing-cohort requirement and fails closed on invalid or excessive current edge
+ok 21 - monitoring preserves legacy pricing-cohort requirement and fails closed on invalid or excessive current edge
+  ---
+  duration_ms: 7.4415
+  ...
+# Subtest: independent availability observation does not reactivate recovered or terminal publication
+ok 22 - independent availability observation does not reactivate recovered or terminal publication
+  ---
+  duration_ms: 8.295
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4997.6571

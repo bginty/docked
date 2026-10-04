@@ -1,0 +1,184 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-04T01:25:49.349Z",
+  "value": {
+    "closed": {
+      "enabled_flags": 0,
+      "publications": 0,
+      "external_sends": 0,
+      "ordinary_approvals": 0,
+      "model_versions": 0,
+      "predictions": 0,
+      "sporting_inputs": 0,
+      "fitted_models": 0,
+      "official_start": 0
+    },
+    "acl": [
+      {
+        "relname": "football_edge_policy_approvals",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_attempts",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_implementations",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_outcomes",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_transitions",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_model_versions",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_sporting_inputs",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "football_sporting_sources",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "official_docked_publications",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      },
+      {
+        "relname": "official_record_boundary",
+        "relrowsecurity": true,
+        "anon_access": false,
+        "member_access": false
+      }
+    ],
+    "functions": [
+      {
+        "proname": "assert_football_comparison",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "assert_football_prediction",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_candidate_check",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_implementation_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_input_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_json_hash",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_outcome_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_policy_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_prediction_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_publication_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_review_check",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_source_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_sport_only",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_strategy_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "football_version_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "official_record_insert_guard",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "publish_football_candidate",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "record_official_football",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "set_football_policy_active",
+        "anon_execute": false,
+        "member_execute": false
+      },
+      {
+        "proname": "transition_football_model",
+        "anon_execute": false,
+        "member_execute": false
+      }
+    ],
+    "originalAccountsPreserved": 4,
+    "disposableStaffRoles": 0,
+    "providerRequests": 0
+  }
+}

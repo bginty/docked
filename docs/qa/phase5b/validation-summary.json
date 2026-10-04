@@ -1,0 +1,63 @@
+{
+  "phase": "5B revised",
+  "branch": "codex/docked-value-platform",
+  "deployedApplicationCommit": "e1c8086d541401d128f9b0e7620ef93cbf7ce6e9",
+  "previewProject": "bckkllmndoxzpzdqrevb",
+  "checks": {
+    "typecheck": {"status": "PASS", "receipt": "typecheck-acceptance-tools.txt"},
+    "lint": {"status": "PASS", "receipts": ["lint-accepted.txt", "lint-acceptance-tools.txt"]},
+    "platform": {"status": "PASS", "fullRunPassed": 317, "subsequentScopeTestsPassed": 2},
+    "postgresqlRls": {"status": "PASS", "passed": 151},
+    "webBuild": {"status": "PASS", "buildId": "UoeIerr0YZmdU1OmJylsP"},
+    "dependencyAudit": {"status": "PASS", "vulnerabilities": 0},
+    "browser": {
+      "status": "PASS_ACROSS_RECORDED_RUNS",
+      "distinctCasesCovered": 84,
+      "original": {"passed": 78, "failed": 6, "skipped": 0},
+      "firstFocusedRerun": {"passed": 5, "failed": 1},
+      "finalFocusedRerun": {"passed": 1, "failed": 0},
+      "repair": "Only retired Results accessible-name and metric wording assertions changed; no application workaround or removed checks."
+    },
+    "hosted": {
+      "status": "PASS",
+      "staffPublicAssertions": 66,
+      "memberAssertions": 12,
+      "views": 6,
+      "viewportWidths": [412, 1366],
+      "axeViolations": 0,
+      "browserErrors": 0,
+      "disposableAccountResidue": 0,
+      "originalAccountsPreserved": 4
+    },
+    "android": {
+      "status": "BUILD_AND_ARTIFACT_AUDITS_PASS",
+      "versionCode": 6,
+      "versionName": "1.5-preview",
+      "artifact": "artifacts/android/Docked-Preview-S24-v6-Forward-Record.apk",
+      "sha256": "040afbb0a862196bebc1504800fa85bb7bc9435ae5712ef8e6f2cfbb63928dfa",
+      "physicalS24Acceptance": "UNVERIFIED"
+    }
+  },
+  "finalHostedState": {
+    "migrations": 16,
+    "privateTablesWithRls": 110,
+    "browserGrantedPrivateTables": 0,
+    "officialPublications": 0,
+    "officialRecordStart": null,
+    "modelVersions": 0,
+    "predictions": 0,
+    "fittedImplementations": 0,
+    "providerRequestsThisPhase": 0,
+    "externalEmailsThisPhase": 0,
+    "productionChangedThisPhase": false,
+    "dnsChangedThisPhase": false
+  },
+  "limits": [
+    "Local successful model/candidate/publication cases use isolated fictional fixtures, not real model or betting evidence.",
+    "No authorised sporting dataset or operational football estimator exists.",
+    "Results and eligible Market Reference remain unconfigured; live and paper publication are off.",
+    "Existing leaked-password-protection and informational database-index advisories remain documented.",
+    "Supplemental default axe review retains the existing top-strip/preview-banner landmark best-practice advisories; tagged WCAG checks pass.",
+    "Browser viewports and APK checks do not establish physical Android lifecycle acceptance."
+  ]
+}

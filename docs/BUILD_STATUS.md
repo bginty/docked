@@ -1,8 +1,25 @@
 # Docked build status
 
+## Current Phase 5B revised implementation — 4 October 2026
+
+The product is **forward-only official publication**. Official start remains unset until the first genuine pre-event live Edge. No historical Docked betting record is reconstructed. Earlier milestone sections below are dated evidence, not current launch requirements.
+
+Independent football contracts, prospective prediction/abstention and outcome ledgers, lifecycle gates, calibration, candidate comparison/manual review and model operations are implemented. **Football Model V1 is NOT_CONFIGURED / UNVALIDATED**: no authorised sporting dataset, fitted parameters or operational estimator is installed. The proposed independent Poisson baseline is research methodology only. The Odds API remains separate market comparison evidence.
+
+No historical betting ROI gate applies. Sporting/market rights, model/data quality, prospective observations, owner approval and legal/operational release gates still apply. Automatic publication remains false. No production, DNS, Oura, paid-service or external sending change is part of this phase.
+
+The isolated Preview now serves implementation `e1c8086d541401d128f9b0e7620ef93cbf7ce6e9`; methodology/provider documentation is committed as `194b3a9c61812dd806b18120b9bcff1cda1951ad`. Docked Preview Supabase `bckkllmndoxzpzdqrevb` has **16 ordered migrations**. Its 110 private tables have RLS and no browser grants. The official start, model registry, prediction ledger and sporting inputs are empty; no activation or supplier call occurred.
+
+Local validation passed **317 platform tests plus two later operator-scope tests**, **151 PostgreSQL/RLS tests**, typecheck, lint, optimized production web build and a zero-vulnerability dependency audit. **84 distinct browser cases passed across the original broad run and focused reruns**: the original passed 78/84; six cases needed obsolete results-page test wording updated, with all failures and successful reruns retained. Actual hosted acceptance passed **66 staff/public plus 12 member-denial checks** with genuine MFA, six responsive views, no accessibility/console errors and clean rendered credential audits. The disposable identity is erased with zero residual users/sessions/profiles/roles/grants; all four original accounts and prior supplier-trial records are preserved. Exact browser-suite scope and remaining advisor notices are in the acceptance report below.
+
+Android **v6 / 1.5-preview** built successfully at `artifacts/android/Docked-Preview-S24-v6-Forward-Record.apk`, using the actual v5 package/certificate. Full archive, network-policy and secret audits passed. Physical Samsung S24 v6 acceptance remains unverified. Sporting provider rights/history, fitted estimator, authorised regulation results, market source classification/cohorts, reviewed prospective evidence and owner/legal release decisions remain external or future implementation dependencies. Transactional external email and Play closed-test release are not activated.
+
+See [architecture](DOCKED_MODEL_ARCHITECTURE.md), [provider research](FOOTBALL_DATA_PROVIDER_RESEARCH.md), [official record](OFFICIAL_RECORD.md) and [acceptance](qa/phase5b/README.md).
+
+
 Started 2 October 2026. Branch `codex/docked-value-platform`. Working tree was clean.
 
-## Current Phase 5A status — 4 October 2026
+## Preserved milestone: Phase 5A status — 4 October 2026
 
 The stable isolated Preview alias serves source `2e9041236b6e26043277e8cf103d1ebe49fe55c2` on the existing branch. Docked Preview Supabase `bckkllmndoxzpzdqrevb` has **15 ordered migrations**. The public `docked.com.au` transition page remains live; the new application's production launch still awaits the verified resource, operator/legal and release inputs in [PRODUCTION_RELEASE.md](PRODUCTION_RELEASE.md). No Phase 5A production, DNS or Oura change occurred.
 

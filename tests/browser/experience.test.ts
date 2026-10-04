@@ -147,7 +147,7 @@ test("preview public pages remain truthful, accessible and usable without an acc
     await expect(page.locator("h1")).toHaveCount(1);
     if (route === "/results") {
       const tableRegion = page.getByRole("region", {
-        name: "Live publication ledger table, scroll horizontally if needed",
+        name: "Complete official publication ledger",
       });
       await tableRegion.focus();
       await expect(tableRegion).toBeFocused();
@@ -205,8 +205,8 @@ test("preview public pages remain truthful, accessible and usable without an acc
     ),
   ).toBeVisible();
   await expect(
-    page.getByText("Settled publications").locator("..").locator("strong"),
-  ).toHaveText("N/A");
+    page.getByText("Settled", { exact: true }).locator("..").locator("strong"),
+  ).toHaveText("Unavailable");
   const exported = await request.get("/api/member");
   expect(exported.status()).toBe(401);
   const deleted = await request.post("/api/member", {

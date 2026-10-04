@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-04T01:07:52.0733245Z",
+  "scope": "Isolated PGlite only; synthetic fixtures; no hosted calls or model validity claims",
+  "migration": "20261004003850_phase5b_independent_football_model_ledger.sql",
+  "focusedDatabase": {
+    "file": "tests/database/football-model-ledger.test.ts",
+    "durationMs": 10747.0624,
+    "failed": 0,
+    "passed": 9
+  },
+  "legacyReference": {
+    "file": "tests/database/market-reference.test.ts",
+    "failed": 0,
+    "note": "Legacy publication fixture now forward-paper; immutable reference and no-reactivation assertions preserved; no official record boundary created",
+    "passed": 9
+  },
+  "checks": {
+    "diffCheck": "PASS",
+    "scopedLint": "PASS",
+    "typecheck": "PASS"
+  },
+  "boundaries": [
+    "RLS and browser helper denial",
+    "Staff MFA and immutable configurations",
+    "No registration from null fitted parameters",
+    "Separate committed prediction; nested savepoint cannot bypass",
+    "Complete 0/1 probability vector retained; null fair odds for zero",
+    "Canonical input provenance and no look-ahead",
+    "Latest manual-review outcome withdraws calibration",
+    "Inactive strategy and publication kill switch enforced",
+    "Explicit manual publication creates immutable global record boundary",
+    "Legacy live publication rejected; existing history retained"
+  ],
+  "excluded": [
+    "No hosted migration",
+    "No live sporting/model records",
+    "No fitted estimator",
+    "No predictive advantage validation"
+  ]
+}

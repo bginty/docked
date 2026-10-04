@@ -1,0 +1,203 @@
+{
+  "result": {
+    "lints": [
+      {
+        "name": "rls_enabled_no_policy",
+        "title": "RLS Enabled No Policy",
+        "level": "INFO",
+        "facing": "EXTERNAL",
+        "categories": [
+          "SECURITY"
+        ],
+        "description": "Detects cases where row level security (RLS) has been enabled on a table but no RLS policies have been created.",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy",
+        "count": 18,
+        "findings": [
+          {
+            "detail": "Table \\`private.football_edge_policy_approvals\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "football_edge_policy_approvals",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.football_model_attempts\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "football_model_attempts",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.football_model_implementations\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "football_model_implementations",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.football_model_outcomes\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "football_model_outcomes",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.football_model_versions\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "football_model_versions",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.football_sporting_inputs\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "football_sporting_inputs",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.football_sporting_sources\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "football_sporting_sources",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.market_data_fixture_observations\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "market_data_fixture_observations",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.market_data_payloads\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "market_data_payloads",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.preview_beta_invitations\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "preview_beta_invitations",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.preview_fixture_edges\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "preview_fixture_edges",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.preview_market_sessions\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "preview_market_sessions",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.provider_trial_diagnostics\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "provider_trial_diagnostics",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.provider_trial_failure_reviews\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "provider_trial_failure_reviews",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.provider_trial_permits\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "provider_trial_permits",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.provider_trial_requests\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "provider_trial_requests",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.provider_trials\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "provider_trials",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          },
+          {
+            "detail": "Table \\`private.webhook_receipts\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "webhook_receipts",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-04T01:18:54.225Z"
+          }
+        ]
+      },
+      {
+        "name": "auth_leaked_password_protection",
+        "title": "Leaked Password Protection Disabled",
+        "level": "WARN",
+        "facing": "EXTERNAL",
+        "categories": [
+          "SECURITY"
+        ],
+        "description": "Leaked password protection is currently disabled.",
+        "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection",
+        "count": 1,
+        "findings": [
+          {
+            "detail": "Supabase Auth prevents the use of compromised passwords by checking against HaveIBeenPwned.org. Enable this feature to enhance security.",
+            "metadata": {
+              "type": "auth",
+              "entity": "Auth"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

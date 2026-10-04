@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-04T01:10:09.6396176Z",
+  "artifact": "artifacts/android/Docked-Preview-S24-v6-Forward-Record.apk",
+  "bytes": 9597678,
+  "sha256": "040afbb0a862196bebc1504800fa85bb7bc9435ae5712ef8e6f2cfbb63928dfa",
+  "current": {
+    "package": "au.com.docked.app.preview",
+    "label": "Docked Preview",
+    "versionCode": 6,
+    "versionName": "1.5-preview",
+    "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+    "debuggable": false,
+    "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+    "arm64Compatible": true,
+    "minimumSdk": 24,
+    "targetSdk": 36
+  },
+  "priorVersionCode": 5,
+  "samePackageAndSigningCertificate": true,
+  "cleartextDisabledInPackagedResources": true,
+  "compiledNetworkPolicyPath": "res/8G.xml",
+  "status": "PASS"
+}

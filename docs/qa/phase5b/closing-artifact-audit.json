@@ -1,0 +1,627 @@
+{
+  "checkedAt": "2026-10-04T01:42:31.696Z",
+  "status": "PASS",
+  "sourceCommit": "194b3a9c61812dd806b18120b9bcff1cda1951ad",
+  "baselineAudit": "docs/qa/phase5b/final-source-secret-audit.json",
+  "baselineAuditSha256": "e5911216bc154f9b9c1a5656c61d5a33ae7e11d7514290c5b07135c27394e41b",
+  "comparisonSourceFiles": 3,
+  "comparisonValueCount": 5,
+  "operatorCredentialRecoveryAttempted": false,
+  "operatorCredentialComparison": "Previously completed before erasure in the preserved baseline audit; erased credentials were not read or reconstructed.",
+  "source": {
+    "status": "PASS",
+    "filesScanned": 3,
+    "bytesScanned": 56501,
+    "unchangedFiles": 523,
+    "findings": [],
+    "errors": [],
+    "manifest": [
+      {
+        "file": "docs/BUILD_STATUS.md",
+        "bytes": 38698,
+        "sha256": "128dc054881d39be3a6dabb866c504b9a6c5178e417377aa9cedd0950ae999bb"
+      },
+      {
+        "file": "tests/browser/experience.test.ts",
+        "bytes": 7611,
+        "sha256": "76388685f999a36ef7d825de3cb948dd39c691dacdad3f9a29947e511bc0933d"
+      },
+      {
+        "file": "tests/browser/visual-sports.test.ts",
+        "bytes": 10192,
+        "sha256": "5aafc53f069539307d1c23931ade01be9837ff3915e3f7c8befd0910da48f736"
+      }
+    ]
+  },
+  "artifacts": {
+    "status": "PASS",
+    "filesScanned": 115,
+    "bytesScanned": 59357358,
+    "findings": [],
+    "errors": [],
+    "unchangedFiles": 400,
+    "manifest": [
+      {
+        "file": "docs/qa/phase5b/browser-acceptance.json",
+        "bytes": 1411,
+        "sha256": "c2a2f7688465cac1f1427e48bf2f9f351a6fabdfefbfe4c925faa9ec9e7e3141"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-corrected-contracts.json",
+        "bytes": 13349,
+        "sha256": "6c178a30e56a933bf710d505cf3695746f1e0c52d4c9228bb43f84446b1e3ae2"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-experience-final.json",
+        "bytes": 3200,
+        "sha256": "4cac5b49b510ae464d1e0c55750a2b0973e19315c3d9d5069264a8bd939f8ff9"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-final.json",
+        "bytes": 117877,
+        "sha256": "925d0f03f208c302d3cda1d80b9e951d1bf00634e2de262a5247210a2c25187e"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/experience-preview-public--e7fab-d-usable-without-an-account/error-context.md",
+        "bytes": 15525,
+        "sha256": "6e8f88dbe9a9dda3cacdcb1f616ef6a0cf2ecbd1fbf324b9fb7b630f12049f94"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/experience-preview-public--e7fab-d-usable-without-an-account/test-failed-1.png",
+        "bytes": 149998,
+        "sha256": "1205876f83eecd2a71bb6b1bb753e189373e5c941bef91c8a7a120b4999e0e66"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/supplemental-landmark-advisory.txt",
+        "bytes": 793,
+        "sha256": "ac44704497f2f9bbaa2b5ca0490a4ce3ba653b193b48f96df3f8546809df611f"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-3a8a9-essible-and-honest-at-390px/error-context.md",
+        "bytes": 14242,
+        "sha256": "cc29ad34d9dc92cf1377d4374b79970ca967c4e07f4567567dabf6e6c757810d"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-3a8a9-essible-and-honest-at-390px/test-failed-1.png",
+        "bytes": 155027,
+        "sha256": "aa473ea861f6fb26bf73132029ddbdb440c5cc41c33257f6fd411f054298077a"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-4d986-ssible-and-honest-at-1920px/error-context.md",
+        "bytes": 14570,
+        "sha256": "2cc5e10ce4a7f0ae3879a937b0d8726a741f4e7dd4275ea754996270b769c246"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-4d986-ssible-and-honest-at-1920px/test-failed-1.png",
+        "bytes": 309439,
+        "sha256": "0870edc0156ee5393ed9ff2d36f7c59dce254074e19c6ca53bc00bfa8baecca9"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-536af-essible-and-honest-at-430px/error-context.md",
+        "bytes": 14242,
+        "sha256": "e6f04dee52c3a8f327ed291a240623cc68b6d4022ccc899fc5fae097b373d61f"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-536af-essible-and-honest-at-430px/test-failed-1.png",
+        "bytes": 182455,
+        "sha256": "60140615a007c7d82e47943014b1421cf488b89a88898a5381edc2fbec0ff801"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-7895d-ssible-and-honest-at-1366px/error-context.md",
+        "bytes": 14570,
+        "sha256": "11bc81ee7d1d3021b7a19bb328fad903ca966ae9ad4c10804ddc4830d2785441"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-7895d-ssible-and-honest-at-1366px/test-failed-1.png",
+        "bytes": 327957,
+        "sha256": "643ecabd9f38ed7e569b99f5af42fcfd584d74364c3701b182d6ebfaab318f46"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-ae54c-essible-and-honest-at-768px/error-context.md",
+        "bytes": 14569,
+        "sha256": "33d5296e37a191ffe887f72aaad99b96c1a2c47ea6ef935f6bae37b2ccc2720d"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-failure/visual-sports-sports-ident-ae54c-essible-and-honest-at-768px/test-failed-1.png",
+        "bytes": 175632,
+        "sha256": "e3104fe0bd5a1406853bcf320cce0f657399cc405452605ef7d2a43e63ccdb9a"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-initial-full.json",
+        "bytes": 117877,
+        "sha256": "925d0f03f208c302d3cda1d80b9e951d1bf00634e2de262a5247210a2c25187e"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-intermediate-failure/error-context.md",
+        "bytes": 10457,
+        "sha256": "daa59777236e63f49304e454dd239a44968c96f744c8d24adfaa2b8c1f70cf1c"
+      },
+      {
+        "file": "docs/qa/phase5b/browser-intermediate-failure/test-failed-1.png",
+        "bytes": 149998,
+        "sha256": "1205876f83eecd2a71bb6b1bb753e189373e5c941bef91c8a7a120b4999e0e66"
+      },
+      {
+        "file": "docs/qa/phase5b/changed-files.txt",
+        "bytes": 27472,
+        "sha256": "1cb60c2e31fc43ada203bb7a5fe20c988b842976c4b3ac59deb38c0a5221f955"
+      },
+      {
+        "file": "docs/qa/phase5b/EXPERIENCE.md",
+        "bytes": 4877,
+        "sha256": "f7d5a0e1dedc3dc66452bda94e2a9f73f4b8276b76d72cccb5e6d05cd4a618e0"
+      },
+      {
+        "file": "docs/qa/phase5b/final-source-secret-audit.json",
+        "bytes": 212051,
+        "sha256": "e5911216bc154f9b9c1a5656c61d5a33ae7e11d7514290c5b07135c27394e41b"
+      },
+      {
+        "file": "docs/qa/phase5b/HOSTED_ACCEPTANCE.md",
+        "bytes": 5333,
+        "sha256": "c8334abd799b44823dcc29055663c6ba348a190a619fe862f7f73bfebe059f43"
+      },
+      {
+        "file": "docs/qa/phase5b/implementation-files.txt",
+        "bytes": 2893,
+        "sha256": "390dfded46a40ab1d28bab851b4b5c14e8a1ab4dbdd13f8a4e2e27fff17743fc"
+      },
+      {
+        "file": "docs/qa/phase5b/official-record/README.md",
+        "bytes": 3024,
+        "sha256": "2d75e59c719dfd9d0264f106d5a75df3002768c33a446fca8efb7e0a8b980d64"
+      },
+      {
+        "file": "docs/qa/phase5b/operator/cleanup.json",
+        "bytes": 599,
+        "sha256": "39c15a280b14f66be6534a77ee62a953b8710a7be84b5035213bbd62fe0a9b95"
+      },
+      {
+        "file": "docs/qa/phase5b/operator/post-cleanup-state.json",
+        "bytes": 1159,
+        "sha256": "a010203a60e0e7a4b3d85fa1cd791dba583996525cb6db05fa9a323fce7b81d5"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/methodology-1366-viewport.png",
+        "bytes": 132668,
+        "sha256": "b3822717265e6c12332531250f8fa5c975ce38b429b5da0b35405f8409efe74e"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/methodology-1366.png",
+        "bytes": 551999,
+        "sha256": "53a82f29170207f3865fd8ddcb61446a3ccdc1e3d0421ca64e378f727aa784f2"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/methodology-390-viewport.png",
+        "bytes": 83432,
+        "sha256": "2e664cc9a3968f9362236d3adea7dab4bdd8f3863479b6355db3c31dacfa1aff"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/methodology-390.png",
+        "bytes": 590535,
+        "sha256": "8bf0ef94c7918ecd72655e03f19bdd8e041902b8ccb71a36dcabc97249e626e1"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/receipt.json",
+        "bytes": 5989,
+        "sha256": "bc92388daf6f8ca9c83e5ba5dd1febde002ad4ce3e57306f827a8f7b8b50b583"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/research-1366-viewport.png",
+        "bytes": 101351,
+        "sha256": "ab56af682dd096762c9c325df3e710c1200a650c108982f9d1f208b6e7cd28f8"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/research-1366.png",
+        "bytes": 317046,
+        "sha256": "4c48609f786168d3a229a8f243bea90a5ff40bf80c0e140eb74b3b6e39e11d78"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/research-390-viewport.png",
+        "bytes": 71771,
+        "sha256": "6e722d5f204c654f4699ac380fe3f1d6bc1eede94e8ea38d58661be85e4885e4"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/research-390.png",
+        "bytes": 319338,
+        "sha256": "156064560a90001f744a4d4276c66658f31ccb3f16e05976afc0ede8fdc13cf5"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/results-1366-viewport.png",
+        "bytes": 314935,
+        "sha256": "026cfd1d11c3b1bad7ef432a84413fa6e09a23043df1abba9869698b4fbe1252"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/results-1366.png",
+        "bytes": 467424,
+        "sha256": "311db3f3b005474ac07ae6ec69ab6e64dcee8bedb3270c6769f7ddd37961c711"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/results-390-viewport.png",
+        "bytes": 149998,
+        "sha256": "1205876f83eecd2a71bb6b1bb753e189373e5c941bef91c8a7a120b4999e0e66"
+      },
+      {
+        "file": "docs/qa/phase5b/public-review/results-390.png",
+        "bytes": 307377,
+        "sha256": "2c754181d93ab8b06449b2c7b25e86d9cc643790f07fc5ba526637dbeecf3703"
+      },
+      {
+        "file": "docs/qa/phase5b/README.md",
+        "bytes": 17827,
+        "sha256": "dfe6e0dc22f7c444e57870cd5cb82bbdcbe100f5ee09d261af2c7be3af0f0b29"
+      },
+      {
+        "file": "docs/qa/phase5b/validation-summary.json",
+        "bytes": 2655,
+        "sha256": "8d15f4511a7557cb57db6feac83f13f6ebe2150395ed9f70567218651058804d"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/admin-locked-1366.png",
+        "bytes": 88980,
+        "sha256": "4c3150221176d84230159efc55c2b9f29ffef0cddc47fe09554936377d4f704d"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/admin-locked-1920.png",
+        "bytes": 91416,
+        "sha256": "0a6c798132b40f420c4d662724bd3eb75447140a56611fc7d54e825ff893d5e0"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/admin-locked-390.png",
+        "bytes": 73670,
+        "sha256": "13aa0833dfd39929d0e7e71aaf66d2267384d97f5dd584f529fa29c8408b77c1"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/admin-locked-430.png",
+        "bytes": 72471,
+        "sha256": "e2b44ebca6dbc9b9090191a168f98d67689ec4027f571cfe5c7086312f8b4581"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/admin-locked-768.png",
+        "bytes": 82497,
+        "sha256": "def3fc62bf268c3727fbc9439ecf94a3ebc6a36493549aa30ce9ea1f07f12c57"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/article-1366.png",
+        "bytes": 937626,
+        "sha256": "3058fc6b81aae475eb3391a5ee820c5004f9e38d10d666be9bd013caeec07d30"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/article-1920.png",
+        "bytes": 888270,
+        "sha256": "f8fc61eaf4b5804d0a231f7a21f84bfa94c91537609fef22f895fa0ebacef3bd"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/article-390.png",
+        "bytes": 519424,
+        "sha256": "d357bc2e74d3c5f2b73268fa68f625ecfeb2d84c02c8dde292e67695e674e74f"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/article-430.png",
+        "bytes": 544759,
+        "sha256": "25715ea8461c8b49af96d8f3132236478e602027dabf13a19c6cd39cac0471e9"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/article-768.png",
+        "bytes": 770972,
+        "sha256": "ba2004eda2074708f418bcc6249b916d5f5d31d1181cdb02be23140487dcceee"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/browser-1366.json",
+        "bytes": 1109,
+        "sha256": "dfffebc8dc21d3394bdbfb1ac654a81232d89219d333d6f82b90467515e029b3"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/browser-1920.json",
+        "bytes": 1109,
+        "sha256": "ae00ca712ca5895e71551e5846d122dc2e5bcd51bf6e91d6bab76fc8b7ae3663"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/browser-390.json",
+        "bytes": 1108,
+        "sha256": "cbfb956d5710dea6884846dd351479fd767df191bd7234ad6ca5421da6a6237e"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/browser-430.json",
+        "bytes": 1108,
+        "sha256": "6e32d9fc4dacf8150e05196ab4042e2ac7140c69dcc08cda4409f11bba416187"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/browser-768.json",
+        "bytes": 1108,
+        "sha256": "8fe1c35cbbb6628129c243c91449bf61099fad72aab112c8015ef6cc44c55081"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/edges-1366.png",
+        "bytes": 628383,
+        "sha256": "e8b3e53f70a6673c75d084f265aa2766b4cffeb4d4f5cff99fe1ae3310ab3550"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/edges-1920.png",
+        "bytes": 619797,
+        "sha256": "2edf27a6acb0653f05355aebd9624e02afbbfa4133bda2bc4933f724711640c0"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/edges-390.png",
+        "bytes": 319038,
+        "sha256": "20fa1e6ef67fcbec816ce6a45fb917c3e2d5d18bdbe184bb33ebd898644eb46e"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/edges-430.png",
+        "bytes": 345984,
+        "sha256": "e7e17374c67f91b943dc490aa9a3f344b2eecfaf9ee275bc17cc34bba95c6810"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/edges-768.png",
+        "bytes": 423341,
+        "sha256": "23a56adca32407f8e077af0e22a1a419d7c719283bbf08237d704cad6e643276"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/fixture-no_edge-390.png",
+        "bytes": 138788,
+        "sha256": "85ed504071c2a84d98bb99f31d66961238213df425d421bb1ebd9995ef63c804"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/fixture-outage-390.png",
+        "bytes": 134934,
+        "sha256": "5dbc281b6a5a0e746194c138665196c1991b6207f0dc9c01d29b3c92198fd52b"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/fixture-restricted-390.png",
+        "bytes": 137349,
+        "sha256": "09ac46e38fa37fe616af968a49280b73424856058c9350c804338b6a51bf6252"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/homepage-1366.png",
+        "bytes": 3429647,
+        "sha256": "f9157611dfd0b9edf32eee58b1af3b9beb2d6991a5d999598df7f176f7c38d1c"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/homepage-1920.png",
+        "bytes": 3739575,
+        "sha256": "961e66abef84fe794b5a3deb44de7b9093b315616663366dd76e37d01f50482e"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/homepage-390.png",
+        "bytes": 1445603,
+        "sha256": "4d60462776bcc13156ab194607a1810749aa61ef50a463d1cc4966c5a3977b48"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/homepage-430.png",
+        "bytes": 1638026,
+        "sha256": "cc05c4a38a49bf7a9c987664a4392c85111107ea3404d9b7be49f519e7283411"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/homepage-768.png",
+        "bytes": 1576170,
+        "sha256": "bb15240e3033ac847bb5b8cc2b6b27e14be1fa1c6373a37aff1511ac0f50cdfb"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/learn-1366.png",
+        "bytes": 2703563,
+        "sha256": "2c536980d885b801427ca3d3e068836c9aef33723861eaf3203cf21100f2afb6"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/learn-1920.png",
+        "bytes": 2587390,
+        "sha256": "8a7327a6cdc990c741ab5d49e63e0eb6455f449acc49dc21b064d87749e43373"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/learn-390.png",
+        "bytes": 1610286,
+        "sha256": "5a7dc602d996cc7d5e7a2c8853faf4d5cb29e055e4776f80a013eb89113bd778"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/learn-430.png",
+        "bytes": 1969114,
+        "sha256": "1099cc228439f2796a6e81ab020eaa30b56f2eb81a5440bb58a7e6768b830e0a"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/learn-768.png",
+        "bytes": 1262074,
+        "sha256": "ad965f28f0583db9379eb37c9f37a50309fb34953208a42b9be87c39d50f2209"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/member-locked-1366.png",
+        "bytes": 98225,
+        "sha256": "5e9b988ba401d93ff911c2e7f555f4f49181b55d8e078c205f5d6eb787bb9843"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/member-locked-1920.png",
+        "bytes": 101331,
+        "sha256": "059020cabb28f33c1abdaff35bc84bb5786b8fbc0a8a624f403211ba49043170"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/member-locked-390.png",
+        "bytes": 82523,
+        "sha256": "92ebd1e3b3703846e3ea0f4b310ea32d274609157aaadaf7e652074ea1f7dcfd"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/member-locked-430.png",
+        "bytes": 82097,
+        "sha256": "724d8073909747dd2079eadf3b67e677c65cd9ca70d730ddd9ffaa429ae5a1b5"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/member-locked-768.png",
+        "bytes": 92460,
+        "sha256": "0fb673a1025301a32bf1a2112cab6b0609215646aec08af62562e93468cdb233"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-admin-dashboard-locked-390.png",
+        "bytes": 73350,
+        "sha256": "b9ec17a08ea0bdf4107f9165c46802a37bee2fc49303f65f7261c80d68897ec1"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-article-390.png",
+        "bytes": 519424,
+        "sha256": "d357bc2e74d3c5f2b73268fa68f625ecfeb2d84c02c8dde292e67695e674e74f"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-data-health-locked-390.png",
+        "bytes": 62839,
+        "sha256": "28d3ef743a7e0e4168b4579ddc0b4906ee1097565ed60e261d9ed2cafb933fbd"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-forward-paper-locked-390.png",
+        "bytes": 67298,
+        "sha256": "e852b74c8758837e01f946573faf5234a353ea992f0ad5e23e1cf7690bade3bc"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-member-dashboard-locked-390.png",
+        "bytes": 82523,
+        "sha256": "92ebd1e3b3703846e3ea0f4b310ea32d274609157aaadaf7e652074ea1f7dcfd"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-methodology-390.png",
+        "bytes": 590535,
+        "sha256": "8bf0ef94c7918ecd72655e03f19bdd8e041902b8ccb71a36dcabc97249e626e1"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-model-performance-locked-390.png",
+        "bytes": 67491,
+        "sha256": "03855573ee9203d150860dc69ef2c945c52b5c943a9b79fb0eca7319d7689435"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-results-390.png",
+        "bytes": 307701,
+        "sha256": "80ae68b1e53e0d52bf26c91183a8309310d34b5d66fa2e94fd718ef890176233"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/regression-signup-390.png",
+        "bytes": 162777,
+        "sha256": "f279654abd7e2efc9f0996a1947abb67cdbf6e9864b6a051bc578246f31cfc5b"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/results-1366.png",
+        "bytes": 467424,
+        "sha256": "311db3f3b005474ac07ae6ec69ab6e64dcee8bedb3270c6769f7ddd37961c711"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/results-1920.png",
+        "bytes": 446806,
+        "sha256": "dd49ca34bcfd180e7eb54bc6af9793e68114bbb3c154185cb9eee02d9726d8d1"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/results-390.png",
+        "bytes": 307377,
+        "sha256": "2c754181d93ab8b06449b2c7b25e86d9cc643790f07fc5ba526637dbeecf3703"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/results-430.png",
+        "bytes": 331006,
+        "sha256": "95cb22523954946c059bca5509f70e47359a6439633096c6224ae9cd4a3bd0a4"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/results-768.png",
+        "bytes": 324081,
+        "sha256": "61b44adaccb67ace48bbf05e08098aae7b6dd7576a671ea17bfacee3b2f817ed"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-basketball-1366.png",
+        "bytes": 995453,
+        "sha256": "a4b353af91d5895232dd4ae9e60cf4577dbf5bff28c013c93efa9e51438c8080"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-basketball-1920.png",
+        "bytes": 1011697,
+        "sha256": "6b37c625380113933cdafa603b0191a88bc05cb34abd537c6f64a2615a1a3f0f"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-basketball-390.png",
+        "bytes": 504801,
+        "sha256": "3f8255df263c371e68e4f397e8d871583c390d39c53ea2f5d7e9035ed536ef18"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-basketball-430.png",
+        "bytes": 544083,
+        "sha256": "14e0057979c78fd2b1189e209c63b104a14b57e5f0a2c049370bb172a97d3f9d"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-basketball-768.png",
+        "bytes": 752123,
+        "sha256": "0e104b0badcce0a6b2ac8760c017087bf9e316d146f739413db0e32ed988cdf5"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-football-1366.png",
+        "bytes": 917041,
+        "sha256": "aca6b9c1a70b18d95316a78b71d73ab7ef9a989b9a313591d4482d67c4bc885b"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-football-1920.png",
+        "bytes": 929571,
+        "sha256": "b8c239ea5510ba84d6405f56aecd30f946b51d68d45ac654d12b6ffbc6a28244"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-football-390.png",
+        "bytes": 461864,
+        "sha256": "030c89bbd26b1f8308bfd8dc93691bfd38c370ff3a37534fb609000b9197e04c"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-football-430.png",
+        "bytes": 499385,
+        "sha256": "20d8c199baf198f8e01e44b2d689b5a302a76699b1a10ff6ad5100770d8e8b4a"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-football-768.png",
+        "bytes": 662089,
+        "sha256": "028dc0633e0f2c6c6631a28695f6c82559a5b06b9ddfd71220bd188d06e4cea1"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-tennis-1366.png",
+        "bytes": 937315,
+        "sha256": "06762172464063c8c5d890045b27d15f9d907b64914feefa34bda3e8e900e748"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-tennis-1920.png",
+        "bytes": 955761,
+        "sha256": "1d1dd73a585d52155486e3002a8522006862556cd6990463f0a9871e3c82b343"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-tennis-390.png",
+        "bytes": 452076,
+        "sha256": "961a9df966af48d5bf1020a4ae59fdc9477966186b980871edf308279a8b36ff"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-tennis-430.png",
+        "bytes": 494749,
+        "sha256": "dc6f8742e0d43a263e5da959e5a453611b5a1b71ced545295f7eb6523b67f218"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sport-tennis-768.png",
+        "bytes": 689610,
+        "sha256": "190bdf879f0c1a7342972508d17e7b3adaf161196bbc105dd18d43aa1dc9b47f"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sports-1366.png",
+        "bytes": 2384831,
+        "sha256": "191725aa1a2b8e9fb154ea13d3aa5f80efbcaa3051908fa76cf50997c40a26d3"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sports-1920.png",
+        "bytes": 2324384,
+        "sha256": "8b5a49bef842f4f8876a6daf7396a513b2e55861f9aa099313f6d0abc7ea9bd3"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sports-390.png",
+        "bytes": 1666838,
+        "sha256": "17116399fa323fc49f81d34b884e49662ff0066f2ef51a844db97b2319107a66"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sports-430.png",
+        "bytes": 1790024,
+        "sha256": "a8979d536b62494f4a93f785f15514d42191c55ba9dd20c23c46c7ca55bb7113"
+      },
+      {
+        "file": "docs/qa/phase5b/web-regression/sports-regression/sports-768.png",
+        "bytes": 1836765,
+        "sha256": "7b25d287462344eb0cadd2d605f0067b0b20e7f33bf1de1e8e5a07c1faefc5ab"
+      }
+    ]
+  },
+  "scope": "Incremental hash comparison with the pre-erasure manifest. Every new/changed source/doc/test/helper file is exact-value checked against current authorized local project/environment/CLI credentials. Every new/changed public Phase5B QA artifact, including reruns, failures and cleanup receipts, is additionally signature/canary scanned. Unchanged files retain the earlier audit evidence. No secret/snippet output.",
+  "limitations": [
+    "Unknown sensitive Vercel Odds API value was not retrieved and is not claimed as compared.",
+    "Screenshot files are byte-scanned; prior independent visual review supplements rather than replaces byte scanning.",
+    "Point-in-time closing audit. The output receipt is validated in memory rather than including a self-referential hash; later edits are outside this receipt."
+  ]
+}

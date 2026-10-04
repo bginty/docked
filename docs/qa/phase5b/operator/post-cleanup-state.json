@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-04T01:31:11.280Z",
+  "state": {
+    "users": 4,
+    "sessions": 0,
+    "staff_roles": 0,
+    "migrations": 16,
+    "enabled_flags": 0,
+    "publications": 0,
+    "model_versions": 0,
+    "predictions": 0,
+    "sporting_inputs": 0,
+    "implementations": 0,
+    "official_start": 0,
+    "sent_messages": 0,
+    "ordinary_region_approvals": 0
+  },
+  "rls": {
+    "private_tables": 110,
+    "rls_tables": 110,
+    "browser_granted_tables": 0
+  },
+  "providerTrial": {
+    "unchangedComparedWithPhase5AReport": true,
+    "requests": 9,
+    "reportedTotal": null,
+    "providerRemaining": 491,
+    "providerUsed": 9,
+    "counts": [
+      {
+        "competition_id": "americanfootball_nfl",
+        "events": 16,
+        "markets": 0,
+        "snapshots": 0
+      },
+      {
+        "competition_id": "soccer_epl",
+        "events": 6,
+        "markets": 6,
+        "snapshots": 60
+      },
+      {
+        "competition_id": "soccer_spain_la_liga",
+        "events": 5,
+        "markets": 5,
+        "snapshots": 50
+      }
+    ]
+  },
+  "providerRequestsMadeByAcceptance": 0
+}

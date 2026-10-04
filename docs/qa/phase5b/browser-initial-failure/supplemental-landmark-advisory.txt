@@ -1,0 +1,18 @@
+{"route":"results","width":390,"violations":[{"id":"region","impact":"moderate","tags":["cat.keyboard","best-practice","RGAAv4","RGAA-9.2.1"],"nodes":[{"target":[".topline"],"summary":"Fix any of the following:\n  Some page content is not contained by landmarks"},{"target":[".preview-banner"],"summary":"Fix any of the following:\n  Some page content is not contained by landmarks"}]}]}
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+1 !== 0
+
+    at file:///C:/Users/61412/Documents/ChatGPT/Docked.com.au/private-data/phase5b/capture-public.mjs:36:14 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0

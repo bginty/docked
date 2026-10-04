@@ -1,4 +1,20 @@
-# Android acceptance — Phase 5
+# Android acceptance — Phase 5B
+
+## Current v6 delivery
+
+The owner confirms that v5 works on the physical Samsung S24. Its preserved APK was rehashed during Phase 5B and still matches `3e7af19503c376e8601ca9eef164a17d8a385b73f36aecff19a4a2629929552b`. This user report does not certify every native scenario or the next artifact.
+
+The next artifact was built as versionCode **6**, versionName **1.5-preview**: [Docked Preview v6](../artifacts/android/Docked-Preview-S24-v6-Forward-Record.apk), 9,597,678 bytes, SHA-256 `040afbb0a862196bebc1504800fa85bb7bc9435ae5712ef8e6f2cfbb63928dfa`. The real v5/v6 comparison confirms the same package and signing certificate. **V6 physical-device acceptance is unverified.** No Play upload, signing-key creation, native transport or production activation occurred.
+
+The runner preserved the actual v5 APK and original manifest outside Gradle output, verified all durable artifacts and both output variants in the content-hash archive, and retained v6 in `artifacts/android/`. [V6 audits](qa/phase5b/android/README.md) passed for package/certificate/version, compiled cleartext policy, debugging/inspection disabled and exact HTTPS origin. All 988 APK entries were extracted and scanned: zero secret findings/errors. The exact packaged offline HTML rendered without network requests, console errors or overflow in desktop Chromium; this does not establish Android device behaviour. Historical receipts remain unchanged.
+
+The packaged verified host receipt identifies the initial Phase 5A deployment. V6 opens the stable HTTPS alias, so the final Phase 5B server UI can advance independently. The native report preserves that distinction; it does not claim the new server UI was bundled into the APK.
+
+Phase 5B presentation changes distinguish independent sporting-model estimates from market comparisons, show the genuine forward-only Docked Record, and keep community Trending/weekly recognition separate. A closed beta is not contingent on a reconstructed historical betting return or validated profitability. Legal, account/email, source-rights, publication and owner-controlled upload-signing gates still apply.
+
+## Historical Phase 5 acceptance
+
+The evidence below records the earlier Phase 5 milestone. It is not a claim that the Phase 5B binary or every physical scenario has been tested. Phase 5A later recorded an authorised, bounded market-data trial; that is separate from native acceptance and does not establish a configured sporting model.
 
 The owner reports that the installed v5 APK works on the physical Samsung S24. This is user confirmation of the existing app, not an agent-observed pass for every scenario below. The web UI continues to load from the approved HTTPS preview; Phase 5 scanner/discovery UI alone does not require a new native package.
 

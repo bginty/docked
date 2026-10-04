@@ -1,0 +1,325 @@
+{
+  "recordedAt": "2026-10-04T01:18:27.171Z",
+  "width": 390,
+  "osPreference": "light",
+  "fixtures": true,
+  "statement": "Isolated fictional member-style UI only. No Auth session, database writes or real performance.",
+  "views": [
+    {
+      "view": "home",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "app-preview-label",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost small",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 7.577663953533317,
+          "minimum": 4.5,
+          "foreground": "rgb(71, 85, 105)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "view": "compose",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "app-preview-label",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 12.646413252994835,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.09803921568627451,
+            0.20392156862745098,
+            0.32941176470588235,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 8.517811272434779,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.09803921568627451,
+            0.20392156862745098,
+            0.32941176470588235,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "view": "profile",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "app-preview-label",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button small",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost small",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    },
+    {
+      "view": "notifications",
+      "brand": [
+        {
+          "src": "/brand/canonical/docked-master.png",
+          "width": 32,
+          "height": 32,
+          "naturalWidth": 1024,
+          "naturalHeight": 1024,
+          "objectFit": "contain",
+          "transform": "none",
+          "filter": "none",
+          "shadow": "none"
+        }
+      ],
+      "font": {
+        "family": "Sora, system-ui, sans-serif",
+        "loaded": true
+      },
+      "contrast": [
+        {
+          "selector": "app-preview-label",
+          "checked": true,
+          "ratio": 11.10766528770291,
+          "minimum": 4.5,
+          "foreground": "rgb(203, 213, 225)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost small",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.043137254901960784,
+            0.12156862745098039,
+            0.23137254901960785,
+            1
+          ]
+        },
+        {
+          "selector": "button ghost small",
+          "checked": true,
+          "ratio": 16.491575242906666,
+          "minimum": 4.5,
+          "foreground": "rgb(11, 31, 59)",
+          "background": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "selector": "button",
+          "checked": true,
+          "ratio": 4.875331941597217,
+          "minimum": 4.5,
+          "foreground": "rgb(255, 255, 255)",
+          "background": [
+            0.1450980392156863,
+            0.38823529411764707,
+            1,
+            1
+          ]
+        }
+      ],
+      "overflow": false,
+      "accessibilityViolations": 0,
+      "errors": [],
+      "failedAssets": [],
+      "fontRequests": []
+    }
+  ]
+}

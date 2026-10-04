@@ -1,0 +1,224 @@
+{
+  "status": "PASS_WCAG_WITH_BEST_PRACTICE_ADVISORY",
+  "buildId": "UoeIerr0YZmdU1OmJylsP",
+  "recordedAt": "2026-10-04T01:40:13.629Z",
+  "scope": "Actual anonymous routes on isolated local build; no database, authenticated sessions or provider requests. Broader axe best-practice findings are retained separately and are not claimed as a clean all-rules scan.",
+  "entries": [
+    {
+      "route": "/results",
+      "width": 390,
+      "status": 200,
+      "heading": "DOCKED RECORD",
+      "wcagViolations": 0,
+      "broaderAxeAdvisories": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "nodes": [
+            {
+              "target": [
+                ".topline"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": [
+                ".preview-banner"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "externalRequests": 0,
+      "overflow": false
+    },
+    {
+      "route": "/research",
+      "width": 390,
+      "status": 200,
+      "heading": "Research, with a forward record",
+      "wcagViolations": 0,
+      "broaderAxeAdvisories": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "nodes": [
+            {
+              "target": [
+                ".topline"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": [
+                ".preview-banner"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "externalRequests": 0,
+      "overflow": false
+    },
+    {
+      "route": "/methodology",
+      "width": 390,
+      "status": 200,
+      "heading": "A method you can question",
+      "wcagViolations": 0,
+      "broaderAxeAdvisories": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "nodes": [
+            {
+              "target": [
+                ".topline"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": [
+                ".preview-banner"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "externalRequests": 0,
+      "overflow": false
+    },
+    {
+      "route": "/results",
+      "width": 1366,
+      "status": 200,
+      "heading": "DOCKED RECORD",
+      "wcagViolations": 0,
+      "broaderAxeAdvisories": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "nodes": [
+            {
+              "target": [
+                ".topline"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": [
+                ".preview-banner"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "externalRequests": 0,
+      "overflow": false
+    },
+    {
+      "route": "/research",
+      "width": 1366,
+      "status": 200,
+      "heading": "Research, with a forward record",
+      "wcagViolations": 0,
+      "broaderAxeAdvisories": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "nodes": [
+            {
+              "target": [
+                ".topline"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": [
+                ".preview-banner"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "externalRequests": 0,
+      "overflow": false
+    },
+    {
+      "route": "/methodology",
+      "width": 1366,
+      "status": 200,
+      "heading": "A method you can question",
+      "wcagViolations": 0,
+      "broaderAxeAdvisories": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "nodes": [
+            {
+              "target": [
+                ".topline"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": [
+                ".preview-banner"
+              ],
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "consoleErrors": 0,
+      "externalRequests": 0,
+      "overflow": false
+    }
+  ]
+}

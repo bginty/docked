@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "checkedAt": "2026-10-04T01:25:32.578Z",
+  "genuineSession": true,
+  "genuineMfa": true,
+  "providerRequests": 0,
+  "trialCalls": 0,
+  "modelDataSeeded": false,
+  "checks": [
+    {
+      "check": "explicit-preview-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "fresh-disposable-session-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-model-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-password-login",
+      "status": "PASS"
+    },
+    {
+      "check": "exact-disposable-identity",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-session-cookies",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-totp-mfa",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-with-mfa-model-read-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-member-model-transition-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "member-denial-is-not-logout",
+      "status": "PASS"
+    }
+  ],
+  "clientAssets": 0,
+  "operatorCleanupRequired": true,
+  "limits": [
+    "Viewport verification is not a physical-device test.",
+    "No model estimator, sporting dataset or live publication was activated."
+  ]
+}

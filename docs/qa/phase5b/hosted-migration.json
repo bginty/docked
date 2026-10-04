@@ -1,0 +1,106 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-04T01:18:54.137Z",
+  "migrations": [
+    "20261002113546",
+    "20261002122714",
+    "20261003002609",
+    "20261003002709",
+    "20261003002935",
+    "20261003021118",
+    "20261003030722",
+    "20261003061548",
+    "20261003062615",
+    "20261003121257",
+    "20261003121502",
+    "20261003143903",
+    "20261003214310",
+    "20261003225203",
+    "20261003232606",
+    "20261004003850"
+  ],
+  "guard": {
+    "users": 4,
+    "publications": 0,
+    "enabled": 0
+  },
+  "tables": [
+    {
+      "relname": "football_edge_policy_approvals",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "football_model_attempts",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "football_model_implementations",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "football_model_outcomes",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "football_model_transitions",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "football_model_versions",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "football_sporting_inputs",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "football_sporting_sources",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "official_docked_publications",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    },
+    {
+      "relname": "official_record_boundary",
+      "relrowsecurity": true,
+      "anon_read": false,
+      "member_read": false,
+      "member_write": false
+    }
+  ],
+  "counts": {
+    "attempts": 0,
+    "versions": 0,
+    "record_starts": 0,
+    "official": 0
+  },
+  "productionChanged": false
+}

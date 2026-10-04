@@ -1,0 +1,113 @@
+▲ Next.js 16.3.8 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 81ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.3s
+  Running TypeScript ...
+  Finished TypeScript in 15.3s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/45) ...
+  Generating static pages using 7 workers (11/45) 
+  Generating static pages using 7 workers (22/45) 
+  Generating static pages using 7 workers (33/45) 
+✓ Generating static pages using 7 workers (45/45) in 985ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /[section]
+├ ○ /account-deletion
+├ ƒ /admin
+├ ƒ /admin/analytics
+├ ƒ /admin/candidate-edges
+├ ƒ /admin/candidate-edges/[id]
+├ ƒ /admin/community
+├ ƒ /admin/community/[section]
+├ ƒ /admin/daily
+├ ƒ /admin/data-health
+├ ƒ /admin/edge-scanner
+├ ƒ /admin/forward-paper
+├ ƒ /admin/model-performance
+├ ƒ /admin/preview-testers
+├ ƒ /admin/strategies
+├ ƒ /api/admin
+├ ƒ /api/admin/benefits
+├ ƒ /api/admin/community-analytics
+├ ƒ /api/admin/community-edges
+├ ƒ /api/admin/community-recognition
+├ ƒ /api/admin/market-data-editorial
+├ ƒ /api/admin/models
+├ ƒ /api/admin/preview-testers
+├ ƒ /api/admin/scanner
+├ ƒ /api/analytics
+├ ƒ /api/app-session
+├ ƒ /api/auth
+├ ƒ /api/benefits
+├ ƒ /api/community
+├ ƒ /api/community-edges
+├ ƒ /api/community-edges/share
+├ ƒ /api/edges
+├ ƒ /api/internal/edge-scanner
+├ ƒ /api/internal/provider-trial
+├ ƒ /api/market-data
+├ ƒ /api/member
+├ ƒ /api/notifications
+├ ƒ /api/preview-edges
+├ ƒ /api/status
+├ ƒ /api/top-docked
+├ ƒ /api/unsubscribe
+├ ƒ /api/webhooks/email
+├ ƒ /app
+├ ƒ /app/check-email
+├ ƒ /app/forgot-password
+├ ƒ /app/link-expired
+├ ƒ /app/login
+├ ƒ /app/onboarding
+├ ƒ /app/password-updated
+├ ƒ /app/reset-password
+├ ƒ /app/signup
+├ ƒ /app/verified
+├ ○ /apple-icon.png
+├ ƒ /auth/callback
+├ ƒ /community
+├ ƒ /community/[post]
+├ ƒ /community/edges/[id]
+├ ƒ /community/posts/[id]
+├ ƒ /competitions
+├ ƒ /compose
+├ ƒ /dashboard
+├ ƒ /deals
+├ ƒ /edges/[id]
+├ ƒ /feed
+├ ƒ /following
+├ ƒ /home
+├ ○ /icon.svg
+├   /leagues/[league]
+│ └ ● /leagues/nba
+├ ƒ /learn/[slug]
+├ ○ /manifest.webmanifest
+├ ƒ /membership
+├ ƒ /my-edge
+├ ƒ /notifications
+├ ○ /opengraph-image
+├ ƒ /points
+├ ƒ /profile
+├ ƒ /profile/[handle]
+├ ƒ /results/[id]
+├ ○ /robots.txt
+├ ƒ /search
+├ ƒ /sitemap.xml
+├ ○ /sports
+├ ƒ /sports/[sport]
+├ ƒ /tips/[id]
+└ ƒ /top-docked
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

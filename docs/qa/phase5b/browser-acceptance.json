@@ -1,0 +1,50 @@
+{
+  "status": "PASS_AFTER_TEST_CONTRACT_CORRECTIONS",
+  "buildId": "UoeIerr0YZmdU1OmJylsP",
+  "distinctCasesWithPassingEvidence": 84,
+  "singleFullGreenRun": false,
+  "runs": [
+    {
+      "file": "browser-initial-full.json",
+      "startTime": "2026-10-04T01:15:57.994Z",
+      "duration": 959343.592,
+      "expected": 78,
+      "skipped": 0,
+      "unexpected": 6,
+      "flaky": 0
+    },
+    {
+      "file": "browser-corrected-contracts.json",
+      "startTime": "2026-10-04T01:32:28.155Z",
+      "duration": 256156.096,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    {
+      "file": "browser-experience-final.json",
+      "startTime": "2026-10-04T01:37:46.906Z",
+      "duration": 20986.795000000002,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  ],
+  "applicationChangedForCorrections": false,
+  "correctedTestFiles": [
+    "tests/browser/experience.test.ts",
+    "tests/browser/visual-sports.test.ts"
+  ],
+  "externalServerFetchGuardEvents": 0,
+  "supplementalPublicViews": 6,
+  "supplementalWcagViolations": 0,
+  "supplementalBestPracticeRuleOccurrences": 6,
+  "supplementalBestPracticeTargetOccurrences": 12,
+  "advisoryTargets": [
+    ".topline",
+    ".preview-banner"
+  ],
+  "scope": "Isolated local build and explicitly labelled synthetic fixtures. No real Auth/DB/provider/native-device acceptance implied."
+}

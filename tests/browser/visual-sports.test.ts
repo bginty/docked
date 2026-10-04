@@ -94,10 +94,10 @@ for (const width of [390, 430, 768, 1366, 1920]) {
       if (route === "/results") {
         await expect(
           page
-            .getByText("Settled publications")
+            .getByText("Settled", { exact: true })
             .locator("..")
             .locator("strong"),
-        ).toHaveText("N/A");
+        ).toHaveText("Unavailable");
       }
       if (route === "/dashboard")
         await expect(

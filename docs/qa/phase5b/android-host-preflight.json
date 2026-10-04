@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-10-04T01:05:40.834Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "deploymentId": "dpl_2Km6vCTVhK3iwavf2E9DRmgjWpLD",
+  "sourceCommit": "2e9041236b6e26043277e8cf103d1ebe49fe55c2",
+  "target": "preview",
+  "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+  "health": {
+    "feed": false,
+    "strategy": false,
+    "publication": false,
+    "database": true,
+    "oddsProviderStatus": "PENDING_RIGHTS",
+    "resultsProviderStatus": "NOT_CONFIGURED",
+    "reason": "Freshness is evaluated from the last successful shared ingestion. Individual quote age is checked again before publication."
+  },
+  "closed": {
+    "ODDS_POLLING_ENABLED": false,
+    "MARKET_DATA_POLLING_ENABLED": false,
+    "PUBLICATION_ENABLED": false
+  },
+  "providerRequests": 0,
+  "productionChanged": false,
+  "dnsChanged": false
+}
