@@ -1,5 +1,13 @@
 # Engineering decisions — started 2 October 2026
 
+## Phase 5D execution corrections
+
+- Preserve source timestamps through PostgreSQL text-to-timestamptz binding: rounding a source clock at the JavaScript driver boundary is not an acceptable silent provenance change.
+- Use the database clock when preparing fitted inputs. The workstation was slightly ahead; the existing future-data guard correctly rejected it. Do not relax that guard.
+- The genuine first cohort used the unchanged registered model implementation at 9d2a40cd with a database-clock-only operator correction. Full predictions and fit coefficients remain in the private ledger; public QA contains counts/hashes, not a research recommendation.
+- The later admin display/CLI correction does not refit or rewrite that model. Exact code binding remains enforced: future execution must use its reviewed implementation revision or register a newly reviewed version. Merely deploying a later UI commit does not approve another calculation.
+- Show retained model evidence separately from incomplete editorial research. A historical snapshot must not inherit a later prediction.
+
 ## Phase 5D — retained goals-only research fit
 
 - Accept only the 398 explicitly FT-labelled rows in the two already-approved pinned CC0 files for statistical research. Exclude ambiguous period scores; preserve date-granularity and actual observation clocks. This does not establish regulation settlement authority.

@@ -1,5 +1,19 @@
 # Release gates
 
+## Phase 5D research checkpoint (supersedes overlapping earlier unchecked research items)
+
+- [x] Two exact pinned CC0 resources accepted for narrow retained statistical research; no broadened source scope.
+- [x] 398 explicit FT rows, exclusions, 23 aliases and six canonical upcoming fixture mappings reviewed.
+- [x] Deterministic retained Poisson research fit; five independent prospective predictions plus one honest abstention.
+- [x] Database-clock input preparation and sub-millisecond source provenance guards exercised.
+- [ ] Prospective calibration outcomes and predictive-quality review; numerical convergence is not validation.
+- [ ] Authorised current Market Reference comparison/jurisdiction policy and genuine candidate/revalidation cycle.
+- [ ] Authorised regulation results, finality and correction adapter. Training data is not a settlement feed.
+- [ ] Source refresh, explicit cadence and supervised complete cycle before research automation.
+- [ ] Separate owner/legal release approval before live Edges. Official start remains unset.
+
+Community beta remains independent of official model success. Production/DNS, paid plans, sending, billing, prizes and affiliates were not enabled.
+
 ## Phase 5C research release boundary
 
 - [ ] Audited runtime source registrations with current commercial/storage/derived/display permissions and source-specific jurisdictions. A prepared licence catalogue is not runtime activation.

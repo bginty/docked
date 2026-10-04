@@ -1,5 +1,7 @@
 # Docked independent modelling architecture
 
+Phase 5D: the statistical estimator and private immutable training manifests are implemented. One research fit and a complete six-fixture prospective cohort are installed in Docked Preview. The model stays UNVALIDATED; the independent probability path does not import market adapters. Separate comparison remains blocked by current authority, with zero candidates/publications. Source-reported FT training acceptance does not grant regulation-results settlement rights.
+
 Phase 5B revised direction, 4 October 2026. This supersedes any requirement to reconstruct historical Docked tips or demonstrate historical betting ROI before the official record can start. Historical sporting statistics remain permitted model inputs under their own rights; they are not Docked betting performance.
 
 ```mermaid

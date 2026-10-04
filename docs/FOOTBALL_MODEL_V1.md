@@ -1,6 +1,6 @@
 # Phase 5D update
 
-The Phase 5C proposal below is retained as historical context. The deterministic research fitter, accepted source-reported training subset and retained fitted-input workflow are now implemented. See [current fitting specification](FOOTBALL_V1_FITTING.md) and [data-quality review](OPENFOOTBALL_EPL_DATA_QUALITY.md). Hosted registration/prediction status is evidenced separately in docs/qa/phase5d; no live approval or predictive advantage is implied.
+The Phase 5C proposal below is retained as historical context. The deterministic research fitter, accepted source-reported training subset and retained fitted-input workflow are now implemented. See [current fitting specification](FOOTBALL_V1_FITTING.md) and [data-quality review](OPENFOOTBALL_EPL_DATA_QUALITY.md). The genuine hosted fit football-goals-v1.0.0 is now FORWARD_CALIBRATION / UNVALIDATED. Its first complete six-fixture cohort contains five independent predictions and one insufficient-sample abstention. Outcomes remain pending. Evidence is retained in docs/qa/phase5d; no live approval or predictive advantage is implied.
 
 ---
 # Football Model V1 — proposed, not fitted

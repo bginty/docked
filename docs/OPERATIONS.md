@@ -1,5 +1,13 @@
 # Admin and operations guide
 
+## Phase 5D research operation status
+
+The first manual fitting/prediction cycle succeeded with a complete six-fixture cohort. Comparison stopped at the separate market authority gate. Automatic research, market polling, refitting, paper/live publication and external notifications remain disabled. No repeating schedule has been activated.
+
+The initial registered implementation is code 9d2a40cd. Later admin/CLI commits do not rewrite its recorded code. The controlled CLI intentionally rejects a different current code revision; do not bypass this by changing the stored model. A future reviewed execution/refit needs an explicit version/code decision, fresh authorised source snapshots and the existing gates. The new database-clock preparation fixes workstation skew without changing the statistical method.
+
+Required next: resolve current market-comparison authority/quality and an exact regulation-results source; then perform a supervised full comparison cycle before considering recurring Preview research. No data purchase is currently required to reproduce the retained research fit.
+
 ## Phase 5D fitted-model operations
 
 Use the [controlled manual fitting workflow](FOOTBALL_V1_FITTING.md). `/admin/model-performance` now reads actual retained fits/predictions; a current `/admin/research/[eventId]` view shows the model's actual team multipliers and probabilities. A requested historical research snapshot never gains later model output. These are private staff views, not public recommendations.

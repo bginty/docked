@@ -1,0 +1,91 @@
+{
+  "recordedAt": "2026-10-04T05:47:41.778Z",
+  "sourceCommit": "bb9dee01ac54fcf62b609e85a2e5181ab231217d",
+  "modelImplementationCommit": "9d2a40cde05b198cd8c0462965265d9de581d7f8",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "platform": {
+    "passed": 368,
+    "failed": 0
+  },
+  "database": {
+    "passed": 168,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 89,
+    "failed": 0,
+    "note": "Full baseline run; later private admin display corrections verified by final hosted acceptance"
+  },
+  "finalTargeted": {
+    "passed": 13,
+    "failed": 0
+  },
+  "clockDatabaseRegression": {
+    "passed": 11,
+    "failed": 0
+  },
+  "productionWebBuild": "PASS",
+  "dependencyVulnerabilities": 0,
+  "clientCanary": {
+    "status": "PASS",
+    "assets": 52
+  },
+  "hostedStaffAssertions": 122,
+  "hostedMemberAssertions": 22,
+  "hostedResponsiveScreens": 14,
+  "hostedAxeViolations": 0,
+  "hostedConsoleErrors": 0,
+  "physicalS24": "NOT_VERIFIED",
+  "androidBuild": "NOT_REQUIRED_NO_NATIVE_OR_MEMBER_SURFACE_CHANGE",
+  "existingApkAudit": "PASS_988_ENTRIES",
+  "iOS": "READINESS_DOCUMENT_ONLY",
+  "genericSecretPatternScan": "SIX_REVIEWED_SYNTHETIC_FIXTURE_FINDINGS_NOT_A_PASS",
+  "evidence": [
+    {
+      "name": "typecheck-final.log",
+      "sha256": "79b3bf0dc821c5ff6a8ef0ac1e5a9b53bc0d20a6794d34eb3a2554916be97e9a",
+      "bytes": 61
+    },
+    {
+      "name": "lint-final.log",
+      "sha256": "8d5651beb652fab8ab3c2430ede1ce0747287bf0d6a3d102dee21a4d367ecab4",
+      "bytes": 85
+    },
+    {
+      "name": "platform-tests-final.log",
+      "sha256": "f8f45e4fcd612530c54b3cf31339eb6d1fdcdabbbb9a77b6ab12e935f3dde2c0",
+      "bytes": 85371
+    },
+    {
+      "name": "database-tests-final.log",
+      "sha256": "e03e68c6bb5cf48610aa16214fe998d01f728d813ef35773bf5342954c3494ef",
+      "bytes": 40140
+    },
+    {
+      "name": "browser-tests.log",
+      "sha256": "ed6721e4b9885ff2fd5bbd7e1f128f0107c70f33164dd30a9c8b9f7235ba5c54",
+      "bytes": 12396
+    },
+    {
+      "name": "web-build-final.log",
+      "sha256": "5016833a9d42d669dad0a50a1f7522e4ac6c8444b5c38e8b5f058f0aad62e0da",
+      "bytes": 3063
+    },
+    {
+      "name": "client-boundary-final.log",
+      "sha256": "b7ee9576b27842b280c65596f203432e96ac0360513e9eb31b5d6bb23a74c3dd",
+      "bytes": 202
+    },
+    {
+      "name": "final-targeted.log",
+      "sha256": "8acb76aef92b3a10abd6748d71142cc8f07a21f0c4a4b6ecf6ce997c89c5744b",
+      "bytes": 2826
+    },
+    {
+      "name": "clock-regression.log",
+      "sha256": "b18c978dafc80bf907445c92b0b2f4de3f7db54e16ec9f09b9fbcf4aa2506235",
+      "bytes": 2752
+    }
+  ]
+}

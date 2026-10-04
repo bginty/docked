@@ -1,5 +1,7 @@
 # Independent football data requirements
 
+Phase 5D current state: a quality-reviewed 398-match source-reported FT subset from two pinned CC0 EPL files has been accepted for goals-only research, mapped and fitted. The fitted input schema explicitly preserves date-only historical granularity; it does not claim exact historical completion clocks or settlement finality. Minimum eight accepted team matches, 365-day weighting and other declared controls are documented in FOOTBALL_V1_FITTING.md. Five genuine prospective predictions and one abstention are retained. Fresh automated sporting refresh and authorised regulation outcomes remain external/operational gaps. The Phase 5C requirements/proposal below describe the earlier state and are superseded where they say no accepted fit exists.
+
 Phase 5C status, 4 October 2026: **MODEL DATA NOT_CONFIGURED**. [Current source evaluation](RESEARCH_SOURCE_EVALUATION.md) supersedes the earlier free-provider shortlist. Two pinned OpenFootball CC0 files have been inspected locally; their reported goals/fixtures are not canonical sporting inputs and have not been installed in the application. No fitted coefficients or approved operational model exists. Free research data is available; authoritative identity, chronology, current status and result semantics still require acceptance.
 
 ## Minimum evidence before fitting

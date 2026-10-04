@@ -1,5 +1,11 @@
 # Edge Scanner
 
+## Phase 5D observed state
+
+Five independent probabilities and one abstention were retained before comparison. The predeclared research threshold is 5% estimated EV; no threshold was selected after seeing prices. Preview-only data display authority does not authorise the model-comparison jurisdiction policy, so comparison is UNAVAILABLE and no candidate or paper approval was attempted. This is not a NO EDGE result. The initial cohort has zero market API requests, zero candidates and zero official publications.
+
+Candidate creation and approval/revalidation remain covered by isolated fixtures, not claimed as a genuine hosted end-to-end success. Manual approval cannot alter the retained probability. Results and live/paper release gates remain closed.
+
 ## Phase 5C research boundary
 
 Approved raw-source datasets, normalized sporting inputs, research facts, match snapshots and model features remain separate records. Research snapshot creation and a recalculation assessment do not create a prediction or Candidate Edge. The current request path deliberately records MODEL_NOT_CONFIGURED/BLOCKED_DATA when no accepted sporting bundle and fitted executor exist.

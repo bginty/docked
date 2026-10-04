@@ -1,5 +1,9 @@
 # Android acceptance — Phase 5C
 
+## Phase 5D
+
+This phase changes private admin model views and backend research, not native/member navigation or the Android package. Existing v7 / 1.6-preview remains the Preview APK; its 988-entry credential/package audit passed again. No new APK or Android build is claimed. Hosted mobile admin acceptance uses a 412px viewport, not a physical Samsung S24. Physical v7/S24 confirmation and Play closed-test release inputs remain outstanding. See IOS_READINESS.md for preparation-only iOS scope.
+
 ## Current v7 delivery
 
 [Docked Preview v7 — Match Research](../artifacts/android/Docked-Preview-S24-v7-Match-Research.apk) is 9,597,678 bytes, SHA-256 `fb1703c10e2141b26dcf6abb2969643ebff496b9ea67dc7439f059fd0a72f4d0`, versionCode 7 / `1.6-preview`. Its [build and artifact audits](qa/phase5c/android/README.md) passed, including every one of 988 APK entries and the actual v6 package/certificate upgrade comparison. V3–v6 remain byte-identical and archived. The APK opens the canonical HTTPS alias independently of a laptop; its initial receipt is distinct from the later server revision.
