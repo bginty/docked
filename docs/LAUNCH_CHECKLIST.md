@@ -1,6 +1,21 @@
 # Release gates
 
-## Current Phase 5A Preview checkpoint — 4 October 2026
+## Phase 5B revised release gates
+
+- [x] Forward-only record; no reconstructed Docked tips/ROI or historical betting-performance gate.
+- [x] Separate independent sporting model, market reference, community, calibration, paper and official ledgers.
+- [ ] Written sporting-data modelling/retention rights and sufficient licensed history/current coverage.
+- [ ] Reviewed fitted deterministic Football V1; immutable parameters, inputs, source/config/code and quality limits.
+- [ ] Complete prospective prediction observations, calibration/data sanity and operational review. Owner decides sufficient evidence; no fixed months-long paper duration or target ROI.
+- [ ] Frozen Edge policy and approved model state; legal/market-source authority and exact regulation-results settlement.
+- [ ] Explicit live-release decision after those gates. Current publication remains off; official start remains unset.
+- [ ] Closed Play beta independently needs signing/track/tester inputs, privacy/age/data-safety declarations, moderation/support, transactional account email and physical S24 acceptance. Profitable official Edges are NOT a beta prerequisite.
+- [ ] Approved sender/DNS/recipient scope and transactional verification/reset acceptance. Marketing remains separate/off; see TRANSACTIONAL_EMAIL_READINESS.md.
+
+Earlier historical betting ROI checklist items are superseded release plans. Preserve tools for software/data/model calibration only.
+
+
+## Preserved Phase 5A Preview checkpoint — 4 October 2026
 
 - [x] Stable isolated Preview serves source `2e9041236b6e26043277e8cf103d1ebe49fe55c2`; Docked Preview `bckkllmndoxzpzdqrevb` has 15 migrations. Existing work/history preserved.
 - [x] Owner confirmed The Odds API **Free ($0/month, 500 monthly credits)** and exact limited manual-trial rights/scope; this is not general provider or production activation.
@@ -14,7 +29,7 @@
 - [x] Final actual-secret audit passed 4,537 source files and 1,060 client/APK/rendered artifacts with zero findings/errors. Temporary operator erased: zero users, sessions or roles, all four existing accounts preserved. [Final scope and cleanup receipts](qa/phase5a/README.md).
 - [ ] Any future polling cadence separately approved against measured quota, retention operations and operational ownership. Calls are currently stopped; no automatic polling/scanner schedule is activated.
 - [ ] Independent ownership, standard-price eligibility and disjoint pricing/availability cohorts approved before reference testing. Unconfigured sentinel counts are not empirical results.
-- [ ] Authorised results lifecycle, licensed historical dataset, genuine strategy validation and forward-paper study completed before official live authority. None is completed by this trial.
+- [ ] Superseded release plan: historical betting dataset/ROI and a mandatory forward-paper study are no longer launch requirements. The independent path instead needs authorised sporting inputs/results, model sanity/calibration, prospective observations and reviewed operational/legal release authority; the owner determines sufficient evidence.
 
 **Official live publication, forward paper, automatic polling/scanning, external email/push and commercial activation remain off.** Strategy remains UNVALIDATED; no ROI, CLV or advantage claim was measured. [Trial results](PROVIDER_TRIAL_RESULTS.md), [quality and exclusions](REAL_DATA_QUALITY.md), [measured and proposed costs](PHASE5A_PROVIDER_COSTS.md). Historical milestones below retain the status and test totals at their original dates.
 

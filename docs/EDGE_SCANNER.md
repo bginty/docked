@@ -1,5 +1,16 @@
 # Edge Scanner
 
+## Phase 5B independent official path
+
+The current server path is runEdgeScan → recordFootballPrediction → evaluateFootballCandidate. The first call commits independently and accepts canonical event/model/window IDs and a worker lease, never prices or caller probabilities. Without a fitted estimator, an eligible configured scan retains NOT_CONFIGURED and abstains before price lookup.
+
+A future registered estimator's committed prediction is reloaded with model/code/policy/region/data authority checks. One captured market source set supplies all three regulation 1X2 availability comparisons. Decimal EV and upward cent-rounded minimum prices select at most one candidate using frozen EV-desc/selection ordering. Candidate evidence retains prediction ID, full vector, input hash, model version and cutoff. Non-candidate predictions remain in calibration.
+
+Owner/admin + MFA review compares fresh market evidence with the SAME prediction. No numerical overrides or runtime activation. Database guards independently recheck lineage, freshness, threshold, model, policy, region and one-Edge-per-event. Research approval is not publication; paper remains separate; live requires APPROVED_FOR_LIVE and creates the permanent official mapping. Auto-publication stays false. Notifications are private durable admin records and deep links, with no external delivery.
+
+Earlier market-baseline sections describe preserved research infrastructure. Historical betting ROI is not an independent-model launch gate.
+
+
 Phase 5 adds private, durable research operations. It does not activate a provider, strategy, region, public notification, paper run or live publication. A calculated estimated EV is not evidence of a profitable strategy.
 
 ## Execution and configuration
@@ -24,7 +35,7 @@ Candidate deduplication binds market, strategy/hash, selection, purpose, region,
 
 Current observations have `evidence=market_data`. They are not forward-paper selections or live publications. Their raw payloads, receipt hashes, reviewed configuration and exact event mappings are private. Metadata cannot upgrade an unknown or promotional price. Current source use rechecks the active provider configuration, rights, exact competition/bookmaker/classification approval, ownership, timestamps, retained raw expiry, canonical market rules, health and region permissions. Disabling or rotating a configuration immediately makes incompatible fresh observations ineligible.
 
-Research requires an ordinary reviewed `market_data` region feature; Preview Tester social/fixture permissions grant no such access. Paper/live additionally retain the existing tips/publication gates. The shared `evaluateReference` engine and `MarketBaselineModel` supply all numerical values; manual forms cannot submit prices or probabilities. The baseline is market-derived, **UNVALIDATED**, and explicitly ineligible for live candidates. Future predictive models require their own reviewed implementation and validation; strategy lifecycle flags cannot relabel this baseline as validated.
+Research requires an ordinary reviewed `market_data` region feature; Preview Tester social/fixture permissions grant no such access. Paper/live additionally retain the existing tips/publication gates. In the preserved legacy market-baseline path, `evaluateReference` and `MarketBaselineModel` supply the numerical values. In the independent football path, the retained sporting prediction supplies probability and fair odds, while `evaluateReference` supplies the separate eligible availability price; its optional market-pricing probability is not a model input. Manual forms cannot submit prices or probabilities. The baseline is market-derived, **UNVALIDATED**, and explicitly ineligible for live candidates. A football estimator still needs its own reviewed implementation and evidence; strategy lifecycle flags cannot relabel the baseline as independent or validated.
 
 New Phase5 config/raw/fixture/model/recognition audit records use explicit UTF-8 bytewise canonical key ordering and normalized decimal numbers, matching `private.phase5_canonical_json`. SQL tests include exponent numbers and Unicode keys. Historical strategy/reference hashes keep their original serializer and identities. No previous ledger/configuration is rewritten.
 

@@ -1,5 +1,9 @@
 # Phase 2 research preparation
 
+## Phase 5B supersession — 4 October 2026
+
+The revised forward-only product direction supersedes any historical Docked betting-performance or historical betting ROI launch gate below. No retrospective Docked tips or profits will be reconstructed. Historical sporting statistics remain valid licensed model inputs; chronological model calibration, data-quality and software replay tools remain available. The official record starts only at its first genuine prospective live publication. See [model architecture](DOCKED_MODEL_ARCHITECTURE.md), [forward calibration](FORWARD_CALIBRATION.md) and [official record](OFFICIAL_RECORD.md). Older design details below are preserved as research/historical context, not current live-release prerequisites.
+
 The ordered workflow below describes the preserved legacy V1 input and pricing model. Phase 4 adds an explicit MarketReference branch with a stricter historical evidence schema, reference-region freeze binding and the same prospective reference evaluator/observer. Use [VALIDATION.md](VALIDATION.md#phase-4-research-support-boundary) for its exact inputs and commands; legacy quotes or reports cannot be relabelled as new-model evidence.
 
 No licensed historical data has been imported, no genuine result calculated, and no strategy edge established. All regression fixtures are explicitly fictional, stay outside public queries, and are deleted by the CLI integration test. The original V1 parameter values remain unchanged.

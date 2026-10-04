@@ -1,5 +1,12 @@
 # Market Reference v1 — unvalidated methodology
 
+## Phase 5B boundary
+
+Market Reference describes external availability; it is **not Docked Fair**. Optional pricing-cohort implied probabilities remain labelled market research and cannot supply Football V1 features or official probability. The scanner commits a sporting prediction first, then compares regulation 1X2 outcomes using one captured source set and clock. Independent football comparison accepts `pricing: null` when the availability reference and all separate sporting-model gates are valid; it does not require a bookmaker-derived probability.
+
+Existing rights, freshness, ordinary-price classification, ownership, mapping and regional guards remain. Unknown classification/empty cohorts stay NOT_CONFIGURED. Community still uses standard Market Reference independently of Docked's model. Earlier market-derived baseline descriptions below are preserved research methodology, superseded for official independent probabilities.
+
+
 ## Phase 5 integration boundary
 
 Current licensed observations may now carry the separate `market_data` discriminator. They retain the same source/ownership/classification/freshness gates and cannot enter publication records merely because ingestion succeeded. An immutable reviewed data configuration can provide the exact availability/pricing cohorts; absent cohorts continue to produce `NOT_CONFIGURED`. Factual fixture display has its own `market_data` regional approval and exposes no model probability or estimated EV.
@@ -25,7 +32,7 @@ The configuration fixes the algorithm and thresholds and is canonically hashed. 
 3. Collapse each cohort to one representative per operator, ordered by canonical bookmaker ID. Exclude the complete pricing ownership cohort from availability. At least two independent availability groups are required. The pricing estimate separately requires at least two independent pricing groups.
 4. For availability, calculate the lower median: sort prices ascending and select index `floor((n−1)/2)`. Exclude prices more than 20% from this initial median. Require at least two remaining groups and a retained range no greater than 10% of the retained lower median. There is no iterative removal until an attractive answer appears.
 5. The reference is the retained lower median, rounded **down** to a 0.01 tick. This never selects the maximum as a rule, interpolates a fictional price or rounds upward beyond the chosen observation. It represents a conservatively observable standard benchmark, not guaranteed execution.
-6. Availability source skew must be at most 90 seconds. When estimating probability, the combined cohorts must meet that limit and pricing probability disagreement must be at most 0.08 for **every** outcome. Missing or divergent pricing produces `pricing: null`; official candidates then fail closed. Community availability benchmarks do not claim an estimated probability.
+6. Availability source skew must be at most 90 seconds. When estimating a market-derived research probability, the combined cohorts must meet that limit and pricing probability disagreement must be at most 0.08 for **every** outcome. Missing or divergent pricing produces `pricing: null`; the legacy market-derived candidate path then fails closed. Independent football candidates use their separately retained sporting probability and do not require this optional pricing object. Community availability benchmarks do not claim an estimated probability.
 
 The output stores methodology/config/rules/evidence hashes, selection, reference price, conservative oldest retained source/snapshot/receipt timestamps, and separate pricing/availability source IDs and operator IDs. The evidence hash binds retained source records and decision context.
 

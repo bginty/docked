@@ -1,5 +1,9 @@
 # Validation and reproducibility
 
+## Phase 5B supersession — 4 October 2026
+
+The revised forward-only product direction supersedes any historical Docked betting-performance or historical betting ROI launch gate below. No retrospective Docked tips or profits will be reconstructed. Historical sporting statistics remain valid licensed model inputs; chronological model calibration, data-quality and software replay tools remain available. The official record starts only at its first genuine prospective live publication. See [model architecture](DOCKED_MODEL_ARCHITECTURE.md), [forward calibration](FORWARD_CALIBRATION.md) and [official record](OFFICIAL_RECORD.md). Older design details below are preserved as research/historical context, not current live-release prerequisites.
+
 ## Phase 5 baseline preparation
 
 The CLI adds `model-baseline` using `MarketBaselineModel` and the same strict `HistoricalReferenceEvent[]` as reference replay. It selects each last actual pre-decision snapshot, requires schedule/status knowledge at that decision, applies all dated rights/ownership/mapping/classification/region proofs, then calls the shared reference engine. It never passes results or later closing prices to the model. The report distinguishes historical `asOfTime` from actual computation `generatedAt`. Model/config/source evidence/code hashes and explicit null uncertainty are retained. This market-derived benchmark does not establish independent alpha or replace a study's declared comparison design.

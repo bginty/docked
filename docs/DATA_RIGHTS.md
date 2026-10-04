@@ -1,5 +1,9 @@
 # Data rights register
 
+## Phase 5B sporting-model boundary — 4 October 2026
+
+The prior bounded Odds API Preview trial authority remains unchanged and grants no independent sporting-model dataset. Football provider research is **INSUFFICIENT_AUTHORISED_DATA**, not a new licence or trial approval. football-data.org/API-Football need written commercial/derived-use and permanent audit-retention clarification; Sportmonks additionally needs spend approval; StatsBomb Open Data prohibits commercial exploitation under its reviewed user agreement. No sporting data was downloaded and no provider was purchased or activated. [Current first-party comparison and exact questions](FOOTBALL_DATA_PROVIDER_RESEARCH.md).
+
 ## Phase 5A decision — 4 October 2026
 
 **The Odds API: APPROVED_FOR_PREVIEW_TRIAL.** Reviewer: Codex, acting under the owner's explicit Phase 5A instructions. Reference: `the-odds-api-terms-2026-08-31-phase5a-2026-10-04`. Next review: **4 November 2026**, or sooner following material terms/product changes. Production approval is not granted. [Bounded execution plan](PHASE5A_TRIAL_PLAN.md).

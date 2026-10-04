@@ -1,5 +1,15 @@
 # Candidate review and approval
 
+## Phase 5B current workflow
+
+Sporting data → independent model → committed prediction → separate current Market Reference → candidate → **owner/admin MFA review** → paper or official publication, subject to purpose-specific approval. Neither analysts nor members can approve/reject through the new workflow. Manual forms provide canonical IDs and reasons, never numerical overrides. All eligible sporting events in frozen decision windows are evaluated, including those without a market; only qualifying comparisons enter the candidate queue.
+
+Approval reloads the original prediction and revalidates version, code, input cutoff, current source/reference, minimum/EV, scheduled event, region and provider authority. Changing numerical evidence requires an audited new version/calculation, not editing a candidate. A moved/stale price invalidates or expires the candidate without deleting its evidence. The database independently enforces the lineage and one official Edge per event.
+
+An independent strategy is registered inactive through the private models API (`create_policy`), explicitly reviewed (`approve_policy`), and separately activated (`set_policy_active`). Model registration/transition uses `create`/`transition`; all actions are bounded, same-origin, rate-limited and owner/admin MFA protected. Configuration values are supplied only for versioned model/strategy governance, not prediction overrides. No policy, fitted estimator or activation is seeded in this release.
+
+No historical betting ROI gate applies to this new path. Official live approval starts the forward-only record; research and paper never enter it. Auto-publication and external candidate notifications remain off. The earlier market-baseline workflow below is retained as superseded research context.
+
 The candidate queue is private research evidence. It does not populate public Edge feeds, official performance, community ledgers or Top Docked. Rejected and losing evidence is not deleted.
 
 1. A durable scheduled or explicit staff job reads approved canonical events/markets and retained current observations.

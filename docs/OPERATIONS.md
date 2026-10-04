@@ -1,10 +1,28 @@
 # Admin and operations guide
 
-## Phase 5 operating boundary — 4 October 2026
+## Phase 5B operating plan — disabled schedules
+
+Staff with current MFA use /admin/daily (Docked Today), /admin/model-performance and /admin/candidate-edges. Complete prediction cohorts are separate from paper, official and community performance. Unknown metrics stay unavailable. No sporting provider, fitted estimator or results source is configured.
+
+| Job | Proposed cadence/trigger | Activation requirement |
+| --- | --- | --- |
+| Sporting fixtures/results | Daily cache refresh initially; bounded post-full-time checks | Approved source, storage rights and quota; adapter still future work |
+| Model state update | New authorised sporting revision | Deterministic reviewed estimator and immutable as-of inputs |
+| Probability calculation | Frozen event/model decision windows | Active model, pre-kickoff, fresh data; one retained cohort record |
+| Market updates | Separate reserved provider schedule | Free trial does not authorise continuous polling; source rights/classification needed |
+| Edge scan | Cached data at frozen windows | Commit probability first; scanner makes no provider request |
+| Review | Human owner/admin | Fresh automatic revalidation; auto-publication false |
+| Price monitoring | Existing bounded 5/15/60-minute observations | Eligible source and quota; no invented delayed price |
+| Settlement/calibration | Authorised exact regulation outcome | Append result corrections; never infer from absent odds |
+
+These are configuration guidelines, not enabled jobs. Unknown quota cannot accelerate polling. Price changes cannot rewrite a probability. Apply the additive Phase 5B migration after the first 15 migrations only to verified Docked Preview, with protected preimage/dry run and RLS verification. Recovery preserves immutable ledgers through reviewed forward repair/restoration. New methodology/features/data/decay require new model versions.
+
+
+## Preserved Phase 5 operating boundary — 4 October 2026
 
 Docked Preview is the dedicated Sydney project `bckkllmndoxzpzdqrevb` in organisation `ernfnkcbalhyqpsrzdwa`. Existing accounts and prior migrations are preserved. The current implementation and acceptance evidence are recorded in [BUILD_STATUS.md](BUILD_STATUS.md) and [qa/phase5](qa/phase5). The Oura organisation/project is unrelated and must never be used.
 
-The Phase 5 ingestion path is separately gated by the exact preview identity, `MARKET_DATA_POLLING_ENABLED`, a dedicated provider key, reviewed effective-dated configuration, display/storage/derived rights, bounded raw retention, canonical mappings and a monthly quota ceiling. `THE_ODDS_API_KEY` and `ODDSPAPI_API_KEY` remain server-only. Provider keys are currently absent; no real fixture, price, outcome or historical dataset has been acquired.
+The Phase 5 ingestion path is separately gated by the exact preview identity, `MARKET_DATA_POLLING_ENABLED`, a dedicated provider key, reviewed effective-dated configuration, display/storage/derived rights, bounded raw retention, canonical mappings and a monthly quota ceiling. `THE_ODDS_API_KEY` and `ODDSPAPI_API_KEY` remain server-only. Keys/data were absent at that original checkpoint. Phase 5A subsequently completed the authorised, bounded Free-plan Odds API trial: nine attempts, eight successes, nine reported successful-response credits, and last-observed 491 remaining. Real fixtures/market observations are retained but polling is stopped; the failed attempt's charge is unknown. These are dated trial counts, not a newly queried quota. No sporting model dataset or authorised results feed was configured. See [trial evidence](PROVIDER_TRIAL_RESULTS.md).
 
 The intended daily flow is scheduled ingestion → canonical market observations → versioned Market Reference → scanner → candidate review → gated publication → consented delivery → subsequent price observation → authorised outcomes → settlement → complete performance. The scanner operates on stored observations; opening the app spends no provider credits. Configure a supervised backend trigger only after the owner has approved the provider scope and budget. No hosted recurring trigger has been activated by this phase.
 

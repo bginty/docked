@@ -1,5 +1,11 @@
 # Reference-price Edge model
 
+## Phase 5B supersession — 4 October 2026
+
+The revised forward-only product direction supersedes any historical Docked betting-performance or historical betting ROI launch gate below. No retrospective Docked tips or profits will be reconstructed. Historical sporting statistics remain valid licensed model inputs; chronological model calibration, data-quality and software replay tools remain available. The official record starts only at its first genuine prospective live publication. See [model architecture](DOCKED_MODEL_ARCHITECTURE.md), [forward calibration](FORWARD_CALIBRATION.md) and [official record](OFFICIAL_RECORD.md). Older design details below are preserved as research/historical context, not current live-release prerequisites.
+
+The current independent path is documented in [Football V1](FOOTBALL_MODEL_V1.md) and [Edge Scanner](EDGE_SCANNER.md). It requires a retained sporting-model probability, not a bookmaker pricing cohort. Below, `market-reference-edge-v2.0.0` describes the preserved legacy research evaluator; it cannot create new genuine official records.
+
 The primary official message is **TAKE this selection at the minimum Edge price or better**. Bookmakers are source context. Five distinct values must retain their own labels:
 
 | Value | Meaning |
@@ -14,7 +20,7 @@ The new `market-reference-edge-v2.0.0` evaluator uses the same Decimal arithmeti
 
 For a purely arithmetic example, probability 0.55 gives fair price 1.81818… . With the preserved 3% threshold, minimum Edge price is **1.88**, and an observed reference of 2.05 implies estimated EV 12.75%. A 1.91 minimum would require a different threshold; the product illustration is not permission to silently change strategy parameters. Estimated EV is not guaranteed profit.
 
-Current reference at or above the captured minimum supports ACTIVE while the publication remains eligible. Below minimum becomes PRICE BELOW MINIMUM; missing or invalid data, including a missing pricing cohort, becomes SUSPENDED. Expiry prevents reactivation and may progress to SETTLED when verified settlement evidence arrives. SETTLED cannot reopen. Observation calculations retain the publication probability and minimum; they do not rewrite its decision or accounting price. A later probability estimate used for the declared closing diagnostic stays separate from this current-EV calculation.
+Current reference at or above the captured minimum supports ACTIVE while the publication remains eligible. Below minimum becomes PRICE BELOW MINIMUM; missing or invalid required evidence becomes SUSPENDED. A missing pricing cohort is required evidence only for the legacy market-derived method. Independent football uses the retained sporting probability and a valid availability reference even with `pricing: null`. Expiry prevents reactivation and may progress to SETTLED when verified settlement evidence arrives. SETTLED cannot reopen. Observation calculations retain the publication probability and minimum; they do not rewrite its decision or accounting price. The legacy later-probability closing diagnostic is not populated for independent football; a separately defined closing-price CLV measure remains future work.
 
 If a below-minimum price recovers, the record becomes SUSPENDED: the displayed current price can recover, but this version does not reactivate the original Edge. It is no longer falsely labelled below minimum, and no second benchmark bet is created.
 

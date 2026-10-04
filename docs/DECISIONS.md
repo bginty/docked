@@ -1,5 +1,16 @@
 # Engineering decisions — started 2 October 2026
 
+## Phase 5B revised — forward-only and independent model
+
+- Supersede historical betting ROI/reconstructed-tip launch plans. Preserve replay for time-safe data/software/model evaluation, separate from official performance.
+- Commit every eligible prospective prediction or abstention before market comparison. Price failures cannot remove predictions. An event/model/window cohort cannot be replaced with a better rerun.
+- Use strict sport-only inputs and immutable source/input/config/code provenance. No bookmaker probabilities, invented coefficients or LLM estimates enter Football V1.
+- Propose a simple goals/attack/defence/home-advantage research baseline. Optional injuries, lineups and xG are not paid prerequisites. Establish free provider rights/history before importing.
+- Separate model calibration, paper, official live record and community. Establish official start atomically at first genuine live publication; deny new legacy market-derived live records. Preserve every official result and correction, one-unit benchmark.
+- Freeze model/Edge policy before observation. Owner/admin approval revalidates original prediction, model/input freshness, market, code, region and provider authority. No numerical override or auto-publication.
+- Friends-and-family Play testing may precede model approval. Actual account/email, support/privacy, signing, declarations and device acceptance remain required. No arbitrary paper duration or target ROI is imposed.
+
+
 ## Storefront retirement and production isolation — 4 October 2026
 
 - Act on the owner's later explicit instruction to retire the unused storefront. Replace its deployed GitHub Pages output with a minimal approved-brand transition page; preserve source history, the existing-order support link and the new application branch. No product catalogue, checkout JavaScript, payment integration or old product imagery remains in that output.
