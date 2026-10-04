@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-10-03T23:53:05.817Z",
+  "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+  "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "deploymentId": "dpl_2Km6vCTVhK3iwavf2E9DRmgjWpLD",
+  "sourceCommit": "2e9041236b6e26043277e8cf103d1ebe49fe55c2",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "url": "https://docked-preview-b9lkkvbgl-briant-s-projects.vercel.app",
+  "target": "preview",
+  "health": {
+    "feed": false,
+    "strategy": false,
+    "publication": false,
+    "database": true,
+    "oddsProviderStatus": "PENDING_RIGHTS",
+    "resultsProviderStatus": "NOT_CONFIGURED",
+    "reason": "Freshness is evaluated from the last successful shared ingestion. Individual quote age is checked again before publication."
+  },
+  "previousDeploymentId": "dpl_5KaoAtMifvWypDwAuHzyU9KGphYK",
+  "productionChanged": false,
+  "dnsChanged": false
+}

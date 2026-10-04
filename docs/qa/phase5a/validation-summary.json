@@ -1,0 +1,75 @@
+{
+  "sourceCommit": "2e9041236b6e26043277e8cf103d1ebe49fe55c2",
+  "platform": {
+    "command": "npx tsx --test --test-concurrency=2 tests/platform/*.test.ts",
+    "passed": 286,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 117925.1385,
+    "privateLog": "private-data/phase5a/platform-final-repaired.log"
+  },
+  "database": {
+    "passed": 141,
+    "failed": 0,
+    "receipt": "database-regression.json"
+  },
+  "lint": {
+    "status": "PASS",
+    "command": "npm run lint",
+    "privateLog": "private-data/phase5a/lint-final.log"
+  },
+  "typecheck": { "status": "PASS", "command": "npm run typecheck" },
+  "browser": {
+    "passed": 82,
+    "failed": 0,
+    "receipt": "full-browser-summary.json",
+    "sourceCommit": "51be70486531ad84d96400656c2579a0de170720"
+  },
+  "finalWebBuild": { "status": "PASS", "receipt": "final-isolated-build.json" },
+  "hosted": {
+    "status": "PASS",
+    "assertions": 308,
+    "genuineMfa": true,
+    "screens": 4,
+    "widths": [412, 1366],
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "providerRequests": 0,
+    "receipt": "hosted/acceptance.json"
+  },
+  "actualSecretAudit": {
+    "status": "PASS",
+    "sourceFiles": 4537,
+    "artifactFiles": 1060,
+    "findings": 0,
+    "errors": 0,
+    "receipt": "actual-secret-audit.json"
+  },
+  "operatorCleanup": {
+    "status": "PASS",
+    "usersRemaining": 0,
+    "sessionsRemaining": 0,
+    "rolesRemaining": 0,
+    "existingAccountsPreserved": true,
+    "receipt": "operator/cleanup.json"
+  },
+  "dependencyAudit": {
+    "status": "PASS",
+    "vulnerabilities": 0,
+    "privateLog": "private-data/phase5a/dependency-audit.json"
+  },
+  "android": {
+    "rebuilt": false,
+    "reason": "No native, Capacitor, app-entry, asset or Android configuration change in Phase 5A; existing v5 APK receives the reviewed HTTPS Preview and is separately credential-scanned."
+  },
+  "retainedEarlierFailures": [
+    "Initial 277-case platform run had one 20-second subprocess timeout under concurrent load; isolated file passed8/8 unchanged and both later full runs passed281/281 then286/286.",
+    "Initial final database run failed12 setup hooks because the test harness applied role-dependent migrations before the role-creating migration. Ordered harness repair preserved assertions; final141/141 passed.",
+    "First hosted free provider attempt failed in reserved transaction handling and double-encoded completion diagnostics. The immutable failure remains; repaired driver and bounded MFA review are recorded separately."
+  ],
+  "limits": [
+    "The82-case compiled browser baseline precedes the subsequent ingestion/diagnostic server repairs; final source has a fresh build and separate targeted hosted acceptance.",
+    "Local fictional fixtures do not demonstrate provider entitlement, genuine sporting performance or live strategy validation.",
+    "Physical Samsung S24 acceptance was not repeated during this provider-data phase."
+  ]
+}

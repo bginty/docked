@@ -142,11 +142,11 @@ async function capture(
       const reference = references.nth(index);
       const referenceField = async (name: string) =>
         (
-          await reference
+          (await reference
             .getByText(name, { exact: true })
             .locator("..")
             .locator("dd")
-            .innerText()
+            .textContent()) ?? ""
         ).trim();
       if ((await referenceField("Status")) !== "NOT_CONFIGURED") continue;
       if (unconfiguredReferences === 0)
@@ -350,10 +350,10 @@ async function main() {
     const optionData = await options.json();
     check(
       options.status() === 200 &&
-        optionData.status === "RESTRICTED" &&
+        optionData.status === "NOT_CONFIGURED" &&
         Array.isArray(optionData.options) &&
         optionData.options.length === 0,
-      "community-region-denied-no-benchmark",
+      "community-reference-unconfigured-no-benchmark",
     );
     const page = await context.newPage();
     let pageErrors = 0,

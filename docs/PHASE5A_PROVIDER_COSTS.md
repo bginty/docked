@@ -1,6 +1,10 @@
 # Phase 5A — The Odds API usage model
 
-Reviewed **4 October 2026**. The owner confirmed **Free for now** on that date: the public allowance is **500 credits/month at $0**, with history **NOT_INCLUDED**. Actual remaining credits are unmeasured until the authorised quota inspection. All scenarios below are **hypothetical planning calculations**, not observed consumption, an upgrade, an activation instruction or a claim that source coverage passed. Actual trial requests and header-reported credits belong in [PROVIDER_TRIAL_RESULTS](PROVIDER_TRIAL_RESULTS.md).
+Reviewed **4 October 2026**. The owner confirmed **Free for now** on that date: the public allowance is **500 credits/month at $0**, with history **NOT_INCLUDED**. The completed manual trial's final measured headers show **491 remaining / 9 used** at 2026-10-03 23:47:15 UTC. All future cadence scenarios below are **hypothetical planning calculations**, not an upgrade, activation instruction or claim that source coverage passed. The measured trial is recorded separately in [PROVIDER_TRIAL_RESULTS](PROVIDER_TRIAL_RESULTS.md).
+
+## Measured manual trial
+
+The [retained request ledger](qa/phase5a/operator/trial-report.json) contains nine attempts: eight successful responses and one first-attempt Docked driver failure. Successful response charges sum to **nine credits**: EPL, NBA and La Liga current odds cost one each; EPL, NFL and NBA three-day scores inspections cost two each; the successful sports and NFL event catalogues reported zero. The first failed catalogue attempt has no usage headers, so its charge and the sum over **all** attempts remain unknown. Final account headers corroborate used=9 and remaining=491 without filling that historical null. No purchase or historical request occurred; calls are stopped. The measured nine-credit sequence matches the revised planned envelope, while the 250-credit/25-attempt caps remain ceilings rather than targets. This sample does not grant permission to spend the remaining balance.
 
 ## Meter and account evidence
 

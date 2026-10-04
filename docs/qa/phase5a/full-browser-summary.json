@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "scope": "isolated compiled UI and labelled component fixtures; no hosted trial acceptance",
+  "sourceCommit": "51be704",
+  "buildId": "4onaGwnJq8O-fqgVwC1cb",
+  "startedAt": "2026-10-03T23:17:51.545Z",
+  "durationMs": 1555147.616,
+  "workers": 1,
+  "passed": 82,
+  "failed": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "freshScreenshots": 367,
+  "dataHealthScreenshots": 12,
+  "clientCanaryAssetsChecked": 50,
+  "clientCanaryFindings": 0,
+  "externalApplicationFetchAttempts": 0,
+  "runtimeCredentialsBlank": true,
+  "envLocalModified": false,
+  "serverStopped": true,
+  "loopbackClosedVerified": true,
+  "scopedHostedScriptLint": "PASS",
+  "wholeProjectTypecheckAfterScriptAssertions": "PASS",
+  "hostedAcceptanceExecuted": false,
+  "limitations": [
+    "Newer hosted ingestion repairs are outside this compiled build's evidence.",
+    "Synthetic records are confined to labelled browser fixtures and are not provider, performance or authentication evidence.",
+    "External-fetch accounting covers the application guard, not unrelated browser or operating-system traffic.",
+    "Browser viewport checks do not establish physical Android device acceptance."
+  ]
+}

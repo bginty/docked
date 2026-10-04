@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-03T23:52:45.255Z",
+  "status": "PASS",
+  "sourceCommit": "2e9041236b6e26043277e8cf103d1ebe49fe55c2",
+  "buildId": "jNuceFbCc6zlPkZ0ZsBLx",
+  "scope": "final isolated production compilation and browser credential boundary after diagnostic projection repair",
+  "productionBuildExitCode": 0,
+  "clientCanaryAssets": 50,
+  "clientCanaryFindings": 0,
+  "applicationExternalFetchAttempts": 0,
+  "envLocalModified": false,
+  "hostedCredentialsUsed": false,
+  "localServerStarted": false,
+  "isolation": "Existing private local-qa wrapper blanks environment-file and inherited service credentials, disables service gates, and uses build-only canary markers with a loopback application-fetch guard.",
+  "browserEvidence": {
+    "receipt": "full-browser.json",
+    "passed": 82,
+    "sourceCommit": "51be704",
+    "buildId": "4onaGwnJq8O-fqgVwC1cb",
+    "rerunAgainstThisBuild": false
+  },
+  "hostedAcceptance": "PENDING_EXPLICIT_GO"
+}

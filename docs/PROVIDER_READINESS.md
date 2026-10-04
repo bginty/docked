@@ -1,6 +1,27 @@
 # Odds and results integration readiness
 
-## Key storage update — 4 October 2026
+## Current Phase 5A readiness — 4 October 2026
+
+The controlled **The Odds API manual Preview trial has completed; further calls are stopped**. Stable Preview source is `2e9041236b6e26043277e8cf103d1ebe49fe55c2`; 15 migrations are applied to Docked Preview `bckkllmndoxzpzdqrevb`. The owner confirmed **Free, $0/month, 500 monthly credits**. Nine ledger attempts remain visible: eight SUCCESS, one original FAILED. Successful response charges total nine credits; final headers report **491 remaining / 9 used**. The first failed attempt has no headers, so its charge and the all-attempt reported sum remain unknown. No quota balance, attempt or failure was reset. [Measured trial](PROVIDER_TRIAL_RESULTS.md).
+
+The sample retained 27 real fixtures, 11 canonical football markets and 110 complete source vectors containing 330 selection prices. NBA's 44 returned events were outside the declared seven-day horizon; NFL was catalogue-only. All 110 vectors were fresh at receipt and **all are stale at the final aggregate check** because there is no automatic refresh. Standard-price classification remains UNKNOWN_REVIEW; pricing/availability cohorts are empty. **Market Reference is NOT_CONFIGURED** and outlier, independence and reference-availability metrics are **unmeasured**. Early immutable diagnostic sentinel counts must not be treated as observations; the read projection now returns null for unavailable metrics. [Quality report](REAL_DATA_QUALITY.md).
+
+| Purpose                                                | Current status and authority boundary                                                                            |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Administrator manual data trial                        | **APPROVED_FOR_PREVIEW_TRIAL**; completed bounded sample, no additional request authority implied                |
+| Ordinary-member market data                            | **Denied without current regional approval**; social Preview Tester grants do not qualify                        |
+| Legacy official odds/publication path                  | **PENDING_RIGHTS**, separate from the limited manual-trial review; disabled                                      |
+| Pricing / availability Market Reference                | **NOT_CONFIGURED / UNMEASURED**; no approved independent standard-price cohorts                                  |
+| Model / strategy / forward paper                       | Model probability unavailable; strategy UNVALIDATED; forward paper NOT STARTED                                   |
+| Results and settlement                                 | **NOT_CONFIGURED**; three limited score inspections do not establish cancellation/correction/regulation coverage |
+| Historical odds/research                               | **NOT_INCLUDED** on confirmed Free; zero historical calls, no dataset or replay                                  |
+| Automatic polling/scanning, live publication, delivery | **OFF**; no real email/push or commercial activation                                                             |
+
+The manual path is additional to the scheduled/general path below. Each request requires an exact Preview identity, current administrator MFA, reviewed rights/configuration, and an expiring single-use scope permit. It records a conservative reservation before I/O, captures quota headers before payload parsing and permits no unattended retries. The original driver failure was repaired using explicit transactions on the pinned reserved connection and typed JSON parameters, then acknowledged by an append-only narrowly scoped review; the old evidence was not rewritten. [Incident](qa/phase5a/DRIVER_INCIDENT.md).
+
+Current-market parsing requires each market's observation timestamp and rejects stale/future, incomplete or unsupported lifecycle data. Missing/suspended sources never become a usable reference. Scores remain inspection-only, and the confirmed Free entitlement forbids historical probes. The supplier key remains sensitive and server-only; it was not retrieved for reporting. Local checks pass **286 platform / 141 PostgreSQL / 82 isolated browser cases**, plus lint, typecheck, build and dependency audit. Separately, [actual hosted QA passed 308 assertions](qa/phase5a/hosted/acceptance.json) using genuine MFA and retained real fixtures, including Free history NOT_INCLUDED and all eight unavailable metrics on 15 reference cards shown as Unknown. Four screens at 412/1,366 pixels passed accessibility/overflow checks with zero page or console errors. **Temporary-operator cleanup is complete; all four existing accounts are preserved**; [the Phase 5A report](qa/phase5a/README.md) records final audit and cleanup scope.
+
+## Preserved pre-trial key-storage checkpoint — 4 October 2026
 
 The owner supplied `THE_ODDS_API_KEY` in Vercel's sensitive Preview environment. Metadata confirmed its presence without retrieving its value. `MARKET_DATA_POLLING_ENABLED=false` is explicitly configured and verified for Docked Preview. The key has not been tested against the supplier, copied into production or used for any request. Current market data has no selected/approved provider configuration; results remain unconfigured. The accepted stable Preview deployment predates this storage change. Storing a key does not approve display/retention rights, a request budget or strategy validation. [Configuration receipt](qa/production/preview-polling-closed.json).
 

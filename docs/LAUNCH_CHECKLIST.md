@@ -1,5 +1,23 @@
 # Release gates
 
+## Current Phase 5A Preview checkpoint — 4 October 2026
+
+- [x] Stable isolated Preview serves source `2e9041236b6e26043277e8cf103d1ebe49fe55c2`; Docked Preview `bckkllmndoxzpzdqrevb` has 15 migrations. Existing work/history preserved.
+- [x] Owner confirmed The Odds API **Free ($0/month, 500 monthly credits)** and exact limited manual-trial rights/scope; this is not general provider or production activation.
+- [x] Completed bounded trial retained nine attempts: eight SUCCESS and one initial FAILED. Successful charges total nine; last headers show 491 remaining / 9 used. Failed charge and all-attempt sum stay unknown. Driver repair and reviewed recovery retain the original evidence/counters.
+- [x] Aggregate quality checked: 27 real fixtures, 11 football markets, 110 complete source vectors / 330 individual prices. Horizon and exchange exclusions quantified without treating them as a provider failure rate.
+- [x] Fresh-at-receipt evidence preserved; all 110 retained vectors later stale with polling stopped. UNKNOWN_REVIEW classifications and empty reference cohorts keep Market Reference NOT_CONFIGURED and quality metrics unmeasured where no evaluation occurred.
+- [x] Free history recorded NOT_INCLUDED with zero historical calls. Score inspections remain insufficient for authorised settlement; results NOT_CONFIGURED.
+- [x] Local validation passed **286 platform tests, 141 PostgreSQL/RLS tests and 82 isolated browser cases**, plus lint, typecheck, optimized build and dependency audit.
+- [x] Ordinary-member market-data region gates remain denied; social tester permissions do not grant data access. Legacy official odds PENDING_RIGHTS remains distinct from administrator manual-trial APPROVED_FOR_PREVIEW_TRIAL.
+- [x] [Actual hosted acceptance passed 308 assertions](qa/phase5a/hosted/acceptance.json) with genuine MFA and retained real fixtures. Free history stayed NOT_INCLUDED; eight unavailable metrics on each of 15 reference cards showed Unknown. Four screens at 412/1,366 pixels passed accessibility/overflow checks with zero page or console errors.
+- [x] Final actual-secret audit passed 4,537 source files and 1,060 client/APK/rendered artifacts with zero findings/errors. Temporary operator erased: zero users, sessions or roles, all four existing accounts preserved. [Final scope and cleanup receipts](qa/phase5a/README.md).
+- [ ] Any future polling cadence separately approved against measured quota, retention operations and operational ownership. Calls are currently stopped; no automatic polling/scanner schedule is activated.
+- [ ] Independent ownership, standard-price eligibility and disjoint pricing/availability cohorts approved before reference testing. Unconfigured sentinel counts are not empirical results.
+- [ ] Authorised results lifecycle, licensed historical dataset, genuine strategy validation and forward-paper study completed before official live authority. None is completed by this trial.
+
+**Official live publication, forward paper, automatic polling/scanning, external email/push and commercial activation remain off.** Strategy remains UNVALIDATED; no ROI, CLV or advantage claim was measured. [Trial results](PROVIDER_TRIAL_RESULTS.md), [quality and exclusions](REAL_DATA_QUALITY.md), [measured and proposed costs](PHASE5A_PROVIDER_COSTS.md). Historical milestones below retain the status and test totals at their original dates.
+
 ## Current public-site status — 4 October 2026
 
 - [x] Owner explicitly authorised removing the old storefront and replacing it with a neutral transition page.
@@ -13,7 +31,7 @@
 
 The **transition page is live; the new application production launch is pending**. Its optional Preview link does not convert test accounts, the Android Preview package or unvalidated sporting research into production. [Completed retirement evidence](qa/production/retirement/README.md) and [application release runbook](PRODUCTION_RELEASE.md).
 
-## Phase 5 readiness — 4 October 2026
+## Preserved milestone: Phase 5 readiness — 4 October 2026
 
 - [x] Existing source and all prior milestones preserved; rollback tag `docked-before-phase5-2026-10-04` recorded before changes.
 - [x] Provider evaluation, rights/retention design, historical matrix and ingestion-based cost assumptions documented from official sources.

@@ -1,0 +1,46 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "migrationCount": 15,
+  "recordedAt": "2026-10-03T23:39:41Z",
+  "results": [
+    {
+      "type": "security",
+      "lints": [
+        {
+          "name": "rls_enabled_no_policy",
+          "level": "INFO",
+          "count": 11,
+          "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+        },
+        {
+          "name": "auth_leaked_password_protection",
+          "level": "WARN",
+          "count": 1,
+          "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+        }
+      ]
+    },
+    {
+      "type": "performance",
+      "lints": [
+        {
+          "name": "unindexed_foreign_keys",
+          "level": "INFO",
+          "count": 78,
+          "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0001_unindexed_foreign_keys"
+        },
+        {
+          "name": "unused_index",
+          "level": "INFO",
+          "count": 12,
+          "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "RLS-without-policy tables are intentional private deny-all; runtime grants are verified separately.",
+    "Leaked-password protection remains disabled; no paid upgrade authorised.",
+    "Unindexed foreign keys and unused indexes remain operational review items; no schema-wide tuning or index removal in this bounded trial."
+  ]
+}

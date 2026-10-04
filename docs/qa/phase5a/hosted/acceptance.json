@@ -1,0 +1,1254 @@
+{
+  "status": "PASS",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "checkedAt": "2026-10-03T23:58:58.059Z",
+  "genuineSession": true,
+  "genuineMfa": true,
+  "providerRequests": 0,
+  "trialPermitsSubmitted": 0,
+  "mockedData": false,
+  "checks": [
+    {
+      "check": "explicit-preview-scope",
+      "status": "PASS"
+    },
+    {
+      "check": "private-disposable-operator",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-no-token-/api/internal/provider-trial",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-no-token-/api/internal/edge-scanner",
+      "status": "PASS"
+    },
+    {
+      "check": "anonymous-staff-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-app-login",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-operator-identity",
+      "status": "PASS"
+    },
+    {
+      "check": "secure-app-cookies",
+      "status": "PASS"
+    },
+    {
+      "check": "aal1-staff-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "genuine-existing-factor-mfa",
+      "status": "PASS"
+    },
+    {
+      "check": "aal2-private-scanner-read",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-data-only-no-model",
+      "status": "PASS"
+    },
+    {
+      "check": "scheduled-scanner-remains-paused",
+      "status": "PASS"
+    },
+    {
+      "check": "ordinary-member-region-denied-today",
+      "status": "PASS"
+    },
+    {
+      "check": "ordinary-member-private-cache-today",
+      "status": "PASS"
+    },
+    {
+      "check": "ordinary-member-region-denied-upcoming",
+      "status": "PASS"
+    },
+    {
+      "check": "ordinary-member-private-cache-upcoming",
+      "status": "PASS"
+    },
+    {
+      "check": "ordinary-member-region-denied-weekend",
+      "status": "PASS"
+    },
+    {
+      "check": "ordinary-member-private-cache-weekend",
+      "status": "PASS"
+    },
+    {
+      "check": "community-reference-unconfigured-no-benchmark",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-preview-rights-only",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-staff-fixture-evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-genuine-fixtures-present",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-actual-history-not-included",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-successful-retry-and-failed-attempt-retained",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-original-sanitized-failure-preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unreported-failure-charge-remains-unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-0-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-1-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-2-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-3-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-4-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-5-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-6-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-7-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-8-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-9-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-10-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-11-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-12-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-13-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-unconfigured-reference-14-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-actual-unconfigured-reference-evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-412-http",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-412-no-approved-model",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-412-actual-data-only-run",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-412-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-412-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-preview-rights-only",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-staff-fixture-evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-genuine-fixtures-present",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-actual-history-not-included",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-successful-retry-and-failed-attempt-retained",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-original-sanitized-failure-preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unreported-failure-charge-remains-unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-0-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-1-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-2-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-3-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-4-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-5-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-6-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-7-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-8-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-9-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-10-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-11-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-12-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-13-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-availability-reference-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-availability-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-pricing-sources-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-eligible-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-excluded-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-stale-observations-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-outliers-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-unconfigured-reference-14-source-age-at-evaluation-(seconds)-unmeasured",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-actual-unconfigured-reference-evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "data-health-1366-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-1366-http",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-1366-no-approved-model",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-1366-actual-data-only-run",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-1366-no-overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-1366-accessibility",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-client-asset",
+      "status": "PASS"
+    },
+    {
+      "check": "rendered-no-browser-errors",
+      "status": "PASS"
+    },
+    {
+      "check": "rendered-client-secret-audit",
+      "status": "PASS"
+    }
+  ],
+  "pageErrors": 0,
+  "consoleErrors": 0,
+  "clientAssets": 14,
+  "operatorCleanupRequired": true,
+  "limits": [
+    "Staff fixture evidence does not authorize member market display.",
+    "Browser widths are not physical Android device acceptance.",
+    "Operator session is closed locally; root performs final revocation and account erasure."
+  ]
+}
