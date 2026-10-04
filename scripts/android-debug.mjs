@@ -52,7 +52,7 @@ const artifactOutput = path.join(
 );
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
-const hostedFilename = "Docked-Preview-S24-v6-Forward-Record.apk";
+const hostedFilename = "Docked-Preview-S24-v7-Match-Research.apk";
 preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);
 preserveAndroidApks(
   path.join(root, "android/app/build/outputs/bundle/closedTest"),
@@ -85,10 +85,10 @@ if (closedTest) {
   mkdirSync(artifactDelivery, { recursive: true });
   copyFileSync(
     path.join(artifactOutput, "app-closedTest.aab"),
-    path.join(artifactDelivery, "Docked-Preview-v6-Closed-Test.aab"),
+    path.join(artifactDelivery, "Docked-Preview-v7-Closed-Test.aab"),
   );
   console.log(
-    "Created artifacts/android/Docked-Preview-v6-Closed-Test.aab. No Play upload was performed.",
+    "Created artifacts/android/Docked-Preview-v7-Closed-Test.aab. No Play upload was performed.",
   );
 } else if (hosted) {
   const output = path.join(root, "android/app/build/outputs/apk/preview");

@@ -9,6 +9,8 @@ import {
 import { AppIcon } from "@/components/app-icon";
 import { appViewer } from "@/server/app-view";
 import { communityFeed } from "@/server/community-social";
+import { reviewedResearch } from "@/server/research-engine";
+import { ReviewedResearchList } from "@/components/research-content";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
@@ -23,9 +25,10 @@ export default async function Feed({
 }) {
   const query = await searchParams;
   const tab = query.tab === "latest" ? "latest" : "for_you";
-  const [{ who, configured }, feed] = await Promise.all([
+  const [{ who, configured }, feed, research] = await Promise.all([
     appViewer(),
     communityFeed({ tab, sport: query.sport, cursor: query.cursor }),
+    reviewedResearch({ limit: 3 }),
   ]);
   return (
     <AppShell authenticated={!!who}>
@@ -59,6 +62,10 @@ export default async function Feed({
                   sport={query.sport}
                   compact
                 />
+                {!query.cursor &&
+                  (!query.sport || query.sport === "football") && (
+                    <ReviewedResearchList data={research} compact />
+                  )}
               </div>
               <FeedSidePanel />
             </div>

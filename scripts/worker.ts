@@ -1,4 +1,9 @@
 import { db } from "../src/server/db";
+import {
+  scheduleResearchUpdates,
+  runResearchUpdate,
+} from "../src/server/research-scheduler";
+import { purgeResearchRetention } from "../src/server/research-engine";
 import { config } from "../src/server/config";
 import { leaseJob, finishJob, leaseOutbox } from "../src/server/queue";
 import {
@@ -48,6 +53,15 @@ async function main() {
   await sql`update private.outbox set state='dead',last_error='Lease exhausted after repeated crashes' where state='leased' and lease_until<now() and attempts>=5`;
   await sql`update private.job_runs set state='dead',failure_reason='Lease exhausted after repeated crashes' where state='leased' and lease_until<now() and attempts>=5`;
   const now = new Date().toISOString();
+  await isolatedObservation(
+    async () => {
+      await purgeResearchRetention();
+      await scheduleResearchUpdates();
+    },
+    async () => {
+      await sql`insert into private.audit_events(actor,action,subject,details) values('worker','research_maintenance_failure','service','{"reason":"Research retention or disabled-by-default scheduling needs review"}')`;
+    },
+  );
   await isolatedObservation(
     async () => {
       await scheduleEdgeScans();
@@ -107,6 +121,12 @@ async function main() {
     try {
       if (job.kind === "edge-scan") {
         if (!(await runEdgeScan(job))) return;
+      } else if (job.kind === "research-update") {
+        await runResearchUpdate({
+          id: String(job.id),
+          lease_token: String(job.lease_token),
+          payload: job.payload,
+        });
       } else if (job.kind === "account_deletion") {
         if (typeof job.payload.userId === "string")
           await processAccountDeletion(job.payload.userId);

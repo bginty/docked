@@ -374,6 +374,9 @@ export async function communitySearch(query: string): Promise<CommunitySearch> {
   );
 }
 const preferences = (r: Row): NotificationPreferences => ({
+  researchUpdates: r.research_updates === true,
+  lineupUpdates: r.lineup_updates === true,
+  teamUpdates: r.team_updates === true,
   officialEdges: r.official_edges === true,
   followedMembers: r.followed_members === true,
   social: r.social === true,
@@ -1179,7 +1182,7 @@ export async function mutateCommunityNotifications(input: unknown) {
       }
       if (action.dealsMarketing)
         await tx`select private.community_assert_access(${who.user.id},'marketing')`;
-      await tx`insert into private.social_notification_preferences(profile_id,official_edges,followed_members,social,leaderboard,competitions,deals_marketing,in_app) values(${profileId},${action.officialEdges},${action.followedMembers},${action.social},${action.leaderboard},${action.competitions},${action.dealsMarketing},${action.inApp}) on conflict(profile_id) do update set official_edges=excluded.official_edges,followed_members=excluded.followed_members,social=excluded.social,leaderboard=excluded.leaderboard,competitions=excluded.competitions,deals_marketing=excluded.deals_marketing,in_app=excluded.in_app,email=false,push=false,updated_at=clock_timestamp()`;
+      await tx`insert into private.social_notification_preferences(profile_id,official_edges,followed_members,social,leaderboard,competitions,deals_marketing,in_app,research_updates,lineup_updates,team_updates) values(${profileId},${action.officialEdges},${action.followedMembers},${action.social},${action.leaderboard},${action.competitions},${action.dealsMarketing},${action.inApp},${action.researchUpdates},${action.lineupUpdates},${action.teamUpdates}) on conflict(profile_id) do update set official_edges=excluded.official_edges,followed_members=excluded.followed_members,social=excluded.social,leaderboard=excluded.leaderboard,competitions=excluded.competitions,deals_marketing=excluded.deals_marketing,in_app=excluded.in_app,research_updates=excluded.research_updates,lineup_updates=excluded.lineup_updates,team_updates=excluded.team_updates,email=false,push=false,updated_at=clock_timestamp()`;
       await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${who.user.id},'community_marketing',${action.dealsMarketing},'phase3-2026-10',${who.user.id})`;
       await audit(
         tx,

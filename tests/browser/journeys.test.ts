@@ -122,6 +122,22 @@ test("anonymous public/API gates, protected admin and no fake signup success", a
     },
   });
   expect(modelCrossOrigin.status()).toBe(403);
+  expect((await request.get("/api/admin/research")).status()).toBe(403);
+  for (const origin of [
+    "http://localhost:3000",
+    "https://untrusted.example.invalid",
+  ]) {
+    const researchWrite = await request.post("/api/admin/research", {
+      headers: { Origin: origin },
+      data: {
+        action: "snapshot",
+        eventId: "DEMO-denied",
+        policyId: "00000000-0000-4000-8000-000000000001",
+        reason: "Anonymous research mutation must remain denied",
+      },
+    });
+    expect(researchWrite.status()).toBe(403);
+  }
   await page.goto("/join");
   await expect(
     page.getByRole("button", { name: "Create free account" }),

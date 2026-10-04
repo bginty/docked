@@ -49,6 +49,7 @@ export const config = {
     "/points",
     "/my-edge",
     "/community/:path*",
+    "/research/matches/:path*",
     "/compose",
     "/profile/:path*",
     "/top-docked",

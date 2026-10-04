@@ -13,6 +13,12 @@ const preferences: [keyof NotificationPreferences, string][] = [
   ["officialEdges", "Official Edge and status updates"],
   ["followedMembers", "Followed member posts and Edges"],
   ["social", "Comments, replies, reactions and followers"],
+  ["researchUpdates", "Reviewed Docked research (optional)"],
+  ["lineupUpdates", "Reviewed lineup updates (optional)"],
+  [
+    "teamUpdates",
+    "Future followed-team updates (optional; team follows are not available yet)",
+  ],
   ["leaderboard", "Leaderboard milestones"],
   ["competitions", "Future competition and prize updates"],
   ["dealsMarketing", "Future deals and marketing (separate opt-in)"],
@@ -146,7 +152,9 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
             Optional categories are separate from essential account/system
             notices. Existing consent, quiet hours and caps still apply.
             Competition and deal notifications cannot be delivered while those
-            features are disabled. No loss-triggered or chasing messages.
+            features are disabled. Research choices are stored separately and do
+            not enable delivery or create team follows. No loss-triggered or
+            chasing messages.
           </p>
           <button className="button" disabled={busy}>
             Save notification preferences

@@ -10,6 +10,7 @@ import "./mobile-app.css";
 import "./app-auth.css";
 import "./beta-experience.css";
 import "./phase5-edges.css";
+import "./phase5c-research.css";
 import { NativeBridge } from "@/components/native-bridge";
 import { environmentPresentation } from "@/server/presentation";
 import { EnvironmentProvider } from "@/components/environment-context";

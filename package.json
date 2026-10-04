@@ -12,6 +12,7 @@
     "test": "tsx --test tests/platform/*.test.ts",
     "test:browser": "playwright test",
     "research": "tsx scripts/research.ts",
+    "research:source-check": "tsx scripts/research-source-check.ts",
     "worker": "node --conditions=react-server --import tsx scripts/worker.ts",
     "db:test": "tsx --test tests/database/*.test.ts",
     "validate": "npm run typecheck && npm test && npm run db:test",

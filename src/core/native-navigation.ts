@@ -2,6 +2,7 @@ const id =
   "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
 const record = new RegExp(`^/(tips|edges|results)/(${id})$`);
 const community = new RegExp(`^/community/(posts|edges)/(${id})$`);
+const research = new RegExp(`^/research/matches/(${id})$`);
 const shortPost = new RegExp(`^/community/(${id})$`);
 const staticPaths = new Set([
   "/app",
@@ -60,6 +61,7 @@ export function nativeDeepLink(
   const official = route.match(record);
   if (official) return `/tips/${official[2]}`;
   if (community.test(route)) return route;
+  if (research.test(route)) return route;
   const post = route.match(shortPost);
   if (post) return `/community/posts/${post[1]}`;
   if (

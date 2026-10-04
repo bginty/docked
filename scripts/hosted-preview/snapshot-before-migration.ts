@@ -6,6 +6,11 @@ import { pathToFileURL } from "node:url";
 import { db } from "../../src/server/db";
 const directory = pathToFileURL(resolve("private-data/hosted-preview") + sep);
 const modes = {
+  "--snapshot-phase5c": {
+    count: 16,
+    privateFile: "phase5c-before-migration.json",
+    receipt: "docs/qa/phase5c/migration-preimage.json",
+  },
   "--snapshot-phase5b": {
     count: 15,
     privateFile: "phase5b-before-migration.json",

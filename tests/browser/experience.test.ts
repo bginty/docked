@@ -141,6 +141,10 @@ test("preview public pages remain truthful, accessible and usable without an acc
     "admin-dashboard-locked": "/admin",
     "data-health-locked": "/admin/data-health",
     "model-performance-locked": "/admin/model-performance",
+    "research-admin-locked": "/admin/research",
+    "research-match-locked": "/admin/research/DEMO-inaccessible",
+    "research-member-locked":
+      "/research/matches/00000000-0000-4000-8000-000000000001",
     "forward-paper-locked": "/admin/forward-paper",
   })) {
     expect((await page.goto(route))?.status(), route).toBe(200);

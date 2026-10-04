@@ -85,6 +85,9 @@ export type SocialNotification = {
   groupKey: string;
 };
 export type NotificationPreferences = {
+  researchUpdates?: boolean;
+  lineupUpdates?: boolean;
+  teamUpdates?: boolean;
   officialEdges: boolean;
   followedMembers: boolean;
   social: boolean;
@@ -316,6 +319,9 @@ export const notificationActionSchema = z.discriminatedUnion("action", [
     .object({
       action: z.literal("preferences"),
       officialEdges: z.boolean(),
+      researchUpdates: z.boolean().default(false),
+      lineupUpdates: z.boolean().default(false),
+      teamUpdates: z.boolean().default(false),
       followedMembers: z.boolean(),
       social: z.boolean(),
       leaderboard: z.boolean(),

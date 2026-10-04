@@ -20,7 +20,11 @@ export function appDestination(path: string) {
   if (/^\/(points|top-docked)(\/|$)/.test(path)) return "/points";
   if (/^\/(following|search)(\/|$)/.test(path)) return "/following";
   if (/^\/community\/edges(\/|$)/.test(path)) return "/edges";
-  if (/^\/(feed|community|compose)(\/|$)/.test(path)) return "/feed";
+  if (
+    /^\/(feed|community|compose)(\/|$)/.test(path) ||
+    path.startsWith("/research/matches/")
+  )
+    return "/feed";
   if (
     /^\/(profile|my-edge|dashboard|notifications|membership)(\/|$)/.test(path)
   )

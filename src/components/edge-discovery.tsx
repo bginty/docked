@@ -6,6 +6,7 @@ import type { CommunityEdge } from "@/core/community-edge";
 import type { PublicTip } from "@/server/queries";
 import { SportIcon } from "./sport-icon";
 import { LocalTimestamp } from "./local-timestamp";
+import type { ReviewedResearchItem } from "@/core/research-contracts";
 
 function InterestCard({
   item,
@@ -154,9 +155,11 @@ export function WeeklyEdge({ data }: { data: CommunityRecognition }) {
 export function MonitoredFixtures({
   data,
   weekend = false,
+  research = [],
 }: {
   data: MonitoredMarkets;
   weekend?: boolean;
+  research?: ReviewedResearchItem[];
 }) {
   return (
     <section
@@ -193,6 +196,20 @@ export function MonitoredFixtures({
               <p className="recognition-time">
                 <LocalTimestamp value={event.startAt} />
               </p>
+              {research
+                .filter((item) => item.eventId === event.eventId)
+                .slice(0, 2)
+                .map((item) => (
+                  <p key={item.id}>
+                    <Link
+                      className="research-inline-link"
+                      href={`/research/matches/${item.id}`}
+                    >
+                      {item.type.replaceAll("_", " ")}: {item.headline}
+                    </Link>
+                    <small>Reviewed context · not an Edge</small>
+                  </p>
+                ))}
               {event.markets.length ? (
                 <ul>
                   {event.markets.map((market) => (
