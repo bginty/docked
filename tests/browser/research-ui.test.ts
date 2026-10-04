@@ -41,7 +41,7 @@ async function fixture(page: Page, view: string, width: number) {
       : route.abort();
   });
   await page.setContent(
-    '<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>DEMO research UI</title></head><body><main id="demo-root"></main></body></html>',
+    '<!doctype html><html lang="en"><head><base href="http://localhost:3000"><title>DEMO research UI</title></head><body><main id="demo-root" class="community-shell"></main></body></html>',
   );
   for (const file of [
     "brand-theme.css",
@@ -87,6 +87,11 @@ for (const width of [360, 412, 1366])
     await expect(
       page.getByText("MODEL BLOCKED — DATA REQUIRED", { exact: true }),
     ).toBeVisible();
+    expect(
+      await page
+        .locator(".research-model-blocked strong")
+        .evaluate((el) => getComputedStyle(el).color),
+    ).toBe("rgb(11, 31, 59)");
     await expect(page.locator(".research-summary dd").nth(0)).toHaveText(
       "Unknown",
     );
@@ -175,6 +180,14 @@ test("DEMO structured fact form preserves unknowns, captures observed time and c
     "true",
   );
   await page.getByLabel("Temperature °C", { exact: false }).fill("0");
+  expect(
+    await page
+      .locator('input[name="temperatureCelsius"]')
+      .evaluate((el) => ({
+        color: getComputedStyle(el).color,
+        background: getComputedStyle(el).backgroundColor,
+      })),
+  ).toEqual({ color: "rgb(11, 31, 59)", background: "rgb(255, 255, 255)" });
   await page
     .getByLabel("Forecast applies at", { exact: false })
     .fill("2026-10-04T12:00");

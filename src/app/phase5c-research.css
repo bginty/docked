@@ -11,6 +11,20 @@
   margin-block: 1rem;
 }
 .research-panel,
+.research-content-card,
+.research-model-blocked {
+  /* White research surfaces must not inherit the mobile shell's on-dark tokens. */
+  --ink: var(--text-primary);
+  --muted: var(--text-muted);
+  --teal: var(--action-link);
+  --line: var(--border-subtle);
+}
+.community-shell
+  :is(.research-panel, .research-content-card, .research-model-blocked)
+  :focus-visible {
+  outline-color: var(--focus-ring);
+}
+.research-panel,
 .research-content-card {
   min-width: 0;
   border: 1px solid var(--border-subtle);
