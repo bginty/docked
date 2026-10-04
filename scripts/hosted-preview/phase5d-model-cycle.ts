@@ -307,7 +307,10 @@ async function main() {
         const [existing] =
           await tx`select id from private.football_sporting_inputs where event_id=${event.id} and payload->>'modelVersion'=${modelVersion}`;
         if (existing) return;
-        const asOfTime = new Date().toISOString();
+        // The workstation can be ahead of PostgreSQL. Retain the authoritative
+        // database clock as text so sub-millisecond provenance is not rounded.
+        const [clock] = await tx`select clock_timestamp()::text value`;
+        const asOfTime = clock.value as string;
         const payload = {
           schemaVersion: "football-fitted-input-v1",
           event: {
@@ -331,7 +334,7 @@ async function main() {
           missingOptional: ["injuries", "lineups", "xg"],
         };
         await tx`insert into private.football_sporting_inputs(event_id,payload,input_hash,as_of_time,input_cutoff,source_ids,created_by)
-          select ${event.id},${tx.json(payload)},${phase5Hash(payload)},${asOfTime},input_cutoff,source_ids,${j.id!} from private.football_training_manifests where id=${registered.id}`;
+          select ${event.id},${tx.json(payload)},${phase5Hash(payload)},${asOfTime}::text::timestamptz,input_cutoff,source_ids,${j.id!} from private.football_training_manifests where id=${registered.id}`;
       });
       const result = await recordFootballPrediction({
         eventId: event.id,

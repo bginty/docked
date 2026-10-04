@@ -10,7 +10,20 @@ export const researchLabel = (value: string) =>
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .toLowerCase();
 
-export function ResearchModelBoundary() {
+export function ResearchModelBoundary({
+  modelObservationAvailable = false,
+}: { modelObservationAvailable?: boolean }) {
+  if (modelObservationAvailable)
+    return (
+      <aside className="research-model-blocked">
+        <strong>RESEARCH MODEL OBSERVATION RETAINED</strong>
+        <p>
+          The independent model observation is shown separately. Missing
+          editorial research does not erase that record. Predictive quality
+          remains unvalidated; no official Edge is approved.
+        </p>
+      </aside>
+    );
   return (
     <aside className="research-model-blocked">
       <strong>MODEL BLOCKED — DATA REQUIRED</strong>
@@ -148,7 +161,13 @@ export function ResearchFactView({ fact }: { fact: PublicResearchFact }) {
   );
 }
 
-export function MatchResearchView({ file }: { file: MatchResearchFile }) {
+export function MatchResearchView({
+  file,
+  modelObservationAvailable = false,
+}: {
+  file: MatchResearchFile;
+  modelObservationAvailable?: boolean;
+}) {
   return (
     <div className="research-match">
       <section className="research-panel">
@@ -200,7 +219,9 @@ export function MatchResearchView({ file }: { file: MatchResearchFile }) {
           </p>
         )}
       </section>
-      <ResearchModelBoundary />
+      <ResearchModelBoundary
+        modelObservationAvailable={modelObservationAvailable}
+      />
       <section className="research-panel">
         <h2>Market comparison remains separate</h2>
         <p>

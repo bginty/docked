@@ -127,7 +127,9 @@ test("empty database has no registered model, predictions, implementation or off
 });
 
 test("dated training manifests bind a reproducible revision and cannot be edited or read by members", async () => {
-  const observedAt = new Date(Date.now() - 86400000).toISOString().replace(/\.\d{3}Z$/, ".123456Z"),
+  const observedAt = new Date(Date.now() - 86400000)
+      .toISOString()
+      .replace(/\.\d{3}Z$/, ".123456Z"),
     asOfTime = new Date(Date.now() - 1000).toISOString();
   const training = validatePoissonTraining({
     schemaVersion: "epl-poisson-training-v1",
@@ -254,15 +256,26 @@ test("dated training manifests bind a reproducible revision and cannot be edited
     missingRequired: [],
     missingOptional: [],
   };
-  const input = (p: unknown) =>
+  const input = (p: unknown, asOfTime = clock.value) =>
     pg.query(
       `insert into private.football_sporting_inputs(event_id,payload,input_hash,as_of_time,input_cutoff,source_ids,created_by)values('model-event',$1,$2,$3,$4,array['fit-test'],$5)`,
-      [JSON.stringify(p), phase5Hash(p), clock.value, observedAt, admin],
+      [JSON.stringify(p), phase5Hash(p), asOfTime, observedAt, admin],
     );
   await denied(() => input({ ...payload, marketReference: 2 }), /input/);
   await denied(
     () =>
       input({ ...payload, event: { ...payload.event, homeTeamId: "WRONG" } }),
+    /input/,
+  );
+  // A workstation clock ahead of the database must not be accepted. Using
+  // PostgreSQL's full-precision clock succeeds without relaxing the guard.
+  const futureClock = new Date(Date.parse(clock.value) + 600_000).toISOString();
+  await denied(
+    () =>
+      input(
+        { ...payload, asOfTime: futureClock, calculatedAt: futureClock },
+        futureClock,
+      ),
     /input/,
   );
   await input(payload);

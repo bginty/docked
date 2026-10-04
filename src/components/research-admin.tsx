@@ -383,9 +383,11 @@ export function ResearchDashboardView({
 export function ResearchMatchPanel({
   data,
   snapshotId,
+  modelObservationAvailable = false,
 }: {
   data: MatchResearchEnvelope;
   snapshotId?: string;
+  modelObservationAvailable?: boolean;
 }) {
   const dashboard = data.dashboard;
   const manual = dashboard.sources.filter(
@@ -411,7 +413,10 @@ export function ResearchMatchPanel({
     <div className="research-workspace">
       <p>{data.message}</p>
       {data.file ? (
-        <MatchResearchView file={data.file} />
+        <MatchResearchView
+          file={data.file}
+          modelObservationAvailable={!snapshotId && modelObservationAvailable}
+        />
       ) : (
         <section className="research-panel">
           <h2>No retained research file available</h2>
@@ -419,7 +424,9 @@ export function ResearchMatchPanel({
             DATA NOT AVAILABLE. The match may need approved sources and a
             completeness policy, or access may be unavailable.
           </p>
-          <ResearchModelBoundary />
+          <ResearchModelBoundary
+            modelObservationAvailable={!snapshotId && modelObservationAvailable}
+          />
         </section>
       )}
       {data.event && (

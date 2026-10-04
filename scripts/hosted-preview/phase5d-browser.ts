@@ -1,0 +1,764 @@
+// Genuine hosted reads and intentionally denied writes only. No model/provider fixtures.
+import { chromium, type BrowserContext, type Page } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { createHmac, createHash } from "node:crypto";
+import {
+  auditPreviewTargets,
+  loadKnownSecrets,
+} from "../audit-preview-secrets.mjs";
+import {
+  assertPhase5dAccount,
+  phase5dProject as project,
+  phase5dOrigin as origin,
+  type Phase5dJournal,
+} from "./phase5d-scope";
+const output = "private-data/phase5d/hosted-final",
+  rendered = "private-data/phase5d/hosted-final-rendered";
+let stage = "scope",
+  genuineSession = false,
+  genuineMfa = false;
+const checks: { check: string; status: "PASS" }[] = [];
+const assets = new Set<string>();
+function check(value: unknown, name: string): asserts value {
+  stage = name;
+  if (!value) throw Error("Acceptance assertion failed");
+  checks.push({ check: name, status: "PASS" });
+}
+function totp(secret: string) {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+  const bits = [...secret.toUpperCase().replace(/=+$/, "")]
+    .map((character) => {
+      const index = alphabet.indexOf(character);
+      if (index < 0) throw Error("Factor encoding");
+      return index.toString(2).padStart(5, "0");
+    })
+    .join("");
+  const bytes = [];
+  for (let i = 0; i + 8 <= bits.length; i += 8)
+    bytes.push(parseInt(bits.slice(i, i + 8), 2));
+  const counter = Buffer.alloc(8);
+  counter.writeBigUInt64BE(BigInt(Math.floor(Date.now() / 30000)));
+  const digest = createHmac("sha1", Buffer.from(bytes))
+    .update(counter)
+    .digest();
+  return ((digest.readUInt32BE(digest[19] & 15) & 0x7fffffff) % 1000000)
+    .toString()
+    .padStart(6, "0");
+}
+async function capture(
+  page: Page,
+  route: string,
+  label: string,
+  width: number,
+) {
+  stage = `screen-${label}-${width}`;
+  await page.setViewportSize({ width, height: width < 600 ? 915 : 900 });
+  const response = await page.goto(origin + route, {
+    waitUntil: "domcontentloaded",
+  });
+  check(
+    response?.status() === 200 && new URL(page.url()).origin === origin,
+    `${label}-${width}-http`,
+  );
+  await page
+    .getByRole("heading", {
+      level: 1,
+      ...([
+        "/admin/research",
+        "/admin/daily",
+        "/admin/model-performance",
+      ].includes(route)
+        ? {
+            name:
+              route === "/admin/daily"
+                ? "Docked Today"
+                : route === "/admin/research"
+                  ? "Research sources and matches"
+                  : "Model Performance",
+            exact: true,
+          }
+        : {}),
+    })
+    .waitFor();
+  await page.evaluate(() => document.fonts.ready);
+  await page
+    .locator("img")
+    .evaluateAll((images) =>
+      Promise.all(images.map((image) => (image as HTMLImageElement).decode())),
+    );
+  if (route === "/results")
+    check(
+      await page
+        .getByText("The record has not started yet.", { exact: true })
+        .first()
+        .isVisible(),
+      `${label}-${width}-true-global-unstarted-record`,
+    );
+  if (route === "/admin/model-performance")
+    check(
+      await page
+        .getByText("RESEARCH FITTED UNVALIDATED", { exact: true })
+        .isVisible(),
+      `${label}-${width}-no-invented-model`,
+    );
+  if (label === "match-research") {
+    check(
+      await page
+        .getByText("RESEARCH MODEL OBSERVATION RETAINED", { exact: true })
+        .isVisible(),
+      `${label}-${width}-retained-model-not-blocked`,
+    );
+    check(
+      await page
+        .getByRole("heading", { name: "Independent team model", exact: true })
+        .isVisible(),
+      `${label}-${width}-genuine-model-visible`,
+    );
+  }
+  if (route === "/admin/research") {
+    check(
+      (await page.locator(".research-status").first().textContent())?.trim() ===
+        "Connected" &&
+        (await page
+          .getByRole("heading", { name: "Research service", exact: true })
+          .isVisible()),
+      `${label}-${width}-connection-not-model-readiness`,
+    );
+    check(
+      (await page
+        .locator(".research-model-blocked strong")
+        .evaluate((el) => getComputedStyle(el).color)) === "rgb(11, 31, 59)",
+      `${label}-${width}-model-notice-contrast`,
+    );
+    const panel = page.locator("details.research-panel").first();
+    await panel.locator("summary").click();
+    const field = panel.locator('input[type="text"]').first();
+    await field.fill("Unsaved acceptance contrast check");
+    const colors = await field.evaluate((el) => ({
+      foreground: getComputedStyle(el).color,
+      background: getComputedStyle(el).backgroundColor,
+    }));
+    check(
+      colors.foreground === "rgb(11, 31, 59)" &&
+        colors.background === "rgb(255, 255, 255)",
+      `${label}-${width}-populated-form-contrast`,
+    );
+    const formAxe = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+      .analyze();
+    await writeFile(
+      `${output}/${label}-form-${width}-axe.json`,
+      JSON.stringify(
+        {
+          violations: formAxe.violations.map((v) => ({
+            id: v.id,
+            impact: v.impact,
+            nodes: v.nodes.map((n) => ({
+              target: n.target,
+              failureSummary: n.failureSummary,
+            })),
+          })),
+          passes: formAxe.passes.length,
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+    await panel.screenshot({ path: `${output}/${label}-form-${width}.png` });
+    check(
+      formAxe.violations.length === 0,
+      `${label}-${width}-expanded-form-axe`,
+    );
+    await field.fill("");
+    await panel.locator("summary").click();
+    await page.evaluate(() => scrollTo(0, 0));
+  }
+  check(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth + 1,
+    ),
+    `${label}-${width}-no-horizontal-overflow`,
+  );
+  const axe = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+    .analyze();
+  await writeFile(
+    `${output}/${label}-${width}-axe.json`,
+    JSON.stringify(
+      {
+        violations: axe.violations.map((v) => ({
+          id: v.id,
+          impact: v.impact,
+          nodes: v.nodes.length,
+        })),
+        passes: axe.passes.length,
+      },
+      null,
+      2,
+    ) + "\n",
+  );
+  check(axe.violations.length === 0, `${label}-${width}-axe`);
+  await page.screenshot({
+    path: `${output}/${label}-${width}.png`,
+    fullPage: true,
+  });
+  await writeFile(`${rendered}/${label}-${width}.html`, await page.content());
+  for (const src of await page
+    .locator("script[src]")
+    .evaluateAll((nodes) => nodes.map((n) => (n as HTMLScriptElement).src))) {
+    const url = new URL(src);
+    if (
+      url.origin !== origin ||
+      !url.pathname.startsWith("/_next/static/") ||
+      assets.has(src)
+    )
+      continue;
+    const asset = await page.context().request.get(src, { maxRedirects: 0 });
+    check(asset.status() === 200, `${label}-client-asset`);
+    await writeFile(
+      `${rendered}/${createHash("sha256").update(src).digest("hex")}.js`,
+      await asset.body(),
+    );
+    assets.add(src);
+  }
+}
+async function main() {
+  let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined;
+  const member = process.argv[2] === "--member";
+  try {
+    check(
+      ["--run", "--member"].includes(process.argv[2]) &&
+        process.argv[3] === `--confirm-project=${project}` &&
+        process.argv.length === 4 &&
+        process.env.PHASE5D_PREVIEW_ORIGIN === origin,
+      "explicit-preview-scope",
+    );
+    const account: Phase5dJournal = JSON.parse(
+      await readFile("private-data/phase5d/operator.json", "utf8"),
+    );
+    assertPhase5dAccount(account);
+    check(
+      Boolean(account.password && account.factorId && account.totpSecret) &&
+        Date.now() - Date.parse(account.createdAt) < 86400000 &&
+        Date.parse(account.createdAt) <= Date.now() &&
+        Boolean(account.memberOnly) === member,
+      "fresh-disposable-session-scope",
+    );
+    await mkdir(output, { recursive: true });
+    await mkdir(rendered, { recursive: true });
+    browser = await chromium.launch();
+    const anonymous = await browser.newContext();
+    const post = (context: BrowserContext, path: string, data: unknown) =>
+      context.request.post(origin + path, {
+        data,
+        headers: { Origin: origin },
+        maxRedirects: 0,
+      });
+    check(
+      (await anonymous.request.get(origin + "/api/admin/research")).status() ===
+        403,
+      "anonymous-research-read-denied",
+    );
+    check(
+      (
+        await post(anonymous, "/api/admin/research", {
+          action: "fact_record",
+          probability: "0.8",
+        })
+      ).status() === 403,
+      "anonymous-research-write-denied",
+    );
+    check(
+      (await anonymous.request.get(origin + "/api/admin/models")).status() ===
+        403,
+      "anonymous-model-read-denied",
+    );
+    check(
+      (
+        await post(anonymous, "/api/admin/models", {
+          action: "create",
+          configuration: {
+            probabilities: { home: "0.5", draw: "0.25", away: "0.25" },
+          },
+          codeCommit: "a".repeat(40),
+          reason: "Synthetic denied acceptance input",
+        })
+      ).status() === 403,
+      "anonymous-model-write-denied",
+    );
+    const context = await browser.newContext({
+      locale: "en-AU",
+      timezoneId: "Australia/Sydney",
+    });
+    const login = await post(context, "/api/auth", {
+      action: "login",
+      email: account.email,
+      password: account.password,
+      app: true,
+    });
+    check(
+      login.status() === 200 && (await login.json()).ok === true,
+      "genuine-password-login",
+    );
+    genuineSession = true;
+    check(
+      (await context.request.get(origin + "/api/admin/research")).status() ===
+        403,
+      "aal1-research-read-denied",
+    );
+    const identity = await context.request.get(origin + "/api/member");
+    check(
+      identity.status() === 200 &&
+        (await identity.json()).profile.id === account.id,
+      "exact-disposable-identity",
+    );
+    const cookies = (await context.cookies()).filter((c) =>
+      c.name.startsWith(`sb-${project}-auth-token`),
+    );
+    check(
+      cookies.length > 0 &&
+        cookies.every((c) => c.secure && c.httpOnly && c.sameSite === "Lax"),
+      "secure-session-cookies",
+    );
+    check(
+      (await context.request.get(origin + "/api/admin/models")).status() ===
+        403,
+      "aal1-model-read-denied",
+    );
+    const verified = await post(context, "/api/auth", {
+      action: "mfa_verify",
+      email: account.email,
+      factorId: account.factorId,
+      code: totp(account.totpSecret!),
+    });
+    check(
+      verified.status() === 200 && (await verified.json()).ok === true,
+      "genuine-totp-mfa",
+    );
+    genuineMfa = true;
+    if (member) {
+      check(
+        (await context.request.get(origin + "/api/admin/research")).status() ===
+          403,
+        "actual-member-research-read-denied",
+      );
+      for (const action of [
+        "source_review",
+        "feature_review",
+        "fact_record",
+        "schedule",
+        "content_review",
+        "recalculate",
+      ]) {
+        check(
+          (
+            await post(context, "/api/admin/research", {
+              action,
+              reason: "Synthetic forbidden member authority check",
+            })
+          ).status() === 403,
+          `actual-member-${action}-denied`,
+        );
+      }
+      check(
+        (await context.request.get(origin + "/api/admin/models")).status() ===
+          403,
+        "actual-member-with-mfa-model-read-denied",
+      );
+      check(
+        (
+          await post(context, "/api/admin/models", {
+            action: "transition",
+            id: "phase5d-nonexistent-model",
+            to: "APPROVED_FOR_LIVE",
+            reason: "Synthetic denied member operation",
+            evidence: { probabilitySanity: true },
+          })
+        ).status() === 403,
+        "actual-member-model-transition-denied",
+      );
+      check(
+        (await context.request.get(origin + "/api/member")).status() === 200,
+        "member-denial-is-not-logout",
+      );
+    } else {
+      const researchResponse = await context.request.get(
+        origin + "/api/admin/research",
+      );
+      check(
+        researchResponse.status() === 200 &&
+          researchResponse.headers()["cache-control"]?.includes("no-store"),
+        "genuine-mfa-research-read",
+      );
+      const research = await researchResponse.json();
+      check(
+        research.status === "READY" &&
+          !research.automationEnabled &&
+          research.sources.length === 0 &&
+          research.features.length === 0 &&
+          research.policies.length === 0 &&
+          research.content.length === 0 &&
+          research.counts.facts === 0 &&
+          research.counts.snapshots === 0,
+        "honest-empty-research-no-source-activation",
+      );
+      const match = research.matches.find(
+        (m: { eventId: string }) =>
+          m.eventId === "provider-182a3f34d6ed6381395f9828fa02e9f790efeaf8",
+      );
+      check(!!match?.eventId, "retained-genuine-EPL-fixture-available");
+      const matchResponse = await context.request.get(
+        origin +
+          "/api/admin/research?event=" +
+          encodeURIComponent(match.eventId),
+      );
+      const matchData = await matchResponse.json();
+      check(
+        matchResponse.status() === 200 &&
+          matchData.event?.eventId === match.eventId &&
+          matchData.status === "NOT_CONFIGURED" &&
+          matchData.file === null &&
+          matchData.snapshots.length === 0,
+        "genuine-match-research-honest-policy-gap",
+      );
+      check(
+        (
+          await context.request.post(origin + "/api/admin/research", {
+            data: { action: "fact_record" },
+            headers: { Origin: "https://example.invalid" },
+            maxRedirects: 0,
+          })
+        ).status() === 403,
+        "cross-origin-research-denied",
+      );
+      for (const [name, data] of [
+        [
+          "probability-prose",
+          {
+            action: "fact_record",
+            probability: "0.99",
+            text: "Invented probability is forbidden",
+          },
+        ],
+        [
+          "unreviewed-source",
+          {
+            action: "source_review",
+            configuration: {
+              endpoint: "http://127.0.0.1",
+              rightsState: "APPROVED_AUTOMATED",
+            },
+            reason: "Synthetic denied endpoint override",
+          },
+        ],
+        [
+          "llm-probability",
+          {
+            action: "recalculate",
+            modelVersion: "llm",
+            probabilities: { home: "0.8", draw: "0.1", away: "0.1" },
+            reason: "Synthetic denied direct output",
+          },
+        ],
+      ] as const)
+        check(
+          (await post(context, "/api/admin/research", data)).status() === 403,
+          `research-${name}-denied`,
+        );
+      const afterResearch = await (
+        await context.request.get(origin + "/api/admin/research")
+      ).json();
+      check(
+        afterResearch.sources.length === 0 &&
+          afterResearch.counts.facts === 0 &&
+          afterResearch.counts.snapshots === 0,
+        "denied-research-created-no-data",
+      );
+      const models = await context.request.get(origin + "/api/admin/models");
+      check(
+        models.status() === 200 &&
+          models.headers()["cache-control"]?.includes("no-store"),
+        "actual-mfa-private-model-read",
+      );
+      const data = await models.json();
+      check(
+        data.status === "READY" &&
+          data.implementationStatus === "RESEARCH_FITTED_UNVALIDATED" &&
+          data.versions.length === 1 &&
+          data.attempts?.total === 6 &&
+          data.attempts?.ready === 5 &&
+          data.attempts?.abstained === 1 &&
+          data.fits.length === 1 &&
+          data.calibration === null,
+        "actual-retained-fit-and-complete-prospective-cohort",
+      );
+      check(
+        (
+          await context.request.post(origin + "/api/admin/models", {
+            data: {},
+            headers: { Origin: "https://example.invalid" },
+            maxRedirects: 0,
+          })
+        ).status() === 403,
+        "cross-origin-model-write-denied",
+      );
+      for (const [name, body] of [
+        [
+          "arbitrary-probability",
+          {
+            action: "create",
+            configuration: {
+              probabilities: { home: "0.5", draw: "0.25", away: "0.25" },
+            },
+            codeCommit: "a".repeat(40),
+            reason: "Synthetic arbitrary probability denial",
+          },
+        ],
+        [
+          "top-level-probability",
+          {
+            action: "approve_policy",
+            strategyId: "phase5d-nonexistent",
+            probability: "0.8",
+            reason: "Synthetic strict-schema denial",
+          },
+        ],
+        [
+          "no-model-live-transition",
+          {
+            action: "transition",
+            id: "phase5d-nonexistent-model",
+            to: "APPROVED_FOR_LIVE",
+            reason: "Synthetic nonexistent-model denial",
+            evidence: { probabilitySanity: true },
+          },
+        ],
+        [
+          "no-policy-activation",
+          {
+            action: "set_policy_active",
+            strategyId: "phase5d-nonexistent-policy",
+            active: true,
+            reason: "Synthetic nonexistent-policy denial",
+          },
+        ],
+      ] as const)
+        check(
+          (await post(context, "/api/admin/models", body)).status() === 403,
+          `${name}-denied`,
+        );
+      const cohortResponse = await context.request.get(
+        origin + "/api/admin/models?model=football-goals-v1.0.0&window=604800",
+      );
+      const cohort = await cohortResponse.json();
+      check(
+        cohortResponse.status() === 200 &&
+          cohort.calibration?.attempts === 6 &&
+          cohort.calibration?.predicted === 5 &&
+          cohort.calibration?.settled === 0 &&
+          cohort.calibration?.brierScore === null &&
+          cohort.calibration?.logLoss === null,
+        "complete-cohort-pending-calibration-no-fabricated-score",
+      );
+      const after = await (
+        await context.request.get(origin + "/api/admin/models")
+      ).json();
+      check(
+        after.status === "READY" &&
+          after.versions.length === 1 &&
+          after.attempts.total === 6,
+        "denied-inputs-created-no-model-data",
+      );
+      // The genuine MFA session is used only in memory for the private-schema Data API denial.
+      const connection = JSON.parse(
+        await readFile("private-data/hosted-preview/connection.json", "utf8"),
+      );
+      check(
+        connection.projectRef === project &&
+          connection.supabaseUrl === `https://${project}.supabase.co`,
+        "data-api-exact-preview",
+      );
+      // Use the just-verified browser session. The setup journal's earlier
+      // token can legitimately expire during a long acceptance run.
+      const liveCookieParts = (await context.cookies())
+        .filter((c) => c.name.startsWith(`sb-${project}-auth-token`))
+        .sort(
+          (a, b) =>
+            Number(a.name.split(".").at(-1) ?? 0) -
+            Number(b.name.split(".").at(-1) ?? 0),
+        );
+      const liveCookie = liveCookieParts.map((c) => c.value).join("");
+      check(
+        liveCookie.startsWith("base64-"),
+        "current-browser-session-encoding",
+      );
+      const liveSession = JSON.parse(
+        Buffer.from(liveCookie.slice(7), "base64url").toString("utf8"),
+      );
+      check(
+        typeof liveSession.access_token === "string" &&
+          typeof liveSession.refresh_token === "string",
+        "current-browser-session-secret-coverage",
+      );
+      const tokenOwner = await context.request.get(
+        `${connection.supabaseUrl}/auth/v1/user`,
+        {
+          headers: {
+            apikey: connection.publishableKey,
+            Authorization: `Bearer ${liveSession.access_token}`,
+          },
+          maxRedirects: 0,
+        },
+      );
+      check(
+        tokenOwner.status() === 200 &&
+          (await tokenOwner.json()).id === account.id,
+        "data-api-genuine-current-token",
+      );
+      for (const table of [
+        "football_training_manifests",
+        "football_model_versions",
+        "football_model_attempts",
+        "official_record_boundary",
+        "research_source_versions",
+        "research_facts",
+        "research_fact_payloads",
+        "research_match_snapshots",
+        "research_recalculations",
+      ]) {
+        const r = await context.request.get(
+          `${connection.supabaseUrl}/rest/v1/${table}?select=*`,
+          {
+            headers: {
+              apikey: connection.publishableKey,
+              Authorization: `Bearer ${liveSession.access_token}`,
+              "Accept-Profile": "private",
+            },
+            maxRedirects: 0,
+          },
+        );
+        check(
+          [403, 404, 406].includes(r.status()),
+          `private-data-api-${table}-denied`,
+        );
+      }
+      let pageErrors = 0,
+        consoleErrors = 0;
+      const page = await context.newPage();
+      const publicPage = await anonymous.newPage();
+      for (const p of [page, publicPage]) {
+        p.on("pageerror", () => pageErrors++);
+        p.on("console", (m) => {
+          if (m.type() === "error") consoleErrors++;
+        });
+      }
+      for (const width of [412, 1366]) {
+        await capture(page, "/admin/research", "research", width);
+        await capture(
+          page,
+          "/admin/research/" + encodeURIComponent(match.eventId),
+          "match-research",
+          width,
+        );
+        await capture(
+          page,
+          "/admin/model-performance",
+          "model-performance",
+          width,
+        );
+        await capture(
+          page,
+          "/admin/model-performance?model=football-goals-v1.0.0&window=604800",
+          "calibration",
+          width,
+        );
+        await capture(
+          page,
+          "/admin/candidate-edges",
+          "candidate-review",
+          width,
+        );
+        await capture(page, "/admin/daily", "daily", width);
+        await capture(publicPage, "/results", "public-results", width);
+      }
+      check(
+        pageErrors === 0 && consoleErrors === 0,
+        "fourteen-real-rendered-views-no-browser-errors",
+      );
+      const known = await loadKnownSecrets();
+      const actual = [
+        account.password,
+        account.accessToken,
+        account.totpSecret,
+        ...liveCookieParts.map((c) => c.value),
+        liveCookie,
+        liveSession.access_token,
+        liveSession.refresh_token,
+      ].filter((s): s is string => typeof s === "string" && s.length > 0);
+      const audit = await auditPreviewTargets(
+        [rendered],
+        [...known.values, ...actual],
+      );
+      await writeFile(
+        `${output}/client-secret-audit.json`,
+        JSON.stringify(audit, null, 2) + "\n",
+      );
+      check(audit.status === "PASS", "actual-rendered-secret-audit");
+    }
+    await context.close();
+    await anonymous.close();
+    await writeFile(
+      `${output}/${member ? "member-denial" : "acceptance"}.json`,
+      JSON.stringify(
+        {
+          status: "PASS",
+          projectRef: project,
+          origin,
+          checkedAt: new Date().toISOString(),
+          genuineSession,
+          genuineMfa,
+          providerRequests: 0,
+          trialCalls: 0,
+          modelDataSeeded: false,
+          checks,
+          clientAssets: assets.size,
+          operatorCleanupRequired: true,
+          limits: [
+            "Viewport verification is not a physical-device test.",
+            "Research fit is unvalidated. Market comparison blocked; no live publication.",
+          ],
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+    console.log(
+      `Phase5D ${member ? "member denial" : "hosted acceptance"} PASS (${checks.length} assertions).`,
+    );
+  } catch {
+    await mkdir(output, { recursive: true });
+    await writeFile(
+      `${output}/failure-${new Date().toISOString().replaceAll(":", "-")}.json`,
+      JSON.stringify(
+        {
+          status: "FAIL",
+          checkpoint: stage,
+          completedChecks: checks.length,
+          genuineSession,
+          genuineMfa,
+          recordedAt: new Date().toISOString(),
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+    console.error(
+      `Phase5D acceptance stopped at ${stage}; sensitive details withheld.`,
+    );
+    process.exitCode = 1;
+  } finally {
+    await browser?.close();
+  }
+}
+void main();

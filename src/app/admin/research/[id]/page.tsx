@@ -70,8 +70,12 @@ export default async function ResearchMatch({
         }
       />
       <ResearchNavigation />
-      <ResearchMatchPanel data={data} snapshotId={snapshotId} />
       {!snapshotId && <FittedMatchResearch data={model} />}
+      <ResearchMatchPanel
+        data={data}
+        snapshotId={snapshotId}
+        modelObservationAvailable={Boolean(model)}
+      />
     </AppShell>
   );
 }
