@@ -158,9 +158,19 @@ Object.assign(window, {
               preferences: null,
             }}
           />
-        ) : view === "dashboard" ? (
+        ) : view === "dashboard" || view === "connected-empty" ? (
           <ResearchDashboardView
-            data={researchDemoDashboard}
+            data={
+              view === "connected-empty"
+                ? {
+                    ...researchDemoDashboard,
+                    status: "READY",
+                    message:
+                      "DEMO connected service. No reviewed research source exists.",
+                    counts: { facts: 0, snapshots: 0, pendingJobs: 0 },
+                  }
+                : researchDemoDashboard
+            }
             factTypes={factTypes}
           />
         ) : view === "source" ? (

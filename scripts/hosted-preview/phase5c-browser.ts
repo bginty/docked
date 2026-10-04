@@ -13,8 +13,8 @@ import {
   phase5cOrigin as origin,
   type Phase5cJournal,
 } from "./phase5c-scope";
-const output = "docs/qa/phase5c/hosted",
-  rendered = "private-data/phase5c/hosted-rendered";
+const output = "docs/qa/phase5c/hosted-final",
+  rendered = "private-data/phase5c/hosted-final-rendered";
 let stage = "scope",
   genuineSession = false,
   genuineMfa = false;
@@ -101,6 +101,14 @@ async function capture(
       `${label}-${width}-no-invented-model`,
     );
   if (route === "/admin/research") {
+    check(
+      (await page.locator(".research-status").first().textContent())?.trim() ===
+        "Connected" &&
+        (await page
+          .getByRole("heading", { name: "Research service", exact: true })
+          .isVisible()),
+      `${label}-${width}-connection-not-model-readiness`,
+    );
     check(
       (await page
         .locator(".research-model-blocked strong")
@@ -536,12 +544,34 @@ async function main() {
           connection.supabaseUrl === `https://${project}.supabase.co`,
         "data-api-exact-preview",
       );
+      // Use the just-verified browser session. The setup journal's earlier
+      // token can legitimately expire during a long acceptance run.
+      const liveCookieParts = (await context.cookies())
+        .filter((c) => c.name.startsWith(`sb-${project}-auth-token`))
+        .sort(
+          (a, b) =>
+            Number(a.name.split(".").at(-1) ?? 0) -
+            Number(b.name.split(".").at(-1) ?? 0),
+        );
+      const liveCookie = liveCookieParts.map((c) => c.value).join("");
+      check(
+        liveCookie.startsWith("base64-"),
+        "current-browser-session-encoding",
+      );
+      const liveSession = JSON.parse(
+        Buffer.from(liveCookie.slice(7), "base64url").toString("utf8"),
+      );
+      check(
+        typeof liveSession.access_token === "string" &&
+          typeof liveSession.refresh_token === "string",
+        "current-browser-session-secret-coverage",
+      );
       const tokenOwner = await context.request.get(
         `${connection.supabaseUrl}/auth/v1/user`,
         {
           headers: {
             apikey: connection.publishableKey,
-            Authorization: `Bearer ${account.accessToken}`,
+            Authorization: `Bearer ${liveSession.access_token}`,
           },
           maxRedirects: 0,
         },
@@ -566,7 +596,7 @@ async function main() {
           {
             headers: {
               apikey: connection.publishableKey,
-              Authorization: `Bearer ${account.accessToken}`,
+              Authorization: `Bearer ${liveSession.access_token}`,
               "Accept-Profile": "private",
             },
             maxRedirects: 0,
@@ -609,28 +639,6 @@ async function main() {
         "ten-real-rendered-views-no-browser-errors",
       );
       const known = await loadKnownSecrets();
-      // Browser password/MFA exchange creates a different token pair from the
-      // operator's earlier session. Compare those real values in memory too.
-      const liveCookieParts = (await context.cookies())
-        .filter((c) => c.name.startsWith(`sb-${project}-auth-token`))
-        .sort(
-          (a, b) =>
-            Number(a.name.split(".").at(-1) ?? 0) -
-            Number(b.name.split(".").at(-1) ?? 0),
-        );
-      const liveCookie = liveCookieParts.map((c) => c.value).join("");
-      check(
-        liveCookie.startsWith("base64-"),
-        "current-browser-session-encoding",
-      );
-      const liveSession = JSON.parse(
-        Buffer.from(liveCookie.slice(7), "base64url").toString("utf8"),
-      );
-      check(
-        typeof liveSession.access_token === "string" &&
-          typeof liveSession.refresh_token === "string",
-        "current-browser-session-secret-coverage",
-      );
       const actual = [
         account.password,
         account.accessToken,

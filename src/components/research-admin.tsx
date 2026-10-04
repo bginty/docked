@@ -43,8 +43,12 @@ export function ResearchDashboardView({
   return (
     <div className="research-workspace">
       <section className="research-panel">
-        <h2>Research readiness</h2>
-        <p className="research-status">{data.status.replaceAll("_", " ")}</p>
+        <h2>Research service</h2>
+        <p className="research-status">
+          {data.status === "READY"
+            ? "Connected"
+            : data.status.replaceAll("_", " ")}
+        </p>
         <p>{data.message}</p>
         <dl className="research-summary">
           <div>

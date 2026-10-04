@@ -99,8 +99,29 @@ for (const width of [360, 412, 1366])
     await expect(page.locator(".research-summary dd").nth(0)).toHaveText(
       "Unknown",
     );
-    for (const view of ["dashboard", "source", "match", "member", "detail"]) {
+    for (const view of [
+      "dashboard",
+      "connected-empty",
+      "source",
+      "match",
+      "member",
+      "detail",
+    ]) {
       await render(page, view);
+      if (view === "dashboard" || view === "connected-empty") {
+        await expect(
+          page.getByRole("heading", { name: "Research service", exact: true }),
+        ).toBeVisible();
+        await expect(page.locator(".research-status").first()).toHaveText(
+          view === "connected-empty" ? "Connected" : "NOT CONFIGURED",
+        );
+        await expect(
+          page.getByText("MODEL BLOCKED — DATA REQUIRED", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          page.getByText("No reviewed source is configured.", { exact: false }),
+        ).toBeVisible();
+      }
       if (view === "source") {
         await expect(
           page.getByText("No successful fetch recorded", { exact: true }),
