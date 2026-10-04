@@ -127,7 +127,7 @@ test("empty database has no registered model, predictions, implementation or off
 });
 
 test("dated training manifests bind a reproducible revision and cannot be edited or read by members", async () => {
-  const observedAt = new Date(Date.now() - 86400000).toISOString(),
+  const observedAt = new Date(Date.now() - 86400000).toISOString().replace(/\.\d{3}Z$/, ".123456Z"),
     asOfTime = new Date(Date.now() - 1000).toISOString();
   const training = validatePoissonTraining({
     schemaVersion: "epl-poisson-training-v1",

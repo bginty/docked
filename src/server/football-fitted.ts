@@ -49,7 +49,7 @@ export async function registerFittedFootballModel(
   await tx`select private.transition_football_model(${input.modelVersion},'RESEARCH','Initial dated sporting-data research fit; no live approval','{}')`;
   const [manifest] =
     await tx`insert into private.football_training_manifests(model_version,training,training_hash,manifest,manifest_hash,fitted,fitted_hash,source_ids,code_commit,input_cutoff,fitted_at,actor)
-    values(${input.modelVersion},${tx.json(training)},${fit.trainingHash},${tx.json(JSON.parse(JSON.stringify(input.manifest)))},${phase5Hash(input.manifest)},${tx.json(fit)},${fittedHash},${input.sourceIds},${input.codeCommit},${dataCutoff},clock_timestamp(),${input.actorId}) returning id`;
+    values(${input.modelVersion},${tx.json(training)},${fit.trainingHash},${tx.json(JSON.parse(JSON.stringify(input.manifest)))},${phase5Hash(input.manifest)},${tx.json(fit)},${fittedHash},${input.sourceIds},${input.codeCommit},${dataCutoff}::text::timestamptz,clock_timestamp(),${input.actorId}) returning id`;
   await tx`insert into private.football_model_implementations(model_version,implementation_id,code_commit,config_hash,training_data_hash,reviewed_by,evidence)
     values(${input.modelVersion},'regularised-independent-poisson-v1',${input.codeCommit},${configHash},${fit.trainingHash},${input.actorId},'Deterministic fitted research baseline; retained training manifest; prospective calibration required')`;
   await tx`select private.transition_football_model(${input.modelVersion},'FORWARD_CALIBRATION','Begin prospective probability observation only; publication remains disabled',${tx.json({ manifestId: manifest.id, fittedHash, validationStatus: "UNVALIDATED" })})`;
