@@ -1,5 +1,7 @@
 # Results provider readiness
 
+Phase 5D retains **NOT_CONFIGURED**. The two OpenFootball files pass a limited goals-only training review but still lack operational finality/status/correction guarantees. The Odds API [score endpoint](https://the-odds-api.com/liveapi/guides/v4/#get-scores) was rechecked in official documentation; documented final scores do not by themselves establish Docked's precise regulation/correction contract or extend the existing Preview rights scope. No extra API credits were consumed. A new database gate requires explicit `regulation_results` source permission before appending model outcomes, separate from training permission. Prospective probabilities may accumulate while actual outcomes remain pending.
+
 4 October 2026: **RESULTS_PROVIDER_STATUS=NOT_CONFIGURED**. Results remain pending without a separately authorised, mapped result source. The Odds API Free trial inspected scores but did not configure automatic settlement. Historical/current odds and a `completed` flag are insufficient proof of regulation result, cancellation/void rules or correction history. Actual limited inspection is recorded in [PROVIDER_TRIAL_RESULTS.md](PROVIDER_TRIAL_RESULTS.md); no additional provider requests were made for Phase 5B.
 
 ## Required canonical contract

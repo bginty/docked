@@ -116,6 +116,9 @@ export function ScannerCandidateCard({
       c.modelDataCutoff ?? "Not an independent sporting model",
     ],
     ["Prediction record", c.predictionId ?? "No independent prediction"],
+    ["Model calculated", c.modelCalculatedAt ?? "Unavailable"],
+    ["Model recorded", c.modelRecordedAt ?? "Unavailable"],
+    ["Market compared", c.scannedAt],
   ];
   return (
     <article className="app-panel scanner-candidate">

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "recordedAt": "2026-10-04T05:01:24.038Z",
+  "migrations": [
+    "20261002113546",
+    "20261002122714",
+    "20261003002609",
+    "20261003002709",
+    "20261003002935",
+    "20261003021118",
+    "20261003030722",
+    "20261003061548",
+    "20261003062615",
+    "20261003121257",
+    "20261003121502",
+    "20261003143903",
+    "20261003214310",
+    "20261003225203",
+    "20261003232606",
+    "20261004003850",
+    "20261004023247",
+    "20261004044506"
+  ],
+  "migrationHash": "dc0b36b56e3b7bf3f762a2ac2dfa572e4b1d29a33cbccf10a10beadc8c722d89",
+  "tables": [
+    {
+      "relname": "football_training_manifests",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    }
+  ],
+  "guard": {
+    "users": 4,
+    "publications": 0,
+    "enabled": 0,
+    "sends": 0,
+    "attempts": 0,
+    "model_versions": 0
+  },
+  "counts": {
+    "sources": 0,
+    "facts": 0,
+    "datasets": 0,
+    "content": 0,
+    "recalculations": 0
+  },
+  "productionChanged": false
+}

@@ -1,3 +1,8 @@
+# Phase 5D update
+
+The Phase 5C proposal below is retained as historical context. The deterministic research fitter, accepted source-reported training subset and retained fitted-input workflow are now implemented. See [current fitting specification](FOOTBALL_V1_FITTING.md) and [data-quality review](OPENFOOTBALL_EPL_DATA_QUALITY.md). Hosted registration/prediction status is evidenced separately in docs/qa/phase5d; no live approval or predictive advantage is implied.
+
+---
 # Football Model V1 — proposed, not fitted
 
 4 October 2026, Phase 5C. **DRAFT / UNVALIDATED / NOT_CONFIGURED.** No independent probabilities, model fair odds or predictive advantage have been produced. There is no runnable goals estimator, fitted model or accepted training dataset. OpenFootball CC0 goals/fixture files are now a free research candidate with measured local quality gaps; they are not an operational sporting feed. The existing quote-derived `MarketBaselineModel` remains a separate research baseline and cannot become the independent football model by renaming its output.

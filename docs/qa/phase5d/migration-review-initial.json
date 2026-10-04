@@ -1,0 +1,34 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "migrationName": "20261004044506_phase5d_fitted_poisson_research.sql",
+  "migrationHash": "14162b5297b30d1a8d0842fe811c3ac3690f0bcaba437ce613f60e1ec3a622bd",
+  "local": [
+    "20261002113546_docked_platform.sql",
+    "20261002122714_phase2_security_and_validation.sql",
+    "20261003002609_phase3_membership_and_rewards.sql",
+    "20261003002709_phase3_social_core.sql",
+    "20261003002935_phase3_community_edge_ledger.sql",
+    "20261003021118_session_helper_execute_hardening.sql",
+    "20261003030722_phase4_market_reference.sql",
+    "20261003061548_hosted_preview_tester_community.sql",
+    "20261003062615_session_wall_clock_revalidation.sql",
+    "20261003121257_phase45_preview_beta_auth.sql",
+    "20261003121502_phase45_preview_market_fixtures.sql",
+    "20261003143903_phase5_edge_scanner_market_data.sql",
+    "20261003214310_production_community_runtime_role.sql",
+    "20261003225203_phase5a_manual_provider_trial.sql",
+    "20261003232606_phase5a_reviewed_driver_recovery.sql",
+    "20261004003850_phase5b_independent_football_model_ledger.sql",
+    "20261004023247_phase5c_governed_match_research.sql",
+    "20261004044506_phase5d_fitted_poisson_research.sql"
+  ],
+  "guard": {
+    "users": 4,
+    "publications": 0,
+    "enabled": 0,
+    "sends": 0,
+    "attempts": 0,
+    "model_versions": 0
+  },
+  "capturedAt": "2026-10-04T04:58:01.127Z"
+}

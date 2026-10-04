@@ -1,5 +1,11 @@
 # Admin and operations guide
 
+## Phase 5D fitted-model operations
+
+Use the [controlled manual fitting workflow](FOOTBALL_V1_FITTING.md). `/admin/model-performance` now reads actual retained fits/predictions; a current `/admin/research/[eventId]` view shows the model's actual team multipliers and probabilities. A requested historical research snapshot never gains later model output. These are private staff views, not public recommendations.
+
+The first model does not consume injuries, lineups, news, weather or market prices. Model snapshot age is limited to seven days in the research policy; calculation does not refresh source age. Refitting requires a reviewed new version, manifest and code binding. Model result ingestion requires separate regulation-results permission; OpenFootball training sources do not receive it. Keep automation/publication off while comparison and results authority remain unresolved.
+
 ## Phase 5C research operations
 
 Use `/admin/research` with current staff MFA to inspect source reviews, schedules, match files, evidence and editorial drafts. Authorised analysts/admins may record typed evidence; owner/admin governance controls source/feature/policy changes. Editorial staff review factual content separately from candidate approval. Never enter a probability, fair price, settlement or article body as a structured sporting fact.

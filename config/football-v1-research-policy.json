@@ -1,0 +1,14 @@
+{
+  "version": "football-initial-observation-v1",
+  "state": "RESEARCH_ONLY",
+  "minimumEstimatedEv": "0.05",
+  "maximumEdgesPerEvent": 1,
+  "benchmarkStakeUnits": "1.00",
+  "initialObservationHorizonSeconds": 604800,
+  "maximumSportingSnapshotAgeSeconds": 604800,
+  "automaticRefit": false,
+  "refitReview": "Monthly or after 20 new authorised results, whichever occurs first; review only, never automatic fitting or activation",
+  "autoPublish": false,
+  "liveApproval": false,
+  "optimalityClaim": false
+}

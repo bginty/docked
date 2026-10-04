@@ -1,5 +1,14 @@
 # Engineering decisions — started 2 October 2026
 
+## Phase 5D — retained goals-only research fit
+
+- Accept only the 398 explicitly FT-labelled rows in the two already-approved pinned CC0 files for statistical research. Exclude ambiguous period scores; preserve date-granularity and actual observation clocks. This does not establish regulation settlement authority.
+- Predeclare regularised independent Poisson, 365-day half-life, ridge 1 and eight-match minimum; promoted teams below the minimum abstain. No market feature, LLM, retrospective betting optimisation or unjustified confidence metric.
+- Freeze `football-initial-observation-v1` at 5% estimated EV for research before any market comparison. It is not an optimality claim or publication approval. One event/one standard unit remains the maximum benchmark.
+- Preserve training manifests, fitted coefficients, source/config/code hashes and all prospective attempts. A material refit creates a new version. Review refitting monthly or after 20 new authorised results; do not refit or activate automatically.
+- Require a separate `regulation_results` source purpose for model outcomes. Training permission must never silently authorise settlement.
+- Keep the first complete manual seven-day-horizon observation cohort distinct from future fixed-time scheduled cohorts. No schedule starts until the full authorised comparison cycle succeeds. Missing market authority is unavailable comparison, not “no edge”.
+
 ## Phase 5C — governed research before independent pricing
 
 - Narrow the first research scope to EPL pre-match regulation 1X2. Preserve the broader platform/community; no generic all-sport model is implied.

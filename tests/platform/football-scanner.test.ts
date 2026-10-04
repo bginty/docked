@@ -9,6 +9,8 @@ import { hash, strategyV1, type Rules } from "../../src/core/pricing";
 import { validateFootballEdgeStrategy } from "../../src/core/football-edge";
 import { marketReferenceV1 } from "../../src/core/market-reference";
 import { referenceSources } from "./market-reference-fixtures";
+import { fitPoisson } from "../../src/core/football-poisson";
+import { phase5Hash } from "../../src/core/phase5-hash";
 import type { ReferenceSql } from "../../src/server/market-reference";
 
 // These are authored contract fixtures. Real server orchestration is bundled;
@@ -159,7 +161,24 @@ function readyRow() {
     probabilities: { home: "0.58", draw: "0", away: "0.42" },
   };
 }
-async function runtime(initial?: ReturnType<typeof readyRow>) {
+async function runtime(initial?: ReturnType<typeof readyRow>, fitted = false) {
+  const fit = fitted
+    ? fitPoisson({
+        schemaVersion: "epl-poisson-training-v1",
+        competitionId: "soccer_epl",
+        asOfTime: "2026-10-04T00:00:00Z",
+        matches: Array.from({ length: 20 }, (_, i) => ({
+          id: `synthetic-${i}`,
+          home: "A",
+          away: "B",
+          date: "2026-09-01",
+          homeGoals: 1,
+          awayGoals: 1,
+          observedAt: "2026-10-03T00:00:00Z",
+          sourceId: "synthetic",
+        })),
+      })
+    : null;
   const calls: string[] = [],
     rows: Record<string, any>[] = initial ? [initial] : [];
   let pending: Record<string, any> | null = null,
@@ -185,17 +204,44 @@ async function runtime(initial?: ReturnType<typeof readyRow>) {
         return rows;
       if (q.includes("insert into private.football_model_attempts")) {
         assert.ok(inside);
-        pending = {
-          id: "fictional-prediction",
-          status: "NOT_CONFIGURED",
-          event_id: values[2],
-          requested_model_version: values[3],
-          window_seconds: values[4],
-          reason: "MODEL_PROBABILITY_UNAVAILABLE",
-        };
+        pending = fitted
+          ? { ...readyRow(), probabilities: values[8] }
+          : {
+              id: "fictional-prediction",
+              status: "NOT_CONFIGURED",
+              event_id: values[2],
+              requested_model_version: values[3],
+              window_seconds: values[4],
+              reason: "MODEL_PROBABILITY_UNAVAILABLE",
+            };
         calls.push("prediction-written-uncommitted");
         return [pending];
       }
+      if (q.includes("from private.football_training_manifests"))
+        return fit
+          ? [
+              {
+                fitted: fit,
+                fitted_hash: phase5Hash(fit),
+                training_hash: fit.trainingHash,
+                code_commit: commit,
+                input_cutoff: "2026-10-03T00:00:00Z",
+                input_id: "synthetic-input",
+                input_hash: "c".repeat(64),
+                payload: {
+                  event: { homeTeamId: "A", awayTeamId: "B" },
+                  manifestId: "synthetic-manifest",
+                },
+                input_created: "2026-10-04T00:00:01Z",
+                config_hash: "b".repeat(64),
+                lifecycle: "FORWARD_CALIBRATION",
+                start_at: start,
+                event_status: "scheduled",
+              },
+            ]
+          : [];
+      if (q.includes("select clock_timestamp() observed"))
+        return [{ observed: at }];
       if (
         q.includes("from private.football_model_attempts p join private.events")
       )
@@ -356,6 +402,22 @@ test("actual retained prediction commits before comparison; zero draw leaves hom
   assert.equal(checked.candidate.ev, "0.16");
   assert.equal(checked.candidate.reference.pricing, null);
   assert.ok(r.calls.indexOf("commit") < r.calls.indexOf("market-price-load"));
+  assert.equal(r.network(), 0);
+});
+
+test("actual fitted sporting estimator persists its full vector before the market path", async () => {
+  const r = await runtime(undefined, true);
+  const prediction = await r.api.recordFootballPrediction(recordInput);
+  assert.equal(prediction.status, "READY");
+  assert.ok(
+    Math.abs(Number(r.rows[0].probabilities.draw) - 0.308508322553671) < 1e-11,
+  );
+  const original = JSON.stringify(r.rows[0].probabilities);
+  await r.api.evaluateFootballCandidate(r.sql, comparisonInput);
+  assert.ok(r.calls.indexOf("commit") < r.calls.indexOf("market-price-load"));
+  r.failMarket();
+  await assert.rejects(r.api.evaluateFootballCandidate(r.sql, comparisonInput));
+  assert.equal(JSON.stringify(r.rows[0].probabilities), original);
   assert.equal(r.network(), 0);
 });
 test("comparison failure cannot roll back the committed prediction", async () => {

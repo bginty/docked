@@ -200,6 +200,8 @@ export type ScannerCandidate = {
   modelVersion: string;
   predictionId?: string | null;
   modelDataCutoff?: string | null;
+  modelCalculatedAt?: string | null;
+  modelRecordedAt?: string | null;
   independentModel?: boolean;
   scannedAt: string;
   startAt: string;

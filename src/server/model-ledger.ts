@@ -14,6 +14,7 @@ import {
 import { footballCalibration } from "@/core/model-calibration";
 import { phase5Hash } from "@/core/phase5-hash";
 import { hash } from "@/core/pricing";
+import { fittedFootballPrediction } from "./football-fitted";
 import {
   validateFootballEdgeStrategy,
   type FootballPredictionEvidence,
@@ -180,7 +181,21 @@ export async function recordFootballPrediction(input: {
         reason: existing.reason,
       };
     }
-    // There is deliberately no callable fitted estimator in this release. Do not accept probabilities from callers.
+    const fitted = await fittedFootballPrediction(
+      tx,
+      v.eventId,
+      v.modelVersion,
+      code,
+    );
+    if (fitted) {
+      const { row: retained, result: calculated, asOfTime } = fitted;
+      const ready = calculated.status === "PREDICTED";
+      const [row] =
+        await tx`insert into private.football_model_attempts(idempotency_key,job_id,event_id,requested_model_version,model_version,input_snapshot_id,window_seconds,status,probabilities,quality,reason,config_hash,input_hash,code_commit,as_of_time,calculated_at,input_cutoff,provenance)
+        values(${v.idempotencyKey},${v.jobId},${v.eventId},${v.modelVersion},${v.modelVersion},${retained.input_id},${v.windowSeconds},${ready ? "READY" : "ABSTAIN"},${ready ? tx.json(calculated.probabilities) : null},${tx.json({ status: ready ? "READY" : "INSUFFICIENT_DATA", validationStatus: "UNVALIDATED" })},${ready ? null : calculated.reason},${retained.config_hash},${retained.input_hash},${code},${asOfTime},clock_timestamp(),${retained.input_cutoff},${tx.json({ implementation: "regularised-independent-poisson-v1", manifestId: retained.payload.manifestId, fittedHash: retained.fitted_hash, independentInputRequired: true, advantageClaim: false })}) returning id,status,reason`;
+      return { id: String(row.id), status: row.status, reason: row.reason };
+    }
+    // Unconfigured models still abstain. Callers cannot supply probabilities.
     const [row] =
       await tx`insert into private.football_model_attempts(idempotency_key,job_id,event_id,requested_model_version,window_seconds,status,quality,reason,code_commit,as_of_time,calculated_at,provenance) values(${v.idempotencyKey},${v.jobId},${v.eventId},${v.modelVersion},${v.windowSeconds},'NOT_CONFIGURED',${tx.json({ status: "NO_AUTHORISED_DATA", missingRequired: ["authorised_sporting_dataset", "reviewed_model_parameters", "fitted_estimator"] })},'MODEL_PROBABILITY_UNAVAILABLE',${code},clock_timestamp(),clock_timestamp(),${tx.json({ provider: "NotConfiguredFootballModelProvider", independentInputRequired: true, advantageClaim: false })}) returning id,status,reason`;
     return { id: String(row.id), status: row.status, reason: row.reason };
@@ -255,6 +270,23 @@ export async function modelDashboard(
     } | null,
     calibration: null as ReturnType<typeof footballCalibration> | null,
     implementationStatus: "NOT_CONFIGURED" as const,
+    predictions: [] as {
+      id: string;
+      eventId: string;
+      status: string;
+      modelVersion: string;
+      recordedAt: string;
+      probabilities: { home: string; draw: string; away: string } | null;
+      fairOdds: { home: string; draw: string; away: string } | null;
+      reason: string | null;
+    }[],
+    fits: [] as {
+      modelVersion: string;
+      fittedHash: string;
+      trainingHash: string;
+      fittedAt: string;
+      diagnostics: Record<string, unknown>;
+    }[],
     selectedModel: options.modelVersion ?? null,
     selectedWindow: options.windowSeconds ?? null,
     proposal: footballModelProposal,
@@ -273,6 +305,8 @@ export async function modelDashboard(
       abstained: a.filter((r) => r.status === "ABSTAIN").length,
       notConfigured: a.filter((r) => r.status === "NOT_CONFIGURED").length,
     };
+    const fits =
+      await sql`select model_version,fitted_hash,training_hash,fitted_at,fitted->'diagnostics' diagnostics from private.football_training_manifests order by fitted_at desc`;
     let calibration: ReturnType<typeof footballCalibration> | null = null;
     if (options.modelVersion && options.windowSeconds && a.length) {
       const outcomes =
@@ -327,6 +361,26 @@ export async function modelDashboard(
       })),
       attempts: counts,
       calibration,
+      implementationStatus: fits.length
+        ? "RESEARCH_FITTED_UNVALIDATED"
+        : "NOT_CONFIGURED",
+      fits: fits.map((f) => ({
+        modelVersion: String(f.model_version),
+        fittedHash: String(f.fitted_hash),
+        trainingHash: String(f.training_hash),
+        fittedAt: iso(f.fitted_at),
+        diagnostics: f.diagnostics,
+      })),
+      predictions: a.map((p) => ({
+        id: String(p.id),
+        eventId: String(p.event_id),
+        status: String(p.status),
+        modelVersion: String(p.requested_model_version),
+        recordedAt: iso(p.created_at),
+        probabilities: p.probabilities,
+        fairOdds: p.fair_odds,
+        reason: p.reason,
+      })),
     };
   } catch {
     return { status: "UNAVAILABLE" as const, ...empty };
@@ -346,6 +400,28 @@ export async function modelMethodologyChanges() {
   } catch {
     return [];
   }
+}
+
+/** Current private research view only; historical snapshots must not receive later predictions. */
+export async function fittedMatchResearch(eventId: string) {
+  try {
+    await requireRole(readRoles);
+    if (!config().database) return null;
+    const [p] = await db()`select p.id,p.status,p.reason,p.model_version,p.probabilities,p.fair_odds,p.created_at,
+      i.payload,t.fitted,t.fitted_hash,t.training_hash,t.input_cutoff
+      from private.football_model_attempts p join private.football_sporting_inputs i on i.id=p.input_snapshot_id
+      join private.football_training_manifests t on t.model_version=p.model_version
+      where p.event_id=${eventId} order by p.created_at desc,p.id desc limit 1`;
+    if (!p || phase5Hash(p.fitted) !== p.fitted_hash) return null;
+    const home = p.fitted.teams.indexOf(p.payload.event.homeTeamId), away = p.fitted.teams.indexOf(p.payload.event.awayTeamId), n = p.fitted.teams.length;
+    if (home < 0 || away < 0) return null;
+    return { id: String(p.id), status: String(p.status), reason: p.reason as string | null, modelVersion: String(p.model_version),
+      probabilities: p.probabilities as { home: string; draw: string; away: string } | null,
+      fairOdds: p.fair_odds as { home: string; draw: string; away: string } | null,
+      recordedAt: iso(p.created_at), dataCutoff: iso(p.input_cutoff), trainingHash: String(p.training_hash),
+      strengths: { homeAttack: Math.exp(p.fitted.parameters[2 + home]), homeDefenceWeakness: Math.exp(p.fitted.parameters[2 + n + home]),
+        awayAttack: Math.exp(p.fitted.parameters[2 + away]), awayDefenceWeakness: Math.exp(p.fitted.parameters[2 + n + away]), homeAdvantage: Math.exp(p.fitted.parameters[1]) } };
+  } catch { return null; }
 }
 export async function officialDockedRecord(): Promise<OfficialDockedRecord> {
   const empty = { officialRecordStart: null, rows: [] };

@@ -6,6 +6,10 @@ import { PGlite } from "@electric-sql/pglite";
 import { phase5Hash } from "../../src/core/phase5-hash";
 import { footballModelProposal } from "../../src/core/football-model";
 import {
+  fitPoisson,
+  validatePoissonTraining,
+} from "../../src/core/football-poisson";
+import {
   buildMarketReference,
   marketReferenceV1,
   type MarketSourceObservation,
@@ -121,11 +125,161 @@ test("empty database has no registered model, predictions, implementation or off
       0,
     );
 });
+
+test("dated training manifests bind a reproducible revision and cannot be edited or read by members", async () => {
+  const observedAt = new Date(Date.now() - 86400000).toISOString(),
+    asOfTime = new Date(Date.now() - 1000).toISOString();
+  const training = validatePoissonTraining({
+    schemaVersion: "epl-poisson-training-v1",
+    competitionId: "soccer_epl",
+    asOfTime,
+    matches: Array.from({ length: 20 }, (_, i) => ({
+      id: `synthetic-fit-${i}`,
+      home: "A",
+      away: "B",
+      date: "2026-01-01",
+      homeGoals: 1,
+      awayGoals: 1,
+      observedAt,
+      sourceId: "fit-test",
+    })),
+  });
+  const fit = fitPoisson(training),
+    config = {
+      modelVersion: "synthetic-fit-v1",
+      parameters: fit.parameters,
+      trainingDataHash: fit.trainingHash,
+      fittedHash: phase5Hash(fit),
+    };
+  await pg.query(
+    `insert into private.football_sporting_sources(id,provider,source_version,rights_reference,purposes,known_at,effective_from,effective_to,approved_by) values('fit-test','synthetic','v1','synthetic test rights',array['model_training','derived_probabilities','retained_evidence'],now()-interval '2 days',now()-interval '2 days',now()+interval '2 days',$1)`,
+    [admin],
+  );
+  await pg.query(
+    `insert into private.football_model_versions(id,method,configuration,config_hash,code_commit,created_by) values($1,'independent-football-model',$2,$3,$4,$5)`,
+    [
+      config.modelVersion,
+      JSON.stringify(config),
+      phase5Hash(config),
+      code,
+      admin,
+    ],
+  );
+  await pg.query(
+    `select private.transition_football_model($1,'RESEARCH','Synthetic fitting test','{}')`,
+    [config.modelVersion],
+  );
+  const manifest = {
+    canonicalAliases: { Home: "A", Away: "B" },
+    mappingVersion: "synthetic-v1",
+  };
+  const insert = (t = training) =>
+    pg.query<{ id: string }>(
+      `insert into private.football_training_manifests(model_version,training,training_hash,manifest,manifest_hash,fitted,fitted_hash,source_ids,code_commit,input_cutoff,fitted_at,actor)values($1,$2,$3,$4,$5,$6,$7,array['fit-test'],$8,$9,clock_timestamp(),$10) returning id`,
+      [
+        config.modelVersion,
+        JSON.stringify(t),
+        phase5Hash(t),
+        JSON.stringify(manifest),
+        phase5Hash(manifest),
+        JSON.stringify(fit),
+        phase5Hash(fit),
+        code,
+        observedAt,
+        admin,
+      ],
+    );
+  const bad = structuredClone(training);
+  bad.matches[0].observedAt = new Date(Date.now() + 86400000).toISOString();
+  await denied(() => insert(bad), /manifest/);
+  await claims(member, memberSession);
+  await denied(() => insert(), /MFA/);
+  await claims();
+  const id = (await insert()).rows[0].id;
+  await denied(
+    () =>
+      pg.query(
+        `insert into private.football_model_outcomes(prediction_id,source_id,source_event_id,revision,result,observed_at,evidence,actor,reason) values($1,'fit-test','synthetic','1','manual_review',clock_timestamp(),'{}',$2,'Training is not settlement authority')`,
+        [randomUUID(), admin],
+      ),
+    /regulation-results permission/,
+  );
+  await denied(
+    () =>
+      pg.query(
+        `update private.football_training_manifests set manifest='{}' where id=$1`,
+        [id],
+      ),
+    /immutable|append|retained/i,
+  );
+  await denied(
+    () =>
+      pg.query(`delete from private.football_training_manifests where id=$1`, [
+        id,
+      ]),
+    /immutable|append|retained/i,
+  );
+  await pg.exec("set local role authenticated");
+  await denied(
+    () => pg.exec("select * from private.football_training_manifests"),
+    /permission/,
+  );
+  await pg.exec("reset role");
+  const [clock] = (
+    await pg.query<{ value: string }>(`select clock_timestamp()::text value`)
+  ).rows;
+  const payload = {
+    schemaVersion: "football-fitted-input-v1",
+    event: {
+      eventId: "model-event",
+      competitionId: "soccer_epl",
+      homeTeamId: "A",
+      awayTeamId: "B",
+      sport: "football",
+      startAt: (
+        await pg.query<{ value: string }>(
+          `select start_at::text value from private.events where id='model-event'`,
+        )
+      ).rows[0].value,
+      status: "scheduled",
+      knownAt: observedAt,
+      sourceId: "synthetic-fixture",
+    },
+    asOfTime: clock.value,
+    calculatedAt: clock.value,
+    codeCommit: code,
+    manifestId: id,
+    modelVersion: config.modelVersion,
+    mappingVersion: manifest.mappingVersion,
+    missingRequired: [],
+    missingOptional: [],
+  };
+  const input = (p: unknown) =>
+    pg.query(
+      `insert into private.football_sporting_inputs(event_id,payload,input_hash,as_of_time,input_cutoff,source_ids,created_by)values('model-event',$1,$2,$3,$4,array['fit-test'],$5)`,
+      [JSON.stringify(p), phase5Hash(p), clock.value, observedAt, admin],
+    );
+  await denied(() => input({ ...payload, marketReference: 2 }), /input/);
+  await denied(
+    () =>
+      input({ ...payload, event: { ...payload.event, homeTeamId: "WRONG" } }),
+    /input/,
+  );
+  await input(payload);
+  assert.equal(
+    (
+      await pg.query<{ n: number }>(
+        `select count(*)::int n from private.official_record_boundary`,
+      )
+    ).rows[0].n,
+    0,
+  );
+});
 test("all new model evidence is private RLS and denies browser reads/writes/function escalation", async () => {
   const rows = await pg.query<{ relname: string; relrowsecurity: boolean }>(
     `select relname,relrowsecurity from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='private' and(relname like 'football_%' or relname like 'official_%') and relkind='r'`,
   );
-  assert.equal(rows.rows.length, 10);
+  assert.equal(rows.rows.length, 11);
   assert.ok(rows.rows.every((r) => r.relrowsecurity));
   for (const role of ["anon", "authenticated", "docked_app"]) {
     await pg.exec(`set local role ${role}`);
@@ -369,7 +523,7 @@ async function sportingInput() {
       approval.provider,
       approval.sourceVersion,
       approval.rightsReference,
-      approval.allowedPurposes,
+      [...approval.allowedPurposes, "regulation_results"],
       approval.knownAt,
       approval.effectiveFrom,
       approval.effectiveTo,

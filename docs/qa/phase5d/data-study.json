@@ -1,0 +1,1980 @@
+{
+  "schemaVersion": "football-training-study-v1",
+  "asOfTime": "2026-10-04T04:43:07.716Z",
+  "codeCommit": "8ee4f7395cb2c1a5cedccaf4ebba2c1b6c1f3689",
+  "resources": [
+    {
+      "season": "2025-26",
+      "sha": "d6070bdf731546ccf97767f062e8af4bd26dd309dee69f6092025bf9c78f43c1",
+      "observedAt": "2026-10-04T02:38:21.2512221Z",
+      "endpoint": "https://raw.githubusercontent.com/openfootball/football.json/e6744429ee395bc86f247348c6184bb08d4eb361/2025-26/en.1.json",
+      "sourceVersion": "review-2026-10-04-e6744429ee395bc86f247348c6184bb08d4eb361",
+      "rightsEvidence": [
+        "https://github.com/openfootball/football.json/blob/e6744429ee395bc86f247348c6184bb08d4eb361/LICENSE.md",
+        "https://github.com/openfootball/football.json",
+        "https://raw.githubusercontent.com/openfootball/england/master/LICENSE.md",
+        "https://docs.github.com/en/rest/using-the-rest-api/best-practices-for-using-the-rest-api"
+      ],
+      "quality": {
+        "schemaVersion": "openfootball-quality-v1",
+        "sourceId": "openfootball-epl-2025-26",
+        "sourceVersion": "review-2026-10-04-e6744429ee395bc86f247348c6184bb08d4eb361",
+        "observedAt": "2026-10-04T02:38:21.2512221Z",
+        "competitionId": "soccer_epl",
+        "season": "2025/26",
+        "records": 380,
+        "teams": 20,
+        "reportedScores": 380,
+        "missingScores": 0,
+        "unlabelledScores": 27,
+        "missingLocalTimes": 0,
+        "futureReportedScores": 0,
+        "expectedDoubleRoundRobinRecords": 380,
+        "canonicalTeamMapping": "NOT_REVIEWED",
+        "timestampTimezone": "NOT_SUPPLIED",
+        "sourcePublicationTimes": "NOT_SUPPLIED",
+        "resultCorrectionLineage": "NOT_SUPPLIED",
+        "authoritativeRegulationFinality": "NOT_ESTABLISHED",
+        "modelReady": false,
+        "settlementReady": false,
+        "status": "RESEARCH_ONLY",
+        "datasetHash": "597e2b118a9aa2295992c510c5f5ec64e4a46f7b64565d1f11a4f4ba91e5692b"
+      },
+      "teamAppearanceCounts": {
+        "football:england:liverpool": 38,
+        "football:england:bournemouth": 38,
+        "football:england:aston-villa": 38,
+        "football:england:newcastle": 38,
+        "football:england:brighton": 38,
+        "football:england:fulham": 38,
+        "football:england:sunderland": 38,
+        "football:england:west-ham": 38,
+        "football:england:tottenham": 38,
+        "football:england:burnley": 38,
+        "football:england:wolves": 38,
+        "football:england:manchester-city": 38,
+        "football:england:nottingham-forest": 38,
+        "football:england:brentford": 38,
+        "football:england:chelsea": 38,
+        "football:england:crystal-palace": 38,
+        "football:england:manchester-united": 38,
+        "football:england:arsenal": 38,
+        "football:england:leeds": 38,
+        "football:england:everton": 38
+      }
+    },
+    {
+      "season": "2026-27",
+      "sha": "bb91f0ab3e8359df163bb9ec98549bfed85e200dd4c32f3bd606b5890d932dd2",
+      "observedAt": "2026-10-04T02:38:21.5860698Z",
+      "endpoint": "https://raw.githubusercontent.com/openfootball/football.json/e6744429ee395bc86f247348c6184bb08d4eb361/2026-27/en.1.json",
+      "sourceVersion": "review-2026-10-04-e6744429ee395bc86f247348c6184bb08d4eb361",
+      "rightsEvidence": [
+        "https://github.com/openfootball/football.json/blob/e6744429ee395bc86f247348c6184bb08d4eb361/LICENSE.md",
+        "https://github.com/openfootball/football.json",
+        "https://raw.githubusercontent.com/openfootball/england/master/LICENSE.md",
+        "https://docs.github.com/en/rest/using-the-rest-api/best-practices-for-using-the-rest-api"
+      ],
+      "quality": {
+        "schemaVersion": "openfootball-quality-v1",
+        "sourceId": "openfootball-epl-2026-27",
+        "sourceVersion": "review-2026-10-04-e6744429ee395bc86f247348c6184bb08d4eb361",
+        "observedAt": "2026-10-04T02:38:21.5860698Z",
+        "competitionId": "soccer_epl",
+        "season": "2026/27",
+        "records": 380,
+        "teams": 20,
+        "reportedScores": 50,
+        "missingScores": 330,
+        "unlabelledScores": 5,
+        "missingLocalTimes": 0,
+        "futureReportedScores": 0,
+        "expectedDoubleRoundRobinRecords": 380,
+        "canonicalTeamMapping": "NOT_REVIEWED",
+        "timestampTimezone": "NOT_SUPPLIED",
+        "sourcePublicationTimes": "NOT_SUPPLIED",
+        "resultCorrectionLineage": "NOT_SUPPLIED",
+        "authoritativeRegulationFinality": "NOT_ESTABLISHED",
+        "modelReady": false,
+        "settlementReady": false,
+        "status": "RESEARCH_ONLY",
+        "datasetHash": "aba48ad226164a2f6d3f7f3303498b754d74c0f41a020f99faf3ce8c02dc798a"
+      },
+      "teamAppearanceCounts": {
+        "football:england:arsenal": 38,
+        "football:england:coventry": 38,
+        "football:england:hull": 38,
+        "football:england:manchester-united": 38,
+        "football:england:ipswich": 38,
+        "football:england:sunderland": 38,
+        "football:england:nottingham-forest": 38,
+        "football:england:leeds": 38,
+        "football:england:everton": 38,
+        "football:england:crystal-palace": 38,
+        "football:england:brentford": 38,
+        "football:england:tottenham": 38,
+        "football:england:manchester-city": 38,
+        "football:england:bournemouth": 38,
+        "football:england:brighton": 38,
+        "football:england:aston-villa": 38,
+        "football:england:newcastle": 38,
+        "football:england:liverpool": 38,
+        "football:england:fulham": 38,
+        "football:england:chelsea": 38
+      }
+    }
+  ],
+  "mappingVersion": "epl-team-aliases-2026-10-04-v1",
+  "aliases": {
+    "AFC Bournemouth": "bournemouth",
+    "Arsenal FC": "arsenal",
+    "Aston Villa FC": "aston-villa",
+    "Brentford FC": "brentford",
+    "Brighton & Hove Albion FC": "brighton",
+    "Burnley FC": "burnley",
+    "Chelsea FC": "chelsea",
+    "Coventry City FC": "coventry",
+    "Crystal Palace FC": "crystal-palace",
+    "Everton FC": "everton",
+    "Fulham FC": "fulham",
+    "Hull City AFC": "hull",
+    "Ipswich Town FC": "ipswich",
+    "Leeds United FC": "leeds",
+    "Liverpool FC": "liverpool",
+    "Manchester City FC": "manchester-city",
+    "Manchester United FC": "manchester-united",
+    "Newcastle United FC": "newcastle",
+    "Nottingham Forest FC": "nottingham-forest",
+    "Sunderland AFC": "sunderland",
+    "Tottenham Hotspur FC": "tottenham",
+    "West Ham United FC": "west-ham",
+    "Wolverhampton Wanderers FC": "wolves"
+  },
+  "included": 398,
+  "excluded": [
+    {
+      "id": "3ffccf03a1a07413e4abeb143385100fadae5a700c336061bcc1b227669be5f2",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "7946e7aca73d4b6d9f85f46bcd7294701484d8671a96c9d27d049ced36e7081a",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "99260c35ba059498836bb0743e843897c1a57b655c5e3cc06c9654784f210eec",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "5968834d83b414f48d97143f0198c9c4afd495f27c13b440cc8da1d8abfbc4c2",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "d34464df8fd7efcc4bb7c0bac7e13c4dae64798f5bec8c43b216a4ea8f3c503a",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "bf1ee7b4f073852cb17ab5edd307f9cc90ed02846fe92aa5f22e0d31a98052d5",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "d97a2568788f80cd9ba7acc50c2c843621183babdc1bc2e64fdeb9240639efb8",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "60e0363afd0d0cd55596c00521f95cc697a42573c06933ee56786bf1acf62592",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "1a7e80bee164505ad26634ea9a2046ecc05b6a21a7b875bfeaaa6b733fd4a0d6",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "89c8dfcdf397d1fdcbab661d8a7ca774cd9fff650d66651da4a0004b5f9e76a8",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "45621761ded95c67be1f8dbdf087c25ec4783a92b68ac066916982b78e8edf6f",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "33fbaea57037f874423e5db4ade19a06b7b16ddc52ae565b89f660300d35463d",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "ab20744b4e645a4413c0a4d6e928424bb05d9b39ec0972980050d04ec91e90b0",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "df8405b6ab33bc15054c46a6855a32c4e529829b4eb851f2d6bc34ae51558e44",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "722d22ce143a811cbf6180ec38080dbd1a201a171fc841bc09e4b56d5384cca7",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "5febefc20c7abbd174b5e9369d4e2066255db48012f3aae345a7d95883e5c255",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "fcd1174c0a5b928020e2a04fcc6817bd3c2f3d2dd8c8e9c1b0d0dea63ec68aa2",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "397211243738962a83c846a81f80720c05de282eaab37f703df74392ac7713cd",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "c15da98a7437057b593351f22990fd244f3a594a46094cd1427e2bb79ec52352",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "53ed14cfe282151a1f1b57fa13791c721ec19703b899a6e1e8c1e2af55a9c5fa",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "f894e7c3bbb327c28c5133755253de1d7f3dbf76b53263ae40db496b95da0186",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "58dff21116c947907a27c685aed0e35026943f48c07766c2d8f15db3f39a34ae",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "457345131cfc2f9f9675e060a4b850cbc6bfe14d06f3b2a14facefc5740cb2c6",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "36b225fdefcb31e72ea3b13c2f49df5efd0f02d9119ef6c52f753b502126684d",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "954a66296c6fbac221f6286abfb7ddebbd3f54db5eaf50ca39d66ea2bc6d93dd",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "46ec60bd01ca098aae7af00f30901ad93ee0947be8b42d76bbb0f285759a6eb8",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "04361df92ec416490e071c0e847b1a8170b3568719ea88c07ccbf42757cc0e4f",
+      "sourceId": "openfootball-epl-2025-26",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "c4a31fe9e1a88fca9fb3608cc89575b05fd740704a600060405a6c7c1888229f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "74d31fe581009c148cec0dd6e2aecf85c013a14861370f33499c778940650a70",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "c0602695302016267f8a55f7463f70fd21e79627152176e539ecc601653db37b",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "24e6bccd643198eabbe34ee75eebcc83e533ae92dfd981b6556253d12606ef04",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "4376cbbe000b0a058da833048be11f4d523c94129822ec4a162a79f72d823f10",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "UNLABELLED_SCORE"
+    },
+    {
+      "id": "c34bc69430b25ffc23b2a65d76b080be8a2ed647470c69e1180174c945b1b35a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2da66a47bc341fdcab40bbf9311f2bfc9aa2e2d170a6e1200518c5771fc96c7c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2723352023173ea47b2e17030daced6bbeb2e4f22ac8808dfc695b82a0af36de",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "36f74fa04edf24897b49ab65520086aa2cbbd35947a29c1740151b5c14b12427",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "1d59e8c61acfabf3b6720f88ba443823ccb3db74abfb01d88d80ab45be5cc69d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "dadedc44a9800f13942b747f6ba84edec8c67632dc995a401af40fcd57162e93",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0dacd35d3cbf803021b0b66e76dc91a2ce71e5cd9c08d0e475b52804a0a155d8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3b883ace8721ae35fe24f7face0d486af9590986752b72904be201157c2c8b00",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b8da7e74d7ea92c421911d3d97e85e70add8df1b42ade8406b088af2857f92e5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "42911403a147c51428a23a3cffcded180e6b33d4bcd0303791da8508fd01627e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a8a2377e38e8419d52c0d115e22031a50a2d5428d603426337f4b356966c8272",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "793717192092ac3c6230463006376a1996bfc728a575ed09f9c09b4bad9b7020",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e62467e7c4207ff486fbd29296b603175878435cf432f9fa3e6b8dff593b08c4",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5eebeeb0d8e650cfafcd827e2bf3f02e113c56e8ea0cdf3de1e7c2f436a380ac",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f32b3be8dd4f676926ca0e9728fd615fa026722758f4f54427a9b0d139551b3e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "08c6aed18020587323b83610776f8df0c637e1845f1d1029a3200ee3813f6705",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d9591829768508cda7cc2dc21ade5a028acdaa7216791194fb8ff1100a0c83d8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a5bbbb79bb841e866b873ec9b853da4a53a57780572f7a8c5280101b910bdfea",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "1c02026d09676a669fee535cb4deb9eb9db8942414961ab9f0e0fd67ee472ee2",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "319d598f8464e8e664632227701a673bc926d92850b94e413ca29936690dd6ae",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bc277e18120befcba24aeb98e4127de786ebac18943f56ffacf8ea435a898ff7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6c55d74da3b003d6527e160d47b6e0609ec10d619accf18efdb4181fb10b6eed",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2447b191b0190bace92c5d5b621891b97a820f49bcd94a0f7470659e5830d16b",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "636ab341dab329fc8936cfb8190cc9e9f39a5435ac7feab060e8a609a24ac312",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b4f24ba0fda2007d7d7bd1ce45c81833a4c90d516e720426dca975c94df7fada",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c08e4afff0fdb5f403b29db46f8e8f1c97d595fe93206c9e1e3b8c02a11af994",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "73161b142c2c69d8db61a76d0de7a2cec50bc017cb5f22e31b4efb3d70ac10fc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d0402d6e890b1ed1c128ddbdb0a5aa5a7498b7c317de12c1e11614e2fcecaf3a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "da29523fe593c65d98265249ae0fca387bf93946cd783375026e2e2b171490fb",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5b42c56bd782b2ebcaa983dd53a2e56899256428250c670bdbc83b47920625c6",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ad6f1bed866d7114a5ec941ee08fe12f0aa0ea1529ff5eb8713fe21419ae9af5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "4392835fa37146737618677336e3c148e9ca2b6dce0d7dfebe8e8b4c2ac2dcbf",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6be65f4503858504368f7f8c0c294800811b5196301b77aa6cd9cb816491ac67",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8ea87d147d467e296940548997f0f8741d3efb94c5b2cdea908136bf578bccab",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f0e0d710b9662713d8c7a9d5860e645e566fcc383dab6661934cbd65e57855da",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "777cd427eee7add2428c8f91b28e37b24dec9ff66d03d743a35b98c40b44ea42",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "36ed60c299b2e1518310deb51df04d15bfdb42ff55834beb21dcf63c9850d343",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0a28a10a3a7bad65f221ca938659c607a5cac992c5f410dbb28b8fe45392cf52",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ffd7261010fa0c8ccdda3c0e85480bf1a023b51c93a8c6c2994cf64650ab3ec7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3f918a179963fda9a4a7460a77610e4a300da01047bd624f303248a7bbcc1fdd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "fc3e6d205e3dec78f760fcec03d0536e31dcc0ba9fc94772e6ecaea884932c27",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b6a0e3fb8edba44d69ac612299cb2a00660cb677bc5a41bcae828accfbf06f62",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a1d70927725e9f39c062891b80c2379b429b0754d075282a36a07cc19fc32e00",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e16b42880cf116bc6159aa83338e5fd0f199c8398917efb1d2bf578048ee224f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "702deb34ff5dc8e5c040d628d3bffde4f9ce7f48cec56e2c71c9a6fa4850a0ec",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "10f34960d6d328013fab59253d8873cf290ce7dc8808f000e4ab0a72a9fee367",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6035dfb529c9d5f9f09d33023890a39018bad9c55c896c512d21c6c900470ab3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "40ff2f38862ffb57fca6e7f34f92d1ed02f412afbbd1fc7211de41f980a64172",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f266b7c42f88efbfef716a903ea9cd46dc7fd9d7066df7bc515c867cfeca89e8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "86d24d7e19f544eb68716ea750d09d16e9778c9204c5f32b72c7fdeee2d9bfa0",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e8e71e18bde7701aa2f668617907d6dbecbaa61df240ef2c467923e0f0e2891e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0f23172b7d0432887b8b7ec3ba76234ad0d6789b0d9446bd17df015bee6e9c19",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "1ad9c4540817782f23259bbc0013fa700ab66a936d2093f25f5bafc80f20ea5a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8a6632b420d46d08ff2b1bac780856af8ddc3a70d1be204cae8dc162d72b23fc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "19e476aaa8ef11fdfe5a71d433f52bea6e847aeab1fe0bea11ef77e4caa75240",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ec2a17f2221c322ab5594d25831ebd8eb8ba223df369ff8c8ff991e046f65216",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0f20c87cd8ef23fcdb189fc7a15f35ca43ed0eda64ac352172c299714a683989",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d32ff4bc71e4f0ed23b3a904af582be305f28f864abf447998e4e80502458320",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b3129fd0ad521792c156c0fe631f69f431741679ed9a68ee052acdd0e6455c0f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "4187d5133d88398fd9c700a28acf57650204d4df1544d16863b54b666734593d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "af7f92cd20b206d3a36033ed4fcb1d24afad50a2bbd62e1407adaacddedcf2b5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "31067deee2bdd4f25fbfe219c4243ae58b740030ec2a55182dfe1295ca136700",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "54e1366218695f5f15760242e3b1f6f187359b690c12c62ca8400569ac12bbe1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bc9f17388a6b5e3d4ce8573fc38c41577e9744c92d8c5daac533163709737464",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "701c6dff24b5c6fa4596388148864ea011375420edf54174ce68c1773f119c83",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "85eb517cd143640e8e2ac71f06f6416570fb54711f6b4c42e59f06a4c27c9be8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f2fd44f64cf0c87801e0a5c511cd93e6aad29e9b177a79c9d7d5ae271cb6870c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9c78c2bc0241b2cc9b720c5e32aa2cd4f1f4daebf7e3a818e70475a8c57268be",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "7f36ffb6840802762714181bca7e7e7727d835254c320d11a3e3da846f603e5d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bc282fd777cf738a142ad5125bfdf22567320032300a5d1ec3d0d40bc2e4cc6f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "25671d21d3c8460adf5fdc3530a7ec42f47ef5d39651be182980ff13d59c3ed7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6895c96ce97d65de734be3297787db0073a33a81070c54340c06dfb34d10e595",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6d6388c4ee2afc9cad5358c384a813f10bee473619d3d07873265548db0357c0",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "07fbccf0c408786a5c28e46066ea668bcc9470ec79ac2a73a8dbab8ed14ec67b",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f0c73f3878ad4abb086a07513d329728183f610f2a19597b9a671e921b0aee27",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e83bb481d90c73bf0c11a434b113b3fe47fa6b8322e9ee9d195ec1a70f2ad301",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3e6f765e1fd7ff47c4e1c1dab50ce14ee004bbe21fb863c51b3468153293a0f3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ce0b5fd28c05cc8f88fe1ea3398a2cc739d458feb32f16809865b0978c68f623",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "37d21018ade87e21851785d34e55321161deb82484c1e561805fc83b137f869e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b60e20797977424ba1e717961080965845611f036ecbf31258fd61b495efd97a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "07a69930bafe842410499c48357568b23df970e022808868c0606192f9a32c78",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8fb89d69115b6d146cde4a3b427fdb10b0e4565397d9835b537205ed0f653de8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "92ac352f5ca3852689521b00574a3204c236dc522fbd5a23beb16bb303b07e9c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "642d0c226dc1f8484a74b96c7474c4fb0187574aeddb33ecdc316ada9db3aa58",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b44fcdc2c7828a4bfa500f5fb7875c5ca294762ff04511e2c4553d239c5db1d3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9a2f8bc4f1687c39c1eb7b6e552e1bb9d8135d3bdd701919925486ea282605e2",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9fc00b0f1a5a7900a947fee303d8b0f77691286fbc4db9cec8b71db9a50ce058",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9e6ebcfbcb70661012751d11dc907436547d29c7cc1d7e8149f3d9deb68a45aa",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9842206dd8aeb48c5e95ed409ded3424afc62cf4eb5a19a4dae720d432d3fe35",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f77965c7cc8ef375b4437589988d765eaa8ccd2bb1593059a927ecd295bee4b8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "64de9a05bf1bdd0443f2332d3c778e54e54575697c2e45cf2b17317b33e6435d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d6c704e5873fa8605a3b5127e3e66939d7dc811558eca02dd3ad14e0a3752767",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bee8e1e2706874f9c8ad7c5a09bbdb9a2bb9d2139110fe9a12fbf5f3c2487e5e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "868b9cab35b683a07d80828547b7857341338767f4fda805f6b27f681c7f037f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b177298d82e6e1b70cbb492dd92d080d3e37526dfdc074efbaf222360b96040c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "112e3c1ece673b7264e1a63731a2a2680f7e2f3c808959f13097e133c8258feb",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "95e760662e299774091b2a268537b9271daf83700adf341ba891cb39be6aa4da",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8adfb10e42b606935cdf110fca07fb9da1b035dfd023664c13c54ca90fa31760",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "67b137624c09e351bb168789ee3cd3fc320b84729c9000617766e0315a33fcdb",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "20a5e671b38e42b865dd4394f9bc9c87a728a540cea9656de424be94dd634244",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "62a62c50358739c10319afb64a98a6339ec0e0f0809706ad595601b799f62319",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0209792c6f1464e711a42a478d6887b66b6de8c6f9f56cb6015d9abe67171087",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bc9aa7fdf76b6a11d915931aba42ebb4d048a8086b642e2feb7f097d4eef8599",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "4fb3d16bad494d2dfcc3abd4e31d997fa689ca190f89f966b2004a3f2244bf09",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6a8542bff2bd2c6b1eb2b345491930c458d653d87bf5dc63c5cabb9be5bd2ece",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b99004bc5c02184b49e9ef8d896c179e1f74c5845162121c48a3a5f12414830e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e78e3c82658e2e0eac45cbd6f2d926c7f52c1fa9b7dff5b1e8074374d9bb9bd1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2b3bf66767d98ab8368bd0f97b851a8b2ddc3b2b7f9a7c5c4fcce60498393ba7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "cdb7b67884269f1a9b88769280ad8e5a60dd8be7cd4e8721aee7534b537dddec",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a875d1222ea4cd0046bffb9284b7889067b7cfbd4d42d93e34fa6fa1f2a03fcc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b3cd63e127e006d73cfe372d1cd566b638d0d640332c1a8533f5e45ef5e9ec19",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3a0de9c1e8f382d3021a3ccc8188f64ee7c85cb8fc7ffdaa0713fa91c38a40c8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "4b9d4f94afd6435c662a2b4c74994b80dbef89fd948337e409a3910dd81b2b21",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bf86ef73059f0b53f009110bdc2bb70bfb2f6274fe2192888e397ecf1b73a92f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6ff4360512bbaed43b1e40c34e18ada56727d49bf25e9efbbb2e1bc57710dc9d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ca5de54fae896deb939642295bd10858e9a7c6124a2fc949ddde6860b107123a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f4514390a8810e8fd10de510d5db4cab5ed54b116d31e8b83eb820ab4e918010",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "85b6c288c71388e04d9750e7db30a37a1cf39a69d64f42f39736b1201b342ecd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ba06d2f3f818a88b258db052aea930920d8e8a55e8c1f94372bb499022ae5e9e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a2783921af7aa6f2265ccf39afc23273d0ddf305f50e262c3e023719e762cc5e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5d9113232f014c82d7fe24dcd03b219d91e490718cdc61d2fbe23f3e3083e54f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6fc48135a2c6552b43d871761dd0778248ec5c59a67ea951da47f10edb3305bc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9bab072d9a300716af124b9b6fff046390052ef0629621c2df21d9cb3f418434",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "581768b063abb7ac154fa78505a92ed1027ce986916e67600d7b84e2d0437d09",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f6e2239994c9d190daaa015f9658b572882e8be4c15a5922dda928f7347996bd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "aaf0154bf025bcdfd3080f5dda121258d34d709be85e4c039c9f4119038dd42c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f3b9f72ac70f503df6d554b802ba703f95318567ce4c60a34c1c2bb5264c1699",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "71f0e5be074fbc0a9d101cc124411894f3d368381bafe341ca80895be6128d00",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "248dc107927e2cdf97d4b1f97d76e46da55e0ae9de5c5af4858f7d22f3ef3374",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "fdb329cb8435c03245339c6cdb3fbbcd90fb8fc8eb1552d186f93611e1c4e408",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d1efeb63d3cf1c03c3874553e38f0749f51f182c1d9a0d27b794863909c202e8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3f3f043b868c68e16e26f2b33407fe733ca60ed121840344b922c5e8ea45477a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8d6926510e6bfc26e2c247367f9b0b171421e4b777f46f91f6cd87faa0e060d2",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3ca62b178b2f98991ee8e2ab4c60077dbf33d9486f62a3379c9e04e377325f07",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ba07536724947e266180599db7d99f546f3afe5f63dc66228ff3de31eae27f47",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9466243799315db1b0e653e27f3656f937f6c681c0b94127c0da8f10a66de440",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8046096fdb2ef58b230e4ae668c251c00cffd0ad953484a2ee05d78a83b72acf",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e899244f07be5d4cd1237f8d65e39abe6aef4accbf8341bdfe0d45ae808201e2",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c6771d50765f701343c4c6d246b5252e02cc9284ab09dbdb9e63aa96db11e878",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "41f957dfb3d18136862ada2ebb26b141e054b4a83d484440171d82c34ddb21b4",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "13a2334049f9fd659a23c7f8beeef6e2bf97de9257b6d8d9919f5632efa829f5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "914ca74965cb95f68c35d768abc1be3f4b135d294d053a643530a6756d07ad69",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5110d0aa436384a880e66fa3d939616be83ce6b23688710a4b289ea581f1dfb5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0e483934f8a1bcfdd14a90b7e199d6647fc5ee74d3390d2d549e16c3c447ec59",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "965ea060b98f9b71cd0889fbb7cfc006248c8d551e60527799a018df35ac9a1a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2333b36597c4e2b58653c5e679c8e588dbad497e9730a44ab3f41f576fda3eaf",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bf16ef60ed274abd68bb3d2ebd27a523f1bfad4fc50faba251247b8dcbb06aed",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6722385943aa86dfe0e501098e687b75400d14cd8bcce91282d7d80f6243e7aa",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "860a9ae762c84ce7135d08b471a3b6ecbf03a8afd52e88332c98ab6c41b59f15",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "beed2e56fab1d06a21752a9acbe9481d5c29399684b61481bd89779f43e490ce",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e6b7ff1d936239969acb8290c112701e487ac2ffbc5a4750f5c552fc041303bd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "af1bc64f7eca5d61b85bd169d9b214483f08ca5f900f711bbd70f64a50860354",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8449c3186bc8c571e1a714d1941cf95171ca0fefec692c700b28b65514ffdf14",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "76ef830f5e0b9874163632bda4e58216493ff1c56a73f406e324054225696bfd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5dee31dadcf2a12ef53f6fca8a977b7e0bc36101e046f2870d6e7b059b8082b8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "288f3087c8224d69897d3bb5707986f52219b1bf3104bf20d1b93e0a9660ceac",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3e450d340566813ea629ed01ca0dac69589a5f8df598f9147bd3d44c9767aa69",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "532bc727df709ad6a7e1f323b2ed8b5b3aed58363274197072c42524a2677d90",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "88ff5a82f7dbd1cd4fda17133cf899ac8a0a430cdc8bb383fb111e2062f430e1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "05e34b4c4544d0e1a803c1c7485efdfc2ccd52008b57360d336dab80f99a32de",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "1cb9eb371e6e52f127b79af637df55aac5c755891b3349c3aa3d01eaa71a5db9",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "85b2b995b9a2da2d11460b46ab50e956a36b31f5a976e3ee59080ffe8b6fcfb2",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c0100bf97d476f9b1ec4b94d75bf23c21e18be971f7cb062765ac27adb6f44f5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "851592ca6e7b9806c184005f258eb46c13a048d00d4979f7fc76879b147ffcaa",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "64772414458ea4b07c52322845da6041291397a0701c85008aa384d00f563dfe",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "82f08b8c83762945b1df3c25c271d7d7e1018c712a1ae59db7c15755d5a79d8e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b1632645a69e81e535e751c44b9a18f9f755d062dcc9e8d3631c10105dd1b3bd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b080dd14abfb4077eb7f0c9689a7be82c50702b2aef3f92051bd93e807104ef7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "63017c3e3f4835fe961a4f3d8ca59d00cd17324ed4d9f7b7e8fbdd7b94c10a80",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e9f27bfb40555d66039ce7f2c7c55fa7f60996df458c9d565d92c1e887c5144e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e222829430372a566758b26dd23f2ded3f62ecc8d0308d9f49fd6c4322b195de",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3d2abad202ddbf49cf1b3eaf6914cd4c8a73166d743ef692a6dfa2db2b42ec8c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c753ca1b2087abc37308f53f5785f5de2c9d49d17015c1ef1fea195927d0ccf0",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "1285bed21a0c8e81cf5027c7bb7beeccb1885de7e79c6a49b1dd3f588d7852d6",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ea2f9b451c73fdd493dde24760a861f058d180c9014cea24392e13cae4da7a28",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0b0a2974bb1c52008922c7574fbad64a3a7bd6986654fd2f9a4f10bedd5e8203",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "11f30f52c627a287b37b73bd90a11d1d8f79cdb2c77f60809d833ee41aa8eb39",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5d3473d75e523204c66a0310acd20ab2fc2bc4cdec7a8e0c155a65c432f47686",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "95e7fd2f58e2b8491c6bd735ae290a7a58955f13227a4c3787fcdb4e256c1d7e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c556aaf708b36cac4b8ca331fb880ec8e981b0e25fffbefb08f519c96e681f24",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "cf6263022cda65acbf0d28fdfd6abdb63b70ff772292ab22fee53fcf6acf5ce5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "425517de4bc593b0b4a2fa97958d6908e97d79d00f61e46ec97fdac1e72b7242",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "895180a75cb3628fb9db6ad515650f3608681c245b5d7ef62274b788ec916149",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "111265553c8f7a5c10ab925ef45c8b1afac29989c09a35dd1ef38f521a3fb121",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "730c3e02eafc5f466e3676ee7c41291e6b685196e22e79d53d390007b12be51e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "65653e0c9d4ea9eb7aaccfa4a3274910d035fe7958bf36ef116631749d99b1f1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "fc395779a3543a37bfcc74b70e16336aed181dd2747729a4ee87e1f48c082a66",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f3f61db2f1e691fb26784787c026cd33f7cef945199ba6685b5842ac957bc1c1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5c014b17b2355355d6695932ac228164a99221689394710dd9d81b38f20fcb1a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a80b71b1369764eacc35bc7c460d97bf8c4c9b88652ae05d7e83e1c997e31402",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6e581a9901868810e146d80e211754d160c16cc58830053639222d7f17c688aa",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "497f87d612dbad696418bd62f93fd286e056a1e179ca19013a2c01b14e38214f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "065e2098044e2c20489edd4e0e8deb6684bbb74bd63d5814a3a4b1678efd1b78",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "81bbb22d0e349e70edb1a3d390b9198713721b48b8f56817d1effa993d2cc2bc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9185d8d52f7f6c2bc14eb2a444dff37515e33bcaa4a155108bc9ecab9d81b4aa",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2b15d7d458c9f1d705662dc560a82f3134257042bc8d8ee690098b2c3bf57ea8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "86c9ab852694738decb56d11f179bae758a9cef771f9073c5ff998215c2b18ed",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a6612ccfd343c1a5dcc7f84f3af72d381a00e7bace35dd5d30910cc57cd356f8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6065921ccc6937ea8cf7cecff58f6e242c2543b78b1b3170fb724cd37f5471dc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a10546a657ccbc4159113fb250000a72dd33bf5cfb34d4a5a600727daaac46ca",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "54ee8a95f01e8290c7755a4fd07c3bcca9fa9012d2bb54527c740f2b9c35d122",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "414102318c20cfe1b406e283fcf185e48f90f5deebc9fe71c2a62f8634f6117c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "bd0dd5cf4310b332501914587fc22eee50ff03785011cac6cf4e595a0c5ac05b",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "468784e7fbbab642f445b77e9cf2893883630d56a10aa4ed072bec3e04dc6fa3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "dad6dcb6c7c151b9a024bbc2038b4a6dd9b4e47dfa7ab13b0d13810afe8ead70",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f39913e49fd48dc92c0bd9d606f988671018b5dd1e5ea0517c09f88b44c9a356",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c6f0e7359df2cbfac205c86078b83ce377f44f75f3ce912e29ccef24f3d1dee0",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0596319fdf50f7f997a698ed11703884987673fa10aa49d4d31ea12e99806510",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8610378b9192697a56228d45b8a27e1473a93e27c3b5d917f7eec05945a2a461",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3db1e96d503751ee91bd09249cfc498858914998700057808b53e0d4fd2cab07",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e55a98819d9a62c0b1feaf6068bca481c75e2d06e273f06934c7397fa72c081f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "89f0d81a2e4cd189b9cc4d8b010189beef34fe9d87756bc6c92361c1bf5070fe",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "aa3576f499a49ecbeecc6951fabc3cfbf9b351cd8781151e370fa459602e406e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "38b893a6d05e4dea0d829009e2c6af37a9843661a497ba113e97c458c9e5e62f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "fb763c12883ca4575bd3208330399fa32776739b9afb38cf1c48334b94fef12c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9b3c04602a11354271aa689554b8d91364161e7c2e33be395c0b931ee6b087e1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ad5b134c41d33b272b9fc660085c5f26448c96fce418ce27dc348cf9ba4d49f9",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "558559b6eee80d39e910960ae2d07692b72301801f22a07fe1acba81d6991551",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f908a448507b7fbd18d7087b61a5fce065dbe7235c756eb206a74972f84f8309",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a65d19782b446ef632af940fe51c1f46809816c69b32c95256d785f4d08fd0a1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "7c5da44bc329f1044a2fe86a005034089638e72416c7b18acfa261497769b566",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a8cbdf9ee8c33620b665af5159c00dcc0d5c76d0e36dc886c215a41a602a9552",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e5689cde4600955078b8ee2a92b54332fb1aa98e4a7ba541a1513df0496451d9",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "daf2b502edb8ec9eaa49f5d717ea1f9d080e7b1811ce5b50711e2cd21b27c7ef",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0bf0ec0303fad7da7f2d66e73730942444932e8be698b23ebf8750b0d7c2bfcf",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "cf6eea4cbf50871e10cc8a678135e5cd3d4901f97ccbe73b3faee94157301818",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "245df97feba7ac820f7c511a045294e919dd5bd44e2f48e25ed53422ab372c24",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e822059929b06c39447e3533ae0edfbf72b2c291416d19bb46065bff74fdd5f1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "15f828c253c10d5eba50615c3d2972a681c6c918b3fb4fa77975df41cd9fd193",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5e64c4307f1c3bdf9e038cf6869882133d82368b6702fb5cac0d6d88431935e9",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "49b69a87037f2b717dccba38d367115fbb01227abe10138b7a3a0334f5bf29a3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d6dfe71e4301887a58a8f25bb681f8090a385c63cf4936f3244ad6e13daf9f55",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0c69b5891e175011a5a2fbd2605b30f79040dcc23aaddb9b9f9d56a8c31a81bc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "56b773e73f2b89e72d616b9f60d9cfae523ecf7cb1d537c9e5381bb4131aff75",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2b960c0dcc4e916f9741019dd8091811ec78c85542a9779f1fc545846c851349",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f6fb2b2829d3606e6f26981b362b6c582f7f505c31f1ad77b2fe8b8ff4e4deff",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "25b5effa56beed530aca3266dce92b88197d7cd1fb60d183230ff4300b238e6e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "931e3e065eddbbc95723042e7832d777786f2b3f10cc615f3e31789daa8d3930",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d23999bd69b7b17a0dbb300d869e90e5e5a16ed4a432058dc83ebf6e9039233b",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "dfe60b8e4685697b666c827eda62311f9134e3c48c5583e7b26a5b3630419f42",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "59194dfc478d5b9bd238bec565c80747e1e6b98186e1375c2f62a6b93e64caa6",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d683503f5b7b09c0304e946d91fefc3f4a6189ae7f68ac145368d1431ec382f4",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "691951d332f3b4d19a83014cc37025e364f001974b8a4f13beda0dc5027481d6",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "696b3e305f12f7da89f105247d7b0cee8208d7f51d2cc6321339955e7ca0abbc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "76e959bbdebfdefb1bbbfe2fd20946b97d59fba9bd117e1e2f54031500d42abd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5ce60f6d332e47588a35bed2ec0ac4be2882ab58b46885d633114952a9aadb54",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "83802980604826226c9ea172566be314ecef21c9886f02d0541803534f18d289",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f53b43a5d5b9dabbc1a0cfe82718abc8d12dcc37df7eb9e55d582777e7031268",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "df150bc353c532aa1ee0ae6b1c23c3991fabc28338d14cf21d3d370c1bdbac84",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a872bee6aab3c8d13b3d8001dc1b8eef5a970f025b502a43ede0510c41811605",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "64780ed5d8862256653c3e7704f0e5607b9cee8ea1a9a1cd35f3d4caf46b7fb5",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a953f0d9ee2f36c05bb27549e340ae5ebf39d8ea18965e4d984b5ef7cd6ecf97",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "a172a189589e68c32bcf3f610ceb32a8f67a182c82951c0c52c085962aae9d6f",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f508c844127bce192c132f4cfc270719214aad90e3f72ded3563f32725c595dc",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8024e15afbf3c9db042b436f9a8700b00afcde820e1f170475dc6df6217d265d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ad62f80fe2290b27605b364f4b3dfb6035f5cbd5a5277116938381ffe4d77c15",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f816afd6cfe2c2475eef4495b45a3157d806fb74bf7eb16c705d59c6831aa553",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ecc31c1e44e86ec51dae1378515bf60f07b319dfb179eee7548601159385c022",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "527c308730a4d915bef57af85a5ead4dbd53cda89b77a4117d7b59de7946005a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "44b6edea8d2a082cda16d5aaf655e2bd570b9325956f6c5bfb65e5a3dd3f0e80",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "cd97f17c1a0a7d7e1ce97e55c5257e8e8fae25fff3889ccef6e969c90e93b319",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0fa5700dc6a872f56f968acd9a50a361627b0bec430db67ca4510b21d7660e79",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c90715965ad73918a5e7ea6de435f557ae28763407f0e114a5fc88bd4ea15d10",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "25573c093c80f94f598e23dc7b421e550da2be46c03b6f0dbbecbfb1af48cb52",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8fe2d9aa49e1a4bb03d371abf4b1bd2468319e570a9a6805b45878b7b4ede2ea",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8590002fb945bbb86c7fddd4d5799a5bef98a80369ab409d1b0989abb8ebf515",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "dcf4e1a2b4c601c2ba0aaa8bd125a804208df148f481887c897a9d8bc17cfba0",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "3df736345e3e26a39ebf3bf0203eb5c5187cf438f71dd0084ed111523de85f26",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "572041fbfed53fdc8af1a907c4327b7d928b37331ab3a81e9f7651108a7cf65d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "16cca53438c2f9510eb9a0e41c5965a8e4af1c2be3ee8af572e12670fe91aa07",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0d6929e30be7d7f76bef56848b4cb96c190eb8ff57d4bafb5e4047676883e5fb",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c1d9a34b07761eba2e9780f1ec768c862a38a0cc3753736fc21b6ddbf547bd3b",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "35e224db059f61833c60d38fbb20f9452af309a89919fd990ee7799046efc7ef",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "50438ace5c34a338aed011cf3fa817174408ef0cbb5142d2230e6c981c66fdcf",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5975d260d796ecac63bdc44b4c8f918a38e08e699ac265b942f457d4e35e8ddd",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "30648a21b4bf7a8096afe19bc2f8e0657a72631c3728e746af696da50a82f6b0",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "83e43b03c827fc3c176ead676c2b2afb4909eb5d723bc57eb4b7cc7aa9cccca8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c51ddbc09ca9b13d9efd88a7b7a02aadc11011397ecec63c656a5fa4c3859cf7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ed4a7b2eca0f0113ad57c352c86793a9cc41204b39287ff347c5cab4cfab0556",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "65792bb99088fd5f8d38f5adfa58a169a524f5d5b9dd7b7d72086b69ef714cab",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "67880be016cddb1f481a39be778b87240d6a548de7e8a471efd231533840a7d1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "55cf82d5987e3b297bd600f99af087842955726a9ad6f6b17ca071d5a2e2a364",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0ac8c7c522bc95ce82b057d32598619a0240114afcdadb1cebff1ce1fe57bc6c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "84b2a4dc9bd71b32c743fafb489239669087d86b9af81166fa20b7942495b060",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d316f825ad56dad7619b497bfa44eb49808a866d8681e2d3a3bf9c5523de1d7e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d3efc02ed7ba591e33943b064cb78082becc65b9ed33a2c562f3c25ad1a07ee4",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8d04b1ca20a9ed5a91489d2aee584b229000fe0ffa240fea624ea1fbaef78751",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "54dfc77009cdec6ab6ecd66eeb6db25801f8884d9fdf99423bd906d1d01aa1a3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6441e7d400fd6746abb2c4ba38a3695561635e4491113e4760b85f383de03726",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2d311b133e31c333f596c3c10e24c2a478b5687182c5f601098ea2f6dde2a12d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "235bf8dc8982c7c9986384789582c3d90e2f8c54c6ca8576ca74a715ded16942",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "91344a26cddb33ff91f68930ebbb69d7ed9c2d1239789b232652a6238aa2865e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d9e35465891c9247a282d67f79348c9aec900ad9ad6b920b22fcd6c75fe8f8b7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b4c613282a186a4c41afaef71c327e3a96ee912a11a909c40e91f8d1303856fa",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d30ea171355f21f0c970fdb2196a02db35120d0fa31eb6d653321a4fb7b33f82",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "6d24e8e69950ad1c1396b3e5c02b880dc1911a24797dea59ffbb2c8d876d8d00",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f73f0bf166a28bf0bf3d21d781e90cd17c1206d8f76cb44d483dc680d3ec52b8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0c675649fe29f75847e9f0b9e1e1b35028d96a75692f439808eac83a41f60011",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f6e8ff3ba0285d7be8849c786d19006797dc2face57cdb51757c64c6e697ee90",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "baaf6e694c5445ac634593a24971128ce2051270db894e8e3b06c7837fb6af68",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "07f90e24bbb82324208dd3cd81f232d0807809f6fe7ee1991078d41e6d3131c8",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "c6fa5e22db9b3d72c6581e2f79c835df0b9196d0219c84a1db1d90881897938c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ebdff5ba9b8de7369157c2fbeac0f98e96f52fc5d575d72939173ac04650b6ad",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "dffb73fd5e930205e33e6fb848b9792aaeb364efbcd7ad022c9e777b4b716229",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "1d6d0ff2401a287b237f49b832ff6ceca5c875b8565b4dfee1125161f841070d",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "1a8cd9d4f9025b0e2131d7c8ce289e48b7000ac145e3a5faba3d44f855d72ff9",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "0e97d29e0947aa4b65973e91215d5197e775b361e4dfebc6fd079db935aaa1b3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "e8f025748d2e9879ca2af13cf68a554710c73df9f9bc77060cbf51bec02c0ff7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "f66f22fe9bec96e03f8211c6e112eb739ffa1bcabf6fcd010353feba8c9938e1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "96b1352c270655b8814edd374c87a0eb54b632ccc359e1eaafed15f920cde4d1",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "40b97f3afa8a78b0e07faaa13c855d26450ae7cb7f4da29e9db778537baf0b5c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2508d2459e52ceb67dcb58ca6a854e9125a6b74a1002101610d8419d7e9c9e0b",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9878b98a7d26d71ef28d1e34e1526aca78f4c3dc4ebeba66e610cd193ee30928",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "17765ef78eae687d46eb1bf96eba9efd83bf4acda183473fca98160717fd57c3",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "323219a838d60a6ef99c2ab2b0353bb17b5caf2cb31fd2e1d9f81e215de60a35",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "ed0ca4f8d74290bede572a7ba3098229820a808e3061ba2b259d987844c42e2a",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "95b490eb6463c0cc5d8c978aa42ee9b1db29b1cb1b5dc13fc8ab166f43452c39",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8b20ad34de805ab3b33bd83023d0ff0be4fe6f08c333bf2c95797570938fb6fe",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "2c85df01274f957c562357af6f00205585c54cabc026592b8651f900fe590422",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "8db2c2e66f86cdbcf1549cc53c1f9fbef46ff228d599019f6ada150d0590c8aa",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5ad7415858135d937a04be65b4203c181b4aee2dbad3b7ca0e930737876fba84",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "b9c46a70f02eb0dc04161ed10abaa1418d5e33ca978bde6e13191671d438dc3e",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "da54877956dd3ab9da77e6619875c2385d71b40233448afd40ca3c204e827246",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "fc43c51ea35c651bd5f8d1f9728412e254bc3f6fcdd85af18937bd752eb86342",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "89edf498765a6a94e1b6d15f9c579957cc2d2c21e2c1f2d37c37ea8efa2b5e72",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "9a026f341f323aff84188e58a44495ea1a6d33371eee9c49d2c965c638d46485",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "d6e0d5dd02e513c23cfa84ffeb79528669c731f3d81547c4437eabdcdc27a63c",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "93e114755f13018472253f901c3abb14bf7bc62d0c57a4ea49ee4cefd53e7511",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "fd4ce5930e4c1a9f619d3e4afe9accead834bd86d5d2f4c2cf7ba1a757894cc7",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    },
+    {
+      "id": "5dc86dd896aa416105ea7a44ed51f1237a13bb09941094d11943b1b890e14dec",
+      "sourceId": "openfootball-epl-2026-27",
+      "reason": "ABSENT"
+    }
+  ],
+  "failures": [],
+  "configuration": {
+    "method": "regularised-independent-poisson-v1",
+    "halfLifeDays": 365,
+    "ridge": 1,
+    "minimumTeamMatches": 8,
+    "maximumIterations": 100,
+    "gradientTolerance": 1e-8
+  },
+  "configurationHash": "87a49ee5c64f0a1f1b567309f9cd41566527fbf308b31bd6fec58f8242a483bb",
+  "trainingHash": "640bf751e3d380fb850d5ba1e4e8995ea98d856b79401f4beae65c25c433c238",
+  "acceptance": "AWAITING_RESEARCH_QUALITY_REVIEW",
+  "settlementReady": false,
+  "officialRecordCreated": false
+}

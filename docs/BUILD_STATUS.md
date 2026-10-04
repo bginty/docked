@@ -1,6 +1,12 @@
 # Docked build status
 
-## Current Phase 5C — governed sports research foundation, 4 October 2026
+## Phase 5D — independent research fitting, 4 October 2026
+
+The accepted source-reported research subset contains 398 explicit FT results from the two pinned CC0 EPL resources, with 32 ambiguous scores excluded. A deterministic regularised Poisson fitter, explicit aliases, immutable training manifests, fitted input schema, retained prediction executor, private model/team-strength views and controlled manual Preview workflow are implemented. See [fitting specification](FOOTBALL_V1_FITTING.md), [data review](OPENFOOTBALL_EPL_DATA_QUALITY.md) and execution receipts under `docs/qa/phase5d`.
+
+Migration 18 has been applied and verified on exact Docked Preview. The initial code checkpoint precedes genuine model registration; offline fit success does not imply hosted predictions. Final execution evidence will identify the fitted code revision and complete initial prospective cohort. Official live publication, official record start, scheduled research, forward paper, external sending and production changes remain off. Existing results and market-comparison authority gaps are not bypassed.
+
+## Previous Phase 5C — governed sports research foundation, 4 October 2026
 
 Continued the clean `ef91d413` checkpoint on `codex/docked-value-platform`. Research source versions, independent permissions, structured sporting facts/corrections, immutable prematch research snapshots, descriptive team/player trend functions, feature eligibility, a bounded dataset adapter and durable disabled scheduler are implemented. `/admin/research`, match inspection, reviewed member research, Feed/watchlist links and separate default-off research notification preferences reuse the existing application and security boundaries.
 

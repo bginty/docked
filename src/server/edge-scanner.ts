@@ -384,6 +384,8 @@ function candidateProjection(c: postgres.Row): ScannerCandidate {
     modelVersion: c.model_version,
     predictionId: c.prediction_id ?? null,
     modelDataCutoff: c.model_evidence?.dataCutoff ?? null,
+    modelCalculatedAt: c.model_evidence?.calculatedAt ?? null,
+    modelRecordedAt: c.model_evidence?.recordedAt ?? null,
     independentModel: c.model_evidence?.independentModel === true,
     scannedAt: iso(c.scanned_at),
     startAt: iso(c.start_at),

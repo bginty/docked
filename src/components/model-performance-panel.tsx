@@ -4,6 +4,23 @@ import { LocalTimestamp } from "./local-timestamp";
 export type ModelPerformanceData = {
   status: "READY" | "NOT_CONFIGURED" | "UNAVAILABLE";
   implementationStatus: string;
+  predictions?: {
+    id: string;
+    eventId: string;
+    status: string;
+    modelVersion: string;
+    recordedAt: string;
+    probabilities: { home: string; draw: string; away: string } | null;
+    fairOdds: { home: string; draw: string; away: string } | null;
+    reason: string | null;
+  }[];
+  fits?: {
+    modelVersion: string;
+    fittedHash: string;
+    trainingHash: string;
+    fittedAt: string;
+    diagnostics: Record<string, unknown>;
+  }[];
   versions: {
     id: string;
     lifecycle: string;
@@ -42,8 +59,9 @@ export function ModelPerformancePanel({
           recorded.
         </p>
         <p>
-          No fitted football estimator or authorised sporting dataset is
-          installed. A proposed methodology is not an operational model.
+          {data.implementationStatus === "RESEARCH_FITTED_UNVALIDATED"
+            ? "A retained sporting-data research fit is installed. Prospective predictive quality remains unvalidated; live publication is not approved."
+            : "No fitted football estimator or authorised sporting dataset is installed. A proposed methodology is not an operational model."}
         </p>
         <dl className="scanner-metrics">
           <div>
@@ -70,6 +88,68 @@ export function ModelPerformancePanel({
           </p>
         )}
       </section>
+      {!!data.fits?.length && (
+        <section className="app-panel">
+          <h2>Retained fitted revisions</h2>
+          {data.fits.map((f) => (
+            <details key={f.modelVersion}>
+              <summary>{f.modelVersion}</summary>
+              <p>
+                Fitted <LocalTimestamp value={f.fittedAt} />
+              </p>
+              <p>
+                Training hash: <code>{f.trainingHash}</code>
+              </p>
+              <p>
+                Fitted state hash: <code>{f.fittedHash}</code>
+              </p>
+              <p>
+                Accepted training matches:{" "}
+                {String(f.diagnostics.matches ?? "Unavailable")}. Numerical
+                convergence is not predictive validation.
+              </p>
+            </details>
+          ))}
+        </section>
+      )}
+      {!!data.predictions?.length && (
+        <section className="app-panel">
+          <h2>Prospective prediction ledger</h2>
+          <p>
+            Private research estimates. These are not official Edges or betting
+            recommendations.
+          </p>
+          {data.predictions.map((p) => (
+            <details key={p.id}>
+              <summary>
+                {p.eventId} · {p.status}
+              </summary>
+              <p>
+                {p.modelVersion} · <LocalTimestamp value={p.recordedAt} />
+              </p>
+              {p.probabilities && (
+                <dl className="scanner-metrics">
+                  {(["home", "draw", "away"] as const).map((outcome) => (
+                    <div key={outcome}>
+                      <dt>{outcome}</dt>
+                      <dd>
+                        {percent(p.probabilities![outcome])} · Fair{" "}
+                        {p.fairOdds?.[outcome]
+                          ? Number(p.fairOdds[outcome]).toFixed(2)
+                          : "Unavailable"}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              {p.reason && <p>{p.reason}</p>}
+              <p>
+                Immutable prediction: <code>{p.id}</code>
+              </p>
+            </details>
+          ))}
+        </section>
+      )}
       <section className="app-panel">
         <h2>Forward calibration</h2>
         <p>

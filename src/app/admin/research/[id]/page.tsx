@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { requireRole } from "@/server/auth";
 import { matchResearch } from "@/server/research-engine";
+import { fittedMatchResearch } from "@/server/model-ledger";
+import { FittedMatchResearch } from "@/components/fitted-match-research";
 import { AppShell } from "@/components/app-shell";
 import { AppHeading } from "@/components/community-basics";
 import {
@@ -53,7 +55,10 @@ export default async function ResearchMatch({
         />
       </AppShell>
     );
-  const data = await matchResearch(id, undefined, snapshotId);
+  const [data, model] = await Promise.all([
+    matchResearch(id, undefined, snapshotId),
+    snapshotId ? Promise.resolve(null) : fittedMatchResearch(id),
+  ]);
   return (
     <AppShell authenticated>
       <AppHeading
@@ -66,6 +71,7 @@ export default async function ResearchMatch({
       />
       <ResearchNavigation />
       <ResearchMatchPanel data={data} snapshotId={snapshotId} />
+      {!snapshotId && <FittedMatchResearch data={model} />}
     </AppShell>
   );
 }

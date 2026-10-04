@@ -72,7 +72,9 @@ export function CandidateReview({
           submit={
             candidate.purpose === "research"
               ? "Revalidate and approve research"
-              : "Revalidate through publication gates"
+              : candidate.purpose === "paper"
+                ? "Revalidate and approve for paper"
+                : "Revalidate through live publication gates"
           }
         >
           <label>
