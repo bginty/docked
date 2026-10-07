@@ -1,0 +1,105 @@
+TAP version 13
+# Subtest: single-tier packs and partial tier eligibility accept configured tiers only
+ok 1 - single-tier packs and partial tier eligibility accept configured tiers only
+  ---
+  duration_ms: 27.9649
+  ...
+# Subtest: lost committed response retry retains exact idempotency key
+ok 2 - lost committed response retry retains exact idempotency key
+  ---
+  duration_ms: 2.8443
+  ...
+# Subtest: fantasy feature remains disabled in production and by default
+ok 3 - fantasy feature remains disabled in production and by default
+  ---
+  duration_ms: 0.4593
+  ...
+# Subtest: fantasy commands reject client ownership or unexpected admin fields
+ok 4 - fantasy commands reject client ownership or unexpected admin fields
+  ---
+  duration_ms: 4.2519
+  ...
+# Subtest: reviewed community-only production is isolated and does not treat inert keys as activation
+ok 5 - reviewed community-only production is isolated and does not treat inert keys as activation
+  ---
+  duration_ms: 5.004
+  ...
+# Subtest: production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+ok 6 - production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+  ---
+  duration_ms: 15.981
+  ...
+# Subtest: production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+ok 7 - production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+  ---
+  duration_ms: 2.6129
+  ...
+# Subtest: database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+ok 8 - database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+  ---
+  duration_ms: 11.7211
+  ...
+# Subtest: plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+ok 9 - plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+  ---
+  duration_ms: 3092.7565
+  ...
+# Subtest: production Auth mail is off by default and independent of optional delivery
+ok 10 - production Auth mail is off by default and independent of optional delivery
+  ---
+  duration_ms: 3.5359
+  ...
+# Subtest: a Preview invitation cannot bypass production mail or registration gates
+ok 11 - a Preview invitation cannot bypass production mail or registration gates
+  ---
+  duration_ms: 0.5708
+  ...
+# Subtest: all signup paths require explicit age, Terms and separate Privacy acceptance
+ok 12 - all signup paths require explicit age, Terms and separate Privacy acceptance
+  ---
+  duration_ms: 0.6938
+  ...
+# Subtest: production policy versions never default to draft and require operator readiness
+ok 13 - production policy versions never default to draft and require operator readiness
+  ---
+  duration_ms: 2.8399
+  ...
+# Subtest: safe UI registration projection includes database authority and cannot expose credentials
+ok 14 - safe UI registration projection includes database authority and cannot expose credentials
+  ---
+  duration_ms: 1.0931
+  ...
+# Subtest: changed production legal versions require fresh explicit acceptance
+ok 15 - changed production legal versions require fresh explicit acceptance
+  ---
+  duration_ms: 0.4964
+  ...
+# Subtest: only genuine username collisions are recoverable during signup provisioning
+ok 16 - only genuine username collisions are recoverable during signup provisioning
+  ---
+  duration_ms: 0.6867
+  ...
+# Subtest: production environment preparation keeps credentials private and all initial activation closed
+ok 17 - production environment preparation keeps credentials private and all initial activation closed
+  ---
+  duration_ms: 1221.8224
+  ...
+# Subtest: production export requires approved identities and exports only committed deployable sources
+ok 18 - production export requires approved identities and exports only committed deployable sources
+  ---
+  duration_ms: 3666.3408
+  ...
+# Subtest: production export rejects every unreviewed manifest boundary before preparing any source
+ok 19 - production export rejects every unreviewed manifest boundary before preparing any source
+  ---
+  duration_ms: 22293.9414
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 29788.0818

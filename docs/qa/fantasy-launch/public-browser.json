@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-07T23:38:24.980Z",
+  "scope": "Existing public holding page only; Fantasy production application is not deployed",
+  "reports": [
+    {
+      "label": "desktop-chromium",
+      "status": 200,
+      "title": "Docked — Sports intelligence. Community. Transparency.",
+      "fantasyApplication": false,
+      "overflow": false,
+      "pageErrors": [],
+      "nativeDevice": false
+    },
+    {
+      "label": "android-chromium-emulation",
+      "status": 200,
+      "title": "Docked — Sports intelligence. Community. Transparency.",
+      "fantasyApplication": false,
+      "overflow": false,
+      "pageErrors": [],
+      "nativeDevice": false
+    },
+    {
+      "label": "iphone-webkit-emulation",
+      "status": "UNVERIFIED",
+      "reason": "Browser binary unavailable"
+    }
+  ]
+}

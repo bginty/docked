@@ -1,0 +1,81 @@
+{
+  "at": "2026-10-07T23:35:09.574Z",
+  "readOnly": true,
+  "productionPromotionAttempted": false,
+  "localConfig": {
+    "connection": false,
+    "operator": false
+  },
+  "domains": [
+    {
+      "host": "docked.com.au",
+      "a": [
+        "185.199.109.153",
+        "185.199.108.153",
+        "185.199.110.153",
+        "185.199.111.153"
+      ],
+      "cname": {
+        "error": "ENODATA"
+      },
+      "https": {
+        "status": 200,
+        "location": null,
+        "server": "GitHub.com",
+        "title": "Docked — Sports intelligence. Community. Transparency.",
+        "fantasy": false,
+        "holdingPage": true
+      },
+      "http": {
+        "status": 200,
+        "location": null,
+        "server": "GitHub.com",
+        "title": "Docked — Sports intelligence. Community. Transparency.",
+        "fantasy": false,
+        "holdingPage": true
+      }
+    },
+    {
+      "host": "www.docked.com.au",
+      "a": [
+        "185.199.108.153",
+        "185.199.111.153",
+        "185.199.109.153",
+        "185.199.110.153"
+      ],
+      "cname": [
+        "bginty.github.io"
+      ],
+      "https": {
+        "status": 301,
+        "location": "https://docked.com.au/",
+        "server": "GitHub.com",
+        "title": "301 Moved Permanently",
+        "fantasy": false,
+        "holdingPage": false
+      },
+      "http": {
+        "status": 301,
+        "location": "http://docked.com.au/",
+        "server": "GitHub.com",
+        "title": "301 Moved Permanently",
+        "fantasy": false,
+        "holdingPage": false
+      }
+    }
+  ],
+  "vercel": {
+    "status": 200,
+    "projects": [
+      {
+        "id": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+        "name": "docked-preview",
+        "productionDeploymentId": null
+      }
+    ],
+    "dockedProductionProjectFound": false
+  },
+  "apkStorage": {
+    "buckets": []
+  }
+}
