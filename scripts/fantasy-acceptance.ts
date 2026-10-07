@@ -105,11 +105,17 @@ async function main() {
       barryPage = await barry.newPage();
     await mobile.setViewportSize({ width: 390, height: 900 });
     let competition_id = "";
-    if (process.argv.includes("--resume-results")) {
+    if (
+      process.argv.includes("--resume-results") ||
+      process.argv.includes("--resume-retirement")
+    ) {
       const previous = JSON.parse(
         await readFile(out + "/acceptance-failure.json", "utf8"),
       );
-      if (!String(previous.stage).startsWith("cross-client-lineup-lock"))
+      if (
+        !String(previous.stage).startsWith("cross-client-lineup-lock") &&
+        previous.stage !== "admin_pack"
+      )
         throw Error("Verified transaction checkpoint required");
       checks.push(...previous.checks);
       const current = await state(briant);
@@ -117,7 +123,6 @@ async function main() {
         .filter(
           (c) =>
             c.round === 99 &&
-            !c.scored_at &&
             current.entries.some((e) => e.competition_id === c.id),
         )
         .at(-1);
@@ -319,10 +324,14 @@ async function main() {
       denied.status() === 409,
       `cross-client-lineup-lock-http-${denied.status()}`,
     );
-    await command(manager, "admin_simulate", {
-      competition_id,
-      seed: 20261008,
-    });
+    if (
+      !(await state(briant)).competitions.find((c) => c.id === competition_id)
+        ?.scored_at
+    )
+      await command(manager, "admin_simulate", {
+        competition_id,
+        seed: 20261008,
+      });
     const scored = await state(briant);
     check(
       scored.results.filter((r) => r.competition_id === competition_id)
@@ -334,26 +343,39 @@ async function main() {
     );
     // A separate fictional prospect exercises retirement without making the
     // testers' original starting elevens unusable after acceptance.
-    const prospect = await command(manager, "admin_player", {
-      name: "Preview Prospect",
-      sport: "football",
-      position: "FWD",
-      team: "Harbour Futures",
-      colour: "#28c9a7",
-      shirt: 29,
-      first_season: "2026",
-      prospect_rank: 99,
-    });
-    const edition = await command(manager, "admin_edition", {
-      player_id: prospect.result.player_id,
-      tier: "CORE",
-      season: "2026",
-      kind: "first_year",
-      max_supply: 10,
-      prospect_rank: 99,
-      launch_at: new Date().toISOString(),
-    });
-    await command(manager, "admin_lock_edition", edition.result);
+    const catalog = (await state(manager)).catalog!;
+    const existingProspect = catalog.players.find(
+      (p) => p.name === "Preview Prospect",
+    );
+    const prospect = existingProspect
+      ? { result: { player_id: existingProspect.id } }
+      : await command(manager, "admin_player", {
+          name: "Preview Prospect",
+          sport: "football",
+          position: "FWD",
+          team: "Harbour Futures",
+          colour: "#28c9a7",
+          shirt: 29,
+          first_season: "2026",
+          prospect_rank: 99,
+        });
+    const existingEdition = catalog.editions.find(
+      (e) =>
+        e.player_id === prospect.result.player_id && e.status === "launched",
+    );
+    const edition = existingEdition
+      ? { result: { edition_id: existingEdition.id } }
+      : await command(manager, "admin_edition", {
+          player_id: prospect.result.player_id,
+          tier: "CORE",
+          season: "2026",
+          kind: "first_year",
+          max_supply: 10,
+          prospect_rank: 99,
+          launch_at: new Date().toISOString(),
+        });
+    if (!existingEdition)
+      await command(manager, "admin_lock_edition", edition.result);
     const retirementDefinition = await command(manager, "admin_pack", {
       name: "Prospect retirement acceptance",
       version: Math.floor(Date.now() / 1000),

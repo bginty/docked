@@ -166,6 +166,7 @@ test("production export requires approved identities and exports only committed 
       "certs/supabase-prod-ca-2021.crt",
       "scripts/guard-hosted-build.mjs",
       "config/hosted-preview.json",
+      "config/football-v1-research-policy.json",
       "public/brand.txt",
     ];
     for (const file of explicit) {
@@ -212,6 +213,7 @@ test("production export requires approved identities and exports only committed 
     );
     assert.ok(paths.includes("config/hosted-production.json"));
     assert.ok(paths.includes("src/core/hosted-production.mjs"));
+    assert.ok(paths.includes("config/football-v1-research-policy.json"));
     assert.ok(!paths.includes(".env.local"));
     assert.ok(!paths.includes("scripts/prepare-production-environment.mjs"));
     await writeFile(join(directory, "public/brand.txt"), "unreviewed change");

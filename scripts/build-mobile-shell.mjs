@@ -21,6 +21,20 @@ function shellStyle() {
   return `:root{${variables};--brand-font:${brand.fontFamily}}\n${readFileSync("mobile/www/shell.css", "utf8").replace(/\r\n?/g, "\n").trim()}`;
 }
 function brandShell(template) {
+  if (fantasy)
+    template = template
+      .replace(
+        "Reconnect to load your community, account and current prices. Private records and price observations are never stored in this offline shell.",
+        "Reconnect to load your cards, teams, test-credit balance and community. Private records are never stored in this offline shell.",
+      )
+      .replace(
+        "Informational analysis. No guaranteed returns.",
+        "Fictional players. Test credits only.",
+      )
+      .replace(
+        "Current prices and private content cannot be verified while offline.",
+        "Cards, teams and test-credit balances cannot be verified while offline.",
+      );
   return template
     .replaceAll("{{NAVY}}", brand.colors.navy)
     .replaceAll("{{LOGO}}", logo)

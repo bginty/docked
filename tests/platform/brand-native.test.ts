@@ -14,12 +14,20 @@ test("platform icon exports retain the supplied master and supplied legacy sizes
       readFileSync(`public/icons/docked-${size}.png`),
       readFileSync(`public/brand/icons/docked-app-icon-${size}.png`),
     );
-  assert.deepEqual(
-    readFileSync("android/app/src/main/res/drawable-nodpi/docked_launcher.png"),
-    readFileSync("public/brand/icons/docked-app-icon-1024.png"),
-  );
   const master = readFileSync("public/brand/icons/docked-app-icon-1024.png");
-  assert.equal(createHash("sha256").update(master).digest("hex"), "aa8f37eec82cef4974f5d1e5561591c2f620404c0218a1f0ffaf3cd9aefa180f", "The installed S24 master must remain unchanged.");
+  const native = readFileSync(
+    "android/app/src/main/res/drawable-nodpi/docked_launcher.png",
+  );
+  const fantasy = readFileSync("public/brand/docked/icons/docked-icon-512.png");
+  assert.ok(
+    native.equals(master) || native.equals(fantasy),
+    "Native icon must use the exact approved legacy or supplied Fantasy master for its build mode.",
+  );
+  assert.equal(
+    createHash("sha256").update(master).digest("hex"),
+    "aa8f37eec82cef4974f5d1e5561591c2f620404c0218a1f0ffaf3cd9aefa180f",
+    "The installed S24 master must remain unchanged.",
+  );
   assert.deepEqual(
     readFileSync("public/brand/canonical/docked-master.png"),
     master,
@@ -43,6 +51,25 @@ test("platform icon exports retain the supplied master and supplied legacy sizes
   assert.doesNotMatch(
     logo,
     /markWhite|wordmarkOnDark|docked-primary|docked-mark/,
+  );
+});
+
+test("Fantasy public offline shell contains only the supplied branding and unavailable-state copy", () => {
+  const html = readFileSync("public/brand/docked/offline.html", "utf8");
+  const image = html.match(
+    /src="data:image\/png;base64,([A-Za-z0-9+/=]+)"/,
+  )?.[1];
+  assert.ok(image);
+  assert.ok(
+    Buffer.from(image, "base64").equals(
+      readFileSync("public/brand/docked/icons/docked-icon-512.png"),
+    ),
+  );
+  assert.match(html, /COLLECT\. BUILD\. COMPETE\./);
+  assert.match(html, /No submission has been confirmed/);
+  assert.doesNotMatch(
+    html,
+    /BUILT FOR AN EDGE|sb_secret_|postgres(?:ql)?:\/\//,
   );
 });
 

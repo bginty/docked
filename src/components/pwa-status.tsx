@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import { isDockedNative } from "./native-bridge";
+import { useEnvironmentPresentation } from "./environment-context";
 type InstallEvent = Event & {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: string }>;
 };
 export function PwaStatus() {
+  const { fantasyPreview } = useEnvironmentPresentation();
   const [offline, setOffline] = useState(false),
     [update, setUpdate] = useState<ServiceWorker | null>(null),
     [install, setInstall] = useState<InstallEvent | null>(null);
@@ -23,7 +25,9 @@ export function PwaStatus() {
     let alive = true;
     if ("serviceWorker" in navigator)
       void navigator.serviceWorker
-        .register("/sw.js", { scope: "/" })
+        .register(fantasyPreview ? "/sw.js?fantasy=1" : "/sw.js", {
+          scope: "/",
+        })
         .then((reg) => {
           if (!alive) return;
           if (reg.waiting) setUpdate(reg.waiting);
@@ -46,7 +50,7 @@ export function PwaStatus() {
       window.removeEventListener("offline", onOnline);
       window.removeEventListener("beforeinstallprompt", onInstall);
     };
-  }, []);
+  }, [fantasyPreview]);
   return (
     <div className="pwa-status" aria-live="polite">
       {offline && (
