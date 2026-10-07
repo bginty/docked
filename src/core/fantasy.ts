@@ -64,7 +64,7 @@ const rules = z
     positions: z.record(z.string(), z.number().int().min(0).max(30)).optional(),
     duplicates: z.boolean().optional(),
     tier_max: z
-      .record(
+      .partialRecord(
         z.enum(["CORE", "RARE", "ELITE", "LEGENDARY", "ICON"]),
         z.number().int().min(0).max(30),
       )
@@ -206,7 +206,7 @@ export const fantasyAction = z
             .min(1)
             .max(30),
           pool: ids,
-          weights: z.record(
+          weights: z.partialRecord(
             z.enum(["CORE", "RARE", "ELITE", "LEGENDARY", "ICON"]),
             z.number().min(0).max(100),
           ),
