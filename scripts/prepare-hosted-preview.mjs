@@ -72,6 +72,7 @@ const explicit = new Set([
   "scripts/guard-hosted-build.mjs",
   "config/hosted-preview.json",
   "config/hosted-production.json",
+  "config/football-v1-research-policy.json",
 ]);
 const allowed = (file) =>
   explicit.has(file) || roots.some((prefix) => file.startsWith(prefix));

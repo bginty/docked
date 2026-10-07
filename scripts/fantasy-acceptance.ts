@@ -292,7 +292,50 @@ async function main() {
           .every((r) => r.championship_points > 0),
       "three-user-scores-leaderboard-championship",
     );
-    const retired = scored.cards.find((c) => !c.tradeable)!;
+    // A separate fictional prospect exercises retirement without making the
+    // testers' original starting elevens unusable after acceptance.
+    const prospect = await command(manager, "admin_player", {
+      name: "Preview Prospect",
+      sport: "football",
+      position: "FWD",
+      team: "Harbour Futures",
+      colour: "#28c9a7",
+      shirt: 29,
+      first_season: "2026",
+      prospect_rank: 99,
+    });
+    const edition = await command(manager, "admin_edition", {
+      player_id: prospect.result.player_id,
+      tier: "CORE",
+      season: "2026",
+      kind: "first_year",
+      max_supply: 10,
+      prospect_rank: 99,
+      launch_at: new Date().toISOString(),
+    });
+    await command(manager, "admin_lock_edition", edition.result);
+    const retirementDefinition = await command(manager, "admin_pack", {
+      name: "Prospect retirement acceptance",
+      version: Math.floor(Date.now() / 1000),
+      slots: ["FWD"],
+      pool: [edition.result.edition_id],
+      weights: { CORE: 100 },
+      guarantees: {},
+      price: 0,
+      max_quantity: 1,
+      tradeable: true,
+      starts_at: new Date(Date.now() - 1000).toISOString(),
+      ends_at: new Date(Date.now() + 86400000).toISOString(),
+    });
+    const retirementPack = await command(
+      briant,
+      "buy_pack",
+      retirementDefinition.result,
+    );
+    await command(briant, "open_pack", retirementPack.result);
+    const retired = (await state(briant)).cards.find(
+      (c) => c.player_id === prospect.result.player_id,
+    )!;
     await command(manager, "admin_status", {
       player_id: retired.player_id,
       status: "retired",
