@@ -97,192 +97,214 @@ async function main() {
         );
       }
       contexts.push(c);
-      await c.storageState({path:`private-data/fantasy/browser-${i}.json`});
+      await c.storageState({ path: `private-data/fantasy/browser-${i}.json` });
     }
     const [briant, barry, manager] = contexts;
     const desktop = await briant.newPage(),
       mobile = await briant.newPage(),
       barryPage = await barry.newPage();
     await mobile.setViewportSize({ width: 390, height: 900 });
-    const anonymous = await browser.newContext();
-    check(
-      (await anonymous.request.get(origin + "/api/fantasy")).status() === 403,
-      "anonymous-state-denied",
-    );
-    await capture(await anonymous.newPage(), "/", "homepage", 1440);
-    check(
-      (
-        await post(barry, "/api/fantasy", {
-          action: "admin_credit",
-          payload: { user_id: j.accounts[1].id, amount: 999 },
-          request_id: randomUUID(),
-        })
-      ).status() === 409,
-      "member-credit-forgery-denied",
-    );
-    for (const [i, c] of contexts.entries()) {
-      await command(
-        manager,
-        "admin_credit",
-        { user_id: j.accounts[i].id, amount: 10000 },
-        `f0000000-0000-4000-8000-${String(i + 1).padStart(12, "0")}`,
+    let competition_id = "";
+    if (process.argv.includes("--resume-results")) {
+      const previous = JSON.parse(
+        await readFile(out + "/acceptance-failure.json", "utf8"),
       );
-      let s = await state(c);
-      if (!s.packs.some((p) => p.name === "Starter"))
-        await command(c, "claim_starter");
-      s = await state(c);
-      const pack = s.packs.find((p) => p.name === "Starter")!;
-      if (i === 0) {
-        await mobile.goto(origin + "/fantasy/cards");
-        await mobile
-          .getByRole("button", {
-            name: pack.opened_at ? "View result" : "Open pack",
-            exact: true,
-          })
-          .first()
-          .click();
-        await mobile.getByRole("region", { name: "Pack reveal" }).waitFor();
-        await mobile.screenshot({
-          path: out + "/pack-opening-390.png",
-          fullPage: true,
-        });
-      } else await command(c, "open_pack", { pack_id: pack.id });
+      if (!String(previous.stage).startsWith("cross-client-lineup-lock"))
+        throw Error("Verified transaction checkpoint required");
+      checks.push(...previous.checks);
+      const current = await state(briant);
+      const target = current.competitions
+        .filter(
+          (c) =>
+            c.round === 99 &&
+            !c.scored_at &&
+            current.entries.some((e) => e.competition_id === c.id),
+        )
+        .at(-1);
+      if (!target || Date.parse(target.locks_at) > Date.now() - 2000)
+        throw Error("Locked acceptance round required");
+      competition_id = target.id;
+    } else {
+      const anonymous = await browser.newContext();
       check(
-        (await state(c)).cards.filter((x) => !x.tradeable).length === 11,
-        `starter-valid-eleven-${i}`,
+        (await anonymous.request.get(origin + "/api/fantasy")).status() === 403,
+        "anonymous-state-denied",
       );
-    }
-    await capture(desktop, "/fantasy/cards", "collection", 1440);
-    check(
-      (await desktop.locator(".fantasy-card").count()) >= 11,
-      "mobile-open-visible-desktop",
-    );
-    const locking = Date.now() + 120000;
-    const round = await command(manager, "admin_competition", {
-      name: "Rookie League · Acceptance",
-      season: "2026",
-      round: 99,
-      locks_at: new Date(locking).toISOString(),
-      rules: { duplicates: false },
-    });
-    const competition_id = round.result.competition_id;
-    for (const [i, c] of contexts.entries()) {
-      const s = await state(c),
-        cards = s.cards.filter((x) => !x.tradeable).map((x) => x.id);
-      if (i === 0) {
-        await desktop.goto(origin + "/fantasy/play");
-        await desktop
-          .getByLabel("Competition", { exact: true })
-          .selectOption(competition_id);
-        const boxes = desktop.locator(".lineup-options input");
-        for (let n = 0; n < 11; n++) await boxes.nth(n).check();
-        await desktop
-          .getByRole("button", { name: "Save team & enter" })
-          .click();
-        await desktop.getByText("Saved securely.", { exact: true }).waitFor();
-      } else await command(c, "save_lineup", { competition_id, cards });
-    }
-    await mobile.goto(origin + "/fantasy/play");
-    await mobile
-      .getByLabel("Competition", { exact: true })
-      .selectOption(competition_id);
-    check(
-      (await mobile.locator(".lineup-options input:checked").count()) === 11,
-      "desktop-lineup-visible-mobile",
-    );
-    await capture(desktop, "/fantasy/play", "team-builder", 1440);
-    // Tradeable pack outcomes persist across independent simultaneous browser requests.
-    const def = (await state(briant)).shop.find((p) => p.name === "Matchday")!;
-    const pack = await command(briant, "buy_pack", { definition_id: def.id });
-    const opens = await Promise.all([
-      command(briant, "open_pack", pack.result),
-      command(briant, "open_pack", pack.result),
-    ]);
-    assert.deepEqual(opens[0].result, opens[1].result);
-    checks.push("simultaneous-pack-open-one-persistent-result");
-    const c = (await state(briant)).cards.find((c) => c.tradeable)!;
-    await desktop.goto(origin + "/fantasy/market");
-    await desktop.getByLabel("Your tradeable card").selectOption(c.id);
-    await desktop.getByLabel("Test credit price").fill("1000");
-    await desktop.getByRole("button", { name: "Create listing" }).click();
-    await desktop.getByText("Saved securely.", { exact: true }).waitFor();
-    check(
-      (await state(briant)).market.some((l) => l.card_id === c.id),
-      "desktop-listing-created-through-UI",
-    );
-    const beforeB = (await state(briant)).credits,
-      beforeBuyer = (await state(barry)).credits;
-    await barryPage.goto(origin + "/fantasy/market");
-    await barryPage
-      .locator(".market-grid article")
-      .filter({
-        has: barryPage.getByRole("heading", { name: c.name, exact: true }),
-      })
-      .getByRole("button", { name: "Buy now" })
-      .click();
-    await barryPage.getByText("Saved securely.", { exact: true }).waitFor();
-    const sale = { state: await state(barry) };
-    check(sale.state.credits === beforeBuyer - 1000, "mobile-buyer-debited");
-    const afterSeller = await state(briant);
-    check(
-      afterSeller.credits === beforeB + 925 &&
-        !afterSeller.cards.some((x) => x.id === c.id),
-      "desktop-seller-net-925-and-card-removed",
-    );
-    check(
-      sale.state.cards.some((x) => x.id === c.id) &&
-        sale.state.provenance.some(
-          (x) => x.card_id === c.id && x.reason === "sale",
+      await capture(await anonymous.newPage(), "/", "homepage", 1440);
+      check(
+        (
+          await post(barry, "/api/fantasy", {
+            action: "admin_credit",
+            payload: { user_id: j.accounts[1].id, amount: 999 },
+            request_id: randomUUID(),
+          })
+        ).status() === 409,
+        "member-credit-forgery-denied",
+      );
+      for (const [i, c] of contexts.entries()) {
+        await command(
+          manager,
+          "admin_credit",
+          { user_id: j.accounts[i].id, amount: 10000 },
+          `f0000000-0000-4000-8000-${String(i + 1).padStart(12, "0")}`,
+        );
+        let s = await state(c);
+        if (!s.packs.some((p) => p.name === "Starter"))
+          await command(c, "claim_starter");
+        s = await state(c);
+        const pack = s.packs.find((p) => p.name === "Starter")!;
+        if (i === 0) {
+          await mobile.goto(origin + "/fantasy/cards");
+          await mobile
+            .getByRole("button", {
+              name: pack.opened_at ? "View result" : "Open pack",
+              exact: true,
+            })
+            .first()
+            .click();
+          await mobile.getByRole("region", { name: "Pack reveal" }).waitFor();
+          await mobile.screenshot({
+            path: out + "/pack-opening-390.png",
+            fullPage: true,
+          });
+        } else await command(c, "open_pack", { pack_id: pack.id });
+        check(
+          (await state(c)).cards.filter((x) => !x.tradeable).length === 11,
+          `starter-valid-eleven-${i}`,
+        );
+      }
+      await capture(desktop, "/fantasy/cards", "collection", 1440);
+      check(
+        (await desktop.locator(".fantasy-card").count()) >= 11,
+        "mobile-open-visible-desktop",
+      );
+      const locking = Date.now() + 120000;
+      const round = await command(manager, "admin_competition", {
+        name: "Rookie League · Acceptance",
+        season: "2026",
+        round: 99,
+        locks_at: new Date(locking).toISOString(),
+        rules: { duplicates: false },
+      });
+      competition_id = round.result.competition_id;
+      for (const [i, c] of contexts.entries()) {
+        const s = await state(c),
+          cards = s.cards.filter((x) => !x.tradeable).map((x) => x.id);
+        if (i === 0) {
+          await desktop.goto(origin + "/fantasy/play");
+          await desktop.getByLabel(/^Competition/).selectOption(competition_id);
+          const boxes = desktop.locator(".lineup-options input");
+          for (let n = 0; n < 11; n++) await boxes.nth(n).check();
+          await desktop
+            .getByRole("button", { name: "Save team & enter" })
+            .click();
+          await desktop.getByText("Saved securely.", { exact: true }).waitFor();
+        } else await command(c, "save_lineup", { competition_id, cards });
+      }
+      await mobile.goto(origin + "/fantasy/play");
+      await mobile.getByLabel(/^Competition/).selectOption(competition_id);
+      check(
+        (await mobile.locator(".lineup-options input:checked").count()) === 11,
+        "desktop-lineup-visible-mobile",
+      );
+      await capture(desktop, "/fantasy/play", "team-builder", 1440);
+      // Tradeable pack outcomes persist across independent simultaneous browser requests.
+      const def = (await state(briant)).shop.find(
+        (p) => p.name === "Matchday",
+      )!;
+      const pack = await command(briant, "buy_pack", { definition_id: def.id });
+      const opens = await Promise.all([
+        command(briant, "open_pack", pack.result),
+        command(briant, "open_pack", pack.result),
+      ]);
+      assert.deepEqual(opens[0].result, opens[1].result);
+      checks.push("simultaneous-pack-open-one-persistent-result");
+      const c = (await state(briant)).cards.find((c) => c.tradeable)!;
+      await desktop.goto(origin + "/fantasy/market");
+      await desktop.getByLabel("Your tradeable card").selectOption(c.id);
+      await desktop.getByLabel("Test credit price").fill("1000");
+      await desktop.getByRole("button", { name: "Create listing" }).click();
+      await desktop.getByText("Saved securely.", { exact: true }).waitFor();
+      check(
+        (await state(briant)).market.some((l) => l.card_id === c.id),
+        "desktop-listing-created-through-UI",
+      );
+      const beforeB = (await state(briant)).credits,
+        beforeBuyer = (await state(barry)).credits;
+      await barryPage.goto(origin + "/fantasy/market");
+      await barryPage
+        .locator(".market-grid article")
+        .filter({
+          has: barryPage.getByRole("heading", { name: c.name, exact: true }),
+        })
+        .getByRole("button", { name: "Buy now" })
+        .click();
+      await barryPage.getByText("Saved securely.", { exact: true }).waitFor();
+      const sale = { state: await state(barry) };
+      check(sale.state.credits === beforeBuyer - 1000, "mobile-buyer-debited");
+      const afterSeller = await state(briant);
+      check(
+        afterSeller.credits === beforeB + 925 &&
+          !afterSeller.cards.some((x) => x.id === c.id),
+        "desktop-seller-net-925-and-card-removed",
+      );
+      check(
+        sale.state.cards.some((x) => x.id === c.id) &&
+          sale.state.provenance.some(
+            (x) => x.card_id === c.id && x.reason === "sale",
+          ),
+        "mobile-buyer-ownership-and-provenance",
+      );
+      await barryPage.goto(origin + "/fantasy/cards");
+      check(
+        (await barryPage.locator(".fantasy-card").count()) >= 12,
+        "purchased-card-rendered-mobile",
+      );
+      const raceCard = afterSeller.cards.find((x) => x.tradeable)!;
+      const raceListing = await command(briant, "list", {
+        card_id: raceCard.id,
+        price: 100,
+      });
+      const attempts = await Promise.all(
+        [barry, manager].map((c) =>
+          post(c, "/api/fantasy", {
+            action: "buy",
+            payload: raceListing.result,
+            request_id: randomUUID(),
+          }),
         ),
-      "mobile-buyer-ownership-and-provenance",
-    );
-    await barryPage.goto(origin + "/fantasy/cards");
-    check(
-      (await barryPage.locator(".fantasy-card").count()) >= 12,
-      "purchased-card-rendered-mobile",
-    );
-    const raceCard = afterSeller.cards.find((x) => x.tradeable)!;
-    const raceListing = await command(briant, "list", {
-      card_id: raceCard.id,
-      price: 100,
-    });
-    const attempts = await Promise.all(
-      [barry, manager].map((c) =>
-        post(c, "/api/fantasy", {
-          action: "buy",
-          payload: raceListing.result,
-          request_id: randomUUID(),
-        }),
-      ),
-    );
-    check(
-      attempts.filter((r) => r.status() === 200).length === 1 &&
-        attempts.filter((r) => r.status() === 409).length === 1,
-      "simultaneous-browser-buy-one-winner",
-    );
-    const give = (await state(briant)).cards.find((x) => x.tradeable)!;
-    const offer = await command(briant, "offer_trade", {
-      recipient: j.accounts[1].id,
-      give: [give.id],
-      receive: [c.id],
-    });
-    await command(barry, "accept_trade", offer.result);
-    check(
-      (await state(briant)).cards.some((x) => x.id === c.id) &&
-        (await state(barry)).cards.some((x) => x.id === give.id),
-      "cross-client-atomic-trade",
-    );
-    const social = await barry.request.get(
-      origin + "/api/community?view=feed&tab=latest",
-    );
-    const feed = await social.json();
-    check(
-      social.status() === 200 &&
-        JSON.stringify(feed).includes("Fantasy Cards Preview"),
-      "shared-social-fantasy-events",
-    );
-    if (Date.now() < locking + 100)
-      await new Promise((r) => setTimeout(r, locking + 100 - Date.now()));
+      );
+      check(
+        attempts.filter((r) => r.status() === 200).length === 1 &&
+          attempts.filter((r) => r.status() === 409).length === 1,
+        "simultaneous-browser-buy-one-winner",
+      );
+      const give = (await state(briant)).cards.find((x) => x.tradeable)!;
+      const offer = await command(briant, "offer_trade", {
+        recipient: j.accounts[1].id,
+        give: [give.id],
+        receive: [c.id],
+      });
+      await command(barry, "accept_trade", offer.result);
+      check(
+        (await state(briant)).cards.some((x) => x.id === c.id) &&
+          (await state(barry)).cards.some((x) => x.id === give.id),
+        "cross-client-atomic-trade",
+      );
+      const social = await barry.request.get(
+        origin + "/api/community?view=feed&tab=latest",
+      );
+      const feed = await social.json();
+      check(
+        social.status() === 200 &&
+          JSON.stringify(feed).includes("Fantasy Cards Preview"),
+        "shared-social-fantasy-events",
+      );
+      while (Date.now() < locking + 2000)
+        await new Promise((r) =>
+          setTimeout(r, Math.min(30000, locking + 2000 - Date.now())),
+        );
+    }
     const denied = await post(briant, "/api/fantasy", {
       action: "save_lineup",
       payload: {
@@ -293,7 +315,10 @@ async function main() {
       },
       request_id: randomUUID(),
     });
-    check(denied.status() === 409, "cross-client-lineup-lock");
+    check(
+      denied.status() === 409,
+      `cross-client-lineup-lock-http-${denied.status()}`,
+    );
     await command(manager, "admin_simulate", {
       competition_id,
       seed: 20261008,

@@ -38,6 +38,20 @@
 .fantasy-mode a {
   color: #8edfff;
 }
+.fantasy-mode .social-card {
+  background: #101827;
+  border-color: #28324b;
+  color: #e1e9f5;
+}
+.fantasy-mode .social-card .social-body,
+.fantasy-mode .social-card .social-author-name {
+  color: #e1e9f5;
+}
+.fantasy-mode .social-card .social-author-meta,
+.fantasy-mode .social-card time,
+.fantasy-mode .social-card .small-note {
+  color: #b9c4d8;
+}
 .fantasy-mode button,
 .fantasy-mode .button {
   min-height: 44px;

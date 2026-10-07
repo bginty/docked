@@ -1,5 +1,11 @@
 import sharp from "sharp";
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  copyFileSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+  existsSync,
+} from "node:fs";
 import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { renderPublicOfflineShell } from "./build-mobile-shell.mjs";
@@ -32,10 +38,16 @@ export async function containedArtwork(
 }
 function save(path, data) {
   mkdirSync(dirname(path), { recursive: true });
+  if (existsSync(path) && readFileSync(path).equals(Buffer.from(data))) return;
   writeFileSync(path, data);
 }
 function copy(source, destination) {
   mkdirSync(dirname(destination), { recursive: true });
+  if (
+    existsSync(destination) &&
+    readFileSync(source).equals(readFileSync(destination))
+  )
+    return;
   copyFileSync(source, destination);
 }
 
