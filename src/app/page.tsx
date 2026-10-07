@@ -25,7 +25,7 @@ export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
   if (fantasyEnabled())
     return (
-      <div className="fantasy-public">
+      <main id="main" className="fantasy-public">
         <header>
           <Link href="/" aria-label="Docked home">
             <FantasyLogo />
@@ -89,7 +89,7 @@ export default async function Home() {
           <Link href="/privacy">Privacy</Link> ·{" "}
           <Link href="/terms">Terms</Link>
         </footer>
-      </div>
+      </main>
     );
   const [status, region, tips, monitoring, viewer, articles, environment] =
     await Promise.all([

@@ -5,8 +5,14 @@ import { fantasyEnabled } from "@/core/fantasy";
 import { FantasyLogo } from "./fantasy-brand";
 
 export function AppAuthShell({ children }: { children: ReactNode }) {
+  const fantasy = fantasyEnabled();
+  const Root = fantasy ? "main" : "section";
   return (
-    <section className="app-auth-surface" aria-label="Docked account">
+    <Root
+      id={fantasy ? "main" : undefined}
+      className="app-auth-surface"
+      aria-label="Docked account"
+    >
       <header className="app-auth-brand">
         {fantasyEnabled() ? <FantasyLogo /> : <BrandLogo surface="dark" />}
         {!config().production && (
@@ -14,6 +20,6 @@ export function AppAuthShell({ children }: { children: ReactNode }) {
         )}
       </header>
       <div className="app-auth-content">{children}</div>
-    </section>
+    </Root>
   );
 }
