@@ -22,7 +22,7 @@ const files = execFileSync(
 // Test fixtures intentionally contain credential-shaped examples; scan deployable sources,
 // delivery evidence and all browser bundles with both signatures and actual private values.
 const targets = files.filter((f) =>
-  /^(src\/|public\/|docs\/qa\/fantasy\/|docs\/BRAND-INTEGRATION)/.test(f),
+  /^(src\/|public\/|docs\/qa\/fantasy\/|docs\/FANTASY-CARDS-|docs\/BRAND-INTEGRATION)/.test(f),
 );
 targets.push(".next/static");
 const report = await auditPreviewTargets(targets, secrets);

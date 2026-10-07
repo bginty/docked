@@ -1,0 +1,87 @@
+{
+  "recordedAt": "2026-10-07T22:12:11.375Z",
+  "deployedSourceCommit": "8801c702a9ce6b165d2009a6988eb5064aa9bbb3",
+  "platform": {
+    "passed": 373,
+    "failed": 0
+  },
+  "database": {
+    "passed": 185,
+    "failed": 0
+  },
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "optimizedLocalBuild": "PASS",
+  "guardedHostedBuild": "PASS",
+  "acceptance": {
+    "status": "PASS",
+    "recordedAssertions": 74,
+    "includesRepeatedSetupFromResumedRuns": true
+  },
+  "additionalSocial": {
+    "status": "PASS",
+    "checks": 4
+  },
+  "liveIntegrity": {
+    "status": "PASS",
+    "checks": 13
+  },
+  "responsive": {
+    "layouts": 30,
+    "widths": [
+      360,
+      390,
+      412,
+      430,
+      768,
+      1440
+    ],
+    "overflow": 0,
+    "brokenImages": 0,
+    "wcagChecks": 5,
+    "violations": 0,
+    "pageErrors": []
+  },
+  "publicEntryPages": {
+    "checks": 6,
+    "violations": 0,
+    "pageErrors": []
+  },
+  "offline": {
+    "status": "PASS",
+    "cached": [
+      "/brand/docked/offline.html"
+    ],
+    "metadata": [
+      "https://docked-preview-s24-briant-ginty.vercel.app/brand/docked/social/docked-open-graph-1200x630.jpg",
+      "/brand/docked/icons/favicon.ico"
+    ],
+    "privateResponsesCached": false,
+    "at": "2026-10-07T22:11:54.387Z"
+  },
+  "android": {
+    "artifact": "artifacts/android/Docked-Preview-S24-v8-Fantasy-Cards.apk",
+    "sha256": "ae888b5cfc393ed2ee9e66b4e1c1566382d70888d9c41585d1d9afdd401b902e",
+    "audit": "PASS",
+    "entriesScanned": 988,
+    "findings": 0,
+    "emulatorInstallAndLaunch": "PASS on earlier v8 build before final receipt rebuild",
+    "finalArtifactReinstalled": false,
+    "nativeInteractiveJourney": "UNVERIFIED - repeated emulator Launcher/System UI ANRs",
+    "physicalDeviceTested": false
+  },
+  "review": {
+    "foundation": "Astra High",
+    "final": [
+      "Astra Extra High: ownership/scarcity/permissions",
+      "Astra High: wallet/market/trades",
+      "Astra High: eligibility/locks/results"
+    ],
+    "readOnly": true,
+    "nestedDelegation": false,
+    "ultraUsed": false,
+    "mainModelSwitched": false
+  },
+  "productionChanged": false,
+  "dnsChanged": false
+}

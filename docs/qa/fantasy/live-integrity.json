@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "project": "bckkllmndoxzpzdqrevb",
+  "checks": {
+    "member_cap": true,
+    "supply_bounds": true,
+    "current_owner_matches_provenance": true,
+    "balanced_journals": true,
+    "nonnegative_wallets": true,
+    "sale_fees_reconcile": true,
+    "complete_pack_issuance": true,
+    "listings_have_owner": true,
+    "original_accounts_preserved": true,
+    "old_publication_gate": true,
+    "old_feature_gates": true,
+    "no_outbound_email": true,
+    "original_model_history_preserved": true
+  },
+  "counts": {
+    "cards": 40,
+    "packs": 6,
+    "sales": 2,
+    "trades": 1,
+    "results": 3,
+    "provenance_events": 44,
+    "auth_accounts": 7
+  },
+  "productionChanged": false,
+  "at": "2026-10-07T21:51:30.288Z"
+}
