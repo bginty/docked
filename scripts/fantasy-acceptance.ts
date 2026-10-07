@@ -97,6 +97,7 @@ async function main() {
         );
       }
       contexts.push(c);
+      await c.storageState({path:`private-data/fantasy/browser-${i}.json`});
     }
     const [briant, barry, manager] = contexts;
     const desktop = await briant.newPage(),

@@ -13,6 +13,7 @@ const stamp = (s: string) =>
   new Date(s).toLocaleString("en-AU", {
     dateStyle: "medium",
     timeStyle: "short",
+    timeZone: "Australia/Sydney",
   });
 function Card({
   card,
@@ -272,6 +273,7 @@ export function FantasyScreen({
             <label>
               Competition
               <select
+                aria-label="Competition"
                 value={competition}
                 onChange={(e) => {
                   setCompetition(e.target.value);
