@@ -200,13 +200,27 @@ async function main() {
     assert.deepEqual(opens[0].result, opens[1].result);
     checks.push("simultaneous-pack-open-one-persistent-result");
     const c = (await state(briant)).cards.find((c) => c.tradeable)!;
-    const listing = await command(briant, "list", {
-      card_id: c.id,
-      price: 1000,
-    });
+    await desktop.goto(origin + "/fantasy/market");
+    await desktop.getByLabel("Your tradeable card").selectOption(c.id);
+    await desktop.getByLabel("Test credit price").fill("1000");
+    await desktop.getByRole("button", { name: "Create listing" }).click();
+    await desktop.getByText("Saved securely.", { exact: true }).waitFor();
+    check(
+      (await state(briant)).market.some((l) => l.card_id === c.id),
+      "desktop-listing-created-through-UI",
+    );
     const beforeB = (await state(briant)).credits,
       beforeBuyer = (await state(barry)).credits;
-    const sale = await command(barry, "buy", listing.result);
+    await barryPage.goto(origin + "/fantasy/market");
+    await barryPage
+      .locator(".market-grid article")
+      .filter({
+        has: barryPage.getByRole("heading", { name: c.name, exact: true }),
+      })
+      .getByRole("button", { name: "Buy now" })
+      .click();
+    await barryPage.getByText("Saved securely.", { exact: true }).waitFor();
+    const sale = { state: await state(barry) };
     check(sale.state.credits === beforeBuyer - 1000, "mobile-buyer-debited");
     const afterSeller = await state(briant);
     check(

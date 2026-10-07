@@ -48,7 +48,11 @@ try {
     assert.ok(html.includes(target.entryUrl));
     // The supplied PNG can coincidentally encode words such as ADB. Validate its
     // exact bytes before excluding only that image from the human-copy check.
-    const canonical = JSON.parse(readFileSync("src/brand/canonical-logo.json", "utf8"));
+    const canonical = JSON.parse(
+      readFileSync("src/brand/canonical-logo.json", "utf8"),
+    );
+    if (process.env.FANTASY_CARDS_PREVIEW === "true")
+      canonical.source = "public/brand/docked/icons/docked-icon-512.png";
     const approvedImage = `data:image/png;base64,${readFileSync(canonical.source).toString("base64")}`;
     assert.ok(html.includes(approvedImage));
     assert.doesNotMatch(

@@ -19,7 +19,7 @@ export async function fantasyRequest(
     await setPreviewCommunityContext(tx);
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true),set_config('docked.fantasy_preview','test-credits-only',true)`;
     const output = command
-      ? await tx`select fantasy.command(${command.action},${JSON.stringify(command.payload)}::jsonb,${command.request_id}::uuid) as result`
+      ? await tx`select fantasy.command(${command.action},${tx.json(command.payload)}::jsonb,${command.request_id}::uuid) as result`
       : [];
     const state = await tx`select fantasy.read_state() as state`;
     return {
