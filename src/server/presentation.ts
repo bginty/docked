@@ -3,6 +3,7 @@ import { cache } from "react";
 import { authUiReadiness } from "@/core/auth-readiness";
 import { config } from "./config";
 import { db } from "./db";
+import { fantasyEnabled } from "@/core/fantasy";
 
 /** Only non-sensitive capability flags are passed to the client. */
 export const environmentPresentation = cache(async () => {
@@ -21,6 +22,7 @@ export const environmentPresentation = cache(async () => {
   const accountConfigured = settings.auth && settings.database;
   return {
     ...readiness,
+    fantasyPreview: fantasyEnabled(),
     registrationAvailable: accountConfigured && readiness.registrationAvailable,
     accountConfigured,
     reason: accountConfigured

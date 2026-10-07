@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "hash": "c3a79685fff279234109e95611dbe26485a0ff3aab1dac58d061608083bfc781",
+  "project": "bckkllmndoxzpzdqrevb",
+  "migrations": 19,
+  "acl": [
+    {
+      "relname": "settings",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "sports",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "players",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "editions",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "tiers",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "cards",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "members",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "ownership_events",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "journals",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "ledger",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "packs",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "pack_definitions",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "pack_items",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "listings",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "sales",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "trades",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "trade_items",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "competitions",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "scoring_rules",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "entries",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "round_scores",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "round_inputs",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "results",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "status_events",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "replacements",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "requests",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    },
+    {
+      "relname": "admin_events",
+      "relrowsecurity": true,
+      "anon_access": false,
+      "member_access": false
+    }
+  ],
+  "baseline": {
+    "users": 4,
+    "publications": 0,
+    "enabled_flags": 0,
+    "sent": 0,
+    "model_attempts": 6
+  },
+  "productionChanged": false
+}

@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
 import { brand } from "@/brand/brand";
+import { fantasyEnabled, fantasyTagline } from "@/core/fantasy";
+import { fantasyAssets } from "@/brand/fantasy-assets";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/home",
-    name: `Docked — ${brand.tagline}`,
+    name: `Docked — ${fantasyEnabled() ? fantasyTagline : brand.tagline}`,
     short_name: "Docked",
-    description:
-      "Sports discussion and transparent verified records. No guaranteed returns.",
+    description: fantasyEnabled()
+      ? "Fantasy Cards Preview. Test credits only."
+      : "Sports discussion and transparent verified records. No guaranteed returns.",
     start_url: "/app",
     scope: "/",
     display: "standalone",
@@ -15,19 +18,21 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en",
     icons: [
       {
-        src: "/icons/docked-192.png",
+        src: fantasyEnabled() ? fantasyAssets.icon192 : "/icons/docked-192.png",
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icons/docked-512.png",
+        src: fantasyEnabled() ? fantasyAssets.icon512 : "/icons/docked-512.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icons/docked-maskable-512.png",
+        src: fantasyEnabled()
+          ? fantasyAssets.maskable
+          : "/icons/docked-maskable-512.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",

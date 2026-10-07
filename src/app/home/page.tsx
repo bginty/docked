@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { fantasyEnabled } from "@/core/fantasy";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +10,7 @@ export default async function Home({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const query = await searchParams;
+  if (fantasyEnabled()) redirect("/fantasy/play");
   if (query.tab || query.sport || query.cursor) {
     const destination = query.tab === "following" ? "/following" : "/feed";
     const params = new URLSearchParams();

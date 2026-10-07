@@ -40,52 +40,57 @@ function copy(source, destination) {
 }
 
 export async function buildAppIcons() {
-  const master = canonical.source;
-  copy(master, `public${canonical.master}`);
-  save("public/offline.html", renderPublicOfflineShell());
-  // Preserve the supplied exports byte-for-byte where the required size exists.
-  for (const size of [192, 512])
-    copy(
-      `${pack}/icons/docked-app-icon-${size}.png`,
-      `public/icons/docked-${size}.png`,
+  const fantasy = process.env.FANTASY_CARDS_PREVIEW === "true";
+  const master = fantasy
+    ? "public/brand/docked/icons/docked-icon-512.png"
+    : canonical.source;
+  if (!fantasy) {
+    copy(master, `public${canonical.master}`);
+    save("public/offline.html", renderPublicOfflineShell());
+    // Preserve the supplied exports byte-for-byte where the required size exists.
+    for (const size of [192, 512])
+      copy(
+        `${pack}/icons/docked-app-icon-${size}.png`,
+        `public/icons/docked-${size}.png`,
+      );
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024"><image width="1024" height="1024" href="data:image/png;base64,${readFileSync(master).toString("base64")}"/></svg>`;
+    save("public/icons/docked.svg", svg);
+    save("src/app/icon.svg", svg);
+    copy(`${pack}/icons/docked-app-icon-180.png`, "src/app/apple-icon.png");
+    // An ICO container with the exact approved 32px PNG, without tracing artwork.
+    const icoPng = readFileSync(`${pack}/icons/docked-app-icon-32.png`);
+    const ico = Buffer.alloc(22);
+    ico.writeUInt16LE(1, 2);
+    ico.writeUInt16LE(1, 4);
+    ico[6] = 32;
+    ico[7] = 32;
+    ico.writeUInt16LE(1, 10);
+    ico.writeUInt16LE(32, 12);
+    ico.writeUInt32LE(icoPng.length, 14);
+    ico.writeUInt32LE(22, 18);
+    save("public/favicon.ico", Buffer.concat([ico, icoPng]));
+    const socialText = Buffer.from(
+      `<svg width="1200" height="630"><rect width="1200" height="630" fill="${tokens.colors.navy}"/><text x="440" y="280" fill="white" font-family="Arial,sans-serif" font-size="94" font-weight="700">DOCKED</text><text x="444" y="350" fill="white" font-family="Arial,sans-serif" font-size="28">BUILT FOR AN EDGE</text><text x="80" y="530" fill="white" font-family="Arial,sans-serif" font-size="25">Sports analysis and community · No guaranteed returns</text></svg>`,
     );
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024"><image width="1024" height="1024" href="data:image/png;base64,${readFileSync(master).toString("base64")}"/></svg>`;
-  save("public/icons/docked.svg", svg);
-  save("src/app/icon.svg", svg);
-  copy(`${pack}/icons/docked-app-icon-180.png`, "src/app/apple-icon.png");
-  // An ICO container with the exact approved 32px PNG, without tracing artwork.
-  const icoPng = readFileSync(`${pack}/icons/docked-app-icon-32.png`);
-  const ico = Buffer.alloc(22);
-  ico.writeUInt16LE(1, 2);
-  ico.writeUInt16LE(1, 4);
-  ico[6] = 32;
-  ico[7] = 32;
-  ico.writeUInt16LE(1, 10);
-  ico.writeUInt16LE(32, 12);
-  ico.writeUInt32LE(icoPng.length, 14);
-  ico.writeUInt32LE(22, 18);
-  save("public/favicon.ico", Buffer.concat([ico, icoPng]));
-  const socialText = Buffer.from(
-    `<svg width="1200" height="630"><rect width="1200" height="630" fill="${tokens.colors.navy}"/><text x="440" y="280" fill="white" font-family="Arial,sans-serif" font-size="94" font-weight="700">DOCKED</text><text x="444" y="350" fill="white" font-family="Arial,sans-serif" font-size="28">BUILT FOR AN EDGE</text><text x="80" y="530" fill="white" font-family="Arial,sans-serif" font-size="25">Sports analysis and community · No guaranteed returns</text></svg>`,
-  );
-  save(
-    `public${canonical.social}`,
-    await sharp(socialText)
-      .composite([
-        {
-          input: await sharp(master).resize(280, 280).png().toBuffer(),
-          left: 80,
-          top: 150,
-        },
-      ])
-      .png()
-      .toBuffer(),
-  );
-  // The entire square master fits inside the PWA maskable safe circle.
-  save(
-    "public/icons/docked-maskable-512.png",
-    await containedArtwork(master, 512, 512, 280, 280, tokens.colors.navy),
-  );
+    save(
+      `public${canonical.social}`,
+      await sharp(socialText)
+        .composite([
+          {
+            input: await sharp(master).resize(280, 280).png().toBuffer(),
+            left: 80,
+            top: 150,
+          },
+        ])
+        .png()
+        .toBuffer(),
+    );
+    // The entire square master fits inside the PWA maskable safe circle.
+    save(
+      "public/icons/docked-maskable-512.png",
+      await containedArtwork(master, 512, 512, 280, 280, tokens.colors.navy),
+    );
+  }
   copy(master, `${res}/drawable-nodpi/docked_launcher.png`);
   copy(master, `${res}/drawable-nodpi/docked_wordmark.png`);
   // Android foreground: approved standalone artwork in the 66/108 safe area.

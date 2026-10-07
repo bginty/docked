@@ -7,7 +7,13 @@ import path from "node:path";
 const root = process.cwd();
 const git = (...args) => execFileSync("git", args, { encoding: "utf8" }).trim();
 const branch = git("branch", "--show-current");
-if (branch !== "codex/docked-value-platform")
+if (
+  branch !== "codex/docked-value-platform" &&
+  !(
+    branch === "pivot/fantasy-cards-preview-v1" &&
+    !process.argv.includes("--production")
+  )
+)
   throw new Error("Wrong reviewed branch");
 const commit = git("rev-parse", "HEAD");
 const production = process.argv.includes("--production");

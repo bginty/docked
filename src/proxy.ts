@@ -32,6 +32,8 @@ export async function proxy(request: NextRequest) {
 }
 export const config = {
   matcher: [
+    "/fantasy/:path*",
+    "/api/fantasy",
     "/app/:path*",
     "/api/app-session",
     "/api/preview-edges",

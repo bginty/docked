@@ -7,8 +7,11 @@ import { resolveAndroidTarget } from "./android-preview-config.mjs";
 // sibling CSS/JS requests. Keep the error document self-contained and hash-bound.
 const hash = (value) => createHash("sha256").update(value).digest("base64");
 const brand = JSON.parse(readFileSync("src/brand/brand-tokens.json", "utf8"));
-const canonical = JSON.parse(readFileSync("src/brand/canonical-logo.json", "utf8"));
-const logo = `data:image/png;base64,${readFileSync(canonical.source).toString("base64")}`;
+const canonical = JSON.parse(
+  readFileSync("src/brand/canonical-logo.json", "utf8"),
+);
+const fantasy = process.env.FANTASY_CARDS_PREVIEW === "true";
+const logo = `data:image/png;base64,${readFileSync(fantasy ? "public/brand/docked/icons/docked-icon-512.png" : canonical.source).toString("base64")}`;
 function shellStyle() {
   const variables = Object.entries(brand.colors)
     .map(([name, value]) => `--brand-${name}:${value}`)
@@ -21,7 +24,10 @@ function brandShell(template) {
   return template
     .replaceAll("{{NAVY}}", brand.colors.navy)
     .replaceAll("{{LOGO}}", logo)
-    .replaceAll("{{TAGLINE}}", brand.tagline);
+    .replaceAll(
+      "{{TAGLINE}}",
+      fantasy ? "COLLECT. BUILD. COMPETE." : brand.tagline,
+    );
 }
 export function renderPublicOfflineShell() {
   return brandShell(

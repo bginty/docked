@@ -302,7 +302,7 @@ export function AppOnboardingForm({
   preferences: AppOnboardingPreferences;
 }) {
   const router = useRouter();
-  const { production } = useEnvironmentPresentation();
+  const { production, fantasyPreview } = useEnvironmentPresentation();
   const essentialsRequired = legalRequired || usernameRequired;
   const [step, setStep] = useState(essentialsRequired ? 0 : 1),
     [ready, setReady] = useState(false),
@@ -354,7 +354,7 @@ export function AppOnboardingForm({
         setMessage(result.error ?? "Unable to save your preferences.");
         return;
       }
-      router.replace("/edges");
+      router.replace(fantasyPreview ? "/fantasy/play" : "/edges");
       router.refresh();
     } catch {
       setMessage(
@@ -476,7 +476,9 @@ export function AppOnboardingForm({
       {step === 1 && (
         <>
           <p className="app-auth-hint">
-            Personalise your interests. Live Edge coverage is not yet enabled.
+            {fantasyPreview
+              ? "Personalise your fantasy sports interests."
+              : "Personalise your interests. Live Edge coverage is not yet enabled."}
           </p>
           <div className="app-sport-options">
             {appSports.map(([value, label]) => (
@@ -525,7 +527,11 @@ export function AppOnboardingForm({
                 checked={value === interests}
                 onChange={() => setInterests(value)}
               />
-              <span>{label}</span>
+              <span>
+                {fantasyPreview && value === "edges"
+                  ? "Fantasy competitions"
+                  : label}
+              </span>
             </label>
           ))}
         </>
@@ -541,26 +547,29 @@ export function AppOnboardingForm({
               ["followedMembers", "People I follow"],
               ["replies", "Replies & comments"],
             ] as const
-          ).map(([key, label]) => (
-            <label
-              className="app-choice"
-              key={key}
-              data-selected={notices[key]}
-            >
-              <input
-                type="checkbox"
-                checked={notices[key]}
-                onChange={(e) =>
-                  setNotices({ ...notices, [key]: e.target.checked })
-                }
-              />
-              <span>{label}</span>
-            </label>
-          ))}
+          )
+            .filter(([key]) => !fantasyPreview || key !== "officialEdges")
+            .map(([key, label]) => (
+              <label
+                className="app-choice"
+                key={key}
+                data-selected={notices[key]}
+              >
+                <input
+                  type="checkbox"
+                  checked={notices[key]}
+                  onChange={(e) =>
+                    setNotices({ ...notices, [key]: e.target.checked })
+                  }
+                />
+                <span>{label}</span>
+              </label>
+            ))}
           <p className="app-auth-hint">
             In-app preferences only. Android push is not configured, so no
-            device permission is requested. Official Edge alerts remain off
-            until validation.
+            device permission is requested.
+            {!fantasyPreview &&
+              " Official Edge alerts remain off until validation."}
           </p>
         </>
       )}

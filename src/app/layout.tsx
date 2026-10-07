@@ -19,6 +19,9 @@ import { AnalyticsObserver } from "@/components/analytics-observer";
 import { SportIcon } from "@/components/sport-icon";
 import { BrandLogo } from "@/components/brand-logo";
 import { brand } from "@/brand/brand";
+import "./fantasy.css";
+import { fantasyEnabled, fantasyTagline } from "@/core/fantasy";
+import { fantasyAssets } from "@/brand/fantasy-assets";
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   appleWebApp: {
@@ -69,12 +72,47 @@ export const viewport: Viewport = {
   viewportFit: "cover",
   themeColor: brand.colors.navy,
 };
+if (fantasyEnabled()) {
+  metadata.title = {
+    default: `Docked — ${fantasyTagline}`,
+    template: "%s | Docked",
+  };
+  metadata.description =
+    "Fictional player cards, fantasy competitions and test credits.";
+  metadata.robots = { index: false, follow: false };
+  metadata.openGraph = {
+    title: `Docked — ${fantasyTagline}`,
+    description: "Fantasy Cards Preview",
+    images: [fantasyAssets.social],
+  };
+  metadata.twitter = {
+    card: "summary_large_image",
+    title: `Docked — ${fantasyTagline}`,
+    images: [fantasyAssets.social],
+  };
+  metadata.icons = { icon: fantasyAssets.favicon, apple: fantasyAssets.apple };
+}
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const environment = await environmentPresentation();
+  if (environment.fantasyPreview)
+    return (
+      <html lang="en">
+        <body className="fantasy-mode">
+          <EnvironmentProvider value={environment}>
+            <AnalyticsObserver />
+            <NativeBridge />
+            <a className="skip-link" href="#main">
+              Skip to content
+            </a>
+            <main id="main">{children}</main>
+          </EnvironmentProvider>
+        </body>
+      </html>
+    );
   return (
     <html lang="en">
       <body>

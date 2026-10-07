@@ -7,6 +7,7 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 . (Join-Path $PSScriptRoot 'android-offline-branding.ps1')
 $canonicalLogo = Get-Content -LiteralPath 'src/brand/canonical-logo.json' -Raw | ConvertFrom-Json
+if ($env:FANTASY_CARDS_PREVIEW -eq 'true') { $canonicalLogo.source = 'public/brand/docked/icons/docked-icon-512.png' }
 $approvedImage = if ($Mode -eq 'Hosted') { 'data:image/png;base64,' + [Convert]::ToBase64String([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $canonicalLogo.source))) } else { '' }
 $secretValues = [System.Collections.Generic.List[string]]::new()
 if (Test-Path -LiteralPath '.env.local') {

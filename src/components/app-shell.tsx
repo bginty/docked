@@ -6,6 +6,7 @@ import { AppIcon, type AppIconName } from "./app-icon";
 import { PwaStatus } from "./pwa-status";
 import { BrandLogo } from "./brand-logo";
 import { brand } from "@/brand/brand";
+import { FantasyLogo } from "./fantasy-brand";
 import { useEnvironmentPresentation } from "./environment-context";
 const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/edges", label: "Edges", icon: "edge" },
@@ -99,19 +100,48 @@ export function AppShell({
   authenticated?: boolean;
 }) {
   const path = usePathname();
-  const { production } = useEnvironmentPresentation();
-  const destination = appDestination(path);
+  const { production, fantasyPreview } = useEnvironmentPresentation();
+  const activeNav = fantasyPreview
+    ? [
+        { href: "/fantasy/play", label: "Play", icon: "trophy" as const },
+        { href: "/fantasy/cards", label: "Cards", icon: "feed" as const },
+        { href: "/fantasy/market", label: "Market", icon: "points" as const },
+        {
+          href: "/fantasy/social",
+          label: "Social",
+          icon: "community" as const,
+        },
+        {
+          href: "/fantasy/profile",
+          label: "Profile",
+          icon: "profile" as const,
+        },
+      ]
+    : nav;
+  const destination = fantasyPreview
+    ? path.startsWith("/fantasy/")
+      ? path
+      : "/fantasy/social"
+    : appDestination(path);
   const shell = useEditingViewport(authenticated);
   if (!authenticated) return <div className="community-public">{children}</div>;
   return (
     <div ref={shell} className="community-shell" data-authenticated="true">
       <aside className="app-sidebar">
-        <Link className="brand" href="/edges" aria-label="Docked Edges">
-          <BrandLogo surface="dark" decorative />
+        <Link
+          className="brand"
+          href={fantasyPreview ? "/fantasy/play" : "/edges"}
+          aria-label="Docked home"
+        >
+          {fantasyPreview ? (
+            <FantasyLogo />
+          ) : (
+            <BrandLogo surface="dark" decorative />
+          )}
         </Link>
-        <p className="eyebrow">{brand.tagline}</p>
+        {!fantasyPreview && <p className="eyebrow">{brand.tagline}</p>}
         <nav aria-label="App navigation">
-          {nav.map((n) => (
+          {activeNav.map((n) => (
             <Link
               key={n.href}
               href={n.href}
@@ -129,26 +159,41 @@ export function AppShell({
           <Link href="/search">
             <AppIcon name="search" /> Search Docked
           </Link>
-          <Link href="/top-docked">
-            <AppIcon name="trophy" />
-            Top Docked
-          </Link>
-          <Link href="/membership">Membership</Link>
+          {!fantasyPreview && (
+            <Link href="/top-docked">
+              <AppIcon name="trophy" />
+              Top Docked
+            </Link>
+          )}
+          {!fantasyPreview && <Link href="/membership">Membership</Link>}
           <Link href="/dashboard">Settings & privacy</Link>
-          <Link href="/results">Official results</Link>
+          {!fantasyPreview && <Link href="/results">Official results</Link>}
           <Link href="/">Public site</Link>
         </div>
         <p className="small-note">
-          18+ · {production ? "Sports research" : "Research preview"}
+          18+ ·{" "}
+          {fantasyPreview
+            ? "Fantasy Cards Preview"
+            : production
+              ? "Sports research"
+              : "Research preview"}
           <br />
-          No guaranteed returns.
+          {fantasyPreview ? "Test credits only." : "No guaranteed returns."}
         </p>
       </aside>
       <div className="app-workspace">
         <header className="app-topbar">
           <div className="app-brand-lockup">
-            <Link className="brand" href="/edges" aria-label="Docked Edges">
-              <BrandLogo surface="dark" decorative />
+            <Link
+              className="brand"
+              href={fantasyPreview ? "/fantasy/play" : "/edges"}
+              aria-label="Docked home"
+            >
+              {fantasyPreview ? (
+                <FantasyLogo />
+              ) : (
+                <BrandLogo surface="dark" decorative />
+              )}
             </Link>
             {!production && <span className="app-preview-label">PREVIEW</span>}
           </div>
@@ -171,12 +216,13 @@ export function AppShell({
         <PwaStatus />
         <div className="app-content">{children}</div>
         <p className="app-footnote">
-          Informational sports community. You can use Docked without betting.
-          Past performance does not guarantee future results.
+          {fantasyPreview
+            ? "Fictional players. Test credits. Preview/Test Prizes only."
+            : "Informational sports community. You can use Docked without betting. Past performance does not guarantee future results."}
         </p>
       </div>
       <nav className="app-bottom-nav" aria-label="Mobile app navigation">
-        {nav.map((n) => (
+        {activeNav.map((n) => (
           <Link
             key={n.href}
             href={n.href}

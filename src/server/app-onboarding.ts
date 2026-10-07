@@ -1,4 +1,5 @@
 import "server-only";
+import { fantasyEnabled } from "@/core/fantasy";
 import { DateTime } from "luxon";
 import { db } from "./db";
 import { requireIdentity } from "./auth";
@@ -133,7 +134,7 @@ export async function saveAppOnboarding(input: unknown) {
   });
   return {
     ok: true,
-    redirect: "/edges",
+    redirect: fantasyEnabled() ? "/fantasy/play" : "/edges",
     message:
       process.env.APP_ENV === "production"
         ? "Preferences saved."

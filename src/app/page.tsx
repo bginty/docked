@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { fantasyEnabled } from "@/core/fantasy";
+import { FantasyHero, FantasyLogo } from "@/components/fantasy-brand";
 import { readingRoom } from "@/server/cms";
 import { environmentPresentation } from "@/server/presentation";
 import { EdgeCard } from "@/components/edge-card";
@@ -21,6 +23,74 @@ import { SportIcon } from "@/components/sport-icon";
 export const dynamic = "force-dynamic";
 export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
+  if (fantasyEnabled())
+    return (
+      <div className="fantasy-public">
+        <header>
+          <Link href="/" aria-label="Docked home">
+            <FantasyLogo />
+          </Link>
+          <Link className="button" href="/app/login">
+            Tester login
+          </Link>
+        </header>
+        <section className="fantasy-welcome">
+          <FantasyHero />
+          <div>
+            <p className="eyebrow">FANTASY CARDS PREVIEW V1</p>
+            <h1>
+              COLLECT.
+              <br />
+              BUILD.
+              <br />
+              COMPETE.
+            </h1>
+            <p>
+              Collect limited fictional player cards. Build your football team.
+              Compete, buy, sell and trade using test credits.
+            </p>
+            <p>One collection, on your phone and in your browser.</p>
+            <div className="actions">
+              <Link className="button" href="/fantasy/play">
+                Open member workspace
+              </Link>
+              <Link href="/app/login">Invited tester access</Link>
+            </div>
+            <p className="small-note">
+              Closed Preview for 2–3 testers. Fictional players, test credits
+              and Preview/Test Prizes only.
+            </p>
+          </div>
+        </section>
+        <section className="fantasy-stats">
+          <div>
+            <h2>Collect</h2>
+            <p>
+              Every card has a permanent identity, serial and ownership history.
+            </p>
+          </div>
+          <div>
+            <h2>Build</h2>
+            <p>
+              Field a legal eleven with your free Starter pack. Rarity never
+              multiplies fantasy points.
+            </p>
+          </div>
+          <div>
+            <h2>Compete</h2>
+            <p>
+              Enter leagues and track simulated rounds. Trade with fellow
+              testers.
+            </p>
+          </div>
+        </section>
+        <footer>
+          <p>DOCKED · COLLECT. BUILD. COMPETE.</p>
+          <Link href="/privacy">Privacy</Link> ·{" "}
+          <Link href="/terms">Terms</Link>
+        </footer>
+      </div>
+    );
   const [status, region, tips, monitoring, viewer, articles, environment] =
     await Promise.all([
       serviceStatus(),

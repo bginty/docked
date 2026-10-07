@@ -1,0 +1,627 @@
+.fantasy-mode {
+  --fantasy-navy: #0b0f1a;
+  --fantasy-blue: #1a2aff;
+  --fantasy-purple: #8b3dff;
+  --fantasy-cyan: #00d1ff;
+  --fantasy-grey: #9ca3af;
+  background: #0b0f1a;
+  color: #fff;
+  color-scheme: dark;
+}
+.fantasy-mode main {
+  min-height: 100dvh;
+}
+.fantasy-mode .community-shell {
+  background: #0b0f1a;
+  color: #fff;
+}
+.fantasy-mode .app-sidebar,
+.fantasy-mode .app-topbar,
+.fantasy-mode .app-bottom-nav {
+  background: #0d1220;
+  color: #fff;
+  border-color: #28324b;
+}
+.fantasy-mode .app-content {
+  max-width: 1240px;
+}
+.fantasy-mode .app-sidebar nav a,
+.fantasy-mode .app-secondary a,
+.fantasy-mode .app-bottom-nav a {
+  color: #b9c4d8;
+}
+.fantasy-mode .app-sidebar nav a[aria-current],
+.fantasy-mode .app-bottom-nav a[aria-current] {
+  color: #fff;
+  background: #1a2aff26;
+}
+.fantasy-mode a {
+  color: #8edfff;
+}
+.fantasy-mode button,
+.fantasy-mode .button {
+  min-height: 44px;
+  border: 1px solid #536681;
+  border-radius: 10px;
+  background: #18223a;
+  color: white;
+  padding: 10px 15px;
+  font: inherit;
+  cursor: pointer;
+}
+.fantasy-mode .button {
+  background: #1a2aff;
+  border-color: #6671ff;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.fantasy-mode button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.fantasy-mode :focus-visible {
+  outline: 3px solid #00d1ff;
+  outline-offset: 3px;
+}
+.fantasy-mode input,
+.fantasy-mode select {
+  font: inherit;
+  min-height: 44px;
+  background: #0b1120;
+  color: white;
+  border: 1px solid #536681;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 100%;
+  width: 100%;
+}
+.fantasy-mode input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  min-height: 22px;
+  accent-color: #1a2aff;
+  flex-shrink: 0;
+}
+.fantasy-mode label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 0.88rem;
+  color: #c4cee0;
+}
+.fantasy-logo {
+  display: block;
+  width: 180px;
+  max-width: 100%;
+}
+.fantasy-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.fantasy-mode .app-topbar .brand {
+  min-width: 0;
+}
+.fantasy-mode .app-topbar .fantasy-logo {
+  width: 132px;
+}
+.fantasy-screen {
+  padding: 22px 8px 45px;
+  min-width: 0;
+}
+.fantasy-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.fantasy-heading h1 {
+  font-size: clamp(1.55rem, 3vw, 2.7rem);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  margin: 8px 0;
+}
+.fantasy-screen .eyebrow {
+  color: #00d1ff;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+}
+.credit-chip {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border: 1px solid #384c75;
+  background: #142140;
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: white !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+.credit-chip span {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #b7c5dc;
+}
+.fantasy-message {
+  padding: 14px;
+  border: 1px solid #526fc0;
+  background: #172545;
+  border-radius: 9px;
+}
+.fantasy-welcome {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  background: #101729;
+  border: 1px solid #2b3550;
+  border-radius: 20px;
+  overflow: hidden;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.fantasy-hero-art {
+  display: block;
+}
+.fantasy-hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.fantasy-welcome > div {
+  padding: 24px;
+}
+.fantasy-welcome h2 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.fantasy-welcome p {
+  color: #b8c4da;
+}
+.fantasy-panel {
+  background: #111929;
+  border: 1px solid #303b52;
+  border-radius: 16px;
+  padding: 22px;
+  margin: 20px 0;
+  min-width: 0;
+}
+.fantasy-panel h2 {
+  font-size: 1.35rem;
+  margin: 0 0 14px;
+}
+.fantasy-panel p,
+.fantasy-intro {
+  color: #bbc7db;
+  line-height: 1.65;
+}
+.fantasy-panel small,
+.fantasy-row small {
+  display: block;
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+.fantasy-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+.fantasy-stats > div {
+  padding: 18px;
+  border: 1px solid #303b52;
+  border-radius: 12px;
+  background: #111929;
+  display: flex;
+  flex-direction: column;
+}
+.fantasy-stats strong {
+  font-size: 1.9rem;
+  color: white;
+}
+.fantasy-stats span {
+  color: #9ca3af;
+  font-size: 0.78rem;
+}
+.fantasy-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #2b3550;
+  overflow-wrap: anywhere;
+}
+.fantasy-form,
+.fantasy-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  align-items: end;
+  margin: 18px 0;
+}
+.formation-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+  color: #b8c8e4;
+}
+.formation-status span {
+  padding: 6px 10px;
+  background: #19253d;
+  border-radius: 8px;
+}
+.lineup-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 8px;
+  max-height: 420px;
+  overflow: auto;
+  margin-bottom: 18px;
+}
+.lineup-options label,
+.trade-columns label {
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  background: #0c1322;
+  border-radius: 8px;
+  gap: 10px;
+}
+.lineup-options small {
+  margin-top: 4px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 18px;
+}
+.fantasy-card {
+  --tier: #7182a0;
+  border: 1px solid var(--tier);
+  border-radius: 16px;
+  padding: 17px;
+  background: radial-gradient(ellipse at 50% 20%, #233656 0%, #101727 65%);
+  color: #fff;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+}
+.tier-rare {
+  --tier: #398aff;
+}
+.tier-elite {
+  --tier: #ac70ff;
+}
+.tier-legendary {
+  --tier: #f2c45c;
+}
+.tier-icon {
+  --tier: #9ffff6;
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--tier);
+}
+.card-shirt {
+  height: 142px;
+  position: relative;
+  max-width: 150px;
+  margin: 12px auto;
+  color: #a9b9d088;
+}
+.card-shirt svg {
+  width: 100%;
+  height: 100%;
+}
+.card-shirt b {
+  position: absolute;
+  inset: 42% 0 0;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 2px 3px black;
+}
+.fantasy-card h3 {
+  font-size: 1.12rem;
+  margin: 7px 0;
+}
+.fantasy-card p {
+  font-size: 0.7rem;
+  color: #bac5d7;
+  margin: 6px 0;
+}
+.card-team {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.card-serial {
+  border-top: 1px solid #354663;
+  margin-top: 14px;
+  padding: 12px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.card-serial span {
+  font-size: 0.8rem;
+  color: #a4b2c9;
+}
+.card-status {
+  color: var(--tier) !important;
+}
+.starter-label {
+  background: #202e47;
+  padding: 7px;
+  border-radius: 5px;
+}
+.fantasy-card button {
+  width: 100%;
+  margin-top: 10px;
+}
+.card-details {
+  font-size: 0.8rem;
+}
+.card-details code {
+  overflow-wrap: anywhere;
+  font-size: 0.65rem;
+}
+.pack-grid,
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.pack-tile {
+  padding: 24px 18px;
+  border: 1px solid #6855a8;
+  border-radius: 14px;
+  background: linear-gradient(150deg, #252563, #121725 70%);
+}
+.pack-tile > span {
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  font-style: italic;
+}
+.pack-tile details {
+  font-size: 0.75rem;
+  margin: 15px 0;
+}
+.pack-tile button {
+  width: 100%;
+}
+.fantasy-reveal {
+  text-align: center;
+  border: 1px solid #8b3dff;
+  border-radius: 20px;
+  background: #0c1224;
+  padding: 26px;
+  margin: 22px 0;
+}
+.fantasy-reveal .fantasy-card {
+  max-width: 280px;
+  margin: 20px auto;
+  animation: card-reveal 0.35s ease-out;
+}
+.fantasy-reveal > .button {
+  margin: 15px auto;
+}
+.fantasy-empty {
+  padding: 35px 20px;
+  color: #bbc7db;
+  background: #111929;
+  border-radius: 14px;
+}
+.trade-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 18px 0;
+}
+.trade-columns fieldset {
+  border: 1px solid #374767;
+  border-radius: 10px;
+  padding: 12px;
+  max-height: 300px;
+  overflow: auto;
+}
+.trade-columns label {
+  margin: 5px 0;
+}
+.trade-offer {
+  padding: 16px 0;
+  border-bottom: 1px solid #36405b;
+  overflow-wrap: anywhere;
+}
+.wallet-balance {
+  font-size: 3rem;
+}
+.fantasy-gate {
+  max-width: 600px;
+  margin: 10vh auto;
+  padding: 28px;
+}
+.fantasy-gate img {
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+}
+.fantasy-social {
+  max-width: 760px;
+  margin: auto;
+}
+.fantasy-screen pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 0.8rem;
+}
+.fantasy-screen code {
+  overflow-wrap: anywhere;
+}
+.fantasy-mode .muted {
+  color: #9ca3af;
+}
+.fantasy-mode .app-footnote {
+  color: #9ca3af;
+}
+.fantasy-mode .app-secondary {
+  border-color: #303b52;
+}
+@keyframes card-reveal {
+  from {
+    opacity: 0.1;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (min-width: 768px) {
+  .fantasy-logo img {
+    aspect-ratio: 1600/368;
+  }
+  .fantasy-mode .app-topbar .fantasy-logo {
+    width: 190px;
+  }
+}
+@media (max-width: 600px) {
+  .fantasy-screen {
+    padding: 16px 0 32px;
+  }
+  .fantasy-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .fantasy-heading h1 {
+    font-size: 1.65rem;
+  }
+  .credit-chip {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+  .fantasy-welcome {
+    grid-template-columns: 1fr;
+  }
+  .fantasy-welcome .fantasy-hero-art {
+    display: none;
+  }
+  .fantasy-welcome > div {
+    padding: 24px;
+  }
+  .fantasy-stats {
+    gap: 8px;
+  }
+  .fantasy-stats > div {
+    padding: 12px 9px;
+  }
+  .fantasy-stats strong {
+    font-size: 1.5rem;
+  }
+  .fantasy-panel {
+    padding: 16px;
+  }
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .fantasy-card {
+    padding: 12px;
+  }
+  .card-shirt {
+    height: 110px;
+  }
+  .card-shirt b {
+    font-size: 1.55rem;
+  }
+  .fantasy-card h3 {
+    font-size: 0.95rem;
+  }
+  .fantasy-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fantasy-filters > label:first-child {
+    grid-column: 1/-1;
+  }
+  .fantasy-row {
+    font-size: 0.85rem;
+  }
+  .trade-columns {
+    grid-template-columns: 1fr;
+  }
+  .fantasy-mode .app-topbar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .fantasy-mode .app-bottom-nav a {
+    font-size: 0.65rem;
+  }
+  .fantasy-heading .eyebrow {
+    font-size: 0.6rem;
+  }
+  .pack-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pack-tile {
+    padding: 18px 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fantasy-reveal .fantasy-card {
+    animation: none;
+  }
+}
+.fantasy-public {
+  max-width: 1440px;
+  margin: auto;
+  padding: 24px clamp(16px, 4vw, 64px);
+}
+.fantasy-public > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 0 30px;
+}
+.fantasy-public h1 {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  margin: 24px 0;
+}
+.fantasy-public footer {
+  background: transparent;
+  padding: 30px 0;
+  color: #9ca3af;
+}
+.fantasy-public .fantasy-hero-art {
+  display: block;
+}
+.fantasy-mode textarea {
+  width: 100%;
+  background: #0b1120;
+  color: #fff;
+  font: inherit;
+  border: 1px solid #536681;
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 100%;
+  margin: 8px 0 16px;
+}
+@media (max-width: 600px) {
+  .fantasy-public .fantasy-stats {
+    grid-template-columns: 1fr;
+  }
+  .fantasy-public .fantasy-welcome > div {
+    padding: 22px;
+  }
+}
