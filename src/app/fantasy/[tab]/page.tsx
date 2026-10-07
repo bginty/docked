@@ -38,7 +38,7 @@ export default async function FantasyPage({
     data = await fantasyRequest();
   } catch {
     return (
-      <main id="main" className="fantasy-gate">
+      <div className="fantasy-gate">
         <h1>Fantasy Cards Preview</h1>
         <p>{fantasyTagline}</p>
         <p>
@@ -52,13 +52,13 @@ export default async function FantasyPage({
           If you are already signed in, Preview access may be expired or
           temporarily unavailable.
         </p>
-      </main>
+      </div>
     );
   }
   const feed = tab === "social" ? await communityFeed({ tab: "latest" }) : null;
   return (
     <AppShell authenticated>
-      <main id="main">
+      <div>
         <FantasyScreen key={tab} tab={tab} initial={data.state} />
         {feed && (
           <section className="fantasy-social">
@@ -75,7 +75,7 @@ export default async function FantasyPage({
             />
           </section>
         )}
-      </main>
+      </div>
     </AppShell>
   );
 }
