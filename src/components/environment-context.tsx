@@ -7,6 +7,7 @@ export type EnvironmentPresentation = Omit<
   "liveBeta"
 > & {
   liveBeta?: boolean;
+  reviewOnly?: boolean;
   accountConfigured: boolean;
   fantasyPreview?: boolean;
   fantasyProduction?: boolean;

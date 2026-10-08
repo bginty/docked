@@ -170,6 +170,7 @@ test("Netlify guard writes only validated non-secret build metadata and denies u
     for (const file of [
       "scripts/guard-hosted-build.mjs",
       "src/core/hosted-production.mjs",
+      "src/core/hosted-review.mjs",
       "src/core/hosting-identity.mjs",
       "config/netlify-build.json",
     ])

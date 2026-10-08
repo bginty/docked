@@ -1,6 +1,7 @@
 import productionManifest from "../config/hosted-production.json" with { type: "json" };
 import { writeFileSync } from "node:fs";
 import { netlifyBuildCandidate } from "../src/core/hosting-identity.mjs";
+import { assertHostedReview } from "../src/core/hosted-review.mjs";
 import {
   assertHostedProduction,
   productionDeploymentRequested,
@@ -9,7 +10,11 @@ import {
 // Local builds use npm run build; hosted builds must select a reviewed target.
 // An accidental production target can never reuse the Preview configuration.
 try {
-  if (productionDeploymentRequested(process.env, productionManifest)) {
+  if (assertHostedReview(process.env)) {
+    console.log(
+      "Credential-free protected review target; production activation remains blocked.",
+    );
+  } else if (productionDeploymentRequested(process.env, productionManifest)) {
     const build =
       productionManifest.hostingProvider === "netlify"
         ? netlifyBuildCandidate(process.env)

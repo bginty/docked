@@ -26,6 +26,7 @@ import {
   fantasyProductionEnabled,
 } from "@/core/fantasy-production";
 import { fantasyAssets } from "@/brand/fantasy-assets";
+import { reviewOrigin } from "@/core/hosted-review.mjs";
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   appleWebApp: {
@@ -44,7 +45,11 @@ export const metadata: Metadata = {
       },
     ],
   },
-  metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.DOCKED_HOSTED_REVIEW === "true"
+      ? reviewOrigin(process.env)
+      : (process.env.SITE_URL ?? "http://localhost:3000"),
+  ),
   title: {
     default: `Docked — ${brand.tagline}`,
     template: "%s | Docked",
@@ -136,6 +141,12 @@ export default async function Layout({
     <html lang="en">
       <body>
         <EnvironmentProvider value={environment}>
+          {environment.reviewOnly && (
+            <div className="topline" role="status">
+              PROTECTED APPLICATION REVIEW · Accounts, email, live data and
+              gameplay are disabled. Not the live beta.
+            </div>
+          )}
           {environment.liveBeta && (
             <div className="topline">
               <span>DOCKED BETA · Invited members only</span>

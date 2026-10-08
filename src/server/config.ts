@@ -3,6 +3,7 @@ import {
   referencesDockedPreviewProject,
 } from "@/core/preview-auth";
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
+import { reviewOrigin } from "@/core/hosted-review.mjs";
 export function config(env: Record<string, string | undefined> = process.env) {
   assertDeploymentEnvironment(env);
   if (env.AUTO_PUBLISH_DOCKED_EDGES === "true")
@@ -50,7 +51,10 @@ export function config(env: Record<string, string | undefined> = process.env) {
   return {
     production,
     environment: env.APP_ENV ?? "preview",
-    siteUrl: env.SITE_URL ?? "http://localhost:3000",
+    siteUrl:
+      env.DOCKED_HOSTED_REVIEW === "true"
+        ? reviewOrigin(env)
+        : (env.SITE_URL ?? "http://localhost:3000"),
     database: !!env.DATABASE_URL,
     auth:
       !!env.NEXT_PUBLIC_SUPABASE_URL &&

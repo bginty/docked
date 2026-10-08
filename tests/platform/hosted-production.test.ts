@@ -400,6 +400,7 @@ test("plain Node hosted build uses the same reviewed manifest and rejects incomp
     for (const file of [
       "scripts/guard-hosted-build.mjs",
       "src/core/hosted-production.mjs",
+      "src/core/hosted-review.mjs",
       "src/core/hosting-identity.mjs",
       "config/netlify-build.json",
     ])
