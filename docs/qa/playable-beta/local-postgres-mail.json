@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-08T22:08:25.497Z",
+  "scope": "Isolated actual PostgreSQL 17.10 on loopback; no cloud credentials or records",
+  "passed": 6,
+  "checks": [
+    "24 concurrent enqueue requests create exactly one receipt",
+    "24 concurrent claims produce one lease owner",
+    "No worker can reclaim a dispatched message",
+    "Every tested post-dispatch retry transition denied",
+    "Ambiguous outcome held and encrypted message removed",
+    "Anonymous, member and application-runtime RPC access denied"
+  ]
+}

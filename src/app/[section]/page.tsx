@@ -682,9 +682,11 @@ export default async function Page({
         <h2>Make room to stop</h2>
         <p>
           Pause optional messages in your account or use the unsubscribe link.
-          There are no betting streaks, loss-triggered reactivation messages or
-          rewards for activity. If gambling is affecting your money,
-          relationships or wellbeing, stop and seek support.
+          There are no betting streaks or loss-triggered reactivation messages.
+          Docked does not reward wagering or gambling losses. Any enabled
+          free-game rewards are separate from betting performance. If gambling
+          is affecting your money, relationships or wellbeing, stop and seek
+          support.
         </p>
         <h2>Australian support</h2>
         <p>
