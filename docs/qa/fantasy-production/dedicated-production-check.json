@@ -1,0 +1,107 @@
+{
+  "checkedAt": "2026-10-08T03:02:32.806Z",
+  "baselineCommit": "2e0a8e2482a4cdc1a38504f53d0645a1adc33fad",
+  "productionOrganization": {
+    "id": "otldyeunbqabbcjydjpe",
+    "name": "Docked Production",
+    "verifiedPlan": "free",
+    "projectId": null,
+    "proActivation": "Blocked: no functioning browser billing access; advertised get_cost tool unavailable at MCP server",
+    "activatedRecurringCostUsd": 0,
+    "approvedBaselineCapUsd": 25
+  },
+  "netlify": {
+    "siteId": null,
+    "deploymentId": null,
+    "planActivated": false,
+    "connection": "No connector, NETLIFY environment variables or checked standard CLI configuration; browser runtime failed to initialize"
+  },
+  "preview": {
+    "id": "bckkllmndoxzpzdqrevb",
+    "status": "ACTIVE_HEALTHY",
+    "remoteMutations": false
+  },
+  "oura": {
+    "accessedThisRun": false,
+    "modified": false
+  },
+  "vercel": {
+    "modified": false
+  },
+  "sites": [
+    {
+      "url": "https://docked.com.au",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.docked.com.au",
+      "status": 301,
+      "location": "https://docked.com.au/"
+    },
+    {
+      "url": "https://docked-preview-s24-briant-ginty.vercel.app",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://docked-preview-s24-briant-ginty.vercel.app/api/fantasy",
+      "status": 403,
+      "location": null
+    }
+  ],
+  "dns": {
+    "apex": [
+      "185.199.108.153",
+      "185.199.110.153",
+      "185.199.111.153",
+      "185.199.109.153"
+    ],
+    "www": [
+      "bginty.github.io"
+    ],
+    "mx": [
+      {
+        "exchange": "docked-com-au.mail.protection.outlook.com",
+        "priority": 0
+      }
+    ]
+  },
+  "dnsChanged": false,
+  "holdingPageReplaced": false,
+  "apk": {
+    "path": "C:/Users/61412/Desktop/Docked-Preview-S24-v8-Fantasy-Cards.apk",
+    "version": "1.7-preview",
+    "build": 8,
+    "bytes": 11044694,
+    "sha256": "ae888b5cfc393ed2ee9e66b4e1c1566382d70888d9c41585d1d9afdd401b902e",
+    "download": {
+      "status": 200,
+      "hashMatches": true,
+      "expiresAt": "2026-10-10T23:36:46.583Z"
+    }
+  },
+  "email": {
+    "recipient": "barrydearing@gmail.com",
+    "sent": false,
+    "reason": "mail_service_not_enabled",
+    "readyToSendFilesPreserved": true
+  },
+  "tests": {
+    "focusedPlatform": {
+      "passed": 14,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "changedFileLint": "passed",
+    "realPostgres": "Prior checkpoint: 8 local PostgreSQL scenarios, not rerun; no SQL changes",
+    "productionSmoke": "Not run: no production project or deployed Netlify application"
+  },
+  "legal": {
+    "operatorConfirmed": true,
+    "currentAddressVerified": false,
+    "monitoredSupportVerified": false,
+    "policiesApproved": false,
+    "draft": "docs/FANTASY-PRODUCTION-POLICY-DRAFT.md"
+  }
+}

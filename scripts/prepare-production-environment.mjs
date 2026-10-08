@@ -30,7 +30,7 @@ try {
   if (
     connection.projectRef !== manifest.supabaseProjectRef ||
     connection.organizationId !== manifest.supabaseOrganizationId ||
-    manifest.supabaseOrganizationId !== "ernfnkcbalhyqpsrzdwa" ||
+    manifest.supabaseOrganizationId !== "otldyeunbqabbcjydjpe" ||
     operator.detailsVerified !== true ||
     operator.policyReviewApproved !== true ||
     !operator.legalName?.trim() ||

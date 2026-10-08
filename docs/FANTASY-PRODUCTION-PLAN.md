@@ -1,5 +1,9 @@
 # Production free-play implementation — 8 October 2026
 
+**Current status:** the owner's latest authorization supersedes earlier cost/capacity decisions below. Netlify Free and one dedicated Supabase Pro organization are approved, with a US$25/month baseline cap before taxes. Oura is strictly out of scope. See [dedicated production handoff](FANTASY-DEDICATED-PRODUCTION-HANDOFF.md).
+
+Created Docked Production organization `otldyeunbqabbcjydjpe`; verified Free, no project or charges yet. Updated production-only identity guards; Preview guards remain unchanged. Pro checkout is blocked by unavailable browser automation and unavailable server-side cost tool. Netlify access, production SMTP and current contact/policy facts remain external gates. Prepared Fantasy policy/reward draft and passed 14 focused release regressions, typecheck and changed-file lint. Holding page/Preview remain available, APK and private-download hashes match, Gmail mailbox still unavailable. No Oura access, Vercel mutation, DNS change or production launch in this checkpoint.
+
 Baseline: Preview delivery `7de60d06`, readiness `f9bdfe04`, same preserved branch. User now authorizes resolving the blockers with free starter packs and daily non-transferable rewards. No real-money flow, new paid infrastructure, Preview data migration or holding-page replacement before verification.
 
 ## Work order

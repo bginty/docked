@@ -46,7 +46,7 @@ if (
     !/^[a-z]{20}$/.test(targetConfig.supabaseProjectRef ?? "") ||
     targetConfig.supabaseProjectRef === "bckkllmndoxzpzdqrevb" ||
     targetConfig.supabaseProjectRef === "dwdjeecjdkkiidoutnme" ||
-    targetConfig.supabaseOrganizationId !== "ernfnkcbalhyqpsrzdwa" ||
+    targetConfig.supabaseOrganizationId !== "otldyeunbqabbcjydjpe" ||
     targetConfig.supabaseRegion !== "ap-southeast-2" ||
     typeof targetConfig.databaseRole !== "string" ||
     !/^[a-z][a-z0-9_]{2,62}$/.test(targetConfig.databaseRole) ||

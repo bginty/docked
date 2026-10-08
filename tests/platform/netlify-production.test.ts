@@ -30,7 +30,7 @@ const manifest = {
   origin: "https://docked.com.au",
   projectName: "docked-production",
   supabaseProjectRef: "abcdefghijklmnopqrst",
-  supabaseOrganizationId: "ernfnkcbalhyqpsrzdwa",
+  supabaseOrganizationId: "otldyeunbqabbcjydjpe",
   supabaseRegion: "ap-southeast-2",
   databaseRole: "docked_app",
 };

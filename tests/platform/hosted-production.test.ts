@@ -202,6 +202,18 @@ test("production flags must be explicitly closed; runtime scope and legal proven
 });
 
 test("production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview", () => {
+  for (const organization of [
+    "ernfnkcbalhyqpsrzdwa",
+    "eadbdqbkrqucdhialgoz",
+    "abcdefghijklmnopqrst",
+    "",
+  ])
+    assert.throws(() =>
+      assertHostedProduction(environment(), {
+        ...reviewed,
+        supabaseOrganizationId: organization,
+      }),
+    );
   for (const ref of ["bckkllmndoxzpzdqrevb", "dwdjeecjdkkiidoutnme"])
     assert.throws(() =>
       assertHostedProduction(

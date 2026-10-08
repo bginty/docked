@@ -193,7 +193,7 @@ export function assertHostedProduction(env, manifest, build) {
     !reviewedHostingIdentity(manifest) ||
     !/^[a-z]{20}$/.test(manifest.supabaseProjectRef ?? "") ||
     [previewRef, unrelatedRef].includes(manifest.supabaseProjectRef ?? "") ||
-    manifest.supabaseOrganizationId !== "ernfnkcbalhyqpsrzdwa" ||
+    manifest.supabaseOrganizationId !== "otldyeunbqabbcjydjpe" ||
     manifest.supabaseRegion !== "ap-southeast-2" ||
     !applicationRole(manifest.databaseRole)
   )

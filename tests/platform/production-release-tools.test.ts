@@ -22,7 +22,7 @@ const manifest = {
   vercelProjectId: "prj_FictionalProductionTest",
   vercelTeamId: "team_FictionalProductionTest",
   supabaseProjectRef: "abcdefghijklmnopqrst",
-  supabaseOrganizationId: "ernfnkcbalhyqpsrzdwa",
+  supabaseOrganizationId: "otldyeunbqabbcjydjpe",
   supabaseRegion: "ap-southeast-2",
   databaseRole: "docked_app",
 };
@@ -389,6 +389,8 @@ test("production export rejects every unreviewed manifest boundary before prepar
       { supabaseProjectRef: "dwdjeecjdkkiidoutnme" },
       { supabaseProjectRef: "unreviewed" },
       { supabaseOrganizationId: "unrelated-organisation" },
+      { supabaseOrganizationId: "ernfnkcbalhyqpsrzdwa" },
+      { supabaseOrganizationId: "eadbdqbkrqucdhialgoz" },
       { supabaseRegion: "us-east-1" },
       { databaseRole: undefined },
       { databaseRole: "docked_app;set role postgres" },
