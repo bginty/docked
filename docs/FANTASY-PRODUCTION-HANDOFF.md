@@ -1,5 +1,7 @@
 # Docked free-play production implementation — 8 October 2026
 
+Implementation commit: `ddea98889b8ba460bf812b4b834da3997ba0c5b0`. This is committed local work, not a deployed production commit.
+
 **Public promotion remains blocked. No Fantasy production deployment exists.** The public holding page, isolated Preview, existing Edge code/data and original APK are preserved. No production database writes, DNS changes, paid services or payment activation occurred. Work continues on the original `pivot/fantasy-cards-preview-v1` branch from readiness commit `f9bdfe04`, without a reset.
 
 ## Verified destinations
