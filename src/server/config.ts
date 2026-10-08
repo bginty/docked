@@ -50,6 +50,7 @@ export function config(env: Record<string, string | undefined> = process.env) {
     );
   return {
     production,
+    reviewOnly: env.DOCKED_HOSTED_REVIEW === "true",
     environment: env.APP_ENV ?? "preview",
     siteUrl:
       env.DOCKED_HOSTED_REVIEW === "true"

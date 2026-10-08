@@ -1,0 +1,223 @@
+{
+  "project": {
+    "id": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "name": "docked-production",
+    "framework": "nextjs",
+    "accountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "createdAt": 1791418793275,
+    "updatedAt": 1791492458709,
+    "nodeVersion": "22.x",
+    "live": false,
+    "latestDeployment": {
+      "id": "dpl_Fs32KgbJcaecDJyj53cy4exGDrtL",
+      "url": "docked-production-de46kcq36-briant-s-projects.vercel.app",
+      "createdAt": 1791492434432,
+      "readyState": "CANCELED",
+      "target": "production"
+    },
+    "domains": [],
+    "passwordProtection": {
+      "enabled": false,
+      "deploymentType": null
+    },
+    "ssoProtection": {
+      "enabled": true,
+      "deploymentType": "all_except_custom_domains"
+    },
+    "trustedIps": {
+      "enabled": false,
+      "deploymentType": null,
+      "addresses": [],
+      "protectionMode": null
+    }
+  },
+  "environment": {
+    "count": 26,
+    "hiddenProductionEnvCount": 0,
+    "bindings": [
+      {
+        "key": "ADS_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "AFFILIATES_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "PAID_PLANS_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "PRO_ENTITLEMENTS_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "COMPETITIONS_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "PRIZES_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "DEALS_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "REGISTRATION_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "AUTH_EMAIL_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "DOCKED_AUTH_INVITES_READY",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "FANTASY_FREE_PLAY_PRODUCTION",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "FANTASY_CARDS_PREVIEW",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "LEGAL_ENTITY_VERIFIED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "DOCKED_HOSTED_PRODUCTION",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "DOCKED_HOSTED_PREVIEW",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "DOCKED_HOSTED_REVIEW",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "APP_ENV",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "SUPABASE_ENV",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "DEMO_MODE",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "ODDS_POLLING_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "MARKET_DATA_POLLING_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "EDGE_SCANNER_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "PUBLICATION_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "FORWARD_PAPER_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "AUTO_PUBLISH_DOCKED_EDGES",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      },
+      {
+        "key": "SENDING_ENABLED",
+        "target": [
+          "preview"
+        ],
+        "gitBranch": "codex/vercel-beta-review"
+      }
+    ]
+  },
+  "scope": "Exact Docked production project only. No completed application deployment. No Supabase credentials or production environment variables uploaded."
+}

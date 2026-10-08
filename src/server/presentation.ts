@@ -23,7 +23,7 @@ export const environmentPresentation = cache(async () => {
   const accountConfigured = settings.auth && settings.database;
   return {
     ...readiness,
-    reviewOnly: process.env.DOCKED_HOSTED_REVIEW === "true",
+    reviewOnly: settings.reviewOnly,
     fantasyPreview: fantasyEnabled(),
     fantasyProduction: fantasyProductionEnabled(),
     registrationAvailable: accountConfigured && readiness.registrationAvailable,

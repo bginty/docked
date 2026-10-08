@@ -6,6 +6,8 @@ import {
 } from "../../scripts/android-live-beta-config.mjs";
 import { resolveAndroidTarget } from "../../scripts/android-preview-config.mjs";
 import { assertDebugAssets } from "../../scripts/verify-android-debug-assets.mjs";
+import { betaReleaseIdentity } from "../../src/core/beta-release-identity.mjs";
+import production from "../../config/hosted-production.json";
 
 const now = Date.parse("2026-10-09T00:00:00Z");
 test("debug packaging refuses assets left by beta or hosted Preview sync", () => {
@@ -66,6 +68,33 @@ const receipt = {
     officialBettingPublication: false,
   },
 };
+test("release provenance retains verified Netlify build metadata and rejects a mixed Vercel runtime", () => {
+  const manifest = { ...production, hostingProvider: "netlify" };
+  const build = {
+    schemaVersion: 1,
+    provider: "netlify",
+    context: "production",
+    siteId: receipt.netlifySiteId,
+    accountId: manifest.netlifyAccountId,
+    commit: receipt.commit,
+    deployId: receipt.deploymentId,
+  };
+  const env = {
+    NETLIFY: "true",
+    CONTEXT: "production",
+    SITE_ID: receipt.netlifySiteId,
+  };
+  const identity = betaReleaseIdentity(env, manifest, build);
+  assert.equal(identity.hostingProvider, "netlify");
+  assert.equal(identity.deploymentId, receipt.deploymentId);
+  assert.equal(identity.commit, receipt.commit);
+  assert.throws(() =>
+    betaReleaseIdentity({ ...env, VERCEL: "1" }, manifest, build),
+  );
+  assert.throws(() =>
+    betaReleaseIdentity(env, manifest, { ...build, siteId: "other" }),
+  );
+});
 test("Android beta selects the exact live backend and a separate package without copying extra fields", () => {
   const value = validateLiveBetaManifest(
     { ...receipt, secret: "never-copy" },
@@ -176,4 +205,71 @@ test("Android beta cannot fall back to preview, localhost or inspection", () => 
       now,
     ),
   );
+});
+
+test("Vercel Android acceptance requires exact production project/team and current live provenance", async () => {
+  const vercel = {
+    ...receipt,
+    netlifySiteId: undefined,
+    hostingProvider: "vercel",
+    vercelProjectId: production.vercelProjectId,
+    vercelTeamId: production.vercelTeamId,
+    deploymentId: "dpl_AUTHOREDTESTONLY123456",
+  };
+  const env = {
+    VERCEL: "1",
+    VERCEL_ENV: "production",
+    VERCEL_TARGET_ENV: "production",
+    VERCEL_PROJECT_ID: production.vercelProjectId,
+    VERCEL_GIT_COMMIT_SHA: receipt.commit,
+    VERCEL_DEPLOYMENT_ID: vercel.deploymentId,
+  };
+  const identity = betaReleaseIdentity(env, production, {});
+  const validated = validateLiveBetaManifest(vercel, now);
+  assert.equal(validated.hostingProvider, "vercel");
+  assert.equal("netlifySiteId" in validated, false);
+  const probe =
+    (change = {}) =>
+    async () =>
+      new Response(
+        JSON.stringify({
+          channel: "beta",
+          origin: receipt.origin,
+          projectRef: receipt.supabaseProjectRef,
+          ...identity,
+          publicRegistration: false,
+          invitedAuthentication: true,
+          ...change,
+        }),
+        { headers: { "cache-control": "no-store" } },
+      );
+  await verifyCurrentBetaHost(validated, probe());
+  for (const change of [
+    { hostingProvider: "netlify" },
+    { siteId: "prj_other" },
+    { hostingAccountId: "team_other" },
+    { deploymentId: "dpl_DIFFERENT123456789" },
+  ])
+    await assert.rejects(() => verifyCurrentBetaHost(validated, probe(change)));
+  for (const change of [
+    { hostingProvider: "other" },
+    { vercelProjectId: "prj_other" },
+    { vercelTeamId: "team_other" },
+    { netlifySiteId: receipt.netlifySiteId },
+    { deploymentId: receipt.deploymentId },
+    { acceptance: { ...receipt.acceptance, emailRecovery: false } },
+  ])
+    assert.throws(() =>
+      validateLiveBetaManifest({ ...vercel, ...change }, now),
+    );
+  for (const change of [
+    { VERCEL_ENV: "preview" },
+    { VERCEL_PROJECT_ID: "prj_other" },
+    { VERCEL_DEPLOYMENT_ID: "" },
+    { VERCEL_GIT_COMMIT_SHA: "" },
+    { SITE_ID: receipt.netlifySiteId },
+  ])
+    assert.throws(() =>
+      betaReleaseIdentity({ ...env, ...change }, production, {}),
+    );
 });

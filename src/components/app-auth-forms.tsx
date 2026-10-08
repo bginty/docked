@@ -47,11 +47,12 @@ export function AppAuthForm({
   const router = useRouter();
   const environment = useEnvironmentPresentation();
   const unavailable =
-    environment.production &&
-    (!environment.accountConfigured ||
-      (mode === "signup" && !environment.registrationAvailable) ||
-      (["recover", "resend", "complete"].includes(mode) &&
-        !environment.emailAvailable));
+    environment.reviewOnly ||
+    (environment.production &&
+      (!environment.accountConfigured ||
+        (mode === "signup" && !environment.registrationAvailable) ||
+        (["recover", "resend", "complete"].includes(mode) &&
+          !environment.emailAvailable)));
   const setup = mode === "signup" || mode === "complete";
   const [ready, setReady] = useState(false),
     [busy, setBusy] = useState(false),

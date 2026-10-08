@@ -21,7 +21,14 @@ export async function verifyCurrentBetaHost(manifest, fetcher = fetch) {
     current.channel !== "beta" ||
     current.origin !== manifest.origin ||
     current.projectRef !== manifest.supabaseProjectRef ||
-    current.siteId !== manifest.netlifySiteId ||
+    (current.hostingProvider ?? "netlify") !==
+      (manifest.hostingProvider ?? "netlify") ||
+    current.siteId !==
+      (manifest.hostingProvider === "vercel"
+        ? manifest.vercelProjectId
+        : manifest.netlifySiteId) ||
+    (manifest.hostingProvider === "vercel" &&
+      current.hostingAccountId !== manifest.vercelTeamId) ||
     current.commit !== manifest.commit ||
     current.deploymentId !== manifest.deploymentId ||
     current.publicRegistration !== false ||
@@ -47,9 +54,24 @@ export function validateLiveBetaManifest(input, now = Date.now()) {
     input.origin !== "https://docked.com.au" ||
     input.applicationId !== "au.com.docked.app.beta" ||
     input.supabaseProjectRef !== "pojoymtniryarxxunyvz" ||
-    input.netlifySiteId !== "2292ba6e-7073-4804-b69a-26b41c9a9fb1" ||
-    !/^[a-f0-9]{24}$/.test(input.deploymentId ?? "") ||
     !/^[a-f0-9]{40}$/.test(input.commit ?? "")
+  )
+    fail();
+  const provider = input.hostingProvider ?? "netlify";
+  if (provider === "vercel") {
+    if (
+      input.vercelProjectId !== "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST" ||
+      input.vercelTeamId !== "team_tf6xweKKyVCj9bTppUKttJ4l" ||
+      input.netlifySiteId ||
+      !/^dpl_[A-Za-z0-9]{16,80}$/.test(input.deploymentId ?? "")
+    )
+      fail();
+  } else if (
+    provider !== "netlify" ||
+    input.netlifySiteId !== "2292ba6e-7073-4804-b69a-26b41c9a9fb1" ||
+    input.vercelProjectId ||
+    input.vercelTeamId ||
+    !/^[a-f0-9]{24}$/.test(input.deploymentId ?? "")
   )
     fail();
   const verified = Date.parse(input.verifiedAt);
@@ -85,7 +107,13 @@ export function validateLiveBetaManifest(input, now = Date.now()) {
     origin: input.origin,
     applicationId: input.applicationId,
     supabaseProjectRef: input.supabaseProjectRef,
-    netlifySiteId: input.netlifySiteId,
+    hostingProvider: provider,
+    ...(provider === "vercel"
+      ? {
+          vercelProjectId: input.vercelProjectId,
+          vercelTeamId: input.vercelTeamId,
+        }
+      : { netlifySiteId: input.netlifySiteId }),
     deploymentId: input.deploymentId,
     commit: input.commit,
     verifiedAt: input.verifiedAt,

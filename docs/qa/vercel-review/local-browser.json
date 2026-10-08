@@ -1,0 +1,102 @@
+{
+  "scope": "Actual isolated local review build, no database/email credentials and no network stubs; browser emulation only, not hosted acceptance",
+  "checks": [
+    "Review cannot supply an Android live-beta receipt (404)"
+  ],
+  "pages": [
+    {
+      "route": "/",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/app",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/login",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/app/signup",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/app",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/login",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/app/signup",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/app",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/login",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    },
+    {
+      "route": "/app/signup",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "errors": []
+    }
+  ],
+  "serviceStatus": {
+    "feed": false,
+    "strategy": false,
+    "publication": false,
+    "database": false,
+    "oddsProviderStatus": "NOT_CONFIGURED",
+    "resultsProviderStatus": "NOT_CONFIGURED",
+    "reason": "Providers are not connected. No successful scan has been recorded."
+  },
+  "passed": true
+}

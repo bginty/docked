@@ -3,6 +3,7 @@ import manifest from "../../../../config/hosted-production.json";
 import build from "../../../../config/netlify-build.json";
 import { assertHostedProduction } from "@/core/hosted-production.mjs";
 import { productionInvitationsEnabled } from "@/core/auth-invitation";
+import { betaReleaseIdentity } from "@/core/beta-release-identity.mjs";
 
 export const dynamic = "force-dynamic";
 export function GET() {
@@ -26,10 +27,8 @@ export function GET() {
       {
         channel: "beta",
         origin: "https://docked.com.au",
-        siteId: manifest.netlifySiteId,
+        ...betaReleaseIdentity(process.env, manifest, build),
         projectRef: manifest.supabaseProjectRef,
-        commit: build.commit,
-        deploymentId: build.deployId,
         publicRegistration: false,
         invitedAuthentication: true,
       },
