@@ -1,0 +1,267 @@
+{
+  "checkedAt": "2026-10-08T21:56:01.405Z",
+  "deploymentId": "dpl_9jGArtd1RjBYxiGCffDupBWTPuos",
+  "commit": "2c9a995753d0992e100968976db82aa8b612793c",
+  "origin": "https://docked-production-dxscf1vyc-briant-s-projects.vercel.app",
+  "scope": "Actual hosted credential-free Preview; browser emulation, not physical Android/iPhone. Denial checks are not successful account/gameplay journeys.",
+  "checks": [
+    {
+      "name": "Anonymous access retains Vercel protection",
+      "pass": true,
+      "status": 302
+    },
+    {
+      "name": "Authenticated hosted status is configured as no services",
+      "pass": true,
+      "status": 200,
+      "serviceStatus": {
+        "feed": false,
+        "strategy": false,
+        "publication": false,
+        "database": false,
+        "oddsProviderStatus": "NOT_CONFIGURED",
+        "resultsProviderStatus": "NOT_CONFIGURED",
+        "reason": "Providers are not connected. No successful scan has been recorded."
+      }
+    },
+    {
+      "name": "Security headers",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Auth signup unavailable safely",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Auth login unavailable safely",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Auth recover unavailable safely",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Auth resend unavailable safely",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Auth reset unavailable safely",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Auth mfa_enroll unavailable safely",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Auth rejects foreign origin",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "Invited setup unavailable",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Session API reports unavailable, not signed in",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Fantasy read protected",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "Fantasy write rejects foreign origin",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "Administrator API protected",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "Community read returns only an empty unconfigured state",
+      "pass": true,
+      "status": 200,
+      "serviceStatus": "not_configured"
+    },
+    {
+      "name": "Community writes unavailable",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "Android acceptance receipt unavailable",
+      "pass": true,
+      "status": 404
+    },
+    {
+      "name": "Invalid/expired callback code stays on this origin",
+      "pass": true,
+      "status": 307
+    },
+    {
+      "name": "Invalid/expired callback error stays on this origin",
+      "pass": true,
+      "status": 307
+    },
+    {
+      "name": "Hosted page / at 320",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /app at 320",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /login at 320",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /app/signup at 320",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page / at 412",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /app at 412",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /login at 412",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /app/signup at 412",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page / at 1366",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /app at 1366",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /login at 1366",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted page /app/signup at 1366",
+      "pass": true,
+      "status": 200
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/login",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app/signup",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/login",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app/signup",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/login",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app/signup",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

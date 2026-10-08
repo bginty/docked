@@ -1,5 +1,7 @@
 # Approved Preview continuation — 9 October 2026
 
+> Updated status: [Protected Preview deployed](DOCKED-VERCEL-PREVIEW-DEPLOYED.md). The expired CLI session refreshed normally; independent settings confirm Production `main`. Commit `2c9a9957` is READY in protected Preview after a hosted origin-check repair. 437 platform tests and 32 hosted UI/denial checks pass. Positive Auth/gameplay and Android acceptance remain gated. Below is the earlier historical checkpoint.
+
 Continued from `93fdf921f51f40f0da6be6564b730900e3ad9049` on `pivot/fantasy-cards-preview-v1`. The owner confirms the review branch is Preview and authorizes deployment/testing, but also requires independent verification before pushing and says to stop if mapping remains ambiguous. That check is blocked. The prior generic deployment-authorization question is resolved.
 
 ## Fresh checks

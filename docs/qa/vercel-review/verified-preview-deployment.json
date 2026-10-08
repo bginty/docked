@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-08T21:55:46.951Z",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "projectName": "docked-production",
+  "productionBranch": "main",
+  "repository": "bginty/docked",
+  "deploymentId": "dpl_9jGArtd1RjBYxiGCffDupBWTPuos",
+  "url": "https://docked-production-dxscf1vyc-briant-s-projects.vercel.app",
+  "commit": "2c9a995753d0992e100968976db82aa8b612793c",
+  "branch": "codex/vercel-beta-review",
+  "readyState": "READY",
+  "rawTarget": null,
+  "effectiveEnvironment": "preview",
+  "evidence": [
+    "CLI --target preview",
+    "API non-production target null",
+    "Hosted guard enforces VERCEL_ENV=preview and exact branch/project/commit",
+    "No matching custom environment"
+  ],
+  "source": "cli",
+  "protection": {
+    "deploymentType": "all_except_custom_domains"
+  },
+  "aliases": [],
+  "projectDomains": [
+    "docked-production.vercel.app"
+  ],
+  "customDomains": [],
+  "holding": [
+    {
+      "url": "https://docked.com.au",
+      "status": 200,
+      "location": null,
+      "bodySha256": "bc8d9947a40666fd7a3af381508caf7412dff0ae54b870c5e87885d4475e015f",
+      "title": "Docked — Sports intelligence. Community. Transparency."
+    },
+    {
+      "url": "https://www.docked.com.au",
+      "status": 301,
+      "location": "https://docked.com.au/",
+      "bodySha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "title": "301 Moved Permanently"
+    }
+  ],
+  "previousCanceledDeployment": "dpl_Fs32KgbJcaecDJyj53cy4exGDrtL"
+}

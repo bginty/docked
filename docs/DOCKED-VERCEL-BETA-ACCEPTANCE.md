@@ -1,5 +1,7 @@
 # Docked Vercel beta acceptance — 9 October 2026
 
+> Updated status: [Protected Preview deployed](DOCKED-VERCEL-PREVIEW-DEPLOYED.md). Branch mapping and CLI access are resolved. Application commit `2c9a9957` is READY in protected Preview; 437 platform tests and 32 hosted UI/denial checks pass. Functional beta acceptance remains gated. Earlier failures and local-only evidence below are historical.
+
 Status: **not launched; protected review creation blocked by automatic approval review**. Continue `c8dd751f` and `d93e08d6` without resetting the existing branch. This report supersedes the earlier Netlify hosting choice, not earlier security or gameplay gates.
 
 ## Resource and feature inventory
