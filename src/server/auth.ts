@@ -8,6 +8,7 @@ import {
 } from "@/core/auth-policy";
 import { authCookieOptions } from "@/core/auth-cookies";
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
+import { sameApplicationOrigin } from "./config";
 export async function authClient() {
   assertDeploymentEnvironment(process.env);
   if (
@@ -85,9 +86,5 @@ export async function requireRole(roles: string[]) {
   return { ...who, role: rows[0].role as string };
 }
 export function sameOrigin(request: Request) {
-  const origin = request.headers.get("origin");
-  return (
-    !!origin &&
-    origin === new URL(process.env.SITE_URL ?? "http://localhost:3000").origin
-  );
+  return sameApplicationOrigin(request.headers.get("origin"));
 }

@@ -4,6 +4,19 @@ import {
 } from "@/core/preview-auth";
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 import { reviewOrigin } from "@/core/hosted-review.mjs";
+export function sameApplicationOrigin(
+  origin: string | null,
+  env: Record<string, string | undefined> = process.env,
+) {
+  if (!origin) return false;
+  try {
+    // Use the same validated origin as redirects. Never trust request Host or
+    // forwarded headers, and refuse malformed/unapproved deployment settings.
+    return origin === new URL(config(env).siteUrl).origin;
+  } catch {
+    return false;
+  }
+}
 export function config(env: Record<string, string | undefined> = process.env) {
   assertDeploymentEnvironment(env);
   if (env.AUTO_PUBLISH_DOCKED_EDGES === "true")

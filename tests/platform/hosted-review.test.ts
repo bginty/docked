@@ -8,7 +8,7 @@ import {
   reviewProject,
 } from "../../src/core/hosted-review.mjs";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
-import { config } from "../../src/server/config";
+import { config, sameApplicationOrigin } from "../../src/server/config";
 import manifest from "../../config/hosted-production.json";
 
 function environment(): Record<string, string> {
@@ -43,6 +43,42 @@ test("review allows the existing shell with no services while production remains
   assert.equal(actual.sending, false);
   assert.equal(actual.production, false);
   assert.equal(actual.siteUrl, `https://${env.VERCEL_URL}`);
+});
+
+test("review accepts only its validated deployment origin and fails closed on configuration drift", () => {
+  const env = environment();
+  const origin = `https://${env.VERCEL_URL}`;
+  assert.equal(sameApplicationOrigin(origin, env), true);
+  for (const rejected of [
+    null,
+    "",
+    "null",
+    "http://localhost:3000",
+    "https://docked.com.au",
+    `${origin}.evil.invalid`,
+    `${origin}/path`,
+  ])
+    assert.equal(sameApplicationOrigin(rejected, env), false);
+  for (const change of [
+    { VERCEL_ENV: "production" },
+    { VERCEL_GIT_COMMIT_REF: "main" },
+    { SITE_URL: "https://example.invalid" },
+    { DATABASE_URL: "authored-invalid" },
+  ])
+    assert.equal(sameApplicationOrigin(origin, { ...env, ...change }), false);
+  assert.equal(sameApplicationOrigin("http://localhost:3000", {}), true);
+  assert.equal(
+    sameApplicationOrigin("https://approved.example", {
+      SITE_URL: "https://approved.example",
+    }),
+    true,
+  );
+  assert.equal(
+    sameApplicationOrigin("https://approved.example", {
+      SITE_URL: "not a URL",
+    }),
+    false,
+  );
 });
 
 test("review refuses production, other projects, branches, origins and incomplete identities", () => {
