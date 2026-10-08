@@ -1,5 +1,7 @@
 # Dedicated production organization checkpoint — 8 October 2026
 
+**Later owner update (same date):** the original **Docked** organization `ernfnkcbalhyqpsrzdwa` now reports **Pro**, while the dedicated **Docked Production** organization `otldyeunbqabbcjydjpe` still reports **Free**. The owner confirmed the former dashboard URL. The US$0 statement below describes the earlier agent-created destination, not the owner's newly upgraded subscription. A second Micro project in the original organization would normally make its baseline about US$35/month, above the approved US$25 cap; exact invoice/compute settings have not been verified. The owner must choose whether to correct billing placement while preserving Preview or approve that higher baseline before provisioning. No additional purchase, downgrade, transfer or project creation occurred. Netlify account creation is owner-reported; authenticated access is not yet confirmed.
+
 **Fantasy production is not live.** The public [Docked URL](https://docked.com.au) still serves the existing holding page (HTTPS 200); `www` returns 301 to the HTTPS apex. DNS and Microsoft 365 MX records were not changed. No Netlify site/deployment ID or deployed production commit exists.
 
 Continued from `2e0a8e24` on `pivot/fantasy-cards-preview-v1`, preserving the earlier implementation, Netlify preparation, Preview and Edge. No reset, database copy, paid upgrade, remote migration or production promotion occurred.
