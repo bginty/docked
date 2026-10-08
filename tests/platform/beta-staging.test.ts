@@ -79,6 +79,7 @@ function env(): Record<string, string | undefined> {
     DOCKED_HOSTED_PRODUCTION: "false",
     APP_ENV: "production",
     SUPABASE_ENV: "production",
+    DATABASE_RUNTIME: "serverless",
     DOCKED_RELEASE_CHANNEL: "beta",
     NEXT_PUBLIC_SUPABASE_URL: "https://pojoymtniryarxxunyvz.supabase.co",
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_test",
@@ -117,6 +118,7 @@ test("beta staging accepts only its exact protected Preview and beta database ro
   assert.equal(assertHostedBeta(env()), true);
   for (const change of [
     { VERCEL_ENV: "production" },
+    { DATABASE_RUNTIME: "persistent" },
     { VERCEL_TARGET_ENV: "production" },
     { VERCEL_ORG_ID: "other" },
     { VERCEL_GIT_COMMIT_REF: "main" },

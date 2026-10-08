@@ -44,6 +44,7 @@ const pg = new EmbeddedPostgres({
   onError: record,
 });
 let started = false;
+let outcome = 1;
 try {
   await pg.initialise();
   await pg.start();
@@ -62,7 +63,7 @@ try {
       },
     },
   );
-  process.exitCode = await new Promise((done, reject) => {
+  outcome = await new Promise((done, reject) => {
     child.once("error", reject);
     child.once("close", (code) => done(code ?? 1));
   });
@@ -73,4 +74,5 @@ try {
   process.exitCode = 1;
 } finally {
   if (started) await pg.stop();
+  process.exitCode = outcome;
 }

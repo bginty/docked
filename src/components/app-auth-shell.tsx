@@ -6,12 +6,13 @@ import { FantasyLogo } from "./fantasy-brand";
 
 export function AppAuthShell({ children }: { children: ReactNode }) {
   const settings = config();
+  const beta = process.env.DOCKED_RELEASE_CHANNEL === "beta";
   return (
     <section className="app-auth-surface" aria-label="Docked account">
       <header className="app-auth-brand">
         {fantasyEnabled() ? <FantasyLogo /> : <BrandLogo surface="dark" />}
-        {!settings.production && (
-          <span className="app-auth-preview">PREVIEW</span>
+        {(beta || !settings.production) && (
+          <span className="app-auth-preview">{beta ? "BETA" : "PREVIEW"}</span>
         )}
       </header>
       <div className="app-auth-content">

@@ -43,6 +43,7 @@ const files = [
   "20261008224142_beta_namespace_isolation.sql",
   "20261008224144_beta_atomic_admission.sql",
   "20261008225828_beta_owner_acceptance_boundary.sql",
+  "20261008232200_beta_admission_snapshot_serialization.sql",
 ];
 const hash = (s) => createHash("sha256").update(s).digest("hex");
 const statements = files.map((file) => ({

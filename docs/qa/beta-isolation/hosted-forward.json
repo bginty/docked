@@ -2,7 +2,7 @@
   "project": "pojoymtniryarxxunyvz",
   "organization": "otldyeunbqabbcjydjpe",
   "mode": "--apply",
-  "checkedAt": "2026-10-08T23:01:07.701Z",
+  "checkedAt": "2026-10-08T23:21:38.871Z",
   "applied": true,
   "existingBetaSchemas": [
     "beta_public",
@@ -16,6 +16,7 @@
   "migrationHashes": {
     "20261008224142_beta_namespace_isolation.sql": "83e359f9098de42edbca15348eb22e2f648bf8bbda25a38943aabe8ac0ebfbee",
     "20261008224144_beta_atomic_admission.sql": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a",
-    "20261008225828_beta_owner_acceptance_boundary.sql": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0"
+    "20261008225828_beta_owner_acceptance_boundary.sql": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0",
+    "20261008232200_beta_admission_snapshot_serialization.sql": "8c9045fc39134dd5077a0df0dd92156c388d5a47e5db616963cacb458debf604"
   }
 }

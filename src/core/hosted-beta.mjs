@@ -57,6 +57,7 @@ export function assertHostedBeta(env) {
     env.DOCKED_HOSTED_PRODUCTION !== "false" ||
     env.APP_ENV !== "production" ||
     env.SUPABASE_ENV !== "production" ||
+    env.DATABASE_RUNTIME !== "serverless" ||
     env.DOCKED_RELEASE_CHANNEL !== "beta" ||
     env.NEXT_PUBLIC_SUPABASE_URL !==
       `https://${manifest.supabaseProjectRef}.supabase.co` ||
