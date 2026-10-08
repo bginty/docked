@@ -19,10 +19,18 @@ async function main() {
     throw Error("Only an explicitly named loopback test database is allowed");
   const sql = postgres(value, { max: 8, ssl: false, connect_timeout: 10 });
   const ref = "abcdefghijklmnopqrst";
-  const users = Array.from({ length: 4 }, () => randomUUID());
+  const users = Array.from({ length: 5 }, () => randomUUID());
   const sessions = users.map(() => randomUUID());
   const results: string[] = [];
   try {
+    const database = (
+      await sql`select version() version, current_setting('server_encoding') encoding`
+    )[0];
+    assert.equal(
+      database.encoding,
+      "UTF8",
+      "Use an isolated UTF-8 test database",
+    );
     const existing =
       await sql`select 1 from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname not in('pg_catalog','information_schema') and n.nspname not like 'pg_toast%' and c.relkind in('r','v','m','S') limit 1`;
     assert.equal(existing.length, 0, "Test database must be empty");
@@ -43,12 +51,12 @@ create function auth.uid() returns uuid language sql stable as $$select nullif(c
     async function command(
       n: number,
       action: string,
-      payload: Record<string, unknown> = {},
+      payload: Record<string, postgres.JSONValue> = {},
     ) {
       const output = await sql.begin(async (tx) => {
         await tx`select set_config('request.jwt.claim.sub',${users[n]},true),set_config('request.jwt.claims',${JSON.stringify({ sub: users[n], session_id: sessions[n], aal: "aal1" })},true),set_config('docked.fantasy_production',${ref},true)`;
         await tx`set local role docked_app`;
-        return await tx`select fantasy.production_command(${action},${JSON.stringify(payload)}::jsonb,${randomUUID()}) result`;
+        return await tx`select fantasy.production_command(${action},${tx.json(payload)}::jsonb,${randomUUID()}::uuid) result`;
       });
       return output[0].result;
     }
@@ -79,6 +87,92 @@ create function auth.uid() returns uuid language sql stable as $$select nullif(c
       command(1, "open_pack", { pack_id: packs[0].pack_id }),
     );
     results.push("Cross-account opening denied");
+    await command(4, "claim_starter");
+    const policy = (
+      await sql`select max(version) version from fantasy.production_policy`
+    )[0].version;
+    // Backdated receipts are fixtures only, inserted into this disposable database.
+    for (let day = 1; day <= 6; day++)
+      await sql`insert into fantasy.daily_claims(user_id,period,points,policy_version,card_outcome) values(${users[4]},(clock_timestamp() at time zone 'UTC')::date-${day}::integer,10,${policy},'not_due')`;
+    const rewards = await Promise.all(
+      Array.from({ length: 20 }, () => command(4, "claim_daily")),
+    );
+    assert.equal(new Set(rewards.map((r) => r.claim_id)).size, 1);
+    assert.equal(new Set(rewards.map((r) => r.pack_id)).size, 1);
+    assert.equal(rewards[0].card_outcome, "awarded");
+    assert.equal(
+      (await command(4, "open_pack", { pack_id: rewards[0].pack_id })).cards
+        .length,
+      1,
+    );
+    assert.equal(
+      Number(
+        (
+          await sql`select count(*) n from fantasy.daily_claims where user_id=${users[4]}`
+        )[0].n,
+      ),
+      7,
+    );
+    assert.equal(
+      Number((await sql`select count(*) n from fantasy.ledger`)[0].n),
+      0,
+    );
+    results.push(
+      "20 simultaneous seventh claims: one controlled card reward; no financial ledger entries",
+    );
+    for (const action of [
+      "buy_pack",
+      "list",
+      "buy",
+      "admin_credit",
+      "offer_trade",
+      "accept_trade",
+    ])
+      await assert.rejects(() => command(0, action), /unavailable/);
+    for (const role of ["anon", "authenticated", "docked_app"])
+      await assert.rejects(
+        () =>
+          sql.begin(async (tx) => {
+            await tx.unsafe(`set local role ${role}`);
+            await tx`select * from fantasy.daily_claims`;
+          }),
+        /permission denied/,
+      );
+    assert.equal(
+      (
+        await sql`select c.relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='fantasy' and c.relkind='r' and not c.relrowsecurity`
+      ).length,
+      0,
+    );
+    results.push(
+      "Marketplace commands denied; private reward tables denied to all runtime roles; Fantasy RLS enabled",
+    );
+    await sql`insert into private.roles(user_id,role) values(${users[0]},'owner')`;
+    await assert.rejects(
+      () =>
+        command(0, "admin_reward_policy", {
+          daily_points: 10,
+          card_every: 7,
+          daily_card_limit: 100,
+        }),
+      /MFA/,
+    );
+    await assert.rejects(
+      () =>
+        sql`update fantasy.daily_claims set points=50 where user_id=${users[4]}`,
+      /Immutable/,
+    );
+    await assert.rejects(
+      () => sql`delete from fantasy.starter_claims where user_id=${users[0]}`,
+      /Immutable/,
+    );
+    await assert.rejects(
+      () => sql`update fantasy.editions set max_supply=max_supply+1`,
+      /locked/,
+    );
+    results.push(
+      "MFA required for owner policy changes; receipts and permanent supply cannot be rewritten",
+    );
     let announce: () => void = () => {};
     let release: () => void = () => {};
     const held = new Promise<void>((resolve) => {
@@ -137,6 +231,7 @@ create function auth.uid() returns uuid language sql stable as $$select nullif(c
         {
           scope: "Disposable loopback PostgreSQL only; not production",
           checkedAt: new Date().toISOString(),
+          database,
           results,
         },
         null,

@@ -1,0 +1,18 @@
+{
+  "scope": "Disposable loopback PostgreSQL only; not production",
+  "checkedAt": "2026-10-08T01:47:01.505Z",
+  "database": {
+    "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+    "encoding": "UTF8"
+  },
+  "results": [
+    "20 simultaneous starter claims and pack opens: one allocation",
+    "20 simultaneous daily claims: one award",
+    "Cross-account opening denied",
+    "20 simultaneous seventh claims: one controlled card reward; no financial ledger entries",
+    "Marketplace commands denied; private reward tables denied to all runtime roles; Fantasy RLS enabled",
+    "MFA required for owner policy changes; receipts and permanent supply cannot be rewritten",
+    "Session expiry while waiting for transaction lock denies issuance",
+    "Two users race for final pack allocation: one success; provenance and supply intact"
+  ]
+}

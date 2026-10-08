@@ -32,3 +32,15 @@ APK copied to `C:/Users/61412/Desktop/Docked-Preview-S24-v8-Fantasy-Cards.apk`, 
 See `FANTASY-PRODUCTION-HANDOFF.md` for the exact remaining gates and owner actions. The manifest stays unapproved until those gates pass.
 
 Hosting eligibility is an additional live gate: Vercel's verified Hobby plan is restricted to personal/non-commercial use. Do not assume a business launch qualifies or upgrade billing without owner approval.
+
+## Final unblock checkpoint
+
+Continued from `ddea9888` / `04c3377a` without resetting or rebuilding. Reused the existing Vercel destination. Supabase explicitly refused free production provisioning because the owner already has two active Free projects; both original projects remain healthy and untouched. Vercel Hobby is ineligible for the business launch; Netlify Free is a commercial-eligible alternative requiring an explicit hosting choice and compatibility verification. No plan or domain change occurred.
+
+Recovered the existing operator/contact records and verified Ginty United Investments Pty Ltd, ABN 78 606 187 106, against official ABN Lookup. Its VIC 3909 main business location differs from the historical VIC 3081 correspondence address; current address/support/policy details remain unapproved. Saved sourced facts in ignored operator configuration without enabling registration.
+
+Resolved the local database test blocker with isolated PostgreSQL 17.10. Fixed test-only Unicode/JSON encoding, added a reusable optional local runner and expanded coverage: eight actual concurrency/permissions/integrity scenarios pass; focused PGlite production regressions 13/13. No production SQL or feature implementation changed. Production Auth/email/RLS/browser smoke tests still await infrastructure. No additional reviewers or Ultra audit.
+
+Reverified HTTPS holding page, www redirect, Preview availability/access denial, Desktop/original APK and private-download hash. Gmail remains unavailable (`mail_service_not_enabled`); email not sent. Prepared message retained; link expires 11 October 2026, 10:36:46 am Sydney.
+
+See `FANTASY-PRODUCTION-FINAL-UNBLOCK.md` for exact paid/free hosting choices, database capacity decision, mail/contact/policy prerequisites and evidence. Promotion remains closed; continue the existing deployment sequence after those external gates are satisfied.
