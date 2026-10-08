@@ -1,5 +1,7 @@
 # Docked Exchange permission readback
 
+**Completed administrator readback received, 8 October 2026:** the owner supplied the full valid scope with `RecipientFilter = PrimarySmtpAddress -eq 'support@docked.com.au'`, `IsValid=True`, `ObjectState=Unchanged`, the scoped Application Mail.Send assignment, and support `InScope=True`. The earlier blank `RecipientRestrictionFilter` does not invalidate this full readback: that name is the creation parameter; the returned scope exposes `RecipientFilter`. The live Entra application-role query was refreshed and remains empty. Do not repeat creation, grant permissions or enable delivery. Commands below are retained as the audit procedure, not a new request to redo the completed scope check.
+
 The Entra app and Exchange assignment already exist. **Do not recreate them, grant new permissions, rotate credentials or enable the hook.** These are read-only commands for the owner's existing authenticated Exchange administrator PowerShell session. The agent has no connected administrator session and browser automation cannot initialize.
 
 The live Graph query for this exact service principal returned an empty `appRoleAssignments` collection, with no next page. Certificate-authenticated tokens have no delegated scope or Graph application-role claims. This verifies the current Entra application-role grant readback; it does not enumerate Exchange's separate RBAC assignments.

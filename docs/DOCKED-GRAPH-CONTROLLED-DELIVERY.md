@@ -2,6 +2,8 @@
 
 8 October 2026, continued from `9b31e437` on the existing branch. **The one controlled message reached support's Inbox, as confirmed by the owner. The production Auth hook and signup remain disabled.**
 
+**Subsequent administrator verification:** continued from preserved checkpoint `94179080`; no reset to the earlier commit. The owner has now supplied the valid exact support-only `RecipientFilter`, the scoped send assignment and positive mailbox authorization. The scope-property discrepancy is resolved by that full readback. Refreshed live certificate authentication returned HTTP 200, and the exact app's application-role grants remain empty with no next page. No second email was sent. The remote disabled flag and closed signup were read again and remain unchanged. The sections describing the earlier pending Exchange readback below are historical where noted.
+
 ## Identity and authentication
 
 | Item | Result |
@@ -19,12 +21,12 @@ No certificate, signing secret or long-lived credential was generated or rotated
 ## Permission audit — distinguish separate authorities
 
 - **Entra application grants: live readback completed.** `GET /v1.0/servicePrincipals/081adc14-2b0f-4c3a-b078-1bb7b171d05f/appRoleAssignments` returned HTTP 200, an empty collection and no next page. The Graph token also had no application `roles` and no delegated `scp`. This is stronger evidence than the app registration's requested-permissions page, but does not describe Exchange RBAC.
-- **Exchange RBAC: owner-reported, independent audit pending.** The owner reports service-principal registration PASS; scope `Docked-Support-Mailbox-Only` with the exact PrimarySmtpAddress filter; assignment `Docked-Support-MailSend`, `Application Mail.Send`; support authorization `InScope=True`, `CustomRecipientScope`. These facts are preserved as owner evidence, not a claim that the agent enumerated every Exchange assignment.
+- **Exchange RBAC: administrator readback received.** The owner supplied the completed read-only audit: scope `Docked-Support-Mailbox-Only`, `RecipientScope`, `RecipientFilter = PrimarySmtpAddress -eq 'support@docked.com.au'`, `IsValid=True`, `ObjectState=Unchanged`; assignment `Docked-Support-MailSend`, `Application Mail.Send`; support authorization `InScope=True`, `CustomRecipientScope`. These facts are administrator evidence, not a claim that the agent independently connected to Exchange or enumerated every assignment.
 - **Actual mailbox read denial: HTTP 403 `ErrorAccessDenied`.** A Graph query restricted to the exact test subject in support's Inbox was denied. This establishes no successful read access to that Inbox through the tested request, not absence of every possible broader RBAC permission.
 - **Other-mailbox negative authorization: NOT RUN.** No second real mailbox exists. No invented address was tested, no other recipient was contacted, and no negative authorization pass is claimed.
 - ExchangeOnlineManagement 3.10.1 is installed, but this agent's PowerShell session has zero authenticated Exchange connections. Browser automation failed during initialization. No Microsoft administrator credentials or new read/admin permissions were requested for the mail application.
 
-The remaining readback must enumerate **all assignments for this exact service principal**, then verify their scopes and filters. [Administrator read-only commands](DOCKED-EXCHANGE-READONLY-AUDIT.md) are prepared. Unexpected additional roles or broader scopes must be investigated without automatically changing them.
+The [administrator read-only procedure](DOCKED-EXCHANGE-READONLY-AUDIT.md) is retained for evidence and future revalidation. No additional role or broader filter was reported in the completed administrator audit. The unavailable negative-mailbox test remains explicitly unverified; do not create or purchase a mailbox merely to manufacture a pass.
 
 ## Controlled delivery and deadline failure
 
@@ -44,7 +46,7 @@ The remote `DOCKED_GRAPH_MAIL_ENABLED` secret's digest matches `false`. No `GRAP
 
 ## Remaining actions
 
-1. Owner/administrator returns the exact-app Exchange assignments, scope filter and full positive authorization rows using the prepared read-only commands. Keep the unavailable second-mailbox negative test explicitly unverified.
+1. The administrator's exact support-only scope and positive authorization readback are now recorded. Preserve this configuration; keep the unavailable second-mailbox negative test explicitly unverified. No repeat of the completed scope check is requested.
 2. Investigate and resolve the acknowledgement/deadline failure before enabling the synchronous production hook. Do not add paid services, broad permissions, legacy authentication or automatic blind retries.
 3. Once all required security/reliability gates pass, install the existing certificate credentials and exact IDs in the dedicated production function's secret store through secure tooling, using the existing signing secret. Activation and controlled hosted Auth testing must respect the owner's current prohibition on public signup and other recipients.
 4. Signup verification and recovery through a real hosted PKCE session remain untested. The diagnostic delivery alone does not approve public registration or production launch.

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-08T11:54:20.424Z",
+  "checkedAt": "2026-10-08T12:05:34.767Z",
   "tenantId": "b34880d6-d28e-40c2-b389-232506c69650",
   "clientId": "b725bf93-6183-40c5-9aac-839e02ace03a",
   "servicePrincipalId": "081adc14-2b0f-4c3a-b078-1bb7b171d05f",
@@ -29,11 +29,32 @@
     "complete": true,
     "errorCode": null,
     "assignments": [],
-    "note": "Live exact-service-principal appRoleAssignments collection was empty with no next page. Separate Exchange RBAC still requires administrator readback."
+    "note": "Fresh exact-service-principal appRoleAssignments read returned an empty collection with no next page. Exchange RBAC is separately supported by administrator readback."
   },
   "exchangeRbacAudit": {
-    "status": "BLOCKED",
-    "reason": "No authenticated administrator session; owner-reported scope is not independent readback"
+    "status": "ADMINISTRATOR_READBACK_RECEIVED",
+    "source": "Owner supplied the completed Exchange administrator read-only audit in this chat",
+    "independentlyQueriedByAgent": false,
+    "assignment": {
+      "name": "Docked-Support-MailSend",
+      "role": "Application Mail.Send",
+      "roleAssigneeType": "ServicePrincipal",
+      "customResourceScope": "Docked-Support-Mailbox-Only"
+    },
+    "scope": {
+      "name": "Docked-Support-Mailbox-Only",
+      "scopeRestrictionType": "RecipientScope",
+      "recipientFilter": "PrimarySmtpAddress -eq 'support@docked.com.au'",
+      "isValid": true,
+      "objectState": "Unchanged"
+    },
+    "authorization": {
+      "resource": "support@docked.com.au",
+      "roleName": "Application Mail.Send",
+      "inScope": true,
+      "scopeType": "CustomRecipientScope"
+    },
+    "limitation": "This is administrator-supplied readback; no agent Exchange administrator session or other-mailbox negative test was available."
   },
   "negativeMailboxTest": {
     "status": "NOT_RUN",
