@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-08T12:45:38.551Z",
+  "platform": {
+    "command": "npm test",
+    "passed": 399,
+    "failed": 0
+  },
+  "queueSql": {
+    "command": "tsx --test tests/database/auth-mail-queue.test.ts",
+    "passed": 7,
+    "failed": 0
+  },
+  "realPostgres": {
+    "passed": 6,
+    "failed": 0
+  },
+  "typecheck": "PASS",
+  "changedFileLint": "PASS",
+  "supabaseSecurityAdvisors": {
+    "projectRef": "pojoymtniryarxxunyvz",
+    "result": "No issues found",
+    "source": "supabase db advisors --linked --project-ref pojoymtniryarxxunyvz --type security --fail-on error"
+  },
+  "dependencies": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "review": {
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "scope": "Read-only queue foundations and final gate delta; no nested delegation",
+    "criticalOutstandingInControlledScope": 0
+  },
+  "notClaimed": [
+    "Full hosted Auth journey",
+    "Production scheduler readiness",
+    "Another-mailbox negative authorization",
+    "Native-device testing"
+  ]
+}

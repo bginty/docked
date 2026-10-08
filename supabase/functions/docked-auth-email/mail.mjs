@@ -186,7 +186,12 @@ export async function sendGraph(messages, env, fetcher = fetch) {
   }
   // 202 acknowledges submission only; inbox delivery must be verified separately.
 }
-export function emailHandler({ verify, send }) {
+export function emailHandler({
+  verify,
+  send,
+  prepare = messagesFor,
+  includeResult = false,
+}) {
   return async (request) => {
     const respond = (status, message) =>
       Response.json(message ? { error: { http_code: status, message } } : {}, {
@@ -228,12 +233,16 @@ export function emailHandler({ verify, send }) {
     }
     let messages;
     try {
-      messages = messagesFor(payload);
+      messages = prepare(payload);
     } catch {
       return respond(400, "Unsupported authentication email");
     }
     try {
-      await send(messages);
+      const result = await send(messages);
+      if (includeResult)
+        return Response.json(result, {
+          headers: { "Cache-Control": "no-store" },
+        });
     } catch {
       return respond(503, "Authentication email submission unavailable");
     }

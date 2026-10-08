@@ -1,3 +1,5 @@
+> Current checkpoint: [Hosted email queue verification](DOCKED-HOSTED-EMAIL-QUEUE-VERIFICATION.md). The controlled hosted message received Graph 202 and owner-confirmed Inbox delivery. Existing Microsoft credentials are now protected Supabase secrets; all three sending/worker/test flags are false again. Full Auth acceptance and launch remain blocked. Earlier local-only/no-upload statements below describe historical checkpoints.
+
 # Docked Exchange permission readback
 
 **Completed administrator readback received, 8 October 2026:** the owner supplied the full valid scope with `RecipientFilter = PrimarySmtpAddress -eq 'support@docked.com.au'`, `IsValid=True`, `ObjectState=Unchanged`, the scoped Application Mail.Send assignment, and support `InScope=True`. The earlier blank `RecipientRestrictionFilter` does not invalidate this full readback: that name is the creation parameter; the returned scope exposes `RecipientFilter`. The live Entra application-role query was refreshed and remains empty. Do not repeat creation, grant permissions or enable delivery. Commands below are retained as the audit procedure, not a new request to redo the completed scope check.

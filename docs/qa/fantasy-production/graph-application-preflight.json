@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-08T12:05:34.767Z",
+  "checkedAt": "2026-10-08T12:35:59.929Z",
   "tenantId": "b34880d6-d28e-40c2-b389-232506c69650",
   "clientId": "b725bf93-6183-40c5-9aac-839e02ace03a",
   "servicePrincipalId": "081adc14-2b0f-4c3a-b078-1bb7b171d05f",
@@ -29,7 +29,7 @@
     "complete": true,
     "errorCode": null,
     "assignments": [],
-    "note": "Fresh exact-service-principal appRoleAssignments read returned an empty collection with no next page. Exchange RBAC is separately supported by administrator readback."
+    "note": "Token roles are a diagnostic snapshot; complete grants and Exchange RBAC require administrator readback."
   },
   "exchangeRbacAudit": {
     "status": "ADMINISTRATOR_READBACK_RECEIVED",

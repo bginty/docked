@@ -1,3 +1,5 @@
+> Current checkpoint: [Hosted email queue verification](DOCKED-HOSTED-EMAIL-QUEUE-VERIFICATION.md). The controlled hosted message received Graph 202 and owner-confirmed Inbox delivery. Existing Microsoft credentials are now protected Supabase secrets; all three sending/worker/test flags are false again. Full Auth acceptance and launch remain blocked. Earlier local-only/no-upload statements below describe historical checkpoints.
+
 # Docked Graph certificate and controlled delivery checkpoint
 
 8 October 2026, continued from `9b31e437` on the existing branch. **The one controlled message reached support's Inbox, as confirmed by the owner. The production Auth hook and signup remain disabled.**

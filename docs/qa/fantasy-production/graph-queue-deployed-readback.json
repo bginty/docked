@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-08T12:40:09.512Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "function": {
+    "created_at": 1791457956619,
+    "entrypoint_path": "file:///tmp/user_fn_pojoymtniryarxxunyvz_ef679810-f5e1-4e7e-8dc5-7524e22263b4_3/source/supabase/functions/docked-auth-email/index.ts",
+    "ezbr_sha256": "2b1951b7e9a04c3a4a29f7cac571ed4560756bd964d2b0de7ecc246a91ee28e6",
+    "id": "ef679810-f5e1-4e7e-8dc5-7524e22263b4",
+    "import_map": false,
+    "name": "docked-auth-email",
+    "slug": "docked-auth-email",
+    "status": "ACTIVE",
+    "updated_at": 1791462999870,
+    "verify_jwt": false,
+    "version": 4
+  },
+  "deployedFiles": [
+    {
+      "file": "index.ts",
+      "sha256": "b899971457b40a7f9c3895af03ae4b0a6908a623ffccab9fbf61e9f08f98adfb",
+      "matches": true
+    },
+    {
+      "file": "mail.mjs",
+      "sha256": "8d0cbab36d6f41b5af29a5a54dc39e12399fd84532abab8ba7070e3b80462a55",
+      "matches": true
+    },
+    {
+      "file": "queue.mjs",
+      "sha256": "7cfff2123c822aa2cd1337d673a7a72f82b2179b78c25fb3572ee645d0b6903e",
+      "matches": true
+    },
+    {
+      "file": "router.mjs",
+      "sha256": "455f8de13e50384c482d85e42dfa780b255e4de0e24ed6eea31e6a4baaa5622c",
+      "matches": true
+    }
+  ],
+  "flags": {
+    "DOCKED_GRAPH_TEST_ENABLED": false,
+    "DOCKED_GRAPH_MAIL_ENABLED": false,
+    "DOCKED_GRAPH_WORKER_READY": false
+  },
+  "publicSignupDisabled": true,
+  "emailConfirmationRequired": true,
+  "controlledRouteDisabledStatus": 400
+}

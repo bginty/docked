@@ -1,0 +1,182 @@
+{
+  "checkedAt": "2026-10-08T12:37:42.256Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "reference": "ded93c7bd111b1171bab13dd093131640e4804bb552c00ec66822647c279eb4c",
+  "subject": "Docked hosted email queue check ded93c7bd111",
+  "recipient": "support@docked.com.au",
+  "productionEmailEnabled": false,
+  "checks": [
+    "Unsigned controlled request rejected",
+    "Production hook stays disabled",
+    "Production worker stays disabled",
+    "Non-support controlled recipient rejected without sending",
+    "Eight concurrent signed enqueues return one durable job",
+    "Concurrent hosted workers produce one Graph 202 and one idle result",
+    "Repeated drain does not resend",
+    "Durable receipt records one attempt and Graph acceptance"
+  ],
+  "deliveryVerified": true,
+  "enqueueResponses": [
+    {
+      "status": 200,
+      "ms": 895,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "status": 200,
+      "ms": 853,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "status": 200,
+      "ms": 794,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "status": 200,
+      "ms": 846,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "status": 200,
+      "ms": 873,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "status": 200,
+      "ms": 884,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "status": 200,
+      "ms": 847,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    },
+    {
+      "status": 200,
+      "ms": 860,
+      "body": {
+        "jobs": [
+          {
+            "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+            "state": "pending"
+          }
+        ]
+      }
+    }
+  ],
+  "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+  "drainStartedAt": "2026-10-08T12:37:47.368Z",
+  "drainResponses": [
+    {
+      "status": 200,
+      "ms": 211,
+      "body": {
+        "state": "idle"
+      }
+    },
+    {
+      "status": 200,
+      "ms": 806,
+      "body": {
+        "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+        "state": "accepted",
+        "graphStatus": 202,
+        "timings": {
+          "authorizationMs": 163,
+          "sendMs": 347
+        },
+        "deliveryVerified": false
+      }
+    }
+  ],
+  "retry": {
+    "status": 200,
+    "ms": 238,
+    "body": {
+      "state": "idle"
+    }
+  },
+  "receipt": {
+    "status": 200,
+    "ms": 206,
+    "body": {
+      "id": "16cca331839e39c1c175a7706bf1fbdeaa07a1655e6138132c68de32cfbce423",
+      "code": "202",
+      "state": "accepted",
+      "events": [
+        {
+          "at": "2026-10-08T12:37:47.037624+00:00",
+          "code": null,
+          "phase": "authorizing"
+        },
+        {
+          "at": "2026-10-08T12:37:47.251265+00:00",
+          "code": null,
+          "phase": "dispatching"
+        },
+        {
+          "at": "2026-10-08T12:37:47.634018+00:00",
+          "code": "202",
+          "phase": "accepted"
+        }
+      ],
+      "attempts": 1,
+      "dispatched_at": "2026-10-08T12:37:47.250842+00:00"
+    }
+  },
+  "deliveryEvidence": {
+    "source": "Owner confirmation in this chat",
+    "statement": "Received in Inbox",
+    "matchedSubject": "Docked hosted email queue check ded93c7bd111"
+  }
+}

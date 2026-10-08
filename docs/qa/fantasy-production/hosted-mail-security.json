@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-08T12:41:27.077Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "checks": [
+    "Reviewed email migration recorded once",
+    "Real production receipt accepted once; encrypted payload erased",
+    "One permanent dispatch event",
+    "Actual anonymous/member/runtime database roles cannot read or operate queue",
+    "Both queue tables have RLS",
+    "Actual Auth rejects fabricated signup and recovery tokens without a session",
+    "Public Data API cannot execute queue RPC",
+    "No Auth users, sessions or cards created by controlled email tests"
+  ],
+  "authJourneys": {
+    "invitation": "BLOCKED: invite action intentionally unsupported by PKCE-only callback",
+    "confirmation": "BLOCKED: no protected staging or activated Auth hook",
+    "recovery": "BLOCKED: no protected staging or activated Auth hook",
+    "expiredLink": "NOT_RUN: no real issued/expired token; invalid-token response is not an expiry test",
+    "failureStateRecovery": "BLOCKED: must exercise actual Auth transaction through controlled activated hook"
+  },
+  "invalidAuthTokens": [
+    {
+      "type": "signup",
+      "status": 403,
+      "code": "otp_expired",
+      "sessionIssued": false
+    },
+    {
+      "type": "recovery",
+      "status": 403,
+      "code": "otp_expired",
+      "sessionIssued": false
+    }
+  ],
+  "records": {
+    "before": {
+      "users": 0,
+      "sessions": 0,
+      "cards": 0
+    },
+    "after": {
+      "users": 0,
+      "sessions": 0,
+      "cards": 0
+    }
+  },
+  "hosts": [
+    {
+      "url": "https://docked.com.au",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.docked.com.au",
+      "status": 301,
+      "location": "https://docked.com.au/"
+    },
+    {
+      "url": "https://docked-production.netlify.app",
+      "status": 404,
+      "location": null
+    }
+  ]
+}
