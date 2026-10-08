@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-08T02:42:52.898Z",
+  "projects": [
+    {
+      "name": "Docked Preview",
+      "id": "bckkllmndoxzpzdqrevb",
+      "organization": "ernfnkcbalhyqpsrzdwa",
+      "region": "ap-southeast-2",
+      "status": "ACTIVE_HEALTHY",
+      "purpose": "Existing Docked Preview, including three-tester Fantasy/Edge data; preserve completely",
+      "databaseInspection": "Not queried or modified"
+    },
+    {
+      "name": "Oura CRM UAT",
+      "id": "dwdjeecjdkkiidoutnme",
+      "organization": "eadbdqbkrqucdhialgoz",
+      "region": "ap-southeast-1",
+      "status": "ACTIVE_HEALTHY",
+      "purpose": "Separate Oura CRM user-acceptance environment; not available for Docked reuse",
+      "dataValue": "Unverified; aggregate SQL inspection rejected by automatic approval review; no alternative database route attempted",
+      "edgeFunctions": 0,
+      "retirementRecommendation": "Do not retire without explicit inspection/retirement approval"
+    }
+  ],
+  "netlify": {
+    "preferred": true,
+    "siteCreated": false,
+    "siteId": null,
+    "accountConnection": "No connector, CLI credential/config found in checked locations; browser automation failed with sandbox setup refresh helper error",
+    "eligibility": "Free commercial use permitted by current provider documentation",
+    "verifiedCompatibility": "Documented Next.js features plus local compile and guard regressions only; hosted OpenNext adapter/runtime unverified"
+  },
+  "sites": [
+    {
+      "url": "https://docked.com.au",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.docked.com.au",
+      "status": 301,
+      "location": "https://docked.com.au/"
+    },
+    {
+      "url": "https://docked-preview-s24-briant-ginty.vercel.app",
+      "status": 200,
+      "location": null
+    }
+  ],
+  "chargesActivated": false,
+  "dnsChanges": false
+}

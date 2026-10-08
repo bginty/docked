@@ -35,6 +35,8 @@ async function fixture(run: (directory: string) => Promise<void>) {
       "scripts/prepare-production-environment.mjs",
       "scripts/prepare-hosted-preview.mjs",
       "src/core/hosted-production.mjs",
+      "src/core/hosting-identity.mjs",
+      "config/netlify-build.json",
     ]) {
       await mkdir(dirname(join(directory, file)), { recursive: true });
       await copyFile(join(repository, file), join(directory, file));
@@ -216,6 +218,76 @@ test("production environment preparation keeps credentials private and all initi
       ).status,
       0,
     );
+    const siteId = "11111111-2222-4333-8444-555555555555";
+    const stagingOrigin = "https://docked-authored-stage.netlify.app";
+    await writeFile(
+      join(directory, "config/hosted-production.json"),
+      JSON.stringify({
+        ...manifest,
+        hostingProvider: "netlify",
+        netlifySiteId: siteId,
+        netlifyAccountId: "authored_account",
+        stagingOrigin,
+      }),
+    );
+    await writeFile(
+      operatorPath,
+      JSON.stringify({ ...ready, productionSmokeTestsPassed: false }),
+    );
+    assert.notEqual(
+      execute(
+        directory,
+        "scripts/prepare-production-environment.mjs",
+        "--free-play",
+        "--staging",
+      ).status,
+      0,
+    );
+    await writeFile(
+      operatorPath,
+      JSON.stringify({
+        ...ready,
+        productionSmokeTestsPassed: false,
+        stagingAccessVerified: true,
+      }),
+    );
+    const staged = execute(
+      directory,
+      "scripts/prepare-production-environment.mjs",
+      "--free-play",
+      "--staging",
+    );
+    assert.equal(staged.status, 0, staged.stderr);
+    assert.ok(!staged.stdout.includes(secret));
+    const netlify = JSON.parse(
+      await readFile(
+        join(
+          directory,
+          "private-data/production-deploy/netlify-environment.json",
+        ),
+        "utf8",
+      ),
+    );
+    assert.equal(netlify.siteId, siteId);
+    assert.equal(netlify.context, "production");
+    assert.equal(netlify.values.SITE_URL, stagingOrigin);
+    assert.equal(netlify.values.DOCKED_PRODUCTION_STAGE, "staging");
+    assert.equal(netlify.values.REGISTRATION_ENABLED, "true");
+    assert.equal(netlify.values.PAID_PLANS_ENABLED, "false");
+    assert.ok(
+      !Object.keys(netlify.values).some((key) =>
+        /^(VERCEL|COMMIT_REF|SITE_ID|ACCOUNT_ID|DEPLOY_ID)$/.test(key),
+      ),
+    );
+    // Staging evidence never grants live promotion while public smoke tests remain false.
+    assert.notEqual(
+      execute(
+        directory,
+        "scripts/prepare-production-environment.mjs",
+        "--free-play",
+      ).status,
+      0,
+    );
   });
 });
 
@@ -228,6 +300,7 @@ test("production export requires approved identities and exports only committed 
       "next-env.d.ts",
       "tsconfig.json",
       "vercel.json",
+      "netlify.toml",
       ".vercelignore",
       "certs/supabase-prod-ca-2021.crt",
       "scripts/guard-hosted-build.mjs",

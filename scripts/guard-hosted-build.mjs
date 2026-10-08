@@ -1,4 +1,6 @@
 import productionManifest from "../config/hosted-production.json" with { type: "json" };
+import { writeFileSync } from "node:fs";
+import { netlifyBuildCandidate } from "../src/core/hosting-identity.mjs";
 import {
   assertHostedProduction,
   productionDeploymentRequested,
@@ -8,7 +10,16 @@ import {
 // An accidental production target can never reuse the Preview configuration.
 try {
   if (productionDeploymentRequested(process.env, productionManifest)) {
-    assertHostedProduction(process.env, productionManifest);
+    const build =
+      productionManifest.hostingProvider === "netlify"
+        ? netlifyBuildCandidate(process.env)
+        : undefined;
+    assertHostedProduction(process.env, productionManifest, build);
+    if (build)
+      writeFileSync(
+        new URL("../config/netlify-build.json", import.meta.url),
+        JSON.stringify(build) + "\n",
+      );
   } else if (
     process.env.VERCEL !== "1" ||
     process.env.VERCEL_ENV !== "preview" ||

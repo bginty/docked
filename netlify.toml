@@ -1,0 +1,12 @@
+# Production only. Deploy Preview builds cannot receive the production database.
+# The guard refuses builds until real site/account/database identities are approved.
+[build]
+  command = "node scripts/guard-hosted-build.mjs && npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NETLIFY_NEXT_SKEW_PROTECTION = "true"
+
+# Netlify automatically installs its maintained OpenNext adapter for Next.js.
+# Secrets must be configured through the site UI/API, never this file.

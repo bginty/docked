@@ -1,3 +1,7 @@
+import {
+  reviewedHostingIdentity,
+  productionHostCommit,
+} from "./hosting-identity.mjs";
 /**
  * Shared by the plain-Node build guard and server runtime. This public manifest
  * contains identifiers only; approval is not a substitute for deployed-secret
@@ -6,7 +10,8 @@
  * @typedef {{schemaVersion?: number, approved?: boolean, origin?: string,
  * projectName?: string, vercelProjectId?: string | null, vercelTeamId?: string | null,
  * supabaseProjectRef?: string | null, supabaseOrganizationId?: string,
- * supabaseRegion?: string, databaseRole?: string}} ProductionManifest
+ * supabaseRegion?: string, databaseRole?: string, hostingProvider?: string,
+ * netlifySiteId?: string | null, netlifyAccountId?: string | null, stagingOrigin?: string | null}} ProductionManifest
  */
 
 export const productionDisabledFlags = Object.freeze([
@@ -28,9 +33,23 @@ export const productionDisabledFlags = Object.freeze([
 ]);
 const previewRef = "bckkllmndoxzpzdqrevb";
 const unrelatedRef = "dwdjeecjdkkiidoutnme";
-const previewVercelProject = "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR";
 const productionOrigin = "https://docked.com.au";
 const commitPattern = /^[a-f0-9]{40}$/i;
+/** The exact Netlify site URL is reviewed before controlled staging; no wildcard origins.
+ * @param {Environment} env @param {ProductionManifest} manifest */
+export function productionOriginBound(env, manifest) {
+  if (!env.DOCKED_PRODUCTION_STAGE || env.DOCKED_PRODUCTION_STAGE === "live")
+    return env.SITE_URL === productionOrigin;
+  return (
+    env.DOCKED_PRODUCTION_STAGE === "staging" &&
+    manifest.hostingProvider === "netlify" &&
+    /^https:\/\/[a-z0-9]+(?:-[a-z0-9]+)*\.netlify\.app$/.test(
+      manifest.stagingOrigin ?? "",
+    ) &&
+    env.SITE_URL === manifest.stagingOrigin &&
+    env.URL === manifest.stagingOrigin
+  );
+}
 const privilegedRoles = new Set([
   "postgres",
   "supabase_admin",
@@ -91,6 +110,8 @@ export function productionDeploymentRequested(env, manifest) {
     env.APP_ENV === "production" ||
     env.SUPABASE_ENV === "production" ||
     env.VERCEL_ENV === "production" ||
+    env.NETLIFY === "true" ||
+    Boolean(env.SITE_ID) ||
     productionHost ||
     (typeof manifest.supabaseProjectRef === "string" &&
       referencesProject(env, manifest.supabaseProjectRef)) ||
@@ -146,8 +167,9 @@ export function productionDatabaseBound(env, manifest) {
  * permitted by this release. Transactional Auth readiness is gated separately.
  * @param {Environment} env
  * @param {ProductionManifest} manifest
+ * @param {Record<string, any> | undefined} [build]
  */
-export function assertHostedProduction(env, manifest) {
+export function assertHostedProduction(env, manifest, build) {
   if (
     env.DOCKED_HOSTED_PRODUCTION &&
     !["true", "false"].includes(env.DOCKED_HOSTED_PRODUCTION)
@@ -168,9 +190,7 @@ export function assertHostedProduction(env, manifest) {
     manifest.approved !== true ||
     manifest.origin !== productionOrigin ||
     manifest.projectName !== "docked-production" ||
-    !/^prj_[A-Za-z0-9]+$/.test(manifest.vercelProjectId ?? "") ||
-    !/^team_[A-Za-z0-9]+$/.test(manifest.vercelTeamId ?? "") ||
-    manifest.vercelProjectId === previewVercelProject ||
+    !reviewedHostingIdentity(manifest) ||
     !/^[a-z]{20}$/.test(manifest.supabaseProjectRef ?? "") ||
     [previewRef, unrelatedRef].includes(manifest.supabaseProjectRef ?? "") ||
     manifest.supabaseOrganizationId !== "ernfnkcbalhyqpsrzdwa" ||
@@ -183,11 +203,7 @@ export function assertHostedProduction(env, manifest) {
     env.DOCKED_HOSTED_PREVIEW !== "false" ||
     env.APP_ENV !== "production" ||
     env.SUPABASE_ENV !== "production" ||
-    env.VERCEL !== "1" ||
-    env.VERCEL_ENV !== "production" ||
-    (env.VERCEL_TARGET_ENV && env.VERCEL_TARGET_ENV !== "production") ||
-    env.VERCEL_PROJECT_ID !== manifest.vercelProjectId ||
-    env.SITE_URL !== productionOrigin ||
+    !productionOriginBound(env, manifest) ||
     env.LEGAL_ENTITY_VERIFIED !== "true" ||
     env.NEXT_PUBLIC_SUPABASE_URL !==
       `https://${manifest.supabaseProjectRef}.supabase.co` ||
@@ -196,12 +212,12 @@ export function assertHostedProduction(env, manifest) {
     !productionDatabaseBound(env, manifest)
   )
     fail();
+  const deployedCommit = productionHostCommit(env, manifest, build);
   if (
-    !commitPattern.test(env.VERCEL_GIT_COMMIT_SHA ?? "") ||
+    !deployedCommit ||
     (env.DOCKED_CODE_COMMIT &&
       (!commitPattern.test(env.DOCKED_CODE_COMMIT) ||
-        env.DOCKED_CODE_COMMIT.toLowerCase() !==
-          env.VERCEL_GIT_COMMIT_SHA?.toLowerCase()))
+        env.DOCKED_CODE_COMMIT.toLowerCase() !== deployedCommit))
   )
     fail();
   for (const key of productionDisabledFlags) if (env[key] !== "false") fail();

@@ -44,3 +44,11 @@ Resolved the local database test blocker with isolated PostgreSQL 17.10. Fixed t
 Reverified HTTPS holding page, www redirect, Preview availability/access denial, Desktop/original APK and private-download hash. Gmail remains unavailable (`mail_service_not_enabled`); email not sent. Prepared message retained; link expires 11 October 2026, 10:36:46 am Sydney.
 
 See `FANTASY-PRODUCTION-FINAL-UNBLOCK.md` for exact paid/free hosting choices, database capacity decision, mail/contact/policy prerequisites and evidence. Promotion remains closed; continue the existing deployment sequence after those external gates are satisfied.
+
+## Netlify selection and capacity follow-up
+
+Owner selected Netlify Free, subject to eligibility/compatibility. Prepared provider-specific guarded builds, immutable non-secret build metadata, exact staging origin checks and local environment/source-export support. The production manifest remains unapproved with null Netlify/database identities. Vercel Preview and existing Vercel production project are preserved. Netlify account/browser access is unavailable; no site, billing or domain mutation occurred.
+
+Reverified both active Free slots: Docked Preview (`bckkllmndoxzpzdqrevb`, Docked organization) and Oura CRM UAT (`dwdjeecjdkkiidoutnme`, separate organization). Automatic approval review rejected aggregate Oura database inspection; narrow permission was requested, no bypass attempted. Do not infer Oura is disposable from metadata or empty Edge Functions. Preserve both.
+
+If both are required, Netlify Free plus a new dedicated one-project Supabase Pro organization starts at approximately US$25/month; using the existing Docked organization with Preview plus production as two Micro instances is approximately US$35/month. Both exclude taxes/overages/mail and require paid approval; a new organization also needs a reviewed target change. Full details, tests and owner actions: `FANTASY-NETLIFY-PREPARATION.md`.

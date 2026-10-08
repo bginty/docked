@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile, copyFile, lstat } from "node:fs/promises";
 import path from "node:path";
+import { reviewedHostingIdentity } from "../src/core/hosting-identity.mjs";
 
 // No network or cloud mutation. Only reviewed tracked web sources may be exported.
 const root = process.cwd();
@@ -41,9 +42,7 @@ if (
     targetConfig.approved !== true ||
     targetConfig.origin !== "https://docked.com.au" ||
     targetConfig.projectName !== "docked-production" ||
-    !/^prj_[A-Za-z0-9]+$/.test(targetConfig.vercelProjectId ?? "") ||
-    !/^team_[A-Za-z0-9]+$/.test(targetConfig.vercelTeamId ?? "") ||
-    targetConfig.vercelProjectId === "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR" ||
+    !reviewedHostingIdentity(targetConfig) ||
     !/^[a-z]{20}$/.test(targetConfig.supabaseProjectRef ?? "") ||
     targetConfig.supabaseProjectRef === "bckkllmndoxzpzdqrevb" ||
     targetConfig.supabaseProjectRef === "dwdjeecjdkkiidoutnme" ||
@@ -64,11 +63,13 @@ const explicit = new Set([
   "next-env.d.ts",
   "tsconfig.json",
   "vercel.json",
+  "netlify.toml",
   ".vercelignore",
   "certs/supabase-prod-ca-2021.crt",
   "scripts/guard-hosted-build.mjs",
   "config/hosted-preview.json",
   "config/hosted-production.json",
+  "config/netlify-build.json",
   "config/football-v1-research-policy.json",
 ]);
 const allowed = (file) =>
@@ -120,8 +121,19 @@ const report = {
   commit,
   target,
   projectName: production ? targetConfig.projectName : "docked-preview",
-  projectId: production ? targetConfig.vercelProjectId : targetConfig.projectId,
-  teamId: production ? targetConfig.vercelTeamId : targetConfig.teamId,
+  hostingProvider: production
+    ? (targetConfig.hostingProvider ?? "vercel")
+    : "vercel",
+  projectId: production
+    ? targetConfig.hostingProvider === "netlify"
+      ? targetConfig.netlifySiteId
+      : targetConfig.vercelProjectId
+    : targetConfig.projectId,
+  teamId: production
+    ? targetConfig.hostingProvider === "netlify"
+      ? targetConfig.netlifyAccountId
+      : targetConfig.vercelTeamId
+    : targetConfig.teamId,
   supabaseProjectRef: targetConfig.supabaseProjectRef,
   sourceDirectory: destination,
   fileCount: manifest.length,

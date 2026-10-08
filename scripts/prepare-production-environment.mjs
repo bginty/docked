@@ -9,7 +9,12 @@ import {
 // copies Preview credentials. Free-play activation requires separately verified readiness facts.
 try {
   const freePlay = process.argv.includes("--free-play");
-  if (process.argv.slice(2).some((arg) => arg !== "--free-play"))
+  const staging = process.argv.includes("--staging");
+  if (
+    process.argv
+      .slice(2)
+      .some((arg) => !["--free-play", "--staging"].includes(arg))
+  )
     throw new Error("Unsupported preparation option");
   const manifest = JSON.parse(
     await readFile("config/hosted-production.json", "utf8"),
@@ -50,7 +55,9 @@ try {
     freePlay &&
     (operator.authEmailVerified !== true ||
       operator.emailVerificationRequired !== true ||
-      operator.productionSmokeTestsPassed !== true ||
+      (staging
+        ? operator.stagingAccessVerified !== true
+        : operator.productionSmokeTestsPassed !== true) ||
       operator.productionRlsVerified !== true ||
       operator.freePlayPolicyApproved !== true ||
       operator.communityPolicyApproved !== true ||
@@ -61,12 +68,14 @@ try {
   const commit = execFileSync("git", ["rev-parse", "HEAD"], {
     encoding: "utf8",
   }).trim();
+  const netlify = manifest.hostingProvider === "netlify";
   const env = {
     APP_ENV: "production",
     SUPABASE_ENV: "production",
     DOCKED_HOSTED_PRODUCTION: "true",
     DOCKED_HOSTED_PREVIEW: "false",
-    SITE_URL: manifest.origin,
+    SITE_URL: staging ? manifest.stagingOrigin : manifest.origin,
+    DOCKED_PRODUCTION_STAGE: staging ? "staging" : "live",
     DATABASE_RUNTIME: "serverless",
     DATABASE_CONNECTION_MODE: connection.connectionMode ?? "session",
     DATABASE_URL: connection.databaseUrl,
@@ -90,17 +99,40 @@ try {
     ...Object.fromEntries(productionDisabledFlags.map((key) => [key, "false"])),
   };
   // Simulates the expected platform metadata only for local configuration validation.
-  // These system fields are NOT uploaded as user-defined Vercel environment variables.
+  // These system fields are NOT uploaded as user-defined provider environment variables.
   // The actual deployment must independently supply and verify its project and Git SHA.
   assertHostedProduction(
     {
       ...env,
-      VERCEL: "1",
-      VERCEL_ENV: "production",
-      VERCEL_PROJECT_ID: manifest.vercelProjectId,
-      VERCEL_GIT_COMMIT_SHA: commit,
+      ...(netlify
+        ? {
+            NETLIFY: "true",
+            CONTEXT: "production",
+            SITE_ID: manifest.netlifySiteId,
+            ACCOUNT_ID: manifest.netlifyAccountId,
+            COMMIT_REF: commit,
+            ...(staging ? { URL: manifest.stagingOrigin } : {}),
+          }
+        : {
+            VERCEL: "1",
+            VERCEL_ENV: "production",
+            VERCEL_PROJECT_ID: manifest.vercelProjectId,
+            VERCEL_GIT_COMMIT_SHA: commit,
+          }),
     },
     manifest,
+    // Authored metadata validates local preparation only. Never uploaded or used as a build record.
+    netlify
+      ? {
+          schemaVersion: 1,
+          provider: "netlify",
+          siteId: manifest.netlifySiteId,
+          accountId: manifest.netlifyAccountId,
+          context: "production",
+          commit,
+          deployId: "0".repeat(24),
+        }
+      : undefined,
   );
   const variables = Object.entries(env).map(([key, value]) => ({
     key,
@@ -112,13 +144,26 @@ try {
   }));
   await mkdir("private-data/production-deploy", { recursive: true });
   await writeFile(
-    "private-data/production-deploy/environment-payload.json",
-    JSON.stringify(variables),
+    netlify
+      ? "private-data/production-deploy/netlify-environment.json"
+      : "private-data/production-deploy/environment-payload.json",
+    // Neutral key/value preparation, not an API request. Apply only to the selected site's production context.
+    JSON.stringify(
+      netlify
+        ? {
+            provider: "netlify",
+            siteId: manifest.netlifySiteId,
+            context: "production",
+            values: env,
+          }
+        : variables,
+    ),
     { mode: 0o600 },
   );
   console.log(
     JSON.stringify({
-      projectId: manifest.vercelProjectId,
+      hostingProvider: netlify ? "netlify" : "vercel",
+      projectId: netlify ? manifest.netlifySiteId : manifest.vercelProjectId,
       target: "production",
       localPreparationOnly: true,
       registrationEnabled: freePlay,

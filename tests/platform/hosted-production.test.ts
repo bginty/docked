@@ -20,6 +20,7 @@ import {
 // Authored identities only. No deployed manifest or real credentials are changed.
 const reviewed = {
   ...manifest,
+  hostingProvider: "vercel",
   approved: true,
   vercelProjectId: "prj_AUTHOREDTESTONLY",
   vercelTeamId: "team_AUTHOREDTESTONLY",
@@ -362,6 +363,8 @@ test("plain Node hosted build uses the same reviewed manifest and rejects incomp
     for (const file of [
       "scripts/guard-hosted-build.mjs",
       "src/core/hosted-production.mjs",
+      "src/core/hosting-identity.mjs",
+      "config/netlify-build.json",
     ])
       await copyFile(file, path.join(directory, file));
     const target = path.join(directory, "config/hosted-production.json");

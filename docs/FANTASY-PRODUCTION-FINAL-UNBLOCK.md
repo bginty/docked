@@ -1,5 +1,7 @@
 # Final production unblock checkpoint — 8 October 2026
 
+Later update: the owner selected Netlify Free. See [Netlify preparation and current database capacity](FANTASY-NETLIFY-PREPARATION.md). The following records the earlier `d5d82965` checkpoint and its then-current options.
+
 Continued from implementation `ddea9888` and handoff `04c3377a` on the existing `pivot/fantasy-cards-preview-v1` branch. No reset, feature rebuild, duplicate infrastructure, paid upgrade, production migration, DNS change or release occurred.
 
 **Fantasy production is not live.** https://docked.com.au still serves the holding page over valid HTTPS (200); https://www.docked.com.au redirects to the apex (301). The invited Preview homepage remains available (200), and its anonymous Fantasy API remains denied (403). See `qa/fantasy-production/final-unblock-check.json`. Existing Edge code/data and Preview were not modified remotely. Full authenticated Edge/Preview regression was not repeated against live services.

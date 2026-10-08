@@ -1,8 +1,10 @@
+import { netlifyCodeCommit } from "./hosting-identity.mjs";
 const fullCommit = /^[a-f0-9]{40}$/i;
 /** Deployment metadata is an operator/deployment-platform assertion, never a substitute for a reviewed artifact. */
 export function deployedCodeCommit(
   env: Record<string, string | undefined>,
 ): string | null {
+  if (env.NETLIFY || env.SITE_ID) return netlifyCodeCommit(env);
   const local = env.DOCKED_CODE_COMMIT;
   const deployed = env.VERCEL_GIT_COMMIT_SHA;
   if (
