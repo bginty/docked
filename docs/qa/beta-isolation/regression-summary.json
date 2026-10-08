@@ -1,0 +1,15 @@
+{
+  "scope": "Local automated regression; not positive hosted member acceptance",
+  "platform": {"total":444,"initialPassed":443,"initialFailures":1,"failure":"Subprocess timeout during concurrent suite execution","focusedRerun":{"file":"tests/platform/community-social.test.ts","passed":8,"failed":0},"unresolvedFailures":0},
+  "database": {"passed":211,"failed":0},
+  "focusedEmailAndStaging": {"passed":29,"failed":0},
+  "typecheck":"PASS",
+  "changedApplicationLint":"PASS",
+  "policyPacket":{"documents":7,"integrity":"PASS","approval":"PENDING"},
+  "sourceScan":{"scope":"46 changed/new files, 727287 bytes","exactProtectedSecretMatches":0,"rawScannerStatus":"FAIL","reviewedPatternFindings":5,"disposition":"Credential-shaped authored test URLs and local runtime interpolation; no real credential value. These files are excluded from the web deployment export."},
+  "newEmailSent":false,
+  "hostedMemberAuthentication":"BLOCKED_PENDING_APPROVED_POLICIES_AND_OWNER_ACCEPTANCE",
+  "hostedPersistedGameplay":"NOT_RUN",
+  "androidApk":"NOT_BUILT",
+  "physicalDeviceTesting":"NOT_RUN"
+}

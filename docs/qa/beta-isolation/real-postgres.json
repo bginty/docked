@@ -1,0 +1,29 @@
+{
+  "scope": "disposable loopback PostgreSQL, not hosted",
+  "checkedAt": "2026-10-08T23:00:15.940Z",
+  "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "passed": true,
+  "migrationHashes": {
+    "20261008224142_beta_namespace_isolation.sql": "83e359f9098de42edbca15348eb22e2f648bf8bbda25a38943aabe8ac0ebfbee",
+    "20261008224144_beta_atomic_admission.sql": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a",
+    "20261008225828_beta_owner_acceptance_boundary.sql": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0"
+  },
+  "scenarios": [
+    "Additive migrations preserve every official table, including existing cards and permanent starter entitlement",
+    "Dormant control denies reservation and alternate profile creation",
+    "20 simultaneous reservations for six remaining slots: exactly ten lifetime testers",
+    "Only an explicitly designated owner is excluded from the ten-tester cap",
+    "Owner acceptance does not authorize external testers: separate database activation gate denies acceptance",
+    "Single-use admission: twenty retries produce one receipt; wrong token, session, country, age and unverified email denied",
+    "Independent lifetime starter entitlements: same identity owns separate official and beta packs; cross-environment pack IDs rejected",
+    "Sixty concurrent starter/open requests allocate exactly 33 cards; scarcity and twenty-way daily idempotency hold",
+    "Lost-response receipt recovery is deterministic; request ID payload substitution rejected",
+    "All beta tables use RLS; browser/official roles denied beta commands; beta role denied official reads, writes and commands; no cross-gameplay foreign keys",
+    "Persisted NFL community posting and following use beta tables; unverified NFL provider markets remain disabled",
+    "Persisted beta lineup, locked round, immutable scoring result and monthly/lifetime community snapshots remain outside official records",
+    "Forced transaction failure rolls back card allocation, supply counters, ownership history and receipt together",
+    "Expired code denied; explicit MFA renewal invalidates the old code and preserves the original capacity reservation",
+    "Member cannot administer; designated owner requires MFA; suspension immediately denies existing sessions and cannot free a lifetime cap slot",
+    "Byte-equivalent final snapshot of ALL official tables: cards, claims, competition points, monthly/lifetime rankings and member statistics unchanged"
+  ]
+}

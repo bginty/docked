@@ -3,7 +3,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      ...(process.env.APP_ENV === "production"
+      ...(process.env.APP_ENV === "production" && process.env.DOCKED_BETA_STAGING !== 'true'
         ? {
             allow: "/",
             disallow: [

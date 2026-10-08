@@ -69,6 +69,7 @@ const explicit = new Set([
   "scripts/guard-hosted-build.mjs",
   "config/hosted-preview.json",
   "config/hosted-production.json",
+  "config/hosted-beta.json",
   "config/netlify-build.json",
   "config/football-v1-research-policy.json",
 ]);

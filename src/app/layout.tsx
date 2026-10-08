@@ -27,6 +27,7 @@ import {
 } from "@/core/fantasy-production";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 import { reviewOrigin } from "@/core/hosted-review.mjs";
+import { betaOrigin } from '@/core/hosted-beta.mjs';
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   appleWebApp: {
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     ],
   },
   metadataBase: new URL(
-    process.env.DOCKED_HOSTED_REVIEW === "true"
+    process.env.DOCKED_BETA_STAGING === 'true' ? betaOrigin(process.env) : process.env.DOCKED_HOSTED_REVIEW === "true"
       ? reviewOrigin(process.env)
       : (process.env.SITE_URL ?? "http://localhost:3000"),
   ),

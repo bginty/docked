@@ -1,3 +1,4 @@
+import { assertHostedBeta } from './hosted-beta.mjs';
 import {
   reviewedHostingIdentity,
   productionHostCommit,
@@ -170,6 +171,7 @@ export function productionDatabaseBound(env, manifest) {
  * @param {Record<string, any> | undefined} [build]
  */
 export function assertHostedProduction(env, manifest, build) {
+  if (assertHostedBeta(env)) return;
   if (
     env.DOCKED_HOSTED_PRODUCTION &&
     !["true", "false"].includes(env.DOCKED_HOSTED_PRODUCTION)

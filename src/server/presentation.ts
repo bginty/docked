@@ -20,7 +20,8 @@ export const environmentPresentation = cache(async () => {
     }
   }
   const readiness = authUiReadiness(process.env, registrationApproved);
-  const accountConfigured = settings.auth && settings.database;
+  const accountConfigured = settings.auth && settings.database &&
+    (process.env.DOCKED_BETA_STAGING !== 'true' || process.env.BETA_ACCESS_ENABLED === 'true');
   return {
     ...readiness,
     reviewOnly: settings.reviewOnly,

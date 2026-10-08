@@ -56,6 +56,11 @@ export async function identity() {
   }
   if (!user || !user.email_confirmed_at || user.is_anonymous) return null;
   const sql = db();
+  if (process.env.DOCKED_BETA_STAGING === 'true') {
+    if (process.env.BETA_ACCESS_ENABLED !== 'true') return null;
+    const admission = await sql`select private.admitted(${user.id}::uuid) allowed`;
+    if (!admission[0]?.allowed) return null;
+  }
   const p =
     await sql`select * from public.profiles where id=${user.id} and disabled_at is null`;
   if (!p.length) return null;

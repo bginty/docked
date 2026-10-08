@@ -1,4 +1,5 @@
 import { boundedCommunityBody } from "./community-social";
+import { assertHostedBeta } from './hosted-beta.mjs';
 
 const headers = {
   "Cache-Control": "private, no-store",
@@ -108,6 +109,10 @@ export async function invitationRequest(request: Request, deps: Dependencies) {
 export function productionInvitationsEnabled(
   env: Record<string, string | undefined>,
 ) {
+  if (env.DOCKED_BETA_STAGING === 'true') {
+    try { return assertHostedBeta(env) && env.BETA_ACCESS_ENABLED === 'true' && env.DOCKED_AUTH_INVITES_READY === 'true' && env.AUTH_EMAIL_ENABLED === 'true'; }
+    catch { return false; }
+  }
   return (
     env.APP_ENV === "production" &&
     env.SUPABASE_ENV === "production" &&

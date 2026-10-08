@@ -52,7 +52,7 @@ try {
   await pg.createDatabase(database);
   const child = spawn(
     process.execPath,
-    ["--import", "tsx", "scripts/fantasy-production-concurrency.ts"],
+    ["--import", "tsx", process.argv.includes('--beta-isolation') ? 'scripts/beta-isolation-concurrency.ts' : "scripts/fantasy-production-concurrency.ts"],
     {
       windowsHide: true,
       stdio: "inherit",

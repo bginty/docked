@@ -65,6 +65,8 @@ const schema = z.object({
     .optional(),
 });
 export async function POST(request: Request) {
+  if (process.env.DOCKED_BETA_STAGING === 'true' && process.env.BETA_ACCESS_ENABLED !== 'true')
+    return NextResponse.json({ error: 'Controlled beta acceptance is not enabled.' }, { status: 503 });
   if (!sameOrigin(request))
     return NextResponse.json({ error: "Origin denied" }, { status: 403 });
   if (!config().auth || !config().database)

@@ -1,0 +1,21 @@
+{
+  "project": "pojoymtniryarxxunyvz",
+  "organization": "otldyeunbqabbcjydjpe",
+  "mode": "--apply",
+  "checkedAt": "2026-10-08T23:01:07.701Z",
+  "applied": true,
+  "existingBetaSchemas": [
+    "beta_public",
+    "beta_private",
+    "beta_fantasy"
+  ],
+  "authUserCount": 0,
+  "beforeOfficialDigest": "886c8be64f4922a5b330bcfecf663f041539ff388dc12cf482e1bba2f2dbf80d",
+  "afterOfficialDigest": "886c8be64f4922a5b330bcfecf663f041539ff388dc12cf482e1bba2f2dbf80d",
+  "officialRecordsUnchanged": true,
+  "migrationHashes": {
+    "20261008224142_beta_namespace_isolation.sql": "83e359f9098de42edbca15348eb22e2f648bf8bbda25a38943aabe8ac0ebfbee",
+    "20261008224144_beta_atomic_admission.sql": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a",
+    "20261008225828_beta_owner_acceptance_boundary.sql": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0"
+  }
+}

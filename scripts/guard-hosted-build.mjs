@@ -2,6 +2,7 @@ import productionManifest from "../config/hosted-production.json" with { type: "
 import { writeFileSync } from "node:fs";
 import { netlifyBuildCandidate } from "../src/core/hosting-identity.mjs";
 import { assertHostedReview } from "../src/core/hosted-review.mjs";
+import { assertHostedBeta } from '../src/core/hosted-beta.mjs';
 import {
   assertHostedProduction,
   productionDeploymentRequested,
@@ -10,7 +11,9 @@ import {
 // Local builds use npm run build; hosted builds must select a reviewed target.
 // An accidental production target can never reuse the Preview configuration.
 try {
-  if (assertHostedReview(process.env)) {
+  if (assertHostedBeta(process.env)) {
+    console.log('Isolated production-connected beta Preview; admission remains independently gated.');
+  } else if (assertHostedReview(process.env)) {
     console.log(
       "Credential-free protected review target; production activation remains blocked.",
     );

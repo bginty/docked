@@ -22,6 +22,7 @@ export function hookRouter(env, verify, suppliedRpc, fetcher = fetch) {
     prepare: (payload) =>
       messagesFor(payload, {
         allowInvites: env.DOCKED_GRAPH_INVITES_READY === "true",
+        betaOrigin: env.DOCKED_BETA_AUTH_ORIGIN,
       }),
     send: async (messages) => {
       if (
@@ -59,6 +60,7 @@ export function hookRouter(env, verify, suppliedRpc, fetcher = fetch) {
           action: "enqueue",
           messages: messagesFor(payload.auth, {
             allowInvites: env.DOCKED_GRAPH_INVITES_READY === "true",
+            betaOrigin: env.DOCKED_BETA_AUTH_ORIGIN,
           }),
         };
       if (

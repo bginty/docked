@@ -187,6 +187,10 @@ export function AppAuthForm({
       )}
       {setup && (
         <>
+          {mode === 'complete' && environment.liveBeta && <>
+            <AppAuthField label="Private beta admission code" name="betaAdmissionCode" type="password" autoComplete="off" pattern="[a-f0-9]{64}" minLength={64} maxLength={64} required />
+            <Consent name="betaRules" required>I accept the approved beta participation, community, fantasy, competition and responsible gambling rules supplied with my invitation.</Consent>
+          </>}
           <div className="app-auth-region">
             <AppAuthField
               label="Country code"

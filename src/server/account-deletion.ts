@@ -2,6 +2,8 @@ import { createClient } from "@supabase/supabase-js";
 import { db } from "./db";
 /** Called only after private.disable_account has atomically revoked access and queued erasure. */
 export async function processAccountDeletion(userId: string) {
+  if (process.env.DOCKED_BETA_STAGING === 'true')
+    throw new Error('Beta erasure must not delete shared Auth identities');
   const sql = db();
   const rows =
     await sql`select disabled_at from public.profiles where id=${userId}`;

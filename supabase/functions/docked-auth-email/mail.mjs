@@ -59,7 +59,7 @@ export function productionRecipientAllowed(address, env) {
     .map((v) => v.trim().toLowerCase());
   if (
     recipients.length < 1 ||
-    recipients.length > 20 ||
+    recipients.length > 11 ||
     new Set(recipients).size !== recipients.length
   )
     return false;
@@ -70,13 +70,34 @@ export function productionRecipientAllowed(address, env) {
   }
   return recipients.includes(address.toLowerCase());
 }
-export function messagesFor(payload, { allowInvites = false } = {}) {
+/** @param {any} payload @param {{allowInvites?: boolean, betaOrigin?: string}} [options] */
+export function messagesFor(
+  payload,
+  { allowInvites = false, betaOrigin = undefined } = {},
+) {
+  const allowedOrigins = [...origins];
+  const allowedCallbacks = new Set(callbacks);
+  if (betaOrigin !== undefined) {
+    if (
+      typeof betaOrigin !== "string" ||
+      !/^https:\/\/docked-production-[a-z0-9-]+\.vercel\.app$/.test(betaOrigin)
+    )
+      throw Error("Unapproved beta Auth origin");
+    allowedOrigins.push(betaOrigin);
+    for (const suffix of [
+      "",
+      "?next=/app/verified",
+      "?next=/reset-password",
+      "?next=/app/reset-password",
+    ])
+      allowedCallbacks.add(betaOrigin + "/auth/callback" + suffix);
+  }
   const { user, email_data: data } = payload ?? {};
   if (
     !user ||
     !data ||
-    !origins.includes(data.site_url) ||
-    !callbacks.has(data.redirect_to)
+    !allowedOrigins.includes(data.site_url) ||
+    !allowedCallbacks.has(data.redirect_to)
   )
     throw Error("Unapproved Auth origin or callback");
   const current = email(user.email);

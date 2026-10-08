@@ -50,7 +50,7 @@ before(async () => {
     alter table auth.refresh_tokens owner to supabase_auth_admin;
     alter schema auth owner to supabase_auth_admin;
     grant usage on schema auth to postgres;
-    grant select on auth.users,auth.sessions to postgres with grant option;
+    grant select,references on auth.users,auth.sessions to postgres with grant option;
     grant insert,update,delete on auth.users,auth.sessions to postgres;
     create role migration_operator nologin nosuperuser createrole bypassrls;
     grant postgres to migration_operator;
