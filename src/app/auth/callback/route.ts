@@ -3,10 +3,17 @@ import { authClient } from "@/server/auth";
 import { config } from "@/server/config";
 import { scheduleOnboarding } from "@/server/onboarding";
 import { recordAnalytics } from "@/server/analytics";
-import { appAuthCallbackDestination } from "@/core/app-auth";
+import {
+  appAuthCallbackDestination,
+  isPendingEmailChange,
+} from "@/core/app-auth";
 import { isEmailOwnershipVerified } from "@/core/auth-policy";
 export async function GET(request: Request) {
   const url = new URL(request.url);
+  if (isPendingEmailChange(url.searchParams))
+    return NextResponse.redirect(
+      new URL("/app/email-change-pending", config().siteUrl),
+    );
   const c = await authClient();
   const code = url.searchParams.get("code");
   if (c && code) {

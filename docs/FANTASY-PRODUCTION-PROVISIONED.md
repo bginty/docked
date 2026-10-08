@@ -1,5 +1,7 @@
 # Production database provisioned — 8 October 2026
 
+**Superseded for contact/email status by [the Microsoft 365 checkpoint](FANTASY-PRODUCTION-MAIL-CHECKPOINT.md).** The database provisioning evidence below remains valid. The owner has since supplied a private correspondence address and confirmed the Microsoft 365 mailbox; do not request or publish the address again.
+
 The Fantasy website is **not launched**. The existing holding page at https://docked.com.au still returns HTTPS 200. DNS and all existing Vercel resources are unchanged. This checkpoint supersedes the project-discovery and billing-confirmation blockers at `479ab861`.
 
 ## Resources and cost authority

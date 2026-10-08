@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-08T11:13:21.234Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "function": "docked-auth-email",
+  "scope": "Actual hosted Edge Function HTTP responses; mail disabled, no Microsoft credentials, no Auth hook activation or accounts created",
+  "checks": [
+    {
+      "name": "GET rejected",
+      "status": 405,
+      "passed": true
+    },
+    {
+      "name": "Unsigned request rejected",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "Altered signed payload rejected",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "Oversized request rejected",
+      "status": 413,
+      "passed": true
+    },
+    {
+      "name": "Valid signature reaches disabled sender and fails closed",
+      "status": 503,
+      "passed": true
+    }
+  ],
+  "sourceHashes": {
+    "index.ts": "5bb16a235c81f1e1e89d22bb98c623ea542a08ea90e46207529bd00a56392e91",
+    "mail.mjs": "d80880f792983f296f72e4af97603961c941410fb93fda162089d1e212297a8c"
+  },
+  "emailDeliveryVerified": false
+}

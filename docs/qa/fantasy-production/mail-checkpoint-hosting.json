@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-08T11:15:41.918Z",
+  "scope": "Public HTTPS only; no DNS changes or account discovery",
+  "checks": [
+    {
+      "url": "https://docked.com.au",
+      "status": 200,
+      "location": null,
+      "sha256": "bc8d9947a40666fd7a3af381508caf7412dff0ae54b870c5e87885d4475e015f",
+      "title": "Docked — Sports intelligence. Community. Transparency."
+    },
+    {
+      "url": "https://www.docked.com.au",
+      "status": 301,
+      "location": "https://docked.com.au/",
+      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a",
+      "title": "301 Moved Permanently"
+    },
+    {
+      "url": "https://docked-production.netlify.app",
+      "status": 404,
+      "location": null,
+      "sha256": "5c90d551c2cdce4355a2af871a7a67aab3d68e43e6009bd207c932c78b9102cf",
+      "title": null
+    }
+  ]
+}
