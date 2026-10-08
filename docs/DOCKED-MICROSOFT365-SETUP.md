@@ -1,5 +1,7 @@
 # Docked transactional email — Microsoft 365 administrator handoff
 
+**Update:** the owner has now registered **Docked Production Email** and its certificate. Live certificate authentication and one owner-confirmed Inbox delivery succeeded, but the send acknowledgement timed out. See [current test report](DOCKED-GRAPH-CONTROLLED-DELIVERY.md) and [remaining read-only Exchange audit](DOCKED-EXCHANGE-READONLY-AUDIT.md). Do not repeat the historical app-creation commands below. The production hook remains disabled.
+
 Prepared 8 October 2026. No Entra application exists yet. The owner confirms `support@docked.com.au` can send and receive. Application authorization and actual delivery are **not verified**. Use the existing Microsoft 365 tenant and license; do not buy Azure services or another mail plan.
 
 The hook has now been deployed in **disabled mode**, version 1, function ID `ef679810-f5e1-4e7e-8dc5-7524e22263b4`, to the dedicated production project. Five actual hosted security checks passed. It is not connected to Supabase Auth and has no Microsoft credentials. No email has been sent. See [current checkpoint](FANTASY-PRODUCTION-MAIL-CHECKPOINT.md).

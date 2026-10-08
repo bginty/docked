@@ -1,0 +1,27 @@
+{
+  "attemptedAt": "2026-10-08T11:55:16.745Z",
+  "tenantId": "b34880d6-d28e-40c2-b389-232506c69650",
+  "clientId": "b725bf93-6183-40c5-9aac-839e02ace03a",
+  "from": "support@docked.com.au",
+  "to": "support@docked.com.au",
+  "subject": "Docked Production Email — controlled delivery check DOCKED-MAIL-CHECK-20261008115516745",
+  "marker": "DOCKED-MAIL-CHECK-20261008115516745",
+  "productionHookEnabled": false,
+  "publicSignupEnabled": false,
+  "deliveryVerified": true,
+  "scope": "One controlled local invocation of the existing Graph adapter; no Supabase secret/configuration changes",
+  "failure": {
+    "name": "TimeoutError",
+    "reason": "Controlled request failed before confirmed acceptance"
+  },
+  "deliveryEvidence": {
+    "source": "Owner confirmation in this chat",
+    "statement": "Received in Inbox",
+    "mailbox": "support@docked.com.au",
+    "matchedSubject": "Docked Production Email — controlled delivery check DOCKED-MAIL-CHECK-20261008115516745",
+    "receivedTimestamp": "Not supplied",
+    "graphAcknowledgement": "Not received before local timeout"
+  },
+  "submissionAcknowledged": false,
+  "graphSubmissionOutcome": "No acknowledgement observed before timeout; recipient subsequently confirmed Inbox delivery"
+}

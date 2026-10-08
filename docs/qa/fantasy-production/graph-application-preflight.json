@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-08T11:54:20.424Z",
+  "tenantId": "b34880d6-d28e-40c2-b389-232506c69650",
+  "clientId": "b725bf93-6183-40c5-9aac-839e02ace03a",
+  "servicePrincipalId": "081adc14-2b0f-4c3a-b078-1bb7b171d05f",
+  "mailbox": "support@docked.com.au",
+  "certificate": {
+    "matchesPrivateKey": true,
+    "sha256": "84:2C:BE:D9:8C:69:84:BD:3D:2B:C1:58:97:EF:DD:46:01:2C:46:5A:0E:CD:18:C5:47:69:29:59:42:B7:91:A1",
+    "validFrom": "Oct  8 10:59:39 2026 GMT",
+    "validTo": "Oct  8 11:04:40 2027 GMT"
+  },
+  "token": {
+    "status": 200,
+    "grantType": "client_credentials",
+    "authentication": "certificate assertion PS256",
+    "errorCodes": [],
+    "observedClaims": {
+      "tenant": "b34880d6-d28e-40c2-b389-232506c69650",
+      "client": "b725bf93-6183-40c5-9aac-839e02ace03a",
+      "credentialType": "2",
+      "audience": "https://graph.microsoft.com",
+      "roles": [],
+      "delegatedScopesPresent": false
+    }
+  },
+  "effectiveGrantAudit": {
+    "status": 200,
+    "complete": true,
+    "errorCode": null,
+    "assignments": [],
+    "note": "Live exact-service-principal appRoleAssignments collection was empty with no next page. Separate Exchange RBAC still requires administrator readback."
+  },
+  "exchangeRbacAudit": {
+    "status": "BLOCKED",
+    "reason": "No authenticated administrator session; owner-reported scope is not independent readback"
+  },
+  "negativeMailboxTest": {
+    "status": "NOT_RUN",
+    "reason": "No second real mailbox supplied"
+  }
+}
