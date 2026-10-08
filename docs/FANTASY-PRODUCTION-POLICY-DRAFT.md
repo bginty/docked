@@ -46,7 +46,7 @@ Members must have a working way to request access/correction or raise a privacy 
 | --- | --- |
 | Operator | Owner-confirmed company/ABN, corroborated by the retained storefront and ABN Lookup. |
 | Address | Historical correspondence/authorized-return address is 135 Bamfield Road, Heidelberg Heights VIC 3081. ABN Lookup main business location is VIC 3909. Neither establishes the current full business/correspondence address for Fantasy. Owner must confirm the appropriate current address and purpose. Do not publish this historical address through the new policy. |
-| Contact | `support@docked.com.au` appears in authorized historical records; Microsoft 365 MX exists. Owner must confirm a monitored inbox/privacy contact and provide working sender access. MX alone is not verification. |
+| Contact | Owner selected `support@docked.com.au` on 8 October 2026. Microsoft 365 MX exists. Inbox monitoring/privacy handling and working sender access remain to be verified; the chosen address does not itself configure SMTP. |
 | Eligibility | Retain existing 18+ controls; verify the exact approved production country/state policy and do not infer worldwide permission. |
 | Privacy operations | Confirm processor/subprocessor locations, lawful retention/deletion schedule, complaints handling and test production export/deletion. |
 | Delivery | Configure production SMTP, then verify email confirmation and password recovery through a controlled inbox. |

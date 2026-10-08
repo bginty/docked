@@ -1,5 +1,13 @@
 # Organization-only production continuation — 8 October 2026
 
+**Later outcome:** the owner subsequently confirmed all requested billing controls. One production database was created and migrated; see [provisioned production checkpoint](FANTASY-PRODUCTION-PROVISIONED.md). The missing-project/billing blockers below are historical and resolved. Legal/contact, SMTP and hosted acceptance gates remain.
+
+## Owner confirmation follow-up
+
+The owner has now explicitly confirmed **“no project yet”** in Docked Production. This resolves the project-existence question by owner confirmation; it is not a successful live API inventory. A fresh exact-organization read still reports Pro. The cost connector still returns `UNAVAILABLE` because `get_cost` is not exposed by the server. Current published pricing includes one Micro instance within the US$25/month Pro baseline, but this does not establish the organization's actual Spend Cap or add-on settings. Requested confirmation of Spend Cap ON, a US$25 recurring baseline before tax and no paid add-ons. No project was provisioned, and no hosting, DNS, Preview or Oura operations occurred in this follow-up. Contact/policy and SMTP blockers below remain unresolved.
+
+The historical project-existence statements below describe the preceding checkpoint and are superseded by this owner confirmation. Once the remaining billing controls are confirmed, create exactly one `docked-production` project in Sydney with Micro compute; no further account-wide discovery is needed or permitted.
+
 Continued from `18c08c1c` on the existing branch without rebuilding features. Supabase work was restricted to **Docked Production `otldyeunbqabbcjydjpe`**. No account-wide organization/project discovery, Preview operation or Oura access was performed in this run. Netlify work targeted only the existing approved site `2292ba6e-7073-4804-b69a-26b41c9a9fb1`.
 
 ## Verified state and limits

@@ -1,0 +1,58 @@
+# Dedicated project pojoymtniryarxxunyvz, organization otldyeunbqabbcjydjpe.
+# Apply only with an explicit production --project-ref from an isolated workdir.
+# Public signup stays closed until SMTP, policies and hosted acceptance pass.
+project_id = "docked-production"
+
+[api]
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+auto_expose_new_tables = false
+
+[auth]
+site_url = "https://docked-production.netlify.app"
+additional_redirect_urls = [
+  "https://docked-production.netlify.app/auth/callback",
+  "https://docked-production.netlify.app/auth/callback?next=/app/verified",
+  "https://docked-production.netlify.app/auth/callback?next=/reset-password",
+  "https://docked-production.netlify.app/auth/callback?next=/app/reset-password",
+  "https://docked.com.au/auth/callback",
+  "https://docked.com.au/auth/callback?next=/app/verified",
+  "https://docked.com.au/auth/callback?next=/reset-password",
+  "https://docked.com.au/auth/callback?next=/app/reset-password"
+]
+enable_signup = false
+enable_anonymous_sign_ins = false
+enable_manual_linking = false
+jwt_expiry = 900
+enable_refresh_token_rotation = true
+refresh_token_reuse_interval = 10
+minimum_password_length = 12
+
+[auth.email]
+enable_signup = false
+enable_confirmations = true
+double_confirm_changes = true
+max_frequency = "1m"
+otp_length = 8
+otp_expiry = 3600
+
+[auth.sms]
+enable_signup = false
+
+[auth.mfa]
+max_enrolled_factors = 5
+
+[auth.mfa.totp]
+enroll_enabled = true
+verify_enabled = true
+
+[auth.mfa.phone]
+enroll_enabled = false
+verify_enabled = false
+
+[storage.analytics]
+enabled = false
+
+[storage.image_transformation]
+enabled = false

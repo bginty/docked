@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-08T10:38:02.481Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "organizationId": "otldyeunbqabbcjydjpe",
+  "scope": "Actual production PostgreSQL runtime connection and public Auth/Data API; no users/cards/rewards created",
+  "passed": 12,
+  "checks": [
+    {
+      "name": "Runtime login has no elevated role capabilities",
+      "passed": true
+    },
+    {
+      "name": "All application tables have RLS enabled",
+      "passed": true
+    },
+    {
+      "name": "Runtime cannot read raw ownership table",
+      "passed": true
+    },
+    {
+      "name": "Runtime cannot read raw financial ledger",
+      "passed": true
+    },
+    {
+      "name": "Runtime cannot read raw Auth users",
+      "passed": true
+    },
+    {
+      "name": "Runtime cannot rewrite daily rewards",
+      "passed": true
+    },
+    {
+      "name": "Runtime cannot initialize production",
+      "passed": true
+    },
+    {
+      "name": "Starter call without valid production session is rejected",
+      "passed": true
+    },
+    {
+      "name": "Live Auth reports signup closed and email verification required",
+      "passed": true
+    },
+    {
+      "name": "Anonymous profile read exposes no records",
+      "passed": true
+    },
+    {
+      "name": "private schema is not exposed through Data API",
+      "passed": true
+    },
+    {
+      "name": "fantasy schema is not exposed through Data API",
+      "passed": true
+    }
+  ],
+  "notVerified": [
+    "SMTP delivery",
+    "Public signup and verification",
+    "Password recovery",
+    "Administrator enrollment",
+    "Starter/daily/seventh-claim transactions",
+    "Cross-account concurrency",
+    "Netlify hosted application",
+    "Mobile/desktop end-to-end gameplay"
+  ]
+}
