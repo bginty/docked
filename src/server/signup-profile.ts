@@ -21,6 +21,35 @@ export type SignupProfileInput = {
   edgeAlerts?: boolean;
 };
 
+/** Production only. Caller must first verify the exact Auth token with getUser,
+ * including its authoritative invited_at, and obtain explicit current consent.
+ * No direct managed Auth-table permissions or privileged role are required. */
+export async function persistInvitedProfile(
+  tx: SignupTransaction,
+  userId: string,
+  sessionId: string,
+  input: SignupProfileInput,
+  versions: ConsentVersions,
+) {
+  await tx.query("select pg_advisory_xact_lock(hashtextextended($1,761))", [
+    userId,
+  ]);
+  const active = () =>
+    tx.query(
+      "select s.id from private.runtime_auth_sessions s join private.runtime_auth_users u on u.id=s.user_id where s.id=$1 and s.user_id=$2 and (s.not_after is null or s.not_after>clock_timestamp()) and u.email_confirmed_at is not null and not coalesce(u.is_anonymous,false) and (u.banned_until is null or u.banned_until<=clock_timestamp())",
+      [sessionId, userId],
+    );
+  if (!(await active()).length) throw Error("Invited session inactive");
+  const existing = await tx.query(
+    "select disabled_at from public.profiles where id=$1",
+    [userId],
+  );
+  if (existing[0]?.disabled_at) throw Error("Account unavailable");
+  const result = await persistSignupProfile(tx, userId, input, versions);
+  if (!(await active()).length) throw Error("Invited session inactive");
+  return result;
+}
+
 /** Called in one server transaction only after Auth's signup response is checked.
  * A competing handle reservation must not roll back the new account's legal record.
  * Existing accounts are never changed by retrying signup.

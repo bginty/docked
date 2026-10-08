@@ -42,7 +42,7 @@ function Consent({
 export function AppAuthForm({
   mode,
 }: {
-  mode: "login" | "signup" | "recover" | "reset" | "resend";
+  mode: "login" | "signup" | "recover" | "reset" | "resend" | "complete";
 }) {
   const router = useRouter();
   const environment = useEnvironmentPresentation();
@@ -50,7 +50,9 @@ export function AppAuthForm({
     environment.production &&
     (!environment.accountConfigured ||
       (mode === "signup" && !environment.registrationAvailable) ||
-      (["recover", "resend"].includes(mode) && !environment.emailAvailable));
+      (["recover", "resend", "complete"].includes(mode) &&
+        !environment.emailAvailable));
+  const setup = mode === "signup" || mode === "complete";
   const [ready, setReady] = useState(false),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
@@ -63,6 +65,7 @@ export function AppAuthForm({
     recover: "Send reset link",
     reset: "Update password",
     resend: "Resend verification",
+    complete: "Complete account setup",
   }[mode];
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -91,11 +94,14 @@ export function AppAuthForm({
     setBusy(true);
     setMessage("");
     try {
-      const response = await fetch("/api/auth", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const response = await fetch(
+        mode === "complete" ? "/api/auth/invitation-setup" : "/api/auth",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        },
+      );
       const result = await response.json();
       if (!response.ok || result.error) {
         setMessage(
@@ -122,11 +128,11 @@ export function AppAuthForm({
     <form
       className="app-auth-form"
       method="post"
-      action="/api/auth"
+      action={mode === "complete" ? "/api/auth/invitation-setup" : "/api/auth"}
       onSubmit={submit}
       data-api-ready={String(ready)}
     >
-      {mode === "signup" && (
+      {setup && (
         <AppAuthField
           label="Username"
           name="username"
@@ -140,7 +146,7 @@ export function AppAuthForm({
           required
         />
       )}
-      {mode !== "reset" && (
+      {mode !== "reset" && mode !== "complete" && (
         <AppAuthField
           label="Email"
           name="email"
@@ -178,7 +184,7 @@ export function AppAuthForm({
           />
         </>
       )}
-      {mode === "signup" && (
+      {setup && (
         <>
           <div className="app-auth-region">
             <AppAuthField

@@ -1,5 +1,7 @@
 # Docked morning handover — 9 October 2026
 
+> Superseded where noted by [email acceptance continuation](DOCKED-EMAIL-ACCEPTANCE-CONTINUATION.md): invitation/profile implementation and disabled scheduler are now prepared, function version 5 is deployed disabled, and newer local/production-readback results are recorded there. Hosted Auth acceptance and launch remain blocked. The report below preserves the prior checkpoint.
+
 **Launch remains blocked. Safe email, integrity, NFL preparation and local regression work is complete; the public holding page is preserved.** Work continues on `pivot/fantasy-cards-preview-v1`. The email checkpoint is committed at `3af7acc8`. No repository reset, infrastructure rebuild or production website promotion occurred.
 
 ## Email: controlled hosted delivery passed

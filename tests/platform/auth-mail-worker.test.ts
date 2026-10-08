@@ -20,6 +20,7 @@ const env = {
   SUPABASE_URL: projectUrl,
   DOCKED_GRAPH_TEST_ENABLED: "true",
   DOCKED_GRAPH_MAIL_ENABLED: "false",
+  DOCKED_GRAPH_RECIPIENT_MODE: "support-test",
   SEND_EMAIL_HOOK_SECRET: secret,
   GRAPH_TENANT_ID: "b34880d6-d28e-40c2-b389-232506c69650",
   GRAPH_CLIENT_ID: "b725bf93-6183-40c5-9aac-839e02ace03a",
@@ -68,8 +69,33 @@ before(async () => {
       "utf8",
     ),
   );
+  await pg.exec(
+    await readFile(
+      "config/production-email/supabase/migrations/20261008133413_docked_auth_mail_scheduler.sql",
+      "utf8",
+    ),
+  );
 });
 after(async () => await pg.close());
+test("production dispatch rejects previously queued unapproved recipients before certificate or Graph requests", async () => {
+  const input = payload("r");
+  input.user.email = "other@example.test";
+  const jobs = await queueJobs(messagesFor(input), secret, "production");
+  await rpc("enqueue", { mode: "production", jobs });
+  let fetched = 0;
+  const result = await drainOne({
+    env: { ...env, DOCKED_GRAPH_MAIL_ENABLED: "true" },
+    mode: "production",
+    rpc,
+    id: jobs[0].id,
+    fetcher: async () => {
+      fetched++;
+      throw Error("must not call provider");
+    },
+  });
+  assert.equal(result.state, "failed");
+  assert.equal(fetched, 0);
+});
 test("ciphertext is randomized, identities stable, tampering fails before Graph", async () => {
   const m = messagesFor(payload());
   const a = await queueJobs(m, secret, "controlled"),
@@ -121,6 +147,82 @@ test("two concurrent workers make one Graph submission; accepted retry is idle",
     "idle",
   );
   assert.equal(sends, 1);
+});
+
+test("bounded worker clears 32 healthy queued jobs in eight ticks and admission rejects overflow", async () => {
+  await pg.query(
+    "update private.docked_auth_mail_outbox set expires_at=clock_timestamp()-interval '1 second' where state in ('pending','authorizing','dispatching')",
+  );
+  const jobs = [];
+  for (let index = 0; index < 32; index++) {
+    const job = (
+      await queueJobs(
+        messagesFor(payload((index + 32).toString(16))),
+        secret,
+        "production",
+      )
+    )[0];
+    jobs.push(job);
+    await rpc("enqueue", { mode: "production", jobs: [job] });
+  }
+  await rpc("enqueue", { mode: "production", jobs: [jobs[0]] });
+  const overflow = await queueJobs(
+    messagesFor(payload("o")),
+    secret,
+    "production",
+  );
+  await assert.rejects(
+    () => rpc("enqueue", { mode: "production", jobs: overflow }),
+    /capacity unavailable/,
+  );
+  let sends = 0;
+  const router = hookRouter(
+    {
+      ...env,
+      DOCKED_GRAPH_MAIL_ENABLED: "true",
+      DOCKED_GRAPH_WORKER_READY: "true",
+    },
+    () => {},
+    rpc,
+    async (url) => {
+      if (String(url).includes("oauth2"))
+        return Response.json({
+          access_token: "authored",
+          token_type: "Bearer",
+        });
+      sends++;
+      return new Response(null, { status: 202 });
+    },
+  );
+  for (let tick = 0; tick < 8; tick++) {
+    const response = await router(
+      new Request(projectUrl + "/functions/v1/docked-auth-email/worker", {
+        method: "POST",
+        body: JSON.stringify({ mode: "production", control: "drain" }),
+      }),
+    );
+    assert.deepEqual((await response.json()).states, [
+      "accepted",
+      "accepted",
+      "accepted",
+      "accepted",
+    ]);
+  }
+  assert.equal(sends, 32);
+  const idle = await router(
+    new Request(projectUrl + "/functions/v1/docked-auth-email/worker", {
+      method: "POST",
+      body: JSON.stringify({ mode: "production", control: "drain" }),
+    }),
+  );
+  assert.deepEqual((await idle.json()).states, [
+    "idle",
+    "idle",
+    "idle",
+    "idle",
+  ]);
+  assert.equal(sends, 32);
+  assert.ok(8 * 60 < 15 * 60); // One-minute healthy schedule, not measured cloud throughput.
 });
 test("Graph response lost after acceptance is held unknown and never resubmitted", async () => {
   const id = await enqueue("c");

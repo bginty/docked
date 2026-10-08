@@ -1,4 +1,9 @@
-import { emailHandler, messagesFor, projectUrl } from "./mail.mjs";
+import {
+  emailHandler,
+  messagesFor,
+  projectUrl,
+  productionRecipientAllowed,
+} from "./mail.mjs";
 import { queueJobs, queueRpc, drainOne } from "./queue.mjs";
 
 export function hookRouter(env, verify, suppliedRpc, fetcher = fetch) {
@@ -14,6 +19,10 @@ export function hookRouter(env, verify, suppliedRpc, fetcher = fetch) {
   };
   const production = emailHandler({
     verify,
+    prepare: (payload) =>
+      messagesFor(payload, {
+        allowInvites: env.DOCKED_GRAPH_INVITES_READY === "true",
+      }),
     send: async (messages) => {
       if (
         env.SUPABASE_URL !== projectUrl ||
@@ -21,6 +30,17 @@ export function hookRouter(env, verify, suppliedRpc, fetcher = fetch) {
         env.DOCKED_GRAPH_WORKER_READY !== "true"
       )
         throw Error("Production mail disabled");
+      if (
+        !messages.every(
+          (message) =>
+            message.toRecipients?.length === 1 &&
+            productionRecipientAllowed(
+              message.toRecipients[0].emailAddress?.address,
+              env,
+            ),
+        )
+      )
+        throw Error("Production recipient unavailable");
       await enqueue(messages, "production");
     },
   });
@@ -35,7 +55,12 @@ export function hookRouter(env, verify, suppliedRpc, fetcher = fetch) {
       )
         throw Error("Controlled mode unavailable");
       if (payload.control === "enqueue")
-        return { action: "enqueue", messages: messagesFor(payload.auth) };
+        return {
+          action: "enqueue",
+          messages: messagesFor(payload.auth, {
+            allowInvites: env.DOCKED_GRAPH_INVITES_READY === "true",
+          }),
+        };
       if (
         payload.control === "diagnostic" &&
         /^[a-f0-9]{64}$/.test(payload.id ?? "")
@@ -100,7 +125,20 @@ export function hookRouter(env, verify, suppliedRpc, fetcher = fetch) {
         throw Error("Production worker disabled");
       return payload;
     },
-    send: async () => await drainOne({ env, mode: "production", rpc, fetcher }),
+    send: async () => {
+      // Four independent leases bound runtime to one provider timeout budget.
+      // A failed/ambiguous job never triggers an automatic submission retry.
+      const outcomes = await Promise.allSettled(
+        Array.from({ length: 4 }, () =>
+          drainOne({ env, mode: "production", rpc, fetcher }),
+        ),
+      );
+      return {
+        states: outcomes.map((r) =>
+          r.status === "fulfilled" ? r.value.state : "unconfirmed",
+        ),
+      };
+    },
   });
   return (request) => {
     const path = new URL(request.url).pathname;

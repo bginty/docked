@@ -20,6 +20,8 @@ import {
   type SignupTransaction,
 } from "@/server/signup-profile";
 import type { TransactionSql } from "postgres";
+import { productionInvitationsEnabled } from "@/core/auth-invitation";
+import { verifiedInvitedUser } from "@/core/invitation-setup";
 function signupTransaction(tx: TransactionSql): SignupTransaction {
   return {
     query: async (text, parameters) => [...(await tx.unsafe(text, parameters))],
@@ -137,6 +139,27 @@ export async function POST(request: Request) {
   }
   const client = (await authClient())!;
   const sql = db();
+  const destinationAfterAuth = async (
+    user: {
+      id: string;
+      invited_at?: string;
+      email_confirmed_at?: string;
+      is_anonymous?: boolean;
+      app_metadata?: Record<string, unknown>;
+    } | null,
+    fallback: string,
+  ) => {
+    if (
+      productionInvitationsEnabled(process.env) &&
+      verifiedInvitedUser(user) &&
+      user
+    ) {
+      const profiles =
+        await sql`select id from public.profiles where id=${user.id}`;
+      if (!profiles.length) return "/app/invitation-setup";
+    }
+    return fallback;
+  };
   if (v.action === "logout") {
     const { data: session } = await client.auth.getSession();
     const token = session.session?.access_token;
@@ -239,13 +262,18 @@ export async function POST(request: Request) {
   if (v.action === "reset") {
     if (!v.password)
       return NextResponse.json({ error: "Password required" }, { status: 400 });
-    const { error } = await client.auth.updateUser({ password: v.password });
+    const { data, error } = await client.auth.updateUser({
+      password: v.password,
+    });
     return NextResponse.json(
       error
         ? { error: "Recovery session invalid or expired" }
         : {
             ok: true,
-            redirect: v.app ? "/app/password-updated" : "/dashboard",
+            redirect: await destinationAfterAuth(
+              data.user,
+              v.app ? "/app/password-updated" : "/dashboard",
+            ),
           },
     );
   }
@@ -255,14 +283,20 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   if (v.action === "login") {
-    const { error } = await client.auth.signInWithPassword({
+    const { data, error } = await client.auth.signInWithPassword({
       email: v.email,
       password: v.password,
     });
     return NextResponse.json(
       error
         ? { error: "Sign-in failed. Check credentials and email verification." }
-        : { ok: true, redirect: v.app ? "/app" : "/dashboard" },
+        : {
+            ok: true,
+            redirect: await destinationAfterAuth(
+              data.user,
+              v.app ? "/app" : "/dashboard",
+            ),
+          },
     );
   }
   const flags =

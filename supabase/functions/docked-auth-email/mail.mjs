@@ -49,7 +49,28 @@ function hash(value) {
     throw Error("Invalid token hash");
   return value;
 }
-export function messagesFor(payload) {
+export function productionRecipientAllowed(address, env) {
+  if (typeof address !== "string") return false;
+  if (env.DOCKED_GRAPH_RECIPIENT_MODE === "support-test")
+    return address.toLowerCase() === sender;
+  if (env.DOCKED_GRAPH_RECIPIENT_MODE !== "approved-beta") return false;
+  const recipients = (env.DOCKED_GRAPH_BETA_RECIPIENTS ?? "")
+    .split(",")
+    .map((v) => v.trim().toLowerCase());
+  if (
+    recipients.length < 1 ||
+    recipients.length > 20 ||
+    new Set(recipients).size !== recipients.length
+  )
+    return false;
+  try {
+    recipients.forEach(email);
+  } catch {
+    return false;
+  }
+  return recipients.includes(address.toLowerCase());
+}
+export function messagesFor(payload, { allowInvites = false } = {}) {
   const { user, email_data: data } = payload ?? {};
   if (
     !user ||
@@ -60,11 +81,14 @@ export function messagesFor(payload) {
     throw Error("Unapproved Auth origin or callback");
   const current = email(user.email);
   const action = data.email_action_type;
+  if (action === "invite" && new URL(data.redirect_to).origin !== data.site_url)
+    throw Error("Invitation origin must match Auth site origin");
   const subjects = {
     signup: "Verify your Docked email",
     recovery: "Reset your Docked password",
     magiclink: "Sign in to Docked",
     email_change: "Confirm your Docked email change",
+    ...(allowInvites ? { invite: "Your Docked invitation" } : {}),
   };
   if (typeof action !== "string" || !Object.hasOwn(subjects, action))
     throw Error("Unsupported Auth email action");
@@ -77,10 +101,17 @@ export function messagesFor(payload) {
     ];
   } else recipients = [[current, hash(data.token_hash)]];
   return recipients.map(([address, token]) => {
-    const url = new URL(projectUrl + "/auth/v1/verify");
-    url.searchParams.set("token", token);
+    // Admin invitations do not have a PKCE verifier. Use the dedicated POST
+    // confirmation flow, gated separately until hosted acceptance passes.
+    const url = new URL(
+      action === "invite"
+        ? new URL(data.redirect_to).origin + "/auth/invite"
+        : projectUrl + "/auth/v1/verify",
+    );
+    url.searchParams.set(action === "invite" ? "token_hash" : "token", token);
     url.searchParams.set("type", action);
-    url.searchParams.set("redirect_to", data.redirect_to);
+    if (action !== "invite")
+      url.searchParams.set("redirect_to", data.redirect_to);
     return {
       subject: subjects[action],
       body: {

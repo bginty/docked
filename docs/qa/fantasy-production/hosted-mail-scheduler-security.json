@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-08T14:09:56.684Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "scope": "Read-only production database, public Auth settings and HTTP availability; no mail or Auth users created",
+  "checks": [
+    "Both reviewed email migrations recorded exactly once",
+    "Scheduler disabled; no scheduled worker request",
+    "Scheduler/core denied to all four runtime roles; public wrapper executable only by service_role",
+    "RLS enabled on all three mail tables",
+    "Prior Inbox-confirmed receipt still has exactly one dispatch and no encrypted payload",
+    "Actual production Auth still refuses public signup and requires verification"
+  ],
+  "records": {
+    "users": 0,
+    "sessions": 0,
+    "cards": 0
+  },
+  "scheduler": {
+    "enabled": false,
+    "project_ref": "pojoymtniryarxxunyvz",
+    "last_tick_at": null,
+    "last_request_at": null
+  },
+  "priorControlledDelivery": {
+    "state": "accepted",
+    "attempts": 1,
+    "ciphertext_erased": true
+  },
+  "extensions": [
+    {
+      "name": "pg_cron",
+      "installed_version": null,
+      "default_version": "1.6.4"
+    },
+    {
+      "name": "pg_net",
+      "installed_version": null,
+      "default_version": "0.20.4"
+    },
+    {
+      "name": "pgcrypto",
+      "installed_version": "1.3",
+      "default_version": "1.3"
+    },
+    {
+      "name": "supabase_vault",
+      "installed_version": "0.3.1",
+      "default_version": "0.3.1"
+    }
+  ],
+  "auth": {
+    "signupDisabled": true,
+    "emailConfirmationRequired": true
+  },
+  "hosts": [
+    {
+      "url": "https://docked.com.au",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.docked.com.au",
+      "status": 301,
+      "location": "https://docked.com.au/"
+    },
+    {
+      "url": "https://docked-production.netlify.app",
+      "status": 404,
+      "location": null
+    }
+  ],
+  "passed": true
+}

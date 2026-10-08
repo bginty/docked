@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-08T13:45:03.479Z",
+  "scope": "Isolated actual PostgreSQL 17.10 on loopback; no cloud credentials or records",
+  "passed": 7,
+  "checks": [
+    "Default-disabled scheduler makes no network request even with pending mail",
+    "All four runtime roles denied scheduler execution, health and configuration",
+    "Missing signing configuration fails closed and preserves expired-payload cleanup",
+    "24 concurrent ticks enqueue one fixed-endpoint request; real pgcrypto signature verifies with Svix",
+    "Health reports counts, scheduler age and generic errors without recipients or tokens",
+    "Disabled cleanup holds crashed dispatch unknown without resending",
+    "Forty concurrent admissions accept exactly 32 and reject eight before acknowledging mail"
+  ]
+}

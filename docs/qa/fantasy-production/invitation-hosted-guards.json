@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-08T14:13:26.964Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "functionVersion": 5,
+  "scope": "Actual hosted unsigned/method/path denial checks; no enqueue or delivery attempt",
+  "passed": true,
+  "checks": [
+    {
+      "path": "",
+      "method": "GET",
+      "status": 405
+    },
+    {
+      "path": "",
+      "method": "POST",
+      "status": 401
+    },
+    {
+      "path": "/worker",
+      "method": "POST",
+      "status": 401
+    },
+    {
+      "path": "/control",
+      "method": "POST",
+      "status": 401
+    },
+    {
+      "path": "/unknown",
+      "method": "GET",
+      "status": 404
+    }
+  ]
+}

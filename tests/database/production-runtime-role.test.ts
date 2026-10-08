@@ -4,6 +4,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { PGlite } from "@electric-sql/pglite";
 import {
   persistSignupProfile,
+  persistInvitedProfile,
   type SignupTransaction,
 } from "../../src/server/signup-profile";
 import {
@@ -103,6 +104,80 @@ const tx: SignupTransaction = {
     }
   },
 };
+test("invitation setup uses restricted views, denies another session and rolls back expired-session consent", async () => {
+  await asApp();
+  await pg.exec("begin");
+  try {
+    const result = await persistInvitedProfile(
+      tx,
+      member,
+      sid,
+      { country: "XX", state: "ROLE_TEST", username: "invited_fixture" },
+      { terms: "terms-test-approved", privacy: "privacy-test-approved" },
+    );
+    assert.equal(result.created, true);
+    const replay = await persistInvitedProfile(
+      tx,
+      member,
+      sid,
+      { country: "ZZ", state: "changed", marketing: true },
+      { terms: "different-terms", privacy: "different-privacy" },
+    );
+    assert.equal(replay.created, false);
+    assert.equal(
+      (
+        await pg.query<{ country: string }>(
+          "select country from public.profiles where id=$1",
+          [member],
+        )
+      ).rows[0].country,
+      "XX",
+    );
+    await assert.rejects(
+      () =>
+        persistInvitedProfile(
+          tx,
+          other,
+          sid,
+          { country: "XX", state: "ROLE_TEST" },
+          { terms: "terms-test-approved", privacy: "privacy-test-approved" },
+        ),
+      /inactive/,
+    );
+  } finally {
+    await pg.exec("rollback");
+    await reset();
+  }
+  await pg.query(
+    "update auth.sessions set not_after=clock_timestamp()-interval '1 second' where id=$1",
+    [sid],
+  );
+  await asApp();
+  await pg.exec("begin");
+  try {
+    await assert.rejects(
+      () =>
+        persistInvitedProfile(
+          tx,
+          member,
+          sid,
+          { country: "XX", state: "ROLE_TEST" },
+          { terms: "terms-test-approved", privacy: "privacy-test-approved" },
+        ),
+      /inactive/,
+    );
+  } finally {
+    await pg.exec("rollback");
+    await reset();
+  }
+  await pg.query("update auth.sessions set not_after=null where id=$1", [sid]);
+  assert.equal(
+    (await pg.query("select id from public.profiles where id=$1", [member]))
+      .rows.length,
+    0,
+  );
+});
+
 test("production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL", async () => {
   assert.deepEqual(
     (

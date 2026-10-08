@@ -1,4 +1,8 @@
-import { graphAssertion, projectUrl } from "./mail.mjs";
+import {
+  graphAssertion,
+  projectUrl,
+  productionRecipientAllowed,
+} from "./mail.mjs";
 
 const encode = new TextEncoder();
 const b64 = (v) => btoa(String.fromCharCode(...new Uint8Array(v)));
@@ -162,6 +166,11 @@ export async function drainOne({ env, mode, rpc, id, fetcher = fetch }) {
     message = JSON.parse(new TextDecoder().decode(plain));
     if (
       message.toRecipients?.length !== 1 ||
+      (mode === "production" &&
+        !productionRecipientAllowed(
+          message.toRecipients[0].emailAddress?.address,
+          env,
+        )) ||
       (mode === "controlled" &&
         message.toRecipients[0].emailAddress.address.toLowerCase() !==
           "support@docked.com.au")
