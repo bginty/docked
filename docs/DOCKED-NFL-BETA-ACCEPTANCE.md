@@ -16,7 +16,7 @@ The inactive NFL offensive-stat scorer and lineup matcher remain available. No N
 - Added NFL to visible Edges/Feed filters. My Edge now shows the signed-in member's own posts with server-side sport/author filtering and cursor pagination. Normal server pagination avoids the general timeline's author-unscoped refresh path.
 - Applied sport/competition constraints before fixture SQL pagination. Settled records use the same filters; unfiltered recognition widgets are omitted when a sport/competition is selected. Unsupported NFL services are explicitly labelled.
 - Live-beta desktop/mobile navigation is Edges / Feed / Following / Points / My Edge. Fantasy cards/rewards remain accessible through utilities/sidebar. Original Fantasy Preview navigation remains unchanged.
-- Added local migration `20261008145441_nfl_community_catalogue.sql`: NFL sport/competition identities remain disabled for pricing. Existing provider mappings are preserved; a conflicting sport identity aborts. No region/feed/publication/settlement/inventory authority is granted. **Not applied to cloud.**
+- Added migration `20261008145441_nfl_community_catalogue.sql`: NFL sport/competition identities remain disabled for pricing. Existing provider mappings are preserved; a conflicting sport identity aborts. No region/feed/publication/settlement/inventory authority is granted. **Applied to the exact dedicated production project in the subsequent beta-results checkpoint; disabled catalogue confirmed.**
 - NFL parsing rejects unknown/ambiguous franchises, incomplete finals, finals preceding kickoff, future observations and unreviewed lifecycle fields. Ties remain factual observations, never inferred winners or voids.
 
 ## Actual verification
@@ -63,7 +63,7 @@ Full NFL fantasy additionally needs authorised player/stat mappings, approved po
 
 1. Configure a production-authorised supplier credential securely and verify Free-plan quota. Do not paste secrets into chat. Production provider binding, rights registration and actual current-season fixtures remain technical work.
 2. Complete existing policy/version/territory and moderation approval, owner MFA, restricted hosted invitation/recovery/failure tests and beta record isolation/gameplay acceptance. See [live-beta report](DOCKED-LIVE-BETA-ACCEPTANCE.md). Support-only hosted Auth testing is already authorised; no repeat permission is requested.
-3. Stage on existing Netlify, apply the reviewed catalogue migration to the exact production project, then verify actual ingestion and two-user NFL post/comment/like/follow/block plus browser-refresh behavior. Missing/stale data must remain unavailable.
+3. Stage on existing Netlify, then verify actual ingestion and two-user NFL post/comment/like/follow/block plus browser-refresh behavior. The catalogue migration is now applied; live data remains unavailable. Missing/stale data must remain unavailable.
 4. Promote and build the guarded Android Beta target only after mandatory gates pass. No current-season fixtures, verified NFL betting records, production administrator, APK or deployment success is fabricated.
 
 No cloud settings, holding page, DNS, Microsoft permissions, certificates, paid plans or email delivery changed. Oura and Preview were not accessed or modified. The prior owner-confirmed diagnostic Inbox delivery remains preserved; full hosted Auth acceptance is a separate outstanding gate.

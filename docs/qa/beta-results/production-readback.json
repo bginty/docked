@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-10-08T15:41:44Z",
+  "implementationCommit": "d93e08d6",
+  "scope": "Exact dedicated Docked Production; migrations and read-only verification only; no application activation",
+  "nfl": {
+    "rules": {
+      "marketScope": "fixtures_only",
+      "catalogueOnly": true
+    },
+    "enabled": false,
+    "sport_id": "nfl"
+  },
+  "counts": {
+    "cards": 0,
+    "users": 0,
+    "claims": 0,
+    "rounds": 0
+  },
+  "release": {
+    "channel": "beta",
+    "created_at": "2026-10-08T15:41:16.836176+00:00"
+  },
+  "migrations": [
+    "20261008145441",
+    "20261008151700"
+  ],
+  "privileges": [
+    {
+      "role": "anon",
+      "legacy_state": false,
+      "release_write": false,
+      "legacy_command": false,
+      "current_command": false
+    },
+    {
+      "role": "authenticated",
+      "legacy_state": false,
+      "release_write": false,
+      "legacy_command": false,
+      "current_command": false
+    },
+    {
+      "role": "docked_app",
+      "legacy_state": false,
+      "release_write": false,
+      "legacy_command": false,
+      "current_command": true
+    }
+  ],
+  "release_rls": true,
+  "fantasy_mode": "preview",
+  "project_scope": "pojoymtniryarxxunyvz",
+  "advisors": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 70,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    }
+  ],
+  "interpretation": "INFO no-policy notices are expected deny-by-default private tables behind restricted functions; no warning/error notices returned. Hosted authentication/gameplay acceptance remains incomplete."
+}

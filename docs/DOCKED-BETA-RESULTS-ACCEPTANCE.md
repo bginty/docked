@@ -35,10 +35,16 @@ A bounded read-only reviewer found missing leaderboard/public-profile authority 
 ## Infrastructure and staging
 
 - Exact production project readback: `pojoymtniryarxxunyvz`, organization `otldyeunbqabbcjydjpe`, Sydney `ap-southeast-2`, healthy PostgreSQL 17.11. Before these migrations: zero Auth users, cards, production rounds and daily claims; fantasy mode still inactive/Preview default in this dedicated database. No Preview database connection is involved.
-- Production-only migration dry-run identifies exactly `20261008145441_nfl_community_catalogue.sql` and `20261008151700_fantasy_beta_result_isolation.sql`. No seed or role changes. Application/readback status will be recorded in the follow-up evidence before claiming cloud completion.
+- **Applied and verified:** production-only dry-run and apply contained exactly `20261008145441_nfl_community_catalogue.sql` and `20261008151700_fantasy_beta_result_isolation.sql`, after implementation commit `d93e08d6`. No seed or role changes. [Production readback](qa/beta-results/production-readback.json) confirms both versions, initial beta history, inactive NFL catalogue, RLS and least-privilege function access. Zero Auth users/cards/rounds/claims remain. The CLI used a dedicated working directory and explicit production project reference, never the repository's Preview link.
 - Netlify exact-site readback confirms `2292ba6e-7073-4804-b69a-26b41c9a9fb1`, account `6ac753a0bfe95a1bc4d156b9`, `docked-production.netlify.app`, with no published deployment. The deploy URL returned by site metadata is **not evidence of a successful application deployment**.
 - [Netlify documentation](https://docs.netlify.com/manage/security/secure-access-to-sites/project-visibility/) supports private projects on credit-based Free. Site API metadata did not expose the visibility setting. Browser inventory failed twice with a runtime/sandbox helper error; no browser action or visibility change was completed.
 - Costs remain owner-confirmed Supabase US$25/month before tax and Netlify Free; no new paid configuration. No current invoice/usage audit is claimed.
+
+Post-migration security advisor returned no warnings/errors. Its 70 informational `rls_enabled_no_policy` notices describe intentionally default-deny private tables with restricted function access, including the new release ledger; no permissive policies were added. [Advisor explanation](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy).
+
+Final [read-only email/hosting check](qa/fantasy-production/hosted-mail-scheduler-security.json) confirms public signup disabled, verification required, scheduler disabled and the prior Inbox-confirmed receipt still accepted with one dispatch and its encrypted payload erased. Apex HTTPS returns 200 for the holding page, www redirects 301 to apex, staging remains 404. No new message was sent.
+
+Automatic approval review rejected changing the shared `config/hosted-production.json` `approved` flag because unresolved legal/authentication/staging prerequisites could make it unsafe. The flag remains false. No alternate edit was attempted and no gate was bypassed; activation awaits resolution and approval of those prerequisites.
 
 ## Exact remaining actions
 
