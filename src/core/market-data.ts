@@ -99,6 +99,19 @@ const schema = z
     "Too many bookmaker mappings",
   );
 export type MarketDataConfig = z.infer<typeof schema>;
+/** Filter before SQL pagination. Unknown combinations cannot fall back to all sports. */
+export function monitoredCompetitionIds(
+  config: MarketDataConfig,
+  input: { sport?: string; competition?: string },
+) {
+  return config.competitions
+    .filter(
+      (c) =>
+        (!input.sport || c.sport === input.sport) &&
+        (!input.competition || c.competitionId === input.competition),
+    )
+    .map((c) => c.competitionId);
+}
 export function validateMarketDataConfig(value: unknown): MarketDataConfig {
   return schema.parse(value);
 }

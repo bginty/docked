@@ -1,5 +1,7 @@
 # NFL Fantasy preparation — inactive
 
+**9 October update:** NFL community/fixtures requirements have now been supplied; their absence is no longer a blocker. See [NFL beta acceptance](DOCKED-NFL-BETA-ACCEPTANCE.md) for implemented filters, catalogue and tests. Advanced fantasy remains optional, pending detailed rules and an authorised statistical feed. The original preparation checkpoint follows.
+
 8 October 2026. The overnight instruction authorizes continued NFL preparation without changing live services. The separate queued NFL/live-beta prompt bodies were not available in the current task or repository. The related Docked chat confirms the request to add NFL before launch, but supplies no approved lineup/scoring/provider specification. No missing rules were invented as approved requirements.
 
 ## Implemented safely

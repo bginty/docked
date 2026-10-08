@@ -236,6 +236,8 @@ test("catalog rejects duplicates and mismatches, preserves unsupported NFL as fa
   });
   const raw = payload();
   raw[0].sport_key = "americanfootball_nfl";
+  raw[0].home_team = "Buffalo Bills";
+  raw[0].away_team = "Miami Dolphins";
   const fixtures = providerFixtures(raw, nfl, nfl.competitions[0], at);
   assert.equal(fixtures.length, 1);
   assert.equal(fixtureRules(fixtures[0]), null);

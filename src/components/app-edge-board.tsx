@@ -63,18 +63,32 @@ export async function AppEdgeBoard({
         })
       : Promise.resolve(null),
     serviceStatus(),
-    tab === "docked" ? communityRecognition() : Promise.resolve(null),
+    tab === "docked" && !query.sport && !query.competition
+      ? communityRecognition()
+      : Promise.resolve(null),
     tab === "docked"
       ? monitoredMarkets({
           window: view === "upcoming" ? "upcoming" : "today",
           limit: 5,
+          sport: query.sport,
+          competition: query.competition,
         })
       : Promise.resolve(null),
     tab === "docked" && view === "featured"
-      ? monitoredMarkets({ window: "weekend", limit: 3 })
+      ? monitoredMarkets({
+          window: "weekend",
+          limit: 3,
+          sport: query.sport,
+          competition: query.competition,
+        })
       : Promise.resolve(null),
     tab === "docked"
-      ? listCommunityEdges({ settled: true, limit: 10 })
+      ? listCommunityEdges({
+          settled: true,
+          limit: 10,
+          sport: query.sport,
+          competition: query.competition,
+        })
       : Promise.resolve(null),
     tab === "docked" ? reviewedResearch({ limit: 10 }) : Promise.resolve(null),
   ]);
@@ -103,6 +117,17 @@ export async function AppEdgeBoard({
     <AppShell authenticated>
       <div className="mobile-edge-board">
         <EdgeBoardHeader query={query} tab={tab} view={view} status={status} />
+        {query.sport === "nfl" && (
+          <p className="app-state-banner">
+            NFL · American football.{" "}
+            <Link href="/sports/nfl">Teams & coverage</Link>
+            {" · "}
+            <Link href="/feed?tab=latest&sport=nfl">
+              Member conversations
+            </Link>. Verified NFL markets, settlement and official predictions
+            are not enabled.
+          </p>
+        )}
         {view !== "featured" && (
           <p className="form-help">
             {view === "upcoming"
@@ -136,7 +161,7 @@ export async function AppEdgeBoard({
             )}
             {recognition && <WeeklyEdge data={recognition} />}
             <RecentEdgeResults
-              official={official}
+              official={settledOfficial}
               community={completed?.edges ?? []}
             />
             <BetaReading />

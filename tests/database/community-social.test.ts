@@ -31,12 +31,72 @@ before(async () => {
 after(async () => {
   await pg?.close();
 });
+test("NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks", async () => {
+  await rollback(async () => {
+    const catalog = await pg.query<{ enabled: boolean; sport_id: string }>(
+      "select enabled,sport_id from private.competitions where id='americanfootball_nfl'",
+    );
+    assert.deepEqual(catalog.rows, [{ enabled: false, sport_id: "nfl" }]);
+    const id = "30000000-0000-4000-8000-000000000099";
+    await pg.query(
+      "insert into private.social_posts(id,author_id,kind,body,sport) values($1,$2,'analysis','Authored NFL discussion; not a verified Edge','nfl')",
+      [id, otherProfile],
+    );
+    const visible = async () =>
+      (
+        await pg.query<{ allowed: boolean }>(
+          "select private.social_post_visible($1,$2) allowed",
+          [profile, id],
+        )
+      ).rows[0].allowed;
+    assert.equal(await visible(), true);
+    await pg.query(
+      "insert into private.social_blocks(actor_id,target_id) values($1,$2)",
+      [profile, otherProfile],
+    );
+    assert.equal(await visible(), false);
+    const row = (
+      await pg.query<{ claim_label: string; community_edge_id: string | null }>(
+        "select claim_label,community_edge_id from private.social_posts where id=$1",
+        [id],
+      )
+    ).rows[0];
+    assert.equal(row.claim_label, "social_only");
+    assert.equal(row.community_edge_id, null);
+  });
+});
 async function claims(id = user, sid = session) {
   await pg.query(
     "select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false)",
     [id, JSON.stringify({ sub: id, session_id: sid, aal: "aal2" })],
   );
 }
+test("NFL catalogue migration preserves existing provider mappings and rejects sport collisions", async () => {
+  const migration = await readFile(
+    "supabase/migrations/20261008145441_nfl_community_catalogue.sql",
+    "utf8",
+  );
+  await rollback(async () => {
+    await pg.exec(
+      `update private.competitions set rules='{"trialOnly":true,"retained":"authored fixture"}' where id='americanfootball_nfl'`,
+    );
+    await pg.exec(migration);
+    assert.deepEqual(
+      (
+        await pg.query<{ rules: unknown }>(
+          "select rules from private.competitions where id='americanfootball_nfl'",
+        )
+      ).rows[0].rules,
+      { trialOnly: true, retained: "authored fixture" },
+    );
+  });
+  await rollback(async () => {
+    await pg.exec(
+      "insert into private.sports(id,name) values('fixture-collision','Authored collision'); update private.competitions set sport_id='fixture-collision' where id='americanfootball_nfl'",
+    );
+    await assert.rejects(pg.exec(migration), /NFL catalogue identity mismatch/);
+  });
+});
 async function rollback(fn: () => Promise<void>) {
   await pg.exec("begin");
   try {

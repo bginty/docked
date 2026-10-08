@@ -9,12 +9,19 @@ import { appViewer } from "@/server/app-view";
 import { communityProfile } from "@/server/community-social";
 import { previewTesterCapabilities } from "@/server/preview-testers";
 import Link from "next/link";
+import { sports } from "@/content/sports";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Create a post or Edge",
   robots: { index: false, follow: false },
 };
-export default async function Compose() {
+export default async function Compose({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
+  const query = await searchParams;
+  const initialSport = sports.find((s) => s.slug === query.sport)?.slug;
   const { who, configured } = await appViewer();
   const social = who ? await communityProfile() : null;
   const previewCapabilities = who ? await previewTesterCapabilities() : [];
@@ -38,6 +45,7 @@ export default async function Compose() {
           </section>
         ) : (
           <SocialComposer
+            initialSport={initialSport}
             previewFixtures={previewCapabilities.includes(
               "preview_market_fixtures",
             )}

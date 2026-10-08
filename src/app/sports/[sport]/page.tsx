@@ -7,6 +7,7 @@ import { publicTips, serviceStatus } from "@/server/queries";
 import { identity } from "@/server/auth";
 import { EdgeCard } from "@/components/edge-card";
 import { SportIcon } from "@/components/sport-icon";
+import { NflDirectory } from "@/components/nfl-directory";
 import { SportPageHeader } from "../sport-page-header";
 import "../sport-page.css";
 export const dynamic = "force-dynamic";
@@ -70,6 +71,7 @@ export default async function Sport({
   return (
     <article className="page sport-page">
       <SportPageHeader sport={item} coverage={coverage} />
+      {item.slug === "nfl" && <NflDirectory />}
       <div className="sport-introduction">
         <p className="eyebrow">
           {coverage.status === "RESEARCH"

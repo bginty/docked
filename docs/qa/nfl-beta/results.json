@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-08T15:11:59.9781891Z",
+  "baselineCommit": "ec6527790643659cd48d30f7e3ffe3b6e77ea5dc",
+  "scope": "Local NFL source changes, isolated fixtures and PostgreSQL; not hosted acceptance",
+  "platform": {
+    "passed": 430,
+    "failed": 0
+  },
+  "database": {
+    "passed": 207,
+    "failed": 0,
+    "engine": "PGlite"
+  },
+  "finalSocialSubset": {
+    "passed": 13,
+    "failed": 0
+  },
+  "localPostgresql": {
+    "passed": 8,
+    "failed": 0
+  },
+  "browser": {
+    "nativeIphone": "NOT_RUN",
+    "widths": [
+      320,
+      412,
+      1366
+    ],
+    "passed": 3,
+    "failed": 0,
+    "nativeAndroid": "NOT_RUN"
+  },
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "isolatedBuild": "PASS",
+  "hostedNFL": "NOT_RUN",
+  "providerNetworkRequests": 0,
+  "cloudChanges": 0,
+  "publication": "DISABLED",
+  "nflSettlement": "DISABLED",
+  "nflFantasy": "INACTIVE",
+  "launchReady": false
+}

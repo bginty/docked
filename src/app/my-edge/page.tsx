@@ -4,6 +4,10 @@ export const metadata = {
   title: "My Edge",
   robots: { index: false, follow: false },
 };
-export default function MyEdge() {
-  return <MyEdgeScreen />;
+export default async function MyEdge({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
+  return <MyEdgeScreen query={await searchParams} />;
 }

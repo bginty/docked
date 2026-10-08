@@ -84,6 +84,7 @@ export function SportChips({
         ["", "All sports"],
         ["football", "Football"],
         ["basketball", "Basketball"],
+        ["nfl", "NFL"],
         ["tennis", "Tennis"],
       ].map(([sport, label]) => (
         <Link

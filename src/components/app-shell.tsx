@@ -27,7 +27,9 @@ export function appDestination(path: string) {
   )
     return "/feed";
   if (
-    /^\/(profile|my-edge|dashboard|notifications|membership)(\/|$)/.test(path)
+    /^\/(profile|my-edge|dashboard|notifications|membership|fantasy)(\/|$)/.test(
+      path,
+    )
   )
     return "/my-edge";
   return "/edges";
@@ -107,7 +109,8 @@ export function AppShell({
     fantasyProduction,
   } = useEnvironmentPresentation();
   const fantasyPreview = previewOnly || fantasyProduction;
-  const activeNav = fantasyPreview
+  const fantasyNavigation = fantasyPreview && !liveBeta;
+  const activeNav = fantasyNavigation
     ? [
         { href: "/fantasy/play", label: "Play", icon: "trophy" as const },
         { href: "/fantasy/cards", label: "Cards", icon: "feed" as const },
@@ -124,7 +127,7 @@ export function AppShell({
         },
       ]
     : nav;
-  const destination = fantasyPreview
+  const destination = fantasyNavigation
     ? path.startsWith("/fantasy/")
       ? path
       : "/fantasy/social"
@@ -136,7 +139,7 @@ export function AppShell({
       <aside className="app-sidebar">
         <Link
           className="brand"
-          href={fantasyPreview ? "/fantasy/play" : "/edges"}
+          href={fantasyNavigation ? "/fantasy/play" : "/edges"}
           aria-label="Docked home"
         >
           {fantasyPreview ? (
@@ -159,6 +162,9 @@ export function AppShell({
           ))}
         </nav>
         <div className="app-secondary">
+          {liveBeta && fantasyProduction && (
+            <Link href="/fantasy/play">Fantasy cards & rewards</Link>
+          )}
           <Link href="/compose">
             <AppIcon name="plus" /> Create a post
           </Link>
@@ -198,7 +204,7 @@ export function AppShell({
           <div className="app-brand-lockup">
             <Link
               className="brand"
-              href={fantasyPreview ? "/fantasy/play" : "/edges"}
+              href={fantasyNavigation ? "/fantasy/play" : "/edges"}
               aria-label="Docked home"
             >
               {fantasyPreview ? (
@@ -214,6 +220,11 @@ export function AppShell({
             )}
           </div>
           <nav aria-label="App utilities">
+            {liveBeta && fantasyProduction && (
+              <Link href="/fantasy/play" aria-label="Fantasy cards and rewards">
+                <AppIcon name="trophy" />
+              </Link>
+            )}
             <Link
               className="app-desktop-search"
               href="/search"

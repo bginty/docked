@@ -8,6 +8,7 @@ import { profilePerformanceBundle, topDockedBoard } from "@/server/top-docked";
 import { sports } from "@/content/sports";
 import { AppShell } from "./app-shell";
 import { AccessGate, AppHeading } from "./community-basics";
+import { MySportPosts } from "./my-sport-posts";
 import {
   FollowingContent,
   MyEdgeContent,
@@ -101,7 +102,11 @@ export async function PointsScreen() {
   );
 }
 
-export async function MyEdgeScreen() {
+export async function MyEdgeScreen({
+  query = {},
+}: {
+  query?: Record<string, string | undefined>;
+} = {}) {
   const { who, configured } = await appViewer();
   if (!who)
     return (
@@ -116,6 +121,15 @@ export async function MyEdgeScreen() {
     );
   const data = await communityProfile();
   const profile = data.profile?.isOwn ? data.profile : null;
+  const sport = sports.find((item) => item.slug === query.sport)?.slug;
+  const ownPosts = profile
+    ? await communityFeed({
+        tab: "latest",
+        author: profile.handle,
+        sport,
+        cursor: query.cursor,
+      })
+    : null;
   const bundle =
     profile && !profile.isOfficial
       ? await profilePerformanceBundle(profile.id, "all")
@@ -128,6 +142,7 @@ export async function MyEdgeScreen() {
         message={data.message}
         performance={bundle?.performance?.performance ?? null}
       />
+      {ownPosts && <MySportPosts feed={ownPosts} sport={sport} />}
     </AppShell>
   );
 }

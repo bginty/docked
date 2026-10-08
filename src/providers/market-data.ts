@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { nflTeamByName } from "@/content/nfl-teams";
 import { type Rules } from "@/core/pricing";
 import { phase5Hash } from "@/core/phase5-hash";
 import {
@@ -244,6 +245,14 @@ export async function fetchTrialScores(
     clock,
     2,
   );
+  // Inspect raw lifecycle fields before Zod strips unknown properties. A new
+  // provider status must not silently turn cancellation/review into finality.
+  if (
+    providerCompetitionId === "americanfootball_nfl" &&
+    Array.isArray(data.rawRecords[0].payload) &&
+    data.rawRecords[0].payload.some(theOddsApiHasUnreviewedLifecycle)
+  )
+    throw new Error("Invalid provider scores payload: unreviewed lifecycle");
   const scores = z
     .array(
       z.object({
@@ -273,6 +282,13 @@ export async function fetchTrialScores(
     scores.data.some(
       (s) =>
         s.home_team === s.away_team ||
+        (providerCompetitionId === "americanfootball_nfl" &&
+          (!nflTeamByName(s.home_team) ||
+            !nflTeamByName(s.away_team) ||
+            (s.completed &&
+              (!s.scores ||
+                !s.last_update ||
+                Date.parse(s.commence_time) >= Date.parse(s.last_update))))) ||
         (s.last_update !== null &&
           Date.parse(s.last_update) > Date.parse(data.receivedAt)) ||
         (s.scores !== null &&
@@ -393,6 +409,8 @@ export function providerFixtures(
       };
     }
     if (
+      (fixture.competitionId === "americanfootball_nfl" &&
+        fixture.participants.some((name) => !nflTeamByName(name))) ||
       fixture.participants[0] === fixture.participants[1] ||
       Date.parse(fixture.startAt) <= from ||
       Date.parse(fixture.startAt) > to

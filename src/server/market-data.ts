@@ -14,6 +14,7 @@ import {
 } from "@/core/market-data-environment";
 import {
   monitoredWindow,
+  monitoredCompetitionIds,
   validateMarketDataConfig,
   type MonitoredMarkets,
   type ProviderFixture,
@@ -396,7 +397,12 @@ export async function ingestCurrentMarketData(trial?: {
 }
 
 export async function monitoredMarkets(
-  input: { window: MonitoredMarkets["window"]; limit?: number } = {
+  input: {
+    window: MonitoredMarkets["window"];
+    limit?: number;
+    sport?: string;
+    competition?: string;
+  } = {
     window: "upcoming",
   },
 ): Promise<MonitoredMarkets> {
@@ -487,7 +493,7 @@ export async function monitoredMarkets(
             "Current data is unavailable or stale; no fresh market is implied.",
         };
       const rows =
-        await tx`with latest as(select distinct on(o.event_id) o.*,e.status current_status,e.start_at current_start from private.market_data_fixture_observations o join private.events e on e.id=o.event_id join private.market_data_payloads raw on raw.id=o.raw_payload_id where o.provider=${provider} and raw.provider=${provider} and raw.rights_reference=${cfg.rights.reference} and raw.retain_until>clock_timestamp() and e.competition_id=any(${cfg.competitions.map((c) => c.competitionId)}) and e.start_at>=${bounds.from} and e.start_at<${bounds.to} and o.observed_at>clock_timestamp()-${Math.max(180, cfg.pollIntervalSeconds * 2)}*interval '1 second' order by o.event_id,o.observed_at desc,o.id desc) select * from latest order by current_start,event_id limit ${Math.max(1, Math.min(30, input.limit ?? 8))}`;
+        await tx`with latest as(select distinct on(o.event_id) o.*,e.status current_status,e.start_at current_start from private.market_data_fixture_observations o join private.events e on e.id=o.event_id join private.market_data_payloads raw on raw.id=o.raw_payload_id where o.provider=${provider} and raw.provider=${provider} and raw.rights_reference=${cfg.rights.reference} and raw.retain_until>clock_timestamp() and e.competition_id=any(${monitoredCompetitionIds(cfg, input)}) and e.start_at>=${bounds.from} and e.start_at<${bounds.to} and o.observed_at>clock_timestamp()-${Math.max(180, cfg.pollIntervalSeconds * 2)}*interval '1 second' order by o.event_id,o.observed_at desc,o.id desc) select * from latest order by current_start,event_id limit ${Math.max(1, Math.min(30, input.limit ?? 8))}`;
       const events: MonitoredMarkets["events"] = [];
       for (const row of rows) {
         const f = row.payload as ProviderFixture;

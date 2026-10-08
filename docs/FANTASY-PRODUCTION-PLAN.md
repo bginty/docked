@@ -80,3 +80,9 @@ Owner selected Netlify Free, subject to eligibility/compatibility. Prepared prov
 Reverified both active Free slots: Docked Preview (`bckkllmndoxzpzdqrevb`, Docked organization) and Oura CRM UAT (`dwdjeecjdkkiidoutnme`, separate organization). Automatic approval review rejected aggregate Oura database inspection; narrow permission was requested, no bypass attempted. Do not infer Oura is disposable from metadata or empty Edge Functions. Preserve both.
 
 If both are required, Netlify Free plus a new dedicated one-project Supabase Pro organization starts at approximately US$25/month; using the existing Docked organization with Preview plus production as two Micro instances is approximately US$35/month. Both exclude taxes/overages/mail and require paid approval; a new organization also needs a reviewed target change. Full details, tests and owner actions: `FANTASY-NETLIFY-PREPARATION.md`.
+
+## NFL live-beta checkpoint — 9 October 2026
+
+Owner supplied the exact NFL launch scope. Preserve the existing branch and all email/release work. Local NFL work now includes the 32-team directory, Edges/Feed/My Edge filters, own-post browsing, prefilled social composition, beta five-tab navigation, disabled catalogue migration and stricter fixture/score validation. Reuse existing provider/social/fantasy foundations; do not activate NFL prediction, settlement or card supply.
+
+Verification: 430 platform tests; 207 isolated database tests; final 13-test social subset; eight real local PostgreSQL integrity/concurrency scenarios; three browser component runs at 320/412/1366; TypeScript, lint, isolated build and reviewed secret scan pass. Full details and remaining production provider/Auth/legal/hosted gates: `DOCKED-NFL-BETA-ACCEPTANCE.md`. No cloud migration, deployment, paid service or unrelated environment change. Advanced models and NFL fantasy are optional; verified fixtures/community remain the NFL launch priority.

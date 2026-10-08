@@ -8,10 +8,14 @@ import { PreviewEdgeComposer } from "./preview-edge-composer";
 import { useClientReady } from "./use-client-ready";
 export function SocialComposer({
   previewFixtures = false,
+  initialSport,
 }: {
   previewFixtures?: boolean;
+  initialSport?: string;
 }) {
-  const [mode, setMode] = useState<"social" | "edge" | "preview">("edge"),
+  const [mode, setMode] = useState<"social" | "edge" | "preview">(
+      initialSport ? "social" : "edge",
+    ),
     [body, setBody] = useState(""),
     [mediaIds, setMedia] = useState<string[]>([]),
     [busy, setBusy] = useState(false),
@@ -125,7 +129,7 @@ export function SocialComposer({
               </label>
               <label>
                 Sport (optional)
-                <select name="sport">
+                <select name="sport" defaultValue={initialSport ?? ""}>
                   <option value="">All sports</option>
                   {[
                     "football",

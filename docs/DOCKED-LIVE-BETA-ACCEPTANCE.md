@@ -55,7 +55,7 @@ Evidence: [preflight](qa/live-beta/preflight.json), [build scan](qa/live-beta/bu
 | Rewards | Approved 11-card Starter, 10 daily gameplay points, controlled card reward every seven successful claims; stock constraints remain. No production cards issued. |
 | Leaderboards | Preview results exist. Production projection currently returns the signed-in member's results; shared production leaderboard behavior and durable beta/official separation require completion and acceptance. |
 | Marketplace/trades | Preserved implementation, production transactions disabled. No cash or paid packs. |
-| NFL | Existing inactive helpers preserved; no approved detailed rules/provider specification found and NFL is not playable. |
+| NFL | Updated 9 October: owner scope supplied; 32-team catalogue, shared filters, own-post browsing and strict parser checks added. Local tests pass; live feed and hosted persistence remain unverified. Advanced fantasy is optional. See `DOCKED-NFL-BETA-ACCEPTANCE.md`. |
 
 ## Exact blockers and next steps
 
