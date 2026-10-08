@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { brand } from "@/brand/brand";
-import { fantasyEnabled, fantasyTagline } from "@/core/fantasy";
+import { fantasyTagline } from "@/core/fantasy";
+import {
+  fantasyPlatformEnabled as fantasyEnabled,
+  fantasyProductionEnabled,
+} from "@/core/fantasy-production";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -8,7 +12,9 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `Docked — ${fantasyEnabled() ? fantasyTagline : brand.tagline}`,
     short_name: "Docked",
     description: fantasyEnabled()
-      ? "Fantasy Cards Preview. Test credits only."
+      ? fantasyProductionEnabled()
+        ? "Fantasy Cards. Free Starter packs and daily gameplay rewards."
+        : "Fantasy Cards Preview. Test credits only."
       : "Sports discussion and transparent verified records. No guaranteed returns.",
     start_url: "/app",
     scope: "/",

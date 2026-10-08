@@ -9,10 +9,7 @@ const git = (...args) => execFileSync("git", args, { encoding: "utf8" }).trim();
 const branch = git("branch", "--show-current");
 if (
   branch !== "codex/docked-value-platform" &&
-  !(
-    branch === "pivot/fantasy-cards-preview-v1" &&
-    !process.argv.includes("--production")
-  )
+  !(branch === "pivot/fantasy-cards-preview-v1")
 )
   throw new Error("Wrong reviewed branch");
 const commit = git("rev-parse", "HEAD");

@@ -150,6 +150,72 @@ test("production environment preparation keeps credentials private and all initi
       assert.equal(payload.find((value) => value.key === key)?.value, "false");
     assert.ok(!payload.some((value) => value.key.startsWith("VERCEL_")));
     assert.ok(!payload.some((value) => value.key === "THE_ODDS_API_KEY"));
+    const denied = execute(
+      directory,
+      "scripts/prepare-production-environment.mjs",
+      "--free-play",
+    );
+    assert.notEqual(denied.status, 0);
+    const operatorPath = join(
+      directory,
+      "private-data/production/operator.json",
+    );
+    const operator = JSON.parse(await readFile(operatorPath, "utf8"));
+    const ready = {
+      ...operator,
+      authEmailVerified: true,
+      emailVerificationRequired: true,
+      productionSmokeTestsPassed: true,
+      productionRlsVerified: true,
+      freePlayPolicyApproved: true,
+      communityPolicyApproved: true,
+      concurrencyTestsPassed: true,
+      productionProjectRef: manifest.supabaseProjectRef,
+    };
+    await writeFile(operatorPath, JSON.stringify(ready));
+    const allowed = execute(
+      directory,
+      "scripts/prepare-production-environment.mjs",
+      "--free-play",
+    );
+    assert.equal(allowed.status, 0, allowed.stderr);
+    const active = JSON.parse(
+      await readFile(
+        join(
+          directory,
+          "private-data/production-deploy/environment-payload.json",
+        ),
+        "utf8",
+      ),
+    ) as { key: string; value: string }[];
+    for (const key of [
+      "REGISTRATION_ENABLED",
+      "AUTH_EMAIL_ENABLED",
+      "FANTASY_FREE_PLAY_PRODUCTION",
+    ])
+      assert.equal(active.find((v) => v.key === key)?.value, "true");
+    for (const key of [
+      "FANTASY_CARDS_PREVIEW",
+      "SENDING_ENABLED",
+      "PAID_PLANS_ENABLED",
+      "PRIZES_ENABLED",
+    ])
+      assert.equal(active.find((v) => v.key === key)?.value, "false");
+    await writeFile(
+      operatorPath,
+      JSON.stringify({
+        ...ready,
+        productionProjectRef: "bckkllmndoxzpzdqrevb",
+      }),
+    );
+    assert.notEqual(
+      execute(
+        directory,
+        "scripts/prepare-production-environment.mjs",
+        "--free-play",
+      ).status,
+      0,
+    );
   });
 });
 

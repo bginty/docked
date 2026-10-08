@@ -12,6 +12,10 @@ import {
 } from "../../src/core/hosted-production.mjs";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
 import { databaseConnectionOptions } from "../../src/server/database-tls";
+import {
+  fantasyProductionEnabled,
+  fantasyProductionAction,
+} from "../../src/core/fantasy-production";
 
 // Authored identities only. No deployed manifest or real credentials are changed.
 const reviewed = {
@@ -52,6 +56,70 @@ function environment(): Record<string, string> {
     ...Object.fromEntries(productionDisabledFlags.map((key) => [key, "false"])),
   };
 }
+
+test("free-play production requires separate reviewed identities and cannot borrow Preview configuration", () => {
+  const env = {
+    ...environment(),
+    FANTASY_FREE_PLAY_PRODUCTION: "true",
+    FANTASY_CARDS_PREVIEW: "false",
+  };
+  assert.equal(fantasyProductionEnabled(env, reviewed), true);
+  assert.equal(fantasyProductionEnabled(env, manifest), false);
+  for (const change of [
+    { FANTASY_FREE_PLAY_PRODUCTION: "false" },
+    { FANTASY_CARDS_PREVIEW: "true" },
+    { APP_ENV: "preview" },
+    { SUPABASE_ENV: "preview" },
+    { NEXT_PUBLIC_SUPABASE_URL: "https://bckkllmndoxzpzdqrevb.supabase.co" },
+    { DATABASE_URL: database("bckkllmndoxzpzdqrevb") },
+    { VERCEL_PROJECT_ID: "prj_WRONG" },
+  ])
+    assert.equal(
+      fantasyProductionEnabled({ ...env, ...change }, reviewed),
+      false,
+    );
+});
+
+test("free-play action boundary rejects monetary requests and device-selected daily periods", () => {
+  const request_id = "10000000-0000-4000-8000-000000000001";
+  for (const action of ["claim_starter", "claim_daily"])
+    assert.equal(
+      fantasyProductionAction.safeParse({ action, payload: {}, request_id })
+        .success,
+      true,
+    );
+  for (const action of [
+    "buy_pack",
+    "admin_credit",
+    "admin_pack",
+    "list",
+    "buy",
+    "offer_trade",
+    "admin_competition",
+  ])
+    assert.equal(
+      fantasyProductionAction.safeParse({ action, payload: {}, request_id })
+        .success,
+      false,
+    );
+  assert.equal(
+    fantasyProductionAction.safeParse({
+      action: "claim_daily",
+      payload: { period: "2099-01-01" },
+      request_id,
+    }).success,
+    false,
+  );
+  for (const daily_points of [0, 51, 1.5])
+    assert.equal(
+      fantasyProductionAction.safeParse({
+        action: "admin_reward_policy",
+        payload: { daily_points, card_every: 7, daily_card_limit: 100 },
+        request_id,
+      }).success,
+      false,
+    );
+});
 
 test("reviewed community-only production is isolated and does not treat inert keys as activation", () => {
   const env = environment();

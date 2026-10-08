@@ -7,6 +7,7 @@ import {
 } from "@/core/fantasy-request";
 import { FantasyHero } from "./fantasy-brand";
 import { FantasyAdmin } from "./fantasy-admin";
+import { FantasyRewards } from "./fantasy-rewards";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 const tiers = ["CORE", "RARE", "ELITE", "LEGENDARY", "ICON"];
 const stamp = (s: string) =>
@@ -62,9 +63,7 @@ function Card({
           ? "RETIRED / COLLECTIBLE ONLY"
           : card.status.toUpperCase()}
       </p>
-      {!card.tradeable && (
-        <p className="starter-label">STARTER CARD · Not tradeable</p>
-      )}
+      {!card.tradeable && <p className="starter-label">Not tradeable</p>}
       {children}
     </article>
   );
@@ -76,6 +75,7 @@ export function FantasyScreen({
   tab: string;
   initial: FantasyState;
 }) {
+  const production = initial.mode === "production";
   const [data, setData] = useState(initial),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
@@ -99,6 +99,23 @@ export function FantasyScreen({
     [receive, setReceive] = useState<string[]>([]);
   const pending = useRef<PendingFantasyRequest | null>(null);
   const inFlight = useRef(false);
+  async function refresh() {
+    if (inFlight.current) return;
+    inFlight.current = true;
+    setBusy(true);
+    try {
+      const r = await fetch("/api/fantasy", { cache: "no-store" });
+      if (!r.ok) throw Error("Could not refresh reward status.");
+      const next = await r.json();
+      setData(next.state);
+      setMessage("Updated from the server.");
+    } catch {
+      setMessage("Could not refresh. Please retry.");
+    } finally {
+      inFlight.current = false;
+      setBusy(false);
+    }
+  }
   async function act(action: string, payload: Record<string, unknown> = {}) {
     if (inFlight.current) return null;
     inFlight.current = true;
@@ -199,17 +216,22 @@ export function FantasyScreen({
     market: "Find your next first-team player.",
     social: "The game is better together.",
     profile: "Your Docked record.",
-    admin: "Preview control room.",
+    admin: production ? "Free-play administration." : "Preview control room.",
   };
   return (
     <div className="fantasy-screen" aria-busy={busy}>
       <header className="fantasy-heading">
         <div>
-          <p className="eyebrow">FANTASY CARDS · PREVIEW V1</p>
+          <p className="eyebrow">
+            FANTASY CARDS · {production ? "FREE PLAY" : "PREVIEW V1"}
+          </p>
           <h1>{title[tab]}</h1>
         </div>
         <Link className="credit-chip" href="/fantasy/profile">
-          {Number(data.credits).toLocaleString()} <span>test credits</span>
+          {Number(
+            production ? (data.rewards?.points ?? 0) : data.credits,
+          ).toLocaleString()}{" "}
+          <span>{production ? "gameplay points" : "test credits"}</span>
         </Link>
       </header>
       <p role="status" className={message ? "fantasy-message" : "sr-only"}>
@@ -386,16 +408,22 @@ export function FantasyScreen({
             </p>
           </section>
           <section className="fantasy-panel">
-            <h2>Championship standings</h2>
+            <h2>
+              {production
+                ? "Your championship points"
+                : "Championship standings"}
+            </h2>
             {standings.map((m, i) => (
               <div className="fantasy-row" key={m.id}>
-                <span>
-                  {i + 1}. {m.name}
-                </span>
+                <span>{production ? m.name : `${i + 1}. ${m.name}`}</span>
                 <strong>{m.points} pts</strong>
               </div>
             ))}
-            <p>Preview/Test Prize · No cash payout</p>
+            <p>
+              {production
+                ? "Free fictional-player competition · No cash prize"
+                : "Preview/Test Prize · No cash payout"}
+            </p>
           </section>
           <section className="fantasy-panel">
             <h2>Recent results</h2>
@@ -425,13 +453,201 @@ export function FantasyScreen({
           </section>
         </>
       )}
+      {production &&
+        data.rewards &&
+        ["play", "cards", "profile"].includes(tab) && (
+          <FantasyRewards
+            rewards={data.rewards}
+            busy={busy}
+            act={act}
+            refresh={refresh}
+          />
+        )}
+      {production && tab === "market" && (
+        <section className="fantasy-panel">
+          <h2>Marketplace is not open yet</h2>
+          <p>
+            Free Starter packs and daily rewards are available in Cards. Buying,
+            selling and transfers remain disabled while the non-monetary
+            marketplace rules are reviewed.
+          </p>
+          <Link className="button" href="/fantasy/cards">
+            Go to my cards
+          </Link>
+        </section>
+      )}
+      {production &&
+        tab === "admin" &&
+        (data.admin ? (
+          <section className="fantasy-panel">
+            <h2>Reward policy</h2>
+            <p>
+              Changes apply to future claims. Earlier awards retain their
+              original policy and outcome. Administrator MFA is required.
+            </p>
+            <form
+              className="fantasy-form"
+              onSubmit={(e) =>
+                form(e, "admin_reward_policy", (f) => ({
+                  daily_points: Number(f.get("daily_points")),
+                  card_every: Number(f.get("card_every")),
+                  daily_card_limit: Number(f.get("daily_card_limit")),
+                }))
+              }
+            >
+              <label>
+                Daily gameplay points
+                <input
+                  name="daily_points"
+                  type="number"
+                  required
+                  min={1}
+                  max={50}
+                  defaultValue={data.rewards?.policy.daily_points ?? 10}
+                />
+              </label>
+              <label>
+                Card reward every claimed days
+                <input
+                  name="card_every"
+                  type="number"
+                  required
+                  min={7}
+                  max={365}
+                  defaultValue={data.rewards?.policy.card_every ?? 7}
+                />
+              </label>
+              <label>
+                Shared daily card limit
+                <input
+                  name="daily_card_limit"
+                  type="number"
+                  required
+                  min={0}
+                  max={100}
+                  defaultValue={data.rewards?.policy.daily_card_limit ?? 100}
+                />
+              </label>
+              <button disabled={busy}>Save new policy version</button>
+            </form>
+            <h2>Starter allocation</h2>
+            <p>
+              After the current allocation is exhausted, authorize up to 1,000
+              further Starter packs from the same limited editions. This never
+              increases card supply or grants a second Starter to an account.
+            </p>
+            <form
+              className="fantasy-form"
+              onSubmit={(e) =>
+                form(e, "admin_starter_stock", (f) => ({
+                  quantity: Number(f.get("quantity")),
+                }))
+              }
+            >
+              <label>
+                Pack allocation
+                <input
+                  name="quantity"
+                  type="number"
+                  min={1}
+                  max={1000}
+                  required
+                  defaultValue={1000}
+                />
+              </label>
+              <button disabled={busy}>Authorize next allocation</button>
+            </form>
+            <h2>Create a free round</h2>
+            <form
+              className="fantasy-form"
+              onSubmit={(e) =>
+                form(e, "admin_free_round", (f) => ({
+                  name: f.get("name"),
+                  season: f.get("season"),
+                  round: Number(f.get("round")),
+                  locks_at: new Date(String(f.get("locks_at"))).toISOString(),
+                }))
+              }
+            >
+              <label>
+                Name
+                <input
+                  name="name"
+                  required
+                  minLength={2}
+                  maxLength={80}
+                  defaultValue="Free football league"
+                />
+              </label>
+              <label>
+                Season
+                <input
+                  name="season"
+                  required
+                  maxLength={20}
+                  defaultValue="2027"
+                />
+              </label>
+              <label>
+                Round
+                <input name="round" type="number" required min={1} max={1000} />
+              </label>
+              <label>
+                Lineup lock · your local time
+                <input name="locks_at" type="datetime-local" required />
+              </label>
+              <p>
+                Fixed fair scoring, eleven unique players and no cash prize.
+                Lock must be within 90 days.
+              </p>
+              <button disabled={busy}>Create free round</button>
+            </form>
+            <h2>Score a locked round</h2>
+            <form
+              className="fantasy-form"
+              onSubmit={(e) =>
+                form(e, "admin_simulate", (f) => ({
+                  competition_id: f.get("competition_id"),
+                  seed: Number(f.get("seed")),
+                }))
+              }
+            >
+              <label>
+                Round
+                <select name="competition_id" required>
+                  {data.competitions
+                    .filter((c) => !c.scored_at)
+                    .map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name}
+                      </option>
+                    ))}
+                </select>
+              </label>
+              <label>
+                Simulation seed
+                <input
+                  name="seed"
+                  type="number"
+                  required
+                  min={0}
+                  defaultValue={2027}
+                />
+              </label>
+              <button disabled={busy}>Score and publish</button>
+            </form>
+          </section>
+        ) : (
+          <p>Administrator access requires a private role and MFA.</p>
+        ))}
       {tab === "cards" && (
         <>
           <section className="fantasy-panel">
             <h2>My packs</h2>
             <p>
-              Test credits only. Pack outcomes and serials are assigned by the
-              server.
+              {production
+                ? "Free starter and earned reward packs. Permanent serials are assigned securely from limited inventory."
+                : "Test credits only. Pack outcomes and serials are assigned by the server."}
             </p>
             <div className="pack-grid">
               {data.shop
@@ -645,7 +861,7 @@ export function FantasyScreen({
           </section>
         </>
       )}
-      {tab === "market" && (
+      {tab === "market" && !production && (
         <>
           <section className="fantasy-panel">
             <h2>List a card</h2>
@@ -930,32 +1146,38 @@ export function FantasyScreen({
             <div className="actions">
               <Link href="/profile">Social profile, followers & following</Link>
               <Link href="/dashboard">Settings & privacy</Link>
-              {data.admin && <Link href="/fantasy/admin">Preview admin</Link>}
+              {data.admin && (
+                <Link href="/fantasy/admin">
+                  {production ? "Game administration" : "Preview admin"}
+                </Link>
+              )}
             </div>
           </section>
-          <section className="fantasy-panel">
-            <h2>Test wallet</h2>
-            <strong className="wallet-balance">
-              {Number(data.credits).toLocaleString()}
-            </strong>
-            <p>Available Credits</p>
-            <button disabled>Withdraw</button>
-            <small>Not available in Preview</small>
-            <h3>Transaction history</h3>
-            {data.ledger.map((l) => (
-              <div className="fantasy-row" key={l.id}>
-                <span>
-                  {l.reason}
-                  <small>{stamp(l.created_at)}</small>
-                </span>
-                <strong>
-                  {Number(l.amount) > 0 ? "+" : ""}
-                  {l.amount}
-                </strong>
-              </div>
-            ))}
-            {!data.ledger.length && <p>No test credit transactions yet.</p>}
-          </section>
+          {!production && (
+            <section className="fantasy-panel">
+              <h2>Test wallet</h2>
+              <strong className="wallet-balance">
+                {Number(data.credits).toLocaleString()}
+              </strong>
+              <p>Available Credits</p>
+              <button disabled>Withdraw</button>
+              <small>Not available in Preview</small>
+              <h3>Transaction history</h3>
+              {data.ledger.map((l) => (
+                <div className="fantasy-row" key={l.id}>
+                  <span>
+                    {l.reason}
+                    <small>{stamp(l.created_at)}</small>
+                  </span>
+                  <strong>
+                    {Number(l.amount) > 0 ? "+" : ""}
+                    {l.amount}
+                  </strong>
+                </div>
+              ))}
+              {!data.ledger.length && <p>No test credit transactions yet.</p>}
+            </section>
+          )}
           <section className="fantasy-panel">
             <h2>Replacement eligibility</h2>
             {data.replacements.map((r) => (
@@ -973,6 +1195,7 @@ export function FantasyScreen({
         </>
       )}
       {tab === "admin" &&
+        !production &&
         (data.admin ? (
           <>
             <FantasyAdmin catalog={data.catalog} act={act} busy={busy} />

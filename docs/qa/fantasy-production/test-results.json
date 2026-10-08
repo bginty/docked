@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-08T00:28:34.447Z",
+  "results": {
+    "platform": {
+      "tests": 375,
+      "passed": 375,
+      "failed": 0
+    },
+    "database": {
+      "tests": 197,
+      "passed": 197,
+      "failed": 0
+    },
+    "productionDatabase": {
+      "tests": 13,
+      "passed": 13,
+      "failed": 0
+    },
+    "releaseTools": {
+      "tests": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "productionBinding": {
+      "tests": 7,
+      "passed": 7,
+      "failed": 0
+    }
+  },
+  "localBuild": "PASS",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "clientBoundary": "PASS",
+  "productionTests": "NOT RUN: separate production backend/auth unavailable",
+  "realPostgresRaces": "NOT RUN: local Docker Linux engine unavailable",
+  "nativeAndroid": "NOT RUN this turn",
+  "iPhoneSafari": "NOT RUN",
+  "dependencyAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "patchedDependency": "sharp 0.35.5",
+  "serverTraces": {
+    "manifests": 98,
+    "privatePaths": 0,
+    "standalonePrivateData": false
+  },
+  "review": {
+    "model": "gpt-6-astra",
+    "effort": "high",
+    "readOnly": true,
+    "nestedDelegation": false,
+    "ultra": false
+  },
+  "deployment": {
+    "id": null,
+    "projectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "supabaseProjectRef": null
+  }
+}

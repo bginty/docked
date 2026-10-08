@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { fantasyEnabled } from "@/core/fantasy";
+import {
+  fantasyPlatformEnabled as fantasyEnabled,
+  fantasyProductionEnabled,
+} from "@/core/fantasy-production";
 import { FantasyHero, FantasyLogo } from "@/components/fantasy-brand";
 import { readingRoom } from "@/server/cms";
 import { environmentPresentation } from "@/server/presentation";
@@ -23,6 +26,7 @@ import { SportIcon } from "@/components/sport-icon";
 export const dynamic = "force-dynamic";
 export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
+  const production = fantasyProductionEnabled();
   if (fantasyEnabled())
     return (
       <div className="fantasy-public">
@@ -31,13 +35,17 @@ export default async function Home() {
             <FantasyLogo />
           </Link>
           <Link className="button" href="/app/login">
-            Tester login
+            {production ? "Log in" : "Tester login"}
           </Link>
         </header>
         <section className="fantasy-welcome">
           <FantasyHero />
           <div>
-            <p className="eyebrow">FANTASY CARDS PREVIEW V1</p>
+            <p className="eyebrow">
+              {production
+                ? "FANTASY CARDS · FREE TO PLAY"
+                : "FANTASY CARDS PREVIEW V1"}
+            </p>
             <h1>
               COLLECT.
               <br />
@@ -46,19 +54,23 @@ export default async function Home() {
               COMPETE.
             </h1>
             <p>
-              Collect limited fictional player cards. Build your football team.
-              Compete, buy, sell and trade using test credits.
+              {production
+                ? "Collect limited fictional player cards. Open your free Starter pack, build your football team and earn daily gameplay rewards."
+                : "Collect limited fictional player cards. Build your football team. Compete, buy, sell and trade using test credits."}
             </p>
             <p>One collection, on your phone and in your browser.</p>
             <div className="actions">
               <Link className="button" href="/fantasy/play">
                 Open member workspace
               </Link>
-              <Link href="/app/login">Invited tester access</Link>
+              <Link href={production ? "/app/signup" : "/app/login"}>
+                {production ? "Create a free account" : "Invited tester access"}
+              </Link>
             </div>
             <p className="small-note">
-              Closed Preview for 2–3 testers. Fictional players, test credits
-              and Preview/Test Prizes only.
+              {production
+                ? "Free gameplay. Fictional players. No paid packs, cash value or cash prizes. Marketplace transfers are not open yet."
+                : "Closed Preview for 2–3 testers. Fictional players, test credits and Preview/Test Prizes only."}
             </p>
           </div>
         </section>
@@ -79,8 +91,9 @@ export default async function Home() {
           <div>
             <h2>Compete</h2>
             <p>
-              Enter leagues and track simulated rounds. Trade with fellow
-              testers.
+              {production
+                ? "Enter free leagues and track simulated rounds. Rarity never multiplies fantasy scores."
+                : "Enter leagues and track simulated rounds. Trade with fellow testers."}
             </p>
           </div>
         </section>

@@ -5,6 +5,7 @@ import type { authUiReadiness } from "@/core/auth-readiness";
 export type EnvironmentPresentation = ReturnType<typeof authUiReadiness> & {
   accountConfigured: boolean;
   fantasyPreview?: boolean;
+  fantasyProduction?: boolean;
 };
 
 // Isolated component previews have no account authority. Real routes always

@@ -1,0 +1,75 @@
+TAP version 13
+# Subtest: production starter is permanent, atomic and duplicate-safe across fresh request IDs
+ok 1 - production starter is permanent, atomic and duplicate-safe across fresh request IDs
+  ---
+  duration_ms: 8440.2682
+  ...
+# Subtest: daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+ok 2 - daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+  ---
+  duration_ms: 56.3589
+  ...
+# Subtest: production denies all monetary/trade paths and original Preview entry even as MFA admin
+ok 3 - production denies all monetary/trade paths and original Preview entry even as MFA admin
+  ---
+  duration_ms: 52.1035
+  ...
+# Subtest: unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+ok 4 - unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+  ---
+  duration_ms: 60.9556
+  ...
+# Subtest: production supports more than three verified members and isolates their inventory/history
+ok 5 - production supports more than three verified members and isolates their inventory/history
+  ---
+  duration_ms: 287.8459
+  ...
+# Subtest: seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+ok 6 - seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+  ---
+  duration_ms: 67.852
+  ...
+# Subtest: failed partial starter allocation rolls back membership, stock, cards and provenance
+ok 7 - failed partial starter allocation rolls back membership, stock, cards and provenance
+  ---
+  duration_ms: 104.3235
+  ...
+# Subtest: runtime role executes eligible commands; missing context and revoked membership deny
+ok 8 - runtime role executes eligible commands; missing context and revoked membership deny
+  ---
+  duration_ms: 24.6277
+  ...
+# Subtest: daily card limit and exhausted inventory award only points with stable receipts
+ok 9 - daily card limit and exhausted inventory award only points with stable receipts
+  ---
+  duration_ms: 103.6455
+  ...
+# Subtest: new MFA free rounds preserve fixed scoring and immutable prior results
+ok 10 - new MFA free rounds preserve fixed scoring and immutable prior results
+  ---
+  duration_ms: 168.2849
+  ...
+# Subtest: starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+ok 11 - starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+  ---
+  duration_ms: 80.314
+  ...
+# Subtest: old daily request replay never consumes a new UTC period
+ok 12 - old daily request replay never consumes a new UTC period
+  ---
+  duration_ms: 28.0473
+  ...
+# Subtest: unexpected optional-card issuance failure rolls back points, receipt and stock
+ok 13 - unexpected optional-card issuance failure rolls back points, receipt and stock
+  ---
+  duration_ms: 65.0739
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11956.309

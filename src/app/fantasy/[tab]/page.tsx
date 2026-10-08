@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { fantasyEnabled, fantasyTagline } from "@/core/fantasy";
+import { fantasyTagline } from "@/core/fantasy";
+import {
+  fantasyPlatformEnabled as fantasyEnabled,
+  fantasyProductionEnabled,
+} from "@/core/fantasy-production";
 import { fantasyRequest } from "@/server/fantasy";
 import { AppShell } from "@/components/app-shell";
 import { FantasyScreen } from "@/components/fantasy-screen";
@@ -9,8 +13,8 @@ import { FeedContent } from "@/components/community-feed";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Fantasy Cards Preview | COLLECT. BUILD. COMPETE.",
-  description: "Fictional player cards, fantasy competitions and test credits.",
+  title: "Fantasy Cards | COLLECT. BUILD. COMPETE.",
+  description: "Collect player cards and build your fantasy team.",
   robots: { index: false, follow: false },
   openGraph: {
     title: "Docked | COLLECT. BUILD. COMPETE.",
@@ -39,11 +43,16 @@ export default async function FantasyPage({
   } catch {
     return (
       <div className="fantasy-gate">
-        <h1>Fantasy Cards Preview</h1>
+        <h1>
+          {fantasyProductionEnabled()
+            ? "Fantasy Cards"
+            : "Fantasy Cards Preview"}
+        </h1>
         <p>{fantasyTagline}</p>
         <p>
-          Sign in with your invited Preview account. Access must be enabled for
-          your account by the Preview operator.
+          {fantasyProductionEnabled()
+            ? "Sign in with a verified account and complete onboarding to collect your free Starter pack."
+            : "Sign in with your invited Preview account. Access must be enabled for your account by the Preview operator."}
         </p>
         <Link className="button" href="/app/login">
           Sign in

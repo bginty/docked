@@ -274,6 +274,29 @@ export type FantasyCompetition = {
   rules: Record<string, unknown>;
 };
 export type FantasyState = {
+  mode?: "production";
+  rewards?: {
+    server_time: string;
+    period_timezone: "UTC";
+    next_claim_at: string;
+    claimed_today: boolean;
+    starter_claimed: boolean;
+    points: number;
+    policy: {
+      version: number;
+      daily_points: number;
+      card_every: number;
+      daily_card_limit: number;
+    };
+    history: {
+      period: string;
+      points: number;
+      policy_version: number;
+      pack_id: string | null;
+      card_outcome: string;
+      created_at: string;
+    }[];
+  };
   user_id: string;
   credits: number;
   admin: boolean;

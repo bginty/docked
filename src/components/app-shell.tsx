@@ -100,7 +100,12 @@ export function AppShell({
   authenticated?: boolean;
 }) {
   const path = usePathname();
-  const { production, fantasyPreview } = useEnvironmentPresentation();
+  const {
+    production,
+    fantasyPreview: previewOnly,
+    fantasyProduction,
+  } = useEnvironmentPresentation();
+  const fantasyPreview = previewOnly || fantasyProduction;
   const activeNav = fantasyPreview
     ? [
         { href: "/fantasy/play", label: "Play", icon: "trophy" as const },
@@ -173,12 +178,18 @@ export function AppShell({
         <p className="small-note">
           18+ ·{" "}
           {fantasyPreview
-            ? "Fantasy Cards Preview"
+            ? production
+              ? "Fantasy Cards"
+              : "Fantasy Cards Preview"
             : production
               ? "Sports research"
               : "Research preview"}
           <br />
-          {fantasyPreview ? "Test credits only." : "No guaranteed returns."}
+          {fantasyPreview
+            ? production
+              ? "Free play. No cash value."
+              : "Test credits only."
+            : "No guaranteed returns."}
         </p>
       </aside>
       <div className="app-workspace">
@@ -217,7 +228,9 @@ export function AppShell({
         <div className="app-content">{children}</div>
         <p className="app-footnote">
           {fantasyPreview
-            ? "Fictional players. Test credits. Preview/Test Prizes only."
+            ? production
+              ? "Fictional players. Free gameplay. No paid packs or cash prizes."
+              : "Fictional players. Test credits. Preview/Test Prizes only."
             : "Informational sports community. You can use Docked without betting. Past performance does not guarantee future results."}
         </p>
       </div>

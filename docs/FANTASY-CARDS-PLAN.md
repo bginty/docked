@@ -51,3 +51,9 @@ Android v8 builds and passes the APK security/branding audit. Installation and a
 The user subsequently authorized public production launch and APK email delivery, conditional on readiness. Production promotion is stopped: the delivered application is explicitly Preview-only, no separate production application/database identity is configured, and production enrollment/economy rules are not implemented. No isolation or release safeguard was bypassed. The current public domain remains the GitHub Pages holding page. Full findings and exact corrective actions are in FANTASY-PRODUCTION-READINESS.md.
 
 The Fantasy v8 APK was freshly audited and a private 72-hour download link was prepared on existing Preview storage. Email to Barry was attempted once but rejected by Gmail with “Mail service not enabled”; no delivery is claimed. Prepared email/link remain in ignored private-data/fantasy for sending through a working mailbox. Production and DNS remain unchanged.
+
+## Autonomous free-play production checkpoint — 8 October 2026
+
+The subsequent free Starter/daily reward authorization is implemented locally on this same branch. Separate production SQL entry points, immutable account/UTC-period claims, finite edition stock, MFA stock/round administration and shared responsive UI preserve the completed Preview. See FANTASY-PRODUCTION-PLAN.md and FANTASY-PRODUCTION-HANDOFF.md for implementation, tests, actual review configuration and remaining live gates.
+
+Created only the empty, separate `docked-production` Vercel project on the existing Hobby team; no deployment or domain change. Production Supabase, real Auth mail/consent configuration and live concurrency/production smoke checks remain blocked. The holding page, three-tester Preview and Edge infrastructure/data remain unchanged. Barry's hash-verified v8 APK and ready-to-send `.eml`/`.txt` are now on the Windows Desktop. Browser automation cannot initialize, so no email was sent this turn.

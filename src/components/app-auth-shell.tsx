@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { BrandLogo } from "./brand-logo";
 import { config } from "@/server/config";
-import { fantasyEnabled } from "@/core/fantasy";
+import { fantasyPlatformEnabled as fantasyEnabled } from "@/core/fantasy-production";
 import { FantasyLogo } from "./fantasy-brand";
 
 export function AppAuthShell({ children }: { children: ReactNode }) {

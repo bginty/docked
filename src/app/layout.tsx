@@ -20,7 +20,11 @@ import { SportIcon } from "@/components/sport-icon";
 import { BrandLogo } from "@/components/brand-logo";
 import { brand } from "@/brand/brand";
 import "./fantasy.css";
-import { fantasyEnabled, fantasyTagline } from "@/core/fantasy";
+import { fantasyTagline } from "@/core/fantasy";
+import {
+  fantasyPlatformEnabled as fantasyEnabled,
+  fantasyProductionEnabled,
+} from "@/core/fantasy-production";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
@@ -78,11 +82,16 @@ if (fantasyEnabled()) {
     template: "%s | Docked",
   };
   metadata.description =
-    "Fictional player cards, fantasy competitions and test credits.";
-  metadata.robots = { index: false, follow: false };
+    "Collect fictional player cards and build your fantasy team.";
+  metadata.robots =
+    process.env.APP_ENV === "production"
+      ? { index: true, follow: true }
+      : { index: false, follow: false };
   metadata.openGraph = {
     title: `Docked — ${fantasyTagline}`,
-    description: "Fantasy Cards Preview",
+    description: fantasyProductionEnabled()
+      ? "Free Fantasy Cards"
+      : "Fantasy Cards Preview",
     images: [fantasyAssets.social],
   };
   metadata.twitter = {
@@ -98,7 +107,7 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const environment = await environmentPresentation();
-  if (environment.fantasyPreview)
+  if (environment.fantasyPreview || environment.fantasyProduction)
     return (
       <html lang="en">
         <body className="fantasy-mode">

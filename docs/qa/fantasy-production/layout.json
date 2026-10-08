@@ -1,0 +1,37 @@
+{
+  "scope": "Chromium desktop and mobile-width static component rendering; no hydration, API, Android or iPhone verification",
+  "results": [
+    {
+      "width": 390,
+      "tab": "cards",
+      "status": 200,
+      "overflow": false,
+      "expectedCopy": true,
+      "staticFixture": true
+    },
+    {
+      "width": 390,
+      "tab": "market",
+      "status": 200,
+      "overflow": false,
+      "expectedCopy": true,
+      "staticFixture": true
+    },
+    {
+      "width": 1440,
+      "tab": "cards",
+      "status": 200,
+      "overflow": false,
+      "expectedCopy": true,
+      "staticFixture": true
+    },
+    {
+      "width": 1440,
+      "tab": "market",
+      "status": 200,
+      "overflow": false,
+      "expectedCopy": true,
+      "staticFixture": true
+    }
+  ]
+}

@@ -302,7 +302,12 @@ export function AppOnboardingForm({
   preferences: AppOnboardingPreferences;
 }) {
   const router = useRouter();
-  const { production, fantasyPreview } = useEnvironmentPresentation();
+  const {
+    production,
+    fantasyPreview: previewOnly,
+    fantasyProduction,
+  } = useEnvironmentPresentation();
+  const fantasyPreview = previewOnly || fantasyProduction;
   const essentialsRequired = legalRequired || usernameRequired;
   const [step, setStep] = useState(essentialsRequired ? 0 : 1),
     [ready, setReady] = useState(false),

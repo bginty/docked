@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { fantasyEnabled } from "@/core/fantasy";
+import { fantasyPlatformEnabled as fantasyEnabled } from "@/core/fantasy-production";
 
 export const dynamic = "force-dynamic";
 

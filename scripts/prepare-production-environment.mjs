@@ -6,8 +6,11 @@ import {
 } from "../src/core/hosted-production.mjs";
 
 // Local preparation only. Never contacts a cloud service, prints credentials,
-// copies Preview credentials or enables delivery/registration on the owner's behalf.
+// copies Preview credentials. Free-play activation requires separately verified readiness facts.
 try {
+  const freePlay = process.argv.includes("--free-play");
+  if (process.argv.slice(2).some((arg) => arg !== "--free-play"))
+    throw new Error("Unsupported preparation option");
   const manifest = JSON.parse(
     await readFile("config/hosted-production.json", "utf8"),
   );
@@ -43,6 +46,18 @@ try {
     if (support.protocol !== "https:" || support.username || support.password)
       throw new Error("Support URL must be public HTTPS");
   }
+  if (
+    freePlay &&
+    (operator.authEmailVerified !== true ||
+      operator.emailVerificationRequired !== true ||
+      operator.productionSmokeTestsPassed !== true ||
+      operator.productionRlsVerified !== true ||
+      operator.freePlayPolicyApproved !== true ||
+      operator.communityPolicyApproved !== true ||
+      operator.concurrencyTestsPassed !== true ||
+      operator.productionProjectRef !== manifest.supabaseProjectRef)
+  )
+    throw new Error("Production free-play verification is incomplete");
   const commit = execFileSync("git", ["rev-parse", "HEAD"], {
     encoding: "utf8",
   }).trim();
@@ -61,8 +76,10 @@ try {
     ODDS_PROVIDER_STATUS: "NOT_CONFIGURED",
     RESULTS_PROVIDER_STATUS: "NOT_CONFIGURED",
     ODDS_MONTHLY_CREDIT_LIMIT: "0",
-    REGISTRATION_ENABLED: "false",
-    AUTH_EMAIL_ENABLED: "false",
+    REGISTRATION_ENABLED: freePlay ? "true" : "false",
+    AUTH_EMAIL_ENABLED: freePlay ? "true" : "false",
+    FANTASY_FREE_PLAY_PRODUCTION: freePlay ? "true" : "false",
+    FANTASY_CARDS_PREVIEW: "false",
     LEGAL_ENTITY_VERIFIED: "true",
     DOCKED_LEGAL_NAME: operator.legalName,
     DOCKED_ABN: operator.abn.replace(/\s/g, ""),
@@ -104,8 +121,8 @@ try {
       projectId: manifest.vercelProjectId,
       target: "production",
       localPreparationOnly: true,
-      registrationEnabled: false,
-      authEmailEnabled: false,
+      registrationEnabled: freePlay,
+      authEmailEnabled: freePlay,
       keys: variables.map(({ key, type }) => ({ key, type })),
     }),
   );

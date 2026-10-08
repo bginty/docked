@@ -1,5 +1,5 @@
 import "server-only";
-import { fantasyEnabled } from "@/core/fantasy";
+import { fantasyPlatformEnabled as fantasyEnabled } from "@/core/fantasy-production";
 import { DateTime } from "luxon";
 import { db } from "./db";
 import { requireIdentity } from "./auth";

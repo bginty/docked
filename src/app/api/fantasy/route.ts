@@ -11,7 +11,7 @@ export async function GET() {
     return NextResponse.json(
       {
         error:
-          "Fantasy Preview requires an active invited account and configured Preview services.",
+          "Fantasy requires an eligible verified account, current consent and configured services.",
       },
       { status: 403, headers },
     );
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "Action could not complete. Check credits, ownership, eligibility and round lock. No partial changes were saved.",
+          "Action could not complete. Check access, ownership, pack availability, eligibility and round lock. No partial changes were saved.",
       },
       { status: 409, headers },
     );

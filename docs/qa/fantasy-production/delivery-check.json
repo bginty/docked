@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-08T00:23:08.796Z",
+  "checks": [
+    {
+      "url": "https://docked.com.au",
+      "status": 200,
+      "location": null,
+      "server": "GitHub.com",
+      "holding": true,
+      "fantasy": false
+    },
+    {
+      "url": "https://www.docked.com.au",
+      "status": 301,
+      "location": "https://docked.com.au/",
+      "server": "GitHub.com",
+      "holding": false,
+      "fantasy": false
+    },
+    {
+      "url": "https://docked-preview-s24-briant-ginty.vercel.app",
+      "status": 200,
+      "location": null,
+      "server": "Vercel",
+      "holding": false,
+      "fantasy": true
+    },
+    {
+      "url": "https://docked-preview-s24-briant-ginty.vercel.app/api/fantasy",
+      "status": 403,
+      "location": null,
+      "server": "Vercel",
+      "holding": false,
+      "fantasy": false
+    }
+  ],
+  "dns": {
+    "apex": [
+      "185.199.111.153",
+      "185.199.109.153",
+      "185.199.108.153",
+      "185.199.110.153"
+    ],
+    "www": [
+      "bginty.github.io"
+    ]
+  },
+  "apk": {
+    "path": "C:/Users/61412/Desktop/Docked-Preview-S24-v8-Fantasy-Cards.apk",
+    "size": 11044694,
+    "sha256": "ae888b5cfc393ed2ee9e66b4e1c1566382d70888d9c41585d1d9afdd401b902e",
+    "version": "1.7-preview",
+    "build": 8,
+    "originalPreserved": true
+  },
+  "email": {
+    "sent": false,
+    "preparedFiles": [
+      "C:/Users/61412/Desktop/Docked-Barry-Android-Preview.eml",
+      "C:/Users/61412/Desktop/Docked-Barry-Android-Preview.txt"
+    ],
+    "reason": "Browser automation unavailable; no Gmail delivery confirmation"
+  }
+}
