@@ -1,0 +1,1015 @@
+{
+  "scope": "Local Chromium only; isolated demo and authored fixtures, not hosted production or native devices",
+  "stats": {
+    "startTime": "2026-10-08T13:05:07.950Z",
+    "duration": 1056813.339,
+    "expected": 91,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "cases": [
+    {
+      "file": "app-auth.test.ts",
+      "title": "app account screens, autofill and accessible chrome at 320px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10151
+        }
+      ]
+    },
+    {
+      "file": "app-auth.test.ts",
+      "title": "app account screens, autofill and accessible chrome at 412px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 13107
+        }
+      ]
+    },
+    {
+      "file": "app-auth.test.ts",
+      "title": "app account screens, autofill and accessible chrome at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10821
+        }
+      ]
+    },
+    {
+      "file": "app-auth.test.ts",
+      "title": "app signup checks confirmation locally and transmits separate opt-in consent",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2166
+        }
+      ]
+    },
+    {
+      "file": "app-auth.test.ts",
+      "title": "app login and recovery handle service interruption without claiming success",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1646
+        }
+      ]
+    },
+    {
+      "file": "brand-native.test.ts",
+      "title": "approved offline branding remains readable and self-contained at 390px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2877
+        }
+      ]
+    },
+    {
+      "file": "brand-native.test.ts",
+      "title": "approved offline branding remains readable and self-contained at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3157
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 320px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 25709
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 320px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7800
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 390px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 25955
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 390px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8076
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 768px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 27643
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 768px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8298
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 1440px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 32286
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 1440px / light OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 9461
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 390px / dark OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 28325
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 390px / dark OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 9336
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal public routes at 1440px / dark OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 46043
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal isolated member UI at 1440px / dark OS preference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 14008
+        }
+      ]
+    },
+    {
+      "file": "brand-rollout.test.ts",
+      "title": "Edge Signal PWA/favicon/offline artwork serves approved supplied bytes",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3844
+        }
+      ]
+    },
+    {
+      "file": "composer-hydration.test.ts",
+      "title": "social and profile action buttons are inert before hydration and preserve their scoped handlers afterwards",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2181
+        }
+      ]
+    },
+    {
+      "file": "composer-hydration.test.ts",
+      "title": "composer mode controls stay disabled until the real server markup hydrates",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2129
+        }
+      ]
+    },
+    {
+      "file": "data-health-layout.test.ts",
+      "title": "admin data health contains not-configured tokens and complete long diagnostics at 360px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 17361
+        }
+      ]
+    },
+    {
+      "file": "data-health-layout.test.ts",
+      "title": "admin data health contains not-configured tokens and complete long diagnostics at 412px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 18115
+        }
+      ]
+    },
+    {
+      "file": "data-health-layout.test.ts",
+      "title": "admin data health contains not-configured tokens and complete long diagnostics at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 13979
+        }
+      ]
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "isolated fixture edge states and honest no-edge work at 320px without public data insertion",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10207
+        }
+      ]
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "article metadata, real PNG social card and allowlisted sports pages",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4061
+        }
+      ]
+    },
+    {
+      "file": "experience.test.ts",
+      "title": "preview public pages remain truthful, accessible and usable without an account",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 26800
+        }
+      ]
+    },
+    {
+      "file": "fantasy-retry.test.ts",
+      "title": "Fantasy ambiguous-then-rejected preserves only the appropriate retry identity",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 792
+        }
+      ]
+    },
+    {
+      "file": "fantasy-retry.test.ts",
+      "title": "Fantasy first-rejected preserves only the appropriate retry identity",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 693
+        }
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "desktop and mobile home, keyboard access, no storefront and accessibility",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10340
+        }
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "education and pending research are usable without an account",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4391
+        }
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "anonymous public/API gates, protected admin and no fake signup success",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1753
+        }
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "retired product routes, legacy support and invalid unsubscribe",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1150
+        }
+      ]
+    },
+    {
+      "file": "journeys.test.ts",
+      "title": "secondary routes pass automated accessibility scan",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8977
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "approved five-tab mobile composition, contrast and content clearance at 360px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 13186
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "approved five-tab mobile composition, contrast and content clearance at 390px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 13217
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "approved five-tab mobile composition, contrast and content clearance at 412px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 11999
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "approved five-tab mobile composition, contrast and content clearance at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 9150
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "mobile null metrics, profile controls and compact locked quotes remain honest",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3172
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "mobile safe insets and keyboard occlusion preserve controls",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2885
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "all app destinations reject anonymous data access and preserve direct URL routing",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10095
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "continuous feed appends unique posts and clears revoked or changed account content",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3238
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "bounded timeline continues from the first unconsumed page without dropping posts",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3612
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 360px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4104
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 390px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6726
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 412px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5055
+        }
+      ]
+    },
+    {
+      "file": "mobile-app.test.ts",
+      "title": "DEMO Following suggestions retain readable identity, badge contrast and actions at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5304
+        }
+      ]
+    },
+    {
+      "file": "official-record.test.ts",
+      "title": "DEMO official forward record preserves complete outcomes and unknown states at 360px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 7618
+        }
+      ]
+    },
+    {
+      "file": "official-record.test.ts",
+      "title": "DEMO official forward record preserves complete outcomes and unknown states at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 8131
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 390px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 24800
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 430px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 26809
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 768px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 28182
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 30996
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "Phase3 public gates and disabled previews remain accessible at 1920px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 29530
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO app hierarchy, all outcomes, provisional ranking and touch navigation",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 19029
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO verified Edge review requires permanent confirmation again when provider price moves",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4280
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO unsupported and promotional claims stay social-only; social interactions use distinct actions",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3878
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO notification consent and moderation are separate from record corrections",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 5072
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "DEMO administrative drafts remain disabled and leaderboard captures are auditable",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6116
+        }
+      ]
+    },
+    {
+      "file": "phase3.test.ts",
+      "title": "PWA serves an offline shell without caching private pages or APIs",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2523
+        }
+      ]
+    },
+    {
+      "file": "phase5-edges.test.ts",
+      "title": "Phase 5 DEMO honest empty and populated discovery at 360px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4391
+        }
+      ]
+    },
+    {
+      "file": "phase5-edges.test.ts",
+      "title": "Phase 5 DEMO honest empty and populated discovery at 412px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4616
+        }
+      ]
+    },
+    {
+      "file": "phase5-edges.test.ts",
+      "title": "Phase 5 DEMO honest empty and populated discovery at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4794
+        }
+      ]
+    },
+    {
+      "file": "phase5-edges.test.ts",
+      "title": "Phase 5 DEMO manual/review controls cannot type prices and recover from revalidation failure",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3470
+        }
+      ]
+    },
+    {
+      "file": "preview-fixture.test.ts",
+      "title": "preview composer binds synthetic reference, requires renewed confirmation and clears revoked data",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3827
+        }
+      ]
+    },
+    {
+      "file": "preview-fixture.test.ts",
+      "title": "selection changes abort pending preview review and cannot display an old reference",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1889
+        }
+      ]
+    },
+    {
+      "file": "production-header.test.ts",
+      "title": "production closed-registration label fits the rendered public header at 320px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2581
+        }
+      ]
+    },
+    {
+      "file": "production-header.test.ts",
+      "title": "production closed-registration label fits the rendered public header at 390px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 2897
+        }
+      ]
+    },
+    {
+      "file": "production-header.test.ts",
+      "title": "production closed-registration label fits the rendered public header at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3361
+        }
+      ]
+    },
+    {
+      "file": "production-presentation.test.ts",
+      "title": "production account readiness and environment chrome at 320px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3393
+        }
+      ]
+    },
+    {
+      "file": "production-presentation.test.ts",
+      "title": "production account readiness and environment chrome at 412px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3536
+        }
+      ]
+    },
+    {
+      "file": "production-presentation.test.ts",
+      "title": "production account readiness and environment chrome at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3613
+        }
+      ]
+    },
+    {
+      "file": "reference-price.test.ts",
+      "title": "web deep-link aliases preserve canonical visibility routes",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 1606
+        }
+      ]
+    },
+    {
+      "file": "reference-price.test.ts",
+      "title": "reference card hierarchy and unavailable data remain honest at mobile widths",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6180
+        }
+      ]
+    },
+    {
+      "file": "reference-price.test.ts",
+      "title": "reference composer sends canonical market selection only and reconfirms a moved benchmark",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3525
+        }
+      ]
+    },
+    {
+      "file": "research-ui.test.ts",
+      "title": "DEMO research missing evidence, conflicts and governed source states at 360px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10710
+        }
+      ]
+    },
+    {
+      "file": "research-ui.test.ts",
+      "title": "DEMO research missing evidence, conflicts and governed source states at 412px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10506
+        }
+      ]
+    },
+    {
+      "file": "research-ui.test.ts",
+      "title": "DEMO research missing evidence, conflicts and governed source states at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 10915
+        }
+      ]
+    },
+    {
+      "file": "research-ui.test.ts",
+      "title": "DEMO structured fact form preserves unknowns, captures observed time and cannot submit probability",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3386
+        }
+      ]
+    },
+    {
+      "file": "research-ui.test.ts",
+      "title": "DEMO source governance defaults block use and research notifications remain separate opt-ins",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 6561
+        }
+      ]
+    },
+    {
+      "file": "timestamp-hydration.test.ts",
+      "title": "UTC server markup hydrates safely into Australia/Sydney local time",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 537
+        }
+      ]
+    },
+    {
+      "file": "timestamp-hydration.test.ts",
+      "title": "UTC server markup hydrates safely into America/New_York local time",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 535
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 390px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 36831
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 430px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 37283
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 768px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 41358
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 1366px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 48760
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "sports identity remains accessible and honest at 1920px",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 39866
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "all ten sport routes decode local optimized photos and retain explicit coverage status",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 12862
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "cancelled atmosphere and motorsport photo loads recover on immediate revisit without a runtime optimizer",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 3012
+        }
+      ]
+    },
+    {
+      "file": "visual-sports.test.ts",
+      "title": "atmospheric no-edge imagery preserves restricted and outage meanings",
+      "status": "expected",
+      "attempts": [
+        {
+          "status": "passed",
+          "durationMs": 4815
+        }
+      ]
+    }
+  ]
+}

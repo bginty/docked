@@ -8,6 +8,7 @@ import {
 import { FantasyHero } from "./fantasy-brand";
 import { FantasyAdmin } from "./fantasy-admin";
 import { FantasyRewards } from "./fantasy-rewards";
+import { fantasyResponseRejects } from "@/core/fantasy-response";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 const tiers = ["CORE", "RARE", "ELITE", "LEGENDARY", "ICON"];
 const stamp = (s: string) =>
@@ -98,6 +99,7 @@ export function FantasyScreen({
     [give, setGive] = useState<string[]>([]),
     [receive, setReceive] = useState<string[]>([]);
   const pending = useRef<PendingFantasyRequest | null>(null);
+  const pendingUnconfirmed = useRef(false);
   const inFlight = useRef(false);
   async function refresh() {
     if (inFlight.current) return;
@@ -132,14 +134,23 @@ export function FantasyScreen({
       });
       const result = await response.json();
       if (!response.ok) {
-        pending.current = null;
+        if (
+          fantasyResponseRejects(
+            response.status,
+            result,
+            pendingUnconfirmed.current,
+          )
+        )
+          pending.current = null;
         throw Error(result.error);
       }
       pending.current = null;
+      pendingUnconfirmed.current = false;
       setData(result.state);
       setMessage("Saved securely.");
       return result.result as Record<string, unknown>;
     } catch (e) {
+      pendingUnconfirmed.current = pending.current !== null;
       setMessage(
         e instanceof Error
           ? `${e.message}${pending.current ? " Retry the pending action below to confirm its outcome without duplicating it." : ""}`

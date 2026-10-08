@@ -1,0 +1,115 @@
+{
+  "recordedAt": "2026-10-08T13:25:23.834Z",
+  "baseCommit": "3af7acc83eaf5c2b3eef118e9178407f2b5e6eb1",
+  "scope": "Independent overnight local implementation and regression; no cloud mutation",
+  "platform": {
+    "tests": 408,
+    "passed": 408,
+    "failed": 0
+  },
+  "database": {
+    "tests": 205,
+    "passed": 205,
+    "failed": 0
+  },
+  "browser": {
+    "startTime": "2026-10-08T13:05:07.950Z",
+    "duration": 1056813.339,
+    "expected": 91,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "realPostgresFantasyScenarios": 8,
+  "staticFantasyLayouts": 4,
+  "typecheck": "PASS",
+  "fullLint": "PASS",
+  "isolatedBuild": "PASS",
+  "sourceFiles": [
+    {
+      "path": "src/core/fantasy-nfl.ts",
+      "sha256": "6beaad8d5d535b4342a8da05addca71785536c4ea1c19d8148d7f928c6577d1f"
+    },
+    {
+      "path": "src/core/fantasy-response.ts",
+      "sha256": "cb08b1e26d71e6e1e9f3a2b3db8a483a7ca6c6b2d51f17375daab2b05696a858"
+    },
+    {
+      "path": "src/app/api/fantasy/route.ts",
+      "sha256": "24af62f879fb6d2b1ae2bc14bf096349191f75b5fe354d07abece9e6e3d7a872"
+    },
+    {
+      "path": "src/components/fantasy-screen.tsx",
+      "sha256": "bb684fa1f846572be269880ad9b2bb2d51a49596a27ed9d2fe831e193c093b95"
+    },
+    {
+      "path": "tests/platform/fantasy-nfl.test.ts",
+      "sha256": "c9a7b5151f5b33b51396ba49d45f1accedd9066830b3d2b1b31a66af95e71b5b"
+    },
+    {
+      "path": "tests/platform/fantasy-response.test.ts",
+      "sha256": "14a0d13dbb44d929cea998cbd3ce487c8abe9828e394d26299cf56fd19de1220"
+    },
+    {
+      "path": "tests/fixtures/fantasy-retry.tsx",
+      "sha256": "2d0026e5c2528f4b5103f7f4ba534fda54b0a17cc392fa7a198a50c1ba933640"
+    },
+    {
+      "path": "tests/browser/fantasy-retry.test.ts",
+      "sha256": "6f4d8d919348b2479c221da8c8a5d89ba10e94be0d9e7d346f69ccc4f5537158"
+    }
+  ],
+  "retainedBrowserArtifacts": [
+    "brand-browser/DEMO-1440-dark.json",
+    "brand-browser/DEMO-1440-light.json",
+    "brand-browser/DEMO-320-light.json",
+    "brand-browser/DEMO-390-dark.json",
+    "brand-browser/DEMO-390-light.json",
+    "brand-browser/DEMO-768-light.json",
+    "brand-browser/public-1440-dark.json",
+    "brand-browser/public-1440-light.json",
+    "brand-browser/public-320-light.json",
+    "brand-browser/public-390-dark.json",
+    "brand-browser/public-390-light.json",
+    "brand-browser/public-768-light.json",
+    "mobile-app/DEMO-1366.json",
+    "mobile-app/DEMO-360.json",
+    "mobile-app/DEMO-390.json",
+    "mobile-app/DEMO-412.json",
+    "mobile-app/DEMO-following-suggestions-1366.json",
+    "mobile-app/DEMO-following-suggestions-360.json",
+    "mobile-app/DEMO-following-suggestions-390.json",
+    "mobile-app/DEMO-following-suggestions-412.json",
+    "production-header/header-1366.json",
+    "production-header/header-320.json",
+    "production-header/header-390.json",
+    "production-header/ISOLATED-header-1366.png",
+    "production-header/ISOLATED-header-320.png",
+    "production-header/ISOLATED-header-390.png",
+    "production-presentation/ISOLATED-signup-closed-1366.png",
+    "production-presentation/ISOLATED-signup-closed-320.png",
+    "production-presentation/ISOLATED-signup-closed-412.png",
+    "web-regression/public-1366.json",
+    "web-regression/public-1920.json",
+    "web-regression/public-390.json",
+    "web-regression/public-430.json",
+    "web-regression/public-768.json",
+    "web-regression/sports-regression/browser-1366.json",
+    "web-regression/sports-regression/browser-1920.json",
+    "web-regression/sports-regression/browser-390.json",
+    "web-regression/sports-regression/browser-430.json",
+    "web-regression/sports-regression/browser-768.json"
+  ],
+  "fullBrowserArtifactArchive": "private-data/production/overnight-browser-artifacts",
+  "setupIssuesResolved": [
+    "Source export initially omitted Supabase source; copied required source and rebuilt successfully",
+    "Browser collection initially lacked existing approved brand fixture manifest; copied fixture manifest and reran complete suite"
+  ],
+  "notVerified": [
+    "Hosted Auth and gameplay acceptance",
+    "Actual Android and iPhone device behavior",
+    "Other-real-mailbox negative authorization",
+    "Current private APK download link availability",
+    "Current Preview/Vercel live availability"
+  ]
+}

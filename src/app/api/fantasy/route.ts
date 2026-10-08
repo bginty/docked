@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { sameOrigin } from "@/server/auth";
 import { fantasyRequest } from "@/server/fantasy";
 import { boundedCommunityBody } from "@/core/community-social";
+import { fantasyFailureOutcome } from "@/core/fantasy-response";
+import { ZodError } from "zod";
 export const runtime = "nodejs";
 const headers = { "Cache-Control": "private, no-store" };
 export async function GET() {
@@ -20,22 +22,31 @@ export async function GET() {
 export async function POST(request: Request) {
   if (!sameOrigin(request))
     return NextResponse.json(
-      { error: "Origin denied" },
+      { error: "Origin denied", outcome: "rejected" },
       { status: 403, headers },
     );
+  let input: unknown;
   try {
     const raw = await boundedCommunityBody(request, 16384);
-    return NextResponse.json(
-      await fantasyRequest(JSON.parse(new TextDecoder().decode(raw))),
-      { headers },
-    );
+    input = JSON.parse(new TextDecoder().decode(raw));
   } catch {
     return NextResponse.json(
-      {
-        error:
-          "Action could not complete. Check access, ownership, pack availability, eligibility and round lock. No partial changes were saved.",
-      },
-      { status: 409, headers },
+      { error: "Invalid request body", outcome: "rejected" },
+      { status: 400, headers },
+    );
+  }
+  try {
+    return NextResponse.json(await fantasyRequest(input), { headers });
+  } catch (error) {
+    if (error instanceof ZodError)
+      return NextResponse.json(
+        { error: "Invalid action fields", outcome: "rejected" },
+        { status: 400, headers },
+      );
+    const failure = fantasyFailureOutcome(error);
+    return NextResponse.json(
+      { error: failure.error, outcome: failure.outcome },
+      { status: failure.status, headers },
     );
   }
 }
