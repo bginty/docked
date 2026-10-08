@@ -3,5 +3,10 @@
   "framework": "nextjs",
   "regions": ["syd1"],
   "buildCommand": "node scripts/guard-hosted-build.mjs && npm run build",
-  "installCommand": "npm ci"
+  "installCommand": "npm ci",
+  "git": {
+    "deploymentEnabled": {
+      "codex/vercel-beta-review": false
+    }
+  }
 }
