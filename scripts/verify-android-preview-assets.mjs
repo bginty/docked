@@ -1,10 +1,16 @@
 import { readFileSync, readdirSync } from "node:fs";
 import assert from "node:assert/strict";
 import { resolveAndroidTarget } from "./android-preview-config.mjs";
+import { verifyCurrentBetaHost } from "./android-live-beta-config.mjs";
 
 // Also called by Gradle, so a direct assemblePreview cannot package stale local assets.
 try {
-  const target = resolveAndroidTarget({ CAPACITOR_PREVIEW_MODE: "hosted" });
+  const liveBeta = process.argv.includes("--live-beta");
+  const target = resolveAndroidTarget(
+    liveBeta
+      ? { CAPACITOR_LIVE_BETA: "true" }
+      : { CAPACITOR_PREVIEW_MODE: "hosted" },
+  );
   const config = JSON.parse(
     readFileSync("android/app/src/main/assets/capacitor.config.json", "utf8"),
   );
@@ -21,6 +27,7 @@ try {
   assert.equal(config.loggingBehavior, "none");
   assert.equal(config.server?.allowNavigation, undefined);
   assert.deepEqual(packaged, target.manifest);
+  if (liveBeta) await verifyCurrentBetaHost(target.manifest);
   const allowedFiles = new Set([
     "index.html",
     "offline.html",
@@ -51,7 +58,7 @@ try {
     const canonical = JSON.parse(
       readFileSync("src/brand/canonical-logo.json", "utf8"),
     );
-    if (process.env.FANTASY_CARDS_PREVIEW === "true")
+    if (process.env.FANTASY_CARDS_PREVIEW === "true" || liveBeta)
       canonical.source = "public/brand/docked/icons/docked-icon-512.png";
     const approvedImage = `data:image/png;base64,${readFileSync(canonical.source).toString("base64")}`;
     assert.ok(html.includes(approvedImage));
@@ -61,7 +68,7 @@ try {
     );
   }
   console.log(
-    "Verified exact HTTPS preview assets; inspection and cleartext disabled.",
+    "Verified exact HTTPS assets; inspection and cleartext disabled.",
   );
 } catch {
   console.error(

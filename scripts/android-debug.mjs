@@ -18,7 +18,10 @@ if (!sdk || !java || !existsSync(path.join(sdk, "platforms", "android-36")))
 const attached = process.argv.includes("--attach-local");
 const inspect = process.argv.includes("--inspect-webview");
 const closedTest = process.argv.includes("--closed-test");
+const liveBeta = process.argv.includes("--live-beta");
 const hosted = process.argv.includes("--hosted-preview") || closedTest;
+if (liveBeta && (hosted || attached || inspect))
+  throw Error("Live beta is a separate HTTPS-only build.");
 if (hosted && (attached || inspect))
   throw new Error(
     "Hosted preview cannot enable local attachment or inspection.",
@@ -27,6 +30,7 @@ if (inspect && !attached)
   throw new Error("WebView inspection requires --attach-local.");
 const env = {
   ...process.env,
+  CAPACITOR_LIVE_BETA: liveBeta ? "true" : "false",
   CAPACITOR_PREVIEW_MODE: hosted ? "hosted" : attached ? "local" : "bundled",
   CAPACITOR_PREVIEW_SERVER: "",
   CAPACITOR_PREVIEW_DEBUGGING: inspect ? "1" : "",
@@ -48,12 +52,13 @@ const artifactOutput = path.join(
   closedTest
     ? "android/app/build/outputs/bundle"
     : "android/app/build/outputs/apk",
-  closedTest ? "closedTest" : hosted ? "preview" : "debug",
+  closedTest ? "closedTest" : liveBeta ? "beta" : hosted ? "preview" : "debug",
 );
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
-const hostedFilename =
-  process.env.FANTASY_CARDS_PREVIEW === "true"
+const hostedFilename = liveBeta
+  ? "Docked-Live-Beta-S24-v9.apk"
+  : process.env.FANTASY_CARDS_PREVIEW === "true"
     ? "Docked-Preview-S24-v8-Fantasy-Cards.apk"
     : "Docked-Preview-S24-v7-Match-Research.apk";
 preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);
@@ -62,7 +67,7 @@ preserveAndroidApks(
   artifactArchive,
   [".aab"],
 );
-for (const variant of ["debug", "preview"]) {
+for (const variant of ["debug", "preview", "beta"]) {
   preserveAndroidApks(
     path.join(root, "android/app/build/outputs/apk", variant),
     artifactArchive,
@@ -76,9 +81,11 @@ run(
   [
     closedTest
       ? ":app:bundleClosedTest"
-      : hosted
-        ? ":app:assemblePreview"
-        : ":app:assembleDebug",
+      : liveBeta
+        ? ":app:assembleBeta"
+        : hosted
+          ? ":app:assemblePreview"
+          : ":app:assembleDebug",
     "--no-daemon",
     "--max-workers=2",
   ],
@@ -93,15 +100,16 @@ if (closedTest) {
   console.log(
     "Created artifacts/android/Docked-Preview-v7-Closed-Test.aab. No Play upload was performed.",
   );
-} else if (hosted) {
-  const output = path.join(root, "android/app/build/outputs/apk/preview");
+} else if (hosted || liveBeta) {
+  const variant = liveBeta ? "beta" : "preview";
+  const output = path.join(root, "android/app/build/outputs/apk", variant);
   copyFileSync(
-    path.join(output, "app-preview.apk"),
+    path.join(output, `app-${variant}.apk`),
     path.join(output, hostedFilename),
   );
   mkdirSync(artifactDelivery, { recursive: true });
   copyFileSync(
-    path.join(output, "app-preview.apk"),
+    path.join(output, `app-${variant}.apk`),
     path.join(artifactDelivery, hostedFilename),
   );
   console.log(`Created artifacts/android/${hostedFilename}`);

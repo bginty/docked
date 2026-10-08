@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { resolveLiveBetaTarget } from "./android-live-beta-config.mjs";
 
 export const previewProjectRef = "bckkllmndoxzpzdqrevb";
 export const previewApplicationId = "au.com.docked.app.preview";
@@ -104,6 +105,10 @@ export function resolveAndroidTarget(
   read = readFileSync,
   now = Date.now(),
 ) {
+  if (env.CAPACITOR_LIVE_BETA === "true")
+    return resolveLiveBetaTarget(env, read, now);
+  if (env.CAPACITOR_LIVE_BETA && env.CAPACITOR_LIVE_BETA !== "false")
+    throw Error("Unknown live beta mode.");
   const mode = env.CAPACITOR_PREVIEW_MODE || "bundled";
   if (!["bundled", "local", "hosted"].includes(mode))
     throw new Error("Unknown Android preview build mode.");

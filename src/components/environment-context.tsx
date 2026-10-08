@@ -2,7 +2,11 @@
 import { createContext, useContext, type ReactNode } from "react";
 import type { authUiReadiness } from "@/core/auth-readiness";
 
-export type EnvironmentPresentation = ReturnType<typeof authUiReadiness> & {
+export type EnvironmentPresentation = Omit<
+  ReturnType<typeof authUiReadiness>,
+  "liveBeta"
+> & {
+  liveBeta?: boolean;
   accountConfigured: boolean;
   fantasyPreview?: boolean;
   fantasyProduction?: boolean;

@@ -7,8 +7,8 @@ android {
         applicationId "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode System.getenv("FANTASY_CARDS_PREVIEW") == "true" ? 8 : 7
-        versionName System.getenv("FANTASY_CARDS_PREVIEW") == "true" ? "1.7" : "1.6"
+        versionCode System.getenv("CAPACITOR_LIVE_BETA") == "true" ? 9 : System.getenv("FANTASY_CARDS_PREVIEW") == "true" ? 8 : 7
+        versionName System.getenv("CAPACITOR_LIVE_BETA") == "true" ? "1.8" : System.getenv("FANTASY_CARDS_PREVIEW") == "true" ? "1.7" : "1.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -44,6 +44,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        // Separate sideload beta identity preserves the installed Preview app.
+        beta {
+            initWith preview
+            applicationIdSuffix ".beta"
+            versionNameSuffix "-beta"
+            signingConfig signingConfigs.debug
+            debuggable false
+            matchingFallbacks = ['debug']
+        }
         // Explicit closed-test-only package. Never inherits debug signing or its
         // localhost resource overlay. Owner upload key is required before build.
         closedTest {
@@ -61,6 +70,24 @@ android {
 // Production release remains blocked. The separate closedTest variant requires
 // exact isolated HTTPS assets and a real owner-controlled upload certificate.
 gradle.taskGraph.whenReady { graph ->
+    // preDebugBuild identifies the actual Debug variant. Native symbol tasks
+    // such as stripBetaDebugSymbols must not be treated as Debug builds.
+    if (graph.allTasks.any { it.project == project && it.name == 'preDebugBuild' }) {
+        def verification = providers.exec {
+            workingDir rootProject.projectDir.parentFile
+            commandLine 'node', 'scripts/verify-android-debug-assets.mjs'
+            ignoreExitValue = true
+        }
+        if (verification.result.get().exitValue != 0) throw new GradleException('Debug build is BLOCKED: hosted assets must not overwrite the installed Preview package.')
+    }
+    if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('beta') }) {
+        def verification = providers.exec {
+            workingDir rootProject.projectDir.parentFile
+            commandLine 'node', 'scripts/verify-android-preview-assets.mjs', '--live-beta'
+            ignoreExitValue = true
+        }
+        if (verification.result.get().exitValue != 0) throw new GradleException('Live beta is BLOCKED: actual hosted acceptance and exact HTTPS assets required.')
+    }
     if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('release') }) {
         throw new GradleException('Docked release is BLOCKED: development foundation only. See docs/GOOGLE_PLAY_READINESS.md.')
     }

@@ -8,12 +8,13 @@ import {
 // Local preparation only. Never contacts a cloud service, prints credentials,
 // copies Preview credentials. Free-play activation requires separately verified readiness facts.
 try {
-  const freePlay = process.argv.includes("--free-play");
+  const liveBeta = process.argv.includes("--live-beta");
+  const freePlay = process.argv.includes("--free-play") || liveBeta;
   const staging = process.argv.includes("--staging");
   if (
     process.argv
       .slice(2)
-      .some((arg) => !["--free-play", "--staging"].includes(arg))
+      .some((arg) => !["--free-play", "--staging", "--live-beta"].includes(arg))
   )
     throw new Error("Unsupported preparation option");
   const manifest = JSON.parse(
@@ -65,6 +66,13 @@ try {
       operator.productionProjectRef !== manifest.supabaseProjectRef)
   )
     throw new Error("Production free-play verification is incomplete");
+  if (
+    liveBeta &&
+    (operator.invitedAuthAcceptancePassed !== true ||
+      operator.betaRecordsIsolationVerified !== true ||
+      operator.administratorMfaVerified !== true)
+  )
+    throw new Error("Invited beta verification is incomplete");
   const commit = execFileSync("git", ["rev-parse", "HEAD"], {
     encoding: "utf8",
   }).trim();
@@ -85,7 +93,9 @@ try {
     ODDS_PROVIDER_STATUS: "NOT_CONFIGURED",
     RESULTS_PROVIDER_STATUS: "NOT_CONFIGURED",
     ODDS_MONTHLY_CREDIT_LIMIT: "0",
-    REGISTRATION_ENABLED: freePlay ? "true" : "false",
+    REGISTRATION_ENABLED: freePlay && !liveBeta ? "true" : "false",
+    DOCKED_RELEASE_CHANNEL: liveBeta ? "beta" : "stable",
+    DOCKED_AUTH_INVITES_READY: liveBeta ? "true" : "false",
     AUTH_EMAIL_ENABLED: freePlay ? "true" : "false",
     FANTASY_FREE_PLAY_PRODUCTION: freePlay ? "true" : "false",
     FANTASY_CARDS_PREVIEW: "false",
@@ -166,7 +176,8 @@ try {
       projectId: netlify ? manifest.netlifySiteId : manifest.vercelProjectId,
       target: "production",
       localPreparationOnly: true,
-      registrationEnabled: freePlay,
+      registrationEnabled: freePlay && !liveBeta,
+      liveBeta,
       authEmailEnabled: freePlay,
       keys: variables.map(({ key, type }) => ({ key, type })),
     }),

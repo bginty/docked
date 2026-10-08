@@ -10,7 +10,8 @@ const brand = JSON.parse(readFileSync("src/brand/brand-tokens.json", "utf8"));
 const canonical = JSON.parse(
   readFileSync("src/brand/canonical-logo.json", "utf8"),
 );
-const fantasy = process.env.FANTASY_CARDS_PREVIEW === "true";
+const liveBeta = process.env.CAPACITOR_LIVE_BETA === "true";
+const fantasy = process.env.FANTASY_CARDS_PREVIEW === "true" || liveBeta;
 const logo = `data:image/png;base64,${readFileSync(fantasy ? "public/brand/docked/icons/docked-icon-512.png" : canonical.source).toString("base64")}`;
 function shellStyle() {
   const variables = Object.entries(brand.colors)
@@ -35,6 +36,12 @@ function brandShell(template) {
         "Current prices and private content cannot be verified while offline.",
         "Cards, teams and test-credit balances cannot be verified while offline.",
       );
+  if (liveBeta)
+    template = template
+      .replaceAll("Docked Preview", "Docked Beta")
+      .replaceAll("test-credit balances", "gameplay points")
+      .replaceAll("test-credit balance", "gameplay points")
+      .replaceAll("Test credits only.", "Invited beta. No cash value.");
   return template
     .replaceAll("{{NAVY}}", brand.colors.navy)
     .replaceAll("{{LOGO}}", logo)
@@ -61,7 +68,11 @@ export function renderOfflineShell(target) {
     .replace("{{SCRIPT}}", script)
     .replace(
       "{{RETRY_LABEL}}",
-      target.mode === "local" ? "Retry local preview" : "Retry Docked Preview",
+      target.mode === "local"
+        ? "Retry local preview"
+        : target.mode === "beta"
+          ? "Retry Docked Beta"
+          : "Retry Docked Preview",
     )
     .replace("{{RETRY_DISABLED}}", target.entryUrl ? "" : "disabled")
     .replace(
@@ -77,7 +88,7 @@ export function buildMobileShell(target = resolveAndroidTarget()) {
   writeFileSync(`${target.webDir}/offline.html`, html);
   writeFileSync(
     `${target.webDir}/index.html`,
-    target.mode === "hosted"
+    ["hosted", "beta"].includes(target.mode)
       ? html
       : brandShell(readFileSync("mobile/www/index.html", "utf8")),
   );

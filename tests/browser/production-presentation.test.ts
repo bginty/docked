@@ -152,6 +152,26 @@ for (const width of [320, 412, 1366])
       closed,
     );
     await expect(page.locator(".app-preview-label")).toHaveCount(0);
+    await page.evaluate(
+      (value) =>
+        window.renderEnvironmentFixture({ ...value, liveBeta: true }, "shell"),
+      closed,
+    );
+    await expect(page.getByText("BETA", { exact: true })).toBeVisible();
+    await expect(page.getByText("PREVIEW", { exact: true })).toHaveCount(0);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth + 1,
+      ),
+    ).toBe(true);
+    await page.screenshot({
+      path: path.join(
+        evidenceRoot,
+        "production-presentation",
+        `ISOLATED-live-beta-${width}.png`,
+      ),
+      fullPage: true,
+    });
     await expect(
       page.getByText("Research validation pending.", { exact: false }),
     ).toBeVisible();

@@ -102,6 +102,7 @@ export function AppShell({
   const path = usePathname();
   const {
     production,
+    liveBeta,
     fantasyPreview: previewOnly,
     fantasyProduction,
   } = useEnvironmentPresentation();
@@ -206,7 +207,11 @@ export function AppShell({
                 <BrandLogo surface="dark" decorative />
               )}
             </Link>
-            {!production && <span className="app-preview-label">PREVIEW</span>}
+            {(liveBeta || !production) && (
+              <span className="app-preview-label">
+                {liveBeta ? "BETA" : "PREVIEW"}
+              </span>
+            )}
           </div>
           <nav aria-label="App utilities">
             <Link

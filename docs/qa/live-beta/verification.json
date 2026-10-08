@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-08T14:42:34.976Z",
+  "baseCommit": "68af14a8",
+  "uncommittedScope": "Live-beta guarded release and separate Android build path",
+  "platform": {
+    "passed": 426,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 11,
+    "failed": 0,
+    "scope": "Local Chromium with authored Auth/presentation fixtures, not hosted production or native Android"
+  },
+  "finalNativeSubset": {
+    "passed": 9,
+    "failed": 0
+  },
+  "typecheck": "PASS",
+  "changedFileLint": "PASS",
+  "isolatedBuild": "PASS",
+  "supabaseSecurityAdvisor": "No warning/error issues on pojoymtniryarxxunyvz",
+  "android": {
+    "artifactProduced": false,
+    "devices": 0,
+    "gradleDryRun": "Expected refusal at actual-host acceptance guard"
+  },
+  "deployment": "BLOCKED: mandatory policy/Auth/gameplay acceptance missing",
+  "cloudConfigurationChanged": false
+}

@@ -6,6 +6,14 @@ Owner-confirmed public contact: **Ginty United Investments Pty Ltd · ABN 78 606
 
 ## Terms of use
 
+### Controlled beta addendum — pending owner/policy approval
+
+The proposed first release is invitation-only Docked Beta for adults aged 18 or older in the approved territory. Public registration remains closed. Beta is experimental: availability, incomplete features and known limitations must be disclosed before use. Only supported, verified actions should be described as working. Contact support@docked.com.au for support/privacy assistance.
+
+Beta gameplay and rankings must be distinguished from future official launch records. No promise is made that beta rankings carry into a later release; this does not authorize deleting or rewriting immutable ownership/history records. Any transition must preserve those records and follow the approved privacy/retention process. Fictional players and simulated statistics remain labeled. No validated official betting advice, monetary prize, paid pack or cash value is offered by this beta.
+
+This addendum does not approve territory, retention, regulatory applicability, operator responsibilities or policy versions. Those decisions and functional verification remain prerequisites to external testers.
+
 Docked Fantasy Cards is operated by **Ginty United Investments Pty Ltd, ABN 78 606 187 106**. It is a free-to-join fantasy collection and team game. Cards are digital game records, not financial assets, NFTs, shares, deposits or promises of investment returns. Gameplay points cannot be transferred, withdrawn, redeemed for money or used to purchase paid packs. Buying, selling and trading are disabled for this launch. There are no entry fees, monetary prizes, deposits, withdrawals or payment processing.
 
 Members must be at least 18, satisfy the published location eligibility rules, verify their account email, and accept the current Terms and acknowledge the Privacy Policy. The proposed initial territory is Australia only, subject to owner/legal approval and an exact database country/state policy. This proposal is not a worldwide launch authorization. Do not share accounts, impersonate others, evade restrictions, automate reward claims, exploit errors or create accounts to farm rewards. Email verification and rate limits reduce abuse but do not prove that every account represents a different person.

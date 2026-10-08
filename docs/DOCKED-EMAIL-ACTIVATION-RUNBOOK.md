@@ -1,5 +1,7 @@
 # Docked email acceptance and activation runbook
 
+> Current authority: the owner's subsequent controlled live-beta deployment request authorizes the support-only hosted Auth test window. Item 1 below is satisfied by that instruction; do not ask again. Protected staging/policy prerequisites and actual acceptance remain required. See [live-beta acceptance](DOCKED-LIVE-BETA-ACCEPTANCE.md).
+
 Continuation from `ec299fe7`. All activation switches remain closed. This document specifies the controlled test and rollback; it is not evidence that hosted Auth acceptance or activation has happened.
 
 9 October readback: both email migrations are applied to `pojoymtniryarxxunyvz`; function version 5 matches all four local source files and remains disabled. `pgcrypto` and Vault are installed; `pg_cron` and `pg_net` are available but not installed. No Vault signing entry or cron job was created by this work. The website invitation/profile changes have passed local checks but are not hosted. See [acceptance continuation](DOCKED-EMAIL-ACCEPTANCE-CONTINUATION.md).

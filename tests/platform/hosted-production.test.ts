@@ -58,6 +58,31 @@ function environment(): Record<string, string> {
   };
 }
 
+test("beta deployment cannot enable public registration or use an unknown channel", () => {
+  assert.doesNotThrow(() =>
+    assertHostedProduction(
+      { ...environment(), DOCKED_RELEASE_CHANNEL: "beta" },
+      reviewed,
+    ),
+  );
+  assert.throws(() =>
+    assertHostedProduction(
+      {
+        ...environment(),
+        DOCKED_RELEASE_CHANNEL: "beta",
+        REGISTRATION_ENABLED: "true",
+      },
+      reviewed,
+    ),
+  );
+  assert.throws(() =>
+    assertHostedProduction(
+      { ...environment(), DOCKED_RELEASE_CHANNEL: "unknown" },
+      reviewed,
+    ),
+  );
+});
+
 test("free-play production requires separate reviewed identities and cannot borrow Preview configuration", () => {
   const env = {
     ...environment(),

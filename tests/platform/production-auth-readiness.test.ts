@@ -15,6 +15,22 @@ const approved = {
   TERMS_VERSION: "terms-2026-10-v1",
   PRIVACY_POLICY_VERSION: "privacy-2026-10-v2",
 };
+test("live beta denies public signup even when ordinary registration flags are enabled", () => {
+  const env = {
+    ...approved,
+    DOCKED_RELEASE_CHANNEL: "beta",
+    AUTH_EMAIL_ENABLED: "true",
+    REGISTRATION_ENABLED: "true",
+  };
+  assert.equal(authUiReadiness(env, true).liveBeta, true);
+  assert.equal(authUiReadiness(env, true).registrationAvailable, false);
+  assert.match(
+    productionAuthRequestDenial("signup", undefined, env)!,
+    /invitation-only/,
+  );
+  assert.equal(productionAuthRequestDenial("recover", undefined, env), null);
+});
+
 test("production Auth mail is off by default and independent of optional delivery", () => {
   for (const action of ["signup", "recover", "resend"])
     for (const SENDING_ENABLED of [undefined, "false", "true"])

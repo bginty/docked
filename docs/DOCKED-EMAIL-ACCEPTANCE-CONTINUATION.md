@@ -1,5 +1,7 @@
 # Docked email acceptance continuation — 9 October 2026
 
+> Later checkpoint: [Live-beta acceptance](DOCKED-LIVE-BETA-ACCEPTANCE.md). The owner has authorized controlled beta deployment/testing, resolving the earlier test-window approval question. Other mandatory gates remain. This document preserves the earlier checkpoint.
+
 **Public launch remains blocked. Email implementation and disabled deployment progressed; full hosted authentication acceptance has not passed.** Continued from `ec299fe7` on the existing `pivot/fantasy-cards-preview-v1` branch without resetting prior work. The live-beta/NFL instruction is incorporated as sequential work: finish hosted email acceptance, then complete controlled beta and NFL integration before promotion.
 
 ## Completed changes

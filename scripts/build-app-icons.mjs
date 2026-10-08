@@ -52,8 +52,9 @@ function copy(source, destination) {
 }
 
 export async function buildAppIcons() {
-  const fantasy = process.env.FANTASY_CARDS_PREVIEW === "true";
-  if (fantasy)
+  const liveBeta = process.env.CAPACITOR_LIVE_BETA === "true";
+  const fantasy = process.env.FANTASY_CARDS_PREVIEW === "true" || liveBeta;
+  if (fantasy && !liveBeta)
     save("public/brand/docked/offline.html", renderPublicOfflineShell());
   const master = fantasy
     ? "public/brand/docked/icons/docked-icon-512.png"

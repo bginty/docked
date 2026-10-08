@@ -5,7 +5,7 @@ import brand from "./src/brand/brand-tokens.json";
 const target = resolveAndroidTarget();
 const config: CapacitorConfig = {
   appId: "au.com.docked.app",
-  appName: "Docked Preview",
+  appName: target.mode === "beta" ? "Docked Beta" : "Docked Preview",
   webDir: target.webDir,
   loggingBehavior: "none",
   backgroundColor: brand.colors.navy,

@@ -34,6 +34,8 @@ export function productionAuthRequestDenial(
   env: Environment = process.env,
 ) {
   if (env.APP_ENV !== "production") return null;
+  if (env.DOCKED_RELEASE_CHANNEL === "beta" && action === "signup")
+    return "Docked Beta is invitation-only. Open your invitation email to create your account.";
   if (action === "signup" && invitationCode)
     return "Preview invitations cannot create production accounts.";
   if (
@@ -50,6 +52,7 @@ export function authUiReadiness(
   registrationApproved = false,
 ) {
   const production = env.APP_ENV === "production";
+  const liveBeta = production && env.DOCKED_RELEASE_CHANNEL === "beta";
   let policyVersions: ConsentVersions | null = null;
   try {
     policyVersions = currentConsentVersions(env);
@@ -66,12 +69,14 @@ export function authUiReadiness(
     ? env.AUTH_EMAIL_ENABLED === "true"
     : localPreviewAuth(env);
   const registrationAvailable =
+    !liveBeta &&
     emailAvailable &&
     env.REGISTRATION_ENABLED === "true" &&
     registrationApproved &&
     !!policyVersions;
   return {
     production,
+    liveBeta,
     registrationAvailable,
     emailAvailable,
     invitationAllowed,

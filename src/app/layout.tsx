@@ -52,7 +52,8 @@ export const metadata: Metadata = {
   description:
     "Sports intelligence, transparent research and community. Built for an edge. No guaranteed returns.",
   robots:
-    process.env.APP_ENV === "production"
+    process.env.APP_ENV === "production" &&
+    process.env.DOCKED_RELEASE_CHANNEL !== "beta"
       ? { index: true, follow: true }
       : { index: false, follow: false },
   openGraph: {
@@ -84,7 +85,8 @@ if (fantasyEnabled()) {
   metadata.description =
     "Collect fictional player cards and build your fantasy team.";
   metadata.robots =
-    process.env.APP_ENV === "production"
+    process.env.APP_ENV === "production" &&
+    process.env.DOCKED_RELEASE_CHANNEL !== "beta"
       ? { index: true, follow: true }
       : { index: false, follow: false };
   metadata.openGraph = {
@@ -112,6 +114,14 @@ export default async function Layout({
       <html lang="en">
         <body className="fantasy-mode">
           <EnvironmentProvider value={environment}>
+            {environment.liveBeta && (
+              <div className="topline">
+                <span>DOCKED BETA · Invited members only</span>
+                <span>
+                  18+ · Experimental gameplay and rankings · No cash value
+                </span>
+              </div>
+            )}
             <AnalyticsObserver />
             <NativeBridge />
             <a className="skip-link" href="#main">
@@ -126,6 +136,12 @@ export default async function Layout({
     <html lang="en">
       <body>
         <EnvironmentProvider value={environment}>
+          {environment.liveBeta && (
+            <div className="topline">
+              <span>DOCKED BETA · Invited members only</span>
+              <span>18+ · No validated betting recommendations</span>
+            </div>
+          )}
           <AnalyticsObserver />
           <NativeBridge />
           <a className="skip-link" href="#main">

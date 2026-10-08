@@ -203,6 +203,54 @@ test("production environment preparation keeps credentials private and all initi
       "PRIZES_ENABLED",
     ])
       assert.equal(active.find((v) => v.key === key)?.value, "false");
+    assert.notEqual(
+      execute(
+        directory,
+        "scripts/prepare-production-environment.mjs",
+        "--live-beta",
+      ).status,
+      0,
+    );
+    await writeFile(
+      operatorPath,
+      JSON.stringify({
+        ...ready,
+        invitedAuthAcceptancePassed: true,
+        betaRecordsIsolationVerified: true,
+        administratorMfaVerified: true,
+      }),
+    );
+    const beta = execute(
+      directory,
+      "scripts/prepare-production-environment.mjs",
+      "--live-beta",
+    );
+    assert.equal(beta.status, 0, beta.stderr);
+    const betaPayload: { key: string; value: string }[] = JSON.parse(
+      await readFile(
+        join(
+          directory,
+          "private-data/production-deploy/environment-payload.json",
+        ),
+        "utf8",
+      ),
+    );
+    assert.equal(
+      betaPayload.find((v) => v.key === "REGISTRATION_ENABLED")?.value,
+      "false",
+    );
+    assert.equal(
+      betaPayload.find((v) => v.key === "DOCKED_RELEASE_CHANNEL")?.value,
+      "beta",
+    );
+    assert.equal(
+      betaPayload.find((v) => v.key === "DOCKED_AUTH_INVITES_READY")?.value,
+      "true",
+    );
+    assert.equal(
+      betaPayload.find((v) => v.key === "AUTH_EMAIL_ENABLED")?.value,
+      "true",
+    );
     await writeFile(
       operatorPath,
       JSON.stringify({

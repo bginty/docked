@@ -222,4 +222,14 @@ export function assertHostedProduction(env, manifest, build) {
     fail();
   for (const key of productionDisabledFlags) if (env[key] !== "false") fail();
   if (!["true", "false"].includes(env.REGISTRATION_ENABLED ?? "")) fail();
+  if (
+    env.DOCKED_RELEASE_CHANNEL &&
+    !["stable", "beta"].includes(env.DOCKED_RELEASE_CHANNEL)
+  )
+    fail();
+  if (
+    env.DOCKED_RELEASE_CHANNEL === "beta" &&
+    env.REGISTRATION_ENABLED !== "false"
+  )
+    fail();
 }

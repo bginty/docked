@@ -27,6 +27,7 @@ export const dynamic = "force-dynamic";
 export const metadata = { alternates: { canonical: "/" } };
 export default async function Home() {
   const production = fantasyProductionEnabled();
+  const liveBeta = production && process.env.DOCKED_RELEASE_CHANNEL === "beta";
   if (fantasyEnabled())
     return (
       <div className="fantasy-public">
@@ -42,9 +43,11 @@ export default async function Home() {
           <FantasyHero />
           <div>
             <p className="eyebrow">
-              {production
-                ? "FANTASY CARDS · FREE TO PLAY"
-                : "FANTASY CARDS PREVIEW V1"}
+              {liveBeta
+                ? "FANTASY CARDS · LIVE BETA"
+                : production
+                  ? "FANTASY CARDS · FREE TO PLAY"
+                  : "FANTASY CARDS PREVIEW V1"}
             </p>
             <h1>
               COLLECT.
@@ -63,8 +66,12 @@ export default async function Home() {
               <Link className="button" href="/fantasy/play">
                 Open member workspace
               </Link>
-              <Link href={production ? "/app/signup" : "/app/login"}>
-                {production ? "Create a free account" : "Invited tester access"}
+              <Link
+                href={production && !liveBeta ? "/app/signup" : "/app/login"}
+              >
+                {production && !liveBeta
+                  ? "Create a free account"
+                  : "Invited tester access"}
               </Link>
             </div>
             <p className="small-note">
