@@ -1,6 +1,6 @@
 {
   "scope": "Disposable loopback PostgreSQL only; not production",
-  "checkedAt": "2026-10-08T15:05:21.822Z",
+  "checkedAt": "2026-10-08T15:36:10.858Z",
   "database": {
     "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
     "encoding": "UTF8"
@@ -13,6 +13,7 @@
     "Marketplace commands denied; private reward tables denied to all runtime roles; Fantasy RLS enabled",
     "MFA required for owner policy changes; receipts and permanent supply cannot be rewritten",
     "Session expiry while waiting for transaction lock denies issuance",
-    "Two users race for final pack allocation: one success; provenance and supply intact"
+    "Two users race for final pack allocation: one success; provenance and supply intact",
+    "Release transition serializes against beta claim; waiting stale client denied without duplicate points"
   ]
 }

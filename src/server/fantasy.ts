@@ -25,6 +25,8 @@ export async function fantasyRequest(
   if (command && !(await rateLimit(`fantasy:${who.user.id}`, 40, 60)))
     throw Error("Rate limit");
   return (await db().begin(async (tx) => {
+    if (production)
+      await tx`select set_config('docked.fantasy_channel',${process.env.DOCKED_RELEASE_CHANNEL ?? "stable"},true)`;
     if (!production) await setPreviewCommunityContext(tx);
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true),set_config('docked.fantasy_preview',${production ? "" : "test-credits-only"},true),set_config('docked.fantasy_production',${production ? productionManifest.supabaseProjectRef! : ""},true)`;
     const output = command

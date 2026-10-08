@@ -172,17 +172,21 @@ export function FantasyScreen({
   }
   const name = (id: string) =>
     data.members.find((m) => m.id === id)?.name ?? "Preview member";
-  const points = data.results
-    .filter((r) => r.user_id === data.user_id)
-    .reduce((n, r) => n + r.championship_points, 0);
-  const standings = data.members
-    .map((m) => ({
-      ...m,
-      points: data.results
-        .filter((r) => r.user_id === m.id)
-        .reduce((n, r) => n + r.championship_points, 0),
-    }))
-    .sort((a, b) => b.points - a.points);
+  const points =
+    data.my_championship_points ??
+    data.results
+      .filter((r) => r.user_id === data.user_id)
+      .reduce((n, r) => n + r.championship_points, 0);
+  const standings =
+    data.leaderboard?.rows ??
+    data.members
+      .map((m) => ({
+        ...m,
+        points: data.results
+          .filter((r) => r.user_id === m.id)
+          .reduce((n, r) => n + r.championship_points, 0),
+      }))
+      .sort((a, b) => b.points - a.points);
   const comp = data.competitions.find((c) => c.id === competition);
   const formation = (comp?.rules.positions ?? {
     GK: 1,
@@ -421,16 +425,24 @@ export function FantasyScreen({
           <section className="fantasy-panel">
             <h2>
               {production
-                ? "Your championship points"
+                ? `${data.release_channel === "beta" ? "Beta" : "Release"} championship standings`
                 : "Championship standings"}
             </h2>
             {standings.map((m, i) => (
               <div className="fantasy-row" key={m.id}>
-                <span>{production ? m.name : `${i + 1}. ${m.name}`}</span>
+                <span>
+                  {data.leaderboard
+                    ? `${data.leaderboard.rows[i].rank}. ${m.name}`
+                    : production
+                      ? m.name
+                      : `${i + 1}. ${m.name}`}
+                </span>
                 <strong>{m.points} pts</strong>
               </div>
             ))}
             <p>
+              {production &&
+                "Current release only · Up to 100 visible members. Private, blocked and inactive accounts are excluded. "}
               {production
                 ? "Free fictional-player competition · No cash prize"
                 : "Preview/Test Prize · No cash payout"}

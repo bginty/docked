@@ -15,7 +15,7 @@ async function q(sql: string, args: unknown[] = []) {
 }
 async function actor(n = 0, aal = "aal1") {
   await q(
-    "select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false),set_config('docked.fantasy_preview','',false),set_config('docked.fantasy_production',$3,false)",
+    "select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false),set_config('docked.fantasy_preview','',false),set_config('docked.fantasy_channel','beta',false),set_config('docked.fantasy_production',$3,false)",
     [
       users[n],
       JSON.stringify({ sub: users[n], session_id: sessions[n], aal }),
@@ -640,4 +640,225 @@ test("unexpected optional-card issuance failure rolls back points, receipt and s
     6,
   );
   assert.equal((await cmd("claim_daily")).card_outcome, "awarded");
+});
+
+async function state() {
+  return (await q("select fantasy.production_read_state() result"))[0].result;
+}
+
+async function rejectedWithinTransaction(
+  action: () => Promise<unknown>,
+  pattern: RegExp,
+) {
+  await pg.exec("savepoint expected_rejection");
+  try {
+    await assert.rejects(action, pattern);
+  } finally {
+    await pg.exec(
+      "rollback to savepoint expected_rejection; release savepoint expected_rejection",
+    );
+  }
+}
+
+test("shared standings respect profile privacy, bilateral blocks and active membership without exposing auth identities", async () => {
+  await pg.exec("begin");
+  try {
+    await actor(0);
+    await q(
+      "insert into private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence) values('AU','NSW','isolated-beta-test',now()-interval '1 day',now()+interval '1 day',now()+interval '1 day',true,18,array['community_social'],'Disposable local test only')",
+    );
+    const ids: string[] = [];
+    for (let n = 0; n < 4; n++) {
+      await q(
+        "insert into fantasy.members(user_id,expires_at) values($1,now()+interval '1 day') on conflict(user_id) do update set revoked_at=null,expires_at=excluded.expires_at",
+        [users[n]],
+      );
+      ids.push(
+        (
+          await q(
+            "insert into private.social_profiles(user_id,handle,display_name) values($1,$2,$3) returning id",
+            [users[n], `beta_test_${n}`, `Member ${n}`],
+          )
+        )[0].id,
+      );
+    }
+    assert.equal(
+      (await state()).leaderboard.rows.length,
+      1,
+      "Social permission alone must not grant shared rankings",
+    );
+    await q(
+      "update private.region_policies set features=array['community_social','leaderboards'] where version='isolated-beta-test'",
+    );
+    assert.equal(
+      (await state()).leaderboard.rows.length,
+      1,
+      "Rankings without public-profile permission must remain self-only",
+    );
+    await q(
+      "update private.region_policies set features=array['community_social','leaderboards','public_profiles'] where version='isolated-beta-test'",
+    );
+    let result = await state();
+    assert.equal(result.leaderboard.rows.length, 4);
+    assert.equal(result.leaderboard.scope, "visible_members_current_release");
+    for (let n = 1; n < 4; n++) {
+      assert.ok(
+        result.leaderboard.rows.some((r: { id: string }) => r.id === ids[n]),
+      );
+      assert.ok(!JSON.stringify(result).includes(users[n]));
+    }
+    await q(
+      "update private.social_profiles set visibility='private' where id=$1",
+      [ids[1]],
+    );
+    await q(
+      "insert into private.social_blocks(actor_id,target_id) values($1,$2)",
+      [ids[2], ids[0]],
+    );
+    await q("update fantasy.members set revoked_at=now() where user_id=$1", [
+      users[3],
+    ]);
+    result = await state();
+    assert.deepEqual(
+      result.leaderboard.rows.map((r: { name: string }) => r.name),
+      ["You"],
+    );
+    await q("delete from private.social_blocks where actor_id=$1", [ids[2]]);
+    await q(
+      "insert into private.social_blocks(actor_id,target_id) values($1,$2)",
+      [ids[0], ids[2]],
+    );
+    assert.equal((await state()).leaderboard.rows.length, 1);
+  } finally {
+    await pg.exec("rollback");
+  }
+});
+
+test("stable release excludes beta rounds and points without resetting permanent cards or permitting a second daily claim", async () => {
+  await pg.exec("begin");
+  try {
+    await actor(0, "aal2");
+    const before = await state();
+    const receipt = await cmd("claim_daily");
+    const betaRound = before.competitions[0].id;
+    const saved = (
+      await q(
+        "select request_id,action,payload,result from fantasy.requests where user_id=$1 and action='save_lineup' limit 1",
+        [users[0]],
+      )
+    )[0];
+    assert.ok(saved, "Existing committed beta lineup receipt is required");
+    assert.equal(before.release_channel, "beta");
+    assert.ok(before.my_championship_points > 0);
+    await q(
+      "insert into fantasy.production_releases(channel) values('stable')",
+    );
+    await rejectedWithinTransaction(() => state(), /channel mismatch/);
+    await rejectedWithinTransaction(
+      () => cmd("claim_daily"),
+      /channel mismatch/,
+    );
+    await q("select set_config('docked.fantasy_channel','stable',false)");
+    const after = await state();
+    assert.equal(after.release_channel, "stable");
+    assert.equal(after.my_championship_points, 0);
+    assert.equal(after.rewards.points, 0);
+    assert.equal(after.rewards.claimed_today, true);
+    assert.ok(
+      after.rewards.history.some(
+        (r: { release_channel: string }) => r.release_channel === "beta",
+      ),
+    );
+    assert.deepEqual(after.competitions, []);
+    assert.deepEqual(after.entries, []);
+    assert.deepEqual(after.results, []);
+    assert.deepEqual(after.cards, before.cards);
+    assert.deepEqual(await cmd("claim_daily"), receipt);
+    assert.deepEqual(
+      await cmd(saved.action, saved.payload, saved.request_id),
+      saved.result,
+    );
+    await rejectedWithinTransaction(
+      () =>
+        cmd(saved.action, { ...saved.payload, cards: [] }, saved.request_id),
+      /Request ID reused/,
+    );
+    await rejectedWithinTransaction(
+      () => cmd(saved.action, saved.payload),
+      /Current release round/,
+    );
+    await rejectedWithinTransaction(
+      () => cmd("save_lineup", { competition_id: betaRound, cards: [] }),
+      /Current release round/,
+    );
+    const next = await cmd("admin_free_round", {
+      name: "Stable test round",
+      season: "2028",
+      round: 1,
+      locks_at: new Date(Date.now() + 86400000).toISOString(),
+    });
+    assert.equal((await state()).competitions[0].id, next.competition_id);
+    assert.equal(
+      (
+        await q(
+          "select release_channel from fantasy.production_rounds where competition_id=$1",
+          [next.competition_id],
+        )
+      )[0].release_channel,
+      "stable",
+    );
+  } finally {
+    await pg.exec("rollback");
+  }
+});
+
+test("release history is immutable and runtime cannot invoke legacy bypasses or edit channel records", async () => {
+  await actor(0);
+  for (const role of ["anon", "authenticated", "docked_app"]) {
+    for (const fn of [
+      "production_command_v1(text,jsonb,uuid)",
+      "production_read_state_v1()",
+      "production_eligible_v1()",
+      "production_channel()",
+    ])
+      assert.equal(
+        (
+          await q("select has_function_privilege($1,$2,'execute') allowed", [
+            role,
+            `fantasy.${fn}`,
+          ])
+        )[0].allowed,
+        false,
+      );
+    for (const table of [
+      "production_releases",
+      "production_rounds",
+      "daily_claims",
+    ])
+      assert.equal(
+        (
+          await q(
+            "select has_table_privilege($1,$2,'insert,update,delete,truncate') allowed",
+            [role, `fantasy.${table}`],
+          )
+        )[0].allowed,
+        false,
+      );
+  }
+  await assert.rejects(
+    () => q("update fantasy.production_releases set channel='stable'"),
+    /Immutable/,
+  );
+  await assert.rejects(
+    () => q("delete from fantasy.production_releases"),
+    /Immutable/,
+  );
+  await assert.rejects(
+    () => q("update fantasy.production_rounds set release_channel='stable'"),
+    /Immutable/,
+  );
+  await assert.rejects(
+    () => q("update fantasy.daily_claims set release_channel='stable'"),
+    /Immutable/,
+  );
 });

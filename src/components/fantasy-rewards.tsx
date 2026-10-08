@@ -21,6 +21,12 @@ export function FantasyRewards({
     <section className="fantasy-panel">
       <p className="eyebrow">YOUR DAILY CLUB REWARD</p>
       <h2>Free to collect. Free to compete.</h2>
+      {rewards.release_channel === "beta" && (
+        <p>
+          Beta gameplay points. These are kept separate from official launch
+          rankings.
+        </p>
+      )}
       {!rewards.starter_claimed && (
         <>
           <p>
@@ -74,6 +80,7 @@ export function FantasyRewards({
             <div className="fantasy-row" key={h.period}>
               <span>
                 {h.period}
+                {h.release_channel && ` · ${h.release_channel}`}
                 <small>
                   Policy {h.policy_version} ·{" "}
                   {h.card_outcome.replaceAll("_", " ")}

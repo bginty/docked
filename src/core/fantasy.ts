@@ -274,8 +274,15 @@ export type FantasyCompetition = {
   rules: Record<string, unknown>;
 };
 export type FantasyState = {
+  release_channel?: "beta" | "stable";
+  my_championship_points?: number;
+  leaderboard?: {
+    scope: "visible_members_current_release";
+    rows: { id: string; name: string; points: number; rank: number }[];
+  };
   mode?: "production";
   rewards?: {
+    release_channel?: "beta" | "stable";
     server_time: string;
     period_timezone: "UTC";
     next_claim_at: string;
@@ -289,6 +296,7 @@ export type FantasyState = {
       daily_card_limit: number;
     };
     history: {
+      release_channel?: "legacy" | "beta" | "stable";
       period: string;
       points: number;
       policy_version: number;

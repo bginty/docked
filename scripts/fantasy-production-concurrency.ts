@@ -54,7 +54,7 @@ create function auth.uid() returns uuid language sql stable as $$select nullif(c
       payload: Record<string, postgres.JSONValue> = {},
     ) {
       const output = await sql.begin(async (tx) => {
-        await tx`select set_config('request.jwt.claim.sub',${users[n]},true),set_config('request.jwt.claims',${JSON.stringify({ sub: users[n], session_id: sessions[n], aal: "aal1" })},true),set_config('docked.fantasy_production',${ref},true)`;
+        await tx`select set_config('request.jwt.claim.sub',${users[n]},true),set_config('request.jwt.claims',${JSON.stringify({ sub: users[n], session_id: sessions[n], aal: "aal1" })},true),set_config('docked.fantasy_channel','beta',true),set_config('docked.fantasy_production',${ref},true)`;
         await tx`set local role docked_app`;
         return await tx`select fantasy.production_command(${action},${tx.json(payload)}::jsonb,${randomUUID()}::uuid) result`;
       });
@@ -223,6 +223,54 @@ create function auth.uid() returns uuid language sql stable as $$select nullif(c
     );
     results.push(
       "Two users race for final pack allocation: one success; provenance and supply intact",
+    );
+    const claimsBeforeTransition = Number(
+      (await sql`select count(*) n from fantasy.daily_claims`)[0].n,
+    );
+    let transitionReady: () => void = () => {};
+    let finishTransition: () => void = () => {};
+    const ready = new Promise<void>((resolve) => {
+      transitionReady = resolve;
+    });
+    const finish = new Promise<void>((resolve) => {
+      finishTransition = resolve;
+    });
+    const transition = sql.begin(async (tx) => {
+      await tx`insert into fantasy.production_releases(channel) values('stable')`;
+      transitionReady();
+      await finish;
+    });
+    await ready;
+    const crossingClaim = command(0, "claim_daily").then(
+      () => false,
+      (error: Error) => /channel mismatch/.test(error.message),
+    );
+    try {
+      let waitingForLock = false;
+      for (let attempt = 0; attempt < 40; attempt++) {
+        waitingForLock =
+          (
+            await sql`select 1 from pg_locks where locktype='advisory' and not granted`
+          ).length > 0;
+        if (waitingForLock) break;
+        await new Promise((resolve) => setTimeout(resolve, 50));
+      }
+      assert.equal(
+        waitingForLock,
+        true,
+        "Beta claim must actually wait behind the release transition",
+      );
+    } finally {
+      finishTransition();
+      await transition;
+    }
+    assert.equal(await crossingClaim, true);
+    assert.equal(
+      Number((await sql`select count(*) n from fantasy.daily_claims`)[0].n),
+      claimsBeforeTransition,
+    );
+    results.push(
+      "Release transition serializes against beta claim; waiting stale client denied without duplicate points",
     );
     await mkdir("docs/qa/fantasy-production", { recursive: true });
     await writeFile(
