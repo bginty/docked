@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-08T23:16:32.427Z",
-  "deploymentId": "dpl_4KLuYaerMaCmhR2mAXxhPd9hyDSf",
-  "commit": "41dc89a679b02ca4939a0c5415495a6eb3e39549",
-  "origin": "https://docked-production-72wxyaj83-briant-s-projects.vercel.app",
+  "checkedAt": "2026-10-08T23:27:46.077Z",
+  "deploymentId": "dpl_CYJXho3m3fMR2S5qSB7XQfWoAP3u",
+  "commit": "1b8c3f8d54b24fb857e201d5ec94f8cfd2deb843",
+  "origin": "https://docked-production-htz4tu7lh-briant-s-projects.vercel.app",
   "scope": "Actual hosted closed beta connected to dedicated production project through restricted beta role; browser emulation, not physical Android/iPhone. Denial checks are not successful account/gameplay journeys.",
   "checks": [
     {
@@ -61,7 +61,8 @@
     },
     {
       "name": "Auth rejects foreign origin",
-      "pass": false
+      "pass": true,
+      "status": 403
     },
     {
       "name": "Invited setup unavailable",
@@ -131,7 +132,8 @@
     },
     {
       "name": "Hosted page /app at 320",
-      "pass": false
+      "pass": true,
+      "status": 200
     },
     {
       "name": "Hosted page /login at 320",
@@ -140,7 +142,8 @@
     },
     {
       "name": "Hosted page /app/signup at 320",
-      "pass": false
+      "pass": true,
+      "status": 200
     },
     {
       "name": "Hosted page / at 412",
@@ -149,7 +152,8 @@
     },
     {
       "name": "Hosted page /app at 412",
-      "pass": false
+      "pass": true,
+      "status": 200
     },
     {
       "name": "Hosted page /login at 412",
@@ -158,15 +162,18 @@
     },
     {
       "name": "Hosted page /app/signup at 412",
-      "pass": false
+      "pass": true,
+      "status": 200
     },
     {
       "name": "Hosted page / at 1366",
-      "pass": false
+      "pass": true,
+      "status": 200
     },
     {
       "name": "Hosted page /app at 1366",
-      "pass": false
+      "pass": true,
+      "status": 200
     },
     {
       "name": "Hosted page /login at 1366",
@@ -175,7 +182,13 @@
     },
     {
       "name": "Hosted page /app/signup at 1366",
-      "pass": false
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Repeated homepage and database reads stay available",
+      "pass": true,
+      "rounds": 5
     },
     {
       "name": "Public holding domain remains separate",
@@ -194,7 +207,21 @@
       "uncaughtErrors": 0
     },
     {
+      "path": "/app",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
       "path": "/login",
+      "width": 320,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app/signup",
       "width": 320,
       "status": 200,
       "overflow": false,
@@ -208,8 +235,36 @@
       "uncaughtErrors": 0
     },
     {
+      "path": "/app",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
       "path": "/login",
       "width": 412,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app/signup",
+      "width": 412,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
+    },
+    {
+      "path": "/app",
+      "width": 1366,
       "status": 200,
       "overflow": false,
       "uncaughtErrors": 0
@@ -220,41 +275,16 @@
       "status": 200,
       "overflow": false,
       "uncaughtErrors": 0
+    },
+    {
+      "path": "/app/signup",
+      "width": 1366,
+      "status": 200,
+      "overflow": false,
+      "uncaughtErrors": 0
     }
   ],
-  "failures": [
-    {
-      "name": "Auth rejects foreign origin",
-      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n503 !== 403\n"
-    },
-    {
-      "name": "Hosted page /app at 320",
-      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /BETA/i. Input:\n\n'Skip to content\\n' +\n  'DOCKED\\n' +\n  'Welcome back\\n' +\n  'Email\\n' +\n  'Password\\n' +\n  'Forgot password?\\n' +\n  '\\n' +\n  'Account services are unavailable.\\n' +\n  '\\n' +\n  'Log in\\n' +\n  '\\n' +\n  'New to Docked?\\n' +\n  'Create account'\n"
-    },
-    {
-      "name": "Hosted page /app/signup at 320",
-      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /BETA/i. Input:\n\n'Skip to content\\n' +\n  'DOCKED\\n' +\n  'Create your Docked account\\n' +\n  '\\n' +\n  'Registration is unavailable. Account services are not configured. Registration is unavailable.\\n' +\n  '\\n' +\n  'Username\\n' +\n  'Email\\n' +\n  'Password\\n' +\n  '\\n' +\n  'Use at least 12 characters.\\n' +\n  '\\n' +\n  'Confirm password\\n' +\n  'Country code\\n' +\n  'State / region\\n' +\n  'I am 18 or older and meet the legal age for my region.\\n' +\n  'I accept the Terms.\\n' +\n  'I accept the Privacy Policy.\\n' +\n  'Optional: send me Docked marketing updates. I can unsubscribe.\\n' +\n  '\\n' +\n  'Account services are not configured. Registration is unavailable.\\n' +\n  '\\n' +\n  'Create account\\n' +\n  '\\n' +\n  'Already a member?\\n' +\n  'Log in'\n"
-    },
-    {
-      "name": "Hosted page /app at 412",
-      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /BETA/i. Input:\n\n'Skip to content\\n' +\n  'DOCKED\\n' +\n  'Welcome back\\n' +\n  'Email\\n' +\n  'Password\\n' +\n  'Forgot password?\\n' +\n  '\\n' +\n  'Account services are unavailable.\\n' +\n  '\\n' +\n  'Log in\\n' +\n  '\\n' +\n  'New to Docked?\\n' +\n  'Create account'\n"
-    },
-    {
-      "name": "Hosted page /app/signup at 412",
-      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /BETA/i. Input:\n\n'Skip to content\\n' +\n  'DOCKED\\n' +\n  'Create your Docked account\\n' +\n  '\\n' +\n  'Registration is unavailable. Account services are not configured. Registration is unavailable.\\n' +\n  '\\n' +\n  'Username\\n' +\n  'Email\\n' +\n  'Password\\n' +\n  '\\n' +\n  'Use at least 12 characters.\\n' +\n  '\\n' +\n  'Confirm password\\n' +\n  'Country code\\n' +\n  'State / region\\n' +\n  'I am 18 or older and meet the legal age for my region.\\n' +\n  'I accept the Terms.\\n' +\n  'I accept the Privacy Policy.\\n' +\n  'Optional: send me Docked marketing updates. I can unsubscribe.\\n' +\n  '\\n' +\n  'Account services are not configured. Registration is unavailable.\\n' +\n  '\\n' +\n  'Create account\\n' +\n  '\\n' +\n  'Already a member?\\n' +\n  'Log in'\n"
-    },
-    {
-      "name": "Hosted page / at 1366",
-      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n500 !== 200\n"
-    },
-    {
-      "name": "Hosted page /app at 1366",
-      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /BETA/i. Input:\n\n'Skip to content\\n' +\n  'DOCKED\\n' +\n  'Welcome back\\n' +\n  'Email\\n' +\n  'Password\\n' +\n  'Forgot password?\\n' +\n  '\\n' +\n  'Account services are unavailable.\\n' +\n  '\\n' +\n  'Log in\\n' +\n  '\\n' +\n  'New to Docked?\\n' +\n  'Create account'\n"
-    },
-    {
-      "name": "Hosted page /app/signup at 1366",
-      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /BETA/i. Input:\n\n'Skip to content\\n' +\n  'DOCKED\\n' +\n  'Create your Docked account\\n' +\n  '\\n' +\n  'Registration is unavailable. Account services are not configured. Registration is unavailable.\\n' +\n  '\\n' +\n  'Username\\n' +\n  'Email\\n' +\n  'Password\\n' +\n  '\\n' +\n  'Use at least 12 characters.\\n' +\n  '\\n' +\n  'Confirm password\\n' +\n  'Country code\\n' +\n  'State / region\\n' +\n  'I am 18 or older and meet the legal age for my region.\\n' +\n  'I accept the Terms.\\n' +\n  'I accept the Privacy Policy.\\n' +\n  'Optional: send me Docked marketing updates. I can unsubscribe.\\n' +\n  '\\n' +\n  'Account services are not configured. Registration is unavailable.\\n' +\n  '\\n' +\n  'Create account\\n' +\n  '\\n' +\n  'Already a member?\\n' +\n  'Log in'\n"
-    }
-  ],
-  "passed": false
+  "failures": [],
+  "browserAssetFiles": 17,
+  "passed": true
 }
