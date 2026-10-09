@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-09T07:16:40.072Z",
+  "checkedAt": "2026-10-09T12:09:27.304Z",
   "projectRef": "pojoymtniryarxxunyvz",
   "function": "docked-auth-email",
-  "scope": "Actual hosted Edge Function HTTP responses with sending disabled. Existing Auth hook is connected; these checks change no hook configuration, create no users, enqueue no mail and use no Microsoft credentials.",
+  "scope": "Actual hosted Edge Function HTTP responses; mail disabled, no Microsoft credentials, no Auth hook activation or accounts created",
   "checks": [
     {
       "name": "GET rejected",
@@ -47,7 +47,7 @@
   ],
   "sourceHashes": {
     "index.ts": "479f9b51aecf81aa1fd575ebcbc17552f5db3b4a9d859ecaebceb5aaa434bcb4",
-    "mail.mjs": "6534e346f7ac142a3978e98c1aae619173177aea6670d85a48d3a8e4c28aab32",
+    "mail.mjs": "0908106c4a030087b0c3a99a3175589992bc3a86d99611205c7174014b6ec59f",
     "router.mjs": "deeba5f79a92c9f23b659358155611347d37daf3de0e135ac03b11388a7cdfe2",
     "queue.mjs": "2e684e597fffabb908b3bc09c87e5363922c5e955ef90c537859a51e3bc252e7"
   },

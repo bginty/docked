@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-09T12:07:27.564Z",
+  "deploymentId": "dpl_Bw5iewq8fQxwpqzqXq2FUjrVE28G",
+  "commit": "a7b4fa0e53f0d76cf7fdc721df1c97056fc62c6c",
+  "checks": [
+    {
+      "viewport": 390,
+      "repeatedGetNonConsuming": true,
+      "missingVerifierStopsBeforeProvider": true,
+      "postPreservesPinnedPkceFlow": true,
+      "layoutNoOverflow": true
+    },
+    {
+      "viewport": 1366,
+      "repeatedGetNonConsuming": true,
+      "missingVerifierStopsBeforeProvider": true,
+      "postPreservesPinnedPkceFlow": true,
+      "layoutNoOverflow": true
+    }
+  ],
+  "crossOriginDenied": true,
+  "providerRequestsMade": 0,
+  "emailsRequested": 0,
+  "realRecoveryComplete": false,
+  "scope": "Hosted Chromium browser emulation; fake provider redirect intercepted before network; no physical device or real token consumption"
+}

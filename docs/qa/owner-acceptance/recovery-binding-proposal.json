@@ -1,17 +1,17 @@
 {
-  "preparedAt": "2026-10-09T11:32:15.692Z",
+  "preparedAt": "2026-10-09T12:07:32.351Z",
   "project": "pojoymtniryarxxunyvz",
-  "deploymentId": "dpl_vcRdRDfrqAHPQgZBvvK2mhcRMVyP",
+  "deploymentId": "dpl_Bw5iewq8fQxwpqzqXq2FUjrVE28G",
   "changes": [
     {
       "setting": "auth.additional_redirect_urls",
       "operation": "Append one exact URL; preserve all existing entries",
-      "value": "https://docked-production-24ts2fdje-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password"
+      "value": "https://docked-production-ar7zqu8yg-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password"
     },
     {
       "setting": "DOCKED_BETA_AUTH_ORIGIN",
       "operation": "Pin disabled signed email hook to current protected Preview",
-      "value": "https://docked-production-24ts2fdje-briant-s-projects.vercel.app"
+      "value": "https://docked-production-ar7zqu8yg-briant-s-projects.vercel.app"
     }
   ],
   "declaredAuthDiff": [

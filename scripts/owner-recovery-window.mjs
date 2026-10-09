@@ -8,10 +8,11 @@ import {flags,secrets,checkFlags} from './owner-mail-window.mjs';
 import {dispatchOnce} from './owner-mail-dispatch.mjs';
 const read=p=>JSON.parse(readFileSync(p,'utf8'));
 const root='private-data/production/';
-const receipt=root+'owner-window/recovery-browser-attempt.json';
-const approvalPath=root+'owner-window/recovery-browser-approval.json';
+const repaired = process.argv[2] === '--supervised-repaired-once';
+const receipt=root+'owner-window/'+(repaired?'recovery-repaired-attempt.json':'recovery-browser-attempt.json');
+const approvalPath=root+'owner-window/'+(repaired?'recovery-repaired-approval.json':'recovery-browser-approval.json');
 const dispatchApprovalPath=root+'microsoft365/owner-dispatch-approval.json';
-assert.equal(process.argv[2],'--supervised-once');
+assert.ok(repaired || process.argv[2] === '--supervised-once');
 assert.equal(existsSync(receipt),false,'Prior attempt exists; reconcile, never repeat');
 const approval=read(approvalPath);
 assert.equal(approval.approved,true);
@@ -23,7 +24,19 @@ assert.ok(Date.now()-Date.parse(approval.approvedAt)>=0);
 assert.ok(Date.now()-Date.parse(approval.approvedAt)<5*60_000);
 assert.ok(approval.authority.length>15);
 const d=read('docs/qa/beta-isolation/deployment-status.json');
-assert.equal(d.id,'dpl_vcRdRDfrqAHPQgZBvvK2mhcRMVyP');
+assert.equal(d.id,repaired?'dpl_Bw5iewq8fQxwpqzqXq2FUjrVE28G':'dpl_vcRdRDfrqAHPQgZBvvK2mhcRMVyP');
+if(repaired){
+  assert.equal(approval.deploymentId,d.id);
+  const previous=read(root+'owner-window/recovery-browser-attempt.json');
+  assert.equal(previous.queueOutcome.state,'accepted');
+  assert.equal(previous.queueOutcome.attempts,1);
+  assert.equal(previous.dispatcherDisabled,true);
+  const hosted=read('docs/qa/owner-acceptance/recovery-hosted-check.json');
+  assert.equal(hosted.deploymentId,d.id);
+  assert.equal(hosted.crossOriginDenied,true);
+  assert.equal(hosted.checks.length,2);
+  assert.ok(hosted.checks.every(x=>x.repeatedGetNonConsuming&&x.missingVerifierStopsBeforeProvider&&x.postPreservesPinnedPkceFlow));
+}
 assert.equal(d.effectiveTarget,'preview');assert.equal(d.state,'READY');
 const binding=read('docs/qa/owner-acceptance/recovery-binding-readback.json');
 assert.equal(binding.deploymentId,d.id);
@@ -94,6 +107,6 @@ try {
   try{const [state]=await sql`select count(*)::int outstanding_mail from private.docked_auth_mail_outbox where state in ('pending','authorizing','dispatching')`;report.finalDatabase=state;}catch{report.databaseReadbackUnavailable=true;}
   await sql.end({timeout:5});
   if(existsSync(receipt))writeFileSync(receipt,JSON.stringify(report,null,2),{mode:0o600});
-  writeFileSync('docs/qa/owner-acceptance/supervised-recovery.json',JSON.stringify(report,null,2)+'\n');
+  writeFileSync('docs/qa/owner-acceptance/'+(repaired?'supervised-recovery-repaired.json':'supervised-recovery.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify(report));
 }
