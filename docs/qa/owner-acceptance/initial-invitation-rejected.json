@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-09T09:08:36.054Z",
+  "deploymentId": "dpl_5fADFGCKB9LGuwMLxjjE1cqjVZ4y",
+  "url": "https://docked-production-i8koncmem-briant-s-projects.vercel.app",
+  "project": "pojoymtniryarxxunyvz",
+  "recipient": "support@docked.com.au",
+  "authority": "Owner supervised authentication approval after 281e372c",
+  "emailsRequested": 1,
+  "emailsAccepted": 0,
+  "deliveryVerified": false,
+  "mfaEnrolled": false,
+  "administratorRoleGranted": false,
+  "inviteStatus": 500,
+  "inviteErrorCode": 500,
+  "status": "BLOCKED_RECONCILE_NO_RETRY",
+  "dispatcherDisabled": true,
+  "credentialsUnchanged": true,
+  "finalDatabase": {
+    "users": 0,
+    "mfa_factors": 0,
+    "testers_enabled": false,
+    "beta_roles": 0,
+    "cron_jobs": 0,
+    "net_schema": false,
+    "outstanding_mail": 0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-10-09T09:04:05.902Z",
+  "deploymentId": "dpl_5fADFGCKB9LGuwMLxjjE1cqjVZ4y",
+  "commit": "afba9f559ac1fb6d38aa0968de00a7bea0aa4874",
+  "url": "https://docked-production-i8koncmem-briant-s-projects.vercel.app",
+  "allPassed": true,
+  "checks": [
+    {
+      "name": "Malformed invitation rejected",
+      "status": 400
+    },
+    {
+      "name": "Valid-shaped GET renders confirmation without consuming link",
+      "status": 200
+    },
+    {
+      "name": "Cross-origin invitation POST denied",
+      "status": 403
+    },
+    {
+      "name": "Public signup remains denied",
+      "status": 503
+    },
+    {
+      "name": "Account setup requires confirmed session",
+      "status": 401
+    },
+    {
+      "name": "MFA UI contains no pre-enrolled material",
+      "status": 200
+    },
+    {
+      "name": "Approved policies available",
+      "status": 200
+    },
+    {
+      "name": "Login layout 390px",
+      "status": "PASS"
+    },
+    {
+      "name": "Login layout 1366px",
+      "status": "PASS"
+    }
+  ],
+  "scope": "Hosted unauthenticated preflight and browser emulation only; no email/account creation or MFA enrollment"
+}

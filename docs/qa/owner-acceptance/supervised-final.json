@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-09T09:33:08.899Z",
+  "project": "pojoymtniryarxxunyvz",
+  "sourceCommit": "d86f158e",
+  "tests": {
+    "localRegressionPassed": 36,
+    "localRegressionFailed": 0,
+    "typecheck": "PASS",
+    "changedSourceLint": "PASS",
+    "hostedUnauthenticatedChecksPassed": 9,
+    "realProviderPayload": "PASS_WITH_SENDING_DISABLED",
+    "actualAuthEmailDelivery": "NOT_COMPLETED",
+    "mfaAcceptance": "NOT_RUN",
+    "positiveGameplay": "NOT_RUN",
+    "physicalAndroid": "NOT_RUN"
+  },
+  "finalReadOnlyDatabase": {
+    "authUsers": 0,
+    "mfaFactors": 0,
+    "admissions": 0,
+    "cronJobs": 0,
+    "netSchemaExists": false,
+    "schedulerEnabled": false,
+    "admissionEnabled": false,
+    "testersEnabled": false,
+    "outstandingMail": 0
+  },
+  "allDispatchFlagsClosed": true,
+  "automaticRetryScheduled": false,
+  "blocker": "Supabase Auth over_email_send_rate_limit (HTTP429); exact quota/reset not exposed by scoped CLI readback",
+  "providerQuotaChanged": false
+}

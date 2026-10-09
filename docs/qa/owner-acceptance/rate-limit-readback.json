@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-09T09:29:44.313Z",
+  "project": "pojoymtniryarxxunyvz",
+  "authRateLimits": null,
+  "disableSignup": true,
+  "authError": "over_email_send_rate_limit",
+  "httpStatus": 429,
+  "requestUtc": "2026-10-09T09:25:56.773Z",
+  "exactResetUnknown": true,
+  "rateLimitsChanged": false,
+  "automaticRetryScheduled": false,
+  "configurationReadback": "Scoped CLI config pull does not expose the project hourly email quota",
+  "recommendedNextCheck": "Owner: open the dedicated project Authentication > Rate Limits page and report the email quota without changing it. No exact reset timestamp has been supplied by the provider.",
+  "managementReadStatus": "No SUPABASE_ACCESS_TOKEN configured; CLI credential not extracted"
+}

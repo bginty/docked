@@ -1,4 +1,7 @@
-# Owner acceptance — approved policies, remaining scheduler permission gate
+# Owner acceptance — supervised window closed; Auth invitation rate-limited
+
+**Current status, 9 October 2026:** See [Supervised owner authentication acceptance](DOCKED-SUPERVISED-OWNER-AUTH-2026-10-09.md). The operator dispatcher removes the need for pg_net for this supervised test. The protected owner-auth deployment is READY. The real provider payload compatibility defect was fixed and verified without sending. The subsequent invitation returned HTTP429 `over_email_send_rate_limit`. No owner account or production email was created. All dispatcher switches are OFF. No automatic retry is scheduled. Account confirmation, recovery, personal MFA and positive hosted gameplay remain blocked. Historical scheduler/deployment evidence below is retained and does not describe the latest deployment.
+
 
 **9 October follow-up:** the read-only investigation and prepared alternative are in [Email dispatch decision](DOCKED-EMAIL-DISPATCH-DECISION.md). Keep the historical failure evidence below. A trusted operator can invoke the existing signed worker without pg_net during a separately approved supervised owner-only window; Supabase privilege intervention is not mandatory for that proposed path. Nothing has been activated. Unattended dispatch and hosted positive acceptance remain unverified.
 

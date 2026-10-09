@@ -1,0 +1,17 @@
+{
+  "startedAt": "2026-10-09T09:23:12.598Z",
+  "purpose": "Single real Auth payload validation probe; sender and worker remain OFF so enqueue and Graph dispatch cannot occur",
+  "senderEnabled": false,
+  "workerEnabled": false,
+  "authStatus": 500,
+  "errorCode": 500,
+  "finishedAt": "2026-10-09T09:23:25.276Z",
+  "allMailFlagsClosed": true,
+  "hookStatus": 503,
+  "hookVersion": 17,
+  "hookDurationMs": 1755,
+  "validationPassed": true,
+  "authUsers": 0,
+  "productionMailRows": 0,
+  "evidence": "Scoped Supabase function_edge_logs and dedicated project read-only counts, 2026-10-09T09:23:10Z to 09:24:00Z; 503 expected with sender and worker disabled"
+}
