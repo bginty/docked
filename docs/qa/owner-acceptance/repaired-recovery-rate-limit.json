@@ -1,0 +1,21 @@
+{
+  "project": "pojoymtniryarxxunyvz",
+  "deploymentId": "dpl_Bw5iewq8fQxwpqzqXq2FUjrVE28G",
+  "authEventAt": "2026-10-09T12:12:48Z",
+  "ownerLocalTime": "2026-10-09T23:12:48+11:00",
+  "endpoint": "/recover",
+  "status": 429,
+  "errorCode": "over_email_send_rate_limit",
+  "source": "Dedicated-project Auth log readback after owner reported UI error",
+  "newMailJobsSinceWindowStart": 0,
+  "outstandingMail": 0,
+  "schedulerEnabled": false,
+  "manualDispatcherCloseConfirmed": true,
+  "retryAttempted": false,
+  "rateLimitsChanged": false,
+  "conservativeNextRecheckAt": "2026-10-09T13:15:00Z",
+  "conservativeNextRecheckLocal": "2026-10-10T00:15:00+11:00",
+  "quotaResetTimeKnown": false,
+  "nextAttemptRequiresFreshExplicitApproval": true,
+  "recoveryCompletionVerified": false
+}
