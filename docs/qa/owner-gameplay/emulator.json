@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-09T22:38:04.563Z",
+  "device": "emulator-5554",
+  "model": "sdk_gphone64_x86_64",
+  "physicalDevice": false,
+  "versionCode": "11",
+  "versionName": "1.10-preview",
+  "appProcessPresent": true,
+  "foreground": [
+    "    topResumedActivity=ActivityRecord{110138912 u0 com.android.chrome/org.chromium.chrome.browser.firstrun.FirstRunActivity t17}"
+  ],
+  "launch": {
+    "status": "ok",
+    "state": "COLD",
+    "totalTimeMs": 12858
+  },
+  "fatalExceptionLines": 0,
+  "install": "Version 11 confirmed after reboot; initial install stalled during Android launcher ANR. No data wipe.",
+  "authenticatedGameplay": "PENDING",
+  "sessionPersistence": "PENDING",
+  "ownerVisualApproval": "PENDING",
+  "physicalS24": "PENDING"
+}

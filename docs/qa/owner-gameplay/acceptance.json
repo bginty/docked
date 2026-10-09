@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-09T22:39:13.524Z",
+  "branch": "pivot/fantasy-cards-preview-v1",
+  "deployment": {
+    "id": "dpl_4EBn3fQmnKp3XWkNKGy4tb8j3FZu",
+    "url": "https://docked-production-5uwewz9wi-briant-s-projects.vercel.app",
+    "state": "READY",
+    "rawTarget": null,
+    "effectiveTarget": "preview",
+    "commit": "20c794945ba279d77034715fd8989fc5d779f809",
+    "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "branch": "codex/vercel-beta-review",
+    "customDomains": [],
+    "aliases": [],
+    "checkedAt": "2026-10-09T22:26:14.582Z"
+  },
+  "local": {
+    "platformPassed": 191,
+    "focusedPassed": 9,
+    "pglitePassed": 139,
+    "postgresScenarios": 20,
+    "browserPassed": 26,
+    "ownerSnapshotBrowserPassed": 2,
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "webBuild": "PASS",
+    "dependencyVulnerabilities": 0
+  },
+  "hosted": {
+    "sqlPassed": 10,
+    "httpPassed": 31,
+    "authenticatedOwnerBrowser": "PENDING"
+  },
+  "android": {
+    "at": "2026-10-09T22:38:04.563Z",
+    "device": "emulator-5554",
+    "model": "sdk_gphone64_x86_64",
+    "physicalDevice": false,
+    "versionCode": "11",
+    "versionName": "1.10-preview",
+    "appProcessPresent": true,
+    "foreground": [
+      "    topResumedActivity=ActivityRecord{110138912 u0 com.android.chrome/org.chromium.chrome.browser.firstrun.FirstRunActivity t17}"
+    ],
+    "launch": {
+      "status": "ok",
+      "state": "COLD",
+      "totalTimeMs": 12858
+    },
+    "fatalExceptionLines": 0,
+    "install": "Version 11 confirmed after reboot; initial install stalled during Android launcher ANR. No data wipe.",
+    "authenticatedGameplay": "PENDING",
+    "sessionPersistence": "PENDING",
+    "ownerVisualApproval": "PENDING",
+    "physicalS24": "PENDING"
+  },
+  "apk": {
+    "recordedAt": "2026-10-09T22:31:57.1088545Z",
+    "artifact": "artifacts/android/Docked-v11-Owner-Connected-QA.apk",
+    "bytes": 11036122,
+    "sha256": "207e1d67ef67a7e3faf5d4601d4e7c7aeb0b6a5615ab8ca2e9b25291989da304",
+    "current": {
+      "package": "au.com.docked.app.preview",
+      "label": "Docked Preview",
+      "versionCode": 11,
+      "versionName": "1.10-preview",
+      "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+      "debuggable": false,
+      "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+      "arm64Compatible": true,
+      "minimumSdk": 24,
+      "targetSdk": 36
+    },
+    "priorVersionCode": 10,
+    "samePackageAndSigningCertificate": true,
+    "cleartextDisabledInPackagedResources": true,
+    "compiledNetworkPolicyPath": "res/8G.xml",
+    "status": "PASS"
+  },
+  "ownerVisualApproval": "PENDING",
+  "physicalS24": "PENDING",
+  "completeJourneyAcceptance": "FAIL_INCOMPLETE",
+  "externalTesterAccess": false,
+  "registrationOpen": false,
+  "productionHoldingUnchanged": true
+}

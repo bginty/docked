@@ -25,9 +25,11 @@ for (const width of [412, 1440])
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
     let fail = false;
+    let held: Promise<void> | null = null;
     await page.route("**/*", async (route) => {
       const url = new URL(route.request().url());
-      if (url.pathname.startsWith("/api/"))
+      if (url.pathname.startsWith("/api/")) {
+        if (held) await held;
         return route.fulfill({
           status: fail ? 503 : 200,
           json: fail
@@ -37,6 +39,7 @@ for (const width of [412, 1440])
               }
             : { state, result: {} },
         });
+      }
       if (url.pathname === "/fixture")
         return route.fulfill({
           contentType: "text/html",
@@ -104,6 +107,19 @@ for (const width of [412, 1440])
     await page.evaluate(() => Reflect.get(window, "renderFantasy")("profile"));
     const refresh = page.getByRole("button", { name: /refresh/i }).first();
     if (await refresh.count()) {
+      let release!: () => void;
+      held = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      await refresh.click();
+      await expect(refresh).toBeDisabled();
+      await page.screenshot({
+        path: `${out}/loading-${width}.png`,
+        fullPage: true,
+      });
+      release();
+      held = null;
+      await expect(page.getByText("Updated from the server.")).toBeVisible();
       fail = true;
       await refresh.click();
       await expect(

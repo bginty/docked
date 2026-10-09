@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-09T22:31:57.1088545Z",
+  "artifact": "artifacts/android/Docked-v11-Owner-Connected-QA.apk",
+  "bytes": 11036122,
+  "sha256": "207e1d67ef67a7e3faf5d4601d4e7c7aeb0b6a5615ab8ca2e9b25291989da304",
+  "current": {
+    "package": "au.com.docked.app.preview",
+    "label": "Docked Preview",
+    "versionCode": 11,
+    "versionName": "1.10-preview",
+    "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+    "debuggable": false,
+    "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+    "arm64Compatible": true,
+    "minimumSdk": 24,
+    "targetSdk": 36
+  },
+  "priorVersionCode": 10,
+  "samePackageAndSigningCertificate": true,
+  "cleartextDisabledInPackagedResources": true,
+  "compiledNetworkPolicyPath": "res/8G.xml",
+  "status": "PASS"
+}
