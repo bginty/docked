@@ -7,7 +7,7 @@
   "authority": "Owner explicitly replied yes on 9 October 2026 immediately after the request to send exactly one staging invitation to support@docked.com.au; no retries.",
   "emailsRequested": 1,
   "emailsAccepted": 1,
-  "deliveryVerified": false,
+  "deliveryVerified": true,
   "mfaEnrolled": false,
   "administratorRoleGranted": false,
   "reconciledSiteUrlFailure": false,
@@ -42,5 +42,18 @@
     "cron_jobs": 0,
     "net_schema": false,
     "outstanding_mail": 0
+  },
+  "deliveryEvidence": {
+    "source": "Owner reply in this chat: Yes got email - created password",
+    "method": "Owner confirmed receipt; prior explicit question asked Inbox delivery",
+    "recordedAt": "2026-10-09T11:13:57.736Z"
+  },
+  "followUp": {
+    "emailConfirmed": true,
+    "ownerReportedPasswordCreated": true,
+    "betaAdmissionAccepted": true,
+    "optionalOnboardingCompleted": false,
+    "mfaVerified": false,
+    "gameplayAccepted": false
   }
 }

@@ -1,10 +1,24 @@
 {
-  "checkedAt": "2026-10-09T10:56:29.748Z",
-  "deploymentId": "dpl_5fADFGCKB9LGuwMLxjjE1cqjVZ4y",
-  "commit": "afba9f559ac1fb6d38aa0968de00a7bea0aa4874",
-  "url": "https://docked-production-i8koncmem-briant-s-projects.vercel.app",
+  "checkedAt": "2026-10-09T11:17:01.048Z",
+  "deploymentId": "dpl_vcRdRDfrqAHPQgZBvvK2mhcRMVyP",
+  "commit": "9cfddee390b8ebc9716b604d30cde49995dae947",
+  "url": "https://docked-production-24ts2fdje-briant-s-projects.vercel.app",
   "allPassed": true,
   "checks": [
+    {
+      "name": "Owner setup requires admitted session",
+      "status": 200,
+      "redirect": "/app/login"
+    },
+    {
+      "name": "Onboarding requires admitted session",
+      "status": 200,
+      "redirect": "/app/login"
+    },
+    {
+      "name": "Fantasy login branding",
+      "status": 200
+    },
     {
       "name": "Malformed invitation rejected",
       "status": 400
