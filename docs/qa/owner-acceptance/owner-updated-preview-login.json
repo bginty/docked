@@ -1,0 +1,23 @@
+{
+  "recordedDate": "2026-10-10",
+  "deploymentId": "dpl_7sZKHS4YyHtCRZHAxwGdbDBp4BBE",
+  "applicationCommit": "3d6b81409e0cde2d768c459b0a6bdaf66659ed44",
+  "url": "https://docked-production-eup7bl41f-briant-s-projects.vercel.app",
+  "evidence": {
+    "ownerStatement": "logged in with new details",
+    "screenshot": "codex-clipboard-4cae6549-2b7b-4e9f-ac22-d6b3f1b3f2e2.png",
+    "visibleRoute": "/app/owner-setup",
+    "visibleHeading": "Owner sign-in complete",
+    "visibleMfaStatus": "MFA session verified",
+    "layout": "Completion panels and sign-out control are visibly separated without overlap"
+  },
+  "newPasswordLogin": "PASS — owner confirmation",
+  "updatedAuthenticatedOwnerScreen": "PASS — owner screenshot",
+  "mfaVerifiedScreen": "PASS — owner screenshot; no new server query in this acceptance record",
+  "agentHandledPasswordOrMfaCode": false,
+  "freshEmailRequired": false,
+  "gameplayAcceptance": "PENDING — not established by authentication success",
+  "externalAdmission": "DISABLED",
+  "newDeploymentMadeThisTurn": false,
+  "workspaceNote": "Substantial pre-existing uncommitted fantasy cleanup was discovered after the last evidence commit. It was preserved without staging, reverting or deploying it. This record covers the existing deployed commit only."
+}
