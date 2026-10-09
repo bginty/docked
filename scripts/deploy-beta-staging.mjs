@@ -6,7 +6,8 @@ import { resolve, dirname, join } from "node:path";
 import assert from "node:assert/strict";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
 const mode = process.argv[2];
-const ownerAuth = process.argv[3] === "--owner-auth";
+const ownerGameplay = process.argv[3] === "--owner-gameplay";
+const ownerAuth = process.argv[3] === "--owner-auth" || ownerGameplay;
 assert.ok(process.argv.length <= 4 && (!process.argv[3] || ownerAuth));
 assert.ok(["--prepare", "--deploy", "--status"].includes(mode));
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
@@ -169,6 +170,14 @@ if (mode === "--status") {
     ])
       env[flag] = "true";
   }
+  if (ownerGameplay) {
+    const approval = JSON.parse(
+      readFileSync("config/hosted-beta.json", "utf8"),
+    );
+    assert.equal(approval.ownerGameplayApproved, true);
+    env.DOCKED_OWNER_GAMEPLAY = "true";
+    env.FANTASY_FREE_PLAY_PRODUCTION = "true";
+  }
   assertHostedBeta({
     ...env,
     VERCEL: "1",
@@ -244,7 +253,8 @@ if (mode === "--status") {
           target: "preview",
           files: files.length,
           allActivationDisabled: !ownerAuth,
-          ownerAuthenticationOnly: ownerAuth,
+          ownerAuthenticationOnly: ownerAuth && !ownerGameplay,
+          ownerGameplay,
           source: "committed web-only export",
           preparedAt: new Date().toISOString(),
         },
@@ -264,7 +274,12 @@ if (mode === "--status") {
     assert.equal(
       JSON.parse(readFileSync(output + "/deployment-prepared.json", "utf8"))
         .ownerAuthenticationOnly,
-      ownerAuth,
+      ownerAuth && !ownerGameplay,
+    );
+    assert.equal(
+      JSON.parse(readFileSync(output + "/deployment-prepared.json", "utf8"))
+        .ownerGameplay ?? false,
+      ownerGameplay,
     );
     assert.equal(
       JSON.parse(readFileSync(output + "/deployment-prepared.json", "utf8"))

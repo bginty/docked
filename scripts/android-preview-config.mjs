@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { resolveLiveBetaTarget } from "./android-live-beta-config.mjs";
+import { validateOwnerQaManifest } from "./android-owner-qa-config.mjs";
 
 export const previewProjectRef = "bckkllmndoxzpzdqrevb";
 export const previewApplicationId = "au.com.docked.app.preview";
@@ -128,8 +129,19 @@ export function resolveAndroidTarget(
   let manifest = null;
   if (mode === "hosted") {
     try {
-      manifest = validatePreviewManifest(
-        JSON.parse(read(previewManifestPath, "utf8")),
+      manifest = (
+        env.CAPACITOR_OWNER_QA === "true"
+          ? validateOwnerQaManifest
+          : validatePreviewManifest
+      )(
+        JSON.parse(
+          read(
+            env.CAPACITOR_OWNER_QA === "true"
+              ? "config/android-owner-qa.json"
+              : previewManifestPath,
+            "utf8",
+          ),
+        ),
         now,
       );
     } catch {

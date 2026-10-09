@@ -71,6 +71,12 @@ export default async function FantasyPage({
         <Link className="button" href="/app/login">
           Sign in
         </Link>
+        {process.env.DOCKED_OWNER_GAMEPLAY === "true" && (
+          <p>
+            <Link href="/mfa">Verify your existing authenticator</Link> to
+            continue owner gameplay. Do not set up a new factor.
+          </p>
+        )}
         <p>
           If you are already signed in, Preview access may be expired or
           temporarily unavailable.
@@ -83,6 +89,12 @@ export default async function FantasyPage({
     <AppShell authenticated>
       <div>
         <FantasyScreen key={tab} tab={tab} initial={data.state} />
+        {process.env.DOCKED_OWNER_GAMEPLAY === "true" && (
+          <p className="notice" role="note">
+            Owner-only QA · fictional football cards and simulated scoring. No
+            real money, live sports results or external members.
+          </p>
+        )}
         {feed && (
           <section className="fantasy-social">
             <div className="actions">

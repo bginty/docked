@@ -12,7 +12,7 @@ Permanent card identity, finite edition supply, ownership provenance and atomic 
 
 The implemented card game uses fictional football players, position-constrained teams and simulated competition rounds. Additional sports are the product direction, not a claim of implemented sport-specific scoring. Community discussion and sport preferences cover multiple sports. NFL scaffolding does not establish operational NFL gameplay.
 
-Preview test-credit pack purchases, sales and trades are isolated test mechanics. The production-compatible free-play implementation disables commercial marketplace transfers. Do not describe these as live-money features. Public signup and external admission remain closed; owner authentication approval is not gameplay approval.
+Preview test-credit pack purchases, sales and trades are isolated test mechanics. The production-compatible free-play implementation disables commercial marketplace transfers. Do not describe these as live-money features. Public signup and external admission remain closed. On 10 October 2026 the owner separately authorised protected Preview gameplay exclusively for the existing verified owner, enforced by exact account identity and MFA. This does not approve external beta activation.
 
 ## Supersession
 

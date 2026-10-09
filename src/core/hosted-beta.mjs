@@ -38,7 +38,7 @@ export function betaOwnerAuthenticationOnly(env) {
     env.DOCKED_BETA_STAGING === "true" &&
     assertHostedBeta(env) &&
     env.BETA_ACCESS_ENABLED === "true" &&
-    manifest.ownerGameplayApproved !== true
+    env.FANTASY_FREE_PLAY_PRODUCTION !== "true"
   );
 }
 /** Explicit protected Preview target. This never authorizes Production or changes
@@ -146,8 +146,12 @@ export function assertHostedBeta(env) {
     if (env.BETA_TESTERS_ENABLED !== "false") fail();
   }
   if (
-    manifest.ownerGameplayApproved !== true &&
-    env.FANTASY_FREE_PLAY_PRODUCTION !== "false"
+    env.FANTASY_FREE_PLAY_PRODUCTION !== "false" &&
+    (manifest.ownerGameplayApproved !== true ||
+      env.FANTASY_FREE_PLAY_PRODUCTION !== "true" ||
+      env.DOCKED_OWNER_GAMEPLAY !== "true" ||
+      env.BETA_ACCESS_ENABLED !== "true" ||
+      env.BETA_TESTERS_ENABLED !== "false")
   )
     fail();
   return true;

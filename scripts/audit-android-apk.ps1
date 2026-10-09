@@ -53,7 +53,7 @@ $noAttachedOrigin = -not $config.server.url
 $approvedHostedOrigin = $false
 $expectedEnvironment = $null
 if ($Mode -eq 'Hosted') {
-  $expectedText = & node --input-type=module -e "import {resolveAndroidTarget} from './scripts/android-preview-config.mjs'; console.log(JSON.stringify(resolveAndroidTarget({CAPACITOR_PREVIEW_MODE:'hosted'}).manifest));"
+  $expectedText = & node --input-type=module -e "import {resolveAndroidTarget} from './scripts/android-preview-config.mjs'; console.log(JSON.stringify(resolveAndroidTarget({CAPACITOR_PREVIEW_MODE:'hosted',CAPACITOR_OWNER_QA:process.env.CAPACITOR_OWNER_QA}).manifest));"
   if ($LASTEXITCODE -ne 0) { throw 'APK audit requires a current verified preview manifest.' }
   $expectedEnvironment = $expectedText | ConvertFrom-Json
   $approvedHostedOrigin = $config.server.url -eq ($expectedEnvironment.origin + '/app') -and

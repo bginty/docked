@@ -529,6 +529,43 @@ async function main() {
     evidence.push(
       "Member cannot administer; designated owner requires MFA; suspension immediately denies existing sessions and cannot free a lifetime cap slot",
     );
+    // New owner-only window: a second previously admitted administrator/member
+    // cannot enter even if tester activation were accidentally toggled elsewhere.
+    await sql`create table auth.mfa_factors(user_id uuid,status text)`;
+    await sql`insert into auth.mfa_factors values(${owner.id},'verified')`;
+    await sql`update beta_private.roles set role='owner' where user_id=${owner.id}`;
+    await sql`insert into beta_private.owner_gameplay_control(owner_id,enabled,authority) values(${owner.id},true,'Local regression fixture: owner-only gameplay window')`;
+    await command(
+      owner,
+      "admin_free_round",
+      {
+        name: "Owner-only QA fixture",
+        season: "2027",
+        round: 5,
+        locks_at: new Date(Date.now() + 3600000).toISOString(),
+      },
+      true,
+      randomUUID(),
+      "aal2",
+    );
+    await assert.rejects(() => command(owner, "claim_daily"), /MFA/);
+    await assert.rejects(
+      () => command(users[0], "claim_daily", {}, true, randomUUID(), "aal2"),
+      /MFA|owner/i,
+    );
+    assert.equal(
+      (await sql`select beta_private.admitted(${users[0].id}) ok`)[0].ok,
+      false,
+    );
+    await sql`update beta_private.owner_gameplay_control set enabled=false`;
+    await assert.rejects(
+      () => command(owner, "claim_daily", {}, true, randomUUID(), "aal2"),
+      /MFA|owner/i,
+    );
+    evidence.push(
+      "Exact owner window rejects every other admitted account, requires MFA and fails closed when disabled",
+    );
+    // The additional local factor fixture belongs to auth, not official gameplay.
     assert.equal(await snapshot(), before);
     evidence.push(
       "Byte-equivalent final snapshot of ALL official tables: cards, claims, competition points, monthly/lifetime rankings and member statistics unchanged",

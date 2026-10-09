@@ -21,6 +21,7 @@
     "android:preview": "node scripts/android-debug.mjs --attach-local",
     "android:inspect": "node scripts/android-debug.mjs --attach-local --inspect-webview",
     "android:hosted-preview": "node scripts/android-debug.mjs --hosted-preview",
+    "android:owner-qa": "node scripts/android-debug.mjs --owner-qa",
     "android:live-beta": "node scripts/android-debug.mjs --live-beta",
     "android:closed-test:check": "node scripts/android-closed-test-config.mjs",
     "android:closed-test": "node scripts/android-debug.mjs --closed-test"

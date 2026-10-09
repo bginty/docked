@@ -9,7 +9,10 @@ try {
   const target = resolveAndroidTarget(
     liveBeta
       ? { CAPACITOR_LIVE_BETA: "true" }
-      : { CAPACITOR_PREVIEW_MODE: "hosted" },
+      : {
+          CAPACITOR_PREVIEW_MODE: "hosted",
+          CAPACITOR_OWNER_QA: process.env.CAPACITOR_OWNER_QA,
+        },
   );
   const config = JSON.parse(
     readFileSync("android/app/src/main/assets/capacitor.config.json", "utf8"),

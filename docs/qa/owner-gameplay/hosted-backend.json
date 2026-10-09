@@ -1,0 +1,49 @@
+{
+  "at": "2026-10-09T22:16:30.201Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "scope": "Hosted beta backend operator tests; real restricted SQL role and existing owner session context. Not HTTP session acceptance. Only isolated fictional QA data.",
+  "checks": [
+    {
+      "name": "Exact owner, AAL2 and accepted admission required",
+      "pass": true
+    },
+    {
+      "name": "Atomic rollback leaves issuance, ownership and receipts unchanged",
+      "pass": true
+    },
+    {
+      "name": "Eight concurrent starter requests allocate one permanent entitlement",
+      "pass": true
+    },
+    {
+      "name": "Open pack idempotency, collection details and complete provenance",
+      "pass": true
+    },
+    {
+      "name": "Market purchase, listing and trades denied in owner free play",
+      "pass": true
+    },
+    {
+      "name": "Runtime cannot edit cards, supply, owner gate, roles or audit history",
+      "pass": true
+    },
+    {
+      "name": "Lineup and competition entry persist atomically with duplicate retry",
+      "pass": true
+    },
+    {
+      "name": "Social profile, QA post, comment, reaction and save persist under owner role",
+      "pass": true
+    },
+    {
+      "name": "Deterministic simulated scoring, rankings and immutable settled results",
+      "pass": true
+    },
+    {
+      "name": "Official records, real holdings and permanent supply limits unchanged",
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "passed": true
+}

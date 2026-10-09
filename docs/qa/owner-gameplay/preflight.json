@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-09T22:06:11.003Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "owner": {
+    "confirmed": true,
+    "mfa": true,
+    "designated": true,
+    "ownerRole": true
+  },
+  "settings": [
+    {
+      "id": true,
+      "enabled": false,
+      "fee_bps": 750,
+      "deployment_mode": "preview",
+      "production_ref": null,
+      "terms_version": null,
+      "privacy_version": null
+    }
+  ],
+  "counts": {
+    "players": 36,
+    "editions": 180,
+    "cards": 0,
+    "packs": 0,
+    "members": 0,
+    "competitions": 3,
+    "production_catalog": 0,
+    "production_definitions": 0,
+    "results": 0,
+    "ownership_events": 0
+  },
+  "control": [
+    {
+      "enabled": true,
+      "testers_enabled": false
+    }
+  ],
+  "admission": [
+    {
+      "status": "accepted",
+      "country": "AU",
+      "state": "VIC",
+      "age_attested": true,
+      "policy_versions": {
+        "beta": "2026-10-09-beta-rc2",
+        "terms": "2026-10-09-beta-rc2",
+        "fantasy": "2026-10-09-beta-rc2",
+        "privacy": "2026-10-09-beta-rc2",
+        "community": "2026-10-09-beta-rc2",
+        "competition": "2026-10-09-beta-rc2",
+        "responsible_gambling": "2026-10-09-beta-rc2"
+      }
+    }
+  ],
+  "profile": [
+    {
+      "country": "AU",
+      "state": "VIC",
+      "age_attested": true,
+      "accepted_version": "2026-10-09-beta-rc2"
+    }
+  ],
+  "socialPolicies": [],
+  "authSessions": 3,
+  "scope": "Read-only metadata inspection. No session tokens, factor secrets, passwords or personal holdings exported."
+}

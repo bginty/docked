@@ -177,6 +177,25 @@ test("owner auth approval still rejects testers, public signup, games and privil
     assert.throws(() => assertHostedBeta({ ...env(), [flag]: "test" }));
 });
 
+test("owner gameplay needs explicit scope and cannot open external admission", () => {
+  const owner = {
+    ...env(),
+    BETA_ACCESS_ENABLED: "true",
+    FANTASY_FREE_PLAY_PRODUCTION: "true",
+    DOCKED_OWNER_GAMEPLAY: "true",
+  };
+  assert.equal(assertHostedBeta(owner), true);
+  assert.equal(betaOwnerAuthenticationOnly(owner), false);
+  assert.equal(fantasyPlatformEnabled(owner), true);
+  for (const change of [
+    { DOCKED_OWNER_GAMEPLAY: "false" },
+    { BETA_TESTERS_ENABLED: "true" },
+    { BETA_ACCESS_ENABLED: "false" },
+    { VERCEL_ENV: "production" },
+  ])
+    assert.throws(() => assertHostedBeta({ ...owner, ...change }));
+});
+
 test("owner authentication binds exact approved beta policies without public production approval", () => {
   const owner = {
     ...env(),

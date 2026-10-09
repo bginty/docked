@@ -18,6 +18,8 @@ export async function fantasyRequest(
   const production = fantasyProductionEnabled();
   if (!production) assertFantasyEnvironment();
   const who = await requireIdentity();
+  if (process.env.DOCKED_OWNER_GAMEPLAY === "true" && who.aal !== "aal2")
+    throw Error("Privileged MFA required");
   const command =
     input === undefined
       ? null

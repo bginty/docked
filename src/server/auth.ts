@@ -61,6 +61,11 @@ export async function identity() {
     const admission =
       await sql`select private.admitted(${user.id}::uuid) allowed`;
     if (!admission[0]?.allowed) return null;
+    if (process.env.DOCKED_OWNER_GAMEPLAY === "true") {
+      const owner =
+        await sql`select private.owner_gameplay_identity(${user.id}::uuid) allowed`;
+      if (!owner[0]?.allowed) return null;
+    }
   }
   const p =
     await sql`select * from public.profiles where id=${user.id} and disabled_at is null`;

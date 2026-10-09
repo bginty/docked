@@ -1,13 +1,14 @@
 {
   "scope": "disposable loopback PostgreSQL, not hosted",
-  "checkedAt": "2026-10-09T21:22:18.408Z",
+  "checkedAt": "2026-10-09T22:12:37.671Z",
   "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
   "passed": true,
   "migrationHashes": {
     "20261008224142_beta_namespace_isolation.sql": "83e359f9098de42edbca15348eb22e2f648bf8bbda25a38943aabe8ac0ebfbee",
     "20261008224144_beta_atomic_admission.sql": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a",
     "20261008225828_beta_owner_acceptance_boundary.sql": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0",
-    "20261008232200_beta_admission_snapshot_serialization.sql": "8c9045fc39134dd5077a0df0dd92156c388d5a47e5db616963cacb458debf604"
+    "20261008232200_beta_admission_snapshot_serialization.sql": "8c9045fc39134dd5077a0df0dd92156c388d5a47e5db616963cacb458debf604",
+    "20261009220656_owner_only_fantasy_gameplay.sql": "194ee56c781866097e4edfd989c2c6d3ca0d11d0d41d312ee3a514f11f82adec"
   },
   "scenarios": [
     "Additive migrations preserve every official table, including existing cards and permanent starter entitlement",
@@ -28,6 +29,7 @@
     "Actual docked_beta_app administrator reservation RPC recovers an existing invitation, rejects non-MFA/member callers and refuses an eleventh tester",
     "Expired code denied; explicit MFA renewal invalidates the old code and preserves the original capacity reservation",
     "Member cannot administer; designated owner requires MFA; suspension immediately denies existing sessions and cannot free a lifetime cap slot",
+    "Exact owner window rejects every other admitted account, requires MFA and fails closed when disabled",
     "Byte-equivalent final snapshot of ALL official tables: cards, claims, competition points, monthly/lifetime rankings and member statistics unchanged"
   ]
 }

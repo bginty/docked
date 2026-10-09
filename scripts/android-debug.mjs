@@ -19,7 +19,11 @@ const attached = process.argv.includes("--attach-local");
 const inspect = process.argv.includes("--inspect-webview");
 const closedTest = process.argv.includes("--closed-test");
 const liveBeta = process.argv.includes("--live-beta");
-const hosted = process.argv.includes("--hosted-preview") || closedTest;
+const ownerQa = process.argv.includes("--owner-qa");
+const hosted =
+  process.argv.includes("--hosted-preview") || closedTest || ownerQa;
+if (ownerQa && (liveBeta || closedTest))
+  throw Error("Owner QA is not a live or store release");
 if (liveBeta && (hosted || attached || inspect))
   throw Error("Live beta is a separate HTTPS-only build.");
 if (hosted && (attached || inspect))
@@ -31,6 +35,7 @@ if (inspect && !attached)
 const env = {
   ...process.env,
   CAPACITOR_LIVE_BETA: liveBeta ? "true" : "false",
+  CAPACITOR_OWNER_QA: ownerQa ? "true" : "false",
   CAPACITOR_PREVIEW_MODE: hosted ? "hosted" : attached ? "local" : "bundled",
   CAPACITOR_PREVIEW_SERVER: "",
   CAPACITOR_PREVIEW_DEBUGGING: inspect ? "1" : "",
@@ -56,7 +61,11 @@ const artifactOutput = path.join(
 );
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
-const hostedFilename = liveBeta ? 'Docked-Protected-Beta-v10-Fantasy-Cards.apk' : 'Docked-Preview-v10-Fantasy-Cards.apk';
+const hostedFilename = ownerQa
+  ? "Docked-v11-Owner-Connected-QA.apk"
+  : liveBeta
+    ? "Docked-Protected-Beta-v11-Fantasy-Cards.apk"
+    : "Docked-Preview-v11-Fantasy-Cards.apk";
 preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);
 preserveAndroidApks(
   path.join(root, "android/app/build/outputs/bundle/closedTest"),
