@@ -1,5 +1,7 @@
 # Owner acceptance — approved policies, remaining scheduler permission gate
 
+**9 October follow-up:** the read-only investigation and prepared alternative are in [Email dispatch decision](DOCKED-EMAIL-DISPATCH-DECISION.md). Keep the historical failure evidence below. A trusted operator can invoke the existing signed worker without pg_net during a separately approved supervised owner-only window; Supabase privilege intervention is not mandatory for that proposed path. Nothing has been activated. Unattended dispatch and hosted positive acceptance remain unverified.
+
 The owner approved all seven exact `2026-10-09-beta-rc2` documents from `da3b48a2`, subject to the existing unresolved requirements. The separate approval receipt records every version and SHA-256. The original policy bytes are unchanged. External tester admission, public signup and public-domain promotion remain unauthorized.
 
 ## Completed

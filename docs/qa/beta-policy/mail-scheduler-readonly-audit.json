@@ -1,0 +1,83 @@
+{
+  "roles": [
+    {
+      "role": "docked_app",
+      "login": true,
+      "outboxSelect": false,
+      "queueRpcExecute": false
+    },
+    {
+      "role": "authenticated",
+      "login": false,
+      "outboxSelect": false,
+      "queueRpcExecute": false
+    },
+    {
+      "role": "anon",
+      "login": false,
+      "outboxSelect": false,
+      "queueRpcExecute": false
+    },
+    {
+      "role": "service_role",
+      "login": false,
+      "outboxSelect": false,
+      "queueRpcExecute": true
+    },
+    {
+      "role": "postgres",
+      "login": true,
+      "outboxSelect": true,
+      "queueRpcExecute": true
+    },
+    {
+      "role": "docked_beta_app",
+      "login": true,
+      "outboxSelect": false,
+      "queueRpcExecute": false
+    }
+  ],
+  "cronJobs": 0,
+  "authUsers": 0,
+  "checkedAt": "2026-10-09T08:40:48.156015+00:00",
+  "scheduler": {
+    "enabled": false,
+    "lastTickAt": null,
+    "projectRef": "pojoymtniryarxxunyvz",
+    "lastRequestAt": null
+  },
+  "extensions": [
+    {
+      "name": "supabase_vault",
+      "owner": "supabase_admin",
+      "version": "0.3.1"
+    },
+    {
+      "name": "pg_cron",
+      "owner": "supabase_admin",
+      "version": "1.6.4"
+    }
+  ],
+  "outboxRows": 1,
+  "projectRef": "pojoymtniryarxxunyvz",
+  "netSchemaExists": false,
+  "globalNetPrivateDefaultAclRows": 0,
+  "outboxSummary": [
+    {
+      "mode": "controlled",
+      "state": "accepted",
+      "jobs": 1
+    }
+  ],
+  "privateTables": {
+    "owner": "postgres",
+    "acl": "postgres only",
+    "rls": true,
+    "names": [
+      "docked_auth_mail_outbox",
+      "docked_auth_mail_events",
+      "docked_mail_scheduler"
+    ]
+  },
+  "accessMode": "Read-only production catalog/count queries; no envelope, recipient, key or token read"
+}

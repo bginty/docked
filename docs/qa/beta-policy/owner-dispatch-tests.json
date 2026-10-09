@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-09",
+  "scope": "Local operator dispatcher preparation and production read-only audit; no live sends or activation",
+  "focusedRegression": { "passed": 36, "failed": 0, "providerTransport": "Test doubles, not delivery evidence" },
+  "realPostgreSQL": { "passed": 6, "failed": 0, "environment": "Disposable PostgreSQL 17.10 on loopback", "concurrentEnqueues": 24, "concurrentClaims": 24, "report": "docs/qa/fantasy-production/auth-mail-postgres.json" },
+  "typecheck": "PASS",
+  "changedSourceLint": "PASS",
+  "dispatcherCheck": { "requestsMade": 0, "secretRead": false, "activated": false },
+  "privateApprovalFile": { "exists": false, "gitIgnored": true },
+  "policyIntegrity": { "documents": 7, "result": "PASS", "packetDigest": "8494f44d3ee4e53c23f1368b32ec2fe3378c11ffa07dd7e78154d38656526674" },
+  "heuristicSecretsScan": { "status": "FLAGGED_EXISTING_FIXTURES", "filesInspected": 2023, "flaggedFiles": 7, "newFileFindings": 0, "notes": "Generic pattern scanner exits FAIL for pre-existing test database URL constructions and a deliberately malformed private-key fixture. Redacted context inspected; scanner was not weakened and no credential was printed. This is not a fresh actual-secret comparison or hosted browser-asset scan." },
+  "initialFailuresResolved": ["Test incorrectly expected Svix.verify to return parsed JSON; installed verifier returns void", "Test fetch callback parameter annotation was narrower than fetch; fixed contextual typing"],
+  "notRun": ["Live one-shot dispatch", "Hosted invitation and recovery delivery", "Owner account activation or MFA", "New hosted gameplay acceptance", "Other-mailbox negative Exchange authorization", "Unattended scheduler reliability"],
+  "cloudChanges": 0
+}
