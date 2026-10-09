@@ -1,4 +1,6 @@
-# Owner acceptance — supervised window closed; Auth invitation rate-limited
+# Owner acceptance — invitation accepted; waiting for personal confirmation
+
+**Latest result, 9 October 2026, 21:58 Sydney:** After fresh explicit owner approval, one Auth invitation returned200 and created the sole unconfirmed support@docked.com.au account. One signed Graph submission returned202; its queue record is accepted with attempts1. Sending was disabled immediately afterward and read back OFF. No pending jobs, MFA factors or beta administrator roles exist; testers and public signup remain closed. Inbox delivery, account confirmation, password recovery, AAL2 and gameplay acceptance are still unverified. See `qa/owner-acceptance/quota-recovery-invitation.json`. Earlier rate-limit failures below are historical, not the current blocker.
 
 **Owner quota confirmation:** 2 emails/hour; signups/sign-ins and verification each 30 requests/5 minutes/IP; IP forwarding disabled. No settings changed. See [next supervised window](DOCKED-OWNER-INVITATION-NEXT-WINDOW.md): earliest conservative recheck 21:30 Sydney on 9 October, followed by fresh read-only checks and explicit approval immediately before one invitation. Sending remains disabled; no automatic retry is scheduled. Future email scaling is a recommendation only.
 

@@ -1,5 +1,7 @@
 # Next supervised owner invitation — waiting for fresh approval
 
+**Window completed:** The owner explicitly replied “yes” immediately before the21:58Sydney attempt on9October. Auth returned200 and the sole owner identity was verified before dispatch. Graph accepted one invitation (202, attempts1). All dispatcher flags are OFF and both local approvals are disabled/consumed. No retry occurred. Subject: “Your Docked invitation”. Await actual Inbox confirmation before claiming delivery or proceeding with personal confirmation/MFA. No recovery email was requested. The new one-shot marker is consumed and must be preserved.
+
 Recorded 9 October 2026. This is a preparation record, not permission to send and not an enabled dispatcher configuration.
 
 ## Owner-confirmed settings
