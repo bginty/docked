@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "status": "owner-approved-subject-to-unresolved-requirements",
+  "approvedBy": "Owner",
+  "approvedAt": "2026-10-09T06:07:43.021Z",
+  "authority": "Owner message: DOCKED — OWNER POLICY APPROVAL",
+  "sourceCommit": "da3b48a2a6235d1f7592047dd00724586cbb6c0e",
+  "version": "2026-10-09-beta-rc2",
+  "digest": "8494f44d3ee4e53c23f1368b32ec2fe3378c11ffa07dd7e78154d38656526674",
+  "documents": [
+    {
+      "id": "privacy",
+      "title": "Privacy Policy",
+      "version": "2026-10-09-beta-rc2",
+      "path": "docs/policies/2026-10-09-beta-rc2/privacy.md",
+      "sha256": "a011e62a12cb490628aad22178da0235114722644ceda27c74056691b7896eb7"
+    },
+    {
+      "id": "terms",
+      "title": "Terms of Use",
+      "version": "2026-10-09-beta-rc2",
+      "path": "docs/policies/2026-10-09-beta-rc2/terms.md",
+      "sha256": "fe585ee0326e693b37291b43c397b93f3cab724ec3b67ce3ae37ff41548c6ca0"
+    },
+    {
+      "id": "beta-participation",
+      "title": "Beta Participation Terms",
+      "version": "2026-10-09-beta-rc2",
+      "path": "docs/policies/2026-10-09-beta-rc2/beta-participation.md",
+      "sha256": "b49815fc83ce3dec68fb574f4974941e58038bffe3adf4bbc7662786fd7ecf0a"
+    },
+    {
+      "id": "community",
+      "title": "Community Guidelines",
+      "version": "2026-10-09-beta-rc2",
+      "path": "docs/policies/2026-10-09-beta-rc2/community.md",
+      "sha256": "d59083e303107ccb81f6cf0e0381e39cb47581111b2b06d632fb68170ad075d2"
+    },
+    {
+      "id": "fantasy-cards",
+      "title": "Fantasy Card Rules",
+      "version": "2026-10-09-beta-rc2",
+      "path": "docs/policies/2026-10-09-beta-rc2/fantasy-cards.md",
+      "sha256": "bb9ced8ca4d2c079a8ed2f9211f8b458c5e7194c29392fab1fb1bbcc860eab73"
+    },
+    {
+      "id": "competition-points",
+      "title": "Competition and Points Rules",
+      "version": "2026-10-09-beta-rc2",
+      "path": "docs/policies/2026-10-09-beta-rc2/competition-points.md",
+      "sha256": "bf13d3ba5ebc152852979e899ef364df476b5eefb9b0543dcebfdafb725e07c0"
+    },
+    {
+      "id": "responsible-gambling",
+      "title": "Responsible Gambling Disclosures",
+      "version": "2026-10-09-beta-rc2",
+      "path": "docs/policies/2026-10-09-beta-rc2/responsible-gambling.md",
+      "sha256": "b749fb085552a1f0dca2eee5eea3e10f5ff9c325956b540c647c048839db47d0"
+    }
+  ],
+  "versions": {
+    "terms": "2026-10-09-beta-rc2",
+    "privacy": "2026-10-09-beta-rc2",
+    "beta": "2026-10-09-beta-rc2",
+    "community": "2026-10-09-beta-rc2",
+    "fantasy": "2026-10-09-beta-rc2",
+    "competition": "2026-10-09-beta-rc2",
+    "responsible_gambling": "2026-10-09-beta-rc2"
+  },
+  "scope": {
+    "ownerOnlyAcceptanceAuthorized": true,
+    "externalAdmissionAuthorized": false,
+    "publicRegistrationAuthorized": false,
+    "productionPromotionAuthorized": false
+  },
+  "unresolvedRequirements": [
+    "privacy applicability and operations",
+    "retention",
+    "data location",
+    "export and deletion handling",
+    "online safety",
+    "moderation"
+  ]
+}

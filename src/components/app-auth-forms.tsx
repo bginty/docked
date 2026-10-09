@@ -187,10 +187,28 @@ export function AppAuthForm({
       )}
       {setup && (
         <>
-          {mode === 'complete' && environment.liveBeta && <>
-            <AppAuthField label="Private beta admission code" name="betaAdmissionCode" type="password" autoComplete="off" pattern="[a-f0-9]{64}" minLength={64} maxLength={64} required />
-            <Consent name="betaRules" required>I accept the approved beta participation, community, fantasy, competition and responsible gambling rules supplied with my invitation.</Consent>
-          </>}
+          {mode === "complete" && environment.liveBeta && (
+            <>
+              <AppAuthField
+                label="Private beta admission code"
+                name="betaAdmissionCode"
+                type="password"
+                autoComplete="off"
+                pattern="[a-f0-9]{64}"
+                minLength={64}
+                maxLength={64}
+                required
+              />
+              <Consent name="betaRules" required>
+                I accept the{" "}
+                <Link href="/beta-policies" target="_blank">
+                  approved beta participation, community, fantasy, competition
+                  and responsible gambling rules
+                </Link>
+                .
+              </Consent>
+            </>
+          )}
           <div className="app-auth-region">
             <AppAuthField
               label="Country code"
@@ -215,14 +233,22 @@ export function AppAuthForm({
           </Consent>
           <Consent name="terms" required>
             I accept the{" "}
-            <Link href="/terms" target="_blank">
+            <Link
+              href={environment.liveBeta ? "/beta-policies#terms" : "/terms"}
+              target="_blank"
+            >
               Terms
             </Link>
             .
           </Consent>
           <Consent name="privacy" required>
             I accept the{" "}
-            <Link href="/privacy" target="_blank">
+            <Link
+              href={
+                environment.liveBeta ? "/beta-policies#privacy" : "/privacy"
+              }
+              target="_blank"
+            >
               Privacy Policy
             </Link>
             .

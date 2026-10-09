@@ -88,6 +88,40 @@ await check("Invitation confirmation remains closed before approval", () =>
 );
 let browser;
 try {
+  await check(
+    "Approved seven-document policy packet is served on the protected beta",
+    async () => {
+      const policies = JSON.parse(
+        readFileSync("config/beta-policy-content.json", "utf8"),
+      );
+      const response = await req("/beta-policies");
+      assert.equal(response.status, 200);
+      const html = await response.text();
+      assert.ok(html.includes(policies.version));
+      for (const doc of policies.documents)
+        assert.ok(html.includes(`id="${doc.id}"`));
+      return {
+        status: 200,
+        version: policies.version,
+        documents: policies.documents.length,
+      };
+    },
+  );
+  for (const [path, fragment] of [
+    ["/terms", "terms"],
+    ["/privacy", "privacy"],
+    ["/safer-gambling", "responsible-gambling"],
+  ]) {
+    await check(`Beta ${path} routes to the approved packet`, async () => {
+      const response = await req(path);
+      assert.equal(response.status, 307);
+      assert.equal(
+        new URL(response.headers.get("location"), base).href,
+        `${base}/beta-policies#${fragment}`,
+      );
+      return { status: 307 };
+    });
+  }
   await check("Anonymous access retains Vercel protection", async () => {
     const r = await fetch(base, { redirect: "manual" });
     assert.ok([401, 403, 302, 307].includes(r.status));

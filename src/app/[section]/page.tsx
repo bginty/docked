@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { betaPolicyVersions } from "@/core/hosted-beta.mjs";
 import { PageHeading, Empty, Notice, Metric } from "@/components/ui";
 import { ApiForm, Check, Field } from "@/components/forms";
 import {
@@ -105,6 +106,10 @@ export default async function Page({
 }) {
   const { section } = await params;
   const query = await searchParams;
+  if (process.env.DOCKED_BETA_STAGING === "true" && betaPolicyVersions()) {
+    const betaPolicy = ({ terms: "terms", privacy: "privacy", "safer-gambling": "responsible-gambling" } as Record<string, string>)[section];
+    if (betaPolicy) redirect(`/beta-policies#${betaPolicy}`);
+  }
   if (!titles[section]) notFound();
   let content: React.ReactNode;
   const eyebrow = "DOCKED / " + section.replaceAll("-", " ").toUpperCase();
