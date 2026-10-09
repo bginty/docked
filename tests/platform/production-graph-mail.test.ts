@@ -39,6 +39,20 @@ test("real GoTrue project site_url is accepted only with the pinned beta callbac
     p.email_data.site_url = projectUrl;
     p.email_data.redirect_to = origin + "/auth/callback?next=/app/verified";
     const options = { allowInvites: true, betaOrigin: origin };
+    for (const serviceSite of [
+      projectUrl,
+      projectUrl + "/",
+      projectUrl + "/auth/v1",
+      projectUrl + "/auth/v1/",
+    ]) {
+      assert.equal(
+        messagesFor(
+          { ...p, email_data: { ...p.email_data, site_url: serviceSite } },
+          options,
+        ).length,
+        1,
+      );
+    }
     const messages = messagesFor(p, options);
     assert.equal(messages.length, 1);
     assert.ok(
@@ -52,6 +66,8 @@ test("real GoTrue project site_url is accepted only with the pinned beta callbac
       "https://other.supabase.co",
       projectUrl + ".evil.test",
       "https://example.test",
+      projectUrl + "/auth/v1?redirect=unapproved",
+      projectUrl + "/auth/v1/other",
     ]) {
       assert.throws(
         () =>

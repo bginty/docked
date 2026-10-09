@@ -9,20 +9,33 @@ import { databaseConnectionOptions } from "../src/server/database-tls.ts";
 import { dispatchOnce } from "./owner-mail-dispatch.mjs";
 import { flags, secrets, checkFlags } from "./owner-mail-window.mjs";
 
+const serviceBaseFix =
+  process.argv[2] === "--send-owner-invite-after-service-base-fix";
 const reviewedFix =
+  serviceBaseFix ||
   process.argv[2] === "--send-owner-invite-after-site-url-fix";
 assert.ok(process.argv[2] === "--send-owner-invite-once" || reviewedFix);
 const root = "private-data/production/";
 const receiptFile =
   root +
   "owner-window/" +
-  (reviewedFix ? "invite-after-site-url-fix.json" : "invite-attempt.json");
+  (serviceBaseFix
+    ? "invite-after-service-base-fix.json"
+    : reviewedFix
+      ? "invite-after-site-url-fix.json"
+      : "invite-attempt.json");
 const approvalFile = root + "microsoft365/owner-dispatch-approval.json";
 const read = (path) => JSON.parse(readFileSync(path, "utf8"));
 if (reviewedFix) {
   // Explicit operator reconciliation after a reviewed compatibility fix, never
   // an automatic HTTP retry or a retry of a dispatched/uncertain Graph send.
-  const prior = read(root + "owner-window/invite-attempt.json");
+  const prior = read(
+    root +
+      "owner-window/" +
+      (serviceBaseFix
+        ? "invite-after-site-url-fix.json"
+        : "invite-attempt.json"),
+  );
   assert.equal(prior.inviteStatus, 500);
   assert.equal(prior.emailsAccepted, 0);
   assert.equal(prior.dispatch, undefined);
@@ -30,9 +43,21 @@ if (reviewedFix) {
   assert.equal(prior.finalDatabase.outstanding_mail, 0);
   assert.equal(prior.dispatcherDisabled, true);
   writeFileSync(
-    "docs/qa/owner-acceptance/initial-invitation-rejected.json",
+    "docs/qa/owner-acceptance/" +
+      (serviceBaseFix
+        ? "project-root-invitation-rejected.json"
+        : "initial-invitation-rejected.json"),
     JSON.stringify(prior, null, 2) + "\n",
   );
+}
+if (serviceBaseFix) {
+  const probe = read("docs/qa/owner-acceptance/provider-no-send-probe.json");
+  assert.equal(probe.senderEnabled, false);
+  assert.equal(probe.workerEnabled, false);
+  assert.equal(probe.allMailFlagsClosed, true);
+  assert.equal(probe.hookStatus, 503);
+  assert.equal(probe.productionMailRows, 0);
+  assert.equal(probe.authUsers, 0);
 }
 const ref = "pojoymtniryarxxunyvz",
   email = "support@docked.com.au";

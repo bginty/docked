@@ -99,7 +99,13 @@ export function messagesFor(
     });
   // GoTrue uses its Auth service external URL in this signed payload field.
   // Keep the project exact and validate the website callback independently.
-  if (data.site_url !== projectUrl && !allowedOrigins.includes(data.site_url))
+  const serviceSite = new Set([
+    projectUrl,
+    projectUrl + "/",
+    projectUrl + "/auth/v1",
+    projectUrl + "/auth/v1/",
+  ]).has(data.site_url);
+  if (!serviceSite && !allowedOrigins.includes(data.site_url))
     throw Object.assign(Error("Unapproved Auth origin or callback"), {
       code: "site_origin",
     });
@@ -115,7 +121,7 @@ export function messagesFor(
   const action = data.email_action_type;
   if (
     action === "invite" &&
-    data.site_url !== projectUrl &&
+    !serviceSite &&
     new URL(data.redirect_to).origin !== data.site_url
   )
     throw Error("Invitation origin must match Auth site origin");
