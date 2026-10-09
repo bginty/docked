@@ -7,7 +7,9 @@ const headers = {
   'Referrer-Policy': 'strict-origin',
   'X-Robots-Tag': 'noindex, nofollow, noarchive',
   'X-Content-Type-Options': 'nosniff',
-  'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
+  // Chromium also applies form-action to the provider redirect after POST.
+  // Permit only this project's existing verification endpoint, never all HTTPS.
+  'Content-Security-Policy': `default-src 'none'; style-src 'unsafe-inline'; form-action 'self' ${project}/auth/v1/verify; frame-ancestors 'none'; base-uri 'none'`,
 };
 type Dependencies = {
   enabled: boolean;

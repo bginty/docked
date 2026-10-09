@@ -13,6 +13,7 @@ test('recovery link scanners cannot consume tokens; only explicit POST reaches p
     assert.equal(r.headers.get('location'),null);
     assert.match(r.headers.get('cache-control')!,/no-store/);
     assert.equal(r.headers.get('referrer-policy'),'strict-origin');
+    assert.match(r.headers.get('content-security-policy')!,/form-action 'self' https:\/\/pojoymtniryarxxunyvz\.supabase\.co\/auth\/v1\/verify;/);
     const html=await r.text();
     assert.doesNotMatch(html,/supabase\.co|<script|http-equiv/i);
     if(method==='GET')assert.match(html,/method="post"/);
