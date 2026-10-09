@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Next supervised owner invitation — waiting for fresh approval
 
 **Window completed:** The owner explicitly replied “yes” immediately before the21:58Sydney attempt on9October. Auth returned200 and the sole owner identity was verified before dispatch. Graph accepted one invitation (202, attempts1). All dispatcher flags are OFF and both local approvals are disabled/consumed. No retry occurred. Subject: “Your Docked invitation”. Await actual Inbox confirmation before claiming delivery or proceeding with personal confirmation/MFA. No recovery email was requested. The new one-shot marker is consumed and must be preserved.

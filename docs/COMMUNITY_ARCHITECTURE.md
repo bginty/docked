@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Community architecture — Phase 3 preview
 
 Prepared 3 October 2026. This is an isolated preview implementation, not evidence of hosted authentication, provider rights or a launched community. Existing canonical Docked pricing/publication and prospective strategy controls remain authoritative.

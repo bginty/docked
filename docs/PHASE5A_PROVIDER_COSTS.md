@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 5A — The Odds API usage model
 
 Reviewed **4 October 2026**. The owner confirmed **Free for now** on that date: the public allowance is **500 credits/month at $0**, with history **NOT_INCLUDED**. The completed manual trial's final measured headers show **491 remaining / 9 used** at 2026-10-03 23:47:15 UTC. All future cadence scenarios below are **hypothetical planning calculations**, not an upgrade, activation instruction or claim that source coverage passed. The measured trial is recorded separately in [PROVIDER_TRIAL_RESULTS](PROVIDER_TRIAL_RESULTS.md).

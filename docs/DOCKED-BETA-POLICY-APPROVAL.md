@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked restricted-beta approval package
 
 Decision package **2026-10-09-beta-rc2** · prepared 9 October 2026 · **owner approved, subject to the unresolved requirements below**. Approval authority: the owner's “DOCKED — OWNER POLICY APPROVAL” message, explicitly identifying commit `da3b48a2a6235d1f7592047dd00724586cbb6c0e`. The [approval receipt](policies/2026-10-09-beta-rc2/owner-approval.json) records each of the seven exact versions and hashes, approval time, authority and conditions. All seven source documents remain byte-for-byte identical to that commit; their historical draft labels and candidate manifest are preserved rather than silently changing approved text. Previous rc1 files are preserved. The [manifest](policies/2026-10-09-beta-rc2/manifest.json) contains the exact SHA-256 of each file; the packet digest is `8494f44d3ee4e53c23f1368b32ec2fe3378c11ffa07dd7e78154d38656526674`.

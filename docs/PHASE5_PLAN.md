@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 5 implementation plan
 
 Scope: sections 1–68 of the owner's Phase 5 request, 4 October 2026. Continue `codex/docked-value-platform`; rollback tag `docked-before-phase5-2026-10-04` points to `7663490c0b9adee05d2a2cef5ea7ef1e587f1a27`. Working tree was clean before edits.

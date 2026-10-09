@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Fantasy Cards Preview V1 — audit and implementation plan
 
 Checkpoint: `checkpoint/pre-fantasy-cards-preview-v1`; branch: `pivot/fantasy-cards-preview-v1`. Starting checkout was clean. Production is not a target.
@@ -6,7 +8,7 @@ Checkpoint: `checkpoint/pre-fantasy-cards-preview-v1`; branch: `pivot/fantasy-ca
 
 Next.js 16 / React 19 App Router, TypeScript, PostgreSQL via postgres.js and Supabase Auth SSR. Reuse verified identity, confirmed-email and live-session checks, private database roles, deployment identity/TLS guards, same-origin checks and rate limiting. Profiles remain `public.profiles`; social identities remain `private.social_profiles`. Existing Feed/Following, likes, comments, block/mute/privacy, reporting and moderation stay in place. Existing recognition and Points remain historical; fantasy championship results have a distinct immutable ledger.
 
-Navigation currently exposes Edges, Feed, Following, Points and My Edge. Adapt the existing shell for a server-enabled fantasy Preview, with Play, Cards, Market, Social and Profile. Preserve legacy research routes and all odds/model workers, schemas and history. Existing PWA and Capacitor Android bridge, safe areas, keyboard behavior, package identity, signing and build pipeline remain.
+Navigation currently exposes Edges, Feed, Following, Points and My Edge. Adapt the existing shell for a server-enabled fantasy Preview, with Play, Cards, Market, Social and Profile. Retire obsolete research routes and odds/model workers. Preserve historical schemas and audit evidence pending separately reviewed retirement. Existing PWA and Capacitor Android bridge, safe areas, keyboard behavior, package identity, signing and build pipeline remain.
 
 Database changes use additive versioned migrations. Existing private schemas have RLS and revoked browser access; sensitive community operations establish verified transaction-local claims. Tests include node:test platform suites, PGlite PostgreSQL migrations/security tests and Playwright. Vercel is already guarded and linked by `config/hosted-preview.json` to a separate Supabase project; production has a separate manifest. No production database migration, deployment, DNS change or payments are authorized.
 

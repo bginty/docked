@@ -1,10 +1,9 @@
 const id =
   "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
-const record = new RegExp(`^/(tips|edges|results)/(${id})$`);
-const community = new RegExp(`^/community/(posts|edges)/(${id})$`);
-const research = new RegExp(`^/research/matches/(${id})$`);
+const community = new RegExp(`^/community/(posts)/(${id})$`);
 const shortPost = new RegExp(`^/community/(${id})$`);
 const staticPaths = new Set([
+  "/fantasy/play", "/fantasy/cards", "/fantasy/market", "/fantasy/social", "/fantasy/profile",
   "/app",
   "/app/login",
   "/app/signup",
@@ -18,16 +17,9 @@ const staticPaths = new Set([
   "/home",
   "/feed",
   "/following",
-  "/points",
-  "/my-edge",
-  "/edges",
   "/community",
-  "/top-docked",
   "/notifications",
   "/profile",
-  "/results",
-  "/methodology",
-  "/membership",
   "/dashboard",
   "/compose",
   "/search",
@@ -58,15 +50,11 @@ export function nativeDeepLink(
   else return null;
   if (route.endsWith("/") && route !== "/") route = route.slice(0, -1);
   if (url.search) return null;
-  const official = route.match(record);
-  if (official) return `/tips/${official[2]}`;
   if (community.test(route)) return route;
-  if (research.test(route)) return route;
   const post = route.match(shortPost);
   if (post) return `/community/posts/${post[1]}`;
   if (
-    /^\/profile\/[a-z][a-z0-9_]{2,23}$/.test(route) ||
-    /^\/learn\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(route)
+    /^\/profile\/[a-z][a-z0-9_]{2,23}$/.test(route)
   )
     return route;
   return staticPaths.has(route) ? route : null;
@@ -150,13 +138,9 @@ export function safeSharePath(path: string): string | null {
   return nativeDeepLink(`docked://${path.slice(1)}`);
 }
 export const nativePushTypes = [
-  "official_edge",
-  "edge_status",
   "comment",
   "reply",
   "follower",
-  "followed_member_edge",
-  "leaderboard",
   "system",
 ] as const;
 export function nativeNotificationRoute(input: unknown): string | null {
@@ -171,13 +155,9 @@ export function nativeNotificationRoute(input: unknown): string | null {
   const route = safeSharePath(value.path);
   if (!route) return null;
   const family: Record<(typeof nativePushTypes)[number], RegExp> = {
-    official_edge: /^\/tips\//,
-    edge_status: /^\/tips\//,
     comment: /^\/community\/posts\//,
     reply: /^\/community\/posts\//,
     follower: /^\/profile\//,
-    followed_member_edge: /^\/community\/edges\//,
-    leaderboard: /^\/top-docked$/,
     system: /^\/(notifications|dashboard|home)$/,
   };
   return family[value.type as (typeof nativePushTypes)[number]].test(route)

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Research source evaluation — 4 October 2026
 
 **Free-first recommendation:** assess OpenFootball's CC0 EPL goals/results datasets before buying a sporting feed. Its licence supports the proposed retained, derived research use. Its data quality does not yet establish operational fixture, model or settlement readiness. Optional weather can use the Met Office Free plan after owner account/configuration. Injuries, lineups and xG are not prerequisites for the proposed simple V1.

@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Expedited policy and owner-auth preparation evidence
 
 9 October 2026. Policy candidate `2026-10-09-beta-rc2` remains unapproved. Its seven exact files and aggregate digest pass integrity verification; rc1 remains unchanged. Owner operating parameters are recorded without changing runtime activation flags.

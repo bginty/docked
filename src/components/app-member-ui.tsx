@@ -1,21 +1,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import type {
-  SocialProfile,
-  CommunityFeed,
-  CommunityStatus,
-} from "@/core/community-social";
-import type { CommunityPerformance } from "@/core/top-docked";
+import type { SocialProfile, CommunityFeed } from "@/core/community-social";
 import { sports, type SportSlug } from "@/content/sports";
-import type { TopDockedBoard } from "@/server/top-docked";
 import { AppIcon, type AppIconName } from "./app-icon";
 import { BrandLogo } from "./brand-logo";
 import { AppHeading, OfficialBadge } from "./community-basics";
-import { ProfileActions, ProfileEditor } from "./social-interactions";
+import { ProfileActions } from "./social-interactions";
 import { SocialTimeline } from "./social-timeline";
 import { SportIcon } from "./sport-icon";
-import { NativeAppSettings } from "./native-bridge";
-import { ApiForm } from "./forms";
 
 export type MemberMetric = {
   label: string;
@@ -143,154 +135,6 @@ export function MemberEmpty({
   );
 }
 
-export function MonthlyLeaderboard({ board }: { board: TopDockedBoard }) {
-  const qualified = (board.status === "READY" ? board.rows : [])
-    .filter((row) => row.qualification === "QUALIFIED" && row.rank !== null)
-    .slice(0, 3);
-  return (
-    <section
-      className="member-section"
-      aria-labelledby="member-monthly-leaders"
-    >
-      <div className="member-section-heading">
-        <div>
-          <p className="eyebrow">TOP DOCKED · THIS MONTH</p>
-          <h2 id="member-monthly-leaders">The complete record counts.</h2>
-        </div>
-        <AppIcon name="trophy" size={26} />
-      </div>
-      {qualified.length ? (
-        <ol className="member-leaderboard">
-          {qualified.map((row) => (
-            <li className="member-row" key={row.profileId}>
-              <span className="member-rank" aria-label={`Rank ${row.rank}`}>
-                {row.rank}
-              </span>
-              <div className="member-copy">
-                {row.interactionsAllowed ? (
-                  <Link href={`/profile/${row.handle}`}>{row.displayName}</Link>
-                ) : (
-                  <strong>{row.displayName}</strong>
-                )}
-                <p>
-                  {row.performance.won} wins · {row.performance.lost} losses ·{" "}
-                  {row.performance.voids} voids
-                </p>
-              </div>
-              <div className="member-leaderboard-result">
-                <strong>
-                  {row.performance.netUnits ?? "Unavailable"}
-                  {row.performance.netUnits !== null ? " u" : ""}
-                </strong>
-                <span>
-                  {row.performance.roi === null
-                    ? "ROI unavailable"
-                    : `${row.performance.roi}% ROI`}
-                </span>
-              </div>
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <p className="member-unavailable">
-          {board.status === "READY"
-            ? "No record meets this month's sample and integrity requirements. Provisional records remain available on Top Docked."
-            : board.message}
-        </p>
-      )}
-      <p className="small-note">
-        Ranked by net standardised units, not points. At least{" "}
-        {board.rule.minimumSettled} non-void settled Edges across{" "}
-        {board.rule.minimumActiveDays} active UTC days are required.
-      </p>
-      <Link className="text-link" href="/top-docked?period=month">
-        All records and ranking rules <span aria-hidden="true">→</span>
-      </Link>
-    </section>
-  );
-}
-
-const profileLinks: {
-  href: string;
-  label: string;
-  description: string;
-  icon: AppIconName;
-}[] = [
-  {
-    href: "/profile#posts",
-    label: "My posts",
-    description: "Your conversations and analysis",
-    icon: "comment",
-  },
-  {
-    href: "/profile#records",
-    label: "My Edges",
-    description: "Permanent records, including losses",
-    icon: "edge",
-  },
-  {
-    href: "/profile?tab=saved#posts",
-    label: "Saved posts",
-    description: "Your private reading list",
-    icon: "save",
-  },
-  {
-    href: "/dashboard#saved",
-    label: "Saved official tips",
-    description: "Your bookmarked official records",
-    icon: "save",
-  },
-  {
-    href: "/following",
-    label: "Following",
-    description: "People and conversations you follow",
-    icon: "community",
-  },
-  {
-    href: "/notifications",
-    label: "Notifications",
-    description: "Your inbox and alert preferences",
-    icon: "bell",
-  },
-  {
-    href: "/dashboard",
-    label: "Settings & privacy",
-    description: "Preferences, export and account controls",
-    icon: "settings",
-  },
-  {
-    href: "/contact",
-    label: "Help & support",
-    description: "Get help with Docked",
-    icon: "shield",
-  },
-];
-
-export function ProfileMenu() {
-  return (
-    <section className="member-section">
-      <h2 className="app-section-title">Your Docked</h2>
-      <nav className="member-menu" aria-label="Your profile and account">
-        {profileLinks.map((item) => (
-          <Link className="member-menu-row" href={item.href} key={item.href}>
-            <AppIcon name={item.icon} />
-            <span className="member-copy">
-              <strong>{item.label}</strong>
-              <span>{item.description}</span>
-            </span>
-            <AppIcon name="arrow" size={18} />
-          </Link>
-        ))}
-      </nav>
-      <div className="member-logout">
-        <ApiForm endpoint="/api/auth" action="logout" submit="Log out">
-          <p className="small-note">Sign out of Docked on all devices.</p>
-        </ApiForm>
-      </div>
-    </section>
-  );
-}
-
 export type FollowingMembers = {
   profiles: SocialProfile[];
   nextCursor: string | null;
@@ -375,7 +219,7 @@ export function FollowingContent({
             <MemberEmpty
               title="Make your circle yours."
               actions={
-                <Link className="button" href="/my-edge">
+                <Link className="button" href="/profile">
                   Create your profile
                 </Link>
               }
@@ -385,7 +229,7 @@ export function FollowingContent({
             </MemberEmpty>
           ) : viewer.following === 0 ? (
             <MemberEmpty
-              title="Follow people, sports and sources"
+              title="Follow people and explore sports"
               actions={
                 <Link className="button" href="/search">
                   Find people to follow
@@ -488,171 +332,6 @@ export function FollowingContent({
             )}
         </>
       )}
-    </div>
-  );
-}
-export function PointsContent({
-  month: monthly,
-  lifetime: all,
-  board,
-}: {
-  month: CommunityPerformance | null;
-  lifetime: CommunityPerformance | null;
-  board: TopDockedBoard;
-}) {
-  const heading = (
-    <AppHeading eyebrow="YOUR DOCKED" title="Your points">
-      Activity. Accuracy. Progress.
-    </AppHeading>
-  );
-  return (
-    <div className="member-screen points-screen">
-      {heading}
-      <section
-        className="member-points-card"
-        aria-labelledby="points-not-launched"
-      >
-        <h2 id="points-not-launched" className="sr-only">
-          Points summary
-        </h2>
-        <dl className="member-points-summary">
-          <div className="member-metric">
-            <dt className="member-metric-label">Monthly points</dt>
-            <dd className="member-metric-value member-unavailable">
-              Not enabled
-            </dd>
-          </div>
-          <div className="member-metric">
-            <dt className="member-metric-label">Lifetime points</dt>
-            <dd className="member-metric-value member-unavailable">
-              Not enabled
-            </dd>
-          </div>
-        </dl>
-        <p>
-          Points and levels are not enabled. No rewards or balance are assigned.
-        </p>
-        <p className="small-note">
-          Verified performance is separate. Standard units are not points.
-        </p>
-      </section>
-      <section className="member-section" aria-labelledby="points-performance">
-        <div className="member-section-heading">
-          <h2 id="points-performance">Your verified record</h2>
-          <Link href="/profile#performance">Full record</Link>
-        </div>
-        <p className="small-note">
-          Community Edges only. Authorised outcomes and regional access are
-          required.
-        </p>
-        <h3 className="member-period">This month</h3>
-        <MemberMetrics
-          label="Current UTC calendar month verified performance"
-          items={[
-            { label: "Verified Edges", value: monthly?.verifiedEdges },
-            { label: "Net standard units", value: monthly?.netUnits },
-            {
-              label: "ROI",
-              value: monthly?.roi == null ? null : `${monthly.roi}%`,
-            },
-          ]}
-        />
-        <h3 className="member-period">All time</h3>
-        <MemberMetrics
-          label="All available verified community history"
-          items={[
-            { label: "Verified Edges", value: all?.verifiedEdges },
-            { label: "Net standard units", value: all?.netUnits },
-            { label: "ROI", value: all?.roi == null ? null : `${all.roi}%` },
-          ]}
-        />
-        {!monthly && !all && (
-          <p className="member-unavailable">
-            No accessible verified performance is available. Missing records or
-            approval are not zero results.
-          </p>
-        )}
-        <p className="small-note">
-          This month uses the current UTC calendar month by submission date. All
-          time covers available canonical history, including losses. ROI uses
-          settled, non-void one-unit records.
-        </p>
-      </section>
-      <MonthlyLeaderboard board={board} />
-      <p className="small-note">
-        Past performance does not guarantee future results.
-      </p>
-    </div>
-  );
-}
-export function MyEdgeContent({
-  profile,
-  status,
-  message,
-  performance,
-}: {
-  profile: SocialProfile | null;
-  status: CommunityStatus;
-  message: string;
-  performance: CommunityPerformance | null;
-}) {
-  const heading = (
-    <AppHeading eyebrow="YOUR DOCKED" title="My Edge">
-      Your profile. Your perspective.
-    </AppHeading>
-  );
-  return (
-    <div className="member-screen my-edge-screen">
-      {heading}
-      {profile ? (
-        <MemberIdentity profile={profile} />
-      ) : status === "ready" ? (
-        <section className="member-section">
-          <p>
-            Choose the name and identity you want to share with the community.
-          </p>
-          <ProfileEditor profile={null} />
-        </section>
-      ) : (
-        <MemberEmpty
-          title="Your community profile is unavailable"
-          actions={
-            <Link className="button" href="/dashboard">
-              Account settings
-            </Link>
-          }
-        >
-          {message}
-        </MemberEmpty>
-      )}
-      {profile && (
-        <section className="member-section" aria-labelledby="my-edge-record">
-          <div className="member-section-heading">
-            <h2 id="my-edge-record">Your record</h2>
-            <Link href="/profile#performance">View all</Link>
-          </div>
-          <MemberMetrics
-            label="All-time verified community performance"
-            items={[
-              { label: "Verified Edges", value: performance?.verifiedEdges },
-              {
-                label: "Win rate",
-                value:
-                  performance?.winRate == null
-                    ? null
-                    : `${performance.winRate}%`,
-              },
-              { label: "Net standard units", value: performance?.netUnits },
-            ]}
-          />
-          <p className="small-note">
-            All available verified history, including losses. Unavailable means
-            no accessible evidence, not zero performance.
-          </p>
-        </section>
-      )}
-      <ProfileMenu />
-      <NativeAppSettings />
     </div>
   );
 }

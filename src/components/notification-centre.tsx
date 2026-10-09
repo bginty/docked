@@ -10,18 +10,8 @@ import { communityAction } from "./social-interactions";
 import { CommunityEmpty } from "./community-basics";
 import { LocalTimestamp } from "./local-timestamp";
 const preferences: [keyof NotificationPreferences, string][] = [
-  ["officialEdges", "Official Edge and status updates"],
-  ["followedMembers", "Followed member posts and Edges"],
+  ["followedMembers", "Followed member posts"],
   ["social", "Comments, replies, reactions and followers"],
-  ["researchUpdates", "Reviewed Docked research (optional)"],
-  ["lineupUpdates", "Reviewed lineup updates (optional)"],
-  [
-    "teamUpdates",
-    "Future followed-team updates (optional; team follows are not available yet)",
-  ],
-  ["leaderboard", "Leaderboard milestones"],
-  ["competitions", "Future competition and prize updates"],
-  ["dealsMarketing", "Future deals and marketing (separate opt-in)"],
   ["inApp", "Receive optional in-app notifications"],
 ];
 export function NotificationCentre({ data }: { data: CommunityNotifications }) {
@@ -47,6 +37,13 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
     const d = new FormData(e.currentTarget);
     const body: Record<string, unknown> = {
       action: "preferences",
+      officialEdges: false,
+      researchUpdates: false,
+      lineupUpdates: false,
+      teamUpdates: false,
+      leaderboard: false,
+      competitions: false,
+      dealsMarketing: false,
       email: false,
       push: false,
     };

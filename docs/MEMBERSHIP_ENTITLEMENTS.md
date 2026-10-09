@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Free membership and future Pro
 
 Phase 3 keeps Docked Free. `src/core/membership.ts` is the versioned client-safe catalogue; the private database plan/price/entitlement/subscription/event tables prepare a future provider adapter. No payment provider is connected, no card fields exist and no purchase/cancel-renew endpoint can activate a paid plan.

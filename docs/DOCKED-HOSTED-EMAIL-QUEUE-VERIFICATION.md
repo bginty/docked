@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked hosted email queue verification
 
 8 October 2026. Continued from `8e7852e0` on `pivot/fantasy-cards-preview-v1`. **Controlled hosted delivery PASS; complete hosted authentication acceptance BLOCKED. Public signup and automatic production email remain disabled.**

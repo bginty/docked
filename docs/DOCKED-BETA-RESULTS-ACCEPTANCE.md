@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked beta results and launch checkpoint — 9 October 2026
 
 Continued from `bdaac082` on `pivot/fantasy-cards-preview-v1`. **Not launched.** Existing email integration, NFL work and Android packaging are preserved. The public holding page remains until the mandatory gates pass.

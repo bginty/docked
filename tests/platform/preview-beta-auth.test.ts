@@ -64,14 +64,13 @@ test("invitation signup requires separate legal acceptances, reserved-safe usern
 });
 test("capabilities are explicit, unique and cannot become genuine features or production privileges", () => {
   assert.equal(
-    previewCapabilitySet.safeParse([
-      "community_social",
-      "public_profiles",
-      "preview_market_fixtures",
-    ]).success,
+    previewCapabilitySet.safeParse(["community_social", "public_profiles"])
+      .success,
     true,
   );
   for (const extra of [
+    "preview_market_fixtures",
+    "preview_top_docked",
     "leaderboards",
     "community_edges",
     "admin",

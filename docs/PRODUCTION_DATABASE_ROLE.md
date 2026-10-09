@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Production database role readiness
 
 Prepared 4 October 2026. **Source and local PostgreSQL validation only. No production role, password, project or account has been provisioned by this work.**

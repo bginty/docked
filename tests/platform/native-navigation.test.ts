@@ -74,7 +74,10 @@ test("native app entry, recovery and expired-session transitions retain UI conte
     [200, {}],
     [200, { authenticated: "false" }],
   ] as const)
-    assert.equal(nativeSessionDestination(response[0], response[1], "/edges"), null);
+    assert.equal(
+      nativeSessionDestination(response[0], response[1], "/edges"),
+      null,
+    );
   assert.equal(
     nativeSessionDestination(
       200,
@@ -85,7 +88,13 @@ test("native app entry, recovery and expired-session transitions retain UI conte
   );
 });
 test("mobile app tabs are exact deep links without expanding push or auth authority", () => {
-  for (const path of ["/edges", "/feed", "/following", "/points", "/my-edge"]) {
+  for (const path of [
+    "/fantasy/play",
+    "/fantasy/cards",
+    "/fantasy/market",
+    "/fantasy/social",
+    "/fantasy/profile",
+  ]) {
     assert.equal(nativeDeepLink(`docked:/${path}`), path);
     assert.equal(
       nativeDeepLink(
@@ -112,13 +121,13 @@ test("mobile app tabs are exact deep links without expanding push or auth author
   }
 });
 test("native links canonicalize official results and community records without importing session tokens", () => {
-  assert.equal(nativeDeepLink(`docked://edges/${id}`), `/tips/${id}`);
+  assert.equal(nativeDeepLink(`docked://edges/${id}`), null);
   assert.equal(
     nativeDeepLink(
       `https://preview.example.test/results/${id}`,
       "https://preview.example.test",
     ),
-    `/tips/${id}`,
+    null,
   );
   assert.equal(
     nativeDeepLink(
@@ -135,10 +144,7 @@ test("native links canonicalize official results and community records without i
     nativeDeepLink(`docked://community/${id}`),
     `/community/posts/${id}`,
   );
-  assert.equal(
-    nativeDeepLink(`docked://community/edges/${id}`),
-    `/community/edges/${id}`,
-  );
+  assert.equal(nativeDeepLink(`docked://community/edges/${id}`), null);
   assert.equal(
     nativeDeepLink("docked://profile/member_one"),
     "/profile/member_one",
@@ -183,7 +189,7 @@ test("native auth callbacks accept only a code for the original same-origin PKCE
 test("push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data", () => {
   assert.equal(
     nativeNotificationRoute({ type: "official_edge", path: `/tips/${id}` }),
-    `/tips/${id}`,
+    null,
   );
   assert.equal(
     nativeNotificationRoute({ type: "system", path: "/admin" }),

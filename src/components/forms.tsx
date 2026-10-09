@@ -43,7 +43,7 @@ export function ApiForm({
       .forEach((x) => {
         body[x.name] = x.checked;
       });
-    for (const k of ["sports", "leagues", "bookmakers"])
+    for (const k of ["sports", "leagues"])
       if (typeof body[k] === "string")
         body[k] = (body[k] as string)
           .split(",")

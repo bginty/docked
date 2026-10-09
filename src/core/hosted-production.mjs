@@ -1,4 +1,4 @@
-import { assertHostedBeta } from './hosted-beta.mjs';
+import { assertHostedBeta } from "./hosted-beta.mjs";
 import {
   reviewedHostingIdentity,
   productionHostCommit,

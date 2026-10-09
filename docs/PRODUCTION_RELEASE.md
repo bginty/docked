@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked production release — 4 October 2026
 
 The owner explicitly authorised replacing the existing docked.com.au storefront with the new Docked application and improving it after launch. This supersedes earlier instructions prohibiting production deployment and website DNS changes. It does not approve purchases, invent operator details, validate the strategy or authorise external test emails.

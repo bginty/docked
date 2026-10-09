@@ -35,7 +35,7 @@ export async function acquisitionMetrics() {
       sql`select d.days,
       count(*) filter(where p.created_at<=now()-(d.days+7)*interval '1 day') as eligible_members,
       count(*) filter(where p.created_at<=now()-(d.days+7)*interval '1 day' and exists(
-        select 1 from private.analytics_events e where e.user_id=p.id and e.event in ('edge_viewed','tip_saved','methodology_viewed','results_viewed','article_viewed')
+        select 1 from private.analytics_events e where e.user_id=p.id and e.event in ('feed_viewed','post_created','competition_viewed','profile_viewed')
         and e.created_at>=p.created_at+d.days*interval '1 day' and e.created_at<p.created_at+(d.days+7)*interval '1 day')) as retained_members
       from (values(7),(30),(90)) d(days) cross join public.profiles p where p.disabled_at is null
       and coalesce((select granted from private.consent_events where user_id=p.id and purpose='analytics' order by created_at desc limit 1),false)
@@ -44,7 +44,7 @@ export async function acquisitionMetrics() {
       sql`select coalesce(channel,'unattributed') as channel,count(distinct user_id) as members from private.analytics_events where event='signup_completed' group by channel`,
       sql`select status,count(*) as attempts from private.delivery_attempts where created_at>=now()-interval '30 days' group by status`,
       sql`select
-      (select count(distinct user_id) from private.analytics_events where created_at>=now()-interval '30 days' and event in ('edge_viewed','tip_saved','methodology_viewed','results_viewed','article_viewed')) as active_members_30_days,
+      (select count(distinct user_id) from private.analytics_events where created_at>=now()-interval '30 days' and event in ('feed_viewed','post_created','competition_viewed','profile_viewed')) as active_members_30_days,
       (select count(distinct user_id) from private.consent_events where actor='one-click-unsubscribe' and created_at>=now()-interval '30 days') as unsubscribed_members_30_days,
       (select count(*) from private.audit_events where action='email.complained' and created_at>=now()-interval '30 days') as complaints_received_30_days`,
     ]);

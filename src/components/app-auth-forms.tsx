@@ -344,7 +344,9 @@ export function AppOnboardingForm({
     fantasyPreview: previewOnly,
     fantasyProduction,
   } = useEnvironmentPresentation();
-  const fantasyPreview = previewOnly || fantasyProduction;
+  const fantasyPreview = true;
+  void previewOnly;
+  void fantasyProduction;
   const essentialsRequired = legalRequired || usernameRequired;
   const [step, setStep] = useState(essentialsRequired ? 0 : 1),
     [ready, setReady] = useState(false),
@@ -354,7 +356,7 @@ export function AppOnboardingForm({
   const [sports, setSports] = useState(preferences.sports),
     [interests, setInterests] = useState(preferences.interests);
   const [notices, setNotices] = useState({
-    officialEdges: preferences.officialEdges,
+    officialEdges: false,
     followedMembers: preferences.followedMembers,
     replies: preferences.replies,
   });
@@ -396,9 +398,11 @@ export function AppOnboardingForm({
         setMessage(result.error ?? "Unable to save your preferences.");
         return;
       }
-      router.replace(result.redirect === "/app/owner-setup"
-        ? "/app/owner-setup"
-        : fantasyPreview ? "/fantasy/play" : "/edges");
+      router.replace(
+        result.redirect === "/app/owner-setup"
+          ? "/app/owner-setup"
+          : "/fantasy/play",
+      );
       router.refresh();
     } catch {
       setMessage(
@@ -520,9 +524,9 @@ export function AppOnboardingForm({
       {step === 1 && (
         <>
           <p className="app-auth-hint">
-            {fantasyPreview
-              ? "Personalise your fantasy sports interests."
-              : "Personalise your interests. Live Edge coverage is not yet enabled."}
+            Personalise your fantasy sports interests. Football gameplay is
+            available only in approved test environments; other sports are
+            discussion preferences.
           </p>
           <div className="app-sport-options">
             {appSports.map(([value, label]) => (
@@ -555,7 +559,7 @@ export function AppOnboardingForm({
           </p>
           {(
             [
-              ["edges", "Docked Edges"],
+              ["edges", "Fantasy cards"],
               ["community", "Community"],
               ["both", "Both"],
             ] as const
@@ -587,33 +591,28 @@ export function AppOnboardingForm({
           </p>
           {(
             [
-              ["officialEdges", "Official Docked Edges"],
               ["followedMembers", "People I follow"],
               ["replies", "Replies & comments"],
             ] as const
-          )
-            .filter(([key]) => !fantasyPreview || key !== "officialEdges")
-            .map(([key, label]) => (
-              <label
-                className="app-choice"
-                key={key}
-                data-selected={notices[key]}
-              >
-                <input
-                  type="checkbox"
-                  checked={notices[key]}
-                  onChange={(e) =>
-                    setNotices({ ...notices, [key]: e.target.checked })
-                  }
-                />
-                <span>{label}</span>
-              </label>
-            ))}
+          ).map(([key, label]) => (
+            <label
+              className="app-choice"
+              key={key}
+              data-selected={notices[key]}
+            >
+              <input
+                type="checkbox"
+                checked={notices[key]}
+                onChange={(e) =>
+                  setNotices({ ...notices, [key]: e.target.checked })
+                }
+              />
+              <span>{label}</span>
+            </label>
+          ))}
           <p className="app-auth-hint">
             In-app preferences only. Android push is not configured, so no
             device permission is requested.
-            {!fantasyPreview &&
-              " Official Edge alerts remain off until validation."}
           </p>
         </>
       )}

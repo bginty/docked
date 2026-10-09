@@ -9,7 +9,7 @@ test("native offline fallback needs no network subresources and has exact CSP ha
   const html = renderOfflineShell(
     resolveAndroidTarget({ CAPACITOR_PREVIEW_MODE: "local" }),
   );
-  const approvedImage = `data:image/png;base64,${readFileSync("public/brand/icons/docked-app-icon-1024.png").toString("base64")}`;
+  const approvedImage = `data:image/png;base64,${readFileSync("public/brand/docked/icons/docked-icon-512.png").toString("base64")}`;
   const resourceTags = [...html.matchAll(/<(script|link|img)\b[^>]*>/gi)];
   let approvedImages = 0;
   for (const tag of resourceTags) {
@@ -53,7 +53,11 @@ test("native offline fallback needs no network subresources and has exact CSP ha
       new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`),
     )?.[1];
     assert.ok(content, `Offline ${tag} content must exist.`);
-    assert.equal(content.includes("\r"), false, `Offline ${tag} must use the browser's normalised LF bytes before hashing.`);
+    assert.equal(
+      content.includes("\r"),
+      false,
+      `Offline ${tag} must use the browser's normalised LF bytes before hashing.`,
+    );
     const hash = createHash("sha256").update(content).digest("base64");
     assert.ok(
       html.includes(`${tag}-src 'sha256-${hash}'`),

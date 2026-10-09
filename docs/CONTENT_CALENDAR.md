@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Twelve-week draft editorial calendar
 
 Timezone Australia/Melbourne. Relative weeks begin after approved editorial activation; no public launch date is assumed. Eight complete evergreen drafts are in src/content/articles.ts and /learn. Every worked example is fictional. No future fixture or result has been invented.

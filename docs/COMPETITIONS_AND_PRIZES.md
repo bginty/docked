@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Future competitions and prizes — disabled
 
 `COMPETITIONS_ENABLED=false` and `PRIZES_ENABLED=false`; configuration refuses activation. No competition is open, no entry is accepted, no winner is declared and no prize has been purchased or awarded.

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Research rights and retention
 
 Manual entry requires approved manual or automated retention rights, an active source review, an exact event mapping and analyst/admin/owner MFA. Retention alone does not allow public display. Public content independently requires `publicDisplay=ALLOWED`, commercial and storage permission, the configured jurisdiction, current review/effective dates and unexpired payload retention.

@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Google Play readiness — blocked
 
 Phase 5B clarification: friends-and-family closed testing may proceed with Football Model V1 in research/unconfigured state, provided the app is truthful. Neither retrospective betting ROI nor profitable official Edges is a Play beta requirement. Actual signing, account email, support/moderation, privacy/declarations and native/device gates below still apply. No Play release is created by an Android Preview APK.

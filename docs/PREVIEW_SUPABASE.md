@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Docked preview database and account lifecycle
 
 Updated 3 October 2026, Phase 4: dedicated **Docked Preview** (`bckkllmndoxzpzdqrevb`) exists in the Docked organisation (`ernfnkcbalhyqpsrzdwa`), Sydney, on the owner-approved $0/month Free plan. Seven migrations are applied and all 83 application tables have RLS. The frontend runs locally against this hosted backend. Genuine signup, verification, onboarding, recovery, social controls and all four staff MFA roles have passed; the complete current acceptance and teardown receipts are in [HOSTED_ACCEPTANCE.md](HOSTED_ACCEPTANCE.md) and [Phase 4 QA](qa/phase4/README.md). The [earlier provisioning record](qa/hosted-preview/README.md) is preserved as a historical checkpoint.

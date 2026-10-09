@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # In-app notifications — Phase 3
 
 Prepared 3 October 2026. External email and push are disabled in the social preference schema and API. No notification in this phase sends an external message.

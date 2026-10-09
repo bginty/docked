@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Manual Preview trial controls
 
 The trial endpoint is `POST /api/internal/provider-trial`. It accepts only a JSON `permitId`, a maximum 256-byte body, no query parameters and an authenticated operator bearer. The API key stays inside the Sensitive hosted environment. The stored permit contains only the operator token's SHA-256 hash, one fixed operation, optional exact reviewed competition/configuration, issuer and expiry.

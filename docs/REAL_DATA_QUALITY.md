@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Real data quality — 4 October 2026
 
 **Measured, bounded Preview sample; not a validated pricing or results service.** The authorised The Odds API trial retained 27 real upcoming fixtures, 11 canonical football markets and 110 bookmaker-market vectors containing 330 individual selection prices. Standard-price classification and bookmaker independence remain unverified, Market Reference is NOT_CONFIGURED, model probability is unavailable, and no official Edge or performance result was created.

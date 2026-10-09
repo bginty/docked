@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-10-09T21:28:56.740Z",
+  "scope": "Tracked/unignored existing text files; binary supplied artwork inspected separately. Archived snapshots intentionally retained. One row per matching occurrence, including compatibility identifiers.",
+  "occurrences": 7762,
+  "reasons": {
+    "Supersession/retirement documentation or explicitly labelled historical plans; PRODUCT_DIRECTION.md takes precedence.": 735,
+    "Archived source/history, excluded from application/build entry points. Not current instructions.": 2546,
+    "Fail-closed retirement/deployment guard or tombstone; retained names reject old clients/configuration, never enable the service.": 55,
+    "Controlled verification/retirement tooling or retained shared infrastructure; no active odds provider/worker entry point.": 9,
+    "Regression fixture or assertion: verifies rejection, historical account rights or database isolation; never production data.": 225,
+    "Preserved historical artifact receipt; current delivery instructions supersede old product releases.": 3,
+    "Approved historical consent/policy wording preserved byte-for-byte; replace only with a newly approved version.": 57,
+    "Historical schema baseline used by migration/RLS regression tests; never reapplied as an active product setup.": 19,
+    "Historical or isolation-test evidence, not active product instructions.": 2836,
+    "Image provenance: original generation prompts exclude betting imagery; generic visual edge terminology, not product functionality.": 5,
+    "Historical consent column/purpose explicitly set false or revoked; account data preserved.": 4,
+    "Explicit notice distinguishing the immutable historical policy wording from current fantasy cards.": 1,
+    "Unused presentation selector/icon identifier; no route, data query or product copy. Retained to avoid unrelated styling regressions.": 90,
+    "Stored onboarding enum compatibility (edges means Fantasy cards in current UI); no pricing/publication permission.": 15,
+    "Legacy preference field explicitly forced false; no retired capability granted.": 2,
+    "Historical schema/type compatibility, exclusion of retired posts, owner-only export or audit preservation; no retired publishing route.": 39,
+    "Data minimisation comment or historical query metadata; retired event submissions are rejected.": 1,
+    "Immutable database migration/history; retirement/revocation requires the separate migration described in DATABASE_RETIREMENT.md.": 1120
+  },
+  "unclassified": []
+}

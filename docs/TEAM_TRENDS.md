@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Team trends — Phase 5C
 
 Initial match research is EPL pre-match regulation 1X2. The reusable trend arithmetic has no installed dataset or default fitted parameters. Football V1 remains NOT_CONFIGURED. A detailed research file or positive descriptive trend cannot activate it.

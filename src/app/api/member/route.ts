@@ -1,28 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { DateTime } from "luxon";
 import { requireIdentity, sameOrigin, authClient } from "@/server/auth";
 import { db, rateLimit } from "@/server/db";
-import { publicTips } from "@/server/queries";
 import { processAccountDeletion } from "@/server/account-deletion";
 import { currentConsentVersions } from "@/core/auth-readiness";
-import { recordAnalytics } from "@/server/analytics";
 import { exportCommunityData } from "@/server/community-social";
 import { saveAppOnboarding } from "@/server/app-onboarding";
 import { boundedCommunityBody } from "@/core/community-social";
 import { exportPreviewFixtureData } from "@/server/preview-export";
-const preferenceSchema = z.object({
-  timezone: z.string().refine((v) => DateTime.now().setZone(v).isValid),
-  oddsFormat: z.enum(["decimal", "fractional", "american"]),
-  digest: z.enum(["off", "weekly", "twice_weekly"]),
-  edgeAlerts: z.boolean(),
-  education: z.boolean(),
-  analytics: z.boolean().optional().default(false),
-  paused: z.boolean(),
-  sports: z.array(z.string().max(60)).max(10),
-  leagues: z.array(z.string().max(60)).max(20),
-  bookmakers: z.array(z.string().max(60)).max(20),
-});
 export async function GET() {
   try {
     const who = await requireIdentity(),
@@ -111,84 +96,14 @@ export async function POST(request: Request) {
           "Jurisdiction updated. Optional alerts paused until you review preferences; server-side eligibility still applies.",
       });
     }
-    if (body.action === "preferences") {
-      const v = preferenceSchema.parse(body);
-      const previous =
-        await sql`select digest,edge_alerts,paused from public.notification_preferences where user_id=${who.user.id}`;
-      await sql.begin(async (tx) => {
-        await tx`update public.profiles set timezone=${v.timezone},odds_format=${v.oddsFormat},sports=${v.sports},leagues=${v.leagues},bookmakers=${v.bookmakers},onboarding_completed_at=coalesce(onboarding_completed_at,now()) where id=${who.user.id}`;
-        await tx`update public.notification_preferences set digest=${v.digest},edge_alerts=${v.edgeAlerts},education=${v.education},paused=${v.paused},updated_at=now() where user_id=${who.user.id}`;
-        for (const [purpose, granted] of Object.entries({
-          digest: v.digest !== "off",
-          education: v.education,
-          edge: v.edgeAlerts,
-          analytics: v.analytics,
-        }))
-          await tx`insert into private.consent_events(user_id,purpose,granted,version,actor) values(${who.user.id},${purpose},${granted},'2026-10',${who.user.id})`;
-        await tx`update private.outbox set state='suppressed',last_error='Consent revoked or paused' where user_id=${who.user.id} and state in ('queued','leased') and kind<>'service' and (${v.paused} or (kind='edge' and ${!v.edgeAlerts}) or (kind='digest' and ${v.digest === "off"}) or (kind='education' and ${!v.education}))`;
-      });
-      if (!who.profile.onboarding_completed_at)
-        await recordAnalytics(
-          who.user.id,
-          "onboarding_completed",
-          undefined,
-          true,
-        );
-      if (JSON.stringify(who.profile.sports) !== JSON.stringify(v.sports))
-        await recordAnalytics(who.user.id, "sport_selected");
-      if (
-        JSON.stringify(who.profile.bookmakers) !== JSON.stringify(v.bookmakers)
-      )
-        await recordAnalytics(who.user.id, "bookmaker_selected");
-      const before = previous[0];
-      if (
-        (!!before?.edge_alerts && !before?.paused) !==
-        (v.edgeAlerts && !v.paused)
-      )
-        await recordAnalytics(
-          who.user.id,
-          v.edgeAlerts && !v.paused ? "alert_enabled" : "alert_disabled",
-        );
-      if (
-        (before?.digest !== "off" && !before?.paused) !==
-        (v.digest !== "off" && !v.paused)
-      )
-        await recordAnalytics(
-          who.user.id,
-          v.digest !== "off" && !v.paused
-            ? "digest_enabled"
-            : "digest_disabled",
-        );
-      return NextResponse.json({
-        ok: true,
-        message: "Preferences saved.",
-        ...(!who.profile.onboarding_completed_at ? { redirect: "/home" } : {}),
-      });
-    }
-    if (body.action === "save") {
-      const id = z.string().uuid().parse(body.tipId);
-      const tips = await publicTips();
-      if (!tips.some((t) => t.id === id)) throw new Error("Tip not accessible");
-      const saved =
-        await sql`insert into public.saved_tips(user_id,tip_id) values(${who.user.id},${id}) on conflict do nothing returning tip_id`;
-      if (saved.length) await recordAnalytics(who.user.id, "tip_saved");
-      return NextResponse.json({ ok: true, message: "Tip saved." });
-    }
-    if (body.action === "personal") {
-      const v = z
-        .object({
-          label: z.string().min(1).max(160),
-          odds: z.coerce.number().gt(1).max(10000),
-          result: z.enum(["pending", "won", "lost", "void"]),
-        })
-        .parse(body);
-      await sql`insert into public.personal_entries(user_id,label,odds,result) values(${who.user.id},${v.label},${v.odds},${v.result})`;
-      return NextResponse.json({
-        ok: true,
-        message:
-          "Personal record saved. This never enters the official Docked ledger.",
-      });
-    }
+    if (["preferences", "save", "personal"].includes(body.action))
+      return NextResponse.json(
+        {
+          error:
+            "This account workflow has been retired. Use app onboarding for sport preferences.",
+        },
+        { status: 410 },
+      );
     if (body.action === "delete") {
       if (body.confirm !== "DELETE")
         return NextResponse.json(

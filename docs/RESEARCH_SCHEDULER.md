@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Research scheduler
 
 The existing durable worker handles `research-update` jobs. Automatic scheduling requires `RESEARCH_AUTOMATION_ENABLED=true`, the `research_engine` database flag, an enabled immutable source/policy schedule, a current approved automated source review and an installed fixed endpoint adapter. All shipped switches and schedules are off. No external cron was created by this implementation.

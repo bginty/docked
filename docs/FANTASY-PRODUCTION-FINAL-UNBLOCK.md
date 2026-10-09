@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Final production unblock checkpoint — 8 October 2026
 
 Later update: the owner selected Netlify Free. See [Netlify preparation and current database capacity](FANTASY-NETLIFY-PREPARATION.md). The following records the earlier `d5d82965` checkpoint and its then-current options.

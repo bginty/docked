@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # NFL live-beta checkpoint — 9 October 2026
 
 Continued from `ec652779` on `pivot/fantasy-cards-preview-v1`. The owner's supplied NFL requirements supersede the earlier missing-prompt blocker. Email and live-beta work are preserved.

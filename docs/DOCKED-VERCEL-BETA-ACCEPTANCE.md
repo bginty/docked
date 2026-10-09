@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked Vercel beta acceptance — 9 October 2026
 
 > Updated status: [Protected Preview deployed](DOCKED-VERCEL-PREVIEW-DEPLOYED.md). Branch mapping and CLI access are resolved. Application commit `2c9a9957` is READY in protected Preview; 437 platform tests and 32 hosted UI/denial checks pass. Functional beta acceptance remains gated. Earlier failures and local-only evidence below are historical.

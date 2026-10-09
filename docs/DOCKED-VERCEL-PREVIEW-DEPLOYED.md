@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Protected Vercel Preview — 9 October 2026
 
 The Vercel access/branch deployment blocker is resolved. This deployment is **protected UI review only**, not a playable beta or public release. Successful account and persisted gameplay acceptance remain blocked.

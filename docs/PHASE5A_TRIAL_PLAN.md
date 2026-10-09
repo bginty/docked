@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 5A controlled The Odds API trial
 
 Prepared 4 October 2026 (Australia/Sydney), before any provider request in this phase. Branch: `codex/docked-value-platform`; initial clean source: `21e472b3670c1e6da1893e6ec4522100f87cb602`.

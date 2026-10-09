@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Controlled beta operating handover
 
 9 October 2026. **External activation remains blocked by policy and positive hosted acceptance gates.** The shared-inventory and atomic-admission blockers described at `d991e8b8` have been implemented and independently tested. See [current isolation acceptance](DOCKED-BETA-ISOLATION-ACCEPTANCE.md) and its deployment evidence for the current URL/commit. This supersedes the earlier technical-blocker section; historical evidence remains in Git.

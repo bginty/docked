@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Player trends — Phase 5C
 
 The trend contract is descriptive research, not an implemented player-impact model. No player dataset, fitted coefficient, player probability adjustment or populated trend is installed by this change. A missing authorised statistic is unavailable, never zero.

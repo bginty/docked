@@ -12,10 +12,18 @@ test("hosted build refuses platform production, missing scope and local executio
     DOCKED_HOSTED_PREVIEW: "true",
   };
   const run = (env: NodeJS.ProcessEnv) =>
-    spawnSync(process.execPath, ["scripts/guard-hosted-build.mjs"], { env, encoding: "utf8" }).status;
+    spawnSync(process.execPath, ["scripts/guard-hosted-build.mjs"], {
+      env,
+      encoding: "utf8",
+    }).status;
   assert.equal(run(preview), 0);
   for (const [key, value] of [
-    ["VERCEL", ""], ["VERCEL_ENV", "production"], ["VERCEL_ENV", ""],
-    ["APP_ENV", "production"], ["SUPABASE_ENV", "production"], ["DOCKED_HOSTED_PREVIEW", "false"],
-  ]) assert.notEqual(run({ ...preview, [key]: value }), 0);
+    ["VERCEL", ""],
+    ["VERCEL_ENV", "production"],
+    ["VERCEL_ENV", ""],
+    ["APP_ENV", "production"],
+    ["SUPABASE_ENV", "production"],
+    ["DOCKED_HOSTED_PREVIEW", "false"],
+  ])
+    assert.notEqual(run({ ...preview, [key]: value }), 0);
 });

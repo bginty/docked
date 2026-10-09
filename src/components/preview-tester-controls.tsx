@@ -1,12 +1,7 @@
 "use client";
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-const capabilities = [
-  "community_social",
-  "public_profiles",
-  "preview_market_fixtures",
-  "preview_top_docked",
-];
+const capabilities = ["community_social", "public_profiles"];
 export function PreviewTesterControls({
   action,
   id,

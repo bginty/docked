@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Edge of the Week
 
 Rule `community-recognition-v1` is community recognition, not an official Docked tip, Top Docked rank, financial prize or future-return claim. The official complete-results page remains unchanged and includes losses.

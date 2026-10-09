@@ -32,11 +32,25 @@ export default async function FantasyPage({
   params: Promise<{ tab: string }>;
 }) {
   const { tab } = await params;
-  if (
-    !["play", "cards", "market", "social", "profile", "admin"].includes(tab) ||
-    !fantasyEnabled()
-  )
+  if (!["play", "cards", "market", "social", "profile", "admin"].includes(tab))
     notFound();
+  if (!fantasyEnabled())
+    return (
+      <div className="fantasy-gate">
+        <h1>Fantasy Cards</h1>
+        <p>{fantasyTagline}</p>
+        <p>
+          Gameplay is not enabled in this protected Preview. Public registration
+          is closed.
+        </p>
+        <Link className="button" href="/app">
+          Account access
+        </Link>
+        <p>
+          <Link href="/">Docked home</Link>
+        </p>
+      </div>
+    );
   let data;
   try {
     data = await fantasyRequest();

@@ -297,7 +297,9 @@ test("all capture tables enable RLS, hook remains invoker and read-only prefligh
     "create schema auth;create table auth.users(id uuid,email_confirmed_at timestamptz,is_anonymous boolean);create table auth.sessions(id uuid,user_id uuid,not_after timestamptz);create function auth.uid() returns uuid language sql as $$select null::uuid$$;create function auth.jwt() returns jsonb language sql as $$select '{}'::jsonb$$;",
   );
   await pg.exec(await readFile("docs/qa/hosted-preview/preflight.sql", "utf8"));
-  await pg.exec(await readFile("docs/qa/hosted-preview/assert-auth-capture.sql", "utf8"));
+  await pg.exec(
+    await readFile("docs/qa/hosted-preview/assert-auth-capture.sql", "utf8"),
+  );
   assert.equal(
     (await pg.query<{ n: number }>("select count(*)::int n from auth.users"))
       .rows[0].n,
@@ -307,31 +309,112 @@ test("all capture tables enable RLS, hook remains invoker and read-only prefligh
 
 test("GoTrue PKCE hashes retain the prefix and enforce the complete hexadecimal length bound", async () => {
   await rollback(async () => {
-    await pg.query("insert into preview_auth.allowed_recipients(email,expires_at) values($1,clock_timestamp()+interval '1 hour')", [email]);
-    for (const tokenHash of ["pkce_" + "a".repeat(40), "pkce_" + "b".repeat(256), "c".repeat(256)]) {
-      assert.deepEqual(await capture({ ...payload, email_data: { ...payload.email_data, token_hash: tokenHash } }), {});
+    await pg.query(
+      "insert into preview_auth.allowed_recipients(email,expires_at) values($1,clock_timestamp()+interval '1 hour')",
+      [email],
+    );
+    for (const tokenHash of [
+      "pkce_" + "a".repeat(40),
+      "pkce_" + "b".repeat(256),
+      "c".repeat(256),
+    ]) {
+      assert.deepEqual(
+        await capture({
+          ...payload,
+          email_data: { ...payload.email_data, token_hash: tokenHash },
+        }),
+        {},
+      );
     }
     assert.equal(await count(), 3);
-    for (const tokenHash of ["pkce_" + "a".repeat(39), "pkce_" + "a".repeat(257), "d".repeat(257), "pkce_" + "x".repeat(64), "other_" + "a".repeat(64)]) {
-      assert.ok((await capture({ ...payload, email_data: { ...payload.email_data, token_hash: tokenHash } })).error);
+    for (const tokenHash of [
+      "pkce_" + "a".repeat(39),
+      "pkce_" + "a".repeat(257),
+      "d".repeat(257),
+      "pkce_" + "x".repeat(64),
+      "other_" + "a".repeat(64),
+    ]) {
+      assert.ok(
+        (
+          await capture({
+            ...payload,
+            email_data: { ...payload.email_data, token_hash: tokenHash },
+          })
+        ).error,
+      );
     }
     assert.equal(await count(), 3);
   });
 });
 
 test("diagnostic upgrade emits only static field identifiers and preserves denied values privately", async () => {
-  await pg.exec(await readFile("docs/qa/hosted-preview/upgrade-auth-capture-diagnostics.sql", "utf8"));
+  await pg.exec(
+    await readFile(
+      "docs/qa/hosted-preview/upgrade-auth-capture-diagnostics.sql",
+      "utf8",
+    ),
+  );
   const cases = [
-    [{ ...payload, user: { ...payload.user, email: "private-value@real.example" } }, "recipient"],
-    [{ ...payload, email_data: { ...payload.email_data, email_action_type: "private-value" } }, "action"],
-    [{ ...payload, user: { ...payload.user, new_email: "private-value@real.example" } }, "email_change"],
-    [{ ...payload, email_data: { ...payload.email_data, site_url: "https://private-value.example" } }, "site_url"],
-    [{ ...payload, email_data: { ...payload.email_data, redirect_to: "https://private-value.example" } }, "redirect"],
-    [{ ...payload, email_data: { ...payload.email_data, token_hash: "private-value" } }, "token_hash_format"],
+    [
+      {
+        ...payload,
+        user: { ...payload.user, email: "private-value@real.example" },
+      },
+      "recipient",
+    ],
+    [
+      {
+        ...payload,
+        email_data: {
+          ...payload.email_data,
+          email_action_type: "private-value",
+        },
+      },
+      "action",
+    ],
+    [
+      {
+        ...payload,
+        user: { ...payload.user, new_email: "private-value@real.example" },
+      },
+      "email_change",
+    ],
+    [
+      {
+        ...payload,
+        email_data: {
+          ...payload.email_data,
+          site_url: "https://private-value.example",
+        },
+      },
+      "site_url",
+    ],
+    [
+      {
+        ...payload,
+        email_data: {
+          ...payload.email_data,
+          redirect_to: "https://private-value.example",
+        },
+      },
+      "redirect",
+    ],
+    [
+      {
+        ...payload,
+        email_data: { ...payload.email_data, token_hash: "private-value" },
+      },
+      "token_hash_format",
+    ],
     [{ ...payload, user: { ...payload.user, id: "private-value" } }, "user_id"],
   ] as const;
   for (const [value, field] of cases) {
-    assert.deepEqual(await capture(value), { error: { http_code: 403, message: `Preview capture request denied: ${field}` } });
+    assert.deepEqual(await capture(value), {
+      error: {
+        http_code: 403,
+        message: `Preview capture request denied: ${field}`,
+      },
+    });
   }
   assert.equal(await count(), 0);
 });

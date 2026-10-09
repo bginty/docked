@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Production database provisioned — 8 October 2026
 
 **Superseded for contact/email status by [the Microsoft 365 checkpoint](FANTASY-PRODUCTION-MAIL-CHECKPOINT.md).** The database provisioning evidence below remains valid. The owner has since supplied a private correspondence address and confirmed the Microsoft 365 mailbox; do not request or publish the address again.

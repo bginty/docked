@@ -34,8 +34,12 @@ export function betaPolicyVersions() {
 }
 /** Authentication-only staging is a setup flow, not community authorization. */
 export function betaOwnerAuthenticationOnly(env) {
-  return env.DOCKED_BETA_STAGING === "true" && assertHostedBeta(env) &&
-    env.BETA_ACCESS_ENABLED === "true" && manifest.ownerGameplayApproved !== true;
+  return (
+    env.DOCKED_BETA_STAGING === "true" &&
+    assertHostedBeta(env) &&
+    env.BETA_ACCESS_ENABLED === "true" &&
+    manifest.ownerGameplayApproved !== true
+  );
 }
 /** Explicit protected Preview target. This never authorizes Production or changes
  * config/hosted-production.json. Credentials alone cannot enable member access.

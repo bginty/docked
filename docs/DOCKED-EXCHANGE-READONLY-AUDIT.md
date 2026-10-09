@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 > Current checkpoint: [Hosted email queue verification](DOCKED-HOSTED-EMAIL-QUEUE-VERIFICATION.md). The controlled hosted message received Graph 202 and owner-confirmed Inbox delivery. Existing Microsoft credentials are now protected Supabase secrets; all three sending/worker/test flags are false again. Full Auth acceptance and launch remain blocked. Earlier local-only/no-upload statements below describe historical checkpoints.
 
 # Docked Exchange permission readback

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Lineup and availability research — Phase 5C
 
 PLAYER_INJURY, PLAYER_SUSPENSION, PLAYER_RETURN, EXPECTED_LINEUP and CONFIRMED_LINEUP are distinct structured evidence types. They require mapped teams; player facts also require mapped players. A confirmed lineup requires eleven unique mapped player IDs and CONFIRMED evidence. Expected lineups remain expected, even when a source is reliable. Unconfirmed-tier sources cannot claim confirmation.

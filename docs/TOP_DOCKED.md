@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Top Docked: reproducible community performance
 
 Phase 3, 3 October 2026. No genuine community results are connected. Empty/unconfigured states are intentionally not populated with sample winners, ranks or analytics. Historical performance is descriptive and does not guarantee future results.

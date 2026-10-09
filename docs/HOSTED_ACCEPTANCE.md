@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 4 hosted acceptance — 3 October 2026
 
 Target: **Docked Preview** `bckkllmndoxzpzdqrevb`, organisation `ernfnkcbalhyqpsrzdwa`, Sydney, Free plan. The frontend runs only at `http://localhost:3000`; this is a hosted backend acceptance run, not a public frontend deployment. Production, DNS and Oura remain untouched.

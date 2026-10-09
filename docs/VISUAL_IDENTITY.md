@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Visual sports identity milestone
 
 3 October 2026 · `codex/docked-value-platform` · continued from clean Phase 2 commit `8fa346c`.

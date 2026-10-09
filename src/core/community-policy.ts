@@ -22,6 +22,7 @@ export function communityFeatureAllowed(
   now: string,
   operator?: string,
 ) {
+  if (!["community_social", "public_profiles"].includes(feature)) return false;
   // Existing accounts attest 18+, not a higher jurisdiction-specific age.
   if (!policy || policy.minimumAge !== 18) return false;
   return eligible(policy, location, feature, now, operator);

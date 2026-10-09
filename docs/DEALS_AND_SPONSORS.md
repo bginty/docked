@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Deals and sponsors — disabled
 
 `DEALS_ENABLED=false` and `AFFILIATES_ENABLED=false`. Runtime configuration rejects true values; every stored deal is DRAFT_DISABLED and append-only. No offer, tracking redirect, affiliate commission or external campaign is activated.

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Docked transactional email — Microsoft 365 administrator handoff
 
 **Update:** the owner has now registered **Docked Production Email** and its certificate. Live certificate authentication and one owner-confirmed Inbox delivery succeeded, but the send acknowledgement timed out. See [current test report](DOCKED-GRAPH-CONTROLLED-DELIVERY.md) and [remaining read-only Exchange audit](DOCKED-EXCHANGE-READONLY-AUDIT.md). Do not repeat the historical app-creation commands below. The production hook remains disabled.

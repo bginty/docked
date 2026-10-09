@@ -4,7 +4,6 @@ import type { CommunityFeed } from "@/core/community-social";
 import { SocialCard, ProfileActions } from "./social-interactions";
 import { CommunityEmpty, OfficialBadge, SportChips } from "./community-basics";
 import { SocialTimeline } from "./social-timeline";
-import { BetaReading } from "./beta-reading";
 export function FeedTabs({
   base,
   tab = "for_you",
@@ -37,7 +36,7 @@ export function FeedTabs({
           ))}
           {!compact && (
             <>
-              <Link href="/top-docked">Top Docked</Link>
+              <Link href="/fantasy/play">Fantasy competitions</Link>
               <Link href="/sports">Sports</Link>
             </>
           )}
@@ -128,7 +127,6 @@ export function FeedContent({
           {compact ? "Load older posts" : "Older posts"}
         </Link>
       )}
-      {compact && feed.posts.length === 0 && <BetaReading />}
     </>
   );
 }
@@ -173,35 +171,20 @@ export function MemberDiscovery({
 }
 export function FeedSidePanel() {
   return (
-    <div className="app-side-column">
+    <aside className="app-side-column">
       <section className="app-panel">
-        <p className="eyebrow">TOP DOCKED</p>
-        <h2>Records over reputation.</h2>
-        <p>Verified standard units. Minimum samples. Visible losses.</p>
-        <Link className="text-link" href="/top-docked">
-          View the leaderboard
-        </Link>
-      </section>
-      <section className="app-panel">
-        <h2>Official evidence</h2>
-        <p>Docked strategy records stay separate from community performance.</p>
-        <div className="inline-links">
-          <Link href="/results">Complete results</Link>
-          <Link href="/research">Research status</Link>
-          <Link href="/methodology">Methodology</Link>
-        </div>
-      </section>
-      <section className="app-panel">
-        <p className="eyebrow">THE READING ROOM</p>
-        <h2>A better question.</h2>
+        <h2>Build your team</h2>
         <p>
-          Learn what a price implies, why sample size matters and when no
-          selection is the right decision.
+          Explore your cards and available fantasy competitions. Card rarity
+          never multiplies points.
         </p>
-        <Link className="text-link" href="/learn">
-          Explore the articles
-        </Link>
+        <Link href="/fantasy/play">Open Play</Link>
       </section>
-    </div>
+      <section className="app-panel">
+        <h2>Your collection</h2>
+        <p>Every card has a permanent serial and ownership history.</p>
+        <Link href="/fantasy/cards">View cards</Link>
+      </section>
+    </aside>
   );
 }

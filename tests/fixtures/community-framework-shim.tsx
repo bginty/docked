@@ -1,7 +1,7 @@
 // Isolated React fixture adapters, not application auth or navigation overrides.
 import type { AnchorHTMLAttributes } from "react";
 export function usePathname() {
-  return (window as unknown as {demoPath:string}).demoPath || "/home";
+  return (window as unknown as { demoPath: string }).demoPath || "/home";
 }
 export function useRouter() {
   return {

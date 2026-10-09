@@ -137,19 +137,32 @@ async function main() {
     for (const u of users.slice(0, 4)) await reserve(u);
     let arrivals = 0;
     let release!: () => void;
-    const snapshotsReady = new Promise<void>((resolve) => { release = resolve; });
-    const repeatable = await Promise.allSettled(users.slice(4, 24).map((u) =>
-      sql.begin('isolation level repeatable read', async (tx) => {
-        await tx`select count(*) from beta_private.admissions`;
-        if (++arrivals === 20) release();
-        await snapshotsReady;
-        return tx`select beta_private.reserve_admission(${u.email},${u.id},${hash(u.token)},${u.request},${new Date(Date.now()+3600000)},'local-repeatable-read')`;
-      })
-    ));
-    assert.equal(repeatable.filter(r => r.status === 'fulfilled').length, 1);
-    assert.ok(repeatable.filter(r => r.status === 'rejected').every(r => r.reason.code === '40001'));
-    assert.equal(Number((await sql`select count(*) n from beta_private.admissions`)[0].n), 5);
-    evidence.push('20 REPEATABLE READ snapshots: one reservation commits, nineteen serialize safely without exceeding capacity; fresh transactions can retry');
+    const snapshotsReady = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    const repeatable = await Promise.allSettled(
+      users.slice(4, 24).map((u) =>
+        sql.begin("isolation level repeatable read", async (tx) => {
+          await tx`select count(*) from beta_private.admissions`;
+          if (++arrivals === 20) release();
+          await snapshotsReady;
+          return tx`select beta_private.reserve_admission(${u.email},${u.id},${hash(u.token)},${u.request},${new Date(Date.now() + 3600000)},'local-repeatable-read')`;
+        }),
+      ),
+    );
+    assert.equal(repeatable.filter((r) => r.status === "fulfilled").length, 1);
+    assert.ok(
+      repeatable
+        .filter((r) => r.status === "rejected")
+        .every((r) => r.reason.code === "40001"),
+    );
+    assert.equal(
+      Number((await sql`select count(*) n from beta_private.admissions`)[0].n),
+      5,
+    );
+    evidence.push(
+      "20 REPEATABLE READ snapshots: one reservation commits, nineteen serialize safely without exceeding capacity; fresh transactions can retry",
+    );
     const race = await Promise.allSettled(
       users.slice(4, 24).map((u) => reserve(u)),
     );
@@ -252,18 +265,43 @@ async function main() {
     evidence.push(
       "Sixty concurrent starter/open requests allocate exactly 33 cards; scarcity and twenty-way daily idempotency hold",
     );
-    const rewardPolicy=(await beta`select max(version) version from fantasy.production_policy`)[0].version;
+    const rewardPolicy = (
+      await beta`select max(version) version from fantasy.production_policy`
+    )[0].version;
     // Six historic receipts are fixtures in this disposable loopback DB only.
-    for(let priorDay=1;priorDay<=6;priorDay++) await beta`insert into fantasy.daily_claims(user_id,period,points,policy_version,card_outcome) values(${users[1].id},(clock_timestamp() at time zone 'UTC')::date-${priorDay}::integer,10,${rewardPolicy},'not_due')`;
-    const seventh=await Promise.all(Array.from({length:20},()=>command(users[1],'claim_daily')));
-    assert.equal(new Set(seventh.map(r=>r.claim_id)).size,1);
-    assert.equal(new Set(seventh.map(r=>r.pack_id)).size,1);
-    assert.equal(seventh[0].card_outcome,'awarded');
-    assert.equal((await command(users[1],'open_pack',{pack_id:seventh[0].pack_id})).cards.length,1);
-    assert.equal(Number((await beta`select count(*) n from fantasy.daily_claims where user_id=${users[1].id}`)[0].n),7);
-    assert.equal(Number((await beta`select count(*) n from fantasy.ledger`)[0].n),0);
-    assert.equal((await beta`select 1 from fantasy.editions where issued>max_supply`).length,0);
-    evidence.push('Twenty simultaneous beta seventh claims allocate exactly one controlled card from beta supply; no money ledger entries or official changes');
+    for (let priorDay = 1; priorDay <= 6; priorDay++)
+      await beta`insert into fantasy.daily_claims(user_id,period,points,policy_version,card_outcome) values(${users[1].id},(clock_timestamp() at time zone 'UTC')::date-${priorDay}::integer,10,${rewardPolicy},'not_due')`;
+    const seventh = await Promise.all(
+      Array.from({ length: 20 }, () => command(users[1], "claim_daily")),
+    );
+    assert.equal(new Set(seventh.map((r) => r.claim_id)).size, 1);
+    assert.equal(new Set(seventh.map((r) => r.pack_id)).size, 1);
+    assert.equal(seventh[0].card_outcome, "awarded");
+    assert.equal(
+      (await command(users[1], "open_pack", { pack_id: seventh[0].pack_id }))
+        .cards.length,
+      1,
+    );
+    assert.equal(
+      Number(
+        (
+          await beta`select count(*) n from fantasy.daily_claims where user_id=${users[1].id}`
+        )[0].n,
+      ),
+      7,
+    );
+    assert.equal(
+      Number((await beta`select count(*) n from fantasy.ledger`)[0].n),
+      0,
+    );
+    assert.equal(
+      (await beta`select 1 from fantasy.editions where issued>max_supply`)
+        .length,
+      0,
+    );
+    evidence.push(
+      "Twenty simultaneous beta seventh claims allocate exactly one controlled card from beta supply; no money ledger entries or official changes",
+    );
     const rid = randomUUID();
     const response = await command(users[0], "claim_daily", {}, true, rid);
     assert.deepEqual(
@@ -446,17 +484,25 @@ async function main() {
     )[0];
     const pendingUser = users.find((u) => u.id === pending.user_id)!;
     async function adminReserve(actor: User, aal: string, candidate: User) {
-      return beta.begin(async tx => {
-        await tx`select set_config('request.jwt.claim.sub',${actor.id},true),set_config('request.jwt.claims',${JSON.stringify({sub:actor.id,session_id:actor.session,aal})},true)`;
+      return beta.begin(async (tx) => {
+        await tx`select set_config('request.jwt.claim.sub',${actor.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: actor.id, session_id: actor.session, aal })},true)`;
         await tx`set local role docked_beta_app`;
-        return tx`select private.admin_reserve_admission(${candidate.email},${candidate.id},${hash(candidate.token)},${candidate.request},${new Date(Date.now()+3600000)}) id`;
+        return tx`select private.admin_reserve_admission(${candidate.email},${candidate.id},${hash(candidate.token)},${candidate.request},${new Date(Date.now() + 3600000)}) id`;
       });
     }
-    assert.equal((await adminReserve(owner,'aal2',pendingUser))[0].id,pending.id);
-    await assert.rejects(() => adminReserve(owner,'aal1',pendingUser), /MFA/);
-    await assert.rejects(() => adminReserve(users[0],'aal2',pendingUser), /administrator|owner|role/i);
-    await assert.rejects(() => adminReserve(owner,'aal2',users[25]), /limit/);
-    evidence.push('Actual docked_beta_app administrator reservation RPC recovers an existing invitation, rejects non-MFA/member callers and refuses an eleventh tester');
+    assert.equal(
+      (await adminReserve(owner, "aal2", pendingUser))[0].id,
+      pending.id,
+    );
+    await assert.rejects(() => adminReserve(owner, "aal1", pendingUser), /MFA/);
+    await assert.rejects(
+      () => adminReserve(users[0], "aal2", pendingUser),
+      /administrator|owner|role/i,
+    );
+    await assert.rejects(() => adminReserve(owner, "aal2", users[25]), /limit/);
+    evidence.push(
+      "Actual docked_beta_app administrator reservation RPC recovers an existing invitation, rejects non-MFA/member callers and refuses an eleventh tester",
+    );
     const newToken = randomBytes(32).toString("hex");
     await beta.begin(async (tx) => {
       await tx`select set_config('request.jwt.claim.sub',${owner.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: owner.id, session_id: owner.session, aal: "aal2" })},true)`;
@@ -518,7 +564,16 @@ async function main() {
   }
 }
 main().catch(async (error) => {
-  await writeFile("docs/qa/beta-isolation/real-postgres.json", JSON.stringify({passed:false,checkedAt:new Date().toISOString(),scope:"disposable loopback PostgreSQL",completedScenarios:evidence,errorCode:error.code??null}));
+  await writeFile(
+    "docs/qa/beta-isolation/real-postgres.json",
+    JSON.stringify({
+      passed: false,
+      checkedAt: new Date().toISOString(),
+      scope: "disposable loopback PostgreSQL",
+      completedScenarios: evidence,
+      errorCode: error.code ?? null,
+    }),
+  );
   console.error(error);
   process.exitCode = 1;
 });

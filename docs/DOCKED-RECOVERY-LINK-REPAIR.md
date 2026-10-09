@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Owner recovery link repair — 9 October 2026
 
 The owner reported the generic expired-link screen after the supervised recovery email. Auth logs show POST /recover200 at11:45:28UTC, GET /verify303 at11:45:39UTC, then GET /verify303 with an invalid/expired-token error at11:46:58UTC. No /token exchange was returned in that scoped log query. The first opener is unidentified; email scanner prefetch is plausible, not proven. The earlier hook-disabled /recover attempt at11:44:09UTC returned500. Graph accepted exactly one dispatched message; pending queue remains0 and one verified owner MFA factor remains present.

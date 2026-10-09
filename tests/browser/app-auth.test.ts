@@ -17,7 +17,9 @@ for (const width of [320, 412, 1366])
     await page.setViewportSize({ width, height: 915 });
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
-    page.on("console", (message) => { if (message.type() === "error") errors.push(message.text()); });
+    page.on("console", (message) => {
+      if (message.type() === "error") errors.push(message.text());
+    });
     for (const route of [
       "login",
       "signup",
@@ -68,7 +70,10 @@ for (const width of [320, 412, 1366])
       "username",
     );
     await page.goto("/login");
-    await expect(page.locator("body > .site-header")).toBeVisible();
+    await expect(page).toHaveURL(/\/app\/login$/);
+    await expect(
+      page.getByRole("region", { name: "Docked account" }),
+    ).toBeVisible();
   });
 
 test("app signup checks confirmation locally and transmits separate opt-in consent", async ({

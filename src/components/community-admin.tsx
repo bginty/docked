@@ -37,8 +37,7 @@ export function ModerationPanel({
     <>
       <p className="app-state-banner">
         Moderation controls commentary, media and account participation. It
-        cannot change a locked Edge or its settlement. Corrections use the
-        separate integrity workflow.
+        cannot change card ownership, card scarcity or competition scores.
       </p>
       <h2>Reports</h2>
       {data.reports.length ? (
@@ -128,7 +127,7 @@ export function ModerationPanel({
                 </label>
                 <p className="form-help">
                   Approval permits social display only. A screenshot cannot
-                  verify odds or settle a record.
+                  change card ownership or competition scores.
                 </p>
                 <button className="button" disabled={busy}>
                   Record image decision
@@ -188,4 +187,3 @@ export function AdminReadPanel({
     </section>
   );
 }
-export { DisabledBenefitsDraft } from "./benefits-draft";

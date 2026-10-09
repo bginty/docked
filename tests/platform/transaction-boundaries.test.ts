@@ -57,7 +57,10 @@ test("server transaction callbacks never reacquire global DB, identity, policy o
         : ts.isPropertyAccessExpression(call.expression)
           ? call.expression.name.text
           : "";
-      if (!["begin", "withCommunityActor", "reservedTransaction"].includes(name)) continue;
+      if (
+        !["begin", "withCommunityActor", "reservedTransaction"].includes(name)
+      )
+        continue;
       for (const callback of call.arguments.filter(
         (a) => ts.isArrowFunction(a) || ts.isFunctionExpression(a),
       )) {
@@ -81,25 +84,13 @@ test("server transaction callbacks never reacquire global DB, identity, policy o
   );
 });
 
-test("notification and Edge actions retain explicit per-user limits on their transaction boundary", async () => {
+test("notification actions retain explicit per-user limits on their transaction boundary", async () => {
   for (const [file, functionName, scope, limit] of [
     [
       "src/server/community-social.ts",
       "mutateCommunityNotifications",
       "social:notifications",
       30,
-    ],
-    [
-      "src/server/community-edges.ts",
-      "reviewCommunityEdge",
-      "community-edge-review",
-      20,
-    ],
-    [
-      "src/server/community-edges.ts",
-      "submitCommunityEdge",
-      "community-edge-submit",
-      10,
     ],
   ] as const) {
     const source = ts.createSourceFile(
@@ -131,21 +122,4 @@ test("notification and Edge actions retain explicit per-user limits on their tra
     assert.equal(values.scope, JSON.stringify(scope));
     assert.equal(values.limit, String(limit));
   }
-});
-
-test("reserved provider ingestion passes its existing connection to the evidence consumer", async () => {
-  const file = "src/server/ingestion.ts",
-    source = ts.createSourceFile(
-      file,
-      await readFile(file, "utf8"),
-      ts.ScriptTarget.Latest,
-      true,
-    );
-  const evidence = calls(source).filter(
-    (c) =>
-      ts.isIdentifier(c.expression) &&
-      c.expression.text === "registerCommunityQuoteEvidence",
-  );
-  assert.equal(evidence.length, 1);
-  assert.equal(evidence[0].arguments[1]?.getText(source), "connection");
 });

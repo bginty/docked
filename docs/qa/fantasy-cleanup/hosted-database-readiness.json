@@ -1,0 +1,346 @@
+{
+  "at": "2026-10-09T21:28:52.563Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "scope": "Restricted beta role, catalog-only READ ONLY transaction. Not a full service-role or scheduler audit.",
+  "role": {
+    "name": "docked_beta_app",
+    "rolsuper": false,
+    "rolbypassrls": false,
+    "rolcreatedb": false,
+    "rolcreaterole": false
+  },
+  "retainedLegacyRoutines": [
+    {
+      "schema": "beta_fantasy",
+      "name": "ledger_check",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "assert_football_prediction",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_edge_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_settlement_correction",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_settlement_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_fitted_prediction_binding",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_prediction_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_publication_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "publication_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "publication_reference_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "publication_region_matches",
+      "executable": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_actor",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_content_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_dataset_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_decimal",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_fact_current",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_fact_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_governance_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_hash",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_health_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_identifier",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_keys_only",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_lock_sources",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_payload_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_public_url",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_recalculation_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_request_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_schedule_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_snapshot_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_source_allowed",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_value_guard",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_worker",
+      "executable": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_official_edge_projection",
+      "executable": false
+    },
+    {
+      "schema": "fantasy",
+      "name": "ledger_check",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "assert_football_prediction",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "community_edge_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "community_settlement_correction",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "community_settlement_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "football_fitted_prediction_binding",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "football_prediction_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "football_publication_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "publication_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "publication_reference_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "publication_region_matches",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_actor",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_content_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_dataset_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_decimal",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_fact_current",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_fact_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_governance_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_hash",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_health_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_identifier",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_keys_only",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_lock_sources",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_payload_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_public_url",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_recalculation_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_request_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_schedule_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_snapshot_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_source_allowed",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_value_guard",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "research_worker",
+      "executable": false
+    },
+    {
+      "schema": "private",
+      "name": "social_official_edge_projection",
+      "executable": false
+    }
+  ],
+  "cronInstalled": true,
+  "jobInspection": "Not performed: restricted role cannot establish all scheduler ownership. Separate retirement review required."
+}

@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
-import { BrandLogo } from "./brand-logo";
 import { config } from "@/server/config";
-import { fantasyPresentationEnabled as fantasyEnabled } from "@/core/fantasy-production";
 import { FantasyLogo } from "./fantasy-brand";
 
 export function AppAuthShell({ children }: { children: ReactNode }) {
@@ -10,7 +8,7 @@ export function AppAuthShell({ children }: { children: ReactNode }) {
   return (
     <section className="app-auth-surface" aria-label="Docked account">
       <header className="app-auth-brand">
-        {fantasyEnabled() ? <FantasyLogo /> : <BrandLogo surface="dark" />}
+        <FantasyLogo />
         {(beta || !settings.production) && (
           <span className="app-auth-preview">{beta ? "BETA" : "PREVIEW"}</span>
         )}

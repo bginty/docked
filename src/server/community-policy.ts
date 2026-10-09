@@ -1,6 +1,6 @@
 import "server-only";
 import type { CommunityFeature } from "@/core/community-policy";
-import { regionAccess } from "./queries";
+import { regionAccess } from "./region-access";
 import { db } from "./db";
 
 export async function communityAccess(

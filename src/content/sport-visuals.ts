@@ -87,16 +87,3 @@ export function visualSport(value: string): SportKey {
     return "nfl";
   return sportKeys.includes(key as SportKey) ? (key as SportKey) : "football";
 }
-export const articleVisuals: Record<
-  string,
-  { sport: SportKey; atmosphere?: boolean }
-> = {
-  "value-versus-winners": { sport: "football" },
-  "minimum-odds": { sport: "basketball" },
-  "no-tip-is-correct": { sport: "football", atmosphere: true },
-  "bookmaker-margin": { sport: "tennis" },
-  "closing-line-value": { sport: "basketball" },
-  "losing-runs-and-variance": { sport: "horse-racing" },
-  "backtest-paper-live": { sport: "cricket" },
-  "estimated-ev-and-returns": { sport: "baseball" },
-};

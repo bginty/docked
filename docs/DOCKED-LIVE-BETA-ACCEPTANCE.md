@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked live-beta acceptance — 9 October 2026
 
 **NOT LAUNCHED.** The latest owner request authorizes controlled beta deployment/testing, resolving the earlier support-only email test-window approval request. Mandatory policy, hosted authentication and gameplay gates remain incomplete, so the holding page remains as instructed. Continued from `68af14a8` on `pivot/fantasy-cards-preview-v1`, preserving the original master-prompt implementation.

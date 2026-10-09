@@ -4,7 +4,7 @@ import {
 } from "@/core/preview-auth";
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 import { reviewOrigin } from "@/core/hosted-review.mjs";
-import { betaOrigin } from '@/core/hosted-beta.mjs';
+import { betaOrigin } from "@/core/hosted-beta.mjs";
 export function sameApplicationOrigin(
   origin: string | null,
   env: Record<string, string | undefined> = process.env,
@@ -32,8 +32,8 @@ export function config(env: Record<string, string | undefined> = process.env) {
       );
   }
   if (production) {
-    if (env.DOCKED_BETA_STAGING !== 'true' && !env.SUPABASE_SECRET_KEY)
-      throw new Error('Missing SUPABASE_SECRET_KEY');
+    if (env.DOCKED_BETA_STAGING !== "true" && !env.SUPABASE_SECRET_KEY)
+      throw new Error("Missing SUPABASE_SECRET_KEY");
     if (referencesDockedPreviewProject(env))
       throw new Error("Docked Preview cannot run in production mode");
     if (env.DEMO_MODE === "true" || env.SUPABASE_ENV !== "production")
@@ -44,10 +44,16 @@ export function config(env: Record<string, string | undefined> = process.env) {
       "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
       "SITE_URL",
     ])
-      if (!env[key] && !(key==='SITE_URL' && env.DOCKED_BETA_STAGING==='true')) throw new Error(`Missing ${key}`);
+      if (
+        !env[key] &&
+        !(key === "SITE_URL" && env.DOCKED_BETA_STAGING === "true")
+      )
+        throw new Error(`Missing ${key}`);
     if (
-      (!env.SITE_URL?.startsWith("https://") && env.DOCKED_BETA_STAGING!=='true') ||
-      (env.LEGAL_ENTITY_VERIFIED !== "true" && env.DOCKED_BETA_STAGING !== 'true')
+      (!env.SITE_URL?.startsWith("https://") &&
+        env.DOCKED_BETA_STAGING !== "true") ||
+      (env.LEGAL_ENTITY_VERIFIED !== "true" &&
+        env.DOCKED_BETA_STAGING !== "true")
     )
       throw new Error("Production legal/HTTPS gate pending");
   }
@@ -68,16 +74,18 @@ export function config(env: Record<string, string | undefined> = process.env) {
     reviewOnly: env.DOCKED_HOSTED_REVIEW === "true",
     environment: env.APP_ENV ?? "preview",
     siteUrl:
-      env.DOCKED_BETA_STAGING === 'true' ? betaOrigin(env) : env.DOCKED_HOSTED_REVIEW === "true"
-        ? reviewOrigin(env)
-        : (env.SITE_URL ?? "http://localhost:3000"),
+      env.DOCKED_BETA_STAGING === "true"
+        ? betaOrigin(env)
+        : env.DOCKED_HOSTED_REVIEW === "true"
+          ? reviewOrigin(env)
+          : (env.SITE_URL ?? "http://localhost:3000"),
     database: !!env.DATABASE_URL,
     auth:
       !!env.NEXT_PUBLIC_SUPABASE_URL &&
       !!env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     registration: env.REGISTRATION_ENABLED === "true",
-    publication: env.PUBLICATION_ENABLED === "true",
-    paper: env.FORWARD_PAPER_ENABLED === "true",
+    publication: false,
+    paper: false,
     sending: production && env.SENDING_ENABLED === "true",
   };
 }

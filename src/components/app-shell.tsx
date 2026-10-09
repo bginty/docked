@@ -4,35 +4,23 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, type ReactNode } from "react";
 import { AppIcon, type AppIconName } from "./app-icon";
 import { PwaStatus } from "./pwa-status";
-import { BrandLogo } from "./brand-logo";
-import { brand } from "@/brand/brand";
 import { FantasyLogo } from "./fantasy-brand";
 import { useEnvironmentPresentation } from "./environment-context";
 const nav: { href: string; label: string; icon: AppIconName }[] = [
-  { href: "/edges", label: "Edges", icon: "edge" },
-  { href: "/feed", label: "Feed", icon: "feed" },
-  { href: "/following", label: "Following", icon: "community" },
-  { href: "/points", label: "Points", icon: "points" },
-  { href: "/my-edge", label: "My Edge", icon: "profile" },
+  { href: "/fantasy/play", label: "Play", icon: "trophy" },
+  { href: "/fantasy/cards", label: "Cards", icon: "feed" },
+  { href: "/fantasy/market", label: "Market", icon: "points" },
+  { href: "/fantasy/social", label: "Social", icon: "community" },
+  { href: "/fantasy/profile", label: "Profile", icon: "profile" },
 ];
-
-/** Legacy and detail routes keep their parent destination selected. */
 export function appDestination(path: string) {
-  if (/^\/(points|top-docked)(\/|$)/.test(path)) return "/points";
-  if (/^\/(following|search)(\/|$)/.test(path)) return "/following";
-  if (/^\/community\/edges(\/|$)/.test(path)) return "/edges";
-  if (
-    /^\/(feed|community|compose)(\/|$)/.test(path) ||
-    path.startsWith("/research/matches/")
-  )
-    return "/feed";
-  if (
-    /^\/(profile|my-edge|dashboard|notifications|membership|fantasy)(\/|$)/.test(
-      path,
-    )
-  )
-    return "/my-edge";
-  return "/edges";
+  if (/^\/fantasy\/(play|cards|market|social|profile)(\/|$)/.test(path))
+    return path.split("/").slice(0, 3).join("/");
+  if (/^\/(feed|following|community|compose|search)(\/|$)/.test(path))
+    return "/fantasy/social";
+  if (/^\/(profile|dashboard|notifications)(\/|$)/.test(path))
+    return "/fantasy/profile";
+  return "/fantasy/play";
 }
 
 function useEditingViewport(authenticated: boolean) {
@@ -102,53 +90,18 @@ export function AppShell({
   authenticated?: boolean;
 }) {
   const path = usePathname();
-  const {
-    production,
-    liveBeta,
-    fantasyPreview: previewOnly,
-    fantasyProduction,
-  } = useEnvironmentPresentation();
-  const fantasyPreview = previewOnly || fantasyProduction;
-  const fantasyNavigation = fantasyPreview && !liveBeta;
-  const activeNav = fantasyNavigation
-    ? [
-        { href: "/fantasy/play", label: "Play", icon: "trophy" as const },
-        { href: "/fantasy/cards", label: "Cards", icon: "feed" as const },
-        { href: "/fantasy/market", label: "Market", icon: "points" as const },
-        {
-          href: "/fantasy/social",
-          label: "Social",
-          icon: "community" as const,
-        },
-        {
-          href: "/fantasy/profile",
-          label: "Profile",
-          icon: "profile" as const,
-        },
-      ]
-    : nav;
-  const destination = fantasyNavigation
-    ? path.startsWith("/fantasy/")
-      ? path
-      : "/fantasy/social"
-    : appDestination(path);
+  const { production, liveBeta } = useEnvironmentPresentation();
+  const activeNav = nav;
+  const destination = appDestination(path);
   const shell = useEditingViewport(authenticated);
   if (!authenticated) return <div className="community-public">{children}</div>;
   return (
     <div ref={shell} className="community-shell" data-authenticated="true">
       <aside className="app-sidebar">
-        <Link
-          className="brand"
-          href={fantasyNavigation ? "/fantasy/play" : "/edges"}
-          aria-label="Docked home"
-        >
-          {fantasyPreview ? (
-            <FantasyLogo />
-          ) : (
-            <BrandLogo surface="dark" decorative />
-          )}
+        <Link className="brand" href="/fantasy/play" aria-label="Docked home">
+          <FantasyLogo />
         </Link>
-        {!fantasyPreview && <p className="eyebrow">{brand.tagline}</p>}
+
         <nav aria-label="App navigation">
           {activeNav.map((n) => (
             <Link
@@ -162,41 +115,21 @@ export function AppShell({
           ))}
         </nav>
         <div className="app-secondary">
-          {liveBeta && fantasyProduction && (
-            <Link href="/fantasy/play">Fantasy cards & rewards</Link>
-          )}
           <Link href="/compose">
             <AppIcon name="plus" /> Create a post
           </Link>
           <Link href="/search">
             <AppIcon name="search" /> Search Docked
           </Link>
-          {!fantasyPreview && (
-            <Link href="/top-docked">
-              <AppIcon name="trophy" />
-              Top Docked
-            </Link>
-          )}
-          {!fantasyPreview && <Link href="/membership">Membership</Link>}
+
           <Link href="/dashboard">Settings & privacy</Link>
-          {!fantasyPreview && <Link href="/results">Official results</Link>}
+
           <Link href="/">Public site</Link>
         </div>
         <p className="small-note">
-          18+ ·{" "}
-          {fantasyPreview
-            ? production
-              ? "Fantasy Cards"
-              : "Fantasy Cards Preview"
-            : production
-              ? "Sports research"
-              : "Research preview"}
+          18+ · Fantasy Cards
           <br />
-          {fantasyPreview
-            ? production
-              ? "Free play. No cash value."
-              : "Test credits only."
-            : "No guaranteed returns."}
+          Free play. No cash value.
         </p>
       </aside>
       <div className="app-workspace">
@@ -204,14 +137,10 @@ export function AppShell({
           <div className="app-brand-lockup">
             <Link
               className="brand"
-              href={fantasyNavigation ? "/fantasy/play" : "/edges"}
+              href="/fantasy/play"
               aria-label="Docked home"
             >
-              {fantasyPreview ? (
-                <FantasyLogo />
-              ) : (
-                <BrandLogo surface="dark" decorative />
-              )}
+              <FantasyLogo />
             </Link>
             {(liveBeta || !production) && (
               <span className="app-preview-label">
@@ -220,11 +149,6 @@ export function AppShell({
             )}
           </div>
           <nav aria-label="App utilities">
-            {liveBeta && fantasyProduction && (
-              <Link href="/fantasy/play" aria-label="Fantasy cards and rewards">
-                <AppIcon name="trophy" />
-              </Link>
-            )}
             <Link
               className="app-desktop-search"
               href="/search"
@@ -243,11 +167,8 @@ export function AppShell({
         <PwaStatus />
         <div className="app-content">{children}</div>
         <p className="app-footnote">
-          {fantasyPreview
-            ? production
-              ? "Fictional players. Free gameplay. No paid packs or cash prizes."
-              : "Fictional players. Test credits. Preview/Test Prizes only."
-            : "Informational sports community. You can use Docked without betting. Past performance does not guarantee future results."}
+          Fictional players. No paid packs or cash prizes. Rarity never
+          multiplies fantasy scores.
         </p>
       </div>
       <nav className="app-bottom-nav" aria-label="Mobile app navigation">

@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Fantasy Cards Preview V1 delivery
 
 Branch: `pivot/fantasy-cards-preview-v1`. Preservation tag: `checkpoint/pre-fantasy-cards-preview-v1`. The exact deployed source commit and deployment ID are recorded in [deployment.json](qa/fantasy/deployment.json); later delivery commits contain documentation, evidence and native assets.

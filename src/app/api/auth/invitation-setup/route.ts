@@ -15,7 +15,7 @@ import {
   type SignupTransaction,
 } from "@/server/signup-profile";
 import type { TransactionSql } from "postgres";
-import { betaPolicyVersions } from '@/core/hosted-beta.mjs';
+import { betaPolicyVersions } from "@/core/hosted-beta.mjs";
 
 const headers = { "Cache-Control": "private, no-store" };
 function transaction(tx: TransactionSql): SignupTransaction {
@@ -67,10 +67,16 @@ export async function POST(request: Request) {
       return fail(429, "Please wait before trying again.");
     const sql = db();
     await sql.begin(async (tx) => {
-      if (process.env.DOCKED_BETA_STAGING === 'true') {
-        const policyVersions=betaPolicyVersions();
-        if (!input.data.betaAdmissionCode || input.data.betaRules !== true || !policyVersions)
-          throw Error('Explicit beta invitation and policy acceptance required');
+      if (process.env.DOCKED_BETA_STAGING === "true") {
+        const policyVersions = betaPolicyVersions();
+        if (
+          !input.data.betaAdmissionCode ||
+          input.data.betaRules !== true ||
+          !policyVersions
+        )
+          throw Error(
+            "Explicit beta invitation and policy acceptance required",
+          );
         await tx`select private.accept_admission(${input.data.betaAdmissionCode},${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${input.data.age},${tx.json(policyVersions)}::jsonb)`;
       }
       await persistInvitedProfile(

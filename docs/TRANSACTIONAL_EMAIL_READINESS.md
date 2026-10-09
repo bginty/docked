@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Transactional account email — prepared, not activated
 
 Reviewed 4 October 2026. Recommend **Resend Free** for a small invited beta: $0, advertised 3,000 transactional messages/month, 100/day; cap usage and leave paid overages disabled. Confirm the account's exact allowance before activation. The [official Free-tier announcement](https://www.resend.com/blog/new-free-tier) states the monthly allowance; the [current pricing page](https://resend.com/pricing) confirms the daily cap and current plan features. No account, paid integration, domain record or external email was created by this review.

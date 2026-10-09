@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { runCommunityMaintenance } from "../src/core/community-maintenance";
 import { db } from "../src/server/db";
 import { config } from "../src/server/config";
-import { finishJob } from "../src/server/queue";
+import { finishJob } from "../src/server/account-job";
 import { processAccountDeletion } from "../src/server/account-deletion";
 import { processCommunityNotifications } from "../src/server/community-social";
 import {

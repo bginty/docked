@@ -154,9 +154,7 @@ export function ReportForm({
         reason: form.get("reason"),
         details: form.get("details"),
       });
-      setMessage(
-        "Report submitted for review. Reporting cannot erase a permanent Edge.",
-      );
+      setMessage("Report submitted for moderation review.");
       setOpen(false);
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "Report not confirmed.");
@@ -181,7 +179,7 @@ export function ReportForm({
                 "privacy",
                 "scam",
                 "affiliate_spam",
-                "misleading_odds",
+
                 "other",
               ].map((r) => (
                 <option key={r} value={r}>
@@ -268,7 +266,7 @@ function Comment({ comment }: { comment: SocialComment }) {
         action: "delete_comment",
         commentId: comment.id,
       });
-      setMessage("Comment deleted. The underlying Edge is unchanged.");
+      setMessage("Comment deleted.");
       router.refresh();
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "Deletion not confirmed.");
@@ -382,37 +380,11 @@ export function SocialCard({
         {post.author.isOfficial && <OfficialBadge />}
       </div>
       {!compact && <LocalTimestamp value={post.createdAt} />}
-      {post.claimLabel === "promotional_price" && (
-        <p className="promotion-label">
-          PROMOTIONAL PRICE — NOT LEADERBOARD ELIGIBLE
-        </p>
-      )}
       <p className="social-body">
         {post.moderationStatus === "removed"
           ? "COMMENTARY REMOVED BY MODERATION"
           : post.body}
       </p>
-      {post.officialTipId && (
-        <div className="app-state-banner">
-          <OfficialBadge />
-          <p>This discussion refers to the canonical official record.</p>
-          <Link className="text-link" href={`/tips/${post.officialTipId}`}>
-            Official Edge and complete evidence
-          </Link>
-        </div>
-      )}
-      {post.communityEdgeId && (
-        <div className="app-state-banner">
-          <span className="community-badge">PERMANENT COMMUNITY EDGE</span>
-          <p>Structured fields and all outcomes remain in the ledger.</p>
-          <Link
-            className="text-link"
-            href={`/community/edges/${post.communityEdgeId}`}
-          >
-            View verified record
-          </Link>
-        </div>
-      )}
       {post.moderationStatus === "visible" &&
         post.media
           .filter((m) => m.status === "approved" && m.url)
@@ -601,9 +573,8 @@ export function ProfileEditor({ profile }: { profile: SocialProfile | null }) {
           </select>
         </label>
         <p className="form-help">
-          Private settings and email are never displayed. A privacy change
-          cannot silently erase an underlying Edge record or selectively hide a
-          loss.
+          Private settings and email are never displayed. A privacy change does
+          not erase card ownership history or competition audit records.
         </p>
         <label>
           Avatar

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Match research file
 
 Each prematch EPL file separates current canonical identity, source clocks, structured facts, conflicting/corroborating evidence, missing sections and model/market boundaries. Completeness uses an explicitly reviewed policy. Missing sections say `DATA_NOT_AVAILABLE`; no arbitrary completion percentage is manufactured.

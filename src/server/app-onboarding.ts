@@ -1,5 +1,4 @@
 import "server-only";
-import { fantasyPlatformEnabled as fantasyEnabled } from "@/core/fantasy-production";
 import { DateTime } from "luxon";
 import { db } from "./db";
 import { requireIdentity } from "./auth";
@@ -63,7 +62,7 @@ export async function appOnboardingState(
     preferences: {
       sports: row.sports as string[],
       interests: (row.interests ?? "both") as "edges" | "community" | "both",
-      officialEdges: row.official_edges === true,
+      officialEdges: false,
       followedMembers: row.followed_members === true,
       replies: row.social === true,
       timezone: String(row.timezone),
@@ -139,7 +138,7 @@ export async function saveAppOnboarding(input: unknown) {
   });
   return {
     ok: true,
-    redirect: fantasyEnabled() ? "/fantasy/play" : "/edges",
+    redirect: "/fantasy/play",
     message:
       process.env.APP_ENV === "production"
         ? "Preferences saved."

@@ -33,7 +33,7 @@ export default async function PreviewTesters() {
       />
       <Notice>
         Expiring Preview access only. This does not approve a legal region,
-        enable official live Edges or grant staff privileges. Existing account
+        enable fantasy gameplay or grant staff privileges. Existing account
         legal acceptance still applies.
       </Notice>
       {canEdit && (

@@ -143,32 +143,26 @@ test("composer mode controls stay disabled until the real server markup hydrates
     });
   });
   await page.goto("http://localhost:3000/composer-hydration-fixture");
-  for (const name of ["Post Edge", "Create post", "DEMO Edge flow"])
-    await expect(
-      page.getByRole("button", { name, exact: true }),
-    ).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Publish social post" }),
+  ).toBeDisabled();
+  await expect(page.locator("[name=kind]")).toBeDisabled();
   await expect(page.locator("[data-composer-ready]")).toHaveAttribute(
     "data-composer-ready",
     "false",
   );
-  await page
-    .getByRole("button", { name: "Create post", exact: true })
-    .evaluate((element) => (element as HTMLButtonElement).click());
-  await expect(page.locator('[name="kind"]')).toHaveCount(0);
   expect(writes).toEqual([]);
   await page.addScriptTag({ content: bundle });
   await expect(page.locator("[data-composer-ready]")).toHaveAttribute(
     "data-composer-ready",
     "true",
   );
-  await page.getByRole("button", { name: "Create post", exact: true }).click();
   await expect(
     page.getByRole("combobox", { name: "Post type", exact: true }),
-  ).toBeVisible();
-  await page
-    .getByRole("button", { name: "DEMO Edge flow", exact: true })
-    .click();
-  await expect(page.locator(".preview-fixture-composer")).toBeVisible();
+  ).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Post Edge", exact: true }),
+  ).toHaveCount(0);
   expect(writes).toEqual([]);
   expect(errors).toEqual([]);
   expect(

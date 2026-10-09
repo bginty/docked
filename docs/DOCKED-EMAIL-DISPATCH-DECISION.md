@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Email dispatch decision — 9 October 2026
 
 Baseline application `bbd302b8`, evidence `4dd4ac1f`. Target only `pojoymtniryarxxunyvz` in Docked Production. No database mutation, deployment, email, account activation, scheduling, Microsoft permission change or certificate change was performed for this investigation.

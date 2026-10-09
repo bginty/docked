@@ -1,7 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { assertHostedBeta, betaOwnerAuthenticationOnly } from "../../src/core/hosted-beta.mjs";
-import { fantasyPresentationEnabled, fantasyPlatformEnabled } from "../../src/core/fantasy-production";
+import {
+  assertHostedBeta,
+  betaOwnerAuthenticationOnly,
+} from "../../src/core/hosted-beta.mjs";
+import {
+  fantasyPresentationEnabled,
+  fantasyPlatformEnabled,
+} from "../../src/core/fantasy-production";
 import { betaStatement, betaSql } from "../../src/server/beta-sql";
 import postgres from "postgres";
 import { currentConsentVersions } from "../../src/core/auth-readiness";
@@ -123,8 +129,12 @@ test("owner setup retains Fantasy identity without opening gameplay or community
   assert.equal(fantasyPlatformEnabled(e), false);
   assert.equal(betaOwnerAuthenticationOnly(env()), false);
   assert.equal(betaOwnerAuthenticationOnly({}), false);
-  assert.throws(() => betaOwnerAuthenticationOnly({ ...e, VERCEL_ENV: "production" }));
-  assert.throws(() => fantasyPresentationEnabled({ ...e, VERCEL_PROJECT_ID: "other" }));
+  assert.throws(() =>
+    betaOwnerAuthenticationOnly({ ...e, VERCEL_ENV: "production" }),
+  );
+  assert.throws(() =>
+    fantasyPresentationEnabled({ ...e, VERCEL_PROJECT_ID: "other" }),
+  );
 });
 test("beta staging accepts only its exact protected Preview and beta database role", () => {
   assert.equal(assertHostedBeta(env()), true);

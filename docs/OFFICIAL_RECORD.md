@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Docked record — the record starts here
 
 The official record begins only with the first genuine, pre-event, manually approved **live** Docked Edge. Its start date is currently **unset**. No historical Docked betting record is reconstructed.

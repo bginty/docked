@@ -164,7 +164,9 @@ if (mode === "--configure-env") {
     process.argv[3] ?? "docs/qa/android-https-preview/hosting-audit.json";
   // Keep prior milestone receipts immutable when auditing a later preview.
   if (!/^docs\/qa\/[a-z0-9-]+\/hosting-audit\.json$/.test(reportPath))
-    throw new Error("Audit receipt must stay in a named QA milestone directory");
+    throw new Error(
+      "Audit receipt must stay in a named QA milestone directory",
+    );
   const active = JSON.parse(
     await readFile("private-data/hosted-deploy/active-deployment.json", "utf8"),
   );
@@ -209,7 +211,9 @@ if (mode === "--configure-env") {
     homeResponse.headers.get("location") === "/edges";
   const streamedRedirect =
     homeResponse.status === 200 &&
-    /<meta id="__next-page-redirect" http-equiv="refresh" content="[01];url=\/edges"\s*\/>/.test(homeEntry);
+    /<meta id="__next-page-redirect" http-equiv="refresh" content="[01];url=\/edges"\s*\/>/.test(
+      homeEntry,
+    );
   if (!headerRedirect && !streamedRedirect)
     throw new Error("Preview app entry must redirect only to the Edges tab");
   const edgesResponse = await fetch(`${config.origin}/edges`, {
@@ -263,10 +267,7 @@ if (mode === "--configure-env") {
       "dpl_7Ca6F1Mt8PcZpui4jTtXCB852ZW4",
     ],
   };
-  await writeFile(
-    reportPath,
-    JSON.stringify(report, null, 2) + "\n",
-  );
+  await writeFile(reportPath, JSON.stringify(report, null, 2) + "\n");
   console.log(JSON.stringify(report));
 } else if (mode === "--inspect") {
   console.log(

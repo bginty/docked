@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import policies from "../../../config/beta-policy-content.json";
-import { betaPolicyVersions } from "@/core/hosted-beta.mjs";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
@@ -10,15 +8,15 @@ export const metadata = {
 };
 
 export default function BetaPolicies() {
-  if (process.env.DOCKED_BETA_STAGING !== "true" || !betaPolicyVersions())
-    notFound();
   return (
     <main className="page-shell">
       <h1>Restricted beta policies</h1>
       <p>
         Version {policies.version}. The owner approved these exact documents
         subject to their unresolved requirements. Historical draft labels are
-        preserved in the approved text. External admission is still closed.
+        preserved in the approved text. Previous research and betting product
+        references are historical; the current product is fantasy sports cards.
+        External admission is still closed.
       </p>
       <p>
         Australia only, aged 18+, invitation-only and free. Beta cards and

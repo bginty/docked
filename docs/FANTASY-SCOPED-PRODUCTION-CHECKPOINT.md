@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Organization-only production continuation — 8 October 2026
 
 **Later outcome:** the owner subsequently confirmed all requested billing controls. One production database was created and migrated; see [provisioned production checkpoint](FANTASY-PRODUCTION-PROVISIONED.md). The missing-project/billing blockers below are historical and resolved. Legal/contact, SMTP and hosted acceptance gates remain.

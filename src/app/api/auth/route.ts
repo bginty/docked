@@ -6,7 +6,7 @@ import { z } from "zod";
 import { authClient, sameOrigin } from "@/server/auth";
 import { config } from "@/server/config";
 import { db, rateLimit } from "@/server/db";
-import { hash } from "@/core/pricing";
+import { hash } from "@/core/canonical-hash";
 import { recordAnalytics } from "@/server/analytics";
 import { previewAuthEmailAllowed } from "@/server/preview-auth";
 import { boundedCommunityBody } from "@/core/community-social";
@@ -60,7 +60,7 @@ const schema = z.object({
   digest: z.boolean().optional(),
   education: z.boolean().optional(),
   analytics: z.boolean().optional(),
-  edgeAlerts: z.boolean().optional(),
+  edgeAlerts: z.literal(false).optional(),
   factorId: z.string().uuid().optional(),
   code: z
     .string()
@@ -70,8 +70,14 @@ const schema = z.object({
 export async function POST(request: Request) {
   if (!sameOrigin(request))
     return NextResponse.json({ error: "Origin denied" }, { status: 403 });
-  if (process.env.DOCKED_BETA_STAGING === 'true' && process.env.BETA_ACCESS_ENABLED !== 'true')
-    return NextResponse.json({ error: 'Controlled beta acceptance is not enabled.' }, { status: 503 });
+  if (
+    process.env.DOCKED_BETA_STAGING === "true" &&
+    process.env.BETA_ACCESS_ENABLED !== "true"
+  )
+    return NextResponse.json(
+      { error: "Controlled beta acceptance is not enabled." },
+      { status: 503 },
+    );
 
   if (!config().auth || !config().database)
     return NextResponse.json(
@@ -170,9 +176,15 @@ export async function POST(request: Request) {
     if (process.env.DOCKED_BETA_STAGING === "true") {
       try {
         await signOutBetaSession(client.auth);
-        return NextResponse.json({ok:true,redirect:v.app?"/app/login":"/"},{headers:{"Cache-Control":"no-store"}});
+        return NextResponse.json(
+          { ok: true, redirect: v.app ? "/app/login" : "/" },
+          { headers: { "Cache-Control": "no-store" } },
+        );
       } catch {
-        return NextResponse.json({error:"Sign-out could not be confirmed. Please retry."},{status:503,headers:{"Cache-Control":"no-store"}});
+        return NextResponse.json(
+          { error: "Sign-out could not be confirmed. Please retry." },
+          { status: 503, headers: { "Cache-Control": "no-store" } },
+        );
       }
     }
     const { data: session } = await client.auth.getSession();
@@ -226,7 +238,12 @@ export async function POST(request: Request) {
     return NextResponse.json(
       error
         ? { error: "Invalid verification code" }
-        : { ok: true, redirect: betaOwnerAuthenticationOnly(process.env) ? "/app/owner-setup" : "/admin" },
+        : {
+            ok: true,
+            redirect: betaOwnerAuthenticationOnly(process.env)
+              ? "/app/owner-setup"
+              : "/admin",
+          },
     );
   }
   if (v.action === "recover") {

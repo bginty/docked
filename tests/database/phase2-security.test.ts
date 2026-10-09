@@ -106,7 +106,9 @@ test("ordered migrations leave all new tables RLS protected and no public privat
   const execution = await pg.query<{ rolname: string; proname: string }>(
     "select r.rolname,p.proname from pg_roles r cross join pg_proc p join pg_namespace n on n.oid=p.pronamespace where r.rolname in ('anon','authenticated') and n.nspname='private' and has_function_privilege(r.oid,p.oid,'EXECUTE') order by r.rolname,p.proname",
   );
-  assert.deepEqual(execution.rows, [{ rolname: "authenticated", proname: "active_member_session" }]);
+  assert.deepEqual(execution.rows, [
+    { rolname: "authenticated", proname: "active_member_session" },
+  ]);
 });
 test("anonymous denied; active members only see own rows and cannot forge another session", async () => {
   await pg.exec("set role anon");

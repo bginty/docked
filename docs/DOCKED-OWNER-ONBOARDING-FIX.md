@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Owner onboarding and Fantasy identity — 9 October 2026
 
 The owner confirmed Inbox receipt, created a password and accepted the required account details and private admission. Screenshots then showed the older Edge preference wizard and a403 on Enter Docked.

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Model feature registry — Phase 5C
 
 Research permission and model activation are separate. `research-features.ts` defines immutable feature versions in DISPLAY_ONLY, MODEL_ELIGIBLE and MODEL_ACTIVE states. Governance and actor/MFA checks belong to the server/database layer; accepting a valid JSON shape is not permission to register or activate it.

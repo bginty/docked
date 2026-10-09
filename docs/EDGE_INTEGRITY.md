@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Community Edge integrity
 
 Phase 3 implementation, 3 October 2026. Community services are not activated on a hosted environment. There are no genuine community performance records in this build.

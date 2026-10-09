@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Research source registry
 
 `private.research_source_versions` is append-only. A new source version points to the immediately prior review, has a canonical configuration hash, and records the current owner/admin MFA actor and reason. No source is registered by the migration.

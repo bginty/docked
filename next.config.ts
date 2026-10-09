@@ -15,11 +15,8 @@ const config: NextConfig = {
   output: "standalone",
   outputFileTracingIncludes: {
     "/*": ["./certs/supabase-prod-ca-2021.crt"],
-    "/api/community-edges/share": [
-      "./public/brand/canonical/docked-master.png",
-    ],
     "/opengraph-image": [
-      "./public/brand/canonical/docked-social.png",
+      "./public/brand/docked/social/docked-open-graph-1200x630.jpg",
     ],
   },
   async redirects() {

@@ -111,7 +111,7 @@ test("malformed deletion identity never invokes Auth and unacknowledged jobs do 
     /Invalid maintenance limit/,
   );
 });
-test("restricted runner opts out of all official and ledger fanout while default worker semantics stay unchanged", async () => {
+test("all runners exclude retired publication records from social fanout", async () => {
   const source = await readFile("src/server/community-social.ts", "utf8");
   assert.match(
     source,
@@ -119,7 +119,7 @@ test("restricted runner opts out of all official and ledger fanout while default
   );
   assert.match(
     source,
-    /\$\{!options\.communityOnly\} or \(p\.official_tip_id is null and p\.community_edge_id is null and p\.kind in \('discussion','analysis','question','celebration'\) and not author\.is_official\)/,
+    /p\.official_tip_id is null and p\.community_edge_id is null and p\.kind in \('discussion','analysis','question','celebration'\) and not author\.is_official/,
   );
   const runner = await readFile("scripts/community-maintenance.ts", "utf8");
   assert.match(

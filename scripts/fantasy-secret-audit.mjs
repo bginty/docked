@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import {
   auditPreviewTargets,
   loadKnownSecrets,
@@ -18,16 +19,18 @@ const files = execFileSync(
   { encoding: "utf8", windowsHide: true },
 )
   .split("\0")
-  .filter(Boolean);
+  .filter((f) => f && existsSync(f));
 // Test fixtures intentionally contain credential-shaped examples; scan deployable sources,
 // delivery evidence and all browser bundles with both signatures and actual private values.
 const targets = files.filter((f) =>
-  /^(src\/|public\/|docs\/qa\/fantasy\/|docs\/FANTASY-CARDS-|docs\/BRAND-INTEGRATION)/.test(f),
+  /^(src\/|public\/|docs\/qa\/fantasy-cleanup\/|docs\/qa\/fantasy\/|docs\/FANTASY-CARDS-|docs\/BRAND-INTEGRATION)/.test(
+    f,
+  ),
 );
 targets.push(".next/static");
 const report = await auditPreviewTargets(targets, secrets);
 await writeFile(
-  "docs/qa/fantasy/secret-audit.json",
+  "docs/qa/fantasy-cleanup/secret-audit.json",
   JSON.stringify(report, null, 2),
 );
 console.log(JSON.stringify(report));

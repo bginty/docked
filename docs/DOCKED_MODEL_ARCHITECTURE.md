@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Docked independent modelling architecture
 
 Phase 5D: the statistical estimator and private immutable training manifests are implemented. One research fit and a complete six-fixture prospective cohort are installed in Docked Preview. The model stays UNVALIDATED; the independent probability path does not import market adapters. Separate comparison remains blocked by current authority, with zero candidates/publications. Source-reported FT training acceptance does not grant regulation-results settlement rights.

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Preview market fixtures — Phase 4.5
 
 This is a synthetic interface exercise, not provider data or strategy validation. Every option, review and saved record carries **DEMO / PREVIEW PRICE**. The authored fictional football and basketball events simulate a start two hours after review. They are never described as genuine upcoming fixtures.

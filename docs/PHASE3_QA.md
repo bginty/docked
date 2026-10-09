@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 3 validation record
 
 Phase 3 continues `codex/docked-value-platform` from clean commit `e54adf2`. The local annotated rollback tag is `docked-before-phase3-2026-10-03`. Phases 1–2, sports imagery/provenance and official strategy rules are preserved.

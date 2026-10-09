@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked free-play production implementation — 8 October 2026
 
 Later checkpoint: [Final production unblock](FANTASY-PRODUCTION-FINAL-UNBLOCK.md) records real PostgreSQL races passing, verified ABN/entity, the confirmed Supabase Free-project quota refusal and current hosting/mail decisions. The following is the historical implementation handoff.

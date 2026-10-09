@@ -6,7 +6,7 @@ import { isEmailOwnershipVerified } from "@/core/auth-policy";
 import { authClient } from "@/server/auth";
 import { config } from "@/server/config";
 import { rateLimit } from "@/server/db";
-import { hash } from "@/core/pricing";
+import { hash } from "@/core/canonical-hash";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

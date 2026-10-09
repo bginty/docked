@@ -10,9 +10,16 @@ export default async function OwnerSetup() {
   if (!who) redirect("/app/login");
   if (who.user.email?.toLowerCase() !== "support@docked.com.au") notFound();
   const verifiedMfaSession = who.aal === "aal2";
-  return <OwnerSetupStatus verifiedMfaSession={verifiedMfaSession}>
-    <ApiForm endpoint="/api/auth" action="logout" submit="Sign out" defaults={{ app: true }}>
-      <span className="app-auth-hint">Sign out of this browser session.</span>
-    </ApiForm>
-  </OwnerSetupStatus>;
+  return (
+    <OwnerSetupStatus verifiedMfaSession={verifiedMfaSession}>
+      <ApiForm
+        endpoint="/api/auth"
+        action="logout"
+        submit="Sign out"
+        defaults={{ app: true }}
+      >
+        <span className="app-auth-hint">Sign out of this browser session.</span>
+      </ApiForm>
+    </OwnerSetupStatus>
+  );
 }

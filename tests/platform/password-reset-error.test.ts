@@ -13,7 +13,16 @@ test("password policy failures do not falsely expire a valid recovery session", 
   assert.match(passwordResetFailure({ code: "weak_password" }), /stronger/);
 });
 test("unclassified provider failures remain unconfirmed and do not expose raw details", () => {
-  assert.match(passwordResetFailure({ code: "unexpected_failure" }), /not confirmed/);
-  assert.match(passwordResetFailure({ name: "AuthSessionMissingError" }), /session is unavailable/);
-  assert.doesNotMatch(passwordResetFailure({ code: "unexpected_failure" }), /expired|unexpected_failure/);
+  assert.match(
+    passwordResetFailure({ code: "unexpected_failure" }),
+    /not confirmed/,
+  );
+  assert.match(
+    passwordResetFailure({ name: "AuthSessionMissingError" }),
+    /session is unavailable/,
+  );
+  assert.doesNotMatch(
+    passwordResetFailure({ code: "unexpected_failure" }),
+    /expired|unexpected_failure/,
+  );
 });

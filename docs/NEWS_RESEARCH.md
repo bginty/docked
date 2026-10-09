@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # News research — Phase 5C
 
 This architecture stores reviewed structured sporting assertions, not article bodies. CONFIRMED, REPORTED, RUMOUR and MODEL_DERIVED are distinct evidence classes. Reliability tiers describe reviewed provenance, not a fabricated numerical confidence score or a licence to reuse a publisher's work.

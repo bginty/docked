@@ -6,11 +6,11 @@ import { assertHostedBeta } from "./hosted-beta.mjs";
 
 /** Brand identity is independent of the permission to issue cards or play. */
 export function fantasyPresentationEnabled(
-  env: Record<string, string | undefined> = process.env,
+  _env: Record<string, string | undefined> = process.env,
 ) {
-  return env.DOCKED_BETA_STAGING === "true"
-    ? assertHostedBeta(env)
-    : fantasyPlatformEnabled(env);
+  if (_env.DOCKED_BETA_STAGING === "true") assertHostedBeta(_env);
+  // Identity never falls back to a retired product. This grants no gameplay authority.
+  return true;
 }
 
 export function fantasyProductionEnabled(

@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Fantasy Cards launch policies — owner review draft
 
 Prepared 8 October 2026; hosting and email evidence updated 9 October. **Not approved or published. No effective consent version is assigned.** This document prepares the production wording without changing the existing Edge terms, Preview consent, or public website. Facts and operating commitments requiring confirmation are listed below; they must be resolved before this draft becomes the production Terms/Privacy pages. A version string alone is not legal approval.

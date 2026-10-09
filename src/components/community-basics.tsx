@@ -103,10 +103,8 @@ export function IntegrityNote() {
     <aside className="integrity-note">
       <AppIcon name="shield" />
       <p>
-        Verified community Edges use provider-observed standard odds and a fixed
-        1.00-unit benchmark. Social posts, promotional prices and unsupported
-        claims are excluded.{" "}
-        <Link href="/top-docked#rules">Read the ranking rules</Link>.
+        Card ownership and fantasy scores are recorded securely. Community posts
+        do not change card ownership or scores.
       </p>
     </aside>
   );

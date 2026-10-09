@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 4 completion report — 3 October 2026
 
 Continued the existing project on `codex/docked-value-platform` from clean `a19a94d`. Implementation commit: `a399233`. Hosted acceptance/tooling commit: `7626c0a`. The final documentation/evidence commit follows these; `git log -3 --oneline` identifies the complete checkpoint. No production deployment, DNS change, Oura access, purchase, external email or real sporting performance was created.

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Preview community content and Weekend Watchlist
 
 Five new evergreen drafts supplement the existing eight articles: reading a Docked Edge, permanent records, units/ROI, Top Docked qualification, and promotional-price exclusions. They use the existing article/CMS metadata pipeline, carry draft status and author attribution, and contain no current result or genuine performance claim. Arithmetic examples are explicitly fictional. Existing drafts and corrections remain preserved.

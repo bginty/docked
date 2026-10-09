@@ -29,7 +29,7 @@ export default async function Post({
       ) : (
         <CommunityEmpty title="Discussion unavailable">
           {data.message ||
-            "This discussion is not visible under your account, region or content permissions. Any underlying verified Edge remains in the permanent ledger."}
+            "This discussion is not visible under your account, region or content permissions."}
         </CommunityEmpty>
       )}
     </AppShell>

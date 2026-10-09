@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Provider comparison workflow
 
 Status: **NOT RUN — credentials, source mappings and commercial trial/retention authority absent.** No comparison scores or fabricated provider history are supplied.

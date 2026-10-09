@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 4.5 preview access and account lifecycle
 
 This is an isolated test-access mechanism for Docked Preview (`bckkllmndoxzpzdqrevb`, organisation `ernfnkcbalhyqpsrzdwa`). It grants no legal approval, paid entitlement, staff role, real Edge publication or genuine performance ranking.

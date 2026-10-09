@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # NFL Fantasy preparation — inactive
 
 **9 October update:** NFL community/fixtures requirements have now been supplied; their absence is no longer a blocker. See [NFL beta acceptance](DOCKED-NFL-BETA-ACCEPTANCE.md) for implemented filters, catalogue and tests. Advanced fantasy remains optional, pending detailed rules and an authorised statistical feed. The original preparation checkpoint follows.

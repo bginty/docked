@@ -85,7 +85,10 @@ test("closed-test build has an independent upload signing gate while production 
   assert.match(gradle, /android-closed-test-config\.mjs/);
   assert.match(gradle, /verify-android-preview-assets\.mjs/);
   const inputs = readFileSync("scripts/android-closed-test-config.mjs", "utf8");
-  assert.ok(/"-storepass:env",\s*"DOCKED_UPLOAD_STORE_PASSWORD"/.test(inputs), "Keytool must read its password from environment, not a command argument.");
+  assert.ok(
+    /"-storepass:env",\s*"DOCKED_UPLOAD_STORE_PASSWORD"/.test(inputs),
+    "Keytool must read its password from environment, not a command argument.",
+  );
   assert.doesNotMatch(inputs, /stdio: "inherit"/);
   assert.match(
     readFileSync("android/variables.gradle", "utf8"),

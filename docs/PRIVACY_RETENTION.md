@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Community privacy and retention — review draft
 
 Prepared 3 October 2026. This describes implemented behavior and decisions requiring legal approval; it is not a legal conclusion or an activated production privacy policy.

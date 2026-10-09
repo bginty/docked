@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Canonical Docked master D
 
 Phase 4.5 supersedes the supplied pack's suggested header/standalone-mark variants. The owner selected the exact D already installed on their Samsung S24.

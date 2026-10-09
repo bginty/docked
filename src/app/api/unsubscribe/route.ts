@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/server/db";
-import { hash } from "@/core/pricing";
+import { hash } from "@/core/canonical-hash";
 export async function POST(request: Request) {
   const token = new URL(request.url).searchParams.get("token");
   if (!token || token.length < 32 || !process.env.DATABASE_URL)

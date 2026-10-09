@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Football V1 fitting and execution
 
 Phase 5D supersedes the Phase 5C absence of an estimator. The implemented model is research-only; installation and actual prediction receipts are recorded separately under `docs/qa/phase5d`. It is not approved for candidates or live publication.

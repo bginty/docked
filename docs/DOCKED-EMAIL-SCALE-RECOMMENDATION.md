@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Transactional email for 10,000+ Docked members
 
 Recommendation prepared 9 October 2026. Research and design only: no service, subscription, permission, DNS, rate-limit or sender configuration was changed. This is separate from the current supervised owner-only Graph test.

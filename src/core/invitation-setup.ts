@@ -10,7 +10,10 @@ export const invitationSetup = z.object({
   terms: z.literal(true),
   privacy: z.literal(true),
   marketing: z.boolean().optional(),
-  betaAdmissionCode: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+  betaAdmissionCode: z
+    .string()
+    .regex(/^[a-f0-9]{64}$/)
+    .optional(),
   betaRules: z.boolean().optional(),
 });
 // Use only a fresh Auth.getUser result, never a client body or user_metadata.

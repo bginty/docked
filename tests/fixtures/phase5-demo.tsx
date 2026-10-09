@@ -129,7 +129,10 @@ Object.assign(window, {
                 status={{ strategy: false, feed: false, publication: false }}
               />
               <section className="pinned-docked">
-                <div className="section-row"><h2>DOCKED EDGES</h2><a href="/results">Official history</a></div>
+                <div className="section-row">
+                  <h2>DOCKED EDGES</h2>
+                  <a href="/results">Official history</a>
+                </div>
                 <PinnedDockedEmpty
                   compact
                   regionAllowed

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Image rights and provenance
 
 Reviewed and acquired: **3 October 2026**. Scope: the 12 images in `public/images/sports/` and the original sport pictograms. These are decorative sports-category assets. They do not depict Docked selections, prove data coverage, report results or imply a relationship with a bookmaker, athlete, competition or venue.

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Football sporting-data provider research
 
 **Phase 5C update:** [RESEARCH_SOURCE_EVALUATION.md](RESEARCH_SOURCE_EVALUATION.md) adds OpenFootball CC0, official club/league sources, free weather and identity data. OpenFootball is now the first free sporting-history research candidate; do not interpret the older shortlist below as proof that paid data is required. Two local pinned files were checked without creating model inputs. The preserved Phase 5B statement below describes its earlier checkpoint.

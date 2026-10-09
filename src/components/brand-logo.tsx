@@ -1,6 +1,6 @@
-import { brandAssets } from "@/brand/brand";
+import { fantasyAssets } from "@/brand/fantasy-assets";
 
-/** The installed Android icon is the master. Never substitute a legacy D variant. */
+/** Use supplied image assets, including the wordmark. */
 export function BrandLogo({
   variant = "wordmark",
   surface = "light",
@@ -21,17 +21,12 @@ export function BrandLogo({
       aria-hidden={decorative || undefined}
     >
       <img
-        src={brandAssets.mark}
+        src={mark ? fantasyAssets.icon512 : fantasyAssets.compact}
         alt=""
-        width={1024}
-        height={1024}
+        width={mark ? 512 : 400}
+        height={mark ? 512 : 100}
         decoding="async"
       />
-      {!mark && (
-        <span className="canonical-logo-name" aria-hidden="true">
-          DOCKED
-        </span>
-      )}
     </span>
   );
 }

@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Provider trial results — 4 October 2026
 
 **The Odds API controlled Preview trial completed; further calls stopped.** Nine request-ledger attempts remain: **eight SUCCESS and one initial FAILED**. Successful responses report **nine credits**, with final headers showing **491 remaining / 9 used** on the owner's confirmed Free plan. The first failure has no quota headers, so the all-attempt reported-credit sum remains **UNKNOWN**, not zero or a manufactured fully measured total.

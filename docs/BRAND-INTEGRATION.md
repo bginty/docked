@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Fantasy Cards Preview branding
 
 Source: `C:/Users/61412/Desktop/DOCKED-Website-Mobile-Kit`. Read START-HERE.md, ASSET-MAP.md, asset-manifest.json and PREVIEW.html; inspected selected artwork directly. Originals remain untouched.

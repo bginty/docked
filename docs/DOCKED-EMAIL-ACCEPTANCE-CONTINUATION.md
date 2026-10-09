@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked email acceptance continuation — 9 October 2026
 
 > Later checkpoint: [Live-beta acceptance](DOCKED-LIVE-BETA-ACCEPTANCE.md). The owner has authorized controlled beta deployment/testing, resolving the earlier test-window approval question. Other mandatory gates remain. This document preserves the earlier checkpoint.

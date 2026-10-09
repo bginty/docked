@@ -210,7 +210,7 @@ async function projectPosts(
    (select count(*)::int from private.social_reactions r where r.post_id=p.id) as reactions,
    (select count(*)::int from private.social_comments c where c.post_id=p.id and c.deleted_at is null and c.moderation_status='visible' and private.social_profile_visible(${viewer},c.author_id,false)) as comments,
    exists(select 1 from private.social_reactions r where r.post_id=p.id and r.profile_id=${viewer}) as reacted,
-   exists(select 1 from private.social_saved s where s.post_id=p.id and s.profile_id=${viewer}) as saved from private.social_posts p where p.id=any(${ids})`;
+   exists(select 1 from private.social_saved s where s.post_id=p.id and s.profile_id=${viewer}) as saved from private.social_posts p where p.id=any(${ids}) and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration')`;
   const countsById = new Map(counts.map((r) => [String(r.id), r]));
   return rows.map((r) => {
     const count = countsById.get(String(r.id))!;
@@ -267,7 +267,7 @@ async function selectPosts(
       : [];
   const rows =
     await tx`select p.* from private.social_posts p join private.social_profiles a on a.id=p.author_id
-   where private.social_post_visible(${profileId},p.id)
+   where private.social_post_visible(${profileId},p.id) and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration')
    and (${options.author ?? null}::text is null or a.handle=${options.author ?? null})
    and (${options.postId ?? null}::uuid is null or p.id=${options.postId ?? null})
    and (${options.officialTipId ?? null}::uuid is null or p.official_tip_id=${options.officialTipId ?? null})
@@ -398,9 +398,9 @@ export async function communityNotifications(): Promise<CommunityNotifications> 
     async (c) => {
       if (!c.profileId) return { items: [], unread: 0, preferences: null };
       const rows =
-        await c.tx`select n.id,n.type,n.title,n.href,n.created_at,n.read_at,n.group_key from private.social_notifications n where n.recipient_id=${c.profileId} and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id)) order by created_at desc,id desc limit 50`;
+        await c.tx`select n.id,n.type,n.title,n.href,n.created_at,n.read_at,n.group_key from private.social_notifications n where n.type in ('comment','reply','reaction','follower','followed_post') and n.recipient_id=${c.profileId} and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id)) order by created_at desc,id desc limit 50`;
       const unread =
-        await c.tx`select count(*)::int as count from private.social_notifications n where n.recipient_id=${c.profileId} and n.read_at is null and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id))`;
+        await c.tx`select count(*)::int as count from private.social_notifications n where n.type in ('comment','reply','reaction','follower','followed_post') and n.recipient_id=${c.profileId} and n.read_at is null and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id))`;
       const pref =
         await c.tx`select * from private.social_notification_preferences where profile_id=${c.profileId}`;
       return {
@@ -434,18 +434,14 @@ export async function enqueueCommunityNotification(
     groupKey?: string;
   },
 ) {
+  if (
+    !["comment", "reply", "reaction", "follower", "followed_post"].includes(
+      input.type,
+    )
+  )
+    return;
   const category =
-    input.type === "official_edge" || input.type === "edge_status"
-      ? "official_edges"
-      : input.type.startsWith("followed_")
-        ? "followed_members"
-        : input.type === "leaderboard"
-          ? "leaderboard"
-          : ["competition", "prize"].includes(input.type)
-            ? "competitions"
-            : input.type === "deal"
-              ? "deals_marketing"
-              : "social";
+    input.type === "followed_post" ? "followed_members" : "social";
   const target =
     await tx`select p.id,p.user_id,p.status,a.timezone,pref.*,n.paused,n.quiet_start,n.quiet_end from private.social_profiles p join public.profiles a on a.id=p.user_id join private.social_notification_preferences pref on pref.profile_id=p.id left join public.notification_preferences n on n.user_id=p.user_id where p.id=${input.recipientId} and p.status='active' and a.disabled_at is null for update of p`;
   const r = target[0];
@@ -510,7 +506,7 @@ export async function processCommunityNotifications(
     await setPreviewCommunityContext(tx);
     const jobs =
       await tx`select j.*,p.author_id,p.official_tip_id,p.community_edge_id,p.created_at post_created_at,p.deleted_at,p.moderation_status from private.social_notification_jobs j join private.social_posts p on p.id=j.post_id join private.social_profiles author on author.id=p.author_id where j.completed_at is null
-      and (${!options.communityOnly} or (p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration') and not author.is_official))
+      and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration') and not author.is_official
       and (${!options.previewOnly} or (p.official_tip_id is null and p.community_edge_id is null and p.kind<>'official' and not author.is_official and author.status='active' and private.preview_tester_policy(author.user_id,'community_social') is not null))
       order by j.created_at,j.id limit 1 for update of j skip locked`;
     const job = jobs[0];
@@ -523,46 +519,23 @@ export async function processCommunityNotifications(
       await tx`update private.social_notification_jobs set completed_at=clock_timestamp() where id=${job.id}`;
       return { processed: 0, queued: 0 };
     }
-    // An old publication must not be re-announced as a current opportunity.
-    if (
-      job.official_tip_id &&
-      job.kind === "publication" &&
-      new Date(job.post_created_at).getTime() < Date.now() - 180000
-    ) {
-      await tx`update private.social_notification_jobs set completed_at=clock_timestamp() where id=${job.id}`;
-      return { processed: 0, queued: 0 };
-    }
     const recipients =
       await tx`select p.id from private.social_profiles p join private.social_notification_preferences n on n.profile_id=p.id where p.status='active' and p.user_id is not null and p.id<>${job.author_id} and n.in_app and n.updated_at<=${job.created_at}
-      and (${job.official_tip_id !== null} and n.official_edges or ${job.official_tip_id === null} and n.followed_members and exists(select 1 from private.social_follows f where f.actor_id=p.id and f.target_id=${job.author_id} and f.notifications and f.created_at<=${job.created_at}))
+      and n.followed_members and exists(select 1 from private.social_follows f where f.actor_id=p.id and f.target_id=${job.author_id} and f.notifications and f.created_at<=${job.created_at})
       and (${!options.previewOnly} or private.preview_tester_policy(p.user_id,'community_social') is not null)
       and (${job.cursor_profile_id ?? null}::uuid is null or p.id>${job.cursor_profile_id ?? null}::uuid) order by p.id limit ${batchSize + 1}`;
     const page = recipients.slice(0, batchSize);
     let queued = 0;
     for (const recipient of page) {
-      const official = job.official_tip_id !== null;
       const inserted = await enqueueCommunityNotification(tx, {
         recipientId: String(recipient.id),
         actorId: String(job.author_id),
         postId: String(job.post_id),
-        type: official
-          ? job.kind === "status"
-            ? "edge_status"
-            : "official_edge"
-          : job.community_edge_id
-            ? "followed_edge"
-            : "followed_post",
-        title:
-          job.kind === "status"
-            ? "An Edge record has a new status or settlement."
-            : official
-              ? "Docked published an official Edge record. Check its current status."
-              : job.community_edge_id
-                ? "A member you follow recorded an Edge."
-                : "A member you follow shared a post.",
+        type: "followed_post",
+        title: "A member you follow shared a post.",
         href: `/community/posts/${job.post_id}`,
         dedupeKey: `${job.dedupe_key}:${recipient.id}`,
-        groupKey: job.kind === "status" ? "edge_status" : "followed_posts",
+        groupKey: "followed_posts",
       });
       if (inserted) queued++;
     }
@@ -696,8 +669,8 @@ export async function uploadCommunityMedia(file: File, alt: string) {
         media: toMedia(rows[0]),
         message:
           rows[0].status === "approved"
-            ? "Previously approved image is available. A screenshot never verifies odds or results."
-            : "Image stored in private quarantine for moderation. A screenshot never verifies odds or results.",
+            ? "Previously approved image is available. Images do not establish card ownership or competition scores."
+            : "Image stored in private quarantine for moderation. Images do not establish card ownership or competition scores.",
       };
     },
   );
@@ -773,7 +746,7 @@ async function accessiblePost(
   id: string,
 ) {
   const rows =
-    await tx`select p.* from private.social_posts p where p.id=${id} and private.social_post_visible(${viewer},p.id) for update`;
+    await tx`select p.* from private.social_posts p where p.id=${id} and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration') and private.social_post_visible(${viewer},p.id) for update`;
   if (!rows.length) throw new Error("Post unavailable");
   return rows[0];
 }
@@ -1043,7 +1016,7 @@ export async function mutateCommunity(input: unknown) {
         return {
           ok: true,
           message:
-            "Social commentary removed. Any permanent Edge record remains unchanged.",
+            "Social commentary removed. Audit history is retained.",
         };
       }
       if (action.action === "delete_comment") {
@@ -1148,7 +1121,7 @@ export async function mutateCommunity(input: unknown) {
         await audit(tx, actor.user.id, "social_moderation", action.targetId);
         return {
           ok: true,
-          message: "Moderation recorded. Permanent Edge evidence is unchanged.",
+          message: "Moderation recorded. Audit history is retained.",
         };
       }
       throw new Error("Unsupported action");

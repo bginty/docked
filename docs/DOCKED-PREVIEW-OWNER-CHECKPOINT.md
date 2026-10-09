@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Approved Preview continuation — 9 October 2026
 
 > Updated status: [Protected Preview deployed](DOCKED-VERCEL-PREVIEW-DEPLOYED.md). The expired CLI session refreshed normally; independent settings confirm Production `main`. Commit `2c9a9957` is READY in protected Preview after a hosted origin-check repair. 437 platform tests and 32 hosted UI/denial checks pass. Positive Auth/gameplay and Android acceptance remain gated. Below is the earlier historical checkpoint.

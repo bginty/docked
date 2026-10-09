@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Dedicated production organization checkpoint — 8 October 2026
 
 **Superseded status:** the owner has since corrected the plan placement and Netlify is connected with an empty Free site. See [connected hosting checkpoint](FANTASY-CONNECTED-HOSTING-HANDOFF.md) for the current resource IDs and remaining scoped project-discovery question. The following is retained as chronological evidence.

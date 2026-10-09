@@ -4,8 +4,6 @@ import { protectedIdentity } from "./community-social";
 export const previewCapabilities = [
   "community_social",
   "public_profiles",
-  "preview_market_fixtures",
-  "preview_top_docked",
 ] as const;
 export type PreviewCapability = (typeof previewCapabilities)[number];
 export const previewCapabilitySchema = z.enum(previewCapabilities);
@@ -74,7 +72,7 @@ export const appOnboardingSchema = z.object({
     )
     .refine((v) => new Set(v).size === v.length),
   interests: z.enum(["edges", "community", "both"]),
-  officialEdges: z.boolean(),
+  officialEdges: z.literal(false).default(false),
   followedMembers: z.boolean(),
   replies: z.boolean(),
   timezone: z.string().min(1).max(100),

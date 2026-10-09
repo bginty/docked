@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # EPL training-data review — Phase 5D
 
 Reviewed 4 October 2026. Scope: the two Phase 5C approved resources at OpenFootball revision `e6744429ee395bc86f247348c6184bb08d4eb361`, unchanged local hashes. See [machine-readable study](qa/phase5d/data-study.json) for every exclusion, resource URL, observation clock, hash and team mapping.

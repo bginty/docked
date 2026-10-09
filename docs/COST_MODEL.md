@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Phase 5 ingestion cost model — checked 4 October 2026
 
 **No purchases. Full operating cost UNKNOWN.** USD/month, before tax/FX. Provider cost follows monitored competitions, markets, source sets, active hours and cadence; it is not multiplied by registered members. Ingest once and serve authorised canonical views to many members. Current data trial spend is $0 because no provider request was made. Existing account invoices were not inspected.

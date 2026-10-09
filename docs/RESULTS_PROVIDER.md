@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Results provider readiness
 
 Phase 5D retains **NOT_CONFIGURED**. The two OpenFootball files pass a limited goals-only training review but still lack operational finality/status/correction guarantees. The Odds API [score endpoint](https://the-odds-api.com/liveapi/guides/v4/#get-scores) was rechecked in official documentation; documented final scores do not by themselves establish Docked's precise regulation/correction contract or extend the existing Preview rights scope. No extra API credits were consumed. A new database gate requires explicit `regulation_results` source permission before appending model outcomes, separate from training permission. Prospective probabilities may accumulate while actual outcomes remain pending.

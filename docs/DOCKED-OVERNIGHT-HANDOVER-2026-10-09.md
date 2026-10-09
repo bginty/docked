@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Docked morning handover — 9 October 2026
 
 > Superseded where noted by [email acceptance continuation](DOCKED-EMAIL-ACCEPTANCE-CONTINUATION.md): invitation/profile implementation and disabled scheduler are now prepared, function version 5 is deployed disabled, and newer local/production-readback results are recorded there. Hosted Auth acceptance and launch remain blocked. The report below preserves the prior checkpoint.

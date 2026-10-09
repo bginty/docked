@@ -67,12 +67,7 @@ export async function persistSignupProfile(
   if (!inserted.length) return { created: false, usernameRequired: false };
   await tx.query(
     "insert into public.notification_preferences(user_id,digest,education,edge_alerts) values($1,$2,$3,$4) on conflict do nothing",
-    [
-      userId,
-      input.digest ? "weekly" : "off",
-      !!input.education,
-      !!input.edgeAlerts,
-    ],
+    [userId, input.digest ? "weekly" : "off", !!input.education, false],
   );
   for (const [purpose, granted] of Object.entries({
     terms: true,
@@ -81,7 +76,7 @@ export async function persistSignupProfile(
     marketing: !!input.marketing,
     digest: !!input.digest,
     education: !!input.education,
-    edge: !!input.edgeAlerts,
+    edge: false,
     analytics: !!input.analytics,
   }))
     await tx.query(

@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Fantasy Cards production launch readiness — 8 October 2026
 
 **Production promotion stopped. No production deployment, database write, DNS change, payment or new paid service was made.** The user authorized launch subject to readiness and explicitly required stopping promotion for critical issues. The supplied release is `pivot/fantasy-cards-preview-v1` at `7de60d06e7c38cce96bd897ab5d869a24d6d06a1`; the branch and completed implementation are preserved.

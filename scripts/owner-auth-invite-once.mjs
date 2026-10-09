@@ -15,7 +15,11 @@ const quotaRecovery = process.argv[2] === "--send-owner-invite-after-quota";
 const reviewedFix =
   serviceBaseFix ||
   process.argv[2] === "--send-owner-invite-after-site-url-fix";
-assert.ok(process.argv[2] === "--send-owner-invite-once" || reviewedFix || quotaRecovery);
+assert.ok(
+  process.argv[2] === "--send-owner-invite-once" ||
+    reviewedFix ||
+    quotaRecovery,
+);
 const root = "private-data/production/";
 const receiptFile =
   root +
@@ -23,16 +27,19 @@ const receiptFile =
   (quotaRecovery
     ? "invite-after-quota.json"
     : serviceBaseFix
-    ? "invite-after-service-base-fix.json"
-    : reviewedFix
-      ? "invite-after-site-url-fix.json"
-      : "invite-attempt.json");
+      ? "invite-after-service-base-fix.json"
+      : reviewedFix
+        ? "invite-after-site-url-fix.json"
+        : "invite-attempt.json");
 const approvalFile = root + "microsoft365/owner-dispatch-approval.json";
 const read = (path) => JSON.parse(readFileSync(path, "utf8"));
 let authority = "Owner supervised authentication approval after 281e372c";
 if (quotaRecovery) {
   const approvalPath = root + "owner-window/quota-recovery-approval.json";
-  assert.ok(existsSync(approvalPath), "Fresh explicit owner approval required; no request sent");
+  assert.ok(
+    existsSync(approvalPath),
+    "Fresh explicit owner approval required; no request sent",
+  );
   const approval = read(approvalPath);
   assert.equal(approval.approved, true);
   assert.equal(approval.projectRef, "pojoymtniryarxxunyvz");
@@ -42,7 +49,10 @@ if (quotaRecovery) {
   assert.equal(typeof approval.ownerMessageReference, "string");
   assert.ok(approval.ownerMessageReference.trim().length > 10);
   const age = Date.now() - Date.parse(approval.approvedAt);
-  assert.ok(age >= 0 && age < 5 * 60_000, "Approval must be given immediately before sending");
+  assert.ok(
+    age >= 0 && age < 5 * 60_000,
+    "Approval must be given immediately before sending",
+  );
   const quota = read("docs/qa/owner-acceptance/owner-quota-confirmation.json");
   assert.ok(Date.now() >= Date.parse(quota.earliestConservativeRecheckAt));
   const prior = read(root + "owner-window/invite-after-service-base-fix.json");

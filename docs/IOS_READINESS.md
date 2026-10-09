@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # iOS readiness — 4 October 2026
 
 Preparation only: no iOS project, signing identity, Apple enrollment, purchase or build was created in Phase 5D. The current package contains Capacitor Android and shared web plugins, but not `@capacitor/ios`; the existing target resolver is Android-specific and must not be reused blindly for iOS.

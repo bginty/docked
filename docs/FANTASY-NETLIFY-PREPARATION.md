@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Netlify preparation and Supabase capacity — 8 October 2026
 
 Continued from `d5d82965` on `pivot/fantasy-cards-preview-v1`. The owner selected Netlify Free as the preferred commercial host, subject to eligibility and compatibility. The existing Vercel project remains intact and unused for production; the Vercel Preview remains unchanged. No cloud resources, billing, database contents or DNS were changed.

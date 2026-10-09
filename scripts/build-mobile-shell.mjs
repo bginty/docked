@@ -7,12 +7,9 @@ import { resolveAndroidTarget } from "./android-preview-config.mjs";
 // sibling CSS/JS requests. Keep the error document self-contained and hash-bound.
 const hash = (value) => createHash("sha256").update(value).digest("base64");
 const brand = JSON.parse(readFileSync("src/brand/brand-tokens.json", "utf8"));
-const canonical = JSON.parse(
-  readFileSync("src/brand/canonical-logo.json", "utf8"),
-);
 const liveBeta = process.env.CAPACITOR_LIVE_BETA === "true";
-const fantasy = process.env.FANTASY_CARDS_PREVIEW === "true" || liveBeta;
-const logo = `data:image/png;base64,${readFileSync(fantasy ? "public/brand/docked/icons/docked-icon-512.png" : canonical.source).toString("base64")}`;
+const fantasy = true;
+const logo = `data:image/png;base64,${readFileSync("public/brand/docked/icons/docked-icon-512.png").toString("base64")}`;
 function shellStyle() {
   const variables = Object.entries(brand.colors)
     .map(([name, value]) => `--brand-${name}:${value}`)
@@ -22,20 +19,6 @@ function shellStyle() {
   return `:root{${variables};--brand-font:${brand.fontFamily}}\n${readFileSync("mobile/www/shell.css", "utf8").replace(/\r\n?/g, "\n").trim()}`;
 }
 function brandShell(template) {
-  if (fantasy)
-    template = template
-      .replace(
-        "Reconnect to load your community, account and current prices. Private records and price observations are never stored in this offline shell.",
-        "Reconnect to load your cards, teams, test-credit balance and community. Private records are never stored in this offline shell.",
-      )
-      .replace(
-        "Informational analysis. No guaranteed returns.",
-        "Fictional players. Test credits only.",
-      )
-      .replace(
-        "Current prices and private content cannot be verified while offline.",
-        "Cards, teams and test-credit balances cannot be verified while offline.",
-      );
   if (liveBeta)
     template = template
       .replaceAll("Docked Preview", "Docked Beta")

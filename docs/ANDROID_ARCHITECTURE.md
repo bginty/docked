@@ -1,3 +1,5 @@
+> Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
+
 # Docked Android preview architecture
 
 Status: **sideloaded preview; production release blocked; closed-test AAB signing awaits owner key**. The existing Next.js application remains the source of its screens, server-side access checks, canonical records, and design. The owner-authorised hosted mode connects Android to one verified HTTPS Docked Preview deployment, which connects only to Docked Preview Supabase `bckkllmndoxzpzdqrevb`. It requires internet access and that backend, but no laptop, USB, ADB or local server after installation. No production site or DNS change is required or made.

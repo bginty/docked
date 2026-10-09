@@ -14,8 +14,12 @@ export function passwordResetFailure(error: { code?: string; name?: string }) {
     return "Choose a password different from your current password.";
   if (error.code === "weak_password")
     return "Choose a stronger password with at least 12 characters.";
-  if (error.name === "AuthSessionMissingError" ||
-      ["session_not_found", "refresh_token_not_found", "bad_jwt"].includes(error.code ?? ""))
+  if (
+    error.name === "AuthSessionMissingError" ||
+    ["session_not_found", "refresh_token_not_found", "bad_jwt"].includes(
+      error.code ?? "",
+    )
+  )
     return "Your recovery session is unavailable. Use the same browser where you requested the email, or contact support.";
   return "The password update was not confirmed. Contact support before requesting another recovery email.";
 }

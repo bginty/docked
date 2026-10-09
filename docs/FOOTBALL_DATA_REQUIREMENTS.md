@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Independent football data requirements
 
 Phase 5D current state: a quality-reviewed 398-match source-reported FT subset from two pinned CC0 EPL files has been accepted for goals-only research, mapped and fitted. The fitted input schema explicitly preserves date-only historical granularity; it does not claim exact historical completion clocks or settlement finality. Minimum eight accepted team matches, 365-day weighting and other declared controls are documented in FOOTBALL_V1_FITTING.md. Five genuine prospective predictions and one abstention are retained. Fresh automated sporting refresh and authorised regulation outcomes remain external/operational gaps. The Phase 5C requirements/proposal below describe the earlier state and are superseded where they say no accepted fit exists.

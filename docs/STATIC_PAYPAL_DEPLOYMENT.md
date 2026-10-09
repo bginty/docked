@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Docked static PayPal deployment record
 
 Status: `$299` price revision is live on `docked.com.au`; website and PayPal amounts match; exact four-file production commit deployed successfully; HTTP-to-HTTPS enforcement remains pending

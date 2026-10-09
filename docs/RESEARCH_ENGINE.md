@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Governed research engine
 
 Research is separate from market prices, model predictions and official/community performance. The current implementation has no fitted football estimator, no automatic probability recalculation executor and no authority to settle or publish betting records.

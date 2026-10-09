@@ -61,7 +61,7 @@ test("real GoTrue project site_url is accepted only with the pinned beta callbac
           ? origin + "/auth/invite"
           : action === "recovery"
             ? origin + "/auth/recovery"
-          : projectUrl + "/auth/v1/verify",
+            : projectUrl + "/auth/v1/verify",
       ),
     );
     for (const badSite of [
@@ -122,10 +122,21 @@ test("Auth links bind production project and exact callbacks; secure email-chang
         .split("\n")
         .find((line: string) => line.startsWith("https://"))!,
     );
-    assert.equal(link.origin, action === "recovery" ? new URL(input.email_data.redirect_to).origin : projectUrl);
-    assert.equal(link.pathname, action === "recovery" ? "/auth/recovery" : "/auth/v1/verify");
+    assert.equal(
+      link.origin,
+      action === "recovery"
+        ? new URL(input.email_data.redirect_to).origin
+        : projectUrl,
+    );
+    assert.equal(
+      link.pathname,
+      action === "recovery" ? "/auth/recovery" : "/auth/v1/verify",
+    );
     assert.equal(link.searchParams.get("type"), action);
-    assert.equal(link.searchParams.get(action === "recovery" ? "token_hash" : "token"), input.email_data.token_hash);
+    assert.equal(
+      link.searchParams.get(action === "recovery" ? "token_hash" : "token"),
+      input.email_data.token_hash,
+    );
   }
   const messages = messagesFor(payload("email_change"));
   assert.equal(messages.length, 2);

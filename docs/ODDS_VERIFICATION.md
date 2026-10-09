@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Community standard-price verification
 
 Phase 3, 3 October 2026. **ODDS_PROVIDER_STATUS=NOT_CONFIGURED** remains the honest local state. No API credentials, provider subscriptions or real odds were fabricated or purchased. The existing The Odds API integration is a candidate provider; its ordinary h2h response alone does not establish that a price is universally standard and non-promotional.

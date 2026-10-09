@@ -1,3 +1,5 @@
+> Historical/superseded product document. Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. This document does not authorize old features, providers, jobs or launch gates.
+
 # Trending Community Edges
 
 Installed rule: `community-recognition-v1`. This measures community interest, not estimated value, profitability, sporting likelihood or Top Docked rank. It never modifies official publications, competitive grading or a member's permanent history.

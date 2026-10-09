@@ -33,8 +33,7 @@ export default function AccountDeletionInformation() {
       <p>
         Personal profile content and relationships are removed or pseudonymised.
         Necessary consent, moderation and permanent-record audit evidence may be
-        retained without an active public identity. A losing Edge is not removed
-        selectively. The final legal retention schedule and operator contact
+        retained without an active public identity. Card ownership history and competition audit records are not selectively erased. The final legal retention schedule and operator contact
         remain under owner review.
       </p>
       <h2>Unable to sign in?</h2>

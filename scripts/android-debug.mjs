@@ -56,11 +56,7 @@ const artifactOutput = path.join(
 );
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
-const hostedFilename = liveBeta
-  ? "Docked-Live-Beta-S24-v9.apk"
-  : process.env.FANTASY_CARDS_PREVIEW === "true"
-    ? "Docked-Preview-S24-v8-Fantasy-Cards.apk"
-    : "Docked-Preview-S24-v7-Match-Research.apk";
+const hostedFilename = liveBeta ? 'Docked-Protected-Beta-v10-Fantasy-Cards.apk' : 'Docked-Preview-v10-Fantasy-Cards.apk';
 preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);
 preserveAndroidApks(
   path.join(root, "android/app/build/outputs/bundle/closedTest"),
