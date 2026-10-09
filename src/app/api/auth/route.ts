@@ -24,6 +24,7 @@ import {
 import type { TransactionSql } from "postgres";
 import { productionInvitationsEnabled } from "@/core/auth-invitation";
 import { verifiedInvitedUser } from "@/core/invitation-setup";
+import { passwordResetFailure } from "@/core/auth-policy";
 function signupTransaction(tx: TransactionSql): SignupTransaction {
   return {
     query: async (text, parameters) => [...(await tx.unsafe(text, parameters))],
@@ -280,7 +281,7 @@ export async function POST(request: Request) {
     });
     return NextResponse.json(
       error
-        ? { error: "Recovery session invalid or expired" }
+        ? { error: passwordResetFailure(error) }
         : {
             ok: true,
             redirect: await destinationAfterAuth(

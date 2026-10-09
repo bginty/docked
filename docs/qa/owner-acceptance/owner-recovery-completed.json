@@ -1,0 +1,17 @@
+{
+  "project": "pojoymtniryarxxunyvz",
+  "deploymentId": "dpl_Bw5iewq8fQxwpqzqXq2FUjrVE28G",
+  "source": "Owner reported success and MFA session verified; independent dedicated-project Auth logs and session readback",
+  "mfaChallengeAndVerify": {"at":"2026-10-09T20:06:57Z","status":200},
+  "passwordUpdate": {"at":"2026-10-09T20:07:30Z","status":200},
+  "activeAal2Sessions": 1,
+  "verifiedTotpFactors": 1,
+  "pendingMail": 0,
+  "passwordReadOrSetByAgent": false,
+  "mfaFactorEnrolledByAgent": false,
+  "additionalEmailsSent": 0,
+  "recoveryAcceptance": "PASS for real owner email, confirmation, PKCE exchange, required personal MFA and password update",
+  "freshPasswordLoginAcceptance": "NOT_YET_VERIFIED",
+  "gameplayAcceptance": "NOT_YET_RUN",
+  "externalTestersEnabled": false
+}
