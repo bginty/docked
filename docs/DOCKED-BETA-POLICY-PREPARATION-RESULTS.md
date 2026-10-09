@@ -19,3 +19,19 @@ The real `/mfa` route and required enrollment/verification steps were verified i
 Supabase Auth Site URL/redirect settings still need an exact-origin scoped update before the controlled invitation. There is no configured direct Auth-management API token in this process. The established CLI can manage this exact project's functions; a broad configuration push is not a safe substitute. The precise settings and dashboard fallback are in [owner acceptance preparation](DOCKED-BETA-OWNER-ACCEPTANCE-PREP.md).
 
 Hosted invitation confirmation, recovery delivery and signed-in gameplay remain blocked by policy/owner-acceptance prerequisites. The beta remains closed; the public holding page and old Preview are unchanged. No Oura access, new paid service, Microsoft grant change or production-domain promotion.
+
+## Final closed Preview verification
+
+Application commit: `da3b48a2a6235d1f7592047dd00724586cbb6c0e`.
+Deployment: `dpl_9bpzTDoiyMQTZ5etwpmajVJVtK4h`, READY, explicit Preview request and verified built-in Preview response (raw target null).
+Protected URL: https://docked-production-7id3ohty2-briant-s-projects.vercel.app
+
+- 38 actual hosted closed-access checks passed. These include MFA-page availability without enrollment material, closed invitations, authorization denials, isolated database connectivity, invalid callback handling, security headers and 12 responsive page checks at 320/412/1366px. Browser emulation only; no physical-device acceptance or successful signed-in journey is claimed.
+- The committed export scan passed across 531 files. All 17 served browser assets passed the credential/private-data scan.
+- Eight hosted email denial checks passed again after pinning the exact new origin. Mail activation flags remain false; no email sent, account created or MFA factor enrolled.
+- No custom domains or aliases were attached. The public holding page returned 200 and www redirected to the unchanged apex.
+- An initial Vercel project preflight returned HTTP403 before submission. The existing CLI session refreshed normally during a successful exact-project read, after which deployment succeeded. No new token, permission or authentication bypass was needed.
+
+The two additional hosted checks are preserved in `scripts/beta-hosted-acceptance.mjs`. Machine-readable deployment and hosted reports are under `docs/qa/beta-isolation/`; email evidence is under `docs/qa/beta-policy/`. The policy packet itself is unchanged and remains unapproved.
+
+Next owner decision: the single exact-version approval in `DOCKED-BETA-POLICY-APPROVAL.md`. Subsequent controlled owner onboarding still requires the exact Auth URL configuration, approved beta runtime policy configuration, personally completed MFA and successful real email/auth/gameplay acceptance. External tester admission remains disabled. The other-mailbox Microsoft negative authorization test remains unperformed; this work does not change that limitation.

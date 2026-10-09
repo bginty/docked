@@ -66,6 +66,26 @@ async function denied(path, method, body, status, origin = base) {
   );
   return { status: r.status };
 }
+await check(
+  "Owner MFA page is present without enrollment material",
+  async () => {
+    const r = await req("/mfa");
+    assert.equal(r.status, 200);
+    const body = await r.text();
+    assert.match(body, /Set up authenticator/);
+    assert.match(body, /Verify MFA/);
+    assert.doesNotMatch(body, /otpauth:\/\/totp\//);
+    return { status: 200 };
+  },
+);
+await check("Invitation confirmation remains closed before approval", () =>
+  denied(
+    "/auth/invite?type=invite&token_hash=" + "x".repeat(32),
+    "GET",
+    null,
+    503,
+  ),
+);
 let browser;
 try {
   await check("Anonymous access retains Vercel protection", async () => {

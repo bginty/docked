@@ -1,10 +1,20 @@
 {
-  "checkedAt": "2026-10-08T23:27:46.077Z",
-  "deploymentId": "dpl_CYJXho3m3fMR2S5qSB7XQfWoAP3u",
-  "commit": "1b8c3f8d54b24fb857e201d5ec94f8cfd2deb843",
-  "origin": "https://docked-production-htz4tu7lh-briant-s-projects.vercel.app",
+  "checkedAt": "2026-10-09T05:43:57.422Z",
+  "deploymentId": "dpl_9bpzTDoiyMQTZ5etwpmajVJVtK4h",
+  "commit": "da3b48a2a6235d1f7592047dd00724586cbb6c0e",
+  "origin": "https://docked-production-7id3ohty2-briant-s-projects.vercel.app",
   "scope": "Actual hosted closed beta connected to dedicated production project through restricted beta role; browser emulation, not physical Android/iPhone. Denial checks are not successful account/gameplay journeys.",
   "checks": [
+    {
+      "name": "Owner MFA page is present without enrollment material",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Invitation confirmation remains closed before approval",
+      "pass": true,
+      "status": 503
+    },
     {
       "name": "Anonymous access retains Vercel protection",
       "pass": true,
