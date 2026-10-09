@@ -1,0 +1,19 @@
+{
+  "project": "pojoymtniryarxxunyvz",
+  "deploymentId": "dpl_Bw5iewq8fQxwpqzqXq2FUjrVE28G",
+  "source": "Owner report and scoped Auth logs",
+  "events": [
+    {"at":"2026-10-09T19:55:08Z","path":"/recover","method":"POST","status":200},
+    {"at":"2026-10-09T19:56:26Z","path":"/verify","method":"GET","status":303},
+    {"at":"2026-10-09T19:56:27Z","path":"/token","method":"POST","status":200},
+    {"at":"2026-10-09T19:56:27Z","path":"/user","method":"GET","status":200},
+    {"at":"2026-10-09T19:57:12Z","path":"/user","method":"PUT","status":401,"errorCode":"insufficient_aal"}
+  ],
+  "conclusion": "Recovery token exchange succeeded. Password update requires existing MFA verification for this browser session; the UI incorrectly labels every update failure as invalid/expired recovery.",
+  "verifiedExistingTotpFactors": 1,
+  "factorSecretsRead": false,
+  "passwordUpdateVerified": false,
+  "additionalEmailsRequested": 0,
+  "requiredOwnerAction": "Personally verify the existing factor at /mfa in the same browser, then return to /app/reset-password. Do not enroll another factor or request a replacement email.",
+  "followUp": "Distinguish insufficient_aal from genuine expiry in password-reset error handling and provide an existing-factor verification path. Preserve the current session for immediate owner acceptance."
+}
