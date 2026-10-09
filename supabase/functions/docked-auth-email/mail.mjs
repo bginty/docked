@@ -143,16 +143,17 @@ export function messagesFor(
     ];
   } else recipients = [[current, hash(data.token_hash)]];
   return recipients.map(([address, token]) => {
-    // Admin invitations do not have a PKCE verifier. Use the dedicated POST
-    // confirmation flow, gated separately until hosted acceptance passes.
+    // Mail scanners must not consume invitation or recovery tokens on GET.
+    // Recovery's POST interstitial preserves the provider PKCE exchange.
+    const confirmation = action === "invite" || action === "recovery";
     const url = new URL(
-      action === "invite"
-        ? new URL(data.redirect_to).origin + "/auth/invite"
+      confirmation
+        ? new URL(data.redirect_to).origin + (action === "invite" ? "/auth/invite" : "/auth/recovery")
         : projectUrl + "/auth/v1/verify",
     );
-    url.searchParams.set(action === "invite" ? "token_hash" : "token", token);
+    url.searchParams.set(confirmation ? "token_hash" : "token", token);
     url.searchParams.set("type", action);
-    if (action !== "invite")
+    if (!confirmation)
       url.searchParams.set("redirect_to", data.redirect_to);
     return {
       subject: subjects[action],

@@ -1,0 +1,11 @@
+# Owner recovery link repair — 9 October 2026
+
+The owner reported the generic expired-link screen after the supervised recovery email. Auth logs show POST /recover200 at11:45:28UTC, GET /verify303 at11:45:39UTC, then GET /verify303 with an invalid/expired-token error at11:46:58UTC. No /token exchange was returned in that scoped log query. The first opener is unidentified; email scanner prefetch is plausible, not proven. The earlier hook-disabled /recover attempt at11:44:09UTC returned500. Graph accepted exactly one dispatched message; pending queue remains0 and one verified owner MFA factor remains present.
+
+The old recovery email linked straight to the provider's consuming GET. Supabase documents prefetching by email security systems as a source of consumed links: https://supabase.com/docs/guides/auth/auth-email-templates#email-prefetching
+
+Repair: route recovery emails to /auth/recovery on the exact allowed callback origin. GET/HEAD never verify or redirect to Auth. A same-origin, bounded form POST checks the dedicated project's PKCE verifier cookie and rate limit before redirecting to the existing fixed Supabase verification endpoint. Its callback remains the same-host /auth/callback?next=/app/reset-password. This retains PKCE, token expiry, single-use provider verification and MFA. It does not use an administrator generate-link API, create sessions directly, grant roles or modify Auth settings. Missing-cookie requests stop before token consumption. The generic failure page no longer asserts that every failure is expiry.
+
+Verification:33 focused regression tests PASS, TypeScript PASS, changed-source lint PASS. One old test expected the consuming provider link; it was updated to assert the new recovery landing path and the full suite rerun. Browser/hosted evidence is recorded separately after deployment. No further email is authorized by this screenshot; another supervised send requires fresh owner approval. Actual successful password reset remains unverified.
+
+Preserved controls: closed public signup/external testers, disabled dispatcher, unchanged certificate and Microsoft permissions, no database privilege or rate-limit changes, no holding-page or unrelated environment changes. The previous owner recovery attempt receipt is retained and must not be overwritten or reused.

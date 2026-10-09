@@ -2,10 +2,11 @@ import Link from "next/link";
 export default function AppLinkExpired() {
   return (
     <div className="app-auth-state">
-      <h1>This link has expired</h1>
+      <h1>We couldn’t confirm this link</h1>
       <p>
-        It may have already been used, or opened on another device. Return to
-        the device where you requested it, or request a new link.
+        It may have expired, already been used, or opened in a different browser.
+        Use the browser where you requested it. If this keeps happening, contact
+        support@docked.com.au before requesting another email.
       </p>
       <Link className="button" href="/app/forgot-password">
         Request a reset link
