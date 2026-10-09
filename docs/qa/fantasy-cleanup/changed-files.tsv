@@ -1,0 +1,768 @@
+status	path	new_path_if_renamed
+A	docs/DATABASE_RETIREMENT.md
+A	docs/FANTASY-CLEANUP-PLAN.md
+A	docs/FANTASY_CLEANUP_ACCEPTANCE.md
+A	docs/PRODUCT_DIRECTION.md
+A	docs/qa/fantasy-cleanup/ISOLATED-beta-rewards-1366.png
+A	docs/qa/fantasy-cleanup/ISOLATED-beta-rewards-320.png
+A	docs/qa/fantasy-cleanup/ISOLATED-beta-rewards-412.png
+A	docs/qa/fantasy-cleanup/ISOLATED-beta-standings-1366.png
+A	docs/qa/fantasy-cleanup/ISOLATED-beta-standings-320.png
+A	docs/qa/fantasy-cleanup/ISOLATED-beta-standings-412.png
+A	docs/qa/fantasy-cleanup/VISUAL_REVIEW.md
+A	docs/qa/fantasy-cleanup/acceptance.json
+A	docs/qa/fantasy-cleanup/apk-audit.json
+A	docs/qa/fantasy-cleanup/app-auth/check-email-1366.png
+A	docs/qa/fantasy-cleanup/app-auth/check-email-320.png
+A	docs/qa/fantasy-cleanup/app-auth/check-email-412.png
+A	docs/qa/fantasy-cleanup/app-auth/forgot-password-1366.png
+A	docs/qa/fantasy-cleanup/app-auth/forgot-password-320.png
+A	docs/qa/fantasy-cleanup/app-auth/forgot-password-412.png
+A	docs/qa/fantasy-cleanup/app-auth/link-expired-1366.png
+A	docs/qa/fantasy-cleanup/app-auth/link-expired-320.png
+A	docs/qa/fantasy-cleanup/app-auth/link-expired-412.png
+A	docs/qa/fantasy-cleanup/app-auth/login-1366.png
+A	docs/qa/fantasy-cleanup/app-auth/login-320.png
+A	docs/qa/fantasy-cleanup/app-auth/login-412.png
+A	docs/qa/fantasy-cleanup/app-auth/password-updated-1366.png
+A	docs/qa/fantasy-cleanup/app-auth/password-updated-320.png
+A	docs/qa/fantasy-cleanup/app-auth/password-updated-412.png
+A	docs/qa/fantasy-cleanup/app-auth/reset-password-1366.png
+A	docs/qa/fantasy-cleanup/app-auth/reset-password-320.png
+A	docs/qa/fantasy-cleanup/app-auth/reset-password-412.png
+A	docs/qa/fantasy-cleanup/app-auth/signup-1366.png
+A	docs/qa/fantasy-cleanup/app-auth/signup-320.png
+A	docs/qa/fantasy-cleanup/app-auth/signup-412.png
+A	docs/qa/fantasy-cleanup/card-detail-1440.png
+A	docs/qa/fantasy-cleanup/card-detail-360.png
+A	docs/qa/fantasy-cleanup/card-detail-412.png
+A	docs/qa/fantasy-cleanup/cards-1440.png
+A	docs/qa/fantasy-cleanup/cards-360.png
+A	docs/qa/fantasy-cleanup/cards-412.png
+A	docs/qa/fantasy-cleanup/changed-files.tsv
+A	docs/qa/fantasy-cleanup/collection-empty-1440.png
+A	docs/qa/fantasy-cleanup/collection-empty-360.png
+A	docs/qa/fantasy-cleanup/collection-empty-412.png
+A	docs/qa/fantasy-cleanup/deployment-first.json
+A	docs/qa/fantasy-cleanup/holding-after.json
+A	docs/qa/fantasy-cleanup/holding-before.json
+A	docs/qa/fantasy-cleanup/homepage-actual-local.png
+A	docs/qa/fantasy-cleanup/hosted-acceptance.json
+A	docs/qa/fantasy-cleanup/hosted-cards-gated-1440.png
+A	docs/qa/fantasy-cleanup/hosted-cards-gated-412.png
+A	docs/qa/fantasy-cleanup/hosted-database-readiness.json
+A	docs/qa/fantasy-cleanup/hosted-home-1440.png
+A	docs/qa/fantasy-cleanup/hosted-home-412.png
+A	docs/qa/fantasy-cleanup/hosted-initial-csp.json
+A	docs/qa/fantasy-cleanup/hosted-login-1440.png
+A	docs/qa/fantasy-cleanup/hosted-login-412.png
+A	docs/qa/fantasy-cleanup/hosted-signup-closed-1440.png
+A	docs/qa/fantasy-cleanup/hosted-signup-closed-412.png
+A	docs/qa/fantasy-cleanup/legacy-occurrences.csv
+A	docs/qa/fantasy-cleanup/legacy-summary.json
+A	docs/qa/fantasy-cleanup/market-1440.png
+A	docs/qa/fantasy-cleanup/market-360.png
+A	docs/qa/fantasy-cleanup/market-412.png
+A	docs/qa/fantasy-cleanup/onboarding-error-412.png
+A	docs/qa/fantasy-cleanup/onboarding-interests-412.png
+A	docs/qa/fantasy-cleanup/onboarding-sports-412.png
+A	docs/qa/fantasy-cleanup/owner-setup/owner-setup-mfa-1366.png
+A	docs/qa/fantasy-cleanup/owner-setup/owner-setup-mfa-320.png
+A	docs/qa/fantasy-cleanup/owner-setup/owner-setup-mfa-390.png
+A	docs/qa/fantasy-cleanup/owner-setup/owner-setup-verified-1366.png
+A	docs/qa/fantasy-cleanup/owner-setup/owner-setup-verified-320.png
+A	docs/qa/fantasy-cleanup/owner-setup/owner-setup-verified-390.png
+A	docs/qa/fantasy-cleanup/play-1440.png
+A	docs/qa/fantasy-cleanup/play-360.png
+A	docs/qa/fantasy-cleanup/play-412.png
+A	docs/qa/fantasy-cleanup/profile-1440.png
+A	docs/qa/fantasy-cleanup/profile-360.png
+A	docs/qa/fantasy-cleanup/profile-412.png
+A	docs/qa/fantasy-cleanup/secret-audit.json
+A	docs/qa/fantasy-cleanup/social-1440.png
+A	docs/qa/fantasy-cleanup/social-360.png
+A	docs/qa/fantasy-cleanup/social-412.png
+A	docs/qa/fantasy-cleanup/team-error-1440.png
+A	docs/qa/fantasy-cleanup/team-error-360.png
+A	docs/qa/fantasy-cleanup/team-error-412.png
+A	legacy/retired-product/README.md
+A	legacy/retired-product/artifacts/android/README.md
+A	legacy/retired-product/docs/BUILD_STATUS.md
+A	legacy/retired-product/docs/DECISIONS.md
+A	legacy/retired-product/docs/OPERATIONS.md
+A	legacy/retired-product/scripts/community-maintenance.ts
+A	legacy/retired-product/scripts/product-cleanup-boundaries.mjs
+A	legacy/retired-product/scripts/product-cleanup-docs.mjs
+A	legacy/retired-product/scripts/product-cleanup-finalize.mjs
+A	legacy/retired-product/scripts/product-cleanup-finish.mjs
+A	legacy/retired-product/scripts/product-cleanup-last.mjs
+A	legacy/retired-product/scripts/product-cleanup-pages.mjs
+A	legacy/retired-product/scripts/product-cleanup-repair.mjs
+A	legacy/retired-product/scripts/product-cleanup-services.mjs
+A	legacy/retired-product/scripts/product-cleanup-shared.mjs
+A	legacy/retired-product/scripts/product-cleanup.mjs
+A	legacy/retired-product/src/brand/README_FOR_CODEX.md
+A	legacy/retired-product/src/core/community-maintenance.ts
+A	legacy/retired-product/src/server/community-maintenance-query.ts
+A	legacy/retired-product/tests/platform/community-maintenance.test.ts
+A	legacy/retired-product/tests/platform/membership.test.ts
+A	legacy/retired-product/tests/platform/transaction-boundaries.test.ts
+A	scripts/fantasy-hosted-acceptance.mjs
+A	scripts/fantasy-hosted-readiness.mjs
+A	scripts/fantasy-legacy-inventory.mjs
+A	scripts/local-fantasy-qa.mjs
+A	scripts/product-source-inventory.mjs
+A	scripts/record-fantasy-acceptance.mjs
+A	src/core/canonical-hash.ts
+A	src/core/retired-product.ts
+A	src/server/account-job.ts
+A	src/server/region-access.ts
+A	tests/browser/fantasy-acceptance.test.ts
+A	tests/browser/fantasy-onboarding.test.ts
+A	tests/browser/fantasy-retirement.test.ts
+A	tests/fixtures/fantasy-acceptance.tsx
+A	tests/fixtures/fantasy-onboarding.tsx
+A	tests/platform/fantasy-retirement.test.ts
+M	.env.example
+M	.github/workflows/platform-checks.yml
+M	README.md
+M	android/app/build.gradle
+M	android/app/src/main/res/drawable-land-hdpi/splash.png
+M	android/app/src/main/res/drawable-land-mdpi/splash.png
+M	android/app/src/main/res/drawable-land-xhdpi/splash.png
+M	android/app/src/main/res/drawable-land-xxhdpi/splash.png
+M	android/app/src/main/res/drawable-land-xxxhdpi/splash.png
+M	android/app/src/main/res/drawable-port-hdpi/splash.png
+M	android/app/src/main/res/drawable-port-mdpi/splash.png
+M	android/app/src/main/res/drawable-port-xhdpi/splash.png
+M	android/app/src/main/res/drawable-port-xxhdpi/splash.png
+M	android/app/src/main/res/drawable-port-xxxhdpi/splash.png
+M	android/app/src/main/res/drawable/splash.png
+M	android/app/src/main/res/values/colors.xml
+M	android/app/src/main/res/values/ic_launcher_background.xml
+M	artifacts/android/README.md
+M	docs/ANDROID_ACCEPTANCE.md
+M	docs/ANDROID_ARCHITECTURE.md
+M	docs/ANDROID_AUTH.md
+M	docs/ANDROID_BUILD.md
+M	docs/ANDROID_CLOSED_TEST_BUILD.md
+M	docs/BRAND-INTEGRATION.md
+M	docs/BUILD_STATUS.md
+M	docs/COMMUNITY_ARCHITECTURE.md
+M	docs/COMMUNITY_RULES_REVIEW_DRAFT.md
+M	docs/COMPETITIONS_AND_PRIZES.md
+M	docs/CONTENT_CALENDAR.md
+M	docs/COST_MODEL.md
+M	docs/DATA_RIGHTS.md
+M	docs/DEALS_AND_SPONSORS.md
+M	docs/DECISIONS.md
+M	docs/DEPLOYMENT_ROLLBACK.md
+M	docs/DOCKED-BETA-ISOLATION-ACCEPTANCE.md
+M	docs/DOCKED-BETA-OWNER-ACCEPTANCE-PREP.md
+M	docs/DOCKED-BETA-POLICY-APPROVAL.md
+M	docs/DOCKED-BETA-POLICY-PREPARATION-RESULTS.md
+M	docs/DOCKED-BETA-RESULTS-ACCEPTANCE.md
+M	docs/DOCKED-CONTROLLED-BETA-OPERATIONS.md
+M	docs/DOCKED-EMAIL-ACCEPTANCE-CONTINUATION.md
+M	docs/DOCKED-EMAIL-ACTIVATION-RUNBOOK.md
+M	docs/DOCKED-EMAIL-DISPATCH-DECISION.md
+M	docs/DOCKED-EMAIL-SCALE-RECOMMENDATION.md
+M	docs/DOCKED-EXCHANGE-READONLY-AUDIT.md
+M	docs/DOCKED-GRAPH-CONTROLLED-DELIVERY.md
+M	docs/DOCKED-HOSTED-EMAIL-QUEUE-VERIFICATION.md
+M	docs/DOCKED-LIVE-BETA-ACCEPTANCE.md
+M	docs/DOCKED-MICROSOFT365-SETUP.md
+M	docs/DOCKED-NFL-BETA-ACCEPTANCE.md
+M	docs/DOCKED-OVERNIGHT-HANDOVER-2026-10-09.md
+M	docs/DOCKED-OWNER-ACCEPTANCE-STATUS.md
+M	docs/DOCKED-OWNER-INVITATION-NEXT-WINDOW.md
+M	docs/DOCKED-OWNER-ONBOARDING-FIX.md
+M	docs/DOCKED-PREVIEW-OWNER-CHECKPOINT.md
+M	docs/DOCKED-RECOVERY-LINK-REPAIR.md
+M	docs/DOCKED-SUPERVISED-OWNER-AUTH-2026-10-09.md
+M	docs/DOCKED-VERCEL-BETA-ACCEPTANCE.md
+M	docs/DOCKED-VERCEL-PREVIEW-DEPLOYED.md
+M	docs/DOCKED_MODEL_ARCHITECTURE.md
+M	docs/EDGE_APPROVAL_WORKFLOW.md
+M	docs/EDGE_INTEGRITY.md
+M	docs/EDGE_OF_THE_WEEK.md
+M	docs/EDGE_PRICING_MODEL.md
+M	docs/EDGE_SCANNER.md
+M	docs/FANTASY-CARDS-DELIVERY.md
+M	docs/FANTASY-CARDS-PLAN.md
+M	docs/FANTASY-CONNECTED-HOSTING-HANDOFF.md
+M	docs/FANTASY-DEDICATED-PRODUCTION-HANDOFF.md
+M	docs/FANTASY-NETLIFY-PREPARATION.md
+M	docs/FANTASY-NFL-PREPARATION.md
+M	docs/FANTASY-PRODUCTION-FINAL-UNBLOCK.md
+M	docs/FANTASY-PRODUCTION-HANDOFF.md
+M	docs/FANTASY-PRODUCTION-MAIL-CHECKPOINT.md
+M	docs/FANTASY-PRODUCTION-PLAN.md
+M	docs/FANTASY-PRODUCTION-POLICY-DRAFT.md
+M	docs/FANTASY-PRODUCTION-PROVISIONED.md
+M	docs/FANTASY-PRODUCTION-READINESS.md
+M	docs/FANTASY-SCOPED-PRODUCTION-CHECKPOINT.md
+M	docs/FOOTBALL_DATA_PROVIDER_RESEARCH.md
+M	docs/FOOTBALL_DATA_REQUIREMENTS.md
+M	docs/FOOTBALL_MODEL_V1.md
+M	docs/FOOTBALL_V1_FITTING.md
+M	docs/FORWARD_CALIBRATION.md
+M	docs/GOOGLE_PLAY_CLOSED_BETA.md
+M	docs/GOOGLE_PLAY_POLICY_REVIEW.md
+M	docs/GOOGLE_PLAY_READINESS.md
+M	docs/HISTORICAL_DATA_PLAN.md
+M	docs/HOSTED_ACCEPTANCE.md
+M	docs/IMAGE_RIGHTS.md
+M	docs/IOS_READINESS.md
+M	docs/LAUNCH_CHECKLIST.md
+M	docs/LINEUP_RESEARCH.md
+M	docs/MARKET_REFERENCE.md
+M	docs/MASTER_LOGO.md
+M	docs/MATCH_RESEARCH_FILE.md
+M	docs/MEMBERSHIP_ENTITLEMENTS.md
+M	docs/MODEL_FEATURE_REGISTRY.md
+M	docs/MODEL_PREDICTION_LEDGER.md
+M	docs/MODERATION.md
+M	docs/NEWS_RESEARCH.md
+M	docs/NOTIFICATIONS.md
+M	docs/ODDS_PROVIDER_EVALUATION.md
+M	docs/ODDS_VERIFICATION.md
+M	docs/OFFICIAL_RECORD.md
+M	docs/OPENFOOTBALL_EPL_DATA_QUALITY.md
+M	docs/OPERATIONS.md
+M	docs/PHASE2_RESEARCH.md
+M	docs/PHASE2_REVIEW.md
+M	docs/PHASE3_QA.md
+M	docs/PHASE45_PREVIEW_ACCESS.md
+M	docs/PHASE4_REPORT.md
+M	docs/PHASE5A_PROVIDER_COSTS.md
+M	docs/PHASE5A_TRIAL_CONTROLS.md
+M	docs/PHASE5A_TRIAL_PLAN.md
+M	docs/PHASE5D_IMPLEMENTATION_PLAN.md
+M	docs/PHASE5_PLAN.md
+M	docs/PLAYER_TRENDS.md
+M	docs/PREVIEW_COMMUNITY_CONTENT.md
+M	docs/PREVIEW_MARKET_FIXTURES.md
+M	docs/PREVIEW_SUPABASE.md
+M	docs/PRIVACY_RETENTION.md
+M	docs/PRODUCTION_DATABASE_ROLE.md
+M	docs/PRODUCTION_RELEASE.md
+M	docs/PROVIDER_COMPARISON.md
+M	docs/PROVIDER_READINESS.md
+M	docs/PROVIDER_TRIAL_RESULTS.md
+M	docs/REAL_DATA_QUALITY.md
+M	docs/RESEARCH_ENGINE.md
+M	docs/RESEARCH_RIGHTS.md
+M	docs/RESEARCH_SCHEDULER.md
+M	docs/RESEARCH_SOURCE_EVALUATION.md
+M	docs/RESEARCH_SOURCE_REGISTRY.md
+M	docs/RESULTS_PROVIDER.md
+M	docs/STATIC_PAYPAL_DEPLOYMENT.md
+M	docs/STATIC_PAYPAL_ROLLBACK.md
+M	docs/STATIC_SITE_ASSET_REGISTER.md
+M	docs/STRATEGY_V1.md
+M	docs/TEAM_TRENDS.md
+M	docs/TOP_DOCKED.md
+M	docs/TRANSACTIONAL_EMAIL_READINESS.md
+M	docs/TRENDING_EDGES.md
+M	docs/VALIDATION.md
+M	docs/VISUAL_IDENTITY.md
+M	docs/qa/beta-isolation/deployment-prepared.json
+M	docs/qa/beta-isolation/deployment-status.json
+M	docs/qa/beta-isolation/deployment-submitted.json
+M	docs/qa/beta-isolation/real-postgres.json
+M	docs/qa/fantasy-production/real-postgres-races.json
+M	docs/qa/owner-acceptance/owner-setup-mfa-1366.png
+M	docs/qa/owner-acceptance/owner-setup-mfa-320.png
+M	docs/qa/owner-acceptance/owner-setup-mfa-390.png
+M	docs/qa/owner-acceptance/owner-setup-verified-1366.png
+M	docs/qa/owner-acceptance/owner-setup-verified-320.png
+M	docs/qa/owner-acceptance/owner-setup-verified-390.png
+M	mobile/offline.template.html
+M	mobile/pwa-offline.template.html
+M	next.config.ts
+M	package.json
+M	public/brand/docked/offline.html
+M	public/favicon.ico
+M	public/offline.html
+M	public/sw.js
+M	scripts/android-debug.mjs
+M	scripts/beta-isolation-concurrency.ts
+M	scripts/build-app-icons.mjs
+M	scripts/build-mobile-shell.mjs
+M	scripts/community-maintenance.ts
+M	scripts/configure-hosted-preview.mjs
+M	scripts/deploy-beta-staging.mjs
+M	scripts/fantasy-production-local-postgres.mjs
+M	scripts/fantasy-secret-audit.mjs
+M	scripts/guard-hosted-build.mjs
+M	scripts/hosted-preview-preflight.mjs
+M	scripts/hosted-preview/prepare-android-qa-notice.ts
+M	scripts/hosted-preview/rotate-android-qa.ts
+M	scripts/hosted-preview/verify-tls.ts
+M	scripts/owner-auth-invite-once.mjs
+M	scripts/owner-recovery-window.mjs
+M	src/app/[section]/page.tsx
+M	src/app/account-deletion/page.tsx
+M	src/app/admin/page.tsx
+M	src/app/admin/preview-testers/page.tsx
+M	src/app/api/auth/invitation-setup/route.ts
+M	src/app/api/auth/route.ts
+M	src/app/api/member/route.ts
+M	src/app/api/status/route.ts
+M	src/app/api/unsubscribe/route.ts
+M	src/app/app/link-expired/page.tsx
+M	src/app/app/onboarding/page.tsx
+M	src/app/app/owner-setup/page.tsx
+M	src/app/app/page.tsx
+M	src/app/apple-icon.png
+M	src/app/auth/invite/route.ts
+M	src/app/auth/recovery/route.ts
+M	src/app/beta-policies/page.tsx
+M	src/app/brand-theme.css
+M	src/app/community/page.tsx
+M	src/app/community/posts/[id]/page.tsx
+M	src/app/competitions/page.tsx
+M	src/app/compose/page.tsx
+M	src/app/dashboard/page.tsx
+M	src/app/fantasy/[tab]/page.tsx
+M	src/app/feed/page.tsx
+M	src/app/home/page.tsx
+M	src/app/layout.tsx
+M	src/app/manifest.ts
+M	src/app/opengraph-image.tsx
+M	src/app/page.tsx
+M	src/app/robots.ts
+M	src/app/search/page.tsx
+M	src/app/sitemap.ts
+M	src/app/sports/[sport]/page.tsx
+M	src/app/sports/page.tsx
+M	src/brand/README_FOR_CODEX.md
+M	src/brand/brand-tokens.json
+M	src/brand/brand.ts
+M	src/brand/canonical-logo.json
+M	src/components/app-auth-forms.tsx
+M	src/components/app-auth-shell.tsx
+M	src/components/app-member-screens.tsx
+M	src/components/app-member-ui.tsx
+M	src/components/app-shell.tsx
+M	src/components/brand-logo.tsx
+M	src/components/community-admin-page.tsx
+M	src/components/community-admin.tsx
+M	src/components/community-basics.tsx
+M	src/components/community-feed.tsx
+M	src/components/forms.tsx
+M	src/components/member-profile.tsx
+M	src/components/notification-centre.tsx
+M	src/components/owner-setup-status.tsx
+M	src/components/preview-tester-controls.tsx
+M	src/components/social-composer.tsx
+M	src/components/social-interactions.tsx
+M	src/content/sport-image-sizes.json
+M	src/content/sport-visuals.ts
+M	src/content/sports.ts
+M	src/core/analytics.ts
+M	src/core/auth-cookies.ts
+M	src/core/auth-invitation.ts
+M	src/core/auth-policy.ts
+M	src/core/auth-recovery.ts
+M	src/core/community-navigation.ts
+M	src/core/community-policy.ts
+M	src/core/community-social.ts
+M	src/core/deployment-environment.ts
+M	src/core/fantasy-production.ts
+M	src/core/hosted-beta.mjs
+M	src/core/hosted-preview.ts
+M	src/core/hosted-production.mjs
+M	src/core/invitation-setup.ts
+M	src/core/native-navigation.ts
+M	src/core/policy.ts
+M	src/core/preview-testers.ts
+M	src/proxy.ts
+M	src/server/account-deletion.ts
+M	src/server/analytics.ts
+M	src/server/app-onboarding.ts
+M	src/server/app-view.ts
+M	src/server/auth.ts
+M	src/server/community-analytics.ts
+M	src/server/community-policy.ts
+M	src/server/community-social.ts
+M	src/server/config.ts
+M	src/server/database-tls.ts
+M	src/server/db.ts
+M	src/server/onboarding.ts
+M	src/server/presentation.ts
+M	src/server/signup-profile.ts
+M	tests/browser/app-auth.test.ts
+M	tests/browser/composer-hydration.test.ts
+M	tests/browser/owner-setup-layout.test.ts
+M	tests/database/phase2-security.test.ts
+M	tests/database/preview-auth-capture.test.ts
+M	tests/fixtures/community-demo.tsx
+M	tests/fixtures/community-framework-shim.tsx
+M	tests/fixtures/phase5-demo.tsx
+M	tests/platform/analytics.test.ts
+M	tests/platform/android-closed-test.test.ts
+M	tests/platform/auth-recovery.test.ts
+M	tests/platform/beta-signout.test.ts
+M	tests/platform/beta-staging.test.ts
+M	tests/platform/community-maintenance.test.ts
+M	tests/platform/hosted-build-guard.test.ts
+M	tests/platform/membership.test.ts
+M	tests/platform/native-navigation.test.ts
+M	tests/platform/native-offline.test.ts
+M	tests/platform/password-reset-error.test.ts
+M	tests/platform/preview-beta-auth.test.ts
+M	tests/platform/production-graph-mail.test.ts
+M	tests/platform/research-navigation.test.ts
+M	tests/platform/transaction-boundaries.test.ts
+R100	artifacts/playstore/README.md	legacy/retired-product/artifacts/playstore/README.md
+R100	artifacts/playstore/docked-preview-feature-1024x500.png	legacy/retired-product/artifacts/playstore/docked-preview-feature-1024x500.png
+R100	artifacts/playstore/docked-preview-icon-512.png	legacy/retired-product/artifacts/playstore/docked-preview-icon-512.png
+R100	artifacts/playstore/manifest.json	legacy/retired-product/artifacts/playstore/manifest.json
+R100	config/football-v1-research-policy.json	legacy/retired-product/config/football-v1-research-policy.json
+R100	public/brand/canonical/docked-master.png	legacy/retired-product/public/brand/canonical/docked-master.png
+R100	public/brand/canonical/docked-social.png	legacy/retired-product/public/brand/canonical/docked-social.png
+R100	public/brand/icons/docked-app-icon-1024.png	legacy/retired-product/public/brand/icons/docked-app-icon-1024.png
+R100	public/brand/icons/docked-app-icon-128.png	legacy/retired-product/public/brand/icons/docked-app-icon-128.png
+R100	public/brand/icons/docked-app-icon-16.png	legacy/retired-product/public/brand/icons/docked-app-icon-16.png
+R100	public/brand/icons/docked-app-icon-180.png	legacy/retired-product/public/brand/icons/docked-app-icon-180.png
+R100	public/brand/icons/docked-app-icon-192.png	legacy/retired-product/public/brand/icons/docked-app-icon-192.png
+R100	public/brand/icons/docked-app-icon-32.png	legacy/retired-product/public/brand/icons/docked-app-icon-32.png
+R100	public/brand/icons/docked-app-icon-48.png	legacy/retired-product/public/brand/icons/docked-app-icon-48.png
+R100	public/brand/icons/docked-app-icon-512.png	legacy/retired-product/public/brand/icons/docked-app-icon-512.png
+R100	public/brand/icons/docked-app-icon-64.png	legacy/retired-product/public/brand/icons/docked-app-icon-64.png
+R100	public/brand/icons/docked-mark-16.png	legacy/retired-product/public/brand/icons/docked-mark-16.png
+R100	public/brand/icons/docked-mark-180.png	legacy/retired-product/public/brand/icons/docked-mark-180.png
+R100	public/brand/icons/docked-mark-192.png	legacy/retired-product/public/brand/icons/docked-mark-192.png
+R100	public/brand/icons/docked-mark-32.png	legacy/retired-product/public/brand/icons/docked-mark-32.png
+R100	public/brand/icons/docked-mark-48.png	legacy/retired-product/public/brand/icons/docked-mark-48.png
+R100	public/brand/icons/docked-mark-512.png	legacy/retired-product/public/brand/icons/docked-mark-512.png
+R100	public/brand/icons/docked-mark-64.png	legacy/retired-product/public/brand/icons/docked-mark-64.png
+R100	public/brand/icons/favicon.ico	legacy/retired-product/public/brand/icons/favicon.ico
+R100	public/brand/logos/docked-mark-black.png	legacy/retired-product/public/brand/logos/docked-mark-black.png
+R100	public/brand/logos/docked-mark-black.svg	legacy/retired-product/public/brand/logos/docked-mark-black.svg
+R100	public/brand/logos/docked-mark-white.png	legacy/retired-product/public/brand/logos/docked-mark-white.png
+R100	public/brand/logos/docked-mark-white.svg	legacy/retired-product/public/brand/logos/docked-mark-white.svg
+R100	public/brand/logos/docked-mark.png	legacy/retired-product/public/brand/logos/docked-mark.png
+R100	public/brand/logos/docked-mark.svg	legacy/retired-product/public/brand/logos/docked-mark.svg
+R100	public/brand/logos/docked-primary-black.png	legacy/retired-product/public/brand/logos/docked-primary-black.png
+R100	public/brand/logos/docked-primary-black.svg	legacy/retired-product/public/brand/logos/docked-primary-black.svg
+R100	public/brand/logos/docked-primary-on-dark.png	legacy/retired-product/public/brand/logos/docked-primary-on-dark.png
+R100	public/brand/logos/docked-primary-on-dark.svg	legacy/retired-product/public/brand/logos/docked-primary-on-dark.svg
+R100	public/brand/logos/docked-primary-white.png	legacy/retired-product/public/brand/logos/docked-primary-white.png
+R100	public/brand/logos/docked-primary-white.svg	legacy/retired-product/public/brand/logos/docked-primary-white.svg
+R100	public/brand/logos/docked-primary.png	legacy/retired-product/public/brand/logos/docked-primary.png
+R100	public/brand/logos/docked-primary.svg	legacy/retired-product/public/brand/logos/docked-primary.svg
+R100	public/brand/social/docked-hero-built-for-an-edge.png	legacy/retired-product/public/brand/social/docked-hero-built-for-an-edge.png
+R100	scripts/build-play-assets.mjs	legacy/retired-product/scripts/build-play-assets.mjs
+R100	scripts/football-data-study.ts	legacy/retired-product/scripts/football-data-study.ts
+R100	scripts/football-fit-study.ts	legacy/retired-product/scripts/football-fit-study.ts
+R100	scripts/hosted-brand-smoke.mjs	legacy/retired-product/scripts/hosted-brand-smoke.mjs
+R100	scripts/hosted-preview/market-reference-rollback.ts	legacy/retired-product/scripts/hosted-preview/market-reference-rollback.ts
+R100	scripts/hosted-preview/mobile-ux-acceptance.ts	legacy/retired-product/scripts/hosted-preview/mobile-ux-acceptance.ts
+R100	scripts/hosted-preview/mobile-ux-browser.ts	legacy/retired-product/scripts/hosted-preview/mobile-ux-browser.ts
+R100	scripts/hosted-preview/phase45-beta.ts	legacy/retired-product/scripts/hosted-preview/phase45-beta.ts
+R100	scripts/hosted-preview/phase45-browser.ts	legacy/retired-product/scripts/hosted-preview/phase45-browser.ts
+R100	scripts/hosted-preview/phase45-secrets.mjs	legacy/retired-product/scripts/hosted-preview/phase45-secrets.mjs
+R100	scripts/hosted-preview/phase5-browser.ts	legacy/retired-product/scripts/hosted-preview/phase5-browser.ts
+R100	scripts/hosted-preview/phase5-operator.ts	legacy/retired-product/scripts/hosted-preview/phase5-operator.ts
+R100	scripts/hosted-preview/phase5-secrets.mjs	legacy/retired-product/scripts/hosted-preview/phase5-secrets.mjs
+R100	scripts/hosted-preview/phase5a-browser.ts	legacy/retired-product/scripts/hosted-preview/phase5a-browser.ts
+R100	scripts/hosted-preview/phase5a-operator.ts	legacy/retired-product/scripts/hosted-preview/phase5a-operator.ts
+R100	scripts/hosted-preview/phase5a-secrets.mjs	legacy/retired-product/scripts/hosted-preview/phase5a-secrets.mjs
+R100	scripts/hosted-preview/phase5b-browser.ts	legacy/retired-product/scripts/hosted-preview/phase5b-browser.ts
+R100	scripts/hosted-preview/phase5b-operator.ts	legacy/retired-product/scripts/hosted-preview/phase5b-operator.ts
+R100	scripts/hosted-preview/phase5b-scope.ts	legacy/retired-product/scripts/hosted-preview/phase5b-scope.ts
+R100	scripts/hosted-preview/phase5c-browser.ts	legacy/retired-product/scripts/hosted-preview/phase5c-browser.ts
+R100	scripts/hosted-preview/phase5c-database.ts	legacy/retired-product/scripts/hosted-preview/phase5c-database.ts
+R100	scripts/hosted-preview/phase5c-operator.ts	legacy/retired-product/scripts/hosted-preview/phase5c-operator.ts
+R100	scripts/hosted-preview/phase5c-preview.mjs	legacy/retired-product/scripts/hosted-preview/phase5c-preview.mjs
+R100	scripts/hosted-preview/phase5c-scope.ts	legacy/retired-product/scripts/hosted-preview/phase5c-scope.ts
+R100	scripts/hosted-preview/phase5d-browser.ts	legacy/retired-product/scripts/hosted-preview/phase5d-browser.ts
+R100	scripts/hosted-preview/phase5d-database.ts	legacy/retired-product/scripts/hosted-preview/phase5d-database.ts
+R100	scripts/hosted-preview/phase5d-fixtures.ts	legacy/retired-product/scripts/hosted-preview/phase5d-fixtures.ts
+R100	scripts/hosted-preview/phase5d-model-cycle.ts	legacy/retired-product/scripts/hosted-preview/phase5d-model-cycle.ts
+R100	scripts/hosted-preview/phase5d-operator.ts	legacy/retired-product/scripts/hosted-preview/phase5d-operator.ts
+R100	scripts/hosted-preview/phase5d-secret-audit.mjs	legacy/retired-product/scripts/hosted-preview/phase5d-secret-audit.mjs
+R100	scripts/hosted-preview/prepare-unsubscribe.ts	legacy/retired-product/scripts/hosted-preview/prepare-unsubscribe.ts
+R100	scripts/hosted-preview/run-market-reference-rollback.ts	legacy/retired-product/scripts/hosted-preview/run-market-reference-rollback.ts
+R100	scripts/market-data.ts	legacy/retired-product/scripts/market-data.ts
+R100	scripts/provider-comparison.ts	legacy/retired-product/scripts/provider-comparison.ts
+R100	scripts/provider-trial.ts	legacy/retired-product/scripts/provider-trial.ts
+R100	scripts/research-source-check.ts	legacy/retired-product/scripts/research-source-check.ts
+R100	scripts/research.ts	legacy/retired-product/scripts/research.ts
+R100	scripts/worker.ts	legacy/retired-product/scripts/worker.ts
+R100	src/app/admin/candidate-edges/[id]/page.tsx	legacy/retired-product/src/app/admin/candidate-edges/[id]/page.tsx
+R100	src/app/admin/candidate-edges/page.tsx	legacy/retired-product/src/app/admin/candidate-edges/page.tsx
+R100	src/app/admin/daily/page.tsx	legacy/retired-product/src/app/admin/daily/page.tsx
+R100	src/app/admin/data-health/page.tsx	legacy/retired-product/src/app/admin/data-health/page.tsx
+R100	src/app/admin/edge-scanner/page.tsx	legacy/retired-product/src/app/admin/edge-scanner/page.tsx
+R100	src/app/admin/forward-paper/page.tsx	legacy/retired-product/src/app/admin/forward-paper/page.tsx
+R100	src/app/admin/model-performance/page.tsx	legacy/retired-product/src/app/admin/model-performance/page.tsx
+R100	src/app/admin/research/[id]/page.tsx	legacy/retired-product/src/app/admin/research/[id]/page.tsx
+R100	src/app/admin/research/page.tsx	legacy/retired-product/src/app/admin/research/page.tsx
+R100	src/app/admin/strategies/page.tsx	legacy/retired-product/src/app/admin/strategies/page.tsx
+R100	src/app/api/admin/benefits/route.ts	legacy/retired-product/src/app/api/admin/benefits/route.ts
+R100	src/app/api/admin/community-edges/route.ts	legacy/retired-product/src/app/api/admin/community-edges/route.ts
+R100	src/app/api/admin/community-recognition/route.ts	legacy/retired-product/src/app/api/admin/community-recognition/route.ts
+R100	src/app/api/admin/market-data-editorial/route.ts	legacy/retired-product/src/app/api/admin/market-data-editorial/route.ts
+R100	src/app/api/admin/models/route.ts	legacy/retired-product/src/app/api/admin/models/route.ts
+R100	src/app/api/admin/research/route.ts	legacy/retired-product/src/app/api/admin/research/route.ts
+R100	src/app/api/admin/route.ts	legacy/retired-product/src/app/api/admin/route.ts
+R100	src/app/api/admin/scanner/route.ts	legacy/retired-product/src/app/api/admin/scanner/route.ts
+R100	src/app/api/benefits/route.ts	legacy/retired-product/src/app/api/benefits/route.ts
+R100	src/app/api/community-edges/route.ts	legacy/retired-product/src/app/api/community-edges/route.ts
+R100	src/app/api/community-edges/share/route.tsx	legacy/retired-product/src/app/api/community-edges/share/route.tsx
+R100	src/app/api/edges/route.ts	legacy/retired-product/src/app/api/edges/route.ts
+R100	src/app/api/internal/edge-scanner/route.ts	legacy/retired-product/src/app/api/internal/edge-scanner/route.ts
+R100	src/app/api/internal/provider-trial/route.ts	legacy/retired-product/src/app/api/internal/provider-trial/route.ts
+R100	src/app/api/market-data/route.ts	legacy/retired-product/src/app/api/market-data/route.ts
+R100	src/app/api/preview-edges/route.ts	legacy/retired-product/src/app/api/preview-edges/route.ts
+R100	src/app/api/top-docked/route.ts	legacy/retired-product/src/app/api/top-docked/route.ts
+R100	src/app/community/edges/[id]/page.tsx	legacy/retired-product/src/app/community/edges/[id]/page.tsx
+R100	src/app/deals/page.tsx	legacy/retired-product/src/app/deals/page.tsx
+R100	src/app/edges/[id]/page.tsx	legacy/retired-product/src/app/edges/[id]/page.tsx
+R100	src/app/icon.svg	legacy/retired-product/src/app/icon.svg
+R100	src/app/leagues/[league]/page.tsx	legacy/retired-product/src/app/leagues/[league]/page.tsx
+R100	src/app/learn/[slug]/page.tsx	legacy/retired-product/src/app/learn/[slug]/page.tsx
+R100	src/app/membership/page.tsx	legacy/retired-product/src/app/membership/page.tsx
+R100	src/app/my-edge/loading.tsx	legacy/retired-product/src/app/my-edge/loading.tsx
+R100	src/app/my-edge/page.tsx	legacy/retired-product/src/app/my-edge/page.tsx
+R100	src/app/phase5-edges.css	legacy/retired-product/src/app/phase5-edges.css
+R100	src/app/phase5c-research.css	legacy/retired-product/src/app/phase5c-research.css
+R100	src/app/points/loading.tsx	legacy/retired-product/src/app/points/loading.tsx
+R100	src/app/points/page.tsx	legacy/retired-product/src/app/points/page.tsx
+R100	src/app/research/matches/[id]/page.tsx	legacy/retired-product/src/app/research/matches/[id]/page.tsx
+R100	src/app/results/[id]/page.tsx	legacy/retired-product/src/app/results/[id]/page.tsx
+R100	src/app/sports/sport-page-header.tsx	legacy/retired-product/src/app/sports/sport-page-header.tsx
+R100	src/app/tips/[id]/page.tsx	legacy/retired-product/src/app/tips/[id]/page.tsx
+R100	src/app/top-docked/page.tsx	legacy/retired-product/src/app/top-docked/page.tsx
+R100	src/brand/server-artwork.ts	legacy/retired-product/src/brand/server-artwork.ts
+R100	src/components/admin-controls.tsx	legacy/retired-product/src/components/admin-controls.tsx
+R100	src/components/app-edge-board.tsx	legacy/retired-product/src/components/app-edge-board.tsx
+R100	src/components/approved-edge-media.tsx	legacy/retired-product/src/components/approved-edge-media.tsx
+R100	src/components/article-image.tsx	legacy/retired-product/src/components/article-image.tsx
+R100	src/components/benefits-draft.tsx	legacy/retired-product/src/components/benefits-draft.tsx
+R100	src/components/beta-reading.tsx	legacy/retired-product/src/components/beta-reading.tsx
+R100	src/components/community-discovery.tsx	legacy/retired-product/src/components/community-discovery.tsx
+R100	src/components/community-integrity-controls.tsx	legacy/retired-product/src/components/community-integrity-controls.tsx
+R100	src/components/community-performance.tsx	legacy/retired-product/src/components/community-performance.tsx
+R100	src/components/community-share.tsx	legacy/retired-product/src/components/community-share.tsx
+R100	src/components/data-health-panel.tsx	legacy/retired-product/src/components/data-health-panel.tsx
+R100	src/components/edge-board-header.tsx	legacy/retired-product/src/components/edge-board-header.tsx
+R100	src/components/edge-card.tsx	legacy/retired-product/src/components/edge-card.tsx
+R100	src/components/edge-composer.tsx	legacy/retired-product/src/components/edge-composer.tsx
+R100	src/components/edge-discovery.tsx	legacy/retired-product/src/components/edge-discovery.tsx
+R100	src/components/edge-discussion.tsx	legacy/retired-product/src/components/edge-discussion.tsx
+R100	src/components/explore-sports.tsx	legacy/retired-product/src/components/explore-sports.tsx
+R100	src/components/fitted-match-research.tsx	legacy/retired-product/src/components/fitted-match-research.tsx
+R100	src/components/ledger-chart.tsx	legacy/retired-product/src/components/ledger-chart.tsx
+R100	src/components/model-performance-panel.tsx	legacy/retired-product/src/components/model-performance-panel.tsx
+R100	src/components/my-sport-posts.tsx	legacy/retired-product/src/components/my-sport-posts.tsx
+R100	src/components/nfl-directory.tsx	legacy/retired-product/src/components/nfl-directory.tsx
+R100	src/components/no-edge.tsx	legacy/retired-product/src/components/no-edge.tsx
+R100	src/components/official-docked-record.tsx	legacy/retired-product/src/components/official-docked-record.tsx
+R100	src/components/pinned-docked-empty.tsx	legacy/retired-product/src/components/pinned-docked-empty.tsx
+R100	src/components/pinned-docked.tsx	legacy/retired-product/src/components/pinned-docked.tsx
+R100	src/components/preview-edge-composer.tsx	legacy/retired-product/src/components/preview-edge-composer.tsx
+R100	src/components/preview-top-docked.tsx	legacy/retired-product/src/components/preview-top-docked.tsx
+R100	src/components/quote-status.tsx	legacy/retired-product/src/components/quote-status.tsx
+R100	src/components/research-admin.tsx	legacy/retired-product/src/components/research-admin.tsx
+R100	src/components/research-content.tsx	legacy/retired-product/src/components/research-content.tsx
+R100	src/components/research-controls.tsx	legacy/retired-product/src/components/research-controls.tsx
+R100	src/components/research-file.tsx	legacy/retired-product/src/components/research-file.tsx
+R100	src/components/scanner-admin.tsx	legacy/retired-product/src/components/scanner-admin.tsx
+R100	src/components/scanner-controls.tsx	legacy/retired-product/src/components/scanner-controls.tsx
+R100	src/components/scanner-data-only.tsx	legacy/retired-product/src/components/scanner-data-only.tsx
+R100	src/components/share-link.tsx	legacy/retired-product/src/components/share-link.tsx
+R100	src/content/articles.ts	legacy/retired-product/src/content/articles.ts
+R100	src/content/beta-education.ts	legacy/retired-product/src/content/beta-education.ts
+R100	src/content/editorial.ts	legacy/retired-product/src/content/editorial.ts
+R100	src/content/nfl-teams.ts	legacy/retired-product/src/content/nfl-teams.ts
+R100	src/content/preview-social-seed.ts	legacy/retired-product/src/content/preview-social-seed.ts
+R100	src/content/weekend-watchlist.ts	legacy/retired-product/src/content/weekend-watchlist.ts
+R100	src/core/bookmaker-approval.ts	legacy/retired-product/src/core/bookmaker-approval.ts
+R100	src/core/code-provenance.ts	legacy/retired-product/src/core/code-provenance.ts
+R100	src/core/community-edge.ts	legacy/retired-product/src/core/community-edge.ts
+R100	src/core/community-recognition.ts	legacy/retired-product/src/core/community-recognition.ts
+R100	src/core/community-reference-input.ts	legacy/retired-product/src/core/community-reference-input.ts
+R100	src/core/data-health.ts	legacy/retired-product/src/core/data-health.ts
+R100	src/core/delivery.ts	legacy/retired-product/src/core/delivery.ts
+R100	src/core/edge-scanner.ts	legacy/retired-product/src/core/edge-scanner.ts
+R100	src/core/editorial-access.ts	legacy/retired-product/src/core/editorial-access.ts
+R100	src/core/football-edge.ts	legacy/retired-product/src/core/football-edge.ts
+R100	src/core/football-model.ts	legacy/retired-product/src/core/football-model.ts
+R100	src/core/football-poisson.ts	legacy/retired-product/src/core/football-poisson.ts
+R100	src/core/football-team-mapping.ts	legacy/retired-product/src/core/football-team-mapping.ts
+R100	src/core/ledger.ts	legacy/retired-product/src/core/ledger.ts
+R100	src/core/market-data-environment.ts	legacy/retired-product/src/core/market-data-environment.ts
+R100	src/core/market-data.ts	legacy/retired-product/src/core/market-data.ts
+R100	src/core/market-editorial.ts	legacy/retired-product/src/core/market-editorial.ts
+R100	src/core/market-reference.ts	legacy/retired-product/src/core/market-reference.ts
+R100	src/core/membership.ts	legacy/retired-product/src/core/membership.ts
+R100	src/core/model-calibration.ts	legacy/retired-product/src/core/model-calibration.ts
+R100	src/core/native-push.ts	legacy/retired-product/src/core/native-push.ts
+R100	src/core/notifications.ts	legacy/retired-product/src/core/notifications.ts
+R100	src/core/observations.ts	legacy/retired-product/src/core/observations.ts
+R100	src/core/official-docked-record.ts	legacy/retired-product/src/core/official-docked-record.ts
+R100	src/core/openfootball-dataset.ts	legacy/retired-product/src/core/openfootball-dataset.ts
+R100	src/core/phase5-hash.ts	legacy/retired-product/src/core/phase5-hash.ts
+R100	src/core/preview-market-contracts.ts	legacy/retired-product/src/core/preview-market-contracts.ts
+R100	src/core/preview-market-fixture.ts	legacy/retired-product/src/core/preview-market-fixture.ts
+R100	src/core/pricing.ts	legacy/retired-product/src/core/pricing.ts
+R100	src/core/provider-trial-diagnostics.ts	legacy/retired-product/src/core/provider-trial-diagnostics.ts
+R100	src/core/provider-trial-health.ts	legacy/retired-product/src/core/provider-trial-health.ts
+R100	src/core/provider-trial-reference-diagnostic.ts	legacy/retired-product/src/core/provider-trial-reference-diagnostic.ts
+R100	src/core/provider-trial.ts	legacy/retired-product/src/core/provider-trial.ts
+R100	src/core/public-presentation.ts	legacy/retired-product/src/core/public-presentation.ts
+R100	src/core/reference-monitoring.ts	legacy/retired-product/src/core/reference-monitoring.ts
+R100	src/core/reference-observations.ts	legacy/retired-product/src/core/reference-observations.ts
+R100	src/core/reference-pricing.ts	legacy/retired-product/src/core/reference-pricing.ts
+R100	src/core/research-contracts.ts	legacy/retired-product/src/core/research-contracts.ts
+R100	src/core/research-engine.ts	legacy/retired-product/src/core/research-engine.ts
+R100	src/core/research-features.ts	legacy/retired-product/src/core/research-features.ts
+R100	src/core/research-presentation.ts	legacy/retired-product/src/core/research-presentation.ts
+R100	src/core/research-scheduler.ts	legacy/retired-product/src/core/research-scheduler.ts
+R100	src/core/research-source-catalogue.ts	legacy/retired-product/src/core/research-source-catalogue.ts
+R100	src/core/research-trends.ts	legacy/retired-product/src/core/research-trends.ts
+R100	src/core/settlement.ts	legacy/retired-product/src/core/settlement.ts
+R100	src/core/sport-coverage.ts	legacy/retired-product/src/core/sport-coverage.ts
+R100	src/core/tip-presentation.ts	legacy/retired-product/src/core/tip-presentation.ts
+R100	src/core/top-docked.ts	legacy/retired-product/src/core/top-docked.ts
+R100	src/core/worker-runner.ts	legacy/retired-product/src/core/worker-runner.ts
+R100	src/providers/comparison.ts	legacy/retired-product/src/providers/comparison.ts
+R100	src/providers/contracts.ts	legacy/retired-product/src/providers/contracts.ts
+R100	src/providers/credentials.ts	legacy/retired-product/src/providers/credentials.ts
+R100	src/providers/email.ts	legacy/retired-product/src/providers/email.ts
+R100	src/providers/local-mail.ts	legacy/retired-product/src/providers/local-mail.ts
+R100	src/providers/market-data.ts	legacy/retired-product/src/providers/market-data.ts
+R100	src/providers/model.ts	legacy/retired-product/src/providers/model.ts
+R100	src/providers/odds-api.ts	legacy/retired-product/src/providers/odds-api.ts
+R100	src/providers/odds-papi.ts	legacy/retired-product/src/providers/odds-papi.ts
+R100	src/providers/results.ts	legacy/retired-product/src/providers/results.ts
+R100	src/research/dataset.ts	legacy/retired-product/src/research/dataset.ts
+R100	src/research/model-baseline.ts	legacy/retired-product/src/research/model-baseline.ts
+R100	src/research/reference-dataset.ts	legacy/retired-product/src/research/reference-dataset.ts
+R100	src/research/reference-replay.ts	legacy/retired-product/src/research/reference-replay.ts
+R100	src/research/replay.ts	legacy/retired-product/src/research/replay.ts
+R100	src/research/sensitivity.ts	legacy/retired-product/src/research/sensitivity.ts
+R100	src/research/strategy.ts	legacy/retired-product/src/research/strategy.ts
+R100	src/server/admin-operations.ts	legacy/retired-product/src/server/admin-operations.ts
+R100	src/server/benefits.ts	legacy/retired-product/src/server/benefits.ts
+R100	src/server/bookmaker-approvals.ts	legacy/retired-product/src/server/bookmaker-approvals.ts
+R100	src/server/cms.ts	legacy/retired-product/src/server/cms.ts
+R100	src/server/community-edges.ts	legacy/retired-product/src/server/community-edges.ts
+R100	src/server/community-recognition-inputs.ts	legacy/retired-product/src/server/community-recognition-inputs.ts
+R100	src/server/community-recognition.ts	legacy/retired-product/src/server/community-recognition.ts
+R100	src/server/data-health.ts	legacy/retired-product/src/server/data-health.ts
+R100	src/server/dispatch.ts	legacy/retired-product/src/server/dispatch.ts
+R100	src/server/edge-scanner.ts	legacy/retired-product/src/server/edge-scanner.ts
+R100	src/server/editorial-report.ts	legacy/retired-product/src/server/editorial-report.ts
+R100	src/server/football-fitted.ts	legacy/retired-product/src/server/football-fitted.ts
+R100	src/server/football-scanner.ts	legacy/retired-product/src/server/football-scanner.ts
+R100	src/server/forward-paper.ts	legacy/retired-product/src/server/forward-paper.ts
+R100	src/server/ingestion.ts	legacy/retired-product/src/server/ingestion.ts
+R100	src/server/market-data.ts	legacy/retired-product/src/server/market-data.ts
+R100	src/server/market-reference.ts	legacy/retired-product/src/server/market-reference.ts
+R100	src/server/model-ledger.ts	legacy/retired-product/src/server/model-ledger.ts
+R100	src/server/observations.ts	legacy/retired-product/src/server/observations.ts
+R100	src/server/preview-edges.ts	legacy/retired-product/src/server/preview-edges.ts
+R100	src/server/preview-testers.ts	legacy/retired-product/src/server/preview-testers.ts
+R100	src/server/provider-trial-database.ts	legacy/retired-product/src/server/provider-trial-database.ts
+R100	src/server/provider-trial-queries.ts	legacy/retired-product/src/server/provider-trial-queries.ts
+R100	src/server/provider-trial.ts	legacy/retired-product/src/server/provider-trial.ts
+R100	src/server/publication.ts	legacy/retired-product/src/server/publication.ts
+R100	src/server/queries.ts	legacy/retired-product/src/server/queries.ts
+R100	src/server/queue.ts	legacy/retired-product/src/server/queue.ts
+R100	src/server/reference-publication.ts	legacy/retired-product/src/server/reference-publication.ts
+R100	src/server/research-engine.ts	legacy/retired-product/src/server/research-engine.ts
+R100	src/server/research-scheduler.ts	legacy/retired-product/src/server/research-scheduler.ts
+R100	src/server/scanner-auth.ts	legacy/retired-product/src/server/scanner-auth.ts
+R100	src/server/scanner-queries.ts	legacy/retired-product/src/server/scanner-queries.ts
+R100	src/server/settlement.ts	legacy/retired-product/src/server/settlement.ts
+R100	src/server/top-docked.ts	legacy/retired-product/src/server/top-docked.ts
+R100	src/server/unsubscribe-preparation.ts	legacy/retired-product/src/server/unsubscribe-preparation.ts
+R100	tests/browser/brand-native.test.ts	legacy/retired-product/tests/browser/brand-native.test.ts
+R100	tests/browser/brand-rollout.test.ts	legacy/retired-product/tests/browser/brand-rollout.test.ts
+R100	tests/browser/data-health-layout.test.ts	legacy/retired-product/tests/browser/data-health-layout.test.ts
+R100	tests/browser/experience.test.ts	legacy/retired-product/tests/browser/experience.test.ts
+R100	tests/browser/journeys.test.ts	legacy/retired-product/tests/browser/journeys.test.ts
+R100	tests/browser/mobile-app.test.ts	legacy/retired-product/tests/browser/mobile-app.test.ts
+R100	tests/browser/nfl-community.test.ts	legacy/retired-product/tests/browser/nfl-community.test.ts
+R100	tests/browser/official-record.test.ts	legacy/retired-product/tests/browser/official-record.test.ts
+R100	tests/browser/phase3.test.ts	legacy/retired-product/tests/browser/phase3.test.ts
+R100	tests/browser/phase5-edges.test.ts	legacy/retired-product/tests/browser/phase5-edges.test.ts
+R100	tests/browser/preview-fixture.test.ts	legacy/retired-product/tests/browser/preview-fixture.test.ts
+R100	tests/browser/production-header.test.ts	legacy/retired-product/tests/browser/production-header.test.ts
+R100	tests/browser/production-presentation.test.ts	legacy/retired-product/tests/browser/production-presentation.test.ts
+R100	tests/browser/reference-price.test.ts	legacy/retired-product/tests/browser/reference-price.test.ts
+R100	tests/browser/research-ui.test.ts	legacy/retired-product/tests/browser/research-ui.test.ts
+R100	tests/browser/timestamp-hydration.test.ts	legacy/retired-product/tests/browser/timestamp-hydration.test.ts
+R100	tests/browser/visual-sports.test.ts	legacy/retired-product/tests/browser/visual-sports.test.ts
+R100	tests/database/community-recognition.test.ts	legacy/retired-product/tests/database/community-recognition.test.ts
+R100	tests/database/edge-scanner.test.ts	legacy/retired-product/tests/database/edge-scanner.test.ts
+R100	tests/database/football-model-ledger.test.ts	legacy/retired-product/tests/database/football-model-ledger.test.ts
+R100	tests/database/hosted-reference-rollback.test.ts	legacy/retired-product/tests/database/hosted-reference-rollback.test.ts
+R100	tests/database/market-reference.test.ts	legacy/retired-product/tests/database/market-reference.test.ts
+R100	tests/database/phase5a-driver.test.ts	legacy/retired-product/tests/database/phase5a-driver.test.ts
+R100	tests/database/phase5a-recovery.test.ts	legacy/retired-product/tests/database/phase5a-recovery.test.ts
+R100	tests/database/phase5a-trial.test.ts	legacy/retired-product/tests/database/phase5a-trial.test.ts
+R100	tests/database/preview-market-fixture.test.ts	legacy/retired-product/tests/database/preview-market-fixture.test.ts
+R100	tests/database/research-engine.test.ts	legacy/retired-product/tests/database/research-engine.test.ts
+R100	tests/database/unsubscribe-preparation.test.ts	legacy/retired-product/tests/database/unsubscribe-preparation.test.ts
+R100	tests/fixtures/provider-trial-health.ts	legacy/retired-product/tests/fixtures/provider-trial-health.ts
+R100	tests/fixtures/reference-ui.ts	legacy/retired-product/tests/fixtures/reference-ui.ts
+R100	tests/fixtures/render-experience.ts	legacy/retired-product/tests/fixtures/render-experience.ts
+R100	tests/fixtures/render-official-record.ts	legacy/retired-product/tests/fixtures/render-official-record.ts
+R100	tests/fixtures/render-reference-ui.ts	legacy/retired-product/tests/fixtures/render-reference-ui.ts
+R100	tests/platform/brand-native.test.ts	legacy/retired-product/tests/platform/brand-native.test.ts
+R100	tests/platform/code-provenance.test.ts	legacy/retired-product/tests/platform/code-provenance.test.ts
+R100	tests/platform/community-edge.test.ts	legacy/retired-product/tests/platform/community-edge.test.ts
+R100	tests/platform/community-recognition.test.ts	legacy/retired-product/tests/platform/community-recognition.test.ts
+R100	tests/platform/community-reference-input.test.ts	legacy/retired-product/tests/platform/community-reference-input.test.ts
+R100	tests/platform/data-health.test.ts	legacy/retired-product/tests/platform/data-health.test.ts
+R100	tests/platform/delivery.test.ts	legacy/retired-product/tests/platform/delivery.test.ts
+R100	tests/platform/edge-scanner.test.ts	legacy/retired-product/tests/platform/edge-scanner.test.ts
+R100	tests/platform/experience.test.ts	legacy/retired-product/tests/platform/experience.test.ts
+R100	tests/platform/fitted-research-display.test.ts	legacy/retired-product/tests/platform/fitted-research-display.test.ts
+R100	tests/platform/fixtures.ts	legacy/retired-product/tests/platform/fixtures.ts
+R100	tests/platform/football-edge.test.ts	legacy/retired-product/tests/platform/football-edge.test.ts
+R100	tests/platform/football-model.test.ts	legacy/retired-product/tests/platform/football-model.test.ts
+R100	tests/platform/football-poisson.test.ts	legacy/retired-product/tests/platform/football-poisson.test.ts
+R100	tests/platform/football-scanner.test.ts	legacy/retired-product/tests/platform/football-scanner.test.ts
+R100	tests/platform/inert-provider-key.test.ts	legacy/retired-product/tests/platform/inert-provider-key.test.ts
+R100	tests/platform/ledger.test.ts	legacy/retired-product/tests/platform/ledger.test.ts
+R100	tests/platform/market-data.test.ts	legacy/retired-product/tests/platform/market-data.test.ts
+R100	tests/platform/market-reference-fixtures.ts	legacy/retired-product/tests/platform/market-reference-fixtures.ts
+R100	tests/platform/market-reference.test.ts	legacy/retired-product/tests/platform/market-reference.test.ts
+R100	tests/platform/mobile-card-presentation.test.ts	legacy/retired-product/tests/platform/mobile-card-presentation.test.ts
+R100	tests/platform/native-push.test.ts	legacy/retired-product/tests/platform/native-push.test.ts
+R100	tests/platform/nfl-integration.test.ts	legacy/retired-product/tests/platform/nfl-integration.test.ts
+R100	tests/platform/observations.test.ts	legacy/retired-product/tests/platform/observations.test.ts
+R100	tests/platform/official-docked-record.test.ts	legacy/retired-product/tests/platform/official-docked-record.test.ts
+R100	tests/platform/openfootball-dataset.test.ts	legacy/retired-product/tests/platform/openfootball-dataset.test.ts
+R100	tests/platform/phase2-quant.test.ts	legacy/retired-product/tests/platform/phase2-quant.test.ts
+R100	tests/platform/phase5a-health.test.ts	legacy/retired-product/tests/platform/phase5a-health.test.ts
+R100	tests/platform/phase5a-provider-contracts.test.ts	legacy/retired-product/tests/platform/phase5a-provider-contracts.test.ts
+R100	tests/platform/phase5a-trial.test.ts	legacy/retired-product/tests/platform/phase5a-trial.test.ts
+R100	tests/platform/phase5b-operator-scope.test.ts	legacy/retired-product/tests/platform/phase5b-operator-scope.test.ts
+R100	tests/platform/phase5c-operator-scope.test.ts	legacy/retired-product/tests/platform/phase5c-operator-scope.test.ts
+R100	tests/platform/policy-notifications.test.ts	legacy/retired-product/tests/platform/policy-notifications.test.ts
+R100	tests/platform/preview-market-fixture.test.ts	legacy/retired-product/tests/platform/preview-market-fixture.test.ts
+R100	tests/platform/pricing.test.ts	legacy/retired-product/tests/platform/pricing.test.ts
+R100	tests/platform/provider-comparison.test.ts	legacy/retired-product/tests/platform/provider-comparison.test.ts
+R100	tests/platform/provider-trial-reference-diagnostic.test.ts	legacy/retired-product/tests/platform/provider-trial-reference-diagnostic.test.ts
+R100	tests/platform/public-presentation.test.ts	legacy/retired-product/tests/platform/public-presentation.test.ts
+R100	tests/platform/reference-monitoring.test.ts	legacy/retired-product/tests/platform/reference-monitoring.test.ts
+R100	tests/platform/reference-research.test.ts	legacy/retired-product/tests/platform/reference-research.test.ts
+R100	tests/platform/reference-ui.test.ts	legacy/retired-product/tests/platform/reference-ui.test.ts
+R100	tests/platform/replay-provider.test.ts	legacy/retired-product/tests/platform/replay-provider.test.ts
+R100	tests/platform/research-cli.test.ts	legacy/retired-product/tests/platform/research-cli.test.ts
+R100	tests/platform/research-engine.test.ts	legacy/retired-product/tests/platform/research-engine.test.ts
+R100	tests/platform/research-presentation.test.ts	legacy/retired-product/tests/platform/research-presentation.test.ts
+R100	tests/platform/research-scheduler.test.ts	legacy/retired-product/tests/platform/research-scheduler.test.ts
+R100	tests/platform/research-source-catalogue.test.ts	legacy/retired-product/tests/platform/research-source-catalogue.test.ts
+R100	tests/platform/sport-coverage.test.ts	legacy/retired-product/tests/platform/sport-coverage.test.ts
+R100	tests/platform/top-docked.test.ts	legacy/retired-product/tests/platform/top-docked.test.ts
+R100	tests/platform/worker.test.ts	legacy/retired-product/tests/platform/worker.test.ts

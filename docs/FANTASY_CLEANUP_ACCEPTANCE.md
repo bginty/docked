@@ -37,4 +37,21 @@ The line-by-line [legacy occurrence inventory](qa/fantasy-cleanup/legacy-occurre
 
 ## Final acceptance gates
 
-Final automated counts, deployment receipt and PASS/FAIL status are recorded in `qa/fantasy-cleanup/acceptance.json` after verification. Physical Samsung S24 checks and owner visual approval remain pending. A bundled APK compile is not connected-device acceptance. The multi-sport roadmap must not be presented as completed multi-sport gameplay.
+**Overall: FAIL — full acceptance remains incomplete.** The implemented cleanup and automated checks pass within the scopes below; this is not a sign-off for hosted gameplay or a public launch.
+
+| Area | Result | Evidence and limitation |
+|---|---|---|
+| Fantasy functionality | PASS locally; FAIL for complete hosted acceptance | 190 platform tests, 139 migration/RLS tests, 9 real PostgreSQL free-play race scenarios and 19 beta isolation scenarios pass. Hosted gameplay remains disabled. |
+| Design | PASS automated; owner approval PENDING | Responsive/accessibility checks and screenshot review pass. Physical Samsung S24 checks were not performed. |
+| Security | PASS executed checks | Account isolation, finite scarcity, atomic claims/trades, role denials and client/APK credential scans pass. Full hosted database retirement remains separately gated. |
+| Legacy cleanup | PASS active application; database retirement PENDING | Removed active entry points; preserved audit history and immutable policy. Every remaining text match has a reason in the occurrence inventory. |
+
+Typecheck, lint, production web build and Android debug build pass. Dependency audit reports zero vulnerabilities. Browser verification covers 26 unique scenarios: the final full run passed 22 of 25; three screenshot writes failed after UI assertions, then all six owner-screen scenarios passed with a fresh output directory. The additional onboarding scenario passed. The protected hosted run passed 23 checks covering page rendering, access denial, retired endpoints, console, responsive layout and accessibility—not authenticated gameplay.
+
+Protected Preview: <https://docked-production-2jzstkybl-briant-s-projects.vercel.app>. Deployed application commit: `f1ab01335318365861e5d39738ae8a63c1359f6b`. Public registration, external admission and gameplay remain closed; owner authentication is retained. The production holding page returned the same SHA-256 before and after deployment. No external email, paid service, DNS or production change occurred.
+
+Android artifact: `artifacts/android/Docked-v10-Fantasy-Bundled-QA.apk`, version `1.9-preview` / code `10`. This is a bundled debug QA shell with no attached remote origin, not a connected friends-and-family release. APK SHA-256: `1651e1141fb3e6331d78d0573d2ff6432d3332973c6bd261651530d12ff87aef`.
+
+See [machine-readable acceptance](qa/fantasy-cleanup/acceptance.json), [visual review and screenshots](qa/fantasy-cleanup/VISUAL_REVIEW.md), and [exact changed-file manifest](qa/fantasy-cleanup/changed-files.tsv). Screenshot fixtures are explicitly fictional and were not seeded into hosted data.
+
+Next: owner review of the supplied-brand screens, followed by a separately scoped owner-only hosted gameplay and physical S24 acceptance window while registration stays closed. The historical database grants/jobs/outbox and replacement consent packet require their documented separate review. Operational multi-sport scoring and live sports data are missing functionality, not completed features.

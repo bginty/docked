@@ -6,4 +6,6 @@ This milestone retires the previous product and reviews fantasy functionality/de
 
 Public registration and external tester admission remain closed. Protected hosted beta currently authorizes owner authentication only; that is not gameplay acceptance. No production holding-page change, paid activation or public launch is authorized.
 
-See FANTASY-CLEANUP-PLAN.md for work scope and FANTASY_CLEANUP_ACCEPTANCE.md for current verification evidence when available. Older QA reports are historical, not a pass for this milestone.
+Cleanup application commit `f1ab0133` is deployed to protected Preview: https://docked-production-2jzstkybl-briant-s-projects.vercel.app. Production holding-page content is verified unchanged. Local functionality, security, responsive/accessibility checks, web/Android builds and 23 scoped hosted checks pass. Full milestone acceptance remains FAIL/incomplete pending authenticated hosted gameplay, physical S24 checks and owner visual approval; database retirement is separate.
+
+See FANTASY-CLEANUP-PLAN.md for work scope and [FANTASY_CLEANUP_ACCEPTANCE](FANTASY_CLEANUP_ACCEPTANCE.md) for counts, limitations, screenshots and exact changed files. Older QA reports are historical, not a pass for this milestone.

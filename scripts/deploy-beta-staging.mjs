@@ -105,6 +105,8 @@ if (mode === "--status") {
   assert.equal(c.projectRef, "pojoymtniryarxxunyvz");
   assert.equal(c.databaseRole, "docked_beta_app");
   const env = {
+    // Keep the protected application's CSP intact; the optional toolbar is not part of Docked.
+    VERCEL_PREVIEW_FEEDBACK_ENABLED: "0",
     DOCKED_BETA_STAGING: "true",
     VERCEL_ORG_ID: team,
     VERCEL_PROJECT_ID: project,

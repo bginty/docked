@@ -1,0 +1,106 @@
+{
+  "at": "2026-10-09T21:42:51.015Z",
+  "branch": "pivot/fantasy-cards-preview-v1",
+  "baseline": "7284abff",
+  "deployedSourceCommit": "f1ab01335318365861e5d39738ae8a63c1359f6b",
+  "preview": "https://docked-production-2jzstkybl-briant-s-projects.vercel.app",
+  "overall": "FAIL — full hosted gameplay, physical-device and owner visual acceptance remain incomplete",
+  "categories": {
+    "fantasyFunctionality": {
+      "local": "PASS",
+      "hostedMemberJourneys": "FAIL — gameplay gate intentionally closed",
+      "missing": "Operational multi-sport scoring, live sports data and public/paid marketplace are not implemented"
+    },
+    "design": {
+      "responsiveAndAccessibility": "PASS",
+      "physicalSamsungS24": "FAIL — not performed",
+      "ownerVisualApproval": "PENDING"
+    },
+    "security": {
+      "executedChecks": "PASS",
+      "fullHostedDatabaseRetirement": "PENDING — separate migration and scheduler/grant audit"
+    },
+    "legacyCleanup": {
+      "activeApplication": "PASS",
+      "historicalDatabaseAndPolicy": "Preserved and documented; not silently rewritten or presented as current product plans"
+    }
+  },
+  "verification": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "platform": {
+      "pass": 190,
+      "fail": 0
+    },
+    "database": {
+      "pass": 139,
+      "fail": 0,
+      "engine": "PGlite migration/RLS tests"
+    },
+    "postgresFreePlayRaces": {
+      "pass": 9,
+      "scope": "Disposable loopback PostgreSQL only; not production"
+    },
+    "postgresBetaIsolation": {
+      "pass": 19,
+      "scope": "disposable loopback PostgreSQL, not hosted"
+    },
+    "browser": {
+      "uniqueTestsPassed": 26,
+      "scope": "25-suite scenarios verified across final suite and six-scenario owner screenshot rerun, plus one onboarding scenario",
+      "initialFinalSuite": "22 passed; three screenshot-file writes failed after UI assertions. All six owner scenarios passed using a fresh evidence directory."
+    },
+    "hosted": {
+      "pass": 23,
+      "fail": 0,
+      "scope": "Protected hosted anonymous/application-denial and responsive screens only. No owner impersonation, account creation, email or gameplay transaction."
+    },
+    "webBuild": "PASS — optimized production build and hosted READY receipt",
+    "android": "PASS — bundled debug QA build; no remote origin",
+    "dependencyAudit": {
+      "vulnerabilities": 0
+    },
+    "clientSecretAudit": {
+      "status": "PASS",
+      "filesScanned": 474,
+      "bytesScanned": 31854663,
+      "findings": [],
+      "errors": []
+    },
+    "apkAudit": {
+      "recordedAt": "2026-10-09T21:23:05.5560779Z",
+      "artifact": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "bytes": 12622524,
+      "sha256": "1651e1141fb3e6331d78d0573d2ff6432d3332973c6bd261651530d12ff87aef",
+      "entriesScanned": 993,
+      "credentialOrForbiddenFileFindings": 0,
+      "inspectionDisabled": true,
+      "noAttachedOrigin": true,
+      "mode": "Bundled",
+      "approvedHostedOrigin": false,
+      "approvedEmbeddedBrandingPages": 0,
+      "previewOrigin": null,
+      "supabaseProjectRef": null,
+      "status": "PASS",
+      "scope": "Every ZIP entry inspected; generic credential patterns and exact configured local server-secret values checked in memory. No secret values recorded."
+    }
+  },
+  "boundaries": {
+    "productionHoldingPageUnchanged": true,
+    "publicRegistration": "CLOSED",
+    "externalAdmission": "CLOSED",
+    "gameplay": "DISABLED on protected Preview",
+    "emailSent": false,
+    "paidServicesActivated": false,
+    "DNSChanged": false,
+    "productionDeployed": false
+  },
+  "remaining": [
+    "Owner visual approval of supplied-brand screens",
+    "Physical S24 keyboard, safe area, navigation, lifecycle, share and connected-session checks",
+    "Separate authority and hosted acceptance for owner fantasy gameplay; no authentication bypass used",
+    "Non-destructive retirement of obsolete database grants/jobs/outbox items; current read-only role evidence is not a full scheduler audit",
+    "Versioned fantasy-specific replacement consent packet; prior approved bytes retained"
+  ],
+  "nextAction": "Review VISUAL_REVIEW.md and approve the fantasy design; then run a separately scoped owner-only gameplay and physical S24 acceptance window, with registration still closed."
+}

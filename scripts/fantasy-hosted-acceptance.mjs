@@ -28,7 +28,11 @@ const request = (path, options = {}) =>
   fetch(base + path, {
     redirect: "manual",
     ...options,
-    headers: { "x-vercel-trusted-oidc-idp-token": token, ...options.headers },
+    headers: {
+      "x-vercel-trusted-oidc-idp-token": token,
+      "x-vercel-skip-toolbar": "1",
+      ...options.headers,
+    },
     signal: AbortSignal.timeout(25000),
   });
 async function check(name, run) {
@@ -107,6 +111,7 @@ try {
         headers: {
           ...route.request().headers(),
           "x-vercel-trusted-oidc-idp-token": token,
+          "x-vercel-skip-toolbar": "1",
         },
       }),
     );
