@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-09T05:33:13.541Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "function": "docked-auth-email",
+  "scope": "Actual hosted Edge Function HTTP responses; mail disabled, no Microsoft credentials, no Auth hook activation or accounts created",
+  "checks": [
+    {
+      "name": "GET rejected",
+      "status": 405,
+      "passed": true
+    },
+    {
+      "name": "Unsigned request rejected",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "Altered signed payload rejected",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "name": "Oversized request rejected",
+      "status": 413,
+      "passed": true
+    },
+    {
+      "name": "Valid signature reaches disabled sender and fails closed",
+      "status": 503,
+      "passed": true
+    },
+    {
+      "name": "Signed /worker remains disabled",
+      "status": 400,
+      "passed": true
+    },
+    {
+      "name": "Signed /control remains disabled",
+      "status": 400,
+      "passed": true
+    },
+    {
+      "name": "Expired signature rejected",
+      "status": 401,
+      "passed": true
+    }
+  ],
+  "sourceHashes": {
+    "index.ts": "479f9b51aecf81aa1fd575ebcbc17552f5db3b4a9d859ecaebceb5aaa434bcb4",
+    "mail.mjs": "6534e346f7ac142a3978e98c1aae619173177aea6670d85a48d3a8e4c28aab32",
+    "router.mjs": "deeba5f79a92c9f23b659358155611347d37daf3de0e135ac03b11388a7cdfe2",
+    "queue.mjs": "2e684e597fffabb908b3bc09c87e5363922c5e955ef90c537859a51e3bc252e7"
+  },
+  "emailDeliveryVerified": false
+}

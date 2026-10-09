@@ -1,3 +1,5 @@
+> 9 October expedited policy checkpoint: function version6 now includes the prepared exact Vercel beta-origin support and is deployed with all sending switches still closed. The active staging/owner sequence is [owner acceptance preparation](DOCKED-BETA-OWNER-ACCEPTANCE-PREP.md); older Netlify prerequisites below are historical. No policy approval, owner MFA or positive Auth delivery is inferred.
+
 # Docked email acceptance and activation runbook
 
 > Current authority: the owner's subsequent controlled live-beta deployment request authorizes the support-only hosted Auth test window. Item 1 below is satisfied by that instruction; do not ask again. Protected staging/policy prerequisites and actual acceptance remain required. See [live-beta acceptance](DOCKED-LIVE-BETA-ACCEPTANCE.md).

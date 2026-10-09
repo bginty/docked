@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-09T05:27:42.471Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "function": {
+    "id": "ef679810-f5e1-4e7e-8dc5-7524e22263b4",
+    "version": 6,
+    "status": "ACTIVE"
+  },
+  "files": [
+    {
+      "name": "index.ts",
+      "sha256": "479f9b51aecf81aa1fd575ebcbc17552f5db3b4a9d859ecaebceb5aaa434bcb4",
+      "matches": true
+    },
+    {
+      "name": "mail.mjs",
+      "sha256": "6534e346f7ac142a3978e98c1aae619173177aea6670d85a48d3a8e4c28aab32",
+      "matches": true
+    },
+    {
+      "name": "queue.mjs",
+      "sha256": "2e684e597fffabb908b3bc09c87e5363922c5e955ef90c537859a51e3bc252e7",
+      "matches": true
+    },
+    {
+      "name": "router.mjs",
+      "sha256": "deeba5f79a92c9f23b659358155611347d37daf3de0e135ac03b11388a7cdfe2",
+      "matches": true
+    }
+  ],
+  "allMailGatesClosed": true,
+  "signupClosed": true,
+  "secretsUnchanged": true,
+  "websiteDeployed": false
+}

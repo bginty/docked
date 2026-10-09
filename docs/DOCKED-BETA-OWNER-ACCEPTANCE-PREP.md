@@ -1,0 +1,22 @@
+# Owner authentication preparation after policy approval
+
+This is an execution checklist, not an approval or a request to enroll MFA now. Existing authority covers support@docked.com.au-only controlled testing; no second recipient is authorized. External tester flags remain false throughout owner acceptance.
+
+1. Record the owner's exact rc2 policy decision and resolve mandatory gates for the proposed test. Populate only the beta policy/owner-acceptance configuration. Leave the official production manifest and external tester approval closed.
+2. Current verified protected origin: `https://docked-production-htz4tu7lh-briant-s-projects.vercel.app`. The email function now has exact-origin support and its non-secret `DOCKED_BETA_AUTH_ORIGIN` is pinned there, with mail switches closed. A subsequent website deployment requires re-verifying and re-pinning its exact hostname. Never use wildcard callbacks.
+3. Before invitation, snapshot and update the dedicated project's Auth URL Configuration only: Site URL equals the chosen protected origin; permit the existing reviewed callback paths, including `/auth/callback?next=/app/verified` and `/auth/callback?next=/app/reset-password`. Keep public signup off and confirmation required. This Auth settings update has not been applied here; the CLI connection can deploy functions, but an authenticated direct Auth-config API connection is not presently configured. Use the exact project dashboard if needed; never use a broad config push that could overwrite unrelated settings.
+4. Bootstrap only the designated support identity through the audited operator path, prepare the provider invite without mailing it, and reserve its separate beta admission. Do not infer roles from an email address. Reconcile identity/admission/receipt before sending. No successful admission or account is claimed yet.
+5. Retain certificate authentication and Exchange support-only sending. Prepare existing credentials and the signed scheduler under the established runbook; do not rotate secrets, broaden Graph grants or enable unbounded recipients. Monitor queued/ambiguous receipts. Successful Graph submission is not Inbox confirmation. Do not resend a timed-out dispatch automatically.
+6. The owner deliberately confirms the email invitation, chooses a private password, completes Australian 18+ and approved-policy consent, then opens `/mfa`. That route exists in the generic section page. Use **Set up authenticator**, save the displayed seed privately on the owner's authenticator, and enter Factor ID plus six-digit code in **Verify MFA**. Never paste secrets or codes in chat. Verify real `aal2` before granting the minimal designated owner role. Lost-factor recovery requires identity verification, an audit and revocation; no implemented recovery-code feature is claimed.
+7. Test actual invitation/confirmation, logout/login, recovery, invalid/expired links, delivery failures and session revocation; then persisted owner gameplay, isolated rewards and moderator denials. Beta logout must use current-session provider sign-out, not shared Auth-table deletion or global sign-out. Provider failures must not appear as successful logout.
+8. Only after these pass, approve external activation evidence and use the atomic controller for up to ten authorized Australian testers. Keep unverified live markets, paid features and public registration off.
+
+## Private factual readback for the Microsoft administrator
+
+Verify tenant service data location through the Microsoft 365 admin centre's organisation/data-location information and [Microsoft's data-location guidance](https://learn.microsoft.com/en-us/microsoft-365/enterprise/m365-dr-services-data-location?view=o365-worldwide). In the existing authorized Exchange session, read only the nominated mailbox:
+
+```powershell
+Get-Mailbox -Identity support@docked.com.au | Format-List PrimarySmtpAddress,RetentionPolicy,RetainDeletedItemsFor,LitigationHoldEnabled,InPlaceHolds,SingleItemRecoveryEnabled
+```
+
+Return only the relevant setting names/statuses to the operator privately, not mailbox messages or secrets. Do not alter holds, policies, permissions or subscriptions. The remaining privacy review also needs the company's relevant turnover/exemption facts and tested retention/export/erasure handling. Approval of a policy draft is not evidence for any of these facts.

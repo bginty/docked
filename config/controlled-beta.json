@@ -2,7 +2,9 @@
   "schemaVersion": 1,
   "status": "preparation-only",
   "ownerDecisions": {
-    "countryCodes": ["AU"],
+    "countryCodes": [
+      "AU"
+    ],
     "administratorEmail": "support@docked.com.au",
     "supportResponsibility": "Owner",
     "moderationResponsibility": "Owner",
@@ -11,9 +13,20 @@
     "registration": "invitation-only",
     "publicRegistration": false,
     "commercialTransactions": false,
-    "productionPromotionAuthorized": false
+    "productionPromotionAuthorized": false,
+    "minimumAge": 18,
+    "participation": "free",
+    "deposits": false,
+    "withdrawals": false,
+    "paidCards": false,
+    "cashPrizes": false,
+    "monetaryRewards": false,
+    "betaCardsMonetaryValue": false,
+    "betaPointsMonetaryValue": false,
+    "betaOfficialRecordsSeparated": true,
+    "unvalidatedOfficialBettingRecommendations": false
   },
-  "policyCandidateVersion": "2026-10-09-beta-rc1",
+  "policyCandidateVersion": "2026-10-09-beta-rc2",
   "policyApproval": null,
   "isolationAcceptance": null,
   "administratorMfaAcceptance": null,

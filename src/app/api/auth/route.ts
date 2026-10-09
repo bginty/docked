@@ -1,3 +1,4 @@
+import { signOutBetaSession } from "@/core/beta-signout";
 import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -164,6 +165,14 @@ export async function POST(request: Request) {
     return fallback;
   };
   if (v.action === "logout") {
+    if (process.env.DOCKED_BETA_STAGING === "true") {
+      try {
+        await signOutBetaSession(client.auth);
+        return NextResponse.json({ok:true,redirect:v.app?"/app/login":"/"},{headers:{"Cache-Control":"no-store"}});
+      } catch {
+        return NextResponse.json({error:"Sign-out could not be confirmed. Please retry."},{status:503,headers:{"Cache-Control":"no-store"}});
+      }
+    }
     const { data: session } = await client.auth.getSession();
     const token = session.session?.access_token;
     const verified = token ? await client.auth.getUser(token) : null;
