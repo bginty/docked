@@ -148,6 +148,41 @@ body:has(.app-auth-surface) > main {
 .app-auth-content > .app-auth-hint {
   margin: -12px 0 22px;
 }
+.app-owner-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+.app-owner-setup > h1,
+.app-owner-setup > p {
+  margin: 0;
+}
+.app-owner-setup > .button {
+  align-self: flex-start;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+.app-owner-status {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
+  background: var(--app-raised);
+}
+.app-owner-status h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.app-owner-status p {
+  margin: 0;
+  color: var(--app-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
 .app-auth-region {
   display: grid;
   grid-template-columns: 1fr 1fr;
