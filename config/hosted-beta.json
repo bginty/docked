@@ -89,7 +89,9 @@
       "moderation"
     ]
   },
-  "ownerAcceptanceApproved": false,
+  "ownerAcceptanceApproved": true,
+  "ownerGameplayApproved": false,
+  "ownerAcceptanceAuthority": "Owner approval: supervised owner-only authentication test using operator dispatcher from 281e372c; support@docked.com.au only. This is authorization to test, not acceptance evidence. External activation remains prohibited.",
   "hostedAcceptance": null,
   "externalActivationApproved": false
 }

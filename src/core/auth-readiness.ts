@@ -1,5 +1,6 @@
 import { localPreviewAuth } from "./preview-auth";
 import { previewCommunityContext } from "./preview-community";
+import { assertHostedBeta, betaPolicyVersions } from "./hosted-beta.mjs";
 
 type Environment = Record<string, string | undefined>;
 export type ConsentVersions = { terms: string; privacy: string };
@@ -17,6 +18,13 @@ function approvedVersion(value: string | undefined) {
 export function currentConsentVersions(
   env: Environment = process.env,
 ): ConsentVersions {
+  if (env.DOCKED_BETA_STAGING === "true") {
+    if (!assertHostedBeta(env))
+      throw Error("Verified beta environment required");
+    const versions = betaPolicyVersions();
+    if (!versions) throw Error("Approved beta policy versions are required");
+    return { terms: versions.terms, privacy: versions.privacy };
+  }
   if (env.APP_ENV !== "production")
     return { terms: previewConsentVersion, privacy: previewConsentVersion };
   if (

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { assertHostedBeta } from "../../src/core/hosted-beta.mjs";
 import { betaStatement, betaSql } from "../../src/server/beta-sql";
 import postgres from "postgres";
+import { currentConsentVersions } from "../../src/core/auth-readiness";
 import {
   messagesFor,
   productionRecipientAllowed,
@@ -138,11 +139,9 @@ test("beta staging accepts only its exact protected Preview and beta database ro
   ])
     assert.throws(() => assertHostedBeta({ ...env(), ...change }));
 });
-test("unapproved beta cannot enable accounts, mail, public signup, games or privileged web credentials", () => {
+test("owner auth approval still rejects testers, public signup, games and privileged web credentials", () => {
   for (const flag of [
-    "BETA_ACCESS_ENABLED",
-    "AUTH_EMAIL_ENABLED",
-    "DOCKED_AUTH_INVITES_READY",
+    "BETA_TESTERS_ENABLED",
     "FANTASY_FREE_PLAY_PRODUCTION",
     "REGISTRATION_ENABLED",
     "PUBLICATION_ENABLED",
@@ -155,6 +154,33 @@ test("unapproved beta cannot enable accounts, mail, public signup, games or priv
     "MICROSOFT_CLIENT_SECRET",
   ])
     assert.throws(() => assertHostedBeta({ ...env(), [flag]: "test" }));
+});
+
+test("owner authentication binds exact approved beta policies without public production approval", () => {
+  const owner = {
+    ...env(),
+    BETA_ACCESS_ENABLED: "true",
+    AUTH_EMAIL_ENABLED: "true",
+    DOCKED_AUTH_INVITES_READY: "true",
+    LEGAL_ENTITY_VERIFIED: "false",
+  };
+  assert.equal(assertHostedBeta(owner), true);
+  assert.deepEqual(currentConsentVersions(owner), {
+    terms: "2026-10-09-beta-rc2",
+    privacy: "2026-10-09-beta-rc2",
+  });
+  for (const change of [
+    { VERCEL_ENV: "production" },
+    { VERCEL_GIT_COMMIT_REF: "main" },
+    { BETA_TESTERS_ENABLED: "true" },
+  ])
+    assert.throws(() => currentConsentVersions({ ...owner, ...change }));
+  assert.throws(() =>
+    currentConsentVersions({
+      APP_ENV: "production",
+      LEGAL_ENTITY_VERIFIED: "false",
+    }),
+  );
 });
 test("SQL routing covers all three namespaces without rewriting already routed identifiers", () => {
   assert.equal(

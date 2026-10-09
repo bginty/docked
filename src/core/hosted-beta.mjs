@@ -136,5 +136,10 @@ export function assertHostedBeta(env) {
   ) {
     if (env.BETA_TESTERS_ENABLED !== "false") fail();
   }
+  if (
+    manifest.ownerGameplayApproved !== true &&
+    env.FANTASY_FREE_PLAY_PRODUCTION !== "false"
+  )
+    fail();
   return true;
 }

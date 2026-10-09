@@ -6,6 +6,8 @@ import { resolve, dirname, join } from "node:path";
 import assert from "node:assert/strict";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
 const mode = process.argv[2];
+const ownerAuth = process.argv[3] === "--owner-auth";
+assert.ok(process.argv.length <= 4 && (!process.argv[3] || ownerAuth));
 assert.ok(["--prepare", "--deploy", "--status"].includes(mode));
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   team = "team_tf6xweKKyVCj9bTppUKttJ4l",
@@ -146,6 +148,25 @@ if (mode === "--status") {
     "DEALS_ENABLED",
   ])
     env[flag] = "false";
+  if (ownerAuth) {
+    const approval = JSON.parse(
+      readFileSync("config/hosted-beta.json", "utf8"),
+    );
+    assert.equal(approval.ownerAcceptanceApproved, true);
+    assert.equal(
+      approval.policyApproval.scope.ownerOnlyAcceptanceAuthorized,
+      true,
+    );
+    assert.equal(approval.externalActivationApproved, false);
+    // Authorizes confirmation/login/onboarding only. Sending is independently
+    // gated in the signed worker; no mail credential is deployed to this site.
+    for (const flag of [
+      "BETA_ACCESS_ENABLED",
+      "AUTH_EMAIL_ENABLED",
+      "DOCKED_AUTH_INVITES_READY",
+    ])
+      env[flag] = "true";
+  }
   assertHostedBeta({
     ...env,
     VERCEL: "1",
@@ -220,7 +241,8 @@ if (mode === "--status") {
           branch,
           target: "preview",
           files: files.length,
-          allActivationDisabled: true,
+          allActivationDisabled: !ownerAuth,
+          ownerAuthenticationOnly: ownerAuth,
           source: "committed web-only export",
           preparedAt: new Date().toISOString(),
         },
@@ -237,6 +259,11 @@ if (mode === "--status") {
       }),
     );
   } else {
+    assert.equal(
+      JSON.parse(readFileSync(output + "/deployment-prepared.json", "utf8"))
+        .ownerAuthenticationOnly,
+      ownerAuth,
+    );
     assert.equal(
       JSON.parse(readFileSync(output + "/deployment-prepared.json", "utf8"))
         .commit,
