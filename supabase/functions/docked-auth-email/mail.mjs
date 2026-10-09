@@ -93,16 +93,31 @@ export function messagesFor(
       allowedCallbacks.add(betaOrigin + "/auth/callback" + suffix);
   }
   const { user, email_data: data } = payload ?? {};
-  if (
-    !user ||
-    !data ||
-    !allowedOrigins.includes(data.site_url) ||
-    !allowedCallbacks.has(data.redirect_to)
-  )
-    throw Error("Unapproved Auth origin or callback");
+  if (!user || !data)
+    throw Object.assign(Error("Unapproved Auth origin or callback"), {
+      code: "payload_shape",
+    });
+  // GoTrue uses its Auth service external URL in this signed payload field.
+  // Keep the project exact and validate the website callback independently.
+  if (data.site_url !== projectUrl && !allowedOrigins.includes(data.site_url))
+    throw Object.assign(Error("Unapproved Auth origin or callback"), {
+      code: "site_origin",
+    });
+  if (!allowedCallbacks.has(data.redirect_to))
+    throw Object.assign(Error("Unapproved Auth origin or callback"), {
+      code: "callback",
+    });
+  if (betaOrigin && new URL(data.redirect_to).origin !== betaOrigin)
+    throw Object.assign(Error("Unapproved Auth origin or callback"), {
+      code: "callback",
+    });
   const current = email(user.email);
   const action = data.email_action_type;
-  if (action === "invite" && new URL(data.redirect_to).origin !== data.site_url)
+  if (
+    action === "invite" &&
+    data.site_url !== projectUrl &&
+    new URL(data.redirect_to).origin !== data.site_url
+  )
     throw Error("Invitation origin must match Auth site origin");
   const subjects = {
     signup: "Verify your Docked email",
@@ -286,7 +301,20 @@ export function emailHandler({
     let messages;
     try {
       messages = prepare(payload);
-    } catch {
+    } catch (error) {
+      // Fixed diagnostic vocabulary only: never log payloads, URLs, tokens,
+      // recipient values or arbitrary exception messages.
+      const known = new Set(["payload_shape", "site_origin", "callback"]);
+      const reason = known.has(error?.code)
+        ? error.code
+        : error?.message === "Unsupported Auth email action"
+          ? "action"
+          : error?.message === "Invalid token hash"
+            ? "token_shape"
+            : error?.message === "Invalid recipient"
+              ? "recipient_shape"
+              : "validation";
+      console.warn("docked_auth_email_prepare_rejected:" + reason);
       return respond(400, "Unsupported authentication email");
     }
     try {

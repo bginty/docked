@@ -9,11 +9,31 @@ import { databaseConnectionOptions } from "../src/server/database-tls.ts";
 import { dispatchOnce } from "./owner-mail-dispatch.mjs";
 import { flags, secrets, checkFlags } from "./owner-mail-window.mjs";
 
-assert.equal(process.argv[2], "--send-owner-invite-once");
+const reviewedFix =
+  process.argv[2] === "--send-owner-invite-after-site-url-fix";
+assert.ok(process.argv[2] === "--send-owner-invite-once" || reviewedFix);
 const root = "private-data/production/";
-const receiptFile = root + "owner-window/invite-attempt.json";
+const receiptFile =
+  root +
+  "owner-window/" +
+  (reviewedFix ? "invite-after-site-url-fix.json" : "invite-attempt.json");
 const approvalFile = root + "microsoft365/owner-dispatch-approval.json";
 const read = (path) => JSON.parse(readFileSync(path, "utf8"));
+if (reviewedFix) {
+  // Explicit operator reconciliation after a reviewed compatibility fix, never
+  // an automatic HTTP retry or a retry of a dispatched/uncertain Graph send.
+  const prior = read(root + "owner-window/invite-attempt.json");
+  assert.equal(prior.inviteStatus, 500);
+  assert.equal(prior.emailsAccepted, 0);
+  assert.equal(prior.dispatch, undefined);
+  assert.equal(prior.finalDatabase.users, 0);
+  assert.equal(prior.finalDatabase.outstanding_mail, 0);
+  assert.equal(prior.dispatcherDisabled, true);
+  writeFileSync(
+    "docs/qa/owner-acceptance/initial-invitation-rejected.json",
+    JSON.stringify(prior, null, 2) + "\n",
+  );
+}
 const ref = "pojoymtniryarxxunyvz",
   email = "support@docked.com.au";
 const connection = read(root + "connection.json");
@@ -72,6 +92,7 @@ const report = {
   deliveryVerified: false,
   mfaEnrolled: false,
   administratorRoleGranted: false,
+  reconciledSiteUrlFailure: reviewedFix,
 };
 let flagsAttempted = false;
 try {

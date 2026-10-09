@@ -32,6 +32,53 @@ function payload(action = "signup") {
   };
 }
 const pair = generateKeyPairSync("rsa", { modulusLength: 2048 });
+test("real GoTrue project site_url is accepted only with the pinned beta callback", () => {
+  const origin = "https://docked-production-fixture.vercel.app";
+  for (const action of ["invite", "recovery", "signup"]) {
+    const p = payload(action);
+    p.email_data.site_url = projectUrl;
+    p.email_data.redirect_to = origin + "/auth/callback?next=/app/verified";
+    const options = { allowInvites: true, betaOrigin: origin };
+    const messages = messagesFor(p, options);
+    assert.equal(messages.length, 1);
+    assert.ok(
+      messages[0].body.content.includes(
+        action === "invite"
+          ? origin + "/auth/invite"
+          : projectUrl + "/auth/v1/verify",
+      ),
+    );
+    for (const badSite of [
+      "https://other.supabase.co",
+      projectUrl + ".evil.test",
+      "https://example.test",
+    ]) {
+      assert.throws(
+        () =>
+          messagesFor(
+            { ...p, email_data: { ...p.email_data, site_url: badSite } },
+            options,
+          ),
+        /Unapproved/,
+      );
+    }
+    for (const badCallback of [
+      "https://docked.com.au/auth/callback",
+      "https://docked-production.netlify.app/auth/callback",
+      origin + "/auth/callback?next=https://example.test",
+      "https://docked-production-other.vercel.app/auth/callback",
+    ]) {
+      assert.throws(
+        () =>
+          messagesFor(
+            { ...p, email_data: { ...p.email_data, redirect_to: badCallback } },
+            options,
+          ),
+        /Unapproved/,
+      );
+    }
+  }
+});
 // Certificate bytes are authored test data; the real Entra certificate/key match is a deployment gate.
 const certificate = Buffer.from(
   "authored certificate bytes for thumbprint test",
