@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-09T11:45:07.013Z",
+  "project": "pojoymtniryarxxunyvz",
+  "deploymentId": "dpl_vcRdRDfrqAHPQgZBvvK2mhcRMVyP",
+  "recipient": "support@docked.com.au",
+  "authority": "Owner explicitly requested one recovery attempt now despite cooldown and confirmed recovery form ready in this conversation",
+  "operatorAuthRequests": 0,
+  "dispatchRequests": 1,
+  "deliveryVerified": false,
+  "retryAttempted": false,
+  "rateLimitsChanged": false,
+  "mailReceiptId": "1c28f16e14b36dd44610fb3c8a5abf236b996ba39192addce75b54fb5843db42",
+  "dispatch": {
+    "states": [
+      "accepted",
+      "idle",
+      "idle",
+      "idle"
+    ],
+    "deliveryVerified": false,
+    "operatorReviewRequired": false,
+    "retryAttempted": false
+  },
+  "queueOutcome": {
+    "state": "accepted",
+    "attempts": 1,
+    "last_code": "202"
+  },
+  "status": "AWAITING_OWNER_INBOX_AND_PERSONAL_RECOVERY",
+  "dispatcherDisabled": true,
+  "allSecretDigestsRestored": true,
+  "finalDatabase": {
+    "outstanding_mail": 0
+  }
+}
