@@ -42,3 +42,9 @@ Personal confirmation, password choice and MFA enrollment remain owner actions. 
 All mail switches false; public signup disabled; email provider enabled with confirmation required. Database: users 0, factors 0, admissions 0, outstanding mail 0, cron jobs 0, scheduler false, testers false, net schema absent. No email or Auth mutation was requested this turn. No DB grants, Microsoft permissions, certificates, paid services, domains, holding page, Oura or existing Docked Preview were changed.
 
 See [the prior acceptance report](DOCKED-SUPERVISED-OWNER-AUTH-2026-10-09.md) for the deployed fixes, tests and unresolved acceptance steps, and [the scale recommendation](DOCKED-EMAIL-SCALE-RECOMMENDATION.md) for future production delivery.
+
+## Owner returned: preflight refreshed at 21:56 Sydney
+
+On 9 October, the owner returned after the conservative cooldown. Read-only checks found no subsequent email-producing Auth requests through 10:55 UTC, no user/admission/MFA/pending mail, and all dispatcher switches closed. Certificate/grant checks passed at 10:55 UTC; all 9 protected hosted checks passed at 10:56 UTC. No quota reset guarantee is claimed.
+
+Prepared `--send-owner-invite-after-quota` with a new retained one-shot marker, exact recipient/project/deployment binding and explicit owner approval no older than 5 minutes. Missing approval was tested and rejected before credential loading or network access. No approval file was created and no email was sent. The operator must record the next explicit owner message before executing; “I am back” is not send approval.

@@ -11,21 +11,49 @@ import { flags, secrets, checkFlags } from "./owner-mail-window.mjs";
 
 const serviceBaseFix =
   process.argv[2] === "--send-owner-invite-after-service-base-fix";
+const quotaRecovery = process.argv[2] === "--send-owner-invite-after-quota";
 const reviewedFix =
   serviceBaseFix ||
   process.argv[2] === "--send-owner-invite-after-site-url-fix";
-assert.ok(process.argv[2] === "--send-owner-invite-once" || reviewedFix);
+assert.ok(process.argv[2] === "--send-owner-invite-once" || reviewedFix || quotaRecovery);
 const root = "private-data/production/";
 const receiptFile =
   root +
   "owner-window/" +
-  (serviceBaseFix
+  (quotaRecovery
+    ? "invite-after-quota.json"
+    : serviceBaseFix
     ? "invite-after-service-base-fix.json"
     : reviewedFix
       ? "invite-after-site-url-fix.json"
       : "invite-attempt.json");
 const approvalFile = root + "microsoft365/owner-dispatch-approval.json";
 const read = (path) => JSON.parse(readFileSync(path, "utf8"));
+let authority = "Owner supervised authentication approval after 281e372c";
+if (quotaRecovery) {
+  const approvalPath = root + "owner-window/quota-recovery-approval.json";
+  assert.ok(existsSync(approvalPath), "Fresh explicit owner approval required; no request sent");
+  const approval = read(approvalPath);
+  assert.equal(approval.approved, true);
+  assert.equal(approval.projectRef, "pojoymtniryarxxunyvz");
+  assert.equal(approval.recipient, "support@docked.com.au");
+  assert.equal(approval.deploymentId, "dpl_5fADFGCKB9LGuwMLxjjE1cqjVZ4y");
+  assert.equal(approval.maximumInvitations, 1);
+  assert.equal(typeof approval.ownerMessageReference, "string");
+  assert.ok(approval.ownerMessageReference.trim().length > 10);
+  const age = Date.now() - Date.parse(approval.approvedAt);
+  assert.ok(age >= 0 && age < 5 * 60_000, "Approval must be given immediately before sending");
+  const quota = read("docs/qa/owner-acceptance/owner-quota-confirmation.json");
+  assert.ok(Date.now() >= Date.parse(quota.earliestConservativeRecheckAt));
+  const prior = read(root + "owner-window/invite-after-service-base-fix.json");
+  assert.equal(prior.inviteStatus, 429);
+  assert.equal(prior.emailsAccepted, 0);
+  assert.equal(prior.dispatch, undefined);
+  assert.equal(prior.finalDatabase.users, 0);
+  assert.equal(prior.finalDatabase.outstanding_mail, 0);
+  assert.equal(prior.dispatcherDisabled, true);
+  authority = approval.ownerMessageReference;
+}
 if (reviewedFix) {
   // Explicit operator reconciliation after a reviewed compatibility fix, never
   // an automatic HTTP retry or a retry of a dispatched/uncertain Graph send.
@@ -65,6 +93,8 @@ const connection = read(root + "connection.json");
 assert.equal(connection.projectRef, ref);
 assert.equal(connection.organizationId, "otldyeunbqabbcjydjpe");
 const deployment = read("docs/qa/beta-isolation/deployment-status.json");
+if (quotaRecovery)
+  assert.equal(deployment.id, "dpl_5fADFGCKB9LGuwMLxjjE1cqjVZ4y");
 const preflight = read("docs/qa/owner-acceptance/supervised-preflight.json");
 assert.equal(deployment.effectiveTarget, "preview");
 assert.equal(deployment.state, "READY");
@@ -111,7 +141,7 @@ const report = {
   url: deployment.url,
   project: ref,
   recipient: email,
-  authority: "Owner supervised authentication approval after 281e372c",
+  authority,
   emailsRequested: 0,
   emailsAccepted: 0,
   deliveryVerified: false,
