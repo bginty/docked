@@ -1,0 +1,39 @@
+{
+  "commit": "3d6b81409e0cde2d768c459b0a6bdaf66659ed44",
+  "deploymentId": "dpl_7sZKHS4YyHtCRZHAxwGdbDBp4BBE",
+  "url": "https://docked-production-eup7bl41f-briant-s-projects.vercel.app",
+  "requestedTarget": "preview",
+  "rawTarget": null,
+  "changes": ["Separated MFA action and explanatory text", "Explicit owner sign-in completion and gameplay checkpoint", "Existing current-session sign-out control", "Accurate password reset errors for MFA and password policy failures"],
+  "localAcceptance": {
+    "isolatedChromiumLayoutChecks": 6,
+    "widths": [320, 390, 1366],
+    "states": ["MFA required", "MFA verified"],
+    "overlap": false,
+    "horizontalOverflow": false,
+    "typecheck": "PASS",
+    "focusedLint": "PASS",
+    "signoutAndRecoveryRegressions": "5 PASS",
+    "exportSecretScan": "539 files PASS"
+  },
+  "hostedAcceptance": {
+    "state": "READY",
+    "protectedOwnerPreflightChecks": "12 PASS",
+    "loginLayouts": [390, 1366],
+    "recoveryBrowserChecks": "PASS at 390/1366px; synthetic provider redirects intercepted before network",
+    "crossOriginRecoveryDenied": true,
+    "publicSignupDenied": true,
+    "unauthenticatedOwnerSetupRedirectsToLogin": true,
+    "protection": "all_except_custom_domains",
+    "productionAliases": [],
+    "holdingPageUnchanged": true,
+    "exactRecoveryCallbackUpdated": true,
+    "mailDisabled": true,
+    "existingCallbacksAndAllOtherAuthSettingsPreserved": true
+  },
+  "ownerPasswordLogin": "Owner confirmed success on previous deployment",
+  "authenticatedOwnerVisualAcceptanceOnNewDeployment": "Requires owner browser session; not simulated as real authentication",
+  "gameplayActivated": false,
+  "externalTestersActivated": false,
+  "emailsSent": 0
+}
