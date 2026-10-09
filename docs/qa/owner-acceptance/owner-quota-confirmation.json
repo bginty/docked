@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-10-09T09:50:57.671Z",
+  "project": "pojoymtniryarxxunyvz",
+  "ownerVerifiedLimits": {
+    "emailPerHour": 2,
+    "signUpSignInPerFiveMinutesPerIp": 30,
+    "verificationPerFiveMinutesPerIp": 30,
+    "ipForwardingEnabled": false
+  },
+  "source": "Owner dashboard verification supplied in conversation; not agent quota API readback",
+  "lastProviderRejectionAt": "2026-10-09T09:26:05Z",
+  "error": "over_email_send_rate_limit",
+  "earliestConservativeRecheckAt": "2026-10-09T10:30:00Z",
+  "exactProviderResetKnown": false,
+  "freshExplicitApprovalRequiredImmediatelyBeforeSend": true,
+  "sendApproved": false,
+  "automaticRetry": false,
+  "sendingSwitchesClosed": true,
+  "publicSignupDisabled": true,
+  "database": {
+    "users": 0,
+    "mfaFactors": 0,
+    "admissions": 0,
+    "pendingMail": 0,
+    "cronJobs": 0,
+    "netSchemaExists": false,
+    "schedulerEnabled": false,
+    "testersEnabled": false
+  },
+  "emailsRequestedThisTurn": 0,
+  "cloudSettingsChanged": false
+}

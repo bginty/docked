@@ -1,5 +1,7 @@
 # Owner acceptance — supervised window closed; Auth invitation rate-limited
 
+**Owner quota confirmation:** 2 emails/hour; signups/sign-ins and verification each 30 requests/5 minutes/IP; IP forwarding disabled. No settings changed. See [next supervised window](DOCKED-OWNER-INVITATION-NEXT-WINDOW.md): earliest conservative recheck 21:30 Sydney on 9 October, followed by fresh read-only checks and explicit approval immediately before one invitation. Sending remains disabled; no automatic retry is scheduled. Future email scaling is a recommendation only.
+
 **Current status, 9 October 2026:** See [Supervised owner authentication acceptance](DOCKED-SUPERVISED-OWNER-AUTH-2026-10-09.md). The operator dispatcher removes the need for pg_net for this supervised test. The protected owner-auth deployment is READY. The real provider payload compatibility defect was fixed and verified without sending. The subsequent invitation returned HTTP429 `over_email_send_rate_limit`. No owner account or production email was created. All dispatcher switches are OFF. No automatic retry is scheduled. Account confirmation, recovery, personal MFA and positive hosted gameplay remain blocked. Historical scheduler/deployment evidence below is retained and does not describe the latest deployment.
 
 
