@@ -6,6 +6,7 @@ import { requireIdentity } from "./auth";
 import { setCommunityClaims } from "./community-social";
 import { previewCommunityContext } from "@/core/preview-community";
 import { appOnboardingSchema } from "@/core/preview-testers";
+import { betaOwnerAuthenticationOnly } from "@/core/hosted-beta.mjs";
 import {
   currentConsentVersions,
   legalConsentRequired,
@@ -75,6 +76,10 @@ export async function appOnboardingState(
 export async function saveAppOnboarding(input: unknown) {
   const v = appOnboardingSchema.parse(input),
     who = await requireIdentity();
+  // Existing in-flight forms must also avoid the closed community gate. No
+  // preference, consent or completion record is written by this redirect.
+  if (betaOwnerAuthenticationOnly(process.env))
+    return { ok: true, redirect: "/app/owner-setup", message: "Continue secure owner setup." };
   if (!DateTime.now().setZone(v.timezone).isValid)
     throw Error("Valid timezone required");
   const versions = currentConsentVersions();

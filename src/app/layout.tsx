@@ -22,7 +22,7 @@ import { brand } from "@/brand/brand";
 import "./fantasy.css";
 import { fantasyTagline } from "@/core/fantasy";
 import {
-  fantasyPlatformEnabled as fantasyEnabled,
+  fantasyPresentationEnabled as fantasyEnabled,
   fantasyProductionEnabled,
 } from "@/core/fantasy-production";
 import { fantasyAssets } from "@/brand/fantasy-assets";
@@ -115,7 +115,7 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const environment = await environmentPresentation();
-  if (environment.fantasyPreview || environment.fantasyProduction)
+  if (environment.fantasyBranding)
     return (
       <html lang="en">
         <body className="fantasy-mode">

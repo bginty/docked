@@ -4,7 +4,7 @@ import { authUiReadiness } from "@/core/auth-readiness";
 import { config } from "./config";
 import { db } from "./db";
 import { fantasyEnabled } from "@/core/fantasy";
-import { fantasyProductionEnabled } from "@/core/fantasy-production";
+import { fantasyProductionEnabled, fantasyPresentationEnabled } from "@/core/fantasy-production";
 
 /** Only non-sensitive capability flags are passed to the client. */
 export const environmentPresentation = cache(async () => {
@@ -27,6 +27,7 @@ export const environmentPresentation = cache(async () => {
     reviewOnly: settings.reviewOnly,
     fantasyPreview: fantasyEnabled(),
     fantasyProduction: fantasyProductionEnabled(),
+    fantasyBranding: fantasyPresentationEnabled(),
     registrationAvailable: accountConfigured && readiness.registrationAvailable,
     accountConfigured,
     reason: accountConfigured

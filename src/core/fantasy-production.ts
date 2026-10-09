@@ -2,6 +2,16 @@ import { z } from "zod";
 import manifest from "../../config/hosted-production.json";
 import { assertHostedProduction } from "./hosted-production.mjs";
 import { fantasyEnabled, fantasyAction } from "./fantasy";
+import { assertHostedBeta } from "./hosted-beta.mjs";
+
+/** Brand identity is independent of the permission to issue cards or play. */
+export function fantasyPresentationEnabled(
+  env: Record<string, string | undefined> = process.env,
+) {
+  return env.DOCKED_BETA_STAGING === "true"
+    ? assertHostedBeta(env)
+    : fantasyPlatformEnabled(env);
+}
 
 export function fantasyProductionEnabled(
   env: Record<string, string | undefined> = process.env,

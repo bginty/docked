@@ -1,6 +1,7 @@
 import { signOutBetaSession } from "@/core/beta-signout";
 import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
+import { betaOwnerAuthenticationOnly } from "@/core/hosted-beta.mjs";
 import { z } from "zod";
 import { authClient, sameOrigin } from "@/server/auth";
 import { config } from "@/server/config";
@@ -224,7 +225,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       error
         ? { error: "Invalid verification code" }
-        : { ok: true, redirect: "/admin" },
+        : { ok: true, redirect: betaOwnerAuthenticationOnly(process.env) ? "/app/owner-setup" : "/admin" },
     );
   }
   if (v.action === "recover") {

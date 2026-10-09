@@ -396,7 +396,9 @@ export function AppOnboardingForm({
         setMessage(result.error ?? "Unable to save your preferences.");
         return;
       }
-      router.replace(fantasyPreview ? "/fantasy/play" : "/edges");
+      router.replace(result.redirect === "/app/owner-setup"
+        ? "/app/owner-setup"
+        : fantasyPreview ? "/fantasy/play" : "/edges");
       router.refresh();
     } catch {
       setMessage(
