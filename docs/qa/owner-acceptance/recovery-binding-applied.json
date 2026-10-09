@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-09T11:35:12.038Z",
+  "project": "pojoymtniryarxxunyvz",
+  "deploymentId": "dpl_vcRdRDfrqAHPQgZBvvK2mhcRMVyP",
+  "authority": "Owner explicitly approved only recovery callback and matching hook origin immediately before this update",
+  "applied": true,
+  "exactRecoveryCallback": "https://docked-production-24ts2fdje-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password",
+  "hookOrigin": "https://docked-production-24ts2fdje-briant-s-projects.vercel.app",
+  "previousCallbacksPreserved": true,
+  "wildcardsAdded": false,
+  "allOtherPulledAuthSettingsUnchanged": true,
+  "allOtherSecretDigestsUnchanged": true,
+  "siteUrlChanged": false,
+  "rateLimitsChanged": false,
+  "ipForwardingChanged": false,
+  "mailDisabled": true,
+  "emailsRequested": 0
+}
