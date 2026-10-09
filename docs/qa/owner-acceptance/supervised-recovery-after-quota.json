@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-09T19:54:34.434Z",
+  "project": "pojoymtniryarxxunyvz",
+  "deploymentId": "dpl_Bw5iewq8fQxwpqzqXq2FUjrVE28G",
+  "recipient": "support@docked.com.au",
+  "authority": "Owner replied ready on 10 October immediately after instructions to authorize one recovery email following the overnight cooldown; no automatic retry authorized",
+  "operatorAuthRequests": 0,
+  "dispatchRequests": 1,
+  "deliveryVerified": false,
+  "retryAttempted": false,
+  "rateLimitsChanged": false,
+  "mailReceiptId": "c4fda27154c5f8875688ec5d037aa96e941e924c75a2529663b97ff00178492f",
+  "dispatch": {
+    "states": [
+      "accepted",
+      "idle",
+      "idle",
+      "idle"
+    ],
+    "deliveryVerified": false,
+    "operatorReviewRequired": false,
+    "retryAttempted": false
+  },
+  "queueOutcome": {
+    "state": "accepted",
+    "attempts": 1,
+    "last_code": "202"
+  },
+  "status": "AWAITING_OWNER_INBOX_AND_PERSONAL_RECOVERY",
+  "dispatcherDisabled": true,
+  "allSecretDigestsRestored": true,
+  "finalDatabase": {
+    "outstanding_mail": 0
+  }
+}
