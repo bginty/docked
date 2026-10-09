@@ -8,7 +8,7 @@ import type { FantasyState } from "../../src/core/fantasy";
 // Authored design fixture only. No session, live player, purchase or ownership claim.
 const id = (n: number) =>
   "00000000-0000-4000-8000-" + String(n).padStart(12, "0");
-export const state: FantasyState = {
+const authoredState: FantasyState = {
   user_id: id(1),
   credits: 250,
   admin: false,
@@ -92,6 +92,9 @@ export const state: FantasyState = {
   members: [{ id: id(1), name: "Fixture member" }],
   replacements: [],
 };
+const hostedQa = Reflect.get(window, "ownerQaState") as
+  FantasyState | undefined;
+export const state: FantasyState = hostedQa ?? authoredState;
 const root = createRoot(document.getElementById("fixture-root")!);
 let current = "play";
 function render(tab: string, empty = false) {
@@ -116,7 +119,9 @@ function render(tab: string, empty = false) {
     >
       <PathnameContext.Provider value={"/fantasy/" + tab}>
         <p className="fixture-disclosure">
-          DESIGN FIXTURE · fictional data · not hosted gameplay
+          {hostedQa
+            ? "HOSTED QA DATA · local component rendering · not an authenticated browser session"
+            : "DESIGN FIXTURE · fictional data · not hosted gameplay"}
         </p>
         <AppShell authenticated>
           <FantasyScreen

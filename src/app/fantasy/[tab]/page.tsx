@@ -73,8 +73,10 @@ export default async function FantasyPage({
         </Link>
         {process.env.DOCKED_OWNER_GAMEPLAY === "true" && (
           <p>
-            <Link href="/mfa">Verify your existing authenticator</Link> to
-            continue owner gameplay. Do not set up a new factor.
+            <Link href="/mfa" style={{ textDecoration: "underline" }}>
+              Verify your existing authenticator
+            </Link>{" "}
+            to continue owner gameplay. Do not set up a new factor.
           </p>
         )}
         <p>

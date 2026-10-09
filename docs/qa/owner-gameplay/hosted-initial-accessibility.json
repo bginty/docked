@@ -1,0 +1,205 @@
+{
+  "at": "2026-10-09T22:21:28.934Z",
+  "deployment": {
+    "id": "dpl_AtA9VGS84xb5ANGaWYY7Rwj5uKis",
+    "url": "https://docked-production-h2foogbd6-briant-s-projects.vercel.app",
+    "commit": "cf52827d8a239c92d692892ff4dfd69ec1d3f54c",
+    "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "branch": "codex/vercel-beta-review",
+    "requestedTarget": "preview",
+    "rawTarget": null,
+    "effectiveTarget": "preview",
+    "state": "BUILDING",
+    "submittedAt": "2026-10-09T22:19:24.038Z"
+  },
+  "scope": "Protected hosted anonymous/application-denial and responsive screens only. No owner impersonation, account creation, email or gameplay transaction.",
+  "checks": [
+    {
+      "name": "Vercel protection remains enabled",
+      "pass": true,
+      "status": 302
+    },
+    {
+      "name": "Fantasy identity and closed registration status",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Retired /edges",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Retired /tips/old",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Retired /my-edge",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Retired /top-docked",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Retired /api/edges",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Retired /api/market-data",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Retired /api/admin/scanner",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Retired /api/admin/research",
+      "pass": true,
+      "status": 410
+    },
+    {
+      "name": "Fantasy data unavailable to anonymous visitor",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "Foreign-origin fantasy writes denied before any command",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "Security headers",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "Hosted home 412",
+      "pass": true,
+      "screenshot": "docs/qa/owner-gameplay/hosted-home-412.png"
+    },
+    {
+      "name": "Hosted login 412",
+      "pass": true,
+      "screenshot": "docs/qa/owner-gameplay/hosted-login-412.png"
+    },
+    {
+      "name": "Hosted signup-closed 412",
+      "pass": true,
+      "screenshot": "docs/qa/owner-gameplay/hosted-signup-closed-412.png"
+    },
+    {
+      "name": "Hosted console 412",
+      "pass": true,
+      "errors": 0
+    },
+    {
+      "name": "Hosted home 1440",
+      "pass": true,
+      "screenshot": "docs/qa/owner-gameplay/hosted-home-1440.png"
+    },
+    {
+      "name": "Hosted login 1440",
+      "pass": true,
+      "screenshot": "docs/qa/owner-gameplay/hosted-login-1440.png"
+    },
+    {
+      "name": "Hosted signup-closed 1440",
+      "pass": true,
+      "screenshot": "docs/qa/owner-gameplay/hosted-signup-closed-1440.png"
+    },
+    {
+      "name": "Hosted console 1440",
+      "pass": true,
+      "errors": 0
+    }
+  ],
+  "pages": [
+    {
+      "name": "home",
+      "width": 412,
+      "path": "/",
+      "screenshot": "docs/qa/owner-gameplay/hosted-home-412.png"
+    },
+    {
+      "name": "login",
+      "width": 412,
+      "path": "/app/login",
+      "screenshot": "docs/qa/owner-gameplay/hosted-login-412.png"
+    },
+    {
+      "name": "signup-closed",
+      "width": 412,
+      "path": "/app/signup",
+      "screenshot": "docs/qa/owner-gameplay/hosted-signup-closed-412.png"
+    },
+    {
+      "name": "home",
+      "width": 1440,
+      "path": "/",
+      "screenshot": "docs/qa/owner-gameplay/hosted-home-1440.png"
+    },
+    {
+      "name": "login",
+      "width": 1440,
+      "path": "/app/login",
+      "screenshot": "docs/qa/owner-gameplay/hosted-login-1440.png"
+    },
+    {
+      "name": "signup-closed",
+      "width": 1440,
+      "path": "/app/signup",
+      "screenshot": "docs/qa/owner-gameplay/hosted-signup-closed-1440.png"
+    }
+  ],
+  "failures": [
+    {
+      "name": "Hosted cards-gated 412",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted play-gated 412",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted market-gated 412",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted social-gated 412",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted profile-gated 412",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted cards-gated 1440",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted play-gated 1440",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted market-gated 1440",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted social-gated 1440",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    },
+    {
+      "name": "Hosted profile-gated 1440",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   {\n+     id: 'link-in-text-block',\n+     targets: [\n+       [\n+         'a[href$=\"mfa\"]'\n+       ]\n+     ]\n+   }\n+ ]\n- []\n"
+    }
+  ],
+  "passed": false
+}

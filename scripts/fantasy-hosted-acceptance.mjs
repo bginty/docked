@@ -14,7 +14,9 @@ assert.match(
   base,
   /^https:\/\/docked-production-[a-z0-9]+-briant-s-projects\.vercel\.app$/,
 );
-const out = "docs/qa/fantasy-cleanup";
+const out = process.argv.includes("--owner-gameplay")
+  ? "docs/qa/owner-gameplay"
+  : "docs/qa/fantasy-cleanup";
 const report = {
   at: new Date().toISOString(),
   deployment: d,
@@ -126,6 +128,14 @@ try {
       ["login", "/app/login"],
       ["signup-closed", "/app/signup"],
       ["cards-gated", "/fantasy/cards"],
+      ...(process.argv.includes("--owner-gameplay")
+        ? [
+            ["play-gated", "/fantasy/play"],
+            ["market-gated", "/fantasy/market"],
+            ["social-gated", "/fantasy/social"],
+            ["profile-gated", "/fantasy/profile"],
+          ]
+        : []),
     ])
       await check(`Hosted ${name} ${width}`, async () => {
         await page.goto(base + path, { waitUntil: "networkidle" });
