@@ -8,12 +8,25 @@ import {flags,secrets,checkFlags} from './owner-mail-window.mjs';
 import {dispatchOnce} from './owner-mail-dispatch.mjs';
 const read=p=>JSON.parse(readFileSync(p,'utf8'));
 const root='private-data/production/';
-const repaired = process.argv[2] === '--supervised-repaired-once';
-const receipt=root+'owner-window/'+(repaired?'recovery-repaired-attempt.json':'recovery-browser-attempt.json');
-const approvalPath=root+'owner-window/'+(repaired?'recovery-repaired-approval.json':'recovery-browser-approval.json');
+const afterQuota = process.argv[2] === '--supervised-after-quota-once';
+const repaired = afterQuota || process.argv[2] === '--supervised-repaired-once';
+const attemptName = afterQuota ? 'recovery-after-quota' : repaired ? 'recovery-repaired' : 'recovery-browser';
+const receipt=root+'owner-window/'+attemptName+'-attempt.json';
+const approvalPath=root+'owner-window/'+attemptName+'-approval.json';
 const dispatchApprovalPath=root+'microsoft365/owner-dispatch-approval.json';
 assert.ok(repaired || process.argv[2] === '--supervised-once');
 assert.equal(existsSync(receipt),false,'Prior attempt exists; reconcile, never repeat');
+if(afterQuota){
+  const prior=read(root+'owner-window/recovery-repaired-attempt.json');
+  const denial=read('docs/qa/owner-acceptance/repaired-recovery-rate-limit.json');
+  assert.equal(prior.dispatchRequests,0);
+  assert.equal(prior.dispatcherDisabled,true);
+  assert.equal(prior.finalDatabase.outstanding_mail,0);
+  assert.equal(denial.status,429);
+  assert.equal(denial.errorCode,'over_email_send_rate_limit');
+  assert.equal(denial.newMailJobsSinceWindowStart,0);
+  assert.ok(Date.now()>=Date.parse(denial.conservativeNextRecheckAt));
+}
 const approval=read(approvalPath);
 assert.equal(approval.approved,true);
 assert.equal(approval.ownerBrowserReady,true);
@@ -107,6 +120,6 @@ try {
   try{const [state]=await sql`select count(*)::int outstanding_mail from private.docked_auth_mail_outbox where state in ('pending','authorizing','dispatching')`;report.finalDatabase=state;}catch{report.databaseReadbackUnavailable=true;}
   await sql.end({timeout:5});
   if(existsSync(receipt))writeFileSync(receipt,JSON.stringify(report,null,2),{mode:0o600});
-  writeFileSync('docs/qa/owner-acceptance/'+(repaired?'supervised-recovery-repaired.json':'supervised-recovery.json'),JSON.stringify(report,null,2)+'\n');
+  writeFileSync('docs/qa/owner-acceptance/'+(afterQuota?'supervised-recovery-after-quota.json':repaired?'supervised-recovery-repaired.json':'supervised-recovery.json'),JSON.stringify(report,null,2)+'\n');
   console.log(JSON.stringify(report));
 }
