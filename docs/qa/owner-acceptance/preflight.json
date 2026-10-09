@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-09T07:11:44.405Z",
+  "project": "pojoymtniryarxxunyvz",
+  "publicSignup": false,
+  "emailProvider": true,
+  "emailConfirmationRequired": true,
+  "signedHookConfiguration": "Applied by sparse CLI diff; existing signing secret reused",
+  "senderEnabled": false,
+  "workerEnabled": false,
+  "diagnosticEnabled": false,
+  "invitesEnabled": false,
+  "mailSentThisTurn": 0,
+  "accountsCreated": 0,
+  "administratorMfaEnrolled": false,
+  "schedulerPermissionGate": "FAIL; unused pg_net rolled back",
+  "independentTests": {
+    "focused": 25,
+    "typecheck": "PASS",
+    "changedSourceLint": "PASS"
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-09T05:43:57.422Z",
-  "deploymentId": "dpl_9bpzTDoiyMQTZ5etwpmajVJVtK4h",
-  "commit": "da3b48a2a6235d1f7592047dd00724586cbb6c0e",
-  "origin": "https://docked-production-7id3ohty2-briant-s-projects.vercel.app",
+  "checkedAt": "2026-10-09T07:14:19.991Z",
+  "deploymentId": "dpl_GUKPib2D7KdzVa2V19MXiTaDUA3w",
+  "commit": "bbd302b85242a45a6c5d1b06287baa9a6067fe20",
+  "origin": "https://docked-production-2c4c80cpl-briant-s-projects.vercel.app",
   "scope": "Actual hosted closed beta connected to dedicated production project through restricted beta role; browser emulation, not physical Android/iPhone. Denial checks are not successful account/gameplay journeys.",
   "checks": [
     {
@@ -14,6 +14,28 @@
       "name": "Invitation confirmation remains closed before approval",
       "pass": true,
       "status": 503
+    },
+    {
+      "name": "Approved seven-document policy packet is served on the protected beta",
+      "pass": true,
+      "status": 200,
+      "version": "2026-10-09-beta-rc2",
+      "documents": 7
+    },
+    {
+      "name": "Beta /terms routes to the approved packet",
+      "pass": true,
+      "status": 307
+    },
+    {
+      "name": "Beta /privacy routes to the approved packet",
+      "pass": true,
+      "status": 307
+    },
+    {
+      "name": "Beta /safer-gambling routes to the approved packet",
+      "pass": true,
+      "status": 307
     },
     {
       "name": "Anonymous access retains Vercel protection",

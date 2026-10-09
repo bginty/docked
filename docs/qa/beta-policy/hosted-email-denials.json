@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-09T05:44:57.367Z",
+  "checkedAt": "2026-10-09T07:16:40.072Z",
   "projectRef": "pojoymtniryarxxunyvz",
   "function": "docked-auth-email",
-  "scope": "Actual hosted Edge Function HTTP responses; mail disabled, no Microsoft credentials, no Auth hook activation or accounts created",
+  "scope": "Actual hosted Edge Function HTTP responses with sending disabled. Existing Auth hook is connected; these checks change no hook configuration, create no users, enqueue no mail and use no Microsoft credentials.",
   "checks": [
     {
       "name": "GET rejected",

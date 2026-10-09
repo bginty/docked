@@ -35,3 +35,22 @@ No plan upgrade, paid service or new Microsoft grant is authorized. If the platf
 Verify the real scheduled signed worker and its fail-closed retry handling, pin the final exact Preview callback, and enable only support@docked.com.au delivery. Create/reserve the designated owner identity and send one controlled invitation. The owner must personally confirm Inbox receipt, follow the invitation, set a private password, accept the approved policies and enroll TOTP at `/mfa`. Do not share the password, seed or codes in chat. Verify `aal2` before granting administrator capabilities.
 
 Then complete recovery, genuinely expired/reused links, session revocation, email failure recovery and positive persisted hosted gameplay. Keep external admission and public signup closed. Android beta release waits for mandatory hosted acceptance; no physical-device testing or playable account is claimed yet.
+
+## Final protected deployment and tests
+
+Application commit: `bbd302b85242a45a6c5d1b06287baa9a6067fe20`.
+Deployment: `dpl_GUKPib2D7KdzVa2V19MXiTaDUA3w`, READY, verified Preview target (Vercel raw target null), no aliases or custom domains.
+Protected URL: https://docked-production-2c4c80cpl-briant-s-projects.vercel.app
+Approved packet: https://docked-production-2c4c80cpl-briant-s-projects.vercel.app/beta-policies
+
+- PASS: 25 focused policy/authentication tests; TypeScript and changed-source lint.
+- PASS: 42 actual hosted closed-access checks, including approved policy routes, isolated database availability, authorization denials and responsive pages.
+- PASS: all seven rendered policy bodies exactly matched approved text at 320px and 1366px, with no horizontal overflow. Browser emulation, not native Android/iPhone testing.
+- PASS: 535-file committed export scan and 17 served browser assets scanned for known credentials/private material.
+- PASS: eight signed/unsigned/expired/disabled hosted email checks after final exact-origin configuration.
+- PASS: dedicated-project readback showed zero Auth users, zero MFA factors, zero cron jobs, zero outstanding mail jobs, beta/tester admission false, scheduler false and pg_net absent after rollback. Both extension preparation and rollback migrations were recorded.
+- PASS: exact Auth Site URL/callback refresh; section-qualified settings comparison proved all other pulled values unchanged. A first textual comparison differed only in TOML section order, not settings; the write was not repeated.
+- FAIL/BLOCKED: least-privilege managed network scheduler permissions. No sending window opened.
+- NOT RUN: actual owner invitation/recovery delivery, personal MFA, positive persisted hosted gameplay, updated Android APK and physical-device acceptance.
+
+The holding page still returns HTTP200; www redirects to the unchanged apex. No custom domain, paid service, Microsoft permission, certificate, Oura resource or old Docked Preview was changed. The other-mailbox negative Exchange authorization test remains uncompleted.
