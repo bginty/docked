@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-09T11:33:00.117Z",
+  "project": "pojoymtniryarxxunyvz",
+  "owner": "support@docked.com.au",
+  "source": "Owner-reported personal MFA completion plus independent scoped PostgreSQL readback",
+  "confirmedEmail": true,
+  "verifiedTotpFactors": 1,
+  "activeAal2Sessions": 1,
+  "designatedAdministrator": true,
+  "acceptedBetaAdmission": true,
+  "betaRole": "owner",
+  "officialRoleCount": 0,
+  "bootstrapAuditEvents": 1,
+  "bootstrap": "Atomic idempotent data assignment after verified-factor and active-AAL2 checks; no database privilege grants",
+  "roleMutationPrivileges": {
+    "anon": false,
+    "authenticated": false,
+    "docked_app": false,
+    "docked_beta_app": false
+  },
+  "testersEnabled": false,
+  "publicSignupDisabled": true,
+  "mailDisabled": true,
+  "pendingMail": 0,
+  "mfaSecretsRead": false,
+  "agentEnrolledFactor": false,
+  "recoveryAcceptance": "NOT_RUN",
+  "positiveHostedAdministratorAcceptance": "OWNER_BROWSER_CHECK_PENDING",
+  "positiveGameplayAcceptance": "NOT_RUN",
+  "emailsRequestedThisTurn": 0,
+  "rateLimitsChanged": false
+}

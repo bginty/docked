@@ -1,0 +1,26 @@
+{
+  "preparedAt": "2026-10-09T11:32:15.692Z",
+  "project": "pojoymtniryarxxunyvz",
+  "deploymentId": "dpl_vcRdRDfrqAHPQgZBvvK2mhcRMVyP",
+  "changes": [
+    {
+      "setting": "auth.additional_redirect_urls",
+      "operation": "Append one exact URL; preserve all existing entries",
+      "value": "https://docked-production-24ts2fdje-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password"
+    },
+    {
+      "setting": "DOCKED_BETA_AUTH_ORIGIN",
+      "operation": "Pin disabled signed email hook to current protected Preview",
+      "value": "https://docked-production-24ts2fdje-briant-s-projects.vercel.app"
+    }
+  ],
+  "declaredAuthDiff": [
+    "auth.additional_redirect_urls"
+  ],
+  "siteUrlChanged": false,
+  "rateLimitsChanged": false,
+  "ipForwardingChanged": false,
+  "mailSendingEnabled": false,
+  "applied": false,
+  "ownerApprovalRequired": true
+}
