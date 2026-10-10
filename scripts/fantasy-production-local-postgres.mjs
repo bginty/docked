@@ -56,7 +56,9 @@ try {
     [
       "--import",
       "tsx",
-      process.argv.includes("--commerce")
+      process.argv.includes("--sports-feed")
+        ? "scripts/sports-feed-concurrency.ts"
+        : process.argv.includes("--commerce")
         ? "scripts/commerce-concurrency.ts"
         : process.argv.includes("--friends")
         ? "scripts/two-person-beta-concurrency.ts"

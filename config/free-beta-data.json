@@ -1,0 +1,33 @@
+{
+  "version": "2026-10-11",
+  "scope": "isolated-free-beta",
+  "eligibility": {
+    "approved": true,
+    "sports": ["epl", "nfl"],
+    "firstYearOnly": false,
+    "firstYearMinimum": 0,
+    "authority": "Owner explicit approval 11 October 2026"
+  },
+  "providers": {
+    "sportmonks": {
+      "enabled": false,
+      "status": "RIGHTS_AND_CREDENTIALS_REQUIRED"
+    },
+    "sportsdataio": {
+      "enabled": false,
+      "status": "RIGHTS_AND_CREDENTIALS_REQUIRED"
+    }
+  },
+  "commercialInventoryChanges": false,
+  "liveCompetitions": [],
+  "paidFeatures": false,
+  "externalAdmission": false,
+  "schedule": {
+    "enabled": false,
+    "catalogueRefreshHours": 24,
+    "livePollSeconds": null,
+    "finalReconcileHours": 6,
+    "maximumAttempts": 6
+  },
+  "note": "Cadence is preparation only. Source-specific entitlement, field coverage and licence must pass before activation. No public invitations or live deadlines."
+}

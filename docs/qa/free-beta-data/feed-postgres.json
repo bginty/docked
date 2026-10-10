@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-10T21:23:10.955Z",
+  "scope": "Disposable PostgreSQL; contract fixtures, no live provider request",
+  "passed": true,
+  "checks": [
+    "20-way quota cap",
+    "20-way job claim",
+    "stale lease rejected",
+    "retry and raw persistence",
+    "20-way reconciliation exactly once",
+    "missing stats stay pending; finalisation denied",
+    "immutable journal",
+    "member raw-data denial",
+    "unapproved source blocked before fetch",
+    "licensed raw expiry removes payload only; hash/provenance remain; purge idempotent"
+  ]
+}

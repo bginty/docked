@@ -7,6 +7,10 @@ import {
   type Sport,
 } from "./scoring-v1";
 import { syntheticProvider, type SourceSnapshot } from "./scoring-provider";
+import {
+  validateAuthorisedScoring,
+  type AuthorisedScoringSnapshot,
+} from "./authorised-scoring-feed";
 
 // Server/operator module. No browser write endpoint imports this engine.
 export const digest = (value: unknown): string => {
@@ -54,10 +58,10 @@ export type Audit = {
 };
 export type ScoringState = {
   schemaVersion: 1;
-  scope: "simulated-beta";
+  scope: "simulated-beta" | "authorised-free-beta";
   period: Period;
   entries: Entry[];
-  sources: SourceSnapshot[];
+  sources: (SourceSnapshot | AuthorisedScoringSnapshot)[];
   audits: Audit[];
   finalisedAt: string | null;
   lineupsLockedAt: string | null;
@@ -210,6 +214,7 @@ export function importStatistics(
   operator: Operator,
   at: string,
   lateReason?: string,
+  approval?: unknown,
 ): ScoringState {
   if (!["importer", "reviewer"].includes(operator.role) || !operator.id)
     throw Error("Operator required");
@@ -218,12 +223,24 @@ export function importStatistics(
   const fixtureId = (input as { fixtureId?: string })?.fixtureId;
   const fixture = state.period.fixtures.find((f) => f.id === fixtureId);
   if (!fixture) throw Error("Unmapped fixture");
-  const source = syntheticProvider.normalize(
-    input,
-    state.period.sport,
-    fixture.id,
-    fixture.playerIds,
-  );
+  const source =
+    state.scope === "simulated-beta"
+      ? syntheticProvider.normalize(
+          input,
+          state.period.sport,
+          fixture.id,
+          fixture.playerIds,
+        )
+      : validateAuthorisedScoring(
+          input,
+          approval,
+          {
+            sport: state.period.sport,
+            fixtureId: fixture.id,
+            playerIds: fixture.playerIds,
+          },
+          at,
+        );
   if (time(source.observedAt) > time(at))
     throw Error("Future source observation");
   const old = state.sources.filter((s) => s.fixtureId === fixture.id).at(-1);
@@ -357,7 +374,7 @@ export function results(state: ScoringState) {
     sport: state.period.sport,
     period: state.period.label,
     rulesVersion: state.period.rules.version,
-    simulated: true as const,
+    simulated: state.scope === "simulated-beta",
     updatedAt: state.audits.at(-1)!.at,
     rows,
   };

@@ -11,7 +11,7 @@ const player = z
     currentClubId: z.string().min(1),
     currentClub: z.string().min(1),
     position: z.string().min(1),
-    firstEligibleSeason: z.string().min(1),
+    firstEligibleSeason: z.string().min(1).nullable(),
     observedAt: z.iso.datetime(),
     evidence: z.url(),
   })
@@ -108,4 +108,64 @@ export function verifyStarterEligibility(
       firstYearMinimum
   )
     throw Error("Sport or approved First Year minimum cannot be met");
+}
+
+/** Owner approved 11 October 2026. Applies only to NEW isolated free-beta grants.
+ * Existing editions, locked rules, ownership history and commercial eligibility stay intact. */
+export const friendsCataloguePolicy = {
+  version: "friends-current-players-2026-10-11",
+  scope: "isolated-free-beta",
+  sports: ["epl", "nfl"],
+  firstYearMinimum: 0,
+  scoringTierMultiplier: 1,
+} as const;
+
+export function friendsStarterPlan(input: unknown, rules: Rules, now: string) {
+  const catalogue = validateCatalogue(input, now);
+  if (rules.sport !== "epl" && rules.sport !== "nfl")
+    throw Error("Friends real catalogue scope is EPL and NFL");
+  const pool = catalogue.players
+    .filter(
+      (p) =>
+        p.sport === rules.sport && p.competition === rules.sport.toUpperCase(),
+    )
+    .sort((a, b) => a.providerId.localeCompare(b.providerId));
+  // Maximum bipartite matching, including NFL FLEX. No random purchase selection.
+  const assigned = new Map<number, number>();
+  const place = (slot: number, seen: Set<number>): boolean => {
+    for (let i = 0; i < pool.length; i++) {
+      if (
+        seen.has(i) ||
+        !rules.slots[slot].positions.includes(pool[i].position)
+      )
+        continue;
+      seen.add(i);
+      const previous = assigned.get(i);
+      if (previous === undefined || place(previous, seen)) {
+        assigned.set(i, slot);
+        return true;
+      }
+    }
+    return false;
+  };
+  if (rules.slots.some((_, i) => !place(i, new Set())))
+    throw Error(
+      "Verified catalogue cannot supply a complete eligible starting team",
+    );
+  const selected = [...assigned]
+    .sort((a, b) => a[1] - b[1])
+    .map(([i]) => pool[i]);
+  verifyStarterEligibility(rules, selected, "not-required-for-free-beta", 0);
+  return {
+    policy: friendsCataloguePolicy,
+    catalogueVersion: catalogue.version,
+    sport: rules.sport,
+    rulesVersion: rules.version,
+    firstYearMinimum: 0,
+    selected,
+    grantsPerMember: selected.length,
+    preserveOriginalCards: true,
+    commercialSupplyChanges: false,
+    artwork: "approved-docked-only",
+  };
 }
