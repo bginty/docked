@@ -44,10 +44,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        // Separate sideload beta identity preserves the installed Preview app.
+        // Owner requires an in-place upgrade of the installed QA app. The accepted
+        // live-host receipt still gates this variant; identity is not an access gate.
         beta {
             initWith preview
-            applicationIdSuffix ".beta"
+            applicationIdSuffix ".preview"
             versionNameSuffix "-beta"
             signingConfig signingConfigs.debug
             debuggable false

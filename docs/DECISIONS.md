@@ -1,4 +1,4 @@
-Latest authority: 10 October 2026 consolidated friends release. See FRIENDS_RELEASE_PLAN.md and FRIENDS_POLICY_DECISIONS.md. Older Preview-only/one-tester decisions are superseded conditionally; historical policy bytes and accepted authentication remain preserved.
+Latest authority: 11 October 2026 free-beta continuation and explicit owner player approval. All current EPL/NFL players are eligible for NEW isolated free-beta grants and competitions, no first-year minimum; EPL only association football. Rights, current data, complete position coverage and independent beta inventory remain mandatory. No owned fictional card is renamed and no commercial scarcity or locked rule changes. Support/operator and retention proposals remain unapproved until the owner answers them. See FREE_BETA_DATA_HANDOVER.md, FREE_BETA_PRIVACY_PROPOSAL.md and FREE_BETA_PROVIDER_ACTIVATION.md. The 10 October conditional domain authority remains valid; older Preview-only/one-tester limits do not supersede it.
 
 # Current Docked decisions
 

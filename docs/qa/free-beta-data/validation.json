@@ -1,0 +1,20 @@
+{
+  "dateSydney": "2026-10-11",
+  "platform": {"passed":231,"failed":0},
+  "databaseRls": {"passed":147,"failed":0},
+  "targetedProviderCatalogueAndroidInvitation": {"passed":15,"failed":0},
+  "typecheck":"PASS",
+  "lint":"PASS",
+  "productionWebBuild":"PASS",
+  "productionDependencyAdvisories":0,
+  "postgresFriendsPrivacy":"PASS: ../friends-release/real-postgres.json",
+  "postgresFeed":"PASS: feed-postgres.json",
+  "hostedPrivacySchema":"PASS: privacy-hosted-apply.json; no real deletion",
+  "realProviderRequest":"NOT EXECUTED: credentials/rights/field coverage unverified",
+  "realCatalogueIssued":false,
+  "externalBetaActivated":false,
+  "browserUi":"NOT REPEATED: no UI changes, prior acceptance preserved",
+  "androidBinary":"Existing v15 preserved; no new APK; future package preparation tested only",
+  "physicalS24":"PENDING OWNER",
+  "visualApproval":"PENDING OWNER"
+}

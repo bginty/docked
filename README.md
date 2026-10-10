@@ -4,6 +4,8 @@
 
 The current implementation offers fictional football cards, limited editions, collections, team selection, simulated competitions, rankings and isolated Preview transactions. The shared scoring framework has isolated EPL/NFL/AFL fixture verification; operational real-statistics scoring and real player catalogues are not connected. See the current friends-release documents before activating external access.
 
+11 October 2026: the owner approved all current EPL/NFL players for the isolated free beta, removing the first-year restriction for new beta grants/competitions. This is not data-rights or spending approval. [Current handover](docs/FREE_BETA_DATA_HANDOVER.md), [provider activation](docs/FREE_BETA_PROVIDER_ACTIVATION.md), and [privacy proposal](docs/FREE_BETA_PRIVACY_PROPOSAL.md) supersede the older unresolved eligibility question. Never rename fictional owned cards, rewrite locked history or alter commercial supply to fulfil it.
+
 Use the existing branch and supplied assets. Preserve authentication, MFA, invitation gates, ownership integrity and server-side transactions. Rarity never multiplies fantasy scores.
 
 ## Run and verify

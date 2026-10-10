@@ -1,5 +1,7 @@
 > Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.
 
+**Current delivery, 11 October:** v15 / 1.14-preview, `au.com.docked.app.preview`, protected owner backend. Use `config/android-owner-qa.json` and `npm run android:owner-qa`; the older v7 recipe below is historical only. Future `android:live-beta` now preserves that same package and signing setup for an in-place update, but still requires a genuine accepted docked.com.au receipt. It is blocked while the holding page remains. Do not manufacture a receipt or rebuild a misleading friends APK. Increment versionCode for the actual next deliverable and verify its certificate against v15. See FREE_BETA_DATA_HANDOVER.md.
+
 # Android preview build and verification
 
 ## Samsung S24 hosted preview

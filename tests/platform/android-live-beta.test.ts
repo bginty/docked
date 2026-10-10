@@ -8,6 +8,8 @@ import { resolveAndroidTarget } from "../../scripts/android-preview-config.mjs";
 import { assertDebugAssets } from "../../scripts/verify-android-debug-assets.mjs";
 import { betaReleaseIdentity } from "../../src/core/beta-release-identity.mjs";
 import production from "../../config/hosted-production.json";
+import ownerQa from "../../config/android-owner-qa.json";
+import { readFileSync } from "node:fs";
 
 const now = Date.parse("2026-10-09T00:00:00Z");
 test("debug packaging refuses assets left by beta or hosted Preview sync", () => {
@@ -45,7 +47,7 @@ const receipt = {
   kind: "docked-android-live-beta",
   environment: "production-beta",
   origin: "https://docked.com.au",
-  applicationId: "au.com.docked.app.beta",
+  applicationId: "au.com.docked.app.preview",
   supabaseProjectRef: "pojoymtniryarxxunyvz",
   netlifySiteId: "2292ba6e-7073-4804-b69a-26b41c9a9fb1",
   deploymentId: "a".repeat(24),
@@ -95,7 +97,7 @@ test("release provenance retains verified Netlify build metadata and rejects a m
     betaReleaseIdentity(env, manifest, { ...build, siteId: "other" }),
   );
 });
-test("Android beta selects the exact live backend and a separate package without copying extra fields", () => {
+test("Android beta selects the exact live backend and preserves installed owner package without copying extra fields", () => {
   const value = validateLiveBetaManifest(
     { ...receipt, secret: "never-copy" },
     now,
@@ -107,7 +109,13 @@ test("Android beta selects the exact live backend and a separate package without
     now,
   );
   assert.equal(target.entryUrl, "https://docked.com.au/app");
-  assert.equal(target.manifest?.applicationId, "au.com.docked.app.beta");
+  assert.equal(target.manifest?.applicationId, "au.com.docked.app.preview");
+  assert.equal(target.manifest?.applicationId, ownerQa.applicationId);
+  const variant = readFileSync("android/app/build.gradle", "utf8")
+    .split("        beta {")[1]
+    .split("        }")[0];
+  assert.match(variant, /applicationIdSuffix "\.preview"/);
+  assert.match(variant, /signingConfig signingConfigs.debug/);
   assert.equal(target.inspect, false);
   assert.equal(target.cleartext, false);
 });
@@ -167,7 +175,7 @@ test("Android beta refuses failed, stale, unrelated or public registration recei
     { origin: "https://docked-production.netlify.app" },
     { origin: "http://docked.com.au" },
     { supabaseProjectRef: "bckkllmndoxzpzdqrevb" },
-    { applicationId: "au.com.docked.app.preview" },
+    { applicationId: "au.com.docked.app.beta" },
     { deploymentId: "holding" },
     { verifiedAt: new Date(now - 86400001).toISOString() },
   ])

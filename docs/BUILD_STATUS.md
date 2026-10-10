@@ -1,4 +1,6 @@
-# Latest release authority — 10 October 2026
+# Latest release authority — 11 October 2026
+
+Current continuation: [FREE_BETA_DATA_HANDOVER](FREE_BETA_DATA_HANDOVER.md). All-current EPL/NFL eligibility approved, starter coverage planner and rights-gated vendor fetch/revision/reconciliation modules tested locally. Operator-only privacy schema installed on Docked with existing rows unchanged; synthetic export/deletion acceptance is local only. Real catalogue grants, operational scoring and external access remain unactivated. Dashboard/UI and accepted owner authentication were not repeated. Preview application and Android remain v15/6b735cfb; physical/visual approval pending.
 
 Current delivery and evidence: [FRIENDS_RELEASE_ACCEPTANCE](FRIENDS_RELEASE_ACCEPTANCE.md). Owner Preview application `6b735cfb`, Android v15. External friends activation remains blocked; physical S24 and visual approval are pending.
 

@@ -52,7 +52,7 @@ export function validateLiveBetaManifest(input, now = Date.now()) {
     input.kind !== "docked-android-live-beta" ||
     input.environment !== "production-beta" ||
     input.origin !== "https://docked.com.au" ||
-    input.applicationId !== "au.com.docked.app.beta" ||
+    input.applicationId !== "au.com.docked.app.preview" ||
     input.supabaseProjectRef !== "pojoymtniryarxxunyvz" ||
     !/^[a-f0-9]{40}$/.test(input.commit ?? "")
   )
