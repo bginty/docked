@@ -83,6 +83,10 @@ test("offensive recovery TD counted once; overlapping or multiple attribution st
     1,
   );
   assert.equal(
+    nflversePlayerStatistics({ ...r, fumble_recovery_tds: "0" }, [p]).stats,
+    null,
+  );
+  assert.equal(
     nflversePlayerStatistics(r, [{ ...p, rush_touchdown: "1" }]).stats,
     null,
   );

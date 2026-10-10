@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-10T23:26:35.237Z",
+  "at": "2026-10-10T23:43:28.337Z",
   "projectRef": "pojoymtniryarxxunyvz",
   "scope": "Hosted operator ingestion + restricted runtime SQL read; not browser/session or future live-match acceptance",
   "checks": [
@@ -10,7 +10,7 @@
   "sourceRevisions": [
     {
       "dataset": "weekly",
-      "status": "downloaded",
+      "status": "cooldown",
       "id": 1,
       "projectionHash": "ee4ed05a83e75b1c20cfe975eedb20bfcb66529856728f0bddd25205002e8917",
       "sourceSha256": "bda143a5f21ce606cf62cbf1f2ba832392e9f2cde73a8f733d4bc5d04f1598ff",
@@ -20,7 +20,7 @@
     },
     {
       "dataset": "pbp",
-      "status": "downloaded",
+      "status": "cooldown",
       "id": 2,
       "projectionHash": "f2be01d10d302f68284a3e8cd2284bcd6a0e5b12df1483227efa1f925bbda24e",
       "sourceSha256": "e7c162e793cb0f828b97c9c92bf6efd7d60ff35eb6ef9b407b8d16001fd2a39a",
@@ -30,7 +30,7 @@
     },
     {
       "dataset": "rosters",
-      "status": "downloaded",
+      "status": "cooldown",
       "id": 3,
       "projectionHash": "d761417f797859f12afb66df555e1adbf2523d9f03474d108e7cf4e3f290bc45",
       "sourceSha256": "de8d8492f4225c9e2788dcc692e0908a0a418f151f12639987ec3228a13264e2",

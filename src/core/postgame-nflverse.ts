@@ -236,7 +236,22 @@ export function nflverseRecoveryTouchdowns(
   plays: Record<string, string>[],
 ) {
   const count = integer(row, "fumble_recovery_tds");
-  if (!count) return 0;
+  if (!count) {
+    if (
+      plays.some(
+        (p) =>
+          p.play_deleted !== "1" &&
+          p.td_player_id === row.player_id &&
+          p.touchdown === "1" &&
+          p.fumble === "1" &&
+          p.pass_touchdown === "0" &&
+          p.rush_touchdown === "0" &&
+          p.special_teams_play === "0",
+      )
+    )
+      throw Error("Companion recovery evidence contradicts zero weekly total");
+    return 0;
+  }
   let reconciled = 0,
     offensive = 0;
   for (const p of plays.filter(

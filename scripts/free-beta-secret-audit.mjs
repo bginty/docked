@@ -16,7 +16,7 @@ const values = [
   decodeURIComponent(new URL(runtime.databaseUrl).password),
 ];
 const report = await auditPreviewTargets(
-  ["src", "public", "config", ".next/static", "docs/qa/free-beta-data"],
+  ["src", "public", "config", ".next/static", "docs/qa/free-beta-data", "docs/qa/postgame"],
   values,
 );
 await writeFile(
