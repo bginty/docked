@@ -23,7 +23,7 @@ try {
   );
 } catch {
   console.error(
-    "Invitation preparation blocked. Supply at most ten unique Australian tester entries in the private roster; exclude the owner and additional fields. No account or message was created.",
+    "Invitation preparation blocked. Supply exactly one Australian tester entry in the private roster; exclude the owner and additional fields. No account or message was created.",
   );
   process.exitCode = 1;
 }

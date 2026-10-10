@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-10T07:55:11.347Z",
+  "at": "2026-10-10T08:52:47.509Z",
   "mode": "--verify",
   "projectRef": "pojoymtniryarxxunyvz",
   "migration": "20261010072625_fantasy_play_read_model.sql",
@@ -11,7 +11,7 @@
     "Restricted hosted runtime owner read passed",
     "Non-owner and AAL1 denied",
     "Old wrapper and direct score/card access denied",
-    "Sandbox transaction schema absent from hosted DB",
+    "Disposable market_sandbox schema absent from hosted DB",
     "Fresh private QA snapshot saved"
   ],
   "passed": true

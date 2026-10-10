@@ -63,7 +63,7 @@ export async function identity() {
     if (!admission[0]?.allowed) return null;
     if (process.env.DOCKED_OWNER_GAMEPLAY === "true") {
       const owner =
-        await sql`select private.owner_gameplay_identity(${user.id}::uuid) allowed`;
+        await sql`select private.beta_gameplay_identity(${user.id}::uuid) allowed`;
       if (!owner[0]?.allowed) return null;
     }
   }

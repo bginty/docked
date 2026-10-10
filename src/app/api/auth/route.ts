@@ -1,7 +1,6 @@
 import { signOutBetaSession } from "@/core/beta-signout";
 import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
-import { betaOwnerAuthenticationOnly } from "@/core/hosted-beta.mjs";
 import { z } from "zod";
 import { authClient, sameOrigin } from "@/server/auth";
 import { config } from "@/server/config";
@@ -25,6 +24,7 @@ import type { TransactionSql } from "postgres";
 import { productionInvitationsEnabled } from "@/core/auth-invitation";
 import { verifiedInvitedUser } from "@/core/invitation-setup";
 import { passwordResetFailure } from "@/core/auth-policy";
+import { mfaFlow } from "@/server/mfa-flow";
 function signupTransaction(tx: TransactionSql): SignupTransaction {
   return {
     query: async (text, parameters) => [...(await tx.unsafe(text, parameters))],
@@ -40,6 +40,7 @@ const schema = z.object({
     "resend",
     "reset",
     "logout",
+    "mfa_status",
     "mfa_enroll",
     "mfa_verify",
   ]),
@@ -61,7 +62,7 @@ const schema = z.object({
   education: z.boolean().optional(),
   analytics: z.boolean().optional(),
   edgeAlerts: z.literal(false).optional(),
-  factorId: z.string().uuid().optional(),
+  next: z.string().max(80).optional(),
   code: z
     .string()
     .regex(/^\d{6}$/)
@@ -205,46 +206,12 @@ export async function POST(request: Request) {
       redirect: v.app ? "/app/login" : "/",
     });
   }
-  if (v.action === "mfa_enroll") {
-    const {
-      data: { user },
-    } = await client.auth.getUser();
-    if (!user)
-      return NextResponse.json({ error: "Sign in first" }, { status: 401 });
-    const { data, error } = await client.auth.mfa.enroll({
-      factorType: "totp",
-      friendlyName: "Docked privileged access",
+  if (["mfa_status", "mfa_enroll", "mfa_verify"].includes(v.action)) {
+    const result = await mfaFlow(client.auth, v.action, v.code, v.next);
+    return NextResponse.json(result, {
+      status: "error" in result ? 400 : 200,
+      headers: { "Cache-Control": "private, no-store" },
     });
-    return NextResponse.json(
-      error
-        ? { error: "MFA enrolment failed" }
-        : {
-            factorId: data?.id,
-            secret: data?.totp.secret,
-            uri: data?.totp.uri,
-          },
-    );
-  }
-  if (v.action === "mfa_verify") {
-    if (!v.factorId || !v.code)
-      return NextResponse.json(
-        { error: "Factor and code required" },
-        { status: 400 },
-      );
-    const { error } = await client.auth.mfa.challengeAndVerify({
-      factorId: v.factorId,
-      code: v.code,
-    });
-    return NextResponse.json(
-      error
-        ? { error: "Invalid verification code" }
-        : {
-            ok: true,
-            redirect: betaOwnerAuthenticationOnly(process.env)
-              ? "/app/owner-setup"
-              : "/admin",
-          },
-    );
   }
   if (v.action === "recover") {
     if (!v.email)
@@ -323,10 +290,7 @@ export async function POST(request: Request) {
         ? { error: "Sign-in failed. Check credentials and email verification." }
         : {
             ok: true,
-            redirect: await destinationAfterAuth(
-              data.user,
-              "/app",
-            ),
+            redirect: await destinationAfterAuth(data.user, "/app"),
           },
     );
   }

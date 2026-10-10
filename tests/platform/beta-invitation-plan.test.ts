@@ -2,14 +2,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { planBetaInvitations } from "../../src/core/beta-invitation-plan";
 
-test("beta roster permits ten Australian members plus the separate designated owner without enabling sends", () => {
+test("beta roster permits one Australian member plus the separate designated owner without enabling sends", () => {
   const plan = planBetaInvitations(
-    Array.from({ length: 10 }, (_, i) => ({
+    Array.from({ length: 1 }, (_, i) => ({
       email: `Tester${i}@example.invalid`,
       country: "AU",
     })),
   );
-  assert.equal(plan.testers.length, 10);
+  assert.equal(plan.testers.length, 1);
   assert.ok(plan.testers.every((row) => row.role === "member"));
   assert.equal(plan.testers[0].email, "tester0@example.invalid");
   assert.equal(plan.status, "prepared-not-authorized-for-sending");
@@ -17,7 +17,7 @@ test("beta roster permits ten Australian members plus the separate designated ow
 });
 test("beta roster rejects excess capacity, duplicates, owner reuse, overseas entries and role injection", () => {
   for (const input of [
-    Array.from({ length: 11 }, (_, i) => ({
+    Array.from({ length: 2 }, (_, i) => ({
       email: `tester${i}@example.invalid`,
       country: "AU",
     })),

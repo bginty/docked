@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { ApiForm, Field } from "@/components/forms";
+import { ApiForm } from "@/components/forms";
 import { AppAuthShell } from "@/components/app-auth-shell";
+import { MfaForm } from "@/components/mfa-form";
 export const metadata = {
   title: "Docked account and support",
   robots: { index: false, follow: false },
@@ -32,17 +33,7 @@ export default async function Page({
         <p>
           Sign in first. Privileged operations require a verified MFA session.
         </p>
-        <ApiForm
-          endpoint="/api/auth"
-          action="mfa_enroll"
-          submit="Set up authenticator"
-        >
-          <p>Keep your authenticator secret private.</p>
-        </ApiForm>
-        <ApiForm endpoint="/api/auth" action="mfa_verify" submit="Verify MFA">
-          <Field label="Factor ID" name="factorId" required />
-          <Field label="Six-digit code" name="code" required />
-        </ApiForm>
+        <MfaForm next={query.next} />
         <Link href="/dashboard">Account settings</Link>
       </AppAuthShell>
     );

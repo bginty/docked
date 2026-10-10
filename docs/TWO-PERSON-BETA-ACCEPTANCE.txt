@@ -1,0 +1,94 @@
+DOCKED TWO-PERSON BETA — 10 October 2026
+
+Scope: existing owner plus ONE named Australian adult tester; no public signup,
+real money, additional testers, paid service or public landing-page changes.
+Latest steering: ordinary tester uses email/password; owner and privileged actions
+retain mandatory server-side MFA. Existing owner password and factor preserved.
+
+IMPLEMENTED AND TESTED
+- Server resolves only the signed-in user's enrolled TOTP factor; no factor ID input
+  or factor ID response. Verified enrollment is never replaced or removed.
+- New enrollment displays provider QR image and manual setup key with once-only
+  instructions. Challenge takes six digits, supports paste/autofill, and redirects
+  into /app. AAL2 sessions continue without another code. Existing secure SSR cookie
+  refresh/persistence remains unchanged; no security timeout was lengthened.
+- Empty, disabled, immutable one-tester identity slot, separate from the existing
+  owner. Database admission, active-account and ordinary-role checks; no metadata
+  role trust. AAL1 tester gameplay permitted only for that exact admitted identity.
+- Beta-only swaps: inspect both cards and per-participant fee, propose, accept,
+  reject, cancel, receipts and ownership history. Same transaction changes both
+  owners and fee ledger; global fantasy transaction lock; ownership-history revision
+  checks; explicit request IDs; stale/expired quotes fail. Existing non-transferable
+  free beta cards gain swap permission ONLY through this scoped sandbox function;
+  card identity/tradeable flags are unchanged and official functions remain closed.
+- Saved unsettled lineups block swapping; locked/history rules remain unchanged.
+  One optional 11-card reserve pack per participant uses finite beta stock and the
+  existing audited pack allocator; no official supply or starter entitlement touched.
+- One optional AUD100 simulated practice balance per account. AUD2.50 simulated fee
+  per participant; 48 free hours each 28 days, epoch 10 October 2026 00:00 UTC.
+  Owner AAL2 can override free/paid for one hour; overrides invalidate old offers.
+  Balances have no monetary value; no payment provider or real wallet is used.
+
+VALIDATION
+- Platform: 201/201 pass. Database regression: 147/147 pass.
+- PostgreSQL 17.10 disposable loopback: 20-way admission/acceptance, AAL1 tester /
+  AAL2 owner, 10-way reserve-pack allocation, duplicate and competing acceptance,
+  exact simulated charges, free window, rejection/cancellation, injected fee-ledger
+  failure rollback, lineup blocking, immutable history, suspension, direct-role denial
+  and unchanged official records. Exact migration hashes in real-postgres.json.
+- Browser component fixtures at 320, 390 and 1366px: 3/3 pass; QR/manual-key controls,
+  no factor field, six-digit paste/autofill and redirect. Browser emulation, not a
+  real authenticator scan, hosted login or physical Android test.
+- Hosted migrations applied in pojoymtniryarxxunyvz only. Owner factor unchanged,
+  11 existing cards preserved, saved teams and all existing official/beta fantasy
+  records hash unchanged. Restricted runtime read and rolled-back owner lineup
+  checks pass. This is backend acceptance, not a fresh browser login.
+- Public build known-secret scan: 603 files, no findings/errors.
+- Supabase advisor: existing INFO for deny-by-default RLS with no public policies;
+  existing WARN leaked-password protection disabled. No broad grants made.
+
+ACTIVATION STATUS / REMAINING WORK
+Tester slot empty and disabled; sandbox policy disabled; external admission disabled.
+No account created, invitation/email sent, password reset, MFA reset or new factor.
+No public landing, DNS, Oura, original Preview or unrelated project changes.
+This release can update owner MFA usability while keeping incomplete activation closed.
+
+Before inviting the tester:
+1. Obtain their exact email from owner (not guessed), AU/18+ eligibility and one-send
+   instruction already authorised once supplied. Pin this one identity in the private
+   roster, preserve single-use expiring invitation, and complete browser confirmation.
+2. Resolve inherited external-admission requirements in approved rc2 policies:
+   Microsoft 365 mailbox data location and retention/hold settings; documented
+   necessity/review period for account-linked immutable gameplay records; verified
+   support-assisted export/deletion and residual media/log handling. Do not claim
+   earlier policy approval verified these provider settings or operational flows.
+   Prepare a versioned beta addendum for sandbox swaps, no-value simulated fees and
+   the reduced one-tester limit without altering previously approved rc2 hashes.
+3. Practical hosting: current Vercel Preview requires Vercel authentication. Do not
+   share owner credentials or automation bypass secrets. Proposed narrow change:
+   bind beta.docked.com.au to this project's reviewed Preview branch, add only the
+   exact DNS CNAME supplied by Vercel, and keep apex/www on the existing public site.
+   Verify application denial for all other accounts before exposing that hostname.
+   No hosting protection change or DNS action has been made by this work.
+4. Enable only the scoped two-person gate after these checks, configure the signed
+   Graph worker's exact recipient allowlist and callback origin for one invitation,
+   and preserve manual one-attempt dispatch/no automatic retry. Current support-only
+   operator sender must not simply be repurposed to send arbitrary recipients.
+5. Hosted tester login, collection/team/trade persistence, real Inbox delivery and
+   physical-device acceptance remain unverified until the actual tester exists.
+   Existing Android v12 targets the earlier protected owner Preview; it is not a
+   verified two-person beta APK. Build a connected APK after the accessible origin
+   and hosted acceptance are fixed; never embed Vercel bypass credentials.
+
+TWO-PERSON TEST SCRIPT (after activation)
+- Owner logs in and completes MFA if needed; tester logs in with email/password.
+- Tester claims/opens starter pack, both optionally claim/open beta reserves in Cards.
+- Both claim their one-time simulated practice balance. Save a valid team; confirm
+  cards in that unsettled team cannot be offered. Use unused reserve cards to trade.
+- Owner selects paid test state. Propose swap, inspect both sides and AUD2.50 each;
+  tester accepts. Refresh/reopen on both devices: owners/history match and each
+  simulated balance drops once. Repeated acceptance must not execute again.
+- Propose another swap; tester rejects. Propose another; sender cancels. Ownership
+  and balances stay unchanged. Test a free-state offer: zero simulated charge.
+- Change fee state after an offer and attempt acceptance: stale offer denied; create
+  a fresh reviewed offer. Never test by entering another user's credentials.

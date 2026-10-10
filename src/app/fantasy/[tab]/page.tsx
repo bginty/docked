@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SandboxSwaps } from "@/components/sandbox-swaps";
 import { notFound } from "next/navigation";
 import { fantasyTagline } from "@/core/fantasy";
 import {
@@ -54,7 +55,7 @@ export default async function FantasyPage({
   let data;
   try {
     data = await fantasyRequest();
-  } catch {
+  } catch (error) {
     return (
       <div className="fantasy-gate">
         <h1>
@@ -71,14 +72,15 @@ export default async function FantasyPage({
         <Link className="button" href="/app/login">
           Sign in
         </Link>
-        {process.env.DOCKED_OWNER_GAMEPLAY === "true" && (
-          <p>
-            <Link href="/mfa" style={{ textDecoration: "underline" }}>
-              Verify your existing authenticator
-            </Link>{" "}
-            to continue owner gameplay. Do not set up a new factor.
-          </p>
-        )}
+        {error instanceof Error &&
+          error.message === "Privileged MFA required" && (
+            <p>
+              <Link href="/mfa" style={{ textDecoration: "underline" }}>
+                Verify your existing authenticator
+              </Link>{" "}
+              to continue owner gameplay. Do not set up a new factor.
+            </p>
+          )}
         <p>
           If you are already signed in, Preview access may be expired or
           temporarily unavailable.
@@ -90,11 +92,16 @@ export default async function FantasyPage({
   return (
     <AppShell authenticated>
       <div>
-        <FantasyScreen key={tab} tab={tab} initial={data.state} />
+        {tab === "market" && process.env.DOCKED_TWO_PERSON_BETA === "true" ? (
+          <SandboxSwaps />
+        ) : (
+          <FantasyScreen key={tab} tab={tab} initial={data.state} />
+        )}
         {process.env.DOCKED_OWNER_GAMEPLAY === "true" && (
           <p className="notice" role="note">
-            Owner-only QA · fictional football cards and simulated scoring. No
-            real money, live sports results or external members.
+            {process.env.DOCKED_TWO_PERSON_BETA === "true"
+              ? "Two-person private beta · fictional cards, simulated scoring and sandbox swaps. No real money or live sports results."
+              : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
           </p>
         )}
         {feed && (

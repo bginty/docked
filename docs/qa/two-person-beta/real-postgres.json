@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "scope": "Disposable real loopback PostgreSQL, synthetic accounts; not hosted or physical-device acceptance",
+  "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "checkedAt": "2026-10-10T08:49:02.951Z",
+  "migrationHashes": {
+    "20261008224142_beta_namespace_isolation.sql": "83e359f9098de42edbca15348eb22e2f648bf8bbda25a38943aabe8ac0ebfbee",
+    "20261008224144_beta_atomic_admission.sql": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a",
+    "20261008225828_beta_owner_acceptance_boundary.sql": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0",
+    "20261008232200_beta_admission_snapshot_serialization.sql": "8c9045fc39134dd5077a0df0dd92156c388d5a47e5db616963cacb458debf604",
+    "20261009220656_owner_only_fantasy_gameplay.sql": "194ee56c781866097e4edfd989c2c6d3ca0d11d0d41d312ee3a514f11f82adec",
+    "20261010072625_fantasy_play_read_model.sql": "f72334e5c9c4cdec96d224222e9aef1550d0174ad39543d4f31ce7be44085a7d",
+    "20261010083630_two_person_beta_access.sql": "3bddb0e4d7e41607553c6b2357ea11657f346e3d098d97b0f30743c2b76872bf",
+    "20261010083836_two_person_sandbox_swaps.sql": "dab167e9f25d3766461b841998bb940e36583024164483082207bbdffa6c782f"
+  },
+  "scenarios": [
+    "Additive migrations preserve every official table, including existing cards and permanent starter entitlement",
+    "Dormant control denies reservation and alternate profile creation",
+    "20 concurrent invitation reservations and acceptances yield one tester; other identities and roster replacement denied",
+    "Ordinary tester without any MFA factor claims and opens 11 cards at AAL1; owner at AAL1 and tester admin operation denied",
+    "Reserve pack 10-way races allocate once per participant; 20 acceptance retries transfer both cards once and charge exactly 250 simulated cents each",
+    "Owner-only paid/free controls; stale fee quote rejected; sender self-accept and outsider denied; reject/cancel do not transfer; free acceptance charges zero",
+    "Competing offers cannot double-trade; injected fee-ledger failure rolls back both ownership changes; saved unsettled lineup blocks swapping",
+    "Runtime cannot read official assets or directly edit sandbox cards, balances or control; ledger immutable; suspension immediately denies tester"
+  ]
+}

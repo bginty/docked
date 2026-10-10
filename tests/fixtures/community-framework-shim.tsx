@@ -3,17 +3,20 @@ import type { AnchorHTMLAttributes } from "react";
 export function usePathname() {
   return (window as unknown as { demoPath: string }).demoPath || "/home";
 }
+const fixtureRouter = {
+  push: (url: string) => {
+    Object.assign(window, { demoNavigation: url });
+  },
+  refresh: () => {},
+  replace: (url: string) => {
+    Object.assign(window, { demoNavigation: url });
+  },
+  back: () => {},
+  forward: () => {},
+  prefetch: () => Promise.resolve(),
+};
 export function useRouter() {
-  return {
-    push: (url: string) => {
-      Object.assign(window, { demoNavigation: url });
-    },
-    refresh: () => {},
-    replace: () => {},
-    back: () => {},
-    forward: () => {},
-    prefetch: () => Promise.resolve(),
-  };
+  return fixtureRouter;
 }
 export default function Link({
   prefetch: _prefetch,

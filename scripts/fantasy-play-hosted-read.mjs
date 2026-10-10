@@ -205,7 +205,7 @@ try {
       "Restricted hosted runtime owner read passed",
       "Non-owner and AAL1 denied",
       "Old wrapper and direct score/card access denied",
-      "Sandbox transaction schema absent from hosted DB",
+      "Disposable market_sandbox schema absent from hosted DB",
       "Fresh private QA snapshot saved",
     );
   }

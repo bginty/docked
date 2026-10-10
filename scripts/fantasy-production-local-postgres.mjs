@@ -56,11 +56,13 @@ try {
     [
       "--import",
       "tsx",
-      process.argv.includes("--market-sandbox")
-        ? "scripts/fantasy-market-concurrency.ts"
-        : process.argv.includes("--beta-isolation")
-        ? "scripts/beta-isolation-concurrency.ts"
-        : "scripts/fantasy-production-concurrency.ts",
+      process.argv.includes("--two-person")
+        ? "scripts/two-person-beta-concurrency.ts"
+        : process.argv.includes("--market-sandbox")
+          ? "scripts/fantasy-market-concurrency.ts"
+          : process.argv.includes("--beta-isolation")
+            ? "scripts/beta-isolation-concurrency.ts"
+            : "scripts/fantasy-production-concurrency.ts",
     ],
     {
       windowsHide: true,

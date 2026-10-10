@@ -300,3 +300,18 @@ body:has(.app-auth-surface) > main {
     grid-template-columns: 1fr;
   }
 }
+.mfa-qr {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  padding: 12px;
+  background: #fff;
+  border-radius: 12px;
+}
+.mfa-setup-key {
+  display: block;
+  overflow-wrap: anywhere;
+  padding: 12px;
+  user-select: all;
+}
