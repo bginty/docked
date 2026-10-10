@@ -1,0 +1,31 @@
+{
+  "platform": {
+    "passed": 212,
+    "failed": 0
+  },
+  "databaseRegression": {
+    "passed": 147,
+    "failed": 0
+  },
+  "scoringUnit": 11,
+  "browser": {
+    "expected": 3,
+    "unexpected": 0,
+    "skipped": 0,
+    "widths": [
+      320,
+      390,
+      1366
+    ],
+    "sports": [
+      "epl",
+      "nfl",
+      "afl"
+    ],
+    "scope": "isolated components, not real account or physical Android"
+  },
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "build": "PASS",
+  "hosted": "pending"
+}

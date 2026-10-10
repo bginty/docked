@@ -92,6 +92,16 @@ export default async function FantasyPage({
   return (
     <AppShell authenticated>
       <div>
+        {tab === "play" &&
+          (process.env.VERCEL_ENV === "preview" ||
+            process.env.NODE_ENV === "development") && (
+            <p className="notice">
+              <Link href="/fantasy/scoring">
+                Scoring lab: EPL, NFL and AFL · simulated examples and beta
+                rules
+              </Link>
+            </p>
+          )}
         {tab === "market" && process.env.DOCKED_TWO_PERSON_BETA === "true" ? (
           <SandboxSwaps />
         ) : (

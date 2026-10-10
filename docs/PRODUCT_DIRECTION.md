@@ -26,4 +26,10 @@ Work is authorized only in protected Preview. Keep public registration, paid ser
 
 ## Acceptance
 
+Scoring follow-on, 10 October 2026: separate EPL, NFL half-PPR and AFL event-based
+beta rules are implemented in an isolated scoring lab. They use authored synthetic
+fixtures and fake cards; they do not activate live sport feeds, issue member cards,
+change existing football competition rules or establish historical balance. See
+`SCORING-V1-ACCEPTANCE.txt` for the exact versions and readiness of each sport.
+
 Local functional/database/concurrency tests, responsive browser evidence, hosted protected-Preview checks, physical Android checks and owner visual approval are separate gates. Report missing capabilities and blocked checks explicitly. Screenshots with synthetic data are design fixtures, never real members, card ownership or live competition evidence.

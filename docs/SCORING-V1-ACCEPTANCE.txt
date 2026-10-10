@@ -1,0 +1,188 @@
+DOCKED SCORING V1 — EPL / NFL / AFL — 10 October 2026
+
+DEPENDENCY CHECKPOINT
+MFA usability and role enforcement were completed at 5fcd25ca, with delivery evidence
+4a89c6a4. Existing owner MFA/password/11 cards/saved teams are unchanged. Ordinary
+tester AAL1 acceptance and owner AAL2 enforcement passed the earlier isolated tests.
+Real second-user onboarding remains blocked by the missing exact email, practical
+non-credential-sharing hosting, and external-admission policy/retention requirements
+in TWO-PERSON-BETA-ACCEPTANCE.txt. No invitation, email, account activation or MFA
+change was performed for this scoring task. Independent synthetic work follows that
+checkpoint; it does not represent completion of real second-user acceptance.
+
+IMPLEMENTATION AND SCOPE
+src/core/scoring-v1.ts: separate versioned schemas, coefficients, position/slot rules,
+integer centipoint calculations and explanations. Reuses the existing NFL offence
+calculator. Existing football-free-play-v1 competitions/results remain unchanged.
+src/core/scoring-provider.ts: provider adapter contract, strict synthetic adapter,
+canonical sport/fixture/player mapping checks and ordered EPL on-pitch evidence.
+src/core/scoring-engine.ts: shared period, lineup/ownership validation and lock,
+revision import, recalculation, ranking, correction/finalisation and audit functions.
+src/server/scoring-store.ts: serialised PostgreSQL transactions and append-only journal
+of source data, immutable rules/lineups, calculation breakdowns and hash-linked history.
+supabase/migrations/20261010092154_scoring_v1_isolated_journal.sql: new unexposed
+scoring_beta schema. RLS enabled; no member/runtime/browser grants; security invoker
+only. Applied to disposable local PostgreSQL only, NOT the shared hosted database.
+No relationship to official inventory, rewards, wallets, rankings or competitions.
+
+The scoring operator has no HTTP mutation endpoint. The current execution entry is
+the disposable loopback runner, not an authenticated member command or background job.
+The generic engine's trusted Operator argument is internal, never taken from a browser.
+A hosted real-data writer requires an independently reviewed restricted service role,
+licensed adapter and verified catalogue/fixture mappings; no credentials were created.
+
+/fantasy/scoring: authenticated Preview-only scoring lab, showing the persisted
+synthetic PostgreSQL run's pending, initial, corrected and final read models.
+/fantasy/scoring/how-it-works: exact sport rules and lifecycle policy.
+The browser selects saved stages; it does not calculate or submit scores. The server
+ships the synthetic read model in config/scoring-demo.json. No real member UUIDs or
+private inputs are included. This is a functioning simulation review, not a live
+competition importer or a claim of real-feed readiness. Production routes fail closed.
+
+EXACT PROVISIONAL RULESETS
+All weights are independent of rarity, level, price, spend and ownership history.
+Daily/engagement/collecting rewards are separate. No mixed-sport ranking or captain
+multiplier, no subjective bonus/rating, no imported FPL final points.
+
+docked-epl-beta-v1 / Docked EPL Scoring v1:
+Any actual playing time below 60 regulation minutes: 1 appearance point. At least
+60 regulation minutes: 2 total, not 1+2. Added time counts for actual participation
+and all events but not the 60-minute threshold. A stoppage-time-only substitute gets
+1. Regulation duration is capped at 90 minutes; EPL league fixtures have no extra time.
+Goals GK/DEF6 MID5 FWD4; assist3; clean sheet GK/DEF4 MID1 FWD0, requiring >=60
+regulation minutes, zero concessions during verified on-pitch intervals, no dismissal.
+GK saves1 per complete3; penalty save5 in addition (penalty save included in saves).
+Penalty miss-2; yellow-1; straight red-3 plus any earlier single yellow; own goal-2.
+Second-yellow dismissal replaces BOTH yellow penalties with one -3 dismissal penalty.
+GK/DEF conceded-1 per complete2 on-pitch goals against, including own goals.
+No post-substitution/dismissal concessions counted. Substituted players can retain
+clean-sheet points; dismissed players cannot. These are explicit Docked choices,
+not exact FPL compatibility. Equal-minute events require reliable ordering, not a
+guess about who was on the pitch. The interval adapter excludes events at the exact
+entry/exit order; adapters must use distinct ordered event positions.
+Synthetic assist definition: final deliberate teammate touch directly creating the
+goal; no own-goal/rebound/material-deflection assist. No real provider is selected;
+its documented assist definition must be reviewed and frozen before live activation.
+Formation retained for the new synthetic EPL format: 1GK/4DEF/4MID/2FWD, 11 active.
+
+docked-nfl-half-ppr-beta-v1 / Docked NFL Scoring v1:
+Half-PPR explicitly selected: reception0.5. Passing yard0.04, passing TD4,
+interception thrown-2. Rushing/receiving yard0.1 and TD6. Fumble lost-2 across all
+phases once. Passing/rushing/receiving two-point conversion2 to the credited player.
+Individual kickoff/punt return TD6 and offensive fumble recovery TD6. No return-yard
+points or double classification of one TD. Negative yards reduce the score fractionally.
+Overtime counts fully. Seven active: QB, 2RB, 2WR, TE, FLEX(RB/WR/TE). Existing NFL
+scaffold covers QB/RB/WR/TE; there is no ready live NFL card catalogue. No kickers,
+team defence, IDP or silently minted defence cards. Confirmed bye/DNP = explicit0.
+Reference: NFL's published point-value table and individual return/fumble treatment:
+https://static.www.nfl.com/image/upload/v1715009484/league/apps/fantasy/media/rules/OfficialRules2024.pdf
+Docked intentionally chooses half-PPR rather than that document's one-point reception.
+
+docked-afl-events-beta-v1 / Docked AFL Scoring v1:
+Kick3, handball2, mark3, tackle4, goal6, behind1, hitout1, free-for1, free-against-3.
+Counts add: mark+kick+goal=12. No proprietary ratings/normalisation. Actual substitute
+or partial-appearance events count; no time or appearance multiplier. Confirmed
+unused substitute/DNP/bye=explicit0; absent feed remains pending.
+Compact Docked proposal: 2DEF/3MID/1RUC/2FWD (8 active), one locked position per card,
+no bench/emergency substitution. Not a claim to reproduce AFL Fantasy squad rules.
+Primary event-weight reference:
+https://www.afl.com.au/news/1464392/afl-fantasy-for-dummies-how-to-play-scoring-system-more/amp
+
+LIFECYCLE / FAIRNESS
+Sport-specific gameweek/week/round is metadata, not a shared clock assumption.
+Each period freezes rules, fixture membership, positions and published UTC deadline
+before submission. All slots lock together no later than earliest kickoff. Ownership,
+eligibility and position are rechecked at lock; a failed check blocks scoring, never
+silently replaces cards. Subsequent trades/position changes cannot change the snapshot.
+Double fixtures each score once. No automatic transfers between periods. Postponed,
+abandoned, cancelled, rescheduled or incomplete fixtures stay pending until resolved.
+A resumption/replay must map to the original canonical fixture and replace old input;
+no double-counting of abandoned and replay stats. Unresolved cancellation cannot be
+finalised until a separate void policy is approved; no default final zero.
+Known partial subtotals are labelled and standings withheld if any team is incomplete.
+Byes need explicit provider evidence and a mapped period record; no missing-row inference.
+
+Provisional windows: EPL72h, NFL96h, AFL72h from completion. Period finalisation waits
+for all fixtures, player rows and elapsed windows; reviewer only. NFL96h is a beta
+choice; it does not guarantee Thursday corrections always arrive before the window.
+After finalisation or expiry, correction requires reviewer+reason, keeps all old
+sources/calculations and reopens provisional results for reviewed finalisation.
+The first completion timestamp anchors ordinary correction authority; changing a
+later revision's end time cannot silently extend importer permissions.
+Equal points share rank (competition ranking), and rankings remain within one sport.
+
+DATA ACCESS AUDIT AND CONCRETE OPTIONS (researched 10 October 2026)
+Existing active scoring uses authored fictional statistics. Historical provider
+research under docs/FOOTBALL_DATA_PROVIDER_RESEARCH.md found no approved commercial
+scoring feed; retired odds/research modules were NOT reactivated. No data download,
+trial signup, subscription or licence acceptance was performed.
+
+EPL candidate: Sportmonks Football API. EPL fixtures/players and lineup/event/stat
+endpoints with provider IDs, real-time update endpoints and historical seasons are
+documented. Advertised entry price starts EUR29/month; older-than-three-season history
+is an add-on, not an authorised purchase. Must confirm actual EPL field coverage for
+assists, missed/saved penalties, total saves, second-yellow events, actual/regulation
+minutes and ordered substitution/concession detail. Update latency, full correction
+history and cancelled-account audit retention are not assumed. Commercial games are
+contemplated, but exact web+Android domain scope, permanent derived-result retention
+and image/player rights require confirmation. No final fantasy-point endpoint needed.
+https://www.sportmonks.com/football-api/plans-pricing/
+https://postman.sportmonks.com/
+https://www.sportmonks.com/terms-of-service/
+
+NFL candidate: SportsDataIO commercial NFL feed. Documentation provides player/game
+identifiers, player-game statistics, schedules, play-by-play and historical access.
+Map PlayerID/GameKey (or contractually selected stable GameID) explicitly; verify all
+offensive, conversion, return/fumble TD fields and prevent overlapping TD categories.
+Their workflow describes live pulls and an official corrections check Thursday.
+Actual polling frequency/latency and historical seasons depend on licensed package.
+Commercial business-operated Docked needs a commercial quote; Discovery Lab's free
+or inexpensive personal-use access is NOT commercial permission. Price is unquoted.
+No purchase or account change authorised/performed.
+https://sportsdata.io/developers/api-documentation/nfl
+https://sportsdata.io/developers/workflow-guide/nfl
+https://sportsdata.io/help/data-rights-and-licensing-questions
+
+AFL candidate: Champion Data AFL API. Official docs describe matches, squads, players,
+statistics, sandbox replay and SNS notifications. Authenticated schema verification
+is required for exact stable player/match IDs and all nine scoring categories; do not
+guess endpoint fields. Contract must confirm AFL coverage, substitutes, final/corrected
+stat signals, latency, replay/history seasons and commercial fantasy/audit retention.
+No verified public commercial price; obtain a quote. Public AFL statistics pages are
+not permission to scrape. No attempt to reproduce opaque AFL Player Ratings.
+https://docs.api.afl.championdata.com/
+https://docs.api.afl.championdata.com/blog/archive/
+
+Readiness for EACH of EPL/NFL/AFL: synthetic schema, rules, locked team calculations,
+corrections and separate standings implemented; real licensed feed NOT connected;
+live coverage NOT verified; historical positional balance NOT verified. No provider
+cost incurred. Next feed step: owner selects a candidate and approves any exact quote
+after required fields/licensing are confirmed; implement its normalized adapter and
+run coverage/correction contract tests before activating a new real-data period.
+
+VERIFICATION / REVIEW COMMANDS
+node --import tsx --test tests/platform/scoring-v1.test.ts
+node scripts/fantasy-production-local-postgres.mjs --scoring-v1
+The second command uses the existing pinned PostgreSQL17.10 local runtime, creates
+a disposable loopback DB and rejects non-loopback URLs. It persists both fake users'
+teams for each sport, locks, imports, recalculates, corrects and finalises, with 20
+concurrent identical imports/corrections per sport. Reopen/read and hash replay verify
+durability and exactly-once revision effects. Fixtures never reference real accounts.
+config/scoring-demo.json is generated from these PostgreSQL readbacks, not handwritten
+expected totals. docs/qa/scoring-v1/real-postgres.json records the evidence.
+Client-facing lab shows this saved run; changing stage does not mutate a competition.
+
+No public production deployment, existing live rules change, shared DB migration,
+new APK, real invitation, email, paid service or changes to Oura/old Preview occurred.
+The existing connected APK is retained; it still targets its previous immutable
+Preview origin. Browser scoring verification is not physical Android acceptance.
+
+LOCAL ACCEPTANCE RESULTS
+212/212 platform tests passed, including 11 scoring cases; 147/147 existing database
+regression tests passed with the additive migration. PostgreSQL17.10 passed the three
+two-user concurrency scenarios described above. TypeScript, ESLint and the isolated
+Next production-style build passed. Known-secret scan: 390 files, zero findings/errors.
+Initial test-runner module/JSON serialization issues were fixed before PostgreSQL PASS.
+Browser fixture selector and inherited text/notice/table colours were corrected;
+responsive screenshots and final browser results are recorded in docs/qa/scoring-v1.
+No mocked/component test is claimed as a real tester login or live provider test.
