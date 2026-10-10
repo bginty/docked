@@ -148,6 +148,27 @@ test("missing weekly rows are pending, roster membership never proves DNP", () =
   assert.equal(roster.participation, "NOT_ESTABLISHED");
   assert.equal(roster.status, "REVIEW_REQUIRED");
 });
+test("return touchdown overlapping a passing/rushing touchdown is not counted twice", () => {
+  const sample = parseStatisticsCsv(
+    readFileSync(
+      "tests/fixtures/postgame/nflverse-2026-return-sample.csv",
+      "utf8",
+    ),
+  )[0];
+  const plays = parseStatisticsCsv(
+    readFileSync(
+      "tests/fixtures/postgame/nflverse-2026-min-tb-plays.csv",
+      "utf8",
+    ),
+  );
+  assert.ok(nflversePlayerStatistics(sample, plays).stats);
+  for (const field of ["pass_touchdown", "rush_touchdown"]) {
+    const contradictory = plays.map((p) =>
+      p.td_player_id === sample.player_id ? { ...p, [field]: "1" } : p,
+    );
+    assert.equal(nflversePlayerStatistics(sample, contradictory).stats, null);
+  }
+});
 test("download refuses an arbitrary redirect or HTML", async () => {
   await assert.rejects(
     () =>

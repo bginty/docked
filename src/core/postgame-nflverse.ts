@@ -157,6 +157,8 @@ export function nflverseReturnTouchdowns(
       p.play_deleted !== "1",
   )) {
     if (p.return_touchdown !== "1") continue;
+    if (p.pass_touchdown === "1" || p.rush_touchdown === "1")
+      throw Error("Overlapping touchdown categories require review");
     if (
       p.fumble === "1" &&
       p.special_teams_play === "0" &&
