@@ -1,3 +1,8 @@
+# Latest release authority — 10 October 2026
+
+The consolidated friends-beta request and owner dashboard addition supersede the older Preview-only/one-tester limits below. See [FRIENDS_RELEASE_PLAN](FRIENDS_RELEASE_PLAN.md), [OWNER_OPERATIONS](OWNER_OPERATIONS.md), [FRIENDS_EXTERNAL_SERVICES](FRIENDS_EXTERNAL_SERVICES.md) and [FRIENDS_POLICY_DECISIONS](FRIENDS_POLICY_DECISIONS.md). Ten-person admission and free card-swap foundations are verified in disposable PostgreSQL, but external activation remains disabled because readiness facts and real-player rights/data are missing. Owner MFA/login acceptance is preserved. Cash payments, withdrawals and prizes remain off. Owner visual and physical S24 acceptance remain pending.
+
+Older dated sections below are historical evidence, not current deployment authority.
 # Docked fantasy product status
 
 10 October 2026 — Fantasy UX milestone: [FANTASY_UX_ACCEPTANCE](FANTASY_UX_ACCEPTANCE.md) is the current delivery/evidence record. Owner manually confirmed login working; that acceptance is preserved without password resets or MFA setup. Gameplay, visual approval and physical S24 checks are separate. Field-based football XI, historical points, owned-card sheets and sandbox-only fee proposal supersede earlier presentation. Hosted trading, external registration and payments remain closed.

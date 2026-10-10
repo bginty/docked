@@ -62,7 +62,7 @@ export type SwapCard = {
   unopened: boolean;
 };
 export type SwapState = {
-  mode: "TWO_PERSON_SIMULATED";
+  mode: "TWO_PERSON_SIMULATED" | "FRIENDS_CARD_SWAP";
   user_id: string;
   peer_id: string;
   owner: boolean;

@@ -1,3 +1,5 @@
+Latest authority: 10 October 2026 consolidated friends release. See FRIENDS_RELEASE_PLAN.md and FRIENDS_POLICY_DECISIONS.md. Older Preview-only/one-tester decisions are superseded conditionally; historical policy bytes and accepted authentication remain preserved.
+
 # Current Docked decisions
 
 10 October 2026 — Fantasy UX milestone: [FANTASY_UX_ACCEPTANCE](FANTASY_UX_ACCEPTANCE.md) is the current delivery/evidence record. Owner manually confirmed login working; that acceptance is preserved without password resets or MFA setup. Gameplay, visual approval and physical S24 checks are separate. Field-based football XI, historical points, owned-card sheets and sandbox-only fee proposal supersede earlier presentation. Hosted trading, external registration and payments remain closed.

@@ -9,7 +9,7 @@ const roster = z
       })
       .strict(),
   )
-  .max(1);
+  .max(10);
 
 /** Preparation only. No tokens, Auth users, roles or mail are created here.
  * Atomic database admission remains a separate mandatory activation gate. */
@@ -27,7 +27,7 @@ export function planBetaInvitations(input: unknown) {
   return {
     status: "prepared-not-authorized-for-sending" as const,
     administratorEmail: "support@docked.com.au",
-    maximumInvitedTesters: 1,
+    maximumInvitedTesters: 10,
     publicRegistration: false,
     testers,
   };

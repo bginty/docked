@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { requireIdentity } from "@/server/auth";
 import { AppShell } from "@/components/app-shell";
-import { rulesets, sports } from "@/core/scoring-v1";
+import { sports } from "@/core/scoring-v1";
+import { currentRulesets as rulesets } from "@/core/scoring-release";
+import { ScoringRulesTable } from "@/components/scoring-rules-table";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "How scoring works · beta",
@@ -43,11 +45,7 @@ export default async function RulesPage() {
             <p>
               Version: {rulesets[sport].version}. Historical balance unverified.
             </p>
-            <ul>
-              {rulesets[sport].policy.map((p) => (
-                <li key={p}>{p}</li>
-              ))}
-            </ul>
+            <ScoringRulesTable rules={rulesets[sport]} />
             <p>
               Provisional correction window: {rulesets[sport].correctionHours}{" "}
               hours after each fixture ends. Finalisation requires every

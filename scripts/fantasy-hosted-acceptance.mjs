@@ -97,6 +97,16 @@ await check("Fantasy data unavailable to anonymous visitor", async () => {
   assert.equal(r.status, 403);
   return { status: r.status };
 });
+for (const path of [
+  "/api/admin/operations",
+  "/api/admin/operations?scope=beta&format=csv",
+])
+  await check(`Owner operations denied anonymously: ${path}`, async () => {
+    const r = await request(path);
+    assert.equal(r.status, 403);
+    assert.match(r.headers.get("cache-control") ?? "", /no-store/);
+    return { status: r.status };
+  });
 await check(
   "Foreign-origin fantasy writes denied before any command",
   async () => {

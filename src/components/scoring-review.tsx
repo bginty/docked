@@ -151,9 +151,9 @@ export function ScoringReview({ data }: { data: ScoringDemo }) {
                         <caption>Point breakdown · {p.position}</caption>
                         <thead>
                           <tr>
-                            <th scope="col">Event</th>
-                            <th scope="col">Count</th>
-                            <th scope="col">Points</th>
+                            <th scope="col">Statistic</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Points earned</th>
                           </tr>
                         </thead>
                         <tbody>

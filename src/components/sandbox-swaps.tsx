@@ -93,11 +93,11 @@ export function SandboxSwaps() {
   );
   return (
     <section className="fantasy-market-panel">
-      <h2>Two-person sandbox swaps</h2>
+      <h2>Beta card swaps</h2>
       <p>
         Beta cards and simulated AUD only. No deposits, withdrawals, purchases
-        or monetary value. Only the owner and one admitted tester can use this
-        sandbox.
+        or monetary value. Available only to admitted participants when beta
+        trading is enabled.
       </p>
       <p>
         Open packs first. Cards in any unsettled saved team must be removed
@@ -118,11 +118,13 @@ export function SandboxSwaps() {
               Claim one-time beta reserve pack (open it in Cards)
             </button>
           )}
-          <p>
-            Practice balance: {formatAUD(Number(state.balance_cents))} simulated
-            AUD.
-          </p>
-          {!state.credited && (
+          {state.mode !== "FRIENDS_CARD_SWAP" && (
+            <p>
+              Practice balance: {formatAUD(Number(state.balance_cents))}{" "}
+              simulated AUD.
+            </p>
+          )}
+          {state.mode !== "FRIENDS_CARD_SWAP" && !state.credited && (
             <button
               disabled={busy || !!pending}
               onClick={() => void send("practice_credit", {})}
@@ -130,14 +132,21 @@ export function SandboxSwaps() {
               Add one-time AUD $100 practice balance
             </button>
           )}
-          <p>
-            {state.window.free
-              ? "Free window: no simulated fee."
-              : `Test fee: ${formatAUD(state.window.fee_cents)} simulated AUD per participant.`}{" "}
-            Normally free for 48 hours every 28 days. Next change:{" "}
-            {new Date(state.window.next_boundary).toLocaleString()}. Offers
-            expire within five minutes.
-          </p>
+          {state.mode === "FRIENDS_CARD_SWAP" ? (
+            <p>
+              Card-for-card swaps are free. No money is exchanged. Offers expire
+              within five minutes.
+            </p>
+          ) : (
+            <p>
+              {state.window.free
+                ? "Free window: no simulated fee."
+                : `Test fee: ${formatAUD(state.window.fee_cents)} simulated AUD per participant.`}{" "}
+              Normally free for 48 hours every 28 days. Next change:{" "}
+              {new Date(state.window.next_boundary).toLocaleString()}. Offers
+              expire within five minutes.
+            </p>
+          )}
           {pending && (
             <div className="notice">
               <p>
@@ -209,10 +218,10 @@ export function SandboxSwaps() {
               </p>
             )}
             <button disabled={busy || !!pending || !give || !take}>
-              Agree to test fee and propose swap
+              Confirm and propose swap
             </button>
           </form>
-          {state.owner && (
+          {state.owner && state.mode !== "FRIENDS_CARD_SWAP" && (
             <section>
               <h3>Owner fee testing</h3>
               <p>

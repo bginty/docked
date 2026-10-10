@@ -2,14 +2,17 @@ import { readFileSync, writeFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { validateOwnerQaManifest } from "./android-owner-qa-config.mjs";
 const ux = process.argv.includes("--fantasy-ux");
+const friends = process.argv.includes("--friends-release");
 const d = JSON.parse(
   readFileSync("docs/qa/beta-isolation/deployment-status.json", "utf8"),
 );
 const b = JSON.parse(
   readFileSync(
-    ux
-      ? "docs/qa/fantasy-ux/read-model-verify.json"
-      : "docs/qa/owner-gameplay/hosted-backend.json",
+    friends
+      ? "docs/qa/friends-release/hosted-apply.json"
+      : ux
+        ? "docs/qa/fantasy-ux/read-model-verify.json"
+        : "docs/qa/owner-gameplay/hosted-backend.json",
     "utf8",
   ),
 );

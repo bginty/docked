@@ -67,7 +67,7 @@ export function SocialComposer({
     }
   }
   return (
-    <div data-composer-ready={ready}>
+    <div className="docked-composer" data-composer-ready={ready}>
       <fieldset className="app-panel" disabled={!ready || busy}>
         <h2>Start a sporting conversation.</h2>
         <p>Talk cards, teams and sport with the community.</p>

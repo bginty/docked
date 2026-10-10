@@ -22,6 +22,8 @@ export default async function Admin() {
     <AppAuthShell>
       <h1>Fantasy operations</h1>
       <nav aria-label="Operations">
+        <p><Link href="/admin/operations">Owner dashboard</Link></p>
+        <p><Link href="/admin/operations">Owner dashboard</Link></p>
         <p>
           <Link href="/fantasy/admin">Card and competition administration</Link>
         </p>

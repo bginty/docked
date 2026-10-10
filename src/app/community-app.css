@@ -969,3 +969,41 @@ body:has(.community-shell[data-authenticated="true"]) > footer {
     animation: none !important;
   }
 }
+/* Composer shares the dark Docked form vocabulary on desktop and mobile. */
+.community-shell .docked-composer .app-panel {
+  background: var(--app-raised);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+  min-width: 0;
+}
+.community-shell .docked-composer :is(h2, label) {
+  color: var(--app-text);
+}
+.community-shell .docked-composer p {
+  color: var(--app-text-secondary);
+}
+.community-shell .docked-composer :is(input, textarea, select) {
+  color-scheme: dark;
+  color: var(--app-text);
+  background: var(--app-canvas);
+  border-color: var(--app-border);
+  border-radius: 10px;
+  font-size: 16px;
+  scroll-margin-block: 100px;
+}
+.community-shell .docked-composer textarea::placeholder {
+  color: var(--app-text-secondary);
+}
+.community-shell
+  .docked-composer
+  :is(input, textarea, select, button):focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 3px;
+}
+.community-shell .docked-composer :disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.community-shell .docked-composer .app-form {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

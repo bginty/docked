@@ -1,4 +1,5 @@
 "use client";
+import { PackProducts } from "./pack-products";
 import Link from "next/link";
 import {
   useState,
@@ -931,9 +932,7 @@ export function FantasyScreen({
               <Link href="/profile">Social profile, followers & following</Link>
               <Link href="/dashboard">Settings & privacy</Link>
               {data.admin && (
-                <Link href="/fantasy/admin">
-                  {production ? "Game administration" : "Preview admin"}
-                </Link>
+                <Link href="/admin/operations">Owner dashboard</Link>
               )}
             </div>
           </section>
@@ -1170,7 +1169,12 @@ export function FantasyScreen({
           onClose={closeDetail}
         />
       )}
-      {tab === "market" && <SandboxMarketProposal />}
+      {tab === "market" && (
+        <>
+          <PackProducts />
+          <SandboxMarketProposal />
+        </>
+      )}
     </div>
   );
 }

@@ -460,7 +460,37 @@ async function main() {
       "Runtime cannot read official assets or directly edit sandbox cards, balances or control; ledger immutable; suspension immediately denies tester",
     );
     assert.equal(await snapshot(), before);
-    await mkdir("docs/qa/two-person-beta", { recursive: true });
+    const output = process.argv.includes("--friends") ? "docs/qa/friends-release" : "docs/qa/two-person-beta";
+    if(process.argv.includes("--friends")) {
+      await sql`update beta_private.friends_control set enabled=true,readiness_evidence='Synthetic local acceptance only; not hosted policy approval',approved_by='local-test',approved_at=clock_timestamp()`;
+      await sql`insert into beta_private.friends_roster(user_id,email,enabled,authority) values(${tester.id},${tester.email},true,'Synthetic roster only; preserves suspended admission')`;
+      const rosters=await Promise.allSettled(users.slice(2,20).map(u=>sql`insert into beta_private.friends_roster(user_id,email,enabled,authority) values(${u.id},${u.email},true,'Synthetic named ordinary tester; local tests only')`));
+      assert.equal(rosters.filter(r=>r.status==='fulfilled').length,9);
+      const roster=await sql`select user_id from beta_private.friends_roster where user_id<>${tester.id}`;
+      for(const r of roster){const u=users.find(u=>u.id===r.user_id)!;await reserve(u);await accept(u);await profile(u);assert.equal(await memberSession(u,'aal1'),true);}
+      assert.equal(Number((await sql`select count(*) n from beta_private.admissions where not administrator`)[0].n),10);
+      assert.equal(await memberSession(tester,'aal1'),false);
+      const reportRead=(u:User,aal:string,staff=false)=>sql.begin(async tx=>{await tx`set local role docked_beta_app`;await tx`select set_config('request.jwt.claim.sub',${u.id},true),set_config('request.jwt.claims',${JSON.stringify({sub:u.id,session_id:u.session,aal})},true)`;return (await tx`select beta_private.owner_operations(clock_timestamp()-interval '1 day',clock_timestamp()+interval '30 days',null,${staff}) value`)[0].value;});
+      await assert.rejects(()=>reportRead(owner,'aal1'),/MFA/);
+      const ordinary=users.find(u=>u.id===roster[0].user_id)!;await assert.rejects(()=>reportRead(ordinary,'aal1'),/MFA/);await assert.rejects(()=>reportRead(ordinary,'aal2'),/MFA/);
+      const dashboard=await reportRead(owner,'aal2');assert.equal(dashboard.metrics.admitted,9);assert.equal((await reportRead(owner,'aal2',true)).metrics.admitted,10);
+      const friendA=ordinary,friendB=users.find(u=>u.id===roster[1].user_id)!;
+      for(const u of [friendA,friendB]){const pack=await command(u,'claim_starter',{},true,randomUUID(),'aal1');await command(u,'open_pack',{pack_id:pack.pack_id},true,randomUUID(),'aal1');}
+      const friendState=await read(friendA);assert.equal(friendState.mode,'FRIENDS_CARD_SWAP');assert.equal(friendState.window.fee_cents,0);
+      const friendGive=friendState.cards.find((c:any)=>c.owner_id===friendA.id).id,friendTake=friendState.cards.find((c:any)=>c.owner_id===friendB.id).id;
+      const proposed=await swap(friendA,'offer',{give_card:friendGive,take_card:friendTake,fee_cents:0,policy_revision:friendState.window.revision});
+      const acceptKey=randomUUID();const accepted=await Promise.all(Array.from({length:20},()=>swap(friendB,'accept',{swap_id:proposed.swap_id,fee_cents:0},acceptKey)));
+      assert.ok(accepted.every(r=>r.state==='accepted'));
+      assert.equal(Number((await sql`select count(*) n from beta_fantasy.ownership_events where reference=${proposed.swap_id}`)[0].n),2);
+      assert.equal(Number((await sql`select coalesce(sum(amount_cents),0) n from beta_fantasy.swap_ledger where reference=${proposed.swap_id}`)[0].n),0);
+      await assert.rejects(()=>swap(owner,'fee_mode',{mode:'paid'}),/no fees/);
+      await assert.rejects(()=>swap(friendA,'practice_credit'),/no fees/);
+      evidence.push('Two ordinary roster members swap free at AAL1; twenty acceptance retries produce exactly two ownership entries, no fees; paid fee modes and balance credits rejected');
+      assert.equal((await reportRead(owner,'aal2')).inventory.reduce((n:number,e:any)=>n+e.cards,0),Number((await sql`select count(*) n from beta_fantasy.cards`)[0].n));
+      assert.equal(await snapshot(),before);
+      evidence.push('Friends roster concurrency admits exactly ten lifetime slots; revoked/suspended slot is not recycled; ordinary AAL1 succeeds, owner MFA persists; owner reports reconcile source counts and deny member/AAL1');
+    }
+    await mkdir(output, { recursive: true });
     const report = {
       passed: true,
       scope:
@@ -483,7 +513,7 @@ async function main() {
       scenarios: evidence,
     };
     await writeFile(
-      "docs/qa/two-person-beta/real-postgres.json",
+      output + "/real-postgres.json",
       JSON.stringify(report, null, 2) + "\n",
     );
     console.log(JSON.stringify(report, null, 2));
