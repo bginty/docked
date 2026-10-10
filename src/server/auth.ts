@@ -75,7 +75,14 @@ export async function identity() {
   const active =
     await sql`select id from ${sql.unsafe(authSessionsRelation())} where id=${claims.sessionId} and user_id=${user.id} and (not_after is null or not_after>now())`;
   if (!active.length) return null;
+  const protection =
+    process.env.DOCKED_OWNER_GAMEPLAY === "true"
+      ? await sql`select private.gameplay_mfa_required(${user.id}::uuid) required`
+      : [];
   return {
+    mfaRequired:
+      process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
+      protection[0]?.required !== false,
     user,
     profile: p[0],
     aal: claims.aal as string,
@@ -85,6 +92,8 @@ export async function identity() {
 export async function requireIdentity() {
   const who = await identity();
   if (!who) throw new Error("Authentication required");
+  if (who.mfaRequired && who.aal !== "aal2")
+    throw new Error("Privileged MFA required");
   return who;
 }
 export async function requireRole(roles: string[]) {

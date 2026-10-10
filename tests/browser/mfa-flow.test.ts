@@ -44,7 +44,13 @@ for (const width of [320, 390, 1366])
     });
     await page.goto("/mfa-fixture");
     await page.addStyleTag({
-      content: readFileSync("src/app/app-auth.css", "utf8"),
+      content: [
+        ...readFileSync("src/app/layout.tsx", "utf8").matchAll(
+          /import "\.\/(.+\.css)"/g,
+        ),
+      ]
+        .map((m) => readFileSync("src/app/" + m[1], "utf8"))
+        .join("\n"),
     });
     await page.addScriptTag({ content: bundle });
     await page.getByRole("button", { name: "Set up authenticator" }).click();

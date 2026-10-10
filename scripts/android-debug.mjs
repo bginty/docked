@@ -62,10 +62,10 @@ const artifactOutput = path.join(
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
 const hostedFilename = ownerQa
-  ? "Docked-v12-Owner-Connected-QA.apk"
+  ? "Docked-v13-Owner-Connected-QA.apk"
   : liveBeta
-    ? "Docked-Protected-Beta-v12-Fantasy-Cards.apk"
-    : "Docked-Preview-v12-Fantasy-Cards.apk";
+    ? "Docked-Protected-Beta-v13-Fantasy-Cards.apk"
+    : "Docked-Preview-v13-Fantasy-Cards.apk";
 preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);
 preserveAndroidApks(
   path.join(root, "android/app/build/outputs/bundle/closedTest"),

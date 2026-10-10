@@ -171,6 +171,19 @@ async function main() {
     evidence.push(
       "20 concurrent invitation reservations and acceptances yield one tester; other identities and roster replacement denied",
     );
+    async function memberSession(u: User, aal: string) {
+      return beta.begin(async (tx) => {
+        await tx`select set_config('request.jwt.claim.sub',${u.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: u.id, session_id: u.session, aal })},true)`;
+        return (await tx`select private.active_member_session() allowed`)[0]
+          .allowed;
+      });
+    }
+    assert.equal(await memberSession(owner, "aal1"), false);
+    assert.equal(await memberSession(owner, "aal2"), true);
+    assert.equal(await memberSession(tester, "aal1"), true);
+    evidence.push(
+      "Shared member-session gate denies owner AAL1, permits owner AAL2 and ordinary tester AAL1",
+    );
     await assert.rejects(() => command(owner, "claim_starter"), /MFA/);
     for (const u of [owner, tester]) {
       const pack = await command(

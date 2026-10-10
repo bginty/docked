@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-10T08:59:08.332Z",
+  "deployment": {
+    "id": "dpl_7JrkPVB1dXcrPoNpLaEru26F88GH",
+    "url": "https://docked-production-93iv1jf96-briant-s-projects.vercel.app",
+    "commit": "7a659d19a7a9a2511cd10f50412e418fb50f7e7f",
+    "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "branch": "codex/vercel-beta-review",
+    "requestedTarget": "preview",
+    "rawTarget": null,
+    "effectiveTarget": "preview",
+    "state": "BUILDING",
+    "submittedAt": "2026-10-10T08:57:53.930Z"
+  },
+  "scope": "Actual hosted anonymous denial and browser-emulated layout; not owner login, tester acceptance or physical device",
+  "passed": true,
+  "checks": [
+    "Hosting protection remains enabled",
+    "Public registration closed",
+    "Sandbox execution remains unavailable before activation",
+    "Foreign-origin swap denied",
+    "Hosted MFA 390px: no internal factor field, no enrollment secret for anonymous visitor",
+    "Hosted MFA 1366px: no internal factor field, no enrollment secret for anonymous visitor"
+  ]
+}

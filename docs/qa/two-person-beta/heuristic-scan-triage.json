@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-10T09:01:05.868Z",
+  "baseline": "45027787",
+  "heuristicFindings": [
+    "legacy/retired-product/tests/platform/market-data.test.ts",
+    "scripts/fantasy-production-local-postgres.mjs",
+    "tests/database/preview-auth-gate.test.ts",
+    "tests/platform/database-tls.test.ts",
+    "tests/platform/hosted-runtime.test.ts",
+    "tests/platform/preview-auth.test.ts",
+    "tests/platform/production-release-tools.test.ts"
+  ],
+  "allMatchingValuesUnchanged": true,
+  "scope": "Existing test fixtures and generated loopback credential template. Values not printed. Public export known-secret scan passed separately."
+}

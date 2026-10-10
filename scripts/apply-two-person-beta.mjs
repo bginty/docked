@@ -43,6 +43,7 @@ const sql = postgres(url.href, {
 const files = [
   "20261010083630_two_person_beta_access.sql",
   "20261010083836_two_person_sandbox_swaps.sql",
+  "20261010090152_two_person_owner_session_mfa.sql",
 ];
 const hash = (s) => createHash("sha256").update(s).digest("hex");
 const statements = files.map((file) => ({
@@ -152,7 +153,12 @@ try {
         await tx`select id from auth.sessions where user_id=${owner[0].owner_id} and (not_after is null or not_after>now()) order by created_at desc limit 1`;
       assert.equal(sessions.length, 1);
       await tx`select set_config('request.jwt.claim.sub',${owner[0].owner_id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: owner[0].owner_id, session_id: sessions[0].id, aal: "aal2" })},true),set_config('docked.fantasy_channel','beta',true),set_config('docked.fantasy_production',${ref},true)`;
-      assert.equal((await tx`select has_function_privilege('docked_beta_app','beta_fantasy.production_read_state()','EXECUTE') ok`)[0].ok,true);
+      assert.equal(
+        (
+          await tx`select has_function_privilege('docked_beta_app','beta_fantasy.production_read_state()','EXECUTE') ok`
+        )[0].ok,
+        true,
+      );
       const state = (
         await tx`select beta_fantasy.production_read_state() state`
       )[0].state;
@@ -182,7 +188,10 @@ try {
     JSON.stringify({
       error: "Two-person preparation failed safely",
       code: e.code ?? null,
-      message: e instanceof assert.AssertionError || e.code === "42501" ? e.message : undefined,
+      message:
+        e instanceof assert.AssertionError || e.code === "42501"
+          ? e.message
+          : undefined,
     }),
   );
   process.exitCode = 1;

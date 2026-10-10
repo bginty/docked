@@ -92,3 +92,8 @@ TWO-PERSON TEST SCRIPT (after activation)
   and balances stay unchanged. Test a free-state offer: zero simulated charge.
 - Change fee state after an offer and attempt acceptance: stale offer denied; create
   a fresh reviewed offer. Never test by entering another user's credentials.
+Final MFA review: the shared member-session gate and application member APIs now
+require AAL2 for the owner, including non-fantasy member operations. App entry routes
+the owner directly to MFA when needed. Hosted restricted-runtime readback confirms
+owner AAL1 denied and AAL2 allowed; the actual existing factor remains untouched.
+Local ordinary-tester AAL1 acceptance remains passing. No broad role grant was used.
