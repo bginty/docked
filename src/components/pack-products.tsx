@@ -12,10 +12,15 @@ export function PackProducts() {
           <article key={p.id} className="fantasy-card">
             <h3>{p.name}</h3>
             <strong>A${p.priceCents / 100}</strong>
-            <p>Exactly one {p.advertisedTier} player card.</p>
             <p>
-              Sport and eligible player pool: not available. Selection method
-              and supply will be shown before purchases open.
+              Exactly one {p.advertisedTier} player card
+              {p.inventoryTier === "RARE" ? " (RARE tier)" : ""}, randomly
+              selected from a disclosed pool.
+            </p>
+            <p>
+              Sport and eligible player pool: not available yet. The player
+              pool, available supply and selection chances will be shown before
+              purchases open.
             </p>
             <button type="button" disabled>
               Not available

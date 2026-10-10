@@ -20,8 +20,8 @@ Privacy draft fields requiring facts: support processing location **[VERIFY]**; 
 
 ## Paid product decision draft — not activated
 
-- Premium Single-Card Pack, A$49, exactly one Premium card; **Premium mapping unresolved** because existing tiers are CORE/RARE/ELITE/LEGENDARY/ICON. Recommend a distinct versioned Premium edition definition rather than renaming existing owned RARE cards. This needs explicit owner approval and supply specification.
-- Elite Single-Card Pack, A$99, exactly one ELITE card. Named player versus random eligible-pool selection **unapproved**. Recommend named-player selection for clear consent; no commercial selection method was silently chosen. The sandbox uses explicitly synthetic named cards only.
+- **Approved 11 October 2026:** Premium Single-Card Pack, A$49, exactly one RARE-tier card. Premium is the product label; existing owned RARE cards and their history are not renamed or migrated.
+- **Approved 11 October 2026:** Elite Single-Card Pack, A$99, exactly one ELITE card. Both products use random selection from a disclosed pool. Synthetic sandbox allocation now supports uniform selection among available card units, privately reserves one unit and does not reveal it before payment. Live pools, supply and pre-checkout chances still require configuration/review; no paid inventory is assumed.
 - Before checkout: sport, eligible pool, selection method, available finite supply, total AUD price, tax-inclusive/exclusive treatment **[ACCOUNTING FACT REQUIRED]**, delivery timing, rights and refund/dispute terms must be disclosed. No rarity/price scoring advantage.
 - Proposed receipt: order ID, product/tier/sport, one card identity/edition/serial, paid amount/currency, confirmed method/reference, fulfilment timestamp and support contact. Never label sandbox receipts as paid purchases.
 - Refund wording must preserve non-excludable consumer rights; exact cancellation, failed-delivery, duplicate-payment and dispute treatment needs approval against merchant capabilities. Refunds never replenish lifetime issuance capacity or silently rewrite ownership history.

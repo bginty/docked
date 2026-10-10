@@ -7,17 +7,20 @@
   "components": "hosted-buttons",
   "disableFunding": "venmo",
   "currency": "AUD",
+  "selectionMethod": "random-disclosed-pool",
   "products": {
     "premium-single-v1": {
       "hostedButtonId": "K8BXZRS7V5Q2G",
       "containerId": "paypal-container-K8BXZRS7V5Q2G",
       "expectedPriceCents": 4900,
+      "inventoryTier": "RARE",
       "expectedCardCount": 1
     },
     "elite-single-v1": {
       "hostedButtonId": "EPY3GUUNWFMRN",
       "containerId": "paypal-container-EPY3GUUNWFMRN",
       "expectedPriceCents": 9900,
+      "inventoryTier": "ELITE",
       "expectedCardCount": 1
     }
   }

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { randomInt, createHash } from "node:crypto";
 // Trusted service domain only. No public endpoint accepts these actors or commands.
 // All balances and inventory in this module are synthetic, never production money.
 export type Operator = {
@@ -23,6 +24,13 @@ export type Order = {
     | "CANCELLED"
     | "REVIEW";
   card: string;
+  // Private allocation evidence, never expose the unrevealed card to the buyer.
+  allocation?: {
+    method: "uniform-available-card-units-v1";
+    eligibleCards: string[];
+    poolHash: string;
+    selectedAt: number;
+  };
   providerOrder?: string;
   receipt?: string;
 };
@@ -34,7 +42,7 @@ export type State = {
       tier: string;
       cents: number;
       pool: string[];
-      method: "named";
+      method: "named" | "random";
       sport: "epl" | "nfl" | "afl";
     }
   >;
@@ -82,6 +90,13 @@ export type State = {
 };
 const identifier = z.string().regex(/^[a-zA-Z0-9_-]{1,100}$/);
 export const commerceCommand = z.discriminatedUnion("kind", [
+  z
+    .object({
+      kind: z.literal("random-order"),
+      product: identifier,
+      method: z.enum(["paypal", "bank"]),
+    })
+    .strict(),
   z
     .object({
       kind: z.literal("order"),
@@ -206,14 +221,33 @@ export function executeCommerce(
       throw Error("Verified current identity required");
   };
   let result: unknown = { ok: true };
-  if (c.kind === "order") {
+  if (c.kind === "order" || c.kind === "random-order") {
     if (actor.role !== "member") throw Error("Member purchase required");
-    const p = s.products[c.product],
-      card = s.cards[c.card];
+    const p = s.products[c.product];
+    if (!p || p.method !== (c.kind === "order" ? "named" : "random"))
+      throw Error("Eligible supply unavailable");
+    // Each existing, unowned, unreserved unit has equal chance. No new minting,
+    // tier upgrades or client-selected random index. Deduplicate configuration.
+    const eligibleCards = [...new Set(p.pool)]
+      .filter((id) => {
+        const unit = s.cards[id];
+        return (
+          unit &&
+          !unit.owner &&
+          !unit.reserved &&
+          unit.tier === p.tier &&
+          unit.sport === p.sport
+        );
+      })
+      .sort();
+    if (!eligibleCards.length) throw Error("Eligible supply unavailable");
+    const selectedCard =
+      c.kind === "order"
+        ? c.card
+        : eligibleCards[randomInt(eligibleCards.length)];
+    const card = s.cards[selectedCard];
     if (
-      !p ||
-      p.method !== "named" ||
-      !p.pool.includes(c.card) ||
+      !p.pool.includes(selectedCard) ||
       !card ||
       card.owner ||
       card.reserved ||
@@ -235,11 +269,37 @@ export function executeCommerce(
       reference: `DK-${id}`,
       expires: now + 30 * 60000,
       status: "AWAITING_PAYMENT",
-      card: c.card,
+      card: selectedCard,
+      ...(c.kind === "random-order"
+        ? {
+            allocation: {
+              method: "uniform-available-card-units-v1" as const,
+              eligibleCards,
+              poolHash: createHash("sha256")
+                .update(JSON.stringify(eligibleCards))
+                .digest("hex"),
+              selectedAt: now,
+            },
+          }
+        : {}),
     };
     s.orders[id] = o;
     card.reserved = id;
-    result = o;
+    // Prevent cancellation/retry fishing for a preferred player before payment.
+    // A future hosted API must also keep private state/audit endpoints private.
+    if (c.kind === "random-order") {
+      result = {
+        id: o.id,
+        member: o.member,
+        product: o.product,
+        price: o.price,
+        currency: o.currency,
+        method: o.method,
+        reference: o.reference,
+        expires: o.expires,
+        status: o.status,
+      };
+    } else result = o;
   } else if (c.kind === "cancel") {
     const o = order(c.order);
     owner(o.member);

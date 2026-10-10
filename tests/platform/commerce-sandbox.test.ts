@@ -8,6 +8,7 @@ import {
 import { PayPalSandbox } from "../../src/server/paypal-sandbox";
 import { verifyIdentitySignature } from "../../src/server/identity-webhook";
 import { createHmac } from "node:crypto";
+import { packProducts, commerceReadiness } from "../../src/core/pack-products";
 const member: Operator = { id: "member", role: "member" },
   admin: Operator = { id: "admin", role: "reviewer", aal: "aal2" },
   provider: Operator = { id: "provider", role: "payment-provider" };
@@ -24,6 +25,116 @@ function fixture() {
   s.cards.card = { tier: "ELITE", sport: "epl", owner: null, reserved: null };
   return s;
 }
+test("Approved Premium/Elite offers preserve tier identity and keep charges disabled", () => {
+  assert.deepEqual(
+    packProducts.map((p) => [
+      p.inventoryTier,
+      p.priceCents,
+      p.cards,
+      p.selectionMethod,
+    ]),
+    [
+      ["RARE", 4900, 1, "random-disclosed-pool"],
+      ["ELITE", 9900, 1, "random-disclosed-pool"],
+    ],
+  );
+  assert.equal(commerceReadiness.liveCharges, false);
+});
+test("Random sandbox packs reserve one eligible unit without exposing selection or accepting client choice", () => {
+  const s = fixture();
+  s.products.elite.method = "random";
+  s.products.elite.pool.push(
+    "card",
+    "owned",
+    "reserved",
+    "rare",
+    "nfl",
+    "missing",
+  );
+  s.cards.owned = { ...s.cards.card, owner: "other" };
+  s.cards.reserved = { ...s.cards.card, reserved: "other-order" };
+  s.cards.rare = { ...s.cards.card, tier: "RARE" };
+  s.cards.nfl = { ...s.cards.card, sport: "nfl" };
+  const command = { kind: "random-order", product: "elite", method: "bank" };
+  const first = run(s, member, "random1", command, now);
+  assert.deepEqual(first.state.orders.random1.allocation?.eligibleCards, [
+    "card",
+  ]);
+  assert.equal(first.state.orders.random1.card, "card");
+  assert.equal(first.state.cards.card.reserved, "random1");
+  assert.equal(Object.hasOwn(first.result as object, "card"), false);
+  assert.equal(Object.hasOwn(first.result as object, "allocation"), false);
+  assert.deepEqual(
+    run(first.state, member, "random1", command, now + 1),
+    first,
+  );
+  assert.throws(() =>
+    run(s, member, "forced", { ...command, card: "card" }, now),
+  );
+  assert.throws(
+    () =>
+      run(s, member, "named", { ...command, kind: "order", card: "card" }, now),
+    /supply/,
+  );
+  assert.throws(
+    () => run(first.state, member, "second", command, now),
+    /supply/,
+  );
+  assert.equal(s.cards.card.reserved, null);
+  let paid = run(
+    first.state,
+    admin,
+    "pay-random",
+    {
+      kind: "payment",
+      order: "random1",
+      event: "bank-random",
+      cents: 9900,
+      currency: "AUD",
+      confirmed: true,
+    },
+    now,
+  ).state;
+  paid = run(
+    paid,
+    admin,
+    "fulfil-random",
+    { kind: "fulfil", order: "random1" },
+    now,
+  ).state;
+  assert.equal(paid.cards.card.owner, "member");
+  assert.deepEqual(
+    paid.orders.random1.allocation,
+    first.state.orders.random1.allocation,
+  );
+  assert.equal(Object.keys(paid.cards).length, Object.keys(s.cards).length);
+});
+test("Random pool cancellation releases only the reserved unit; retries retain their original result", () => {
+  const s = fixture();
+  s.products.elite.method = "random";
+  s.cards.second = { ...s.cards.card };
+  s.products.elite.pool.push("second");
+  const command = { kind: "random-order", product: "elite", method: "bank" };
+  const first = run(s, member, "r", command, now);
+  const selected = first.state.orders.r.card;
+  assert.ok(["card", "second"].includes(selected));
+  assert.deepEqual(first.state.orders.r.allocation?.eligibleCards, [
+    "card",
+    "second",
+  ]);
+  const cancelled = run(
+    first.state,
+    member,
+    "cancel-r",
+    { kind: "cancel", order: "r" },
+    now,
+  ).state;
+  assert.equal(cancelled.cards[selected].reserved, null);
+  const retry = run(cancelled, member, "r", command, now);
+  assert.deepEqual(retry.result, first.result);
+  assert.equal(retry.state.orders.r.status, "CANCELLED");
+  assert.equal(retry.state.cards[selected].reserved, null);
+});
 test("Orders reserve finite supply; server price, confirmed bank payment, single issuance and idempotency", () => {
   let s = fixture();
   const c = { kind: "order", product: "elite", card: "card", method: "bank" };

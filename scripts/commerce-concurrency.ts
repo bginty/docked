@@ -22,7 +22,7 @@ async function main() {
       cents: 9900,
       pool: ["one"],
       sport: "epl",
-      method: "named",
+      method: "random",
     };
     s.cards.one = { tier: "ELITE", sport: "epl", owner: null, reserved: null };
     await sql`insert into commerce_sandbox.state values(true,0,${sql.json(s as any)})`;
@@ -32,9 +32,8 @@ async function main() {
     const orders = await Promise.allSettled(
       Array.from({ length: 20 }, (_, i) =>
         store.execute({ ...member, id: `member${i}` }, `o${i}`, {
-          kind: "order",
+          kind: "random-order",
           product: "elite",
-          card: "one",
           method: "bank",
         }),
       ),

@@ -6,7 +6,8 @@ export const packProducts = [
     currency: "AUD",
     cards: 1,
     advertisedTier: "Premium",
-    inventoryTier: null,
+    inventoryTier: "RARE",
+    selectionMethod: "random-disclosed-pool",
   },
   {
     id: "elite-single-v1",
@@ -16,13 +17,14 @@ export const packProducts = [
     cards: 1,
     advertisedTier: "Elite",
     inventoryTier: "ELITE",
+    selectionMethod: "random-disclosed-pool",
   },
 ] as const;
 export const commerceReadiness = {
   liveCharges: false,
   hostedSandboxCheckout: false,
   withdrawals: false,
-  selectionMethod: null,
+  selectionMethod: "random-disclosed-pool",
   taxTreatment: null,
   bankDetails: null,
   playerRightsApproved: false,
