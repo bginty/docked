@@ -1,11 +1,22 @@
 {
-  "name": "Docked",
+  "name": "Docked — Collect. Build. Compete.",
   "short_name": "Docked",
-  "description": "Sports intelligence. Community. Transparency.",
+  "description": "Multi-sport fantasy cards. Public access coming soon.",
   "start_url": "/",
   "scope": "/",
   "display": "browser",
-  "background_color": "#0B1F3B",
-  "theme_color": "#0B1F3B",
-  "icons": [{ "src": "/assets/brand/docked-master.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" }]
+  "background_color": "#080d1b",
+  "theme_color": "#080d1b",
+  "icons": [
+    {
+      "src": "/assets/fantasy/icons/docked-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/fantasy/icons/docked-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
