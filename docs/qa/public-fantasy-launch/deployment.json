@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-10T07:42:00.608Z",
+  "pages": {
+    "url": "https://docked.com.au/",
+    "cname": "docked.com.au",
+    "source": {
+      "branch": "main",
+      "path": "/"
+    },
+    "buildType": "legacy",
+    "status": "built",
+    "httpsEnforced": true
+  },
+  "runs": [
+    {
+      "id": 38035271456,
+      "name": "pages build and deployment",
+      "status": "completed",
+      "conclusion": "success",
+      "sha": "732057330afcdeba6c021a2e15f78bf79cd80142",
+      "url": "https://github.com/bginty/docked/actions/runs/38035271456"
+    },
+    {
+      "id": 38035225819,
+      "name": "pages build and deployment",
+      "status": "completed",
+      "conclusion": "success",
+      "sha": "b1389f1914d7d8b2e2c22a20c0815b59573c161e",
+      "url": "https://github.com/bginty/docked/actions/runs/38035225819"
+    },
+    {
+      "id": 37156304851,
+      "name": "pages build and deployment",
+      "status": "completed",
+      "conclusion": "success",
+      "sha": "baf3c87611eee8f45ca08ad3649242739b1f1a34",
+      "url": "https://github.com/bginty/docked/actions/runs/37156304851"
+    }
+  ]
+}

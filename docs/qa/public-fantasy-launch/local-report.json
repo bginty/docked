@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-10T07:36:32.055Z",
+  "base": "http://127.0.0.1:4318",
+  "checks": [
+    {
+      "width": 320,
+      "status": 200,
+      "noOverflow": true,
+      "imagesLoaded": true,
+      "anchorNavigation": true,
+      "signinCorrect": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 390,
+      "status": 200,
+      "noOverflow": true,
+      "imagesLoaded": true,
+      "anchorNavigation": true,
+      "signinCorrect": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 768,
+      "status": 200,
+      "noOverflow": true,
+      "imagesLoaded": true,
+      "anchorNavigation": true,
+      "signinCorrect": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "status": 200,
+      "noOverflow": true,
+      "imagesLoaded": true,
+      "anchorNavigation": true,
+      "signinCorrect": true,
+      "axeViolations": 0
+    }
+  ],
+  "publicHtmlPagesChecked": 9,
+  "noLegacyMessaging": true,
+  "noFormsOrApplicationScripts": true,
+  "metadataAndSuppliedSocialAsset": true,
+  "signin": "https://docked-production-5uwewz9wi-briant-s-projects.vercel.app/app/login",
+  "physicalDeviceTest": false
+}
