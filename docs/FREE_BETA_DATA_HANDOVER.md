@@ -1,5 +1,7 @@
 # Free friends beta continuation — 11 October 2026
 
+Latest data investigation: [ZERO_COST_POSTGAME_DATA](ZERO_COST_POSTGAME_DATA.md). Post-game scoring is owner-approved. A $0 NFL download candidate now has actual current-season field/mapping/arithmetic evidence and a locally tested cached importer; EPL gaps and permitted CSV fallback are explicit. This does not change the hosted/Android/admission status below. Support/operator/retention approvals remain resolved; provider holds and export/deletion evidence remain factual checks.
+
 Branch: `pivot/fantasy-cards-preview-v1`. Starting commit `78e6a661`; recoverable tag `checkpoint/free-beta-data-20261011-78e6a661`. This continues the release, not a replacement of the accepted dashboard/UI or owner login. No password reset or MFA enrolment occurred.
 
 ## Delivered and verification boundaries

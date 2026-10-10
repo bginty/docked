@@ -2,6 +2,8 @@ Latest authority: 11 October 2026 free-beta continuation and explicit owner play
 
 # Current Docked decisions
 
+11 October 2026 — Owner accepts post-game scoring for the free friends beta. Investigate permitted downloads/box scores before assuming a paid API. Scores must be awaiting results, provisional or final, never advertised as live without evidence. The NFL nflverse bulk-download candidate costs $0 to access and has affirmative CC BY 4.0 data-licence evidence; unresolved dataset-specific scope is not a blanket claim that sports facts require paid licensing. EPL complete free-player-stat coverage remains unestablished. Preserve rules/locked history, absence as pending and separate beta inventory. See ZERO_COST_POSTGAME_DATA.md for actual downloaded-match tests, rights distinctions, correction cadence and exact remaining gaps.
+
 10 October 2026 — Fantasy UX milestone: [FANTASY_UX_ACCEPTANCE](FANTASY_UX_ACCEPTANCE.md) is the current delivery/evidence record. Owner manually confirmed login working; that acceptance is preserved without password resets or MFA setup. Gameplay, visual approval and physical S24 checks are separate. Field-based football XI, historical points, owned-card sheets and sandbox-only fee proposal supersede earlier presentation. Hosted trading, external registration and payments remain closed.
 
 10 October 2026 — Permanent owner-approved direction: multi-sport fantasy sports cards. See PRODUCT_DIRECTION.md. All previous betting/odds/research-engine roadmaps are superseded. Historical decision records are retained under ../legacy/retired-product/docs/DECISIONS.md.

@@ -1,5 +1,7 @@
 # Free beta provider activation — 11 October 2026
 
+**New priority: [zero-cost post-game sources](ZERO_COST_POSTGAME_DATA.md).** The owner accepts delayed post-game scoring; no real-time or paid API is inherently required. nflverse actual 2026 bulk downloads and completed-match arithmetic now supplement the earlier contract-only tests. The vendor options below remain alternatives, not prerequisites or purchase recommendations. Their original verification limitations still apply. No hosted feed activated.
+
 **No provider subscription, commercial agreement, key purchase, real-data import or live competition has been activated.** All current EPL/NFL players are owner-approved for isolated beta eligibility; EPL only for association football. NFL scoring still supports QB/RB/WR/TE, not kickers/defence/IDP. Other roster positions may exist in the catalogue but must not be offered as eligible lineup cards. No first-year facts are required for these beta grants. Commercial eligibility and permanent supply are unchanged.
 
 ## Candidate accounts, prices and exact blockers
