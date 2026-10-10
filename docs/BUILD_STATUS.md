@@ -1,5 +1,12 @@
 # Latest release authority — 11 October 2026
 
+Paid player-pool rule approved: previous completed season's total Docked points,
+per league; ranks 1–20 Elite and 21–170 Premium/RARE, frozen for the edition.
+Shared product copy/configuration and a tested pure proposed-pool builder reflect
+this; missing/provisional data and cutoff ties block a proposal. No real players
+have been assigned paid tiers, no card history/supply changed, no charges enabled.
+See [PACK_POOL_POLICY](PACK_POOL_POLICY.md) for source/edition and activation gaps.
+
 Owner supplied live Premium/Elite PayPal buttons and requested purchases, then approved **Premium = RARE and random selection from a disclosed pool for both products**. Product copy/configuration and private, idempotent random reservation in the synthetic sandbox now reflect this. Exact identifiers are saved in `config/paypal-hosted-buttons.json`; [PAYPAL_HOSTED_BUTTONS](PAYPAL_HOSTED_BUTTONS.md) records the remaining work. Checkout is **not activated**: no approved sale pool/supply or hosted payment/fulfilment path. This is a concrete product/implementation gap, not lack of permission to add buttons. No payment SDK is loaded, no charges enabled, no deployment made.
 
 Post-game zero-cost investigation: [ZERO_COST_POSTGAME_DATA](ZERO_COST_POSTGAME_DATA.md). Actual 2026 nflverse weekly/PBP downloads inspected; five player totals manually reconciled. Strict weekly CSV adapter, ordinary return-TD companion normalizer, PostgreSQL-backed 12-hour cached download and append-only reconciliation added. No paid API assumption or scoring-rule change. Hosted feed remains disabled: source scope/completion evidence, exceptional attribution, PBP persistence link, full rosters and hosted read-path acceptance outstanding. EPL free sources inspected do not establish complete required player coverage. CSV fallback assessed, not falsely presented as a deployed upload feature. No account/inventory/data-history/production deployment changes.

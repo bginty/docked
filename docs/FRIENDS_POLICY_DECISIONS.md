@@ -20,6 +20,11 @@ Privacy draft fields requiring facts: support processing location **[VERIFY]**; 
 
 ## Paid product decision draft — not activated
 
+**Pool rule approved 11 October 2026:** each league separately, previous completed
+season's total Docked points; top 20 Elite, next 150 (21–170) Premium/RARE. Freeze
+the pool for the edition. See [PACK_POOL_POLICY](PACK_POOL_POLICY.md). This is not
+a copy-count/supply approval or proof of an operational historical statistics feed.
+
 - **Approved 11 October 2026:** Premium Single-Card Pack, A$49, exactly one RARE-tier card. Premium is the product label; existing owned RARE cards and their history are not renamed or migrated.
 - **Approved 11 October 2026:** Elite Single-Card Pack, A$99, exactly one ELITE card. Both products use random selection from a disclosed pool. Synthetic sandbox allocation now supports uniform selection among available card units, privately reserves one unit and does not reveal it before payment. Live pools, supply and pre-checkout chances still require configuration/review; no paid inventory is assumed.
 - Before checkout: sport, eligible pool, selection method, available finite supply, total AUD price, tax-inclusive/exclusive treatment **[ACCOUNTING FACT REQUIRED]**, delivery timing, rights and refund/dispute terms must be disclosed. No rarity/price scoring advantage.

@@ -23,7 +23,7 @@ The configuration is deliberately not imported into the member page. `PackProduc
 
 ## Required owner answers
 
-1. Which sport/player/edition pool is sale-ready, and what finite supply is approved? Preserve existing card identities and caps. Premium = RARE and random selection are already resolved.
+1. Which sale editions and finite card-copy supplies are approved? Player selection is now resolved by the [approved scoring-based pool policy](PACK_POOL_POLICY.md): previous completed season, top 20 per league Elite, ranks 21–170 Premium/RARE, frozen for the edition. Actual source-backed rankings and any cutoff ties still need verification. Premium = RARE and random selection are resolved; do not ask again.
 2. Confirm actual total-price/tax treatment, delivery and refund terms, and the permitted paid use of the chosen card content. Prior approval of all-current players for a free beta does not itself establish paid card content rights.
 
 ## Random allocation foundation (synthetic sandbox only)

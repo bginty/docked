@@ -8,6 +8,7 @@ export const packProducts = [
     advertisedTier: "Premium",
     inventoryTier: "RARE",
     selectionMethod: "random-disclosed-pool",
+    rankingBand: { from: 21, through: 170 },
   },
   {
     id: "elite-single-v1",
@@ -18,8 +19,19 @@ export const packProducts = [
     advertisedTier: "Elite",
     inventoryTier: "ELITE",
     selectionMethod: "random-disclosed-pool",
+    rankingBand: { from: 1, through: 20 },
   },
 ] as const;
+/** Player eligibility, not card-unit supply or a fantasy-points multiplier. */
+export const packRankingPolicy = {
+  version: "docked-scoring-pack-pools-v1",
+  basis: "docked-total-points",
+  scope: "per-league",
+  period: "previous-completed-season",
+  editionPool: "frozen",
+  boundaryTies: "hold-for-review",
+  existingEditions: "preserve",
+} as const;
 export const commerceReadiness = {
   liveCharges: false,
   hostedSandboxCheckout: false,

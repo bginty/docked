@@ -18,8 +18,15 @@ export function PackProducts() {
               selected from a disclosed pool.
             </p>
             <p>
-              Sport and eligible player pool: not available yet. The player
-              pool, available supply and selection chances will be shown before
+              {p.rankingBand.from === 1
+                ? "Top 20 players"
+                : "Players ranked 21–170"}{" "}
+              by total Docked points in their league’s previous completed
+              season. The pool is fixed for the edition.
+            </p>
+            <p>
+              Eligible player names are not available yet. The player pool,
+              available supply and selection chances will be shown before
               purchases open.
             </p>
             <button type="button" disabled>
