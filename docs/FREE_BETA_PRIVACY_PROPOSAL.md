@@ -1,6 +1,6 @@
-# Free beta privacy: evidence and proposed commitments
+# Free beta privacy: evidence and approved commitments
 
-11 October 2026. **Proposal awaiting owner approval.** No tenant settings changed, no mailbox content read, no real account deleted. The all-current EPL/NFL beta eligibility decision is approved separately and is not a data licence.
+11 October 2026 (Australia/Sydney). **Owner approved the support/moderation process and retention schedule, subject to verified provider holds/backups.** Direct owner replies: “Approve me as operator and this process” and “Approve proposed schedule subject to verified holds”. This resolves both outstanding policy decisions; it does not establish provider settings or completed deletion capability. No tenant settings changed, no mailbox content read, no real account deleted. The all-current EPL/NFL beta eligibility decision is approved separately and is not a data licence.
 
 ## Facts established / not established
 
@@ -16,9 +16,9 @@ Mailbox-at-rest geography, applied retention, organization-wide and case holds, 
 4. Verify a permitted, mailbox-scoped search/export in Purview eDiscovery with an **existing synthetic support message**, or manual Outlook export if Purview entitlement is absent. Record the export format, date, message IDs/count and secure destination. Verify deletion/recoverable-items behavior against the holds above. Do not permanently purge real mail for this test or report deletion as final while a hold retains a copy. If no isolated message already exists, prepare the test but do not send one without approval.
 5. Supply current provider log/backup expiry evidence from the actual Supabase/Vercel plans. Identify how restored backups are reprocessed against completed deletion cases before access is reopened. No paid retention add-on is needed for this evidence check.
 
-## Proposed schedule (not an assertion of legal minimums)
+## Owner-approved schedule, subject to verified holds/backups (not legal minimums)
 
-| Category | Proposed commitment | Necessity / minimisation |
+| Category | Approved commitment, subject to verified holds/backups | Necessity / minimisation |
 |---|---|---|
 | Account/contact/admission details | Immediately revoke access on verified closure; erase eligible details within 30 days; remove expired invitation tokens promptly | Prevent further access and avoid retaining unused contacts. Keep a non-identifying consumed-slot marker so closure cannot recycle the ten-person beta cap. Shared Auth requires cross-product review before deletion. |
 | Posts, comments, profiles, uploaded media | Remove own content/bytes and profile links within 30 days; review third-party mentions individually | Stop publication and remove unnecessary personal content without deleting other people's information wholesale. Holds must specify purpose and review date. |
@@ -37,7 +37,7 @@ On verified closure we revoke beta access. We remove eligible account details an
 
 **Do not publish yet:** replace/qualify log, backup and mailbox commitments with tested actual settings. Add verified overseas-processing disclosure; do not promise Australia-only processing. This draft is not a claim of legal review or statutory applicability.
 
-## Support/moderation proposal for approval
+## Owner-approved support/moderation process
 
 Owner operates support@docked.com.au, checks daily, acknowledges routine requests within two business days and targets 30-day privacy resolution. Urgent safety/security reports receive prompt access restriction/content removal and incident review; immediate danger is directed to emergency services. Suspected breaches go to specialist assessment of notification duties. Record decisions, reasons and review dates; allow a second review of complaints. No automated notification or invitation is enabled by approving this operating process.
 

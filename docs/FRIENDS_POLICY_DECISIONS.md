@@ -5,8 +5,8 @@ The latest owner instruction authorises a **free, invite-only AU18+ beta capped 
 ## Free beta activation blockers
 
 1. Confirm Microsoft365 tenant/support mailbox data location, actual retention/holds and support export/deletion process. Existing approved rc2 wording explicitly leaves these unresolved. Do not fill them with guessed countries/durations.
-2. Approve or amend the concrete category schedule in [FREE_BETA_PRIVACY_PROPOSAL](FREE_BETA_PRIVACY_PROPOSAL.md). Isolated SQL export/redaction tests now pass and the additive operator-only workflow is installed; shared Auth/residual identity links, Microsoft mail and host copies still require separate completion. Do not describe partial redaction as full anonymisation.
-3. Confirm named support/moderation operator and escalation process for externally visible posts. Existing reporting tools can be tested without claiming the outstanding online-safety applicability decision is resolved.
+2. **Retention decision resolved, 11 October 2026:** owner approved the category schedule in [FREE_BETA_PRIVACY_PROPOSAL](FREE_BETA_PRIVACY_PROPOSAL.md), subject to verified holds/backups. Isolated SQL export/redaction tests pass and the additive operator-only workflow is installed; shared Auth/residual identity links, Microsoft mail and host copies still require separate completion. Do not describe partial redaction as full anonymisation.
+3. **Support decision resolved, 11 October 2026:** owner is the support/moderation operator at support@docked.com.au and approved the documented daily checks, two-business-day acknowledgement, 30-day privacy target and urgent escalation process. This is not evidence of legal review or verified mailbox configuration.
 4. Supply authorised real-player catalogue/rights. **Eligibility is resolved: owner approved all current EPL/NFL players on 11 October 2026; no first-year minimum for new isolated free-beta grants/competitions.** The starter planner checks a complete EPL XI / NFL seven using existing position rules; this is not evidence of issued real cards. Current fictional owner QA must not quietly become the normal real-player tester catalogue. Commercial eligibility, existing locked rules, owned cards and supply stay unchanged.
 5. Supply up to ten intended tester email addresses when invitations are actually wanted. Lifetime roster slots are immutable; suspension does not recycle the admission limit. No public signup.
 
@@ -16,7 +16,7 @@ Prepare domain cutover only after these facts and required external acceptance a
 
 “Docked is a private fantasy sports card beta for invited Australian adults. Beta cards, points and competitions are separate test records and have no cash value. Selecting owned cards for your team and permitted card-for-card beta swaps are free. Live statistics are available only where labelled; simulations are identified. Public registration, paid packs, cash trading, prizes and withdrawals are unavailable. Contact support@docked.com.au to request assistance, report content or ask about your information.”
 
-Privacy draft fields requiring facts: support processing location **[VERIFY]**; support retention/holds **[VERIFY]**; immutable game record necessity/review period **[OWNER DECISION + REVIEW]**; deletion/export scope and exceptions **[VERIFY AGAINST TESTED WORKFLOW]**. Do not publish bracketed fields as a completed policy.
+Privacy draft fields requiring facts: support processing location **[VERIFY]**; actual support retention/holds **[VERIFY AGAINST APPROVED SCHEDULE]**; game record necessity/review period **[OWNER APPROVED; VERIFY IMPLEMENTATION]**; deletion/export scope and exceptions **[VERIFY AGAINST TESTED WORKFLOW]**. Do not publish bracketed fields as a completed policy.
 
 ## Paid product decision draft — not activated
 
