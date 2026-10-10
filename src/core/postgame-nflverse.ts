@@ -33,10 +33,30 @@ export const nflverseRequiredColumns = [
 
 /** Strict bounded CSV. Blanks remain blanks; no numeric coercion to zero.
  * Handles RFC4180 quoted commas/newlines and rejects malformed quoting. */
-export function parseStatisticsCsv(text: string): Record<string, string>[] {
-  if (text.length > 12_000_000 || text.includes("\0"))
+export function parseStatisticsCsv(
+  text: string,
+  profile?: {
+    columns: readonly string[];
+    maxChars: number;
+    maxRows: number;
+    maxColumns: number;
+  },
+): Record<string, string>[] {
+  const limits = profile ?? {
+    maxChars: 12_000_000,
+    maxRows: 30000,
+    maxColumns: 200,
+  };
+  if (
+    limits.maxChars > 128_000_000 ||
+    limits.maxRows > 100000 ||
+    limits.maxColumns > 450
+  )
+    throw Error("Unsafe CSV limits");
+  if (text.length > limits.maxChars || text.includes("\0"))
     throw Error("CSV exceeds limit or contains NUL");
-  const rows: string[][] = [];
+  const rows: Record<string, string>[] = [];
+  let headers: string[] | undefined;
   let row: string[] = [],
     cell = "",
     quoted = false,
@@ -45,13 +65,31 @@ export function parseStatisticsCsv(text: string): Record<string, string>[] {
     row.push(cell);
     cell = "";
     closed = false;
-    if (row.length > 200) throw Error("Too many CSV columns");
+    if (row.length > limits.maxColumns) throw Error("Too many CSV columns");
   };
   const line = () => {
     field();
-    rows.push(row);
+    if (!headers) {
+      headers = row;
+      if (
+        !headers.length ||
+        headers.some((h) => !/^[A-Za-z][A-Za-z0-9_]*$/.test(h)) ||
+        new Set(headers).size !== headers.length ||
+        profile?.columns.some((c) => !headers!.includes(c))
+      )
+        throw Error("Invalid/duplicate/missing CSV header");
+    } else {
+      if (row.length !== headers.length) throw Error("CSV row width changed");
+      rows.push(
+        Object.fromEntries(
+          headers.flatMap((h, i) =>
+            !profile || profile.columns.includes(h) ? [[h, row[i]]] : [],
+          ),
+        ),
+      );
+    }
     row = [];
-    if (rows.length > 30001) throw Error("Too many CSV rows");
+    if (rows.length > limits.maxRows) throw Error("Too many CSV rows");
   };
   text = text.replace(/^\uFEFF/, "");
   for (let i = 0; i < text.length; i++) {
@@ -76,17 +114,13 @@ export function parseStatisticsCsv(text: string): Record<string, string>[] {
   }
   if (quoted) throw Error("Unterminated CSV quote");
   if (cell || row.length || closed) line();
-  const headers = rows.shift();
   if (
     !headers?.length ||
     headers.some((h) => !/^[A-Za-z][A-Za-z0-9_]*$/.test(h)) ||
     new Set(headers).size !== headers.length
   )
     throw Error("Invalid/duplicate CSV header");
-  return rows.map((r) => {
-    if (r.length !== headers.length) throw Error("CSV row width changed");
-    return Object.fromEntries(headers.map((h, i) => [h, r[i]]));
-  });
+  return rows;
 }
 
 function integer(row: Record<string, string>, key: string, signed = false) {
@@ -117,9 +151,18 @@ export function nflverseReturnTouchdowns(
   let kickoff = 0,
     punt = 0;
   for (const p of plays.filter(
-    (p) => p.td_player_id === row.player_id && p.touchdown === "1",
+    (p) =>
+      p.td_player_id === row.player_id &&
+      p.touchdown === "1" &&
+      p.play_deleted !== "1",
   )) {
     if (p.return_touchdown !== "1") continue;
+    if (
+      p.fumble === "1" &&
+      p.special_teams_play === "0" &&
+      integer(row, "fumble_recovery_tds") > 0
+    )
+      continue;
     if (p.fumble !== "0" || p.td_team !== row.team)
       throw Error("Complex return evidence requires review");
     if (
@@ -152,8 +195,9 @@ export function nflversePlayerStatistics(
     // zero proves every subset is zero. A nonzero aggregate cannot identify which
     // return/recovery happened: NEVER allocate it arbitrarily or ignore it.
     if (
-      integer(row, "fumble_recovery_tds") !== 0 ||
-      (integer(row, "special_teams_tds") !== 0 && !plays)
+      !plays &&
+      (integer(row, "fumble_recovery_tds") !== 0 ||
+        integer(row, "special_teams_tds") !== 0)
     )
       throw Error(
         "Touchdown category evidence required (return type/offensive recovery)",
@@ -168,7 +212,9 @@ export function nflversePlayerStatistics(
       ...(plays
         ? nflverseReturnTouchdowns(row, plays)
         : { kickoff_return_touchdowns: 0, punt_return_touchdowns: 0 }),
-      offensiveFumbleRecoveryTouchdowns: 0,
+      offensiveFumbleRecoveryTouchdowns: plays
+        ? nflverseRecoveryTouchdowns(row, plays)
+        : 0,
     });
     return { stats, issue: null };
   } catch (error) {
@@ -177,6 +223,46 @@ export function nflversePlayerStatistics(
       issue: error instanceof Error ? error.message : "Invalid statistics",
     };
   }
+}
+
+/** Recovery TDs are a separate nflverse aggregate, not special_teams_tds.
+ * Count only a directly attributed offensive recovery, never also a rush/pass
+ * TD. Multiple recoveries/laterals require review. Defensive recovery TDs are
+ * reconciled but do not earn offensive-player recovery points. */
+export function nflverseRecoveryTouchdowns(
+  row: Record<string, string>,
+  plays: Record<string, string>[],
+) {
+  const count = integer(row, "fumble_recovery_tds");
+  if (!count) return 0;
+  let reconciled = 0,
+    offensive = 0;
+  for (const p of plays.filter(
+    (p) =>
+      p.td_player_id === row.player_id &&
+      p.touchdown === "1" &&
+      p.fumble === "1",
+  )) {
+    if (p.play_deleted === "1") continue;
+    if (
+      p.pass_touchdown !== "0" ||
+      p.rush_touchdown !== "0" ||
+      p.special_teams_play !== "0" ||
+      p.lateral_recovery !== "0" ||
+      p.fumble_recovery_2_player_id ||
+      p.fumble_recovery_1_player_id !== row.player_id ||
+      p.fumble_recovery_1_team !== row.team ||
+      p.td_team !== row.team ||
+      p.fumbled_1_team !== p.posteam
+    )
+      throw Error("Complex recovery attribution requires review");
+    if (p.posteam === row.team) offensive++;
+    else if (p.defteam !== row.team) throw Error("Recovery team mismatch");
+    reconciled++;
+  }
+  if (reconciled !== count)
+    throw Error("Companion and weekly recovery TD totals disagree");
+  return offensive;
 }
 
 const mappingSchema = z
@@ -202,7 +288,8 @@ const mappingSchema = z
       .max(200),
     // Weekly CSV has no exact completion instant. Do not infer it from kickoff,
     // a populated row, or elapsed wall time. Supply separately verified evidence.
-    endedAt: z.iso.datetime(),
+    endedAt: z.iso.datetime().nullable(),
+    completionObservedAt: z.iso.datetime().optional(),
     completionEvidence: z.url(),
   })
   .strict();
@@ -213,11 +300,13 @@ export function nflversePostgame(
   input: PostgameMapping,
   revision: number,
   observedAt: string,
+  plays?: Record<string, string>[],
 ) {
   const mapping = mappingSchema.parse(input);
   z.iso.datetime().parse(observedAt);
   z.number().int().positive().parse(revision);
-  if (Date.parse(mapping.endedAt) > Date.parse(observedAt))
+  const completion = mapping.endedAt ?? mapping.completionObservedAt;
+  if (!completion || Date.parse(completion) > Date.parse(observedAt))
     throw Error("Match not completed");
   if (
     mapping.home === mapping.away ||
@@ -257,7 +346,7 @@ export function nflversePostgame(
     const row = index.get(p.gsisId);
     const result =
       row && row.team === p.team && row.position === p.position
-        ? nflversePlayerStatistics(row)
+        ? nflversePlayerStatistics(row, plays)
         : {
             stats: null,
             issue: "Missing or unmapped player; not confirmed DNP",
@@ -279,6 +368,9 @@ export function nflversePostgame(
     observedAt,
     status: "completed",
     endedAt: mapping.endedAt,
+    ...(mapping.completionObservedAt
+      ? { completionObservedAt: mapping.completionObservedAt }
+      : {}),
     players,
   };
   return { snapshot, issues };

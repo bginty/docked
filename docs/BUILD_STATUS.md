@@ -1,3 +1,5 @@
+Latest continuation: [NFL_HOSTED_POSTGAME_ACCEPTANCE](NFL_HOSTED_POSTGAME_ACCEPTANCE.md). NFL weekly/PBP/roster evidence and historical QA scoring now run on the isolated hosted backend, with a protected member-read function. This supersedes older statements below that these components are only local. External admission, real member competitions and unattended scheduling remain unactivated.
+
 # Latest release authority — 11 October 2026
 
 Paid player-pool rule approved: previous completed season's total Docked points,

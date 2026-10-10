@@ -39,15 +39,15 @@ test("AFL new version uses owner weights and never mutates old competitions", ()
     "0.04",
   );
 });
-test("Pack offers are server-priced, exactly one, no invented Premium mapping or activation", () => {
+test("Pack offers preserve approved Premium mapping and random pool while activation stays off", () => {
   assert.deepEqual(
     packProducts.map((p) => p.priceCents),
     [4900, 9900],
   );
   assert.ok(packProducts.every((p) => p.cards === 1 && p.currency === "AUD"));
-  assert.equal(packProducts[0].inventoryTier, null);
+  assert.equal(packProducts[0].inventoryTier, "RARE");
   assert.equal(commerceReadiness.liveCharges, false);
-  assert.equal(commerceReadiness.selectionMethod, null);
+  assert.equal(commerceReadiness.selectionMethod, "random-disclosed-pool");
 });
 test("Catalogue fails closed on rights, stale sources, duplicates and non-EPL football", () => {
   const p = {

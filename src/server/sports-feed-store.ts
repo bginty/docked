@@ -112,6 +112,7 @@ export class SportsFeedStore {
     id: string,
     command: (s: ScoringState) => ScoringState,
     rawId: number | null = null,
+    companion: { rawId: number; fixtureId: string } | null = null,
   ) {
     return this.sql.begin(async (tx) => {
       if (
@@ -125,6 +126,12 @@ export class SportsFeedStore {
       if (digest(old.body) !== old.state_hash)
         throw Error("Scoring journal corrupt");
       const next = command(structuredClone(old.body));
+      if (companion) {
+        const [raw] =
+          await tx`select id from sports_feed.raw_revisions where id=${companion.rawId} and provider='nflverse' and body->>'dataset'='pbp' and body is not null and expires_at>clock_timestamp()`;
+        if (!raw || !rawId) throw Error("Companion provenance missing");
+        await tx`insert into sports_feed.bundle_evidence(stream_id,fixture_id,weekly_raw_id,pbp_raw_id) values(${id},${companion.fixtureId},${rawId},${companion.rawId}) on conflict do nothing`;
+      }
       if (digest(next) === old.state_hash) return next;
       if (
         next.scope !== "authorised-free-beta" ||

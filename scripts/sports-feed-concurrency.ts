@@ -7,6 +7,7 @@ import { reconcileFeed } from "../src/server/sports-feed-reconcile";
 import { createFreeBetaPeriod } from "../src/core/free-beta-scoring";
 import { syntheticScenario } from "../src/core/scoring-synthetic";
 import { verifyPostgame } from "./postgame-concurrency";
+import { verifyNflBundle } from "./nfl-postgame-concurrency";
 import {
   saveTeam,
   lockTeams,
@@ -185,6 +186,7 @@ async function main() {
     const disabled = await runSportsFetch(store, {}, {});
     assert.equal(disabled.status, "not-configured");
     await verifyPostgame(sql);
+    await verifyNflBundle(sql);
     const report = {
       checkedAt: new Date().toISOString(),
       scope:

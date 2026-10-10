@@ -130,6 +130,14 @@
   text-align: left;
   font-weight: bold;
 }
+.postgame-results th:first-child {
+  width: 52%;
+}
+.postgame-results th,
+.postgame-results td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
 .scoring-review li {
   margin: 12px 0;
 }

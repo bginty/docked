@@ -658,9 +658,10 @@ export function FantasyPlay({
                   placings. Daily gameplay rewards are separate.
                 </p>
                 <p>
-                  Live sporting data and additional sport scoring are not
-                  connected.
+                  NFL post-game results are kept separate from simulated
+                  competitions. Missing statistics remain pending.
                 </p>
+                <Link href="/fantasy/results">Post-game points and breakdowns</Link>
               </section>
             </aside>
           </div>

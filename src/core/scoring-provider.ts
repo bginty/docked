@@ -20,6 +20,7 @@ export const sourceSnapshot = z
       "cancelled",
     ]),
     endedAt: z.iso.datetime().nullable(),
+    completionObservedAt: z.iso.datetime().optional(),
     players: z
       .array(
         z
@@ -72,8 +73,17 @@ export const syntheticProvider: ScoringProvider = {
       else if (row.stats !== null)
         throw Error("Unavailable player must not carry guessed statistics");
     }
-    if (data.status === "completed" && !data.endedAt)
+    if (
+      data.status === "completed" &&
+      !data.endedAt &&
+      !data.completionObservedAt
+    )
       throw Error("Completion timestamp required");
+    if (
+      data.completionObservedAt &&
+      Date.parse(data.completionObservedAt) > Date.parse(data.observedAt)
+    )
+      throw Error("Invalid completion observation time");
     if (data.endedAt && Date.parse(data.endedAt) > Date.parse(data.observedAt))
       throw Error("Invalid source time order");
     return data;

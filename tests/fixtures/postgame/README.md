@@ -9,3 +9,6 @@ Attribution: nflverse contributors. [CC BY 4.0](https://creativecommons.org/lice
 The nflreadr-documented schedule dataset identifies the game as Atlanta at Pittsburgh, 13 September 2026, completed score 13–20. This is mapping/completed-match evidence, not verification of every statistic against an independent official gamebook. Four arithmetic totals are manually reconciled in the test and investigation report. Current club membership cannot be inferred from a historical game team.
 
 **No exact end instant is supplied by this CSV.** Unit tests explicitly use a synthetic completion-contract timestamp; that timestamp is not a researched fact. No real competition, card allocation or member result was created. Hosted activation requires separate verified completion evidence and the rights review described in `docs/ZERO_COST_POSTGAME_DATA.md`.
+
+
+The new nflverse-2026-atl-pit-pbp.json is a projection of 175 plays from the same original PBP SHA above, including the explicit END_GAME marker. It excludes descriptions and unrelated columns. Its source/licence attribution is unchanged. Hosted post-game acceptance now exists; see docs/NFL_HOSTED_POSTGAME_ACCEPTANCE.md. Exact whistle time remains unknown and is not invented.

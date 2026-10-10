@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-10T23:36:28.888Z",
+  "scope": "Local browser component rendering of actual hosted read model; NOT authenticated hosted browser or physical S24 acceptance",
+  "checks": [
+    {
+      "viewport": "s24",
+      "pass": true,
+      "checks": [
+        "hosted read-model rendered by production component",
+        "player details expandable",
+        "no horizontal overflow",
+        "empty state",
+        "axe zero violations",
+        "no page exceptions"
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "pass": true,
+      "checks": [
+        "hosted read-model rendered by production component",
+        "player details expandable",
+        "no horizontal overflow",
+        "empty state",
+        "axe zero violations",
+        "no page exceptions"
+      ]
+    }
+  ]
+}

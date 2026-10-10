@@ -254,11 +254,18 @@ export function importStatistics(
   }
   if (old && source.revision <= old.revision)
     throw Error("Out-of-order correction");
+  if (
+    old?.completionObservedAt &&
+    source.completionObservedAt !== old.completionObservedAt
+  )
+    throw Error("First completion observation cannot change");
   const firstEnded = state.sources.find(
-    (s) => s.fixtureId === fixture.id && s.endedAt,
-  )?.endedAt;
-  const cutoff = firstEnded
-    ? time(firstEnded) + state.period.rules.correctionHours * 3600000
+    (s) => s.fixtureId === fixture.id && (s.endedAt || s.completionObservedAt),
+  );
+  const firstCompletion =
+    firstEnded?.endedAt ?? firstEnded?.completionObservedAt;
+  const cutoff = firstCompletion
+    ? time(firstCompletion) + state.period.rules.correctionHours * 3600000
     : Infinity;
   if (state.finalisedAt || time(at) > cutoff) {
     if (
@@ -394,9 +401,11 @@ export function finalise(
   for (const f of state.period.fixtures) {
     const s = state.sources.filter((s) => s.fixtureId === f.id).at(-1);
     if (
-      !s?.endedAt ||
+      !(s?.endedAt ?? s?.completionObservedAt) ||
       s.status !== "completed" ||
-      time(at) < time(s.endedAt) + state.period.rules.correctionHours * 3600000
+      time(at) <
+        time((s.endedAt ?? s.completionObservedAt)!) +
+          state.period.rules.correctionHours * 3600000
     )
       throw Error("Correction window remains open");
   }

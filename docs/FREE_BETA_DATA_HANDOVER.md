@@ -1,3 +1,5 @@
+Latest continuation: [NFL_HOSTED_POSTGAME_ACCEPTANCE](NFL_HOSTED_POSTGAME_ACCEPTANCE.md). NFL weekly/PBP/roster evidence and historical QA scoring now run on the isolated hosted backend, with a protected member-read function. This supersedes older statements below that these components are only local. External admission, real member competitions and unattended scheduling remain unactivated.
+
 # Free friends beta continuation — 11 October 2026
 
 Latest data investigation: [ZERO_COST_POSTGAME_DATA](ZERO_COST_POSTGAME_DATA.md). Post-game scoring is owner-approved. A $0 NFL download candidate now has actual current-season field/mapping/arithmetic evidence and a locally tested cached importer; EPL gaps and permitted CSV fallback are explicit. This does not change the hosted/Android/admission status below. Support/operator/retention approvals remain resolved; provider holds and export/deletion evidence remain factual checks.

@@ -1,3 +1,5 @@
+Latest continuation: [NFL_HOSTED_POSTGAME_ACCEPTANCE](NFL_HOSTED_POSTGAME_ACCEPTANCE.md). NFL weekly/PBP/roster evidence and historical QA scoring now run on the isolated hosted backend, with a protected member-read function. This supersedes older statements below that these components are only local. External admission, real member competitions and unattended scheduling remain unactivated.
+
 # Zero-cost post-game scoring investigation
 
 Reviewed 11 October 2026, Australia/Sydney. Supersedes any assumption that Docked requires a paid or real-time API. The owner accepts post-game scoring for the isolated free friends beta. No commercial subscriptions, invitations, production data changes or rule changes are authorised by this investigation.

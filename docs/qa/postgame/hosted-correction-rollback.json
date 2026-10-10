@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-10T23:31:52.522Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "scope": "Hosted rolled-back SYNTHETIC correction on historical QA stream; NOT an observed provider correction",
+  "pass": true,
+  "checks": [
+    "one-yard synthetic correction adds 0.04, not duplicate total",
+    "original snapshot and lineup preserved",
+    "member read function returns corrected breakdown/revision inside operator rollback transaction; restricted-role access is separately tested",
+    "transaction rollback restores exact original journal"
+  ]
+}

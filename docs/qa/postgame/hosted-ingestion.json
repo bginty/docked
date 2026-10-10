@@ -1,0 +1,1759 @@
+{
+  "at": "2026-10-10T23:26:35.237Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "scope": "Hosted operator ingestion + restricted runtime SQL read; not browser/session or future live-match acceptance",
+  "checks": [
+    "Actual weekly + PBP imported, idempotent repeat, complete seven-player QA lineup",
+    "Existing owner AAL2 admitted; owner AAL1/other identity denied; runtime raw reads and writes denied",
+    "Beta/production holdings, editions, scarcity and ownership counts unchanged"
+  ],
+  "sourceRevisions": [
+    {
+      "dataset": "weekly",
+      "status": "downloaded",
+      "id": 1,
+      "projectionHash": "ee4ed05a83e75b1c20cfe975eedb20bfcb66529856728f0bddd25205002e8917",
+      "sourceSha256": "bda143a5f21ce606cf62cbf1f2ba832392e9f2cde73a8f733d4bc5d04f1598ff",
+      "sourceModifiedAt": "Sat, 10 Oct 2026 15:19:08 GMT",
+      "rows": 4517,
+      "expiresAt": "2026-11-09T23:26:54.587Z"
+    },
+    {
+      "dataset": "pbp",
+      "status": "downloaded",
+      "id": 2,
+      "projectionHash": "f2be01d10d302f68284a3e8cd2284bcd6a0e5b12df1483227efa1f925bbda24e",
+      "sourceSha256": "e7c162e793cb0f828b97c9c92bf6efd7d60ff35eb6ef9b407b8d16001fd2a39a",
+      "sourceModifiedAt": "Sat, 10 Oct 2026 15:17:30 GMT",
+      "rows": 11327,
+      "expiresAt": "2026-11-09T23:28:10.554Z"
+    },
+    {
+      "dataset": "rosters",
+      "status": "downloaded",
+      "id": 3,
+      "projectionHash": "d761417f797859f12afb66df555e1adbf2523d9f03474d108e7cf4e3f290bc45",
+      "sourceSha256": "de8d8492f4225c9e2788dcc692e0908a0a418f151f12639987ec3228a13264e2",
+      "sourceModifiedAt": "Sat, 10 Oct 2026 13:37:31 GMT",
+      "rows": 3033,
+      "expiresAt": "2026-11-09T23:29:16.408Z"
+    }
+  ],
+  "roster": {
+    "season": 2026,
+    "rows": 3033,
+    "teamCount": 32,
+    "coverage": [
+      {
+        "team": "ARI",
+        "positions": {
+          "QB": 3,
+          "RB": 7,
+          "WR": 9,
+          "TE": 9
+        }
+      },
+      {
+        "team": "ATL",
+        "positions": {
+          "QB": 4,
+          "RB": 6,
+          "WR": 10,
+          "TE": 5
+        }
+      },
+      {
+        "team": "BAL",
+        "positions": {
+          "QB": 5,
+          "RB": 7,
+          "WR": 15,
+          "TE": 5
+        }
+      },
+      {
+        "team": "BUF",
+        "positions": {
+          "QB": 3,
+          "RB": 6,
+          "WR": 12,
+          "TE": 4
+        }
+      },
+      {
+        "team": "CAR",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 13,
+          "TE": 6
+        }
+      },
+      {
+        "team": "CHI",
+        "positions": {
+          "QB": 4,
+          "RB": 6,
+          "WR": 12,
+          "TE": 7
+        }
+      },
+      {
+        "team": "CIN",
+        "positions": {
+          "QB": 4,
+          "RB": 6,
+          "WR": 11,
+          "TE": 6
+        }
+      },
+      {
+        "team": "CLE",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 13,
+          "TE": 8
+        }
+      },
+      {
+        "team": "DAL",
+        "positions": {
+          "QB": 3,
+          "RB": 7,
+          "WR": 10,
+          "TE": 9
+        }
+      },
+      {
+        "team": "DEN",
+        "positions": {
+          "QB": 3,
+          "RB": 6,
+          "WR": 11,
+          "TE": 6
+        }
+      },
+      {
+        "team": "DET",
+        "positions": {
+          "QB": 4,
+          "RB": 6,
+          "WR": 11,
+          "TE": 7
+        }
+      },
+      {
+        "team": "GB",
+        "positions": {
+          "QB": 3,
+          "RB": 8,
+          "WR": 13,
+          "TE": 8
+        }
+      },
+      {
+        "team": "HOU",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 12,
+          "TE": 8
+        }
+      },
+      {
+        "team": "IND",
+        "positions": {
+          "QB": 3,
+          "RB": 5,
+          "WR": 15,
+          "TE": 9
+        }
+      },
+      {
+        "team": "JAX",
+        "positions": {
+          "QB": 5,
+          "RB": 5,
+          "WR": 12,
+          "TE": 5
+        }
+      },
+      {
+        "team": "KC",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 14,
+          "TE": 7
+        }
+      },
+      {
+        "team": "LA",
+        "positions": {
+          "QB": 4,
+          "RB": 5,
+          "WR": 9,
+          "TE": 7
+        }
+      },
+      {
+        "team": "LAC",
+        "positions": {
+          "QB": 3,
+          "RB": 7,
+          "WR": 15,
+          "TE": 7
+        }
+      },
+      {
+        "team": "LV",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 14,
+          "TE": 7
+        }
+      },
+      {
+        "team": "MIA",
+        "positions": {
+          "QB": 4,
+          "RB": 10,
+          "WR": 10,
+          "TE": 9
+        }
+      },
+      {
+        "team": "MIN",
+        "positions": {
+          "QB": 3,
+          "RB": 10,
+          "WR": 13,
+          "TE": 8
+        }
+      },
+      {
+        "team": "NE",
+        "positions": {
+          "QB": 3,
+          "RB": 7,
+          "WR": 12,
+          "TE": 7
+        }
+      },
+      {
+        "team": "NO",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 13,
+          "TE": 6
+        }
+      },
+      {
+        "team": "NYG",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 11,
+          "TE": 4
+        }
+      },
+      {
+        "team": "NYJ",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 13,
+          "TE": 7
+        }
+      },
+      {
+        "team": "PHI",
+        "positions": {
+          "QB": 4,
+          "RB": 8,
+          "WR": 13,
+          "TE": 7
+        }
+      },
+      {
+        "team": "PIT",
+        "positions": {
+          "QB": 4,
+          "RB": 7,
+          "WR": 15,
+          "TE": 6
+        }
+      },
+      {
+        "team": "SEA",
+        "positions": {
+          "QB": 3,
+          "RB": 11,
+          "WR": 12,
+          "TE": 4
+        }
+      },
+      {
+        "team": "SF",
+        "positions": {
+          "QB": 4,
+          "RB": 6,
+          "WR": 15,
+          "TE": 6
+        }
+      },
+      {
+        "team": "TB",
+        "positions": {
+          "QB": 5,
+          "RB": 5,
+          "WR": 13,
+          "TE": 6
+        }
+      },
+      {
+        "team": "TEN",
+        "positions": {
+          "QB": 3,
+          "RB": 6,
+          "WR": 11,
+          "TE": 6
+        }
+      },
+      {
+        "team": "WAS",
+        "positions": {
+          "QB": 4,
+          "RB": 5,
+          "WR": 12,
+          "TE": 8
+        }
+      }
+    ],
+    "issues": [
+      "Missing roster identity/team/status"
+    ],
+    "status": "REVIEW_REQUIRED",
+    "participation": "NOT_ESTABLISHED",
+    "supportedPlayers": 946,
+    "unmapped": [
+      {
+        "team": "NYJ",
+        "week": "5",
+        "season": "2026",
+        "status": "DEV",
+        "gsis_id": "",
+        "position": "RB",
+        "full_name": "Al-Jay Henderson",
+        "game_type": "REG"
+      }
+    ]
+  },
+  "actualResults": {
+    "period": "Atlanta at Pittsburgh · 13 September 2026",
+    "status": "provisional",
+    "total": 71.24,
+    "players": [
+      {
+        "id": "gsis:00-0023459",
+        "points": 12.54,
+        "breakdown": [
+          {
+            "statistic": "passing_yards",
+            "quantity": 221,
+            "centipoints": 884
+          },
+          {
+            "statistic": "passing_touchdowns",
+            "quantity": 1,
+            "centipoints": 400
+          },
+          {
+            "statistic": "interceptions_thrown",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_yards",
+            "quantity": -3,
+            "centipoints": -30
+          },
+          {
+            "statistic": "rushing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receptions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "fumbles_lost",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "kickoff_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "punt_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "offensiveFumbleRecoveryTouchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          }
+        ]
+      },
+      {
+        "id": "gsis:00-0037228",
+        "points": 7.8,
+        "breakdown": [
+          {
+            "statistic": "passing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "interceptions_thrown",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_yards",
+            "quantity": 46,
+            "centipoints": 460
+          },
+          {
+            "statistic": "rushing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receptions",
+            "quantity": 5,
+            "centipoints": 250
+          },
+          {
+            "statistic": "receiving_yards",
+            "quantity": 27,
+            "centipoints": 270
+          },
+          {
+            "statistic": "receiving_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "fumbles_lost",
+            "quantity": 1,
+            "centipoints": -200
+          },
+          {
+            "statistic": "passing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "kickoff_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "punt_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "offensiveFumbleRecoveryTouchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          }
+        ]
+      },
+      {
+        "id": "gsis:00-0038542",
+        "points": 27.3,
+        "breakdown": [
+          {
+            "statistic": "passing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "interceptions_thrown",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_yards",
+            "quantity": 83,
+            "centipoints": 830
+          },
+          {
+            "statistic": "rushing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receptions",
+            "quantity": 8,
+            "centipoints": 400
+          },
+          {
+            "statistic": "receiving_yards",
+            "quantity": 90,
+            "centipoints": 900
+          },
+          {
+            "statistic": "receiving_touchdowns",
+            "quantity": 1,
+            "centipoints": 600
+          },
+          {
+            "statistic": "fumbles_lost",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "kickoff_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "punt_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "offensiveFumbleRecoveryTouchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          }
+        ]
+      },
+      {
+        "id": "gsis:00-0035640",
+        "points": 6,
+        "breakdown": [
+          {
+            "statistic": "passing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "interceptions_thrown",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receptions",
+            "quantity": 4,
+            "centipoints": 200
+          },
+          {
+            "statistic": "receiving_yards",
+            "quantity": 40,
+            "centipoints": 400
+          },
+          {
+            "statistic": "receiving_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "fumbles_lost",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "kickoff_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "punt_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "offensiveFumbleRecoveryTouchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          }
+        ]
+      },
+      {
+        "id": "gsis:00-0037238",
+        "points": 4.5,
+        "breakdown": [
+          {
+            "statistic": "passing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "interceptions_thrown",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_yards",
+            "quantity": 6,
+            "centipoints": 60
+          },
+          {
+            "statistic": "rushing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receptions",
+            "quantity": 2,
+            "centipoints": 100
+          },
+          {
+            "statistic": "receiving_yards",
+            "quantity": 29,
+            "centipoints": 290
+          },
+          {
+            "statistic": "receiving_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "fumbles_lost",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "kickoff_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "punt_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "offensiveFumbleRecoveryTouchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          }
+        ]
+      },
+      {
+        "id": "gsis:00-0036894",
+        "points": 13.1,
+        "breakdown": [
+          {
+            "statistic": "passing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "interceptions_thrown",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receptions",
+            "quantity": 5,
+            "centipoints": 250
+          },
+          {
+            "statistic": "receiving_yards",
+            "quantity": 46,
+            "centipoints": 460
+          },
+          {
+            "statistic": "receiving_touchdowns",
+            "quantity": 1,
+            "centipoints": 600
+          },
+          {
+            "statistic": "fumbles_lost",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "kickoff_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "punt_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "offensiveFumbleRecoveryTouchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          }
+        ]
+      },
+      {
+        "id": "gsis:00-0036970",
+        "points": 0,
+        "breakdown": [
+          {
+            "statistic": "passing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "interceptions_thrown",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receptions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_yards",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "fumbles_lost",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "passing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "rushing_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "receiving_two_point_conversions",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "kickoff_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "punt_return_touchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          },
+          {
+            "statistic": "offensiveFumbleRecoveryTouchdowns",
+            "quantity": 0,
+            "centipoints": 0
+          }
+        ]
+      }
+    ],
+    "completion": "2026-10-10T23:28:43.346Z"
+  },
+  "readView": [
+    {
+      "id": "beta-real:qa:nfl-atl-pit-2026",
+      "view": {
+        "rows": [
+          {
+            "name": "Acceptance lineup · no account awards",
+            "rank": 1,
+            "status": "provisional",
+            "players": [
+              {
+                "cardId": "qa-only:00-0023459",
+                "matches": [
+                  {
+                    "score": {
+                      "parts": [
+                        {
+                          "quantity": 221,
+                          "statistic": "passing_yards",
+                          "centipoints": 884
+                        },
+                        {
+                          "quantity": 1,
+                          "statistic": "passing_touchdowns",
+                          "centipoints": 400
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "interceptions_thrown",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": -3,
+                          "statistic": "rushing_yards",
+                          "centipoints": -30
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receptions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "fumbles_lost",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "kickoff_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "punt_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "offensiveFumbleRecoveryTouchdowns",
+                          "centipoints": 0
+                        }
+                      ],
+                      "centipoints": 1254
+                    },
+                    "status": "provisional",
+                    "revision": 1,
+                    "fixtureId": "beta-real:qa:nfl-atl-pit-2026:game",
+                    "updatedAt": "2026-10-10T23:29:38.075Z",
+                    "statistics": {
+                      "receptions": 0,
+                      "fumbles_lost": 0,
+                      "passing_yards": 221,
+                      "rushing_yards": -3,
+                      "receiving_yards": 0,
+                      "passing_touchdowns": 1,
+                      "rushing_touchdowns": 0,
+                      "interceptions_thrown": 0,
+                      "receiving_touchdowns": 0,
+                      "punt_return_touchdowns": 0,
+                      "kickoff_return_touchdowns": 0,
+                      "passing_two_point_conversions": 0,
+                      "rushing_two_point_conversions": 0,
+                      "receiving_two_point_conversions": 0,
+                      "offensiveFumbleRecoveryTouchdowns": 0
+                    },
+                    "availability": "complete",
+                    "sourceStatus": "completed"
+                  }
+                ],
+                "playerId": "gsis:00-0023459",
+                "position": "QB",
+                "centipoints": 1254
+              },
+              {
+                "cardId": "qa-only:00-0037228",
+                "matches": [
+                  {
+                    "score": {
+                      "parts": [
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "interceptions_thrown",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 46,
+                          "statistic": "rushing_yards",
+                          "centipoints": 460
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 5,
+                          "statistic": "receptions",
+                          "centipoints": 250
+                        },
+                        {
+                          "quantity": 27,
+                          "statistic": "receiving_yards",
+                          "centipoints": 270
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 1,
+                          "statistic": "fumbles_lost",
+                          "centipoints": -200
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "kickoff_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "punt_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "offensiveFumbleRecoveryTouchdowns",
+                          "centipoints": 0
+                        }
+                      ],
+                      "centipoints": 780
+                    },
+                    "status": "provisional",
+                    "revision": 1,
+                    "fixtureId": "beta-real:qa:nfl-atl-pit-2026:game",
+                    "updatedAt": "2026-10-10T23:29:38.075Z",
+                    "statistics": {
+                      "receptions": 5,
+                      "fumbles_lost": 1,
+                      "passing_yards": 0,
+                      "rushing_yards": 46,
+                      "receiving_yards": 27,
+                      "passing_touchdowns": 0,
+                      "rushing_touchdowns": 0,
+                      "interceptions_thrown": 0,
+                      "receiving_touchdowns": 0,
+                      "punt_return_touchdowns": 0,
+                      "kickoff_return_touchdowns": 0,
+                      "passing_two_point_conversions": 0,
+                      "rushing_two_point_conversions": 0,
+                      "receiving_two_point_conversions": 0,
+                      "offensiveFumbleRecoveryTouchdowns": 0
+                    },
+                    "availability": "complete",
+                    "sourceStatus": "completed"
+                  }
+                ],
+                "playerId": "gsis:00-0037228",
+                "position": "RB",
+                "centipoints": 780
+              },
+              {
+                "cardId": "qa-only:00-0038542",
+                "matches": [
+                  {
+                    "score": {
+                      "parts": [
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "interceptions_thrown",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 83,
+                          "statistic": "rushing_yards",
+                          "centipoints": 830
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 8,
+                          "statistic": "receptions",
+                          "centipoints": 400
+                        },
+                        {
+                          "quantity": 90,
+                          "statistic": "receiving_yards",
+                          "centipoints": 900
+                        },
+                        {
+                          "quantity": 1,
+                          "statistic": "receiving_touchdowns",
+                          "centipoints": 600
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "fumbles_lost",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "kickoff_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "punt_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "offensiveFumbleRecoveryTouchdowns",
+                          "centipoints": 0
+                        }
+                      ],
+                      "centipoints": 2730
+                    },
+                    "status": "provisional",
+                    "revision": 1,
+                    "fixtureId": "beta-real:qa:nfl-atl-pit-2026:game",
+                    "updatedAt": "2026-10-10T23:29:38.075Z",
+                    "statistics": {
+                      "receptions": 8,
+                      "fumbles_lost": 0,
+                      "passing_yards": 0,
+                      "rushing_yards": 83,
+                      "receiving_yards": 90,
+                      "passing_touchdowns": 0,
+                      "rushing_touchdowns": 0,
+                      "interceptions_thrown": 0,
+                      "receiving_touchdowns": 1,
+                      "punt_return_touchdowns": 0,
+                      "kickoff_return_touchdowns": 0,
+                      "passing_two_point_conversions": 0,
+                      "rushing_two_point_conversions": 0,
+                      "receiving_two_point_conversions": 0,
+                      "offensiveFumbleRecoveryTouchdowns": 0
+                    },
+                    "availability": "complete",
+                    "sourceStatus": "completed"
+                  }
+                ],
+                "playerId": "gsis:00-0038542",
+                "position": "RB",
+                "centipoints": 2730
+              },
+              {
+                "cardId": "qa-only:00-0035640",
+                "matches": [
+                  {
+                    "score": {
+                      "parts": [
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "interceptions_thrown",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 4,
+                          "statistic": "receptions",
+                          "centipoints": 200
+                        },
+                        {
+                          "quantity": 40,
+                          "statistic": "receiving_yards",
+                          "centipoints": 400
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "fumbles_lost",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "kickoff_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "punt_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "offensiveFumbleRecoveryTouchdowns",
+                          "centipoints": 0
+                        }
+                      ],
+                      "centipoints": 600
+                    },
+                    "status": "provisional",
+                    "revision": 1,
+                    "fixtureId": "beta-real:qa:nfl-atl-pit-2026:game",
+                    "updatedAt": "2026-10-10T23:29:38.075Z",
+                    "statistics": {
+                      "receptions": 4,
+                      "fumbles_lost": 0,
+                      "passing_yards": 0,
+                      "rushing_yards": 0,
+                      "receiving_yards": 40,
+                      "passing_touchdowns": 0,
+                      "rushing_touchdowns": 0,
+                      "interceptions_thrown": 0,
+                      "receiving_touchdowns": 0,
+                      "punt_return_touchdowns": 0,
+                      "kickoff_return_touchdowns": 0,
+                      "passing_two_point_conversions": 0,
+                      "rushing_two_point_conversions": 0,
+                      "receiving_two_point_conversions": 0,
+                      "offensiveFumbleRecoveryTouchdowns": 0
+                    },
+                    "availability": "complete",
+                    "sourceStatus": "completed"
+                  }
+                ],
+                "playerId": "gsis:00-0035640",
+                "position": "WR",
+                "centipoints": 600
+              },
+              {
+                "cardId": "qa-only:00-0037238",
+                "matches": [
+                  {
+                    "score": {
+                      "parts": [
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "interceptions_thrown",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 6,
+                          "statistic": "rushing_yards",
+                          "centipoints": 60
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 2,
+                          "statistic": "receptions",
+                          "centipoints": 100
+                        },
+                        {
+                          "quantity": 29,
+                          "statistic": "receiving_yards",
+                          "centipoints": 290
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "fumbles_lost",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "kickoff_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "punt_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "offensiveFumbleRecoveryTouchdowns",
+                          "centipoints": 0
+                        }
+                      ],
+                      "centipoints": 450
+                    },
+                    "status": "provisional",
+                    "revision": 1,
+                    "fixtureId": "beta-real:qa:nfl-atl-pit-2026:game",
+                    "updatedAt": "2026-10-10T23:29:38.075Z",
+                    "statistics": {
+                      "receptions": 2,
+                      "fumbles_lost": 0,
+                      "passing_yards": 0,
+                      "rushing_yards": 6,
+                      "receiving_yards": 29,
+                      "passing_touchdowns": 0,
+                      "rushing_touchdowns": 0,
+                      "interceptions_thrown": 0,
+                      "receiving_touchdowns": 0,
+                      "punt_return_touchdowns": 0,
+                      "kickoff_return_touchdowns": 0,
+                      "passing_two_point_conversions": 0,
+                      "rushing_two_point_conversions": 0,
+                      "receiving_two_point_conversions": 0,
+                      "offensiveFumbleRecoveryTouchdowns": 0
+                    },
+                    "availability": "complete",
+                    "sourceStatus": "completed"
+                  }
+                ],
+                "playerId": "gsis:00-0037238",
+                "position": "WR",
+                "centipoints": 450
+              },
+              {
+                "cardId": "qa-only:00-0036894",
+                "matches": [
+                  {
+                    "score": {
+                      "parts": [
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "interceptions_thrown",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 5,
+                          "statistic": "receptions",
+                          "centipoints": 250
+                        },
+                        {
+                          "quantity": 46,
+                          "statistic": "receiving_yards",
+                          "centipoints": 460
+                        },
+                        {
+                          "quantity": 1,
+                          "statistic": "receiving_touchdowns",
+                          "centipoints": 600
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "fumbles_lost",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "kickoff_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "punt_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "offensiveFumbleRecoveryTouchdowns",
+                          "centipoints": 0
+                        }
+                      ],
+                      "centipoints": 1310
+                    },
+                    "status": "provisional",
+                    "revision": 1,
+                    "fixtureId": "beta-real:qa:nfl-atl-pit-2026:game",
+                    "updatedAt": "2026-10-10T23:29:38.075Z",
+                    "statistics": {
+                      "receptions": 5,
+                      "fumbles_lost": 0,
+                      "passing_yards": 0,
+                      "rushing_yards": 0,
+                      "receiving_yards": 46,
+                      "passing_touchdowns": 0,
+                      "rushing_touchdowns": 0,
+                      "interceptions_thrown": 0,
+                      "receiving_touchdowns": 1,
+                      "punt_return_touchdowns": 0,
+                      "kickoff_return_touchdowns": 0,
+                      "passing_two_point_conversions": 0,
+                      "rushing_two_point_conversions": 0,
+                      "receiving_two_point_conversions": 0,
+                      "offensiveFumbleRecoveryTouchdowns": 0
+                    },
+                    "availability": "complete",
+                    "sourceStatus": "completed"
+                  }
+                ],
+                "playerId": "gsis:00-0036894",
+                "position": "TE",
+                "centipoints": 1310
+              },
+              {
+                "cardId": "qa-only:00-0036970",
+                "matches": [
+                  {
+                    "score": {
+                      "parts": [
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "interceptions_thrown",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receptions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_yards",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "fumbles_lost",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "passing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "rushing_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "receiving_two_point_conversions",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "kickoff_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "punt_return_touchdowns",
+                          "centipoints": 0
+                        },
+                        {
+                          "quantity": 0,
+                          "statistic": "offensiveFumbleRecoveryTouchdowns",
+                          "centipoints": 0
+                        }
+                      ],
+                      "centipoints": 0
+                    },
+                    "status": "provisional",
+                    "revision": 1,
+                    "fixtureId": "beta-real:qa:nfl-atl-pit-2026:game",
+                    "updatedAt": "2026-10-10T23:29:38.075Z",
+                    "statistics": {
+                      "receptions": 0,
+                      "fumbles_lost": 0,
+                      "passing_yards": 0,
+                      "rushing_yards": 0,
+                      "receiving_yards": 0,
+                      "passing_touchdowns": 0,
+                      "rushing_touchdowns": 0,
+                      "interceptions_thrown": 0,
+                      "receiving_touchdowns": 0,
+                      "punt_return_touchdowns": 0,
+                      "kickoff_return_touchdowns": 0,
+                      "passing_two_point_conversions": 0,
+                      "rushing_two_point_conversions": 0,
+                      "receiving_two_point_conversions": 0,
+                      "offensiveFumbleRecoveryTouchdowns": 0
+                    },
+                    "availability": "complete",
+                    "sourceStatus": "completed"
+                  }
+                ],
+                "playerId": "gsis:00-0036970",
+                "position": "TE",
+                "centipoints": 0
+              }
+            ],
+            "centipoints": 7124,
+            "knownCentipoints": 7124
+          }
+        ],
+        "sport": "nfl",
+        "period": "Atlanta at Pittsburgh · 13 September 2026",
+        "simulated": false,
+        "updatedAt": "2026-10-10T23:29:38.075Z",
+        "rulesVersion": "docked-nfl-half-ppr-beta-v1"
+      },
+      "purpose": "historical-acceptance",
+      "metadata": {
+        "source": "nflverse",
+        "players": {
+          "gsis:00-0023459": "Aaron Rodgers",
+          "gsis:00-0035640": "DK Metcalf",
+          "gsis:00-0036894": "Pat Freiermuth",
+          "gsis:00-0036970": "Kyle Pitts",
+          "gsis:00-0037228": "Jaylen Warren",
+          "gsis:00-0037238": "Drake London",
+          "gsis:00-0038542": "Bijan Robinson"
+        }
+      },
+      "revision": 3,
+      "recordedAt": "2026-10-10T23:29:39.369524+00:00"
+    }
+  ]
+}
