@@ -306,6 +306,8 @@ export function results(state: ScoringState) {
                 : "provisional"
               : "pending-data",
             updatedAt: source?.observedAt ?? null,
+            statistics: player?.stats ?? null,
+            availability: player?.availability ?? "pending",
             score,
           };
         });

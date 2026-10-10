@@ -19,7 +19,7 @@ export class ScoringStore {
         );
       await tx`insert into scoring_beta.streams(id,sport,rules_version) values(${state.period.id},${state.period.sport},${rules.version})`;
       await tx`insert into scoring_beta.journal(stream_id,revision,previous_hash,state_hash,body,calculated)
-        values(${state.period.id},1,'',${digest(state)},${tx.json(JSON.parse(JSON.stringify(state)))}::jsonb,${tx.json(results(state))}::jsonb)`;
+        values(${state.period.id},1,'',${digest(state)},${tx.json(JSON.parse(JSON.stringify(state)))}::jsonb,${tx.json(JSON.parse(JSON.stringify(results(state))))}::jsonb)`;
     });
   }
   async read(id: string): Promise<ScoringState> {
@@ -65,7 +65,7 @@ export class ScoringStore {
       )
         throw Error("Locked teams changed");
       await tx`insert into scoring_beta.journal(stream_id,revision,previous_hash,state_hash,body,calculated)
-        values(${id},${old.revision + 1},${old.state_hash},${hash},${tx.json(JSON.parse(JSON.stringify(next)))}::jsonb,${tx.json(results(next))}::jsonb)`;
+        values(${id},${old.revision + 1},${old.state_hash},${hash},${tx.json(JSON.parse(JSON.stringify(next)))}::jsonb,${tx.json(JSON.parse(JSON.stringify(results(next))))}::jsonb)`;
       return next;
     })) as unknown as ScoringState;
   }

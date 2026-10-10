@@ -118,6 +118,34 @@ export function ScoringReview({ data }: { data: ScoringDemo }) {
                       {match.fixtureId} · {match.status} · Revision{" "}
                       {match.revision ?? "not received"}
                     </p>
+                    {match.statistics &&
+                    typeof match.statistics === "object" ? (
+                      <details>
+                        <summary>
+                          Source statistics · {match.availability}
+                        </summary>
+                        <dl>
+                          {Object.entries(match.statistics).map(
+                            ([key, value]) => (
+                              <div key={key}>
+                                <dt>
+                                  {key
+                                    .replaceAll("_", " ")
+                                    .replace(/([a-z])([A-Z])/g, "$1 $2")}
+                                </dt>
+                                <dd>{String(value)}</dd>
+                              </div>
+                            ),
+                          )}
+                        </dl>
+                        {sport === "epl" && (
+                          <p>
+                            Regulation seconds exclude added time; played
+                            seconds include it.
+                          </p>
+                        )}
+                      </details>
+                    ) : null}
                     {match.score ? (
                       <table>
                         <caption>Point breakdown · {p.position}</caption>

@@ -30,6 +30,16 @@
 .scoring-review li {
   line-height: 1.6;
 }
+.scoring-breakdown dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 0;
+}
+.scoring-breakdown dd {
+  margin: 0;
+  text-align: right;
+}
 .scoring-review a {
   color: #84e6ff;
   text-decoration: underline;

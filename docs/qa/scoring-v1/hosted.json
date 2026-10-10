@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-10T09:41:56.636Z",
+  "deployment": "dpl_9vZwEE8LWRtyEbY9CkiZ4Dvj6QMn",
+  "commit": "342165967150710f024382862d7932b71738d6a8",
+  "url": "https://docked-production-qi5chfczx-briant-s-projects.vercel.app",
+  "checks": [
+    {
+      "path": "/fantasy/scoring",
+      "status": 307,
+      "result": "Unauthenticated application access denied; Vercel access is not member admission"
+    },
+    {
+      "path": "/fantasy/scoring/how-it-works",
+      "status": 307,
+      "result": "Unauthenticated application access denied; Vercel access is not member admission"
+    },
+    {
+      "result": "Vercel protection retained",
+      "status": 302
+    },
+    {
+      "result": "Public signup remains closed"
+    }
+  ],
+  "limitation": "No owner session impersonation or real second-user login. Positive scoring UI tested with the persisted local PostgreSQL synthetic read model."
+}

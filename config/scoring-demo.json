@@ -136,6 +136,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -152,6 +154,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -168,6 +172,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -184,6 +190,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -200,6 +208,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -216,6 +226,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -232,6 +244,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -248,6 +262,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -264,6 +280,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -280,6 +298,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -296,6 +316,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -322,6 +344,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -338,6 +362,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -354,6 +380,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -370,6 +398,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -386,6 +416,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -402,6 +434,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -418,6 +452,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -434,6 +470,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -450,6 +488,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -466,6 +506,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -482,6 +524,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -517,6 +561,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 1,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 900,
                     "parts": [
@@ -592,6 +651,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -667,6 +741,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -742,6 +831,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -817,6 +921,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -892,6 +1011,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -967,6 +1101,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1042,6 +1191,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1117,6 +1281,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1192,6 +1371,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1267,6 +1461,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1352,6 +1561,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 300,
                     "parts": [
@@ -1427,6 +1651,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1502,6 +1741,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1577,6 +1831,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1652,6 +1921,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1727,6 +2011,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1802,6 +2101,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1877,6 +2191,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -1952,6 +2281,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2027,6 +2371,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2102,6 +2461,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2196,6 +2570,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 2,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 1500,
                     "parts": [
@@ -2271,6 +2660,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2346,6 +2750,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2421,6 +2840,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2496,6 +2930,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2571,6 +3020,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2646,6 +3110,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2721,6 +3200,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2796,6 +3290,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2871,6 +3380,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -2946,6 +3470,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3031,6 +3570,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 1,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 900,
                     "parts": [
@@ -3106,6 +3660,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3181,6 +3750,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3256,6 +3840,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3331,6 +3930,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3406,6 +4020,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3481,6 +4110,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3556,6 +4200,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3631,6 +4290,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3706,6 +4380,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3781,6 +4470,21 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -3875,6 +4579,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 2,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 1500,
                     "parts": [
@@ -3950,6 +4669,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4025,6 +4759,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4100,6 +4849,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4175,6 +4939,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4250,6 +5029,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4325,6 +5119,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4400,6 +5209,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4475,6 +5299,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4550,6 +5389,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4625,6 +5479,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4710,6 +5579,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 1,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 900,
                     "parts": [
@@ -4785,6 +5669,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4860,6 +5759,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -4935,6 +5849,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5010,6 +5939,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5085,6 +6029,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5160,6 +6119,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5235,6 +6209,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5310,6 +6299,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5385,6 +6389,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5460,6 +6479,21 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "saves": 3,
+                    "assists": 0,
+                    "ownGoals": 0,
+                    "dismissal": "none",
+                    "yellowCards": 0,
+                    "penaltySaves": 0,
+                    "playedSeconds": 5700,
+                    "concededOnPitch": 1,
+                    "onPitchEvidence": "ordered-events-verified",
+                    "penaltiesMissed": 0,
+                    "regulationSeconds": 5400
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 200,
                     "parts": [
@@ -5587,7 +6621,7 @@
         "action": "finalised",
         "reason": "All required data complete; correction window elapsed",
         "sequence": 7,
-        "payloadHash": "395b2beb8fe2a0a919d31f14d9ab5c1e96f129ea575c9e28facd9d0419e98e00"
+        "payloadHash": "50fa2ef54fc54d3343dc3380896fe4b0005475f04c3291d861e56d0a1758b1e4"
       }
     ]
   },
@@ -5697,6 +6731,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5713,6 +6749,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5729,6 +6767,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5745,6 +6785,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5761,6 +6803,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5777,6 +6821,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5793,6 +6839,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5819,6 +6867,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5835,6 +6885,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5851,6 +6903,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5867,6 +6921,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5883,6 +6939,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5899,6 +6957,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5915,6 +6975,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -5950,6 +7012,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 100,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 400,
                     "parts": [
@@ -6045,6 +7125,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6140,6 +7238,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6235,6 +7351,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6330,6 +7464,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6425,6 +7577,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6520,6 +7690,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6625,6 +7813,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6720,6 +7926,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6815,6 +8039,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -6910,6 +8152,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7005,6 +8265,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7100,6 +8378,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7195,6 +8491,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7309,6 +8623,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 200,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 800,
                     "parts": [
@@ -7404,6 +8736,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7499,6 +8849,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7594,6 +8962,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7689,6 +9075,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7784,6 +9188,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7879,6 +9301,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -7984,6 +9424,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 100,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 400,
                     "parts": [
@@ -8079,6 +9537,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8174,6 +9650,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8269,6 +9763,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8364,6 +9876,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8459,6 +9989,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8554,6 +10102,24 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8668,6 +10234,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 200,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 800,
                     "parts": [
@@ -8763,6 +10347,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8858,6 +10460,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -8953,6 +10573,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9048,6 +10686,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9143,6 +10799,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9238,6 +10912,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9343,6 +11035,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 100,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 400,
                     "parts": [
@@ -9438,6 +11148,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9533,6 +11261,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9628,6 +11374,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9723,6 +11487,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9818,6 +11600,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -9913,6 +11713,24 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "receptions": 0,
+                    "fumbles_lost": 0,
+                    "passing_yards": 0,
+                    "rushing_yards": 0,
+                    "receiving_yards": 0,
+                    "passing_touchdowns": 0,
+                    "rushing_touchdowns": 0,
+                    "interceptions_thrown": 0,
+                    "receiving_touchdowns": 0,
+                    "punt_return_touchdowns": 0,
+                    "kickoff_return_touchdowns": 0,
+                    "passing_two_point_conversions": 0,
+                    "rushing_two_point_conversions": 0,
+                    "receiving_two_point_conversions": 0,
+                    "offensiveFumbleRecoveryTouchdowns": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10060,7 +11878,7 @@
         "action": "finalised",
         "reason": "All required data complete; correction window elapsed",
         "sequence": 7,
-        "payloadHash": "cf3be78b6595c433ea9d8aaeaf3b13198d108b1abebb81038e511e2c5eca463d"
+        "payloadHash": "6854dc5460e0e8753aa05508ea538997c60bb45b38f3f132680d5405c7716832"
       }
     ]
   },
@@ -10167,6 +11985,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10183,6 +12003,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10199,6 +12021,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10215,6 +12039,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10231,6 +12057,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10247,6 +12075,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10263,6 +12093,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10279,6 +12111,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10305,6 +12139,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10321,6 +12157,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10337,6 +12175,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10353,6 +12193,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10369,6 +12211,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10385,6 +12229,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10401,6 +12247,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10417,6 +12265,8 @@
                   "sourceStatus": "missing",
                   "status": "pending-data",
                   "updatedAt": null,
+                  "statistics": null,
+                  "availability": "pending",
                   "score": null
                 }
               ],
@@ -10452,6 +12302,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 1,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 300,
                     "parts": [
@@ -10517,6 +12379,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10582,6 +12456,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10647,6 +12533,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10712,6 +12610,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10777,6 +12687,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10842,6 +12764,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10907,6 +12841,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -10982,6 +12928,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11047,6 +13005,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11112,6 +13082,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11177,6 +13159,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11242,6 +13236,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11307,6 +13313,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11372,6 +13390,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11437,6 +13467,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-02T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11521,6 +13563,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 2,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 600,
                     "parts": [
@@ -11586,6 +13640,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11651,6 +13717,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11716,6 +13794,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11781,6 +13871,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11846,6 +13948,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11911,6 +14025,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -11976,6 +14102,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12051,6 +14189,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 1,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 300,
                     "parts": [
@@ -12116,6 +14266,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12181,6 +14343,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12246,6 +14420,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12311,6 +14497,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12376,6 +14574,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12441,6 +14651,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12506,6 +14728,18 @@
                   "sourceStatus": "completed",
                   "status": "provisional",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12590,6 +14824,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 2,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 600,
                     "parts": [
@@ -12655,6 +14901,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12720,6 +14978,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12785,6 +15055,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12850,6 +15132,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12915,6 +15209,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -12980,6 +15286,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13045,6 +15363,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13120,6 +15450,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 1,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 300,
                     "parts": [
@@ -13185,6 +15527,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13250,6 +15604,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13315,6 +15681,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13380,6 +15758,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13445,6 +15835,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13510,6 +15912,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13575,6 +15989,18 @@
                   "sourceStatus": "completed",
                   "status": "final",
                   "updatedAt": "2026-10-03T05:00:00Z",
+                  "statistics": {
+                    "goals": 0,
+                    "kicks": 0,
+                    "marks": 0,
+                    "behinds": 0,
+                    "hitouts": 0,
+                    "tackles": 0,
+                    "freesFor": 0,
+                    "handballs": 0,
+                    "freesAgainst": 0
+                  },
+                  "availability": "complete",
                   "score": {
                     "centipoints": 0,
                     "parts": [
@@ -13692,7 +16118,7 @@
         "action": "finalised",
         "reason": "All required data complete; correction window elapsed",
         "sequence": 7,
-        "payloadHash": "28e12dde5816b4cc6156c2fdb8141fb9ca747d51117245634135d1c52be10bc2"
+        "payloadHash": "fee18e09d0aeadae40130b2131f9c9554010e31ee0a97c2e0393c70832ff7599"
       }
     ]
   }

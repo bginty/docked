@@ -45,6 +45,11 @@ for (const width of [320, 390, 1366])
       );
       await page.locator(".scoring-team summary").first().click();
       await expect(page.locator(".scoring-team table").first()).toBeVisible();
+      await page
+        .getByText("Source statistics · complete", { exact: true })
+        .first()
+        .click();
+      await expect(page.locator(".scoring-breakdown dl").first()).toBeVisible();
       expect(
         (await new AxeBuilder({ page }).analyze()).violations.map((v) => v.id),
       ).toEqual([]);
