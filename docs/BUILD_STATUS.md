@@ -1,5 +1,7 @@
 # Latest release authority — 10 October 2026
 
+Current delivery and evidence: [FRIENDS_RELEASE_ACCEPTANCE](FRIENDS_RELEASE_ACCEPTANCE.md). Owner Preview application `6b735cfb`, Android v15. External friends activation remains blocked; physical S24 and visual approval are pending.
+
 The consolidated friends-beta request and owner dashboard addition supersede the older Preview-only/one-tester limits below. See [FRIENDS_RELEASE_PLAN](FRIENDS_RELEASE_PLAN.md), [OWNER_OPERATIONS](OWNER_OPERATIONS.md), [FRIENDS_EXTERNAL_SERVICES](FRIENDS_EXTERNAL_SERVICES.md) and [FRIENDS_POLICY_DECISIONS](FRIENDS_POLICY_DECISIONS.md). Ten-person admission and free card-swap foundations are verified in disposable PostgreSQL, but external activation remains disabled because readiness facts and real-player rights/data are missing. Owner MFA/login acceptance is preserved. Cash payments, withdrawals and prizes remain off. Owner visual and physical S24 acceptance remain pending.
 
 Older dated sections below are historical evidence, not current deployment authority.

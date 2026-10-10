@@ -5,6 +5,41 @@ import { SocialComposer } from "../../src/components/social-composer";
 import { PackProducts } from "../../src/components/pack-products";
 import { currentRulesets } from "../../src/core/scoring-release";
 import type { Operations } from "../../src/core/owner-operations";
+import { PrizeRegister } from "../../src/components/prize-register";
+import { generatePrizes } from "../../src/core/prize-register";
+const samplePrizes = generatePrizes(
+  { scope: "synthetic-only", obligations: [], audit: [] },
+  {
+    competition: "SYNTHETIC QA ROUND",
+    sport: "epl",
+    round: "1",
+    final: true,
+    complete: true,
+    revision: 1,
+    winners: [
+      { member: "qa-member", name: "Synthetic QA participant", rank: 1 },
+    ],
+  },
+  {
+    version: "sample-only",
+    approved: true,
+    tiePolicy: "hold",
+    prizes: [
+      {
+        position: 1,
+        description: "Synthetic sample pack",
+        kind: "pack",
+        quantity: 1,
+        currency: null,
+        cents: null,
+        verificationRequired: false,
+      },
+    ],
+  },
+  { id: "synthetic-owner", owner: true, aal: "aal2" },
+  "2026-10-10T12:00:00Z",
+  "2026-10-11T12:00:00Z",
+);
 const sample: Operations = {
   scope: "beta",
   generatedAt: "2026-10-10T12:00:00Z",
@@ -62,7 +97,9 @@ Reflect.set(window, "renderRelease", (screen: string) =>
               ? "Scoring rules"
               : screen === "composer"
                 ? "Create post"
-                : "Single-card packs"}
+                : screen === "prizes"
+                  ? "Prize register"
+                  : "Single-card packs"}
         </h1>
         <p>Isolated visual test fixture</p>
         {screen === "dashboard" ? (
@@ -71,6 +108,13 @@ Reflect.set(window, "renderRelease", (screen: string) =>
           <OwnerDashboard data={null} />
         ) : screen === "scoring" ? (
           <ScoringRulesTable rules={currentRulesets.afl} />
+        ) : screen === "prizes" ? (
+          <PrizeRegister
+            register={samplePrizes}
+            now="2026-10-10T13:00:00Z"
+            start="2026-10-10T00:00:00Z"
+            end="2026-10-12T00:00:00Z"
+          />
         ) : screen === "composer" ? (
           <SocialComposer />
         ) : (

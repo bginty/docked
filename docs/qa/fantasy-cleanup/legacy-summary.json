@@ -1,14 +1,14 @@
 {
-  "capturedAt": "2026-10-09T21:43:00.611Z",
+  "capturedAt": "2026-10-10T11:50:30.246Z",
   "scope": "Tracked/unignored existing text files; binary supplied artwork inspected separately. Archived snapshots intentionally retained. One row per matching occurrence, including compatibility identifiers.",
-  "occurrences": 7824,
+  "occurrences": 7841,
   "reasons": {
-    "Supersession/retirement documentation or explicitly labelled historical plans; PRODUCT_DIRECTION.md takes precedence.": 789,
-    "Regression fixture or assertion: verifies rejection, historical account rights or database isolation; never production data.": 229,
+    "Supersession/retirement documentation or explicitly labelled historical plans; PRODUCT_DIRECTION.md takes precedence.": 792,
+    "Immutable database migration/history; retirement/revocation requires the separate migration described in DATABASE_RETIREMENT.md.": 1122,
     "Preserved historical artifact receipt; current delivery instructions supersede old product releases.": 3,
     "Approved historical consent/policy wording preserved byte-for-byte; replace only with a newly approved version.": 57,
     "Historical schema baseline used by migration/RLS regression tests; never reapplied as an active product setup.": 19,
-    "Historical or isolation-test evidence, not active product instructions.": 2836,
+    "Historical or isolation-test evidence, not active product instructions.": 2848,
     "Archived source/history, excluded from application/build entry points. Not current instructions.": 2546,
     "Image provenance: original generation prompts exclude betting imagery; generic visual edge terminology, not product functionality.": 5,
     "Controlled verification/retirement tooling or retained shared infrastructure; no active odds provider/worker entry point.": 9,
@@ -20,7 +20,7 @@
     "Legacy preference field explicitly forced false; no retired capability granted.": 2,
     "Historical schema/type compatibility, exclusion of retired posts, owner-only export or audit preservation; no retired publishing route.": 39,
     "Data minimisation comment or historical query metadata; retired event submissions are rejected.": 1,
-    "Immutable database migration/history; retirement/revocation requires the separate migration described in DATABASE_RETIREMENT.md.": 1120
+    "Regression fixture or assertion: verifies rejection, historical account rights or database isolation; never production data.": 229
   },
   "unclassified": []
 }

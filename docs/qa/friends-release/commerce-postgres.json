@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-10T11:51:58.423Z",
+  "passed": true,
+  "scope": "Disposable PostgreSQL, synthetic cards/funds only; no PayPal or bank network",
+  "checks": [
+    "20 competing purchases: one reservation",
+    "20 repeated payments: one posting",
+    "Injected journal failure: paid-but-unfulfilled order preserved, no partial card change",
+    "20 retried fulfilments: one issuance",
+    "20 withdrawals: one balance reservation",
+    "20 prize generations: one obligation and immutable journal",
+    "Audit immutable; untrusted database role denied"
+  ]
+}

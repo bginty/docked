@@ -42,6 +42,7 @@ for (const width of [360, 412, 1366])
       "scoring",
       "composer",
       "packs",
+      "prizes",
     ]) {
       await page.evaluate(
         (s) => Reflect.get(window, "renderRelease")(s),

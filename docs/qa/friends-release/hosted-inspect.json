@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-10T11:46:33.879Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "mode": "--inspect",
+  "passed": true,
+  "scope": "Hosted database/operator context; not browser owner acceptance",
+  "checks": [
+    "Every pre-existing gameplay, ownership, supply, history and policy record unchanged",
+    "Admission and swap execution remain disabled"
+  ],
+  "migrationHashes": {
+    "20261010112653_friends_beta_admission_boundary.sql": "34969bac70c3a8a6a9d0381192191f6ad39daefbd30762a22e56073506db97ef",
+    "20261010112939_owner_operations_read_model.sql": "2ca3f31b25fb5f468dcfbe6ebde5f5ae4346e18354d2516586f505d4e2cfd7e5",
+    "20261010114202_friends_card_swap_boundary.sql": "24583c5710af74f73f4a47824e9527f8054d4c2d69e93f547114e6f49815f811"
+  }
+}
