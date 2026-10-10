@@ -1,0 +1,127 @@
+DOCKED TWO-PERSON RELEASE CANDIDATE — 10 October 2026
+
+STATUS: NOT READY TO SHARE WITH THE TESTER.
+Preparation and automated verification completed. Real tester access remains blocked;
+neither a working tester route nor physical Android acceptance is claimed.
+
+EXACT ENVIRONMENT
+Candidate web entry:
+https://docked-production-ezmr1ib55-briant-s-projects.vercel.app/app
+Scoring lab:
+https://docked-production-ezmr1ib55-briant-s-projects.vercel.app/fantasy/scoring
+Rules:
+https://docked-production-ezmr1ib55-briant-s-projects.vercel.app/fantasy/scoring/how-it-works
+Deployment: dpl_7AAAEpWhDwbBf3dBdzVFRByWhUAU, READY, Preview.
+Deployed application commit: 971fd0ccc024d5e1bc5cfea13de2aa9633d0e714.
+Project: prj_l0rpVDPRuIRp9UcBUkudeyUK5yST.
+Team: team_tf6xweKKyVCj9bTppUKttJ4l.
+Backend: pojoymtniryarxxunyvz, isolated beta controls retained.
+The completed scoring application was already deployed. Its exact deployment was
+reverified instead of rebuilding identical web code. Only the Android configuration,
+version and delivery evidence changed in this preparation. No production promotion.
+
+ANDROID UPDATE
+File: artifacts/android/Docked-v14-Owner-Connected-QA.apk
+Absolute path:
+C:\Users\61412\Documents\ChatGPT\Docked.com.au\artifacts\android\Docked-v14-Owner-Connected-QA.apk
+Version: 1.13-preview; versionCode: 14.
+Package: au.com.docked.app.preview; label: Docked Preview.
+Size: 11,036,122 bytes.
+SHA256: 4a5cc2b1343d8ea47dca3e7916014c46b674e6cb0dd44138f30f6f1d4eef28ce
+Signing certificate SHA256:
+38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b
+Same package and certificate as v13; higher versionCode allows an in-place update.
+Existing Preview signing setup reused; no signing key created, changed or exposed.
+Minimum Android API24; target36; arm64-v8a included for Samsung S24.
+HTTPS only, mixed content disabled, WebView inspection disabled, no broad navigation
+allowlist and no embedded hosting bypass. Exact packaged origin matches the web URL.
+Prior v13 file/hash preserved, with APK archives retained before and after build.
+
+Owner installation: copy the APK to your Android device, open it with a trusted file
+manager and allow installation from that source if Android asks. Install as an update;
+do not uninstall the existing Preview. Use your existing password and authenticator.
+The changed Preview hostname can require a fresh sign-in; it does not reset your MFA.
+Normal secure session persistence remains subject to server expiry and revocation.
+This is an owner-connected QA candidate, not a store release or an approved tester APK.
+Vercel protection inside the Android WebView has not been physically accepted.
+
+WHAT IS AVAILABLE FOR REVIEW
+- Existing owner experience and authentication remain deployed; no new cards, accounts,
+  teams, scores, balances or ownership changes were made during this preparation.
+- Separate EPL, NFL half-PPR and AFL event-based scoring rules and explanations.
+- Synthetic pending / first statistics / corrected / finalised examples, per-player
+  source statistics and breakdowns, team totals and sport-specific standings.
+- These are read-only examples produced by isolated PostgreSQL tests, not a live feed,
+  not the owner's active teams, and not newly enabled hosted scoring ingestion.
+- No authorised real match feed is connected for any sport. Historical balance and
+  real-provider coverage remain unverified. No subscription or paid service activated.
+
+VERIFICATION IN THIS RELEASE PREPARATION
+PASS: fresh exact-project deployment readback; Preview READY, no custom domains or
+aliases, production branch main. Public landing HTTPS200 and www301 unchanged.
+PASS: 14 Android configuration/signing-gate/artifact-preservation unit tests.
+PASS: 4 hosted scoring/access checks and 6 hosted MFA/marketplace/security checks.
+PASS: existing owner restricted-runtime DB permission checks: AAL1 denied, AAL2 allowed;
+tester slot still empty/disabled. These are backend checks, not a human browser login.
+PASS: APK build; signature/update identity; HTTPS compiled policy; correct backend;
+988 entries scanned for forbidden files/credentials, zero findings. Independent
+index-based extraction avoids Windows case-colliding Android resource paths; all
+988 files also passed known-runtime-secret scanning (19,056,273 bytes).
+NOT RUN: Android device/emulator installation. adb reported no attached devices.
+NOT RUN: actual second-user signup/login, Inbox delivery, reopened sessions or trades.
+No invitation or email was sent; no owner identity/session was impersonated.
+The initial DB check command lacked its TypeScript loader; rerunning with --import tsx
+passed. This was a local invocation error, not an application authentication failure.
+
+EXISTING SCORING ACCEPTANCE (REUSED, NOT CLAIMED AS RERUN HERE)
+212 platform and 147 database regression tests passed; 16 final integration checks.
+Real disposable PostgreSQL: each sport uses two synthetic locked teams, duplicate
+imports and corrections under 20-way concurrency, immutable history after trades,
+failure rollback, finalisation and application-role write denials.
+Three responsive browser cases at 320/390/1366px exercise all sports and breakdowns.
+Existing 32 hosted responsive/security checks passed on this same application commit.
+See SCORING-V1-ACCEPTANCE.txt and docs/qa/scoring-v1 for scope and evidence.
+Ordinary admitted tester AAL1 gameplay was verified with synthetic PostgreSQL accounts
+in the earlier two-person acceptance; no real tester login is claimed.
+
+EXACT REMAINING ACCESS DECISIONS AND OWNER ACTIONS
+1. Supply the one tester's exact email and confirm AU/18+ eligibility. No invitation
+   will be sent under this release-preparation instruction. The roster stays empty
+   until the guarded admission step is separately resumed.
+2. Approve a practical non-owner hosting route. Current unaffiliated requests return
+   HTTP302 to Vercel authentication, so this URL is NOT a verified tester entry.
+   Proposed narrow route: beta.docked.com.au bound only to the reviewed Preview branch,
+   preserving docked.com.au/www. Use Vercel's exact CNAME and retain application-level
+   admission. Do not share owner credentials or automation protection tokens.
+   This needs reviewed canonical-origin/CSRF configuration, Supabase callback allowlist,
+   signed email callback pin and a matching Android receipt; DNS alone is insufficient.
+   No DNS, hosting-protection or custom-domain change was made here.
+3. Complete the existing external-admission privacy/retention conditions documented
+   in TWO-PERSON-BETA-ACCEPTANCE.txt. Specifically: Exchange data location and retention/
+   holds, retained audit-identifier necessity/review period, and verified support export/
+   deletion including residual media/log handling. The separately prepared sandbox
+   addendum remains unapproved; approved rc2 policy hashes were not edited.
+4. Once the exact tester is admitted and the route is accessible, verify real web login,
+   ordinary password-only gameplay, owner/admin MFA, then Android login and reopening.
+   Repeat public/outsider denial checks before marking the release ready to share.
+
+MARKETPLACE AND DATA SAFEGUARDS
+Marketplace/sandbox activation remains disabled exactly as found. Public registration
+remains closed. No invitation, account creation, MFA reset, data migration, gameplay
+write, external tester activation, production deploy, DNS change or paid service change.
+Existing owner enrollment and saved records preserved. Oura and the original Preview
+were not accessed or modified.
+
+SHORT ACCEPTANCE SCRIPT AFTER ACCESS IS RESOLVED
+- Owner signs in with existing MFA; tester signs in using their own email/password.
+- Open the same environment on web and Android. Confirm each sees only their own
+  existing collection and saved teams; close and reopen without resetting credentials.
+- In the scoring lab select EPL, NFL and AFL. Compare first and corrected statistics,
+  expand a player and its source fields, then verify updated totals/standings and labels.
+- Review pending and finalised states; confirm synthetic labels remain visible.
+- Verify unrelated/anonymous accounts are denied. Marketplace remains in its existing
+  disabled state; this release does not authorise changing it to run a trade test.
+
+Evidence: docs/qa/tester-release-v14, docs/qa/scoring-v1/hosted.json,
+docs/qa/two-person-beta/hosted-web.json, hosted-mfa-db.json, and
+docs/qa/vercel-review/verified-preview-deployment.json.

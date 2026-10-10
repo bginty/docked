@@ -1,0 +1,37 @@
+{
+  "recordedAt": "2026-10-10T09:55:46.161Z",
+  "status": "BLOCKED_NOT_READY_TO_SHARE",
+  "deployment": {
+    "id": "dpl_7AAAEpWhDwbBf3dBdzVFRByWhUAU",
+    "commit": "971fd0ccc024d5e1bc5cfea13de2aa9633d0e714",
+    "url": "https://docked-production-ezmr1ib55-briant-s-projects.vercel.app/app",
+    "environment": "preview"
+  },
+  "apk": {
+    "path": "artifacts/android/Docked-v14-Owner-Connected-QA.apk",
+    "version": "1.13-preview",
+    "build": 14,
+    "sha256": "4a5cc2b1343d8ea47dca3e7916014c46b674e6cb0dd44138f30f6f1d4eef28ce",
+    "sameIdentityAndSigningCertificate": true
+  },
+  "checks": {
+    "androidConfigurationTests": 14,
+    "hostedScoringChecks": 4,
+    "hostedMfaAccessChecks": 6,
+    "ownerRuntimeMfaChecks": 2,
+    "apkEntries": 988,
+    "secretFindings": 0
+  },
+  "physicalAndroid": "NOT_TESTED_NO_ATTACHED_DEVICES",
+  "realTesterAcceptance": "NOT_TESTED_NO_TESTER_ADMITTED",
+  "scoring": "SYNTHETIC_READ_ONLY_REPLAY_ALL_THREE_SPORTS",
+  "publicProductionChanged": false,
+  "marketplaceChanged": false,
+  "publicRegistrationChanged": false,
+  "invitationsSent": 0,
+  "blocking": [
+    "Tester email not supplied; slot empty and disabled",
+    "Raw Preview requires Vercel authentication; independent tester route unverified",
+    "Existing external-admission privacy and retention conditions unresolved"
+  ]
+}
