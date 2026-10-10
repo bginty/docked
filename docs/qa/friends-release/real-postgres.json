@@ -2,7 +2,7 @@
   "passed": true,
   "scope": "Disposable real loopback PostgreSQL, synthetic accounts; not hosted or physical-device acceptance",
   "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
-  "checkedAt": "2026-10-10T11:45:08.173Z",
+  "checkedAt": "2026-10-10T21:11:16.021Z",
   "migrationHashes": {
     "20261008224142_beta_namespace_isolation.sql": "83e359f9098de42edbca15348eb22e2f648bf8bbda25a38943aabe8ac0ebfbee",
     "20261008224144_beta_atomic_admission.sql": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a",
@@ -16,7 +16,8 @@
     "20261010092154_scoring_v1_isolated_journal.sql": "9e9905522a1cad60eefe8f488bf2f5312dd40421e698f1c863fd8b8c8aedd6d1",
     "20261010112653_friends_beta_admission_boundary.sql": "34969bac70c3a8a6a9d0381192191f6ad39daefbd30762a22e56073506db97ef",
     "20261010112939_owner_operations_read_model.sql": "2ca3f31b25fb5f468dcfbe6ebde5f5ae4346e18354d2516586f505d4e2cfd7e5",
-    "20261010114202_friends_card_swap_boundary.sql": "24583c5710af74f73f4a47824e9527f8054d4c2d69e93f547114e6f49815f811"
+    "20261010114202_friends_card_swap_boundary.sql": "24583c5710af74f73f4a47824e9527f8054d4c2d69e93f547114e6f49815f811",
+    "20261010210741_support_privacy_and_beta_catalogue.sql": "63701c521c3daf6d5f410cd37c275f73ea3923a35fe9e255f2f6dcf08fa51c72"
   },
   "scenarios": [
     "Additive migrations preserve every official table, including existing cards and permanent starter entitlement",
@@ -29,6 +30,7 @@
     "Competing offers cannot double-trade; injected fee-ledger failure rolls back both ownership changes; saved unsettled lineup blocks swapping",
     "Runtime cannot read official assets or directly edit sandbox cards, balances or control; ledger immutable; suspension immediately denies tester",
     "Two ordinary roster members swap free at AAL1; twenty acceptance retries produce exactly two ownership entries, no fees; paid fee modes and balance credits rejected",
-    "Friends roster concurrency admits exactly ten lifetime slots; revoked/suspended slot is not recycled; ordinary AAL1 succeeds, owner MFA persists; owner reports reconcile source counts and deny member/AAL1"
+    "Friends roster concurrency admits exactly ten lifetime slots; revoked/suspended slot is not recycled; ordinary AAL1 succeeds, owner MFA persists; owner reports reconcile source counts and deny member/AAL1",
+    "Support export/media, owner MFA/role denial, atomic redaction rollback/idempotency, admission email de-identification, unchanged ownership/history/other member; shared Auth explicitly pending"
   ]
 }

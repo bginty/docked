@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { randomUUID, randomBytes, createHash } from "node:crypto";
 import { readFile, readdir, mkdir, writeFile } from "node:fs/promises";
 import { betaSql } from "../src/server/beta-sql";
+import { privacyAcceptance } from "./privacy-acceptance";
 const url = new URL(process.env.FANTASY_TEST_DATABASE_URL ?? "https://invalid");
 if (
   !["postgres:", "postgresql:"].includes(url.protocol) ||
@@ -489,6 +490,8 @@ async function main() {
       assert.equal((await reportRead(owner,'aal2')).inventory.reduce((n:number,e:any)=>n+e.cards,0),Number((await sql`select count(*) n from beta_fantasy.cards`)[0].n));
       assert.equal(await snapshot(),before);
       evidence.push('Friends roster concurrency admits exactly ten lifetime slots; revoked/suspended slot is not recycled; ordinary AAL1 succeeds, owner MFA persists; owner reports reconcile source counts and deny member/AAL1');
+      evidence.push(await privacyAcceptance(sql,owner,friendA,friendB));
+      assert.equal(await snapshot(),before);
     }
     await mkdir(output, { recursive: true });
     const report = {
