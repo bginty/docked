@@ -6,6 +6,7 @@ import { runSportsFetch } from "../src/server/sports-feed-worker";
 import { reconcileFeed } from "../src/server/sports-feed-reconcile";
 import { createFreeBetaPeriod } from "../src/core/free-beta-scoring";
 import { syntheticScenario } from "../src/core/scoring-synthetic";
+import { verifyPostgame } from "./postgame-concurrency";
 import {
   saveTeam,
   lockTeams,
@@ -183,6 +184,7 @@ async function main() {
     await store.enqueue("rights-blocked", { ...req, id: 2 });
     const disabled = await runSportsFetch(store, {}, {});
     assert.equal(disabled.status, "not-configured");
+    await verifyPostgame(sql);
     const report = {
       checkedAt: new Date().toISOString(),
       scope:

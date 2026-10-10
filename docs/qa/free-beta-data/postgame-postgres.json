@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-10T22:49:33.733Z",
+  "scope": "Disposable PostgreSQL, synthetic contract data and mocked network; not hosted/provider acceptance",
+  "passed": true,
+  "checks": [
+    "20-way download cooldown: one request",
+    "rights and post-game timing gate before network",
+    "20-way reconciliation: one append",
+    "304 cached evidence no duplicate",
+    "correction appends and preserves locked team/source",
+    "frozen provider mapping",
+    "schema failure visible, no zero fallback",
+    "failed requests retain cooldown",
+    "ordinary role denied private cache/mapping",
+    "immutable mapping audit"
+  ]
+}

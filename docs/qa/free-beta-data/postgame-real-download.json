@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-10T22:40:37.890Z",
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+  "transport": {
+    "mode": "actual-public-download",
+    "etag": "\"0x8DF26E1D43E9C28\"",
+    "sourceModified": "Sat, 10 Oct 2026 15:19:08 GMT"
+  },
+  "sha256": "bda143a5f21ce606cf62cbf1f2ba832392e9f2cde73a8f733d4bc5d04f1598ff",
+  "rows": 4517,
+  "uniqueGamePlayerIds": 4517,
+  "games": 65,
+  "offensiveRows": 1458,
+  "normalizableOffensiveRows": 1457,
+  "pending": [
+    {
+      "playerId": "00-0040506",
+      "gameId": "2026_03_MIN_TB",
+      "issue": "Touchdown category evidence required (return type/offensive recovery)"
+    }
+  ],
+  "arithmetic": [
+    {
+      "playerId": "00-0023459",
+      "name": "Aaron Rodgers",
+      "gameId": "2026_01_ATL_PIT",
+      "centipoints": 1254,
+      "manualArithmeticMatched": true
+    },
+    {
+      "playerId": "00-0036894",
+      "name": "Pat Freiermuth",
+      "gameId": "2026_01_ATL_PIT",
+      "centipoints": 1310,
+      "manualArithmeticMatched": true
+    },
+    {
+      "playerId": "00-0037228",
+      "name": "Jaylen Warren",
+      "gameId": "2026_01_ATL_PIT",
+      "centipoints": 780,
+      "manualArithmeticMatched": true
+    },
+    {
+      "playerId": "00-0038542",
+      "name": "Bijan Robinson",
+      "gameId": "2026_01_ATL_PIT",
+      "centipoints": 2730,
+      "manualArithmeticMatched": true
+    }
+  ],
+  "boundaries": [
+    "Downloaded source statistics, not fabricated or live Docked results",
+    "Manual arithmetic verified, independent gamebook audit not performed",
+    "Current-season existence is not a complete active roster",
+    "Exact completion time absent; external completion evidence required",
+    "No member result, competition or inventory mutation",
+    "No hosted rights/ingestion activation implied"
+  ]
+}

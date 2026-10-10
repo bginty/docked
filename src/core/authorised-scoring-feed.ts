@@ -1,17 +1,27 @@
 import { z } from "zod";
 import { sourceSnapshot, syntheticProvider } from "./scoring-provider";
 import type { Sport } from "./scoring-v1";
-const rights = z
+const rightsBase = z
   .object({
     provider: z.string().min(1),
     competition: z.enum(["EPL", "NFL", "AFL"]),
-    commercialFantasy: z.literal(true),
     storage: z.literal(true),
     evidence: z.string().url(),
     reviewExpires: z.iso.datetime(),
     maxAgeSeconds: z.number().int().positive().max(86400),
   })
   .strict();
+// Published open licences can authorise free-beta use; buying a commercial API
+// is not a prerequisite. Keep prior approvals compatible without broadening them.
+const rights = z.union([
+  rightsBase.extend({ commercialFantasy: z.literal(true) }).strict(),
+  rightsBase
+    .extend({
+      intendedUse: z.literal("isolated-free-beta"),
+      fantasyUse: z.literal(true),
+    })
+    .strict(),
+]);
 const envelope = sourceSnapshot
   .omit({ provider: true, simulated: true })
   .extend({

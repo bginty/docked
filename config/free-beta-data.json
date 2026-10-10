@@ -9,6 +9,14 @@
     "authority": "Owner explicit approval 11 October 2026"
   },
   "providers": {
+    "nflverse": {
+      "enabled": false,
+      "status": "POSTGAME_ADAPTER_TESTED_ACTIVATION_REVIEW_REQUIRED",
+      "credentialsRequired": false,
+      "dataDownloadCost": 0,
+      "mode": "post-game",
+      "minimumDownloadIntervalHours": 12
+    },
     "sportmonks": {
       "enabled": false,
       "status": "RIGHTS_AND_CREDENTIALS_REQUIRED"
@@ -26,6 +34,7 @@
     "enabled": false,
     "catalogueRefreshHours": 24,
     "livePollSeconds": null,
+    "postgameCheckHours": [6, 24, 48, 96, 168],
     "finalReconcileHours": 6,
     "maximumAttempts": 6
   },
