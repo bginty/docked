@@ -1,5 +1,7 @@
 # Current Docked decisions
 
+10 October 2026 — Fantasy UX milestone: [FANTASY_UX_ACCEPTANCE](FANTASY_UX_ACCEPTANCE.md) is the current delivery/evidence record. Owner manually confirmed login working; that acceptance is preserved without password resets or MFA setup. Gameplay, visual approval and physical S24 checks are separate. Field-based football XI, historical points, owned-card sheets and sandbox-only fee proposal supersede earlier presentation. Hosted trading, external registration and payments remain closed.
+
 10 October 2026 — Permanent owner-approved direction: multi-sport fantasy sports cards. See PRODUCT_DIRECTION.md. All previous betting/odds/research-engine roadmaps are superseded. Historical decision records are retained under ../legacy/retired-product/docs/DECISIONS.md.
 
 - Supplied fantasy artwork, COLLECT. BUILD. COMPETE., and Play / Cards / Market / Social / Profile are authoritative.

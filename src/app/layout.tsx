@@ -14,6 +14,7 @@ import { EnvironmentProvider } from "@/components/environment-context";
 import { AnalyticsObserver } from "@/components/analytics-observer";
 import { brand } from "@/brand/brand";
 import "./fantasy.css";
+import "./fantasy-play.css";
 import { fantasyTagline } from "@/core/fantasy";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 import { reviewOrigin } from "@/core/hosted-review.mjs";

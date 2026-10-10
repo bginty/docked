@@ -52,6 +52,7 @@ for (const width of [320, 412, 1366])
       "community-app.css",
       "mobile-app.css",
       "fantasy.css",
+      "fantasy-play.css",
     ])
       await page.addStyleTag({ path: path.resolve("src/app", css) });
     await page.addScriptTag({ content: bundle });

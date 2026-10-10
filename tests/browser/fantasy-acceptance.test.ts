@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { readFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { bundleCommunityFixture } from "../fixtures/bundle-community";
-const out = "docs/qa/fantasy-cleanup";
+const out = "docs/qa/fantasy-ux/regression";
 let bundle = "";
 test.beforeAll(async () => {
   await mkdir(out, { recursive: true });
@@ -57,6 +57,7 @@ for (const width of [360, 412, 1440])
       "community-app",
       "mobile-app",
       "fantasy",
+      "fantasy-play",
     ])
       await page.addStyleTag({
         content: await readFile("src/app/" + name + ".css", "utf8"),
@@ -64,7 +65,9 @@ for (const width of [360, 412, 1440])
     await page.addScriptTag({ content: bundle });
     for (const tab of ["play", "cards", "market", "social", "profile"]) {
       await page.evaluate((t) => Reflect.get(window, "renderFantasy")(t), tab);
-      await expect(page.locator(".fantasy-heading h1")).toBeVisible();
+      await expect(
+        page.locator(".fantasy-heading h1, .play-heading h1"),
+      ).toBeVisible();
       await page.evaluate(() => document.fonts.ready);
       expect(
         await page.evaluate(
@@ -112,12 +115,17 @@ for (const width of [360, 412, 1440])
       path: `${out}/card-detail-${width}.png`,
       fullPage: true,
     });
+    await page.getByRole("button", { name: "Close panel" }).click();
     await page.evaluate(() => Reflect.get(window, "renderFantasy")("play"));
-    for (const checkbox of await page.locator(".lineup-options input").all())
-      await checkbox.check();
-    await page.getByRole("button", { name: "Save team & enter" }).click();
+    for (let i = 0; i < 11; i++) {
+      await page.locator(".empty-slot").first().click();
+      await page.locator(".player-picker button").first().click();
+    }
+    await page.getByRole("button", { name: "Save Team", exact: true }).click();
     await expect(
-      page.getByText("Authored outage. No transaction was submitted."),
+      page.getByText("Authored outage. No transaction was submitted.", {
+        exact: false,
+      }),
     ).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Retry pending action" }),
@@ -126,10 +134,39 @@ for (const width of [360, 412, 1440])
       path: `${out}/team-error-${width}.png`,
       fullPage: true,
     });
+    // UI response fixture only; SQL persistence is verified independently.
+    await page.route("**/api/fantasy", async (route) => {
+      const request = route.request().postDataJSON();
+      const state = await page.evaluate((p) => {
+        const s = Reflect.get(window, "fantasyFixtureState");
+        s.entries = [{ competition_id: p.competition_id, cards: p.cards }];
+        return s;
+      }, request.payload);
+      await route.fulfill({ json: { state, result: {} } });
+    });
+    await page.getByRole("button", { name: "Retry pending action" }).click();
+    await expect(
+      page.getByText("Team confirmed on the server. Competition entry saved."),
+    ).toBeVisible();
+    await page.evaluate(() => Reflect.get(window, "renderFantasy")("cards"));
+    await page.evaluate(() => Reflect.get(window, "renderFantasy")("play"));
+    await expect(page.locator(".field-player:not(.empty-slot)")).toHaveCount(
+      11,
+    );
+    await page.getByRole("button", { name: "List view", exact: true }).click();
+    await expect(page.locator(".field-list")).toBeVisible();
+    await page.getByLabel("Fantasy sport").selectOption("afl");
+    await expect(page.getByText("AFL team setup is not ready")).toBeVisible();
+    await page.evaluate(() => Reflect.get(window, "renderFantasy")("cards"));
+    await page.evaluate(() => Reflect.get(window, "renderFantasy")("play"));
+    await expect(page.getByLabel("Fantasy sport")).toHaveValue("afl");
+    await page.getByLabel("Fantasy sport").selectOption("football");
     await page.evaluate(() =>
       Reflect.get(window, "renderFantasy")("cards", true),
     );
-    await expect(page.locator(".fantasy-heading h1")).toBeVisible();
+    await expect(
+      page.locator(".fantasy-heading h1, .play-heading h1"),
+    ).toBeVisible();
     await page.screenshot({
       path: `${out}/collection-empty-${width}.png`,
       fullPage: true,

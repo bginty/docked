@@ -1,11 +1,20 @@
 "use client";
 import Link from "next/link";
-import { useState, useRef, type CSSProperties, type FormEvent } from "react";
+import {
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  type CSSProperties,
+  type FormEvent,
+} from "react";
 import {
   fantasyRetry,
   type PendingFantasyRequest,
 } from "@/core/fantasy-request";
-import { FantasyHero } from "./fantasy-brand";
+import { FantasyPlay } from "./fantasy-play";
+import { FantasyPlayerDetails } from "./fantasy-player-sheet";
+import { SandboxMarketProposal } from "./fantasy-market-proposal";
 import { FantasyAdmin } from "./fantasy-admin";
 import { FantasyRewards } from "./fantasy-rewards";
 import { fantasyResponseRejects } from "@/core/fantasy-response";
@@ -88,20 +97,14 @@ export function FantasyScreen({
   const [detail, setDetail] = useState<string | null>(null),
     [reveal, setReveal] = useState<string[]>([]),
     [revealIndex, setRevealIndex] = useState(0);
-  const [competition, setCompetition] = useState(
-      data.competitions[0]?.id ?? "",
-    ),
-    [selected, setSelected] = useState<string[]>(
-      data.entries.find((e) => e.competition_id === data.competitions[0]?.id)
-        ?.cards ?? [],
-    );
   const [recipient, setRecipient] = useState(""),
     [give, setGive] = useState<string[]>([]),
     [receive, setReceive] = useState<string[]>([]);
+  const closeDetail = useCallback(() => setDetail(null), []);
   const pending = useRef<PendingFantasyRequest | null>(null);
   const pendingUnconfirmed = useRef(false);
   const inFlight = useRef(false);
-  async function refresh() {
+  const refresh = useCallback(async () => {
     if (inFlight.current) return;
     inFlight.current = true;
     setBusy(true);
@@ -117,7 +120,19 @@ export function FantasyScreen({
       inFlight.current = false;
       setBusy(false);
     }
-  }
+  }, []);
+  useEffect(() => {
+    if (!inFlight.current) setData(initial);
+  }, [initial]);
+  useEffect(() => {
+    const resume = () => void refresh();
+    window.addEventListener("docked-app-resume", resume);
+    window.addEventListener("online", resume);
+    return () => {
+      window.removeEventListener("docked-app-resume", resume);
+      window.removeEventListener("online", resume);
+    };
+  }, [refresh]);
   async function act(action: string, payload: Record<string, unknown> = {}) {
     if (inFlight.current) return null;
     inFlight.current = true;
@@ -177,23 +192,6 @@ export function FantasyScreen({
     data.results
       .filter((r) => r.user_id === data.user_id)
       .reduce((n, r) => n + r.championship_points, 0);
-  const standings =
-    data.leaderboard?.rows ??
-    data.members
-      .map((m) => ({
-        ...m,
-        points: data.results
-          .filter((r) => r.user_id === m.id)
-          .reduce((n, r) => n + r.championship_points, 0),
-      }))
-      .sort((a, b) => b.points - a.points);
-  const comp = data.competitions.find((c) => c.id === competition);
-  const formation = (comp?.rules.positions ?? {
-    GK: 1,
-    DEF: 4,
-    MID: 4,
-    FWD: 2,
-  }) as Record<string, number>;
   const filtered = data.cards
     .filter(
       (c) =>
@@ -220,9 +218,6 @@ export function FantasyScreen({
               ? b.season.localeCompare(a.season)
               : b.created_at.localeCompare(a.created_at),
     );
-  const picked = selected
-    .map((id) => data.cards.find((c) => c.id === id))
-    .filter((c): c is FantasyCard => !!c);
   const toggle = (id: string, list: string[], setter: (v: string[]) => void) =>
     setter(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
   const title: Record<string, string> = {
@@ -235,20 +230,22 @@ export function FantasyScreen({
   };
   return (
     <div className="fantasy-screen" aria-busy={busy}>
-      <header className="fantasy-heading">
-        <div>
-          <p className="eyebrow">
-            FANTASY CARDS · {production ? "FREE PLAY" : "PREVIEW V1"}
-          </p>
-          <h1>{title[tab]}</h1>
-        </div>
-        <Link className="credit-chip" href="/fantasy/profile">
-          {Number(
-            production ? (data.rewards?.points ?? 0) : data.credits,
-          ).toLocaleString()}{" "}
-          <span>{production ? "gameplay points" : "test credits"}</span>
-        </Link>
-      </header>
+      {tab !== "play" && (
+        <header className="fantasy-heading">
+          <div>
+            <p className="eyebrow">
+              FANTASY CARDS · {production ? "FREE PLAY" : "PREVIEW V1"}
+            </p>
+            <h1>{title[tab]}</h1>
+          </div>
+          <Link className="credit-chip" href="/fantasy/profile">
+            {Number(
+              production ? (data.rewards?.points ?? 0) : data.credits,
+            ).toLocaleString()}{" "}
+            <span>{production ? "gameplay points" : "test credits"}</span>
+          </Link>
+        </header>
+      )}
       <p role="status" className={message ? "fantasy-message" : "sr-only"}>
         {busy ? "Saving…" : message}
       </p>
@@ -262,230 +259,20 @@ export function FantasyScreen({
           Retry pending action
         </button>
       )}
+      {tab === "play" && <FantasyPlay data={data} busy={busy} act={act} />}
       {tab === "play" && (
-        <>
-          <div className="fantasy-welcome">
-            <FantasyHero />
-            <div>
-              <p className="eyebrow">YOUR CLUB. YOUR CALL.</p>
-              <h2>
-                Collect talent.
-                <br />
-                Build your XI.
-                <br />
-                Compete every round.
-              </h2>
-              <p>
-                36 fictional players. Five collectible tiers. Every tier scores
-                the same fantasy points.
-              </p>
-              <Link className="button" href="/fantasy/cards">
-                Explore my cards →
-              </Link>
-            </div>
-          </div>
-          <div className="fantasy-stats">
-            <div>
-              <strong>{data.cards.length}</strong>
-              <span>Cards collected</span>
-            </div>
-            <div>
-              <strong>{data.entries.length}</strong>
-              <span>Competition entries</span>
-            </div>
-            <div>
-              <strong>{points}</strong>
-              <span>Championship points</span>
-            </div>
-          </div>
-          <section className="fantasy-panel">
-            <p className="eyebrow">BUILD · FOOTBALL</p>
-            <h2>Your starting eleven</h2>
-            <p>
-              {Object.entries(formation)
-                .map(([position, count]) => `${count} ${position}`)
-                .join(" · ")}
-              . No bench. Unavailable players may score zero.
-            </p>
-            <label>
-              Competition
-              <select
-                aria-label="Competition"
-                value={competition}
-                onChange={(e) => {
-                  setCompetition(e.target.value);
-                  setSelected(
-                    data.entries.find(
-                      (x) => x.competition_id === e.target.value,
-                    )?.cards ?? [],
-                  );
-                }}
-              >
-                {data.competitions.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.name} · Round {c.round}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {comp && (
-              <>
-                <p>
-                  Lock:{" "}
-                  <time dateTime={comp.locks_at}>{stamp(comp.locks_at)}</time> ·{" "}
-                  {comp.scored_at
-                    ? "Scored"
-                    : new Date(comp.locks_at).getTime() <= Date.now()
-                      ? "Locked"
-                      : "Open for entries"}
-                </p>
-                <details>
-                  <summary>Competition eligibility</summary>
-                  <p>
-                    {comp.rules.duplicates
-                      ? "Multiple cards of the same player are allowed."
-                      : "One card per player."}{" "}
-                    Minimum CORE: {Number(comp.rules.core_min ?? 0)}. Minimum
-                    First Year: {Number(comp.rules.first_year_min ?? 0)}.
-                  </p>
-                  {Object.entries(
-                    (comp.rules.tier_max ?? {}) as Record<string, number>,
-                  ).map(([tier, max]) => (
-                    <p key={tier}>
-                      {tier}: maximum {max}
-                    </p>
-                  ))}
-                </details>
-              </>
-            )}
-            <div className="formation-status">
-              {["GK", "DEF", "MID", "FWD"].map((p) => (
-                <span key={p}>
-                  {p} {picked.filter((c) => c.position === p).length}/
-                  {formation[p]}
-                </span>
-              ))}
-              <strong>{selected.length}/11 selected</strong>
-            </div>
-            <div className="lineup-options">
-              {data.cards
-                .filter((c) => !["retired", "delisted"].includes(c.status))
-                .map((c) => (
-                  <label key={c.id}>
-                    <input
-                      type="checkbox"
-                      checked={selected.includes(c.id)}
-                      disabled={
-                        busy ||
-                        !!comp?.scored_at ||
-                        (!!comp &&
-                          new Date(comp.locks_at).getTime() <= Date.now())
-                      }
-                      onChange={() => toggle(c.id, selected, setSelected)}
-                    />
-                    <span>
-                      <b>{c.name}</b>
-                      <small>
-                        {c.position} · {c.tier} · #{c.serial} · {c.status}
-                        {c.listed ? " · Listed" : ""}
-                      </small>
-                    </span>
-                  </label>
-                ))}
-            </div>
-            {!data.cards.length && (
-              <p>
-                Claim and open your free Starter pack in Cards to field your
-                first team.
-              </p>
-            )}
-            <button
-              className="button"
-              disabled={
-                busy ||
-                selected.length !== 11 ||
-                !comp ||
-                !!comp.scored_at ||
-                new Date(comp.locks_at).getTime() <= Date.now()
-              }
-              onClick={() =>
-                act("save_lineup", {
-                  competition_id: competition,
-                  cards: selected,
-                })
-              }
-            >
-              Save team & enter
-            </button>
-            <p className="muted">
-              The server checks ownership, formation and eligibility. Remove
-              cards from open lineups before listing or trading them.
-            </p>
-          </section>
-          <section className="fantasy-panel">
-            <h2>
-              {production
-                ? `${data.release_channel === "beta" ? "Beta" : "Release"} championship standings`
-                : "Championship standings"}
-            </h2>
-            {standings.map((m, i) => (
-              <div className="fantasy-row" key={m.id}>
-                <span>
-                  {data.leaderboard
-                    ? `${data.leaderboard.rows[i].rank}. ${m.name}`
-                    : production
-                      ? m.name
-                      : `${i + 1}. ${m.name}`}
-                </span>
-                <strong>{m.points} pts</strong>
-              </div>
-            ))}
-            <p>
-              {production &&
-                "Current release only · Up to 100 visible members. Private, blocked and inactive accounts are excluded. "}
-              {production
-                ? "Free fictional-player competition · No cash prize"
-                : "Preview/Test Prize · No cash payout"}
-            </p>
-          </section>
-          <section className="fantasy-panel">
-            <h2>Recent results</h2>
-            {data.results.length ? (
-              data.results.map((r) => (
-                <div
-                  className="fantasy-row"
-                  key={`${r.competition_id}${r.user_id}`}
-                >
-                  <span>
-                    {name(r.user_id)} ·{" "}
-                    {
-                      data.competitions.find((c) => c.id === r.competition_id)
-                        ?.name
-                    }
-                  </span>
-                  <strong>
-                    #{r.rank} · {r.score} FP · +{r.championship_points} pts
-                  </strong>
-                </div>
-              ))
-            ) : (
-              <p>
-                Results appear after the administrator simulates a locked round.
-              </p>
-            )}
-          </section>
-        </>
+        <button disabled={busy} onClick={() => void refresh()}>
+          Refresh team & points
+        </button>
       )}
-      {production &&
-        data.rewards &&
-        ["play", "cards", "profile"].includes(tab) && (
-          <FantasyRewards
-            rewards={data.rewards}
-            busy={busy}
-            act={act}
-            refresh={refresh}
-          />
-        )}
+      {production && data.rewards && ["cards", "profile"].includes(tab) && (
+        <FantasyRewards
+          rewards={data.rewards}
+          busy={busy}
+          act={act}
+          refresh={refresh}
+        />
+      )}
       {production && tab === "market" && (
         <section className="fantasy-panel">
           <h2>Marketplace is not open yet</h2>
@@ -847,32 +634,6 @@ export function FantasyScreen({
                   >
                     Card details
                   </button>
-                  {detail === c.id && (
-                    <div className="card-details">
-                      <p>
-                        Permanent ID: <code>{c.id}</code>
-                      </p>
-                      <p>Owner: {name(c.owner_id)}</p>
-                      <p>Acquired {stamp(c.acquired_at)}</p>
-                      <p>
-                        {c.listed ? "Listed" : "Unlisted"} ·{" "}
-                        {data.entries.some((e) => e.cards.includes(c.id))
-                          ? "In a lineup"
-                          : "Not in a lineup"}
-                      </p>
-                      <h4>Provenance</h4>
-                      {data.provenance
-                        .filter((e) => e.card_id === c.id)
-                        .map((e) => (
-                          <p key={e.id}>
-                            {e.reason} · {stamp(e.created_at)}
-                            <br />
-                            {e.from_user ? name(e.from_user) : "Issued"} →{" "}
-                            {name(e.to_user)}
-                          </p>
-                        ))}
-                    </div>
-                  )}
                 </Card>
               ))}
             </div>
@@ -1402,6 +1163,14 @@ export function FantasyScreen({
         ) : (
           <p>Administrator access requires a database role and MFA.</p>
         ))}
+      {detail && data.cards.find((c) => c.id === detail) && (
+        <FantasyPlayerDetails
+          card={data.cards.find((c) => c.id === detail)!}
+          state={data}
+          onClose={closeDetail}
+        />
+      )}
+      {tab === "market" && <SandboxMarketProposal />}
     </div>
   );
 }

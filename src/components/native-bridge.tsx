@@ -90,6 +90,11 @@ export function NativeBridge() {
           }),
           App.addListener("backButton", ({ canGoBack }) => {
             if (!alive) return;
+            const panel = document.querySelector<HTMLDialogElement>("dialog[open]");
+            if (panel) {
+              panel.dispatchEvent(new Event("cancel", { cancelable: true }));
+              return;
+            }
             if (canGoBack) router.back();
             else void App.minimizeApp();
           }),

@@ -325,7 +325,7 @@ export async function POST(request: Request) {
             ok: true,
             redirect: await destinationAfterAuth(
               data.user,
-              v.app ? "/app" : "/dashboard",
+              "/app",
             ),
           },
     );

@@ -21,6 +21,7 @@ const targets = [
   "public",
   "config",
   "docs/qa/owner-gameplay",
+  "docs/qa/fantasy-ux",
   ".next/static",
 ];
 if (process.argv[2]) {
@@ -31,7 +32,7 @@ if (process.argv[2]) {
 }
 const report = await auditPreviewTargets(targets, values);
 await writeFile(
-  "docs/qa/owner-gameplay/secret-audit.json",
+  "docs/qa/fantasy-ux/secret-audit.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(JSON.stringify(report));

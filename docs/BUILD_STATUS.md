@@ -1,5 +1,7 @@
 # Docked fantasy product status
 
+10 October 2026 — Fantasy UX milestone: [FANTASY_UX_ACCEPTANCE](FANTASY_UX_ACCEPTANCE.md) is the current delivery/evidence record. Owner manually confirmed login working; that acceptance is preserved without password resets or MFA setup. Gameplay, visual approval and physical S24 checks are separate. Field-based football XI, historical points, owned-card sheets and sandbox-only fee proposal supersede earlier presentation. Hosted trading, external registration and payments remain closed.
+
 Updated 10 October 2026. [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) is authoritative. Earlier build reports are archived in ../legacy/retired-product/docs/BUILD_STATUS.md.
 
 This milestone retires the previous product and reviews fantasy functionality/design. Current implementation: fictional football cards, permanent finite editions, ownership history, pack issuance/opening, team selection, simulated competition scoring/rankings, and isolated Preview marketplace/trades. Production-compatible free play disables marketplace transfers. Further sport modules are not operational.

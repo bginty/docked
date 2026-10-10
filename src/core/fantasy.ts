@@ -272,8 +272,16 @@ export type FantasyCompetition = {
   locks_at: string;
   scored_at: string | null;
   rules: Record<string, unknown>;
+  sport?: string;
+  opens_at?: string;
 };
 export type FantasyState = {
+  server_time?: string;
+  round_details?: {
+    competition_id: string;
+    cards: FantasyCard[];
+    scores: { player_id: string; score: number; stats: Record<string, number>; scoring_version: string; rules: Record<string, unknown> }[];
+  }[];
   release_channel?: "beta" | "stable";
   my_championship_points?: number;
   leaderboard?: {
@@ -367,7 +375,7 @@ export type FantasyState = {
     items: { card_id: string; from_user: string }[];
   }[];
   competitions: FantasyCompetition[];
-  entries: { competition_id: string; cards: string[] }[];
+  entries: { competition_id: string; cards: string[]; updated_at?: string }[];
   results: {
     competition_id: string;
     user_id: string;

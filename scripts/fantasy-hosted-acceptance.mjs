@@ -14,9 +14,11 @@ assert.match(
   base,
   /^https:\/\/docked-production-[a-z0-9]+-briant-s-projects\.vercel\.app$/,
 );
-const out = process.argv.includes("--owner-gameplay")
-  ? "docs/qa/owner-gameplay"
-  : "docs/qa/fantasy-cleanup";
+const out = process.argv.includes("--fantasy-ux")
+  ? "docs/qa/fantasy-ux"
+  : process.argv.includes("--owner-gameplay")
+    ? "docs/qa/owner-gameplay"
+    : "docs/qa/fantasy-cleanup";
 const report = {
   at: new Date().toISOString(),
   deployment: d,
@@ -52,6 +54,21 @@ await check("Vercel protection remains enabled", async () => {
   assert.ok([401, 403, 302, 307].includes(r.status));
   return { status: r.status };
 });
+await check(
+  "Sandbox proposal requires owner session; hosted execution always disabled",
+  async () => {
+    assert.equal((await request("/api/fantasy/market-proposal")).status, 403);
+    assert.equal(
+      (
+        await request("/api/fantasy/market-proposal", {
+          method: "POST",
+          headers: { Origin: base },
+        })
+      ).status,
+      403,
+    );
+  },
+);
 await check("Fantasy identity and closed registration status", async () => {
   const r = await request("/api/status");
   assert.equal(r.status, 200);

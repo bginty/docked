@@ -1,0 +1,645 @@
+.fantasy-mode {
+  --play-surface: #111929;
+  --play-raised: #19233a;
+  --play-line: #35415d;
+  --play-text: #f5f7ff;
+  --play-muted: #bdc7db;
+  --play-positive: #80edc7;
+  --field-base: #123f46;
+  --field-stripe: #164b51;
+  --field-line: #79b7b080;
+  --field-empty: #16343d;
+}
+.play-heading,
+.team-round,
+.field-toolbar,
+.lineup-save {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.play-heading h1 {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  letter-spacing: -0.04em;
+  margin: 8px 0;
+}
+.play-heading label {
+  min-width: 150px;
+  max-width: 220px;
+}
+.simulation-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--play-positive);
+  padding: 9px 0;
+}
+.play-summary {
+  background: var(--play-surface);
+  border: 1px solid var(--play-line);
+  border-radius: 20px;
+  padding: 22px;
+}
+.team-round h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.team-round p {
+  color: var(--play-muted);
+  font-size: 0.85rem;
+  margin: 5px 0;
+}
+.round-tag {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  border: 1px solid var(--play-line);
+  padding: 7px 12px;
+  border-radius: 9px;
+}
+.play-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.play-metrics > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  border-left: 2px solid var(--fantasy-blue);
+  padding-left: 12px;
+}
+.play-metrics span {
+  font-size: 0.85rem;
+  color: var(--play-muted);
+}
+.play-metrics strong {
+  font-size: 2.1rem;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+.play-metrics small {
+  font-size: 0.7rem;
+  color: var(--play-muted);
+}
+.play-actions {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0;
+}
+.fantasy-mode .button-secondary {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--play-line);
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  min-height: 44px;
+}
+.play-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 22px;
+}
+.team-workspace {
+  min-width: 0;
+}
+.play-sidebar .fantasy-panel:first-child {
+  margin-top: 0;
+}
+.field-toolbar h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.field-toolbar p {
+  font-size: 0.8rem;
+  color: var(--play-muted);
+  margin: 5px 0 14px;
+}
+.deadline-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid var(--play-line);
+  border-radius: 12px;
+  background: var(--play-surface);
+  margin: 12px 0;
+  font-size: 0.85rem;
+}
+.deadline-card span:first-child {
+  width: 100%;
+  color: var(--play-muted);
+}
+.fantasy-field {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--field-line);
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 18px 8px;
+  background: repeating-linear-gradient(
+    0deg,
+    var(--field-base),
+    var(--field-base) 12.5%,
+    var(--field-stripe) 12.5%,
+    var(--field-stripe) 25%
+  );
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.fantasy-field:before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--field-line);
+  z-index: -1;
+  border-radius: 2px;
+  background: linear-gradient(
+    transparent calc(50% - 1px),
+    var(--field-line) 50%,
+    transparent calc(50% + 1px)
+  );
+}
+.fantasy-field:after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 48px);
+  left: calc(50% - 48px);
+  width: 96px;
+  height: 96px;
+  border: 1px solid var(--field-line);
+  border-radius: 50%;
+  z-index: -1;
+}
+.field-row {
+  min-width: 0;
+}
+.field-position {
+  display: block;
+  text-align: center;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: var(--play-text);
+  margin-bottom: 5px;
+}
+.field-players {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 6px;
+}
+.fantasy-mode .field-player {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  width: 110px;
+  max-width: 24%;
+  min-height: 106px;
+  color: var(--play-text);
+  border-radius: 10px;
+  transition: background 0.12s;
+}
+.fantasy-mode .field-player:hover,
+.fantasy-mode .field-player:active {
+  background: #ffffff18;
+}
+.pitch-shirt {
+  width: 62px;
+  height: 57px;
+  display: block;
+  flex-shrink: 0;
+  filter: drop-shadow(0 3px 4px #0004);
+}
+.field-player-name {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: var(--fantasy-navy);
+  padding: 6px 3px;
+  border-radius: 5px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+.field-player small {
+  font-size: 0.65rem;
+  padding: 4px 2px;
+  color: var(--play-text);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.empty-slot .field-player-name {
+  background: var(--field-empty);
+}
+.field-list {
+  margin: 12px 0;
+}
+.field-list .field-players {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.field-list .field-player {
+  width: auto;
+  max-width: none;
+  flex-direction: row;
+  min-height: 64px;
+  border: 1px solid var(--play-line);
+  padding: 6px;
+  background: var(--play-surface);
+}
+.field-list .pitch-shirt {
+  width: 35px;
+  height: 40px;
+}
+.field-list .field-player-name {
+  background: none;
+  white-space: normal;
+  text-align: left;
+}
+.field-list .field-position {
+  text-align: left;
+  margin: 10px 0;
+}
+.reserves {
+  margin: 16px 0;
+  padding: 15px;
+  background: var(--play-surface);
+  border: 1px solid var(--play-line);
+  border-radius: 14px;
+}
+.reserves h3 {
+  margin: 0;
+}
+.reserves p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--play-muted);
+}
+.reserve-cards {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px;
+}
+.reserve-cards button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  width: 100px;
+  font-size: 0.73rem;
+}
+.reserve-cards .pitch-shirt {
+  width: 40px;
+  height: 42px;
+}
+.reserve-cards span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lineup-save {
+  background: var(--play-raised);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 12px 0;
+}
+.lineup-save p {
+  font-size: 0.8rem;
+  color: var(--play-muted);
+  margin: 4px 0;
+}
+.lineup-save .button {
+  flex-shrink: 0;
+}
+.formation-issues {
+  padding-left: 20px;
+  color: var(--play-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.points-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 12px 0;
+}
+.points-total strong {
+  font-size: 1.5rem;
+}
+.points-total small {
+  font-size: 1rem;
+}
+.points-total > span {
+  font-size: 0.85rem;
+  color: var(--play-muted);
+}
+.fantasy-mode .fantasy-sheet {
+  position: fixed;
+  inset: auto 0 0;
+  margin: 0 auto;
+  width: min(620px, 100%);
+  max-width: 100%;
+  max-height: calc(100dvh - env(safe-area-inset-top) - 20px);
+  color: var(--play-text);
+  background: var(--play-surface);
+  border: 1px solid var(--play-line);
+  border-radius: 22px 22px 0 0;
+  padding: 0;
+  box-shadow: 0 -10px 60px #0005;
+  z-index: 1000;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.fantasy-sheet::backdrop {
+  background: #030715bc;
+}
+.sheet-inner {
+  padding: 20px 20px calc(22px + env(safe-area-inset-bottom));
+}
+.sheet-inner > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  position: sticky;
+  top: -20px;
+  z-index: 1;
+  background: var(--play-surface);
+  padding: 12px 0;
+}
+.sheet-inner > header h2 {
+  font-size: 1.4rem;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.sheet-inner > header button {
+  flex-shrink: 0;
+  min-width: 44px;
+}
+.sheet-inner p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--play-muted);
+}
+.sheet-inner code {
+  word-break: break-all;
+  font-size: 0.75rem;
+}
+.sheet-inner section {
+  border-top: 1px solid var(--play-line);
+  margin-top: 18px;
+  padding-top: 12px;
+}
+.sheet-inner h3 {
+  font-size: 1rem;
+}
+.player-sheet-identity {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.player-sheet-identity .pitch-shirt {
+  width: 90px;
+  height: 96px;
+}
+.player-detail-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0;
+}
+.player-detail-metrics > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--play-raised);
+  border-radius: 12px;
+  padding: 16px;
+}
+.player-detail-metrics strong {
+  font-size: 1.7rem;
+}
+.player-detail-metrics strong span {
+  font-size: 0.9rem;
+}
+.player-detail-metrics small {
+  color: var(--play-muted);
+}
+.score-breakdown > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--play-line);
+  font-size: 0.85rem;
+}
+.score-breakdown dd {
+  margin: 0;
+  font-weight: 700;
+}
+.sheet-actions {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+.sheet-actions a {
+  text-decoration: underline;
+}
+.selection-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+.player-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fantasy-mode .player-picker > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  width: 100%;
+  padding: 12px;
+}
+.player-picker .pitch-shirt {
+  width: 40px;
+  height: 42px;
+}
+.player-picker span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.player-picker strong {
+  overflow-wrap: anywhere;
+  font-size: 0.9rem;
+}
+.player-picker small {
+  font-size: 0.72rem;
+  color: var(--play-muted);
+}
+.player-picker > b {
+  font-size: 0.8rem;
+}
+.market-proposal .play-metrics {
+  margin-bottom: 20px;
+}
+.market-quote {
+  border: 1px solid var(--play-line);
+  border-radius: 14px;
+  padding: 18px;
+  background: var(--play-raised);
+}
+.market-quote dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+}
+.market-quote dd {
+  margin: 0;
+}
+.market-quote p {
+  font-size: 0.8rem;
+}
+@media (min-width: 760px) {
+  .fantasy-mode .fantasy-sheet {
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    max-height: 85dvh;
+    border-radius: 22px;
+  }
+}
+@media (max-width: 950px) {
+  .play-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .play-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .play-sidebar .fantasy-panel {
+    margin: 0;
+  }
+}
+@media (max-width: 560px) {
+  .fantasy-screen {
+    padding-top: 12px;
+  }
+  .play-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .play-heading h1 {
+    font-size: 1.55rem;
+  }
+  .play-heading label {
+    min-width: 110px;
+    max-width: 135px;
+    font-size: 0.7rem;
+  }
+  .play-heading .eyebrow {
+    font-size: 0.58rem;
+  }
+  .play-summary {
+    padding: 16px;
+  }
+  .play-metrics {
+    gap: 8px;
+  }
+  .play-metrics strong {
+    font-size: 1.7rem;
+  }
+  .play-metrics > div {
+    padding-left: 8px;
+  }
+  .play-metrics span {
+    font-size: 0.75rem;
+  }
+  .play-metrics small {
+    font-size: 0.63rem;
+  }
+  .play-actions > * {
+    flex: 1;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+  .play-sidebar {
+    grid-template-columns: 1fr;
+  }
+  .fantasy-field {
+    gap: 14px;
+    padding: 15px 5px;
+  }
+  .pitch-shirt {
+    width: 48px;
+    height: 48px;
+  }
+  .fantasy-mode .field-player {
+    min-height: 96px;
+  }
+  .field-player-name {
+    font-size: 0.64rem;
+  }
+  .field-player small {
+    font-size: 0.59rem;
+  }
+  .field-toolbar h2 {
+    font-size: 1.08rem;
+  }
+  .field-toolbar button {
+    font-size: 0.8rem;
+  }
+  .field-list .field-players {
+    grid-template-columns: 1fr;
+  }
+  .sheet-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .selection-filters {
+    grid-template-columns: 1fr;
+  }
+  .lineup-save {
+    gap: 8px;
+    padding: 12px;
+  }
+  .lineup-save .button {
+    font-size: 0.82rem;
+    padding: 10px;
+  }
+  .simulation-label {
+    font-size: 0.61rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fantasy-mode .field-player {
+    transition: none;
+  }
+}

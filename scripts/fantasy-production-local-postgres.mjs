@@ -56,7 +56,9 @@ try {
     [
       "--import",
       "tsx",
-      process.argv.includes("--beta-isolation")
+      process.argv.includes("--market-sandbox")
+        ? "scripts/fantasy-market-concurrency.ts"
+        : process.argv.includes("--beta-isolation")
         ? "scripts/beta-isolation-concurrency.ts"
         : "scripts/fantasy-production-concurrency.ts",
     ],

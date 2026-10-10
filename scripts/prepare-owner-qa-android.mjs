@@ -1,14 +1,25 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { validateOwnerQaManifest } from "./android-owner-qa-config.mjs";
+const ux = process.argv.includes("--fantasy-ux");
 const d = JSON.parse(
   readFileSync("docs/qa/beta-isolation/deployment-status.json", "utf8"),
 );
 const b = JSON.parse(
-  readFileSync("docs/qa/owner-gameplay/hosted-backend.json", "utf8"),
+  readFileSync(
+    ux
+      ? "docs/qa/fantasy-ux/read-model-verify.json"
+      : "docs/qa/owner-gameplay/hosted-backend.json",
+    "utf8",
+  ),
 );
 const h = JSON.parse(
-  readFileSync("docs/qa/owner-gameplay/hosted-acceptance.json", "utf8"),
+  readFileSync(
+    ux
+      ? "docs/qa/fantasy-ux/hosted-acceptance.json"
+      : "docs/qa/owner-gameplay/hosted-acceptance.json",
+    "utf8",
+  ),
 );
 assert.equal(d.state, "READY");
 assert.equal(d.effectiveTarget, "preview");

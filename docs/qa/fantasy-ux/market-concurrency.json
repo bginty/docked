@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-10T07:38:50.424Z",
+  "scope": "local disposable PostgreSQL 17; mock balances and synthetic cards only",
+  "passed": true,
+  "checks": [
+    "Competing offers: exactly one transfers ownership",
+    "Eight duplicate confirms return one receipt; two ownership events; exactly AUD5",
+    "Foreign account denied",
+    "Restricted runtime cannot change balances or bypass RPC",
+    "Ownership audit immutable even to operator"
+  ]
+}

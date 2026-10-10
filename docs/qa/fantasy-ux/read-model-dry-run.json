@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-10T07:39:23.828Z",
+  "mode": "--dry-run",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "migration": "20261010072625_fantasy_play_read_model.sql",
+  "sha256": "f72334e5c9c4cdec96d224222e9aef1550d0174ad39543d4f31ce7be44085a7d",
+  "checks": [
+    "Existing owner read includes only own immutable snapshots and scores",
+    "All official and beta fantasy table hashes unchanged",
+    "External admission remains closed"
+  ],
+  "passed": true
+}

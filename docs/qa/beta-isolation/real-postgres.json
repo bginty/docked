@@ -1,6 +1,6 @@
 {
   "scope": "disposable loopback PostgreSQL, not hosted",
-  "checkedAt": "2026-10-09T22:12:37.671Z",
+  "checkedAt": "2026-10-10T07:41:26.664Z",
   "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
   "passed": true,
   "migrationHashes": {
@@ -8,7 +8,8 @@
     "20261008224144_beta_atomic_admission.sql": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a",
     "20261008225828_beta_owner_acceptance_boundary.sql": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0",
     "20261008232200_beta_admission_snapshot_serialization.sql": "8c9045fc39134dd5077a0df0dd92156c388d5a47e5db616963cacb458debf604",
-    "20261009220656_owner_only_fantasy_gameplay.sql": "194ee56c781866097e4edfd989c2c6d3ca0d11d0d41d312ee3a514f11f82adec"
+    "20261009220656_owner_only_fantasy_gameplay.sql": "194ee56c781866097e4edfd989c2c6d3ca0d11d0d41d312ee3a514f11f82adec",
+    "20261010072625_fantasy_play_read_model.sql": "f72334e5c9c4cdec96d224222e9aef1550d0174ad39543d4f31ce7be44085a7d"
   },
   "scenarios": [
     "Additive migrations preserve every official table, including existing cards and permanent starter entitlement",

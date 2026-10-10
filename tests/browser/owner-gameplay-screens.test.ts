@@ -1,10 +1,14 @@
 import { test, expect } from "@playwright/test";
+import {
+  sandboxTradeFees,
+  tradeFeeWindow,
+} from "../../src/core/fantasy-market-fees";
 import AxeBuilder from "@axe-core/playwright";
 import { readFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { existsSync } from "node:fs";
 import { bundleCommunityFixture } from "../fixtures/bundle-community";
-const out = "docs/qa/owner-gameplay/screens";
+const out = "docs/qa/fantasy-ux/screens";
 test.skip(
   !existsSync("private-data/owner-gameplay/hosted-state.json"),
   "Requires the isolated hosted QA backend snapshot; never substitutes fabricated values",
@@ -28,6 +32,16 @@ for (const width of [412, 1440])
     let held: Promise<void> | null = null;
     await page.route("**/*", async (route) => {
       const url = new URL(route.request().url());
+      if (url.pathname === "/api/fantasy/market-proposal")
+        return route.fulfill({
+          json: {
+            mode: "ILLUSTRATION_ONLY",
+            serverTime: new Date().toISOString(),
+            policy: sandboxTradeFees,
+            window: tradeFeeWindow(sandboxTradeFees, Date.now()),
+            executionEnabled: false,
+          },
+        });
       if (url.pathname.startsWith("/api/")) {
         if (held) await held;
         return route.fulfill({
@@ -69,6 +83,7 @@ for (const width of [412, 1440])
       "community-app",
       "mobile-app",
       "fantasy",
+      "fantasy-play",
     ])
       await page.addStyleTag({
         content: await readFile("src/app/" + name + ".css", "utf8"),
@@ -76,7 +91,9 @@ for (const width of [412, 1440])
     await page.addScriptTag({ content: bundle });
     for (const tab of ["play", "cards", "market", "social", "profile"]) {
       await page.evaluate((t) => Reflect.get(window, "renderFantasy")(t), tab);
-      await expect(page.locator(".fantasy-heading h1")).toBeVisible();
+      await expect(
+        page.locator(".fantasy-heading h1, .play-heading h1"),
+      ).toBeVisible();
       await page.evaluate(() => document.fonts.ready);
       expect(
         await page.evaluate(
@@ -102,8 +119,59 @@ for (const width of [412, 1440])
       .click();
     await page.screenshot({
       path: `${out}/details-${width}.png`,
+      fullPage: false,
+    });
+    await page.getByRole("button", { name: "Close panel" }).click();
+    await page.evaluate(() => Reflect.get(window, "renderFantasy")("play"));
+    await page
+      .getByRole("button", { name: "View Points", exact: true })
+      .click();
+    await page.screenshot({
+      path: out + "/points-" + width + ".png",
       fullPage: true,
     });
+    if (
+      await page
+        .locator(".fantasy-field .field-player:not(.empty-slot)")
+        .count()
+    ) {
+      await page
+        .locator(".fantasy-field .field-player:not(.empty-slot)")
+        .first()
+        .click();
+      await page.screenshot({
+        path: out + "/points-detail-" + width + ".png",
+        fullPage: false,
+      });
+      await page.getByRole("button", { name: "Close panel" }).click();
+    }
+    await page.getByRole("button", { name: "Pick Team", exact: true }).click();
+    const empty = page.locator(".empty-slot").first();
+    if (await empty.count()) await empty.click();
+    else {
+      await page.locator(".fantasy-field .field-player").first().click();
+      await page
+        .getByRole("button", { name: "Add / replace in lineup · Free" })
+        .click();
+    }
+    await page.getByLabel("Search player or team").fill("a");
+    await page.screenshot({
+      path: out + "/field-selection-" + width + ".png",
+      fullPage: false,
+    });
+    await page.keyboard.press("Escape");
+    await page.evaluate(() => Reflect.get(window, "renderFantasy")("market"));
+    await page
+      .getByRole("button", { name: "Review sandbox trade", exact: true })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Hosted trading is disabled" }),
+    ).toBeDisabled();
+    await page.screenshot({
+      path: out + "/market-confirmation-" + width + ".png",
+      fullPage: false,
+    });
+    await page.getByRole("button", { name: "Cancel · no fee" }).click();
     await page.evaluate(() => Reflect.get(window, "renderFantasy")("profile"));
     const refresh = page.getByRole("button", { name: /refresh/i }).first();
     if (await refresh.count()) {
