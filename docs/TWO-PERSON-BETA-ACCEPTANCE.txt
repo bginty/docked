@@ -97,3 +97,56 @@ require AAL2 for the owner, including non-fantasy member operations. App entry r
 the owner directly to MFA when needed. Hosted restricted-runtime readback confirms
 owner AAL1 denied and AAL2 allowed; the actual existing factor remains untouched.
 Local ordinary-tester AAL1 acceptance remains passing. No broad role grant was used.
+HOSTING AND OPERATOR FOLLOW-UP DETAIL
+The proposed beta.docked.com.au route also needs a reviewed, single canonical beta
+origin in application origin/CSRF checks, Supabase callback allowlists, signed mail
+callback pinning and the Android receipt. Adding DNS alone would not complete this.
+Keep the current exact-deployment origin until that integration is verified; do not
+turn off Vercel protection for the whole project or share automation credentials.
+
+For the unresolved Microsoft records, the Microsoft 365 administrator should read
+Settings > Org settings > Organization profile > Data location (Exchange), and the
+mailbox's applicable retention policy/hold settings in Exchange/Purview. Return only
+locations, policy names/periods and whether a hold applies; no passwords or keys.
+Record how support handles export/deletion, residual media and retained audit IDs,
+including a review date. These are inherited rc2 acceptance conditions, not facts
+that were verified merely by approving the seven document hashes.
+
+Prepared addendum: docs/TWO-PERSON-BETA-ADDENDUM.txt, version
+2026-10-10-two-person-v1, SHA256
+12bb821ddbdd986b22d1fac176039421df705ddaeb1a73ebff0e314c9ae309b1 (UTF-8 / LF canonical bytes).
+Its wording is not silently marked approved; existing rc2 policy bytes remain intact.
+FINAL DELIVERY
+Protected Preview: https://docked-production-eenol236p-briant-s-projects.vercel.app/app
+MFA: https://docked-production-eenol236p-briant-s-projects.vercel.app/mfa
+Application commit: 5fcd25caf795f52c4818aa35ba2704ae44ae3fed
+Deployment: dpl_27dNP7wGma4TGcb5USkBmcnU8g1i (READY, explicit Preview).
+Final hosted checks: six MFA/access checks plus 32 existing responsive/security
+checks passed. Final regression: 201 platform, 147 database, four Android configuration
+checks passed; three browser MFA component tests passed. Tester positive hosted
+acceptance and physical-device acceptance remain pending, not reported as passed.
+
+Public docked.com.au still returns HTTPS 200 with the approved fantasy landing;
+www redirects 301 to apex. Landing content hash unchanged. No production domain
+was attached to the Preview and no public registration or external account activated.
+
+Updated owner-only APK (supersedes the v12 status noted earlier in this report):
+artifacts/android/Docked-v13-Owner-Connected-QA.apk
+Version 1.12-preview; build13; 11,036,114 bytes.
+SHA256 d16ff4c436d062890a0f388054a9e308905ebd68f34b474894918d59a32e728c
+Same package and signing certificate as v12; min SDK24, target36, ARM64 included.
+988 APK entries audited with zero credential findings. All entries were separately
+flattened by index for known-runtime-secret scanning because Android resources can
+have case-distinct filenames that collide when extracted normally on Windows.
+The initial partial extraction is not used as the full-APK scan evidence.
+
+Owner installation: transfer the APK to your Android device, open it, and if Android
+asks, allow installation from that trusted browser/file manager. Install as an update;
+do not uninstall to upgrade. Restore that install permission afterwards if desired.
+This build opens the protected owner Preview, not an externally accessible tester site.
+The new Preview hostname may require one fresh sign-in; use your existing password
+and authenticator. Do not reset or enroll a replacement factor. Subsequent app reopen
+uses normal secure session persistence subject to server expiry/revocation.
+
+No email was sent. The tester's exact address has been requested. Enabling the named
+tester and sandbox remains a separate guarded step after the documented blockers.
