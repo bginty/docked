@@ -114,6 +114,71 @@ try {
     const state = await read();
     assert.ok(state.round_details.length);
     assert.ok(state.server_time);
+    const open = state.competitions.find(
+      (c) => !c.scored_at && Date.parse(c.locks_at) > Date.now(),
+    );
+    assert.ok(open, "Existing QA open round required");
+    const cards = state.cards
+      .filter((c) => c.sport === "football" && c.season === open.season)
+      .map((c) => c.id);
+    const before = await snapshot(sql);
+    await assert.rejects(
+      () =>
+        app.begin(async (tx) => {
+          await context(tx);
+          const key = randomUUID(),
+            payload = { competition_id: open.id, cards };
+          const first = (
+            await tx`select beta_fantasy.production_command('save_lineup',${tx.json(payload)},${key}) r`
+          )[0].r;
+          assert.deepEqual(
+            (
+              await tx`select beta_fantasy.production_command('save_lineup',${tx.json(payload)},${key}) r`
+            )[0].r,
+            first,
+          );
+          const saved = (
+            await tx`select beta_fantasy.production_read_state() s`
+          )[0].s;
+          assert.equal(
+            saved.entries.find((e) => e.competition_id === open.id).cards
+              .length,
+            11,
+          );
+          assert.equal(
+            saved.round_details.find((e) => e.competition_id === open.id).cards
+              .length,
+            11,
+          );
+          throw Error("QA_ENTRY_ROLLBACK");
+        }),
+      /QA_ENTRY_ROLLBACK/,
+    );
+    await assert.rejects(
+      () =>
+        app.begin(async (tx) => {
+          await context(tx);
+          await tx`select beta_fantasy.production_command('save_lineup',${tx.json({ competition_id: open.id, cards: [randomUUID(), ...cards.slice(1)] })},${randomUUID()})`;
+        }),
+      /owned|eligib|card/i,
+    );
+    const locked = state.competitions.find(
+      (c) => Date.parse(c.locks_at) <= Date.now(),
+    );
+    await assert.rejects(
+      () =>
+        app.begin(async (tx) => {
+          await context(tx);
+          await tx`select beta_fantasy.production_command('save_lineup',${tx.json({ competition_id: locked.id, cards })},${randomUUID()})`;
+        }),
+      /lock|closed|scor/i,
+    );
+    assert.equal(await snapshot(sql), before);
+    report.checks.push(
+      "Hosted owned XI save, idempotent retry and snapshot read pass inside rolled-back QA transaction",
+      "Foreign card and locked-round changes denied",
+      "All official and beta fantasy table hashes unchanged after transaction tests",
+    );
     await assert.rejects(() => read(randomUUID()), /owner|MFA|session/i);
     await assert.rejects(() => read(owner, "aal1"), /MFA/i);
     await assert.rejects(

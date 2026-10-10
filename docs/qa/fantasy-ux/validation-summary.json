@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-10T07:56:03.510Z",
+  "sourceCommit": "46eff70077067b734b3decd00ca6a23ad7c16e1c",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "productionWebBuild": "PASS",
+  "platform": {
+    "passed": 197,
+    "failed": 0
+  },
+  "database": {
+    "passed": 147,
+    "failed": 0
+  },
+  "targetedTests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 29,
+    "failed": 0,
+    "skipped": 0
+  },
+  "postgresIsolation": 20,
+  "postgresMarketConcurrency": 5,
+  "runtimeAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "ownerLogin": "OWNER MANUALLY CONFIRMED",
+  "ownerVisual": "PENDING",
+  "physicalS24": "PENDING",
+  "emulator": "Native cold launch PASS on retry; Chrome first-run/protection handoff remains incomplete; authenticated v12 gameplay/session persistence PENDING",
+  "hostedHttp": {
+    "passed": 32,
+    "failed": 0
+  },
+  "hostedSql": {
+    "passed": true,
+    "checks": 8,
+    "scope": "restricted-role operator context, rolled-back QA entry tests; not owner browser session"
+  },
+  "androidBuild": "PASS",
+  "apkAudit": "PASS",
+  "apkSecretScan": "PASS"
+}

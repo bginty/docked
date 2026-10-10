@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T08:03:56.348Z",
+  "device": "emulator-5554",
+  "physicalDevice": false,
+  "versionCode": "12",
+  "versionName": "1.11-preview",
+  "appProcessPresent": true,
+  "foreground": [
+    "topResumedActivity=ActivityRecord{153335489 u0 com.android.chrome/org.chromium.chrome.browser.firstrun.FirstRunActivity t19}"
+  ],
+  "initialLaunch": "Timed out during Android system death/restart; no data wipe",
+  "retryLaunch": "Starting: Intent { cmp=au.com.docked.app.preview/au.com.docked.app.MainActivity }\r\nStatus: ok\r\nLaunchState: COLD\r\nActivity: au.com.docked.app.preview/au.com.docked.app.MainActivity\r\nTotalTime: 5651\r\nWaitTime: 5672\r\nComplete",
+  "fatalExceptionLinesCurrentApp": 0,
+  "authenticatedGameplay": "PENDING - no owner emulator session",
+  "sessionPersistence": "PENDING",
+  "ownerLogin": "MANUALLY CONFIRMED by owner; preserved",
+  "ownerVisual": "PENDING",
+  "physicalS24": "PENDING"
+}

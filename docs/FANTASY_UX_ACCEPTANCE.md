@@ -45,3 +45,30 @@ No new FPL/SuperCoach attachments were available in this task's current files. L
 5. Background/reopen, go offline/reconnect and sign out. Report these physical results separately from visual approval and the already accepted login.
 
 Release URL, APK checksum/link and final executed counts are appended after verification. Production holding page, authentication policies, historical records and scarce supply limits remain unchanged.
+
+## Final delivery
+
+- Branch: `pivot/fantasy-cards-preview-v1`. Application commit: `46eff700`.
+- Protected Preview: https://docked-production-72jth6bfn-briant-s-projects.vercel.app (READY, Preview target, no aliases/custom domains).
+- Connected APK: [Docked v12 Owner Connected QA](../artifacts/android/Docked-v12-Owner-Connected-QA.apk), 11,036,122 bytes; versionCode 12 / 1.11-preview; package `au.com.docked.app.preview`. SHA256: `116616c68bf9483f50b86ea312de4e7224517c2f9f90034c00641dd83c8a1c22`. Same signing certificate as v11; ARM64 compatible, non-debuggable, cleartext disabled.
+- [Screenshot gallery](qa/fantasy-ux/VISUAL_REVIEW.md) · [validation summary](qa/fantasy-ux/validation-summary.json). Private seven-day APK download expires 17 October 2026; bearer URL is kept out of Git. No email sent in this milestone.
+
+| Executed gate | Result | Boundary |
+|---|---|---|
+| Typecheck, lint, production web build | PASS | Final local source |
+| Platform | 197 PASS | Local automated |
+| Migration/RLS/database | 147 PASS | Disposable PGlite |
+| Additional targeted core/sandbox rerun | 13 PASS | Includes changed-offer terms test |
+| PostgreSQL isolation and sandbox races | 20 + 5 PASS | Real disposable loopback PostgreSQL |
+| Browser / responsive / accessibility | 29 PASS, no skips | Local server and explicitly labelled fixtures; 320–1440px |
+| Hosted SQL read/save/permissions | PASS | Exact restricted role, existing owner session context; new entry tests rolled back; official and beta table hashes unchanged |
+| Hosted HTTP / console / accessibility | 32 PASS | Protection, anonymous denials and public access surfaces; not an owner browser gameplay session |
+| Runtime dependency audit | PASS | Zero runtime vulnerabilities reported |
+| APK build, identity, HTTPS and credential scan | PASS | 988 archive entries; exact-secret source/client/extracted-APK scan reports zero findings |
+| Native emulator launch | PASS on retry | Initial Android system restart caused timeout; v12 cold launch then passed. Protected sign-in/gameplay/session reopening unverified in emulator |
+| Owner login | ACCEPTED BY OWNER | Preserved; no password reset or MFA enrolment |
+| Visual approval / physical S24 / launch | PENDING | Not signed off by automation |
+
+The public holding HTML differs from the previous milestone's baseline because public main independently received commit `73205733` at 07:41 UTC, before this Preview push. The live HTML exactly matches that main commit. This milestone performed no public-main, production, DNS or authentication-policy mutation. See [comparison](qa/fantasy-ux/holding-after.json).
+
+Next milestone: owner visual and physical-device gameplay acceptance, then a separately authorised capped private-beta readiness review covering sport rules, operational data/scoring, support/moderation and admission. Paid marketplace activation remains a separate gate.
