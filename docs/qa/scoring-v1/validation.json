@@ -22,10 +22,29 @@
       "nfl",
       "afl"
     ],
-    "scope": "isolated components, not real account or physical Android"
+    "scope": "isolated components, not real account or physical Android",
+    "sourceStatisticsDisclosures": true
   },
   "typecheck": "PASS",
   "lint": "PASS",
   "build": "PASS",
-  "hosted": "pending"
+  "hosted": {
+    "deployment": "dpl_7AAAEpWhDwbBf3dBdzVFRByWhUAU",
+    "commit": "971fd0ccc024d5e1bc5cfea13de2aa9633d0e714",
+    "scoringAccessChecks": 4,
+    "existingHostedChecks": 32,
+    "failures": [],
+    "scope": "Protected hosted anonymous/application-denial and responsive screens only. No owner impersonation, account creation, email or gameplay transaction."
+  },
+  "finalMigrationRegression": {
+    "passed": 16,
+    "failed": 0
+  },
+  "liveFeeds": {
+    "epl": false,
+    "nfl": false,
+    "afl": false
+  },
+  "historicalBalance": "UNVERIFIED",
+  "physicalAndroid": "NOT TESTED"
 }

@@ -186,3 +186,38 @@ Initial test-runner module/JSON serialization issues were fixed before PostgreSQ
 Browser fixture selector and inherited text/notice/table colours were corrected;
 responsive screenshots and final browser results are recorded in docs/qa/scoring-v1.
 No mocked/component test is claimed as a real tester login or live provider test.
+
+FINAL PREVIEW
+Application commit: 971fd0ccc024d5e1bc5cfea13de2aa9633d0e714
+Base implementation: 342165967150710f024382862d7932b71738d6a8
+Deployment: dpl_7AAAEpWhDwbBf3dBdzVFRByWhUAU — READY, explicitly Preview.
+Scoring lab:
+https://docked-production-ezmr1ib55-briant-s-projects.vercel.app/fantasy/scoring
+Exact rules:
+https://docked-production-ezmr1ib55-briant-s-projects.vercel.app/fantasy/scoring/how-it-works
+
+Final component checks: 3/3 responsive cases (320,390,1366px), each exercising EPL,
+NFL and AFL, corrected standings, pending/final states and source-stat disclosures;
+expanded breakdown accessibility checks passed. Nine screenshots saved. Existing
+owner MFA remains enforced; no authenticated owner/tester session was manufactured.
+Final migration integration recheck: 16/16 existing production fantasy tests passed.
+Final source/export scan: 691 files, zero known-secret findings/errors.
+Scoring routes redirect anonymous application visitors to login; hosting protection
+remains enabled; signup remains closed. Hosted check details: hosted.json.
+Public docked.com.au HTTPS200 and www301 redirect unchanged. Public content SHA256:
+37e2006363eef4d5bf18808d14b343ca7d12b865bef3c90d29a9449da8b8c92f.
+No custom domain/alias was added to the Preview. The production branch remains main.
+
+OWNER / SECOND TESTER NEXT STEP
+Owner: open the protected scoring-lab URL, sign in normally with existing MFA, choose
+each sport, then First statistics / Corrected statistics / Finalised. Expand a player
+and Source statistics to check quantities against the points and exact rules page.
+This reviews recorded synthetic examples, not the owner's active team or real scores.
+The two-person invitation still needs the exact tester email plus the hosting and
+privacy/retention conditions documented in TWO-PERSON-BETA-ACCEPTANCE.txt. Once those
+are resolved, the admitted tester can review the same lab on mobile without mandatory
+MFA; owner/admin protection remains unchanged. No invitation has been sent.
+Real hosted scoring ingestion, real-provider mapping/coverage acceptance and historical
+balance are still unavailable for all three sports. The supplied migration and worker
+were tested locally; they have NOT been enabled against the shared Supabase project.
+No additional service charge or provider subscription was activated.
