@@ -91,6 +91,7 @@ export async function POST(request: Request) {
       return fail(429, "Please wait before trying again.");
     const sql = db();
     await sql.begin(async (tx) => {
+      await tx`select set_config('request.jwt.claim.sub',${user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: user.id, session_id: claims.sessionId, aal: claims.aal })},true)`;
       if (process.env.DOCKED_BETA_STAGING === "true") {
         const policyVersions = betaPolicyVersions();
         if (
@@ -102,7 +103,6 @@ export async function POST(request: Request) {
             "Explicit beta invitation and policy acceptance required",
           );
         if (renewal) {
-          await tx`select set_config('request.jwt.claim.sub',${user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: user.id, session_id: claims.sessionId, aal: claims.aal })},true)`;
           await tx`select private.renew_customer_consent(${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${tx.json(policyVersions)}::jsonb)`;
         } else if (customer)
           await tx`select private.accept_customer_admission(${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${input.data.age},${tx.json(policyVersions)}::jsonb)`;
