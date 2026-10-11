@@ -23,11 +23,15 @@ for (const path of [
     redirect: "manual",
     signal: AbortSignal.timeout(20000),
   });
-  assert.equal(r.status, 307);
-  assert.equal(
-    new URL(r.headers.get("location"), d.url).pathname,
-    "/app/login",
-  );
+  if (path === "/fantasy/results") {
+    assert.equal(r.status,200);const body=await r.text();assert.match(body,/Post-game points unavailable/);assert.doesNotMatch(body,/<h2>NFL standings<\/h2>|71\.24|b828817d-0ba9-4edd-87a3-fe6dd23ad7a0/);
+  } else {
+    assert.equal(r.status, 200);
+    const body = await r.text();
+    assert.match(body, /fantasy-gate/);
+    assert.match(body, /Sign in with a verified account/);
+    assert.doesNotMatch(body, /"nfl_beta":true|"cards":\[\{|postgres:\/\//);
+  }
   checks.push({ path, status: r.status });
 }
 const api = await fetch(d.url + "/api/fantasy", {

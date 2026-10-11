@@ -96,9 +96,14 @@ export default async function FantasyPage({
           (process.env.VERCEL_ENV === "preview" ||
             process.env.NODE_ENV === "development") && (
             <p className="notice">
-              <Link href="/fantasy/scoring">
-                Scoring lab: EPL, NFL and AFL · simulated examples and beta
-                rules
+              <Link
+                href={
+                  data.state.nfl_beta ? "/fantasy/results" : "/fantasy/scoring"
+                }
+              >
+                {data.state.nfl_beta
+                  ? "NFL post-game points, breakdowns and standings"
+                  : "Scoring lab: EPL, NFL and AFL · simulated examples and beta rules"}
               </Link>
             </p>
           )}
@@ -109,9 +114,11 @@ export default async function FantasyPage({
         )}
         {process.env.DOCKED_OWNER_GAMEPLAY === "true" && (
           <p className="notice" role="note">
-            {process.env.DOCKED_TWO_PERSON_BETA === "true"
-              ? "Two-person private beta · fictional cards, simulated scoring and sandbox swaps. No real money or live sports results."
-              : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
+            {data.state.nfl_beta
+              ? "Protected NFL beta · real roster cards and post-game scoring. External admission remains closed; EPL unavailable. No payments or prizes."
+              : process.env.DOCKED_TWO_PERSON_BETA === "true"
+                ? "Two-person private beta · fictional cards, simulated scoring and sandbox swaps. No real money or live sports results."
+                : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
           </p>
         )}
         {feed && (

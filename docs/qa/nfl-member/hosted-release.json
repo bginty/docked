@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-11T01:04:23.823Z",
+  "passed": true,
+  "commit": "b3db2520342c6f77d57be14647faedd506d2449f",
+  "deployment": {
+    "id": "dpl_AcLoTNZ596bmwyunpGkjAMMAZuUx",
+    "url": "https://docked-production-cwehe4k69-briant-s-projects.vercel.app"
+  },
+  "checks": [
+    {
+      "path": "/fantasy/play",
+      "status": 200
+    },
+    {
+      "path": "/fantasy/cards",
+      "status": 200
+    },
+    {
+      "path": "/fantasy/market",
+      "status": 200
+    },
+    {
+      "path": "/fantasy/social",
+      "status": 200
+    },
+    {
+      "path": "/fantasy/profile",
+      "status": 200
+    },
+    {
+      "path": "/fantasy/results",
+      "status": 200
+    },
+    {
+      "path": "/api/fantasy",
+      "status": 403
+    }
+  ],
+  "protection": 302,
+  "registration": "closed",
+  "limitation": "Hosted HTTP denial checks; positive gameplay is hosted SQL acceptance plus separate local browser interaction, not two authenticated browser sessions"
+}

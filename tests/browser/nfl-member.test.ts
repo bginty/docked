@@ -102,6 +102,8 @@ test("NFL field selection, FLEX, replacement, confirmed save and honest points/E
   await page.getByLabel("Fantasy sport").selectOption("nfl");
   await page.getByRole("button", { name: "Pick Team", exact: true }).click();
   await mkdir("docs/qa/nfl-member", { recursive: true });
+  await page.getByRole("button", { name: "Field view", exact: true }).click();
+  await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({
     path: "docs/qa/nfl-member/nfl-selected-s24.png",
     fullPage: true,
