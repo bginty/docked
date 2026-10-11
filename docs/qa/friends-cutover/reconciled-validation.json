@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-11T03:31:01.235Z",
+  "scope": "Reconciled privacy and release preparation; not a domain launch certificate",
+  "platform": {
+    "tests": 261,
+    "passed": 261,
+    "failed": 0,
+    "skipped": 0
+  },
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "freshProductionBuild": "PASS",
+  "hostedTwoUserPolicyGameplay": "PASS - rollback only; synthetic identities and historical source data",
+  "rollbackFingerprints": "Accounts, inventory, entries, policy/settings, profiles, consent and policy audit unchanged",
+  "knownCredentialScan": {
+    "files": 432,
+    "findings": 0,
+    "errors": 0
+  },
+  "mailbox": "12e10d3e evidence preserved; not repeated",
+  "scheduledReconciliation": "2026-10-11T03:15:01Z idle; not source download",
+  "scheduledSourceDownload": "Pending due run; existing follow-up retained",
+  "friendsDomain": "Holding page, cutover pending domain control and acceptance",
+  "friendsApk": "Not built; v16 is protected owner QA",
+  "physicalS24": "Pending",
+  "ownerVisualApproval": "Pending",
+  "messagesSent": 0,
+  "additionalPurchases": 0
+}

@@ -1,3 +1,5 @@
+> Superseded current-status summary: see [NFL_RELEASE_CURRENT](NFL_RELEASE_CURRENT.md). This report retains earlier technical evidence. Exchange/export is complete, the rc3 qualified packet is prepared, and unknown provider geography/holds are disclosed follow-up rather than automatic launch blockers. Current tests: 261/261 platform, fresh production build and hosted two-user rc3 policy/gameplay acceptance pass.
+
 # NFL friends release — 11 October 2026 continuation
 
 Start checkpoint: `1764911d8fb4776b79ec580ff4b19b42f8e0111f`, clean `pivot/fantasy-cards-preview-v1`; origin `https://github.com/bginty/docked.git` checked without rewriting remote work. Accepted owner login/MFA and v16 retained. No database migration, inventory mutation, invitation, password reset or MFA setup in this continuation.
@@ -17,7 +19,7 @@ Start checkpoint: `1764911d8fb4776b79ec580ff4b19b42f8e0111f`, clean `pivot/fanta
 | Privacy | Exchange authenticated. Default MRM Policy, litigation hold Off, archive Disabled, no forwarding verified. Selected synthetic-message EML export passed. Effective tags/recovery period, non-litigation holds, at-rest geography and security/backup preservation still require the precise reseller confirmation in GODADDY_MAILBOX_EVIDENCE.md. No new sign-in or paid tool needed. |
 | Android | No friends APK issued before domain acceptance. v16 remains owner QA, **not suitable for friends distribution**. Preserve package `au.com.docked.app.preview` and existing signing certificate, then increment beyond 16 after actual domain checks. Physical S24 and visual approval remain pending. |
 
-The missing observation of a completed future round does not itself prevent a clearly labelled post-game beta. However, the source-job run after cooldown, mailbox facts/policy reconciliation, domain authentication/recovery and positive admitted-member browser journey still need evidence before releasing. Historical rollback-only two-user SQL acceptance is not a real browser invitation or competitive round.
+The missing observation of a completed future round does not itself prevent a clearly labelled post-game beta. However, the source-job run after cooldown, policy runtime activation, domain authentication/recovery and positive admitted-member browser journey still need evidence before releasing. Historical rollback-only two-user SQL acceptance is not a real browser invitation or competitive round.
 
 ## Repairs and preparation
 
@@ -38,9 +40,7 @@ The missing observation of a completed future round does not itself prevent a cl
 
 ## Exact next owner action
 
-Exchange sign-in and selected-message export are complete. The remaining mailbox evidence is a **GoDaddy support confirmation** of at-rest geography, Default MRM Policy's effective tags/recovery duration, non-litigation holds and Advanced Email Security/backup preservation. The organization-admin page redirects to the reseller and does not expose Data Location. Use the concrete unsent enquiry in GODADDY_MAILBOX_EVIDENCE.md; no need to sign in again, buy Purview or identify another administrator.
-
-If existing access omits a setting, use the specific prepared GoDaddy enquiry; do not send it without authorisation. Resolve actual provider limitations against the already-approved retention intent, rather than reopening accepted decisions.
+Only the separate GoDaddy **domain-owner** session is currently requested: open https://dcc.godaddy.com/control/docked.com.au/dns, sign in there and leave DNS Management open. This does not repeat completed Exchange/mailbox administration. The prepared GoDaddy mailbox enquiry remains unsent and is not a prerequisite under the qualified privacy notice. Provide authorised recipient emails only when invitations are wanted; visual/S24 acceptance remains yours.
 
 ## Release sequence after factual gates
 

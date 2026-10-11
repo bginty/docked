@@ -1,3 +1,5 @@
+> Superseded draft: use [2026-10-11-beta-rc3/privacy.md](../2026-10-11-beta-rc3/privacy.md) for the prepared free-NFL release. Preserve this draft as historical context.
+
 # Free NFL friends beta — privacy notice draft
 
 Prepared 11 October 2026. **Not activated.** This carries forward the owner's approved support process and conditional retention schedule. Remaining effective mailbox retention/hold and provider-preservation facts must be reconciled before activation. It does not replace historical consent documents or assert legal review.

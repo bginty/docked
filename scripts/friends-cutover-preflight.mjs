@@ -136,9 +136,8 @@ for (const origin of ["https://docked.com.au", "https://www.docked.com.au"]) {
 }
 report.friendsAccessible = false; // This preflight does not certify activation.
 report.remaining = [
-  "Mailbox settings/export evidence",
   "Fresh scheduled source retrieval after cooldown",
-  "Reconciled policy packet",
+  "Versioned friends policy/runtime activation after technical checks",
   "Domain cutover and real domain Auth/gameplay acceptance",
   "Domain-connected APK",
 ];

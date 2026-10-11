@@ -14,7 +14,7 @@ Checked 11 October 2026. This is a settings audit, not permission to change the 
 - Outlook Deleted Items is empty and exposes **Recover items deleted from this folder**. The Exchange admin **Recover deleted items** button was disabled. Neither proves the recovery duration, permanent erasure or absence of holds. No recovery/purge action was executed.
 - GoDaddy's [Advanced Admin Centers instructions](https://www.godaddy.com/en-ph/help/access-advanced-admin-centers-32132) say all its Microsoft 365 email plans can access Exchange administration. Paid Purview is not a prerequisite for this audit.
 
-## Facts still requiring the signed-in configuration
+## Remaining provider-controlled facts — follow-up, not another sign-in request
 
 | Fact | Exact evidence to inspect | Current state |
 |---|---|---|
@@ -54,4 +54,4 @@ Additional account-specific context: authenticated Exchange confirms Default MRM
 
 The approved operator process and category retention schedule stand. Use the provider-qualified wording in [FREE_BETA_SERVICE_FACTS](FREE_BETA_SERVICE_FACTS.md). Add GoDaddy as the reseller/administration provider alongside Microsoft as email platform; do not claim exclusive Australian processing, instantaneous backup erasure, or automatic mailbox deletion jobs.
 
-Only if an actual hold/add-on prevents that approved intent do we need a concrete revised commitment. The remaining properties stay unknown; do not call the mailbox wholly free of holds. Historical approved rc2 bytes and existing owner consent remain unchanged. The new qualified draft is `policies/2026-10-11-nfl-free-draft/privacy.md`; it is not activated while final factual review remains pending. Export demonstration no longer blocks the privacy review; unresolved effective retention/holds are a precise reseller enquiry, not a paid-tool requirement.
+Only if an actual hold/add-on materially conflicts with the approved handling of active records do we need a concrete revised commitment. The remaining properties stay unknown; do not call the mailbox wholly free of holds. Historical rc2 bytes and existing owner consent remain unchanged. The final prepared packet is [2026-10-11-beta-rc3](policies/2026-10-11-beta-rc3/privacy.md), superseding the earlier qualified draft. It explicitly separates active-record targets from provider recovery/quarantine/backups/holds and disclaims unverified geography and all-copy erasure deadlines. The remaining enquiry is follow-up, not an automatic free-beta launch blocker; it remains unsent. Activation depends on the technical release checks in [NFL_RELEASE_CURRENT](NFL_RELEASE_CURRENT.md).

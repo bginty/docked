@@ -2,21 +2,19 @@
 
 The latest owner instruction authorises a **free, invite-only AU18+ beta capped at ten invited testers** and domain deployment once ready. It supersedes the old one-tester/Preview-only product scope, but does not certify unresolved facts or authorize new agreements. No invitations/messages will be sent while the owner is offline.
 
-## Free beta activation blockers
+## Current free-beta decisions — resolved
 
-1. Confirm Microsoft365 tenant/support mailbox data location, actual retention/holds and support export/deletion process. Existing approved rc2 wording explicitly leaves these unresolved. Do not fill them with guessed countries/durations.
-2. **Retention decision resolved, 11 October 2026:** owner approved the category schedule in [FREE_BETA_PRIVACY_PROPOSAL](FREE_BETA_PRIVACY_PROPOSAL.md), subject to verified holds/backups. Isolated SQL export/redaction tests pass and the additive operator-only workflow is installed; shared Auth/residual identity links, Microsoft mail and host copies still require separate completion. Do not describe partial redaction as full anonymisation.
-3. **Support decision resolved, 11 October 2026:** owner is the support/moderation operator at support@docked.com.au and approved the documented daily checks, two-business-day acknowledgement, 30-day privacy target and urgent escalation process. This is not evidence of legal review or verified mailbox configuration.
-4. Supply authorised real-player catalogue/rights. **Eligibility is resolved: owner approved all current EPL/NFL players on 11 October 2026; no first-year minimum for new isolated free-beta grants/competitions.** The starter planner checks a complete EPL XI / NFL seven using existing position rules; this is not evidence of issued real cards. Current fictional owner QA must not quietly become the normal real-player tester catalogue. Commercial eligibility, existing locked rules, owned cards and supply stay unchanged.
-5. Supply up to ten intended tester email addresses when invitations are actually wanted. Lifetime roster slots are immutable; suspension does not recycle the admission limit. No public signup.
+Support/moderation operator/process, conditional category retention, all-current-player beta eligibility and NFL-first domain release are approved. Do not ask again. Exchange/export checks in 12e10d3e supersede generic mailbox/sign-in blockers. Real NFL allocation and rollback-only two-user gameplay acceptance are hosted; EPL remains unavailable, not an NFL dependency.
 
-Prepare domain cutover only after these facts and required external acceptance are complete. If they remain unknown, preserve the current working public site and release independent improvements to owner-only protected Preview. That is the explicit fallback in the overnight request, not a claim that domain deployment lacks authorization.
+The final prepared notice is [Privacy Policy 2026-10-11-beta-rc3](policies/2026-10-11-beta-rc3/privacy.md). The complete seven-document packet preserves historical consent bytes, discloses unverified mailbox geography and provider-controlled preservation, and makes active-record retention targets conditional. No new material product/privacy decision is identified. Seek a specific change only if later evidence conflicts with those commitments; do not require an assurance that all provider-held copies disappear on an invented deadline.
 
-## Proposed free-beta wording (new draft; rc2 bytes unchanged)
+## Remaining technical release work
 
-“Docked is a private fantasy sports card beta for invited Australian adults. Beta cards, points and competitions are separate test records and have no cash value. Selecting owned cards for your team and permitted card-for-card beta swaps are free. Live statistics are available only where labelled; simulations are identified. Public registration, paid packs, cash trading, prizes and withdrawals are unavailable. Contact support@docked.com.au to request assistance, report content or ask about your information.”
+See [NFL_RELEASE_CURRENT](NFL_RELEASE_CURRENT.md). Domain registrar authentication, due scheduled source-download verification, real domain Auth/callback/recovery and admitted-member browser checks, then the connected APK remain. The domain-control session is separate from the completed Exchange session. No new release-scope approval or subscription is required.
 
-Privacy draft fields requiring facts: support processing location **[VERIFY]**; actual support retention/holds **[VERIFY AGAINST APPROVED SCHEDULE]**; game record necessity/review period **[OWNER APPROVED; VERIFY IMPLEMENTATION]**; deletion/export scope and exceptions **[VERIFY AGAINST TESTED WORKFLOW]**. Do not publish bracketed fields as a completed policy.
+## Owner input when distribution is wanted
+
+Provide each intended recipient's email and explicit authorisation to send an invitation, up to ten lifetime testers. No recipient list is needed to complete independent preparation. Physical S24 and owner visual acceptance remain pending. The GoDaddy preservation/location enquiry remains prepared and unsent; it is follow-up, not an automatic free-beta blocker.
 
 ## Paid product decision draft — not activated
 

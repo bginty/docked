@@ -1,8 +1,8 @@
 {
-  "at": "2026-10-11T01:35:51.297Z",
+  "at": "2026-10-11T03:29:02.225Z",
   "projectRef": "pojoymtniryarxxunyvz",
   "readOnly": true,
-  "commit": "1764911d8fb4776b79ec580ff4b19b42f8e0111f",
+  "commit": "12e10d3e310c0938f622c148d336c4cb18c310a4",
   "changes": 0,
   "messagesSent": 0,
   "checks": {
@@ -40,10 +40,10 @@
     },
     "dns": {
       "apexA": [
-        "185.199.108.153",
         "185.199.110.153",
         "185.199.111.153",
-        "185.199.109.153"
+        "185.199.109.153",
+        "185.199.108.153"
       ],
       "wwwCname": [
         "bginty.github.io"
@@ -68,6 +68,76 @@
       "nfl_grants": 1
     },
     "workerRuns": [
+      {
+        "started_at": "2026-10-11T03:15:01.093Z",
+        "finished_at": "2026-10-11T03:15:01.127Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T03:00:01.875Z",
+        "finished_at": "2026-10-11T03:00:01.954Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T02:45:01.520Z",
+        "finished_at": "2026-10-11T02:45:01.578Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T02:30:01.799Z",
+        "finished_at": "2026-10-11T02:30:01.826Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T02:15:01.240Z",
+        "finished_at": "2026-10-11T02:15:01.270Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T02:00:06.289Z",
+        "finished_at": "2026-10-11T02:00:06.307Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T01:45:02.226Z",
+        "finished_at": "2026-10-11T01:45:02.300Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
       {
         "started_at": "2026-10-11T01:30:02.110Z",
         "finished_at": "2026-10-11T01:30:02.181Z",
@@ -103,67 +173,6 @@
       {
         "started_at": "2026-10-11T00:54:29.534Z",
         "finished_at": "2026-10-11T00:54:29.643Z",
-        "status": "cooldown",
-        "detail": {
-          "rawId": null,
-          "status": "cooldown"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:54:29.275Z",
-        "finished_at": "2026-10-11T00:54:29.296Z",
-        "status": "cooldown",
-        "detail": {
-          "rawId": null,
-          "status": "cooldown"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:54:28.864Z",
-        "finished_at": "2026-10-11T00:54:28.881Z",
-        "status": "cooldown",
-        "detail": {
-          "rawId": null,
-          "status": "cooldown"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:45:01.295Z",
-        "finished_at": "2026-10-11T00:45:01.324Z",
-        "status": "idle",
-        "detail": {
-          "status": "idle"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:36:48.150Z",
-        "finished_at": "2026-10-11T00:36:48.165Z",
-        "status": "idle",
-        "detail": {
-          "status": "idle"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:36:47.816Z",
-        "finished_at": "2026-10-11T00:36:47.915Z",
-        "status": "cooldown",
-        "detail": {
-          "rawId": null,
-          "status": "cooldown"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:36:47.391Z",
-        "finished_at": "2026-10-11T00:36:47.412Z",
-        "status": "cooldown",
-        "detail": {
-          "rawId": null,
-          "status": "cooldown"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:36:47.076Z",
-        "finished_at": "2026-10-11T00:36:47.097Z",
         "status": "cooldown",
         "detail": {
           "rawId": null,
@@ -212,9 +221,8 @@
   },
   "friendsAccessible": false,
   "remaining": [
-    "Mailbox settings/export evidence",
     "Fresh scheduled source retrieval after cooldown",
-    "Reconciled policy packet",
+    "Versioned friends policy/runtime activation after technical checks",
     "Domain cutover and real domain Auth/gameplay acceptance",
     "Domain-connected APK"
   ]
