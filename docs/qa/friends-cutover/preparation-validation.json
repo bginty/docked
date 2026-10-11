@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-11T04:45:55.069Z",
+  "commit": "a343dcf66c76763b6321adde17218cf47b3a04c0",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "targetedReleaseTests": {
+    "passed": 22,
+    "failed": 0
+  },
+  "platform": {
+    "totalCases": 265,
+    "firstSandboxRun": {
+      "passed": 257,
+      "permissionBlocked": 8
+    },
+    "affectedFilesRerun": {
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "files": [
+        "preview-secret-audit.test.ts",
+        "production-release-tools.test.ts"
+      ]
+    },
+    "remainingFailedCases": 0,
+    "cause": "Windows sandbox TEMP realpath and temporary .git config writes; rerun with authorised filesystem access. No safety controls or tests weakened."
+  },
+  "secretScan": {
+    "changedSurfaceFiles": 310,
+    "findings": 0,
+    "errors": 0,
+    "broadScriptPatternHits": 4,
+    "review": "Existing dynamic DB URL template and hook-secret parser regexes; no exact known-credential matches. Original scanner result preserved."
+  },
+  "android": {
+    "built": false,
+    "nextVersionCode": 17,
+    "nextVersionName": "1.16-beta",
+    "output": "artifacts/android/Docked-v17-NFL-Friends-Beta.apk",
+    "baseline": {
+      "path": "artifacts/android/Docked-v16-NFL-Owner-Connected-QA.apk",
+      "sha256": "df31e2226916edc128bdd5bfdd00cf1d6073635ad8209e0c1030928878d1932a",
+      "applicationId": "au.com.docked.app.preview",
+      "versionCode": 16,
+      "signerSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b"
+    },
+    "sdk": "API 36 / build-tools 36.0.0 inspected",
+    "java": "21.0.6",
+    "connectedDevices": 0,
+    "emulatorAcceptance": "NOT RUN",
+    "physicalS24": "PENDING",
+    "ownerVisualApproval": "PENDING",
+    "buildGate": "Requires actual accepted domain receipt; no placeholder generated"
+  },
+  "automation": {
+    "id": "verify-docked-nfl-collection",
+    "updatedExisting": true,
+    "duplicatesCreated": 0,
+    "scheduledSydney": "2026-10-11T23:20:00+11:00",
+    "singleFollowUp": true,
+    "scope": "Observe due collection, then complete authorised cutover/acceptance/APK or report exact failure"
+  },
+  "dnsMutations": 0,
+  "emailRecordMutations": 0,
+  "messagesSent": 0,
+  "liveRelease": false,
+  "additionalPurchasesAUD": 0
+}

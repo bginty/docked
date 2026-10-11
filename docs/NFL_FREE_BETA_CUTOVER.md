@@ -2,6 +2,8 @@
 
 Owner scope is approved; no repeat release-scope approval is needed. This replaces the old production runbook's instructions to buy/create another host, database or email service. Reuse the existing exact Docked project and accounts. Do not execute DNS/admission changes while the shared readiness receipt is incomplete.
 
+For the existing 11 October 23:20 follow-up, use [FRIENDS_CUTOVER_EXECUTION](FRIENDS_CUTOVER_EXECUTION.md): exact collector pass/fail interpretation, prepared Auth candidate, safe domain probes, mail-dispatch distinction, Android v17 and rollback. That is the current execution supplement; do not duplicate the follow-up or require a completed future round tonight.
+
 ## Existing targets
 
 - Vercel `prj_l0rpVDPRuIRp9UcBUkudeyUK5yST`, team `team_tf6xweKKyVCj9bTppUKttJ4l`.

@@ -1,8 +1,8 @@
 {
-  "at": "2026-10-11T03:29:02.225Z",
+  "at": "2026-10-11T04:38:34.930Z",
   "projectRef": "pojoymtniryarxxunyvz",
   "readOnly": true,
-  "commit": "12e10d3e310c0938f622c148d336c4cb18c310a4",
+  "commit": "788505e9c6c922fb4458626e8f2f301dff497a92",
   "changes": 0,
   "messagesSent": 0,
   "checks": {
@@ -40,10 +40,10 @@
     },
     "dns": {
       "apexA": [
-        "185.199.110.153",
-        "185.199.111.153",
         "185.199.109.153",
-        "185.199.108.153"
+        "185.199.108.153",
+        "185.199.110.153",
+        "185.199.111.153"
       ],
       "wwwCname": [
         "bginty.github.io"
@@ -55,8 +55,8 @@
         }
       ],
       "nameservers": [
-        "ns36.domaincontrol.com",
-        "ns35.domaincontrol.com"
+        "ns35.domaincontrol.com",
+        "ns36.domaincontrol.com"
       ],
       "fullPreimage": "private-data/friends-cutover/dns-before.json"
     },
@@ -68,6 +68,56 @@
       "nfl_grants": 1
     },
     "workerRuns": [
+      {
+        "started_at": "2026-10-11T04:30:01.922Z",
+        "finished_at": "2026-10-11T04:30:02.183Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T04:15:01.327Z",
+        "finished_at": "2026-10-11T04:15:01.378Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T04:00:01.560Z",
+        "finished_at": "2026-10-11T04:00:02.414Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T03:45:01.544Z",
+        "finished_at": "2026-10-11T03:45:01.598Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T03:30:02.038Z",
+        "finished_at": "2026-10-11T03:30:02.095Z",
+        "status": "idle",
+        "detail": {
+          "task": "reconcile",
+          "season": 2026,
+          "status": "idle"
+        }
+      },
       {
         "started_at": "2026-10-11T03:15:01.093Z",
         "finished_at": "2026-10-11T03:15:01.127Z",
@@ -137,47 +187,6 @@
           "season": 2026,
           "status": "idle"
         }
-      },
-      {
-        "started_at": "2026-10-11T01:30:02.110Z",
-        "finished_at": "2026-10-11T01:30:02.181Z",
-        "status": "idle",
-        "detail": {
-          "status": "idle"
-        }
-      },
-      {
-        "started_at": "2026-10-11T01:15:01.677Z",
-        "finished_at": "2026-10-11T01:15:01.762Z",
-        "status": "idle",
-        "detail": {
-          "status": "idle"
-        }
-      },
-      {
-        "started_at": "2026-10-11T01:00:01.496Z",
-        "finished_at": "2026-10-11T01:00:01.540Z",
-        "status": "idle",
-        "detail": {
-          "status": "idle"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:54:29.905Z",
-        "finished_at": "2026-10-11T00:54:29.923Z",
-        "status": "idle",
-        "detail": {
-          "status": "idle"
-        }
-      },
-      {
-        "started_at": "2026-10-11T00:54:29.534Z",
-        "finished_at": "2026-10-11T00:54:29.643Z",
-        "status": "cooldown",
-        "detail": {
-          "rawId": null,
-          "status": "cooldown"
-        }
       }
     ],
     "cooldowns": [
@@ -210,6 +219,12 @@
         "issues": []
       }
     ],
+    "mailDispatch": {
+      "enabled": false,
+      "pending": 0,
+      "scheduler_signing_entries": 1,
+      "scheduler_jobs": 0
+    },
     "https://docked.com.au": {
       "status": 200,
       "redirect": null

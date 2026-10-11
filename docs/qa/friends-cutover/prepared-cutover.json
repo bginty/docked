@@ -1,0 +1,64 @@
+{
+  "at": "2026-10-11T04:39:34.667Z",
+  "applied": false,
+  "messagesSent": 0,
+  "projectRef": "pojoymtniryarxxunyvz",
+  "preimages": [
+    {
+      "file": "private-data/friends-cutover/registrar-visible-records-before.json",
+      "sha256": "6cb382616e21f36256d46e107e4cc8ee9e62d36953f6825309ff6d450698432f"
+    },
+    {
+      "file": "private-data/friends-cutover/dns-before.json",
+      "sha256": "a34015a394527d0d094fe92d6e6e3504d39e7006dc6a8eef9a77b3fa05da69cd"
+    },
+    {
+      "file": "private-data/friends-cutover/auth-before.toml",
+      "sha256": "b3716e67788a3203ec2f9968943425afb3781b74a39c75ff9d26d7bb8ac645f2"
+    }
+  ],
+  "authCandidateDirectory": "private-data/friends-cutover/auth-candidates/5267e2ef9efa31e2",
+  "auth": {
+    "change": "site_url only",
+    "previous": "https://docked-production-i8koncmem-briant-s-projects.vercel.app",
+    "proposed": "https://docked.com.au",
+    "exactCallbacksAlreadyAllowed": [
+      "https://docked.com.au/auth/callback",
+      "https://docked.com.au/auth/callback?next=/app/verified",
+      "https://docked.com.au/auth/callback?next=/reset-password",
+      "https://docked.com.au/auth/callback?next=/app/reset-password"
+    ],
+    "signupRemainsClosed": true,
+    "signedHookUnchanged": true
+  },
+  "emailOrigin": {
+    "proposed": "https://docked.com.au",
+    "note": "Set DOCKED_BETA_AUTH_ORIGIN at cutover; preserve credentials, Microsoft permissions and approved recipient restriction. Do not enable sending or add recipients here."
+  },
+  "policy": {
+    "version": "2026-10-11-beta-rc3",
+    "packetDigest": "5df788e2d827b973160b9965d5f566e77f4ef07285cffd8e0ff75c2348b5a9c9",
+    "transition": "scripts/friends-policy-transition.mjs in one operator transaction before opening gates"
+  },
+  "admission": {
+    "friends_enabled": false,
+    "testers_enabled": false,
+    "lifetime_testers": 0,
+    "swaps_enabled": false,
+    "nfl_grants": 1
+  },
+  "mailDispatch": {
+    "enabled": false,
+    "pending": 0,
+    "scheduler_signing_entries": 1,
+    "scheduler_jobs": 0
+  },
+  "pending": [
+    "Due scheduled source evidence",
+    "Protected production candidate",
+    "Atomic policy/admission activation",
+    "Domain and Auth/mail origin switch",
+    "Actual domain and authentication acceptance",
+    "Accepted-host Android manifest and v17 build"
+  ]
+}

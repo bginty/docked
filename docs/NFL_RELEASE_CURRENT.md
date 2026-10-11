@@ -4,6 +4,20 @@ This is the current status authority. It supersedes generic mailbox/sign-in and 
 
 Implementation checkpoint: `70f9c3b4` (policy packet, release identity and tested atomic consent transition). No new hosted application deployment is claimed by this report.
 
+## Domain and APK preparation update — 11 October, afternoon
+
+The existing 23:20 Sydney automation `verify-docked-nfl-collection` was **updated, not duplicated**, to execute [the concrete cutover runbook](FRIENDS_CUTOVER_EXECUTION.md) after a genuine collection pass, rather than merely report it. Its time and single-run schedule are unchanged. It must continue the authorised deployment/domain/Auth acceptance and accepted-host Android build, or name the exact failed step.
+
+Fresh read-only checks at approximately 15:38 Sydney confirm HTTPS holding page, original web/mail DNS, four exact domain callbacks, closed signup, signed email hook, zero tester slots used and closed friends/swap gates. DNS/Auth rollback hashes are unchanged. A private candidate config changes **Auth site_url only**; it was prepared, not applied. Vercel's recommended apex/CNAME values were rechecked and agree with the saved plan. No sign-in or mailbox checks were reopened.
+
+Collector observation at 15:37 Sydney confirms scheduled reconciliation at 15:30 was `idle`; all source caches remain within their intentional 12-hour cooldowns. The repaired observer retains executions per job and correlates scheduled source receipts with HTTP outcomes and retained revisions. Tonight's required proof and failure consequences are explicit in the runbook. An absent completed member round does not block this beta; a temporary feed outage leaves scores pending but does not satisfy the first unattended collection acceptance.
+
+Additional operational detail: mail dispatch is still disabled, pending queue is empty, the existing Vault signing entry is present, and no mail cron job exists. This is separate from the resolved mailbox/privacy evidence. Recipient-restricted dispatch and domain recovery must be configured/verified during cutover before calling invited-account recovery operational; no invitations or resets were sent in preparation.
+
+The next Android version is reserved as **v17 / 1.16-beta** and its output name is now derived from Gradle. The actual v16 package/signature baseline and installed SDK/JDK were checked; no Android device is attached. No new APK, deployment, browser login, emulator or physical S24 acceptance is claimed by preparation. Domain acceptance now has a dedicated non-sending boundary-check runner; positive authentication remains a separate check, not inferred from anonymous denials.
+
+Preparation implementation: `a343dcf6`. Typecheck and lint pass. All 265 platform cases are resolved passing: the sandbox run passed 257 and blocked eight on Windows TEMP/Git permissions; the two affected files then passed all ten tests with authorised filesystem access. No assertions or security controls were weakened. The targeted release/auth/Android suite also passed 22/22. Changed/deployable-surface credential scan: 310 files, zero findings/errors. The broader operator-script scan's four pattern hits were reviewed as existing runtime URL/parser patterns, not embedded credentials; its original result is retained. Actual evidence: `qa/friends-cutover/preparation-validation.json`. No fresh web/Android build or hosted positive-login pass is inferred from these checks.
+
 ## Completed in this reconciliation
 
 - Preserved Exchange evidence from `12e10d3e`: Default MRM assigned, litigation hold Off, archive Disabled, no forwarding, approved synthetic-message EML export passed, Deleted Items recovery controls available. No checks repeated, mailbox contents reopened, settings changed or messages sent.
