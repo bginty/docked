@@ -91,10 +91,11 @@ export async function runNflCollection(
         };
       }
     }
+    detail = { ...detail, task, season };
     await sql`update sports_feed.nfl_worker_runs set finished_at=clock_timestamp(),status=${String(detail.status)},detail=${sql.json(detail as never)} where id=${run.id}`;
     return detail;
   } catch {
-    await sql`update sports_feed.nfl_worker_runs set finished_at=clock_timestamp(),status='failed',detail='{"error":"SOURCE_OR_CONFIGURATION_UNAVAILABLE"}' where id=${run.id}`;
+    await sql`update sports_feed.nfl_worker_runs set finished_at=clock_timestamp(),status='failed',detail=${sql.json({ error: "SOURCE_OR_CONFIGURATION_UNAVAILABLE", task, season })} where id=${run.id}`;
     throw Error("NFL collection unavailable; inspect private worker health");
   }
 }

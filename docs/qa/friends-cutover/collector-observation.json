@@ -1,0 +1,402 @@
+{
+  "at": "2026-10-11T01:45:24.978Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "readOnly": true,
+  "jobs": [
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "schedule": "* * * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-pbp",
+      "schedule": "10 0,12 * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-reconcile",
+      "schedule": "*/15 * * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-rosters",
+      "schedule": "15 0,12 * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-weekly",
+      "schedule": "5 0,12 * * *",
+      "active": true
+    }
+  ],
+  "scheduledRuns": [
+    {
+      "jobname": "docked-nfl-reconcile",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:45:00.119Z",
+      "end_time": "2026-10-11T01:45:00.126Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:45:00.118Z",
+      "end_time": "2026-10-11T01:45:00.124Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:44:00.128Z",
+      "end_time": "2026-10-11T01:44:00.158Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:43:00.070Z",
+      "end_time": "2026-10-11T01:43:00.074Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:42:00.093Z",
+      "end_time": "2026-10-11T01:42:00.110Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:41:00.109Z",
+      "end_time": "2026-10-11T01:41:00.128Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:40:00.094Z",
+      "end_time": "2026-10-11T01:40:00.105Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:39:00.058Z",
+      "end_time": "2026-10-11T01:39:00.069Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:38:00.085Z",
+      "end_time": "2026-10-11T01:38:00.096Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:37:00.137Z",
+      "end_time": "2026-10-11T01:37:00.147Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:36:00.088Z",
+      "end_time": "2026-10-11T01:36:00.094Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:35:00.053Z",
+      "end_time": "2026-10-11T01:35:00.064Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:34:00.104Z",
+      "end_time": "2026-10-11T01:34:00.116Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:33:00.102Z",
+      "end_time": "2026-10-11T01:33:00.108Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:32:00.085Z",
+      "end_time": "2026-10-11T01:32:00.117Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:31:00.063Z",
+      "end_time": "2026-10-11T01:31:00.067Z"
+    },
+    {
+      "jobname": "docked-nfl-reconcile",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:30:00.250Z",
+      "end_time": "2026-10-11T01:30:00.265Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:30:00.249Z",
+      "end_time": "2026-10-11T01:30:00.263Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:29:00.047Z",
+      "end_time": "2026-10-11T01:29:00.050Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:28:00.079Z",
+      "end_time": "2026-10-11T01:28:00.088Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:27:00.099Z",
+      "end_time": "2026-10-11T01:27:00.108Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:26:00.057Z",
+      "end_time": "2026-10-11T01:26:00.060Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:25:00.139Z",
+      "end_time": "2026-10-11T01:25:00.147Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:24:00.087Z",
+      "end_time": "2026-10-11T01:24:00.100Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:23:00.083Z",
+      "end_time": "2026-10-11T01:23:00.092Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:22:00.109Z",
+      "end_time": "2026-10-11T01:22:00.120Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:21:00.165Z",
+      "end_time": "2026-10-11T01:21:00.168Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:20:00.107Z",
+      "end_time": "2026-10-11T01:20:00.117Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:19:00.134Z",
+      "end_time": "2026-10-11T01:19:00.165Z"
+    },
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "status": "succeeded",
+      "start_time": "2026-10-11T01:18:00.159Z",
+      "end_time": "2026-10-11T01:18:00.167Z"
+    }
+  ],
+  "httpResponses": [
+    {
+      "id": "5",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T01:45:00.124Z"
+    },
+    {
+      "id": "4",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T01:30:00.262Z"
+    },
+    {
+      "id": "3",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T01:15:00.195Z"
+    },
+    {
+      "id": "2",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T01:00:00.159Z"
+    },
+    {
+      "id": "1",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T00:45:00.139Z"
+    }
+  ],
+  "workerRuns": [
+    {
+      "started_at": "2026-10-11T01:45:02.226Z",
+      "finished_at": "2026-10-11T01:45:02.300Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T01:30:02.110Z",
+      "finished_at": "2026-10-11T01:30:02.181Z",
+      "status": "idle",
+      "detail": {
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T01:15:01.677Z",
+      "finished_at": "2026-10-11T01:15:01.762Z",
+      "status": "idle",
+      "detail": {
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T01:00:01.496Z",
+      "finished_at": "2026-10-11T01:00:01.540Z",
+      "status": "idle",
+      "detail": {
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:54:29.905Z",
+      "finished_at": "2026-10-11T00:54:29.923Z",
+      "status": "idle",
+      "detail": {
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:54:29.534Z",
+      "finished_at": "2026-10-11T00:54:29.643Z",
+      "status": "cooldown",
+      "detail": {
+        "rawId": null,
+        "status": "cooldown"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:54:29.275Z",
+      "finished_at": "2026-10-11T00:54:29.296Z",
+      "status": "cooldown",
+      "detail": {
+        "rawId": null,
+        "status": "cooldown"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:54:28.864Z",
+      "finished_at": "2026-10-11T00:54:28.881Z",
+      "status": "cooldown",
+      "detail": {
+        "rawId": null,
+        "status": "cooldown"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:45:01.295Z",
+      "finished_at": "2026-10-11T00:45:01.324Z",
+      "status": "idle",
+      "detail": {
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:36:48.150Z",
+      "finished_at": "2026-10-11T00:36:48.165Z",
+      "status": "idle",
+      "detail": {
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:36:47.816Z",
+      "finished_at": "2026-10-11T00:36:47.915Z",
+      "status": "cooldown",
+      "detail": {
+        "rawId": null,
+        "status": "cooldown"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:36:47.391Z",
+      "finished_at": "2026-10-11T00:36:47.412Z",
+      "status": "cooldown",
+      "detail": {
+        "rawId": null,
+        "status": "cooldown"
+      }
+    },
+    {
+      "started_at": "2026-10-11T00:36:47.076Z",
+      "finished_at": "2026-10-11T00:36:47.097Z",
+      "status": "cooldown",
+      "detail": {
+        "rawId": null,
+        "status": "cooldown"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "dataset": "weekly",
+      "checked_at": "2026-10-10T23:26:54.883Z",
+      "next_attempt": "2026-10-11T11:26:35.754Z",
+      "error_code": null,
+      "raw_revision": "1",
+      "body_hash": "ee4ed05a83e75b1c20cfe975eedb20bfcb66529856728f0bddd25205002e8917",
+      "observed_at": "2026-10-10T23:26:54.587Z",
+      "expires_at": "2026-11-09T23:26:54.587Z"
+    },
+    {
+      "dataset": "rosters",
+      "checked_at": "2026-10-10T23:29:16.500Z",
+      "next_attempt": "2026-10-11T11:29:06.315Z",
+      "error_code": null,
+      "raw_revision": "3",
+      "body_hash": "d761417f797859f12afb66df555e1adbf2523d9f03474d108e7cf4e3f290bc45",
+      "observed_at": "2026-10-10T23:29:16.408Z",
+      "expires_at": "2026-11-09T23:29:16.408Z"
+    },
+    {
+      "dataset": "pbp",
+      "checked_at": "2026-10-10T23:28:11.681Z",
+      "next_attempt": "2026-10-11T11:27:09.183Z",
+      "error_code": null,
+      "raw_revision": "2",
+      "body_hash": "f2be01d10d302f68284a3e8cd2284bcd6a0e5b12df1483227efa1f925bbda24e",
+      "observed_at": "2026-10-10T23:28:10.554Z",
+      "expires_at": "2026-11-09T23:28:10.554Z"
+    }
+  ],
+  "memberRounds": [
+    {
+      "stream_id": "beta-real:nfl:2026:6",
+      "locked_at": null,
+      "last_checked": null,
+      "next_check": "2026-10-11T00:33:52.406Z",
+      "issues": []
+    }
+  ],
+  "interpretation": "Cron submission, HTTP completion and task result are separate evidence. idle/cooldown is not a source retrieval. downloaded/not-modified after the due time demonstrates source access, not a completed future member round. Do not fabricate finalisation."
+}
