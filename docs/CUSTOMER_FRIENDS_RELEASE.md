@@ -27,10 +27,11 @@ An isolated synthetic ordinary account now passed real Auth creation, non-consum
 
 Hosted browser selection saved/reopened seven eligible cards and replaced the QB before lock. Pending points remained empty. Each unlocked internal draft was removed with its snapshot preserved in an audit event, before any genuine round lock. The internal QA reservation remains within the ten-account ceiling (nine remaining external slots); no permanent roster or scarcity guard was bypassed.
 
-Console acceptance found a server/device date-format hydration mismatch. A shared local-time component now hydrates a deterministic UTC fallback before device formatting; its Sydney browser regression passed. A persisted beta-only team name was also added with input validation, own-account enforcement, request idempotency and audit history; the additive migration preserved existing holdings and commercial inventory. The focused database regression, typecheck and lint passed. Hosted verification of these final changes remains pending.
+Console acceptance found a server/device date-format hydration mismatch. A shared local-time component now hydrates a deterministic UTC fallback before device formatting; its Sydney browser regression passed. A persisted beta-only team name was also added with input validation, own-account enforcement, request idempotency and audit history; the additive migration preserved existing holdings and commercial inventory. The focused database regression, typecheck and lint passed. The latest hosted browser acceptance passed: team name saved/restored, valid lineup saved/restored and replaced, all five mobile tabs, admin denial and no page errors.
 
 ## Outstanding release evidence
 
-Final corrected hosted console/team-name acceptance; domain/callback transition; accessible domain check; accepted-host Android build and credential/signature scan. Do not label these passed from SQL or component tests. No friends APK is released yet.
+Domain/callback transition; accessible domain check; accepted-host Android build and credential/signature scan. Do not label these passed from SQL or component tests. No friends APK is released yet.
 
 Keep DNS/Auth rollback preimages in `private-data/friends-cutover/`. The holding page and owner APK remain released until cutover passes. Do not distribute v16 as a friends build. No invitations until explicit send authorisation.
+

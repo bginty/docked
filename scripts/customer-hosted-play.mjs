@@ -48,7 +48,6 @@ try {
   browser = await chromium.launch();
   context = await browser.newContext({
     viewport: { width: 412, height: 915 },
-    storageState: dir + "/browser-state.json",
   });
   await context.route("**/*", (r) => {
     const headers = { ...r.request().headers() };
@@ -60,7 +59,10 @@ try {
   const page = await context.newPage(),
     errors = [];
   page.on("pageerror", (e) => errors.push({path:new URL(page.url()).pathname,message:e.message}));
-  await page.goto(base + "/fantasy/play");
+  await page.goto(base + "/app/login");
+  await page.getByLabel('Email',{exact:true}).fill(qa.email);
+  await page.getByLabel('Password',{exact:true}).fill(qa.password);
+  await page.getByRole('button',{name:'Log in',exact:true}).click();
   await page
     .getByRole("button", { name: "Pick Team", exact: true })
     .waitFor({ timeout: 30000 });
@@ -80,7 +82,7 @@ try {
     ),
   );
   check(
-    "Session survives new browser context; owned NFL collection and future deadline served from hosted backend",
+    "Original-password ordinary login without MFA; owned NFL collection and future deadline served from hosted backend",
   );
   if (initial.team_name) await page.getByText('Edit team name',{exact:true}).click();
   await page.getByLabel('Team name',{exact:true}).fill(initial.team_name==='QA Harbour Team'?'QA Harbour Team Two':'QA Harbour Team');

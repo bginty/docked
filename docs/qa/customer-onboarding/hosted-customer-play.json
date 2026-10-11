@@ -1,15 +1,15 @@
 {
-  "at": "2026-10-11T05:26:05.327Z",
-  "deployment": "dpl_HRiy26v58M1MRSJenQwNeaJrDNND",
+  "at": "2026-10-11T05:33:06.898Z",
+  "deployment": "dpl_G86muV36TVMa46tT81mzT5CND24J",
   "scope": "Hosted browser, synthetic ordinary-member account; prospective draft removed with audit before lock, not a real competition entrant or physical-device acceptance.",
   "checks": [
-    "Session survives new browser context; owned NFL collection and future deadline served from hosted backend",
+    "Original-password ordinary login without MFA; owned NFL collection and future deadline served from hosted backend",
+    "Chosen team name persists on the server and restores after refresh",
     "Seven-player owned NFL team selected by taps, saved and restored after refresh",
     "Free eligible replacement persists before server deadline",
     "Unplayed member round remains pending without fabricated points or rankings"
   ],
-  "passed": false,
+  "passed": true,
   "deadline": "2026-10-16T00:15:00+00:00",
-  "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   'Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.',\n+   'Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.'\n+ ]\n- []\n",
   "externalAdmissionOpen": false
 }

@@ -9,7 +9,7 @@
   "ordinaryMemberMfaMandatory": false,
   "ownerAdminMfaMandatory": true,
   "publicRegistration": false,
-  "externalReadinessVerified": false,
+  "externalReadinessVerified": true,
   "sendInvitationsWhileOwnerOffline": false,
   "realPayments": false,
   "cashTrading": false,
@@ -26,7 +26,34 @@
     "authority": "Owner explicitly authorised staged friend gameplay before the existing 23:20 Sydney collector check, 11 October 2026",
     "notice": "NFL scores are post-game. Automated collection and the first member round are still being verified; unavailable scores remain pending."
   },
-  "policyApproval": null,
-  "readiness": null,
+  "policyApproval": {
+    "approvedBy": "Owner-approved support process and conditional retention; verified Exchange evidence 12e10d3e and staged free-beta release authority",
+    "approvedAt": "2026-10-11T05:33:56.530Z",
+    "digest": "5df788e2d827b973160b9965d5f566e77f4ef07285cffd8e0ff75c2348b5a9c9",
+    "versions": {
+      "terms": "2026-10-11-beta-rc3",
+      "privacy": "2026-10-11-beta-rc3",
+      "beta": "2026-10-11-beta-rc3",
+      "community": "2026-10-11-beta-rc3",
+      "fantasy": "2026-10-11-beta-rc3",
+      "competition": "2026-10-11-beta-rc3",
+      "responsible_gambling": "2026-10-11-beta-rc3"
+    }
+  },
+  "readiness": {
+    "sourceCommit": "03f049d697a16dcedc6e32e0314084111173bb5a",
+    "verifiedAt": "2026-10-11T05:33:56.532Z",
+    "evidencePath": "docs/qa/customer-onboarding/hosted-customer-play.json",
+    "checks": {
+      "mailbox": true,
+      "privacy": true,
+      "admission": true,
+      "security": true,
+      "inventory": true,
+      "memberGameplay": true,
+      "nflCollection": false
+    },
+    "scope": "Protected ordinary-member browser acceptance plus rollback-only two-member swap/scoring checks. Verification token flow checked, no new external mail sent. Domain acceptance follows deployment; fresh unattended collection and genuine member round remain pending."
+  },
   "blockerDocument": "docs/NFL_RELEASE_CURRENT.md"
 }

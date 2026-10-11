@@ -103,7 +103,12 @@ test("complete friends guard retains exact project, role, commercial and secret 
       fixture(),
     ),
   );
-  assert.throws(() => friendsReleaseIdentity(env));
+  assert.throws(() =>
+    friendsReleaseIdentity(env, {
+      ...fixture(),
+      externalReadinessVerified: false,
+    }),
+  );
   for (const change of [
     { VERCEL_PROJECT_ID: "other" },
     { VERCEL_ORG_ID: "other" },
@@ -136,8 +141,9 @@ const target = () => ({
   DOCKED_TWO_PERSON_BETA: "true",
 });
 test("release authority alone cannot enable friends or impersonate readiness", () => {
-  assert.throws(() => assertFriendsReadiness(), /incomplete/);
-  assert.throws(() => assertHostedBeta(target()), /incomplete/);
+  const unverified = { ...fixture(), externalReadinessVerified: false };
+  assert.throws(() => assertFriendsReadiness(unverified), /incomplete/);
+  assert.throws(() => assertHostedBeta(target(), unverified), /incomplete/);
   assert.equal(assertFriendsTarget({}), false);
   assert.throws(() => assertHostedBeta({ DOCKED_FRIENDS_BETA: "yes" }));
 });
@@ -207,7 +213,12 @@ test("friends consent binds the actual packet and cannot relabel historical copy
   );
   assert.equal(betaPolicyPacket({}).friends, false);
   assert.notEqual(betaPolicyPacket({}).packet.version, packet.version);
-  assert.throws(() => betaPolicyPacket(target()));
+  assert.throws(() =>
+    betaPolicyPacket(target(), {
+      ...fixture(),
+      externalReadinessVerified: false,
+    }),
+  );
   const changed = fixture();
   changed.policyApproval.digest = "c".repeat(64);
   assert.throws(() => assertFriendsReadiness(changed));
