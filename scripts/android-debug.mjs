@@ -4,6 +4,7 @@ import path from "node:path";
 import { resolveAndroidTarget } from "./android-preview-config.mjs";
 import { preserveAndroidApks } from "./preserve-android-apks.mjs";
 import { closedTestPreflight } from "./android-closed-test-config.mjs";
+import { androidArtifactName } from "./android-artifact-name.mjs";
 
 // Uses the installed SDK/JDK. Does not accept new SDK licenses;
 // Gradle can provision a missing build package under an existing license.
@@ -61,11 +62,9 @@ const artifactOutput = path.join(
 );
 const artifactArchive = path.join(root, "private-data/android/apk-archive");
 const artifactDelivery = path.join(root, "artifacts/android");
-const hostedFilename = ownerQa
-  ? "Docked-v16-NFL-Owner-Connected-QA.apk"
-  : liveBeta
-    ? "Docked-Protected-Beta-v16-Fantasy-Cards.apk"
-    : "Docked-Preview-v16-Fantasy-Cards.apk";
+const hostedFilename = androidArtifactName(
+  ownerQa ? "owner" : liveBeta ? "friends" : "preview",
+);
 preserveAndroidApks(artifactDelivery, artifactArchive, [".apk", ".aab"]);
 preserveAndroidApks(
   path.join(root, "android/app/build/outputs/bundle/closedTest"),

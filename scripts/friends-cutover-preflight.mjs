@@ -121,6 +121,13 @@ try {
     await sql`select resource,checked_at,next_attempt,error_code from sports_feed.postgame_cache`;
   report.checks.rounds =
     await sql`select stream_id,purpose,locked_at,last_checked,next_check,issues from sports_feed.nfl_rounds order by stream_id`;
+  report.checks.mailDispatch = (
+    await sql`select
+    (select enabled from private.docked_mail_scheduler where singleton) enabled,
+    (select count(*)::int from private.docked_auth_mail_outbox where state in ('pending','authorizing','dispatching')) pending,
+    (select count(*)::int from vault.secrets where name='docked_auth_email_hook_existing') scheduler_signing_entries,
+    (select count(*)::int from cron.job where command like '%private.docked_mail_tick()%') scheduler_jobs`
+  )[0];
 } finally {
   await sql.end();
 }
