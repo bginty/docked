@@ -55,7 +55,14 @@ type Withdrawal = {
 };
 export type CreditsState = {
   mode: "financial-sandbox-only";
-  policy: typeof creditsPolicy;
+  policy: Omit<
+    typeof creditsPolicy,
+    "version" | "campaignLimit" | "purchasedWithdrawable"
+  > & {
+    version: string;
+    campaignLimit: number;
+    purchasedWithdrawable: boolean;
+  };
   commerce: Commerce;
   lots: Record<string, Lot>;
   journal: Journal[];

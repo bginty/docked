@@ -28,6 +28,8 @@ export type PackOpeningProps = {
   ownedIds: string[];
   replay?: boolean;
   preview?: boolean;
+  collectionHref?: string;
+  teamHref?: string | null;
 };
 
 export default function PackOpening(props: PackOpeningProps) {
@@ -86,18 +88,29 @@ export default function PackOpening(props: PackOpeningProps) {
   }, [initialReceipt, props.replay, props.userId]);
   useEffect(() => {
     if (stage !== "opening") return;
-    if (reduced || simple) {
+    if (reduced || simple || document.hidden) {
       setStage("revealed");
       return;
     }
-    const timer = setTimeout(() => setStage("revealed"), 1000);
-    return () => clearTimeout(timer);
+    const finish = () => setStage("revealed");
+    const timer = setTimeout(finish, 6000);
+    // Backgrounding ends presentation only; the receipt is already persisted.
+    const hidden = () => {
+      if (document.hidden) finish();
+    };
+    document.addEventListener("visibilitychange", hidden);
+    window.addEventListener("pagehide", finish);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", hidden);
+      window.removeEventListener("pagehide", finish);
+    };
   }, [stage, reduced, simple]);
   useEffect(() => {
     if (stage === "revealed" || stage === "summary") title.current?.focus();
   }, [stage, index]);
   function feedback() {
-    if (!muted) packSound();
+    if (!muted && !document.hidden) packSound();
     if (!reduced)
       void import("./native-share")
         .then((m) => m.lightNativeFeedback())
@@ -135,7 +148,13 @@ export default function PackOpening(props: PackOpeningProps) {
     save(receipt, next);
     setIndex(next);
     setTilt({ x: 0, y: 0 });
-    setStage(next === receipt.cards.length ? "summary" : "revealed");
+    setStage(
+      next === receipt.cards.length
+        ? "summary"
+        : reduced || simple
+          ? "revealed"
+          : "opening",
+    );
     feedback();
   }
   const card = receipt?.cards[index];
@@ -186,6 +205,11 @@ export default function PackOpening(props: PackOpeningProps) {
               Your next team starts here.
             </h3>
             <div className="pack-stage">
+              <div className="pack-tunnel pack-tunnel-idle" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map((n) => (
+                  <i key={n} style={{ "--ring": n } as CSSProperties} />
+                ))}
+              </div>
               <button
                 type="button"
                 className="docked-foil-pack"
@@ -207,9 +231,9 @@ export default function PackOpening(props: PackOpeningProps) {
               >
                 <span className="pack-seal" aria-hidden="true" />
                 <img
-                  src={fantasyAssets.compactLarge}
-                  width="230"
-                  height="63"
+                  src="/brand/docked/icons/docked-icon-512.png"
+                  width="132"
+                  height="132"
                   alt="Docked"
                 />
                 <span className="pack-foil-line" aria-hidden="true" />
@@ -221,6 +245,14 @@ export default function PackOpening(props: PackOpeningProps) {
                 />
               </button>
             </div>
+            <button
+              type="button"
+              className="pack-open-button"
+              disabled={stage === "waiting"}
+              onClick={() => void open()}
+            >
+              Open pack
+            </button>
             <p role="status">
               {stage === "waiting"
                 ? "Confirming your cards…"
@@ -252,19 +284,26 @@ export default function PackOpening(props: PackOpeningProps) {
               Card {index + 1} of {receipt.cards.length} · {card.tier}
             </p>
             <div
-              className={`pack-stage pack-card-stage ${stage === "opening" ? "pack-rising" : ""}`}
+              className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${stage === "opening" ? "pack-rising" : ""}`}
             >
               {stage === "opening" && (
                 <>
+                  <div className="pack-tunnel" aria-hidden="true">
+                    {[0, 1, 2, 3, 4].map((n) => (
+                      <i key={n} style={{ "--ring": n } as CSSProperties} />
+                    ))}
+                  </div>
                   <div className="pack-blue-light" aria-hidden="true" />
                   <div className="pack-opening-envelope" aria-hidden="true">
                     <span className="pack-torn-seal" />
                     <img
-                      src={fantasyAssets.compact}
-                      width="140"
-                      height="38"
+                      src="/brand/docked/icons/docked-icon-512.png"
+                      width="132"
+                      height="132"
                       alt=""
                     />
+                    <strong>DOCKED</strong>
+                    <small>COLLECT. BUILD. COMPETE.</small>
                   </div>
                 </>
               )}
@@ -417,11 +456,20 @@ export default function PackOpening(props: PackOpeningProps) {
                 </div>
                 <Link
                   className="pack-secondary"
-                  href="/fantasy/play"
+                  href={props.collectionHref ?? "/fantasy/cards"}
                   onClick={props.onClose}
                 >
-                  Build team
+                  View collection
                 </Link>
+                {props.teamHref !== null && (
+                  <Link
+                    className="pack-secondary"
+                    href={props.teamHref ?? "/fantasy/play"}
+                    onClick={props.onClose}
+                  >
+                    Build team
+                  </Link>
+                )}
                 {receipt.cards.length > 1 && (
                   <button
                     type="button"
@@ -440,12 +488,16 @@ export default function PackOpening(props: PackOpeningProps) {
             <h3 ref={title} tabIndex={-1}>
               {props.replay || replaying
                 ? "Your original pack result"
-                : "Ready to build your team"}
+                : props.teamHref === null
+                  ? "Your test collection"
+                  : "Ready to build your team"}
             </h3>
             <p>
               {receipt.cards.length} confirmed{" "}
-              {receipt.cards.length === 1 ? "card" : "cards"}. All tiers score
-              equally.
+              {receipt.cards.length === 1 ? "card" : "cards"}.{" "}
+              {props.teamHref === null
+                ? "Test cards have no cash value and do not enter scored teams."
+                : "All tiers score equally."}
             </p>
             <ul className="pack-summary">
               {receipt.cards.map((c) => (
@@ -472,13 +524,15 @@ export default function PackOpening(props: PackOpeningProps) {
               ))}
             </ul>
             <div className="pack-actions">
-              <Link
-                className="button"
-                href="/fantasy/play"
-                onClick={props.onClose}
-              >
-                Build team
-              </Link>
+              {props.teamHref !== null && (
+                <Link
+                  className="button"
+                  href={props.teamHref ?? "/fantasy/play"}
+                  onClick={props.onClose}
+                >
+                  Build team
+                </Link>
+              )}
               <button type="button" onClick={props.onClose}>
                 Back to collection
               </button>

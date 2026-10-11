@@ -520,3 +520,236 @@
     transform: none !important;
   }
 }
+/* Original Docked six-second tunnel sequence; no video texture or imported effects. */
+.pack-stage {
+  overflow: hidden;
+  border-radius: 24px;
+  background: radial-gradient(ellipse at 50% 45%, #102d594d, transparent 65%);
+}
+.pack-tunnel {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+  opacity: 0.85;
+}
+.pack-tunnel i {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: calc(140px + var(--ring) * 90px);
+  height: calc(140px + var(--ring) * 90px);
+  border-radius: 42% 58% 49% 51%;
+  border: 2px solid #2188ff55;
+  border-top: 3px solid #83daffbd;
+  border-right: 1px solid #d1eaff88;
+  box-shadow:
+    inset 0 0 18px #246bff22,
+    0 0 20px #246bff33;
+  transform: translate(-50%, -50%) rotate(calc(var(--ring) * 32deg));
+  animation: docked-tunnel 6s cubic-bezier(0.3, 0.1, 0.2, 1) both;
+}
+.pack-tunnel-idle {
+  opacity: 0.32;
+}
+.pack-tunnel-idle i {
+  animation: none;
+}
+.docked-foil-pack img {
+  width: 132px;
+  height: 132px;
+  border-radius: 24px;
+}
+.pack-open-button {
+  background: var(--pack-blue);
+  border: 1px solid #8ebaff;
+  border-radius: 14px;
+  color: white;
+  padding: 12px 32px;
+  font-weight: 700;
+}
+.pack-opening-envelope {
+  bottom: auto;
+  top: 50%;
+  margin-top: -165px;
+  width: 226px;
+  height: 330px;
+  padding: 48px 15px 30px;
+  align-content: center;
+  gap: 22px;
+  box-shadow:
+    8px 12px 0 -7px #9cb3ce,
+    inset 2px 0 8px #c7e1ff66,
+    0 25px 40px #0009;
+  animation: docked-unwrap 6s ease-in-out both;
+  z-index: 2;
+}
+.pack-opening-envelope img {
+  width: 132px;
+  height: 132px;
+  opacity: 1;
+  border-radius: 24px;
+}
+.pack-opening-envelope strong {
+  font-size: 25px;
+  letter-spacing: 0.12em;
+}
+.pack-opening-envelope small {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+.pack-opening-envelope .pack-torn-seal {
+  animation: docked-seal 6s ease-in-out both;
+}
+.pack-rising .pack-case {
+  animation: docked-card-arrival 6s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  pointer-events: none;
+}
+.pack-rising .pack-case::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: 18px;
+  background: #0b172b url("/brand/docked/icons/docked-icon-512.png")
+    center/145px no-repeat;
+  border: 2px solid #b1cbe5;
+  animation: docked-card-back 6s linear both;
+}
+.pack-blue-light {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    #97dcff88 0%,
+    #167dff44 22%,
+    transparent 65%
+  );
+  animation: docked-burst 6s ease-in-out both;
+  z-index: 3;
+}
+.pack-rising .pack-case {
+  border-color: var(--tier, #b5dcff);
+}
+@keyframes docked-tunnel {
+  0% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) rotate(calc(var(--ring) * 32deg))
+      scale(0.55);
+  }
+  45% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.1;
+    transform: translate(-50%, -50%) rotate(calc(200deg + var(--ring) * 32deg))
+      scale(1.8);
+  }
+}
+@keyframes docked-unwrap {
+  0% {
+    opacity: 1;
+    transform: rotateY(-14deg) translateY(4px);
+  }
+  30% {
+    opacity: 1;
+    transform: rotateY(12deg) translateY(-12px);
+  }
+  46% {
+    opacity: 1;
+    transform: rotateY(0) scale(1.06);
+  }
+  58%,
+  100% {
+    opacity: 0;
+    transform: translateY(60px) scale(1.12);
+  }
+}
+@keyframes docked-seal {
+  0%,
+  40% {
+    transform: none;
+    opacity: 1;
+  }
+  57%,
+  100% {
+    transform: translateY(-60px) rotate(-12deg);
+    opacity: 0;
+  }
+}
+@keyframes docked-burst {
+  0%,
+  38% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+@keyframes docked-card-arrival {
+  0%,
+  44% {
+    opacity: 0;
+    transform: translateZ(-120px) scale(0.65) rotateY(-180deg);
+  }
+  49% {
+    opacity: 1;
+    transform: translateZ(-100px) scale(0.72) rotateY(-180deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translateZ(35px) scale(1.02) rotateY(-75deg);
+  }
+  90%,
+  100% {
+    opacity: 1;
+    transform: translateZ(0) scale(1) rotateY(0);
+  }
+}
+@keyframes docked-card-back {
+  0%,
+  65% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+.pack-simple .pack-tunnel,
+.pack-simple .pack-blue-light,
+.pack-simple .pack-opening-envelope {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pack-tunnel,
+  .pack-blue-light,
+  .pack-opening-envelope {
+    display: none;
+  }
+  .pack-case::before {
+    display: none;
+  }
+}
+@supports not (transform-style: preserve-3d) {
+  .pack-tunnel,
+  .pack-opening-envelope {
+    display: none;
+  }
+  .pack-rising .pack-case::before {
+    display: none;
+  }
+}

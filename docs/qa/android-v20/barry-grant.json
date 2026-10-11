@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-11T10:15:12.092Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "migration": "20261011100229_financial_test_wallet.sql",
+  "sha256": "a279191d50ef6b3cc9e9889a7f7b14894d0b6818401fc128e6a3c21de61a4492",
+  "recipientId": "ef641248-67be-4c32-9b12-9205bfcee15b",
+  "recipientEmail": "barrydearing@gmail.com",
+  "reference": "owner-authorized-barry-test-100000-20261011-v1",
+  "amount": 100000,
+  "result": {
+    "journal": "owner-authorized-barry-test-100000-20261011-v1_issue",
+    "lot": "L0_0",
+    "award": null
+  },
+  "before": {
+    "available": 0,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 0,
+    "heldAvailable": 0,
+    "spendable": 0,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true
+  },
+  "after": {
+    "available": 100000,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 100000,
+    "heldAvailable": 0,
+    "spendable": 100000,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true
+  },
+  "oneGrantVerified": true,
+  "existingBetaCardsProfilesUnchanged": true,
+  "runtimeAdmissionWriteDenied": true,
+  "invitationsSent": 0,
+  "realPayments": false
+}

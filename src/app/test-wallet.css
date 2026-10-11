@@ -1,0 +1,86 @@
+.test-wallet {
+  max-width: 1050px;
+  margin: auto;
+  padding: 24px;
+  color: #edf5ff;
+}
+.test-wallet header {
+  padding: 18px 0;
+}
+.test-wallet section {
+  background: #101f35;
+  border: 1px solid #324f73;
+  border-radius: 20px;
+  padding: 22px;
+  margin: 20px 0;
+}
+.test-wallet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.test-wallet article {
+  padding: 16px;
+  border: 1px solid #476182;
+  border-radius: 14px;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+.test-wallet button {
+  padding: 12px 18px;
+  background: #203cff;
+  border: 1px solid #91b5ff;
+  border-radius: 12px;
+  color: #fff;
+  min-height: 44px;
+  margin: 8px 8px 8px 0;
+}
+.test-wallet button:disabled {
+  opacity: 0.5;
+}
+.test-wallet label {
+  display: block;
+  margin: 12px 0;
+}
+.test-wallet input,
+.test-wallet select {
+  display: block;
+  padding: 10px;
+  max-width: 100%;
+  color: white;
+  background: #0b1525;
+  border: 1px solid #718faf;
+  border-radius: 8px;
+}
+.test-wallet-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #334d70;
+}
+.test-wallet pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.test-wallet small {
+  overflow-wrap: anywhere;
+}
+.test-wallet h2 {
+  font-size: clamp(1.3rem, 4vw, 1.9rem);
+}
+.test-wallet p {
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 420px) {
+  .test-wallet {
+    padding: 12px;
+  }
+  .test-wallet section {
+    padding: 14px;
+  }
+  .test-wallet-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

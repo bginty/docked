@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scope": "Disposable real PostgreSQL; no hosted users",
+  "checks": [
+    "20 duplicate grants = exactly 100000",
+    "24 simultaneous purchases = 20 finite cards, 98000 debited",
+    "20 opening retries = one card",
+    "Ordinary projection hides other wallets and unopened inventory",
+    "Runtime cannot change admission or delete journals",
+    "Anonymous, authenticated and service roles cannot read schema",
+    "Withdrawable balance remains zero"
+  ]
+}

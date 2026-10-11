@@ -13,6 +13,7 @@ import { packExperienceEnabled } from "@/core/pack-experience";
 import { communityFeed } from "@/server/community-social";
 import { FeedContent } from "@/components/community-feed";
 import { fantasyAssets } from "@/brand/fantasy-assets";
+import { memberTestWallet } from "@/server/member-test-wallet";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Fantasy Cards | COLLECT. BUILD. COMPETE.",
@@ -90,9 +91,20 @@ export default async function FantasyPage({
     );
   }
   const feed = tab === "social" ? await communityFeed({ tab: "latest" }) : null;
+  const testWallet =
+    tab === "cards" || tab === "profile"
+      ? await memberTestWallet()
+          .then(() => true)
+          .catch(() => false)
+      : false;
   return (
     <AppShell authenticated>
       <div>
+        {testWallet && (
+          <p className="notice">
+            <Link href="/fantasy/test-wallet">Open test wallet</Link>
+          </p>
+        )}
         {tab === "play" &&
           (process.env.VERCEL_ENV === "preview" ||
             process.env.NODE_ENV === "development") && (
@@ -115,7 +127,7 @@ export default async function FantasyPage({
             key={tab}
             tab={tab}
             initial={data.state}
-          packExperience={packExperienceEnabled()}
+            packExperience={packExperienceEnabled()}
           />
         )}
         {process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
