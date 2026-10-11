@@ -3,6 +3,8 @@
 import assert from "node:assert/strict";
 import { writeFileSync } from "node:fs";
 import { randomUUID, randomBytes, createHash } from "node:crypto";
+import friendsPacket from "../config/friends-policy-content.json" with { type: "json" };
+import { transitionFriendsPolicy } from "./friends-policy-transition.mjs";
 import {
   ownerDatabase,
   ownerRuntimeDatabase,
@@ -16,17 +18,29 @@ const { digest, importStatistics, results } = core,
   { SportsFeedStore } = storeMod;
 const sql = ownerDatabase(),
   app = ownerRuntimeDatabase();
+const friendsPolicy = process.argv[2] === "--friends-policy-candidate";
+assert.ok(
+  process.argv.length <= 2 || (process.argv.length === 3 && friendsPolicy),
+);
 const report = {
   at: new Date().toISOString(),
   scope:
     "Hosted rollback-only two-user SQL acceptance. Real historical statistics, synthetic QA accounts and fixture clock; not browser sign-in or competitive results.",
   passed: false,
   checks: [],
+  policyVersionTested: friendsPolicy
+    ? friendsPacket.version
+    : "existing hosted policy",
 };
 const hash = (s) => createHash("sha256").update(s).digest("hex");
 const fingerprint = async () =>
   JSON.stringify(
-    await sql`select (select count(*) from auth.users) users,(select count(*) from beta_fantasy.cards) cards,(select sum(issued) from beta_fantasy.editions) issued,(select count(*) from beta_private.admissions) admissions,(select count(*) from sports_feed.nfl_allocations) grants,(select count(*) from beta_fantasy.entries) entries,(select count(*) from fantasy.cards) commercial`,
+    await sql`select (select count(*) from auth.users) users,(select count(*) from beta_fantasy.cards) cards,(select sum(issued) from beta_fantasy.editions) issued,(select count(*) from beta_private.admissions) admissions,(select count(*) from sports_feed.nfl_allocations) grants,(select count(*) from beta_fantasy.entries) entries,(select count(*) from fantasy.cards) commercial,
+    (select policy_versions from beta_private.admission_control where id) policy_versions,
+    (select jsonb_agg(to_jsonb(s)) from beta_fantasy.settings s) game_settings,
+    (select md5(jsonb_agg(to_jsonb(c) order by to_jsonb(c)::text)::text) from beta_private.consent_events c) consent_digest,
+    (select md5(jsonb_agg(to_jsonb(p) order by to_jsonb(p)::text)::text) from beta_public.profiles p) profile_digest,
+    (select count(*) from beta_private.audit_events where action='friends_policy_transition') policy_audits`,
   );
 try {
   const before = await fingerprint();
@@ -40,6 +54,39 @@ try {
             return typeof v === "function" ? v.bind(t) : v;
           },
         });
+        if (friendsPolicy) {
+          const auditBefore = Number(
+            (
+              await tx`select count(*) n from beta_private.audit_events where action='friends_policy_transition'`
+            )[0].n,
+          );
+          const first = await transitionFriendsPolicy(tx, {
+            actor: "rollback-qa",
+            reason:
+              "ROLLBACK ONLY new policy admission and gameplay acceptance",
+          });
+          assert.equal(first.changed, true);
+          assert.equal(
+            (
+              await transitionFriendsPolicy(tx, {
+                actor: "rollback-qa",
+                reason: "ROLLBACK ONLY duplicate policy transition acceptance",
+              })
+            ).changed,
+            false,
+          );
+          assert.equal(
+            Number(
+              (
+                await tx`select count(*) n from beta_private.audit_events where action='friends_policy_transition'`
+              )[0].n,
+            ),
+            auditBefore + 1,
+          );
+          report.checks.push(
+            "Policy transition aligns admission and game versions atomically, audits once, and preserves historical consent",
+          );
+        }
         const [control] =
           await tx`select policy_versions from beta_private.admission_control where id`;
         await tx`update beta_private.friends_control set enabled=true,readiness_evidence='ROLLBACK ONLY hosted software acceptance; no external admission opened',approved_by='qa-operator',approved_at=clock_timestamp()`;
@@ -385,7 +432,9 @@ try {
     await assert.rejects(() => app.unsafe(query));
   report.passed = true;
   writeFileSync(
-    "docs/qa/nfl-member/hosted-two-user.json",
+    friendsPolicy
+      ? "docs/qa/friends-cutover/hosted-two-user-policy.json"
+      : "docs/qa/nfl-member/hosted-two-user.json",
     JSON.stringify(report, null, 2) + "\n",
   );
   console.log(report);

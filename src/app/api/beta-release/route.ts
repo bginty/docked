@@ -3,7 +3,10 @@ import manifest from "../../../../config/hosted-production.json";
 import build from "../../../../config/netlify-build.json";
 import { assertHostedProduction } from "@/core/hosted-production.mjs";
 import { productionInvitationsEnabled } from "@/core/auth-invitation";
-import { betaReleaseIdentity } from "@/core/beta-release-identity.mjs";
+import {
+  betaReleaseIdentity,
+  friendsReleaseIdentity,
+} from "@/core/beta-release-identity.mjs";
 
 export const dynamic = "force-dynamic";
 export function GET() {
@@ -12,7 +15,14 @@ export function GET() {
     "X-Robots-Tag": "noindex",
   };
   try {
-    assertHostedProduction(process.env, manifest, build);
+    const friends = process.env.DOCKED_FRIENDS_BETA === "true";
+    const identity = friends
+      ? friendsReleaseIdentity(process.env)
+      : (assertHostedProduction(process.env, manifest, build),
+        {
+          ...betaReleaseIdentity(process.env, manifest, build),
+          projectRef: manifest.supabaseProjectRef,
+        });
     if (
       process.env.APP_ENV !== "production" ||
       process.env.DOCKED_RELEASE_CHANNEL !== "beta" ||
@@ -27,8 +37,7 @@ export function GET() {
       {
         channel: "beta",
         origin: "https://docked.com.au",
-        ...betaReleaseIdentity(process.env, manifest, build),
-        projectRef: manifest.supabaseProjectRef,
+        ...identity,
         publicRegistration: false,
         invitedAuthentication: true,
       },

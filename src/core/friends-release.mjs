@@ -1,4 +1,5 @@
 import recorded from "../../config/friends-release.json" with { type: "json" };
+import policy from "../../config/friends-policy-content.json" with { type: "json" };
 
 /** Readiness evidence is separate from the owner's already-recorded release authority.
  * No environment variable alone opens the friends release.
@@ -26,7 +27,18 @@ export function assertFriendsReadiness(receipt = recorded) {
     !Number.isFinite(Date.parse(receipt.readiness?.verifiedAt ?? "")) ||
     !receipt.readiness?.evidencePath ||
     !receipt.policyApproval?.versions ||
-    !/^[a-f0-9]{64}$/.test(receipt.policyApproval?.digest ?? "")
+    receipt.policyApproval?.digest !== policy.packetDigest ||
+    !receipt.policyApproval?.approvedBy ||
+    !Number.isFinite(Date.parse(receipt.policyApproval?.approvedAt ?? "")) ||
+    [
+      "terms",
+      "privacy",
+      "beta",
+      "community",
+      "fantasy",
+      "competition",
+      "responsible_gambling",
+    ].some((key) => receipt.policyApproval?.versions?.[key] !== policy.version)
   )
     throw Error("Friends release readiness is incomplete");
   for (const key of [

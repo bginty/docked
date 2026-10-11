@@ -1,5 +1,5 @@
 import Link from "next/link";
-import policies from "../../../config/beta-policy-content.json";
+import { betaPolicyPacket } from "@/core/beta-policy-packet.mjs";
 
 export const dynamic = "force-dynamic";
 export const metadata = {
@@ -8,16 +8,26 @@ export const metadata = {
 };
 
 export default function BetaPolicies() {
+  const { packet: policies, friends } = betaPolicyPacket(process.env);
   return (
     <main className="page-shell">
       <h1>Restricted beta policies</h1>
-      <p>
-        Version {policies.version}. The owner approved these exact documents
-        subject to their unresolved requirements. Historical draft labels are
-        preserved in the approved text. Previous research and betting product
-        references are historical; the current product is fantasy sports cards.
-        External admission is still closed.
-      </p>
+      {friends ? (
+        <p>
+          Version {policies.version}. Free NFL friends beta: invitation-only for
+          up to ten Australian adults. Scores are post-game; EPL is unavailable.
+          Free card swaps are supported. Payments, prizes and withdrawals are
+          disabled.
+        </p>
+      ) : (
+        <p>
+          Version {policies.version}. The owner approved these exact documents
+          subject to their unresolved requirements. Historical draft labels are
+          preserved in the approved text. Previous research and betting product
+          references are historical; the current product is fantasy sports
+          cards. External admission is still closed.
+        </p>
+      )}
       <p>
         Australia only, aged 18+, invitation-only and free. Beta cards and
         points have no monetary value.
@@ -34,7 +44,7 @@ export default function BetaPolicies() {
       {policies.documents.map((doc) => (
         <section id={doc.id} key={doc.id}>
           <h2>{doc.title}</h2>
-          <p>Approved version: {policies.version}</p>
+          <p>Policy version: {policies.version}</p>
           <div
             style={{
               whiteSpace: "pre-wrap",

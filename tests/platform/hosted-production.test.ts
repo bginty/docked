@@ -404,6 +404,7 @@ test("plain Node hosted build uses the same reviewed manifest and rejects incomp
       "config/hosted-beta.json",
       "src/core/friends-release.mjs",
       "config/friends-release.json",
+      "config/friends-policy-content.json",
       "src/core/hosted-review.mjs",
       "src/core/hosting-identity.mjs",
       "config/netlify-build.json",

@@ -1,11 +1,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import receipt from "../../config/friends-release.json";
+import packet from "../../config/friends-policy-content.json";
+import { betaPolicyPacket } from "../../src/core/beta-policy-packet.mjs";
 import {
   assertFriendsReadiness,
   assertFriendsTarget,
 } from "../../src/core/friends-release.mjs";
 import { assertHostedBeta } from "../../src/core/hosted-beta.mjs";
+import { friendsReleaseIdentity } from "../../src/core/beta-release-identity.mjs";
 
 const fixture = () => ({
   ...receipt,
@@ -13,7 +16,7 @@ const fixture = () => ({
   policyApproval: {
     approvedBy: "Owner fixture only",
     approvedAt: "2026-10-11T01:00:00Z",
-    digest: "a".repeat(64),
+    digest: packet.packetDigest,
     versions: Object.fromEntries(
       [
         "terms",
@@ -23,7 +26,7 @@ const fixture = () => ({
         "fantasy",
         "competition",
         "responsible_gambling",
-      ].map((key) => [key, "2026-10-11-beta-rc3"]),
+      ].map((key) => [key, packet.version]),
     ),
   },
   readiness: {
@@ -50,6 +53,7 @@ test("complete friends guard retains exact project, role, commercial and secret 
     VERCEL_GIT_COMMIT_REF: "codex/vercel-beta-review",
     VERCEL_GIT_COMMIT_SHA: "a".repeat(40),
     VERCEL_URL: "docked-production-fixture.vercel.app",
+    VERCEL_DEPLOYMENT_ID: "dpl_FriendsFixture1234567890",
     APP_ENV: "production",
     SUPABASE_ENV: "production",
     DOCKED_RELEASE_CHANNEL: "beta",
@@ -85,6 +89,21 @@ test("complete friends guard retains exact project, role, commercial and secret 
     ),
   };
   assert.equal(assertHostedBeta(env, fixture()), true);
+  assert.deepEqual(friendsReleaseIdentity(env, fixture()), {
+    hostingProvider: "vercel",
+    siteId: env.VERCEL_PROJECT_ID,
+    hostingAccountId: env.VERCEL_ORG_ID,
+    deploymentId: env.VERCEL_DEPLOYMENT_ID,
+    commit: env.VERCEL_GIT_COMMIT_SHA,
+    projectRef: "pojoymtniryarxxunyvz",
+  });
+  assert.throws(() =>
+    friendsReleaseIdentity(
+      { ...env, VERCEL_DEPLOYMENT_ID: undefined },
+      fixture(),
+    ),
+  );
+  assert.throws(() => friendsReleaseIdentity(env));
   for (const change of [
     { VERCEL_PROJECT_ID: "other" },
     { VERCEL_ORG_ID: "other" },
@@ -95,8 +114,12 @@ test("complete friends guard retains exact project, role, commercial and secret 
     { SUPABASE_SECRET_KEY: "fixture" },
     { GRAPH_PRIVATE_KEY_PEM: "fixture" },
     { DOCKED_FRIENDS_BETA: "false" },
-  ])
+  ]) {
     assert.throws(() => assertHostedBeta({ ...env, ...change }, fixture()));
+    assert.throws(() =>
+      friendsReleaseIdentity({ ...env, ...change }, fixture()),
+    );
+  }
 });
 const target = () => ({
   DOCKED_FRIENDS_BETA: "true",
@@ -155,4 +178,20 @@ test("each free-beta evidence gate and scope restriction is mandatory", () => {
     { minimumAge: 17 },
   ])
     assert.throws(() => assertFriendsReadiness({ ...fixture(), ...change }));
+});
+
+test("friends consent binds the actual packet and cannot relabel historical copy", () => {
+  assert.equal(
+    betaPolicyPacket(target(), fixture()).packet.packetDigest,
+    packet.packetDigest,
+  );
+  assert.equal(betaPolicyPacket({}).friends, false);
+  assert.notEqual(betaPolicyPacket({}).packet.version, packet.version);
+  assert.throws(() => betaPolicyPacket(target()));
+  const changed = fixture();
+  changed.policyApproval.digest = "c".repeat(64);
+  assert.throws(() => assertFriendsReadiness(changed));
+  const stale = fixture();
+  stale.policyApproval.versions.privacy = "2026-10-09-beta-rc2";
+  assert.throws(() => assertFriendsReadiness(stale));
 });
