@@ -95,9 +95,8 @@ export function SandboxSwaps() {
     <section className="fantasy-market-panel">
       <h2>Beta card swaps</h2>
       <p>
-        Beta cards and simulated AUD only. No deposits, withdrawals, purchases
-        or monetary value. Available only to admitted participants when beta
-        trading is enabled.
+        Card-for-card exchanges between admitted beta members. Beta cards have
+        no cash value. No deposits, withdrawals or purchases.
       </p>
       <p>
         Open packs first. Cards in any unsettled saved team must be removed

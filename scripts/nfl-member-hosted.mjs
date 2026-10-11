@@ -44,6 +44,7 @@ try {
           await tx`select policy_versions from beta_private.admission_control where id`;
         await tx`update beta_private.friends_control set enabled=true,readiness_evidence='ROLLBACK ONLY hosted software acceptance; no external admission opened',approved_by='qa-operator',approved_at=clock_timestamp()`;
         await tx`update beta_private.admission_control set testers_enabled=true where id`;
+        await tx`update beta_fantasy.swap_policy set enabled=true where id`;
         const users = Array.from({ length: 2 }, () => ({
           id: randomUUID(),
           session: randomUUID(),
@@ -81,6 +82,96 @@ try {
             `Ordinary QA member ${i + 1} AAL1 admitted, ten real NFL cards allocated once, visible in own collection`,
           );
         }
+        const swap = async (u, a, p = {}, req = randomUUID()) => {
+          await context(u);
+          return (
+            await tx`select beta_fantasy.swap_command(${a},${tx.json(p)},${req}) r`
+          )[0].r;
+        };
+        const denySwap = async (u, a, p, pattern) => {
+          await tx
+            .savepoint(async (sp) => {
+              await context(u);
+              await assert.rejects(
+                () =>
+                  sp`select beta_fantasy.swap_command(${a},${sp.json(p)},${randomUUID()})`,
+                pattern,
+              );
+              throw Error("EXPECTED_DENIAL");
+            })
+            .catch((e) => assert.equal(e.message, "EXPECTED_DENIAL"));
+        };
+        await context(users[0]);
+        const swapView = (await tx`select beta_fantasy.swap_read_state() s`)[0]
+          .s;
+        assert.equal(swapView.mode, "FRIENDS_CARD_SWAP");
+        assert.equal(swapView.window.fee_cents, 0);
+        assert.equal(swapView.reserves_granted, true);
+        const own = swapView.cards.find((c) => c.owner_id === users[0].id),
+          peer = swapView.cards.find((c) => c.owner_id === users[1].id);
+        assert.ok(own && peer);
+        const quote = {
+          give_card: own.id,
+          take_card: peer.id,
+          fee_cents: 0,
+          policy_revision: swapView.window.revision,
+        };
+        const cancel = await swap(users[0], "offer", quote);
+        await swap(users[0], "cancel", { swap_id: cancel.swap_id });
+        const offer = await swap(users[0], "offer", quote),
+          stale = await swap(users[0], "offer", quote),
+          request = randomUUID();
+        const accepted = await swap(
+          users[1],
+          "accept",
+          { swap_id: offer.swap_id, fee_cents: 0 },
+          request,
+        );
+        assert.equal(accepted.state, "accepted");
+        assert.deepEqual(
+          await swap(
+            users[1],
+            "accept",
+            { swap_id: offer.swap_id, fee_cents: 0 },
+            request,
+          ),
+          accepted,
+        );
+        assert.equal(
+          (
+            await tx`select owner_id from beta_fantasy.cards where id=${own.id}`
+          )[0].owner_id,
+          users[1].id,
+        );
+        assert.equal(
+          (
+            await tx`select count(*)::int n from beta_fantasy.ownership_events where reference=${offer.swap_id}`
+          )[0].n,
+          2,
+        );
+        assert.equal(
+          Number(
+            (
+              await tx`select coalesce(sum(amount_cents),0) n from beta_fantasy.swap_ledger where reference=${offer.swap_id}`
+            )[0].n,
+          ),
+          0,
+        );
+        await denySwap(
+          users[1],
+          "accept",
+          { swap_id: stale.swap_id, fee_cents: 0 },
+          /ownership|stale/i,
+        );
+        await denySwap(
+          users[0],
+          "reserve_pack",
+          {},
+          /unavailable in the free NFL beta/,
+        );
+        report.checks.push(
+          "Two ordinary members: zero-fee real NFL swap, cancellation, idempotent repeat acceptance, competing stale offer rejected, two ownership audit rows, no extra fictional packs",
+        );
         const [prior] =
           await tx`select body,raw_id from sports_feed.journal where stream_id='beta-real:qa:nfl-atl-pit-2026' order by revision desc limit 1`;
         const oldSource = prior.body.sources.at(-1),
@@ -171,6 +262,17 @@ try {
           await connectLockedNflEntries(db, stream),
           true,
           "DB deadline reached and durable lock created",
+        );
+        await denySwap(
+          users[0],
+          "offer",
+          {
+            give_card: lineups[0][0],
+            take_card: lineups[1][0],
+            fee_cents: 0,
+            policy_revision: swapView.window.revision,
+          },
+          /unsettled lineup/i,
         );
         const store = new SportsFeedStore(db);
         const source = structuredClone(oldSource);

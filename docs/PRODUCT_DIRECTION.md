@@ -1,5 +1,7 @@
 # Docked — authoritative product direction
 
+**11 October low-cost steer:** reuse existing accounts/capacity and suitable free/open data. Personal accounts are acceptable where terms/capabilities permit. No paid service, upgrade or infrastructure replacement without approval. [FREE_BETA_SERVICE_FACTS](FREE_BETA_SERVICE_FACTS.md) separates free-beta requirements from paid-product and growth backlog. NFL-first scope is approved; EPL is not a release dependency.
+
 Owner decision, 10 October 2026: Docked is permanently a multi-sport fantasy sports card platform.
 
 **COLLECT. BUILD. COMPETE.** The approved supplied fantasy assets in `public/brand/docked` are the brand. Do not redraw the logo or restore the former tagline, navigation or product.

@@ -2,6 +2,8 @@
 
 This supersedes the implementation gaps in NFL_HOSTED_POSTGAME_ACCEPTANCE.md. The owner explicitly approved NFL-first external release; EPL is independent and unavailable, not a release-scope decision awaiting approval.
 
+The later low-cost steer is incorporated in [FREE_BETA_SERVICE_FACTS](FREE_BETA_SERVICE_FACTS.md): existing Exchange hosting is corroborated by current MX and successful application authentication/delivery; the specific administrator identity is unknown. No new business account or paid Purview is required. Use the existing email administration account/portal, not an assumed mailbox login. This clarifies the Microsoft action below.
+
 ## Hosted operation
 
 Exact Docked Supabase `pojoymtniryarxxunyvz`, isolated beta tables only. 498 ACT-status QB/RB/WR/TE records from separately downloaded nflverse season rosters now have GSIS identities and new beta CORE editions. Current team/status is a refreshable projection; original edition team remains separate. Missing weekly statistics are not DNP evidence. No photos, league/team logos or paid collectible rights are inferred.

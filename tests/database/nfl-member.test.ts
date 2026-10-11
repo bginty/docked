@@ -87,7 +87,7 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
         ])
       )[0].r;
     };
-    const grants = [];
+    const grants: string[][] = [];
     for (const u of users) {
       const a = await cmd(u, "claim_starter");
       assert.equal(a.card_ids.length, 10);
@@ -98,6 +98,41 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
       (await q(`select count(*)::int n from beta_fantasy.cards`))[0].n,
       20,
     );
+    // Exact migration boundary with disposable auth/read fixtures only.
+    await pg.exec(
+      `create or replace function beta_fantasy.swap_actor() returns uuid language sql as $$select auth.uid()$$;`,
+    );
+    for (const action of ["reserve_pack", "practice_credit", "fee_mode"])
+      await assert.rejects(
+        () =>
+          q(`select beta_fantasy.swap_command($1,'{}',$2)`, [
+            action,
+            randomUUID(),
+          ]),
+        /unavailable in the free NFL beta/,
+      );
+    await assert.rejects(
+      () =>
+        q(`select beta_fantasy.swap_command('offer',$1,$2)`, [
+          JSON.stringify({ give_card: randomUUID(), take_card: grants[0][0] }),
+          randomUUID(),
+        ]),
+      /Only real NFL/,
+    );
+    assert.equal(
+      (
+        await q(
+          `select has_function_privilege('docked_beta_app','beta_fantasy.swap_command_before_nfl(text,jsonb,uuid)','execute') allowed`,
+        )
+      )[0].allowed,
+      false,
+    );
+    await pg.exec(
+      `create or replace function beta_fantasy.swap_read_state_before_nfl() returns jsonb language sql as $$select jsonb_build_object('cards',jsonb_build_array(jsonb_build_object('id','${grants[0][0]}'),jsonb_build_object('id','${randomUUID()}')),'reserves_granted',false)$$;`,
+    );
+    const swapRead = (await q(`select beta_fantasy.swap_read_state() s`))[0].s;
+    assert.equal(swapRead.cards.length, 1);
+    assert.equal(swapRead.reserves_granted, true);
     for (const [n, u] of users.entries()) {
       const cards = await q(
         `select c.id,p.position from beta_fantasy.cards c join beta_fantasy.editions e on e.id=c.edition_id join beta_fantasy.players p on p.id=e.player_id where c.owner_id=$1 order by p.position,c.id`,
@@ -179,6 +214,14 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
           passed: true,
           at: new Date().toISOString(),
           sha256: createHash("sha256").update(migration).digest("hex"),
+          swapsSha256: createHash("sha256")
+            .update(
+              await readFile(
+                "supabase/migrations/20261011011400_nfl_swap_projection.sql",
+                "utf8",
+              ),
+            )
+            .digest("hex"),
           projectionSha256: createHash("sha256")
             .update(
               await readFile(

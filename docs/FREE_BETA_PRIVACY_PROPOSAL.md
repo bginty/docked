@@ -1,5 +1,7 @@
 # Free beta privacy: evidence and approved commitments
 
+**11 October cost clarification:** [FREE_BETA_SERVICE_FACTS](FREE_BETA_SERVICE_FACTS.md) reconciles actual Exchange evidence, the unknown administrator identity and the simplest export/settings path. It supersedes any implication below that paid Purview access, a new business account or a retention upgrade is required. Manual selected-message export is suitable; check existing holds without buying tooling. Provider-qualified draft wording there replaces unverified fixed erasure promises.
+
 11 October 2026 (Australia/Sydney). **Owner approved the support/moderation process and retention schedule, subject to verified provider holds/backups.** Direct owner replies: “Approve me as operator and this process” and “Approve proposed schedule subject to verified holds”. This resolves both outstanding policy decisions; it does not establish provider settings or completed deletion capability. No tenant settings changed, no mailbox content read, no real account deleted. The all-current EPL/NFL beta eligibility decision is approved separately and is not a data licence.
 
 ## Facts established / not established

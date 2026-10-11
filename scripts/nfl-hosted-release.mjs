@@ -24,7 +24,13 @@ for (const path of [
     signal: AbortSignal.timeout(20000),
   });
   if (path === "/fantasy/results") {
-    assert.equal(r.status,200);const body=await r.text();assert.match(body,/Post-game points unavailable/);assert.doesNotMatch(body,/<h2>NFL standings<\/h2>|71\.24|b828817d-0ba9-4edd-87a3-fe6dd23ad7a0/);
+    assert.equal(r.status, 200);
+    const body = await r.text();
+    assert.match(body, /Post-game points unavailable/);
+    assert.doesNotMatch(
+      body,
+      /<h2>NFL standings<\/h2>|71\.24|b828817d-0ba9-4edd-87a3-fe6dd23ad7a0/,
+    );
   } else {
     assert.equal(r.status, 200);
     const body = await r.text();

@@ -1,10 +1,11 @@
 {
-  "at": "2026-10-11T00:52:06.389Z",
+  "at": "2026-10-11T01:14:02.828Z",
   "scope": "Hosted rollback-only two-user SQL acceptance. Real historical statistics, synthetic QA accounts and fixture clock; not browser sign-in or competitive results.",
   "passed": true,
   "checks": [
     "Ordinary QA member 1 AAL1 admitted, ten real NFL cards allocated once, visible in own collection",
     "Ordinary QA member 2 AAL1 admitted, ten real NFL cards allocated once, visible in own collection",
+    "Two ordinary members: zero-fee real NFL swap, cancellation, idempotent repeat acceptance, competing stale offer rejected, two ownership audit rows, no extra fictional packs",
     "Two pre-deadline saved QA lineups locked; actual historical player breakdowns reconcile to 71.24 each; shared-rank standings; synthetic +0.04 correction appended without rewriting earlier lineup/source",
     "Post-deadline save denied; all QA changes roll back"
   ]
