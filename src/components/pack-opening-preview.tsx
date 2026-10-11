@@ -47,7 +47,7 @@ export function PackOpeningPreview() {
   return (
     <section
       aria-label="Pack opening design preview"
-      className="fantasy-public"
+      className="fantasy-public pack-preview"
       style={{ maxWidth: 900, margin: "auto" }}
     >
       <img

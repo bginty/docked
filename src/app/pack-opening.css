@@ -1,4 +1,7 @@
 /* Original Docked foil/case geometry. Logos and player cards are existing assets. */
+.pack-preview .eyebrow {
+  color: var(--brand-cyan);
+}
 .pack-sheet .sheet-inner > header {
   top: 0;
   margin: -20px -20px 0;

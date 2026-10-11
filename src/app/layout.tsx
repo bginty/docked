@@ -67,7 +67,11 @@ export default async function Layout({
       <body className="fantasy-mode">
         <EnvironmentProvider value={environment}>
           {environment.liveBeta && (
-            <div className="topline">
+            <div
+              className="topline"
+              role="region"
+              aria-label="Beta participation notice"
+            >
               <span>DOCKED BETA · Invited members only</span>
               <span>
                 18+ · Experimental gameplay and rankings · No cash value
