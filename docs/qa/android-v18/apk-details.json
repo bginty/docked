@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-11T06:50:08.8079089Z",
+  "artifact": "artifacts/android/Docked-v18-NFL-Friends-Beta.apk",
+  "bytes": 11035942,
+  "sha256": "1ebd5903b365fae481bdebccbb27cc8883ae7f96b239340168134d52939d261e",
+  "current": {
+    "package": "au.com.docked.app.preview",
+    "label": "Docked Beta",
+    "versionCode": 18,
+    "versionName": "1.17-beta",
+    "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+    "debuggable": false,
+    "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+    "arm64Compatible": true,
+    "minimumSdk": 24,
+    "targetSdk": 36
+  },
+  "expectedLabel": "Docked Beta",
+  "priorVersionCode": 17,
+  "samePackageAndSigningCertificate": true,
+  "cleartextDisabledInPackagedResources": true,
+  "compiledNetworkPolicyPath": "res/8G.xml",
+  "status": "PASS"
+}

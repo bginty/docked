@@ -8,9 +8,9 @@
   "hostingProvider": "vercel",
   "vercelProjectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   "vercelTeamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
-  "deploymentId": "dpl_AXJQ7zTUAzFLw4phdUJWMg2mRMRy",
-  "commit": "fe2bacd40862b680c62ba279489d5b1ac94e998f",
-  "verifiedAt": "2026-10-11T05:54:22.574Z",
+  "deploymentId": "dpl_2B1cdf6LogHXMK3q4AAEvsm6rP1b",
+  "commit": "cdd7bb497d856d873f8abe030a6cde3074393585",
+  "verifiedAt": "2026-10-11T06:46:12.346Z",
   "acceptance": {
     "https": true,
     "invitedAuthentication": true,
@@ -27,7 +27,9 @@
     "customerSignup": "docs/CUSTOMER_FRIENDS_RELEASE.md",
     "recoveryScope": "Existing accepted Auth/recovery implementation preserved; new domain callback, non-consuming links, foreign-origin denial and signed mail scheduler verified. No new external email delivery or owner password reset performed.",
     "scoring": "Historical rollback acceptance only; fresh unattended collection and genuine member round pending",
-    "physicalDevice": "PENDING"
+    "physicalDevice": "PENDING",
+    "signupRepair": "docs/qa/signup-region/domain.json",
+    "preservedAcceptance": "docs/FRIENDS_V17_RELEASE.md"
   },
   "safety": {
     "publicRegistration": false,

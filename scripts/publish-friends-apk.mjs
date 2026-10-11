@@ -3,11 +3,13 @@ import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
+const evidence = process.argv[2] ?? "docs/qa/friends-cutover";
+assert.match(evidence, /^docs\/qa\/(?:friends-cutover|android-v[0-9]+)$/);
 const audit = JSON.parse(
-  readFileSync("docs/qa/friends-cutover/apk-audit.json"),
+  readFileSync(evidence + "/apk-audit.json"),
 );
 const identity = JSON.parse(
-  readFileSync("docs/qa/friends-cutover/apk-details.json"),
+  readFileSync(evidence + "/apk-details.json"),
 );
 assert.equal(audit.status, "PASS");
 assert.equal(identity.status, "PASS");
@@ -55,6 +57,10 @@ const privateReceipt = {
   sha256: audit.sha256,
 };
 writeFileSync(
+  `private-data/friends-cutover/apk-v${identity.current.versionCode}-download.json`,
+  JSON.stringify(privateReceipt, null, 2) + "\n",
+);
+writeFileSync(
   "private-data/friends-cutover/apk-download.json",
   JSON.stringify(privateReceipt, null, 2) + "\n",
 );
@@ -69,7 +75,7 @@ const publicReceipt = {
   invitationSent: false,
 };
 writeFileSync(
-  "docs/qa/friends-cutover/apk-published.json",
+  evidence + "/apk-published.json",
   JSON.stringify(publicReceipt, null, 2) + "\n",
 );
-console.log(JSON.stringify(privateReceipt));
+console.log(JSON.stringify(publicReceipt));
