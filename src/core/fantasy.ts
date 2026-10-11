@@ -306,6 +306,8 @@ export type FantasyState = {
     next_claim_at: string;
     claimed_today: boolean;
     starter_claimed: boolean;
+    starter_entitled?: boolean;
+    starter_opened?: boolean;
     daily_available?: boolean;
     points: number;
     policy: {

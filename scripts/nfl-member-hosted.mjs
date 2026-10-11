@@ -1,7 +1,7 @@
 // Two ordinary QA identities, all Auth/admission/holdings/round changes rolled back.
 // This is real hosted SQL acceptance, not a browser login or future competitive result.
 import assert from "node:assert/strict";
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync } from "node:fs";
 import { randomUUID, randomBytes, createHash } from "node:crypto";
 import friendsPacket from "../config/friends-policy-content.json" with { type: "json" };
 import { transitionFriendsPolicy } from "./friends-policy-transition.mjs";
@@ -18,9 +18,14 @@ const { digest, importStatistics, results } = core,
   { SportsFeedStore } = storeMod;
 const sql = ownerDatabase(),
   app = ownerRuntimeDatabase();
-const friendsPolicy = process.argv[2] === "--friends-policy-candidate";
+const customerCandidate = process.argv.includes("--customer-candidate");
+const friendsPolicy = process.argv.includes("--friends-policy-candidate");
 assert.ok(
-  process.argv.length <= 2 || (process.argv.length === 3 && friendsPolicy),
+  process.argv
+    .slice(2)
+    .every((v) =>
+      ["--friends-policy-candidate", "--customer-candidate"].includes(v),
+    ),
 );
 const report = {
   at: new Date().toISOString(),
@@ -47,6 +52,14 @@ try {
   await assert.rejects(
     () =>
       sql.begin(async (tx) => {
+        if (customerCandidate)
+          for (const name of [
+            "20261011045327_customer_beta_onboarding.sql",
+            "20261011045504_customer_invitation_eligibility.sql",
+          ])
+            await tx.unsafe(
+              readFileSync("supabase/migrations/" + name, "utf8"),
+            );
         const db = new Proxy(tx, {
           get(t, k) {
             if (k === "begin") return (fn) => t.savepoint(fn);
@@ -86,6 +99,44 @@ try {
           report.checks.push(
             "Policy transition aligns admission and game versions atomically, audits once, and preserves historical consent",
           );
+          if (customerCandidate) {
+            const [owner] =
+              await tx`select c.owner_id,s.id session_id from beta_private.owner_gameplay_control c join lateral(select id from auth.sessions where user_id=c.owner_id and aal='aal2' and (not_after is null or not_after>clock_timestamp()) order by created_at desc limit 1)s on true`;
+            assert.ok(owner);
+            const [admission] =
+              await tx`select country,state from beta_private.admissions where user_id=${owner.owner_id}`;
+            assert.equal(
+              (
+                await tx`select beta_private.pending_beta_consent(${owner.owner_id}) allowed`
+              )[0].allowed,
+              true,
+            );
+            const renew = async (aal) =>
+              tx.savepoint(async (nested) => {
+                await nested`select set_config('request.jwt.claim.sub',${owner.owner_id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: owner.owner_id, session_id: owner.session_id, aal })},true)`;
+                await nested`select beta_private.renew_customer_consent(${owner.owner_id},${owner.session_id},${admission.country},${admission.state},${nested.json(first.versions)})`;
+              });
+            await assert.rejects(() => renew("aal1"), /MFA/);
+            await renew("aal2");
+            await renew("aal2");
+            assert.equal(
+              (
+                await tx`select beta_private.admitted(${owner.owner_id}) allowed`
+              )[0].allowed,
+              true,
+            );
+            assert.equal(
+              Number(
+                (
+                  await tx`select count(*) n from beta_private.admission_events where actor=${owner.owner_id} and action='policy_reaccepted'`
+                )[0].n,
+              ),
+              1,
+            );
+            report.checks.push(
+              "Rollback-only owner policy resumption: AAL1 denied, AAL2 explicit acceptance appends once; previous Auth account/factors untouched",
+            );
+          }
         }
         const [control] =
           await tx`select policy_versions from beta_private.admission_control where id`;
@@ -114,10 +165,20 @@ try {
           await tx`select beta_private.accept_admission(${u.token},${u.id},${u.session},'AU','VIC',true,${tx.json(control.policy_versions)})`;
           await tx`insert into beta_public.profiles(id,country,state,age_attested,accepted_version)values(${u.id},'AU','VIC',true,${control.policy_versions.terms})`;
           await tx`insert into beta_private.consent_events(user_id,purpose,granted,version,actor)values(${u.id},'privacy',true,${control.policy_versions.privacy},'rollback-qa')`;
-          const grant = await cmd(u, "claim_starter");
+          const entitlement = await cmd(u, "claim_starter");
+          assert.equal(entitlement.opened, false);
+          assert.equal(
+            Number(
+              (
+                await tx`select count(*) n from beta_fantasy.cards where owner_id=${u.id}`
+              )[0].n,
+            ),
+            0,
+          );
+          const grant = await cmd(u, "open_nfl_starter");
           assert.equal(grant.card_ids.length, 10);
           assert.deepEqual(
-            (await cmd(u, "claim_starter")).card_ids,
+            (await cmd(u, "open_nfl_starter")).card_ids,
             grant.card_ids,
           );
           const state = (

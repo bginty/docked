@@ -1,8 +1,17 @@
+import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
 import Link from "next/link";
 import { AppAuthForm } from "@/components/app-auth-forms";
 import { environmentPresentation } from "@/server/presentation";
+import { CustomerSignup } from "@/components/customer-signup";
 export default async function AppSignup() {
   const environment = await environmentPresentation();
+  if (customerOnboardingEnabled())
+    return (
+      <>
+        <h1>Create your Docked account</h1>
+        <CustomerSignup />
+      </>
+    );
   return (
     <>
       <h1>Create your Docked account</h1>

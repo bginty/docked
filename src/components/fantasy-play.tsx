@@ -257,6 +257,13 @@ export function FantasyPlay({
           ? "FREE NFL BETA · POST-GAME SCORING"
           : "OWNER QA · FICTIONAL FOOTBALL · SIMULATED POINTS"}
       </p>
+      {data.nfl_beta && (
+        <p className="app-auth-hint">
+          Free test cards have no cash value. NFL points arrive after games, not
+          live. Post-game scoring is being verified; unavailable results stay
+          pending.
+        </p>
+      )}
       {(data.nfl_beta ? sport !== "nfl" : sport !== "football") ? (
         <section className="fantasy-panel">
           <h2>
@@ -266,9 +273,9 @@ export function FantasyPlay({
             unavailable
           </h2>
           <p>
-            Approved squad, position, bench and competition rules are not
-            available as an active configuration. No football rules or simulated
-            rankings are applied to this sport.
+            {data.nfl_beta
+              ? "EPL is coming later. NFL is available now; we’ll add more sports when their data and scoring are ready."
+              : "This sport is not available yet. Explore your collection and community while we prepare it."}
           </p>
           <Link href="/fantasy/social">Explore the community</Link>
         </section>

@@ -61,7 +61,7 @@ test("real GoTrue project site_url is accepted only with the pinned beta callbac
           ? origin + "/auth/invite"
           : action === "recovery"
             ? origin + "/auth/recovery"
-            : projectUrl + "/auth/v1/verify",
+            : origin + "/auth/verify",
       ),
     );
     for (const badSite of [
@@ -124,17 +124,23 @@ test("Auth links bind production project and exact callbacks; secure email-chang
     );
     assert.equal(
       link.origin,
-      action === "recovery"
+      action === "recovery" || action === "signup"
         ? new URL(input.email_data.redirect_to).origin
         : projectUrl,
     );
     assert.equal(
       link.pathname,
-      action === "recovery" ? "/auth/recovery" : "/auth/v1/verify",
+      action === "recovery"
+        ? "/auth/recovery"
+        : action === "signup"
+          ? "/auth/verify"
+          : "/auth/v1/verify",
     );
     assert.equal(link.searchParams.get("type"), action);
     assert.equal(
-      link.searchParams.get(action === "recovery" ? "token_hash" : "token"),
+      link.searchParams.get(
+        action === "recovery" || action === "signup" ? "token_hash" : "token",
+      ),
       input.email_data.token_hash,
     );
   }

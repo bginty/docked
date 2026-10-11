@@ -18,6 +18,14 @@
   "kycCollection": false,
   "sport": "nfl",
   "scoringMode": "post-game",
+  "releaseStage": "invited-gameplay",
+  "scoringAcceptance": {
+    "status": "pending",
+    "freshUnattendedCollection": false,
+    "genuineMemberRoundObserved": false,
+    "authority": "Owner explicitly authorised staged friend gameplay before the existing 23:20 Sydney collector check, 11 October 2026",
+    "notice": "NFL scores are post-game. Automated collection and the first member round are still being verified; unavailable scores remain pending."
+  },
   "policyApproval": null,
   "readiness": null,
   "blockerDocument": "docs/NFL_RELEASE_CURRENT.md"

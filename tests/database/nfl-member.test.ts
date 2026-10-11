@@ -26,11 +26,16 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
           `insert into sports_feed.raw_revisions(provider,resource,body_hash,body,observed_at,rights_evidence,expires_at) values('nflverse','fixture','fixture','{"dataset":"rosters"}',clock_timestamp(),'isolated test',clock_timestamp()+interval '1 day') returning id`,
         )
       )[0].id;
-    for (const u of users)
+    for (const u of users) {
+      await q(
+        `insert into auth.users(id,email_confirmed_at) values($1,clock_timestamp())`,
+        [u],
+      );
       await q(
         `insert into beta_fantasy.members values($1,'infinity',null,clock_timestamp())`,
         [u],
       );
+    }
     const players = [];
     for (const [i, pos] of [
       "QB",
@@ -89,9 +94,23 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
     };
     const grants: string[][] = [];
     for (const u of users) {
-      const a = await cmd(u, "claim_starter");
+      const entitlement = await cmd(u, "claim_starter");
+      assert.equal(entitlement.opened, false);
+      assert.equal(
+        (
+          await q(
+            `select count(*)::int n from beta_fantasy.cards where owner_id=$1`,
+            [u],
+          )
+        )[0].n,
+        0,
+        "An entitlement does not open or issue cards",
+      );
+      assert.deepEqual(await cmd(u, "claim_starter"), entitlement);
+      const a = await cmd(u, "open_nfl_starter");
       assert.equal(a.card_ids.length, 10);
-      assert.deepEqual((await cmd(u, "claim_starter")).card_ids, a.card_ids);
+      assert.deepEqual((await cmd(u, "open_nfl_starter")).card_ids, a.card_ids);
+      assert.equal((await cmd(u, "claim_starter")).opened, true);
       grants.push(a.card_ids);
     }
     assert.equal(

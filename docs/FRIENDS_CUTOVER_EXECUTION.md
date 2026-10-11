@@ -1,6 +1,6 @@
 # Authorised NFL friends cutover execution
 
-Current authority: owner requests on 11 October 2026 to finish domain/callback acceptance and the connected friends APK. Continue after the existing **23:20 Australia/Sydney** follow-up; do not create another automation. Mailbox evidence, registrar access, support/operator, conditional retention, NFL-first scope and all-current-player eligibility are resolved. No invitations or messages are authorised by this runbook.
+Current authority: owner requests on 11 October 2026 now authorise a staged friend gameplay release **before** the existing 23:20 Australia/Sydney follow-up. See [customer-style release](CUSTOMER_FRIENDS_RELEASE.md). Do not modify or duplicate the existing follow-up. Collection acceptance remains separately pending and does not block verified login/cards/teams/free swaps. Mailbox evidence, registrar access, support/operator, conditional retention, NFL-first scope and all-current-player eligibility are resolved. No invitations or messages are authorised by this runbook.
 
 ## What tonight's check proves
 

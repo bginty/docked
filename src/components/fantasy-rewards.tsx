@@ -14,19 +14,20 @@ export function FantasyRewards({
   if (rewards.daily_available === false)
     return (
       <section className="fantasy-panel">
-        <h2>Your NFL starter collection</h2>
+        <h2>Your free NFL starter pack</h2>
         <p>
           Ten free CORE cards: 2 QB, 3 RB, 3 WR and 2 TE. Start seven, including
-          one FLEX. Card tiers never multiply match points.
+          one FLEX. Free test cards have no cash value. Every tier scores
+          equally.
         </p>
         {!rewards.starter_claimed ? (
-          <button disabled={busy} onClick={() => act("claim_starter")}>
-            Collect NFL starter cards
+          <button disabled={busy} onClick={() => act("open_nfl_starter")}>
+            {busy ? "Opening your pack…" : "Open my free pack"}
           </button>
         ) : (
           <p>
-            Starter cards delivered to My Cards. Previous test-card history is
-            preserved.
+            Your pack is open. Choose seven players from My Cards to build your
+            first team. You can change your team for free before the deadline.
           </p>
         )}
       </section>

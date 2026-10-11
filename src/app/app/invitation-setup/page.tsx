@@ -1,3 +1,4 @@
+import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
 import { AppAuthForm } from "@/components/app-auth-forms";
 import { productionInvitationsEnabled } from "@/core/auth-invitation";
 
@@ -16,7 +17,10 @@ export default function InvitationSetup() {
         Confirm your details and policy choices before entering the invited
         beta. Marketing is optional.
       </p>
-      <AppAuthForm mode="complete" />
+      <AppAuthForm
+        mode="complete"
+        customerSetup={customerOnboardingEnabled()}
+      />
     </>
   );
 }

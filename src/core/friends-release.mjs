@@ -46,12 +46,24 @@ export function assertFriendsReadiness(receipt = recorded) {
     "privacy",
     "admission",
     "security",
-    "nflCollection",
     "inventory",
     "memberGameplay",
   ])
     if (receipt.readiness.checks?.[key] !== true)
       throw Error("Friends release evidence is incomplete: " + key);
+  if (receipt.readiness.checks?.nflCollection !== true) {
+    if (
+      receipt.releaseStage !== "invited-gameplay" ||
+      receipt.scoringAcceptance?.status !== "pending" ||
+      receipt.scoringAcceptance?.freshUnattendedCollection !== false ||
+      receipt.scoringAcceptance?.genuineMemberRoundObserved !== false ||
+      !receipt.scoringAcceptance?.authority ||
+      !receipt.scoringAcceptance?.notice
+    )
+      throw Error(
+        "Pending scoring requires explicit staged gameplay authority and disclosure",
+      );
+  }
   return receipt;
 }
 

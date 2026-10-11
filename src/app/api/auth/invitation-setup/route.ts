@@ -1,3 +1,4 @@
+import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
 import { NextResponse } from "next/server";
 import { authClient, sameOrigin } from "@/server/auth";
 import { db, rateLimit } from "@/server/db";
@@ -59,10 +60,33 @@ export async function POST(request: Request) {
     } = await client.auth.getUser(token);
     if (error && !conclusiveAuthFailure(error))
       return fail(503, "Authentication service is temporarily unavailable.");
-    if (error || !user || !verifiedInvitedUser(user))
+    const customer =
+      !error &&
+      user?.email_confirmed_at &&
+      !user.is_anonymous &&
+      customerOnboardingEnabled()
+        ? (
+            await db()`select private.customer_signup_identity(${user.id}::uuid) allowed`
+          )[0]?.allowed === true
+        : false;
+    const renewal =
+      !error && user?.email_confirmed_at && customerOnboardingEnabled()
+        ? (
+            await db()`select private.pending_beta_consent(${user.id}::uuid) allowed`
+          )[0]?.allowed === true
+        : false;
+    if (error || !user || (!verifiedInvitedUser(user) && !customer && !renewal))
       return fail(401, "A verified invited account is required.");
     const claims = verifiedSessionClaims(token, user.id);
     if (!claims) return fail(401, "Session unavailable. Sign in again.");
+    if (
+      renewal &&
+      claims.aal !== "aal2" &&
+      (
+        await db()`select private.gameplay_mfa_required(${user.id}::uuid) required`
+      )[0]?.required
+    )
+      return NextResponse.json({ ok: true, redirect: "/mfa" }, { headers });
     if (!(await rateLimit(`invitation-setup:${user.id}`, 6, 300)))
       return fail(429, "Please wait before trying again.");
     const sql = db();
@@ -70,14 +94,20 @@ export async function POST(request: Request) {
       if (process.env.DOCKED_BETA_STAGING === "true") {
         const policyVersions = betaPolicyVersions();
         if (
-          !input.data.betaAdmissionCode ||
+          (!customer && !renewal && !input.data.betaAdmissionCode) ||
           input.data.betaRules !== true ||
           !policyVersions
         )
           throw Error(
             "Explicit beta invitation and policy acceptance required",
           );
-        await tx`select private.accept_admission(${input.data.betaAdmissionCode},${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${input.data.age},${tx.json(policyVersions)}::jsonb)`;
+        if (renewal) {
+          await tx`select set_config('request.jwt.claim.sub',${user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: user.id, session_id: claims.sessionId, aal: claims.aal })},true)`;
+          await tx`select private.renew_customer_consent(${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${tx.json(policyVersions)}::jsonb)`;
+        } else if (customer)
+          await tx`select private.accept_customer_admission(${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${input.data.age},${tx.json(policyVersions)}::jsonb)`;
+        else
+          await tx`select private.accept_admission(${input.data.betaAdmissionCode!},${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${input.data.age},${tx.json(policyVersions)}::jsonb)`;
       }
       await persistInvitedProfile(
         transaction(tx),
@@ -86,8 +116,17 @@ export async function POST(request: Request) {
         input.data,
         versions,
       );
+      if (customer) {
+        // This explicit final form is the entire required onboarding step.
+        // Optional sport/notification preferences can be changed later.
+        await tx`insert into private.app_onboarding(user_id,interests) values(${user.id},'both') on conflict do nothing`;
+        await tx`update public.profiles set sports=array['nfl'],timezone='Australia/Sydney',onboarding_completed_at=coalesce(onboarding_completed_at,clock_timestamp()) where id=${user.id}`;
+      }
     });
-    return NextResponse.json({ ok: true, redirect: "/app" }, { headers });
+    return NextResponse.json(
+      { ok: true, redirect: customer ? "/fantasy/cards" : "/app" },
+      { headers },
+    );
   } catch {
     // No compensating Auth deletion. Existing profiles/consent are never overwritten.
     return fail(

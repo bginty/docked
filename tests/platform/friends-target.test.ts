@@ -158,6 +158,7 @@ test("friends target binds the authorised domain and retains server identity gat
 });
 test("each free-beta evidence gate and scope restriction is mandatory", () => {
   for (const key of Object.keys(fixture().readiness.checks)) {
+    if (key === "nflCollection") continue;
     const r = fixture();
     (r.readiness.checks as Record<string, boolean>)[key] = false;
     assert.throws(() => assertFriendsReadiness(r));
@@ -178,6 +179,25 @@ test("each free-beta evidence gate and scope restriction is mandatory", () => {
     { minimumAge: 17 },
   ])
     assert.throws(() => assertFriendsReadiness({ ...fixture(), ...change }));
+});
+
+test("staged gameplay permits explicitly pending collection without waiving other evidence", () => {
+  const pending = fixture();
+  pending.readiness.checks.nflCollection = false;
+  assert.equal(assertFriendsReadiness(pending), pending);
+  for (const change of [
+    { releaseStage: "full-scoring" },
+    { scoringAcceptance: null },
+    { scoringAcceptance: { ...pending.scoringAcceptance, notice: "" } },
+    { scoringAcceptance: { ...pending.scoringAcceptance, authority: "" } },
+    {
+      scoringAcceptance: {
+        ...pending.scoringAcceptance,
+        freshUnattendedCollection: true,
+      },
+    },
+  ])
+    assert.throws(() => assertFriendsReadiness({ ...pending, ...change }));
 });
 
 test("friends consent binds the actual packet and cannot relabel historical copy", () => {

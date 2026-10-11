@@ -45,6 +45,13 @@ const allowed = new Set([
 export const fantasyProductionAction = z.union([
   z
     .object({
+      action: z.literal("open_nfl_starter"),
+      payload: z.object({}).strict(),
+      request_id: z.uuid(),
+    })
+    .strict(),
+  z
+    .object({
       action: z.literal("admin_starter_stock"),
       payload: z
         .object({ quantity: z.number().int().min(1).max(1000) })

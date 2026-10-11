@@ -14,7 +14,7 @@ export async function transitionFriendsPolicy(tx, { actor, reason }) {
     "Close friends admission before policy transition",
   );
   const [admission] =
-    await tx`select policy_versions,testers_enabled from beta_private.admission_control where id for update`;
+    await tx`select policy_versions,policy_digest,testers_enabled from beta_private.admission_control where id for update`;
   assert.equal(
     admission.testers_enabled,
     false,
@@ -48,10 +48,11 @@ export async function transitionFriendsPolicy(tx, { actor, reason }) {
       Object.keys(versions).length &&
     Object.entries(versions).every(
       ([key, value]) => admission.policy_versions[key] === value,
-    )
+    ) &&
+    admission.policy_digest === packet.packetDigest
   )
     return { changed: false, versions };
-  await tx`update beta_private.admission_control set policy_versions=${tx.json(versions)} where id`;
+  await tx`update beta_private.admission_control set policy_versions=${tx.json(versions)},policy_digest=${packet.packetDigest} where id`;
   await tx`update beta_fantasy.settings set terms_version=${packet.version},privacy_version=${packet.version}`;
   await tx`insert into beta_private.audit_events(actor,action,subject,details) values(${actor},'friends_policy_transition',${packet.version},${tx.json({ reason, previous: admission.policy_versions, resulting: versions, packetDigest: packet.packetDigest })})`;
   return { changed: true, versions };

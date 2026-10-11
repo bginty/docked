@@ -41,8 +41,10 @@ function Consent({
 
 export function AppAuthForm({
   mode,
+  customerSetup = false,
 }: {
   mode: "login" | "signup" | "recover" | "reset" | "resend" | "complete";
+  customerSetup?: boolean;
 }) {
   const router = useRouter();
   const environment = useEnvironmentPresentation();
@@ -135,7 +137,7 @@ export function AppAuthForm({
     >
       {setup && (
         <AppAuthField
-          label="Username"
+          label={customerSetup ? "Display name" : "Username"}
           name="username"
           autoComplete="username"
           autoCapitalize="none"
@@ -189,21 +191,23 @@ export function AppAuthForm({
         <>
           {mode === "complete" && environment.liveBeta && (
             <>
-              <AppAuthField
-                label="Private beta admission code"
-                name="betaAdmissionCode"
-                type="password"
-                autoComplete="off"
-                pattern="[a-f0-9]{64}"
-                minLength={64}
-                maxLength={64}
-                required
-              />
+              {!customerSetup && (
+                <AppAuthField
+                  label="Private beta admission code"
+                  name="betaAdmissionCode"
+                  type="password"
+                  autoComplete="off"
+                  pattern="[a-f0-9]{64}"
+                  minLength={64}
+                  maxLength={64}
+                  required
+                />
+              )}
               <Consent name="betaRules" required>
                 I accept the{" "}
                 <Link href="/beta-policies" target="_blank">
-                  approved beta participation, community, fantasy, competition
-                  and responsible gambling rules
+                  free beta participation, community and fantasy competition
+                  rules
                 </Link>
                 .
               </Consent>
@@ -214,6 +218,8 @@ export function AppAuthForm({
               label="Country code"
               name="country"
               placeholder="AU"
+              defaultValue={customerSetup ? "AU" : undefined}
+              readOnly={customerSetup}
               autoComplete="country"
               pattern="[A-Z]{2}"
               maxLength={2}
@@ -253,9 +259,11 @@ export function AppAuthForm({
             </Link>
             .
           </Consent>
-          <Consent name="marketing">
-            Optional: send me Docked marketing updates. I can unsubscribe.
-          </Consent>
+          {!customerSetup && (
+            <Consent name="marketing">
+              Optional: send me Docked marketing updates. I can unsubscribe.
+            </Consent>
+          )}
           {!environment.production && environment.invitationAllowed && (
             <label className="app-auth-check">
               <input

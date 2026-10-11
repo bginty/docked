@@ -1,3 +1,4 @@
+import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
 import { signOutBetaSession } from "@/core/beta-signout";
 import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
@@ -162,6 +163,16 @@ export async function POST(request: Request) {
     } | null,
     fallback: string,
   ) => {
+    if (customerOnboardingEnabled() && user?.email_confirmed_at) {
+      const [customer] =
+        await sql`select private.customer_signup_identity(${user.id}::uuid) allowed, private.pending_beta_consent(${user.id}::uuid) renewal`;
+      if (customer?.renewal) return "/app/invitation-setup";
+      if (
+        customer?.allowed &&
+        !(await sql`select id from public.profiles where id=${user.id}`).length
+      )
+        return "/app/invitation-setup";
+    }
     if (
       productionInvitationsEnabled(process.env) &&
       verifiedInvitedUser(user) &&

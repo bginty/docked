@@ -148,11 +148,11 @@ export function messagesFor(
   return recipients.map(([address, token]) => {
     // Mail scanners must not consume invitation or recovery tokens on GET.
     // Recovery's POST interstitial preserves the provider PKCE exchange.
-    const confirmation = action === "invite" || action === "recovery";
+    const confirmation = action === "invite" || action === "recovery" || action === "signup";
     const url = new URL(
       confirmation
         ? new URL(data.redirect_to).origin +
-            (action === "invite" ? "/auth/invite" : "/auth/recovery")
+              (action === "invite" ? "/auth/invite" : action === "signup" ? "/auth/verify" : "/auth/recovery")
         : projectUrl + "/auth/v1/verify",
     );
     url.searchParams.set(confirmation ? "token_hash" : "token", token);
