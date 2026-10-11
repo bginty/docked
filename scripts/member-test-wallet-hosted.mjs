@@ -13,6 +13,29 @@ assert.equal(deployment.state, "READY");
 assert.equal(deployment.effectiveTarget, "production");
 const domain = process.argv.includes("--domain");
 const base = domain ? "https://docked.com.au" : deployment.url;
+const approvedShare =
+  !domain && process.argv.includes("--approved-private-share")
+    ? JSON.parse(readFileSync("private-data/signup-candidate-access.json"))
+    : null;
+if (approvedShare) assert.equal(new URL(approvedShare.url).origin, base);
+const ownerHeaders = domain
+  ? {}
+  : { "x-vercel-trusted-oidc-idp-token": process.env.VERCEL_OIDC_TOKEN };
+if (!domain && !approvedShare) {
+  assert.ok(
+    process.env.VERCEL_OIDC_TOKEN,
+    "Use authenticated Vercel env run; never share owner access",
+  );
+  const probe = await fetch(base + "/api/beta-release", {
+    headers: ownerHeaders,
+    redirect: "manual",
+  });
+  assert.equal(
+    probe.status,
+    200,
+    "Authenticated candidate access required before QA mutation",
+  );
+}
 const qa = JSON.parse(
   readFileSync("private-data/customer-hosted-qa/identity.json"),
 );
@@ -70,23 +93,26 @@ try {
     viewport: { width: 412, height: 915 },
   });
   if (!domain) {
-    const access = JSON.parse(
-      readFileSync("private-data/signup-candidate-access.json"),
-    );
-    assert.equal(new URL(access.url).origin, base);
     page = await context.newPage();
-    await page.goto(access.url);
-    await context.route("**/*", (route) => {
+    if (approvedShare) await page.goto(approvedShare.url);
+    await context.route("**/*", async (route) => {
       const headers = { ...route.request().headers() };
+      delete headers["x-vercel-trusted-oidc-idp-token"];
+      if (!approvedShare && new URL(route.request().url()).origin === base)
+        Object.assign(headers, ownerHeaders);
       if (
         new URL(route.request().url()).origin === base &&
         route.request().method() === "POST"
-      )
+      ) {
         headers.origin = "https://docked.com.au";
+        return route.fulfill({ response: await route.fetch({ headers }) });
+      }
       return route.continue({ headers });
     });
   } else page = await context.newPage();
-  const anon = await context.request.get(base + "/api/test-wallet");
+  const anon = await context.request.get(base + "/api/test-wallet", {
+    headers: approvedShare ? {} : ownerHeaders,
+  });
   assert.equal(anon.status(), 403);
   await page.goto(base + "/app/login");
   await page.getByLabel("Email", { exact: true }).fill(qa.email);
@@ -98,7 +124,10 @@ try {
     });
   } else {
     const login = await context.request.post(base + "/api/auth", {
-      headers: { Origin: "https://docked.com.au" },
+      headers: {
+        ...(approvedShare ? {} : ownerHeaders),
+        Origin: "https://docked.com.au",
+      },
       data: {
         action: "login",
         email: qa.email,
@@ -161,8 +190,16 @@ try {
       route.request().postDataJSON()?.command?.kind === "buy-pack"
     ) {
       dropped = true;
-      const response = await route.fetch();
-      assert.equal(response.status(), 200);
+      const response = await route.fetch({
+        headers: {
+          ...route.request().headers(),
+          origin: domain ? base : "https://docked.com.au",
+        },
+      });
+      if (response.status() !== 200) {
+        await route.fulfill({ response });
+        return;
+      }
       await route.abort("failed");
     } else await route.fallback();
   });
@@ -189,6 +226,9 @@ try {
   report.checks.push(
     "Persisted purchase survived response loss and reload: same operation, one 4900 debit",
   );
+  const targetPack = afterBuy.body.state.packs
+    .filter((p) => p.status === "SEALED")
+    .at(-1);
   await page
     .getByRole("button", { name: "Open pack", exact: true })
     .last()
@@ -199,7 +239,7 @@ try {
   await expect(page.locator(".pack-case")).toBeVisible({ timeout: 30000 });
   await page.waitForTimeout(6500);
   const opened = await get();
-  const pack = opened.body.state.packs.at(-1);
+  const pack = opened.body.state.packs.find((p) => p.id === targetPack.id);
   assert.equal(pack.status, "OPENED");
   assert.equal(pack.receipt.cards.length, 1);
   const same = await post({ kind: "open-pack", entitlement: pack.id });

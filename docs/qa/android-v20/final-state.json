@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-11T10:47:14.413Z",
+  "passed": true,
+  "deployment": "dpl_FCT6gGG2ZSou1YKh3K1UKiEhb2AR",
+  "commit": "885de1b440d670b539f1577590f4e601ab2f469c",
+  "onlyOwnerBarryWalletAccess": true,
+  "syntheticQaDisabled": true,
+  "temporaryShareRevoked": true,
+  "barryGrantReference": "owner-authorized-barry-test-100000-20261011-v1",
+  "barryTestBalance": {
+    "available": 100000,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 100000,
+    "heldAvailable": 0,
+    "spendable": 100000,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true
+  },
+  "realFundsEnabled": false,
+  "physicalS26Acceptance": "Pending Barry",
+  "messagesSent": 0
+}

@@ -8,9 +8,9 @@
   "hostingProvider": "vercel",
   "vercelProjectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   "vercelTeamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
-  "deploymentId": "dpl_4tVojz4nS3VqdCCKDGEmpzVpFEan",
-  "commit": "1b739f614b609172a87e3a06bad1d09b802184a8",
-  "verifiedAt": "2026-10-11T07:04:53.190Z",
+  "deploymentId": "dpl_FCT6gGG2ZSou1YKh3K1UKiEhb2AR",
+  "commit": "885de1b440d670b539f1577590f4e601ab2f469c",
+  "verifiedAt": "2026-10-11T10:42:33.056Z",
   "acceptance": {
     "https": true,
     "invitedAuthentication": true,
@@ -27,16 +27,19 @@
     "customerSignup": "docs/CUSTOMER_FRIENDS_RELEASE.md",
     "recoveryScope": "Existing accepted Auth/recovery implementation preserved; new domain callback, non-consuming links, foreign-origin denial and signed mail scheduler verified. No new external email delivery or owner password reset performed.",
     "scoring": "Historical rollback acceptance only; fresh unattended collection and genuine member round pending",
-    "physicalDevice": "PENDING",
+    "physicalDevice": "PENDING: Samsung S26+ and S24; APK manifest/signature and browser tests only",
     "signupRepair": "docs/qa/signup-region/domain.json",
     "preservedAcceptance": "docs/FRIENDS_V17_RELEASE.md",
     "packReveal": "docs/qa/android-v19/pack-domain.json",
-    "connectionBudget": "docs/qa/android-v19/connection-budget.json"
+    "connectionBudget": "docs/qa/android-v19/connection-budget.json",
+    "testWallet": "docs/qa/android-v20/wallet-domain.json",
+    "cinematicReveal": "docs/qa/android-v20/pack-browser.json"
   },
   "safety": {
     "publicRegistration": false,
     "payments": false,
     "marketplace": false,
-    "officialBettingPublication": false
+    "officialBettingPublication": false,
+    "isolatedNonWithdrawableTestWallet": true
   }
 }

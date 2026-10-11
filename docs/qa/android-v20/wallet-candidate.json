@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-11T10:38:40.529Z",
+  "deployment": "dpl_FCT6gGG2ZSou1YKh3K1UKiEhb2AR",
+  "commit": "885de1b440d670b539f1577590f4e601ab2f469c",
+  "domain": false,
+  "checks": [
+    "Ordinary password login, no mandatory MFA, anonymous wallet denied",
+    "Owner issuance, withdrawal and foreign receipt denied; no owner reports or foreign wallet",
+    "Persisted purchase survived response loss and reload: same operation, one 4900 debit",
+    "Actual persisted award; repeat opening returns same receipt without debit",
+    "Mobile/desktop layout, accessible card dialog, owned card persists after reopening",
+    "Owner/Barry normal cards and profiles unchanged; Barry financial balance unchanged by QA"
+  ],
+  "passed": true
+}

@@ -1,7 +1,7 @@
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/browser",
-  testMatch: "pack-opening.test.ts",
+  testMatch: ["pack-opening.test.ts", "pack-cinematic.test.ts"],
   timeout: 60000,
   workers: 1,
   use: { headless: true, channel: "msedge" },

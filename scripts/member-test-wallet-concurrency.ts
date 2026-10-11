@@ -13,7 +13,11 @@ async function main() {
   assert.match(new URL(url).hostname, /^(127\.0\.0\.1|localhost)$/);
   assert.match(new URL(url).pathname, /docked_free_play_test_/);
   const sql = postgres(url, { max: 8, onnotice: () => {} }),
-    runtime = postgres(url, { max: 1, onnotice: () => {} });
+    runtime = postgres(url, {
+      max: 8,
+      connection: { options: "-c role=docked_beta_app" },
+      onnotice: () => {},
+    });
   try {
     await sql.unsafe(
       "create schema auth;create table auth.users(id uuid primary key);create role anon;create role authenticated;create role service_role;create role docked_beta_app;",
@@ -44,7 +48,10 @@ async function main() {
       ),
     );
     assert.equal(wallet(await store.read(), "barry").available, 100000);
-    await runtime`set role docked_beta_app`;
+    assert.equal(
+      (await runtime`select current_user name`)[0].name,
+      "docked_beta_app",
+    );
     const memberStore = new CreditsSandboxStore(runtime);
     await assert.rejects(
       () => runtime`update credits_sandbox.access set enabled=true`,
