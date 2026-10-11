@@ -45,6 +45,22 @@ const allowed = new Set([
 export const fantasyProductionAction = z.union([
   z
     .object({
+      action: z.literal("name_team"),
+      payload: z
+        .object({
+          name: z
+            .string()
+            .trim()
+            .min(2)
+            .max(40)
+            .regex(/^[A-Za-z0-9][A-Za-z0-9 .'-]*$/),
+        })
+        .strict(),
+      request_id: z.uuid(),
+    })
+    .strict(),
+  z
+    .object({
       action: z.literal("open_nfl_starter"),
       payload: z.object({}).strict(),
       request_id: z.uuid(),

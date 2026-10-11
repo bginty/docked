@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { LocalDateTime } from "./local-date-time";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 import {
@@ -10,7 +11,6 @@ import {
   formationFor,
   historicalCards,
   lineupIssues,
-  localTime,
   playRounds,
 } from "@/core/fantasy-play";
 import {
@@ -67,6 +67,7 @@ export function FantasyPlay({
     [search, setSearch] = useState(""),
     [tier, setTier] = useState("");
   const [pointRound, setPointRound] = useState("");
+  const [teamName, setTeamName] = useState(data.team_name ?? "");
   const close = useCallback(() => {
     setSlot(null);
     setDetail(null);
@@ -285,12 +286,46 @@ export function FantasyPlay({
             <div className="team-round">
               <div>
                 <h2>
-                  {data.members.find((m) => m.id === data.user_id)?.name &&
-                  data.members.find((m) => m.id === data.user_id)?.name !==
-                    "You"
-                    ? `${data.members.find((m) => m.id === data.user_id)?.name}’s team`
-                    : "Your Docked team"}
+                  {data.team_name ||
+                    (data.members.find((m) => m.id === data.user_id)?.name &&
+                    data.members.find((m) => m.id === data.user_id)?.name !==
+                      "You"
+                      ? `${data.members.find((m) => m.id === data.user_id)?.name}’s team`
+                      : "Your Docked team")}
                 </h2>
+                {data.nfl_beta && (
+                  <details open={!data.team_name}>
+                    <summary>
+                      {data.team_name
+                        ? "Edit team name"
+                        : "Name your first team"}
+                    </summary>
+                    <form
+                      className="app-auth-form"
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        await act("name_team", { name: teamName.trim() });
+                      }}
+                    >
+                      <label>
+                        Team name
+                        <input
+                          value={teamName}
+                          onChange={(e) => setTeamName(e.target.value)}
+                          minLength={2}
+                          maxLength={40}
+                          pattern="[A-Za-z0-9][A-Za-z0-9 .'-]*"
+                          required
+                        />
+                      </label>
+                      <button
+                        disabled={busy || teamName.trim() === data.team_name}
+                      >
+                        Save name
+                      </button>
+                    </form>
+                  </details>
+                )}
                 <p>
                   {current
                     ? `Scoring round ${current.round}`
@@ -344,7 +379,9 @@ export function FantasyPlay({
           {view === "points" && next && (
             <div className="deadline-card">
               <span>Next lineup deadline · Round {next.round}</span>
-              <strong>{localTime(next.locks_at)}</strong>
+              <strong>
+                <LocalDateTime value={next.locks_at} />
+              </strong>
               <span>{countdown(next.locks_at, now)} · your local time</span>
             </div>
           )}
@@ -413,7 +450,9 @@ export function FantasyPlay({
                   {comp && (
                     <div className="deadline-card">
                       <span>Next lineup deadline · Round {comp.round}</span>
-                      <strong>{localTime(comp.locks_at)}</strong>
+                      <strong>
+                        <LocalDateTime value={comp.locks_at} />
+                      </strong>
                       <span>
                         {countdown(comp.locks_at, now)} · your local time
                       </span>

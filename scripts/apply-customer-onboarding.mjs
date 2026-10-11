@@ -12,6 +12,7 @@ assert.ok(evidence.checks.some((s) => s.includes("owner policy resumption")));
 const names = [
   "20261011045327_customer_beta_onboarding.sql",
   "20261011045504_customer_invitation_eligibility.sql",
+  "20261011052829_beta_team_names.sql",
 ];
 const hash = (s) => createHash("sha256").update(s).digest("hex");
 const sql = ownerDatabase();

@@ -36,6 +36,58 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
         [u],
       );
     }
+    await q("select set_config('request.jwt.claim.sub',$1,false)", [users[0]]);
+    const nameRequest = randomUUID();
+    const named = (
+      await q("select beta_fantasy.name_team($1,$2) result", [
+        "Harbour Team",
+        nameRequest,
+      ])
+    )[0].result;
+    assert.equal(named.name, "Harbour Team");
+    assert.deepEqual(
+      (
+        await q("select beta_fantasy.name_team($1,$2) result", [
+          "Harbour Team",
+          nameRequest,
+        ])
+      )[0].result,
+      named,
+    );
+    await assert.rejects(
+      () =>
+        q("select beta_fantasy.name_team($1,$2)", [
+          "Changed Team",
+          nameRequest,
+        ]),
+      /Request ID reused/,
+    );
+    await assert.rejects(
+      () =>
+        q("select beta_fantasy.name_team($1,$2)", ["<script>", randomUUID()]),
+      /Use 2 to 40/,
+    );
+    assert.equal(
+      (
+        await q(
+          "select count(*)::int n from beta_private.audit_events where action='beta_team_named'",
+        )
+      )[0].n,
+      1,
+    );
+    await q("select set_config('request.jwt.claim.sub',$1,false)", [users[1]]);
+    assert.equal(
+      (await q("select beta_fantasy.my_team_name() name"))[0].name,
+      null,
+    );
+    assert.equal(
+      (
+        await q(
+          "select has_function_privilege('anon','beta_fantasy.name_team(text,uuid)','execute') allowed",
+        )
+      )[0].allowed,
+      false,
+    );
     const players = [];
     for (const [i, pos] of [
       "QB",

@@ -112,15 +112,16 @@ export default async function FantasyPage({
         ) : (
           <FantasyScreen key={tab} tab={tab} initial={data.state} />
         )}
-        {process.env.DOCKED_OWNER_GAMEPLAY === "true" && (
-          <p className="notice" role="note">
-            {data.state.nfl_beta
-              ? "Protected NFL beta · real roster cards and post-game scoring. External admission remains closed; EPL unavailable. No payments or prizes."
-              : process.env.DOCKED_TWO_PERSON_BETA === "true"
-                ? "Two-person private beta · fictional cards, simulated scoring and sandbox swaps. No real money or live sports results."
-                : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
-          </p>
-        )}
+        {process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
+          process.env.DOCKED_FRIENDS_BETA !== "true" && (
+            <p className="notice" role="note">
+              {data.state.nfl_beta
+                ? "Protected NFL beta · real roster cards and post-game scoring. External admission remains closed; EPL unavailable. No payments or prizes."
+                : process.env.DOCKED_TWO_PERSON_BETA === "true"
+                  ? "Two-person private beta · fictional cards, simulated scoring and sandbox swaps. No real money or live sports results."
+                  : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
+            </p>
+          )}
         {feed && (
           <section className="fantasy-social">
             <div className="actions">

@@ -30,15 +30,26 @@ export async function fantasyRequest(
     if (!production) await setPreviewCommunityContext(tx);
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true),set_config('docked.fantasy_preview',${production ? "" : "test-credits-only"},true),set_config('docked.fantasy_production',${production ? productionManifest.supabaseProjectRef! : ""},true)`;
     const output = command
-      ? production
-        ? await tx`select fantasy.production_command(${command.action},${tx.json(command.payload)}::jsonb,${command.request_id}::uuid) as result`
-        : await tx`select fantasy.command(${command.action},${tx.json(command.payload)}::jsonb,${command.request_id}::uuid) as result`
+      ? production &&
+        process.env.DOCKED_BETA_STAGING === "true" &&
+        command.action === "name_team"
+        ? await tx`select fantasy.name_team(${command.payload.name},${command.request_id}::uuid) as result`
+        : production
+          ? await tx`select fantasy.production_command(${command.action},${tx.json(command.payload)}::jsonb,${command.request_id}::uuid) as result`
+          : await tx`select fantasy.command(${command.action},${tx.json(command.payload)}::jsonb,${command.request_id}::uuid) as result`
       : [];
     const state = production
       ? await tx`select fantasy.production_read_state() as state`
       : await tx`select fantasy.read_state() as state`;
+    const view = state[0].state as FantasyState;
+    if (
+      production &&
+      process.env.DOCKED_BETA_STAGING === "true" &&
+      view.nfl_beta
+    )
+      view.team_name = (await tx`select fantasy.my_team_name() name`)[0].name;
     return {
-      state: state[0].state as FantasyState,
+      state: view,
       result: (output[0]?.result ?? {}) as Record<string, unknown>,
     };
   })) as { state: FantasyState; result: Record<string, unknown> };

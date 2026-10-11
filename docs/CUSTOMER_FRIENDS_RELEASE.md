@@ -21,8 +21,16 @@ The staged release instruction supersedes waiting for tonight's collector before
 - Hosted rollback-only two-user SQL acceptance passed: real historical results, 71.24 totals, immutable locked snapshots, standings and a labelled synthetic +0.04 correction. Owner policy resumption rejects AAL1 and appends once at AAL2. All acceptance records rolled back.
 - Both additive migrations applied to the exact isolated beta project with unchanged fingerprints for existing accounts, MFA, profiles, consent, holdings, commercial scarcity and lineups. Signup worker deployed **disabled**. No account or email created by deployment.
 
+## Hosted customer acceptance update
+
+An isolated synthetic ordinary account now passed real Auth creation, non-consuming verification GET and token POST, original-password login without MFA, resumed AU18+/policy/display-name acceptance, an unopened entitlement surviving refresh, and explicit opening of ten real NFL beta cards once. No external email was sent: the QA verification token was generated privately; this is not new delivery evidence. The owner and named friend were not modified.
+
+Hosted browser selection saved/reopened seven eligible cards and replaced the QB before lock. Pending points remained empty. Each unlocked internal draft was removed with its snapshot preserved in an audit event, before any genuine round lock. The internal QA reservation remains within the ten-account ceiling (nine remaining external slots); no permanent roster or scarcity guard was bypassed.
+
+Console acceptance found a server/device date-format hydration mismatch. A shared local-time component now hydrates a deterministic UTC fallback before device formatting; its Sydney browser regression passed. A persisted beta-only team name was also added with input validation, own-account enforcement, request idempotency and audit history; the additive migration preserved existing holdings and commercial inventory. The focused database regression, typecheck and lint passed. Hosted verification of these final changes remains pending.
+
 ## Outstanding release evidence
 
-Fresh ordinary-member hosted signup/token verification, interrupted onboarding and team restoration; domain/callback transition; accessible domain check; accepted-host Android build and credential/signature scan. Do not label these passed from SQL or component tests. No friends APK is released yet.
+Final corrected hosted console/team-name acceptance; domain/callback transition; accessible domain check; accepted-host Android build and credential/signature scan. Do not label these passed from SQL or component tests. No friends APK is released yet.
 
 Keep DNS/Auth rollback preimages in `private-data/friends-cutover/`. The holding page and owner APK remain released until cutover passes. Do not distribute v16 as a friends build. No invitations until explicit send authorisation.
