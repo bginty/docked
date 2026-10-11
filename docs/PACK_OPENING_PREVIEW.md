@@ -41,3 +41,13 @@ Preview rollback: keep/remove its Preview flag or revert the Preview deployment.
 - Seven local browser journeys passed at 360, 412 and 1366 px; no dialog accessibility violations. Typecheck/lint and production-format build passed. Client bundle scan: 51 files, zero findings.
 - First hosted protected Preview passed starter, single-card, resume, anonymous API denial, 412/1366 px accessibility and page-error checks. Live friends commit remained fe2bacd4, and the design route was unavailable on production. Final deployment evidence below supersedes the initial Preview URL.
 - Supabase advisor: private default-deny table notices and the existing leaked-password-protection warning; no Auth policy changed.
+
+## Final protected Preview
+
+Review: https://docked-production-iv1jynrsc-briant-s-projects.vercel.app/preview/pack-opening
+
+Deployment `dpl_EsAYFpanMf8PeH3BdPnfBw7SaBco`, application commit `18e02f443b61491acd7d0dfc6308c2eb8d679385`. Hosted build is READY. The final hosted run at 2026-10-11 06:32 UTC passed starter, single-card and resume checks at 412 and 1366 px, with zero full-page/dialog axe violations and zero browser page errors. Anonymous access was rejected, the live friends release remained unchanged, and the design route remained unavailable on production.
+
+The acceptance script now waits for the same exact ten-card summary assertion after React restores presentation progress; an earlier immediate count raced that effect. No product behaviour or integrity assertion was weakened.
+
+The protected design page uses labelled synthetic sample cards. Hosted visual checks are not evidence that a genuine new member has opened their starter pack. Owner visual approval and physical Samsung S24 acceptance remain pending. The friends website and Android v17 continue using their existing release until that approval.

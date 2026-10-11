@@ -1,7 +1,7 @@
 // Protected design sample only. No auth reset, member award or external message.
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
-import { chromium } from "@playwright/test";
+import { chromium, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 const d = JSON.parse(
   readFileSync("docs/qa/pack-opening/deployment-status.json"),
@@ -54,10 +54,10 @@ try {
       path: `docs/qa/pack-opening/hosted-reveal-${width}.png`,
     });
     await page.getByRole("button", { name: "Reveal all", exact: true }).click();
-    assert.equal(await page.locator(".pack-summary li").count(), 10);
+    await expect(page.locator(".pack-summary li")).toHaveCount(10);
     await page.getByRole("button", { name: "Close panel" }).click();
     await page.getByRole("button", { name: "Resume saved result" }).click();
-    assert.equal(await page.locator(".pack-summary li").count(), 10);
+    await expect(page.locator(".pack-summary li")).toHaveCount(10);
     await page.getByRole("button", { name: "Close panel" }).click();
     await page.getByRole("button", { name: "Preview single card" }).click();
     await page.getByRole("button", { name: "Open pack seal" }).click();
