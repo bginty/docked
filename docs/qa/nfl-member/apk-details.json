@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-11T01:11:09.2010534Z",
+  "artifact": "artifacts/android/Docked-v16-NFL-Owner-Connected-QA.apk",
+  "bytes": 11036122,
+  "sha256": "c27e7b85912a9fe1070d7f2a28365e595965645366b93496420aa180bcc195b5",
+  "current": {
+    "package": "au.com.docked.app.preview",
+    "label": "Docked Preview",
+    "versionCode": 16,
+    "versionName": "1.15-preview",
+    "signingCertificateSha256": "38d427f45d24542f23e798b5692321044e68c8c929f7bd23773ac0872dedb66b",
+    "debuggable": false,
+    "nativeAbiDeclaration": "native-code: 'arm64-v8a' 'armeabi-v7a' 'x86' 'x86_64'",
+    "arm64Compatible": true,
+    "minimumSdk": 24,
+    "targetSdk": 36
+  },
+  "priorVersionCode": 15,
+  "samePackageAndSigningCertificate": true,
+  "cleartextDisabledInPackagedResources": true,
+  "compiledNetworkPolicyPath": "res/8G.xml",
+  "status": "PASS"
+}
