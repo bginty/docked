@@ -45,7 +45,11 @@ export function PackOpeningPreview() {
     cards: single ? previewReceipt.cards.slice(0, 1) : previewReceipt.cards,
   };
   return (
-    <main className="fantasy-public" style={{ maxWidth: 900, margin: "auto" }}>
+    <section
+      aria-label="Pack opening design preview"
+      className="fantasy-public"
+      style={{ maxWidth: 900, margin: "auto" }}
+    >
       <img
         src={fantasyAssets.compactLarge}
         width="220"
@@ -127,6 +131,6 @@ export function PackOpeningPreview() {
           </button>
         </FantasySheet>
       )}
-    </main>
+    </section>
   );
 }

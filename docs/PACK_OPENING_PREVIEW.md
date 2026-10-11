@@ -34,3 +34,10 @@ Fresh browser screenshots are under `docs/qa/pack-opening/`. Deployment and host
 The current production deployment/domain and v17 are preserved. Do not distribute an updated APK or enable this experience in the friends website until the owner approves its visual Preview. After approval, perform a separate versioned website/APK release with the same signing/package identity and ordinary-member admission controls.
 
 Preview rollback: keep/remove its Preview flag or revert the Preview deployment. The new receipt function can remain unused; no destructive database rollback is necessary. Collector schedules and the existing 23:20 Sydney follow-up are unchanged. No new service or cost.
+
+## Executed results
+
+- 24 targeted platform/customer-database tests plus the NFL allocation/receipt database scenario passed.
+- Seven local browser journeys passed at 360, 412 and 1366 px; no dialog accessibility violations. Typecheck/lint and production-format build passed. Client bundle scan: 51 files, zero findings.
+- First hosted protected Preview passed starter, single-card, resume, anonymous API denial, 412/1366 px accessibility and page-error checks. Live friends commit remained fe2bacd4, and the design route was unavailable on production. Final deployment evidence below supersedes the initial Preview URL.
+- Supabase advisor: private default-deny table notices and the existing leaked-password-protection warning; no Auth policy changed.

@@ -438,7 +438,7 @@ export default function PackOpening(props: PackOpeningProps) {
         {stage === "summary" && receipt && (
           <>
             <h3 ref={title} tabIndex={-1}>
-              {props.replay
+              {props.replay || replaying
                 ? "Your original pack result"
                 : "Ready to build your team"}
             </h3>
