@@ -46,6 +46,20 @@ Optional EPL work: follow API_FOOTBALL_ACTIVATION.md to configure the free-accou
 
 ## Release / recovery
 
+### Final protected delivery
+
+- Web: https://docked-production-ma0j6h6we-briant-s-projects.vercel.app/fantasy/play
+- Deployment: `dpl_2hC7cKyP7cAChXqLfxovhPzQkhhK`; committed web source `5ffa6eaa7eca444e3fd1df2f3cb1d82fae281fa5`. Protected Preview; not the public domain.
+- APK: `artifacts/android/Docked-v16-NFL-Owner-Connected-QA.apk`, versionCode 16 / versionName 1.15-preview. Exact hash/size/signature in `qa/nfl-member/apk-details.json`; embedded origin in `apk-audit.json`. Local file has no scheduled download expiry; hosted availability/session access remains required. No hosting bypass or privileged credentials are embedded.
+- Install: copy the APK to the S24 Downloads folder, open it and choose **Update**. Permit installation from the chosen file source if Android asks. Do not uninstall Docked or clear its data. Existing package/signing match v15; a later installed version or a different signing channel must be checked instead of uninstalling to force it. This build still requires owner access to the protected deployment; do not distribute it as a friends-ready APK.
+- Automated checks: final typecheck/lint/build; 252 platform and 148 database/RLS tests; browser suite 36 initial passes plus all three repaired stale-copy cases passed on rerun, separate NFL interaction/accessibility acceptance passed; hosted two-user rollback SQL and HTTP denials passed. No physical-device pass.
+- Added final swap review: archived fictional holdings are excluded from the NFL swap selector, legacy extra-pack/balance controls are rejected; real swaps are free in friends mode. Two-user hosted offer/cancel/accept/idempotent repeat/stale competing offer and locked-lineup denial passed. Ownership events remain auditable; all QA changes rolled back.
+- No friends invited, external admission remains off, holding page unchanged. No payments/prizes/withdrawals/KYC collection. EPL unavailable.
+
+Owner review: (1) identify/sign into the **existing** email administration account/portal described in FREE_BETA_SERVICE_FACTS, without buying anything; (2) review Play/selection/points screenshots and update S24, checking login/reopen, save, Back/keyboard and five tabs; (3) supply and authorise tester emails when ready. No repeat approval for NFL-first scope, support operator, retention intent or all-current-player eligibility is requested.
+
+For a web rollback, previous compatible Preview is `dpl_BgcDXRpkrMMA3hDt2fmvjQCcM56S` at `https://docked-production-2mrjjbm8f-briant-s-projects.vercel.app` (a4a9e89d). The additive swap guard remains safe with it. Earlier APKs are preserved; do not force an Android downgrade. Current final receipts may be committed after the web-source commit; receipt-only commits do not require another web deployment.
+
 Do not describe protected hosted QA as a friends-ready domain release. Once shared facts and checks pass, use existing domain authorisation; keep invite-only application admission and no hosting bypass in APK. Current protected deployment/APK identifiers are in the final delivery receipt appended below.
 
 Rollback uses the preceding protected web deployment and preserved APK. For collector incidents, unschedule only the five named NFL jobs and revoke/rotate its dedicated token/role; keep immutable evidence, cards, grants and locked snapshots. Disable `sports_feed.nfl_control` only as a deliberate operator rollback (it restores the old read path). Never drop beta tables or restore a whole database over new holdings. Production holding page remains untouched while external checks are blocked.

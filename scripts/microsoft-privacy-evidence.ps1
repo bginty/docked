@@ -16,4 +16,4 @@ if ($dockedMailbox.RetentionPolicy) {
     Get-RetentionPolicyTag -Identity $dockedTag | Select-Object Name,Type,RetentionEnabled,AgeLimitForRetention,RetentionAction | Format-List
   }
 }
-Write-Output 'Also inspect Purview applied/adaptive retention, label policies and eDiscovery holds; this Exchange readback alone is not complete retention evidence.'
+Write-Output 'If existing hold/label/policy evidence requires follow-up, use the current administrator or provider to identify it. Do not purchase Purview or assume an unavailable portal means no holds. This readback is settings evidence, not a permanent-erasure guarantee. Selected Docked messages may be exported through existing Outlook without paid eDiscovery.'

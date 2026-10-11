@@ -56,6 +56,8 @@ Supabase's [default email service is not intended for production](https://supaba
 
 ## Provisioning and release sequence
 
+**Superseded for the free NFL beta:** use [NFL_FREE_BETA_CUTOVER](NFL_FREE_BETA_CUTOVER.md). Existing Docked services are provisioned; do not follow the historical new-project/purchase steps below or buy SMTP merely because they appear here. The existing scoped Graph sender is retained.
+
 1. Verify the chosen paid hosting team and create only `docked-production`. Record its actual team/project IDs; expose Vercel system environment variables. Keep the old Pages source and Preview project intact.
 2. After the quoted cost acknowledgement, create `Docked Production` in the existing Docked Supabase organisation, Sydney, standard PostgreSQL. Verify organisation, name, reference and region before any migration. Preserve Preview's accounts and test data.
 3. Apply the repository's ordered schema migrations to the empty production database, never copy Preview data. Review the migrations' closed defaults. Run PostgreSQL/RLS tests, hosted advisors and direct anonymous/member/staff access probes. Provision a reviewed dedicated application database role; do not use the schema owner's password in the web deployment. Confirm account/session deletion can revoke immediately with that role.
