@@ -20,7 +20,7 @@ const qa = JSON.parse(
 );
 assert.match(qa.email, /^docked-internal-qa-[a-f0-9]+@example\.invalid$/);
 const db = ownerDatabase();
-let browser;
+let browser, qaPage;
 let rosterBefore;
 mkdirSync("docs/qa/android-v19", { recursive: true });
 const report = {
@@ -76,6 +76,7 @@ try {
       return r.continue({ headers });
     });
   const page = await context.newPage();
+  qaPage = page;
   if (privateAccess) {
     assert.equal(new URL(privateAccess.url).origin, base);
     await page.goto(privateAccess.url);
@@ -157,13 +158,17 @@ try {
       page.getByText("REPLAY · NO NEW AWARDS", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: receipt.cards[0].name, exact: true }),
+      page
+        .locator("dialog h3[tabindex]")
+        .filter({ hasText: receipt.cards[0].name }),
     ).toBeVisible();
     await page
       .getByRole("button", { name: "Reveal next", exact: true })
       .click();
     await expect(
-      page.getByRole("heading", { name: receipt.cards[1].name, exact: true }),
+      page
+        .locator("dialog h3[tabindex]")
+        .filter({ hasText: receipt.cards[1].name }),
     ).toBeVisible();
     const axe = await new AxeBuilder({ page }).include("dialog").analyze();
     assert.deepEqual(axe.violations, []);
@@ -182,7 +187,9 @@ try {
       .getByRole("button", { name: "View saved pack result", exact: true })
       .click();
     await expect(
-      page.getByRole("heading", { name: receipt.cards[1].name, exact: true }),
+      page
+        .locator("dialog h3[tabindex]")
+        .filter({ hasText: receipt.cards[1].name }),
     ).toBeVisible();
     await page.getByRole("button", { name: "Reveal all", exact: true }).click();
     await expect(page.locator(".pack-summary li")).toHaveCount(10);
@@ -190,6 +197,9 @@ try {
       .getByRole("button", { name: "Close panel", exact: true })
       .click();
     await page.reload();
+    console.log(
+      JSON.stringify({ reloadedPath: new URL(page.url()).pathname, width }),
+    );
     await page
       .getByRole("button", { name: "View saved pack result", exact: true })
       .click();
@@ -202,7 +212,9 @@ try {
       })
       .click();
     await expect(
-      page.getByRole("heading", { name: receipt.cards[0].name, exact: true }),
+      page
+        .locator("dialog h3[tabindex]")
+        .filter({ hasText: receipt.cards[0].name }),
     ).toBeVisible();
     await expect(
       page.getByText("Simple view · all card details are available below."),
@@ -230,6 +242,15 @@ try {
   assert.equal(sample.status(), 404);
   assert.deepEqual(errors, []);
   report.passed = true;
+} catch (error) {
+  if (qaPage) {
+    await qaPage.screenshot({ path: "private-data/pack-v19-failure.png" });
+    writeFileSync(
+      "private-data/pack-v19-failure.txt",
+      await qaPage.locator("body").innerText(),
+    );
+  }
+  throw error;
 } finally {
   await browser?.close();
   if (rosterBefore === false)

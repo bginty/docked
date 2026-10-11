@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-11T06:58:16.785Z",
+  "sourceCommit": "1b739f614b609172a87e3a06bad1d09b802184a8",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "packAndFriendsGateTests": 8,
+  "androidRegressionTests": 17,
+  "nflMigrationReceiptScenario": "PASS",
+  "browserTests": 7,
+  "browserWidths": [
+    360,
+    412,
+    1366
+  ],
+  "browserScope": "Local isolated fixtures: signup, interrupted/lost response, duplicate taps, resume, single/multiple cards, reduced motion, keyboard, accessibility",
+  "initialBrowserAttempt": "Sandbox Chromium unavailable; host-installed Chromium rerun passed",
+  "physicalDevice": "PENDING",
+  "visualOwnerApproval": "PENDING; inclusion in friends release explicitly authorised"
+}

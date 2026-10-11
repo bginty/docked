@@ -8,9 +8,9 @@
   "hostingProvider": "vercel",
   "vercelProjectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   "vercelTeamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
-  "deploymentId": "dpl_2B1cdf6LogHXMK3q4AAEvsm6rP1b",
-  "commit": "cdd7bb497d856d873f8abe030a6cde3074393585",
-  "verifiedAt": "2026-10-11T06:46:12.346Z",
+  "deploymentId": "dpl_4tVojz4nS3VqdCCKDGEmpzVpFEan",
+  "commit": "1b739f614b609172a87e3a06bad1d09b802184a8",
+  "verifiedAt": "2026-10-11T07:04:53.190Z",
   "acceptance": {
     "https": true,
     "invitedAuthentication": true,
@@ -29,7 +29,9 @@
     "scoring": "Historical rollback acceptance only; fresh unattended collection and genuine member round pending",
     "physicalDevice": "PENDING",
     "signupRepair": "docs/qa/signup-region/domain.json",
-    "preservedAcceptance": "docs/FRIENDS_V17_RELEASE.md"
+    "preservedAcceptance": "docs/FRIENDS_V17_RELEASE.md",
+    "packReveal": "docs/qa/android-v19/pack-domain.json",
+    "connectionBudget": "docs/qa/android-v19/connection-budget.json"
   },
   "safety": {
     "publicRegistration": false,

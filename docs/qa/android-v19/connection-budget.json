@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-11T07:04:21.248Z",
+  "before": {
+    "rolconnlimit": 8,
+    "rolsuper": false,
+    "rolinherit": false,
+    "rolcreaterole": false,
+    "rolcreatedb": false,
+    "rolcanlogin": true,
+    "rolreplication": false,
+    "rolbypassrls": false
+  },
+  "after": {
+    "rolconnlimit": 16,
+    "rolsuper": false,
+    "rolinherit": false,
+    "rolcreaterole": false,
+    "rolcreatedb": false,
+    "rolcanlogin": true,
+    "rolreplication": false,
+    "rolbypassrls": false
+  },
+  "maxConnections": 60,
+  "otherConnections": 16,
+  "additionalCost": 0,
+  "noGrantsChanged": true,
+  "noSessionsTerminated": true,
+  "scope": "Docked isolated beta role; connection resource budget only",
+  "rollback": "ALTER ROLE docked_beta_app CONNECTION LIMIT 8; investigate saturation before rollback"
+}

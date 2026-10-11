@@ -1,6 +1,6 @@
 # Release update — 11 October 2026
 
-Owner explicitly approved including the new pack opening in Barry’s next friends update. This supersedes the Preview-only release restriction below for actual authenticated pack receipts. The synthetic design route remains Preview-only. Release inclusion is authorised; physical S24 and owner visual acceptance remain pending. The friends flag is separately bound to the exact isolated beta target; allocation and commercial controls are unchanged. Android v19 is in preparation.
+Owner explicitly approved including the new pack opening in Barry’s next friends update. This supersedes the Preview-only release restriction below for actual authenticated pack receipts. The synthetic design route remains Preview-only. Release inclusion is authorised; physical S24 and owner visual acceptance remain pending. The friends flag is separately bound to the exact isolated beta target; allocation and commercial controls are unchanged. Android v19 is released; see [FRIENDS_V19_RELEASE](FRIENDS_V19_RELEASE.md) for actual hosted-member acceptance, artifact and dispatch evidence.
 
 # Pack opening — visual review milestone
 
