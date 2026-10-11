@@ -12,7 +12,7 @@ import {
   fantasyProductionAction,
 } from "@/core/fantasy-production";
 import productionManifest from "../../config/hosted-production.json";
-import { packRevealPreview } from "@/core/pack-opening";
+import { packExperienceEnabled } from "@/core/pack-experience";
 export async function fantasyRequest(
   input?: unknown,
 ): Promise<{ state: FantasyState; result: Record<string, unknown> }> {
@@ -53,7 +53,7 @@ export async function fantasyRequest(
       production &&
       process.env.DOCKED_BETA_STAGING === "true" &&
       view.nfl_beta &&
-      packRevealPreview()
+      packExperienceEnabled()
     )
       view.starter_receipt = (
         await tx`select fantasy.my_nfl_pack_receipt() receipt`

@@ -9,6 +9,7 @@ import {
 } from "../../src/core/friends-release.mjs";
 import { assertHostedBeta } from "../../src/core/hosted-beta.mjs";
 import { friendsReleaseIdentity } from "../../src/core/beta-release-identity.mjs";
+import { packExperienceEnabled } from "../../src/core/pack-experience";
 
 const fixture = () => ({
   ...receipt,
@@ -89,6 +90,39 @@ test("complete friends guard retains exact project, role, commercial and secret 
     ),
   };
   assert.equal(assertHostedBeta(env, fixture()), true);
+  assert.equal(packExperienceEnabled(env), false);
+  assert.equal(
+    packExperienceEnabled({
+      ...env,
+      NEXT_PUBLIC_DOCKED_FRIENDS_PACK_REVEAL: "true",
+    }),
+    false,
+  );
+  assert.equal(
+    packExperienceEnabled({ ...env, DOCKED_FRIENDS_PACK_REVEAL: "true" }),
+    true,
+  );
+  assert.equal(
+    packExperienceEnabled({
+      ...env,
+      DOCKED_FRIENDS_PACK_REVEAL: "true",
+      DOCKED_FRIENDS_BETA: "false",
+    }),
+    false,
+  );
+  for (const change of [
+    { VERCEL_PROJECT_ID: "other" },
+    { DATABASE_URL: env.DATABASE_URL.replace("docked_beta_app", "docked_app") },
+    { PAID_PLANS_ENABLED: "true" },
+    { SITE_URL: "https://other.example" },
+  ])
+    assert.throws(() =>
+      packExperienceEnabled({
+        ...env,
+        DOCKED_FRIENDS_PACK_REVEAL: "true",
+        ...change,
+      }),
+    );
   assert.deepEqual(friendsReleaseIdentity(env, fixture()), {
     hostingProvider: "vercel",
     siteId: env.VERCEL_PROJECT_ID,

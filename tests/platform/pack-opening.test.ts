@@ -6,7 +6,7 @@ import {
   revealIndex,
   type PackReceipt,
 } from "../../src/core/pack-opening";
-test("pack experience never activates on production or by a client flag", () => {
+test("design Preview flag never activates on production or by a client flag", () => {
   assert.equal(
     packRevealPreview({
       DOCKED_PACK_REVEAL_PREVIEW: "true",

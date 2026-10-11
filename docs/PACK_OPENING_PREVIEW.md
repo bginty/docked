@@ -1,3 +1,7 @@
+# Release update — 11 October 2026
+
+Owner explicitly approved including the new pack opening in Barry’s next friends update. This supersedes the Preview-only release restriction below for actual authenticated pack receipts. The synthetic design route remains Preview-only. Release inclusion is authorised; physical S24 and owner visual acceptance remain pending. The friends flag is separately bound to the exact isolated beta target; allocation and commercial controls are unchanged. Android v19 is in preparation.
+
 # Pack opening — visual review milestone
 
 The friends release is already live on docked.com.au, with connected Android v17. Its accepted opening flow remains unchanged. The first eligibility-only friend invitation was authorised and submitted once (Graph 202); no account, consent or cards were created on the friend's behalf. Inbox delivery and friend acceptance are not claimed.
