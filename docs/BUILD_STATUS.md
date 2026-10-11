@@ -1,4 +1,6 @@
-Pack reveal Preview — implementation and acceptance are documented in [PACK_OPENING_PREVIEW](PACK_OPENING_PREVIEW.md). The friends site/v17 stays unchanged until owner visual approval; payments remain off.
+Signup repair live — 11 October 2026: [SIGNUP_REGION_REPAIR](SIGNUP_REGION_REPAIR.md). Application `cdd7bb49`, deployment `dpl_2B1cdf6LogHXMK3q4AAEvsm6rP1b` now serves docked.com.au. State names/codes normalize before admission; the beta form uses a selector. Hosted synthetic-member login/setup retry/restoration and 15 domain boundary checks passed. The friend's verified account remains intact and awaits their own final setup submission. v17 receives this hosted fix without reinstalling.
+
+Pack reveal Preview — implementation and acceptance are documented in [PACK_OPENING_PREVIEW](PACK_OPENING_PREVIEW.md). The new pack experience remains disabled in the friends site/v17 until owner visual approval; payments remain off.
 
 Invitation update — 11 October 2026: the owner-authorised first friend invitation was submitted once by Docked support (Graph HTTP 202). Inbox delivery and recipient acceptance are unverified. Eligibility only: no account, password, consent or cards created. The restricted transactional-recipient list includes this authorised recipient. Earlier “no invitation sent” or “send approval pending” statements are superseded.
 
