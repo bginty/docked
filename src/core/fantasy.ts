@@ -278,6 +278,7 @@ export type FantasyCompetition = {
   opens_at?: string;
 };
 export type FantasyState = {
+  starter_receipt?: import("./pack-opening").PackReceipt | null;
   team_name?: string | null;
   nfl_beta?: boolean;
   archived_card_count?: number;

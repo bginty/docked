@@ -12,6 +12,7 @@ import {
   fantasyProductionAction,
 } from "@/core/fantasy-production";
 import productionManifest from "../../config/hosted-production.json";
+import { packRevealPreview } from "@/core/pack-opening";
 export async function fantasyRequest(
   input?: unknown,
 ): Promise<{ state: FantasyState; result: Record<string, unknown> }> {
@@ -48,6 +49,15 @@ export async function fantasyRequest(
       view.nfl_beta
     )
       view.team_name = (await tx`select fantasy.my_team_name() name`)[0].name;
+    if (
+      production &&
+      process.env.DOCKED_BETA_STAGING === "true" &&
+      view.nfl_beta &&
+      packRevealPreview()
+    )
+      view.starter_receipt = (
+        await tx`select fantasy.my_nfl_pack_receipt() receipt`
+      )[0].receipt;
     return {
       state: view,
       result: (output[0]?.result ?? {}) as Record<string, unknown>,

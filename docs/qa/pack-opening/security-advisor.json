@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-11T06:19:46.828Z",
+  "project": "pojoymtniryarxxunyvz",
+  "findings": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 162
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1
+    }
+  ],
+  "review": "Private tables intentionally deny direct access; runtime functions enforce admission. Existing leaked-password-protection warning retained; Auth settings not changed by this UI milestone."
+}

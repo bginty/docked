@@ -5,11 +5,15 @@ export function FantasyRewards({
   busy,
   act,
   refresh,
+  onOpenStarter,
+  onReplayStarter,
 }: {
   rewards: NonNullable<FantasyState["rewards"]>;
   busy: boolean;
   act: (action: string, payload?: Record<string, unknown>) => unknown;
   refresh: () => unknown;
+  onOpenStarter?: () => void;
+  onReplayStarter?: () => void;
 }) {
   if (rewards.daily_available === false)
     return (
@@ -21,7 +25,12 @@ export function FantasyRewards({
           equally.
         </p>
         {!rewards.starter_claimed ? (
-          <button disabled={busy} onClick={() => act("open_nfl_starter")}>
+          <button
+            disabled={busy}
+            onClick={() =>
+              onOpenStarter ? onOpenStarter() : act("open_nfl_starter")
+            }
+          >
             {busy ? "Opening your pack…" : "Open my free pack"}
           </button>
         ) : (
@@ -29,6 +38,11 @@ export function FantasyRewards({
             Your pack is open. Choose seven players from My Cards to build your
             first team. You can change your team for free before the deadline.
           </p>
+        )}
+        {rewards.starter_claimed && onReplayStarter && (
+          <button type="button" onClick={onReplayStarter}>
+            View saved pack result
+          </button>
         )}
       </section>
     );

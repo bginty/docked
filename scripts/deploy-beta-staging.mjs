@@ -9,9 +9,12 @@ import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
 import { assertFriendsReadiness } from "../src/core/friends-release.mjs";
 const mode = process.argv[2];
 const friends = process.argv[3] === "--friends";
+// Design review only: never promotes or changes the current friends domain.
+const packPreview = process.argv[3] === "--pack-preview";
 if (friends) assertFriendsReadiness();
 const target = friends ? "production" : "preview";
-const ownerGameplay = process.argv[3] === "--owner-gameplay" || friends;
+const ownerGameplay =
+  process.argv[3] === "--owner-gameplay" || friends || packPreview;
 const ownerAuth = process.argv[3] === "--owner-auth" || ownerGameplay;
 assert.ok(process.argv.length <= 4 && (!process.argv[3] || ownerAuth));
 assert.ok(["--prepare", "--deploy", "--status"].includes(mode));
@@ -66,14 +69,18 @@ const domains = await api("/v9/projects/" + project + "/domains");
 const customDomains = domains.domains
   .filter((d) => !d.name.endsWith(".vercel.app"))
   .map((d) => d.name);
-if (friends)
+if (friends || packPreview)
   assert.ok(
     customDomains.every((name) =>
       ["docked.com.au", "www.docked.com.au"].includes(name),
     ),
   );
 else assert.equal(customDomains.length, 0);
-const output = friends ? "docs/qa/friends-cutover" : "docs/qa/beta-isolation";
+const output = packPreview
+  ? "docs/qa/pack-opening"
+  : friends
+    ? "docs/qa/friends-cutover"
+    : "docs/qa/beta-isolation";
 mkdirSync(output, { recursive: true });
 if (mode === "--status") {
   const record = JSON.parse(
@@ -117,6 +124,7 @@ if (mode === "--status") {
   assert.equal(c.projectRef, "pojoymtniryarxxunyvz");
   assert.equal(c.databaseRole, "docked_beta_app");
   const env = {
+    DOCKED_PACK_REVEAL_PREVIEW: packPreview ? "true" : "false",
     // Keep the protected application's CSP intact; the optional toolbar is not part of Docked.
     VERCEL_PREVIEW_FEEDBACK_ENABLED: "0",
     DOCKED_BETA_STAGING: "true",

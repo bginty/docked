@@ -1,4 +1,5 @@
 "use client";
+import { FantasyCardArtwork as Card } from "./fantasy-card-artwork";
 import { PackProducts } from "./pack-products";
 import Link from "next/link";
 import {
@@ -6,7 +7,8 @@ import {
   useRef,
   useCallback,
   useEffect,
-  type CSSProperties,
+  lazy,
+  Suspense,
   type FormEvent,
 } from "react";
 import {
@@ -20,6 +22,10 @@ import { FantasyAdmin } from "./fantasy-admin";
 import { FantasyRewards } from "./fantasy-rewards";
 import { fantasyResponseRejects } from "@/core/fantasy-response";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
+import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
+import { FantasySheet } from "./fantasy-player-sheet";
+const PackOpening = lazy(() => import("./pack-opening"));
+import { PackViewerBoundary } from "./pack-viewer-boundary";
 const tiers = ["CORE", "RARE", "ELITE", "LEGENDARY", "ICON"];
 const stamp = (s: string) =>
   new Date(s).toLocaleString("en-AU", {
@@ -27,64 +33,14 @@ const stamp = (s: string) =>
     timeStyle: "short",
     timeZone: "Australia/Sydney",
   });
-function Card({
-  card,
-  children,
-}: {
-  card: FantasyCard;
-  children?: React.ReactNode;
-}) {
-  return (
-    <article
-      className={`fantasy-card tier-${card.tier.toLowerCase()}`}
-      style={{ "--shirt": card.colour } as CSSProperties}
-    >
-      <div className="card-top">
-        <span>{card.tier}</span>
-        <span>{card.position}</span>
-      </div>
-      <div className="card-shirt" aria-hidden="true">
-        <svg viewBox="0 0 160 150">
-          <path
-            d="M49 10 12 31 29 65 44 57 44 138 116 138 116 57 131 65 148 31 111 10 97 20 63 20Z"
-            fill="var(--shirt)"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M63 20Q80 43 97 20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          />
-        </svg>
-        <b>{card.sport === "nfl" ? "D" : card.shirt}</b>
-      </div>
-      <p className="card-team">{card.team}</p>
-      <h3>{card.name}</h3>
-      <p>
-        {card.season} · {card.kind === "first_year" ? "FIRST YEAR" : "SEASON"}
-      </p>
-      <div className="card-serial">
-        #{String(card.serial).padStart(3, "0")}{" "}
-        <span>/ {card.max_supply.toLocaleString()}</span>
-      </div>
-      <p className="card-status">
-        {["retired", "delisted"].includes(card.status)
-          ? "RETIRED / COLLECTIBLE ONLY"
-          : card.status.toUpperCase()}
-      </p>
-      {!card.tradeable && <p className="starter-label">Not tradeable</p>}
-      {children}
-    </article>
-  );
-}
 export function FantasyScreen({
   tab,
   initial,
+  packExperience = false,
 }: {
   tab: string;
   initial: FantasyState;
+  packExperience?: boolean;
 }) {
   const production = initial.mode === "production";
   const [data, setData] = useState(initial),
@@ -102,6 +58,15 @@ export function FantasyScreen({
     [give, setGive] = useState<string[]>([]),
     [receive, setReceive] = useState<string[]>([]);
   const closeDetail = useCallback(() => setDetail(null), []);
+  const [pack, setPack] = useState<{
+    name: string;
+    id?: string;
+    receipt?: PackReceipt | null;
+  } | null>(null);
+  const [awardedDetail, setAwardedDetail] = useState<AwardedCard | null>(null);
+  const closePack = useCallback(() => setPack(null), []);
+  const closeAwardedDetail = useCallback(() => setAwardedDetail(null), []);
+  const lastState = useRef(initial);
   const pending = useRef<PendingFantasyRequest | null>(null);
   const pendingUnconfirmed = useRef(false);
   const inFlight = useRef(false);
@@ -114,6 +79,7 @@ export function FantasyScreen({
       if (!r.ok) throw Error("Could not refresh reward status.");
       const next = await r.json();
       setData(next.state);
+      lastState.current = next.state;
       setMessage("Updated from the server.");
     } catch {
       setMessage("Could not refresh. Please retry.");
@@ -163,6 +129,7 @@ export function FantasyScreen({
       pending.current = null;
       pendingUnconfirmed.current = false;
       setData(result.state);
+      lastState.current = result.state;
       setMessage("Saved securely.");
       return result.result as Record<string, unknown>;
     } catch (e) {
@@ -272,6 +239,24 @@ export function FantasyScreen({
           busy={busy}
           act={act}
           refresh={refresh}
+          onOpenStarter={
+            packExperience && data.nfl_beta
+              ? () =>
+                  setPack({
+                    name: "NFL starter pack",
+                    receipt: data.starter_receipt,
+                  })
+              : undefined
+          }
+          onReplayStarter={
+            packExperience && data.starter_receipt
+              ? () =>
+                  setPack({
+                    name: "NFL starter pack",
+                    receipt: data.starter_receipt,
+                  })
+              : undefined
+          }
         />
       )}
       {production && tab === "market" && (
@@ -519,6 +504,32 @@ export function FantasyScreen({
                 <button
                   disabled={busy}
                   onClick={async () => {
+                    if (packExperience) {
+                      // Generic packs also reuse their persisted items. Missing display data
+                      // never causes a new award; NFL uses its dedicated original receipt.
+                      const cards = (p.cards ?? []).map((id) =>
+                        data.cards.find((c) => c.id === id),
+                      );
+                      if (p.opened_at && cards.some((c) => !c)) {
+                        setMessage(
+                          "Some cards from this pack are no longer in your collection. Its saved result is unchanged.",
+                        );
+                        return;
+                      }
+                      setPack({
+                        name: p.name,
+                        id: p.id,
+                        receipt: p.opened_at
+                          ? {
+                              id: p.id,
+                              name: p.name,
+                              opened_at: p.opened_at,
+                              cards: cards as FantasyCard[],
+                            }
+                          : null,
+                      });
+                      return;
+                    }
                     const r = await act("open_pack", { pack_id: p.id });
                     if (r?.cards) {
                       setReveal(r.cards as string[]);
@@ -1186,6 +1197,68 @@ export function FantasyScreen({
           state={data}
           onClose={closeDetail}
         />
+      )}
+      {pack && packExperience && (
+        <PackViewerBoundary onClose={closePack}>
+          <Suspense
+            fallback={
+              <div role="status">
+                Loading pack viewer… <button onClick={closePack}>Close</button>
+              </div>
+            }
+          >
+            <PackOpening
+              userId={data.user_id}
+              name={pack.name}
+              receipt={pack.receipt}
+              onClose={closePack}
+              ownedIds={data.cards.map((c) => c.id)}
+              openPack={async () => {
+                const result = await act(
+                  pack.id ? "open_pack" : "open_nfl_starter",
+                  pack.id ? { pack_id: pack.id } : {},
+                );
+                if (!result) throw Error("Pack unconfirmed");
+                if (!pack.id) {
+                  const receipt = lastState.current.starter_receipt;
+                  if (!receipt) throw Error("Receipt not available");
+                  return receipt;
+                }
+                const saved = lastState.current.packs.find(
+                  (p) => p.id === pack.id,
+                );
+                if (!saved?.opened_at || !saved.cards?.length)
+                  throw Error("Receipt not available");
+                const cards = saved.cards.map((id) =>
+                  lastState.current.cards.find((c) => c.id === id),
+                );
+                if (cards.some((c) => !c))
+                  throw Error("Card details not available");
+                return {
+                  id: saved.id,
+                  name: saved.name,
+                  opened_at: saved.opened_at,
+                  cards: cards as FantasyCard[],
+                };
+              }}
+              onViewCard={(card) => {
+                closePack();
+                if (data.cards.some((c) => c.id === card.id))
+                  setDetail(card.id);
+                else setAwardedDetail(card);
+              }}
+            />
+          </Suspense>
+        </PackViewerBoundary>
+      )}
+      {awardedDetail && (
+        <FantasySheet title="Original pack card" onClose={closeAwardedDetail}>
+          <Card card={awardedDetail} />
+          <p>
+            This original award is no longer in your collection. Current
+            ownership details remain private.
+          </p>
+        </FantasySheet>
       )}
       {tab === "market" && (
         <>

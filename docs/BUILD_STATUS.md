@@ -1,3 +1,5 @@
+Pack reveal Preview — implementation and acceptance are documented in [PACK_OPENING_PREVIEW](PACK_OPENING_PREVIEW.md). The friends site/v17 stays unchanged until owner visual approval; payments remain off.
+
 Invitation update — 11 October 2026: the owner-authorised first friend invitation was submitted once by Docked support (Graph HTTP 202). Inbox delivery and recipient acceptance are unverified. Eligibility only: no account, password, consent or cards created. The restricted transactional-recipient list includes this authorised recipient. Earlier “no invitation sent” or “send approval pending” statements are superseded.
 
 Current release — 11 October 2026: [Friends v17](FRIENDS_V17_RELEASE.md) is live at https://docked.com.au/app with invitation-gated ordinary member gameplay and a domain-connected APK. Scoring collection, genuine member-round observation and physical S24 acceptance remain pending. No invitations sent; payments/prizes/withdrawals disabled. This supersedes earlier release blockers below.

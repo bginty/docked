@@ -8,10 +8,12 @@ export function FantasySheet({
   title,
   onClose,
   children,
+  className = "",
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
+  className?: string;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -32,7 +34,7 @@ export function FantasySheet({
   return (
     <dialog
       ref={dialog}
-      className="fantasy-sheet"
+      className={`fantasy-sheet ${className}`}
       aria-label={title}
       onCancel={(e) => {
         e.preventDefault();

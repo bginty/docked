@@ -147,6 +147,11 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
     const grants: string[][] = [];
     for (const u of users) {
       const entitlement = await cmd(u, "claim_starter");
+      assert.equal(
+        (await q("select beta_fantasy.my_nfl_pack_receipt() r"))[0].r,
+        null,
+        "Viewing a sealed pack never allocates cards",
+      );
       assert.equal(entitlement.opened, false);
       assert.equal(
         (
@@ -164,7 +169,51 @@ test("exact NFL migration: isolated grants, free allocation, FLEX, ownership and
       assert.deepEqual((await cmd(u, "open_nfl_starter")).card_ids, a.card_ids);
       assert.equal((await cmd(u, "claim_starter")).opened, true);
       grants.push(a.card_ids);
+      const receipt = (
+        await q("select beta_fantasy.my_nfl_pack_receipt() r")
+      )[0].r;
+      assert.deepEqual(
+        receipt.cards.map((c: any) => c.id),
+        a.card_ids,
+      );
+      assert.equal(receipt.cards.length, 10);
+      assert.ok(receipt.cards.every((c: any) => !("owner_id" in c)));
+      assert.deepEqual(
+        (await q("select beta_fantasy.my_nfl_pack_receipt() r"))[0].r,
+        receipt,
+        "Receipt reads never reroll",
+      );
     }
+    for (const role of ["anon", "authenticated", "docked_app"])
+      assert.equal(
+        (
+          await q(
+            `select has_function_privilege($1,'beta_fantasy.my_nfl_pack_receipt()','execute') allowed`,
+            [role],
+          )
+        )[0].allowed,
+        false,
+      );
+    await q("select set_config('request.jwt.claim.sub','',false)");
+    await assert.rejects(
+      () => q("select beta_fantasy.my_nfl_pack_receipt()"),
+      /Active NFL member required/,
+    );
+    await q("select set_config('request.jwt.claim.sub',$1,false)", [users[0]]);
+    const originalReceipt = (
+      await q("select beta_fantasy.my_nfl_pack_receipt() r")
+    )[0].r;
+    await pg.exec("begin");
+    await q("update beta_fantasy.cards set owner_id=$1 where id=$2", [
+      users[1],
+      grants[0][0],
+    ]);
+    assert.deepEqual(
+      (await q("select beta_fantasy.my_nfl_pack_receipt() r"))[0].r,
+      originalReceipt,
+      "A later ownership transfer cannot remove or replace a pack award",
+    );
+    await pg.exec("rollback");
     assert.equal(
       (await q(`select count(*)::int n from beta_fantasy.cards`))[0].n,
       20,

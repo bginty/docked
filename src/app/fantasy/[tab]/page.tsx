@@ -9,6 +9,7 @@ import {
 import { fantasyRequest } from "@/server/fantasy";
 import { AppShell } from "@/components/app-shell";
 import { FantasyScreen } from "@/components/fantasy-screen";
+import { packRevealPreview } from "@/core/pack-opening";
 import { communityFeed } from "@/server/community-social";
 import { FeedContent } from "@/components/community-feed";
 import { fantasyAssets } from "@/brand/fantasy-assets";
@@ -110,7 +111,12 @@ export default async function FantasyPage({
         {tab === "market" && process.env.DOCKED_TWO_PERSON_BETA === "true" ? (
           <SandboxSwaps />
         ) : (
-          <FantasyScreen key={tab} tab={tab} initial={data.state} />
+          <FantasyScreen
+            key={tab}
+            tab={tab}
+            initial={data.state}
+            packExperience={packRevealPreview()}
+          />
         )}
         {process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
           process.env.DOCKED_FRIENDS_BETA !== "true" && (

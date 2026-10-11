@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-11T06:20:27.381Z",
+  "platformAndCustomerDatabaseTests": 24,
+  "nflAllocationDatabaseTests": 1,
+  "browserTests": 7,
+  "browserWidths": [
+    360,
+    412,
+    1366
+  ],
+  "axeDialogViolations": 0,
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "webBuild": "PASS (production-format local build; final source also validated by hosted build)",
+  "clientScan": {
+    "files": 51,
+    "findings": 0
+  },
+  "physicalDevice": "PENDING",
+  "visualApproval": "PENDING",
+  "newApk": "Deferred until visual approval; friends v17 unchanged"
+}
