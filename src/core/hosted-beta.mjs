@@ -1,12 +1,28 @@
 import manifest from "../../config/hosted-beta.json" with { type: "json" };
+import friendsRelease from "../../config/friends-release.json" with { type: "json" };
+import {
+  assertFriendsTarget,
+  assertFriendsReadiness,
+} from "./friends-release.mjs";
 /** @param {Record<string,string|undefined>} env */
 export function betaOrigin(env) {
+  if (env.DOCKED_FRIENDS_BETA === "true") {
+    assertFriendsTarget(env);
+    return "https://docked.com.au";
+  }
   if (!/^docked-production-[a-z0-9-]+\.vercel\.app$/.test(env.VERCEL_URL ?? ""))
     throw Error("Exact beta deployment origin required");
   return `https://${env.VERCEL_URL}`;
 }
-export function betaPolicyVersions() {
-  const approval = manifest.policyApproval;
+/** @param {Record<string,string|undefined>} [env] @param {Record<string,any>} [release] */
+export function betaPolicyVersions(
+  env = process.env,
+  release = friendsRelease,
+) {
+  const approval =
+    env.DOCKED_FRIENDS_BETA === "true"
+      ? assertFriendsReadiness(release).policyApproval
+      : manifest.policyApproval;
   if (
     !approval ||
     !/^[a-f0-9]{64}$/.test(approval.digest ?? "") ||
@@ -41,10 +57,17 @@ export function betaOwnerAuthenticationOnly(env) {
     env.FANTASY_FREE_PLAY_PRODUCTION !== "true"
   );
 }
-/** Explicit protected Preview target. This never authorizes Production or changes
- * config/hosted-production.json. Credentials alone cannot enable member access.
- * @param {Record<string,string|undefined>} env */
-export function assertHostedBeta(env) {
+/** Exact isolated beta target: protected Preview by default, or the explicitly
+ * evidenced friends production target. It never uses the commercial DB role or
+ * changes config/hosted-production.json. Credentials alone cannot enable access.
+ * @param {Record<string,string|undefined>} env @param {Record<string,any>} [release] */
+export function assertHostedBeta(env, release = friendsRelease) {
+  if (
+    env.DOCKED_FRIENDS_BETA &&
+    !["true", "false"].includes(env.DOCKED_FRIENDS_BETA)
+  )
+    throw Error("Invalid friends mode");
+  const friends = assertFriendsTarget(env, release);
   if (!env.DOCKED_BETA_STAGING || env.DOCKED_BETA_STAGING === "false")
     return false;
   const fail = () => {
@@ -53,14 +76,17 @@ export function assertHostedBeta(env) {
   if (
     env.DOCKED_BETA_STAGING !== "true" ||
     env.VERCEL !== "1" ||
-    env.VERCEL_ENV !== "preview" ||
-    (env.VERCEL_TARGET_ENV && env.VERCEL_TARGET_ENV !== "preview") ||
+    (!friends && env.VERCEL_ENV !== "preview") ||
+    (!friends &&
+      env.VERCEL_TARGET_ENV &&
+      env.VERCEL_TARGET_ENV !== "preview") ||
     env.VERCEL_PROJECT_ID !== manifest.projectId ||
     env.VERCEL_ORG_ID !== manifest.teamId ||
     env.VERCEL_GIT_COMMIT_REF !== manifest.branch ||
     !/^[a-f0-9]{40}$/.test(env.VERCEL_GIT_COMMIT_SHA ?? "") ||
     !/^docked-production-[a-z0-9-]+\.vercel\.app$/.test(env.VERCEL_URL ?? "") ||
-    (env.SITE_URL && env.SITE_URL !== betaOrigin(env)) ||
+    (env.SITE_URL &&
+      env.SITE_URL !== (friends ? "https://docked.com.au" : betaOrigin(env))) ||
     env.DOCKED_HOSTED_REVIEW !== "false" ||
     env.DOCKED_HOSTED_PREVIEW !== "false" ||
     env.DOCKED_HOSTED_PRODUCTION !== "false" ||
@@ -130,7 +156,10 @@ export function assertHostedBeta(env) {
     Object.keys(env).some((k) => /^(MICROSOFT_|GRAPH_|SMTP_)/.test(k) && env[k])
   )
     fail();
-  if (manifest.ownerAcceptanceApproved !== true || !betaPolicyVersions()) {
+  if (
+    manifest.ownerAcceptanceApproved !== true ||
+    !betaPolicyVersions(env, release)
+  ) {
     for (const flag of [
       "BETA_ACCESS_ENABLED",
       "AUTH_EMAIL_ENABLED",
@@ -140,8 +169,8 @@ export function assertHostedBeta(env) {
       if (env[flag] !== "false") fail();
   }
   if (
-    manifest.externalActivationApproved !== true ||
-    !manifest.hostedAcceptance
+    !friends &&
+    (manifest.externalActivationApproved !== true || !manifest.hostedAcceptance)
   ) {
     if (env.BETA_TESTERS_ENABLED !== "false") fail();
   }
@@ -151,7 +180,7 @@ export function assertHostedBeta(env) {
       env.FANTASY_FREE_PLAY_PRODUCTION !== "true" ||
       env.DOCKED_OWNER_GAMEPLAY !== "true" ||
       env.BETA_ACCESS_ENABLED !== "true" ||
-      env.BETA_TESTERS_ENABLED !== "false")
+      env.BETA_TESTERS_ENABLED !== (friends ? "true" : "false"))
   )
     fail();
   return true;

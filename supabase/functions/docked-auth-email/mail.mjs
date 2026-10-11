@@ -80,7 +80,10 @@ export function messagesFor(
   if (betaOrigin !== undefined) {
     if (
       typeof betaOrigin !== "string" ||
-      !/^https:\/\/docked-production-[a-z0-9-]+\.vercel\.app$/.test(betaOrigin)
+      (betaOrigin !== "https://docked.com.au" &&
+        !/^https:\/\/docked-production-[a-z0-9-]+\.vercel\.app$/.test(
+          betaOrigin,
+        ))
     )
       throw Error("Unapproved beta Auth origin");
     allowedOrigins.push(betaOrigin);
@@ -148,13 +151,13 @@ export function messagesFor(
     const confirmation = action === "invite" || action === "recovery";
     const url = new URL(
       confirmation
-        ? new URL(data.redirect_to).origin + (action === "invite" ? "/auth/invite" : "/auth/recovery")
+        ? new URL(data.redirect_to).origin +
+            (action === "invite" ? "/auth/invite" : "/auth/recovery")
         : projectUrl + "/auth/v1/verify",
     );
     url.searchParams.set(confirmation ? "token_hash" : "token", token);
     url.searchParams.set("type", action);
-    if (!confirmation)
-      url.searchParams.set("redirect_to", data.redirect_to);
+    if (!confirmation) url.searchParams.set("redirect_to", data.redirect_to);
     return {
       subject: subjects[action],
       body: {

@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-11T01:47:26.119Z",
+  "functions": [
+    {
+      "slug": "docked-auth-email",
+      "version": 35,
+      "verify_jwt": false,
+      "status": "ACTIVE",
+      "ezbr_sha256": "db8c9d707e36fb4ca6f09201932c1b2a5d00864b08e9e21b7f0360dbb8ca6282"
+    },
+    {
+      "slug": "nfl-postgame",
+      "version": 3,
+      "verify_jwt": true,
+      "status": "ACTIVE",
+      "ezbr_sha256": "2fcf483af0fe8fc4133ea94370646fc48d8def838eebe67e8036b155acfbfac3"
+    }
+  ],
+  "checks": [
+    {
+      "file": "nfl-postgame/index.ts",
+      "sha256": "661daf00701d2e1f9767592a3f2a0ec8c3b36de1cd2f7de703308f03aaf75018",
+      "matches": true
+    },
+    {
+      "file": "nfl-postgame/worker.mjs",
+      "sha256": "9362f02f324409192bf2e83815865017324893dffed7b037745dba49b2cafcae",
+      "matches": true
+    },
+    {
+      "file": "nfl-postgame/ca.ts",
+      "sha256": "736a02e981a906ad4bf418d467e4c182e1fe24dfdf811088251e654826f7cdd2",
+      "matches": true
+    },
+    {
+      "file": "docked-auth-email/index.ts",
+      "sha256": "479f9b51aecf81aa1fd575ebcbc17552f5db3b4a9d859ecaebceb5aaa434bcb4",
+      "matches": true
+    },
+    {
+      "file": "docked-auth-email/mail.mjs",
+      "sha256": "e9e439d28cedf8ae58b82db8cb2a285605528e64386b8eae60c4ebab1ce66f5a",
+      "matches": true
+    },
+    {
+      "file": "docked-auth-email/router.mjs",
+      "sha256": "deeba5f79a92c9f23b659358155611347d37daf3de0e135ac03b11388a7cdfe2",
+      "matches": true
+    },
+    {
+      "file": "docked-auth-email/queue.mjs",
+      "sha256": "2e684e597fffabb908b3bc09c87e5363922c5e955ef90c537859a51e3bc252e7",
+      "matches": true
+    }
+  ],
+  "unsignedRequests": {
+    "nfl-postgame": 401,
+    "docked-auth-email": 401
+  },
+  "sendingEnabled": false,
+  "domainChanged": false,
+  "rollbackSource": "private-data/friends-cutover/worker-before"
+}

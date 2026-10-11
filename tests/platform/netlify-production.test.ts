@@ -172,6 +172,8 @@ test("Netlify guard writes only validated non-secret build metadata and denies u
       "src/core/hosted-production.mjs",
       "src/core/hosted-beta.mjs",
       "config/hosted-beta.json",
+      "src/core/friends-release.mjs",
+      "config/friends-release.json",
       "src/core/hosted-review.mjs",
       "src/core/hosting-identity.mjs",
       "config/netlify-build.json",

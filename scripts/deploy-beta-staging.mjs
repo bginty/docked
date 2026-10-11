@@ -1,12 +1,17 @@
-// One-off protected Preview deployment, never project/domain/production updates.
+// Protected owner Preview by default. Explicit --friends selects the approved
+// production beta only after its independent readiness receipt; never changes DNS.
 // Secrets are read privately and passed to the existing CLI, never printed.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { execFileSync, spawnSync } from "node:child_process";
 import { resolve, dirname, join } from "node:path";
 import assert from "node:assert/strict";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
+import { assertFriendsReadiness } from "../src/core/friends-release.mjs";
 const mode = process.argv[2];
-const ownerGameplay = process.argv[3] === "--owner-gameplay";
+const friends = process.argv[3] === "--friends";
+if (friends) assertFriendsReadiness();
+const target = friends ? "production" : "preview";
+const ownerGameplay = process.argv[3] === "--owner-gameplay" || friends;
 const ownerAuth = process.argv[3] === "--owner-auth" || ownerGameplay;
 assert.ok(process.argv.length <= 4 && (!process.argv[3] || ownerAuth));
 assert.ok(["--prepare", "--deploy", "--status"].includes(mode));
@@ -58,23 +63,29 @@ assert.equal(p.link.org, "bginty");
 assert.equal(p.link.repo, "docked");
 assert.equal(p.ssoProtection.deploymentType, "all_except_custom_domains");
 const domains = await api("/v9/projects/" + project + "/domains");
-assert.equal(
-  domains.domains.filter((d) => !d.name.endsWith(".vercel.app")).length,
-  0,
-);
-const output = "docs/qa/beta-isolation";
+const customDomains = domains.domains
+  .filter((d) => !d.name.endsWith(".vercel.app"))
+  .map((d) => d.name);
+if (friends)
+  assert.ok(
+    customDomains.every((name) =>
+      ["docked.com.au", "www.docked.com.au"].includes(name),
+    ),
+  );
+else assert.equal(customDomains.length, 0);
+const output = friends ? "docs/qa/friends-cutover" : "docs/qa/beta-isolation";
 mkdirSync(output, { recursive: true });
 if (mode === "--status") {
   const record = JSON.parse(
     readFileSync(output + "/deployment-submitted.json", "utf8"),
   );
   const d = await api("/v13/deployments/" + record.id);
-  if (d.target === "production") {
+  if (!friends && d.target === "production") {
     await api("/v12/deployments/" + d.id + "/cancel", { method: "PATCH" });
     throw Error("Unexpected production target cancelled");
   }
   assert.equal(d.projectId ?? d.project?.id, project);
-  assert.equal(d.target, null);
+  assert.equal(d.target, friends ? "production" : null);
   assert.equal(d.meta.githubCommitSha, record.commit);
   assert.equal(d.meta.githubCommitRef, branch);
   const report = {
@@ -82,12 +93,12 @@ if (mode === "--status") {
     url: "https://" + d.url,
     state: d.readyState,
     rawTarget: d.target,
-    effectiveTarget: "preview",
+    effectiveTarget: target,
     commit: record.commit,
     project,
     team,
     branch,
-    customDomains: [],
+    customDomains,
     aliases: d.alias ?? [],
     checkedAt: new Date().toISOString(),
   };
@@ -151,7 +162,7 @@ if (mode === "--status") {
     "DEALS_ENABLED",
   ])
     env[flag] = "false";
-  if (ownerAuth) {
+  if (ownerAuth && !friends) {
     const approval = JSON.parse(
       readFileSync("config/hosted-beta.json", "utf8"),
     );
@@ -178,13 +189,30 @@ if (mode === "--status") {
     env.DOCKED_OWNER_GAMEPLAY = "true";
     env.FANTASY_FREE_PLAY_PRODUCTION = "true";
   }
+  if (friends) {
+    env.DOCKED_FRIENDS_BETA = "true";
+    env.SITE_URL = "https://docked.com.au";
+    for (const key of [
+      "BETA_ACCESS_ENABLED",
+      "BETA_TESTERS_ENABLED",
+      "AUTH_EMAIL_ENABLED",
+      "DOCKED_AUTH_INVITES_READY",
+      "DOCKED_TWO_PERSON_BETA",
+    ])
+      env[key] = "true";
+  }
   assertHostedBeta({
     ...env,
     VERCEL: "1",
-    VERCEL_ENV: "preview",
+    VERCEL_ENV: target,
     VERCEL_URL: "docked-production-preflight.vercel.app",
   });
-  const source = resolve("private-data/beta-staging-deploy/" + sha + "/source");
+  const source = resolve(
+    "private-data/" +
+      (friends ? "friends-deploy/" : "beta-staging-deploy/") +
+      sha +
+      "/source",
+  );
   const allowed = (f) =>
     /^(src|public|config|certs)\//.test(f) ||
     [
@@ -250,7 +278,7 @@ if (mode === "--status") {
           project,
           team,
           branch,
-          target: "preview",
+          target,
           files: files.length,
           allActivationDisabled: !ownerAuth,
           ownerAuthenticationOnly: ownerAuth && !ownerGameplay,
@@ -267,7 +295,7 @@ if (mode === "--status") {
         prepared: true,
         commit: sha,
         files: files.length,
-        target: "preview",
+        target,
       }),
     );
   } else {
@@ -300,7 +328,7 @@ if (mode === "--status") {
       "--project",
       project,
       "--target",
-      "preview",
+      target,
       "--yes",
       "--no-wait",
       "--scope",
@@ -316,6 +344,9 @@ if (mode === "--status") {
       "--meta",
       "githubCommitRepo=docked",
     ];
+    // Production candidate is not automatically assigned any domain. Domain
+    // promotion is a separate operation after private candidate verification.
+    if (friends) args.push("--skip-domain");
     for (const [key, value] of Object.entries(env))
       args.push("--env", key + "=" + value, "--build-env", key + "=" + value);
     const r = spawnSync(process.execPath, args, {
@@ -338,11 +369,11 @@ if (mode === "--status") {
         d.meta?.githubCommitSha === sha && d.meta?.githubCommitRef === branch,
     );
     assert.ok(d, "Deployment outcome uncertain; inspect before retry");
-    if (d.target === "production") {
+    if (!friends && d.target === "production") {
       await api("/v12/deployments/" + d.uid + "/cancel", { method: "PATCH" });
       throw Error("Unexpected production target cancelled");
     }
-    assert.equal(d.target, null);
+    assert.equal(d.target, friends ? "production" : null);
     const report = {
       id: d.uid,
       url: "https://" + d.url,
@@ -350,9 +381,9 @@ if (mode === "--status") {
       project,
       team,
       branch,
-      requestedTarget: "preview",
+      requestedTarget: target,
       rawTarget: d.target,
-      effectiveTarget: "preview",
+      effectiveTarget: target,
       state: d.readyState,
       submittedAt: new Date().toISOString(),
     };

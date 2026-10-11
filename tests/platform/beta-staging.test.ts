@@ -70,6 +70,38 @@ test("email accepts only the exact operator-pinned beta callback and at most ele
     false,
   );
 });
+test("friends email can pin the exact authorised domain without allowing old QA callbacks", () => {
+  const origin = "https://docked.com.au";
+  const payload = {
+    user: { email: "support@docked.com.au" },
+    email_data: {
+      site_url: "https://pojoymtniryarxxunyvz.supabase.co",
+      redirect_to: origin + "/auth/callback?next=/app/reset-password",
+      email_action_type: "recovery",
+      token_hash: "a".repeat(40),
+    },
+  };
+  assert.equal(messagesFor(payload, { betaOrigin: origin }).length, 1);
+  for (const bad of [
+    "https://www.docked.com.au",
+    "https://docked.com.au.evil.example",
+    "http://docked.com.au",
+  ])
+    assert.throws(() => messagesFor(payload, { betaOrigin: bad }));
+  assert.throws(() =>
+    messagesFor(
+      {
+        ...payload,
+        email_data: {
+          ...payload.email_data,
+          redirect_to:
+            "https://docked-production-fixture.vercel.app/auth/callback?next=/app/reset-password",
+        },
+      },
+      { betaOrigin: origin },
+    ),
+  );
+});
 function env(): Record<string, string | undefined> {
   const e: Record<string, string | undefined> = {
     DOCKED_BETA_STAGING: "true",

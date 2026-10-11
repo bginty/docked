@@ -21,7 +21,7 @@ export function currentConsentVersions(
   if (env.DOCKED_BETA_STAGING === "true") {
     if (!assertHostedBeta(env))
       throw Error("Verified beta environment required");
-    const versions = betaPolicyVersions();
+    const versions = betaPolicyVersions(env);
     if (!versions) throw Error("Approved beta policy versions are required");
     return { terms: versions.terms, privacy: versions.privacy };
   }

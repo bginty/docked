@@ -14,7 +14,7 @@ Permanent card identity, finite edition supply, ownership provenance and atomic 
 
 The first external friends beta is NFL-only, explicitly approved by the owner on 11 October 2026. NFL now has a hosted current-player catalogue, audited isolated beta grants, seven-player/FLEX teams, future whole-round entry, locked snapshots and post-game scoring/standings. EPL is unavailable until its data and scoring are verified; it must not block NFL release. Historical football cards and simulations remain preserved separately, never renamed into real-player cards. See NFL_MEMBER_BETA_ACCEPTANCE.md for the current evidence and limits.
 
-Preview test-credit pack purchases, sales and trades are isolated test mechanics. The production-compatible free-play implementation disables commercial marketplace transfers. Do not describe these as live-money features. Public signup and external admission remain closed. On 10 October 2026 the owner separately authorised protected Preview gameplay exclusively for the existing verified owner, enforced by exact account identity and MFA. This does not approve external beta activation.
+Preview test-credit pack purchases, sales and trades are isolated test mechanics. Commercial marketplace transfers remain disabled. Do not describe these as live-money features. Public signup and external admission are currently closed. The earlier owner-only Preview scope is superseded by the approved NFL friends release boundary below; completing its evidence checks requires no further release-scope permission.
 
 ## Supersession
 

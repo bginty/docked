@@ -1,0 +1,221 @@
+{
+  "at": "2026-10-11T01:35:51.297Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "readOnly": true,
+  "commit": "1764911d8fb4776b79ec580ff4b19b42f8e0111f",
+  "changes": 0,
+  "messagesSent": 0,
+  "checks": {
+    "auth": {
+      "siteUrl": "https://docked-production-i8koncmem-briant-s-projects.vercel.app",
+      "redirects": [
+        "https://docked-production.netlify.app/auth/callback",
+        "https://docked-production.netlify.app/auth/callback?next=/app/verified",
+        "https://docked-production.netlify.app/auth/callback?next=/reset-password",
+        "https://docked-production.netlify.app/auth/callback?next=/app/reset-password",
+        "https://docked.com.au/auth/callback",
+        "https://docked.com.au/auth/callback?next=/app/verified",
+        "https://docked.com.au/auth/callback?next=/reset-password",
+        "https://docked.com.au/auth/callback?next=/app/reset-password",
+        "https://docked-production-7id3ohty2-briant-s-projects.vercel.app/auth/callback",
+        "https://docked-production-7id3ohty2-briant-s-projects.vercel.app/auth/callback?next=/app/verified",
+        "https://docked-production-7id3ohty2-briant-s-projects.vercel.app/auth/callback?next=/reset-password",
+        "https://docked-production-7id3ohty2-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password",
+        "https://docked-production-2c4c80cpl-briant-s-projects.vercel.app/auth/callback",
+        "https://docked-production-2c4c80cpl-briant-s-projects.vercel.app/auth/callback?next=/app/verified",
+        "https://docked-production-2c4c80cpl-briant-s-projects.vercel.app/auth/callback?next=/reset-password",
+        "https://docked-production-2c4c80cpl-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password",
+        "https://docked-production-i8koncmem-briant-s-projects.vercel.app/auth/callback",
+        "https://docked-production-i8koncmem-briant-s-projects.vercel.app/auth/callback?next=/app/verified",
+        "https://docked-production-i8koncmem-briant-s-projects.vercel.app/auth/callback?next=/reset-password",
+        "https://docked-production-i8koncmem-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password",
+        "https://docked-production-24ts2fdje-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password",
+        "https://docked-production-ar7zqu8yg-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password",
+        "https://docked-production-eup7bl41f-briant-s-projects.vercel.app/auth/callback?next=/app/reset-password"
+      ],
+      "publicSignup": false,
+      "emailConfirmation": true,
+      "emailHookEnabled": true,
+      "emailHookUri": "https://pojoymtniryarxxunyvz.supabase.co/functions/v1/docked-auth-email"
+    },
+    "dns": {
+      "apexA": [
+        "185.199.108.153",
+        "185.199.110.153",
+        "185.199.111.153",
+        "185.199.109.153"
+      ],
+      "wwwCname": [
+        "bginty.github.io"
+      ],
+      "mx": [
+        {
+          "exchange": "docked-com-au.mail.protection.outlook.com",
+          "priority": 0
+        }
+      ],
+      "nameservers": [
+        "ns36.domaincontrol.com",
+        "ns35.domaincontrol.com"
+      ],
+      "fullPreimage": "private-data/friends-cutover/dns-before.json"
+    },
+    "admission": {
+      "friends_enabled": false,
+      "testers_enabled": false,
+      "lifetime_testers": 0,
+      "swaps_enabled": false,
+      "nfl_grants": 1
+    },
+    "workerRuns": [
+      {
+        "started_at": "2026-10-11T01:30:02.110Z",
+        "finished_at": "2026-10-11T01:30:02.181Z",
+        "status": "idle",
+        "detail": {
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T01:15:01.677Z",
+        "finished_at": "2026-10-11T01:15:01.762Z",
+        "status": "idle",
+        "detail": {
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T01:00:01.496Z",
+        "finished_at": "2026-10-11T01:00:01.540Z",
+        "status": "idle",
+        "detail": {
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:54:29.905Z",
+        "finished_at": "2026-10-11T00:54:29.923Z",
+        "status": "idle",
+        "detail": {
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:54:29.534Z",
+        "finished_at": "2026-10-11T00:54:29.643Z",
+        "status": "cooldown",
+        "detail": {
+          "rawId": null,
+          "status": "cooldown"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:54:29.275Z",
+        "finished_at": "2026-10-11T00:54:29.296Z",
+        "status": "cooldown",
+        "detail": {
+          "rawId": null,
+          "status": "cooldown"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:54:28.864Z",
+        "finished_at": "2026-10-11T00:54:28.881Z",
+        "status": "cooldown",
+        "detail": {
+          "rawId": null,
+          "status": "cooldown"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:45:01.295Z",
+        "finished_at": "2026-10-11T00:45:01.324Z",
+        "status": "idle",
+        "detail": {
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:36:48.150Z",
+        "finished_at": "2026-10-11T00:36:48.165Z",
+        "status": "idle",
+        "detail": {
+          "status": "idle"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:36:47.816Z",
+        "finished_at": "2026-10-11T00:36:47.915Z",
+        "status": "cooldown",
+        "detail": {
+          "rawId": null,
+          "status": "cooldown"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:36:47.391Z",
+        "finished_at": "2026-10-11T00:36:47.412Z",
+        "status": "cooldown",
+        "detail": {
+          "rawId": null,
+          "status": "cooldown"
+        }
+      },
+      {
+        "started_at": "2026-10-11T00:36:47.076Z",
+        "finished_at": "2026-10-11T00:36:47.097Z",
+        "status": "cooldown",
+        "detail": {
+          "rawId": null,
+          "status": "cooldown"
+        }
+      }
+    ],
+    "cooldowns": [
+      {
+        "resource": "0867151048bc7e7bb42540d7869184a3f732a6ff5d887686d837f7d25c14432e",
+        "checked_at": "2026-10-10T23:26:54.883Z",
+        "next_attempt": "2026-10-11T11:26:35.754Z",
+        "error_code": null
+      },
+      {
+        "resource": "3eff0487d224684e64aea38e71f5b414e8e075a6e3da0a5d52e81cbb7b4e792a",
+        "checked_at": "2026-10-10T23:28:11.681Z",
+        "next_attempt": "2026-10-11T11:27:09.183Z",
+        "error_code": null
+      },
+      {
+        "resource": "2ec2841459fd1e30d65678ab101250bc9d55d27fb157bdec19c411817b3311fe",
+        "checked_at": "2026-10-10T23:29:16.500Z",
+        "next_attempt": "2026-10-11T11:29:06.315Z",
+        "error_code": null
+      }
+    ],
+    "rounds": [
+      {
+        "stream_id": "beta-real:nfl:2026:6",
+        "purpose": "member",
+        "locked_at": null,
+        "last_checked": null,
+        "next_check": "2026-10-11T00:33:52.406Z",
+        "issues": []
+      }
+    ],
+    "https://docked.com.au": {
+      "status": 200,
+      "redirect": null
+    },
+    "https://www.docked.com.au": {
+      "status": 301,
+      "redirect": "https://docked.com.au/"
+    }
+  },
+  "friendsAccessible": false,
+  "remaining": [
+    "Mailbox settings/export evidence",
+    "Fresh scheduled source retrieval after cooldown",
+    "Reconciled policy packet",
+    "Domain cutover and real domain Auth/gameplay acceptance",
+    "Domain-connected APK"
+  ]
+}

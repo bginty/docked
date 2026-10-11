@@ -37,6 +37,8 @@ async function fixture(run: (directory: string) => Promise<void>) {
       "src/core/hosted-production.mjs",
       "src/core/hosted-beta.mjs",
       "config/hosted-beta.json",
+      "src/core/friends-release.mjs",
+      "config/friends-release.json",
       "src/core/hosting-identity.mjs",
       "config/netlify-build.json",
     ]) {
