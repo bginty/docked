@@ -7,7 +7,8 @@ Checked 11 October 2026. This is a settings audit, not permission to change the 
 - Owner confirms GoDaddy sold the existing Microsoft 365 mailbox; `support@docked.com.au` is also its administrator login.
 - Existing tenant `b34880d6-d28e-40c2-b389-232506c69650` and certificate-authenticated Graph sender already passed delivery acceptance. Exchange application send permission is scoped to the support mailbox. Sending does not grant settings/read access.
 - Fresh DNS readback confirms Exchange Online MX. This corroborates the sender evidence but does not establish geographic location.
-- The GoDaddy mailbox-user sign-in at https://productivity.godaddy.com/settings is reachable and requires interactive authentication. No personal inbox was read; no message sent or deleted; no permissions or policies changed.
+- Authenticated GoDaddy Email & Office settings were inspected on 11 October after the owner completed sign-in. The page identifies `support@docked.com.au`, display name Docked Support, and lists **Advanced Email Security** under Add-Ons. This verifies the displayed add-on, not its preservation configuration or a separate Backup/Archiving subscription. No personal inbox was read; no message sent or deleted; no permissions or policies changed.
+- The visible Admin → Advanced link (`https://productivity.godaddy.com/settings#/admin/advanced`) returns **Something's gone wrong**, with a contact-admin message. Direct `https://admin.exchange.microsoft.com/` recognises `support@docked.com.au` and redirects to GoDaddy's Microsoft 365 federation sign-in, displaying **Please sign in again to continue**. The Email & Office session did not carry through to Exchange. That separate password/MFA interaction is now the precise immediate blocker, not an unknown administrator or missing purchased plan.
 - GoDaddy's [Advanced Admin Centers instructions](https://www.godaddy.com/en-ph/help/access-advanced-admin-centers-32132) say all its Microsoft 365 email plans can access Exchange administration. Paid Purview is not a prerequisite for this audit.
 
 ## Facts still requiring the signed-in configuration
@@ -17,7 +18,7 @@ Checked 11 October 2026. This is a settings audit, not permission to change the 
 | Exchange mailbox at-rest geography | Existing Microsoft admin Settings → Org settings → Organization profile → Data location, Exchange row, if exposed; mailbox region readback as corroboration | Not verified; neither AU domain nor tenant country proves mailbox geography |
 | Mailbox retention | Exchange support recipient's retention policy name and linked tag actions/ages; `RetainDeletedItemsFor`, `SingleItemRecoveryEnabled`, `RetentionHoldEnabled`, `ElcProcessingDisabled` | Not verified |
 | Applicable holds | Mailbox litigation/in-place/label/delay holds plus organisation-wide in-place holds; identify any actual applicable policy through existing access or reseller | Not verified; empty mailbox hold list alone is insufficient |
-| Optional recovery services | Existing GoDaddy Email Backup, Email Archiving or Advanced Email Security add-ons and any configured retention | Not verified; do not buy an add-on |
+| Optional recovery services | Existing GoDaddy Email Backup, Email Archiving or Advanced Email Security add-ons and any configured retention | Advanced Email Security is listed in authenticated settings. Its retention/quarantine behaviour and separate Backup/Archiving subscriptions are not verified; do not buy an add-on |
 | Selected support export | In support Outlook, select the existing synthetic Docked diagnostic only; inspect Save as/download `.eml` and the permitted export action | Provider capability documented; account-level operation pending |
 | Deletion/recovery | Inspect support Deleted Items/recoverable-items controls and retention labels without deleting messages | Account-level settings pending |
 
@@ -41,6 +42,8 @@ GoDaddy documents [export options](https://www.godaddy.com/en-in/help/export-or-
 > 4. Using my existing subscription, how can I export selected support messages and remove active/recoverable copies when no hold requires preservation? Please distinguish user deletion, recovery windows and provider backup expiry.
 >
 > Please do not change settings, create accounts, add permissions, purchase/upgrade services, disable working mail or remove records. If any requested fact requires your internal check, please provide the result rather than quoting an upgrade.
+
+Additional account-specific context for that enquiry: the authenticated mailbox settings list Advanced Email Security, but Admin → Advanced reports “Something's gone wrong.” Please explain the existing-plan administration route and the listed security add-on's quarantine, recovery and retention limits. No enquiry has been sent.
 
 ## Policy reconciliation
 

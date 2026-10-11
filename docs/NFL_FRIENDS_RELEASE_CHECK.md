@@ -14,7 +14,7 @@ Start checkpoint: `1764911d8fb4776b79ec580ff4b19b42f8e0111f`, clean `pivot/fanta
 | Future round | Existing NFL Week 6, 14 fixtures, locks Friday 16 October 2026 11:15 am Sydney. No already-started round opened. No genuine member round completed yet; this is a post-release observation, not fabricated acceptance. |
 | Email | Existing GoDaddy/Microsoft mailbox/admin identity resolved. Handler v35 now supports exact-domain callback pinning; sending remains disabled. Both functions reject unsigned HTTP requests with 401. Seven downloaded source files exactly match tested source. |
 | Recovery | Domain callbacks already allowlisted. Current default Auth origin and mail pin still refer to earlier QA deployments; latest v16 callback is not allowed. Domain cutover must bind Site URL, exact callbacks and mail origin together. No recovery messages requested or accepted owner credentials changed. |
-| Privacy | Approved operator/retention intent preserved. GoDaddy interactive sign-in pending; actual mailbox geography, retention/holds and optional backup subscription plus selected-message export still unverified. Exact unsent enquiry in GODADDY_MAILBOX_EVIDENCE.md. |
+| Privacy | Email & Office sign-in completed and Advanced Email Security add-on observed. Its Advanced Admin link errors; direct Exchange redirects to a separate GoDaddy federation sign-in. Actual mailbox geography, retention/holds, security add-on retention, optional backup and selected-message export still unverified. Exact unsent enquiry in GODADDY_MAILBOX_EVIDENCE.md. |
 | Android | No friends APK issued before domain acceptance. v16 remains owner QA, **not suitable for friends distribution**. Preserve package `au.com.docked.app.preview` and existing signing certificate, then increment beyond 16 after actual domain checks. Physical S24 and visual approval remain pending. |
 
 The missing observation of a completed future round does not itself prevent a clearly labelled post-game beta. However, the source-job run after cooldown, mailbox facts/policy reconciliation, domain authentication/recovery and positive admitted-member browser journey still need evidence before releasing. Historical rollback-only two-user SQL acceptance is not a real browser invitation or competitive round.
@@ -38,7 +38,7 @@ The missing observation of a completed future round does not itself prevent a cl
 
 ## Exact next owner action
 
-Sign in at **https://productivity.godaddy.com/settings** with **support@docked.com.au** (prefilled in the open panel), completing password/MFA there. Leave Email & Office open. GoDaddy's linked path is Admin → Advanced → Exchange → Sign In with the same Microsoft 365 address. No password/code in chat; no paid Purview requirement or new administrator identity question.
+Email & Office sign-in is complete. Its Advanced Admin link returns an error. The newly opened **https://admin.exchange.microsoft.com/** redirects to GoDaddy's Microsoft 365 federation sign-in with **support@docked.com.au** prefilled and “Please sign in again to continue.” Complete that separate password/MFA prompt and leave Exchange open. No password/code in chat; no paid Purview requirement or new administrator identity question.
 
 If existing access omits a setting, use the specific prepared GoDaddy enquiry; do not send it without authorisation. Resolve actual provider limitations against the already-approved retention intent, rather than reopening accepted decisions.
 

@@ -12,7 +12,7 @@ Tenant: `b34880d6-d28e-40c2-b389-232506c69650`. Existing application: `b725bf93-
 
 **Application dependency:** the working transactional sender depends on the existing tenant and mailbox-scoped Exchange assignment. Keep it. Sending permission does not confer mailbox-reading/retention-administration permission. No permission expansion, new diagnostic message or invitation occurred.
 
-**Exact owner action:** sign in at https://productivity.godaddy.com/settings with `support@docked.com.au`, entering password/MFA only there, and leave Email & Office open. This mailbox-login page is already open in the browser panel. For the advanced-admin entry, GoDaddy documents Email & Office → Admin → Advanced → Exchange → Sign In; use the same Microsoft 365 address at that linked sign-in. If GoDaddy first requires its account-holder login, the owner completes that normal sign-in; no need to re-identify the Microsoft administrator. Authentication is currently pending.
+**Signed-in evidence and exact next action:** the owner completed Email & Office sign-in; the authenticated page confirms Docked Support and lists Advanced Email Security. Admin → Advanced returns “Something's gone wrong.” Direct https://admin.exchange.microsoft.com/ redirects the known `support@docked.com.au` account to a separate GoDaddy Microsoft 365 sign-in saying “Please sign in again to continue.” Complete password/MFA in that new browser tab and leave Exchange open. No need to repeat the already-completed mailbox-settings login, identify another administrator or purchase a plan. Exchange location/holds and the listed security add-on's retention still require inspection.
 
 Inspect only support settings and Docked configuration, never personal inbox content.
 
