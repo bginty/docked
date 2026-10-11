@@ -1,3 +1,5 @@
+Invitation update — 11 October 2026: the owner-authorised first friend invitation was submitted once by Docked support (Graph HTTP 202). Inbox delivery and recipient acceptance are unverified. Eligibility only: no account, password, consent or cards created. The restricted transactional-recipient list includes this authorised recipient. Earlier “no invitation sent” or “send approval pending” statements are superseded.
+
 # Customer-style friends onboarding — 11 October 2026
 
 **Released update:** [Friends v17 release](FRIENDS_V17_RELEASE.md) is current. Domain/HTTPS, ordinary member hosted acceptance and connected v17 APK now pass. Transactional account emails are enabled under explicit owner approval; no named friend's invitation has been sent. Older outstanding/preparation statements below are historical.

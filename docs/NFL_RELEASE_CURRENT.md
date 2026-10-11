@@ -1,3 +1,5 @@
+Invitation update — 11 October 2026: the owner-authorised first friend invitation was submitted once by Docked support (Graph HTTP 202). Inbox delivery and recipient acceptance are unverified. Eligibility only: no account, password, consent or cards created. The restricted transactional-recipient list includes this authorised recipient. Earlier “no invitation sent” or “send approval pending” statements are superseded.
+
 # Consolidated NFL friends release — 11 October 2026
 
 **Current release:** [Friends v17](FRIENDS_V17_RELEASE.md) is live at https://docked.com.au/app. Domain/callback/member checks and connected APK passed. Scoring collection and genuine round observation remain pending under the authorised staged release. Earlier holding-page/disabled-mail/owner-only APK blockers below are superseded.
