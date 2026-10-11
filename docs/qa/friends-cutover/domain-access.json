@@ -3,9 +3,9 @@
   "domain": "docked.com.au",
   "registrarSignIn": "VERIFIED",
   "observedPage": "https://dcc.godaddy.com/control/portfolio/docked.com.au/settings?tab=dns",
-  "zoneRecords": "UNAVAILABLE",
+  "zoneRecords": "VERIFIED_VISIBLE_TABLE",
   "providerMessage": "We're having trouble loading your zone file",
-  "recovery": "Reload and fresh observed-URL tab failed with empty response",
+  "recovery": "Owner reported load recovery; agent inspected all 26 visible records and edit controls",
   "dnsMutations": 0,
   "mailMutations": 0,
   "domainAssigned": false,
@@ -23,5 +23,9 @@
     "applied": false
   },
   "collectorFollowUp": "Existing 23:20 Sydney follow-up unchanged; no duplicate or cooldown bypass",
-  "newOwnerSignInRequired": false
+  "newOwnerSignInRequired": false,
+  "recoveredAt": "2026-10-11T04:26:13.954Z",
+  "visibleRecordSnapshot": "private-data/friends-cutover/registrar-visible-records-before.json",
+  "visibleRecordCount": 26,
+  "visibleRecordSnapshotSha256": "6cb382616e21f36256d46e107e4cc8ee9e62d36953f6825309ff6d450698432f"
 }

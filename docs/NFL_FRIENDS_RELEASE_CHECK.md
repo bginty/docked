@@ -40,7 +40,7 @@ The missing observation of a completed future round does not itself prevent a cl
 
 ## Exact next owner action
 
-Domain-owner sign-in is now complete and verified. The signed-in DNS Records panel cannot load its zone file; reload/fresh-tab recovery failed. This supersedes the earlier sign-in request. No repeat mailbox/domain login is requested. No DNS edit or support enquiry was sent. See NFL_RELEASE_CURRENT.md for the exact current technical state. Provide authorised recipient emails only when invitations are wanted; visual/S24 acceptance remains yours.
+Domain-owner sign-in and DNS Records access are now complete and verified. All 26 visible records are captured in a private rollback snapshot; the earlier load failure is resolved. No repeat mailbox/domain login is requested. No DNS edit or support enquiry was sent. See NFL_RELEASE_CURRENT.md for the exact current technical state. Provide authorised recipient emails only when invitations are wanted; visual/S24 acceptance remains yours.
 
 ## Release sequence after factual gates
 
