@@ -1,0 +1,117 @@
+{
+  "at": "2026-10-11T05:59:36.249Z",
+  "authoritativeServer": "ns35.domaincontrol.com",
+  "apex": [
+    "216.150.1.1",
+    "216.150.16.1"
+  ],
+  "www": [
+    "8db1dd380a206fba.vercel-dns-017.com"
+  ],
+  "checks": [
+    {
+      "type": "NS",
+      "name": "@",
+      "unchanged": true
+    },
+    {
+      "type": "NS",
+      "name": "@",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "autodiscover",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "email",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "le4._domainkey",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "le42._domainkey",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "lyncdiscover",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "mailer1m2",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "mailerle4",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "msoid",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "pdk1._domainkey.mailer1m2",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "pdk2._domainkey.mailer1m2",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "sip",
+      "unchanged": true
+    },
+    {
+      "type": "CNAME",
+      "name": "_domainconnect",
+      "unchanged": true
+    },
+    {
+      "type": "MX",
+      "name": "@",
+      "unchanged": true
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "unchanged": true
+    },
+    {
+      "type": "TXT",
+      "name": "@",
+      "unchanged": true
+    },
+    {
+      "type": "TXT",
+      "name": "_dmarc",
+      "unchanged": true
+    },
+    {
+      "type": "SRV",
+      "name": "_sip._tls.@",
+      "unchanged": true
+    },
+    {
+      "type": "SRV",
+      "name": "_sipfederationtls._tcp.@",
+      "unchanged": true
+    }
+  ],
+  "registrarRetainedRecordsVerified": 21,
+  "verificationScope": "All retained records compared with authenticated registrar UI. DNS lookup failures recorded separately, not treated as changes or repaired.",
+  "passed": true,
+  "rollbackSnapshotPreserved": true
+}

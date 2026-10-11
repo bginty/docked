@@ -1,0 +1,100 @@
+{
+  "at": "2026-10-11T05:54:22.574Z",
+  "origin": "https://docked.com.au",
+  "scope": "Anonymous domain/callback boundary acceptance; NOT authenticated gameplay or email delivery",
+  "checks": [
+    {
+      "name": "Domain serves the exact staged friends deployment without hosting credentials",
+      "passed": true,
+      "status": 200,
+      "deploymentId": "dpl_AXJQ7zTUAzFLw4phdUJWMg2mRMRy",
+      "commit": "fe2bacd40862b680c62ba279489d5b1ac94e998f"
+    },
+    {
+      "name": "www redirects directly to the accepted HTTPS domain",
+      "passed": true,
+      "status": 308
+    },
+    {
+      "name": "HTTP redirects to HTTPS",
+      "passed": true,
+      "status": 308
+    },
+    {
+      "name": "No-code callback cannot redirect to a foreign site",
+      "passed": true,
+      "status": 307
+    },
+    {
+      "name": "No-code app callback has a recoverable expired-link destination",
+      "passed": true,
+      "status": 307
+    },
+    {
+      "name": "invite GET is non-consuming, uncached and same-origin",
+      "passed": true,
+      "repeatedGet": true,
+      "syntheticNonCredential": true
+    },
+    {
+      "name": "invite rejects a foreign-origin POST",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "recovery GET is non-consuming, uncached and same-origin",
+      "passed": true,
+      "repeatedGet": true,
+      "syntheticNonCredential": true
+    },
+    {
+      "name": "recovery rejects a foreign-origin POST",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "verify GET is non-consuming, uncached and same-origin",
+      "passed": true,
+      "repeatedGet": true,
+      "syntheticNonCredential": true
+    },
+    {
+      "name": "verify rejects a foreign-origin POST",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "Anonymous private data denied: /api/fantasy",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "Anonymous private data denied: /api/admin/operations",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "Auth API rejects a foreign origin without any provider request",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "Current privacy packet and no public signup",
+      "passed": true,
+      "version": "2026-10-11-beta-rc3"
+    }
+  ],
+  "passed": true,
+  "identity": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "fe2bacd40862b680c62ba279489d5b1ac94e998f",
+    "deploymentId": "dpl_AXJQ7zTUAzFLw4phdUJWMg2mRMRy",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  }
+}

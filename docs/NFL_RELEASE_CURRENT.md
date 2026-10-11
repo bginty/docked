@@ -1,5 +1,7 @@
 # Consolidated NFL friends release — 11 October 2026
 
+**Current release:** [Friends v17](FRIENDS_V17_RELEASE.md) is live at https://docked.com.au/app. Domain/callback/member checks and connected APK passed. Scoring collection and genuine round observation remain pending under the authorised staged release. Earlier holding-page/disabled-mail/owner-only APK blockers below are superseded.
+
 **Latest steering:** [customer-style staged friend release](CUSTOMER_FRIENDS_RELEASE.md) supersedes the collector-before-gameplay gate below. The existing 23:20 follow-up is unchanged; fresh collection remains pending but does not block independently verified login/cards/teams/free swaps. Fresh hosted self-signup and connected APK evidence are still required.
 
 This is the current status authority. It supersedes generic mailbox/sign-in and paid-service blockers in older release reports. Branch: `pivot/fantasy-cards-preview-v1`; starting checkpoint `12e10d3e`. Existing deployment approval remains valid. No new release-scope, support/operator, retention-intent or player-eligibility approval is requested.

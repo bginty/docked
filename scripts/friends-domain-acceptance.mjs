@@ -105,9 +105,10 @@ if (report.identity) {
       return { status: r.status };
     },
   );
-  for (const action of ["invite", "recovery"]) {
+  for (const action of ["invite", "recovery", "verify"]) {
+    const type = action === "verify" ? "signup" : action;
     const token = "docked_boundary_not_a_real_token_" + "x".repeat(32);
-    const path = `/auth/${action}?type=${action}&token_hash=${token}`;
+    const path = `/auth/${action}?type=${type}&token_hash=${token}`;
     await check(
       `${action} GET is non-consuming, uncached and same-origin`,
       async () => {
@@ -128,7 +129,7 @@ if (report.identity) {
           Origin: "https://attacker.invalid",
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: new URLSearchParams({ type: action, token_hash: token }),
+        body: new URLSearchParams({ type, token_hash: token }),
       });
       assert.equal(r.status, 403);
       assert.equal(r.headers.get("location"), null);

@@ -20,12 +20,14 @@ try {
       await tx`delete from sports_feed.stream_members m using sports_feed.nfl_rounds r,beta_fantasy.competitions c where m.stream_id=r.stream_id and r.competition_id=c.id and c.id=${entry.competition_id} and m.user_id=${qa.id} and r.locked_at is null and c.locks_at>clock_timestamp()`;
       await tx`delete from beta_fantasy.entries e using beta_fantasy.competitions c,sports_feed.nfl_rounds r where e.competition_id=c.id and r.competition_id=c.id and e.user_id=${qa.id} and e.competition_id=${entry.competition_id} and c.locks_at>clock_timestamp() and r.locked_at is null`;
     }
-    await tx`update beta_private.admission_control set testers_enabled=false`;
-    await tx`update beta_private.friends_control set enabled=false`;
+    if (!process.argv.includes("--preserve-release")) {
+      await tx`update beta_private.admission_control set testers_enabled=false`;
+      await tx`update beta_private.friends_control set enabled=false`;
+    }
     console.log(
       JSON.stringify({
         internalUnlockedDraftsRemoved: entries.length,
-        externalGatesClosed: true,
+        externalGatesClosed: !process.argv.includes("--preserve-release"),
       }),
     );
   });

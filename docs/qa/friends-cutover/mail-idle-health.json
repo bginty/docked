@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-11T05:54:21.854Z",
+  "health": {
+    "failed": 0,
+    "enabled": true,
+    "expired": 0,
+    "pending": 0,
+    "unknown": 0,
+    "stale_tick": false,
+    "last_tick_at": "2026-10-11T05:54:00.125467+00:00",
+    "last_error_code": null,
+    "last_request_at": null,
+    "oldest_pending_seconds": null
+  },
+  "runs": [
+    {
+      "status": "succeeded",
+      "start_time": "2026-10-11T05:54:00.115Z",
+      "end_time": "2026-10-11T05:54:00.135Z"
+    },
+    {
+      "status": "succeeded",
+      "start_time": "2026-10-11T05:53:00.150Z",
+      "end_time": "2026-10-11T05:53:00.173Z"
+    },
+    {
+      "status": "succeeded",
+      "start_time": "2026-10-11T05:52:00.054Z",
+      "end_time": "2026-10-11T05:52:00.071Z"
+    }
+  ],
+  "scope": "Scheduled idle mail cleanup observed; not a new email delivery or sports collection"
+}

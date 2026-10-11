@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-11T05:44:25.241Z",
+  "status": 406,
+  "code": "PGRST106",
+  "netDataApiExposed": false,
+  "note": "Managed net schema has broad SQL privileges but is not exposed through the Data API. Runtime credentials remain server-only; no arbitrary SQL route. Signed scheduler messages contain only bounded drain commands, never authentication links; encrypted outbox and Vault remain private."
+}

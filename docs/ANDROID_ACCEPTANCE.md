@@ -1,3 +1,5 @@
+> Current delivery: **v17 / 1.16-beta, Docked Beta**, connected to https://docked.com.au/app. See [Friends v17 release](FRIENDS_V17_RELEASE.md) and qa/friends-cutover/apk-details.json. Same package/signing as v16; update without uninstalling. APK audit passed; physical S24/emulator/owner visual acceptance pending. Older delivery statements below are superseded.
+
 > Current delivery — 11 October 2026: **v16 / 1.15-preview**, connected NFL owner QA. [NFL_MEMBER_BETA_ACCEPTANCE](NFL_MEMBER_BETA_ACCEPTANCE.md) and `qa/nfl-member/apk-details.json` are authoritative. Same `au.com.docked.app.preview` identity/signing as v15; update without uninstalling or clearing data. Protected Preview only, not a friends-distribution or domain-release APK. Owner visual approval, emulator and physical S24 acceptance are not claimed. Older version statements below are historical.
 
 > Permanent fantasy product direction — 10 October 2026: [PRODUCT_DIRECTION](PRODUCT_DIRECTION.md) overrides earlier product descriptions in this document. Preserve security, approved policy bytes and hosting boundaries; older QA is historical evidence only.

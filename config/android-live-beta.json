@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "kind": "docked-android-live-beta",
+  "environment": "production-beta",
+  "origin": "https://docked.com.au",
+  "applicationId": "au.com.docked.app.preview",
+  "supabaseProjectRef": "pojoymtniryarxxunyvz",
+  "hostingProvider": "vercel",
+  "vercelProjectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "vercelTeamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "deploymentId": "dpl_AXJQ7zTUAzFLw4phdUJWMg2mRMRy",
+  "commit": "fe2bacd40862b680c62ba279489d5b1ac94e998f",
+  "verifiedAt": "2026-10-11T05:54:22.574Z",
+  "acceptance": {
+    "https": true,
+    "invitedAuthentication": true,
+    "emailRecovery": true,
+    "gameplay": true,
+    "rls": true,
+    "policy": true,
+    "betaRecordIsolation": true,
+    "administratorMfa": true
+  },
+  "evidence": {
+    "domain": "docs/qa/friends-cutover/domain-boundary.json",
+    "ordinaryMember": "docs/qa/customer-onboarding/friends-customer-play.json",
+    "customerSignup": "docs/CUSTOMER_FRIENDS_RELEASE.md",
+    "recoveryScope": "Existing accepted Auth/recovery implementation preserved; new domain callback, non-consuming links, foreign-origin denial and signed mail scheduler verified. No new external email delivery or owner password reset performed.",
+    "scoring": "Historical rollback acceptance only; fresh unattended collection and genuine member round pending",
+    "physicalDevice": "PENDING"
+  },
+  "safety": {
+    "publicRegistration": false,
+    "payments": false,
+    "marketplace": false,
+    "officialBettingPublication": false
+  }
+}

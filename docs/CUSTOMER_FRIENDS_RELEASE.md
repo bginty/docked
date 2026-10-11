@@ -1,5 +1,7 @@
 # Customer-style friends onboarding — 11 October 2026
 
+**Released update:** [Friends v17 release](FRIENDS_V17_RELEASE.md) is current. Domain/HTTPS, ordinary member hosted acceptance and connected v17 APK now pass. Transactional account emails are enabled under explicit owner approval; no named friend's invitation has been sent. Older outstanding/preparation statements below are historical.
+
 Active continuation of the staged friend release. A recipient has been supplied privately; **sending has not been authorised**. Do not pre-create that person's account, choose their password, accept terms, open a pack or save a lineup for them.
 
 The staged release instruction supersedes waiting for tonight's collector before login/cards/teams/free-swaps testing. Keep the existing 23:20 Sydney follow-up unchanged. Collection and a completed genuine member round remain pending. Privacy, admission, ownership and authentication checks remain mandatory. Payments, prizes, withdrawals, cash trading and unrestricted registration stay disabled.

@@ -37,6 +37,13 @@ function Get-ApkIdentity([string]$Target) {
 }
 $current = Get-ApkIdentity $Apk
 $prior = Get-ApkIdentity $PriorApk
+$expectedLabel = 'Docked Preview'
+if ($env:CAPACITOR_LIVE_BETA -eq 'true') {
+  & node --input-type=module -e "import {readFileSync} from 'node:fs'; import {validateLiveBetaManifest} from './scripts/android-live-beta-config.mjs'; validateLiveBetaManifest(JSON.parse(readFileSync('config/android-live-beta.json')));"
+  if ($LASTEXITCODE -ne 0) { throw 'Friends APK audit requires an accepted live-host receipt.' }
+  $expectedLabel = 'Docked Beta'
+  if ($current.versionName -notmatch '-beta$') { throw 'Friends APK version channel mismatch.' }
+}
 $resources = & $aapt dump resources $Apk
 if ($LASTEXITCODE -ne 0) { throw 'Packaged resource mapping could not be verified.' }
 $networkResource = [regex]::Match(($resources -join "`n"), 'resource (0x[0-9a-f]+) xml/network_security_config\r?\n\s+\(\) \(file\) (res/[A-Za-z0-9_./-]+\.xml) type=XML')
@@ -56,11 +63,12 @@ $result = [ordered]@{
   bytes = (Get-Item -LiteralPath $Apk).Length
   sha256 = (Get-FileHash -LiteralPath $Apk -Algorithm SHA256).Hash.ToLowerInvariant()
   current = $current
+  expectedLabel = $expectedLabel
   priorVersionCode = $prior.versionCode
   samePackageAndSigningCertificate = $upgrade
   cleartextDisabledInPackagedResources = $httpsOnly
   compiledNetworkPolicyPath = $networkPath
-  status = $(if ($upgrade -and $httpsOnly -and -not $current.debuggable -and $current.label -eq 'Docked Preview' -and $current.arm64Compatible -and $current.minimumSdk -eq 24 -and $current.targetSdk -eq 36) { 'PASS' } else { 'FAIL' })
+  status = $(if ($upgrade -and $httpsOnly -and -not $current.debuggable -and $current.label -eq $expectedLabel -and $current.arm64Compatible -and $current.minimumSdk -eq 24 -and $current.targetSdk -eq 36) { 'PASS' } else { 'FAIL' })
 }
 $result | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $Report -Encoding utf8
 Write-Output ('APK metadata and upgrade audit ' + $result.status)

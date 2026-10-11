@@ -1,5 +1,7 @@
 # Authorised NFL friends cutover execution
 
+**Execution completed:** [Friends v17 release](FRIENDS_V17_RELEASE.md) records the successful staged domain/APK release. At tonight's unchanged 23:20 check, inspect the release identity first; do not repeat the completed cutover. The later owner authorisation explicitly allows gameplay before collection acceptance. References below to keeping initial cutover closed for an unproven source cycle are superseded for this staged release. Verify collection and report the precise result; do not send invitations.
+
 Current authority: owner requests on 11 October 2026 now authorise a staged friend gameplay release **before** the existing 23:20 Australia/Sydney follow-up. See [customer-style release](CUSTOMER_FRIENDS_RELEASE.md). Do not modify or duplicate the existing follow-up. Collection acceptance remains separately pending and does not block verified login/cards/teams/free swaps. Mailbox evidence, registrar access, support/operator, conditional retention, NFL-first scope and all-current-player eligibility are resolved. No invitations or messages are authorised by this runbook.
 
 ## What tonight's check proves
