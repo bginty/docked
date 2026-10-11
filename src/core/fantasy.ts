@@ -258,6 +258,8 @@ export type FantasyCard = {
   max_supply: number;
   player_id: string;
   team: string;
+  edition_team?: string;
+  provider_id?: string;
   colour: string;
   shirt: number;
   status: string;
@@ -276,11 +278,19 @@ export type FantasyCompetition = {
   opens_at?: string;
 };
 export type FantasyState = {
+  nfl_beta?: boolean;
+  archived_card_count?: number;
   server_time?: string;
   round_details?: {
     competition_id: string;
     cards: FantasyCard[];
-    scores: { player_id: string; score: number; stats: Record<string, number>; scoring_version: string; rules: Record<string, unknown> }[];
+    scores: {
+      player_id: string;
+      score: number;
+      stats: Record<string, number>;
+      scoring_version: string;
+      rules: Record<string, unknown>;
+    }[];
   }[];
   release_channel?: "beta" | "stable";
   my_championship_points?: number;
@@ -296,6 +306,7 @@ export type FantasyState = {
     next_claim_at: string;
     claimed_today: boolean;
     starter_claimed: boolean;
+    daily_available?: boolean;
     points: number;
     policy: {
       version: number;
@@ -382,6 +393,7 @@ export type FantasyState = {
     score: number;
     rank: number;
     championship_points: number;
+    status?: string;
   }[];
   ledger: { id: string; amount: number; reason: string; created_at: string }[];
   provenance: {

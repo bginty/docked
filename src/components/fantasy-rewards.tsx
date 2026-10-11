@@ -11,6 +11,26 @@ export function FantasyRewards({
   act: (action: string, payload?: Record<string, unknown>) => unknown;
   refresh: () => unknown;
 }) {
+  if (rewards.daily_available === false)
+    return (
+      <section className="fantasy-panel">
+        <h2>Your NFL starter collection</h2>
+        <p>
+          Ten free CORE cards: 2 QB, 3 RB, 3 WR and 2 TE. Start seven, including
+          one FLEX. Card tiers never multiply match points.
+        </p>
+        {!rewards.starter_claimed ? (
+          <button disabled={busy} onClick={() => act("claim_starter")}>
+            Collect NFL starter cards
+          </button>
+        ) : (
+          <p>
+            Starter cards delivered to My Cards. Previous test-card history is
+            preserved.
+          </p>
+        )}
+      </section>
+    );
   const date = (s: string) =>
     new Date(s).toLocaleString("en-AU", {
       timeZone: "UTC",

@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-11T00:54:28.924Z",
+  "unauthorised": 401,
+  "missingWorkerToken": 403,
+  "tasks": [
+    {
+      "task": "weekly",
+      "status": 200,
+      "body": "{\"status\":\"cooldown\",\"rawId\":null}"
+    },
+    {
+      "task": "pbp",
+      "status": 200,
+      "body": "{\"status\":\"cooldown\",\"rawId\":null}"
+    },
+    {
+      "task": "rosters",
+      "status": 200,
+      "body": "{\"status\":\"cooldown\",\"rawId\":null}"
+    },
+    {
+      "task": "reconcile",
+      "status": 200,
+      "body": "{\"status\":\"idle\"}"
+    }
+  ]
+}

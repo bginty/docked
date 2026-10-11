@@ -156,7 +156,7 @@ for (const width of [360, 412, 1440])
     await page.getByRole("button", { name: "List view", exact: true }).click();
     await expect(page.locator(".field-list")).toBeVisible();
     await page.getByLabel("Fantasy sport").selectOption("afl");
-    await expect(page.getByText("AFL team setup is not ready")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "AFL unavailable" })).toBeVisible();
     await page.evaluate(() => Reflect.get(window, "renderFantasy")("cards"));
     await page.evaluate(() => Reflect.get(window, "renderFantasy")("play"));
     await expect(page.getByLabel("Fantasy sport")).toHaveValue("afl");

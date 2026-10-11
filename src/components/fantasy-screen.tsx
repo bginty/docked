@@ -58,7 +58,7 @@ function Card({
             strokeWidth="3"
           />
         </svg>
-        <b>{card.shirt}</b>
+        <b>{card.sport === "nfl" ? "D" : card.shirt}</b>
       </div>
       <p className="card-team">{card.team}</p>
       <h3>{card.name}</h3>
@@ -278,9 +278,9 @@ export function FantasyScreen({
         <section className="fantasy-panel">
           <h2>Marketplace is not open yet</h2>
           <p>
-            Free Starter packs and daily rewards are available in Cards. Buying,
-            selling and transfers remain disabled while the non-monetary
-            marketplace rules are reviewed.
+            Free starter cards are available in Cards. Buying, selling and
+            transfers remain disabled while the non-monetary marketplace rules
+            are reviewed.
           </p>
           <Link className="button" href="/fantasy/cards">
             Go to my cards
@@ -288,6 +288,7 @@ export function FantasyScreen({
         </section>
       )}
       {production &&
+        !data.nfl_beta &&
         tab === "admin" &&
         (data.admin ? (
           <section className="fantasy-panel">
@@ -901,17 +902,34 @@ export function FantasyScreen({
               </div>
               <div>
                 <strong>
-                  {data.cards.filter((c) => c.kind === "first_year").length}
+                  {data.nfl_beta
+                    ? data.entries.filter((e) =>
+                        data.competitions.some(
+                          (c) => c.id === e.competition_id,
+                        ),
+                      ).length
+                    : data.cards.filter((c) => c.kind === "first_year").length}
                 </strong>
-                <span>First Year</span>
+                <span>{data.nfl_beta ? "Rounds entered" : "First Year"}</span>
               </div>
               <div>
-                <strong>{points}</strong>
-                <span>Championship points</span>
+                <strong>
+                  {data.nfl_beta
+                    ? data.results.length
+                      ? data.results.reduce((n, r) => n + r.score, 0)
+                      : "—"
+                    : points}
+                </strong>
+                <span>
+                  {data.nfl_beta ? "Post-game points" : "Championship points"}
+                </span>
               </div>
             </div>
             <p>
-              Competition wins:{" "}
+              {data.nfl_beta
+                ? "Current first-place standings"
+                : "Competition wins"}
+              :{" "}
               {
                 data.results.filter(
                   (r) => r.user_id === data.user_id && r.rank === 1,

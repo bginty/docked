@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-11T00:37:10.750Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "jobs": [
+    {
+      "jobname": "docked-nfl-lineup-lock",
+      "schedule": "* * * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-pbp",
+      "schedule": "10 0,12 * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-reconcile",
+      "schedule": "*/15 * * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-rosters",
+      "schedule": "15 0,12 * * *",
+      "active": true
+    },
+    {
+      "jobname": "docked-nfl-weekly",
+      "schedule": "5 0,12 * * *",
+      "active": true
+    }
+  ],
+  "timezone": "UTC",
+  "sourceRequests": "at most one per dataset per 12 hours",
+  "authentication": "platform JWT plus Vault-held dedicated token",
+  "externalAdmission": false
+}

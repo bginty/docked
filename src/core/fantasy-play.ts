@@ -5,12 +5,14 @@ export const footballFormation = { GK: 1, DEF: 4, MID: 4, FWD: 2 };
 export const fantasySports = [
   { id: "football", name: "Football", ready: true },
   { id: "afl", name: "AFL", ready: false },
-  { id: "nfl", name: "NFL", ready: false },
+  { id: "nfl", name: "NFL", ready: true },
   { id: "basketball", name: "Basketball", ready: false },
 ] as const;
 export function formationFor(
   comp?: FantasyCompetition,
 ): Record<string, number> | null {
+  if (comp?.sport === "nfl" && comp.rules.postgame === true)
+    return { QB: 1, RB: 2, WR: 2, TE: 1, FLEX: 1 };
   if (!comp || (comp.sport && comp.sport !== "football")) return null;
   const positions = comp.rules.positions ?? footballFormation;
   if (!positions || typeof positions !== "object" || Array.isArray(positions))
@@ -41,8 +43,9 @@ export function lineupIssues(
   if (!formation) return ["This sport’s approved formation is unavailable."];
   const picked = ids.map((id) => cards.find((c) => c.id === id));
   const issues: string[] = [];
-  if (ids.length !== 11)
-    issues.push(`Select 11 players (${ids.length} selected).`);
+  const size = comp.sport === "nfl" ? 7 : 11;
+  if (ids.length !== size)
+    issues.push(`Select ${size} players (${ids.length} selected).`);
   if (new Set(ids).size !== ids.length)
     issues.push("Each card can appear only once.");
   if (
@@ -52,9 +55,11 @@ export function lineupIssues(
         c.owner_id !== owner ||
         c.sport !== (comp.sport ?? "football") ||
         c.season !== comp.season ||
+        (comp.sport === "nfl" &&
+          !["QB", "RB", "WR", "TE"].includes(c.position)) ||
         (Array.isArray(comp.rules.tiers) &&
           !comp.rules.tiers.includes(c.tier)) ||
-        ["retired", "delisted"].includes(c.status),
+        ["retired", "delisted", "unavailable"].includes(c.status),
     )
   )
     issues.push("Use owned, eligible cards from this sport and season.");
@@ -64,7 +69,12 @@ export function lineupIssues(
   )
     issues.push("Only one card per player is allowed.");
   for (const [position, count] of Object.entries(formation))
-    if (picked.filter((c) => c?.position === position).length !== count)
+    if (
+      position !== "FLEX" &&
+      (comp.sport === "nfl" && position !== "QB"
+        ? picked.filter((c) => c?.position === position).length < count
+        : picked.filter((c) => c?.position === position).length !== count)
+    )
       issues.push(`${position}: select ${count}.`);
   for (const [tier, max] of Object.entries(
     (comp.rules.tier_max ?? {}) as Record<string, number>,
@@ -95,18 +105,38 @@ export function eligibleForPosition(
 ) {
   return (
     card.owner_id === owner &&
-    card.position === position &&
+    (card.position === position ||
+      (position === "FLEX" && ["RB", "WR", "TE"].includes(card.position))) &&
     card.sport === (comp.sport ?? "football") &&
     card.season === comp.season &&
     (!Array.isArray(comp.rules.tiers) ||
       comp.rules.tiers.includes(card.tier)) &&
-    !["retired", "delisted"].includes(card.status) &&
+    !["retired", "delisted", "unavailable"].includes(card.status) &&
     !selected.some(
       (c) =>
         c.id !== replacing &&
         (c.id === card.id ||
           (!comp.rules.duplicates && c.player_id === card.player_id)),
     )
+  );
+}
+/** Allocate fixed slots first; FLEX receives the remaining eligible card once. */
+export function fieldSlots(
+  cards: FantasyCard[],
+  formation: Record<string, number>,
+) {
+  const used = new Set<string>();
+  return Object.entries(formation).flatMap(([position, count]) =>
+    Array.from({ length: count }, () => {
+      const card = cards.find(
+        (c) =>
+          !used.has(c.id) &&
+          (c.position === position ||
+            (position === "FLEX" && ["RB", "WR", "TE"].includes(c.position))),
+      );
+      if (card) used.add(card.id);
+      return { position, card };
+    }),
   );
 }
 export function playRounds(state: FantasyState, sport: string, now: number) {

@@ -3,24 +3,29 @@ import assert from "node:assert/strict";
 import { validateOwnerQaManifest } from "./android-owner-qa-config.mjs";
 const ux = process.argv.includes("--fantasy-ux");
 const friends = process.argv.includes("--friends-release");
+const nfl = process.argv.includes("--nfl-member");
 const d = JSON.parse(
   readFileSync("docs/qa/beta-isolation/deployment-status.json", "utf8"),
 );
 const b = JSON.parse(
   readFileSync(
-    friends
-      ? "docs/qa/friends-release/hosted-apply.json"
-      : ux
-        ? "docs/qa/fantasy-ux/read-model-verify.json"
-        : "docs/qa/owner-gameplay/hosted-backend.json",
+    nfl
+      ? "docs/qa/nfl-member/hosted-two-user.json"
+      : friends
+        ? "docs/qa/friends-release/hosted-apply.json"
+        : ux
+          ? "docs/qa/fantasy-ux/read-model-verify.json"
+          : "docs/qa/owner-gameplay/hosted-backend.json",
     "utf8",
   ),
 );
 const h = JSON.parse(
   readFileSync(
-    ux
-      ? "docs/qa/fantasy-ux/hosted-acceptance.json"
-      : "docs/qa/owner-gameplay/hosted-acceptance.json",
+    nfl
+      ? "docs/qa/nfl-member/hosted-release.json"
+      : ux
+        ? "docs/qa/fantasy-ux/hosted-acceptance.json"
+        : "docs/qa/owner-gameplay/hosted-acceptance.json",
     "utf8",
   ),
 );
@@ -30,6 +35,15 @@ assert.equal(b.passed, true);
 assert.equal(h.passed, true);
 assert.equal(h.deployment.id, d.id);
 assert.equal(d.aliases.length, 0);
+if (nfl) {
+  for (const file of ["owner-read", "worker-journal"])
+    assert.equal(
+      JSON.parse(readFileSync(`docs/qa/nfl-member/${file}.json`, "utf8"))
+        .passed,
+      true,
+    );
+  assert.equal(h.commit, d.commit);
+}
 const m = validateOwnerQaManifest({
   schemaVersion: 1,
   kind: "docked-android-owner-qa",

@@ -1,3 +1,5 @@
+Superseded implementation status: see [NFL_MEMBER_BETA_ACCEPTANCE](NFL_MEMBER_BETA_ACCEPTANCE.md) for current real allocations, member rounds and scheduled worker. This document preserves earlier historical-data evidence.
+
 # NFL post-game hosted continuation — 11 October 2026
 
 This supersedes the unconnected-NFL findings in ZERO_COST_POSTGAME_DATA and FREE_BETA_DATA_HANDOVER. No broad provider investigation was repeated. Branch: `pivot/fantasy-cards-preview-v1`. The verified remote is `https://github.com/bginty/docked.git`; the existing five local commits through `c9630a7f`, including `4d9eade4` and `0a27f9be`, were pushed normally after fetching and confirming no remote-only work.
@@ -80,3 +82,4 @@ Evidence: `docs/qa/postgame/hosted-ingestion.json`, `hosted-correction-rollback.
 Supabase advisor returned informational RLS-with-no-policy notices for the intentionally closed private tables; access is through checked functions, not permissive table policies. The existing leaked-password-protection warning remains; no authentication policy or paid plan changed. [Advisor guidance](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy), [password-protection guidance](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection).
 
 Rollback: point the protected Preview back to its preceding deployment; stop operator invocation. Leave additive append-only evidence and grants in place, or revoke the single read-function execute grant if necessary. Do not drop records, restore a whole database over newer holdings, or run a destructive down migration. The production holding page is untouched. Payments, prizes, withdrawals, retired odds workflows and external admission remain disabled.
+

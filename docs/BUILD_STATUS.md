@@ -1,3 +1,5 @@
+Latest authoritative continuation: [NFL_MEMBER_BETA_ACCEPTANCE](NFL_MEMBER_BETA_ACCEPTANCE.md). NFL-first release is owner-approved. Real NFL beta catalogue/allocation, future Week 6 member round, locked scoring bridge and unattended collection are hosted. Protected app/APK delivery follows this receipt. Microsoft privacy evidence still blocks external admission; no scope reapproval needed. Older gaps below are historical and superseded where this receipt states completion.
+
 Latest continuation: [NFL_HOSTED_POSTGAME_ACCEPTANCE](NFL_HOSTED_POSTGAME_ACCEPTANCE.md). NFL weekly/PBP/roster evidence and historical QA scoring now run on the isolated hosted backend, with a protected member-read function. This supersedes older statements below that these components are only local. External admission, real member competitions and unattended scheduling remain unactivated.
 
 # Latest release authority — 11 October 2026
@@ -37,3 +39,4 @@ Current owner QA application commit: `46eff700`; protected Preview: https://dock
 The earlier cleanup acceptance at `f1ab0133` / `22940ffc` remains historical evidence, including the superseded authentication-only Preview URL. Database history retirement remains outside this milestone.
 
 See FANTASY-CLEANUP-PLAN.md for work scope and [FANTASY_CLEANUP_ACCEPTANCE](FANTASY_CLEANUP_ACCEPTANCE.md) for counts, limitations, screenshots and exact changed files. Older QA reports are historical, not a pass for this milestone.
+

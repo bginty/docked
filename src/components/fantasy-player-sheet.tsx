@@ -57,7 +57,7 @@ export function FantasySheet({
 export function PlayerShirt({
   card,
 }: {
-  card?: Pick<FantasyCard, "colour" | "shirt">;
+  card?: Pick<FantasyCard, "colour" | "shirt"> & { sport?: string };
 }) {
   return (
     <svg className="pitch-shirt" viewBox="0 0 100 90" aria-hidden="true">
@@ -75,7 +75,7 @@ export function PlayerShirt({
         fontSize="27"
         fontWeight="800"
       >
-        {card?.shirt ?? "+"}
+        {card?.sport === "nfl" ? "D" : (card?.shirt ?? "+")}
       </text>
     </svg>
   );
@@ -128,6 +128,12 @@ export function FantasyPlayerDetails({
             {card.sport} · {card.position}
           </p>
           <h3>{card.team}</h3>
+          {card.edition_team && card.edition_team !== card.team && (
+            <p>
+              Edition team: {card.edition_team}. Current roster team shown
+              above.
+            </p>
+          )}
           <p>
             {card.status} ·{" "}
             {owned ? "In your collection" : "Historical lineup card"}
@@ -138,7 +144,7 @@ export function FantasyPlayerDetails({
         <div>
           <small>
             {selected
-              ? `Round ${selected.round?.round ?? "—"} · simulated`
+              ? `Round ${selected.round?.round ?? "—"} · ${state.nfl_beta ? "post-game" : "simulated"}`
               : "Recent points"}
           </small>
           <strong>{selected?.score ?? "—"}</strong>
@@ -174,14 +180,23 @@ export function FantasyPlayerDetails({
             </dl>
           </>
         ) : (
-          <p>Player scoring breakdown is unavailable for this round.</p>
+          <p>
+            {state.nfl_beta ? (
+              <Link href="/fantasy/results">
+                View post-game player breakdowns and provisional status
+              </Link>
+            ) : (
+              "Player scoring breakdown is unavailable for this round."
+            )}
+          </p>
         )}
       </section>
       <section>
         <h3>Fixtures & availability</h3>
         <p>
-          Authorised upcoming fixtures and live availability data are not
-          connected. “{card.status}” is the fictional catalogue status.
+          {state.nfl_beta
+            ? "Roster identity is sourced from nflverse. Roster status does not guarantee game participation. Unconfirmed participation or missing statistics stay pending."
+            : `Authorised upcoming fixtures and live availability data are not connected. “${card.status}” is the fictional catalogue status.`}
         </p>
       </section>
       <details>

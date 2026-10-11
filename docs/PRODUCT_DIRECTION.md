@@ -10,7 +10,7 @@ Permanent card identity, finite edition supply, ownership provenance and atomic 
 
 ## Implemented scope versus ambition
 
-The implemented card game uses fictional football players, position-constrained teams and simulated competition rounds. Additional sports are the product direction, not a claim of implemented sport-specific scoring. Community discussion and sport preferences cover multiple sports. NFL scaffolding does not establish operational NFL gameplay.
+The first external friends beta is NFL-only, explicitly approved by the owner on 11 October 2026. NFL now has a hosted current-player catalogue, audited isolated beta grants, seven-player/FLEX teams, future whole-round entry, locked snapshots and post-game scoring/standings. EPL is unavailable until its data and scoring are verified; it must not block NFL release. Historical football cards and simulations remain preserved separately, never renamed into real-player cards. See NFL_MEMBER_BETA_ACCEPTANCE.md for the current evidence and limits.
 
 Preview test-credit pack purchases, sales and trades are isolated test mechanics. The production-compatible free-play implementation disables commercial marketplace transfers. Do not describe these as live-money features. Public signup and external admission remain closed. On 10 October 2026 the owner separately authorised protected Preview gameplay exclusively for the existing verified owner, enforced by exact account identity and MFA. This does not approve external beta activation.
 
@@ -22,7 +22,7 @@ Historical documents and signed policy packets may preserve earlier wording. The
 
 ## Delivery boundary
 
-Work is authorized only in protected Preview. Keep public registration, paid services, prizes, external sending and public launch off. Do not change production holding-page content, production aliases or DNS. No unrelated project access.
+The owner authorises docked.com.au deployment for the free NFL-only invite beta once shared privacy, security and admission checks pass. No further release-scope permission is needed. Until those checks pass, preserve the public holding page and stage working improvements in protected Preview. AU18+, at most ten admitted testers, no public registration. Ordinary members do not require MFA; owner/admin MFA remains enforced. Payments, cash trading, prizes and withdrawals remain disabled. No invitation or message sending until the owner supplies and authorises recipients. No unrelated project access.
 
 ## Acceptance
 

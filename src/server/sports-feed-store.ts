@@ -115,11 +115,9 @@ export class SportsFeedStore {
     companion: { rawId: number; fixtureId: string } | null = null,
   ) {
     return this.sql.begin(async (tx) => {
-      if (
-        !(
-          await tx`select id from sports_feed.streams where id=${id} for update`
-        ).length
-      )
+      // Serialise journal writers without granting a collector UPDATE on stream identity.
+      await tx`select pg_advisory_xact_lock(hashtextextended(${"sports-feed:" + id},0))`;
+      if (!(await tx`select id from sports_feed.streams where id=${id}`).length)
         throw Error("Unknown period");
       const [old] =
         await tx`select * from sports_feed.journal where stream_id=${id} order by revision desc limit 1`;

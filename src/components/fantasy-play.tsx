@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 import {
   countdown,
+  fieldSlots,
   eligibleForPosition,
   fantasySports,
   formationFor,
@@ -30,14 +31,18 @@ export function FantasyPlay({
   busy: boolean;
   act: Act;
 }) {
-  const [sport, setSport] = useState("football"),
+  const [sport, setSport] = useState(data.nfl_beta ? "nfl" : "football"),
     [view, setView] = useState<"team" | "points">(() => {
       const at = Date.parse(
         data.server_time ??
           data.rewards?.server_time ??
           new Date().toISOString(),
       );
-      const current = playRounds(data, "football", at).current;
+      const current = playRounds(
+        data,
+        data.nfl_beta ? "nfl" : "football",
+        at,
+      ).current;
       return current && historicalCards(data, current.id).length
         ? "points"
         : "team";
@@ -69,7 +74,11 @@ export function FantasyPlay({
   useEffect(() => {
     try {
       const saved = localStorage.getItem(`docked-sport:${data.user_id}`);
-      if (fantasySports.some((s) => s.id === saved)) setSport(saved!);
+      if (
+        (!data.nfl_beta || saved === "nfl") &&
+        fantasySports.some((s) => s.id === saved)
+      )
+        setSport(saved!);
     } catch {
       /* Preference storage is optional. */
     }
@@ -163,13 +172,14 @@ export function FantasyPlay({
     const same = picked.filter((c) => c.position === card.position);
     const replacement =
       slot?.replace ??
-      (same.length >= (formation?.[card.position] ?? 0)
+      (slot?.position !== "FLEX" &&
+      same.length >= (formation?.[card.position] ?? 0)
         ? same[0]?.id
         : undefined);
     if (
       !eligibleForPosition(
         card,
-        card.position,
+        slot?.position ?? card.position,
         comp,
         data.user_id,
         picked,
@@ -232,20 +242,28 @@ export function FantasyPlay({
             {fantasySports.map((s) => (
               <option key={s.id} value={s.id}>
                 {s.name}
-                {s.ready ? "" : " · coming later"}
+                {data.nfl_beta && s.id !== "nfl"
+                  ? " · unavailable"
+                  : s.ready
+                    ? ""
+                    : " · coming later"}
               </option>
             ))}
           </select>
         </label>
       </header>
       <p className="simulation-label">
-        OWNER QA · FICTIONAL FOOTBALL · SIMULATED POINTS
+        {data.nfl_beta
+          ? "FREE NFL BETA · POST-GAME SCORING"
+          : "OWNER QA · FICTIONAL FOOTBALL · SIMULATED POINTS"}
       </p>
-      {sport !== "football" ? (
+      {(data.nfl_beta ? sport !== "nfl" : sport !== "football") ? (
         <section className="fantasy-panel">
           <h2>
-            {fantasySports.find((s) => s.id === sport)?.name} team setup is not
-            ready
+            {sport === "football"
+              ? "EPL"
+              : fantasySports.find((s) => s.id === sport)?.name}{" "}
+            unavailable
           </h2>
           <p>
             Approved squad, position, bench and competition rules are not
@@ -286,7 +304,11 @@ export function FantasyPlay({
                       r.competition_id === current?.id,
                   )?.score ?? "—"}
                 </strong>
-                <small>Current scoring round · simulated</small>
+                <small>
+                  {data.nfl_beta
+                    ? "Post-game · provisional until reviewed"
+                    : "Current scoring round · simulated"}
+                </small>
               </div>
               <div>
                 <span>Season points</span>
@@ -304,7 +326,11 @@ export function FantasyPlay({
                     ? `#${data.results.find((r) => r.user_id === data.user_id && r.competition_id === current?.id)?.rank}`
                     : "—"}
                 </strong>
-                <small>QA competition only</small>
+                <small>
+                  {data.nfl_beta
+                    ? "NFL beta round · ties share rank"
+                    : "QA competition only"}
+                </small>
               </div>
             </div>
           </section>
@@ -408,13 +434,18 @@ export function FantasyPlay({
                     </select>
                   </label>
                   <div className="points-total">
-                    <span>Round {viewed?.round ?? "—"} · simulated</span>
+                    <span>
+                      Round {viewed?.round ?? "—"} ·{" "}
+                      {data.nfl_beta ? "post-game" : "simulated"}
+                    </span>
                     <strong>
                       {result?.score ?? "—"} <small>points</small>
                     </strong>
                     <span>
                       {result
-                        ? `Rank #${result.rank} · ${result.championship_points} championship points`
+                        ? data.nfl_beta
+                          ? `Rank ${result.rank ?? "pending"} · post-game points`
+                          : `Rank #${result.rank} · ${result.championship_points} championship points`
                         : "No published score for your entry"}
                     </span>
                   </div>
@@ -450,9 +481,11 @@ export function FantasyPlay({
                         <span className="field-position">{position}</span>
                         <div className="field-players">
                           {Array.from({ length: count }, (_, index) => {
-                            const card = displayed.filter(
-                              (c) => c.position === position,
-                            )[index];
+                            const card = fieldSlots(
+                              displayed,
+                              fieldFormation,
+                            ).filter((s) => s.position === position)[index]
+                              ?.card;
                             const score = roundScores?.find(
                               (s) => s.player_id === card?.player_id,
                             )?.score;
@@ -470,7 +503,11 @@ export function FantasyPlay({
                                     : `Choose ${position} ${index + 1}`
                                 }
                                 onClick={() =>
-                                  card ? setDetail(card) : openSlot(position)
+                                  card
+                                    ? view === "team" && !locked
+                                      ? openSlot(position, card.id)
+                                      : setDetail(card)
+                                    : openSlot(position)
                                 }
                               >
                                 <PlayerShirt card={card} />
@@ -482,7 +519,7 @@ export function FantasyPlay({
                                 </span>
                                 <small>
                                   {view === "points"
-                                    ? score === undefined
+                                    ? score == null
                                       ? "—"
                                       : `${score} pts`
                                     : card
@@ -502,16 +539,15 @@ export function FantasyPlay({
                   <section className="reserves">
                     <h3>Reserves / unselected cards</h3>
                     <p>
-                      No scoring bench or automatic substitutions in the current
-                      Docked XI rules. Tap an owned reserve to replace a player;
-                      only the saved XI enters.
+                      No automatic substitutions. Tap an owned reserve to
+                      replace a player; only your saved starters score.
                     </p>
                     <div className="reserve-cards">
                       {data.cards
                         .filter(
                           (c) =>
                             !ids.includes(c.id) &&
-                            c.sport === "football" &&
+                            c.sport === sport &&
                             c.season === comp.season &&
                             !["retired", "delisted"].includes(c.status),
                         )
@@ -530,7 +566,7 @@ export function FantasyPlay({
                     {!data.cards.some(
                       (c) =>
                         !ids.includes(c.id) &&
-                        c.sport === "football" &&
+                        c.sport === sport &&
                         c.season === comp.season,
                     ) && (
                       <p>
@@ -541,7 +577,9 @@ export function FantasyPlay({
                   </section>
                   <div className="lineup-save">
                     <div>
-                      <strong>{ids.length}/11 selected</strong>
+                      <strong>
+                        {ids.length}/{sport === "nfl" ? 7 : 11} selected
+                      </strong>
                       <p role="status">
                         {notice ||
                           `${dirty ? "Unsaved changes" : "Saved selection"} · no lineup fees`}
@@ -609,30 +647,41 @@ export function FantasyPlay({
               )}
             </section>
             <aside className="play-sidebar">
-              <section className="fantasy-panel">
-                <h2>
-                  {data.release_channel === "beta"
-                    ? "Beta championship standings"
-                    : "Championship standings"}
-                </h2>
-                {data.leaderboard?.rows.length ? (
-                  data.leaderboard.rows.map((row) => (
-                    <div className="fantasy-row" key={row.id}>
-                      <span>
-                        {row.rank}. {row.name}
-                      </span>
-                      <strong>{row.points} pts</strong>
-                    </div>
-                  ))
-                ) : (
-                  <p>No published championship standings yet.</p>
-                )}
-                <p className="small-note">
-                  Current release only · Up to 100 visible members. Private,
-                  blocked and inactive accounts are excluded. Fictional QA
-                  competition; no cash prize.
-                </p>
-              </section>
+              {data.nfl_beta ? (
+                <section className="fantasy-panel">
+                  <h2>NFL round standings</h2>
+                  <p>
+                    Post-game totals and shared-rank standings appear after your
+                    round is locked and results are collected.
+                  </p>
+                  <Link href="/fantasy/results">View NFL standings</Link>
+                </section>
+              ) : (
+                <section className="fantasy-panel">
+                  <h2>
+                    {data.release_channel === "beta"
+                      ? "Beta championship standings"
+                      : "Championship standings"}
+                  </h2>
+                  {data.leaderboard?.rows.length ? (
+                    data.leaderboard.rows.map((row) => (
+                      <div className="fantasy-row" key={row.id}>
+                        <span>
+                          {row.rank}. {row.name}
+                        </span>
+                        <strong>{row.points} pts</strong>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No published championship standings yet.</p>
+                  )}
+                  <p className="small-note">
+                    Current release only · Up to 100 visible members. Private,
+                    blocked and inactive accounts are excluded. Fictional QA
+                    competition; no cash prize.
+                  </p>
+                </section>
+              )}
               <section className="fantasy-panel">
                 <h2>
                   {data.cards.length
@@ -641,8 +690,10 @@ export function FantasyPlay({
                 </h2>
                 <p>
                   {data.cards.length
-                    ? `${data.cards.filter((c) => c.sport === "football").length} football cards owned. Each has a permanent edition and serial.`
-                    : "Claim and open your free Starter pack in Cards, then return to select your XI."}
+                    ? `${data.cards.filter((c) => c.sport === sport).length} ${data.nfl_beta ? "NFL beta" : "football"} cards owned. Each has an edition and serial.`
+                    : data.nfl_beta
+                      ? "Claim your ten free NFL beta cards in Cards, then select your seven starters."
+                      : "Claim and open your free Starter pack in Cards, then return to select your XI."}
                 </p>
                 <Link className="button" href="/fantasy/cards">
                   {data.cards.length
@@ -653,15 +704,17 @@ export function FantasyPlay({
               <section className="fantasy-panel">
                 <h2>Scoring, clearly separated</h2>
                 <p>
-                  Weekly and season fantasy points come from recorded
-                  competition entries. Championship points reward round
-                  placings. Daily gameplay rewards are separate.
+                  {data.nfl_beta
+                    ? "Points come from your locked NFL team and collected post-game statistics. Card tier does not change scoring. No cash prizes or paid play."
+                    : "Weekly and season fantasy points come from recorded competition entries. Championship points reward round placings. Daily gameplay rewards are separate."}
                 </p>
                 <p>
                   NFL post-game results are kept separate from simulated
                   competitions. Missing statistics remain pending.
                 </p>
-                <Link href="/fantasy/results">Post-game points and breakdowns</Link>
+                <Link href="/fantasy/results">
+                  Post-game points and breakdowns
+                </Link>
               </section>
             </aside>
           </div>

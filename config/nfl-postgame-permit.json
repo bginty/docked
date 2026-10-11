@@ -1,0 +1,12 @@
+{
+  "provider": "nflverse",
+  "enabled": true,
+  "scope": "isolated-free-beta",
+  "automatedDownload": true,
+  "fantasyUse": true,
+  "storage": true,
+  "derivedUse": true,
+  "evidence": "https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md",
+  "expiresAt": "2026-11-10T00:00:00.000Z",
+  "rawRetentionDays": 30
+}

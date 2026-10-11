@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ),
   title: { default: "Docked — " + fantasyTagline, template: "%s | Docked" },
   description:
-    "Collect limited player cards, build fantasy teams and compete across sports. Closed Preview; football gameplay first.",
+    "Collect player cards, build your NFL fantasy team and follow post-game points. Free invited beta; EPL coming when verified.",
   manifest: "/manifest.webmanifest",
   robots: { index: false, follow: false },
   appleWebApp: {
