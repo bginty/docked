@@ -1,21 +1,36 @@
 import { z } from "zod";
 import { signupUsername } from "./preview-testers";
 import { isEmailOwnershipVerified } from "./auth-policy";
+import { australianRegion } from "./australian-region";
 
-export const invitationSetup = z.object({
-  username: signupUsername,
-  country: z.string().regex(/^[A-Z]{2}$/),
-  state: z.string().trim().min(1).max(50),
-  age: z.literal(true),
-  terms: z.literal(true),
-  privacy: z.literal(true),
-  marketing: z.boolean().optional(),
-  betaAdmissionCode: z
-    .string()
-    .regex(/^[a-f0-9]{64}$/)
-    .optional(),
-  betaRules: z.boolean().optional(),
-});
+export const invitationSetup = z
+  .object({
+    username: signupUsername,
+    country: z.string().regex(/^[A-Z]{2}$/),
+    state: z.string().trim().min(1).max(50),
+    age: z.literal(true),
+    terms: z.literal(true),
+    privacy: z.literal(true),
+    marketing: z.boolean().optional(),
+    betaAdmissionCode: z
+      .string()
+      .regex(/^[a-f0-9]{64}$/)
+      .optional(),
+    betaRules: z.boolean().optional(),
+  })
+  .superRefine((value, context) => {
+    if (value.country === "AU" && !australianRegion(value.state))
+      context.addIssue({
+        code: "custom",
+        path: ["state"],
+        message: "Select your Australian state or territory.",
+      });
+  })
+  .transform((value) => ({
+    ...value,
+    state:
+      value.country === "AU" ? australianRegion(value.state)! : value.state,
+  }));
 // Use only a fresh Auth.getUser result, never a client body or user_metadata.
 export function verifiedInvitedUser(
   user: {

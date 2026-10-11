@@ -42,7 +42,17 @@ export async function POST(request: Request) {
     if (!input.success)
       return fail(
         400,
-        "Username, region, age attestation and separate Terms and Privacy acceptance are required.",
+        input.error.issues.some((issue) => issue.path[0] === "state")
+          ? "Select your Australian state or territory, then try again."
+          : "Username, region, age attestation and separate Terms and Privacy acceptance are required.",
+      );
+    if (
+      process.env.DOCKED_BETA_STAGING === "true" &&
+      input.data.country !== "AU"
+    )
+      return fail(
+        400,
+        "This free beta is available to invited Australian adults only.",
       );
     const versions = currentConsentVersions();
     const client = await authClient();

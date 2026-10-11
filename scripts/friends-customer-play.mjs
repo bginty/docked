@@ -64,7 +64,7 @@ try {
     await page
       .getByLabel("Display name", { exact: true })
       .fill("InternalMemberQA");
-    await page.getByLabel("State / region", { exact: true }).fill("NSW");
+    await page.getByLabel("State / region", { exact: true }).selectOption("NSW");
     for (const name of ["betaRules", "age", "terms", "privacy"])
       await page.locator(`input[name="${name}"]`).check();
     await page

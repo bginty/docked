@@ -73,7 +73,7 @@ for (const width of [360, 412, 1366])
     for (const checkbox of await page.getByRole("checkbox").all())
       await expect(checkbox).not.toBeChecked();
     await page.getByLabel("Display name").fill("FreshFriend");
-    await page.getByLabel("State / region").fill("VIC");
+    await page.getByLabel("State / region").selectOption("QLD");
     for (const checkbox of await page.getByRole("checkbox").all())
       await checkbox.check();
     await page.getByRole("button", { name: "Complete account setup" }).click();
@@ -87,6 +87,7 @@ for (const width of [360, 412, 1366])
       x.path.endsWith("invitation-setup"),
     ).body;
     expect(consent.age).toBe(true);
+    expect(consent.state).toBe("QLD");
     expect(consent.betaRules).toBe(true);
     expect(consent).not.toHaveProperty("betaAdmissionCode");
     expect(consent).not.toHaveProperty("marketing");

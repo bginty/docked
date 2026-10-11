@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
+import { invitationSetup } from "../../src/core/invitation-setup";
 test("customer eligibility is not account creation: cap, binding, verification, consent and roles", async () => {
   const pg = new PGlite();
   const q = async (s: string, p: any[] = []) =>
@@ -125,6 +126,35 @@ test("customer eligibility is not account creation: cap, binding, verification, 
     await assert.rejects(
       () => accept("AU", true, randomUUID()),
       /Active session/,
+    );
+    // A valid full state name from the old free-text form previously reached
+    // the strict database boundary unchanged and caused a generic 503.
+    await assert.rejects(
+      () =>
+        q(
+          `select beta_private.accept_customer_admission($1,$2,'AU','Queensland',true,$3)`,
+          [invite.intended_user, session, JSON.stringify(versions)],
+        ),
+      /Australian/,
+    );
+    const normalized = invitationSetup.parse({
+      username: "freshfriend",
+      country: "AU",
+      state: "Queensland",
+      age: true,
+      terms: true,
+      privacy: true,
+    });
+    await q(
+      `select beta_private.accept_customer_admission($1,$2,$3,$4,$5,$6)`,
+      [
+        invite.intended_user,
+        session,
+        normalized.country,
+        normalized.state,
+        normalized.age,
+        JSON.stringify(versions),
+      ],
     );
     await accept();
     await accept();

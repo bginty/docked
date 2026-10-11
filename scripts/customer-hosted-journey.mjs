@@ -214,7 +214,7 @@ try {
   for (const box of await page.getByRole("checkbox").all())
     assert.equal(await box.isChecked(), false);
   await page.getByLabel("Display name").fill("InternalMemberQA");
-  await page.getByLabel("State / region").fill("NSW");
+  await page.getByLabel("State / region").selectOption("NSW");
   for (const box of await page.getByRole("checkbox").all()) await box.check();
   const setup = page.waitForResponse(
     (r) => r.url() === base + "/api/auth/invitation-setup",

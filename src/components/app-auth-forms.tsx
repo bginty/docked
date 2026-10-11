@@ -8,6 +8,7 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import { appSports } from "@/core/app-auth";
+import { australianRegions } from "@/core/australian-region";
 import { useEnvironmentPresentation } from "./environment-context";
 
 export function AppAuthField({
@@ -225,14 +226,35 @@ export function AppAuthForm({
               maxLength={2}
               required
             />
-            <AppAuthField
-              label="State / region"
-              name="state"
-              placeholder="VIC"
-              autoComplete="address-level1"
-              maxLength={50}
-              required
-            />
+            {environment.liveBeta ? (
+              <label className="app-auth-field">
+                <span>State / region</span>
+                <select
+                  name="state"
+                  autoComplete="address-level1"
+                  defaultValue=""
+                  required
+                >
+                  <option value="" disabled>
+                    Select your state or territory
+                  </option>
+                  {australianRegions.map(([code, name]) => (
+                    <option key={code} value={code}>
+                      {name} ({code})
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ) : (
+              <AppAuthField
+                label="State / region"
+                name="state"
+                placeholder="VIC"
+                autoComplete="address-level1"
+                maxLength={50}
+                required
+              />
+            )}
           </div>
           <Consent name="age" required>
             I am 18 or older and meet the legal age for my region.
