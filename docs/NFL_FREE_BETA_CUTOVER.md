@@ -9,6 +9,10 @@ Owner scope is approved; no repeat release-scope approval is needed. This replac
 - Public destination `https://docked.com.au`, with `www` redirect. Keep Microsoft MX/SPF/DKIM/DMARC unchanged.
 - Android identity `au.com.docked.app.preview`, existing signing certificate. Do not uninstall/reset owner sessions.
 
+Registrar sign-in verified 11 October 2026, approximately 14:42 Sydney. Known signed-in record page: `https://dcc.godaddy.com/control/portfolio/docked.com.au/settings?tab=dns`. The zone-file panel currently fails to load and recovery attempts returned an empty response; no DNS change submitted. Do not treat this as missing credentials.
+
+Vercel project-specific read-only configuration at approximately 14:47 Sydney still reports external GoDaddy nameservers `ns35/ns36.domaincontrol.com`, four GitHub Pages A records, no conflicts, preferred apex addresses `216.150.1.1` and `216.150.16.1`, and preferred CNAME `8db1dd380a206fba.vercel-dns-017.com.`. These are preparation evidence, not applied values. Revalidate recommendations immediately before assigning the reviewed deployment/domain and editing the existing records. Preserve email records and nameservers; no whole-zone replacement. Public DNS rollback preimage already exists, but a full registrar-zone export has not succeeded.
+
 ## Ready preparation versus activation
 
 1. Preserve completed Exchange/export evidence in `12e10d3e` and the qualified `2026-10-11-beta-rc3` packet. Remaining GoDaddy geography/tag/backup questions are disclosed follow-up, not a generic launch gate. No paid Purview or repeated mailbox sign-in is required. Preserve accepted owner login/MFA and approved retention intent.

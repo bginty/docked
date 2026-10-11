@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-11T03:46:25.976Z",
+  "domain": "docked.com.au",
+  "registrarSignIn": "VERIFIED",
+  "observedPage": "https://dcc.godaddy.com/control/portfolio/docked.com.au/settings?tab=dns",
+  "zoneRecords": "UNAVAILABLE",
+  "providerMessage": "We're having trouble loading your zone file",
+  "recovery": "Reload and fresh observed-URL tab failed with empty response",
+  "dnsMutations": 0,
+  "mailMutations": 0,
+  "domainAssigned": false,
+  "deployed": false,
+  "fullZoneExport": false,
+  "publicDnsPreimage": "private-data/friends-cutover/dns-before.json",
+  "vercel": {
+    "projectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "recommendedIPv4": [
+      "216.150.1.1",
+      "216.150.16.1"
+    ],
+    "recommendedCNAME": "8db1dd380a206fba.vercel-dns-017.com.",
+    "applied": false
+  },
+  "collectorFollowUp": "Existing 23:20 Sydney follow-up unchanged; no duplicate or cooldown bypass",
+  "newOwnerSignInRequired": false
+}

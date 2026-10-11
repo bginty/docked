@@ -32,7 +32,7 @@ Mailbox geography, effective MRM tags/recovery periods, non-litigation holds and
 |---|---|
 | Public site | https://docked.com.au still serves the HTTPS holding page; www redirects to apex. No friends release or DNS change is claimed. |
 | Existing owner QA | Protected `https://docked-production-ma0j6h6we-briant-s-projects.vercel.app`, deployment `dpl_2hC7cKyP7cAChXqLfxovhPzQkhhK`, source `5ffa6eaa`. Accepted owner authentication preserved. |
-| Registrar access | The separate GoDaddy domain-control URL redirects to domain-owner sign-in. An interactive sign-in is requested at https://dcc.godaddy.com/control/docked.com.au/dns. This is not the completed Microsoft mailbox check. |
+| Registrar access | **Sign-in completed and verified**, 11 October approximately 14:42 Sydney. The signed-in Docked domain portfolio was reached. Its DNS Records panel reports “We're having trouble loading your zone file”; reload/fresh-tab recovery failed with an empty response. This is a DNS-page availability problem, not a missing sign-in. No DNS edit was submitted. Preserve the authenticated session and retry the known records page when available. |
 | Domain target | Exact existing Docked Vercel project/team verified. No custom domain attached yet; current project-specific DNS recommendations retrieved. Preserve all mail records. No new service needed. |
 | Admission | Current hosted friends/tester/swap execution gates closed; zero tester slots used. Ten-person AU18+, ordinary AAL1 and owner/admin MFA controls remain enforced. Recipient list is not needed for preparation. |
 | Callback/recovery | Domain callback paths allowlisted. Site URL/mail pin still point to older QA and must be switched together at cutover. Positive admitted-member browser and domain recovery acceptance remain outstanding; SQL acceptance is not a substitute. No resets or recovery emails were sent. |
@@ -61,7 +61,7 @@ Existing DNS/Auth preimages remain in ignored `private-data/friends-cutover/`; r
 
 Only current owner actions:
 
-1. Complete the separate GoDaddy **domain-owner** sign-in at the DNS URL above and leave DNS Management open. No password/code in chat.
+1. Domain-owner sign-in is **complete**. No repeat sign-in or new approval is requested. Leave the signed-in domain tab available; the agent still needs the DNS record table to load before safely editing. If the same zone-file failure persists in the owner's normal browser, the precise provider issue is: “My signed-in docked.com.au DNS Records panel cannot load the zone file; please restore access without changing any DNS or email records.” No support enquiry has been sent.
 2. When ready to invite, provide each recipient email and explicit authorisation (up to ten Australian adults). No invitations sent yet.
 3. Once the actual friends APK is supplied, install via **Update**, then check login/session reopen, five tabs, NFL team save/free swap, post-game/pending labels, keyboard/Back/safe areas and offline recovery. Visual/S24 approval remains yours.
 

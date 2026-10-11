@@ -40,7 +40,7 @@ The missing observation of a completed future round does not itself prevent a cl
 
 ## Exact next owner action
 
-Only the separate GoDaddy **domain-owner** session is currently requested: open https://dcc.godaddy.com/control/docked.com.au/dns, sign in there and leave DNS Management open. This does not repeat completed Exchange/mailbox administration. The prepared GoDaddy mailbox enquiry remains unsent and is not a prerequisite under the qualified privacy notice. Provide authorised recipient emails only when invitations are wanted; visual/S24 acceptance remains yours.
+Domain-owner sign-in is now complete and verified. The signed-in DNS Records panel cannot load its zone file; reload/fresh-tab recovery failed. This supersedes the earlier sign-in request. No repeat mailbox/domain login is requested. No DNS edit or support enquiry was sent. See NFL_RELEASE_CURRENT.md for the exact current technical state. Provide authorised recipient emails only when invitations are wanted; visual/S24 acceptance remains yours.
 
 ## Release sequence after factual gates
 
