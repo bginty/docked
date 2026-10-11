@@ -25,7 +25,12 @@ export class PayPalSandbox {
     if (Object.values(config).some((v) => !v))
       throw Error("PayPal sandbox not configured");
   }
-  private async api(path: string, body: object, request?: string) {
+  private async api(
+    path: string,
+    body: object | undefined,
+    request?: string,
+    method = "POST",
+  ) {
     const auth = await this.transport(`${this.origin}/v1/oauth2/token`, {
       method: "POST",
       headers: {
@@ -40,13 +45,13 @@ export class PayPalSandbox {
       .object({ access_token: z.string().min(1) })
       .parse(await auth.json());
     const r = await this.transport(this.origin + path, {
-      method: "POST",
+      method,
       headers: {
         Authorization: `Bearer ${token.access_token}`,
         "Content-Type": "application/json",
         ...(request ? { "PayPal-Request-Id": request } : {}),
       },
-      body: JSON.stringify(body),
+      body: body === undefined ? undefined : JSON.stringify(body),
       signal: AbortSignal.timeout(15000),
     });
     if (!r.ok)
@@ -142,5 +147,66 @@ export class PayPalSandbox {
       currency: "AUD" as const,
       confirmed: true as const,
     };
+  }
+
+  /** Wallet funding additionally verifies the merchant and immutable local order
+   * binding via authenticated Orders readback. Static button metadata is insufficient. */
+  async verifiedFundingCapture(
+    headers: Headers,
+    event: unknown,
+    expected: { order: string; price: number; reference: string },
+  ) {
+    const receipt = await this.verifiedCapture(headers, event, expected);
+    const order = await this.api(
+      `/v2/checkout/orders/${encodeURIComponent(expected.order)}`,
+      undefined,
+      undefined,
+      "GET",
+    );
+    const parsed = z
+      .object({
+        id: z.string(),
+        status: z.literal("COMPLETED"),
+        purchase_units: z
+          .array(
+            z.object({
+              custom_id: z.string(),
+              invoice_id: z.string(),
+              payee: z.object({ merchant_id: z.string() }),
+              amount: z.object({
+                currency_code: z.literal("AUD"),
+                value: z.string(),
+              }),
+              payments: z.object({
+                captures: z.array(
+                  z.object({
+                    id: z.string(),
+                    status: z.literal("COMPLETED"),
+                    amount: z.object({
+                      currency_code: z.literal("AUD"),
+                      value: z.string(),
+                    }),
+                  }),
+                ),
+              }),
+            }),
+          )
+          .length(1),
+      })
+      .parse(order);
+    const unit = parsed.purchase_units[0],
+      capture = unit.payments.captures;
+    if (
+      parsed.id !== expected.order ||
+      unit.custom_id !== expected.reference ||
+      unit.invoice_id !== expected.reference ||
+      unit.payee.merchant_id !== this.config.merchantId ||
+      unit.amount.value !== (expected.price / 100).toFixed(2) ||
+      capture.length !== 1 ||
+      capture[0].id !== receipt.capture ||
+      capture[0].amount.value !== unit.amount.value
+    )
+      throw Error("Funding merchant/reference/capture mismatch");
+    return receipt;
   }
 }

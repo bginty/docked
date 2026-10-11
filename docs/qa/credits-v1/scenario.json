@@ -1,0 +1,76 @@
+{
+  "alice": {
+    "available": 4942,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 4850,
+    "total": 4942,
+    "heldAvailable": 0,
+    "spendable": 4942,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true
+  },
+  "bob": {
+    "available": 4850,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 4850,
+    "total": 4850,
+    "heldAvailable": 0,
+    "spendable": 4850,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true
+  },
+  "admin": {
+    "mode": "financial-sandbox-only",
+    "currency": "AUD",
+    "categories": {
+      "purchased": 9700,
+      "sale": 92,
+      "promotional": 0,
+      "competition": 0
+    },
+    "redeemableLiability": 9700,
+    "simulatedProviderCash": 14800,
+    "actualProviderBalance": null,
+    "actualBankBalance": null,
+    "suppliedReconciliation": null,
+    "reconciliationDifference": null,
+    "backingShortfall": 0,
+    "commission": 8,
+    "swapFees": 100,
+    "packRevenue": 4900,
+    "marketplaceVolume": 100,
+    "pendingWithdrawals": 0,
+    "deposits": [
+      {
+        "lot": "L2_0",
+        "order": "adep",
+        "amount": 4900,
+        "member": "synthetic-alice",
+        "status": "FULFILLED",
+        "capture": "CAPa",
+        "clearAt": 1791710335793,
+        "product": "premium-single-v1",
+        "provider": "PPa",
+        "refunded": 0
+      },
+      {
+        "lot": "L26_1",
+        "order": "bdep",
+        "amount": 9900,
+        "member": "synthetic-bob",
+        "status": "FULFILLED",
+        "capture": "CAPb",
+        "clearAt": 1791710336621,
+        "product": "elite-single-v1",
+        "provider": "PPb",
+        "refunded": 0
+      }
+    ],
+    "bonusEntitlements": 2,
+    "openExceptions": 0,
+    "funding": {},
+    "note": "Synthetic accounting only. Deposits are member liabilities, not revenue. Actual provider/bank balance, fees and reserves unknown until independently reconciled. Journal entries do not establish cash backing."
+  }
+}

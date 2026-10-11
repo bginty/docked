@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "Mobile browser → server → PostgreSQL: A$99 simulated deposit, confirmed single-card reveal, reviewed 100-credit sale/8-credit commission, other member purchase and persisted ownership after reload",
+    "390px: wallet/admin flow, balances, synthetic labels and no horizontal overflow",
+    "1366px: wallet/admin flow, balances, synthetic labels and no horizontal overflow",
+    "Local session required; confirmation enforced; submitted owner promotion persists to PostgreSQL"
+  ],
+  "scope": "Local loopback operator fixture; synthetic AAL2, not real owner sign-in or PayPal. Existing pack viewer reused."
+}

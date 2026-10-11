@@ -1,0 +1,246 @@
+DOCKED CREDITS FINANCIAL SANDBOX — 11 October 2026
+
+BOUNDARY
+Implemented for disposable local PostgreSQL and fictional operator/member sessions.
+No live deposit, redeemable prize, cash marketplace, paid friends swap or withdrawal
+was activated. No hosted migration, deployment, account change, invitation, payment,
+provider enquiry, subscription, commercial agreement or identity-document collection.
+The existing friends v19 baseline f2bb0e23 and its free-swap implementation are preserved.
+The local schema is credits_sandbox, not beta_fantasy or official fantasy inventory.
+No mechanism converts existing beta credits, cards or engagement points into money.
+
+REUSE AND PRODUCT FACTS
+Reuses the existing CommerceSandbox allocator/order/fulfilment transaction, KYC state
+machine, prize register, canonical scoring-journal hash function, PostgreSQL transaction
+pattern, PayPal sandbox adapter and confirmed PackOpening reveal component.
+The current repository records random disclosed-pool selection and Premium = RARE
+as approved, most recently preserved in c9630a7f and PAYPAL_HOSTED_BUTTONS.md.
+Existing owned cards and tier identities are not renamed. Actual sale-edition supply,
+licences and previous-season ranking pools still need approval and verified data.
+
+FIXED COMMERCIAL RULES MODELLED IN THE SANDBOX
+- A$1 = 100 Docked Credits; one credit corresponds to one AUD cent for calculations.
+- A$49 verified deposit: 4,900 purchased credits PLUS one unopened Premium entitlement.
+- A$99 verified deposit: 9,900 purchased credits PLUS one unopened Elite entitlement.
+- Bonus consumes no credits. Additional Premium/Elite packs cost 4,900/9,900 credits;
+  credit purchases do not grant another deposit bonus.
+- Seller commission 7.5%; buyer pays the listing price, seller receives net and Docked
+  receives fee in the same transaction as ownership transfer.
+- Proposed whole-credit rounding: half-up, floor((price*750+5000)/10000), implemented
+  with BigInt. Examples: price1→fee0; 6→0; 7→1; 20→2; 100→8; 4900→368; 9900→743.
+- Pure swaps: exactly 50 credits each, 100 total, only on atomic completion. Cancel,
+  reject, expire, insufficient funds, stale ownership and locked lineup failures charge
+  nothing. Offers do not reserve funds/cards; acceptance rechecks under one DB lock.
+- Mixed card-plus-credit trades are rejected by the command schema.
+- Rarity, purchase price and spending do not enter any fantasy scoring calculation.
+
+LEDGER, OWNERSHIP AND RECOVERY
+Integer double-entry postings with immutable hash-linked journal, SQL sum constraint,
+unique journal/request references and append-only snapshots. No balance-edit operation.
+Available, pending and reserved buckets are disjoint. Spendable excludes review-held
+funds; withdrawable is an eligible subset, never added to the wallet total.
+Lots retain purchased/payment, sale, promotion and competition provenance. Transfers
+preserve the source eligibility. Proposal only: promotional/bonus-derived cards remain
+restricted on resale, including through intervening swaps, so unbacked credits cannot
+be washed into redeemable liabilities. This conservative restriction requires approval
+before live use and must be disclosed to both parties. It is not a friends-beta rule.
+Corrections append compensating lines. Spent awards/refunds and transferred bonus cards
+create explicit recovery cases; no third-party card confiscation or automatic debt.
+Partial refunds are cumulative, monotonic and idempotent; multiple pending refunds
+cannot leave duplicate credit. Unopened refunded bonus entitlements enter review until
+the remedy policy is decided. No automatic bonus forfeiture was invented.
+Funding identifiers/budgets gate redeemable promotional and competition awards. A
+recorded sandbox funding entry is NOT proof of bank cash. Approved schedule version,
+finalised eligible result, tie policy and result revision accompany each award.
+Result corrections hold the existing obligation for review rather than pay again.
+Same award identity with changed schedule/input is rejected. Prize values are examples.
+KYC uses existing session/member/revision checks and no real documents. Withdrawal
+request/reserve, reviewed, submitted, uncertain, paid, failed and cancelled transitions
+are guarded. Uncertain submissions cannot be resubmitted or cancelled; only definitive
+reconciliation releases or spends the reserve. Owner/admin operations require AAL2;
+ordinary fictional member actions require no MFA. Actual auth integration is unchanged.
+
+IMPLEMENTATION / REVIEW
+- src/core/credits-policy.ts: versioned proposed sandbox configuration.
+- src/core/credits-sandbox.ts: validated commands, ledger/provenance, packs, trades,
+  administrative issuance, refunds, awards, KYC, withdrawals and financial report.
+- src/server/credits-sandbox-store.ts: serialized transaction, immutable journal and
+  normalized posting persistence. Coarse locking is deliberate for this small lab;
+  this is not a claim of high-volume production capacity or a deployed money service.
+- sandbox/credits.sql: local-only additive test schema with RLS, no application grants,
+  immutable UPDATE/DELETE/TRUNCATE guards and a deferred balanced-posting constraint.
+  No Supabase production migration was created or applied. Existing migration files
+  remain intact; promoting this schema needs a dedicated reviewed runtime role and
+  production financial architecture, never a general web-service-role grant.
+- src/server/paypal-sandbox.ts: existing fixed-sandbox Orders flow now adds authenticated
+  merchant, local reference, AUD amount and completed capture readback for wallet funding.
+- src/components/credits-sandbox-review.tsx: wallet, pack reveal, marketplace quote,
+  swaps/history, withdrawal request, protected synthetic operator promotion/reversal
+  and backing report. Mounted only by the loopback review harness, not the live dashboard.
+- scripts/credits-concurrency.ts: PostgreSQL races, rollback, permission and isolation checks.
+- scripts/credits-review-server.ts: short-lived local operator cookie, Origin/Host checks,
+  CSP and fictional accounts. Role simulation is explicitly not proof of real owner MFA.
+
+Run automated acceptance:
+  node scripts/fantasy-production-local-postgres.mjs --credits
+Run interactive review in PowerShell using existing installed tools:
+  $env:DOCKED_CREDITS_REVIEW='true'
+  node scripts/fantasy-production-local-postgres.mjs --credits
+The local review URL is saved to private-data/credits/review-url.txt. Open that URL
+on this laptop. Ctrl+C stops the review. Start without that variable for an automatic
+test run that closes itself. Never publish the loopback fixture server or its cookie.
+Screenshots and machine-readable results are in docs/qa/credits-v1/.
+
+EXTERNAL INTEGRATIONS: PREPARED, NOT ACCEPTED
+Actual PayPal sandbox, live PayPal, bank, payout and identity-provider transactions:
+NOT RUN. Scoped configuration inspection found no PayPal sandbox secret, merchant ID
+or webhook ID. The saved live hosted-button client identifier is not a server secret.
+Tests use mocked provider contracts plus real LOCAL PostgreSQL, not real provider money.
+No real identity evidence was obtained. API contract tests cannot prove merchant approval.
+
+Existing supplied public button IDs in config/paypal-hosted-buttons.json:
+Premium A$49: K8BXZRS7V5Q2G. Elite A$99: EPY3GUUNWFMRN.
+These were originally pack offers, not approved cash-redeemable wallet funding. Attempts
+to read their public checkout pages returned no usable content. Merchant/payee, actual
+AUD price, quantity/tax settings, member attribution and permitted wallet product remain
+UNVERIFIED. The links were not replaced or enabled, and no payment was made.
+Static buttons alone have not demonstrated authenticated Docked order attribution or
+pre-payment stock reservation. Webhooks belong to the processing REST app; do not assume
+the existing buttons feed the existing sandbox app's webhook.
+Smallest candidate integration: reserve a server-generated Docked order and finite bonus
+unit, create an AUD Orders API order in the existing merchant account with custom_id,
+invoice_id and payee, persist the provider binding, verify signed completed capture and
+authenticated order readback, then post credits/entitlement idempotently. Use supported
+refund/dispute retrieval and reconciliation against provider statements before live use.
+The existing adapter remains fixed to api-m.sandbox.paypal.com. There is no live switch.
+Capture approval does not prove wallet, marketplace, payout or prize-product approval.
+
+PROVIDER / AUSTRALIAN READINESS — CURRENT PRIMARY SOURCES CHECKED 11 OCTOBER 2026
+Verified: PayPal's AU Acceptable Use Policy lists pre-approval categories covering payment
+facilitators/stored value, virtual in-game currencies, marketplaces and relevant gaming/
+prize activities. Docked needs written confirmation for its exact combined funds flow;
+ordinary checkout approval is insufficient. No approval enquiry was sent.
+https://www.paypal.com/au/legalhub/paypal/acceptableuse-full
+Verified: PayPal webhooks are scoped to the processing app, require signature verification,
+and can repeat. The new domain deduplicates both events and provider capture IDs.
+https://developer.paypal.com/api/rest/webhooks/
+Orders and Payouts are separate capabilities. Merchant eligibility, payout destination,
+currency, reserves, fees and permission for this wallet model need account-specific
+confirmation; access to an API is not permission to operate this product.
+https://developer.paypal.com/api/payouts
+https://developer.paypal.com/api/make-api-requests
+Verified: ASIC RG185 addresses non-cash payment facilities, including stored-value models.
+Inference for Docked: obtain Australian financial-services advice on facility issuer,
+AFSL/authorised-representative or relief eligibility, disclosures, disputes, safeguarding
+and the current payments-reform transition. No exemption is assumed from small size.
+https://asic.gov.au/regulatory-resources/find-a-document/regulatory-guides/rg-185-non-cash-payment-facilities/
+APRA describes shared PPF oversight with ASIC/RBA and authorisation for relevant larger
+facilities. This is not a finding that Docked requires APRA authorisation today.
+https://www.apra.gov.au/banking/licensing-guidelines-authorised-deposit-taking-institutions
+AUSTRAC lists stored-value services among designated-service categories. An Australian
+specialist must determine the actual services/obligations, reporting entity and AML/CTF
+controls; a KYC vendor alone does not satisfy these responsibilities.
+https://www.austrac.gov.au/new-austrac/enrol-us/new-enrolment-form-questions
+ACMA regulates online gambling under the IGA. Obtain specific classification advice for
+random paid packs, redeemable credits, resale, bonuses and funded competition awards,
+including applicable state/territory laws. The current free friends beta is separate.
+https://www.acma.gov.au/about-interactive-gambling-act
+Also resolve Australian Consumer Law refund/marketing obligations, tax/GST/accounting,
+privacy/identity retention and card/player/data rights. This report identifies questions
+for provider/specialist review, not legal clearance or automatic approval of policies.
+
+SUPPORTED FUNDS FLOW PROPOSAL (CONDITIONAL, NOT A CLAIM OF VERIFIED PROVIDER SUPPORT)
+Prefer a provider specifically approved to hold/safeguard customer value and handle
+marketplace beneficiaries/payouts. Docked records the matching subledger; member deposits
+remain liabilities. Identify in writing who legally holds funds and is the facility
+issuer, who contracts with sellers, who pays/absorbs processing fees, who manages reserves,
+refunds, disputes, negative merchant balances and insolvency risk. PayPal receiving funds
+into a merchant balance does not establish that Docked has a safeguarded customer wallet.
+Reconcile provider and bank statements, fees, reserves and ledger obligations before
+allowing payouts. Unmatched events and uncertain payouts go to an audited exception queue.
+If the current PayPal account cannot support this exact model, keep financial activation
+off and the free beta running while comparing approved alternatives; do not quietly turn
+wallet deposits into pack sales or accept new services/agreements.
+
+COSTS / BACKING
+No new charges incurred. Existing infrastructure unchanged. PayPal's published AU domestic
+commercial reference rate is 2.90% + A$0.30 (page updated 23 July 2026), subject to applicable
+merchant contract/product and the controlling disclosure statement. This is not a quote
+or approval for Docked wallet funding. At that reference rate A$49 costs about A$1.72 and
+A$99 about A$3.17 before other costs: full 4,900/9,900 redeemable credits leave those costs
+for Docked to fund, in addition to the bonus inventory. Do not deduct them silently.
+Payout, cross-border, FX, disputes, reserves, KYC and legal costs remain unquoted/unapproved.
+https://www.paypal.com/au/business/paypal-business-fees
+
+DECISIONS REQUIRED BEFORE LIVE FINANCIAL ACTIVATION — RECOMMENDATIONS ONLY
+1. Bonus frequency: recommend one qualifying bonus per verified member per published,
+   budgeted campaign, not unlimited replenishment. Choose the A$49/A$99 upgrade rule and
+   campaign dates/cap. The lab uses one per product solely to exercise both paths.
+2. Deposits later withdrawn: recommend no undisclosed spend requirement. Price the
+   campaign assuming principal may be returned. Decide whether a properly earned bonus
+   survives withdrawal/refund and the unopened-pack remedy; never seize a later buyer's
+   card. Repeated deposit/withdraw loops otherwise drain bonus supply and processing funds.
+3. Minimum withdrawal: propose A$10 (1,000 credits); test fixture uses A$1 to exercise
+   boundaries. This is not approved. Payout fee: recommend zero initially only if Docked
+   can fund actual rail costs; otherwise disclose/approve a cost-based fee before use.
+4. Holds: release after verified provider settlement and disclosed risk review; determine
+   provider-specific dispute/settlement periods with an appeal/review process. Do not
+   claim zero-delay sandbox clearing is a safe live hold period.
+5. Purchased credits: recommend redemption of eligible cleared principal without mandatory
+   spend, subject to approved provider/refund routing and lawful disclosed risk controls.
+6. Promotional spending: recommended non-withdrawable, campaign-limited lots and explicit
+   spend order (lab: promotion, competition, sale, purchased). Approve resale restrictions
+   including swap propagation, or fund eligible conversion from identified company cash.
+   Lab restrictions are conservative demonstrations, not silently approved member terms.
+7. Competition awards: choose amounts, schedule version, eligibility, ties, funding budget
+   and redeemability. No values/automatic awards are approved by this implementation.
+8. Whole-credit commission rounding: approve proposed half-up; decide if a minimum listing
+   price is needed. Pure swaps stay exactly 50 each; mixed offers remain disabled.
+9. Product supply: approve finite editions, eligibility pool/ranking source and availability
+   remedy before offering guaranteed deposit bonuses. Tier/random choice is already recorded.
+10. Provider activation: confirm exact-model written approval and securely configure a
+    sandbox REST client secret, merchant ID, webhook ID and test buyers in local environment
+    or approved secret storage. Do not paste secrets into chat. Confirm refund/dispute and
+    payout permissions separately, then run real sandbox acceptance before any live proposal.
+
+KNOWN LIMITATIONS
+This is a complete local workflow implementation/test laboratory, not hosted financial
+acceptance. No external money/KYC/payout transaction or actual financial-admin login has
+passed. Hosted money-service authentication/adapters, operational reconciliation, legal
+classification, cash backing and product terms remain activation gates. Current owner
+dashboard continues to show real financial services as not configured. Private test actor
+selection must never be exposed as production authorization. Historical scoring and free
+friends accounts/cards/swaps are untouched. Physical Android financial acceptance is not
+claimed, and no new Android build is needed for a non-deployed financial lab.
+
+FINAL ACCEPTANCE EVIDENCE — LOCAL, 11 OCTOBER 2026
+- npm test: 286/286 PASS, zero skipped. Includes existing onboarding/authentication,
+  scoring, free friends-beta, commerce and the new credit/provider contract regressions.
+- npm run db:test: 149/149 PASS, zero skipped; existing migration regression coverage.
+- npm run build: PASS. npm run typecheck and targeted ESLint: PASS.
+- Disposable PostgreSQL 17.10 concurrency: PASS. Twenty-way duplicate capture,
+  acceptance, sale, spending and withdrawal races; injected persistence failure rolls
+  back the entire state; unauthorized SELECT/INSERT denied; DELETE/TRUNCATE denied;
+  unbalanced posting rejected at commit. Existing friends test sentinel unchanged.
+- Local Edge browser -> server -> PostgreSQL: PASS at 390px and 1366px. Required
+  operator confirmation, promotion persistence, simulated A$99 deposit, single-card
+  Elite reveal, 100-credit sale with 8-credit commission, other-member purchase and
+  persisted ownership after reload. No horizontal overflow. This is browser automation
+  using fictional roles, not physical Android or real owner/tester authentication.
+- Source, generated review bundle, screenshots/evidence and .next/static secret scan:
+  PASS, 73 files, no findings/errors. Known configured secrets compared without output.
+- Initial tests exposed a canonical journal-hash issue after JSONB key reordering and
+  a negative-zero report value; both fixed and regression tests passed. Initial Windows
+  temporary-directory permission failures were rerun with authorized local access.
+  An initial absent browser binary was resolved by using the existing Edge installation.
+  No package, paid service or provider credential was added to resolve those failures.
+- Local schema SHA-256 (LF canonical):
+  376a9591c066003e015a0a2bbff88ed6ad75698fb189476556ac17688db0b242
+  No hosted migration applied and no deployment performed. Preserved release f2bb0e23.
+
+Evidence: docs/qa/credits-v1/postgres.json, browser.json, scenario.json,
+verification.json, secrets.json, wallet-390.png, wallet-1366.png, review-390.png,
+review-1366.png and confirmed-reveal-390.png. The scenario snapshot is captured before
+the extra browser transactions; screenshots therefore show later fixture balances.
+Review the proposed policy decisions above, then provide sandbox configuration securely
+and obtain provider/specialist decisions before requesting any financial activation.

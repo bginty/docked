@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-11T09:20:27.204Z",
+  "baseline": "f2bb0e23",
+  "scope": "isolated local financial sandbox; no hosted changes",
+  "platform": {
+    "passed": 286,
+    "failed": 0,
+    "skipped": 0
+  },
+  "databaseRegression": {
+    "passed": 149,
+    "failed": 0,
+    "skipped": 0
+  },
+  "build": "PASS",
+  "typecheck": "PASS",
+  "targetedEslint": "PASS",
+  "postgres": "postgres.json",
+  "browser": "browser.json",
+  "secrets": "secrets.json",
+  "externalPayPal": "NOT RUN: sandbox credentials unavailable",
+  "realKyc": "NOT RUN",
+  "realPayouts": "NOT RUN",
+  "physicalAndroid": "NOT RUN",
+  "hostedMigrations": 0,
+  "deployments": 0,
+  "newCharges": 0
+}
