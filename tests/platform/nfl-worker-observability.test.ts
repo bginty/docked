@@ -47,6 +47,8 @@ test("worker failure retains task/season without putting credentials or raw erro
   );
   assert.deepEqual(updates[0], {
     error: "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+    stage: "worker",
+    diagnostic: "UNCLASSIFIED",
     task: "reconcile",
     season: 2026,
   });

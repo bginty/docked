@@ -1,3 +1,5 @@
+> 12 October follow-up complete: v20 was already live; do not repeat cutover. Source jobs failed, collector-only runtime repair deployed as version 12, next scheduled collection remains pending. See [follow-up outcome](NFL_COLLECTOR_FOLLOWUP_2026-10-12.md). The single automation was not duplicated; safe staged gameplay remains available under the later owner approval.
+
 # Authorised NFL friends cutover execution
 
 **Execution completed:** [Friends v17 release](FRIENDS_V17_RELEASE.md) records the successful staged domain/APK release. At tonight's unchanged 23:20 check, inspect the release identity first; do not repeat the completed cutover. The later owner authorisation explicitly allows gameplay before collection acceptance. References below to keeping initial cutover closed for an unproven source cycle are superseded for this staged release. Verify collection and report the precise result; do not send invitations.

@@ -200,3 +200,33 @@ test("download refuses an arbitrary redirect or HTML", async () => {
     /content type/,
   );
 });
+
+// Edge Functions use Deno: Buffer is not a global in application code.
+test("source decoding works without Node's global Buffer", async () => {
+  const fixture = readFileSync(
+    "tests/fixtures/postgame/nflverse-2026-atl-pit.csv",
+    "utf8",
+  );
+  const response = new Response(fixture, {
+    headers: { "content-type": "text/csv" },
+  });
+  const original = Object.getOwnPropertyDescriptor(globalThis, "Buffer")!;
+  try {
+    Object.defineProperty(globalThis, "Buffer", {
+      value: undefined,
+      configurable: true,
+      writable: true,
+    });
+    const result = await fetchNflDataset(
+      "weekly",
+      2026,
+      {},
+      async () => response,
+    );
+    assert.equal(result.notModified, false);
+    assert.ok(result.body?.rows.length);
+    assert.match(result.body?.sourceSha256 ?? "", /^[a-f0-9]{64}$/);
+  } finally {
+    Object.defineProperty(globalThis, "Buffer", original);
+  }
+});

@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-11T19:45:55.240Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "function": "nfl-postgame",
+  "version": 12,
+  "verifyJwt": true,
+  "bundleSha256": "9e7359d3e3944b84147c16309b8eab2fdf77c6e296ab5e592cc35bc541ed9f98",
+  "worker": [
+    {
+      "started_at": "2026-10-11T19:45:00.824Z",
+      "finished_at": "2026-10-11T19:45:00.860Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    }
+  ],
+  "http": [
+    {
+      "created": "2026-10-11T19:45:00.132Z",
+      "status": 200,
+      "task": "reconcile",
+      "outcome": "idle"
+    }
+  ],
+  "interpretation": "Scheduled reconciliation after deployment is runtime/auth/database evidence only. Idle is not source collection or completed-member-round evidence."
+}

@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-11T19:43:53.111Z",
+  "readOnly": true,
+  "sources": [
+    {
+      "dataset": "weekly",
+      "rawId": "1",
+      "hash": "ee4ed05a83e75b1c20cfe975eedb20bfcb66529856728f0bddd25205002e8917",
+      "hashMatches": true,
+      "checkedAt": "2026-10-10T23:26:54.883Z",
+      "nextAttempt": "2026-10-12T00:05:01.467Z",
+      "expiresAt": "2026-11-09T23:26:54.587Z",
+      "within24Hours": true,
+      "errorCode": "SOURCE_UNAVAILABLE_OR_SCHEMA_CHANGED"
+    },
+    {
+      "dataset": "pbp",
+      "rawId": "2",
+      "hash": "f2be01d10d302f68284a3e8cd2284bcd6a0e5b12df1483227efa1f925bbda24e",
+      "hashMatches": true,
+      "checkedAt": "2026-10-10T23:28:11.681Z",
+      "nextAttempt": "2026-10-12T00:10:01.385Z",
+      "expiresAt": "2026-11-09T23:28:10.554Z",
+      "within24Hours": true,
+      "errorCode": "SOURCE_UNAVAILABLE_OR_SCHEMA_CHANGED"
+    },
+    {
+      "dataset": "rosters",
+      "rawId": "3",
+      "hash": "d761417f797859f12afb66df555e1adbf2523d9f03474d108e7cf4e3f290bc45",
+      "hashMatches": true,
+      "checkedAt": "2026-10-10T23:29:16.500Z",
+      "nextAttempt": "2026-10-12T00:15:01.852Z",
+      "expiresAt": "2026-11-09T23:29:16.408Z",
+      "within24Hours": true,
+      "errorCode": "SOURCE_UNAVAILABLE_OR_SCHEMA_CHANGED"
+    }
+  ],
+  "identity": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "885de1b440d670b539f1577590f4e601ab2f469c",
+    "deploymentId": "dpl_FCT6gGG2ZSou1YKh3K1UKiEhb2AR",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  }
+}

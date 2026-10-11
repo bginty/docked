@@ -12,6 +12,6 @@ Deno.serve(async(req:Request)=>{
  if(url.username!=='docked_nfl_worker.pojoymtniryarxxunyvz'||!/^aws-\d+-ap-southeast-2\.pooler\.supabase\.com$/.test(url.hostname))return new Response('Unconfigured',{status:503});
  const sql=postgres(url.href,{ssl:{rejectUnauthorized:true,ca},max:2,prepare:false,connect_timeout:15,onnotice:()=>{}});
  try {const result=await runNflCollection(sql,task,2026);return Response.json(result);}
- catch{return Response.json({status:'failed',message:'Collection pending; inspect private health'},{status:503});}
+ catch{return Response.json({status:'failed',task,season:2026,message:'Collection pending; inspect private health'},{status:503});}
  finally{await sql.end({timeout:3});}
 });

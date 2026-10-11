@@ -1,3 +1,7 @@
+## Latest authoritative update — 12 October 2026
+
+Friends **v20** remains live at https://docked.com.au/app/login; see [v20 release](DOCKED_V20_REVEAL_RELEASE.md). The older v17 preparation/cutover statements below are historical. The single collector follow-up found all three 11 October source jobs failed with HTTP 503. A reproduced Deno Buffer dependency defect was fixed and collector version 12 deployed; scheduled reconciliation then passed as **idle**, which is not source-download acceptance. Source collection and genuine member-round observation remain pending. No DNS, mail, account or APK rollback occurred. See [actual evidence, repair, retry times and delivery](NFL_COLLECTOR_FOLLOWUP_2026-10-12.md).
+
 Invitation update — 11 October 2026: the owner-authorised first friend invitation was submitted once by Docked support (Graph HTTP 202). Inbox delivery and recipient acceptance are unverified. Eligibility only: no account, password, consent or cards created. The restricted transactional-recipient list includes this authorised recipient. Earlier “no invitation sent” or “send approval pending” statements are superseded.
 
 # Consolidated NFL friends release — 11 October 2026

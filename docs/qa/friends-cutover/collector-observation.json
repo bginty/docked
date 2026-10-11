@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-11T04:37:17.510Z",
+  "at": "2026-10-11T19:36:57.992Z",
   "projectRef": "pojoymtniryarxxunyvz",
   "readOnly": true,
   "jobs": [
@@ -33,192 +33,330 @@
     {
       "jobname": "docked-nfl-lineup-lock",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:37:00.058Z",
-      "end_time": "2026-10-11T04:37:00.071Z"
+      "start_time": "2026-10-11T19:36:00.092Z",
+      "end_time": "2026-10-11T19:36:00.101Z"
     },
     {
       "jobname": "docked-nfl-lineup-lock",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:36:00.155Z",
-      "end_time": "2026-10-11T04:36:00.161Z"
+      "start_time": "2026-10-11T19:35:00.081Z",
+      "end_time": "2026-10-11T19:35:00.086Z"
     },
     {
       "jobname": "docked-nfl-lineup-lock",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:35:00.139Z",
-      "end_time": "2026-10-11T04:35:00.145Z"
+      "start_time": "2026-10-11T19:34:00.085Z",
+      "end_time": "2026-10-11T19:34:00.091Z"
     },
     {
       "jobname": "docked-nfl-lineup-lock",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:34:00.072Z",
-      "end_time": "2026-10-11T04:34:00.079Z"
+      "start_time": "2026-10-11T19:33:00.052Z",
+      "end_time": "2026-10-11T19:33:00.058Z"
     },
     {
       "jobname": "docked-nfl-lineup-lock",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:33:00.114Z",
-      "end_time": "2026-10-11T04:33:00.125Z"
+      "start_time": "2026-10-11T19:32:00.062Z",
+      "end_time": "2026-10-11T19:32:00.067Z"
     },
     {
       "jobname": "docked-nfl-lineup-lock",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:32:00.124Z",
-      "end_time": "2026-10-11T04:32:00.133Z"
+      "start_time": "2026-10-11T19:31:00.163Z",
+      "end_time": "2026-10-11T19:31:00.168Z"
     },
     {
       "jobname": "docked-nfl-reconcile",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:30:00.113Z",
-      "end_time": "2026-10-11T04:30:00.150Z"
+      "start_time": "2026-10-11T19:30:00.141Z",
+      "end_time": "2026-10-11T19:30:00.165Z"
     },
     {
       "jobname": "docked-nfl-reconcile",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:15:00.195Z",
-      "end_time": "2026-10-11T04:15:00.207Z"
+      "start_time": "2026-10-11T19:15:00.060Z",
+      "end_time": "2026-10-11T19:15:00.067Z"
     },
     {
       "jobname": "docked-nfl-reconcile",
       "status": "succeeded",
-      "start_time": "2026-10-11T04:00:00.125Z",
-      "end_time": "2026-10-11T04:00:00.149Z"
+      "start_time": "2026-10-11T19:00:00.155Z",
+      "end_time": "2026-10-11T19:00:00.185Z"
     },
     {
       "jobname": "docked-nfl-reconcile",
       "status": "succeeded",
-      "start_time": "2026-10-11T03:45:00.072Z",
-      "end_time": "2026-10-11T03:45:00.083Z"
+      "start_time": "2026-10-11T18:45:00.163Z",
+      "end_time": "2026-10-11T18:45:00.168Z"
     },
     {
       "jobname": "docked-nfl-reconcile",
       "status": "succeeded",
-      "start_time": "2026-10-11T03:30:00.189Z",
-      "end_time": "2026-10-11T03:30:00.204Z"
+      "start_time": "2026-10-11T18:30:00.144Z",
+      "end_time": "2026-10-11T18:30:00.151Z"
     },
     {
       "jobname": "docked-nfl-reconcile",
       "status": "succeeded",
-      "start_time": "2026-10-11T03:15:00.137Z",
-      "end_time": "2026-10-11T03:15:00.149Z"
+      "start_time": "2026-10-11T18:15:00.084Z",
+      "end_time": "2026-10-11T18:15:00.104Z"
+    },
+    {
+      "jobname": "docked-nfl-rosters",
+      "status": "succeeded",
+      "start_time": "2026-10-11T12:15:00.179Z",
+      "end_time": "2026-10-11T12:15:00.205Z"
+    },
+    {
+      "jobname": "docked-nfl-pbp",
+      "status": "succeeded",
+      "start_time": "2026-10-11T12:10:00.114Z",
+      "end_time": "2026-10-11T12:10:00.187Z"
+    },
+    {
+      "jobname": "docked-nfl-weekly",
+      "status": "succeeded",
+      "start_time": "2026-10-11T12:05:00.174Z",
+      "end_time": "2026-10-11T12:05:00.185Z"
     }
   ],
   "httpResponses": [
     {
-      "id": "16",
+      "id": "80",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T04:30:00.150Z",
+      "created": "2026-10-11T19:30:00.158Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "15",
+      "id": "79",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T04:15:00.205Z",
+      "created": "2026-10-11T19:15:00.068Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "14",
+      "id": "78",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T04:00:00.144Z",
+      "created": "2026-10-11T19:00:00.186Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "13",
+      "id": "77",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T03:45:00.081Z",
+      "created": "2026-10-11T18:45:00.168Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "12",
+      "id": "76",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T03:30:00.203Z",
+      "created": "2026-10-11T18:30:00.150Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "11",
+      "id": "75",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T03:15:00.151Z",
+      "created": "2026-10-11T18:15:00.105Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "10",
+      "id": "74",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T03:00:00.190Z",
+      "created": "2026-10-11T18:00:00.270Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "9",
+      "id": "73",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T02:45:00.061Z",
+      "created": "2026-10-11T17:45:00.103Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "8",
+      "id": "72",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T02:30:00.121Z",
+      "created": "2026-10-11T17:30:00.177Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "7",
+      "id": "71",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T02:15:00.201Z",
+      "created": "2026-10-11T17:15:00.048Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "6",
+      "id": "70",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T02:00:00.178Z",
+      "created": "2026-10-11T17:00:00.220Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
       "rawId": null
     },
     {
-      "id": "5",
+      "id": "69",
       "status_code": 200,
       "timed_out": false,
-      "created": "2026-10-11T01:45:00.124Z",
+      "created": "2026-10-11T16:45:00.180Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "68",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T16:30:00.136Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "67",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T16:15:00.104Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "66",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T16:00:00.212Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "65",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T15:45:00.116Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "64",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T15:30:00.134Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "63",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T15:15:00.093Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "62",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T15:00:00.145Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "61",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T14:45:00.131Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "60",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T14:30:00.064Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "59",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T14:15:00.144Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "58",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T14:00:00.113Z",
+      "task": "reconcile",
+      "season": 2026,
+      "outcome": "idle",
+      "rawId": null
+    },
+    {
+      "id": "57",
+      "status_code": 200,
+      "timed_out": false,
+      "created": "2026-10-11T13:45:00.105Z",
       "task": "reconcile",
       "season": 2026,
       "outcome": "idle",
@@ -226,6 +364,636 @@
     }
   ],
   "workerRuns": [
+    {
+      "started_at": "2026-10-11T19:30:01.862Z",
+      "finished_at": "2026-10-11T19:30:01.931Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T19:15:01.294Z",
+      "finished_at": "2026-10-11T19:15:01.448Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T19:00:02.490Z",
+      "finished_at": "2026-10-11T19:00:02.556Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T18:45:01.439Z",
+      "finished_at": "2026-10-11T18:45:01.503Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T18:30:02.499Z",
+      "finished_at": "2026-10-11T18:30:02.548Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T18:15:01.262Z",
+      "finished_at": "2026-10-11T18:15:01.319Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T18:00:02.613Z",
+      "finished_at": "2026-10-11T18:00:02.655Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T17:45:01.188Z",
+      "finished_at": "2026-10-11T17:45:01.326Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T17:30:01.816Z",
+      "finished_at": "2026-10-11T17:30:01.925Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T17:15:02.516Z",
+      "finished_at": "2026-10-11T17:15:02.542Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T17:00:01.567Z",
+      "finished_at": "2026-10-11T17:00:01.879Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T16:45:01.587Z",
+      "finished_at": "2026-10-11T16:45:01.637Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T16:30:01.631Z",
+      "finished_at": "2026-10-11T16:30:01.743Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T16:15:01.395Z",
+      "finished_at": "2026-10-11T16:15:01.530Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T16:00:01.982Z",
+      "finished_at": "2026-10-11T16:00:02.159Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T15:45:01.153Z",
+      "finished_at": "2026-10-11T15:45:01.327Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T15:30:01.835Z",
+      "finished_at": "2026-10-11T15:30:02.183Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T15:15:01.423Z",
+      "finished_at": "2026-10-11T15:15:01.505Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T15:00:01.903Z",
+      "finished_at": "2026-10-11T15:00:01.927Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T14:45:01.202Z",
+      "finished_at": "2026-10-11T14:45:01.297Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T14:30:01.814Z",
+      "finished_at": "2026-10-11T14:30:01.864Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T14:15:01.282Z",
+      "finished_at": "2026-10-11T14:15:01.364Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T14:00:03.321Z",
+      "finished_at": "2026-10-11T14:00:04.234Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T13:45:01.278Z",
+      "finished_at": "2026-10-11T13:45:01.313Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T13:30:02.225Z",
+      "finished_at": "2026-10-11T13:30:02.415Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T13:15:01.779Z",
+      "finished_at": "2026-10-11T13:15:01.921Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T13:00:02.244Z",
+      "finished_at": "2026-10-11T13:00:02.507Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T12:45:01.494Z",
+      "finished_at": "2026-10-11T12:45:01.563Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T12:30:01.713Z",
+      "finished_at": "2026-10-11T12:30:01.776Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T12:15:01.839Z",
+      "finished_at": "2026-10-11T12:15:02.201Z",
+      "status": "failed",
+      "detail": {
+        "task": "rosters",
+        "error": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+        "season": 2026
+      }
+    },
+    {
+      "started_at": "2026-10-11T12:15:01.447Z",
+      "finished_at": "2026-10-11T12:15:01.503Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T12:10:01.348Z",
+      "finished_at": "2026-10-11T12:10:02.465Z",
+      "status": "failed",
+      "detail": {
+        "task": "pbp",
+        "error": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+        "season": 2026
+      }
+    },
+    {
+      "started_at": "2026-10-11T12:05:01.434Z",
+      "finished_at": "2026-10-11T12:05:01.984Z",
+      "status": "failed",
+      "detail": {
+        "task": "weekly",
+        "error": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+        "season": 2026
+      }
+    },
+    {
+      "started_at": "2026-10-11T12:00:01.888Z",
+      "finished_at": "2026-10-11T12:00:02.040Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T11:45:01.596Z",
+      "finished_at": "2026-10-11T11:45:01.704Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T11:30:02.119Z",
+      "finished_at": "2026-10-11T11:30:02.232Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T11:15:01.469Z",
+      "finished_at": "2026-10-11T11:15:01.541Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T11:00:02.245Z",
+      "finished_at": "2026-10-11T11:00:02.278Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T10:45:01.290Z",
+      "finished_at": "2026-10-11T10:45:01.324Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T10:30:01.749Z",
+      "finished_at": "2026-10-11T10:30:01.919Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T10:15:01.271Z",
+      "finished_at": "2026-10-11T10:15:01.356Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T10:00:02.332Z",
+      "finished_at": "2026-10-11T10:00:02.367Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T09:45:00.997Z",
+      "finished_at": "2026-10-11T09:45:01.071Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T09:30:02.162Z",
+      "finished_at": "2026-10-11T09:30:02.291Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T09:15:01.809Z",
+      "finished_at": "2026-10-11T09:15:01.868Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T09:00:03.212Z",
+      "finished_at": "2026-10-11T09:00:03.246Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T08:45:01.623Z",
+      "finished_at": "2026-10-11T08:45:01.739Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T08:30:01.779Z",
+      "finished_at": "2026-10-11T08:30:01.811Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T08:15:01.347Z",
+      "finished_at": "2026-10-11T08:15:01.373Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T08:00:02.939Z",
+      "finished_at": "2026-10-11T08:00:03.260Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T07:45:01.582Z",
+      "finished_at": "2026-10-11T07:45:01.614Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T07:30:01.081Z",
+      "finished_at": "2026-10-11T07:30:01.110Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T07:15:01.492Z",
+      "finished_at": "2026-10-11T07:15:01.626Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T07:00:01.642Z",
+      "finished_at": "2026-10-11T07:00:01.702Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T06:45:01.167Z",
+      "finished_at": "2026-10-11T06:45:01.663Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T06:30:01.437Z",
+      "finished_at": "2026-10-11T06:30:01.489Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T06:15:02.522Z",
+      "finished_at": "2026-10-11T06:15:02.547Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T06:00:03.153Z",
+      "finished_at": "2026-10-11T06:00:03.189Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T05:45:02.529Z",
+      "finished_at": "2026-10-11T05:45:02.556Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T05:30:02.670Z",
+      "finished_at": "2026-10-11T05:30:02.773Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T05:15:02.442Z",
+      "finished_at": "2026-10-11T05:15:02.467Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T05:00:01.758Z",
+      "finished_at": "2026-10-11T05:00:25.610Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
+    {
+      "started_at": "2026-10-11T04:45:00.960Z",
+      "finished_at": "2026-10-11T04:45:01.005Z",
+      "status": "idle",
+      "detail": {
+        "task": "reconcile",
+        "season": 2026,
+        "status": "idle"
+      }
+    },
     {
       "started_at": "2026-10-11T04:30:01.922Z",
       "finished_at": "2026-10-11T04:30:02.183Z",
@@ -453,8 +1221,8 @@
     {
       "dataset": "weekly",
       "checked_at": "2026-10-10T23:26:54.883Z",
-      "next_attempt": "2026-10-11T11:26:35.754Z",
-      "error_code": null,
+      "next_attempt": "2026-10-12T00:05:01.467Z",
+      "error_code": "SOURCE_UNAVAILABLE_OR_SCHEMA_CHANGED",
       "raw_revision": "1",
       "body_hash": "ee4ed05a83e75b1c20cfe975eedb20bfcb66529856728f0bddd25205002e8917",
       "observed_at": "2026-10-10T23:26:54.587Z",
@@ -463,8 +1231,8 @@
     {
       "dataset": "rosters",
       "checked_at": "2026-10-10T23:29:16.500Z",
-      "next_attempt": "2026-10-11T11:29:06.315Z",
-      "error_code": null,
+      "next_attempt": "2026-10-12T00:15:01.852Z",
+      "error_code": "SOURCE_UNAVAILABLE_OR_SCHEMA_CHANGED",
       "raw_revision": "3",
       "body_hash": "d761417f797859f12afb66df555e1adbf2523d9f03474d108e7cf4e3f290bc45",
       "observed_at": "2026-10-10T23:29:16.408Z",
@@ -473,8 +1241,8 @@
     {
       "dataset": "pbp",
       "checked_at": "2026-10-10T23:28:11.681Z",
-      "next_attempt": "2026-10-11T11:27:09.183Z",
-      "error_code": null,
+      "next_attempt": "2026-10-12T00:10:01.385Z",
+      "error_code": "SOURCE_UNAVAILABLE_OR_SCHEMA_CHANGED",
       "raw_revision": "2",
       "body_hash": "f2be01d10d302f68284a3e8cd2284bcd6a0e5b12df1483227efa1f925bbda24e",
       "observed_at": "2026-10-10T23:28:10.554Z",
@@ -492,16 +1260,15 @@
   ],
   "interpretation": "Cron submission, HTTP completion and task result are separate evidence. idle/cooldown is not a source retrieval. downloaded/not-modified after the due time demonstrates source access, not a completed future member round. Do not fabricate finalisation.",
   "collectionAcceptance": {
-    "observedAt": "2026-10-11T04:37:18.112Z",
-    "status": "WAIT_FOR_EXISTING_SCHEDULE",
+    "observedAt": "2026-10-11T19:36:58.673Z",
+    "status": "REVIEW_REQUIRED",
     "sources": [
       {
         "task": "weekly",
         "due": "2026-10-11T12:05:00.000Z",
-        "outcome": null,
-        "status": "NOT_DUE_OR_RUNNING",
+        "outcome": "failed",
+        "status": "REVIEW_REQUIRED",
         "reasons": [
-          "CRON_EXECUTION_UNPROVEN",
           "SOURCE_ACCESS_UNPROVEN",
           "MATCHING_HTTP_COMPLETION_UNPROVEN",
           "RETAINED_SOURCE_UNPROVEN"
@@ -510,10 +1277,9 @@
       {
         "task": "pbp",
         "due": "2026-10-11T12:10:00.000Z",
-        "outcome": null,
-        "status": "NOT_DUE_OR_RUNNING",
+        "outcome": "failed",
+        "status": "REVIEW_REQUIRED",
         "reasons": [
-          "CRON_EXECUTION_UNPROVEN",
           "SOURCE_ACCESS_UNPROVEN",
           "MATCHING_HTTP_COMPLETION_UNPROVEN",
           "RETAINED_SOURCE_UNPROVEN"
@@ -522,10 +1288,9 @@
       {
         "task": "rosters",
         "due": "2026-10-11T12:15:00.000Z",
-        "outcome": null,
-        "status": "NOT_DUE_OR_RUNNING",
+        "outcome": "failed",
+        "status": "REVIEW_REQUIRED",
         "reasons": [
-          "CRON_EXECUTION_UNPROVEN",
           "SOURCE_ACCESS_UNPROVEN",
           "MATCHING_HTTP_COMPLETION_UNPROVEN",
           "RETAINED_SOURCE_UNPROVEN"

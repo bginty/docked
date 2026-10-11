@@ -1,3 +1,4 @@
+import { Buffer } from "node:buffer";
 import type { Sql } from "postgres";
 import { randomUUID, createHash } from "node:crypto";
 import { gunzipSync } from "node:zlib";
@@ -9,6 +10,11 @@ import {
   type NflDataset,
 } from "../core/nflverse-evidence";
 import { requirePostgamePermit } from "./postgame-download";
+import {
+  CollectionFailure,
+  collectionDiagnostic,
+  type CollectionStage,
+} from "./nfl-collection-diagnostics";
 import { SportsFeedStore } from "./sports-feed-store";
 
 export const nflResource = (dataset: NflDataset, season: number) =>
@@ -117,10 +123,12 @@ export async function downloadNflDataset(
   const [cache] =
     await sql`insert into sports_feed.postgame_cache(resource,next_attempt,lease) values(${resource},clock_timestamp()+interval '12 hours',${lease}) on conflict(resource) do update set next_attempt=clock_timestamp()+interval '12 hours',lease=${lease} where sports_feed.postgame_cache.next_attempt<=clock_timestamp() returning *`;
   if (!cache) return { status: "cooldown", rawId: null };
+  let stage: CollectionStage = "retention";
   try {
     await new SportsFeedStore(sql).purgeExpired();
     const [retained] =
       await sql`select * from sports_feed.raw_revisions where id=${cache.raw_id ?? null} and body is not null and expires_at>clock_timestamp()`;
+    stage = "fetch";
     const data = await fetchNflDataset(
       dataset,
       season,
@@ -130,6 +138,7 @@ export async function downloadNflDataset(
     if (data.notModified && !retained)
       throw Error("304 without retained evidence");
     requirePostgamePermit(permit, new Date());
+    stage = "persist";
     const rawId = await sql.begin(async (tx) => {
       const [held] =
         await tx`select lease from sports_feed.postgame_cache where resource=${resource} for update`;
@@ -145,11 +154,12 @@ export async function downloadNflDataset(
       await tx`update sports_feed.postgame_cache set raw_id=${id},etag=${data.notModified ? cache.etag : data.etag},source_modified=${data.notModified ? cache.source_modified : data.modified},checked_at=clock_timestamp(),error_code=null,lease=null where resource=${resource}`;
       return Number(id);
     });
+    stage = "completion";
     if (dataset === "pbp") await observeNflCompletions(sql, rawId);
     return { status: data.notModified ? "not-modified" : "downloaded", rawId };
-  } catch {
+  } catch (error) {
     await sql`update sports_feed.postgame_cache set lease=null,error_code='SOURCE_UNAVAILABLE_OR_SCHEMA_CHANGED' where resource=${resource} and lease=${lease}`;
-    throw Error("NFL source unavailable or changed; keep scores pending");
+    throw new CollectionFailure(stage, collectionDiagnostic(error));
   }
 }
 

@@ -1,3 +1,4 @@
+import { collectionFailureDetail } from "./nfl-collection-diagnostics";
 import type { Sql } from "postgres";
 import {
   downloadNflDataset,
@@ -94,8 +95,8 @@ export async function runNflCollection(
     detail = { ...detail, task, season };
     await sql`update sports_feed.nfl_worker_runs set finished_at=clock_timestamp(),status=${String(detail.status)},detail=${sql.json(detail as never)} where id=${run.id}`;
     return detail;
-  } catch {
-    await sql`update sports_feed.nfl_worker_runs set finished_at=clock_timestamp(),status='failed',detail=${sql.json({ error: "SOURCE_OR_CONFIGURATION_UNAVAILABLE", task, season })} where id=${run.id}`;
+  } catch (error) {
+    await sql`update sports_feed.nfl_worker_runs set finished_at=clock_timestamp(),status='failed',detail=${sql.json({ error: "SOURCE_OR_CONFIGURATION_UNAVAILABLE", task, season, ...collectionFailureDetail(error) })} where id=${run.id}`;
     throw Error("NFL collection unavailable; inspect private worker health");
   }
 }
