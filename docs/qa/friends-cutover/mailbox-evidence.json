@@ -1,0 +1,36 @@
+{
+  "observedOn": "2026-10-11",
+  "scope": "Authenticated read-only settings plus specifically approved synthetic-message export",
+  "mailbox": "support@docked.com.au",
+  "service": "GoDaddy-resold Microsoft 365 Exchange Online",
+  "mailboxType": "UserMailbox",
+  "retentionPolicy": "Default MRM Policy",
+  "litigationHold": false,
+  "archiveEnabled": false,
+  "forwardingConfigured": false,
+  "listedAddOn": "Advanced Email Security",
+  "organizationAdminRoute": "Redirects to GoDaddy; Data Location not exposed",
+  "unverified": ["mailbox at-rest geography", "effective retention policy tags/ages", "deleted-item retention duration", "single-item recovery", "retention hold/ELC processing", "organisation/in-place/label/delay holds", "security add-on preservation settings", "separate backup/archiving subscription"],
+  "export": {
+    "status": "PASS",
+    "format": "EML",
+    "file": "Docked hosted email queue check ded93c7bd111.eml",
+    "location": "Owner local Downloads folder; not committed",
+    "bytes": 3147,
+    "sha256": "1c35406aed0de9a10642f6018b0fddcec8d2ae1a7980222879fc900f05c992eb",
+    "expectedSubjectAndDiagnosticReference": true,
+    "decodedNoActionAndNoVerificationLinkStatement": true,
+    "authTokenParametersAbsent": true,
+    "authorization": "Owner explicitly approved only this existing test message in chat"
+  },
+  "recovery": {
+    "outlookDeletedItems": "Empty; Recover items deleted from this folder available",
+    "exchangeRecoverDeletedItems": "Disabled",
+    "deletionExecuted": false,
+    "permanentErasureVerified": false
+  },
+  "settingsChanged": false,
+  "mailSent": false,
+  "permissionsExpanded": false,
+  "purchases": false
+}
