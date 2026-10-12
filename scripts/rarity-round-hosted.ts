@@ -39,12 +39,17 @@ async function main() {
             );
           const [originalDelegate] =
             await tx`select pg_get_functiondef('beta_fantasy.production_command_before_rarity(text,jsonb,uuid)'::regprocedure) body`;
-          await tx.unsafe(
-            readFileSync(
-              "supabase/migrations/20261012123000_nfl_rarity_core_identity.sql",
-              "utf8",
-            ),
-          );
+          if (
+            !(
+              await tx`select 1 from supabase_migrations.schema_migrations where version='20261012123000'`
+            ).length
+          )
+            await tx.unsafe(
+              readFileSync(
+                "supabase/migrations/20261012123000_nfl_rarity_core_identity.sql",
+                "utf8",
+              ),
+            );
           assert.equal(
             (
               await tx`select pg_get_functiondef('beta_fantasy.production_command_before_rarity(text,jsonb,uuid)'::regprocedure) body`
@@ -326,6 +331,32 @@ async function main() {
           await new Promise((r) => setTimeout(r, remaining + 200));
           assert.equal(await connectLockedNflEntries(db, stream), true);
           await reject(() => save(users[0], lineups[0]), /locked/);
+          const lockedListing = randomUUID();
+          await credits.execute(
+            { id: users[0].id, role: "member" },
+            lockedListing,
+            { kind: "list", card: lineups[0][0], price: 100 },
+          );
+          const lockedWallet = digest(await credits.read());
+          await reject(
+            () =>
+              credits.execute(
+                { id: users[1].id, role: "member" },
+                randomUUID(),
+                {
+                  kind: "buy",
+                  listing: lockedListing,
+                  expectedPrice: 100,
+                  policy: state.policy.version,
+                  confirmed: true,
+                },
+              ),
+            /committed|unsettled/,
+          );
+          assert.equal(digest(await credits.read()), lockedWallet);
+          report.checks.push(
+            "After-lock complete transfer transaction rejected by database guard; wallet and locked lineup preserved",
+          );
           const source = structuredClone(original);
           source.fixtureId = fixture;
           source.observedAt = new Date().toISOString();

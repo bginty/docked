@@ -35,7 +35,7 @@ try {
   assert.ok(before);
   assert.equal(
     (
-      await db`select count(*) n from beta_fantasy.entries where user_id=${qa.id} and competition_id=${competition}`
+      await db`select count(*)::int n from beta_fantasy.entries where user_id=${qa.id} and competition_id=${competition}`
     )[0].n,
     0,
   );

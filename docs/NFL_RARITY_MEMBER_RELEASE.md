@@ -30,3 +30,25 @@ Additive migrations `20261012120429` and `20261012123000`; no supply, holdings, 
 If web regression occurs, restore prior deployment recorded in `qa/rarity-round/rollback.json`. Keep additive database functions: they safely delegate old free commands and preserve new entries. Any emergency closure requires an audited competition action; never rewrite locked results. Existing v21 points at docked.com.au and receives hosted fixes. New v22 retains package/signature.
 
 No payments, withdrawals, subscriptions, invitations or messages. No source schedule/cooldown or DNS/email changes.
+
+## Released and checked
+
+- Web `dee17493f649367ab3c5e52c32997e4a361781f1`, deployment `dpl_9vbR1NvyXYfzg7uKF21wvbfJJjJn`, https://docked.com.au. Prior rollback target `dpl_ENERamnh5GPK7SXqJCsvCBhpZp2p`.
+- Direct entry: https://docked.com.au/fantasy/play?competition=8841bf7d-5952-47c4-b926-40b04fdc5cba . Saving enters the selected round; no separate paid entry. Both owner and Barry have 10 existing Core cards, nine currently round-eligible, and sufficient QB/RB/WR/TE coverage. Neither has an opened limited pack as of the read-only check. No additional grants were issued.
+- Hosted candidate and live-domain browser acceptance passed: ordinary password login; no member MFA; seven owned cards including purchased limited cards; save/reopen identical IDs; direct competition; mobile/desktop; axe zero violations; no console errors; private/owner API denial. Dedicated QA entry was removed before lock and its original admission restored, with audit history retained.
+- Fifteen domain/HTTPS/callback/admission checks passed. Existing native bridge regression passed; owner verified factor retained, MFA required, no outstanding consent renewal at the check. This is browser native-bridge simulation, not emulator or physical-device acceptance.
+- Local browser regressions: NFL team flow 1/1; scoring views at 320/390/1366px 3/3. Android Gradle build passed. v22 code 22 / `1.21-beta`, same `au.com.docked.app.preview` and signing certificate as v21, non-debuggable, HTTPS-only. APK audit 988 entries with no findings; source/browser/APK known-secret scan 1,494 files / 36.5MB with no findings.
+- General repository heuristic secret scan still flags eight pre-existing items (test credential literals and an untracked v20 delivery note). No new release artifact is implicated; the unrelated v20 note remains untouched and uncommitted. This broad heuristic is not reported as passing.
+- APK `artifacts/android/Docked-v22-NFL-Friends-Beta.apk`, SHA256 `303ab8e368791b518a23e1c1072f03054db6dbe39465c06aa3fb817889ee62bc`. Existing private bucket, unauthenticated signed download verified, expiry 19 October 2026 12:43:59Z (23:43:59 Sydney). Download token remains in ignored private delivery receipt, never in Git/APK.
+- v21 loads the same accepted domain and receives this release on reopen; APK update is optional for these hosted changes. v22 installs as Update without uninstalling or clearing data. No human acceptance claimed.
+
+### Member steps
+
+1. Open Test wallet from Profile, buy Standard or Premium using existing test credits, then open the pack. Current prices/weights remain test-only.
+2. Open the direct competition above (or choose `NFL Week 6 · RARITY TEST · no prizes` in Play).
+3. Select QB, 2 RB, 2 WR, TE and FLEX from opened owned cards. Core can fill gaps at 1.0×. Save Team before the deadline; reopen to confirm. Listed, unmapped, inactive, stale and bye-week players cannot be selected. Only one real player across all tiers.
+4. After games and collection, use View Points / post-game breakdowns / NFL standings. Pending is not zero; provisional is not final. Follow the displayed reservation policy before trading.
+
+### Still awaiting observation
+
+No genuine Week 6 member results exist yet. Latest authenticated worker check was idle reconciliation, not a source download. Existing unattended jobs and finalisation review remain in place; actual future-round operation is still to be observed. Physical S24/owner visual acceptance remains pending. No outstanding external purchase/permission is needed to enter this isolated round.

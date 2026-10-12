@@ -8,9 +8,9 @@
   "hostingProvider": "vercel",
   "vercelProjectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   "vercelTeamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
-  "deploymentId": "dpl_HewS9iMnD3dLNRZLA9sypP236jDJ",
-  "commit": "b3d178a8529e94ed08afd95fa65c9a674f98c029",
-  "verifiedAt": "2026-10-12T11:32:47.335Z",
+  "deploymentId": "dpl_9vbR1NvyXYfzg7uKF21wvbfJJjJn",
+  "commit": "dee17493f649367ab3c5e52c32997e4a361781f1",
+  "verifiedAt": "2026-10-12T12:39:57.750Z",
   "acceptance": {
     "https": true,
     "invitedAuthentication": true,
@@ -26,15 +26,16 @@
     "ordinaryMember": "docs/qa/customer-onboarding/friends-customer-play.json",
     "customerSignup": "docs/CUSTOMER_FRIENDS_RELEASE.md",
     "recoveryScope": "Existing accepted Auth/recovery implementation preserved; new domain callback, non-consuming links, foreign-origin denial and signed mail scheduler verified. No new external email delivery or owner password reset performed.",
-    "scoring": "Historical rollback acceptance only; fresh unattended collection and genuine member round pending",
-    "physicalDevice": "PENDING: owner visual approval and physical Samsung acceptance. No emulator or physical-device claim for v21.",
+    "scoring": "Future Week 6 ready; genuine scores pending. Historical rollback replay and corrections verified separately.",
+    "physicalDevice": "PENDING: physical Samsung S24 and owner visual approval. No emulator claim.",
     "signupRepair": "docs/qa/signup-region/domain.json",
     "preservedAcceptance": "docs/FRIENDS_V17_RELEASE.md",
     "packReveal": "docs/qa/android-v19/pack-domain.json",
     "connectionBudget": "docs/qa/android-v19/connection-budget.json",
     "testWallet": "docs/qa/android-v21/wallet-domain.json",
     "cinematicReveal": "docs/qa/android-v21/Docked-v21-nine-card-reveal.webm",
-    "rarityScoring": "Engine/locked-rule fixtures verified; new rarity member-round bridge not activated. Existing equal-scoring free rounds preserved."
+    "rarityScoring": "docs/qa/rarity-round/domain.json",
+    "rarityReplay": "docs/qa/rarity-round/hosted-replay.json"
   },
   "safety": {
     "publicRegistration": false,

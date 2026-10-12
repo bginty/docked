@@ -1,7 +1,7 @@
 {
-  "at": "2026-10-12T11:59:39.668Z",
-  "deployment": "dpl_ENERamnh5GPK7SXqJCsvCBhpZp2p",
-  "commit": "26c874844ab31c0008c61190c04762c729666418",
+  "at": "2026-10-12T12:40:24.140Z",
+  "deployment": "dpl_9vbR1NvyXYfzg7uKF21wvbfJJjJn",
+  "commit": "dee17493f649367ab3c5e52c32997e4a361781f1",
   "domain": true,
   "checks": [
     "Actual hosted native bridge preserves MFA screen during admission denial and resume; no gameplay-session request",
@@ -11,6 +11,6 @@
   "owner": {
     "mfaEnforced": true,
     "existingFactorPreserved": true,
-    "consentStillRequiresOwnerAction": true
+    "consentStillRequiresOwnerAction": false
   }
 }
