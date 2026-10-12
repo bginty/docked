@@ -8,7 +8,7 @@ const user1 = "00000000-0000-4000-8000-000000000001",
 before(async () => {
   pg = new PGlite();
   await pg.exec(
-    `create role anon;create role authenticated;create schema auth;create table auth.users(id uuid primary key);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema auth to authenticated;grant execute on function auth.uid() to authenticated;`,
+    `create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema auth to authenticated;grant execute on function auth.uid() to authenticated;`,
   );
   await pg.exec(await readFile("db/schema.sql", "utf8"));
   await pg.exec(

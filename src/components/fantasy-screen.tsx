@@ -1,4 +1,5 @@
 "use client";
+import { rarities } from "@/core/card-rarity";
 import { FantasyCardArtwork as Card } from "./fantasy-card-artwork";
 import { PackProducts } from "./pack-products";
 import Link from "next/link";
@@ -26,7 +27,7 @@ import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import { FantasySheet } from "./fantasy-player-sheet";
 const PackOpening = lazy(() => import("./pack-opening"));
 import { PackViewerBoundary } from "./pack-viewer-boundary";
-const tiers = ["CORE", "RARE", "ELITE", "LEGENDARY", "ICON"];
+const tiers: string[] = rarities;
 const stamp = (s: string) =>
   new Date(s).toLocaleString("en-AU", {
     dateStyle: "medium",

@@ -156,14 +156,14 @@ export function FantasyPlayerDetails({
             {card.tier} · {card.season}
           </small>
           <strong>
-            #{card.serial}
-            <span> / {card.max_supply.toLocaleString()}</span>
+            {card.tier==='CORE'?'Free Core':`#${card.serial}`}
+            <span>{card.tier==='CORE'?' · unlimited':` / ${card.max_supply.toLocaleString()}`}</span>
           </strong>
         </div>
       </div>
       <p className="small-note">
-        Rarity is collectible scarcity. Every tier uses the same fantasy
-        scoring; no paid multiplier.
+        This free friends competition retains equal scoring across tiers.
+        New rarity multipliers apply only in competitions explicitly using the separate rarity rules.
       </p>
       <section>
         <h3>Scoring breakdown</h3>

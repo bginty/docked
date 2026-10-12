@@ -112,6 +112,17 @@ export function ScoringReview({ data }: { data: ScoringDemo }) {
                     {p.centipoints === null ? "Pending" : points(p.centipoints)}
                   </strong>
                 </summary>
+                {p.multiplier !== undefined && (
+                  <p>
+                    Base{" "}
+                    {p.baseCentipoints === null
+                      ? "Pending"
+                      : points(p.baseCentipoints!)}{" "}
+                    × {p.multiplier} ={" "}
+                    {p.centipoints === null ? "Pending" : points(p.centipoints)}{" "}
+                    points · locked rarity rules
+                  </p>
+                )}
                 {p.matches.map((match) => (
                   <div key={match.fixtureId} className="scoring-breakdown">
                     <p>

@@ -1,3 +1,8 @@
+import {
+  allocateNine,
+  validateCardEconomy,
+  type CardEconomy,
+} from "./card-economy";
 import { z } from "zod";
 import { digest } from "./scoring-engine";
 import {
@@ -55,6 +60,7 @@ type Withdrawal = {
 };
 export type CreditsState = {
   mode: "financial-sandbox-only";
+  economy?: CardEconomy;
   policy: Omit<
     typeof creditsPolicy,
     "version" | "campaignLimit" | "purchasedWithdrawable"
@@ -183,6 +189,7 @@ export const creditsCommand = z.discriminatedUnion("kind", [
   base({
     kind: z.literal("buy-pack"),
     product: id,
+    configuration: id.optional(),
     confirmed: z.literal(true),
     policy: id,
   }),
@@ -374,6 +381,7 @@ export function wallet(s: CreditsState, member: string) {
   };
 }
 export function validateCredits(s: CreditsState) {
+  if (s.economy) validateCardEconomy(s.economy);
   if (
     s.mode !== "financial-sandbox-only" ||
     s.policy.liveEnabled !== false ||
@@ -528,6 +536,8 @@ export function executeCredits(
       card.owner !== owner ||
       card.reserved ||
       !meta ||
+      (s.economy?.instances[cardId] &&
+        !s.economy.packs[s.economy.instances[cardId].source]?.openedAt) ||
       meta.locked ||
       (version !== undefined && meta.version !== version)
     )
@@ -567,7 +577,67 @@ export function executeCredits(
       throw Error("Verified current KYC required");
   };
   let result: unknown = { ok: true };
-  if (c.kind === "deposit" || c.kind === "buy-pack") {
+  if (c.kind === "buy-pack" && s.economy) {
+    if (!s.economy.enabled) throw Error("Pack purchasing is paused");
+    member();
+    policy(c.policy);
+    const product = s.economy.products[c.product];
+    if (!product)
+      throw Error(
+        "Previous single-card products are retired for new purchases",
+      );
+    if (c.configuration !== product.version)
+      throw Error(
+        "Pack configuration changed. Refresh and review before confirming.",
+      );
+    const parts = select(actor.id, product.priceCredits);
+    const pack = allocateNine(s.economy, c.product, actor.id, request, now);
+    for (const cardId of pack.cards) {
+      const card = s.economy.instances[cardId];
+      s.commerce.cards[cardId] = {
+        tier: card.rarity,
+        sport: product.sport,
+        owner: actor.id,
+        reserved: null,
+      };
+      s.cards[cardId] = {
+        version: 1,
+        restricted: true,
+        locked: false,
+        history: [{ from: null, to: actor.id, reference: request, at: now }],
+      };
+    }
+    const journal = post(
+      "pack",
+      [
+        ...debit(parts),
+        { account: "system:pack-revenue", credits: product.priceCredits },
+      ],
+      "Nine-card TEST pack purchase; no deposit bonus",
+    );
+    s.entitlements[request] = {
+      member: actor.id,
+      order: request,
+      source: journal,
+      status: "SEALED",
+      restricted: true,
+    };
+    result = {
+      entitlement: request,
+      journal,
+      price: product.priceCredits,
+      cards: 9,
+      configuration: pack.configurationHash,
+    };
+  } else if (c.kind === "open-pack" && s.economy?.packs[c.entitlement]) {
+    const pack = s.economy.packs[c.entitlement];
+    own(pack.member);
+    const e = s.entitlements[c.entitlement];
+    if (!e || e.status === "REVIEW") throw Error("Entitlement held for review");
+    pack.openedAt ??= now;
+    e.status = "OPENED";
+    result = { receipt: pack.id, cards: pack.cards };
+  } else if (c.kind === "deposit" || c.kind === "buy-pack") {
     member();
     const p = s.policy.products.find((p) => p.id === c.product);
     if (!p) throw Error("Unknown product");

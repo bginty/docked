@@ -20,7 +20,7 @@ export type AwardedCard = Pick<
   | "status"
   | "sport"
   | "tradeable"
->;
+> & { rarity_version?: string; multiplier?: number; presentation?: string };
 export type PackReceipt = {
   id: string;
   name: string;

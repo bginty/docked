@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { nflOffensiveStats, scoreNflOffense } from "./fantasy-nfl";
+import { rarityConfiguration, rarityRule, type Rarity } from "./card-rarity";
 
 export const sports = ["epl", "nfl", "afl"] as const;
 export type Sport = (typeof sports)[number];
@@ -56,6 +57,7 @@ export const nflStats = nflOffensiveStats
   .strict();
 export type Part = { statistic: string; quantity: number; centipoints: number };
 export type Rules = {
+  rarityVersion?: string;
   sport: Sport;
   version: string;
   title: string;
@@ -255,8 +257,51 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
 }
 export const points = (cp: number) =>
   (cp / 100).toFixed(2).replace(/\.00$/, "");
-export type LockedCard = { cardId: string; playerId: string; position: string };
+export type LockedCard = {
+  cardId: string;
+  playerId: string;
+  position: string;
+  rarity?: Rarity;
+  multiplierTenths?: number;
+  rarityVersion?: string;
+};
+export function nflRarityRules(): Rules {
+  return {
+    ...structuredClone(rulesets.nfl),
+    version: "docked-nfl-rarity-test-v1",
+    title: "Docked NFL · lifetime rarity scoring (TEST)",
+    rarityVersion: rarityConfiguration.version,
+    policy: [
+      ...rulesets.nfl.policy,
+      "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions.",
+    ],
+  };
+}
+export function lockRarity(rules: Rules, card: LockedCard) {
+  if (!rules.rarityVersion) return {};
+  if (
+    rules.rarityVersion !== rarityConfiguration.version ||
+    rules.sport !== "nfl" ||
+    !card.rarity
+  )
+    throw Error("Unsupported rarity scoring rules");
+  const multiplierTenths = rarityRule(card.rarity).multiplierTenths;
+  return {
+    rarity: card.rarity,
+    multiplierTenths,
+    rarityVersion: rules.rarityVersion,
+  };
+}
 export function validateLineup(rules: Rules, cards: LockedCard[]) {
+  if (rules.rarityVersion)
+    for (const card of cards) {
+      const expected = lockRarity(rules, card);
+      if (
+        card.multiplierTenths !== expected.multiplierTenths ||
+        card.rarityVersion !== rules.rarityVersion
+      )
+        throw Error("Invalid locked rarity snapshot");
+    }
   if (
     cards.length !== rules.slots.length ||
     new Set(cards.map((c) => c.cardId)).size !== cards.length ||

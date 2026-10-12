@@ -5,11 +5,11 @@ import { previewReceipt } from "../../src/components/pack-opening-preview";
 test("cinematic timing, background interruption and visual recording", async ({
   browser,
 }) => {
-  await mkdir("docs/qa/android-v20/visual-recording", { recursive: true });
+  await mkdir("docs/qa/economy-v2/visual-recording", { recursive: true });
   const context = await browser.newContext({
     viewport: { width: 412, height: 915 },
     recordVideo: {
-      dir: "docs/qa/android-v20/visual-recording",
+      dir: "docs/qa/economy-v2/visual-recording",
       size: { width: 412, height: 915 },
     },
   });
@@ -52,14 +52,21 @@ test("cinematic timing, background interruption and visual recording", async ({
     page.getByRole("button", { name: "Skip animation" }),
   ).toBeVisible();
   await page.waitForTimeout(1600);
-  await page.screenshot({ path: "docs/qa/android-v20/cinematic-tunnel.png" });
+  await page.screenshot({ path: "docs/qa/economy-v2/cinematic-tunnel.png" });
   await page.waitForTimeout(1700);
-  await page.screenshot({ path: "docs/qa/android-v20/cinematic-burst.png" });
+  await page.screenshot({ path: "docs/qa/economy-v2/cinematic-burst.png" });
   await expect(page.getByRole("button", { name: "Reveal next" })).toBeVisible({
     timeout: 5000,
   });
-  await page.screenshot({ path: "docs/qa/android-v20/cinematic-readable.png" });
+  await page.screenshot({ path: "docs/qa/economy-v2/cinematic-readable.png" });
   await page.getByRole("button", { name: "Reveal next" }).click();
+  await expect(
+    page.getByRole("button", { name: "Skip animation" }),
+  ).toHaveCount(0);
+  await page.getByRole("button", { name: "Reveal all", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Replay saved result · no new cards" })
+    .click();
   await expect(
     page.getByRole("button", { name: "Skip animation" }),
   ).toBeVisible();
@@ -69,5 +76,5 @@ test("cinematic timing, background interruption and visual recording", async ({
   await context.close();
   await page
     .video()!
-    .saveAs("docs/qa/android-v20/Docked-v20-simulated-visual-preview.webm");
+    .saveAs("docs/qa/economy-v2/Docked-v21-simulated-visual-preview.webm");
 });

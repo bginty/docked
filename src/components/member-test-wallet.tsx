@@ -5,12 +5,16 @@ import type { MemberTestView } from "@/core/member-test-wallet";
 import type { PackReceipt } from "@/core/pack-opening";
 import PackOpening from "./pack-opening";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { rarities, rarityRule } from "@/core/card-rarity";
+import { EconomyCatalogue } from "./economy-catalogue";
+import { EconomyOwnerReport } from "./economy-owner-report";
 export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
   const [s, setS] = useState(initial),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [pack, setPack] = useState<string | null>(null),
-    [details, setDetails] = useState<string | null>(null);
+    [details, setDetails] = useState<string | null>(null),
+    [rarityFilter, setRarityFilter] = useState("");
   const pending = useRef<{ key: string; id: string } | null>(null);
   const [recovery, setRecovery] = useState(false);
   const storageKey = `docked:test-wallet:pending:${initial.member}`;
@@ -112,20 +116,72 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
         </p>
       )}
       <section>
-        <h2>Single-card packs</h2>
+        <h2>
+          {s.economyEnabled
+            ? "NFL nine-card packs"
+            : "Legacy single-card packs"}
+        </h2>
         <p>
-          Random cards from a separate, finite test edition. Premium = RARE;
-          Elite = ELITE. These cards do not enter scored teams.
+          {s.economyEnabled
+            ? "Exactly nine NFL player cards. No Core. Icon is eligible in both packs. Prices and chances below are test settings, not approved commercial offers. Test cards stay separate from the free friends competition."
+            : "Legacy receipts retain their original single-card terms."}
         </p>
         <div className="test-wallet-grid">
           {s.products.map((p) => (
             <article key={p.id}>
               <h3>{p.name}</h3>
               <p>
-                {p.price.toLocaleString()} test credits · {p.tier}
+                {p.price.toLocaleString()} test credits · {p.cards} cards
               </p>
+              {p.weights && (
+                <details>
+                  <summary>Pool, chances and guarantees</summary>
+                  <p>
+                    {p.eligiblePlayers} active catalogue players across QB, RB,
+                    WR, TE and K, subject to source freshness and remaining
+                    supply. No guaranteed rarity. Nine different players in this
+                    test configuration.
+                  </p>
+                  <table>
+                    <caption>Per-card rarity draw · test settings</caption>
+                    <thead>
+                      <tr>
+                        <th>Rarity</th>
+                        <th>Per card</th>
+                        <th>At least one in 9*</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Object.entries(p.weights).map(([r, w]) => (
+                        <tr key={r}>
+                          <td>{rarityRule(r).label}</td>
+                          <td>{w / 100}%</td>
+                          <td>
+                            {((1 - Math.pow(1 - w / 10000, 9)) * 100).toFixed(
+                              3,
+                            )}
+                            %
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p>
+                    *Independent rarity draws before supply checks. A chosen
+                    rarity with no eligible supply cancels the whole pack
+                    without charge; completed-pack frequencies can therefore
+                    differ near exhaustion. No lower-tier substitution. Within
+                    the chosen rarity, remaining eligible players are equally
+                    likely; serial numbers are assigned in order.
+                  </p>
+                  <small>
+                    Configuration: {p.version}. Premium is a pack type, not a
+                    rarity.
+                  </small>
+                </details>
+              )}
               <button
-                disabled={busy || s.wallet.spendable < p.price}
+                disabled={busy || !p.available || s.wallet.spendable < p.price}
                 onClick={() => {
                   if (
                     confirm(
@@ -135,16 +191,22 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                     act({
                       kind: "buy-pack",
                       product: p.id,
+                      ...(s.economyEnabled ? { configuration: p.version } : {}),
                       confirmed: true,
                       policy: s.policy,
                     });
                 }}
               >
-                Buy {p.tier === "RARE" ? "Premium" : "Elite"} pack
+                {s.economyEnabled
+                  ? `Buy ${p.name}`
+                  : `Buy ${p.tier === "RARE" ? "Premium" : "Elite"} pack`}
               </button>
             </article>
           ))}
         </div>
+        {s.pool.length > 0 && (
+          <EconomyCatalogue pool={s.pool} owner={!!s.ownerReport} />
+        )}
         {s.packs.map((p) => (
           <div className="test-wallet-row" key={p.id}>
             <span>
@@ -175,48 +237,64 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
             setDetails(c.id);
           }}
           collectionHref="/fantasy/test-wallet#collection"
-          teamHref={null}
+          teamHref={s.economyEnabled ? "/fantasy/play" : null}
         />
       )}
       <section id="collection">
         <h2>Your test collection</h2>
+        <label>
+          Rarity{" "}
+          <select
+            value={rarityFilter}
+            onChange={(e) => setRarityFilter(e.target.value)}
+          >
+            <option value="">All rarities</option>
+            {rarities.map((r) => (
+              <option key={r} value={r}>
+                {rarityRule(r).label}
+              </option>
+            ))}
+          </select>
+        </label>
         <div className="test-wallet-grid">
-          {mine.map((c) => (
-            <article key={c.id}>
-              <FantasyCardArtwork card={c} />
-              <button onClick={() => setDetails(c.id)}>
-                Ownership history
-              </button>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const price = Number(
-                    new FormData(e.currentTarget).get("price"),
-                  );
-                  const fee = Math.floor((price * 750 + 5000) / 10000);
-                  if (
-                    confirm(
-                      `List for ${price} test credits? Seller fee ${fee}; you receive ${price - fee}.`,
+          {mine
+            .filter((c) => !rarityFilter || c.tier === rarityFilter)
+            .map((c) => (
+              <article key={c.id}>
+                <FantasyCardArtwork card={c} />
+                <button onClick={() => setDetails(c.id)}>
+                  Ownership history
+                </button>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const price = Number(
+                      new FormData(e.currentTarget).get("price"),
+                    );
+                    const fee = Math.floor((price * 750 + 5000) / 10000);
+                    if (
+                      confirm(
+                        `List for ${price} test credits? Seller fee ${fee}; you receive ${price - fee}.`,
+                      )
                     )
-                  )
-                    act({ kind: "list", card: c.id, price });
-                }}
-              >
-                <label>
-                  Listing price
-                  <input
-                    name="price"
-                    type="number"
-                    min="1"
-                    max="1000000000"
-                    defaultValue="100"
-                    required
-                  />
-                </label>
-                <button disabled={busy}>Review listing</button>
-              </form>
-            </article>
-          ))}
+                      act({ kind: "list", card: c.id, price });
+                  }}
+                >
+                  <label>
+                    Listing price
+                    <input
+                      name="price"
+                      type="number"
+                      min="1"
+                      max="1000000000"
+                      defaultValue="100"
+                      required
+                    />
+                  </label>
+                  <button disabled={busy}>Review listing</button>
+                </form>
+              </article>
+            ))}
         </div>
         {!mine.length && (
           <p>Open a purchased pack to add your first test card.</p>
@@ -224,7 +302,35 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
       </section>
       {details && (
         <section>
-          <h2>Test ownership history</h2>
+          <h2>Card details and ownership</h2>
+          {s.cards
+            .filter((c) => c.id === details)
+            .map((c) => (
+              <div key={c.id}>
+                <FantasyCardArtwork card={c} />
+                <p>
+                  Current team: {c.team} · {c.status}. Printed team:{" "}
+                  {c.edition_team ?? c.team}.
+                </p>
+                <p>
+                  {c.rarity_version
+                    ? "Eligible only for future competitions explicitly using the rarity ruleset. K cards are collectible; current seven-player offence rules have no kicker slot."
+                    : "Legacy test card; original edition terms preserved."}
+                </p>
+                {s.supply
+                  .filter(
+                    (row) =>
+                      row.playerId === c.player_id && row.rarity === c.tier,
+                  )
+                  .map((row) => (
+                    <p key={row.rarity}>
+                      Lifetime test cap {row.cap.toLocaleString()} · issued{" "}
+                      {row.issued} · reserved {row.reserved} · available to
+                      issue {row.available.toLocaleString()}
+                    </p>
+                  ))}
+              </div>
+            ))}
           {s.cards
             .find((c) => c.id === details)
             ?.history.map((h, i) => (
@@ -399,6 +505,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
             restricted to the audited owner operation.
           </p>
           <pre>{JSON.stringify(s.ownerReport, null, 2)}</pre>
+          <EconomyOwnerReport state={s} />
         </section>
       )}
     </main>

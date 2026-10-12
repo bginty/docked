@@ -11,7 +11,7 @@ const session = "00000000-0000-4000-8000-000000000201",
   commit = "a".repeat(40);
 before(async () => {
   pg = new PGlite();
-  await pg.exec(`create role anon;create role authenticated;create schema auth;
+  await pg.exec(`create role anon;create role authenticated;create role service_role;create schema auth;
  create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean default false);
  create table auth.sessions(id uuid primary key,user_id uuid references auth.users(id),not_after timestamptz);
  create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;

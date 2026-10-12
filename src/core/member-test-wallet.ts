@@ -1,3 +1,5 @@
+import { rarityRule } from "./card-rarity";
+import { economySupply, eligibleCatalogue } from "./card-economy";
 import {
   initialCredits,
   wallet,
@@ -63,6 +65,32 @@ export function memberTestCommand(input: unknown) {
 export function testCard(s: CreditsState, id: string): AwardedCard {
   const c = s.commerce.cards[id];
   if (!c || !s.cards[id]) throw Error("Card not opened");
+  const instance = s.economy?.instances[id];
+  if (instance && s.economy) {
+    const player = s.economy.players[instance.playerId];
+    return {
+      id,
+      edition_id: instance.definition,
+      player_id: player.id,
+      name: player.name,
+      position: player.position,
+      tier: instance.rarity,
+      season: "LIFETIME TEST",
+      kind: "regular",
+      max_supply: instance.lifetimeCap,
+      serial: instance.serial,
+      team: player.currentTeam,
+      edition_team: instance.printedTeam,
+      colour: "#1A2AFF",
+      shirt: 0,
+      status: player.status,
+      sport: player.sport,
+      tradeable: true,
+      rarity_version: instance.rarityVersion,
+      multiplier: rarityRule(instance.rarity).multiplierTenths / 10,
+      presentation: instance.presentation,
+    };
+  }
   const serial = Number(id.split("-").at(-1));
   return {
     id,
@@ -91,6 +119,14 @@ export function testReceipt(
   const e = s.entitlements[id];
   if (!e || e.member !== member || e.status !== "OPENED")
     throw Error("Receipt unavailable");
+  const nine = s.economy?.packs[id];
+  if (nine)
+    return {
+      id,
+      name: nine.product.name,
+      opened_at: new Date(nine.openedAt!).toISOString(),
+      cards: nine.cards.map((card) => testCard(s, card)),
+    };
   return {
     id,
     name: "Docked test single-card pack",
@@ -105,11 +141,19 @@ export function memberTestView(
   member: string,
   peers: { id: string; label: string }[],
   owner = false,
+  now = Date.now(),
 ) {
   assertMemberTestEconomy(s);
+  const supplyRows = s.economy ? economySupply(s.economy) : [];
   const visible = new Set<string>();
   for (const [id, c] of Object.entries(s.commerce.cards))
-    if (c.owner === member && s.cards[id]) visible.add(id);
+    if (
+      c.owner === member &&
+      s.cards[id] &&
+      (!s.economy?.instances[id] ||
+        s.economy.packs[s.economy.instances[id].source]?.openedAt)
+    )
+      visible.add(id);
   const listings = Object.entries(s.listings)
     .filter(
       ([, l]) =>
@@ -130,21 +174,48 @@ export function memberTestView(
     policy: s.policy.version,
     wallet: wallet(s, member),
     peers,
-    products: s.policy.products.map((p) => ({
-      id: p.id,
-      name: p.name,
-      price: p.priceCredits,
-      tier: p.inventoryTier,
-    })),
+    economyEnabled: !!s.economy?.enabled,
+    products: s.economy?.enabled
+      ? Object.values(s.economy.products).map((p) => ({
+          id: p.id,
+          name: p.name,
+          price: p.priceCredits,
+          tier: p.type,
+          cards: p.cards,
+          weights: p.weights,
+          guaranteedSlots: p.guaranteedSlots,
+          duplicatePlayers: p.duplicatePlayers,
+          eligiblePlayers: eligibleCatalogue(s.economy!, p, now).length,
+          available:
+            now >= p.effectiveAt &&
+            (p.expiresAt === null || now < p.expiresAt) &&
+            eligibleCatalogue(s.economy!, p, now).length >= 9,
+          version: p.version,
+        }))
+      : (s.economy ? [] : s.policy.products).map((p) => ({
+          id: p.id,
+          name: p.name,
+          price: p.priceCredits,
+          tier: p.inventoryTier,
+          cards: 1,
+          weights: null,
+          guaranteedSlots: {},
+          duplicatePlayers: "n/a",
+          eligiblePlayers: 20,
+          version: p.id,
+          available: true,
+        })),
     packs: Object.entries(s.entitlements)
       .filter(([, e]) => e.member === member)
       .map(([id, e]) => ({
         id,
         status: e.status,
         name:
+          s.economy?.packs[id]?.product.name ??
           s.policy.products.find(
-            (p) => p.id === s.commerce.orders[e.order].product,
-          )?.name ?? "Test pack",
+            (p) => p.id === s.commerce.orders[e.order]?.product,
+          )?.name ??
+          "Test pack",
         receipt: e.status === "OPENED" ? testReceipt(s, id, member) : null,
       })),
     cards: [...visible].map((id) => ({
@@ -169,7 +240,53 @@ export function memberTestView(
           .filter((l) => s.lots[l.account.split(":")[1]]?.member === member)
           .reduce((n, l) => n + l.credits, 0),
       })),
+    supply: supplyRows.filter(
+      (row) =>
+        visible.size &&
+        [...visible].some(
+          (id) => s.economy?.instances[id]?.playerId === row.playerId,
+        ),
+    ),
+    ownerEconomy:
+      owner && s.economy
+        ? {
+            version: s.economy.rarityVersion,
+            products: s.economy.products,
+            supply: supplyRows,
+            packs: Object.values(s.economy.packs).map((p) => ({
+              id: p.id,
+              product: p.product.id,
+              configuration: p.configurationHash,
+              draws: p.draws,
+              at: p.createdAt,
+            })),
+            players: Object.values(s.economy.players).map((p) => ({
+              id: p.id,
+              name: p.name,
+              status: p.status,
+              observedAt: p.observedAt,
+            })),
+            integrity: "Database-enforced permanent definitions and serials",
+          }
+        : null,
     ownerReport: owner ? financialReport(s) : null,
+    failures: [] as {
+      request: string;
+      product: string;
+      category: string;
+      recordedAt: string;
+    }[],
+    pool: s.economy
+      ? Object.values(s.economy.players).map((p) => ({
+          id: p.id,
+          name: p.name,
+          position: p.position,
+          team: p.currentTeam,
+          status: p.status,
+          fresh: p.observedAt <= now && now - p.observedAt <= 72 * 3600000,
+          supply: supplyRows.filter((r) => r.playerId === p.id),
+        }))
+      : [],
   };
 }
 export type MemberTestView = ReturnType<typeof memberTestView>;

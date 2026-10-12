@@ -17,6 +17,7 @@ import {
 import { FantasySheet } from "./fantasy-player-sheet";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { packSound } from "./pack-feedback";
+import {rarityRule} from '@/core/card-rarity';
 
 export type PackOpeningProps = {
   userId: string;
@@ -148,13 +149,7 @@ export default function PackOpening(props: PackOpeningProps) {
     save(receipt, next);
     setIndex(next);
     setTilt({ x: 0, y: 0 });
-    setStage(
-      next === receipt.cards.length
-        ? "summary"
-        : reduced || simple
-          ? "revealed"
-          : "opening",
-    );
+    setStage(next === receipt.cards.length ? "summary" : "revealed");
     feedback();
   }
   const card = receipt?.cards[index];
@@ -281,7 +276,7 @@ export default function PackOpening(props: PackOpeningProps) {
               {stage === "opening" ? "Your cards are confirmed" : card.name}
             </h3>
             <p className="pack-count" aria-live="polite">
-              Card {index + 1} of {receipt.cards.length} · {card.tier}
+              Card {index + 1} of {receipt.cards.length} · {rarityRule(card.tier).label.toUpperCase()}
             </p>
             <div
               className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${stage === "opening" ? "pack-rising" : ""}`}
@@ -396,7 +391,7 @@ export default function PackOpening(props: PackOpeningProps) {
                     alt="Docked"
                   />
                   <span>
-                    {card.season} · {card.tier}
+                    {card.season} · {rarityRule(card.tier).label.toUpperCase()}
                   </span>
                 </div>
                 <FantasyCardArtwork card={card} />
@@ -429,9 +424,13 @@ export default function PackOpening(props: PackOpeningProps) {
                     </dd>
                   </div>
                   <div>
-                    <dt>Serial</dt>
+                    <dt>
+                      {card.tier === "CORE" ? "Supply" : "Permanent serial"}
+                    </dt>
                     <dd>
-                      {card.serial} / {card.max_supply}
+                      {card.tier === "CORE"
+                        ? "Free Core · unlimited"
+                        : `${card.serial} / ${card.max_supply}`}
                     </dd>
                   </div>
                 </dl>
@@ -495,9 +494,11 @@ export default function PackOpening(props: PackOpeningProps) {
             <p>
               {receipt.cards.length} confirmed{" "}
               {receipt.cards.length === 1 ? "card" : "cards"}.{" "}
-              {props.teamHref === null
-                ? "Test cards have no cash value and do not enter scored teams."
-                : "All tiers score equally."}
+              {receipt.cards.some((c) => c.rarity_version)
+                ? "Lifetime test cards. Multipliers apply only in competitions declaring the new rarity rules; the current free round is unchanged."
+                : props.teamHref === null
+                  ? "Test cards have no cash value and do not enter scored teams."
+                  : "All tiers score equally."}
             </p>
             <ul className="pack-summary">
               {receipt.cards.map((c) => (
@@ -510,7 +511,7 @@ export default function PackOpening(props: PackOpeningProps) {
                   <span>
                     <strong>{c.name}</strong>
                     <small>
-                      {c.team} · {c.tier} · #{c.serial}
+                      {c.team} · {rarityRule(c.tier).label} · #{c.serial}
                     </small>
                   </span>
                   <button

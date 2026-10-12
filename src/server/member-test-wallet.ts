@@ -2,7 +2,8 @@ import "server-only";
 import { z } from "zod";
 import { requireIdentity } from "./auth";
 import { db, rateLimit } from "./db";
-import { CreditsSandboxStore } from "./credits-sandbox-store";
+import { CreditsSandboxStore, CreditsRejected } from "./credits-sandbox-store";
+import { refreshEconomyCatalogue } from "./economy-catalogue";
 import {
   memberTestCommand,
   memberTestView,
@@ -29,6 +30,7 @@ export async function memberTestWallet(input?: unknown) {
   let command: ReturnType<typeof memberTestCommand> | undefined;
   const store = new CreditsSandboxStore(sql, async (tx, state) => {
     assertMemberTestEconomy(state);
+    await refreshEconomyCatalogue(tx, state);
     const rows =
       await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled`;
     if (!rows.length || (rows[0].kind === "owner" && who.aal !== "aal2"))
@@ -70,23 +72,45 @@ export async function memberTestWallet(input?: unknown) {
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
     assertMemberTestEconomy(await store.read());
-    result = await store.execute(
-      { id: who.user.id, role: "member" },
-      body.request,
-      command,
-    );
+    try {
+      result = await store.execute(
+        { id: who.user.id, role: "member" },
+        body.request,
+        command,
+      );
+    } catch (error) {
+      if (command.kind === "buy-pack" && error instanceof CreditsRejected) {
+        const category = /Insufficient/.test(error.message)
+          ? "FUNDS"
+          : /supply/.test(error.message)
+            ? "SUPPLY"
+            : /configuration|unavailable|retired/.test(error.message)
+              ? "CONFIGURATION"
+              : "TRANSACTION";
+        await sql`insert into credits_sandbox.pack_failures(member,request,product,category) values(${who.user.id},${body.request},${command.product},${category})`;
+      }
+      throw error;
+    }
   }
   const s = await store.read();
+  await refreshEconomyCatalogue(sql, s);
   assertMemberTestEconomy(s);
   if (command?.kind === "open-pack")
     result = testReceipt(s, command.entitlement, who.user.id);
-  return {
-    state: memberTestView(
-      s,
-      who.user.id,
-      peers.map((p) => ({ id: String(p.id), label: String(p.label) })),
-      isOwner,
-    ),
-    result,
-  };
+  const view = memberTestView(
+    s,
+    who.user.id,
+    peers.map((p) => ({ id: String(p.id), label: String(p.label) })),
+    isOwner,
+  );
+  if (isOwner)
+    view.failures = (
+      await sql`select request,product,category,recorded_at from credits_sandbox.pack_failures order by recorded_at desc limit 100`
+    ).map((r) => ({
+      request: String(r.request),
+      product: String(r.product),
+      category: String(r.category),
+      recordedAt: new Date(r.recorded_at).toISOString(),
+    }));
+  return { state: view, result };
 }

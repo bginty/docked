@@ -58,7 +58,9 @@ try {
       : [
           "--import",
           "tsx",
-          process.argv.includes("--member-credits")
+          process.argv.includes("--card-economy")
+            ? "scripts/card-economy-concurrency.ts"
+            : process.argv.includes("--member-credits")
             ? "scripts/member-test-wallet-concurrency.ts"
             : process.argv.includes("--credits")
               ? "scripts/credits-concurrency.ts"

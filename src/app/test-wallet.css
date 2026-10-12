@@ -73,6 +73,13 @@
   line-height: 1.65;
   overflow-wrap: anywhere;
 }
+.test-wallet details { margin: 12px 0; }
+.test-wallet summary { cursor: pointer; padding: 12px 0; min-height: 44px; font-weight: 650; }
+.test-wallet table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+.test-wallet th,.test-wallet td { text-align: left; padding: 8px 5px; border-bottom: 1px solid var(--border); }
+.economy-table { max-width: 100%; overflow-x: auto; }
+.test-wallet .fantasy-card { max-width: 320px; }
+.test-wallet :focus-visible { outline: 3px solid var(--brand-cyan); outline-offset: 3px; }
 @media (max-width: 420px) {
   .test-wallet {
     padding: 12px;

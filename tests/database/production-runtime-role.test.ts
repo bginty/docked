@@ -20,7 +20,7 @@ let profileId: string;
 let postId: string;
 before(async () => {
   pg = new PGlite();
-  await pg.exec(`create role anon;create role authenticated;create role supabase_auth_admin;create schema auth;
+  await pg.exec(`create role anon;create role authenticated;create role service_role;create role supabase_auth_admin;create schema auth;
   create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,is_anonymous boolean default false,raw_app_meta_data jsonb default '{}',banned_until timestamptz,encrypted_password text);
   create table auth.sessions(id uuid primary key,user_id uuid references auth.users(id),not_after timestamptz,refresh_secret text);
   create table auth.refresh_tokens(token text);

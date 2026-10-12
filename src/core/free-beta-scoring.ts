@@ -1,5 +1,6 @@
 import { digest, type Period, type ScoringState } from "./scoring-engine";
 import { currentRulesets } from "./scoring-release";
+import { nflRarityRules } from "./scoring-v1";
 
 /** Internal operator configuration, never a client POST. A complete mapped round
  * and the existing whole-round lock policy are required before registration. */
@@ -28,7 +29,12 @@ export function createFreeBetaPeriod(
     evidence.offsetSeconds < 0 ||
     !/^beta-real:[a-z0-9:_-]+$/.test(p.id) ||
     !["epl", "nfl"].includes(p.sport) ||
-    digest(p.rules) !== digest(currentRulesets[p.sport]) ||
+    (p.inventoryScope === "invited-nfl-test-v2"
+      ? p.sport !== "nfl" ||
+        !p.id.startsWith("beta-real:nfl:rarity-test:") ||
+        digest(p.rules) !== digest(nflRarityRules())
+      : !!p.rules.rarityVersion ||
+        digest(p.rules) !== digest(currentRulesets[p.sport])) ||
     !p.fixtures.length
   )
     throw Error("Verified free-beta round configuration required");

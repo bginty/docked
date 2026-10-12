@@ -2,10 +2,12 @@ import { createHash } from "node:crypto";
 import {
   scorePlayer,
   validateLineup,
+  lockRarity,
   type Rules,
   type LockedCard,
   type Sport,
 } from "./scoring-v1";
+import { rarityPoints } from "./card-rarity";
 import { syntheticProvider, type SourceSnapshot } from "./scoring-provider";
 import {
   validateAuthorisedScoring,
@@ -34,6 +36,7 @@ export type CatalogCard = LockedCard & {
   eligible: boolean;
 };
 export type Period = {
+  inventoryScope?: "invited-nfl-test-v2";
   id: string;
   sport: Sport;
   label: string;
@@ -153,7 +156,12 @@ export function saveTeam(
       !state.period.fixtures.some((f) => f.playerIds.includes(c.playerId))
     )
       throw Error("Card ownership or eligibility denied");
-    return { cardId: c.cardId, playerId: c.playerId, position: c.position };
+    return {
+      cardId: c.cardId,
+      playerId: c.playerId,
+      position: c.position,
+      ...lockRarity(state.period.rules, c),
+    };
   });
   validateLineup(state.period.rules, cards);
   const next = structuredClone(state);
@@ -192,7 +200,10 @@ export function lockTeams(
         owned.owner !== e.member ||
         owned.sport !== state.period.sport ||
         owned.playerId !== c.playerId ||
-        owned.position !== c.position
+        owned.position !== c.position ||
+        (state.period.rules.rarityVersion &&
+          JSON.stringify(lockRarity(state.period.rules, owned)) !==
+            JSON.stringify(lockRarity(state.period.rules, c)))
       )
         throw Error("Lineup eligibility changed before lock");
     }
@@ -292,6 +303,8 @@ export function results(state: ScoringState) {
   const rows = state.entries.map((entry) => {
     if (entry.rulesHash !== digest(state.period.rules))
       throw Error("Locked ruleset changed");
+    if (state.period.rules.rarityVersion)
+      validateLineup(state.period.rules, entry.cards);
     const players = entry.cards.map((card) => {
       const matches = state.period.fixtures
         .filter((f) => f.playerIds.includes(card.playerId))
@@ -335,12 +348,21 @@ export function results(state: ScoringState) {
             score,
           };
         });
+      const base = matches.every((m) => m.score !== null)
+        ? matches.reduce((n, m) => n + m.score!.centipoints, 0)
+        : null;
       return {
         ...card,
         matches,
-        centipoints: matches.every((m) => m.score !== null)
-          ? matches.reduce((n, m) => n + m.score!.centipoints, 0)
-          : null,
+        ...(state.period.rules.rarityVersion
+          ? { baseCentipoints: base, multiplier: card.multiplierTenths! / 10 }
+          : {}),
+        centipoints:
+          base === null
+            ? null
+            : state.period.rules.rarityVersion
+              ? rarityPoints(base, card.multiplierTenths!)
+              : base,
       };
     });
     const complete = players.every((p) => p.centipoints !== null);
@@ -353,7 +375,13 @@ export function results(state: ScoringState) {
         : null,
       knownCentipoints: players.reduce(
         (n, p) =>
-          n + p.matches.reduce((m, f) => m + (f.score?.centipoints ?? 0), 0),
+          n +
+          (state.period.rules.rarityVersion
+            ? rarityPoints(
+                p.matches.reduce((m, f) => m + (f.score?.centipoints ?? 0), 0),
+                p.multiplierTenths!,
+              )
+            : p.matches.reduce((m, f) => m + (f.score?.centipoints ?? 0), 0)),
         0,
       ),
       status: complete

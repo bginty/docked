@@ -316,6 +316,9 @@
 .tier-elite {
   --tier: #ac70ff;
 }
+.tier-ultra_rare {
+  --tier: var(--brand-cyan);
+}
 .tier-legendary {
   --tier: #f2c45c;
 }

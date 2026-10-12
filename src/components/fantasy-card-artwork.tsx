@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { AwardedCard } from "@/core/pack-opening";
+import { rarityRule } from "@/core/card-rarity";
 export function FantasyCardArtwork({
   card,
   children,
@@ -13,7 +14,7 @@ export function FantasyCardArtwork({
       style={{ "--shirt": card.colour } as CSSProperties}
     >
       <div className="card-top">
-        <span>{card.tier}</span>
+        <span>{rarityRule(card.tier).label}</span>
         <span>{card.position}</span>
       </div>
       <div className="card-shirt" aria-hidden="true">
@@ -38,10 +39,17 @@ export function FantasyCardArtwork({
       <p>
         {card.season} · {card.kind === "first_year" ? "FIRST YEAR" : "SEASON"}
       </p>
-      <div className="card-serial">
-        #{String(card.serial).padStart(3, "0")}{" "}
-        <span>/ {card.max_supply.toLocaleString()}</span>
-      </div>
+      {card.tier === "CORE" ? (
+        <p className="card-serial">Free Core · unlimited</p>
+      ) : (
+        <div className="card-serial">
+          #{String(card.serial).padStart(3, "0")}{" "}
+          <span>/ {card.max_supply.toLocaleString()}</span>
+        </div>
+      )}
+      {card.rarity_version && (
+        <p>{card.multiplier?.toFixed(1)}× · new rarity competitions only</p>
+      )}
       <p className="card-status">
         {["retired", "delisted"].includes(card.status)
           ? "RETIRED / COLLECTIBLE ONLY"

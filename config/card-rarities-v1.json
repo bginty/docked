@@ -1,0 +1,12 @@
+{
+  "version": "docked-lifetime-rarity-v1",
+  "rounding": "half-up-centipoint-after-complete-player-base-total",
+  "rarities": {
+    "CORE": { "label": "Core", "multiplierTenths": 10, "lifetimeCap": null, "purchasable": false },
+    "RARE": { "label": "Rare", "multiplierTenths": 11, "lifetimeCap": 5000, "purchasable": true },
+    "ELITE": { "label": "Elite", "multiplierTenths": 12, "lifetimeCap": 2500, "purchasable": true },
+    "ULTRA_RARE": { "label": "Ultra Rare", "multiplierTenths": 13, "lifetimeCap": 400, "purchasable": true },
+    "LEGENDARY": { "label": "Legendary", "multiplierTenths": 14, "lifetimeCap": 50, "purchasable": true },
+    "ICON": { "label": "Icon", "multiplierTenths": 15, "lifetimeCap": 1, "purchasable": true }
+  }
+}

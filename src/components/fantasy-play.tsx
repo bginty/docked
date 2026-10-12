@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { rarities } from "@/core/card-rarity";
 import { LocalDateTime } from "./local-date-time";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
@@ -783,7 +784,7 @@ export function FantasyPlay({
               Rarity
               <select value={tier} onChange={(e) => setTier(e.target.value)}>
                 <option value="">All tiers</option>
-                {["CORE", "RARE", "ELITE", "LEGENDARY", "ICON"].map((t) => (
+                {rarities.map((t) => (
                   <option key={t}>{t}</option>
                 ))}
               </select>
@@ -807,7 +808,7 @@ export function FantasyPlay({
                     {c.team} · {c.position} · {c.status}
                   </small>
                   <small>
-                    {c.tier} #{c.serial} / {c.max_supply}
+                    {c.tier==='CORE'?'Free Core · unlimited':`${c.tier} #${c.serial} / ${c.max_supply}`}
                   </small>
                 </span>
                 <b>Select</b>
