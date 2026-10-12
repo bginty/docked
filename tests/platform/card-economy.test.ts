@@ -68,6 +68,15 @@ test("six authoritative rarities total 7951 limited cards; Core is unlimited and
   );
   assert.equal(rarityConfiguration.rarities.CORE.lifetimeCap, null);
 });
+test('changed product consent, pause and client override cannot buy a new pack',()=>{
+ const s=funded();
+ const c={kind:'buy-pack',product:'standard-nine-test-v1',configuration:'stale',confirmed:true,policy:s.policy.version};
+ assert.throws(()=>executeCredits(s,member,'stale',c,now),/configuration changed/);
+ assert.throws(()=>executeCredits(s,member,'override',{...c,configuration:c.product,price:1},now));
+ s.economy!.enabled=false;
+ assert.throws(()=>executeCredits(s,member,'paused',{...c,configuration:c.product},now),/paused/);
+ assert.equal(memberTestView(s,member.id,[],false,now).products.length,0);
+});
 test("both packs yield nine unique non-Core cards and allow a deterministic Icon", () => {
   for (const product of ["standard-nine-test-v1", "premium-nine-test-v1"]) {
     const e = initialCardEconomy(economyFixturePlayers(), now);

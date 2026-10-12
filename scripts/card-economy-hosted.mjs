@@ -220,8 +220,8 @@ try {
     .filter((p) => p.status === "SEALED")
     .at(-1);
   await page
+    .locator(`[data-pack-id="${targetPack.id}"]`)
     .getByRole("button", { name: "Open pack", exact: true })
-    .last()
     .click();
   await page
     .getByRole("button", { name: "Open pack seal", exact: true })
@@ -252,8 +252,8 @@ try {
   await page.getByRole("button", { name: "Close panel", exact: true }).click();
   await page.reload();
   await page
+    .locator(`[data-pack-id="${pack.id}"]`)
     .getByRole("button", { name: "Replay saved pack", exact: true })
-    .last()
     .click();
   await expect(page.getByText(/Card 2 of 9/)).toBeVisible();
   await page.getByRole("button", { name: "Reveal all", exact: true }).click();
@@ -286,8 +286,8 @@ try {
     const film = await recorded.newPage();
     await film.goto(base + "/fantasy/test-wallet");
     await film
+      .locator(`[data-pack-id="${pack.id}"]`)
       .getByRole("button", { name: "Replay saved pack", exact: true })
-      .last()
       .click();
     if (
       await film

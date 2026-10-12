@@ -175,8 +175,8 @@ export function FeedSidePanel() {
       <section className="app-panel">
         <h2>Build your team</h2>
         <p>
-          Explore your cards and available fantasy competitions. Card rarity
-          never multiplies points.
+          Explore your cards and available fantasy competitions. Check each
+          competition’s scoring rules before entry.
         </p>
         <Link href="/fantasy/play">Open Play</Link>
       </section>

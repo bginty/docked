@@ -208,7 +208,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
           <EconomyCatalogue pool={s.pool} owner={!!s.ownerReport} />
         )}
         {s.packs.map((p) => (
-          <div className="test-wallet-row" key={p.id}>
+          <div className="test-wallet-row" key={p.id} data-pack-id={p.id}>
             <span>
               {p.name} · {p.status === "SEALED" ? "Ready to open" : "Opened"}
             </span>
