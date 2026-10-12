@@ -1,0 +1,116 @@
+{
+  "at": "2026-10-12T11:36:50.523Z",
+  "deployment": "dpl_HewS9iMnD3dLNRZLA9sypP236jDJ",
+  "commit": "b3d178a8529e94ed08afd95fa65c9a674f98c029",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "platform": {
+    "passed": 304,
+    "failed": 0,
+    "note": "Initial restricted attempt hit Windows temp-directory access failures; unchanged suite passed with appropriate filesystem access."
+  },
+  "database": {
+    "passed": 150,
+    "failed": 0
+  },
+  "finalIconNativePostgres": {
+    "at": "2026-10-12T10:43:29.123Z",
+    "passed": true,
+    "realLocalPostgres": true,
+    "connections": 8,
+    "finalIconWinners": 1,
+    "failedPurchasesNoDebitOrPartialCards": true,
+    "repeatedOpeningNineSameCards": true,
+    "immutableSupplyPermissions": true,
+    "distribution": [
+      {
+        "product": "standard-nine-test-v1",
+        "draws": 100000,
+        "configured": {
+          "RARE": 8500,
+          "ELITE": 1200,
+          "ULTRA_RARE": 250,
+          "LEGENDARY": 49,
+          "ICON": 1
+        },
+        "observed": {
+          "ELITE": 12159,
+          "RARE": 84892,
+          "LEGENDARY": 458,
+          "ULTRA_RARE": 2480,
+          "ICON": 11
+        }
+      },
+      {
+        "product": "premium-nine-test-v1",
+        "draws": 100000,
+        "configured": {
+          "RARE": 6000,
+          "ELITE": 3000,
+          "ULTRA_RARE": 850,
+          "LEGENDARY": 149,
+          "ICON": 1
+        },
+        "observed": {
+          "RARE": 60167,
+          "ULTRA_RARE": 8365,
+          "ELITE": 29926,
+          "LEGENDARY": 1533,
+          "ICON": 9
+        }
+      }
+    ],
+    "interpretation": "Sampler smoke observation, not statistically proven fairness. Synthetic contention configuration, never a commercial offer."
+  },
+  "nineCardBrowser": {
+    "passed": 4,
+    "failed": 0,
+    "widths": [
+      360,
+      412,
+      1366
+    ],
+    "reducedMotion": true,
+    "accessibility": true
+  },
+  "hostedWallet": {
+    "at": "2026-10-12T11:31:43.328Z",
+    "deployment": "dpl_HewS9iMnD3dLNRZLA9sypP236jDJ",
+    "commit": "b3d178a8529e94ed08afd95fa65c9a674f98c029",
+    "domain": true,
+    "checks": [
+      "Ordinary password login, no mandatory MFA, anonymous wallet denied",
+      "Owner issuance, withdrawal and foreign receipt denied; no owner reports or foreign wallet",
+      "Persisted purchase survived response loss and reload: same operation, one 900 debit (previous attempt verified before video-only failure; no new purchase on replay)",
+      "Actual persisted award; repeat opening returns same receipt without debit",
+      "Mobile/desktop layout, accessible card dialog, owned card persists after reopening",
+      "Owner/Barry normal cards and profiles unchanged; Barry financial balance unchanged by QA"
+    ],
+    "passed": true
+  },
+  "domainBoundaries": 15,
+  "webBuild": "Local PASS and exact Vercel deployment READY",
+  "android": {
+    "built": true,
+    "version": 21,
+    "sameSignature": true,
+    "sha256": "12c74af3a7953efc080fa993b974729301661db7f43d5446fa4ebe0e03289091",
+    "downloadVerified": true,
+    "expiresAt": "2026-10-19T11:36:15.018Z"
+  },
+  "dependencyVulnerabilities": 0,
+  "secretScan": {
+    "status": "PASS",
+    "filesScanned": 1493,
+    "bytesScanned": 42456747,
+    "findings": [],
+    "errors": []
+  },
+  "weightedMemberRound": "UNFINISHED: new inventory/entry bridge not connected; old free rounds unchanged",
+  "physicalDevice": "PENDING",
+  "ownerVisualApproval": "PENDING",
+  "emulator": "NOT RUN",
+  "realMoney": false,
+  "additionalHumanGrants": 0,
+  "messagesSent": 0
+}

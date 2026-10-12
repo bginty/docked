@@ -12,6 +12,19 @@ const deployment = JSON.parse(
 assert.equal(deployment.state, "READY");
 assert.equal(deployment.effectiveTarget, "production");
 const domain = process.argv.includes("--domain");
+const replayOnly = process.argv.includes("--replay-only");
+const priorAcceptance = replayOnly
+  ? JSON.parse(readFileSync("docs/qa/android-v21/wallet-domain.json"))
+  : null;
+if (replayOnly) {
+  assert.equal(domain, true);
+  assert.equal(priorAcceptance.commit, deployment.commit);
+  assert.ok(
+    priorAcceptance.checks.some((c) =>
+      c.startsWith("Persisted purchase survived"),
+    ),
+  );
+}
 const base = domain ? "https://docked.com.au" : deployment.url;
 const approvedShare =
   !domain && process.argv.includes("--approved-private-share")
@@ -75,7 +88,7 @@ try {
     "ef641248-67be-4c32-9b12-9205bfcee15b",
   );
   assert.ok(
-    wallet(await store.read(), qa.id).spendable >= 900,
+    replayOnly || wallet(await store.read(), qa.id).spendable >= 900,
     "Existing synthetic QA fixture needs test balance; no human grants",
   );
   browser = await chromium.launch({ channel: "msedge" });
@@ -171,61 +184,77 @@ try {
   report.checks.push(
     "Owner issuance, withdrawal and foreign receipt denied; no owner reports or foreign wallet",
   );
-  page.on("dialog", (d) => d.accept());
-  let dropped = false;
-  await page.route("**/api/test-wallet", async (route) => {
-    if (
-      !dropped &&
-      route.request().method() === "POST" &&
-      route.request().postDataJSON()?.command?.kind === "buy-pack"
-    ) {
-      dropped = true;
-      const response = await route.fetch({
-        headers: {
-          ...route.request().headers(),
-          origin: domain ? base : "https://docked.com.au",
-        },
-      });
-      if (response.status() !== 200) {
-        await route.fulfill({ response });
-        return;
-      }
-      await route.abort("failed");
-    } else await route.fallback();
-  });
-  await page
-    .getByRole("button", { name: "Buy Standard · nine cards", exact: true })
-    .click();
-  await expect(
-    page.getByRole("button", { name: "Retry pending transaction" }),
-  ).toBeEnabled({ timeout: 30000 });
-  await page.reload();
-  await page.getByRole("button", { name: "Retry pending transaction" }).click();
-  await expect(
-    page.getByRole("button", { name: "Retry pending transaction" }),
-  ).toHaveCount(0, { timeout: 30000 });
-  const afterBuy = await get();
-  assert.equal(
-    afterBuy.body.state.wallet.spendable,
-    initial.body.state.wallet.spendable - 900,
-  );
-  assert.equal(
-    afterBuy.body.state.packs.length,
-    initial.body.state.packs.length + 1,
-  );
-  report.checks.push(
-    "Persisted purchase survived response loss and reload: same operation, one 900 debit",
-  );
-  const targetPack = afterBuy.body.state.packs
-    .filter((p) => p.status === "SEALED")
-    .at(-1);
+  let afterBuy = initial;
+  if (!replayOnly) {
+    page.on("dialog", (d) => d.accept());
+    let dropped = false;
+    await page.route("**/api/test-wallet", async (route) => {
+      if (
+        !dropped &&
+        route.request().method() === "POST" &&
+        route.request().postDataJSON()?.command?.kind === "buy-pack"
+      ) {
+        dropped = true;
+        const response = await route.fetch({
+          headers: {
+            ...route.request().headers(),
+            origin: domain ? base : "https://docked.com.au",
+          },
+        });
+        if (response.status() !== 200) {
+          await route.fulfill({ response });
+          return;
+        }
+        await route.abort("failed");
+      } else await route.fallback();
+    });
+    await page
+      .getByRole("button", { name: "Buy Standard · nine cards", exact: true })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Retry pending transaction" }),
+    ).toBeEnabled({ timeout: 30000 });
+    await page.reload();
+    await page
+      .getByRole("button", { name: "Retry pending transaction" })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Retry pending transaction" }),
+    ).toHaveCount(0, { timeout: 30000 });
+    afterBuy = await get();
+    assert.equal(
+      afterBuy.body.state.wallet.spendable,
+      initial.body.state.wallet.spendable - 900,
+    );
+    assert.equal(
+      afterBuy.body.state.packs.length,
+      initial.body.state.packs.length + 1,
+    );
+    report.checks.push(
+      "Persisted purchase survived response loss and reload: same operation, one 900 debit",
+    );
+  } else {
+    report.checks.push(
+      "Persisted purchase survived response loss and reload: same operation, one 900 debit (previous attempt verified before video-only failure; no new purchase on replay)",
+    );
+  }
+  const targetPack = replayOnly
+    ? initial.body.state.packs.find((p) => p.receipt?.cards.length === 9)
+    : afterBuy.body.state.packs.find(
+        (p) => !initial.body.state.packs.some((old) => old.id === p.id),
+      );
+  assert.equal(targetPack?.status, replayOnly ? "OPENED" : "SEALED");
   await page
     .locator(`[data-pack-id="${targetPack.id}"]`)
-    .getByRole("button", { name: "Open pack", exact: true })
+    .getByRole("button", {
+      name: replayOnly ? "Replay saved pack" : "Open pack",
+      exact: true,
+    })
     .click();
-  await page
-    .getByRole("button", { name: "Open pack seal", exact: true })
-    .click();
+  if (!replayOnly)
+    await page
+      .getByRole("button", { name: "Open pack seal", exact: true })
+      .click();
   await expect(page.locator(".pack-case")).toBeVisible({ timeout: 30000 });
   await page.waitForTimeout(6500);
   const opened = await get();
@@ -289,14 +318,8 @@ try {
       .locator(`[data-pack-id="${pack.id}"]`)
       .getByRole("button", { name: "Replay saved pack", exact: true })
       .click();
-    if (
-      await film
-        .getByRole("button", { name: "Reveal all", exact: true })
-        .count()
-    )
-      await film
-        .getByRole("button", { name: "Reveal all", exact: true })
-        .click();
+    // storageState includes the completed local reveal progress from above.
+    await expect(film.locator(".pack-summary li")).toHaveCount(9);
     await film
       .getByRole("button", {
         name: "Replay saved result · no new cards",

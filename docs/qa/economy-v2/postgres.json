@@ -1,0 +1,49 @@
+{
+  "at": "2026-10-12T10:43:29.123Z",
+  "passed": true,
+  "realLocalPostgres": true,
+  "connections": 8,
+  "finalIconWinners": 1,
+  "failedPurchasesNoDebitOrPartialCards": true,
+  "repeatedOpeningNineSameCards": true,
+  "immutableSupplyPermissions": true,
+  "distribution": [
+    {
+      "product": "standard-nine-test-v1",
+      "draws": 100000,
+      "configured": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "observed": {
+        "ELITE": 12159,
+        "RARE": 84892,
+        "LEGENDARY": 458,
+        "ULTRA_RARE": 2480,
+        "ICON": 11
+      }
+    },
+    {
+      "product": "premium-nine-test-v1",
+      "draws": 100000,
+      "configured": {
+        "RARE": 6000,
+        "ELITE": 3000,
+        "ULTRA_RARE": 850,
+        "LEGENDARY": 149,
+        "ICON": 1
+      },
+      "observed": {
+        "RARE": 60167,
+        "ULTRA_RARE": 8365,
+        "ELITE": 29926,
+        "LEGENDARY": 1533,
+        "ICON": 9
+      }
+    }
+  ],
+  "interpretation": "Sampler smoke observation, not statistically proven fairness. Synthetic contention configuration, never a commercial offer."
+}

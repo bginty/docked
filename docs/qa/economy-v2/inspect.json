@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-12T10:39:20.274Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "mode": "--inspect",
+  "migration": "20261012101915_lifetime_card_economy.sql",
+  "inventory": {
+    "beta_cards": "41",
+    "legacy_editions": "678",
+    "mapped_players": "498"
+  },
+  "existingOrders": 4,
+  "existingEntitlements": [
+    "OPENED",
+    "SEALED",
+    "OPENED",
+    "OPENED"
+  ],
+  "existingCards": 3,
+  "existingEvents": 11,
+  "protectedFingerprint": "4b84feb9ed83c7a06de216be24fda31a9ba7f001af2c10fb04763814626b3a30",
+  "additionalHumanGrants": 0,
+  "realMoney": false
+}
