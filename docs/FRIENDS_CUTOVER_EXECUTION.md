@@ -1,4 +1,4 @@
-> 12 October follow-up complete: v20 was already live; do not repeat cutover. Source jobs failed, collector-only runtime repair deployed as version 12, next scheduled collection remains pending. See [follow-up outcome](NFL_COLLECTOR_FOLLOWUP_2026-10-12.md). The single automation was not duplicated; safe staged gameplay remains available under the later owner approval.
+> Final follow-up: friends v22 is already released; do not repeat cutover. See [current release](NFL_RARITY_MEMBER_RELEASE.md) and `qa/friends-cutover/collector-followup-current.json`. Latest weekly/roster scheduled downloads verified; PBP latest attempt was cooldown, with earlier retained scheduled-download evidence but no surviving matching HTTP receipt. Full collection acceptance remains REVIEW_REQUIRED; safe staged gameplay is unaffected. Removal of the obsolete one-shot Codex follow-up was blocked by automatic approval review and is pending explicit cleanup approval; existing database schedules/cooldowns remain unchanged.
 
 # Authorised NFL friends cutover execution
 

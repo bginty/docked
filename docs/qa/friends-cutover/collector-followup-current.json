@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-12T12:49:07.080Z",
+  "readOnly": true,
+  "latestScheduled": [
+    {
+      "task": "weekly",
+      "startedAt": "2026-10-12T12:05:01.090Z",
+      "cron": "succeeded",
+      "httpStatus": 200,
+      "revision": 6,
+      "status": "PASS"
+    },
+    {
+      "task": "rosters",
+      "startedAt": "2026-10-12T12:15:02.024Z",
+      "cron": "succeeded",
+      "httpStatus": 200,
+      "revision": 7,
+      "status": "PASS"
+    }
+  ],
+  "pbp": {
+    "latestStartedAt": "2026-10-12T12:10:01.197Z",
+    "latestOutcome": "cooldown",
+    "cooldownUntil": "2026-10-12T12:10:01.733Z",
+    "previousDownloadedAt": "2026-10-12T00:10:01.679Z",
+    "previousRevision": 4,
+    "previousCron": "succeeded",
+    "previousHttpReceiptAvailable": false,
+    "status": "REVIEW_REQUIRED",
+    "reason": "Latest cron arrived 536 ms before the existing 12-hour cooldown expired. Earlier PBP download and retained revision are recorded, but its matching HTTP receipt is no longer in the queried response store."
+  },
+  "retention": [
+    {
+      "dataset": "weekly",
+      "revision": "6",
+      "hash": "be222a896c4705fa36b1c7a234f398c1add69965aea39549c24032b3f1509116",
+      "hashMatches": true,
+      "freshnessHours": 0.7258941666666666,
+      "within24Hours": true,
+      "retentionExpiry": "2026-11-11T12:05:02.340Z"
+    },
+    {
+      "dataset": "rosters",
+      "revision": "7",
+      "hash": "9f424fed44d6f34e4cc45b353847a3e8fb8b8a4b94994c43cd2cdfa07c1a761b",
+      "hashMatches": true,
+      "freshnessHours": 0.5592213888888888,
+      "within24Hours": true,
+      "retentionExpiry": "2026-11-11T12:15:02.895Z"
+    },
+    {
+      "dataset": "pbp",
+      "revision": "4",
+      "hash": "3ea1e79e0faf5b3aa32d67e7257556f8fa0d931b3de681580f7030f0c5764e47",
+      "hashMatches": true,
+      "freshnessHours": 12.650590277777777,
+      "within24Hours": true,
+      "retentionExpiry": "2026-11-11T00:10:04.609Z"
+    }
+  ],
+  "legacyEvaluator": "The unchanged observer evaluates the original 11 October window; that window is now outside its rolling 24-hour query. Its generic UNPROVEN results are not current source failures.",
+  "completedGenuineMemberRound": false,
+  "nextExistingPbpAttempt": "2026-10-13T00:10:00Z",
+  "release": "Already-authorised staged friends v22 remains live; missing statistics stay pending. No repeated cutover, forced download, schedule/cooldown change or new automation."
+}
