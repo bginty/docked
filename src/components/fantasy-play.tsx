@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
-import { rarities } from "@/core/card-rarity";
+import { rarities, rarityRule } from "@/core/card-rarity";
 import { LocalDateTime } from "./local-date-time";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 import {
   countdown,
+  competitionCardEligible,
+  nflCoverage,
   fieldSlots,
   eligibleForPosition,
   fantasySports,
@@ -74,6 +76,15 @@ export function FantasyPlay({
     setDetail(null);
   }, []);
   useEffect(() => {
+    const competition = new URLSearchParams(window.location.search).get(
+      "competition",
+    );
+    if (competition && data.competitions.some((c) => c.id === competition)) {
+      setChosen(competition);
+      setView("team");
+    }
+  }, [data.competitions]);
+  useEffect(() => {
     try {
       const saved = localStorage.getItem(`docked-sport:${data.user_id}`);
       if (
@@ -108,8 +119,15 @@ export function FantasyPlay({
     window.addEventListener("beforeunload", guard);
     return () => window.removeEventListener("beforeunload", guard);
   }, [dirty]);
-  const { rounds, current, next } = playRounds(data, sport, now);
+  const { rounds, next } = playRounds(data, sport, now);
   const comp = rounds.find((c) => c.id === chosen) ?? next;
+  const current = rounds
+    .filter(
+      (c) =>
+        Date.parse(c.locks_at) <= now &&
+        c.rules.inventory_scope === comp?.rules.inventory_scope,
+    )
+    .sort((a, b) => Date.parse(b.locks_at) - Date.parse(a.locks_at))[0];
   const saved =
     data.entries.find((e) => e.competition_id === comp?.id)?.cards ?? [];
   const savedKey = [...saved].sort().join(",");
@@ -141,7 +159,12 @@ export function FantasyPlay({
       r.competition_id === (view === "points" ? viewed?.id : current?.id),
   );
   const scoredSeason = rounds
-    .filter((c) => c.season === (current ?? next)?.season)
+    .filter(
+      (c) =>
+        c.season === (current ?? next)?.season &&
+        c.rules.inventory_scope ===
+          (view === "points" ? viewed : comp)?.rules.inventory_scope,
+    )
     .map((c) => c.id);
   const seasonResults = data.results.filter(
     (r) =>
@@ -356,7 +379,7 @@ export function FantasyPlay({
               <div>
                 <span>Season points</span>
                 <strong>{seasonPoints ?? "—"}</strong>
-                <small>All entered rounds · fantasy points</small>
+                <small>Entered rounds with these scoring rules</small>
               </div>
               <div>
                 <span>Round rank</span>
@@ -458,6 +481,61 @@ export function FantasyPlay({
                         {countdown(comp.locks_at, now)} · your local time
                       </span>
                     </div>
+                  )}
+                  {comp?.rules.inventory_scope === "invited-nfl-test-v2" && (
+                    <section
+                      className="fantasy-panel"
+                      aria-label="Rarity test rules"
+                    >
+                      <h3>Isolated rarity test competition</h3>
+                      <p>
+                        Owned, opened test-pack cards and free Core cards are
+                        eligible. No cash value, prizes or withdrawals. K cards
+                        are collectible only; this formation has no kicker slot.
+                      </p>
+                      <p>
+                        {rarities
+                          .map(
+                            (r) =>
+                              `${rarityRule(r).label} ${rarityRule(r).multiplierTenths / 10}×`,
+                          )
+                          .join(" · ")}
+                      </p>
+                      <p>
+                        Base points × locked rarity multiplier, including
+                        negative points. Rounded once per player per round to 2
+                        decimals, ties away from zero. Missing statistics stay
+                        pending.
+                      </p>
+                      <Link href="/fantasy/test-wallet">
+                        Open packs / manage test cards
+                      </Link>
+                      <p>
+                        Need positions? Use your free Core cards or exchange
+                        eligible test cards. Packs are random and do not
+                        guarantee a complete team.
+                      </p>
+                      {nflCoverage(data.cards, comp, data.user_id).gaps.length >
+                        0 && (
+                        <div role="status">
+                          <strong>
+                            Your collection needs position coverage
+                          </strong>
+                          <ul>
+                            {nflCoverage(
+                              data.cards,
+                              comp,
+                              data.user_id,
+                            ).gaps.map((g) => (
+                              <li key={g}>{g}</li>
+                            ))}
+                          </ul>
+                          <Link href="/fantasy/cards">
+                            Open your free starter pack / view cards
+                          </Link>
+                        </div>
+                      )}
+                    </section>
                   )}
                 </>
               ) : (
@@ -573,6 +651,17 @@ export function FantasyPlay({
                                       ? `${card.position} · ${card.status}`
                                       : position}
                                 </small>
+                                {card &&
+                                  (view === "points" ? viewed : comp)?.rules
+                                    .inventory_scope ===
+                                    "invited-nfl-test-v2" && (
+                                    <small>
+                                      {rarityRule(card.tier).label} ·{" "}
+                                      {rarityRule(card.tier).multiplierTenths /
+                                        10}
+                                      ×
+                                    </small>
+                                  )}
                               </button>
                             );
                           })}
@@ -595,7 +684,7 @@ export function FantasyPlay({
                           (c) =>
                             !ids.includes(c.id) &&
                             c.sport === sport &&
-                            c.season === comp.season &&
+                            competitionCardEligible(c, comp) &&
                             !["retired", "delisted"].includes(c.status),
                         )
                         .map((c) => (
@@ -614,7 +703,7 @@ export function FantasyPlay({
                       (c) =>
                         !ids.includes(c.id) &&
                         c.sport === sport &&
-                        c.season === comp.season,
+                        competitionCardEligible(c, comp),
                     ) && (
                       <p>
                         No unselected eligible cards. Explore your collection as
@@ -685,9 +774,12 @@ export function FantasyPlay({
                       by the server.
                     </p>
                     <p>
-                      Cards in unresolved locked lineups cannot transfer. After
-                      settlement, a transfer never changes earned points. Hosted
-                      transfers remain disabled.
+                      Saving a team reserves its cards. Before lock, replace a
+                      card and save before selling or swapping it. After lock,
+                      cards cannot transfer until the round is finalised. Later
+                      transfers never change locked players, rarity multipliers
+                      or earned points. Existing free competitions retain their
+                      own equal-scoring rules.
                     </p>
                   </details>
                 </>
@@ -752,7 +844,7 @@ export function FantasyPlay({
                 <h2>Scoring, clearly separated</h2>
                 <p>
                   {data.nfl_beta
-                    ? "Points come from your locked NFL team and collected post-game statistics. Card tier does not change scoring. No cash prizes or paid play."
+                    ? "Points come from your locked NFL team and collected post-game statistics. Free rounds use equal scoring; only labelled RARITY TEST rounds apply the displayed card multipliers. No cash prizes or real-money play."
                     : "Weekly and season fantasy points come from recorded competition entries. Championship points reward round placings. Daily gameplay rewards are separate."}
                 </p>
                 <p>
@@ -808,7 +900,11 @@ export function FantasyPlay({
                     {c.team} · {c.position} · {c.status}
                   </small>
                   <small>
-                    {c.tier==='CORE'?'Free Core · unlimited':`${c.tier} #${c.serial} / ${c.max_supply}`}
+                    {c.tier === "CORE"
+                      ? "Free Core · unlimited"
+                      : `${c.tier} #${c.serial} / ${c.max_supply}`}
+                    {comp.rules.inventory_scope === "invited-nfl-test-v2" &&
+                      ` · ${rarityRule(c.tier).multiplierTenths / 10}×`}
                   </small>
                 </span>
                 <b>Select</b>

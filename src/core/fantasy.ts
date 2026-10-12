@@ -243,6 +243,9 @@ export const fantasyAction = z
   ])
   .and(z.object({ request_id: uuid }));
 export type FantasyCard = {
+  canonical_player_id?: string;
+  inventory_scope?: "invited-nfl-test-v2";
+  multiplier?: number;
   id: string;
   edition_id: string;
   owner_id: string;
@@ -267,6 +270,7 @@ export type FantasyCard = {
   listed: boolean;
 };
 export type FantasyCompetition = {
+  eligible_player_ids?: string[];
   id: string;
   name: string;
   season: string;
@@ -289,6 +293,8 @@ export type FantasyState = {
     scores: {
       player_id: string;
       score: number;
+      base_score?: number | null;
+      multiplier?: number;
       stats: Record<string, number>;
       scoring_version: string;
       rules: Record<string, unknown>;

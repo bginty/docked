@@ -1,0 +1,109 @@
+{
+  "at": "2026-10-12T12:27:08.118Z",
+  "scope": "Hosted rollback-only ordinary AAL1 accounts; historical actual NFL statistics; synthetic correction; no genuine member results",
+  "checks": [
+    "Two ordinary QA accounts: nine-card purchases, same-request recovery, one debit, persisted opening",
+    "Core/limited same-player aliases: valid Core coverage maps to permanent identity, duplicate real player rejected; old free command unchanged",
+    "Ownership/duplicate rejection; saved-team transfer denied atomically before deadline; reopened snapshots retain rarity and multiplier",
+    "Durable deadline lock; real historical player statistics -> locked multipliers -> own breakdowns and shared standings; synthetic correction appended with original rules and snapshots preserved"
+  ],
+  "passed": true,
+  "replay": [
+    {
+      "base": 71.24,
+      "weighted": 78.81,
+      "players": [
+        {
+          "rarity": "ELITE",
+          "multiplier": 1.2,
+          "base": 0,
+          "points": 0
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 7.8,
+          "points": 8.58
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 12.54,
+          "points": 13.79
+        },
+        {
+          "rarity": "ELITE",
+          "multiplier": 1.2,
+          "base": 4.5,
+          "points": 5.4
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 27.3,
+          "points": 30.03
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 13.1,
+          "points": 14.41
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 6,
+          "points": 6.6
+        }
+      ]
+    },
+    {
+      "base": 71.24,
+      "weighted": 78.81,
+      "players": [
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 13.1,
+          "points": 14.41
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 27.3,
+          "points": 30.03
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 6,
+          "points": 6.6
+        },
+        {
+          "rarity": "ELITE",
+          "multiplier": 1.2,
+          "base": 4.5,
+          "points": 5.4
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 7.8,
+          "points": 8.58
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 0,
+          "points": 0
+        },
+        {
+          "rarity": "RARE",
+          "multiplier": 1.1,
+          "base": 12.54,
+          "points": 13.79
+        }
+      ]
+    }
+  ]
+}

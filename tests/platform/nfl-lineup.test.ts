@@ -5,6 +5,7 @@ import {
   fieldSlots,
   lineupIssues,
   eligibleForPosition,
+  competitionCardEligible,
 } from "../../src/core/fantasy-play";
 import type { FantasyCard, FantasyCompetition } from "../../src/core/fantasy";
 const comp = {
@@ -17,6 +18,74 @@ const comp = {
   season: "2026",
   rules: { postgame: true, duplicates: false },
 } as FantasyCompetition;
+test("lifetime inventory stays out of free rounds; mapped rarity round accepts old artwork seasons and rejects byes/listed cards", () => {
+  const card = {
+    id: "c",
+    player_id: "p",
+    owner_id: "qa",
+    tier: "ULTRA_RARE",
+    position: "QB",
+    sport: "nfl",
+    season: "lifetime",
+    status: "active",
+    inventory_scope: "invited-nfl-test-v2",
+  } as FantasyCard;
+  const weighted = {
+    ...comp,
+    rules: { ...comp.rules, inventory_scope: "invited-nfl-test-v2" },
+    eligible_player_ids: ["p"],
+  };
+  assert.equal(competitionCardEligible(card, comp), false);
+  assert.equal(eligibleForPosition(card, "QB", weighted, "qa", []), true);
+  const core = {
+    ...card,
+    id: "core",
+    tier: "CORE",
+    player_id: "old-uuid",
+    canonical_player_id: "p",
+    inventory_scope: undefined,
+  } as FantasyCard;
+  assert.equal(eligibleForPosition(core, "QB", weighted, "qa", []), true);
+  assert.equal(
+    eligibleForPosition(card, "QB", weighted, "qa", [core]),
+    false,
+    "Core and limited version of the same real player cannot occupy two slots",
+  );
+  assert.equal(
+    eligibleForPosition({ ...card, listed: true }, "QB", weighted, "qa", []),
+    false,
+  );
+  assert.equal(
+    eligibleForPosition(
+      { ...card, player_id: "bye" },
+      "QB",
+      weighted,
+      "qa",
+      [],
+    ),
+    false,
+  );
+  assert.equal(
+    eligibleForPosition(
+      { ...card, id: "other", tier: "ICON" },
+      "QB",
+      weighted,
+      "qa",
+      [card],
+    ),
+    false,
+  );
+  assert.equal(
+    eligibleForPosition(
+      { ...card, owner_id: "other" },
+      "QB",
+      weighted,
+      "qa",
+      [],
+    ),
+    false,
+  );
+});
 test("NFL fixed positions and each permitted FLEX consume seven distinct owned players", () => {
   for (const flex of ["RB", "WR", "TE"]) {
     const cards = ["QB", "RB", "RB", "WR", "WR", "TE", flex].map(

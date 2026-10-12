@@ -10,7 +10,7 @@ import core from "../src/core/scoring-engine.ts";
 import store from "../src/server/sports-feed-store.ts";
 const id = process.argv[2],
   reason = process.argv[3];
-assert.match(id ?? "", /^beta-real:nfl:\d{4}:\d{1,2}$/);
+assert.match(id ?? "", /^beta-real:nfl:(?:rarity-test:)?\d{4}:\d{1,2}$/);
 assert.ok(reason && reason.length >= 20, "Provide a substantive review reason");
 const sql = ownerDatabase(),
   app = ownerRuntimeDatabase();

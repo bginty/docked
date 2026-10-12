@@ -1,3 +1,5 @@
+12 October 2026 - [NFL rarity member-round integration](NFL_RARITY_MEMBER_RELEASE.md) supersedes the v21 unfinished bridge. Isolated Week 6 closes 16 October 11:15am Sydney; replay evidence is separate from future genuine scores. See release receipts for deployment/APK status.
+
 12 October 2026 - [Android account-completion fix](NATIVE_AUTH_RENEWAL_FIX.md) is live: pending consent no longer interrupts owner MFA in the native shell. Owner password/factor/consent/holdings unchanged; physical owner retry remains pending. Existing v21 receives the hosted fix without reinstalling.
 
 12 October 2026 - [NFL card economy v21 delivery](NFL_CARD_ECONOMY_DELIVERY.md) remains the economy release report. [NFL lifetime card economy](NFL_CARD_ECONOMY_V2.md) is authoritative for NEW isolated economy configuration: six rarities, nine-card Standard/Premium packs, permanent player/rarity caps and explicitly opt-in rarity scoring. Historical no-multiplier rounds and one-card receipts remain unchanged. Real money stays disabled. New weighted member-round entry remains unfinished; see the delivery report rather than treating engine tests as live gameplay acceptance.
@@ -57,4 +59,3 @@ Current owner QA application commit: `46eff700`; protected Preview: https://dock
 The earlier cleanup acceptance at `f1ab0133` / `22940ffc` remains historical evidence, including the superseded authentication-only Preview URL. Database history retirement remains outside this milestone.
 
 See FANTASY-CLEANUP-PLAN.md for work scope and [FANTASY_CLEANUP_ACCEPTANCE](FANTASY_CLEANUP_ACCEPTANCE.md) for counts, limitations, screenshots and exact changed files. Older QA reports are historical, not a pass for this milestone.
-

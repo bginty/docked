@@ -66,6 +66,14 @@ export function PostgameResults({ records }: { records: PostgameView[] }) {
                     {r.metadata.players?.[p.playerId] ?? p.playerId} ·{" "}
                     {p.position} · {points(p.centipoints)}
                   </summary>
+                  {p.multiplier !== undefined && (
+                    <p>
+                      Base {points(p.baseCentipoints ?? null)} × {p.multiplier}{" "}
+                      ({label(p.rarity ?? "")}) = {points(p.centipoints)}{" "}
+                      points. Locked rarity rules; negative totals are
+                      multiplied too.
+                    </p>
+                  )}
                   {p.matches.map((m) => (
                     <div key={m.fixtureId}>
                       <p>

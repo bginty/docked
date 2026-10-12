@@ -54,7 +54,7 @@ export function lineupIssues(
         !c ||
         c.owner_id !== owner ||
         c.sport !== (comp.sport ?? "football") ||
-        c.season !== comp.season ||
+        !competitionCardEligible(c, comp) ||
         (comp.sport === "nfl" &&
           !["QB", "RB", "WR", "TE"].includes(c.position)) ||
         (Array.isArray(comp.rules.tiers) &&
@@ -65,7 +65,8 @@ export function lineupIssues(
     issues.push("Use owned, eligible cards from this sport and season.");
   if (
     !comp.rules.duplicates &&
-    new Set(picked.map((c) => c?.player_id)).size !== picked.length
+    new Set(picked.map((c) => c && competitionPlayerId(c, comp))).size !==
+      picked.length
   )
     issues.push("Only one card per player is allowed.");
   for (const [position, count] of Object.entries(formation))
@@ -108,7 +109,8 @@ export function eligibleForPosition(
     (card.position === position ||
       (position === "FLEX" && ["RB", "WR", "TE"].includes(card.position))) &&
     card.sport === (comp.sport ?? "football") &&
-    card.season === comp.season &&
+    competitionCardEligible(card, comp) &&
+    !card.listed &&
     (!Array.isArray(comp.rules.tiers) ||
       comp.rules.tiers.includes(card.tier)) &&
     !["retired", "delisted", "unavailable"].includes(card.status) &&
@@ -116,9 +118,56 @@ export function eligibleForPosition(
       (c) =>
         c.id !== replacing &&
         (c.id === card.id ||
-          (!comp.rules.duplicates && c.player_id === card.player_id)),
+          (!comp.rules.duplicates &&
+            competitionPlayerId(c, comp) === competitionPlayerId(card, comp))),
     )
   );
+}
+/** Permanent rarity cards are edition-independent; free rounds retain old inventory. */
+export function competitionPlayerId(
+  card: FantasyCard,
+  comp: FantasyCompetition,
+) {
+  return comp.rules.inventory_scope === "invited-nfl-test-v2"
+    ? (card.canonical_player_id ?? card.player_id)
+    : card.player_id;
+}
+export function competitionCardEligible(
+  card: FantasyCard,
+  comp: FantasyCompetition,
+) {
+  const rarity = comp.rules.inventory_scope === "invited-nfl-test-v2";
+  return (
+    (!card.inventory_scope || rarity) &&
+    (rarity || card.season === comp.season) &&
+    (!comp.eligible_player_ids ||
+      comp.eligible_player_ids.includes(competitionPlayerId(card, comp)))
+  );
+}
+export function nflCoverage(
+  cards: FantasyCard[],
+  comp: FantasyCompetition,
+  owner: string,
+) {
+  const unique = new Map(
+    cards
+      .filter((c) => eligibleForPosition(c, c.position, comp, owner, []))
+      .map((c) => [competitionPlayerId(c, comp), c]),
+  );
+  const counts = Object.fromEntries(
+    ["QB", "RB", "WR", "TE"].map((p) => [
+      p,
+      [...unique.values()].filter((c) => c.position === p).length,
+    ]),
+  );
+  const gaps = Object.entries({ QB: 1, RB: 2, WR: 2, TE: 1 })
+    .filter(([p, n]) => counts[p] < n)
+    .map(([p, n]) => `${p}: need ${n}, own ${counts[p]}`);
+  if (counts.RB + counts.WR + counts.TE < 6)
+    gaps.push(
+      `RB/WR/TE for FLEX: need 6 combined, own ${counts.RB + counts.WR + counts.TE}`,
+    );
+  return { counts, gaps };
 }
 /** Allocate fixed slots first; FLEX receives the remaining eligible card once. */
 export function fieldSlots(

@@ -314,7 +314,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                 </p>
                 <p>
                   {c.rarity_version
-                    ? "Eligible only for future competitions explicitly using the rarity ruleset. K cards are collectible; current seven-player offence rules have no kicker slot."
+                    ? "Choose the isolated RARITY TEST competition in Play to use these cards. K cards are collectible; the seven-player offence formation has no kicker slot."
                     : "Legacy test card; original edition terms preserved."}
                 </p>
                 {s.supply

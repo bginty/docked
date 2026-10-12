@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
+import { rarityRule } from "@/core/card-rarity";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 import { footballBreakdown, localTime } from "@/core/fantasy-play";
 
@@ -143,6 +144,11 @@ export function FantasyPlayerDetails({
         </div>
       </div>
       <div className="player-detail-metrics">
+        <p>
+          {rarityRule(card.tier).label} ·{" "}
+          {rarityRule(card.tier).multiplierTenths / 10}× in explicitly labelled
+          rarity test competitions. Free equal-scoring competitions remain 1.0×.
+        </p>
         <div>
           <small>
             {selected
@@ -156,14 +162,19 @@ export function FantasyPlayerDetails({
             {card.tier} · {card.season}
           </small>
           <strong>
-            {card.tier==='CORE'?'Free Core':`#${card.serial}`}
-            <span>{card.tier==='CORE'?' · unlimited':` / ${card.max_supply.toLocaleString()}`}</span>
+            {card.tier === "CORE" ? "Free Core" : `#${card.serial}`}
+            <span>
+              {card.tier === "CORE"
+                ? " · unlimited"
+                : ` / ${card.max_supply.toLocaleString()}`}
+            </span>
           </strong>
         </div>
       </div>
       <p className="small-note">
-        This free friends competition retains equal scoring across tiers.
-        New rarity multipliers apply only in competitions explicitly using the separate rarity rules.
+        Free friends competitions retain equal scoring across tiers. Rarity
+        multipliers apply only in labelled RARITY TEST competitions using the
+        separate locked rules.
       </p>
       <section>
         <h3>Scoring breakdown</h3>

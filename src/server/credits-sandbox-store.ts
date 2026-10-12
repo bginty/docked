@@ -15,6 +15,8 @@ export class CreditsSandboxStore {
   ) {}
   async execute(actor: Operator, request: string, command: unknown) {
     return this.sql.begin(async (tx) => {
+      // Shared ordering with NFL team submissions: no ownership/lock race.
+      await tx`select pg_advisory_xact_lock(71820342)`;
       const [row] =
         await tx`select revision,document from credits_sandbox.state where id for update`;
       if (!row) throw Error("Financial sandbox not initialized");

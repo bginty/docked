@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-12T12:29:26.816Z",
+  "competition": "8841bf7d-5952-47c4-b926-40b04fdc5cba",
+  "accounts": [
+    {
+      "name": "Owner",
+      "admitted": true,
+      "walletEnabled": true,
+      "openedLimited": 0,
+      "core": 10,
+      "coverage": {
+        "counts": {
+          "QB": 2,
+          "RB": 2,
+          "WR": 3,
+          "TE": 2
+        },
+        "gaps": []
+      },
+      "note": "Read-only coverage with canonical identity; no purchase, grant, pack opening, team or trade performed."
+    },
+    {
+      "name": "Barry",
+      "admitted": true,
+      "walletEnabled": true,
+      "openedLimited": 0,
+      "core": 10,
+      "coverage": {
+        "counts": {
+          "QB": 2,
+          "RB": 2,
+          "WR": 3,
+          "TE": 2
+        },
+        "gaps": []
+      },
+      "note": "Read-only coverage with canonical identity; no purchase, grant, pack opening, team or trade performed."
+    }
+  ]
+}

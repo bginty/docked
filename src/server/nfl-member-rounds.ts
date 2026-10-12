@@ -7,7 +7,7 @@ import {
   type ScoringState,
 } from "../core/scoring-engine";
 import { createFreeBetaPeriod } from "../core/free-beta-scoring";
-import { validateLineup } from "../core/scoring-v1";
+import { validateLineup, type LockedCard } from "../core/scoring-v1";
 import { inspectNflRosters } from "../core/nflverse-evidence";
 import { SportsFeedStore } from "./sports-feed-store";
 import { retainedNflSource } from "./nflverse-bundle";
@@ -72,14 +72,20 @@ export async function registerNflRound(
       competition = randomUUID();
     await tx`insert into beta_fantasy.scoring_rules(id,version,rules) values(${scoring},${period.rules.version},${tx.json(period.rules)}) on conflict(version) do nothing`;
     const [rules] =
-      await tx`select id from beta_fantasy.scoring_rules where version=${period.rules.version}`;
-    await tx`insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,awards,prize) values(${competition},${period.label},'nfl',${period.id.split(":").at(-2)!},${Number(period.id.split(":").at(-1))},${period.locksAt},${tx.json({ positions: { QB: 1, RB: 2, WR: 2, TE: 1, FLEX: 1 }, duplicates: false, first_year_min: 0, postgame: true })},${rules.id},'[]','No cash prize')`;
+      await tx`select id,rules from beta_fantasy.scoring_rules where version=${period.rules.version}`;
+    if (digest(rules.rules) !== digest(period.rules))
+      throw Error("Registered scoring version differs");
+    await tx`insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,awards,prize) values(${competition},${period.label},'nfl',${period.id.split(":").at(-2)!},${Number(period.id.split(":").at(-1))},${period.locksAt},${tx.json({ positions: { QB: 1, RB: 2, WR: 2, TE: 1, FLEX: 1 }, duplicates: false, first_year_min: 0, postgame: true, ...(period.inventoryScope ? { inventory_scope: period.inventoryScope, rarity_version: period.rules.rarityVersion, scoring_version: period.rules.version } : {}) })},${rules.id},'[]','No cash prize')`;
     await tx`insert into beta_fantasy.production_rounds values(${competition})`;
     await tx`insert into sports_feed.streams(id) values(${period.id})`;
     await tx`insert into sports_feed.journal(stream_id,revision,previous_hash,state_hash,body,calculated) values(${period.id},1,'',${digest(state)},${tx.json(state as never)},${tx.json(results(state) as never)})`;
     await tx`insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures) values(${competition},${period.id},'member',${tx.json(fixtures as never)})`;
     const names =
       await tx`select np.player_id,p.name from sports_feed.nfl_players np join beta_fantasy.players p on p.id=np.player_id`;
+    if (period.inventoryScope)
+      names.push(
+        ...(await tx`select id player_id,identity->>'name' name from credits_sandbox.permanent_players where sport='nfl'`),
+      );
     await tx`update sports_feed.streams set display_metadata=${tx.json({ players: Object.fromEntries(names.map((p) => [p.player_id, p.name])), source: evidence.source })} where id=${period.id}`;
     return competition;
   });
@@ -98,12 +104,27 @@ export async function connectLockedNflEntries(sql: Sql, streamId: string) {
     next.entries = round.locked_snapshot.map(
       (e: {
         user_id: string;
-        snapshot: { card_id: string; player_id: string; position: string }[];
+        snapshot: {
+          card_id: string;
+          player_id: string;
+          position: string;
+          tier?: LockedCard["rarity"];
+          multiplierTenths?: number;
+          rarityVersion?: string;
+          rules_version?: string;
+        }[];
       }) => {
         const cards = e.snapshot.map((c) => ({
           cardId: c.card_id,
           playerId: c.player_id,
           position: c.position,
+          ...(state.period.rules.rarityVersion
+            ? {
+                rarity: c.tier,
+                multiplierTenths: c.multiplierTenths,
+                rarityVersion: c.rarityVersion,
+              }
+            : {}),
         }));
         validateLineup(state.period.rules, cards);
         if (
