@@ -5,11 +5,33 @@ import {
   nativeAuthCallback,
   nativeAppRoute,
   nativeSessionDestination,
+  nativeAuthenticationScreen,
   nativeDeepLink,
   nativeNotificationRoute,
   safeSharePath,
 } from "../../src/core/native-navigation";
 const id = "00000000-0000-4000-8000-000000000123";
+test("pending consent does not interrupt owner MFA on native navigation or resume", () => {
+  assert.equal(nativeAuthenticationScreen("/mfa"), true);
+  assert.equal(
+    nativeSessionDestination(200, { authenticated: false }, "/mfa"),
+    null,
+  );
+  assert.equal(
+    nativeSessionDestination(
+      200,
+      { authenticated: true, onboardingRequired: true },
+      "/mfa",
+    ),
+    null,
+  );
+  assert.equal(nativeAuthenticationScreen("/fantasy/play"), false);
+  assert.equal(
+    nativeSessionDestination(200, { authenticated: false }, "/fantasy/play"),
+    "/app/login",
+  );
+  assert.equal(nativeAuthenticationScreen("/mfa/unsafe"), false);
+});
 test("native app entry, recovery and expired-session transitions retain UI context without new authority", () => {
   for (const route of [
     "/app",

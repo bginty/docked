@@ -28,3 +28,10 @@ export function resolveTotpFactor(factors: TotpFactor[]) {
 export function mfaDestination(value?: string) {
   return value === "/app/reset-password" ? value : "/app";
 }
+/** Presentation only; admission and MFA remain enforced by the server/DB. */
+export function consentRenewalDestination(
+  mfaRequired: boolean,
+  aal: string | undefined,
+) {
+  return mfaRequired && aal !== "aal2" ? "/mfa" : "/app/invitation-setup";
+}

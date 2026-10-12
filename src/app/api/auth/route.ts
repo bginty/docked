@@ -26,6 +26,8 @@ import { productionInvitationsEnabled } from "@/core/auth-invitation";
 import { verifiedInvitedUser } from "@/core/invitation-setup";
 import { passwordResetFailure } from "@/core/auth-policy";
 import { mfaFlow } from "@/server/mfa-flow";
+import { consentRenewalDestination } from "@/core/mfa-flow";
+import { verifiedSessionClaims } from "@/core/auth-policy";
 function signupTransaction(tx: TransactionSql): SignupTransaction {
   return {
     query: async (text, parameters) => [...(await tx.unsafe(text, parameters))],
@@ -166,7 +168,19 @@ export async function POST(request: Request) {
     if (customerOnboardingEnabled() && user?.email_confirmed_at) {
       const [customer] =
         await sql`select private.customer_signup_identity(${user.id}::uuid) allowed, private.pending_beta_consent(${user.id}::uuid) renewal`;
-      if (customer?.renewal) return "/app/invitation-setup";
+      if (customer?.renewal) {
+        const [protection] =
+          await sql`select private.gameplay_mfa_required(${user.id}::uuid) required`;
+        const { data, error } = await client.auth.getSession();
+        if (error) throw Error("Session could not be checked");
+        const claims = data.session?.access_token
+          ? verifiedSessionClaims(data.session.access_token, user.id)
+          : null;
+        return consentRenewalDestination(
+          protection?.required !== false,
+          claims?.aal,
+        );
+      }
       if (
         customer?.allowed &&
         !(await sql`select id from public.profiles where id=${user.id}`).length

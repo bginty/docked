@@ -6,6 +6,7 @@ import {
   nativeAuthCallback,
   nativeDeepLink,
   nativeSessionDestination,
+  nativeAuthenticationScreen,
 } from "@/core/native-navigation";
 import { brand } from "@/brand/brand";
 export function isDockedNative() {
@@ -90,7 +91,8 @@ export function NativeBridge() {
           }),
           App.addListener("backButton", ({ canGoBack }) => {
             if (!alive) return;
-            const panel = document.querySelector<HTMLDialogElement>("dialog[open]");
+            const panel =
+              document.querySelector<HTMLDialogElement>("dialog[open]");
             if (panel) {
               panel.dispatchEvent(new Event("cancel", { cancelable: true }));
               return;
@@ -149,12 +151,7 @@ export function NativeBridge() {
     const controller = new AbortController();
     let checking = false;
     async function checkSession() {
-      if (
-        checking ||
-        !navigator.onLine ||
-        pathname === "/app" ||
-        pathname.startsWith("/app/")
-      )
+      if (checking || !navigator.onLine || nativeAuthenticationScreen(pathname))
         return;
       checking = true;
       try {

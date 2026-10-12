@@ -2,13 +2,29 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { mfaFlow } from "../../src/core/mfa-service";
-import { resolveTotpFactor, mfaDestination } from "../../src/core/mfa-flow";
+import {
+  resolveTotpFactor,
+  mfaDestination,
+  consentRenewalDestination,
+} from "../../src/core/mfa-flow";
 const factor = {
   id: "internal-never-shown",
   factor_type: "totp",
   status: "verified",
   created_at: "2026-01-01",
 };
+test("owner renewal challenges existing MFA before showing consent; members need no mandatory MFA", () => {
+  assert.equal(consentRenewalDestination(true, "aal1"), "/mfa");
+  assert.equal(consentRenewalDestination(true, undefined), "/mfa");
+  assert.equal(
+    consentRenewalDestination(true, "aal2"),
+    "/app/invitation-setup",
+  );
+  assert.equal(
+    consentRenewalDestination(false, "aal1"),
+    "/app/invitation-setup",
+  );
+});
 function fixture(factors = [factor], aal = "aal1") {
   const calls: string[] = [];
   const auth = {

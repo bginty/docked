@@ -3,7 +3,11 @@ const id =
 const community = new RegExp(`^/community/(posts)/(${id})$`);
 const shortPost = new RegExp(`^/community/(${id})$`);
 const staticPaths = new Set([
-  "/fantasy/play", "/fantasy/cards", "/fantasy/market", "/fantasy/social", "/fantasy/profile",
+  "/fantasy/play",
+  "/fantasy/cards",
+  "/fantasy/market",
+  "/fantasy/social",
+  "/fantasy/profile",
   "/app",
   "/app/login",
   "/app/signup",
@@ -53,10 +57,7 @@ export function nativeDeepLink(
   if (community.test(route)) return route;
   const post = route.match(shortPost);
   if (post) return `/community/posts/${post[1]}`;
-  if (
-    /^\/profile\/[a-z][a-z0-9_]{2,23}$/.test(route)
-  )
-    return route;
+  if (/^\/profile\/[a-z][a-z0-9_]{2,23}$/.test(route)) return route;
   return staticPaths.has(route) ? route : null;
 }
 /** Only an authorization code can return; the original WebView's PKCE verifier remains mandatory. */
@@ -117,8 +118,7 @@ export function nativeSessionDestination(
 ): string | null {
   // Auth/verification screens and the entry gate own their own transitions.
   if (
-    pathname === "/app" ||
-    pathname.startsWith("/app/") ||
+    nativeAuthenticationScreen(pathname) ||
     status !== 200 ||
     !input ||
     typeof input !== "object"
@@ -132,6 +132,13 @@ export function nativeSessionDestination(
   if (session.authenticated === true && session.onboardingRequired === true)
     return "/app/onboarding";
   return null;
+}
+/** These screens own authentication transitions, including consent renewal.
+ * A denied gameplay admission is not a reason to interrupt an MFA challenge. */
+export function nativeAuthenticationScreen(pathname: string): boolean {
+  return (
+    pathname === "/app" || pathname.startsWith("/app/") || pathname === "/mfa"
+  );
 }
 export function safeSharePath(path: string): string | null {
   if (!path.startsWith("/") || path.startsWith("//")) return null;
