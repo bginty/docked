@@ -1,4 +1,5 @@
 "use client";
+import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useRef, useState } from "react";
 import PackOpening from "./pack-opening";
 import type { PackReceipt } from "../core/pack-opening";
@@ -215,8 +216,7 @@ export function CreditsSandboxReview() {
         <h2>Sandbox marketplace</h2>
         <p>
           Seller commission is 7.5%, rounded half-up to whole credits. Mixed
-          card-plus-credit offers are disabled. Saved or locked lineup cards
-          cannot transfer.
+          card-plus-credit offers are disabled. {sevenTransferNotice}
         </p>
         <form
           onSubmit={(e) => {

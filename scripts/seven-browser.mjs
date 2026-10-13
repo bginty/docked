@@ -163,6 +163,31 @@ try {
   });
   await page.getByRole("button", { name: "Salary Cap", exact: true }).click();
   const axe = await new AxeBuilder({ page }).include(".fantasy-play").analyze();
+  assert.equal(
+    await page
+      .locator(".seven-slot .field-player")
+      .evaluateAll((nodes) =>
+        nodes.every(
+          (n) =>
+            n.getBoundingClientRect().width >=
+            n.parentElement.getBoundingClientRect().width * 0.95,
+        ),
+      ),
+    true,
+    "Player details use the complete slot width",
+  );
+  const fresh = await context.newPage();
+  await fresh.goto(base + "/fantasy/play?competition=" + competition);
+  await expect(
+    fresh.getByRole("button", { name: /Choose owned card/ }),
+  ).toHaveCount(0);
+  await expect(
+    fresh.getByRole("button", { name: "Update Entered Team", exact: true }),
+  ).toBeVisible();
+  await fresh.close();
+  report.checks.push(
+    "Fresh browser tab restores the confirmed seven-card entry instead of the older incomplete draft; player details use the complete slot width",
+  );
   assert.deepEqual(
     axe.violations.map((v) => ({
       id: v.id,

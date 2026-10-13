@@ -1,4 +1,5 @@
 "use client";
+import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useState } from "react";
 import type { SwapState, SwapCard } from "@/core/sandbox-swaps";
 import { formatAUD } from "@/core/fantasy-market-fees";
@@ -85,7 +86,7 @@ export function SandboxSwaps() {
     <option key={c.id} value={c.id} disabled={c.in_lineup || c.unopened}>
       {label(c.id)}
       {c.in_lineup
-        ? " — in saved lineup"
+        ? " — reserved by a competition"
         : c.unopened
           ? " — pack unopened"
           : ""}
@@ -98,11 +99,7 @@ export function SandboxSwaps() {
         Card-for-card exchanges between admitted beta members. Beta cards have
         no cash value. No deposits, withdrawals or purchases.
       </p>
-      <p>
-        Open packs first. Cards in any unsettled saved team must be removed
-        before swapping. Locked teams cannot be edited until settlement;
-        historical teams and points are preserved.
-      </p>
+      <p>Open packs first. {sevenTransferNotice}</p>
       <button disabled={busy} onClick={() => void refresh()}>
         Refresh ownership and receipts
       </button>

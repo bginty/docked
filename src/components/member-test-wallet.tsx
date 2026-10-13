@@ -1,4 +1,5 @@
 "use client";
+import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { MemberTestView } from "@/core/member-test-wallet";
@@ -345,6 +346,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
       )}
       <section>
         <h2>Test marketplace</h2>
+        <p>{sevenTransferNotice}</p>
         <p>
           7.5% seller commission, rounded to the nearest whole credit. All cards
           and proceeds stay in this test wallet.
@@ -390,6 +392,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
       </section>
       <section>
         <h2>Test card swaps</h2>
+        <p>{sevenTransferNotice}</p>
         <p>
           50 test credits each, charged only when both transfers complete. No
           fee for rejection or cancellation. Choose the other member's listed
