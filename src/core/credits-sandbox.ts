@@ -21,7 +21,7 @@ import {
 } from "./credit-only";
 
 // Operator-only domain. No public route accepts an actor, provider claim or balance.
-// This state cannot be attached to the friends beta or used for real money.
+// Admitted friends may use the restricted member adapter; never real money.
 type Category = "purchased" | "sale" | "promotional" | "competition";
 type Bucket = "available" | "pending" | "reserved";
 type Lot = {
@@ -452,6 +452,16 @@ export function validateCredits(s: CreditsState) {
   }
   let prior = "GENESIS";
   for (const j of s.journal) {
+    for (const line of j.lines) {
+      if (!line.account.startsWith("lot:")) continue;
+      const [, lotId, bucket, extra] = line.account.split(":");
+      if (
+        !s.lots[lotId] ||
+        extra ||
+        !["available", "pending", "reserved"].includes(bucket)
+      )
+        throw Error("Missing or invalid funding lot posting");
+    }
     const { hash, ...body } = j;
     if (
       j.previousHash !== prior ||
@@ -619,6 +629,11 @@ export function executeCredits(
     m.history.push({ from: card.owner, to, reference, at: now });
     m.version++;
     card.owner = to;
+    // Swapping a listed card supersedes the sale offer in the same transaction.
+    // A successful buy sets its own listing to SOLD immediately afterwards.
+    for (const listing of Object.values(s.listings))
+      if (listing.card === cardId && listing.status === "OPEN")
+        listing.status = "CANCELLED";
   };
   const event = (namespace: string, eid: string, data: unknown) => {
     const k = `${namespace}:${eid}`,
@@ -1599,7 +1614,22 @@ export function financialReport(s: CreditsState) {
       reserved: b[account(l.id, "reserved")] ?? 0,
       pending: b[account(l.id, "pending")] ?? 0,
     })),
-    transactions: s.journal.map((j) => ({ ...j, environment: s.mode })),
+    transactions: s.journal.map((j) => {
+      const event = s.events
+        .filter(
+          (e) =>
+            e.actor === j.actor &&
+            j.id.startsWith(e.id.slice(e.actor.length + 1) + "_"),
+        )
+        .sort((a, b) => b.id.length - a.id.length)[0];
+      const command = event?.command as { deposit?: string } | undefined;
+      return {
+        ...j,
+        environment: s.mode,
+        type: event?.kind ?? "LEGACY_UNCLASSIFIED",
+        depositReference: command?.deposit ?? null,
+      };
+    }),
     legacyReview: {
       bonusEntitlements: Object.entries(s.entitlements)
         .filter(([, e]) => !e.source.endsWith("_pack"))
@@ -1637,6 +1667,7 @@ export function financialReport(s: CreditsState) {
     ).length,
     openExceptions: Object.values(s.cases).filter((c) => c.status === "OPEN")
       .length,
+    exceptions: Object.entries(s.cases).map(([id, c]) => ({ id, ...c })),
     funding: s.funding,
     note: "Synthetic accounting only. Deposits are member liabilities, not revenue. Actual provider/bank balance, fees and reserves unknown until independently reconciled. Journal entries do not establish cash backing.",
   };

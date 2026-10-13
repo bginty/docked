@@ -14,6 +14,7 @@ const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/fantasy/profile", label: "Profile", icon: "profile" },
 ];
 export function appDestination(path: string) {
+  if (/^\/fantasy\/test-wallet(\/|$)/.test(path)) return "/fantasy/market";
   if (/^\/fantasy\/(play|cards|market|social|profile)(\/|$)/.test(path))
     return path.split("/").slice(0, 3).join("/");
   if (/^\/(feed|following|community|compose|search)(\/|$)/.test(path))

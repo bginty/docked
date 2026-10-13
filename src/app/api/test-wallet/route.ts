@@ -4,7 +4,10 @@ import { memberTestWallet } from "@/server/member-test-wallet";
 import { boundedCommunityBody } from "@/core/community-social";
 import { CreditsRejected } from "@/server/credits-sandbox-store";
 import { ZodError } from "zod";
-import { csv } from "@/core/owner-operations";
+import {
+  reconciliationCsv,
+  reconciliationRange,
+} from "@/core/credit-reconciliation";
 export const runtime = "nodejs";
 const headers = { "Cache-Control": "private, no-store" };
 export async function GET(req: Request) {
@@ -17,38 +20,24 @@ export async function GET(req: Request) {
           { error: "Owner access required" },
           { status: 403, headers },
         );
-      return new Response(
-        csv([
-          [
-            "Environment",
-            "Transaction",
-            "Timestamp UTC",
-            "Actor ID",
-            "Reason",
-            "Account",
-            "Credits",
-          ],
-          ...report.transactions.flatMap((j) =>
-            j.lines.map((l) => [
-              j.environment,
-              j.id,
-              new Date(j.at).toISOString(),
-              j.actor,
-              j.reason,
-              l.account,
-              l.credits,
-            ]),
-          ),
-        ]),
-        {
-          headers: {
-            ...headers,
-            "Content-Type": "text/csv; charset=utf-8",
-            "Content-Disposition":
-              'attachment; filename="docked-test-ledger.csv"',
-          },
+      let range;
+      try {
+        const q = new URL(req.url).searchParams;
+        range = reconciliationRange(q.get("from"), q.get("to"));
+      } catch {
+        return NextResponse.json(
+          { error: "Choose valid Sydney start and end dates." },
+          { status: 400, headers },
+        );
+      }
+      return new Response(reconciliationCsv(report, range), {
+        headers: {
+          ...headers,
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Disposition":
+            'attachment; filename="docked-test-ledger.csv"',
         },
-      );
+      });
     }
     return NextResponse.json(data, { headers });
   } catch {

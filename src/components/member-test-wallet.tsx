@@ -90,7 +90,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
       timeStyle: "short",
     });
   return (
-    <main className="test-wallet">
+    <div className="test-wallet">
       <header>
         <p className="eyebrow">PRIVATE BETA</p>
         <h1>Test wallet</h1>
@@ -573,7 +573,18 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
             {s.ownerReport.swapFees} · pack spend {s.ownerReport.packRevenue}.
             These are test flows, not accounting revenue.
           </p>
-          <a href="/api/test-wallet?format=csv">Export test ledger CSV</a>
+          <form action="/api/test-wallet" method="get">
+            <input type="hidden" name="format" value="csv" />
+            <label>
+              From date (Sydney)
+              <input type="date" name="from" />
+            </label>
+            <label>
+              Through date (Sydney)
+              <input type="date" name="to" />
+            </label>
+            <button>Export test reconciliation CSV</button>
+          </form>
           <details>
             <summary>Funding, balances and reconciliation evidence</summary>
             <pre>{JSON.stringify(s.ownerReport, null, 2)}</pre>
@@ -637,6 +648,6 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
           <EconomyOwnerReport state={s} />
         </section>
       )}
-    </main>
+    </div>
   );
 }
