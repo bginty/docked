@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-13T11:15:50.741Z",
+  "deployment": "dpl_6q2Xx9WQpbwZ4wGTXDQXdoc8qNcr",
+  "commit": "dafb3949f1491156a661fae8795698b28631ca23",
+  "domain": true,
+  "passed": true,
+  "checks": [
+    "Ordinary login, private API and owner CSV restrictions; no member deposit, withdrawal, grant or fee configuration path",
+    "Dedicated QA nine-card credit purchase, repeated request and repeated opening restore same receipt; reload, mobile/desktop, axe, no overflow or console errors"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-13T11:17:38.385Z",
+  "commit": "dafb3949f1491156a661fae8795698b28631ca23",
+  "deployment": "dpl_6q2Xx9WQpbwZ4wGTXDQXdoc8qNcr",
+  "url": "https://docked.com.au/fantasy/test-wallet",
+  "passed": true,
+  "protectedAccountsUnchanged": true,
+  "realPayments": false,
+  "realWithdrawals": false,
+  "commercialIssuance": false,
+  "additionalCostAUD": 0,
+  "android": {
+    "version": 22,
+    "rebuildRequired": false,
+    "entryUrl": "https://docked.com.au/app",
+    "physicalS24": "PENDING"
+  },
+  "validation": {
+    "focusedUnits": 24,
+    "databaseRegression": 151,
+    "platformRun": {
+      "total": 318,
+      "pass": 310,
+      "windowsSandboxFailures": 8,
+      "affectedFilesRerunPassed": 10
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "webBuild": "PASS",
+    "hostedRollback": "PASS",
+    "candidate": "PASS",
+    "domain": "PASS",
+    "domainBoundaryChecks": 15,
+    "secretScan": "PASS"
+  },
+  "rollback": "dpl_6XXn6JMXyf9FEPfM5XVwdLTRAyoM"
+}

@@ -67,9 +67,10 @@ balanced postings. Hosted rollback acceptance exercises the actual allocator and
 two dedicated QA nine-card packs then zero-balance free swap; original fingerprint restored.
 
 Full platform: 318 tests, 310 pass, 8 Windows TEMP/git sandbox failures. Both affected files
-rerun with filesystem access: 10/10 pass. Additional focused credit/member: 10/10 pass.
-Database regression: 151/151 pass. Typecheck, lint and production web build pass. Candidate
-and domain acceptance are recorded separately in docs/qa/credit-only when executed.
+rerun with filesystem access: 10/10 pass. Final focused credit/member/provider regressions:
+24/24 pass. Database regression: 151/151 pass. Typecheck, lint and production web build
+pass. Candidate and released-domain acceptance both passed; receipts are recorded
+separately in docs/qa/credit-only.
 
 v22 uses https://docked.com.au/app. No native change or APK rebuild required; fully close and
 reopen to load this web release. Physical S24 and owner visual acceptance remain pending.
@@ -87,3 +88,29 @@ reopen to load this web release. Physical S24 and owner visual acceptance remain
 | Customer/cash policies | Approve refund, chargeback, unused-funds and applicable regulatory/accounting treatment before activation. No commercial readiness claimed. |
 
 No messages, invitations, subscription or new service. Additional cost $0.
+
+## Released acceptance
+
+Live: https://docked.com.au/fantasy/test-wallet (wallet, packs, credit marketplace).
+Main Market: https://docked.com.au/fantasy/market (free swaps plus wallet link).
+Code commits: 6b82c9f4, c325baec, dafb3949. Deployment dpl_6q2Xx9WQpbwZ4wGTXDQXdoc8qNcr.
+Candidate and domain ordinary-member checks PASS; 15 domain boundaries PASS; mobile
+axe/overflow/console checks PASS. 24 final focused regressions PASS; known-secret scan
+551 files, zero findings. Both protected accounts retain identical wallet/holding/request
+fingerprints. One QA-only 900-credit grant and one nine-card QA purchase were persisted
+with fixed idempotency keys; no repeat grant on acceptance retries.
+
+The earlier AUD trade proposal is retired (410 read endpoint) and absent from customer
+screens. Historical components/test fixtures remain for old behaviour, without activation.
+Sydney timestamps avoid server/browser hydration differences.
+
+Rollback deployment: dpl_6XXn6JMXyf9FEPfM5XVwdLTRAyoM, recorded for both aliases in
+docs/qa/credit-only/rollback.json. Use the existing Vercel project rollback to that saved
+deployment; retain all wallet/audit records and pause transactions if old fee code would
+conflict with a subsequently configured free window. No DNS or email change is needed.
+
+Worked simulation (not beta withdrawal eligibility): buyer deposits A$10 = 1000 credits;
+buys an existing fictional eligible card for 1000 (925 seller +75 fee); resells the same
+card for 900 (832 proceeds +68 fee); simulated verified payout 832 leaves cash 168 =
+25 member liability +143 commission. No new credits arise from resale. Full reproducible
+receipt: docs/qa/credit-only/worked-example.json. No real provider transaction occurred.
