@@ -32,6 +32,16 @@ use the existing PayPal relationship for written underwriting first; retain the 
 beta while obtaining advice. Costs/fees for an approved cash-out model are **quote
 required**, not a verified zero-cost commercial service. Research added cost: A$0.
 
+Additional official checks (13 October 2026): [PayPal Payouts AU agreement](https://www.paypal.com/au/legalhub/paypal/paypal-payouts-agreement)
+requires a business account in good standing and permission for Payouts;
+[platform onboarding](https://developer.paypal.com/platforms/get-started) requires
+business evaluation. This does not establish a direct-bank payout rail for Docked.
+[ACMA's Interactive Gambling Act explanation](https://www.acma.gov.au/about-interactive-gambling-act)
+describes prohibited online services. Its [submission hosted by ACCC](https://www.accc.gov.au/system/files/australian-communications-media-authority-submission-dpsi.pdf?download=y)
+states classification depends on the service's features and distinguishes games not
+played for money/value. Docked's proposed cash-out feature therefore needs specific
+assessment; ordinary nonredeemable loot-box treatment cannot simply be assumed.
+
 ## Ready-to-send questions (drafts only)
 
 ### PayPal / alternative underwriting
