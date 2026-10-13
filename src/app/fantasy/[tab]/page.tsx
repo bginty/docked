@@ -136,7 +136,7 @@ export default async function FantasyPage({
     <AppShell authenticated>
       <div>
         {testWallet && (
-          <p className="notice">
+          <p className="actions">
             <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
             <Link href="/fantasy/test-wallet">Open test wallet</Link>
           </p>

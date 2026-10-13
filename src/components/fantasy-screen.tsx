@@ -414,7 +414,7 @@ export function FantasyScreen({
                 <input name="locks_at" type="datetime-local" required />
               </label>
               <p>
-                Fixed fair scoring, eleven unique players and no cash prize.
+                Legacy football rules: eleven unique players, equal scoring and no cash prize.
                 Lock must be within 90 days.
               </p>
               <button disabled={busy}>Create free round</button>

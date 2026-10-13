@@ -21,8 +21,9 @@ export function FantasyRewards({
         <h2>Your free NFL starter pack</h2>
         <p>
           Ten free CORE cards: 2 QB, 3 RB, 3 WR and 2 TE. Start seven, including
-          one FLEX. Free test cards have no cash value. Every tier scores
-          equally.
+          one FLEX. Free test cards have no cash value. Core scores at 1.0×.
+          Salary Cap and Open apply rarity multipliers; legacy equal-scoring
+          competitions retain their saved rules.
         </p>
         {!rewards.starter_claimed ? (
           <button

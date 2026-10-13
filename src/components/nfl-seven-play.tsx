@@ -824,7 +824,8 @@ export function NflSevenPlay({
       )}
 
       <p>
-        <Link href="/fantasy/results">Player points & weekly standings →</Link>{" "}
+        <Link href={`/fantasy/scoring/how-it-works?competition=${comp.id}`}>Scoring rules</Link>{" · "}
+        <Link href={`/fantasy/results?competition=${comp.id}`}>Player points & weekly standings →</Link>{" "}
         · <Link href="/fantasy/cards">My cards →</Link>
       </p>
 
