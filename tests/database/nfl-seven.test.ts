@@ -85,7 +85,7 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       );
       await q(`insert into sports_feed.streams(id)values($1)`, [sid]);
       await q(
-        `insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures)values($1,$2,'acceptance',$3)`,
+        `insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures)values($1,$2,'member',$3)`,
         [
           c,
           sid,
@@ -217,6 +217,14 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       () => command("seven_enter", rounds[1], picks, 0),
       /Owned/,
     );
+    // Member-facing review metadata never includes other users' selections.
+    const review = (await q(`select sports_feed.member_review_context() r`))[0].r;
+    assert.equal(review.rounds.length, 2);
+    assert.ok(review.rounds.every((r: any) => !r.entered && r.rules.version === rule.version));
+    assert.equal(JSON.stringify(review).includes(cards[0].id), false);
+    await pg.exec('set role authenticated');
+    await assert.rejects(() => q(`select sports_feed.member_review_context()`), /permission denied/);
+    await pg.exec('reset role');
   } finally {
     await pg.close();
   }

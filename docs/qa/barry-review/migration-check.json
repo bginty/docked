@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-13T22:48:09.803Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "sourceHash": "817f8fda9fddd64e6d479f138bafed1202c0c26bac24a61a551ab8531778900f",
+  "migration": "20261013223206_barry_beta_review_projection.sql",
+  "passed": true,
+  "applied": false,
+  "protectedAssetsUnchanged": true,
+  "products": [
+    {
+      "id": "standard-nine-seven-test-v2",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "eligiblePlayers": 451,
+      "weights": {
+        "ICON": 1,
+        "RARE": 8500,
+        "ELITE": 1200,
+        "LEGENDARY": 49,
+        "ULTRA_RARE": 250
+      }
+    },
+    {
+      "id": "premium-nine-seven-test-v2",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "eligiblePlayers": 451,
+      "weights": {
+        "ICON": 1,
+        "RARE": 6000,
+        "ELITE": 3000,
+        "LEGENDARY": 149,
+        "ULTRA_RARE": 850
+      }
+    }
+  ],
+  "priorRevision": "48"
+}

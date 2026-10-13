@@ -243,6 +243,9 @@ export const fantasyAction = z
   ])
   .and(z.object({ request_id: uuid }));
 export type FantasyCard = {
+  availability_reason?: string;
+  source_status?: string;
+  status_observed_at?: string;
   canonical_player_id?: string;
   inventory_scope?: "invited-nfl-test-v2";
   multiplier?: number;
@@ -282,6 +285,7 @@ export type FantasyCompetition = {
   opens_at?: string;
 };
 export type FantasyState = {
+  review?: import("./competition-review").ReviewContext;
   seven?: {
     inventory: FantasyCard[];
     configurations: Record<string, typeof import("./nfl-seven").nflSeven>;

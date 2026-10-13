@@ -17,7 +17,7 @@ import {
 import { FantasySheet } from "./fantasy-player-sheet";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { packSound } from "./pack-feedback";
-import {rarityRule} from '@/core/card-rarity';
+import { rarityRule } from "@/core/card-rarity";
 
 export type PackOpeningProps = {
   userId: string;
@@ -276,7 +276,8 @@ export default function PackOpening(props: PackOpeningProps) {
               {stage === "opening" ? "Your cards are confirmed" : card.name}
             </h3>
             <p className="pack-count" aria-live="polite">
-              Card {index + 1} of {receipt.cards.length} · {rarityRule(card.tier).label.toUpperCase()}
+              Card {index + 1} of {receipt.cards.length} ·{" "}
+              {rarityRule(card.tier).label.toUpperCase()}
             </p>
             <div
               className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${stage === "opening" ? "pack-rising" : ""}`}
@@ -391,13 +392,12 @@ export default function PackOpening(props: PackOpeningProps) {
                     alt="Docked"
                   />
                   <span>
-                    {card.season} · {rarityRule(card.tier).label.toUpperCase()}
+                    Test economy · {rarityRule(card.tier).label.toUpperCase()}
                   </span>
                 </div>
                 <FantasyCardArtwork card={card} />
                 <div className="pack-case-foot">
-                  {card.sport.toUpperCase()} · {card.position} · #
-                  {String(card.serial).padStart(3, "0")}
+                  {card.sport.toUpperCase()} · {card.position} · {card.tier === "CORE" ? `Instance ${card.id.slice(-8)}` : `#${String(card.serial).padStart(3, "0")}`}
                 </div>
               </div>
             </div>
@@ -420,7 +420,7 @@ export default function PackOpening(props: PackOpeningProps) {
                   <div>
                     <dt>Edition</dt>
                     <dd>
-                      {card.season} · {card.kind.replaceAll("_", " ")}
+                      {card.season.toLowerCase().includes("lifetime") ? "Permanent identity" : `Artwork edition ${card.season}`}
                     </dd>
                   </div>
                   <div>
@@ -495,10 +495,10 @@ export default function PackOpening(props: PackOpeningProps) {
               {receipt.cards.length} confirmed{" "}
               {receipt.cards.length === 1 ? "card" : "cards"}.{" "}
               {receipt.cards.some((c) => c.rarity_version)
-                ? "Lifetime test cards. Multipliers apply only in competitions declaring the new rarity rules; the current free round is unchanged."
+                ? "Test economy cards with permanent limited supply. Salary Cap and Open use rarity multipliers; legacy equal-scoring rounds remain unchanged."
                 : props.teamHref === null
-                  ? "Test cards have no cash value and do not enter scored teams."
-                  : "All tiers score equally."}
+                  ? "Test cards have no cash value. Competition eligibility depends on its saved rules."
+                  : "Scoring depends on competition rules: Salary Cap and Open use rarity multipliers; legacy equal-scoring rounds remain 1.0×."}
             </p>
             <ul className="pack-summary">
               {receipt.cards.map((c) => (

@@ -15,6 +15,7 @@ export type NflStanding = {
   competitionId: string;
   label: string;
   rows: {
+    isMe?: boolean;
     name: string;
     points: number | null;
     rank: number | null;

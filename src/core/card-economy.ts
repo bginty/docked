@@ -64,6 +64,7 @@ export type EconomyPack = {
   draws: { rarity: Rarity; eligiblePlayers: number; poolHash: string }[];
 };
 export type CardEconomy = {
+  activeProductVersions?: string[];
   id: "invited-nfl-test-v2";
   rarityVersion: string;
   enabled: boolean;
@@ -204,6 +205,12 @@ export function validateCardEconomy(e: CardEconomy) {
     providerIds.add(key);
   }
   Object.values(e.products).forEach(validateProduct);
+  if (
+    e.activeProductVersions?.some((id) => !e.products[id]) ||
+    (e.activeProductVersions &&
+      new Set(e.activeProductVersions).size !== e.activeProductVersions.length)
+  )
+    throw Error("Invalid active product versions");
   const serials = new Set<string>(),
     counts: Record<string, number> = {};
   for (const [id, c] of Object.entries(e.instances)) {
@@ -261,6 +268,8 @@ export function allocateNine(
   const p = e.products[productId];
   if (
     !e.enabled ||
+    (e.activeProductVersions !== undefined &&
+      !e.activeProductVersions.includes(productId)) ||
     !p ||
     now < p.effectiveAt ||
     (p.expiresAt !== null && now >= p.expiresAt)
@@ -372,4 +381,25 @@ export function eligibleCatalogue(
       x.observedAt <= now &&
       now - x.observedAt <= p.freshnessHours * 3600000,
   );
+}
+
+/** New offers only; saved pack/product snapshots and allocations are not rewritten. */
+export function sevenPlayerPackUpgrade(e: CardEconomy, now: number) {
+  const active: string[] = [];
+  for (const type of ["STANDARD", "PREMIUM"] as const) {
+    const old = e.products[`${type.toLowerCase()}-nine-test-v1`];
+    if (!old) throw Error("Original approved test product required");
+    const id = `${type.toLowerCase()}-nine-seven-test-v2`;
+    if (!e.products[id])
+      e.products[id] = {
+        ...structuredClone(old),
+        id,
+        version: id,
+        positions: ["QB", "RB", "WR", "TE"],
+        effectiveAt: now,
+      };
+    active.push(id);
+  }
+  e.activeProductVersions = active;
+  validateCardEconomy(e);
 }

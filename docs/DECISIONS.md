@@ -1,3 +1,5 @@
+14 October 2026 — [Barry beta review](BARRY_BETA_REVIEW.md): competition-aware rules/copy, roster explanations, collection/results/loading fixes and versioned seven-player pack pool. Release acceptance tracked there; historical rules/assets remain unchanged.
+
 13 October 2026 — Credit-only economy: see [CREDIT_ONLY_RELEASE](CREDIT_ONLY_RELEASE.md). New isolated funding is credit-only; FIFO/provenance, settlement reconciliation and consent-safe swap-free windows extend the existing wallet. Real money remains disabled; historical grants, entitlements and seven-player competitions are preserved.
 
 13 October 2026 — [Seven-player NFL Salary Cap and Open](NFL_SEVEN_PLAYER_RELEASE.md) are live on docked.com.au at web commit e7d5e38f. Mandatory QB/2RB/2WR/TE/FLEX, independent drafts/entries, rolling locks and existing post-game scoring are connected. v22 receives the hosted update; no native rebuild required. Week 6 closes 16 October 11:15am Sydney. Hosted historical replay and domain ordinary-member acceptance passed; genuine Week 6 results, physical S24 and owner visual approval remain pending. Payments/prizes/withdrawals remain disabled.

@@ -1,4 +1,10 @@
 "use client";
+import { boundedFetch } from "@/core/bounded-request";
+import {
+  collectionPositions,
+  sevenEligibility,
+  scoringContext,
+} from "@/core/card-display";
 import { rarities } from "@/core/card-rarity";
 import { FantasyCardArtwork as Card } from "./fantasy-card-artwork";
 import { PackProducts } from "./pack-products";
@@ -46,6 +52,8 @@ export function FantasyScreen({
   const [data, setData] = useState(initial),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
+  const [sport, setSport] = useState(initial.nfl_beta ? "nfl" : "football"),
+    [competitionFilter, setCompetitionFilter] = useState("");
   const [search, setSearch] = useState(""),
     [tier, setTier] = useState(""),
     [position, setPosition] = useState(""),
@@ -75,9 +83,19 @@ export function FantasyScreen({
     inFlight.current = true;
     setBusy(true);
     try {
-      const r = await fetch("/api/fantasy", { cache: "no-store" });
-      if (!r.ok) throw Error("Could not refresh reward status.");
+      const r = await boundedFetch("/api/fantasy", { cache: "no-store" });
+      if (!r.ok) {
+        if (r.status === 403)
+          setData({ ...initial, cards: [], seven: undefined });
+        throw Error(
+          "Could not refresh. Sign in again if your session has expired.",
+        );
+      }
       const next = await r.json();
+      if (next.state.user_id !== initial.user_id) {
+        window.location.reload();
+        return;
+      }
       setData(next.state);
       lastState.current = next.state;
       setMessage("Updated from the server.");
@@ -87,7 +105,7 @@ export function FantasyScreen({
       inFlight.current = false;
       setBusy(false);
     }
-  }, []);
+  }, [initial]);
   useEffect(() => {
     if (!inFlight.current) setData(initial);
   }, [initial]);
@@ -109,7 +127,7 @@ export function FantasyScreen({
       pending.current = fantasyRetry(pending.current, action, payload, () =>
         crypto.randomUUID(),
       );
-      const response = await fetch("/api/fantasy", {
+      const response = await boundedFetch("/api/fantasy", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(pending.current),
@@ -167,6 +185,8 @@ export function FantasyScreen({
           `${c.name} ${c.team} ${c.serial} ${c.season}`
             .toLowerCase()
             .includes(search.toLowerCase())) &&
+        c.sport === sport &&
+        (!competitionFilter || !sevenEligibility(c, data, competitionFilter)) &&
         (!tier || c.tier === tier) &&
         (!position || c.position === position) &&
         (subset === "all" ||
@@ -575,6 +595,54 @@ export function FantasyScreen({
             </section>
           )}
           <section>
+            <p>{scoringContext}</p>
+            <p>
+              <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
+              <Link href="/fantasy/test-wallet">
+                Wallet & transaction history
+              </Link>
+            </p>
+            <label>
+              Sport
+              <select
+                value={sport}
+                onChange={(e) => {
+                  setSport(e.target.value);
+                  setPosition("");
+                  setCompetitionFilter("");
+                }}
+              >
+                {[
+                  ...new Set(
+                    data.cards
+                      .map((c) => c.sport)
+                      .concat(data.nfl_beta ? ["nfl"] : []),
+                  ),
+                ].map((s) => (
+                  <option key={s} value={s}>
+                    {s.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Eligible for this competition
+              <select
+                value={competitionFilter}
+                onChange={(e) => setCompetitionFilter(e.target.value)}
+              >
+                <option value="">
+                  All owned cards, including collectibles
+                </option>
+                {data.competitions
+                  .filter((c) => c.rules.lineup_version && c.sport === sport)
+                  .map((c) => (
+                    <option value={c.id} key={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+              </select>
+            </label>
             <h2>
               My collection <span className="muted">{data.cards.length}</span>
             </h2>
@@ -603,7 +671,7 @@ export function FantasyScreen({
                   onChange={(e) => setPosition(e.target.value)}
                 >
                   <option value="">All positions</option>
-                  {["GK", "DEF", "MID", "FWD"].map((t) => (
+                  {collectionPositions(sport).map((t) => (
                     <option key={t}>{t}</option>
                   ))}
                 </select>
@@ -1193,6 +1261,7 @@ export function FantasyScreen({
         ))}
       {detail && data.cards.find((c) => c.id === detail) && (
         <FantasyPlayerDetails
+          roundId={competitionFilter || undefined}
           card={data.cards.find((c) => c.id === detail)!}
           state={data}
           onClose={closeDetail}

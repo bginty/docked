@@ -1,62 +1,91 @@
 import Link from "next/link";
+import { boundedRead } from "@/core/bounded-request";
+
 import { SandboxSwaps } from "@/components/sandbox-swaps";
+
 import { notFound } from "next/navigation";
+
 import { fantasyTagline } from "@/core/fantasy";
+
 import {
   fantasyPlatformEnabled as fantasyEnabled,
   fantasyProductionEnabled,
 } from "@/core/fantasy-production";
+
 import { fantasyRequest } from "@/server/fantasy";
+
 import { AppShell } from "@/components/app-shell";
+
 import { FantasyScreen } from "@/components/fantasy-screen";
+
 import { packExperienceEnabled } from "@/core/pack-experience";
+
 import { communityFeed } from "@/server/community-social";
+
 import { FeedContent } from "@/components/community-feed";
+
 import { fantasyAssets } from "@/brand/fantasy-assets";
-import { memberTestWallet } from "@/server/member-test-wallet";
+
 export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Fantasy Cards | COLLECT. BUILD. COMPETE.",
+
   description: "Collect player cards and build your fantasy team.",
+
   robots: { index: false, follow: false },
+
   openGraph: {
     title: "Docked | COLLECT. BUILD. COMPETE.",
+
     description: "Fantasy Cards Preview",
+
     images: [fantasyAssets.social],
   },
+
   twitter: {
     title: "Docked | COLLECT. BUILD. COMPETE.",
+
     images: [fantasyAssets.social],
   },
 };
+
 export default async function FantasyPage({
   params,
 }: {
   params: Promise<{ tab: string }>;
 }) {
   const { tab } = await params;
+
   if (!["play", "cards", "market", "social", "profile", "admin"].includes(tab))
     notFound();
+
   if (!fantasyEnabled())
     return (
       <div className="fantasy-gate">
         <h1>Fantasy Cards</h1>
+
         <p>{fantasyTagline}</p>
+
         <p>
           Gameplay is not enabled in this protected Preview. Public registration
           is closed.
         </p>
+
         <Link className="button" href="/app">
           Account access
         </Link>
+
         <p>
           <Link href="/">Docked home</Link>
         </p>
       </div>
     );
+
   let data;
+
   try {
-    data = await fantasyRequest();
+    data = await boundedRead(fantasyRequest());
   } catch (error) {
     return (
       <div className="fantasy-gate">
@@ -65,15 +94,22 @@ export default async function FantasyPage({
             ? "Fantasy Cards"
             : "Fantasy Cards Preview"}
         </h1>
+
         <p>{fantasyTagline}</p>
+
         <p>
           {fantasyProductionEnabled()
-            ? "Sign in with a verified account and complete onboarding to collect your free Starter pack."
+            ? "This screen could not be loaded. Retry to check your saved state, or sign in if your session has expired."
             : "Sign in with your invited Preview account. Access must be enabled for your account by the Preview operator."}
         </p>
+
+        <a className="button" href={`/fantasy/${tab}`}>
+          Retry this screen
+        </a>
         <Link className="button" href="/app/login">
           Sign in
         </Link>
+
         {error instanceof Error &&
           error.message === "Privileged MFA required" && (
             <p>
@@ -83,6 +119,7 @@ export default async function FantasyPage({
               to continue owner gameplay. Do not set up a new factor.
             </p>
           )}
+
         <p>
           If you are already signed in, Preview access may be expired or
           temporarily unavailable.
@@ -90,21 +127,21 @@ export default async function FantasyPage({
       </div>
     );
   }
+
   const feed = tab === "social" ? await communityFeed({ tab: "latest" }) : null;
-  const testWallet =
-    tab === "cards" || tab === "profile" || tab === "market"
-      ? await memberTestWallet()
-          .then(() => true)
-          .catch(() => false)
-      : false;
+
+  const testWallet = process.env.DOCKED_FRIENDS_BETA === "true";
+
   return (
     <AppShell authenticated>
       <div>
         {testWallet && (
           <p className="notice">
+            <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
             <Link href="/fantasy/test-wallet">Open test wallet</Link>
           </p>
         )}
+
         {tab === "play" &&
           (process.env.VERCEL_ENV === "preview" ||
             process.env.NODE_ENV === "development") && (
@@ -120,16 +157,21 @@ export default async function FantasyPage({
               </Link>
             </p>
           )}
+
         {tab === "market" && process.env.DOCKED_TWO_PERSON_BETA === "true" ? (
-          <SandboxSwaps />
+          <SandboxSwaps key={data.state.user_id} member={data.state.user_id} />
         ) : (
           <FantasyScreen
-            key={tab}
+            key={`${tab}:${data.state.user_id}`}
+
             tab={tab}
+
             initial={data.state}
+
             packExperience={packExperienceEnabled()}
           />
         )}
+
         {process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
           process.env.DOCKED_FRIENDS_BETA !== "true" && (
             <p className="notice" role="note">
@@ -140,17 +182,24 @@ export default async function FantasyPage({
                   : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
             </p>
           )}
+
         {feed && (
           <section className="fantasy-social">
             <div className="actions">
               <Link href="/compose">Write a post</Link>
+
               <Link href="/following">Following</Link>
+
               <Link href="/search">Discover</Link>
             </div>
+
             <FeedContent
               feed={feed}
+
               base="/fantasy/social"
+
               tab="latest"
+
               compact
             />
           </section>

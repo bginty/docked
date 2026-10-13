@@ -1,5 +1,10 @@
 import type { CSSProperties } from "react";
 import type { AwardedCard } from "@/core/pack-opening";
+import {
+  cardIdentity,
+  collectibleOnly,
+  multiplierLabel,
+} from "@/core/card-display";
 import { rarityRule } from "@/core/card-rarity";
 export function FantasyCardArtwork({
   card,
@@ -37,19 +42,34 @@ export function FantasyCardArtwork({
       <p className="card-team">{card.team}</p>
       <h3>{card.name}</h3>
       <p>
-        {card.season} · {card.kind === "first_year" ? "FIRST YEAR" : "SEASON"}
+        Test economy ·{" "}
+        {card.season.toLowerCase().includes("lifetime")
+          ? "Permanent identity"
+          : `Artwork edition ${card.season}`}
       </p>
       {card.tier === "CORE" ? (
-        <p className="card-serial">Free Core · unlimited</p>
+        <p className="card-serial">
+          Free Core · unlimited supply
+          <br />
+          <small>Instance {card.id.slice(-8)}</small>
+        </p>
       ) : (
         <div className="card-serial">
           #{String(card.serial).padStart(3, "0")}{" "}
           <span>/ {card.max_supply.toLocaleString()}</span>
         </div>
       )}
-      {card.rarity_version && (
-        <p>{card.multiplier?.toFixed(1)}× · new rarity competitions only</p>
-      )}
+      <p>{multiplierLabel(card.tier)}</p>
+      <p className="small-note">
+        {collectibleOnly(card.position, card.sport)
+          ? "Collectible only in current seven-player competitions"
+          : "Eligibility depends on the competition"}
+      </p>
+      <details>
+        <summary>Permanent card identity</summary>
+        <p>{cardIdentity(card)}</p>
+        <code>{card.id}</code>
+      </details>
       <p className="card-status">
         {["retired", "delisted"].includes(card.status)
           ? "RETIRED / COLLECTIBLE ONLY"

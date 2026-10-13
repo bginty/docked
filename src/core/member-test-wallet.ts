@@ -179,22 +179,29 @@ export function memberTestView(
     peers,
     economyEnabled: !!s.economy?.enabled,
     products: s.economy?.enabled
-      ? Object.values(s.economy.products).map((p) => ({
-          id: p.id,
-          name: p.name,
-          price: p.priceCredits,
-          tier: p.type,
-          cards: p.cards,
-          weights: p.weights,
-          guaranteedSlots: p.guaranteedSlots,
-          duplicatePlayers: p.duplicatePlayers,
-          eligiblePlayers: eligibleCatalogue(s.economy!, p, now).length,
-          available:
-            now >= p.effectiveAt &&
-            (p.expiresAt === null || now < p.expiresAt) &&
-            eligibleCatalogue(s.economy!, p, now).length >= 9,
-          version: p.version,
-        }))
+      ? Object.values(s.economy.products)
+          .filter(
+            (p) =>
+              !s.economy?.activeProductVersions ||
+              s.economy.activeProductVersions.includes(p.id),
+          )
+          .map((p) => ({
+            id: p.id,
+            name: p.name,
+            price: p.priceCredits,
+            tier: p.type,
+            cards: p.cards,
+            weights: p.weights,
+            positions: p.positions,
+            guaranteedSlots: p.guaranteedSlots,
+            duplicatePlayers: p.duplicatePlayers,
+            eligiblePlayers: eligibleCatalogue(s.economy!, p, now).length,
+            available:
+              now >= p.effectiveAt &&
+              (p.expiresAt === null || now < p.expiresAt) &&
+              eligibleCatalogue(s.economy!, p, now).length >= 9,
+            version: p.version,
+          }))
       : (s.economy ? [] : s.policy.products).map((p) => ({
           id: p.id,
           name: p.name,
@@ -202,6 +209,7 @@ export function memberTestView(
           tier: p.inventoryTier,
           cards: 1,
           weights: null,
+          positions: [],
           guaranteedSlots: {},
           duplicatePlayers: "n/a",
           eligiblePlayers: 20,
@@ -224,7 +232,22 @@ export function memberTestView(
     cards: [...visible].map((id) => ({
       ...testCard(s, id),
       owner: s.commerce.cards[id].owner,
-      history: s.cards[id].history,
+      history:
+        s.commerce.cards[id].owner === member
+          ? s.cards[id].history.map((h) => ({
+              ...h,
+              from:
+                h.from === member ? member : h.from ? "another-member" : null,
+              to: h.to === member ? member : "another-member",
+              reference: !h.from
+                ? "Issued"
+                : s.listings[h.reference]
+                  ? "Purchased / sold"
+                  : s.swaps[h.reference]
+                    ? "Swapped"
+                    : "Ownership transfer",
+            }))
+          : [],
     })),
     listings,
     swaps,

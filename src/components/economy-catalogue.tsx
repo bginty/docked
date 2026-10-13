@@ -80,8 +80,8 @@ export function EconomyCatalogue({
       <details>
         <summary>New rarity scoring rules</summary>
         <p>
-          Only competitions explicitly using Docked NFL Rarity Test v1 apply
-          these multipliers. The existing free friends round retains its
+          Salary Cap, Open and explicitly labelled rarity test competitions
+          apply these multipliers. The existing free friends round retains its
           original scoring. Each complete player base score, including negative
           scores, is multiplied once and rounded to 0.01 points, halves away
           from zero. Locked rules survive transfers and corrections.

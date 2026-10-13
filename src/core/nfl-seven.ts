@@ -22,6 +22,7 @@ export type SevenCard = {
   position: string;
   status: string;
   listed: boolean;
+  availability_reason?: string;
 };
 export function sevenRules() {
   const rules = nflRarityRules();
@@ -68,8 +69,13 @@ export function sevenIssues(
     if (players.has(player))
       errors.push("Select only one card of each player.");
     players.add(player);
-    if (card.status !== "active" || card.listed)
-      errors.push("A selected card is unavailable or listed for sale.");
+    if (card.listed)
+      errors.push("Cancel the selected card’s sale listing before entry.");
+    if (card.status !== "active")
+      errors.push(
+        card.availability_reason ??
+          "Current roster eligibility is unverified. This is not an injury or DNP diagnosis.",
+      );
     total += salary(card.tier, config);
   }
   if (complete && picks.length !== config.slots.length)

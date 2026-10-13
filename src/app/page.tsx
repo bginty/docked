@@ -67,15 +67,16 @@ export default function Home() {
         <div>
           <h2>Build</h2>
           <p>
-            Field a legal eleven with your free Starter pack. Rarity never
-            multiplies fantasy points.
+            Build your seven-player NFL team from cards you own. Salary Cap and
+            Open apply their published rarity multipliers; legacy rounds keep
+            their saved rules.
           </p>
         </div>
         <div>
           <h2>Compete</h2>
           <p>
             {production
-              ? "Enter free leagues and track simulated rounds. Rarity never multiplies fantasy scores."
+              ? "Enter free NFL test competitions and follow post-game points. EPL is unavailable until its data and scoring are verified."
               : "Enter leagues and track simulated rounds. Trade with fellow testers."}
           </p>
         </div>

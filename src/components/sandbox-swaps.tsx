@@ -1,9 +1,12 @@
 "use client";
+import { boundedFetch } from "@/core/bounded-request";
 import { sevenTransferNotice } from "@/core/nfl-seven";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { SwapState, SwapCard } from "@/core/sandbox-swaps";
 import { formatAUD } from "@/core/fantasy-market-fees";
-export function SandboxSwaps() {
+export function SandboxSwaps({ member }: { member?: string }) {
+  const sequence = useRef(0);
+  const mutation = useRef(false);
   const [state, setState] = useState<SwapState | null>(null),
     [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false),
@@ -15,11 +18,16 @@ export function SandboxSwaps() {
     payload: Record<string, unknown>;
   } | null>(null);
   async function refresh() {
+    if (mutation.current) return;
+    const requestSequence = ++sequence.current;
     setBusy(true);
     try {
-      const r = await fetch("/api/fantasy/swaps", { cache: "no-store" });
+      const r = await boundedFetch("/api/fantasy/swaps", { cache: "no-store" });
       const v = await r.json();
       if (!r.ok || v.error) throw Error(v.error ?? "Sandbox unavailable");
+      if (requestSequence !== sequence.current) return;
+      if (member && v.state.user_id !== member)
+        throw Error("Session changed. Reload this screen.");
       setState(v.state);
       setMessage("");
       const saved = sessionStorage.getItem(
@@ -27,13 +35,25 @@ export function SandboxSwaps() {
       );
       if (saved) setPending(JSON.parse(saved));
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : "Unable to check sandbox");
+      if (requestSequence !== sequence.current) return;
+      setState(null);
+      setMessage(
+        e instanceof Error ? e.message : "Unable to check swaps. Please retry.",
+      );
     } finally {
-      setBusy(false);
+      if (requestSequence === sequence.current) setBusy(false);
     }
   }
   useEffect(() => {
     void refresh();
+    const resume = () => void refresh();
+    window.addEventListener("online", resume);
+    window.addEventListener("docked-app-resume", resume);
+    return () => {
+      sequence.current++;
+      window.removeEventListener("online", resume);
+      window.removeEventListener("docked-app-resume", resume);
+    };
   }, []);
   async function send(
     action: string,
@@ -45,6 +65,8 @@ export function SandboxSwaps() {
       ? pending
       : { action, payload, request_id: crypto.randomUUID() };
     if (!request) return;
+    mutation.current = true;
+    ++sequence.current;
     setBusy(true);
     setMessage("");
     setPending(request);
@@ -53,13 +75,15 @@ export function SandboxSwaps() {
       JSON.stringify(request),
     );
     try {
-      const r = await fetch("/api/fantasy/swaps", {
+      const r = await boundedFetch("/api/fantasy/swaps", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(request),
       });
       const v = await r.json();
       if (!r.ok || v.error) throw Error(v.error ?? "Unable to confirm");
+      if (member && v.state.user_id !== member)
+        throw Error("Session changed. Reload this screen.");
       setState(v.state);
       setPending(null);
       sessionStorage.removeItem("docked-swap-pending:" + state.user_id);
@@ -73,6 +97,7 @@ export function SandboxSwaps() {
           : "Connection interrupted. Check history before retrying the same request.",
       );
     } finally {
+      mutation.current = false;
       setBusy(false);
     }
   }
@@ -103,7 +128,13 @@ export function SandboxSwaps() {
       <button disabled={busy} onClick={() => void refresh()}>
         Refresh ownership and receipts
       </button>
-      <p role="status">{message}</p>
+      <p role="status">{busy ? "Checking your collection…" : message}</p>
+      {!state && !busy && (
+        <p>
+          Collection could not be loaded. Use Refresh ownership and receipts to
+          retry. <a href="/app/login">Sign in again</a> if your session expired.
+        </p>
+      )}
       {state && (
         <>
           {!state.reserves_granted && (

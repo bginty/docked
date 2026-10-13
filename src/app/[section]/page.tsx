@@ -62,12 +62,14 @@ export default async function Page({
       </h1>
       <p>
         Docked is a fantasy sports card platform. Collect limited cards, build
-        teams and compete. Football is the first playable sport; additional
-        sports are not yet available.
+        seven-player NFL teams and compete in Salary Cap or Open. EPL and
+        other sports are not available yet.
       </p>
       <p>
-        Protected Preview uses fictional players and simulated scoring. Public
-        registration is closed. No paid packs or cash prizes.
+        The invited friends beta uses real NFL roster cards and post-game
+        scoring. Test credits and cards have no cash value. Scoring depends on
+        the competition’s saved rules. Public registration is closed; real
+        payments, cash prizes and withdrawals are disabled.
       </p>
       {section === "legacy-support" && (
         <p>

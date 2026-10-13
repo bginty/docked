@@ -1,4 +1,6 @@
 "use client";
+import { boundedFetch } from "@/core/bounded-request";
+import { probabilityLabel } from "@/core/card-display";
 import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -48,7 +50,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
     setBusy(true);
     setError("");
     try {
-      const r = await fetch("/api/test-wallet", {
+      const r = await boundedFetch("/api/test-wallet", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ request, command }),
@@ -146,7 +148,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
           </button>
         </p>
       )}
-      <section>
+      <section id="packs">
         <h2>
           {s.economyEnabled
             ? "NFL nine-card packs"
@@ -154,7 +156,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
         </h2>
         <p>
           {s.economyEnabled
-            ? "Exactly nine NFL player cards. No Core. Icon is eligible in both packs. Prices and chances below are test settings, not approved commercial offers. Test cards stay separate from the free friends competition."
+            ? "Exactly nine NFL player cards. No Core. Icon is eligible in both packs. Prices and chances below are test settings, not approved commercial offers. Test cards can enter the eligible Salary Cap and Open rounds; legacy free rounds keep their original eligibility."
             : "Legacy receipts retain their original single-card terms."}
         </p>
         <div className="test-wallet-grid">
@@ -168,10 +170,19 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                 <details>
                   <summary>Pool, chances and guarantees</summary>
                   <p>
-                    {p.eligiblePlayers} active catalogue players across QB, RB,
-                    WR, TE and K, subject to source freshness and remaining
-                    supply. No guaranteed rarity. Nine different players in this
-                    test configuration.
+                    {p.eligiblePlayers} active catalogue players:{" "}
+                    {p.positions.join(", ")}. K and DEF/DST are excluded from
+                    these new seven-player pack versions; existing owned cards
+                    and old receipts are unchanged. Subject to fresh status and
+                    remaining supply.{" "}
+                    {Object.keys(p.guaranteedSlots).length
+                      ? `Configured guaranteed slots: ${Object.entries(
+                          p.guaranteedSlots,
+                        )
+                          .map(([slot, r]) => `${Number(slot) + 1}: ${r}`)
+                          .join(", ")}`
+                      : "No configured guaranteed rarity."}{" "}
+                    Nine different players.
                   </p>
                   <table>
                     <caption>Per-card rarity draw · test settings</caption>
@@ -179,30 +190,49 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                       <tr>
                         <th>Rarity</th>
                         <th>Per card</th>
-                        <th>At least one in 9*</th>
+                        <th>At least one of this exact rarity in 9*</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {Object.entries(p.weights).map(([r, w]) => (
-                        <tr key={r}>
-                          <td>{rarityRule(r).label}</td>
-                          <td>{w / 100}%</td>
-                          <td>
-                            {((1 - Math.pow(1 - w / 10000, 9)) * 100).toFixed(
-                              3,
-                            )}
-                            %
-                          </td>
-                        </tr>
-                      ))}
+                      {rarities
+                        .filter((r) => r !== "CORE")
+                        .map((r) => {
+                          const w = p.weights![r];
+                          return (
+                            <tr key={r}>
+                              <td>{rarityRule(r).label}</td>
+                              <td>{w / 100}%</td>
+                              <td>
+                                {probabilityLabel(
+                                  1 -
+                                    Array.from({ length: 9 }, (_, i) => {
+                                      const g = (
+                                        p.guaranteedSlots as Record<
+                                          string,
+                                          string
+                                        >
+                                      )[String(i)];
+                                      return (
+                                        1 - (g ? (g === r ? 1 : 0) : w / 10000)
+                                      );
+                                    }).reduce((a, b) => a * b, 1),
+                                )}
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </table>
                   <p>
                     *Independent rarity draws before supply checks. A chosen
                     rarity with no eligible supply cancels the whole pack
                     without charge; completed-pack frequencies can therefore
-                    differ near exhaustion. No lower-tier substitution. Within
-                    the chosen rarity, remaining eligible players are equally
+                    differ near exhaustion. No lower-tier substitution. Player
+                    draws are dependent because duplicate players are excluded.
+                    The table describes independent rarity attempts before
+                    supply validation, not conditional odds among successful
+                    packs; no completed-pack probability is asserted. Within the
+                    chosen rarity, remaining eligible players are equally
                     likely; serial numbers are assigned in order.
                   </p>
                   <small>
@@ -345,9 +375,10 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                 </p>
                 <p>
                   {c.rarity_version
-                    ? "Choose the isolated RARITY TEST competition in Play to use these cards. K cards are collectible; the seven-player offence formation has no kicker slot."
+                    ? "Choose Salary Cap or Open in Play. K and DEF/DST cards are collectible only in these seven-player competitions and cannot occupy their lineup slots."
                     : "Legacy test card; original edition terms preserved."}
                 </p>
+                <a href="/fantasy/scoring/how-it-works">Scoring rules</a>
                 {s.supply
                   .filter(
                     (row) =>
@@ -366,9 +397,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
             .find((c) => c.id === details)
             ?.history.map((h, i) => (
               <p key={i}>
-                {sydney(h.at)} Sydney ·{" "}
-                {h.from ? label(h.from) : "Test edition"} → {label(h.to)} ·{" "}
-                {h.reference}
+                {sydney(h.at)} Sydney · {h.reference}
               </p>
             ))}
           <button onClick={() => setDetails(null)}>Close history</button>

@@ -7,7 +7,7 @@ const label = (s: string) =>
 export function PostgameResults({ records }: { records: PostgameView[] }) {
   return (
     <section className="scoring-review postgame-results">
-      <h1>Post-game points</h1>
+      <h2>Your player breakdowns</h2>
       <p>
         Results are collected after games finish. Provisional points can change
         after source corrections; they are not live scores.
@@ -46,7 +46,12 @@ export function PostgameResults({ records }: { records: PostgameView[] }) {
             </p>
           )}
           <p>
-            {r.view.rulesVersion} · Revision {r.revision} · Updated{" "}
+            <Link
+              href={`/fantasy/scoring/how-it-works?version=${encodeURIComponent(r.view.rulesVersion)}`}
+            >
+              Saved scoring rules
+            </Link>{" "}
+            · {r.view.rulesVersion} · Revision {r.revision} · Updated{" "}
             <time dateTime={r.recordedAt}>
               {new Date(r.recordedAt).toLocaleString("en-AU", {
                 timeZone: "Australia/Sydney",

@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
+import {
+  availability,
+  cardIdentity,
+  scoringContext,
+} from "@/core/card-display";
 import { rarityRule } from "@/core/card-rarity";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 import { footballBreakdown, localTime } from "@/core/fantasy-play";
@@ -100,7 +105,9 @@ export function FantasyPlayerDetails({
 }) {
   const scores = (state.round_details ?? []).flatMap((r) =>
     r.scores
-      .filter((s) => s.player_id === card.player_id)
+      .filter(
+        (s) => s.player_id === (card.canonical_player_id ?? card.player_id),
+      )
       .map((s) => ({
         ...s,
         round: state.competitions.find((c) => c.id === r.competition_id),
@@ -119,7 +126,7 @@ export function FantasyPlayerDetails({
     : null;
   const validBreakdown =
     parts && parts.reduce((n, p) => n + p.points, 0) === selected?.score;
-  const owned = state.cards.some(
+  const owned = [...state.cards, ...(state.seven?.inventory ?? [])].some(
     (c) => c.id === card.id && c.owner_id === state.user_id,
   );
   return (
@@ -146,21 +153,28 @@ export function FantasyPlayerDetails({
       <div className="player-detail-metrics">
         <p>
           {rarityRule(card.tier).label} ·{" "}
-          {rarityRule(card.tier).multiplierTenths / 10}× in explicitly labelled
-          rarity test competitions. Free equal-scoring competitions remain 1.0×.
+          {rarityRule(card.tier).multiplierTenths / 10}× in Salary Cap / Open.
+          Legacy equal-scoring competitions remain 1.0×.
         </p>
         <div>
           <small>
             {selected
-              ? `Round ${selected.round?.round ?? "—"} · ${state.nfl_beta ? "post-game" : "simulated"}`
+              ? `Round ${selected.round?.round ?? "—"} · ${selected.scoring_version} · ${state.nfl_beta ? "post-game" : "simulated"}`
               : "Recent points"}
           </small>
           <strong>{selected?.score ?? "—"}</strong>
+          {selected && (
+            <small>
+              Base {selected.base_score ?? selected.score} · saved multiplier{" "}
+              {selected.multiplier ?? 1}×
+              {selected.round?.locks_at
+                ? ` · round locked ${localTime(selected.round.locks_at)}`
+                : ""}
+            </small>
+          )}
         </div>
         <div>
-          <small>
-            {card.tier} · {card.season}
-          </small>
+          <small>{card.tier} · Test economy</small>
           <strong>
             {card.tier === "CORE" ? "Free Core" : `#${card.serial}`}
             <span>
@@ -171,10 +185,18 @@ export function FantasyPlayerDetails({
           </strong>
         </div>
       </div>
-      <p className="small-note">
-        Free friends competitions retain equal scoring across tiers. Rarity
-        multipliers apply only in labelled RARITY TEST competitions using the
-        separate locked rules.
+      <p className="small-note">{scoringContext}</p>
+      <p>{availability(card)}</p>
+      <p>
+        <Link
+          href={
+            roundId
+              ? `/fantasy/scoring/how-it-works?competition=${roundId}`
+              : "/fantasy/scoring/how-it-works"
+          }
+        >
+          Scoring rules
+        </Link>
       </p>
       <section>
         <h3>Scoring breakdown</h3>
@@ -212,8 +234,43 @@ export function FantasyPlayerDetails({
             : `Authorised upcoming fixtures and live availability data are not connected. “${card.status}” is the fictional catalogue status.`}
         </p>
       </section>
+      <section>
+        <h3>Ownership timeline</h3>
+        <p>Issued {localTime(card.created_at)}</p>
+        {owned &&
+          state.packs
+            .filter((p) => p.opened_at && p.cards?.includes(card.id))
+            .map((p) => (
+              <p key={p.id}>Starter pack opened · {localTime(p.opened_at!)}</p>
+            ))}
+        <p>
+          {card.listed ? "Listed for sale" : "Not listed for sale"}.{" "}
+          {state.seven?.entries.some((e) =>
+            e.snapshot.some((c) => c.card_id === card.id),
+          )
+            ? "Selected in a submitted team; transfer restrictions depend on kickoff."
+            : "No submitted seven-player selection recorded."}
+        </p>
+        {owned &&
+          [...(state.review?.cardHistory[card.id] ?? [])]
+            .sort((a, b) => a.at - b.at)
+            .map((h, i) => (
+              <p key={i}>
+                {h.event} · {localTime(new Date(h.at).toISOString())}
+              </p>
+            ))}
+        {owned &&
+          state.provenance
+            .filter((e) => e.card_id === card.id)
+            .map((e) => (
+              <p key={e.id}>
+                {e.reason} · {localTime(e.created_at)}
+              </p>
+            ))}
+      </section>
       <details>
-        <summary>Card identity & ownership history</summary>
+        <summary>Technical card identity</summary>
+        <p>{cardIdentity(card)}</p>
         <p>
           Card <code>{card.id}</code>
         </p>
@@ -224,13 +281,6 @@ export function FantasyPlayerDetails({
           Issued {localTime(card.created_at)} ·{" "}
           {card.tradeable ? "Tradeable under approved rules" : "Not tradeable"}
         </p>
-        {state.provenance
-          .filter((e) => e.card_id === card.id)
-          .map((e) => (
-            <p key={e.id}>
-              {e.reason} · {localTime(e.created_at)}
-            </p>
-          ))}
         {!owned && (
           <p>
             This is the entry’s historical card. Current ownership does not

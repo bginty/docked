@@ -62,7 +62,7 @@ export function FantasyPlay({
               ? "Salary Cap"
               : m === "OPEN"
                 ? "Open"
-                : "Existing rounds"}
+                : "Legacy rounds"}
           </button>
         ))}
       </nav>
@@ -776,7 +776,7 @@ function LegacyFantasyPlay({
                       </strong>
                       <p role="status">
                         {notice ||
-                          `${dirty ? "Unsaved changes" : "Saved selection"} · no lineup fees`}
+                          `${dirty ? "Unsaved changes" : saved.length ? "Entered legacy team" : "No saved entry"} · no lineup fees`}
                       </p>
                     </div>
                     <button

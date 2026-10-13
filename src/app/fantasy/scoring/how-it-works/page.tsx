@@ -1,89 +1,180 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
-import { requireIdentity } from "@/server/auth";
+import { redirect } from "next/navigation";
+import { fantasyRequest } from "@/server/fantasy";
 import { AppShell } from "@/components/app-shell";
-import { sports } from "@/core/scoring-v1";
-import { currentRulesets as rulesets } from "@/core/scoring-release";
+import { rulesets, nflRarityRules } from "@/core/scoring-v1";
+import { sevenRules, nflSeven, sevenTransferNotice } from "@/core/nfl-seven";
+import { rarities, rarityRule } from "@/core/card-rarity";
 import { ScoringRulesTable } from "@/components/scoring-rules-table";
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "How scoring works · beta",
+  title: "NFL scoring rules",
   robots: { index: false, follow: false },
 };
-export default async function RulesPage() {
-  if (
-    process.env.VERCEL_ENV !== "preview" &&
-    process.env.NODE_ENV !== "development"
-  )
-    notFound();
+export default async function RulesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ competition?: string; version?: string }>;
+}) {
+  const query = await searchParams;
+  let state;
   try {
-    await requireIdentity();
-  } catch (error) {
+    state = (await fantasyRequest()).state;
+  } catch (e) {
     redirect(
-      error instanceof Error && error.message === "Privileged MFA required"
+      e instanceof Error && e.message === "Privileged MFA required"
         ? "/mfa"
         : "/app/login",
     );
   }
+  const rounds = state.review?.rounds ?? [];
+  const selected = rounds.find((r) => r.id === query.competition);
+  const versions = [sevenRules(), nflRarityRules(), rulesets.nfl];
+  const rules =
+    selected?.rules ??
+    (query.version
+      ? (rounds.find((r) => r.rules.version === query.version)?.rules ??
+        versions.find((r) => r.version === query.version))
+      : sevenRules());
+  if (!rules || (query.competition && !selected))
+    return (
+      <AppShell authenticated>
+        <h1>Rules unavailable</h1>
+        <p>
+          This competition or saved rules version is not available to your
+          account.
+        </p>
+        <Link href="/fantasy/results">Choose a competition</Link>
+      </AppShell>
+    );
+  const config = selected?.lineup ?? nflSeven,
+    rolling = !!selected?.lineup || rules.version === sevenRules().version;
   return (
     <AppShell authenticated>
       <section className="scoring-review">
-        <p className="scoring-badge">PROVISIONAL BETA RULES · NO LIVE FEEDS</p>
-        <h1>How scoring works</h1>
+        <h1>NFL scoring rules</h1>
         <p>
-          Docked calculates its own match points from statistics. Card rarity,
-          level, price and ownership history never multiply points. Daily
-          rewards and engagement points remain separate. No mixed-sport
-          leaderboard.
-        </p>
-        <Link href="/fantasy/scoring">
-          Explore simulated match breakdowns →
-        </Link>
-        {sports.map((sport) => (
-          <article key={sport} className="scoring-team">
-            <h2>{rulesets[sport].title}</h2>
-            <p>
-              Version: {rulesets[sport].version}. Historical balance unverified.
-            </p>
-            <ScoringRulesTable rules={rulesets[sport]} />
-            <p>
-              Provisional correction window: {rulesets[sport].correctionHours}{" "}
-              hours after each fixture ends. Finalisation requires every
-              scheduled fixture to be resolved and every window elapsed.
-            </p>
-          </article>
-        ))}
-        <h2>Locks, delays and corrections</h2>
-        <p>
-          Each period declares its fixtures, deadline, rules and eligible
-          positions before team submission. All active slots lock together at
-          that period’s published deadline (no later than its earliest kickoff).
-          Ownership and eligibility are checked again at lock. No automatic
-          bench replacements, captain bonuses or retrospective edits. Later
-          trades and position changes do not rewrite the locked team.
+          {selected?.name ?? "NFL scoring reference"} · {rules.version}
         </p>
         <p>
-          Multiple fixtures in one period score once each, then sum. Postponed,
-          abandoned, cancelled or missing-data fixtures remain pending, with no
-          final zero or ranking. A rescheduled fixture retains its original
-          period and locked lineup; a replay must be mapped to that same
-          canonical fixture and replace the abandoned statistics. No silent
-          transfer to another week or round. An unresolved cancellation needs a
-          separately approved void policy; this beta does not auto-void it.
+          {rules.rarityVersion
+            ? "Rarity scoring: the locked card multiplier applies."
+            : "Legacy equal-scoring competition: all card tiers use 1.0×. Historical rules are unchanged."}
+        </p>
+        <form>
+          <label>
+            Competition / version
+            <select name="competition" defaultValue={selected?.id ?? ""}>
+              <option value="">Current seven-player reference</option>
+              {rounds.map((r) => (
+                <option value={r.id} key={r.id}>
+                  {r.name} · {r.season}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button>View saved rules</button>
+        </form>
+        <ScoringRulesTable
+          rules={{
+            ...rules,
+            policy: rules.policy.filter(
+              (p) => !p.includes("live catalogue is not enabled"),
+            ),
+          }}
+        />
+        <h2>Rarity and calculation order</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Rarity</th>
+              <th>Multiplier in this ruleset</th>
+              {rolling && <th>Salary Cap salary</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {rarities.map((r) => (
+              <tr key={r}>
+                <th>{rarityRule(r).label}</th>
+                <td>
+                  {rules.rarityVersion
+                    ? (rarityRule(r).multiplierTenths / 10).toFixed(1)
+                    : "1.0"}
+                  ×
+                </td>
+                {rolling && (
+                  <td>{config.salaries[r].toLocaleString("en-AU")}</td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p>
+          Base statistical points are calculated in integer hundredths. Sum each
+          player's complete round base points, then apply the saved card
+          multiplier once. Round each adjusted player total to 0.01 points,
+          halves away from zero, then sum the team. Negative totals are
+          multiplied too: −1.25 × 1.3 = −1.63. Corrections reuse the locked
+          version.
+        </p>
+        <h2>Team and eligibility</h2>
+        <p>
+          {rules.slots
+            .map((s) => `${s.id}: ${s.positions.join("/")}`)
+            .join(" · ")}
+          . One underlying player per lineup, regardless of card rarity or
+          serial. Only owned eligible cards; no automatic substitutions or
+          scoring bench.
+        </p>
+        {rolling && (
+          <p>
+            Salary Cap: {config.salaryCap.toLocaleString("en-AU")} fantasy
+            dollars; exactly the cap is allowed. Open has no salary limit. These
+            budgets never debit Docked Credits. Each mode has its own entry; the
+            same owned card can be used in both.
+          </p>
+        )}
+        <h2>Entries, locks and transfers</h2>
+        <p>
+          {rolling
+            ? "New entries close at the first included kickoff. Already-entered teams may edit unlocked slots; each selected player locks permanently at their own kickoff. A started player cannot be added or moved."
+            : "This legacy round uses its saved whole-lineup deadline. No changes are permitted after that deadline."}
         </p>
         <p>
-          Confirmed DNP and byes can receive an explicit zero with source
-          evidence. Partial statistics are not final. Provider outages pause
-          completion. Corrections within the window replace calculated totals
-          and retain revisions. A late or post-final correction requires an
-          authorised reviewer, a reason and an audit record; it reopens
-          provisional results until reviewed finalisation.
+          {rolling
+            ? sevenTransferNotice
+            : "Locked lineup ownership and scoring snapshots remain unchanged by later transfers. Existing legacy transfer restrictions apply."}
+        </p>
+        <h2>Missing results and corrections</h2>
+        <p>
+          NFL scores are post-game, not live. Missing, stale or conflicting
+          statistics remain pending, not zero or DNP. Incomplete totals are
+          provisional. Byes or non-participation require source evidence.
+          Postponements and changed schedules require review; locked slots do
+          not automatically unlock. Final results require complete verified
+          statistics and the saved correction policy. Late corrections require
+          audited review. Tied scores share rank; no cash prizes.
         </p>
         <p>
-          EPL and AFL windows are 72 hours; NFL is 96 hours. These are Docked
-          provisional choices, not guarantees that providers cannot correct
-          later. Shared ranks are used for tied totals. Competitions remain
-          sport-specific.
+          <Link
+            href={
+              selected
+                ? `/fantasy/play?competition=${selected.id}`
+                : "/fantasy/play"
+            }
+          >
+            Play
+          </Link>{" "}
+          ·{" "}
+          <Link
+            href={
+              selected
+                ? `/fantasy/results?competition=${selected.id}`
+                : "/fantasy/results"
+            }
+          >
+            Results & leaderboards
+          </Link>
         </p>
       </section>
     </AppShell>

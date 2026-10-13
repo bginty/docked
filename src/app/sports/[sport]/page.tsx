@@ -14,13 +14,13 @@ export default async function Sport({
     <AppAuthShell>
       <h1>{item.title}</h1>
       <p>
-        {sport === "football"
-          ? "Football fantasy cards use fictional players and simulated scoring in Preview."
+        {sport === "nfl"
+          ? "The invited NFL beta offers seven-player Salary Cap and Open competitions with post-game scoring."
           : "Fantasy gameplay for this sport is not available yet."}
       </p>
-      {sport === "football" && (
+      {sport === "nfl" && (
         <p>
-          <Link href="/fantasy/play">Football cards & competitions</Link>
+          <Link href="/fantasy/play">NFL cards & competitions</Link>
         </p>
       )}
       <p>

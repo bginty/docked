@@ -195,3 +195,48 @@
   padding: 10px 0;
   cursor: pointer;
 }
+
+.scoring-review {
+  max-width: 900px;
+  margin: auto;
+  padding: 16px;
+  overflow-wrap: anywhere;
+}
+.scoring-review label {
+  display: block;
+  margin-block: 16px;
+}
+.scoring-review select {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 8px;
+}
+.scoring-review table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.scoring-review th,
+.scoring-review td {
+  padding: 10px 6px;
+  text-align: left;
+  border-bottom: 1px solid #30445b;
+}
+.scoring-review .current-member {
+  background: #123954;
+}
+.scoring-review .current-member th {
+  border-left: 3px solid #35adff;
+}
+.player-detail-metrics small {
+  display: block;
+  line-height: 1.5;
+}
+@media (max-width: 480px) {
+  .scoring-review {
+    padding: 12px;
+  }
+  .scoring-review table {
+    font-size: 0.8rem;
+  }
+}

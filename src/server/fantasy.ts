@@ -47,6 +47,26 @@ export async function fantasyRequest(
       production &&
       process.env.DOCKED_BETA_STAGING === "true" &&
       view.nfl_beta
+    ) {
+      view.review = (
+        await tx`select sports_feed.member_review_context() context`
+      )[0].context;
+      // One collection: retain owned historical/free cards and overlay canonical test instances.
+      const collection = new Map(view.cards.map((c) => [c.id, c]));
+      for (const card of view.seven?.inventory ?? []) {
+        const old = collection.get(card.id);
+        collection.set(card.id, {
+          ...card,
+          player_id: old?.player_id ?? card.player_id,
+          canonical_player_id: card.canonical_player_id ?? card.player_id,
+        });
+      }
+      view.cards = [...collection.values()];
+    }
+    if (
+      production &&
+      process.env.DOCKED_BETA_STAGING === "true" &&
+      view.nfl_beta
     )
       view.team_name = (await tx`select fantasy.my_team_name() name`)[0].name;
     if (

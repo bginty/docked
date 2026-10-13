@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-13T22:32:36.110Z",
+  "players": [
+    {
+      "id": "34c8c3bf-fee4-431e-bf0a-91ba2d4724a1",
+      "name": "Kyle Juszczyk",
+      "provider_id": "00-0029892",
+      "position": "RB",
+      "status": "INA",
+      "team": "SF",
+      "checked_at": "2026-10-13T00:15:03.704Z"
+    }
+  ],
+  "native": [
+    {
+      "name": "Kyle Juszczyk",
+      "position": "RB",
+      "source_status": "INA",
+      "current_team": "SF",
+      "observed_at": "2026-10-13T00:15:03.704Z"
+    }
+  ],
+  "baseline": [
+    {
+      "revision": "48",
+      "hash": "1c58435dda69ed34af7cca7aaae08f7f"
+    }
+  ],
+  "rounds": [
+    {
+      "name": "NFL Week 6 · Salary Cap · TEST",
+      "season": "2026",
+      "round": 6,
+      "locks_at": "2026-10-16T00:15:00.000Z",
+      "mode": "SALARY_CAP"
+    },
+    {
+      "name": "NFL Week 6 · Open · TEST",
+      "season": "2026",
+      "round": 6,
+      "locks_at": "2026-10-16T00:15:00.000Z",
+      "mode": "OPEN"
+    }
+  ]
+}
