@@ -1,0 +1,26 @@
+{
+  "status": "PASS_WITH_DISCLOSED_LIMITATIONS",
+  "webCommit": "fba1ae08a16882c91b47e9cb712b6b36e2933f49",
+  "deployment": "dpl_7WLNn8tA9Wdzz2ZJympK9CroCgba",
+  "platformTests": {
+    "distinct": 331,
+    "initialPass": 323,
+    "sandboxPermissionFailures": 8,
+    "failedFilesRerunPassed": 10
+  },
+  "databaseTests": 151,
+  "focusedFinalTests": 17,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "webBuild": "PASS",
+  "domainBoundaries": 15,
+  "hostedNavigation": "PASS",
+  "hostedTeamJourney": "PASS",
+  "hostedRollbackReplay": "PASS",
+  "localWalletBrowser": "PASS",
+  "physicalS24": "PENDING",
+  "ownerVisualApproval": "PENDING",
+  "apkRebuild": "NOT_REQUIRED_V22_HOSTED_SHELL",
+  "loadingRootCause": "NOT_REPRODUCED; controlled failure and recovery verified",
+  "genuineFutureRoundResults": "PENDING_GAMES"
+}

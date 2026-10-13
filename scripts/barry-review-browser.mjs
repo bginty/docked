@@ -72,7 +72,7 @@ try {
   );
   report.rulesStatus = rules.status();
   assert.equal(rules.status(), beforeMode ? 404 : 200);
-  for (const tab of ["play", "cards", "results", "market"]) {
+  for (const tab of (process.argv.includes("--diagnostic") ? ["cards", "results", "market"] : ["play", "cards", "results", "market"])) {
     await page.goto(base + `/fantasy/${tab}`);
     await page.getByRole("heading").first().waitFor();
     await page.screenshot({
@@ -86,14 +86,15 @@ try {
         ),
       );
       if (tab === "cards") {
+        await expect(page.getByRole("combobox", { name:"Position", exact:true })).toBeVisible();
         const opts = await page
-          .getByLabel("Position", { exact: true })
+          .getByRole("combobox", { name:"Position", exact:true })
           .locator("option")
           .allTextContents();
-        assert.ok(opts.includes("QB"));
+        assert.ok(opts.includes("QB"),JSON.stringify(opts));
         assert.ok(!opts.includes("GK"));
         await expect(
-          page.getByLabel("Eligible for this competition"),
+          page.getByRole("combobox", {name:"Eligible for this competition"}),
         ).toBeVisible();
         await page
           .getByRole("button", { name: "Card details", exact: true })
@@ -119,8 +120,8 @@ try {
         ).toBeVisible();
       }
       if (tab === "results") {
-        await expect(page.getByLabel("Competition mode")).toBeVisible();
-        await page.getByLabel("Competition mode").selectOption("OPEN");
+        await expect(page.getByRole("combobox", {name:"Competition mode"})).toBeVisible();
+        await page.getByRole("combobox", {name:"Competition mode"}).selectOption("OPEN");
         await expect(
           page.getByRole("heading", { name: /NFL Week .*Open/ }),
         ).toBeVisible();
@@ -180,7 +181,7 @@ try {
       "Ordinary-member Play/Card/Results rules links and direct refresh; sport filters; independent mode results; v2 pack offers; mobile overflow and rules accessibility; controlled network failure and recovery",
     );
   }
-  report.passed = true;
+  report.passed = !process.argv.includes("--diagnostic");
 } catch (e) {
   report.error = e.message;
   throw e;

@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-13T23:12:42.007Z",
+  "deployment": "dpl_7WLNn8tA9Wdzz2ZJympK9CroCgba",
+  "commit": "fba1ae08a16882c91b47e9cb712b6b36e2933f49",
+  "domain": false,
+  "checks": [
+    "Ordinary AAL1 login; anonymous private API denied",
+    "Fresh browser tab restores the confirmed seven-card entry instead of the older incomplete draft; player details use the complete slot width",
+    "Concurrent identical submission replays one entry revision; competing distinct requests at the same revision yield one success and one conflict",
+    "Ordinary member: incomplete draft, independent unsaved Open draft, seven-card Salary Cap entry, refresh restores selections, version conflict denied, private admin API denied, mobile/desktop screenshots, axe and console pass"
+  ],
+  "passed": true
+}

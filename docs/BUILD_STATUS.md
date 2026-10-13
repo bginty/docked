@@ -1,3 +1,5 @@
+14 October 2026 — Barry review fixes released at fba1ae08. See [finding-by-finding report](BARRY_BETA_REVIEW.md) for tests, screenshots, migration/rollback and remaining physical review. v22 receives web changes automatically; no APK update required.
+
 14 October 2026 — [Barry beta review](BARRY_BETA_REVIEW.md): competition-aware rules/copy, roster explanations, collection/results/loading fixes and versioned seven-player pack pool. Release acceptance tracked there; historical rules/assets remain unchanged.
 
 14 October 2026 — [Credit V2 certification released](CREDIT_V2_BETA_READINESS.md): owner-approved source 15a8bbd3 is live on docked.com.au, deployment dpl_EtPaDiF7DPLTXwify5Sou2ebMb3J. Protected candidate and live-domain ordinary-member checks, 15 domain boundaries and hosted rollback-only checks PASS. Retained-history comparison confirms holdings, balances, supply, grants and ledger unchanged; only QA replay receipts/events added. v22 receives the web update. S24/owner visual pending; real money and access expansion remain off. Previous deployment/alias rollback receipt preserved.
