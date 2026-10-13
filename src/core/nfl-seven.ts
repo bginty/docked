@@ -6,6 +6,14 @@ export const sevenTransferNotice =
   "Salary Cap and Open reserve cards in submitted, unlocked slots: replace the card in each team, or withdraw before entries close, before transferring. After kickoff, a transfer preserves the original team's locked points; the buyer cannot add that started player to the same round. Drafts do not reserve cards. Older competitions keep their original transfer restrictions.";
 export type NflMode = "SALARY_CAP" | "OPEN";
 export type SlotSelection = { slot: string; card: string };
+/** An unsent draft cannot disguise which submitted card actually locked. */
+export function restoreLockedSelections(
+  picks: SlotSelection[],
+  locks: SlotSelection[],
+) {
+  const fixed = new Map(locks.map((p) => [p.slot, p]));
+  return [...picks.filter((p) => !fixed.has(p.slot)), ...fixed.values()];
+}
 export type SevenCard = {
   id: string;
   player_id: string;

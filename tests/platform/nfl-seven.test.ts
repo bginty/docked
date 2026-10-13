@@ -5,10 +5,32 @@ import {
   salary,
   sevenIssues,
   sevenRules,
+  restoreLockedSelections,
 } from "../../src/core/nfl-seven";
 import { rarityPoints, rarities, rarityRule } from "../../src/core/card-rarity";
 import { fantasyProductionAction } from "../../src/core/fantasy-production";
 import { randomUUID } from "node:crypto";
+test("reopened or unsent drafts cannot replace or hide the submitted card after kickoff", () => {
+  const draft = [
+    { slot: "QB1", card: "unsent-replacement" },
+    { slot: "RB1", card: "editable" },
+  ];
+  const locked = [
+    { slot: "QB1", card: "confirmed-quarterback" },
+    { slot: "WR1", card: "confirmed-receiver" },
+  ];
+  assert.deepEqual(restoreLockedSelections(draft, locked), [
+    { slot: "RB1", card: "editable" },
+    ...locked,
+  ]);
+  assert.equal(draft[0].card, "unsent-replacement");
+  assert.equal(
+    new Set(
+      restoreLockedSelections([...draft, ...locked], locked).map((p) => p.slot),
+    ).size,
+    3,
+  );
+});
 const inventory = nflSeven.slots.map((s, i) => ({
   id: String(i),
   player_id: `player-${i}`,

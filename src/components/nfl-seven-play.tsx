@@ -6,6 +6,7 @@ import {
   nflSeven,
   salary,
   sevenIssues,
+  restoreLockedSelections,
   type NflMode,
   type SlotSelection,
 } from "@/core/nfl-seven";
@@ -110,7 +111,7 @@ export function NflSevenPlay({
     });
   };
   const draft = comp ? drafts[comp.id] : undefined,
-    picks = draft?.picks ?? [];
+    draftPicks = draft?.picks ?? [];
   const fixtures = data.seven?.fixtures[comp?.id ?? ""] ?? [];
   const kickoff = (c: FantasyCard) =>
     fixtures.find((f) =>
@@ -128,6 +129,13 @@ export function NflSevenPlay({
       .map((c) => [c.slot, c]),
   );
   const inventory = [...(data.seven?.inventory ?? [])];
+  const picks = restoreLockedSelections(
+    draftPicks,
+    [...locks.values()].map((c) => ({ slot: c.slot, card: c.card_id })),
+  );
+  const restoredLocks = [...locks.values()].some(
+    (c) => draftPicks.find((p) => p.slot === c.slot)?.card !== c.card_id,
+  );
   for (const c of locks.values()) {
     const index = inventory.findIndex((x) => x.id === c.card_id);
     const historic = { ...c, id: c.card_id, status: "active", listed: false };
@@ -178,6 +186,7 @@ export function NflSevenPlay({
     }
     update({
       ...draft,
+      picks,
       dirty: false,
       ...(action === "seven_draft"
         ? { revision: Number(out.revision) }
@@ -330,6 +339,12 @@ export function NflSevenPlay({
           {list ? "Field view" : "List view"}
         </button>
       </div>
+      {restoredLocks && (
+        <p role="status">
+          Started slots now show your confirmed entry. Unsubmitted replacements
+          for those slots were not entered.
+        </p>
+      )}
       <div
         className={list ? "seven-list" : "fantasy-field seven-field"}
         aria-label="Seven-player lineup"
@@ -362,7 +377,9 @@ export function NflSevenPlay({
                     </small>
                     <small>
                       {rarityRule(card.tier).label} ·{" "}
-                      {rarityRule(card.tier).multiplierTenths / 10}×
+                      {card.multiplier ??
+                        rarityRule(card.tier).multiplierTenths / 10}
+                      ×
                     </small>
                     <small>
                       {card.tier === "CORE"
