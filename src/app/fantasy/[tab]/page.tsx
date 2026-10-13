@@ -92,7 +92,7 @@ export default async function FantasyPage({
   }
   const feed = tab === "social" ? await communityFeed({ tab: "latest" }) : null;
   const testWallet =
-    tab === "cards" || tab === "profile"
+    tab === "cards" || tab === "profile" || tab === "market"
       ? await memberTestWallet()
           .then(() => true)
           .catch(() => false)

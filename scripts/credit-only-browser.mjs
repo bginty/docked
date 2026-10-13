@@ -193,7 +193,8 @@ try {
   });
   assert.deepEqual(errors, []);
   await page.goto(base + "/fantasy/market");
-  await expect(page.getByRole("heading", { name: "Docked packs", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Beta card swaps", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Open test wallet", exact: true })).toBeVisible();
   assert.ok(!(await page.locator("body").innerText()).includes("AUD $2.50"));
   assert.equal((await context.request.get(base + "/api/fantasy/market-proposal")).status(), 410);
   report.checks.push(
