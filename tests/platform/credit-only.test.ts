@@ -112,6 +112,11 @@ test("confirmed funding, not redirects; merchant/amount/reference, exact cents, 
   assert.equal(creditsFromAudCents(100), 100);
   assert.throws(() => creditsFromAudCents(1.2));
   h.run(alice, { kind: "credit-deposit", cents: 1000 }, "first");
+  assert.throws(
+    () => h.run(bob, { kind: "credit-deposit", cents: 1000 }, "first"),
+    /already in use/,
+  );
+  assert.equal(h.s.deposits.first.member, alice.id);
   assert.equal(wallet(h.s, alice.id).total, 0);
   h.run(provider, { kind: "bind", deposit: "first", providerOrder: "PPfirst" });
   const c = {

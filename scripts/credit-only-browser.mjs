@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { chromium, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { ownerDatabase } from "./owner-gameplay-db.mjs";
+import { CreditsSandboxStore } from "../src/server/credits-sandbox-store.ts";
 const d = JSON.parse(
   readFileSync("docs/qa/friends-cutover/deployment-status.json"),
 );
@@ -34,6 +35,20 @@ try {
     await tx`update credits_sandbox.access set enabled=true where user_id=${qa.id}`;
     await tx`insert into beta_private.audit_events(actor,action,subject,details) values('qa-operator','credit_only_browser_started',${qa.id},'{"syntheticOnly":true}'::jsonb)`;
   });
+  await new CreditsSandboxStore(sql).execute(
+    { id: "qa-operator", role: "reviewer", aal: "aal2" },
+    "credit-only-browser-grant-900",
+    {
+      kind: "promotion",
+      member: qa.id,
+      amount: 900,
+      campaign: "credit-only-browser-qa",
+      reason:
+        "Dedicated synthetic browser fixture; nonwithdrawable, no human grant",
+      confirmed: true,
+      redeemable: false,
+    },
+  );
   const context = await browser.newContext({
     viewport: { width: 412, height: 915 },
     timezoneId: "Australia/Sydney",
@@ -140,7 +155,7 @@ try {
   // Fixed key: reruns retrieve this same QA pack rather than buy another.
   const request = "ae91d7f8-ec15-435c-a9e4-290b77c6b1e8";
   const r = await post(buy, request);
-  assert.equal(r.status(), 200);
+  assert.equal(r.status(), 200, r.status() === 200 ? "" : await r.text());
   const result = await r.json();
   assert.equal(result.result.cards, 9);
   assert.equal((await post(buy, request)).status(), 200);
@@ -169,14 +184,18 @@ try {
   );
   await page.screenshot({
     path: `docs/qa/credit-only/wallet-mobile-${domain ? "domain" : "candidate"}.png`,
-    fullPage: true,
+    fullPage: false,
   });
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.screenshot({
     path: `docs/qa/credit-only/wallet-desktop-${domain ? "domain" : "candidate"}.png`,
-    fullPage: true,
+    fullPage: false,
   });
   assert.deepEqual(errors, []);
+  await page.goto(base + "/fantasy/market");
+  await expect(page.getByRole("heading", { name: "Docked packs", exact: true })).toBeVisible();
+  assert.ok(!(await page.locator("body").innerText()).includes("AUD $2.50"));
+  assert.equal((await context.request.get(base + "/api/fantasy/market-proposal")).status(), 410);
   report.checks.push(
     "Dedicated QA nine-card credit purchase, repeated request and repeated opening restore same receipt; reload, mobile/desktop, axe, no overflow or console errors",
   );

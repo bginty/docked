@@ -18,7 +18,6 @@ import {
 } from "@/core/fantasy-request";
 import { FantasyPlay } from "./fantasy-play";
 import { FantasyPlayerDetails } from "./fantasy-player-sheet";
-import { SandboxMarketProposal } from "./fantasy-market-proposal";
 import { FantasyAdmin } from "./fantasy-admin";
 import { FantasyRewards } from "./fantasy-rewards";
 import { fantasyResponseRejects } from "@/core/fantasy-response";
@@ -1264,7 +1263,6 @@ export function FantasyScreen({
       {tab === "market" && (
         <>
           <PackProducts />
-          <SandboxMarketProposal />
         </>
       )}
     </div>

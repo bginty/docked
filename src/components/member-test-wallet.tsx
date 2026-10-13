@@ -366,7 +366,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
             .find((c) => c.id === details)
             ?.history.map((h, i) => (
               <p key={i}>
-                {new Date(h.at).toLocaleString()} ·{" "}
+                {sydney(h.at)} Sydney ·{" "}
                 {h.from ? label(h.from) : "Test edition"} → {label(h.to)} ·{" "}
                 {h.reference}
               </p>
@@ -549,8 +549,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
         <h2>Your transaction history</h2>
         {s.history.map((h) => (
           <p key={h.id}>
-            {new Date(h.at).toLocaleString()} · {h.reason} ·{" "}
-            {h.change > 0 ? "+" : ""}
+            {sydney(h.at)} Sydney · {h.reason} · {h.change > 0 ? "+" : ""}
             {h.change} <small>{h.id}</small>
           </p>
         ))}

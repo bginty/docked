@@ -667,6 +667,8 @@ export function executeCredits(
   } else if (c.kind === "credit-deposit") {
     member();
     if (!s.creditOnly) throw Error("Credit-only policy required");
+    if (s.deposits[request] || s.commerce.orders[request])
+      throw Error("Deposit reference already in use");
     s.deposits[request] = {
       member: actor.id,
       product: "credits-only",
@@ -1629,7 +1631,7 @@ export function financialReport(s: CreditsState) {
     completedWithdrawals: Object.values(s.withdrawals)
       .filter((w) => w.status === "PAID")
       .reduce((n, w) => n + w.amount, 0),
-    deposits: Object.values(s.deposits),
+    deposits: Object.entries(s.deposits).map(([id, d]) => ({ id, ...d })),
     bonusEntitlements: Object.values(s.entitlements).filter(
       (e) => !e.source.endsWith("_pack"),
     ).length,

@@ -1,21 +1,17 @@
 import { NextResponse } from "next/server";
 import { fantasyRequest } from "@/server/fantasy";
-import { sandboxTradeFees, tradeFeeWindow } from "@/core/fantasy-market-fees";
 export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     await fantasyRequest(); // Same exact-owner, MFA, session and admission gate as gameplay.
-    const now = Date.now();
     return NextResponse.json(
       {
-        mode: "ILLUSTRATION_ONLY",
-        serverTime: new Date(now).toISOString(),
-        policy: sandboxTradeFees,
-        window: tradeFeeWindow(sandboxTradeFees, now),
+        mode: "RETIRED",
+        message:
+          "This earlier AUD fee proposal is retired. Test transactions use Docked Credits in your wallet.",
         executionEnabled: false,
-        liveCycleStart: null,
       },
-      { headers: { "Cache-Control": "private, no-store" } },
+      { status: 410, headers: { "Cache-Control": "private, no-store" } },
     );
   } catch {
     return NextResponse.json(

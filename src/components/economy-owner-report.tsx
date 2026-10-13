@@ -53,10 +53,15 @@ export function EconomyOwnerReport({ state }: { state: MemberTestView }) {
               </tbody>
             </table>
             <p>
-              Version effective {new Date(product.effectiveAt).toLocaleString()}
+              Version effective{" "}
+              {new Date(product.effectiveAt).toLocaleString("en-AU", {
+                timeZone: "Australia/Sydney",
+              })}
               . Expires{" "}
               {product.expiresAt
-                ? new Date(product.expiresAt).toLocaleString()
+                ? new Date(product.expiresAt).toLocaleString("en-AU", {
+                    timeZone: "Australia/Sydney",
+                  })
                 : "not scheduled"}
               .
             </p>
@@ -78,7 +83,11 @@ export function EconomyOwnerReport({ state }: { state: MemberTestView }) {
             <tbody>
               {state.failures.map((f, i) => (
                 <tr key={i}>
-                  <td>{new Date(f.recordedAt).toLocaleString()}</td>
+                  <td>
+                    {new Date(f.recordedAt).toLocaleString("en-AU", {
+                      timeZone: "Australia/Sydney",
+                    })}
+                  </td>
                   <td>{f.product}</td>
                   <td>{f.category}</td>
                   <td>{f.request}</td>
@@ -100,8 +109,10 @@ export function EconomyOwnerReport({ state }: { state: MemberTestView }) {
         <summary>Pack audit references</summary>
         {e.packs.map((p) => (
           <p key={p.id}>
-            {new Date(p.at).toLocaleString()} · {p.id} · configuration hash{" "}
-            {p.configuration}
+            {new Date(p.at).toLocaleString("en-AU", {
+              timeZone: "Australia/Sydney",
+            })}{" "}
+            · {p.id} · configuration hash {p.configuration}
           </p>
         ))}
       </details>
