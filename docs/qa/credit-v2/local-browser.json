@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-13T12:44:23.927Z",
+  "passed": true,
+  "scope": "Actual component + engine, local synthetic auth; NOT hosted auth or physical Android",
+  "checks": [
+    "Android Chrome emulation: nine-card purchase/open retries, persisted receipt and collection restoration",
+    "Two ordinary projections: list, purchase, resale, 75/68 commission, unique ownership/history and restricted seller proceeds",
+    "Cancellation and free swap, unchanged commission; test proceeds never withdrawable",
+    "Lost response and page restart: same persisted request recovers without duplicate listing",
+    "360/412/1440 viewport accessibility and no overflow/console errors; blocked withdrawals, insufficient funds"
+  ]
+}

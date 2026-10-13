@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-13T12:33:15.735Z",
+  "scope": "disposable local PostgreSQL / simulated provider events",
+  "passed": true,
+  "checks": [
+    "12 concurrent confirmed-payment deliveries issue exactly 1000 credits once; pending not spendable",
+    "Competing purchases cannot overspend; losing transaction leaves card, price and ownership unchanged; duplicate successful purchase returns same receipt",
+    "Concurrent withdrawal reservations cannot overspend; eight verified failure notifications release once",
+    "Database postings balance; immutable journal and lines; persisted aggregate validates",
+    "Two buyers contend for one card: one owner transfer, one debit/proceeds/commission only",
+    "Forced database rollback leaves state unchanged"
+  ],
+  "circulation": {
+    "issued": 1000,
+    "extinguished": 45,
+    "outstanding": 955,
+    "difference": 0
+  }
+}
