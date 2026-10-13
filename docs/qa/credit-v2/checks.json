@@ -16,8 +16,18 @@
   "lint": "PASS",
   "build": "PASS",
   "hostedReadOnly": "PASS",
-  "hostedCandidate": "NOT_RUN_APPROVAL_REQUIRED",
+  "hostedCandidate": "PASS",
   "physicalS24": "PENDING",
   "ownerVisual": "PENDING",
-  "commercialActivation": false
+  "commercialActivation": false,
+  "releaseAt": "2026-10-13T20:03:10.389Z",
+  "hostedDomain": "PASS",
+  "hostedRollback": "PASS",
+  "domainBoundaries": {
+    "passed": 15,
+    "total": 15
+  },
+  "releaseIntegrity": "PASS: holdings, balances, grants, supply and ledger unchanged; QA receipts/events only",
+  "releasedCommit": "15a8bbd3adad44213f76e9520b5b0006714a976f",
+  "deployment": "dpl_EtPaDiF7DPLTXwify5Sou2ebMb3J"
 }

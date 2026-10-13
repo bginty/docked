@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-13T19:59:59.014Z",
+  "deployment": "dpl_EtPaDiF7DPLTXwify5Sou2ebMb3J",
+  "commit": "15a8bbd3adad44213f76e9520b5b0006714a976f",
+  "domain": false,
+  "passed": true,
+  "checks": [
+    "Ordinary login, private API and owner CSV restrictions; no member deposit, withdrawal, grant or fee configuration path",
+    "Dedicated QA nine-card credit purchase, repeated request and repeated opening restore same receipt; reload, mobile/desktop, axe, no overflow or console errors",
+    "Same-session new-page restoration and verified logout deny private wallet"
+  ]
+}

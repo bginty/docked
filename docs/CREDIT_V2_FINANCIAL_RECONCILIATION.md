@@ -58,8 +58,9 @@ Operational commissions are not formal accounting revenue or profit.
 
 ## Rollback / forward recovery
 
-Code-only changes. Restore previous release dafb3949 / deployment
-dpl_6q2Xx9WQpbwZ4wGTXDQXdoc8qNcr if this candidate is later promoted and fails.
+Code-only changes released as 15a8bbd3, deployment dpl_EtPaDiF7DPLTXwify5Sou2ebMb3J.
+Restore previous release dafb3949 / deployment
+dpl_6q2Xx9WQpbwZ4wGTXDQXdoc8qNcr if a release defect requires rollback.
 Retain ALL state, history and postings. Closed listings remain closed under old code.
 Never restore an old aggregate to undo customer transactions. Reapply fixed code
 after inspection; successful request keys retrieve existing results. No DNS/email change.
