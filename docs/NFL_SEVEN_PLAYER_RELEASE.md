@@ -1,5 +1,11 @@
 # NFL seven-player test competitions — 13 October 2026
 
+**Released:** https://docked.com.au/fantasy/play · web commit `e7d5e38f0b1e82f8f0f8f3c89880134d5c304bf2`, deployment `dpl_6XXn6JMXyf9FEPfM5XVwdLTRAyoM`. Implementation `9413ea1b`, field repair `510767f6`, transfer disclosures `9baf61c1`, locked-draft restoration `e7d5e38f`. Existing Android v22 receives the web release on reopening. No invitations or other messages sent.
+
+Final checks: typecheck/lint passed; 151/151 database tests; platform 304/312 initially passed and eight Windows sandbox permission failures resolved by the affected two-file rerun (10/10). Production build passed locally after a filesystem-permission retry; final presentation/copy changes also passed typecheck/lint and the final Vercel build. Six focused NFL tests passed after the locked-draft repair. Protected candidate and actual domain ordinary-member UI/API/concurrency/privacy checks passed. All 15 domain/auth/callback boundaries passed. Browser-native bridge reopening and owner MFA preservation passed. No Android emulator or physical S24 test was performed.
+
+[Mobile Salary Cap](qa/seven-round/salary-domain-mobile.png) · [Mobile Open](qa/seven-round/open-domain-mobile.png) · [Desktop](qa/seven-round/salary-domain-desktop.png) · [Points](qa/seven-round/points-domain.png) · [Executed validation receipt](qa/seven-round/validation.json). Screenshots use the dedicated synthetic QA member, not owner/Barry selections. Owner visual approval remains pending.
+
 ## Authoritative scope
 
 Two new isolated modes, Salary Cap and Open, use **QB1 / RB1 / RB2 / WR1 / WR2 / TE1 / FLEX1 (RB, WR or TE)**. This is the owner's mandatory formation. K and DST remain available only in older compatible competitions. Existing entries, free competitions, commercial scarcity, holdings, grants and pack terms are preserved.
@@ -49,5 +55,7 @@ Historical replay is **not** a genuine member result. Upcoming Week 6 and first 
 Additive migrations `20261013064456_nfl_seven_slot_modes.sql` and `20261013073543_nfl_seven_final_write_guard.sql` extend existing beta tables/functions. No database reset, renumbering, grants or commercial issuance. Append-only entry revisions and individual locks are private under RLS. The older web release cannot see the new rounds unless its trusted server enables the new read projection.
 
 Rollback web aliases to the deployment saved in `qa/seven-round/rollback.json`, using the existing Docked Vercel project. Pause the two new modes before rollback if members have entered; retain all entries, locks, transaction and scoring history. Do not drop tables or reverse issuance. Legacy rounds stay on their original functions/rules. The source worker remains backward compatible. Mail/DNS/Auth policies and native package/signature are unchanged.
+
+Original pre-seven snapshot: `qa/seven-round/rollback-before-seven.json`; immediate pre-repair snapshot: `qa/seven-round/rollback.json`. Exact original deployment: `dpl_9vbR1NvyXYfzg7uKF21wvbfJJjJn` (`dee17493`). In the existing Docked Vercel project, select that deployment and Rollback/Promote after pausing these modes; verify both docked.com.au and www. The equivalent audited API operation is `POST /v10/projects/prj_l0rpVDPRuIRp9UcBUkudeyUK5yST/promote/dpl_9vbR1NvyXYfzg7uKF21wvbfJJjJn?teamId=team_tf6xweKKyVCj9bTppUKttJ4l` using the existing operator session. No DNS or mailbox changes. Do not roll back the additive database history.
 
 The installed **v22 APK loads docked.com.au** and receives these web screens after reopening. No native code change requires an APK update. Do not distribute protected-owner QA builds. Existing v22 download expires 19 October 2026 23:43:59 Sydney. Device acceptance must be performed by the owner/tester.

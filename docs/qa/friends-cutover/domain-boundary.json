@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-12T12:38:38.387Z",
+  "at": "2026-10-13T08:10:09.052Z",
   "origin": "https://docked.com.au",
   "scope": "Anonymous domain/callback boundary acceptance; NOT authenticated gameplay or email delivery",
   "checks": [
@@ -7,8 +7,8 @@
       "name": "Domain serves the exact staged friends deployment without hosting credentials",
       "passed": true,
       "status": 200,
-      "deploymentId": "dpl_9vbR1NvyXYfzg7uKF21wvbfJJjJn",
-      "commit": "dee17493f649367ab3c5e52c32997e4a361781f1"
+      "deploymentId": "dpl_6XXn6JMXyf9FEPfM5XVwdLTRAyoM",
+      "commit": "e7d5e38f0b1e82f8f0f8f3c89880134d5c304bf2"
     },
     {
       "name": "www redirects directly to the accepted HTTPS domain",
@@ -91,8 +91,8 @@
     "hostingProvider": "vercel",
     "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
     "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
-    "commit": "dee17493f649367ab3c5e52c32997e4a361781f1",
-    "deploymentId": "dpl_9vbR1NvyXYfzg7uKF21wvbfJJjJn",
+    "commit": "e7d5e38f0b1e82f8f0f8f3c89880134d5c304bf2",
+    "deploymentId": "dpl_6XXn6JMXyf9FEPfM5XVwdLTRAyoM",
     "projectRef": "pojoymtniryarxxunyvz",
     "publicRegistration": false,
     "invitedAuthentication": true

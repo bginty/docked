@@ -1,3 +1,5 @@
+13 October 2026 — [Seven-player NFL Salary Cap and Open](NFL_SEVEN_PLAYER_RELEASE.md) are live on docked.com.au at web commit e7d5e38f. Mandatory QB/2RB/2WR/TE/FLEX, independent drafts/entries, rolling locks and existing post-game scoring are connected. v22 receives the hosted update; no native rebuild required. Week 6 closes 16 October 11:15am Sydney. Hosted historical replay and domain ordinary-member acceptance passed; genuine Week 6 results, physical S24 and owner visual approval remain pending. Payments/prizes/withdrawals remain disabled.
+
 12 October 2026 - [NFL rarity member-round integration](NFL_RARITY_MEMBER_RELEASE.md) supersedes the v21 unfinished bridge. Isolated Week 6 closes 16 October 11:15am Sydney; replay evidence is separate from future genuine scores. See release receipts for deployment/APK status.
 
 12 October 2026 - [Android account-completion fix](NATIVE_AUTH_RENEWAL_FIX.md) is live: pending consent no longer interrupts owner MFA in the native shell. Owner password/factor/consent/holdings unchanged; physical owner retry remains pending. Existing v21 receives the hosted fix without reinstalling.

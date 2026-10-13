@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-13T08:11:26.706Z",
+  "deployment": "dpl_6XXn6JMXyf9FEPfM5XVwdLTRAyoM",
+  "commit": "e7d5e38f0b1e82f8f0f8f3c89880134d5c304bf2",
+  "domain": true,
+  "checks": [
+    "Actual hosted native bridge preserves MFA screen during admission denial and resume; no gameplay-session request",
+    "Existing synthetic ordinary member signs in and reloads Play without mandatory MFA"
+  ],
+  "passed": true,
+  "owner": {
+    "mfaEnforced": true,
+    "existingFactorPreserved": true,
+    "consentStillRequiresOwnerAction": false
+  }
+}

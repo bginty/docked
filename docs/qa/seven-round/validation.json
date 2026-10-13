@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-13T08:12:20.533Z",
+  "commit": "e7d5e38f0b1e82f8f0f8f3c89880134d5c304bf2",
+  "deployment": "dpl_6XXn6JMXyf9FEPfM5XVwdLTRAyoM",
+  "branch": "pivot/fantasy-cards-preview-v1",
+  "typecheck": "PASS",
+  "lint": "PASS",
+  "database": {
+    "tests": 151,
+    "passed": 151
+  },
+  "platform": {
+    "tests": 312,
+    "initialPassed": 304,
+    "initialSandboxPermissionFailures": 8,
+    "affectedFilesEscalatedRerun": {
+      "tests": 10,
+      "passed": 10
+    },
+    "note": "Eight Windows TEMP/disposable-Git permission failures resolved by running the two affected files with filesystem access. No failing assertions remain."
+  },
+  "productionBuild": {
+    "local": "PASS before final presentation/copy changes, after Windows path retry",
+    "vercel": "READY"
+  },
+  "hostedHistoricalReplay": "PASS — actual retained match statistics, synthetic correction, rollback-only dedicated users",
+  "candidateBrowser": "PASS",
+  "domainBrowser": "PASS",
+  "domainBoundaries": 15,
+  "nativeBridge": "PASS in browser simulation; not Android emulator or physical-device evidence",
+  "android": {
+    "version": 22,
+    "rebuildRequired": false,
+    "downloadHashVerified": true,
+    "emulator": "NOT RUN",
+    "physicalS24": "PENDING"
+  },
+  "visual": {
+    "screenshotsInspected": true,
+    "ownerApproval": "PENDING"
+  },
+  "genuineWeek6Scoring": "PENDING upcoming matches and collection",
+  "newCollectorDownload": "NOT ASSERTED — authorised worker check returned idle",
+  "messagesSent": 0,
+  "realMoneyEnabled": false,
+  "focusedNflTests": {
+    "tests": 6,
+    "passed": 6,
+    "includes": "unsubmitted replacements cannot hide confirmed locked slots"
+  }
+}
