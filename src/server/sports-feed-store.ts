@@ -1,5 +1,6 @@
 import type { Sql } from "postgres";
 import { randomUUID } from "node:crypto";
+import { assertRollingEvidence } from "../core/rolling-evidence";
 import { digest, results, type ScoringState } from "../core/scoring-engine";
 import {
   type FeedPermit,
@@ -131,6 +132,13 @@ export class SportsFeedStore {
         await tx`insert into sports_feed.bundle_evidence(stream_id,fixture_id,weekly_raw_id,pbp_raw_id) values(${id},${companion.fixtureId},${rawId},${companion.rawId}) on conflict do nothing`;
       }
       if (digest(next) === old.state_hash) return next;
+      const changedEntries = digest(next.entries) !== digest(old.body.entries);
+      if (
+        old.body.lineupsLockedAt &&
+        changedEntries &&
+        old.body.period.lineupVersion
+      )
+        assertRollingEvidence(old.body, next);
       if (
         next.scope !== "authorised-free-beta" ||
         digest(next.period) !== digest(old.body.period) ||
@@ -140,6 +148,7 @@ export class SportsFeedStore {
         digest(next.sources.slice(0, old.body.sources.length)) !==
           digest(old.body.sources) ||
         (old.body.lineupsLockedAt &&
+          !old.body.period.lineupVersion &&
           digest(next.entries) !== digest(old.body.entries))
       )
         throw Error("Immutable scoring evidence changed");

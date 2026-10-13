@@ -1,0 +1,26 @@
+{
+  "version": "nfl-seven-test-v1",
+  "sport": "nfl",
+  "inventoryScope": "invited-nfl-test-v2",
+  "salaryCap": 4400000,
+  "salaries": {
+    "CORE": 500000,
+    "RARE": 600000,
+    "ELITE": 650000,
+    "ULTRA_RARE": 700000,
+    "LEGENDARY": 800000,
+    "ICON": 800000
+  },
+  "slots": [
+    { "id": "QB1", "positions": ["QB"] },
+    { "id": "RB1", "positions": ["RB"] },
+    { "id": "RB2", "positions": ["RB"] },
+    { "id": "WR1", "positions": ["WR"] },
+    { "id": "WR2", "positions": ["WR"] },
+    { "id": "TE1", "positions": ["TE"] },
+    { "id": "FLEX1", "positions": ["RB", "WR", "TE"] }
+  ],
+  "entryPolicy": "before-first-kickoff",
+  "lockPolicy": "individual-permanent",
+  "commerciallyApproved": false
+}

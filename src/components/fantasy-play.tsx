@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { NflSevenPlay } from "./nfl-seven-play";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { LocalDateTime } from "./local-date-time";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -26,6 +27,63 @@ type Act = (
   payload?: Record<string, unknown>,
 ) => Promise<Record<string, unknown> | null>;
 export function FantasyPlay({
+  data,
+  busy,
+  act,
+}: {
+  data: FantasyState;
+  busy: boolean;
+  act: Act;
+}) {
+  const [mode, setMode] = useState<"SALARY_CAP" | "OPEN" | "existing">(
+    "SALARY_CAP",
+  );
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("competition");
+    const c = data.competitions.find((c) => c.id === id);
+    if (c)
+      setMode(
+        c.rules.mode === "SALARY_CAP"
+          ? "SALARY_CAP"
+          : c.rules.mode === "OPEN"
+            ? "OPEN"
+            : "existing",
+      );
+  }, []);
+  const available = data.competitions.some((c) => c.rules.lineup_version);
+  if (!available)
+    return <LegacyFantasyPlay data={data} busy={busy} act={act} />;
+  return (
+    <>
+      <nav className="seven-mode-tabs" aria-label="NFL competition mode">
+        {(["SALARY_CAP", "OPEN", "existing"] as const).map((m) => (
+          <button key={m} aria-pressed={mode === m} onClick={() => setMode(m)}>
+            {m === "SALARY_CAP"
+              ? "Salary Cap"
+              : m === "OPEN"
+                ? "Open"
+                : "Existing rounds"}
+          </button>
+        ))}
+      </nav>
+      {mode === "existing" ? (
+        <LegacyFantasyPlay
+          data={{
+            ...data,
+            competitions: data.competitions.filter(
+              (c) => !c.rules.lineup_version,
+            ),
+          }}
+          busy={busy}
+          act={act}
+        />
+      ) : (
+        <NflSevenPlay data={data} busy={busy} act={act} mode={mode} />
+      )}
+    </>
+  );
+}
+function LegacyFantasyPlay({
   data,
   busy,
   act,

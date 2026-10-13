@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-13T07:36:46.356Z",
+  "scope": "Hosted rollback-only ordinary AAL1 accounts; historical actual NFL statistics; synthetic correction; no genuine member results",
+  "checks": [
+    "Two ordinary QA accounts: nine-card purchases, same-request recovery, one debit, persisted opening",
+    "Separate incomplete drafts and entries; idempotency; stale saves; ownership/position/duplicate/forged salary rejection; cross-mode card; Core 3.5M entry",
+    "Synchronous kickoff locks; unlocked RB edit after closure; locked replacement denied; transfer after lock preserves entitlement; buyer cannot insert started player",
+    "Actual retained NFL stats -> seven locked cards -> adjusted totals -> private player breakdowns and public-name standings; append-only correction"
+  ],
+  "passed": true,
+  "lastRejection": "/Started/",
+  "boundary": [
+    {
+      "at": "2026-10-13T07:38:29.500Z",
+      "locks_at": "2026-10-13T07:38:28.444Z",
+      "rules": {
+        "mode": "OPEN",
+        "postgame": true,
+        "duplicates": false,
+        "lineup_version": "nfl-seven-test-v1",
+        "rarity_version": "docked-lifetime-rarity-v1",
+        "inventory_scope": "invited-nfl-test-v2",
+        "scoring_version": "docked-nfl-seven-rolling-test-v1"
+      },
+      "locked_at": null
+    }
+  ],
+  "firstLocks": [
+    {
+      "slot": "QB1",
+      "locked_at": "2026-10-13T07:38:28.444Z"
+    },
+    {
+      "slot": "QB1",
+      "locked_at": "2026-10-13T07:38:28.444Z"
+    }
+  ],
+  "replay": [
+    {
+      "base": 71.24,
+      "weighted": 81.09
+    },
+    {
+      "base": 71.24,
+      "weighted": 78.36
+    }
+  ]
+}

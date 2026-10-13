@@ -1,0 +1,223 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFile, readdir } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
+import { PGlite } from "@electric-sql/pglite";
+import { nflSeven, sevenRules } from "../../src/core/nfl-seven";
+import { rarityConfiguration, rarityRule } from "../../src/core/card-rarity";
+test("seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration", async () => {
+  const pg = new PGlite();
+  const q = async (s: string, args: unknown[] = []) =>
+    (await pg.query<any>(s, args)).rows;
+  try {
+    await pg.exec(
+      `create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean default false,banned_until timestamptz);create table auth.sessions(id uuid primary key,user_id uuid references auth.users,not_after timestamptz);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated;`,
+    );
+    for (const f of (await readdir("supabase/migrations"))
+      .filter((f) => f.endsWith(".sql"))
+      .sort())
+      await pg.exec(await readFile("supabase/migrations/" + f, "utf8"));
+    // Only inventory/auth transport are fixture adapters here. SQL command, salary, locking and grants are the production migration.
+    await pg.exec(
+      `create or replace function beta_fantasy.production_eligible() returns uuid language sql as $$select auth.uid()$$;create or replace function beta_private.active_member_session() returns boolean language sql as $$select auth.uid() is not null$$;create table public.qa_inventory(owner uuid,cards jsonb);create or replace function sports_feed.seven_inventory(u uuid) returns jsonb language sql stable security definer set search_path='' as $$select cards from public.qa_inventory where owner=u$$;`,
+    );
+    const u = randomUUID(),
+      other = randomUUID();
+    for (const id of [u, other]) {
+      await q(`insert into auth.users(id)values($1)`, [id]);
+      await q(
+        `insert into beta_fantasy.members(user_id,expires_at)values($1,'infinity')`,
+        [id],
+      );
+      await q(
+        `insert into credits_sandbox.access(user_id,kind,label,enabled,authority_note)values($1,'tester','LOCAL FIXTURE',true,'Local SQL test only')`,
+        [id],
+      );
+    }
+    await q(
+      `select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims','{"aal":"aal1"}',false)`,
+      [u],
+    );
+    await q(
+      `insert into beta_fantasy.lineup_configurations(version,configuration) values($1,$2)`,
+      [nflSeven.version, JSON.stringify(nflSeven)],
+    );
+    await assert.rejects(
+      () =>
+        q(`update beta_fantasy.lineup_configurations set configuration='{}'`),
+      /immutable/i,
+    );
+    const cards = nflSeven.slots.map((s, i) => ({
+      id: randomUUID(),
+      player_id: `p${i}`,
+      tier: i < 3 ? "ICON" : "CORE",
+      position: s.positions[0],
+      status: "active",
+      listed: false,
+      multiplierTenths: i < 3 ? 15 : 10,
+      rarityVersion: rarityConfiguration.version,
+    }));
+    await q(`insert into public.qa_inventory values($1,$2)`, [
+      u,
+      JSON.stringify(cards),
+    ]);
+    const rule = sevenRules();
+    await q(
+      `insert into beta_fantasy.scoring_rules(version,rules)values($1,$2)`,
+      [rule.version, JSON.stringify(rule)],
+    );
+    const rounds = [randomUUID(), randomUUID()];
+    for (let i = 0; i < 2; i++) {
+      const c = rounds[i],
+        sid = "beta-real:qa:" + c;
+      await q(
+        `insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize)values($1,'LOCAL SEVEN SQL','nfl','2026',999,clock_timestamp()+interval '1 day',$2,(select id from beta_fantasy.scoring_rules where version=$3),'No cash prize')`,
+        [
+          c,
+          JSON.stringify({
+            lineup_version: nflSeven.version,
+            mode: i ? "OPEN" : "SALARY_CAP",
+            inventory_scope: "invited-nfl-test-v2",
+            scoring_version: rule.version,
+          }),
+          rule.version,
+        ],
+      );
+      await q(`insert into sports_feed.streams(id)values($1)`, [sid]);
+      await q(
+        `insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures)values($1,$2,'acceptance',$3)`,
+        [
+          c,
+          sid,
+          JSON.stringify([
+            {
+              fixtureId: sid + ":f",
+              scheduledAt: new Date(Date.now() + 2 * 86400000).toISOString(),
+              playerIds: cards.map((c) => c.player_id),
+            },
+          ]),
+        ],
+      );
+    }
+    const picks = nflSeven.slots.map((s, i) => ({
+      slot: s.id,
+      card: cards[i].id,
+    }));
+    const command = async (
+      action: string,
+      cid: string,
+      selections: unknown[],
+      revision: number,
+      id = randomUUID(),
+    ) =>
+      (
+        await q(`select sports_feed.seven_command($1,$2,$3) r`, [
+          action,
+          JSON.stringify({ competition_id: cid, selections, revision }),
+          id,
+        ])
+      )[0].r;
+    assert.equal(
+      (await command("seven_enter", rounds[0], picks, 0)).salary,
+      4400000,
+    );
+    await command("seven_draft", rounds[0], picks.slice(0, 3), 0);
+    await assert.rejects(
+      () =>
+        q(
+          `update beta_fantasy.entries set snapshot=jsonb_set(snapshot,'{0,kickoff}',to_jsonb((clock_timestamp()-interval '1 second')::text)) where competition_id=$1`,
+          [rounds[0]],
+        ),
+      /Kickoff crossed/,
+    );
+    await assert.rejects(
+      () => command("seven_draft", rounds[0], picks, 0),
+      /another window/,
+    );
+    cards[6].tier = "RARE";
+    cards[6].multiplierTenths = rarityRule("RARE").multiplierTenths;
+    await q(`update public.qa_inventory set cards=$1 where owner=$2`, [
+      JSON.stringify(cards),
+      u,
+    ]);
+    await assert.rejects(
+      () => command("seven_enter", rounds[0], picks, 1),
+      /Salary cap exceeded: attempted 4500000, cap 4400000/,
+    );
+    assert.equal(
+      (
+        await q(
+          `select lineup_revision from beta_fantasy.entries where competition_id=$1`,
+          [rounds[0]],
+        )
+      )[0].lineup_revision,
+      1,
+    );
+    await command("seven_draft", rounds[0], picks.slice(0, 6), 1);
+    for (const c of cards) {
+      c.tier = "ICON";
+      c.multiplierTenths = 15;
+    }
+    await q(`update public.qa_inventory set cards=$1 where owner=$2`, [
+      JSON.stringify(cards),
+      u,
+    ]);
+    assert.equal(
+      (await command("seven_enter", rounds[1], picks, 0)).salary,
+      5600000,
+    );
+    await assert.rejects(
+      () => command("seven_enter", rounds[1], [...picks, picks[0]], 1),
+      /exactly seven/,
+    );
+    await assert.rejects(
+      () => command("seven_enter", rounds[1], picks.slice(0, 6), 1),
+      /exactly seven/,
+    );
+    await assert.rejects(
+      () =>
+        q(`select beta_fantasy.production_command('save_lineup',$1,$2)`, [
+          JSON.stringify({
+            competition_id: rounds[1],
+            cards: cards.map((c) => c.id),
+          }),
+          randomUUID(),
+        ]),
+      /explicit draft/,
+    );
+    await assert.rejects(
+      () =>
+        q(`select sports_feed.seven_admin_control($1,$2)`, [
+          JSON.stringify({
+            competition_id: rounds[1],
+            revision: 0,
+            enabled: false,
+            standings_visible: false,
+            reason: "Local ordinary member denied",
+          }),
+          randomUUID(),
+        ]),
+      /MFA/,
+    );
+    for (const table of [
+      "round_drafts",
+      "entries",
+      "slot_locks",
+      "entry_revisions",
+    ]) {
+      await pg.exec("set role authenticated");
+      await assert.rejects(
+        () => q(`select * from beta_fantasy.${table}`),
+        /permission denied/,
+      );
+      await pg.exec("reset role");
+    }
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [other]);
+    await assert.rejects(
+      () => command("seven_enter", rounds[1], picks, 0),
+      /Owned/,
+    );
+  } finally {
+    await pg.close();
+  }
+});

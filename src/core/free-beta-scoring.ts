@@ -1,6 +1,7 @@
 import { digest, type Period, type ScoringState } from "./scoring-engine";
 import { currentRulesets } from "./scoring-release";
 import { nflRarityRules } from "./scoring-v1";
+import { nflSeven, sevenRules } from "./nfl-seven";
 
 /** Internal operator configuration, never a client POST. A complete mapped round
  * and the existing whole-round lock policy are required before registration. */
@@ -31,8 +32,13 @@ export function createFreeBetaPeriod(
     !["epl", "nfl"].includes(p.sport) ||
     (p.inventoryScope === "invited-nfl-test-v2"
       ? p.sport !== "nfl" ||
-        !p.id.startsWith("beta-real:nfl:rarity-test:") ||
-        digest(p.rules) !== digest(nflRarityRules())
+        (p.lineupVersion
+          ? p.lineupVersion !== nflSeven.version ||
+            !["SALARY_CAP", "OPEN"].includes(p.competitionMode ?? "") ||
+            !p.id.startsWith("beta-real:nfl:seven:") ||
+            digest(p.rules) !== digest(sevenRules())
+          : !p.id.startsWith("beta-real:nfl:rarity-test:") ||
+            digest(p.rules) !== digest(nflRarityRules()))
       : !!p.rules.rarityVersion ||
         digest(p.rules) !== digest(currentRulesets[p.sport])) ||
     !p.fixtures.length

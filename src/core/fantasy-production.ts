@@ -45,6 +45,40 @@ const allowed = new Set([
 export const fantasyProductionAction = z.union([
   z
     .object({
+      action: z.literal("seven_admin_control"),
+      payload: z
+        .object({
+          competition_id: z.uuid(),
+          revision: z.number().int().min(0),
+          enabled: z.boolean(),
+          standings_visible: z.boolean(),
+          reason: z.string().trim().min(12).max(500),
+        })
+        .strict(),
+      request_id: z.uuid(),
+    })
+    .strict(),
+  z
+    .object({
+      action: z.enum(["seven_draft", "seven_enter", "seven_withdraw"]),
+      payload: z
+        .object({
+          competition_id: z.uuid(),
+          revision: z.number().int().min(0),
+          selections: z
+            .array(
+              z
+                .object({ slot: z.string().min(1).max(20), card: z.uuid() })
+                .strict(),
+            )
+            .max(7),
+        })
+        .strict(),
+      request_id: z.uuid(),
+    })
+    .strict(),
+  z
+    .object({
       action: z.literal("name_team"),
       payload: z
         .object({

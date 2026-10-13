@@ -282,6 +282,43 @@ export type FantasyCompetition = {
   opens_at?: string;
 };
 export type FantasyState = {
+  seven?: {
+    inventory: FantasyCard[];
+    configurations: Record<string, typeof import("./nfl-seven").nflSeven>;
+    drafts: {
+      competition_id: string;
+      revision: number;
+      selections: import("./nfl-seven").SlotSelection[];
+      updated_at: string;
+    }[];
+    entries: {
+      competition_id: string;
+      revision: number;
+      snapshot: (FantasyCard & {
+        card_id: string;
+        slot: string;
+        kickoff: string;
+        salary: number;
+      })[];
+      updated_at: string;
+    }[];
+    locks: {
+      competition_id: string;
+      slot: string;
+      locked_at: string;
+      snapshot: FantasyCard & { card_id: string };
+    }[];
+    fixtures: Record<
+      string,
+      {
+        fixtureId: string;
+        scheduledAt: string;
+        playerIds: string[];
+        status?: string;
+      }[]
+    >;
+    server_time: string;
+  };
   starter_receipt?: import("./pack-opening").PackReceipt | null;
   team_name?: string | null;
   nfl_beta?: boolean;

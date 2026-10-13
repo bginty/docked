@@ -36,6 +36,8 @@ export type CatalogCard = LockedCard & {
   eligible: boolean;
 };
 export type Period = {
+  competitionMode?: "SALARY_CAP" | "OPEN";
+  lineupVersion?: string;
   inventoryScope?: "invited-nfl-test-v2";
   id: string;
   sport: Sport;
@@ -47,7 +49,11 @@ export type Period = {
 export type Entry = {
   member: string;
   name: string;
-  cards: LockedCard[];
+  cards: (LockedCard & {
+    slot?: string;
+    slotLockedAt?: string | null;
+    fixtureId?: string;
+  })[];
   lockedAt: string;
   rulesHash: string;
 };
@@ -316,6 +322,7 @@ export function results(state: ScoringState) {
             (p) => p.playerId === card.playerId,
           );
           const resolved =
+            (!state.period.lineupVersion || !!card.slotLockedAt) &&
             source?.status === "completed" &&
             player &&
             player.availability !== "pending";
