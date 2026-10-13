@@ -84,11 +84,11 @@ export default async function RulesPage({
           }}
         />
         <h2>Rarity and calculation order</h2>
-        <table>
+        <table className="rules-rarity-table">
           <thead>
             <tr>
               <th>Rarity</th>
-              <th>Multiplier in this ruleset</th>
+              <th>Multiplier</th>
               {rolling && <th>Salary Cap salary</th>}
             </tr>
           </thead>

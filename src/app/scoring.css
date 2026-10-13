@@ -240,3 +240,9 @@
     font-size: 0.8rem;
   }
 }
+/* Rules and rankings have different column counts from statistical breakdowns. */
+.scoring-review :is(th, td) { white-space: normal; overflow-wrap: anywhere; }
+.scoring-review .rules-rarity-table th:first-child { width: 38%; }
+.scoring-review .rules-rarity-table :is(th, td) { vertical-align: top; }
+.scoring-review .competition-standings-table th:first-child { width: 16%; }
+.scoring-review .competition-standings-table th:nth-child(2) { width: 32%; }

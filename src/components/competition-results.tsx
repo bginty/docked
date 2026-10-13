@@ -96,7 +96,7 @@ export function CompetitionResults({
           {!r.visible ? (
             <p>Standings are under operator review.</p>
           ) : rows.length ? (
-            <table>
+            <table className="competition-standings-table">
               <thead>
                 <tr>
                   <th>Rank</th>
