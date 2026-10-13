@@ -352,7 +352,9 @@ export function NflSevenPlay({
               >
                 {!list && <PlayerShirt card={card} />}
                 <strong>{s.id.replace("1", "")}</strong>
-                <span>{card?.name ?? "Choose card"}</span>
+                <span className="field-player-name">
+                  {card?.name ?? "Choose card"}
+                </span>
                 {card && (
                   <>
                     <small>
