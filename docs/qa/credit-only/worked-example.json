@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-13T10:57:06.692Z",
+  "scope": "Disposable simulation; resale-eligible fixture, not beta card payout eligibility; no real provider/payment",
+  "steps": [
+    {
+      "step": "Simulated buyer deposit A$10, confirmed and settled; no provider fee in this example",
+      "buyer": 1000,
+      "seller": 0,
+      "fees": 0
+    },
+    {
+      "step": "Buyer purchases card for 1000; seller gets 925; commission 75",
+      "buyer": 0,
+      "seller": 925,
+      "fees": 75
+    },
+    {
+      "step": "Buyer resells the same card for 900: receives 832; half-up fee 68. No new funding/issuance",
+      "buyer": 832,
+      "seller": 25,
+      "fees": 143
+    },
+    {
+      "step": "Simulated payout 832 (A$8.32) extinguishes reservation once. Remaining 168 = 25 member liability + 143 commission",
+      "buyer": 0,
+      "seller": 25,
+      "fees": 143
+    }
+  ],
+  "circulation": {
+    "issued": 1000,
+    "extinguished": 975,
+    "outstanding": 25,
+    "difference": 0
+  },
+  "simulatedPayout": 832,
+  "simulatedCashRemaining": 168,
+  "funding": [
+    {
+      "id": "L2_0",
+      "member": "synthetic-bob",
+      "category": "purchased",
+      "redeemable": true,
+      "provenance": "payment:CAP",
+      "created": 1791889026692,
+      "held": false,
+      "available": 0,
+      "reserved": 0,
+      "pending": 0
+    },
+    {
+      "id": "L6_1",
+      "member": "synthetic-alice",
+      "category": "sale",
+      "redeemable": true,
+      "provenance": "payment:CAP",
+      "created": 1791889026692,
+      "parentLot": "L2_0",
+      "held": false,
+      "available": 25,
+      "reserved": 0,
+      "pending": 0
+    },
+    {
+      "id": "L8_2",
+      "member": "synthetic-bob",
+      "category": "sale",
+      "redeemable": true,
+      "provenance": "payment:CAP",
+      "created": 1791889026692,
+      "parentLot": "L6_1",
+      "held": false,
+      "available": 0,
+      "reserved": 0,
+      "pending": 0
+    }
+  ]
+}

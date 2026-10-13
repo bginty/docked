@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-13T10:53:22.823Z",
+  "passed": true,
+  "migration": "credit-only-policy-20261013-v1",
+  "storage": "Existing private aggregate and append-only history; no SQL schema change",
+  "beforeHash": "3d0a3630c3203fd2d6a9494b2929aa9946c2181ad0c6c1ffcc2c086342d26e24",
+  "afterHash": "3d0a3630c3203fd2d6a9494b2929aa9946c2181ad0c6c1ffcc2c086342d26e24",
+  "version": "credit-only-2026-10-13-v1",
+  "windows": 0,
+  "noBalanceOrOwnershipMutation": true
+}

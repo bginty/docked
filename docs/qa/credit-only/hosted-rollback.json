@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-13T10:50:38.567Z",
+  "passed": true,
+  "checks": [
+    "Hosted existing allocator: two dedicated nine-card purchases, idempotent receipts, opened cards, zero balances",
+    "Hosted server-time free window: both ownership transfers and zero fees committed together inside rollback acceptance",
+    "Ordinary Data API role cannot read private wallet aggregate; member cannot set fee window"
+  ],
+  "unchangedFingerprint": "59b298a2d3fbfdffa512bf8dea328559171a3c4552a8c3c5c9ea52f44c57a706",
+  "noPersistentAwards": true
+}

@@ -13,6 +13,12 @@ import {
 } from "./commerce-sandbox";
 import { creditsPolicy, sellerQuote } from "./credits-policy";
 import { generatePrizes, type PrizeRegister } from "./prize-register";
+import {
+  creditsFromAudCents,
+  newCreditOnly,
+  swapFeeQuote,
+  type CreditOnly,
+} from "./credit-only";
 
 // Operator-only domain. No public route accepts an actor, provider claim or balance.
 // This state cannot be attached to the friends beta or used for real money.
@@ -25,6 +31,7 @@ type Lot = {
   redeemable: boolean;
   provenance: string;
   created: number;
+  parentLot?: string;
 };
 type Line = { account: string; credits: number };
 type Journal = {
@@ -60,6 +67,7 @@ type Withdrawal = {
 };
 export type CreditsState = {
   mode: "financial-sandbox-only";
+  creditOnly?: CreditOnly;
   economy?: CardEconomy;
   policy: Omit<
     typeof creditsPolicy,
@@ -93,6 +101,9 @@ export type CreditsState = {
       clearAt?: number;
       status: "AWAITING" | "PENDING" | "FULFILLED" | "REVIEW" | "CANCELLED";
       refunded: number;
+      creditOnly?: boolean;
+      merchant?: string;
+      settlement?: { reference: string; net: number; fees: number; at: number };
     }
   >;
   entitlements: Record<
@@ -128,6 +139,7 @@ export type CreditsState = {
       expires: number;
       status: "OPEN" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "EXPIRED";
       feeEach: number;
+      completedFeeEach?: number;
     }
   >;
   providerEvents: Record<string, string>;
@@ -171,6 +183,22 @@ const amount = z.number().int().positive().max(1_000_000_000);
 const reason = z.string().trim().min(12).max(600);
 const base = <T extends z.ZodRawShape>(shape: T) => z.object(shape).strict();
 export const creditsCommand = z.discriminatedUnion("kind", [
+  base({ kind: z.literal("credit-only-policy"), reason }),
+  base({
+    kind: z.literal("swap-window"),
+    start: z.number().int().nonnegative(),
+    end: z.number().int().nonnegative(),
+    reason,
+  }),
+  base({ kind: z.literal("credit-deposit"), cents: amount }),
+  base({
+    kind: z.literal("settlement"),
+    deposit: id,
+    reference: id,
+    net: z.number().int().nonnegative(),
+    fees: z.number().int().nonnegative(),
+    verified: z.literal(true),
+  }),
   base({ kind: z.literal("deposit"), product: id }),
   base({ kind: z.literal("bind"), deposit: id, providerOrder: id }),
   base({
@@ -182,6 +210,7 @@ export const creditsCommand = z.discriminatedUnion("kind", [
     amount,
     currency: z.literal("AUD"),
     verified: z.literal(true),
+    merchant: id.optional(),
   }),
   base({ kind: z.literal("clear"), deposit: id }),
   base({ kind: z.literal("cancel-deposit"), deposit: id }),
@@ -208,11 +237,12 @@ export const creditsCommand = z.discriminatedUnion("kind", [
     other: id,
     give: z.array(id).min(1).max(10),
     take: z.array(id).min(1).max(10),
-    feeEach: z.literal(50),
+    feeEach: z.union([z.literal(0), z.literal(50)]),
   }),
   base({
     kind: z.enum(["accept", "reject", "cancel-swap", "expire-swap"]),
     swap: id,
+    feeEach: z.union([z.literal(0), z.literal(50)]).optional(),
   }),
   base({
     kind: z.literal("promotion"),
@@ -315,6 +345,7 @@ export const creditsCommand = z.discriminatedUnion("kind", [
 export function initialCredits(): CreditsState {
   return {
     mode: "financial-sandbox-only",
+    creditOnly: newCreditOnly(),
     policy: structuredClone(creditsPolicy),
     commerce: initialCommerce(),
     lots: {},
@@ -339,7 +370,10 @@ export function initialCredits(): CreditsState {
 const account = (lot: string, bucket: Bucket) => `lot:${lot}:${bucket}`;
 const held = (s: CreditsState, lot: Lot) =>
   Object.values(s.cases).some(
-    (c) => c.member === lot.member && c.status === "OPEN",
+    (c) =>
+      c.member === lot.member &&
+      c.status === "OPEN" &&
+      !s.deposits[c.reference],
   ) ||
   Object.values(s.deposits).some(
     (d) =>
@@ -369,7 +403,7 @@ export function wallet(s: CreditsState, member: string) {
       total[bucket] += b[account(lot.id, bucket)] ?? 0;
     if (held(s, lot))
       total.heldAvailable += b[account(lot.id, "available")] ?? 0;
-    else if (lot.redeemable)
+    else if (lot.redeemable && (!s.creditOnly || lot.category !== "purchased"))
       total.withdrawable += b[account(lot.id, "available")] ?? 0;
   }
   total.total = total.available + total.pending + total.reserved;
@@ -378,6 +412,7 @@ export function wallet(s: CreditsState, member: string) {
     spendable: total.available - total.heldAvailable,
     label: "Docked Credits · financial sandbox · no cash value",
     withdrawableIsSubset: true,
+    restricted: total.available - total.withdrawable,
   };
 }
 export function validateCredits(s: CreditsState) {
@@ -388,6 +423,33 @@ export function validateCredits(s: CreditsState) {
     s.policy.approval !== "PROPOSED_SANDBOX_ONLY"
   )
     throw Error("Sandbox boundary");
+  if (s.creditOnly) {
+    if (
+      s.creditOnly.version !== newCreditOnly().version ||
+      s.creditOnly.spending !== "FIFO" ||
+      s.creditOnly.unusedPurchasedWithdrawable !== false
+    )
+      throw Error("Credit-only policy invariant");
+    for (const w of s.creditOnly.windows)
+      if (
+        w.scope !== s.mode ||
+        !Number.isSafeInteger(w.start) ||
+        !Number.isSafeInteger(w.end) ||
+        w.end <= w.start ||
+        w.recordedAt > w.start
+      )
+        throw Error("Swap window invariant");
+  }
+  for (const l of Object.values(s.lots)) {
+    if (
+      l.parentLot &&
+      (!s.lots[l.parentLot] ||
+        s.lots[l.parentLot].provenance !== l.provenance ||
+        s.lots[l.parentLot].created > l.created ||
+        l.parentLot === l.id)
+    )
+      throw Error("Funding provenance invariant");
+  }
   let prior = "GENESIS";
   for (const j of s.journal) {
     const { hash, ...body } = j;
@@ -492,10 +554,12 @@ export function executeCredits(
     return lid;
   };
   const select = (who: string, n: number, redeemableOnly = false) => {
+    if (!n) return [];
     // Proposed sandbox review hold only: no automatic debt or seizure of cards.
     if (
       Object.values(s.cases).some(
-        (c) => c.member === who && c.status === "OPEN",
+        (c) =>
+          c.member === who && c.status === "OPEN" && !s.deposits[c.reference],
       )
     )
       throw Error("Open recovery review; funds eligibility unresolved");
@@ -504,12 +568,17 @@ export function executeCredits(
     for (const l of Object.values(s.lots)
       .filter(
         (l) =>
-          l.member === who && !held(s, l) && (!redeemableOnly || l.redeemable),
+          l.member === who &&
+          !held(s, l) &&
+          (!redeemableOnly ||
+            (l.redeemable && (!s.creditOnly || l.category !== "purchased"))),
       )
       .sort(
         (a, b) =>
-          s.policy.spendingOrder.indexOf(a.category) -
-            s.policy.spendingOrder.indexOf(b.category) ||
+          (s.creditOnly
+            ? 0
+            : s.policy.spendingOrder.indexOf(a.category) -
+              s.policy.spendingOrder.indexOf(b.category)) ||
           a.created - b.created ||
           a.id.localeCompare(b.id),
       )) {
@@ -577,7 +646,78 @@ export function executeCredits(
       throw Error("Verified current KYC required");
   };
   let result: unknown = { ok: true };
-  if (c.kind === "buy-pack" && s.economy) {
+  if (c.kind === "credit-only-policy") {
+    admin();
+    s.creditOnly ??= newCreditOnly();
+  } else if (c.kind === "swap-window") {
+    admin();
+    if (!s.creditOnly || c.start < now || c.end <= c.start)
+      throw Error("Future, bounded swap window required");
+    if (s.creditOnly.windows.some((w) => c.start < w.end && c.end > w.start))
+      throw Error("Overlapping swap window");
+    s.creditOnly.windows.push({
+      id: request,
+      start: c.start,
+      end: c.end,
+      scope: s.mode,
+      actor: actor.id,
+      reason: c.reason,
+      recordedAt: now,
+    });
+  } else if (c.kind === "credit-deposit") {
+    member();
+    if (!s.creditOnly) throw Error("Credit-only policy required");
+    s.deposits[request] = {
+      member: actor.id,
+      product: "credits-only",
+      amount: creditsFromAudCents(c.cents),
+      order: request,
+      status: "AWAITING",
+      refunded: 0,
+      creditOnly: true,
+      merchant: s.creditOnly.merchant,
+    };
+    result = {
+      id: request,
+      amount: c.cents,
+      currency: "AUD",
+      status: "AWAITING",
+      bonus: null,
+    };
+  } else if (c.kind === "settlement") {
+    provider();
+    const d = deposit(c.deposit);
+    if (
+      !d.creditOnly ||
+      !d.capture ||
+      d.status === "REVIEW" ||
+      c.net + c.fees !== d.amount ||
+      !Number.isSafeInteger(c.net + c.fees)
+    )
+      throw Error("Verified settlement must match confirmed payment");
+    const data = { reference: c.reference, net: c.net, fees: c.fees };
+    if (d.settlement) {
+      if (
+        d.settlement.reference !== c.reference ||
+        d.settlement.net !== c.net ||
+        d.settlement.fees !== c.fees
+      )
+        throw Error("Settlement conflict");
+    } else {
+      if (!event("settlement-reference", c.reference, c.deposit))
+        throw Error("Settlement already applied");
+      post(
+        "settlement",
+        [
+          { account: "system:provider-receivable", credits: d.amount },
+          { account: "system:provider-cash", credits: -c.net },
+          { account: "system:processing-fees", credits: -c.fees },
+        ],
+        "Simulated provider settlement; fees do not reduce customer allocation",
+      );
+      d.settlement = { ...data, at: now };
+    }
+  } else if (c.kind === "buy-pack" && s.economy) {
     if (!s.economy.enabled) throw Error("Pack purchasing is paused");
     member();
     policy(c.policy);
@@ -644,6 +784,10 @@ export function executeCredits(
     if (s.commerce.orders[request]) throw Error("Order reference collision");
     let parts: ReturnType<typeof select> = [];
     if (c.kind === "deposit") {
+      if (s.creditOnly)
+        throw Error(
+          "Legacy deposit bonus offer retired; use credit-only funding",
+        );
       const used = Object.values(s.deposits).filter(
         (d) =>
           d.member === actor.id &&
@@ -708,18 +852,28 @@ export function executeCredits(
     provider();
     const d = deposit(c.deposit);
     if (d.status !== "AWAITING") throw Error("Deposit not awaiting payment");
-    commerce(actor, request, {
-      kind: "bind-paypal",
-      order: d.order,
-      providerOrder: c.providerOrder,
-    });
+    if (!d.creditOnly)
+      commerce(actor, request, {
+        kind: "bind-paypal",
+        order: d.order,
+        providerOrder: c.providerOrder,
+      });
+    if (d.provider && d.provider !== c.providerOrder)
+      throw Error("Provider binding immutable");
+    if (
+      Object.values(s.deposits).some(
+        (x) => x !== d && x.provider === c.providerOrder,
+      )
+    )
+      throw Error("Provider order already bound");
     d.provider = c.providerOrder;
   } else if (c.kind === "cancel-deposit") {
     const d = deposit(c.deposit);
     own(d.member);
     if (d.status !== "AWAITING")
       throw Error("Confirmed payment requires refund review");
-    commerce(actor, request, { kind: "cancel", order: d.order });
+    if (!d.creditOnly)
+      commerce(actor, request, { kind: "cancel", order: d.order });
     d.status = "CANCELLED";
   } else if (c.kind === "expire-deposits") {
     admin();
@@ -727,12 +881,15 @@ export function executeCredits(
     for (const d of Object.values(s.deposits))
       if (
         d.status === "AWAITING" &&
+        !d.creditOnly &&
         s.commerce.orders[d.order].status === "EXPIRED"
       )
         d.status = "CANCELLED";
   } else if (c.kind === "capture") {
     provider();
     const d = deposit(c.deposit);
+    if (d.creditOnly && c.merchant !== d.merchant)
+      throw Error("Verified merchant mismatch");
     if (event("capture-event", c.event, c)) {
       const signature = [c.deposit, c.providerOrder, c.amount, c.currency];
       const first = event("capture-id", c.capture, signature);
@@ -750,17 +907,18 @@ export function executeCredits(
             reference: c.capture,
           };
         } else {
-          commerce(actor, request, {
-            kind: "payment",
-            order: d.order,
-            event: c.event,
-            providerOrder: c.providerOrder,
-            capture: c.capture,
-            cents: c.amount,
-            currency: "AUD",
-            confirmed: true,
-          });
-          if (s.commerce.orders[d.order].status !== "PAID") {
+          if (!d.creditOnly)
+            commerce(actor, request, {
+              kind: "payment",
+              order: d.order,
+              event: c.event,
+              providerOrder: c.providerOrder,
+              capture: c.capture,
+              cents: c.amount,
+              currency: "AUD",
+              confirmed: true,
+            });
+          if (!d.creditOnly && s.commerce.orders[d.order].status !== "PAID") {
             d.status = "REVIEW";
             s.cases[request] = {
               reason:
@@ -773,7 +931,7 @@ export function executeCredits(
             d.lot = lot(
               d.member,
               "purchased",
-              s.policy.purchasedWithdrawable,
+              d.creditOnly ? true : s.policy.purchasedWithdrawable,
               `payment:${c.capture}`,
             );
             d.capture = c.capture;
@@ -783,17 +941,23 @@ export function executeCredits(
               "deposit",
               [
                 { account: account(d.lot, "pending"), credits: d.amount },
-                { account: "system:provider-cash", credits: -d.amount },
+                {
+                  account: d.creditOnly
+                    ? "system:provider-receivable"
+                    : "system:provider-cash",
+                  credits: -d.amount,
+                },
               ],
               "Verified sandbox payment; member liability, not revenue",
             );
-            s.entitlements[d.order] = {
-              member: d.member,
-              order: d.order,
-              source: c.capture,
-              status: "SEALED",
-              restricted: true,
-            };
+            if (!d.creditOnly)
+              s.entitlements[d.order] = {
+                member: d.member,
+                order: d.order,
+                source: c.capture,
+                status: "SEALED",
+                restricted: true,
+              };
           }
         }
       }
@@ -815,7 +979,10 @@ export function executeCredits(
       );
       d.status = "FULFILLED";
     }
-    result = { entitlement: d.order, wallet: wallet(s, d.member) };
+    result = {
+      entitlement: d.creditOnly ? null : d.order,
+      wallet: wallet(s, d.member),
+    };
   } else if (c.kind === "open-pack") {
     const e = s.entitlements[c.entitlement];
     if (!e) throw Error("Unknown entitlement");
@@ -888,6 +1055,7 @@ export function executeCredits(
           s.lots[part.lot].redeemable && !meta.restricted,
           s.lots[part.lot].provenance,
         );
+        s.lots[dest].parentLot = part.lot;
         lines.push({ account: account(dest, "available"), credits: net });
       }
     }
@@ -908,8 +1076,11 @@ export function executeCredits(
       throw Error("Invalid swap");
     c.give.forEach((v) => canTrade(v, actor.id));
     c.take.forEach((v) => canTrade(v, c.other));
-    select(actor.id, 50);
-    select(c.other, 50);
+    const fee = swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now).feeEach;
+    if (c.feeEach !== fee)
+      throw Error("Swap fee changed; review a fresh quote");
+    select(actor.id, fee);
+    select(c.other, fee);
     s.swaps[request] = {
       member: actor.id,
       other: c.other,
@@ -918,9 +1089,9 @@ export function executeCredits(
       versions: [...c.give, ...c.take].map((v) => s.cards[v].version),
       expires: now + 86400000,
       status: "OPEN",
-      feeEach: 50,
+      feeEach: fee,
     };
-    result = { offer: request, feeEach: 50, total: 100 };
+    result = { offer: request, feeEach: fee, total: fee * 2 };
   } else if (
     ["accept", "reject", "cancel-swap", "expire-swap"].includes(c.kind)
   ) {
@@ -946,16 +1117,27 @@ export function executeCredits(
             offer.versions[i],
           ),
         );
-        const a = select(offer.member, 50),
-          b = select(offer.other, 50);
+        const fee = swapFeeQuote(
+          s.creditOnly,
+          s.policy.swapFeeEach,
+          now,
+        ).feeEach;
+        if (fee > offer.feeEach)
+          throw Error(
+            "Swap fee increased; both participants must consent to a new offer",
+          );
+        if (s.creditOnly && c.feeEach !== fee)
+          throw Error("Swap fee changed; review before accepting");
+        const a = select(offer.member, fee),
+          b = select(offer.other, fee);
         post(
           "swap",
           [
             ...debit(a),
             ...debit(b),
-            { account: "system:swap-fees", credits: 100 },
+            { account: "system:swap-fees", credits: fee * 2 },
           ],
-          "Completed pure swap: 50 per participant",
+          `Completed pure swap: ${fee} per participant`,
         );
         offer.give.forEach((v) => transfer(v, offer.other, c.swap));
         offer.take.forEach((v) => transfer(v, offer.member, c.swap));
@@ -965,6 +1147,7 @@ export function executeCredits(
           for (const v of [...offer.give, ...offer.take])
             s.cards[v].restricted = true;
         offer.status = "ACCEPTED";
+        offer.completedFeeEach = fee;
       }
     }
   } else if (c.kind === "fund") {
@@ -1143,7 +1326,10 @@ export function executeCredits(
     const b = s.commerce.beneficiaries[c.beneficiary];
     if (!b?.verified || b.member !== actor.id)
       throw Error("Verified beneficiary required");
-    if (c.amount < s.policy.minimumWithdrawal || s.withdrawals[request])
+    if (
+      (!s.creditOnly && c.amount < s.policy.minimumWithdrawal) ||
+      s.withdrawals[request]
+    )
       throw Error("Minimum or duplicate withdrawal");
     const parts = select(actor.id, c.amount, true);
     post(
@@ -1171,6 +1357,8 @@ export function executeCredits(
     if (w.status !== "REQUESTED" && w.status !== "REVIEWED")
       throw Error("Cannot cancel submitted/uncertain payout");
     if (c.action === "approve") {
+      if (w.parts.some((p) => held(s, s.lots[p.lot])))
+        throw Error("Funding review blocks approval");
       kyc(w.member);
       if (!s.commerce.beneficiaries[w.beneficiary]?.verified)
         throw Error("Beneficiary revoked");
@@ -1261,12 +1449,22 @@ export function executeCredits(
           ? "pending"
           : "available";
       const enough = d.lot && (b[account(d.lot, bucket)] ?? 0) >= delta;
-      if (!c.dispute && enough && e && e.status !== "OPENED") {
+      if (
+        !c.dispute &&
+        enough &&
+        (d.creditOnly || (e && e.status !== "OPENED"))
+      ) {
         post(
           "refund",
           [
             { account: account(d.lot!, bucket), credits: -delta },
-            { account: "system:provider-cash", credits: delta },
+            {
+              account:
+                d.creditOnly && !d.settlement
+                  ? "system:provider-receivable"
+                  : "system:provider-cash",
+              credits: delta,
+            },
           ],
           "Verified cumulative refund; compensating entry",
         );
@@ -1276,7 +1474,13 @@ export function executeCredits(
             "refund-review",
             [
               { account: "system:recovery-review", credits: -delta },
-              { account: "system:provider-cash", credits: delta },
+              {
+                account:
+                  d.creditOnly && !d.settlement
+                    ? "system:provider-receivable"
+                    : "system:provider-cash",
+                credits: delta,
+              },
             ],
             "Provider refund cash movement; liability unresolved, no confiscation",
           );
@@ -1334,6 +1538,25 @@ export function financialReport(s: CreditsState) {
     if (l.redeemable) redeemableLiability += n;
   }
   const cash = -(b["system:provider-cash"] ?? 0) || 0;
+  const members = [...new Set(Object.values(s.lots).map((l) => l.member))];
+  const balances = members.map((member) => ({ member, ...wallet(s, member) }));
+  let issued = 0,
+    extinguished = 0;
+  // Crossing the member-ledger boundary is issuance/extinguishment. Resale and
+  // reservations have zero net member movement except the explicit seller fee.
+  for (const j of s.journal) {
+    const net = j.lines
+      .filter((l) => l.account.startsWith("lot:"))
+      .reduce((n, l) => n + l.credits, 0);
+    if (net > 0) issued += net;
+    else extinguished -= net;
+  }
+  const outstanding = balances.reduce((n, w) => n + w.total, 0);
+  const receivable = -(b["system:provider-receivable"] ?? 0) || 0;
+  const disputedBacking = Object.values(s.deposits)
+    .filter((d) => d.status === "REVIEW" && d.capture)
+    .reduce((n, d) => n + d.amount - d.refunded, 0);
+  const processingFees = -(b["system:processing-fees"] ?? 0) || 0;
   return {
     mode: s.mode,
     currency: "AUD",
@@ -1342,11 +1565,56 @@ export function financialReport(s: CreditsState) {
     simulatedProviderCash: cash,
     actualProviderBalance: null,
     actualBankBalance: null,
+    creditOnlyVersion: s.creditOnly?.version ?? "LEGACY",
+    reportingScope: "TEST_ONLY_EXCLUDED_FROM_COMMERCIAL_TOTALS",
+    commercialPayments: 0,
+    confirmedGrossPayments: Object.values(s.deposits)
+      .filter((d) => d.capture)
+      .reduce((n, d) => n + d.amount, 0),
+    providerReceivable: receivable,
+    settledNetReceipts: Object.values(s.deposits).reduce(
+      (n, d) => n + (d.settlement?.net ?? 0),
+      0,
+    ),
+    processingFees,
+    refunds: Object.values(s.deposits).reduce((n, d) => n + d.refunded, 0),
+    disputedBacking,
+    eligibleSimulatedBacking: Math.max(0, cash + receivable - disputedBacking),
+    balances,
+    circulation: {
+      issued,
+      extinguished,
+      outstanding,
+      difference: issued - extinguished - outstanding,
+    },
+    unbalancedTransactions: s.journal
+      .filter((j) => j.lines.reduce((n, l) => n + l.credits, 0) !== 0)
+      .map((j) => j.id),
+    fundingLots: Object.values(s.lots).map((l) => ({
+      ...l,
+      held: held(s, l),
+      available: b[account(l.id, "available")] ?? 0,
+      reserved: b[account(l.id, "reserved")] ?? 0,
+      pending: b[account(l.id, "pending")] ?? 0,
+    })),
+    transactions: s.journal.map((j) => ({ ...j, environment: s.mode })),
+    legacyReview: {
+      bonusEntitlements: Object.entries(s.entitlements)
+        .filter(([, e]) => !e.source.endsWith("_pack"))
+        .map(([id]) => id),
+      unbackedTestGrants: Object.values(s.lots)
+        .filter((l) => ["promotional", "competition"].includes(l.category))
+        .map((l) => l.id),
+      policy: "Preserved; no conversion, regrant or fabricated payment",
+    },
     suppliedReconciliation: s.reconciliation,
     reconciliationDifference: s.reconciliation
-      ? s.reconciliation.balance - s.reconciliation.reserves - cash
+      ? s.reconciliation.balance + s.reconciliation.reserves - cash
       : null,
-    backingShortfall: Math.max(0, redeemableLiability - cash),
+    backingShortfall: Math.max(
+      0,
+      redeemableLiability - Math.max(0, cash - disputedBacking),
+    ),
     commission: b["system:commission"] ?? 0,
     swapFees: b["system:swap-fees"] ?? 0,
     packRevenue: b["system:pack-revenue"] ?? 0,
@@ -1357,6 +1625,9 @@ export function financialReport(s: CreditsState) {
       .filter((w) =>
         ["REQUESTED", "REVIEWED", "SUBMITTED", "UNCERTAIN"].includes(w.status),
       )
+      .reduce((n, w) => n + w.amount, 0),
+    completedWithdrawals: Object.values(s.withdrawals)
+      .filter((w) => w.status === "PAID")
       .reduce((n, w) => n + w.amount, 0),
     deposits: Object.values(s.deposits),
     bonusEntitlements: Object.values(s.entitlements).filter(

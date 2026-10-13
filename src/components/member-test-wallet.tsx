@@ -9,6 +9,8 @@ import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { EconomyCatalogue } from "./economy-catalogue";
 import { EconomyOwnerReport } from "./economy-owner-report";
+import { audEquivalent } from "@/core/credit-only";
+import { sellerQuote } from "@/core/credits-policy";
 export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
   const [s, setS] = useState(initial),
     [busy, setBusy] = useState(false),
@@ -81,6 +83,12 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
   const p = s.packs.find((p) => p.id === pack);
   const label = (id: string) =>
     s.peers.find((p) => p.id === id)?.label ?? "Invited member";
+  const sydney = (n: number) =>
+    new Date(n).toLocaleString("en-AU", {
+      timeZone: "Australia/Sydney",
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
   return (
     <main className="test-wallet">
       <header>
@@ -100,6 +108,28 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
         <p>
           Available {s.wallet.available.toLocaleString()} · reserved{" "}
           {s.wallet.reserved.toLocaleString()}
+        </p>
+        <p>
+          100 Docked Credits = A$1.00. Display equivalent:{" "}
+          {audEquivalent(s.wallet.total)}. Test balances cannot be redeemed.
+        </p>
+        <details>
+          <summary>Balance breakdown</summary>
+          <p>
+            Total {s.wallet.total} · available to spend {s.wallet.spendable} ·
+            pending {s.wallet.pending} · reserved {s.wallet.reserved}.
+          </p>
+          <p>
+            Restricted from withdrawal {s.wallet.restricted} · eligible to
+            withdraw {s.wallet.withdrawable}. Eligibility is part of your
+            balance, not extra credits.
+          </p>
+        </details>
+        <button disabled>Buy credits · unavailable</button>{" "}
+        <button disabled>Withdraw · unavailable</button>
+        <p>
+          Deposits and withdrawals are disabled. Packs and marketplace cards use
+          test credits only. Fantasy salary budgets never spend credits.
         </p>
       </section>
       {error && <p role="alert">{error}</p>}
@@ -272,7 +302,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                     const price = Number(
                       new FormData(e.currentTarget).get("price"),
                     );
-                    const fee = Math.floor((price * 750 + 5000) / 10000);
+                    const fee = sellerQuote(price).fee;
                     if (
                       confirm(
                         `List for ${price} test credits? Seller fee ${fee}; you receive ${price - fee}.`,
@@ -359,9 +389,8 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                 {s.cards.find((c) => c.id === l.card)?.name} · {label(l.member)}
               </h3>
               <p>
-                {l.price} test credits · fee{" "}
-                {Math.floor((l.price * 750 + 5000) / 10000)} · seller receives{" "}
-                {l.price - Math.floor((l.price * 750 + 5000) / 10000)}
+                {l.price} test credits · fee {sellerQuote(l.price).fee} · seller
+                receives {sellerQuote(l.price).net}
               </p>
               {l.member === s.member ? (
                 <button
@@ -394,9 +423,18 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
         <h2>Test card swaps</h2>
         <p>{sevenTransferNotice}</p>
         <p>
-          50 test credits each, charged only when both transfers complete. No
-          fee for rejection or cancellation. Choose the other member's listed
-          test card to propose a swap.
+          {s.swapQuote.feeEach} test credits each, charged only when both
+          transfers complete. No fee for rejection or cancellation. Choose the
+          other member's listed test card to propose a swap.
+        </p>
+        <p role="status">
+          {s.swapQuote.free
+            ? `Free swap window open until ${sydney(s.swapQuote.closes!)} Sydney.`
+            : s.swapQuote.opens
+              ? `Next free swap window: ${sydney(s.swapQuote.opens)} Sydney.`
+              : "No free swap window scheduled."}{" "}
+          Only swap fees are waived; pack prices and sale commission still
+          apply.
         </p>
         <form
           onSubmit={(e) => {
@@ -409,7 +447,7 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                 other: listing.member,
                 give: [String(f.get("give"))],
                 take: [listing.card],
-                feeEach: 50,
+                feeEach: s.swapQuote.feeEach,
               });
           }}
         >
@@ -436,7 +474,9 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                 ))}
             </select>
           </label>
-          <button disabled={busy}>Propose swap · 50 each</button>
+          <button disabled={busy}>
+            Propose swap · {s.swapQuote.feeEach} each
+          </button>
         </form>
         {s.swaps.map((x) => (
           <article key={x.id}>
@@ -455,7 +495,18 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
                 .map((id) => s.cards.find((c) => c.id === id)?.name + " " + id)
                 .join(", ")}
             </p>
-            <p>Each participant pays 50 test credits on completion.</p>
+            <p>
+              Each participant:{" "}
+              {x.completedFeeEach ??
+                (x.status === "OPEN" ? s.swapQuote.feeEach : x.feeEach)}{" "}
+              test credits. Original consent: {x.feeEach} each.
+            </p>
+            {x.status === "OPEN" && s.swapQuote.feeEach > x.feeEach && (
+              <p>
+                A free window has ended. Cancel and create a new offer so both
+                participants can consent to the fee.
+              </p>
+            )}
             {x.status === "OPEN" &&
               (x.member === s.member ? (
                 <button
@@ -467,14 +518,18 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
               ) : (
                 <>
                   <button
-                    disabled={busy}
+                    disabled={busy || s.swapQuote.feeEach > x.feeEach}
                     onClick={() => {
                       if (
                         confirm(
-                          "Accept both sides of this swap and pay 50 test credits?",
+                          `Accept both sides of this swap and pay ${s.swapQuote.feeEach} test credits each?`,
                         )
                       )
-                        act({ kind: "accept", swap: x.id });
+                        act({
+                          kind: "accept",
+                          swap: x.id,
+                          feeEach: s.swapQuote.feeEach,
+                        });
                     }}
                   >
                     Accept swap
@@ -507,7 +562,79 @@ export function MemberTestWallet({ initial }: { initial: MemberTestView }) {
             No cash backing or payment provider is connected. Grants remain
             restricted to the audited owner operation.
           </p>
-          <pre>{JSON.stringify(s.ownerReport, null, 2)}</pre>
+          <p>
+            Test circulation:{" "}
+            {s.ownerReport.circulation.outstanding.toLocaleString()} ·
+            reconciliation difference {s.ownerReport.circulation.difference}.
+            Commercial payments: 0.
+          </p>
+          <p>
+            Marketplace turnover {s.ownerReport.marketplaceVolume} · seller
+            commission {s.ownerReport.commission} · swap fees{" "}
+            {s.ownerReport.swapFees} · pack spend {s.ownerReport.packRevenue}.
+            These are test flows, not accounting revenue.
+          </p>
+          <a href="/api/test-wallet?format=csv">Export test ledger CSV</a>
+          <details>
+            <summary>Funding, balances and reconciliation evidence</summary>
+            <pre>{JSON.stringify(s.ownerReport, null, 2)}</pre>
+          </details>
+          <h3>Schedule a test swap-free window</h3>
+          <p>
+            Immutable schedule; enter explicit Sydney UTC offset (for example
+            +11:00 during daylight saving). Applies only to this financial test
+            economy.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const f = new FormData(e.currentTarget);
+              const start = Date.parse(String(f.get("start"))),
+                end = Date.parse(String(f.get("end")));
+              if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end)) {
+                setError("Enter valid timestamps including the UTC offset.");
+                return;
+              }
+              if (
+                confirm(
+                  `Schedule zero swap fees from ${sydney(start)} to ${sydney(end)} Sydney?`,
+                )
+              )
+                act({
+                  kind: "swap-window",
+                  start,
+                  end,
+                  reason: String(f.get("reason")),
+                });
+            }}
+          >
+            <label>
+              Start with UTC offset
+              <input
+                name="start"
+                placeholder="2026-10-20T09:00:00+11:00"
+                required
+              />
+            </label>
+            <label>
+              End with UTC offset
+              <input
+                name="end"
+                placeholder="2026-10-22T09:00:00+11:00"
+                required
+              />
+            </label>
+            <label>
+              Audit reason
+              <input name="reason" minLength={12} maxLength={600} required />
+            </label>
+            <button disabled={busy}>Review window</button>
+          </form>
+          {s.swapWindows.map((w) => (
+            <p key={w.id}>
+              {sydney(w.start)} – {sydney(w.end)} Sydney · {w.reason}
+            </p>
+          ))}
           <EconomyOwnerReport state={s} />
         </section>
       )}

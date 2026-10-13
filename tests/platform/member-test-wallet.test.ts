@@ -148,7 +148,7 @@ test("test-card resale and swaps cannot create redeemable balances", () => {
     s,
     b,
     "accept",
-    { kind: "accept", swap: "offer" },
+    { kind: "accept", swap: "offer", feeEach: 50 },
     4500,
   ).state;
   s = executeCredits(

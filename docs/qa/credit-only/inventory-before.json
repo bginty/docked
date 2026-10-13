@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-13T10:41:59.281Z",
+  "revision": "33",
+  "policy": "invited-test-credits-2026-10-11-v1",
+  "creditOnly": null,
+  "journalCount": 13,
+  "journalHash": "3e49702cc6c5cdacfd0a432338c0bc9ef3784045239f495c3d6305995e6078ac",
+  "cards": 103,
+  "deposits": 0,
+  "withdrawals": 0,
+  "entitlements": 11,
+  "sealed": 1,
+  "legacyEntitlements": 4,
+  "products": [
+    {
+      "id": "premium-nine-test-v1",
+      "version": "premium-nine-test-v1",
+      "price": 1800
+    },
+    {
+      "id": "standard-nine-test-v1",
+      "version": "standard-nine-test-v1",
+      "price": 900
+    }
+  ],
+  "protected": [
+    {
+      "account": "owner",
+      "holdingsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "requestsHash": "c8faabaafa7e0f0e34fba263013921e33e1b847ebd5d3c6250b711df70fca276",
+      "walletHash": "3b8a09f5794fa67d3ab8bb51f2218ab7f39a5036981a4cdcb6a5c2aa265fa3a6"
+    },
+    {
+      "account": "invited-member",
+      "holdingsHash": "534b57f751a9be6ccc859564888acc51b0705eeefc75c3347f10d87505aefcd1",
+      "requestsHash": "8c0c01fb116c7e326fb33bf86f09f34ec7d2e6deab1e2d03a142b1f6cef715d3",
+      "walletHash": "9d1e0f1d703093241dd42e6d1ddb92f42efe36820d83ffc39837340c7df1b0f1"
+    }
+  ],
+  "commercialActivation": false
+}

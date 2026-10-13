@@ -13,6 +13,8 @@ export const provider: Operator = {
 };
 export function creditsFixture(units = 20) {
   const s = initialCredits();
+  // Existing legacy entitlement acceptance retains its original policy.
+  delete s.creditOnly;
   for (const p of s.policy.products) {
     const pool = Array.from({ length: units }, (_, i) => `${p.id}-${i}`);
     s.commerce.products[p.id] = {

@@ -1,3 +1,5 @@
+13 October 2026 — Credit-only economy: see [CREDIT_ONLY_RELEASE](CREDIT_ONLY_RELEASE.md). New isolated funding is credit-only; FIFO/provenance, settlement reconciliation and consent-safe swap-free windows extend the existing wallet. Real money remains disabled; historical grants, entitlements and seven-player competitions are preserved.
+
 13 October 2026 — [Seven-player NFL Salary Cap and Open](NFL_SEVEN_PLAYER_RELEASE.md) are live on docked.com.au at web commit e7d5e38f. Mandatory QB/2RB/2WR/TE/FLEX, independent drafts/entries, rolling locks and existing post-game scoring are connected. v22 receives the hosted update; no native rebuild required. Week 6 closes 16 October 11:15am Sydney. Hosted historical replay and domain ordinary-member acceptance passed; genuine Week 6 results, physical S24 and owner visual approval remain pending. Payments/prizes/withdrawals remain disabled.
 
 12 October 2026 - [NFL rarity member-round integration](NFL_RARITY_MEMBER_RELEASE.md) supersedes the v21 unfinished bridge. Isolated Week 6 closes 16 October 11:15am Sydney; replay evidence is separate from future genuine scores. See release receipts for deployment/APK status.

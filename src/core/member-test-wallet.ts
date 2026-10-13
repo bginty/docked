@@ -1,4 +1,5 @@
 import { rarityRule } from "./card-rarity";
+import { swapFeeQuote } from "./credit-only";
 import { economySupply, eligibleCatalogue } from "./card-economy";
 import {
   initialCredits,
@@ -173,6 +174,8 @@ export function memberTestView(
     member,
     policy: s.policy.version,
     wallet: wallet(s, member),
+    swapQuote: swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now),
+    swapWindows: owner ? (s.creditOnly?.windows ?? []) : [],
     peers,
     economyEnabled: !!s.economy?.enabled,
     products: s.economy?.enabled

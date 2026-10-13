@@ -3,6 +3,7 @@ import { z } from "zod";
 import { requireIdentity } from "./auth";
 import { db, rateLimit } from "./db";
 import { CreditsSandboxStore, CreditsRejected } from "./credits-sandbox-store";
+import { creditsCommand } from "@/core/credits-sandbox";
 import { refreshEconomyCatalogue } from "./economy-catalogue";
 import {
   memberTestCommand,
@@ -67,14 +68,20 @@ export async function memberTestWallet(input?: unknown) {
       .object({ request: z.string().uuid(), command: z.unknown() })
       .strict()
       .parse(input);
-    command = memberTestCommand(body.command);
+    const parsed = creditsCommand.parse(body.command);
+    if (parsed.kind === "swap-window") {
+      if (!isOwner || who.aal !== "aal2") throw Error("Owner MFA required");
+      command = parsed;
+    } else command = memberTestCommand(body.command);
     const other = command.kind === "offer" ? command.other : null;
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
     assertMemberTestEconomy(await store.read());
     try {
       result = await store.execute(
-        { id: who.user.id, role: "member" },
+        command.kind === "swap-window"
+          ? { id: who.user.id, role: "reviewer", aal: "aal2" }
+          : { id: who.user.id, role: "member" },
         body.request,
         command,
       );
