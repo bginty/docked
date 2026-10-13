@@ -23,7 +23,12 @@ export function CompetitionResults({
     [chosen, setChosen] = useState(initial ?? "");
   const options = rounds.filter((r) => r.mode === mode),
     r = options.find((r) => r.id === chosen) ?? options[0];
-  const rows = standings.find((s) => s.competitionId === r?.id)?.rows ?? [];
+  const scoredRows = standings.find((s) => s.competitionId === r?.id)?.rows ?? [];
+  // An accepted entry exists before the collector creates a scoring row.
+  // Show the viewer's own confirmed entry without inventing a rank or zero.
+  const rows = r?.entered && !scoredRows.some(x => x.isMe)
+    ? [...scoredRows, {name: "You", isMe: true, rank: null, points: null, status: Date.parse(r.closesAt) > Date.now() ? "Entered · awaiting game" : "Entered · awaiting statistics"}]
+    : scoredRows;
   return (
     <section className="scoring-review">
       <h1>NFL results & leaderboards</h1>
