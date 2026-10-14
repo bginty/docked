@@ -15,9 +15,19 @@ export function FantasyRewards({
   onOpenStarter?: () => void;
   onReplayStarter?: () => void;
 }) {
+  if (rewards.daily_available === false && rewards.starter_claimed)
+    return (
+      <details className="starter-history">
+        <summary>Starter pack opened</summary>
+        <p>Your original pack is saved. Select seven players in Play.</p>
+        {onReplayStarter && (
+          <button onClick={onReplayStarter}>View last starter pack</button>
+        )}
+      </details>
+    );
   if (rewards.daily_available === false)
     return (
-      <section className="fantasy-panel">
+      <section id="starter-pack" className="fantasy-panel">
         <h2>Your free NFL starter pack</h2>
         <p>
           Ten free CORE cards: 2 QB, 3 RB, 3 WR and 2 TE. Start seven, including

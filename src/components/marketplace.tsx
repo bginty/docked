@@ -8,6 +8,8 @@ import { cardIdentity, multiplierLabel } from "@/core/card-display";
 import { sellerQuote } from "@/core/credits-policy";
 import { sevenTransferNotice } from "@/core/nfl-seven";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { AcquisitionShare } from "./acquisition-share";
+import { PlayerShirt } from "./fantasy-player-sheet";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { MemberTestWallet } from "./member-test-wallet";
 import { SandboxSwaps } from "./sandbox-swaps";
@@ -180,7 +182,17 @@ export function Marketplace({ member }: { member: string }) {
         setListing(null);
         setCancel(null);
         setDetail(null);
-        setReceipt({ ...d.result, action: command.kind });
+        const confirmedCard =
+          d.state.inventory.find(
+            (c: { id: string }) => c.id === d.result.card,
+          ) ??
+          data?.rows.find((l) => l.id === command.listing)?.card ??
+          data?.inventory.find((c) => c.id === command.card);
+        setReceipt({
+          ...d.result,
+          action: command.kind,
+          displayCard: confirmedCard,
+        });
       }
       return d.result;
     } catch (e) {
@@ -286,38 +298,59 @@ export function Marketplace({ member }: { member: string }) {
         </div>
       )}
       {receipt && (
-        <section role="status">
-          <h2>
-            {receipt.action === "list"
-              ? "Listed"
-              : receipt.action === "cancel-listing"
-                ? "Cancelled"
-                : "Purchased"}
-          </h2>
-          <p>
-            {receipt.receipt
-              ? "Purchase completed. The card is now in your collection."
-              : "Your request was confirmed by Docked."}
-          </p>
-          {receipt.receipt ? (
+        <section className="market-success" role="status">
+          <PlayerShirt card={receipt.displayCard as Row["card"] | undefined} />
+          <div>
+            <h2>
+              {receipt.action === "list"
+                ? "Listed"
+                : receipt.action === "cancel-listing"
+                  ? "Cancelled"
+                  : "Purchased"}
+            </h2>
             <p>
-              Receipt{" "}
-              {String((receipt.receipt as { reference: string }).reference)} ·{" "}
-              {String((receipt.receipt as { price: number }).price)} Docked
-              Credits
+              {(receipt.displayCard as Row["card"] | undefined)?.name ??
+                "Card transaction confirmed"}
             </p>
-          ) : null}
-          {typeof receipt.listing === "string" && (
-            <Link
-              href={`/fantasy/market?listing=${encodeURIComponent(receipt.listing)}`}
-            >
-              View listing
-            </Link>
-          )}{" "}
-          ·<Link href="/fantasy/cards">View collection</Link> ·{" "}
-          <button onClick={() => navigate({ tab: "activity" })}>
-            View activity
-          </button>
+            {!!receipt.receipt && (
+              <p>
+                {String((receipt.receipt as { price: number }).price)} Docked
+                Credits
+              </p>
+            )}
+          </div>
+          <div className="success-actions">
+            {receipt.action === "buy" && typeof receipt.card === "string" ? (
+              <Link
+                className="button"
+                href={`/fantasy/cards?card=${encodeURIComponent(receipt.card)}`}
+              >
+                View card
+              </Link>
+            ) : (
+              typeof receipt.listing === "string" && (
+                <Link
+                  href={`/fantasy/market?listing=${encodeURIComponent(receipt.listing)}`}
+                >
+                  View listing
+                </Link>
+              )
+            )}
+            <button onClick={() => navigate({ tab: "activity" })}>
+              {receipt.receipt ? "View receipt" : "View activity"}
+            </button>
+          </div>
+          {receipt.action === "buy" &&
+            !!receipt.receipt &&
+            !!receipt.displayCard && (
+              <AcquisitionShare
+                member={member}
+                reference={String(
+                  (receipt.receipt as { reference: string }).reference,
+                )}
+                cards={[receipt.displayCard as Row["card"]]}
+              />
+            )}
         </section>
       )}
       {tab !== "swaps" && tab !== "activity" && (
@@ -619,24 +652,32 @@ export function Marketplace({ member }: { member: string }) {
           <div className="market-grid">
             {data.rows.map((l) => (
               <article key={l.id}>
-                <FantasyCardArtwork card={l.card} />
-                <h2>{l.card.name}</h2>
-                <p>
-                  {l.card.team} · {l.card.position} ·{" "}
-                  {l.card.tier.replaceAll("_", " ")}
-                </p>
-                <p>{cardIdentity(l.card)}</p>
-                <p>{multiplierLabel(l.card.tier)}</p>
-                <p>{l.card.gameplay}</p>
-                <p>Seller: {l.own ? "You" : l.seller}</p>
+                <FantasyCardArtwork
+                  card={l.card}
+                  onInspect={() => {
+                    setDetail(l);
+                    setReview(null);
+                  }}
+                />
+                <small className="listing-identity">
+                  {l.card.tier === "CORE"
+                    ? "Core · unlimited"
+                    : `#${l.card.serial} / ${l.card.max_supply.toLocaleString()}`}
+                </small>
                 <strong>{credits(l.price)} Docked Credits</strong>
-                <p>{l.status}</p>
+                <small>{l.status}</small>
+                {["K", "DEF", "DST"].includes(l.card.position) && (
+                  <p>Collectible only · no seven-player slot</p>
+                )}
                 {l.receipt && (
-                  <p>
-                    {l.direction} · {new Date(l.receipt.at).toLocaleString()} ·
-                    commission {credits(l.receipt.fee)} · seller receives{" "}
-                    {credits(l.receipt.net)} · receipt {l.receipt.reference}
-                  </p>
+                  <details>
+                    <summary>Transaction details</summary>
+                    <p>
+                      {l.direction} · {new Date(l.receipt.at).toLocaleString()}{" "}
+                      · commission {credits(l.receipt.fee)} · seller receives{" "}
+                      {credits(l.receipt.net)} · receipt {l.receipt.reference}
+                    </p>
+                  </details>
                 )}
                 <button
                   onClick={() => {

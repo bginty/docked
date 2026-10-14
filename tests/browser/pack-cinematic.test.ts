@@ -5,11 +5,13 @@ import { previewReceipt } from "../../src/components/pack-opening-preview";
 test("cinematic timing, background interruption and visual recording", async ({
   browser,
 }) => {
-  await mkdir("docs/qa/economy-v2/visual-recording", { recursive: true });
+  await mkdir("docs/qa/mobile-cleanup/cinematic-regression/visual-recording", {
+    recursive: true,
+  });
   const context = await browser.newContext({
     viewport: { width: 412, height: 915 },
     recordVideo: {
-      dir: "docs/qa/economy-v2/visual-recording",
+      dir: "docs/qa/mobile-cleanup/cinematic-regression/visual-recording",
       size: { width: 412, height: 915 },
     },
   });
@@ -39,6 +41,7 @@ test("cinematic timing, background interruption and visual recording", async ({
     "fantasy",
     "fantasy-play",
     "pack-opening",
+    "mobile-cleanup",
   ])
     await page.addStyleTag({
       content: await readFile(`src/app/${n}.css`, "utf8"),
@@ -49,32 +52,46 @@ test("cinematic timing, background interruption and visual recording", async ({
   await page.getByRole("button", { name: "Open viewer" }).click();
   await page.getByRole("button", { name: "Open pack seal" }).click();
   await expect(
-    page.getByRole("button", { name: "Skip animation" }),
+    page.getByRole("button", { name: "Skip remaining reveals" }),
   ).toBeVisible();
-  await page.waitForTimeout(1600);
-  await page.screenshot({ path: "docs/qa/economy-v2/cinematic-tunnel.png" });
-  await page.waitForTimeout(1700);
-  await page.screenshot({ path: "docs/qa/economy-v2/cinematic-burst.png" });
-  await expect(page.getByRole("button", { name: "Reveal next" })).toBeVisible({
+  await page.waitForTimeout(400);
+  await page.screenshot({
+    path: "docs/qa/mobile-cleanup/cinematic-regression/cinematic-tunnel.png",
+  });
+  await page.waitForTimeout(600);
+  await page.screenshot({
+    path: "docs/qa/mobile-cleanup/cinematic-regression/cinematic-burst.png",
+  });
+  await expect(
+    page.getByRole("button", { name: "Reveal next card" }),
+  ).toBeEnabled({
     timeout: 5000,
   });
-  await page.screenshot({ path: "docs/qa/economy-v2/cinematic-readable.png" });
-  await page.getByRole("button", { name: "Reveal next" }).click();
+  await page.screenshot({
+    path: "docs/qa/mobile-cleanup/cinematic-regression/cinematic-readable.png",
+  });
+  await page.getByRole("button", { name: "Reveal next card" }).click();
   await expect(
-    page.getByRole("button", { name: "Skip animation" }),
-  ).toHaveCount(0);
-  await page.getByRole("button", { name: "Reveal all", exact: true }).click();
+    page.getByRole("button", { name: "Skip remaining reveals" }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Skip remaining reveals", exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Replay saved result · no new cards" })
     .click();
   await expect(
-    page.getByRole("button", { name: "Skip animation" }),
+    page.getByRole("button", { name: "Skip remaining reveals" }),
   ).toBeVisible();
   await page.evaluate(() => window.dispatchEvent(new Event("pagehide")));
-  await expect(page.getByRole("button", { name: "Reveal next" })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Reveal next card" }),
+  ).toBeVisible();
   expect(opens).toBe(1);
   await context.close();
   await page
     .video()!
-    .saveAs("docs/qa/economy-v2/Docked-v21-simulated-visual-preview.webm");
+    .saveAs(
+      "docs/qa/mobile-cleanup/cinematic-regression/reveal-background-recovery.webm",
+    );
 });

@@ -55,8 +55,16 @@ export function FantasyPlay({
     return <LegacyFantasyPlay data={data} busy={busy} act={act} />;
   return (
     <>
+      <header className="compact-page-title">
+        <h1>Play</h1>
+        <details>
+          <summary>More</summary>
+          <button onClick={() => setMode("existing")}>Legacy rounds</button>
+          <Link href="/fantasy/test-wallet">Wallet</Link>
+        </details>
+      </header>
       <nav className="seven-mode-tabs" aria-label="NFL competition mode">
-        {(["SALARY_CAP", "OPEN", "existing"] as const).map((m) => (
+        {(["SALARY_CAP", "OPEN"] as const).map((m) => (
           <button key={m} aria-pressed={mode === m} onClick={() => setMode(m)}>
             {m === "SALARY_CAP"
               ? "Salary Cap"

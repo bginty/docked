@@ -14,7 +14,9 @@ async function main() {
   );
   assert.equal(d.state, "READY");
   const base = domain ? "https://docked.com.au" : d.url;
-  const folder = "docs/qa/marketplace-release";
+  const folder = process.argv.includes("--mobile")
+    ? "docs/qa/mobile-release"
+    : "docs/qa/marketplace-release";
   const access = await request.newContext();
   if (!domain) {
     const share = JSON.parse(
@@ -73,6 +75,7 @@ async function main() {
     "Marketplace/activity/wallet/collection deny anonymous access with private no-store responses",
   );
   for (const path of [
+    "/fantasy/social",
     "/fantasy/market",
     "/fantasy/cards",
     "/fantasy/test-wallet",
@@ -90,6 +93,10 @@ async function main() {
     assert.equal(r.headers.get("location"), base + "/app");
     checks.push("www retains HTTPS canonical redirect");
   }
+  const social = await get("/api/community?view=feed&tab=latest");
+  assert.equal(social.status, 200);
+  assert.equal(JSON.parse(social.body).posts?.length ?? 0, 0);
+  checks.push("Social route resolves and anonymous feed exposes no posts");
   const db = ownerDatabase();
   try {
     const audit = await db.begin(

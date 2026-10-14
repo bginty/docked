@@ -47,6 +47,7 @@ for (const width of [360, 412, 1366])
         "fantasy",
         "fantasy-play",
         "pack-opening",
+        "mobile-cleanup",
       ])
         await page.addStyleTag({
           content: await readFile(`src/app/${name}.css`, "utf8"),
@@ -55,9 +56,11 @@ for (const width of [360, 412, 1366])
       await page.getByRole("button", { name: "Open viewer" }).click();
     }
     await mount();
-    await mkdir("docs/qa/pack-opening", { recursive: true });
+    await mkdir("docs/qa/mobile-cleanup/reveal-regression", {
+      recursive: true,
+    });
     await page.screenshot({
-      path: `docs/qa/pack-opening/sealed-${width}.png`,
+      path: `docs/qa/mobile-cleanup/reveal-regression/sealed-${width}.png`,
       fullPage: true,
     });
     await page.getByRole("button", { name: "Open pack seal" }).dblclick();
@@ -65,13 +68,13 @@ for (const width of [360, 412, 1366])
     expect(opens).toBe(1);
     // Response was lost AFTER the server committed. Reopening reads that same result.
     await mount();
-    await expect(page.getByText("Card 1 of 10 · CORE")).toBeVisible();
+    await expect(page.getByText("1 of 10 · CORE")).toBeVisible();
     expect(opens).toBe(1);
-    await page.getByRole("button", { name: "Reveal next" }).click();
-    await expect(page.getByText("Card 2 of 10 · CORE")).toBeVisible();
+    await page.getByRole("button", { name: "Reveal next card" }).click();
+    await expect(page.getByText("2 of 10 · CORE")).toBeVisible();
     await page.getByRole("button", { name: "Close panel" }).click();
     await page.getByRole("button", { name: "Open viewer" }).click();
-    await expect(page.getByText("Card 2 of 10 · CORE")).toBeVisible();
+    await expect(page.getByText("2 of 10 · CORE")).toBeVisible();
     const inspect = page.getByRole("group", { name: /Inspect Preview QB 2/ });
     await inspect.focus();
     await inspect.press("ArrowRight");
@@ -82,13 +85,15 @@ for (const width of [360, 412, 1366])
     const axe = await new AxeBuilder({ page }).include("dialog").analyze();
     expect(axe.violations).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/pack-opening/revealed-${width}.png`,
+      path: `docs/qa/mobile-cleanup/reveal-regression/revealed-${width}.png`,
       fullPage: true,
     });
-    await page.getByRole("button", { name: "Reveal all", exact: true }).click();
+    await page
+      .getByRole("button", { name: "Skip remaining reveals", exact: true })
+      .click();
     await expect(page.locator(".pack-summary li")).toHaveCount(10);
     await page.screenshot({
-      path: `docs/qa/pack-opening/summary-${width}.png`,
+      path: `docs/qa/mobile-cleanup/reveal-regression/summary-${width}.png`,
       fullPage: true,
     });
     await mount();
@@ -97,8 +102,10 @@ for (const width of [360, 412, 1366])
     await page
       .getByRole("button", { name: "Replay saved result · no new cards" })
       .click();
-    await page.getByRole("button", { name: "Skip animation" }).click();
-    await expect(page.getByText("Card 1 of 10 · CORE")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Reveal next card" }),
+    ).toBeEnabled();
+    await expect(page.getByText("1 of 10 · CORE")).toBeVisible();
     expect(opens).toBe(1);
     await expect(page.getByRole("button", { name: "Sound off" })).toBeVisible();
     expect(
@@ -143,6 +150,7 @@ test("single card, reduced motion, keyboard opening and duplicate taps", async (
     "fantasy",
     "fantasy-play",
     "pack-opening",
+    "mobile-cleanup",
   ])
     await page.addStyleTag({
       content: await readFile(`src/app/${name}.css`, "utf8"),
@@ -160,19 +168,19 @@ test("single card, reduced motion, keyboard opening and duplicate taps", async (
   await page.getByRole("button", { name: "Close panel" }).click();
   await confirmed;
   await page.getByRole("button", { name: "Open viewer" }).click();
-  await expect(page.getByText("Card 1 of 1 · CORE")).toBeVisible();
+  await expect(page.getByText("1 of 1 · CORE")).toBeVisible();
   expect(opens).toBe(1);
   await expect(
-    page.getByRole("button", { name: "Skip animation" }),
-  ).toHaveCount(0);
+    page.getByRole("button", { name: "Skip remaining reveals" }),
+  ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Reveal all", exact: true }),
-  ).toHaveCount(0);
+    page.getByRole("button", { name: "Skip remaining reveals", exact: true }),
+  ).toBeVisible();
   expect(
     await page
       .locator(".pack-case")
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
-  await page.getByRole("button", { name: "Collection summary" }).click();
+  await page.getByRole("button", { name: "View pack summary" }).click();
   await expect(page.locator(".pack-summary li")).toHaveCount(1);
 });

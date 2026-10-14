@@ -1,3 +1,5 @@
+"use client";
+import { jerseyPresentation } from "@/core/card-presentation";
 import type { CSSProperties } from "react";
 import type { AwardedCard } from "@/core/pack-opening";
 import {
@@ -9,73 +11,116 @@ import { rarityRule } from "@/core/card-rarity";
 export function FantasyCardArtwork({
   card,
   children,
+  faceOnly = false,
+  onInspect,
+  scoringLabel,
 }: {
   card: AwardedCard;
   children?: React.ReactNode;
+  faceOnly?: boolean;
+  onInspect?: () => void;
+  scoringLabel?: string;
 }) {
+  const jersey = jerseyPresentation(card);
   return (
     <article
-      className={`fantasy-card tier-${card.tier.toLowerCase()}`}
-      style={{ "--shirt": card.colour } as CSSProperties}
+      className={`fantasy-card compact-card tier-${card.tier.toLowerCase()}`}
+      style={
+        {
+          "--shirt": jersey.primary,
+          "--shirt-accent": jersey.accent,
+        } as CSSProperties
+      }
     >
-      <div className="card-top">
-        <span>{rarityRule(card.tier).label}</span>
-        <span>{card.position}</span>
-      </div>
-      <div className="card-shirt" aria-hidden="true">
-        <svg viewBox="0 0 160 150">
-          <path
-            d="M49 10 12 31 29 65 44 57 44 138 116 138 116 57 131 65 148 31 111 10 97 20 63 20Z"
-            fill="var(--shirt)"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <path
-            d="M63 20Q80 43 97 20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-          />
-        </svg>
-        <b>{card.sport === "nfl" ? "D" : card.shirt}</b>
-      </div>
-      <p className="card-team">{card.team}</p>
-      <h3>{card.name}</h3>
-      <p>
-        Test economy ·{" "}
-        {card.season.toLowerCase().includes("lifetime")
-          ? "Permanent identity"
-          : `Artwork edition ${card.season}`}
-      </p>
-      {card.tier === "CORE" ? (
-        <p className="card-serial">
-          Free Core · unlimited supply
-          <br />
-          <small>Instance {card.id.slice(-8)}</small>
-        </p>
-      ) : (
-        <div className="card-serial">
-          #{String(card.serial).padStart(3, "0")}{" "}
-          <span>/ {card.max_supply.toLocaleString()}</span>
+      <div
+        className="card-face"
+        role={onInspect ? "button" : undefined}
+        tabIndex={onInspect ? 0 : undefined}
+        onClick={onInspect}
+        onKeyDown={(e) => {
+          if (onInspect && ["Enter", " "].includes(e.key)) {
+            e.preventDefault();
+            onInspect();
+          }
+        }}
+        aria-label={onInspect ? `View ${card.name} card details` : undefined}
+      >
+        <div className="card-top">
+          <span>{rarityRule(card.tier).label}</span>
+          <span>{card.position}</span>
         </div>
+        <div className="card-shirt" aria-hidden="true">
+          <svg viewBox="0 0 160 150">
+            <path
+              d="M49 10 12 31 29 65 44 57 44 138 116 138 116 57 131 65 148 31 111 10 97 20 63 20Z"
+              fill="var(--shirt)"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M16 33 31 57 M129 57 144 33 M49 115 H111"
+              stroke="var(--shirt-accent)"
+              strokeWidth="8"
+              fill="none"
+            />
+            <path
+              d="M63 20Q80 43 97 20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+            />
+          </svg>
+          <b>{jersey.number}</b>
+        </div>
+        <p className="card-team">{card.team}</p>
+        <h3>{card.name}</h3>
+        <span
+          className="card-multiplier"
+          title={scoringLabel ?? multiplierLabel(card.tier)}
+        >
+          {scoringLabel ?? multiplierLabel(card.tier)}
+        </span>
+      </div>
+      {!faceOnly && !onInspect && (
+        <details className="card-information">
+          <summary>Card details</summary>
+          <p>
+            Test economy ·{" "}
+            {card.season.toLowerCase().includes("lifetime")
+              ? "Permanent identity"
+              : `Artwork edition ${card.season}`}
+          </p>
+          {card.tier === "CORE" ? (
+            <p className="card-serial">
+              Free Core · unlimited supply
+              <br />
+              <small>Instance {card.id.slice(-8)}</small>
+            </p>
+          ) : (
+            <div className="card-serial">
+              #{String(card.serial).padStart(3, "0")}{" "}
+              <span>/ {card.max_supply.toLocaleString()}</span>
+            </div>
+          )}
+          <p>{multiplierLabel(card.tier)}</p>
+          <p className="small-note">
+            {collectibleOnly(card.position, card.sport)
+              ? "Collectible only in current seven-player competitions"
+              : "Eligibility depends on the competition"}
+          </p>
+          <details>
+            <summary>Permanent card identity</summary>
+            <p>{cardIdentity(card)}</p>
+            <code>{card.id}</code>
+          </details>
+          <p className="card-status">
+            {["retired", "delisted"].includes(card.status)
+              ? "RETIRED / COLLECTIBLE ONLY"
+              : card.status.toUpperCase()}
+          </p>
+          {!card.tradeable && <p className="starter-label">Not tradeable</p>}
+        </details>
       )}
-      <p>{multiplierLabel(card.tier)}</p>
-      <p className="small-note">
-        {collectibleOnly(card.position, card.sport)
-          ? "Collectible only in current seven-player competitions"
-          : "Eligibility depends on the competition"}
-      </p>
-      <details>
-        <summary>Permanent card identity</summary>
-        <p>{cardIdentity(card)}</p>
-        <code>{card.id}</code>
-      </details>
-      <p className="card-status">
-        {["retired", "delisted"].includes(card.status)
-          ? "RETIRED / COLLECTIBLE ONLY"
-          : card.status.toUpperCase()}
-      </p>
-      {!card.tradeable && <p className="starter-label">Not tradeable</p>}
       {children}
     </article>
   );

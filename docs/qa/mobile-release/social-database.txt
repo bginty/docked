@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 1 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 37745.6476
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 2 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 85.8305
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 3 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 91.0316
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 4 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 33.277
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 5 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 52.8165
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 6 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 283.1268
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 7 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 158.0742
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 8 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 20.5939
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 9 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 159.1281
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 10 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 27.2656
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 11 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 37.92
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 12 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 22.2495
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 13 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 105.6643
+  ...
+# Subtest: preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+ok 14 - preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+  ---
+  duration_ms: 38561.9472
+  ...
+# Subtest: preview grant fails closed without exact trusted hosted context or live same-user session
+ok 15 - preview grant fails closed without exact trusted hosted context or live same-user session
+  ---
+  duration_ms: 102.8607
+  ...
+# Subtest: tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+ok 16 - tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+  ---
+  duration_ms: 280.4731
+  ...
+# Subtest: expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+ok 17 - expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+  ---
+  duration_ms: 405.9629
+  ...
+# Subtest: ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+ok 18 - ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+  ---
+  duration_ms: 369.8846
+  ...
+# Subtest: preview marker and grant constraints prevent scope broadening or mutable enrollment
+ok 19 - preview marker and grant constraints prevent scope broadening or mutable enrollment
+  ---
+  duration_ms: 44.8771
+  ...
+# Subtest: browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+ok 20 - browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+  ---
+  duration_ms: 30.1504
+  ...
+# Subtest: hard deletion removes tester identity mapping while retaining minimal grant audit
+ok 21 - hard deletion removes tester identity mapping while retaining minimal grant audit
+  ---
+  duration_ms: 250.0559
+  ...
+# Subtest: session expiry uses wall clock even when transaction start remains before expiry
+ok 22 - session expiry uses wall clock even when transaction start remains before expiry
+  ---
+  duration_ms: 490.7303
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 51853.6667

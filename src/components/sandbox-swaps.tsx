@@ -1,4 +1,5 @@
 "use client";
+import { AcquisitionShare } from "./acquisition-share";
 import { useServerClock } from "./use-server-clock";
 import { boundedFetch } from "@/core/bounded-request";
 import { sevenTransferNotice } from "@/core/nfl-seven";
@@ -6,6 +7,10 @@ import { useEffect, useState, useRef } from "react";
 import type { SwapState, SwapCard } from "@/core/sandbox-swaps";
 import { formatAUD } from "@/core/fantasy-market-fees";
 export function SandboxSwaps({ member }: { member?: string }) {
+  const [shared, setShared] = useState<{
+    reference: string;
+    cards: { id: string; name: string; tier: string }[];
+  } | null>(null);
   const sequence = useRef(0);
   const mutation = useRef(false);
   const [state, setState] = useState<SwapState | null>(null),
@@ -89,6 +94,22 @@ export function SandboxSwaps({ member }: { member?: string }) {
       if (member && v.state.user_id !== member)
         throw Error("Session changed. Reload this screen.");
       setState(v.state);
+      if (request.action === "accept") {
+        const result = (v.state as SwapState).swaps.find(
+          (s) => s.id === request.payload.swap_id && s.state === "accepted",
+        );
+        if (result)
+          setShared({
+            reference: result.id,
+            cards: (v.state as SwapState).cards
+              .filter(
+                (c) =>
+                  c.owner_id === v.state.user_id &&
+                  [result.give_card, result.take_card].includes(c.id),
+              )
+              .map((c) => ({ id: c.id, name: c.name, tier: c.rarity })),
+          });
+      }
       setPending(null);
       sessionStorage.removeItem("docked-swap-pending:" + state.user_id);
       setMessage(
@@ -138,6 +159,13 @@ export function SandboxSwaps({ member }: { member?: string }) {
           Collection could not be loaded. Use Refresh ownership and receipts to
           retry. <a href="/app/login">Sign in again</a> if your session expired.
         </p>
+      )}
+      {shared && state && (
+        <AcquisitionShare
+          member={state.user_id}
+          reference={shared.reference}
+          cards={shared.cards}
+        />
       )}
       {state && (
         <>

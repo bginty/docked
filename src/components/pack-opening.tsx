@@ -17,6 +17,7 @@ import {
 import { FantasySheet } from "./fantasy-player-sheet";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { packSound } from "./pack-feedback";
+import { AcquisitionShare } from "./acquisition-share";
 import { rarityRule } from "@/core/card-rarity";
 
 export type PackOpeningProps = {
@@ -46,6 +47,7 @@ export default function PackOpening(props: PackOpeningProps) {
   const [replaying, setReplaying] = useState(Boolean(props.receipt));
   const [reduced, setReduced] = useState(true);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const advancing = useRef(false);
   const busy = useRef(false),
     alive = useRef(true);
   const swipe = useRef<{ x: number; y: number } | null>(null);
@@ -80,7 +82,7 @@ export default function PackOpening(props: PackOpeningProps) {
       } catch {}
       if (props.replay) next = 0;
       setIndex(next);
-      setStage(next === r.cards.length ? "summary" : "revealed");
+      setStage(next === r.cards.length ? "summary" : "opening");
     }
     return () => {
       alive.current = false;
@@ -94,7 +96,7 @@ export default function PackOpening(props: PackOpeningProps) {
       return;
     }
     const finish = () => setStage("revealed");
-    const timer = setTimeout(finish, 6000);
+    const timer = setTimeout(finish, 1800);
     // Backgrounding ends presentation only; the receipt is already persisted.
     const hidden = () => {
       if (document.hidden) finish();
@@ -106,9 +108,11 @@ export default function PackOpening(props: PackOpeningProps) {
       document.removeEventListener("visibilitychange", hidden);
       window.removeEventListener("pagehide", finish);
     };
-  }, [stage, reduced, simple]);
+  }, [stage, index, reduced, simple]);
   useEffect(() => {
-    if (stage === "revealed" || stage === "summary") title.current?.focus();
+    advancing.current = false;
+    if (stage === "revealed" || stage === "summary")
+      title.current?.focus({ preventScroll: true });
   }, [stage, index]);
   function feedback() {
     if (!muted && !document.hidden) packSound();
@@ -144,19 +148,26 @@ export default function PackOpening(props: PackOpeningProps) {
     }
   }
   function advance(all = false) {
-    if (!receipt) return;
+    if (!receipt || advancing.current || (!all && stage !== "revealed")) return;
+    advancing.current = true;
     const next = all ? receipt.cards.length : index + 1;
     save(receipt, next);
     setIndex(next);
     setTilt({ x: 0, y: 0 });
-    setStage(next === receipt.cards.length ? "summary" : "revealed");
+    setStage(
+      next === receipt.cards.length
+        ? "summary"
+        : motionOff
+          ? "revealed"
+          : "opening",
+    );
     feedback();
   }
   const card = receipt?.cards[index];
   const motionOff = reduced || simple;
   return (
     <FantasySheet
-      className="pack-sheet"
+      className={`pack-sheet pack-viewport pack-stage-${stage}`}
       title={props.replay ? "Replay pack result" : props.name}
       onClose={props.onClose}
     >
@@ -165,6 +176,15 @@ export default function PackOpening(props: PackOpeningProps) {
         aria-label="Docked pack opening"
       >
         <div className="pack-tools">
+          {receipt && stage !== "summary" && (
+            <button
+              type="button"
+              onClick={() => advance(true)}
+              aria-label="Skip remaining reveals"
+            >
+              Skip
+            </button>
+          )}
           <button
             type="button"
             aria-pressed={!muted}
@@ -265,21 +285,23 @@ export default function PackOpening(props: PackOpeningProps) {
               </p>
             )}
             <p className="pack-disclosure">
-              Free beta cards. No cash value. The animation does not determine
-              your cards or their tier.
+              Test cards. No cash value. The animation does not determine your
+              cards or their tier.
             </p>
           </>
         )}
         {(stage === "opening" || stage === "revealed") && receipt && card && (
           <>
-            <h3 ref={title} tabIndex={-1}>
-              {stage === "opening" ? "Your cards are confirmed" : card.name}
+            <h3 className="sr-only" ref={title} tabIndex={-1}>
+              {card.name}
             </h3>
             <p className="pack-count" aria-live="polite">
-              Card {index + 1} of {receipt.cards.length} ·{" "}
+              {index + 1} of {receipt.cards.length} ·{" "}
               {rarityRule(card.tier).label.toUpperCase()}
             </p>
             <div
+              key={`${receipt.id}:${index}`}
+              data-reveal-index={index}
               className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${stage === "opening" ? "pack-rising" : ""}`}
             >
               {stage === "opening" && (
@@ -290,17 +312,19 @@ export default function PackOpening(props: PackOpeningProps) {
                     ))}
                   </div>
                   <div className="pack-blue-light" aria-hidden="true" />
-                  <div className="pack-opening-envelope" aria-hidden="true">
-                    <span className="pack-torn-seal" />
-                    <img
-                      src="/brand/docked/icons/docked-icon-512.png"
-                      width="132"
-                      height="132"
-                      alt=""
-                    />
-                    <strong>DOCKED</strong>
-                    <small>COLLECT. BUILD. COMPETE.</small>
-                  </div>
+                  {index === 0 && (
+                    <div className="pack-opening-envelope" aria-hidden="true">
+                      <span className="pack-torn-seal" />
+                      <img
+                        src="/brand/docked/icons/docked-icon-512.png"
+                        width="132"
+                        height="132"
+                        alt=""
+                      />
+                      <strong>DOCKED</strong>
+                      <small>COLLECT. BUILD. COMPETE.</small>
+                    </div>
+                  )}
                 </>
               )}
               <div
@@ -395,91 +419,31 @@ export default function PackOpening(props: PackOpeningProps) {
                     Test economy · {rarityRule(card.tier).label.toUpperCase()}
                   </span>
                 </div>
-                <FantasyCardArtwork card={card} />
+                <FantasyCardArtwork card={card} faceOnly />
                 <div className="pack-case-foot">
-                  {card.sport.toUpperCase()} · {card.position} · {card.tier === "CORE" ? `Instance ${card.id.slice(-8)}` : `#${String(card.serial).padStart(3, "0")}`}
+                  {card.sport.toUpperCase()} · {card.position} ·{" "}
+                  {card.tier === "CORE"
+                    ? "Core · unlimited"
+                    : `#${String(card.serial).padStart(3, "0")} / ${card.max_supply.toLocaleString()}`}
                 </div>
               </div>
             </div>
-            {stage === "opening" ? (
-              <button type="button" onClick={() => setStage("revealed")}>
-                Skip animation
-              </button>
-            ) : (
-              <>
-                <p className="pack-inspect-hint">
-                  {motionOff
-                    ? "Simple view · all card details are available below."
-                    : "Drag the case to inspect · or use arrow keys"}
-                </p>
-                <dl className="pack-details">
-                  <div>
-                    <dt>Current team</dt>
-                    <dd>{card.team}</dd>
-                  </div>
-                  <div>
-                    <dt>Edition</dt>
-                    <dd>
-                      {card.season.toLowerCase().includes("lifetime") ? "Permanent identity" : `Artwork edition ${card.season}`}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>
-                      {card.tier === "CORE" ? "Supply" : "Permanent serial"}
-                    </dt>
-                    <dd>
-                      {card.tier === "CORE"
-                        ? "Free Core · unlimited"
-                        : `${card.serial} / ${card.max_supply}`}
-                    </dd>
-                  </div>
-                </dl>
-                {card.edition_team && card.edition_team !== card.team && (
-                  <p>Edition team: {card.edition_team}</p>
-                )}
-                {!props.ownedIds.includes(card.id) && (
-                  <p>
-                    This card is part of this pack’s original result but is no
-                    longer in your collection.
-                  </p>
-                )}
-                <div className="pack-actions">
-                  <button type="button" onClick={() => advance()}>
-                    {index + 1 === receipt.cards.length
-                      ? "Collection summary"
-                      : "Reveal next"}
-                  </button>
-                  <button type="button" onClick={() => props.onViewCard(card)}>
-                    View card
-                  </button>
-                </div>
-                <Link
-                  className="pack-secondary"
-                  href={props.collectionHref ?? "/fantasy/cards"}
-                  onClick={props.onClose}
-                >
-                  View collection
-                </Link>
-                {props.teamHref !== null && (
-                  <Link
-                    className="pack-secondary"
-                    href={props.teamHref ?? "/fantasy/play"}
-                    onClick={props.onClose}
-                  >
-                    Build team
-                  </Link>
-                )}
-                {receipt.cards.length > 1 && (
-                  <button
-                    type="button"
-                    className="pack-secondary"
-                    onClick={() => advance(true)}
-                  >
-                    Reveal all
-                  </button>
-                )}
-              </>
-            )}
+            <button
+              className="pack-next"
+              type="button"
+              aria-label={
+                index + 1 === receipt.cards.length
+                  ? "View pack summary"
+                  : "Reveal next card"
+              }
+              disabled={stage === "opening"}
+              onClick={() => advance()}
+            >
+              →
+            </button>
+            <p className="pack-inspect-hint">
+              {motionOff ? "Reduced movement" : "Drag to tilt"} · No cash value
+            </p>
           </>
         )}
         {stage === "summary" && receipt && (
@@ -492,13 +456,8 @@ export default function PackOpening(props: PackOpeningProps) {
                   : "Ready to build your team"}
             </h3>
             <p>
-              {receipt.cards.length} confirmed{" "}
-              {receipt.cards.length === 1 ? "card" : "cards"}.{" "}
-              {receipt.cards.some((c) => c.rarity_version)
-                ? "Test economy cards with permanent limited supply. Salary Cap and Open use rarity multipliers; legacy equal-scoring rounds remain unchanged."
-                : props.teamHref === null
-                  ? "Test cards have no cash value. Competition eligibility depends on its saved rules."
-                  : "Scoring depends on competition rules: Salary Cap and Open use rarity multipliers; legacy equal-scoring rounds remain 1.0×."}
+              {receipt.cards.length} confirmed cards · Test cards, no cash
+              value.
             </p>
             <ul className="pack-summary">
               {receipt.cards.map((c) => (
@@ -511,7 +470,8 @@ export default function PackOpening(props: PackOpeningProps) {
                   <span>
                     <strong>{c.name}</strong>
                     <small>
-                      {c.team} · {rarityRule(c.tier).label} · #{c.serial}
+                      {c.team} · {rarityRule(c.tier).label} ·{" "}
+                      {c.tier === "CORE" ? "Unlimited Core" : `#${c.serial}`}
                     </small>
                   </span>
                   <button
@@ -524,6 +484,15 @@ export default function PackOpening(props: PackOpeningProps) {
                 </li>
               ))}
             </ul>
+            {!props.preview && !props.replay && !replaying && (
+              <AcquisitionShare
+                member={props.userId}
+                reference={receipt.id}
+                cards={receipt.cards.filter((c) =>
+                  props.ownedIds.includes(c.id),
+                )}
+              />
+            )}
             <div className="pack-actions">
               {props.teamHref !== null && (
                 <Link

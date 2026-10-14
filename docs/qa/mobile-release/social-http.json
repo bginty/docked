@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "at": "2026-10-14T13:41:14.740Z",
+  "scope": "Local real GoTrue authentication -> application HTTP -> PostgreSQL plus Edge browser; isolated QA identities only",
+  "checks": [
+    "Ordinary member post and own/second-member feed visibility",
+    "Same idempotency key returns one retained post",
+    "Other-member deletion and anonymous feed denied",
+    "Inline composer publishes, returns to feed and survives refresh",
+    "Following and My posts navigate correctly"
+  ],
+  "hostedPosts": false
+}

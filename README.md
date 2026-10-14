@@ -1,3 +1,5 @@
+Current work: [Mobile cleanup release](docs/MOBILE_CLEANUP_REVIEW.md). On 15 October 2026 the owner authorised deploying the reviewed visual refinements, concise rarity chances and Social feed improvements to the existing admitted beta after verification. No admission expansion, real-money activation or member QA mutations.
+
 Current authority: [Phase 1 marketplace release](docs/MARKETPLACE_RELEASE.md) supersedes its earlier local-only boundary. Deploy only the exact reviewed candidate to the existing admitted test beta after the recorded gates pass; no hosted QA transactions, new admission or real-money activation.
 
 # Docked — Fantasy Sports Cards

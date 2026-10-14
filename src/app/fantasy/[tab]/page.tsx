@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SocialComposer } from "@/components/social-composer";
 import { boundedRead } from "@/core/bounded-request";
 
 import { Marketplace } from "@/components/marketplace";
@@ -54,8 +55,10 @@ export const metadata = {
 
 export default async function FantasyPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ tab: string }>;
+  searchParams: Promise<{ tab?: string; sport?: string; cursor?: string }>;
 }) {
   const { tab } = await params;
 
@@ -101,6 +104,89 @@ export default async function FantasyPage({
         </main>
       );
     }
+  }
+  // Social has its own authenticated data path; inventory/scoring availability must not hide the feed.
+  if (tab === "social") {
+    try {
+      await requireIdentity();
+    } catch {
+      return (
+        <main className="fantasy-gate">
+          <h1>Social</h1>
+          <p>Sign in with your invited account to see your feed.</p>
+          <Link href="/app/login">Sign in</Link>
+          <Link href="/mfa">Verify owner access</Link>
+        </main>
+      );
+    }
+    const query = await searchParams;
+    const feedTab =
+      query.tab === "following" || query.tab === "for_you"
+        ? query.tab
+        : "latest";
+    let feed;
+    try {
+      feed = await boundedRead(
+        communityFeed({
+          tab: feedTab,
+          sport: query.sport,
+          cursor: query.cursor,
+        }),
+      );
+    } catch {
+      return (
+        <AppShell authenticated>
+          <section>
+            <h1>Social</h1>
+            <p>Your feed could not be loaded. Please try again.</p>
+            <a className="button" href="/fantasy/social">
+              Retry
+            </a>
+          </section>
+        </AppShell>
+      );
+    }
+    return (
+      <AppShell authenticated>
+        <section className="fantasy-social">
+          <h1 className="compact-page-title">Social</h1>
+          <SocialComposer
+            initialSport="nfl"
+            inline
+            memberName={feed.viewer?.displayName}
+          />
+          <nav className="community-tabs" aria-label="Social feeds">
+            <Link
+              href="/fantasy/social?tab=latest"
+              aria-current={feedTab === "latest" ? "page" : undefined}
+            >
+              Feed
+            </Link>
+            <Link
+              href="/fantasy/social?tab=following"
+              aria-current={feedTab === "following" ? "page" : undefined}
+            >
+              Following
+            </Link>
+            {feed.viewer && (
+              <Link href={`/profile/${feed.viewer.handle}`}>My posts</Link>
+            )}
+            <Link href="/search">Discover</Link>
+          </nav>
+
+          <FeedContent
+            feed={feed}
+
+            base="/fantasy/social"
+
+            tab={feedTab}
+            sport={query.sport}
+
+            compact
+          />
+        </section>
+      </AppShell>
+    );
   }
   let data;
 
@@ -148,14 +234,12 @@ export default async function FantasyPage({
     );
   }
 
-  const feed = tab === "social" ? await communityFeed({ tab: "latest" }) : null;
-
   const testWallet = process.env.DOCKED_FRIENDS_BETA === "true";
 
   return (
     <AppShell authenticated>
       <div>
-        {testWallet && (
+        {testWallet && !["play", "cards", "social"].includes(tab) && (
           <p className="actions">
             <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
             <Link href="/fantasy/test-wallet">Open test wallet</Link>
@@ -200,28 +284,6 @@ export default async function FantasyPage({
                   : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
             </p>
           )}
-
-        {feed && (
-          <section className="fantasy-social">
-            <div className="actions">
-              <Link href="/compose">Write a post</Link>
-
-              <Link href="/following">Following</Link>
-
-              <Link href="/search">Discover</Link>
-            </div>
-
-            <FeedContent
-              feed={feed}
-
-              base="/fantasy/social"
-
-              tab="latest"
-
-              compact
-            />
-          </section>
-        )}
       </div>
     </AppShell>
   );

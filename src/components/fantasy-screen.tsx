@@ -49,6 +49,7 @@ export function FantasyScreen({
   packExperience?: boolean;
 }) {
   const production = initial.mode === "production";
+  const [showPacks, setShowPacks] = useState(false);
   const [data, setData] = useState(initial),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
@@ -65,6 +66,10 @@ export function FantasyScreen({
   const [recipient, setRecipient] = useState(""),
     [give, setGive] = useState<string[]>([]),
     [receive, setReceive] = useState<string[]>([]);
+  useEffect(() => {
+    const id = new URLSearchParams(location.search).get("card");
+    if (id && initial.cards.some((c) => c.id === id)) setDetail(id);
+  }, [initial.user_id]);
   const closeDetail = useCallback(() => setDetail(null), []);
   const [pack, setPack] = useState<{
     name: string;
@@ -210,15 +215,41 @@ export function FantasyScreen({
     setter(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
   const title: Record<string, string> = {
     play: "Your next match starts here.",
-    cards: "Build a collection that lasts.",
+    cards: "Cards",
     market: "Find your next first-team player.",
     social: "The game is better together.",
     profile: "Your Docked record.",
     admin: production ? "Free-play administration." : "Preview control room.",
   };
+  const rewardsPanel = data.rewards ? (
+    <FantasyRewards
+      rewards={data.rewards}
+      busy={busy}
+      act={act}
+      refresh={refresh}
+      onOpenStarter={
+        packExperience && data.nfl_beta
+          ? () =>
+              setPack({
+                name: "NFL starter pack",
+                receipt: data.starter_receipt,
+              })
+          : undefined
+      }
+      onReplayStarter={
+        packExperience && data.starter_receipt
+          ? () =>
+              setPack({
+                name: "NFL starter pack",
+                receipt: data.starter_receipt,
+              })
+          : undefined
+      }
+    />
+  ) : null;
   return (
     <div className="fantasy-screen" aria-busy={busy}>
-      {tab !== "play" && (
+      {!["play", "social"].includes(tab) && (
         <header className="fantasy-heading">
           <div>
             <p className="eyebrow">
@@ -253,32 +284,46 @@ export function FantasyScreen({
           Refresh team & points
         </button>
       )}
-      {production && data.rewards && ["cards", "profile"].includes(tab) && (
-        <FantasyRewards
-          rewards={data.rewards}
-          busy={busy}
-          act={act}
-          refresh={refresh}
-          onOpenStarter={
-            packExperience && data.nfl_beta
-              ? () =>
-                  setPack({
-                    name: "NFL starter pack",
-                    receipt: data.starter_receipt,
-                  })
-              : undefined
-          }
-          onReplayStarter={
-            packExperience && data.starter_receipt
-              ? () =>
-                  setPack({
-                    name: "NFL starter pack",
-                    receipt: data.starter_receipt,
-                  })
-              : undefined
-          }
-        />
+      {tab === "cards" && (
+        <div className="pack-discovery">
+          <Link
+            href="/fantasy/test-wallet#packs"
+            className="pack-discovery-tile"
+          >
+            <span className="mini-foil" aria-hidden="true">
+              D
+            </span>
+            <strong>Buy packs</strong>
+            <small>Test Docked Credits</small>
+          </Link>
+          <a
+            className="pack-discovery-tile"
+            href={
+              data.rewards?.starter_entitled && !data.rewards.starter_claimed
+                ? "#starter-pack"
+                : "#my-packs"
+            }
+            onClick={() => setShowPacks(true)}
+          >
+            <span className="mini-foil open-foil" aria-hidden="true">
+              D
+            </span>
+            <strong>Open packs</strong>
+            <small>
+              {data.packs.filter((p) => !p.opened_at).length +
+                (data.rewards?.starter_entitled &&
+                !data.rewards?.starter_claimed
+                  ? 1
+                  : 0)}{" "}
+              unopened
+            </small>
+          </a>
+        </div>
       )}
+      {production &&
+        (tab === "profile" ||
+          (tab === "cards" && !data.rewards?.starter_claimed)) &&
+        rewardsPanel}
       {production && tab === "market" && (
         <section className="fantasy-panel">
           <h2>Marketplace is not open yet</h2>
@@ -414,8 +459,8 @@ export function FantasyScreen({
                 <input name="locks_at" type="datetime-local" required />
               </label>
               <p>
-                Legacy football rules: eleven unique players, equal scoring and no cash prize.
-                Lock must be within 90 days.
+                Legacy football rules: eleven unique players, equal scoring and
+                no cash prize. Lock must be within 90 days.
               </p>
               <button disabled={busy}>Create free round</button>
             </form>
@@ -459,8 +504,14 @@ export function FantasyScreen({
         ))}
       {tab === "cards" && (
         <>
-          <section className="fantasy-panel">
-            <h2>My packs</h2>
+          <details
+            id="my-packs"
+            className="pack-history"
+            open={showPacks || data.packs.some((p) => !p.opened_at)}
+          >
+            <summary>My packs & history</summary>
+            <h2 className="sr-only">My packs</h2>
+            {data.rewards?.starter_claimed && rewardsPanel}
             <p>
               {production
                 ? "Free starter and earned reward packs. Permanent serials are assigned securely from limited inventory."
@@ -511,6 +562,12 @@ export function FantasyScreen({
                   </article>
                 ))}
             </div>
+            {!data.packs.some((p) => !p.opened_at) && (
+              <p>
+                No unopened packs.{" "}
+                <Link href="/fantasy/test-wallet#packs">Browse packs</Link>
+              </p>
+            )}
             {data.packs.map((p) => (
               <div className="fantasy-row" key={p.id}>
                 <div>
@@ -561,7 +618,7 @@ export function FantasyScreen({
                 </button>
               </div>
             ))}
-          </section>
+          </details>
           {reveal.length > 0 && (
             <section className="fantasy-reveal" aria-label="Pack reveal">
               <p className="eyebrow">
@@ -595,120 +652,130 @@ export function FantasyScreen({
             </section>
           )}
           <section>
-            <p>{scoringContext}</p>
-            <p>
-              <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
-              <Link href="/fantasy/test-wallet">
-                Wallet & transaction history
-              </Link>
-            </p>
-            <label>
-              Sport
-              <select
-                value={sport}
-                onChange={(e) => {
-                  setSport(e.target.value);
-                  setPosition("");
-                  setCompetitionFilter("");
-                }}
-              >
-                {[
-                  ...new Set(
-                    data.cards
-                      .map((c) => c.sport)
-                      .concat(data.nfl_beta ? ["nfl"] : []),
-                  ),
-                ].map((s) => (
-                  <option key={s} value={s}>
-                    {s.toUpperCase()}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Eligible for this competition
-              <select
-                value={competitionFilter}
-                onChange={(e) => setCompetitionFilter(e.target.value)}
-              >
-                <option value="">
-                  All owned cards, including collectibles
-                </option>
-                {data.competitions
-                  .filter((c) => c.rules.lineup_version && c.sport === sport)
-                  .map((c) => (
-                    <option value={c.id} key={c.id}>
-                      {c.name}
-                    </option>
-                  ))}
-              </select>
-            </label>
             <h2>
-              My collection <span className="muted">{data.cards.length}</span>
+              My Cards · <span className="muted">{data.cards.length}</span>
             </h2>
-            <div className="fantasy-filters">
+            <details className="collection-options">
+              <summary>Filters & scoring rules</summary>
+              <p>{scoringContext}</p>
+              <p>
+                <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
+                <Link href="/fantasy/test-wallet">
+                  Wallet & transaction history
+                </Link>
+              </p>
               <label>
-                Player, team, serial or season
-                <input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search your cards"
-                />
-              </label>
-              <label>
-                Tier
-                <select value={tier} onChange={(e) => setTier(e.target.value)}>
-                  <option value="">All tiers</option>
-                  {tiers.map((t) => (
-                    <option key={t}>{t}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Position
+                Sport
                 <select
-                  value={position}
-                  onChange={(e) => setPosition(e.target.value)}
-                >
-                  <option value="">All positions</option>
-                  {collectionPositions(sport).map((t) => (
-                    <option key={t}>{t}</option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Collection
-                <select
-                  value={subset}
-                  onChange={(e) => setSubset(e.target.value)}
+                  value={sport}
+                  onChange={(e) => {
+                    setSport(e.target.value);
+                    setPosition("");
+                    setCompetitionFilter("");
+                  }}
                 >
                   {[
-                    ["all", "All owned"],
-                    ["first", "First Year"],
-                    ["listed", "Listed"],
-                    ["tradeable", "Tradeable"],
-                    ["retired", "Retired"],
-                  ].map(([v, l]) => (
-                    <option value={v} key={v}>
-                      {l}
+                    ...new Set(
+                      data.cards
+                        .map((c) => c.sport)
+                        .concat(data.nfl_beta ? ["nfl"] : []),
+                    ),
+                  ].map((s) => (
+                    <option key={s} value={s}>
+                      {s.toUpperCase()}
                     </option>
                   ))}
                 </select>
               </label>
               <label>
-                Sort
-                <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                  {["newest", "rarity", "player", "serial", "season"].map(
-                    (t) => (
-                      <option key={t}>{t}</option>
-                    ),
-                  )}
+                Eligible for this competition
+                <select
+                  value={competitionFilter}
+                  onChange={(e) => setCompetitionFilter(e.target.value)}
+                >
+                  <option value="">
+                    All owned cards, including collectibles
+                  </option>
+                  {data.competitions
+                    .filter((c) => c.rules.lineup_version && c.sport === sport)
+                    .map((c) => (
+                      <option value={c.id} key={c.id}>
+                        {c.name}
+                      </option>
+                    ))}
                 </select>
               </label>
-            </div>
+
+              <div className="fantasy-filters">
+                <label>
+                  Player, team, serial or season
+                  <input
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search your cards"
+                  />
+                </label>
+                <label>
+                  Tier
+                  <select
+                    value={tier}
+                    onChange={(e) => setTier(e.target.value)}
+                  >
+                    <option value="">All tiers</option>
+                    {tiers.map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Position
+                  <select
+                    value={position}
+                    onChange={(e) => setPosition(e.target.value)}
+                  >
+                    <option value="">All positions</option>
+                    {collectionPositions(sport).map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Collection
+                  <select
+                    value={subset}
+                    onChange={(e) => setSubset(e.target.value)}
+                  >
+                    {[
+                      ["all", "All owned"],
+                      ["first", "First Year"],
+                      ["listed", "Listed"],
+                      ["tradeable", "Tradeable"],
+                      ["retired", "Retired"],
+                    ].map(([v, l]) => (
+                      <option value={v} key={v}>
+                        {l}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Sort
+                  <select
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value)}
+                  >
+                    {["newest", "rarity", "player", "serial", "season"].map(
+                      (t) => (
+                        <option key={t}>{t}</option>
+                      ),
+                    )}
+                  </select>
+                </label>
+              </div>
+            </details>
             <div className="card-grid">
               {filtered.map((c) => (
-                <Card key={c.id} card={c}>
+                <Card key={c.id} card={c} onInspect={() => setDetail(c.id)}>
                   <button
                     onClick={() => setDetail(detail === c.id ? null : c.id)}
                     aria-expanded={detail === c.id}
@@ -961,13 +1028,6 @@ export function FantasyScreen({
             {!data.trades.length && <p>No offers yet.</p>}
           </section>
         </>
-      )}
-      {tab === "social" && (
-        <p className="fantasy-intro">
-          Pack openings, marketplace activity and competition wins appear
-          alongside your community. Existing privacy, moderation, likes and
-          comments apply.
-        </p>
       )}
       {tab === "profile" && (
         <>

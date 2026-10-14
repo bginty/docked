@@ -243,6 +243,8 @@ export const fantasyAction = z
   ])
   .and(z.object({ request_id: uuid }));
 export type FantasyCard = {
+  /** Only populated by a verified roster projection, never the legacy placeholder. */
+  verifiedJerseyNumber?: number | null;
   availability_reason?: string;
   source_status?: string;
   status_observed_at?: string;

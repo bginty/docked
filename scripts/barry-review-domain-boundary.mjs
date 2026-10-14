@@ -173,7 +173,9 @@ if (report.identity) {
 report.passed = !!report.identity && report.checks.every((c) => c.passed);
 mkdirSync("docs/qa/friends-cutover", { recursive: true });
 writeFileSync(
-  "docs/qa/barry-review/domain-boundary.json",
+  (process.argv.includes("--mobile")
+    ? "docs/qa/mobile-release/"
+    : "docs/qa/barry-review/") + "domain-boundary.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(JSON.stringify(report));

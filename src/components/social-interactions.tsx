@@ -399,11 +399,7 @@ export function SocialCard({
               loading="lazy"
             />
           ))}
-      {!post.communityEdgeId && !post.officialTipId && (
-        <p className="social-reason">
-          SOCIAL ONLY · Not a verified performance record
-        </p>
-      )}
+
       <div className="social-actions">
         <button
           disabled={!ready || busy}

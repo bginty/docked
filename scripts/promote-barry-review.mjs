@@ -3,7 +3,13 @@ import { readFileSync, writeFileSync } from "node:fs";
 const d = JSON.parse(
   readFileSync("docs/qa/friends-cutover/deployment-status.json"),
 );
-const check = JSON.parse(readFileSync("docs/qa/barry-review/candidate.json"));
+const check = JSON.parse(
+  readFileSync(
+    (process.argv.includes("--mobile")
+      ? "docs/qa/mobile-release/"
+      : "docs/qa/barry-review/") + "candidate.json",
+  ),
+);
 assert.match(process.argv[2] ?? "", /^[a-f0-9]{40}$/);
 assert.equal(d.commit, process.argv[2]);
 assert.equal(check.passed, true);
@@ -50,7 +56,9 @@ for (const name of ["docked.com.au", "www.docked.com.au"]) {
   before.push({ name, deployment: a.deployment?.id ?? a.deploymentId });
 }
 writeFileSync(
-  "docs/qa/barry-review/rollback.json",
+  (process.argv.includes("--mobile")
+    ? "docs/qa/mobile-release/"
+    : "docs/qa/barry-review/") + "rollback.json",
   JSON.stringify(
     { at: new Date().toISOString(), project, team, before },
     null,

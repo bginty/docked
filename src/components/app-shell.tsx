@@ -168,8 +168,7 @@ export function AppShell({
         <PwaStatus />
         <div className="app-content">{children}</div>
         <p className="app-footnote">
-          Beta cards have no cash value. No paid packs or cash prizes. Each
-          competition shows its scoring rules before entry.
+          Invited test beta · No cash value. Competition rules apply.
         </p>
       </div>
       <nav className="app-bottom-nav" aria-label="Mobile app navigation">

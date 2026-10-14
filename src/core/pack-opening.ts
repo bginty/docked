@@ -3,6 +3,7 @@ import type { FantasyCard } from "./fantasy";
 /** Presentation-only receipt. No owner identifiers or allocation instructions. */
 export type AwardedCard = Pick<
   FantasyCard,
+  | "verifiedJerseyNumber"
   | "id"
   | "edition_id"
   | "serial"

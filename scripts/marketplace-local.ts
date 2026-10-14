@@ -1,6 +1,11 @@
 // LOCAL ONLY synthetic accounts. No environment credentials or external DB.
 import { createServer } from "node:http";
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import {
+  existsSync as requireExists,
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+} from "node:fs";
 import { resolve, sep } from "node:path";
 import assert from "node:assert/strict";
 import { chromium, expect, type Page } from "@playwright/test";
@@ -18,7 +23,9 @@ import {
   memberTestCommand,
 } from "../src/core/member-test-wallet";
 async function main() {
-  const dir = "docs/qa/marketplace-phase-one";
+  const dir = process.argv.includes("--visual-regression")
+    ? "docs/qa/mobile-cleanup/market-regression"
+    : "docs/qa/marketplace-phase-one";
   mkdirSync(dir, { recursive: true });
   let s = marketplaceFixture(),
     origin = "",
@@ -36,7 +43,11 @@ async function main() {
       { kind: "list", card, price: 1000 + i },
       Date.now(),
     ).state;
-  const script = await bundleCommunityFixture("tests/fixtures/marketplace.tsx");
+  const script = await bundleCommunityFixture(
+    process.argv.includes("--visual")
+      ? "tests/fixtures/mobile-visual.tsx"
+      : "tests/fixtures/marketplace.tsx",
+  );
   const css = [
     "brand-theme",
     "globals",
@@ -53,6 +64,7 @@ async function main() {
     "scoring",
     "test-wallet",
     "marketplace",
+    ...(requireExists("src/app/mobile-cleanup.css") ? ["mobile-cleanup"] : []),
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");
@@ -136,7 +148,7 @@ async function main() {
       }
       res.setHeader("Content-Type", "text/html");
       res.end(
-        '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Docked LOCAL marketplace</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/fixture.css"></head><body class="fantasy-mode"><p style="padding:12px">LOCAL SYNTHETIC REVIEW · no real accounts or credits</p><div id="fixture-root"></div><script src="/fixture.js"></script></body></html>',
+        '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Docked LOCAL marketplace</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/fixture.css"></head><body class="fantasy-mode"><p style="padding:4px 12px;margin:0;font-size:11px">LOCAL VISUAL FIXTURE · no real accounts or credits</p><div id="fixture-root"></div><script src="/fixture.js"></script></body></html>',
       );
     } catch (e) {
       res.writeHead(400, { "Content-Type": "application/json" });
@@ -262,6 +274,31 @@ async function main() {
     await expect(
       buyer.getByRole("heading", { name: "Purchased", exact: true }),
     ).toBeVisible();
+    await capture(buyer, "purchase-success");
+    let posts = 0;
+    await buyer.route("**/api/community", async (r) => {
+      posts++;
+      await r.fulfill({
+        status: 503,
+        json: { error: "Synthetic post recovery" },
+      });
+    });
+    await buyer.getByRole("button", { name: "Share your new card" }).click();
+    assert.equal(posts, 0);
+    const draft = buyer.getByRole("textbox", { name: "Your post" });
+    assert.ok(!(await draft.inputValue()).includes("1000"));
+    await buyer.getByRole("button", { name: "Post", exact: true }).click();
+    await expect(buyer.getByRole("status").last()).toContainText(
+      "Synthetic post recovery",
+    );
+    assert.equal(posts, 1);
+    await buyer.keyboard.press("Escape");
+    await expect(
+      buyer.getByRole("button", { name: "Share your new card" }),
+    ).toHaveCount(0);
+    checks.push(
+      "Acquisition sharing is an editable privacy-minimised draft; explicit Post required, failure retains text, dismissal prevents repeat prompt",
+    );
     assert.equal(s.listings[listing].status, "SOLD");
     assert.equal(
       s.cards[
@@ -273,7 +310,7 @@ async function main() {
       "Create listing, 1000/925/75 review, completed purchase response lost, reload and original receipt recovery exactly once",
     );
     await buyer
-      .getByRole("button", { name: "View activity", exact: true })
+      .getByRole("button", { name: "View receipt", exact: true })
       .click();
     await expect(
       buyer.getByText(/commission 75 · seller receives 925/),

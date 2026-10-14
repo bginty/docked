@@ -27,6 +27,7 @@ import {
 } from "./marketplace-integrated-local";
 
 const integrated = process.argv.includes("--integrated");
+const socialOnly = process.argv.includes("--social-only");
 const root = process.cwd(),
   dir = resolve(
     integrated ? "tmp/marketplace-integrated-v2" : "tmp/marketplace-auth",
@@ -69,7 +70,10 @@ async function main() {
   let stage = "migrations";
   await mkdir("docs/qa/marketplace-authenticated", { recursive: true });
   const browserOnly = process.argv.includes("--browser-only");
-  const receipt = `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
+  await mkdir("docs/qa/mobile-release", { recursive: true });
+  const receipt = socialOnly
+    ? "docs/qa/mobile-release/social-http.json"
+    : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
     JSON.stringify({
@@ -201,6 +205,11 @@ async function main() {
         await sql`insert into beta_private.owner_gameplay_control(owner_id,enabled,authority)values(${owner.id},true,'Local HTTP acceptance fixture only') on conflict do nothing`;
         await sql`update beta_private.friends_control set enabled=true,readiness_evidence='Isolated local HTTP acceptance configuration only',approved_by='local-qa',approved_at=clock_timestamp()`;
       }
+    }
+    if (socialOnly) {
+      await sql`insert into beta_private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence)
+        select 'AU','NSW','local-social-acceptance',clock_timestamp()-interval '1 minute',clock_timestamp()+interval '1 day',clock_timestamp()+interval '1 day',true,18,array['community_social','public_profiles'],'Isolated local social fixture; not hosted approval'
+        where not exists(select 1 from beta_private.region_policies where version='local-social-acceptance' and effective_to>clock_timestamp())`;
     }
     stage = "inventory";
     if (!(await sql`select id from credits_sandbox.state`).length) {
@@ -338,6 +347,139 @@ async function main() {
         },
       });
       assert.equal((await r.json()).ok, true, "Real application login " + i);
+    }
+    if (socialOnly) {
+      stage = "social-http";
+      for (const i of [0, 1]) {
+        const existingProfile =
+          await sql`select id from beta_private.social_profiles where user_id=${qa.users[i].id} and handle=${"localreader" + i}`;
+        if (existingProfile.length) continue;
+        const r = await contexts[i].post("/api/community", {
+          data: {
+            action: "profile",
+            handle: "localreader" + i,
+            displayName: "Local Reader " + i,
+            bio: "Isolated local acceptance",
+            visibility: "members",
+          },
+        });
+        assert.equal(
+          r.status(),
+          200,
+          "Social profile " + i + ": " + (await r.text()),
+        );
+      }
+      const marker = "Isolated social acceptance " + randomUUID();
+      const payload = {
+        action: "post",
+        kind: "discussion",
+        body: marker,
+        sport: "nfl",
+        mediaIds: [],
+        promotional: false,
+        idempotencyKey: randomUUID(),
+      };
+      const sent = await contexts[0].post("/api/community", { data: payload });
+      assert.equal(sent.status(), 200, await sent.text());
+      const first = await sent.json();
+      const retry = await contexts[0].post("/api/community", { data: payload });
+      assert.equal(retry.status(), 200, await retry.text());
+      assert.equal((await retry.json()).id, first.id);
+      for (const i of [0, 1]) {
+        const r = await contexts[i].get("/api/community?view=feed&tab=latest");
+        assert.equal(r.status(), 200);
+        const f = await r.json();
+        assert.equal(f.status, "ready");
+        assert.equal(f.posts.filter((p: any) => p.id === first.id).length, 1);
+      }
+      const denied = await contexts[1].post("/api/community", {
+        data: { action: "delete_post", postId: first.id },
+      });
+      assert.notEqual(denied.status(), 200);
+      const anonymous = await fetch(
+        origin + "/api/community?view=feed&tab=latest",
+      );
+      const body = await anonymous.json();
+      assert.equal(body.posts?.length ?? 0, 0);
+      const [stored] =
+        await sql`select count(*)::int n from beta_private.social_posts where idempotency_key=${payload.idempotencyKey}`;
+      assert.equal(stored.n, 1);
+      const browser = await chromium.launch({ channel: "msedge" });
+      try {
+        const context = await browser.newContext({
+          storageState: await contexts[0].storageState(),
+          viewport: { width: 412, height: 815 },
+        });
+        const page = await context.newPage();
+        await page.goto(origin + "/fantasy/social", {
+          timeout: 120000,
+          waitUntil: "domcontentloaded",
+        });
+        await expect(
+          page.getByRole("navigation", { name: "Social feeds" }),
+        ).toBeVisible();
+        await expect(page.getByText(marker, { exact: true })).toBeVisible();
+        const browserMarker = "Local browser post " + randomUUID();
+        await page
+          .getByRole("textbox", { name: "Your post" })
+          .fill(browserMarker);
+        const posted = page.waitForResponse(
+          (r) =>
+            r.url().endsWith("/api/community") &&
+            r.request().method() === "POST",
+          { timeout: 30000 },
+        );
+        await page.getByRole("button", { name: "Post", exact: true }).click();
+        assert.equal((await posted).status(), 200);
+        await expect(
+          page.getByRole("textbox", { name: "Your post" }),
+        ).toHaveValue("", { timeout: 30000 });
+        await expect(
+          page.getByText(browserMarker, { exact: true }),
+        ).toBeVisible({ timeout: 20000 });
+        await expect(page).toHaveURL(/fantasy\/social\?tab=latest/, {
+          timeout: 30000,
+        });
+        await page.reload();
+        await expect(
+          page.getByText(browserMarker, { exact: true }),
+        ).toBeVisible();
+        await page
+          .getByRole("link", { name: "Following", exact: true })
+          .click();
+        await expect(page).toHaveURL(/tab=following/);
+        await page.getByRole("link", { name: "My posts", exact: true }).click();
+        await expect(page).toHaveURL(/profile\/localreader0/, {
+          timeout: 120000,
+        });
+        await expect(
+          page.getByText(browserMarker, { exact: true }),
+        ).toBeVisible({ timeout: 30000 });
+        await page.screenshot({
+          path: "docs/qa/mobile-release/my-posts-mobile.png",
+          fullPage: true,
+        });
+        await context.close();
+      } finally {
+        await browser.close();
+      }
+      const report = {
+        passed: true,
+        at: new Date().toISOString(),
+        scope:
+          "Local real GoTrue authentication -> application HTTP -> PostgreSQL plus Edge browser; isolated QA identities only",
+        checks: [
+          "Ordinary member post and own/second-member feed visibility",
+          "Same idempotency key returns one retained post",
+          "Other-member deletion and anonymous feed denied",
+          "Inline composer publishes, returns to feed and survives refresh",
+          "Following and My posts navigate correctly",
+        ],
+        hostedPosts: false,
+      };
+      await writeFile(receipt, JSON.stringify(report, null, 2));
+      console.log(JSON.stringify(report));
+      return;
     }
     const read = async (i: number, query = "") => {
       const r = await contexts[i].get("/api/marketplace" + query);

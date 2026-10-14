@@ -2,6 +2,11 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import {
+  jerseyPresentation,
+  fullTeamName,
+  type JerseyMetadata,
+} from "@/core/card-presentation";
+import {
   availability,
   cardIdentity,
   scoringContext,
@@ -96,27 +101,36 @@ export function FantasySheet({
 }
 export function PlayerShirt({
   card,
+  hideNumber = false,
 }: {
-  card?: Pick<FantasyCard, "colour" | "shirt"> & { sport?: string };
+  card?: JerseyMetadata;
+  hideNumber?: boolean;
 }) {
   return (
     <svg className="pitch-shirt" viewBox="0 0 100 90" aria-hidden="true">
       <path
         d="M30 8 8 23 19 43 29 38 29 84 71 84 71 38 81 43 92 23 70 8 61 16 39 16Z"
-        fill={card?.colour ?? "var(--field-empty)"}
+        fill={card ? jerseyPresentation(card).primary : "var(--field-empty)"}
         stroke="currentColor"
         strokeWidth="2"
       />
-      <text
-        x="50"
-        y="59"
-        textAnchor="middle"
-        fill="white"
-        fontSize="27"
-        fontWeight="800"
-      >
-        {card?.sport === "nfl" ? "D" : (card?.shirt ?? "+")}
-      </text>
+      <path
+        d="M12 25 20 36 M80 36 88 25 M32 71 H68"
+        stroke={jerseyPresentation(card).accent}
+        strokeWidth="5"
+      />
+      {!hideNumber && (
+        <text
+          x="50"
+          y="59"
+          textAnchor="middle"
+          fill="white"
+          fontSize="27"
+          fontWeight="800"
+        >
+          {card ? jerseyPresentation(card).number : "+"}
+        </text>
+      )}
     </svg>
   );
 }
@@ -127,6 +141,7 @@ export function FantasyPlayerDetails({
   onClose,
   onSelect,
   onBench,
+  lineup,
 }: {
   card: FantasyCard;
   state: FantasyState;
@@ -134,6 +149,18 @@ export function FantasyPlayerDetails({
   onClose: () => void;
   onSelect?: () => void;
   onBench?: () => void;
+  lineup?: {
+    multiplier: number;
+    salary: number;
+    mode: string;
+    now: number;
+    locked: boolean;
+    reason?: string;
+    onTransfer?: () => void;
+    onRemove?: () => void;
+    onChoose?: () => void;
+    replacement?: { outgoing: number; remaining: number };
+  };
 }) {
   const scores = (state.round_details ?? []).flatMap((r) =>
     r.scores
@@ -161,6 +188,169 @@ export function FantasyPlayerDetails({
   const owned = [...state.cards, ...(state.seven?.inventory ?? [])].some(
     (c) => c.id === card.id && c.owner_id === state.user_id,
   );
+  if (lineup) {
+    const playerId = card.canonical_player_id ?? card.player_id;
+    const fixtures = [
+      ...new Map(
+        Object.values(state.seven?.fixtures ?? {})
+          .flat()
+          .filter(
+            (f) =>
+              f.playerIds.includes(playerId) &&
+              Date.parse(f.scheduledAt) > lineup.now,
+          )
+          .map((f) => [f.fixtureId, f]),
+      ).values(),
+    ].sort((a, b) => Date.parse(a.scheduledAt) - Date.parse(b.scheduledAt));
+    const recent = scores
+      .filter((s) => Number.isFinite(s.score))
+      .sort(
+        (a, b) =>
+          Date.parse(b.round?.locks_at ?? "") -
+          Date.parse(a.round?.locks_at ?? ""),
+      )
+      .slice(0, 3);
+    return (
+      <FantasySheet
+        title={card.name}
+        onClose={onClose}
+        className="lineup-profile"
+      >
+        <div className="lineup-profile-hero">
+          <PlayerShirt card={card} hideNumber />
+          <div>
+            <h3>{fullTeamName(card)}</h3>
+            <p>
+              {card.position} · {rarityRule(card.tier).label}
+            </p>
+            <strong>
+              {lineup.multiplier}×{" "}
+              <small>{lineup.mode === "OPEN" ? "Open" : "Salary Cap"}</small>
+            </strong>
+          </div>
+        </div>
+        <div className="profile-facts">
+          <div>
+            <small>Fantasy salary</small>
+            <strong>{lineup.salary.toLocaleString("en-AU")}</strong>
+            <small>Roster budget · not Docked Credits</small>
+          </div>
+          <div>
+            <small>Roster status</small>
+            <strong>
+              {card.source_status ?? card.status ?? "Unavailable"}
+            </strong>
+            <small>Injury report unavailable</small>
+          </div>
+        </div>
+        {lineup.replacement && (
+          <div className="replacement-budget">
+            <strong>Replacement budget</strong>
+            <p>
+              Outgoing {lineup.replacement.outgoing.toLocaleString("en-AU")} →
+              Incoming {lineup.salary.toLocaleString("en-AU")}
+            </p>
+            <p>
+              Change{" "}
+              {(lineup.salary - lineup.replacement.outgoing).toLocaleString(
+                "en-AU",
+              )}{" "}
+              · Remaining {lineup.replacement.remaining.toLocaleString("en-AU")}
+            </p>
+          </div>
+        )}
+        {lineup.locked && (
+          <p className="entry-badge">
+            Locked · this round's selection is fixed
+          </p>
+        )}
+        {lineup.reason && <p role="status">{lineup.reason}</p>}
+        <div className="profile-actions">
+          {lineup.onTransfer && (
+            <button className="button" onClick={lineup.onTransfer}>
+              Transfer
+            </button>
+          )}
+          {lineup.onChoose && (
+            <button
+              className="button"
+              disabled={!!lineup.reason}
+              onClick={lineup.onChoose}
+            >
+              Use this player
+            </button>
+          )}
+        </div>
+        {(lineup.onTransfer || lineup.onChoose) && (
+          <small>
+            Free lineup change · save or update your team to confirm.
+          </small>
+        )}
+        <section>
+          <h3>Recent scores</h3>
+          {recent.length ? (
+            <>
+              <div className="profile-score-list">
+                {recent.map((s) => (
+                  <div key={s.id}>
+                    <strong>Week {s.round?.round ?? "—"}</strong>
+                    <span>
+                      Base {s.base_score ?? "Unavailable"} · {s.multiplier ?? 1}
+                      × = {s.score}
+                    </span>
+                    <small>
+                      {s.round?.locks_at
+                        ? localTime(s.round.locks_at)
+                        : "Date unavailable"}{" "}
+                      · {s.round?.scored_at ? "Final" : "Provisional"}
+                    </small>
+                  </div>
+                ))}
+              </div>
+              <small>
+                Saved competition results and multipliers; not recalculated for
+                this card.
+              </small>
+            </>
+          ) : (
+            <p>Awaiting verified scoring history.</p>
+          )}
+        </section>
+        <section>
+          <h3>Upcoming games</h3>
+          {fixtures.length ? (
+            fixtures.slice(0, 3).map((f) => (
+              <p key={f.fixtureId}>
+                {localTime(f.scheduledAt)} · {f.status ?? "Status unavailable"}
+                <small className="block-note">Opponent unavailable</small>
+              </p>
+            ))
+          ) : (
+            <p>Upcoming fixture data unavailable.</p>
+          )}
+        </section>
+        <details>
+          <summary>Card details & rules</summary>
+          <p>{cardIdentity(card)}</p>
+          <p>Test card · no cash value. Market valuation unavailable.</p>
+          <p>{availability(card)}</p>
+          <Link
+            href={`/fantasy/scoring/how-it-works?competition=${roundId ?? ""}`}
+          >
+            Competition rules
+          </Link>
+          <p>
+            <Link href={`/fantasy/cards?card=${encodeURIComponent(card.id)}`}>
+              Full card details & history
+            </Link>
+          </p>
+          {lineup.onRemove && (
+            <button onClick={lineup.onRemove}>Remove from lineup</button>
+          )}
+        </details>
+      </FantasySheet>
+    );
+  }
   return (
     <FantasySheet title={card.name} onClose={onClose}>
       <div className="player-sheet-identity">

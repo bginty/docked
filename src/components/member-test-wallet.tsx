@@ -1,7 +1,7 @@
 "use client";
+import { AcquisitionShare } from "./acquisition-share";
 import { useServerClock } from "./use-server-clock";
 import { boundedFetch } from "@/core/bounded-request";
-import { probabilityLabel } from "@/core/card-display";
 import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -26,6 +26,10 @@ export function MemberTestWallet({
     [error, setError] = useState(""),
     [pack, setPack] = useState<string | null>(null),
     [details, setDetails] = useState<string | null>(null);
+  const [share, setShare] = useState<{
+    reference: string;
+    cards: { id: string; name: string; tier?: string }[];
+  } | null>(null);
   const pending = useRef<{ key: string; id: string } | null>(null);
   const [recovery, setRecovery] = useState(false);
   const storageKey = `docked:test-wallet:pending:${initial.member}`;
@@ -71,6 +75,19 @@ export function MemberTestWallet({
         throw Error(data.error);
       }
       setS(data.state);
+      if (command.kind === "accept") {
+        const before = new Set(
+          s.cards.filter((c) => c.owner === s.member).map((c) => c.id),
+        );
+        const received = (data.state as MemberTestView).cards.filter(
+          (c) => c.owner === s.member && !before.has(c.id),
+        );
+        if (received.length)
+          setShare({
+            reference: request,
+            cards: received.map((c) => ({ id: c.id, name: c.name })),
+          });
+      }
       pending.current = null;
       localStorage.removeItem(storageKey);
       setRecovery(false);
@@ -100,6 +117,13 @@ export function MemberTestWallet({
     });
   return (
     <div className="test-wallet">
+      {share && (
+        <AcquisitionShare
+          member={s.member}
+          reference={share.reference}
+          cards={share.cards}
+        />
+      )}
       {surface === "wallet" && (
         <>
           <header>
@@ -180,81 +204,64 @@ export function MemberTestWallet({
                     {p.price.toLocaleString()} test credits · {p.cards} cards
                   </p>
                   {p.weights && (
-                    <details>
-                      <summary>Pool, chances and guarantees</summary>
-                      <p>
-                        {p.eligiblePlayers} active catalogue players:{" "}
-                        {p.positions.join(", ")}. K and DEF/DST are excluded
-                        from these new seven-player pack versions; existing
-                        owned cards and old receipts are unchanged. Subject to
-                        fresh status and remaining supply.{" "}
-                        {Object.keys(p.guaranteedSlots).length
-                          ? `Configured guaranteed slots: ${Object.entries(
-                              p.guaranteedSlots,
-                            )
-                              .map(([slot, r]) => `${Number(slot) + 1}: ${r}`)
-                              .join(", ")}`
-                          : "No configured guaranteed rarity."}{" "}
-                        Nine different players.
-                      </p>
-                      <table>
-                        <caption>Per-card rarity draw · test settings</caption>
-                        <thead>
-                          <tr>
-                            <th>Rarity</th>
-                            <th>Per card</th>
-                            <th>At least one of this exact rarity in 9*</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {rarities
-                            .filter((r) => r !== "CORE")
-                            .map((r) => {
-                              const w = p.weights![r];
-                              return (
+                    <div>
+                      <details className="pack-chances">
+                        <summary>Rarity chances</summary>
+                        <table>
+                          <caption>Per card · test settings</caption>
+                          <thead>
+                            <tr>
+                              <th>Rarity</th>
+                              <th>Chance</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {rarities
+                              .filter((r) => r !== "CORE")
+                              .map((r) => (
                                 <tr key={r}>
                                   <td>{rarityRule(r).label}</td>
-                                  <td>{w / 100}%</td>
-                                  <td>
-                                    {probabilityLabel(
-                                      1 -
-                                        Array.from({ length: 9 }, (_, i) => {
-                                          const g = (
-                                            p.guaranteedSlots as Record<
-                                              string,
-                                              string
-                                            >
-                                          )[String(i)];
-                                          return (
-                                            1 -
-                                            (g ? (g === r ? 1 : 0) : w / 10000)
-                                          );
-                                        }).reduce((a, b) => a * b, 1),
-                                    )}
-                                  </td>
+                                  <td>{p.weights![r] / 100}%</td>
                                 </tr>
-                              );
-                            })}
-                        </tbody>
-                      </table>
-                      <p>
-                        *Independent rarity draws before supply checks. A chosen
-                        rarity with no eligible supply cancels the whole pack
-                        without charge; completed-pack frequencies can therefore
-                        differ near exhaustion. No lower-tier substitution.
-                        Player draws are dependent because duplicate players are
-                        excluded. The table describes independent rarity
-                        attempts before supply validation, not conditional odds
-                        among successful packs; no completed-pack probability is
-                        asserted. Within the chosen rarity, remaining eligible
-                        players are equally likely; serial numbers are assigned
-                        in order.
-                      </p>
-                      <small>
-                        Configuration: {p.version}. Premium is a pack type, not
-                        a rarity.
-                      </small>
-                    </details>
+                              ))}
+                          </tbody>
+                        </table>
+                      </details>
+                      <details className="pack-terms">
+                        <summary>Pack details</summary>
+                        <p>
+                          {p.eligiblePlayers} eligible players ·{" "}
+                          {p.positions.join(", ")}. Nine different players. No
+                          Core, K or DEF/DST in new gameplay packs. Existing
+                          cards and receipts are unchanged.
+                        </p>
+                        <p>
+                          {Object.keys(p.guaranteedSlots).length
+                            ? "Guaranteed slots: " +
+                              Object.entries(p.guaranteedSlots)
+                                .map(
+                                  ([slot, r]) =>
+                                    String(Number(slot) + 1) + ": " + r,
+                                )
+                                .join(", ")
+                            : "No guaranteed rarity."}
+                        </p>
+                        <p>
+                          Percentages are per-card rarity attempts before supply
+                          checks, not the chance across a whole pack. Guaranteed
+                          slots, if configured, override that slot’s draw.
+                          Player draws exclude duplicates. Within a rarity,
+                          eligible players are equally likely. If supply cannot
+                          fulfil the pack, it fails without charge or
+                          substitution; completed-pack frequencies may differ
+                          near exhaustion.
+                        </p>
+                        <small>
+                          Configuration: {p.version}. Premium is a pack type,
+                          not a rarity.
+                        </small>
+                      </details>
+                    </div>
                   )}
                   <button
                     disabled={

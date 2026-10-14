@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-14T13:19:58.944Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "aliases": [
+    {
+      "name": "docked.com.au",
+      "deployment": "dpl_HbFGWKpbrd3ahEBCLavqi6z1ujZm"
+    },
+    {
+      "name": "www.docked.com.au",
+      "deployment": "dpl_HbFGWKpbrd3ahEBCLavqi6z1ujZm"
+    }
+  ],
+  "protection": {
+    "deploymentType": "all_except_custom_domains"
+  },
+  "policies": [
+    {
+      "country": "AU",
+      "state": "VIC",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "effective_to": "2026-11-08T22:13:07.164Z",
+      "review_at": "2026-11-08T22:13:07.164Z"
+    }
+  ],
+  "social": {
+    "visible_posts": "6",
+    "active_profiles": "4"
+  },
+  "permissions": {
+    "can_read": true,
+    "can_post": true
+  },
+  "readOnly": true
+}

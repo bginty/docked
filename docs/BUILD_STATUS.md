@@ -1,3 +1,7 @@
+15 October 2026 — Mobile/Social update authorised for the existing friends beta. Compact rarity percentages, independent Social feed and My posts navigation added. Latest gates and release receipts: [mobile release](qa/mobile-release/RELEASE.md). Deployment not yet confirmed. Earlier local-only visual restriction is superseded.
+
+14 October 2026 — [Mobile cleanup LOCAL REVIEW](MOBILE_CLEANUP_REVIEW.md): compact Play/Cards/Social, dedicated screen-fitting per-card reveal, concise market confirmations and optional explicit sharing. Not deployed; owner visual approval required before release. Existing hosted marketplace remains unchanged.
+
 14 October 2026 — [Marketplace RELEASED](MARKETPLACE_RELEASE.md): source `ec33a8cc`, deployment `dpl_HbFGWKpbrd3ahEBCLavqi6z1ujZm`, worker v15, three reviewed migrations. Local Auth/HTTP/catalogue/dual-mode entry/lock/transfer/scoring/correction PASS; platform 342/342, database 152/152, native races, browser, typecheck/lint/build/client boundary PASS. Hosted verification was read-only, not hosted transactional acceptance. v22 receives this web release; physical S24 and genuine member round remain pending.
 
 Historical checkpoint: [Phase 1 NFL marketplace](MARKETPLACE_PHASE_ONE.md) was first implemented locally. The owner's subsequent release authority and current report above supersede that local-only restriction.

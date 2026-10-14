@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: private quarantine review permits MFA staff including read-only auditors independently of public region activation
+ok 1 - private quarantine review permits MFA staff including read-only auditors independently of public region activation
+  ---
+  duration_ms: 2.354
+  ...
+# Subtest: anonymous community upload and notification requests reject before accessing body bytes
+ok 2 - anonymous community upload and notification requests reject before accessing body bytes
+  ---
+  duration_ms: 5278.9055
+  ...
+# Subtest: reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+ok 3 - reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+  ---
+  duration_ms: 8.075
+  ...
+# Subtest: social-only input cannot supply verification, official ownership, settlement or cash stake fields
+ok 4 - social-only input cannot supply verification, official ownership, settlement or cash stake fields
+  ---
+  duration_ms: 13.1038
+  ...
+# Subtest: separate in-app preferences cannot enable outbound email or push
+ok 5 - separate in-app preferences cannot enable outbound email or push
+  ---
+  duration_ms: 5.5131
+  ...
+# Subtest: following a member does not implicitly opt into individual notifications
+ok 6 - following a member does not implicitly opt into individual notifications
+  ---
+  duration_ms: 3.693
+  ...
+# Subtest: social cursor accepts only an exact timestamp and UUID pair
+ok 7 - social cursor accepts only an exact timestamp and UUID pair
+  ---
+  duration_ms: 5.3173
+  ...
+# Subtest: body cap counts streamed bytes without relying on missing or forged Content-Length
+ok 8 - body cap counts streamed bytes without relying on missing or forged Content-Length
+  ---
+  duration_ms: 74.9095
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7889.3674
