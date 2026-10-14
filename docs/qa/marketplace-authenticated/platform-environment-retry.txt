@@ -42,9 +42,9 @@ not ok 8 - plain Node hosted build uses the same reviewed manifest and rejects i
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     1 !== 0
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 0
@@ -73,9 +73,9 @@ not ok 11 - Netlify guard writes only validated non-secret build metadata and de
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     1 !== 0
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 0
@@ -96,7 +96,7 @@ not ok 12 - production environment preparation keeps credentials private and all
     node:internal/modules/esm/resolve:275
         throw new ERR_MODULE_NOT_FOUND(
               ^
-    
+
     Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Users\61412\AppData\Local\Temp\docked-release-test-FSIAqg\src\core\local-marketplace-acceptance.mjs' imported from C:\Users\61412\AppData\Local\Temp\docked-release-test-FSIAqg\src\core\hosted-beta.mjs
         at finalizeResolution (node:internal/modules/esm/resolve:275:11)
         at moduleResolve (node:internal/modules/esm/resolve:860:10)
@@ -109,12 +109,12 @@ not ok 12 - production environment preparation keeps credentials private and all
       code: 'ERR_MODULE_NOT_FOUND',
       url: 'file:///C:/Users/61412/AppData/Local/Temp/docked-release-test-FSIAqg/src/core/local-marketplace-acceptance.mjs'
     }
-    
+
     Node.js v22.14.0
-    
-    
+
+
     1 !== 0
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 0
@@ -143,7 +143,7 @@ not ok 13 - production export requires approved identities and exports only comm
   failureType: 'testCodeFailure'
   error: |-
     The input did not match the regular expression /blocked/. Input:
-    
+
     'node:internal/modules/esm/resolve:275\r\n' +
       '    throw new ERR_MODULE_NOT_FOUND(\r\n' +
       '          ^\r\n' +
@@ -162,7 +162,7 @@ not ok 13 - production export requires approved identities and exports only comm
       '}\r\n' +
       '\r\n' +
       'Node.js v22.14.0\r\n'
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected:
@@ -170,7 +170,7 @@ not ok 13 - production export requires approved identities and exports only comm
     node:internal/modules/esm/resolve:275
         throw new ERR_MODULE_NOT_FOUND(
               ^
-    
+
     Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Users\61412\AppData\Local\Temp\docked-release-test-IjTunW\src\core\local-marketplace-acceptance.mjs' imported from C:\Users\61412\AppData\Local\Temp\docked-release-test-IjTunW\src\core\hosted-beta.mjs
         at finalizeResolution (node:internal/modules/esm/resolve:275:11)
         at moduleResolve (node:internal/modules/esm/resolve:860:10)
@@ -183,9 +183,9 @@ not ok 13 - production export requires approved identities and exports only comm
       code: 'ERR_MODULE_NOT_FOUND',
       url: 'file:///C:/Users/61412/AppData/Local/Temp/docked-release-test-IjTunW/src/core/local-marketplace-acceptance.mjs'
     }
-    
+
     Node.js v22.14.0
-    
+
   operator: 'match'
   stack: |-
     <anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:426:12)

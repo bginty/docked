@@ -1,8 +1,7 @@
 // No business commands, member setup, admission changes or worker invocation.
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { spawnSync } from "node:child_process";
-import { resolve } from "node:path";
+import { readFileSync, writeFileSync } from "node:fs";
+import { request } from "@playwright/test";
 import { ownerDatabase } from "./owner-gameplay-db.mjs";
 import { marketplaceView, marketQuery } from "../src/core/marketplace";
 import { refreshEconomyCatalogue } from "../src/server/economy-catalogue";
@@ -15,9 +14,18 @@ async function main() {
   );
   assert.equal(d.state, "READY");
   const base = domain ? "https://docked.com.au" : d.url;
-  const folder = "docs/qa/marketplace-release",
-    priv = "private-data/marketplace-release/http";
-  mkdirSync(priv, { recursive: true });
+  const folder = "docs/qa/marketplace-release";
+  const access = await request.newContext();
+  if (!domain) {
+    const share = JSON.parse(
+      readFileSync(
+        "private-data/marketplace-release/candidate-access.json",
+        "utf8",
+      ),
+    ).url;
+    assert.equal(new URL(share).origin, base);
+    await access.get(share);
+  }
   const checks: string[] = [];
   async function get(path: string) {
     if (domain) {
@@ -27,54 +35,14 @@ async function main() {
       });
       return { status: r.status, body: await r.text(), headers: r.headers };
     }
-    const response = resolve(priv, "response.txt"),
-      headers = resolve(priv, "headers.txt");
-    const r = spawnSync(
-      process.execPath,
-      [
-        "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js",
-        "curl",
-        path,
-        "--deployment",
-        base,
-        "--global-config",
-        resolve("private-data/vercel-cli"),
-        "--scope",
-        "team_tf6xweKKyVCj9bTppUKttJ4l",
-        "--",
-        "--silent",
-        "--max-time",
-        "30",
-        "--output",
-        response,
-        "--dump-header",
-        headers,
-        "--write-out",
-        "%{http_code}",
-      ],
-      { encoding: "utf8", timeout: 60000, windowsHide: true },
-    );
-    // CLI diagnostics may contain an authentication header: keep them private.
-    writeFileSync(
-      resolve(priv, "cli.txt"),
-      String(r.stdout) + String(r.stderr),
-      { mode: 0o600 },
-    );
-    assert.equal(
-      r.status,
-      0,
-      "Authenticated Vercel read failed; private diagnostic retained",
-    );
-    const raw = readFileSync(headers, "utf8"),
-      h = new Headers();
-    for (const line of raw.split(/\r?\n/)) {
-      const p = line.indexOf(":");
-      if (p > 0) h.set(line.slice(0, p), line.slice(p + 1).trim());
-    }
+    const r = await access.get(base + path, {
+      maxRedirects: 0,
+      timeout: 30000,
+    });
     return {
-      status: Number(String(r.stdout).trim().slice(-3)),
-      body: readFileSync(response, "utf8"),
-      headers: h,
+      status: r.status(),
+      body: await r.text(),
+      headers: new Headers(r.headers()),
     };
   }
   const identity = await get("/api/beta-release");
@@ -104,7 +72,11 @@ async function main() {
   checks.push(
     "Marketplace/activity/wallet/collection deny anonymous access with private no-store responses",
   );
-  for (const path of ["/fantasy/market", "/fantasy/cards", "/fantasy/test-wallet"]) {
+  for (const path of [
+    "/fantasy/market",
+    "/fantasy/cards",
+    "/fantasy/test-wallet",
+  ]) {
     const r = await get(path);
     assert.ok([200, 302, 303, 307, 308].includes(r.status), path);
     assert.notEqual(r.status, 404);
@@ -127,14 +99,24 @@ async function main() {
           await tx`select document,revision from credits_sandbox.state where id`;
         const stateHash = digest(row.document),
           state = structuredClone(row.document);
-      await refreshEconomyCatalogue(tx as unknown as Sql, state);
+        await refreshEconomyCatalogue(tx as unknown as Sql, state);
         const members =
-          await tx`select user_id from credits_sandbox.access where enabled and beta_private.admitted(user_id)`;
+          await tx`select a.user_id from credits_sandbox.access a join beta_private.friends_roster r on r.user_id=a.user_id where a.enabled and r.enabled`;
+        // admitted() takes FOR SHARE. Keep this audit strictly read-only: evaluate
+        // the reviewed function's SELECT projection, not its locking admission gate.
+        const [definition] =
+          await tx`select pg_get_functiondef('credits_sandbox.market_context(uuid)'::regprocedure) body`;
+        const expression = definition.body.match(
+          /return (jsonb_build_object[\s\S]*?);\s*end/i,
+        )?.[1];
+        assert.ok(expression, "Unexpected reviewed context function");
         let projections = 0,
           expired = 0;
         for (const m of members) {
-          const [r] =
-            await tx`select credits_sandbox.market_context(${m.user_id}::uuid) context`;
+          const [r] = await tx.unsafe(
+            `select ${expression} context from (select $1::uuid u) actor`,
+            [m.user_id],
+          );
           for (const tab of ["browse", "listings", "activity", "swaps"]) {
             const view = marketplaceView(
               state,
@@ -208,6 +190,7 @@ async function main() {
     console.log(JSON.stringify(report));
   } finally {
     await db.end();
+    await access.dispose();
   }
 }
 main().catch((e) => {

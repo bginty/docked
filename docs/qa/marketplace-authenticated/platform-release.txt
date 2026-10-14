@@ -939,9 +939,9 @@ not ok 186 - plain Node hosted build uses the same reviewed manifest and rejects
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     1 !== 0
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 0
@@ -1190,9 +1190,9 @@ not ok 233 - Netlify guard writes only validated non-secret build metadata and d
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     1 !== 0
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 0
@@ -1618,7 +1618,7 @@ not ok 315 - production environment preparation keeps credentials private and al
     Command failed: git init --initial-branch=codex/docked-value-platform
     error: could not write config file C:/Users/61412/AppData/Local/Packages/sandbox.{3d347ad1-687f-4a0e-9cc6-80ffcb581237}/AC/Temp/docked-release-test-CEvmoF/.git/config: Permission denied
     fatal: could not set 'core.repositoryformatversion' to '0'
-    
+
   code: 'ERR_TEST_FAILURE'
   stack: |-
     genericNodeError (node:internal/errors:983:15)
@@ -1641,7 +1641,7 @@ not ok 316 - production export requires approved identities and exports only com
     Command failed: git init --initial-branch=codex/docked-value-platform
     error: could not write config file C:/Users/61412/AppData/Local/Packages/sandbox.{3d347ad1-687f-4a0e-9cc6-80ffcb581237}/AC/Temp/docked-release-test-GdgJwK/.git/config: Permission denied
     fatal: could not set 'core.repositoryformatversion' to '0'
-    
+
   code: 'ERR_TEST_FAILURE'
   stack: |-
     genericNodeError (node:internal/errors:983:15)
@@ -1664,7 +1664,7 @@ not ok 317 - production export rejects every unreviewed manifest boundary before
     Command failed: git init --initial-branch=codex/docked-value-platform
     error: could not write config file C:/Users/61412/AppData/Local/Packages/sandbox.{3d347ad1-687f-4a0e-9cc6-80ffcb581237}/AC/Temp/docked-release-test-gFPacU/.git/config: Permission denied
     fatal: could not set 'core.repositoryformatversion' to '0'
-    
+
   code: 'ERR_TEST_FAILURE'
   stack: |-
     genericNodeError (node:internal/errors:983:15)

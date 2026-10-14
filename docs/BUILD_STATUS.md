@@ -1,4 +1,4 @@
-14 October 2026 — [Marketplace release acceptance](MARKETPLACE_RELEASE.md): connected local Auth/HTTP/catalogue/dual-mode entry/lock/transfer/scoring/correction chain PASS. Platform 342/342, database 152/152, native races, browser, typecheck/lint/build/client boundary PASS. Earlier Docker and connected-worker blockers resolved. Exact hosted release status is in the linked report/receipts; physical S24 and genuine member round remain pending.
+14 October 2026 — [Marketplace RELEASED](MARKETPLACE_RELEASE.md): source `ec33a8cc`, deployment `dpl_HbFGWKpbrd3ahEBCLavqi6z1ujZm`, worker v15, three reviewed migrations. Local Auth/HTTP/catalogue/dual-mode entry/lock/transfer/scoring/correction PASS; platform 342/342, database 152/152, native races, browser, typecheck/lint/build/client boundary PASS. Hosted verification was read-only, not hosted transactional acceptance. v22 receives this web release; physical S24 and genuine member round remain pending.
 
 Historical checkpoint: [Phase 1 NFL marketplace](MARKETPLACE_PHASE_ONE.md) was first implemented locally. The owner's subsequent release authority and current report above supersede that local-only restriction.
 

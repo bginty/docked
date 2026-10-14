@@ -57,6 +57,12 @@ const known = await loadKnownSecrets();
 const runtime = JSON.parse(
   readFileSync("private-data/production/beta-runtime-connection.json"),
 );
+const candidateAccess = JSON.parse(
+  readFileSync(
+    "private-data/marketplace-release/candidate-access.json",
+    "utf8",
+  ),
+).url;
 const audit = await auditPreviewTargets(
   [
     "src",
@@ -71,6 +77,8 @@ const audit = await auditPreviewTargets(
   ],
   [
     ...known.values,
+    candidateAccess,
+    new URL(candidateAccess).searchParams.get("_vercel_share"),
     runtime.databaseUrl,
     decodeURIComponent(new URL(runtime.databaseUrl).password),
     token,

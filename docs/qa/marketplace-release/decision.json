@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-14T08:48:17.637Z",
+  "decision": "RELEASE",
+  "commit": "ec33a8cc46d3dc5600f3e079236deb8be5547732",
+  "checks": {
+    "integrated": true,
+    "restrictedWorker": true,
+    "races": true,
+    "database": true,
+    "platform": true,
+    "browser": true,
+    "typecheck": true,
+    "lint": true,
+    "build": true,
+    "clientBoundary": true,
+    "reviewedSecrets": true,
+    "targetCompatibility": true,
+    "rollback": true,
+    "noMemberQa": true,
+    "controlsClosed": true
+  },
+  "migrations": [
+    {
+      "file": "20261014021342_marketplace_phase_one_guards.sql",
+      "sha256": "ae5af9fca920a088a55332ade5b9179aebfcf02c2b884f701368aff4958a2c71"
+    },
+    {
+      "file": "20261014081315_marketplace_legacy_identity_compatibility.sql",
+      "sha256": "6c1bb974931f6ed7e7eeb29ed3c85eef048fa8dd5223dce305c98aaaae36ffac"
+    },
+    {
+      "file": "20261014081931_nfl_locked_worker_read_scope.sql",
+      "sha256": "bf1170875337ef6b9465b7d3aecc2686c8687aa5e59d60666319203f2ea60889"
+    }
+  ],
+  "limitations": [
+    "Read-only hosted verification only; revoked QA identity remains revoked",
+    "Physical S24 and genuine future round pending",
+    "Raw secret findings retained, classified separately"
+  ],
+  "scope": "Existing admitted isolated test beta; no hosted QA business mutations; no real money or admission changes"
+}

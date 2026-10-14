@@ -1,6 +1,6 @@
 {
-  "path": "private-data/marketplace-release/before-804f3dd844d22de532718341700bf92fd43d5fa7.json",
-  "sha256": "7d6a9d4eda6e78dad9613dbae6678f2305cf0ecdf3ba216d8aaf4b6656b7de5e",
+  "path": "private-data/marketplace-release/before-ec33a8cc46d3dc5600f3e079236deb8be5547732.json",
+  "sha256": "ec3417bde8ad8697ffae0f74ca7cc8b4311625ac21ddbf7d9ae5ff472e112c4d",
   "tables": {
     "credits_sandbox.state": 1,
     "credits_sandbox.journal": 16,
@@ -9,10 +9,10 @@
     "credits_sandbox.card_instances": 81,
     "credits_sandbox.card_definitions": 79,
     "beta_fantasy.cards": 41,
-    "beta_fantasy.entries": 6,
-    "beta_fantasy.entry_revisions": 41,
+    "beta_fantasy.entries": 7,
+    "beta_fantasy.entry_revisions": 42,
     "beta_fantasy.slot_locks": 0,
-    "beta_fantasy.swaps": 1
+    "beta_fantasy.swaps": 6
   },
   "functions": 6,
   "scope": "Affected application data and function/policy definitions; not full Auth/storage disaster recovery",
