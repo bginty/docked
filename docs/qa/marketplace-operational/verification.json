@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-14T04:57:31.510Z",
+  "scope": "LOCAL_ONLY",
+  "marketplace": {
+    "platformAndPGlite": 8,
+    "failed": 0
+  },
+  "seven": {
+    "platformAndPGlite": 7,
+    "failed": 0,
+    "receipt": "seven-regression.tap"
+  },
+  "nativePostgres": "postgres.json",
+  "syntheticBrowser": "../marketplace-phase-one/browser.json",
+  "typecheck": {
+    "exitCode": 0,
+    "log": "typecheck.txt"
+  },
+  "lint": {
+    "exitCode": 0,
+    "log": "lint.txt"
+  },
+  "applicationHttpAuthDatabase": "NOT_RUN_DOCKER_STARTUP_FAILURE",
+  "physicalS24": "NOT_PERFORMED",
+  "hostedOperations": "NONE",
+  "secretScan": "FAIL_SEPARATE_REVIEW"
+}

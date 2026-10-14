@@ -1,3 +1,5 @@
+> 14 October continuation: [Local operational acceptance](MARKETPLACE_OPERATIONAL_ACCEPTANCE.md) supersedes the PostgreSQL-unavailable gate below. Real multi-connection PostgreSQL now passes; genuine HTTP/Auth integration remains blocked by the documented Docker socket crash. No hosted release.
+
 # Phase 1 NFL marketplace — local implementation
 
 14 October 2026. LOCAL ONLY: no deployment, hosted migration, member transaction or messages are authorised in this milestone.
