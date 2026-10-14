@@ -1,3 +1,5 @@
+15 October 2026 — Mobile/Social update RELEASED at https://docked.com.au. Source 8a585d1b; deployment dpl_3nnwtajpgUqHRrELA3xnDtoaLVbq. Local authenticated Social/browser/PostgreSQL acceptance passed; hosted read-only projections and 15 domain/auth boundaries passed. v22 receives the update after close/reopen; no APK rebuild. No migrations or hosted member mutations. [Release evidence](qa/mobile-release/RELEASE.md).
+
 15 October 2026 — Mobile/Social update authorised for the existing friends beta. Compact rarity percentages, independent Social feed and My posts navigation added. Latest gates and release receipts: [mobile release](qa/mobile-release/RELEASE.md). Deployment not yet confirmed. Earlier local-only visual restriction is superseded.
 
 14 October 2026 — [Mobile cleanup LOCAL REVIEW](MOBILE_CLEANUP_REVIEW.md): compact Play/Cards/Social, dedicated screen-fitting per-card reveal, concise market confirmations and optional explicit sharing. Not deployed; owner visual approval required before release. Existing hosted marketplace remains unchanged.

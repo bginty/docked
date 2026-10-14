@@ -1,3 +1,5 @@
+Current status: **RELEASED** on the owner's subsequent deployment instruction. https://docked.com.au runs source 8a585d1b. [Live release evidence](qa/mobile-release/RELEASE.md). Earlier local-only statements below describe the prior review stage. Physical S24 acceptance remains pending.
+
 # Mobile cleanup — local visual review
 
 The owner explicitly authorised deploying the reviewed visual changes on 15 October 2026, with concise pack chances and Social feed fixes. Release is pending the current verification below; the earlier local-only boundary is superseded for this admitted beta update. Physical S24 acceptance remains pending. Accounts, balances, cards, teams, scoring rules and receipts are preserved.

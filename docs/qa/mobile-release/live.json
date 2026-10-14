@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "at": "2026-10-14T13:48:00.850Z",
+  "deployment": "dpl_3nnwtajpgUqHRrELA3xnDtoaLVbq",
+  "commit": "8a585d1b32d05f466e330738c0238bcb0fb912c8",
+  "base": "https://docked.com.au",
+  "checks": [
+    "Exact deployed commit/project/database and invitation-only release identity",
+    "Marketplace/activity/wallet/collection deny anonymous access with private no-store responses",
+    "Market, collection and wallet routes resolve; no obsolete 404",
+    "www retains HTTPS canonical redirect",
+    "Social route resolves and anonymous feed exposes no posts",
+    "Hosted SQL/read projections reconcile ownership, retained private receipts, cancellation amounts and expired offers without writes"
+  ],
+  "audit": {
+    "projections": 4,
+    "expiredOfferProjections": 5,
+    "aggregateUnchanged": true,
+    "readOnly": true,
+    "qaAdmission": {
+      "roster_enabled": false,
+      "wallet_enabled": false
+    },
+    "scope": "Read-only compatibility/privacy projection audit, not an authenticated member HTTP journey or transaction"
+  },
+  "hostedTransactions": false,
+  "hostedAuthenticatedSuccess": false,
+  "physicalDevice": false,
+  "limitation": "Dedicated hosted QA is revoked and remains so. Successful ordinary-member authenticated transactions verified locally only."
+}
