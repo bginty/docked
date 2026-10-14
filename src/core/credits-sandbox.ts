@@ -126,6 +126,15 @@ export type CreditsState = {
       price: number;
       status: "OPEN" | "SOLD" | "CANCELLED";
       buyer?: string;
+      createdAt?: number;
+      cancelledAt?: number;
+      receipt?: {
+        reference: string;
+        at: number;
+        price: number;
+        fee: number;
+        net: number;
+      };
     }
   >;
   swaps: Record<
@@ -225,8 +234,10 @@ export const creditsCommand = z.discriminatedUnion("kind", [
   base({ kind: z.literal("open-pack"), entitlement: id }),
   base({ kind: z.literal("list"), card: id, price: amount }),
   base({ kind: z.literal("cancel-listing"), listing: id }),
+  base({ kind: z.literal("review-buy"), listing: id }),
   base({
     kind: z.literal("buy"),
+    review: id.optional(),
     listing: id,
     expectedPrice: amount,
     policy: id,
@@ -502,6 +513,11 @@ export function executeCredits(
       throw Error("Idempotency conflict");
     return { state: s, result: s.requests[key].result };
   }
+  // Expiry is effective at server time even if no cleanup worker has run.
+  // No ledger funds or physical card reservation is created by these offers.
+  for (const offer of Object.values(s.swaps))
+    if (offer.status === "OPEN" && offer.expires <= now)
+      offer.status = "EXPIRED";
   const member = () => {
     if (actor.role !== "member") throw Error("Member action required");
   };
@@ -599,7 +615,10 @@ export function executeCredits(
       }
       if (!n) break;
     }
-    if (n) throw Error("Insufficient eligible Docked Credits");
+    if (n)
+      throw Error(
+        `Insufficient eligible Docked Credits. You need ${n.toLocaleString("en-AU")} more Docked Credits for this transaction.`,
+      );
     return parts;
   };
   const debit = (
@@ -607,11 +626,29 @@ export function executeCredits(
     bucket: Bucket = "available",
   ) =>
     parts.map((p) => ({ account: account(p.lot, bucket), credits: -p.amount }));
-  const canTrade = (cardId: string, owner: string, version?: number) => {
+  const canTrade = (
+    cardId: string,
+    owner: string,
+    version?: number,
+    offerId?: string,
+  ) => {
+    if (
+      Object.entries(s.swaps).some(
+        ([ref, x]) =>
+          ref !== offerId &&
+          x.status === "OPEN" &&
+          x.expires > now &&
+          [...x.give, ...x.take].includes(cardId),
+      )
+    )
+      throw Error(
+        "Card reserved by an active swap. Cancel or wait for expiry.",
+      );
     const card = s.commerce.cards[cardId],
       meta = s.cards[cardId];
     if (
       !card ||
+      card.tier === "CORE" ||
       card.owner !== owner ||
       card.reserved ||
       !meta ||
@@ -632,8 +669,10 @@ export function executeCredits(
     // Swapping a listed card supersedes the sale offer in the same transaction.
     // A successful buy sets its own listing to SOLD immediately afterwards.
     for (const listing of Object.values(s.listings))
-      if (listing.card === cardId && listing.status === "OPEN")
+      if (listing.card === cardId && listing.status === "OPEN") {
         listing.status = "CANCELLED";
+        listing.cancelledAt ??= now;
+      }
   };
   const event = (namespace: string, eid: string, data: unknown) => {
     const k = `${namespace}:${eid}`,
@@ -1037,18 +1076,43 @@ export function executeCredits(
       version: s.cards[c.card].version,
       price: c.price,
       status: "OPEN",
+      createdAt: now,
     };
-    result = sellerQuote(c.price);
+    result = { listing: request, status: "OPEN", ...sellerQuote(c.price) };
   } else if (c.kind === "cancel-listing") {
     const l = s.listings[c.listing];
     if (!l) throw Error("Unknown listing");
     own(l.member);
-    if (l.status !== "OPEN") throw Error("Listing closed");
+    if (l.status === "SOLD")
+      throw Error("Listing already sold; view the receipt");
+    if (l.status === "OPEN") l.cancelledAt = now;
     l.status = "CANCELLED";
+    result = { listing: c.listing, status: l.status };
+  } else if (c.kind === "review-buy") {
+    member();
+    const l = s.listings[c.listing];
+    if (!l || l.member === actor.id) throw Error("Listing unavailable");
+    if (l.status !== "OPEN")
+      throw Error(`Listing ${l.status.toLowerCase()}; review updated details.`);
+    canTrade(l.card, l.member, l.version);
+    result = {
+      review: request,
+      listing: c.listing,
+      card: l.card,
+      version: l.version,
+      seller: l.member,
+      ...sellerQuote(l.price),
+      policy: s.policy.version,
+      expires: now + 300000,
+    };
   } else if (c.kind === "buy") {
     member();
     policy(c.policy);
     const l = s.listings[c.listing];
+    if (l && l.status !== "OPEN")
+      throw Error(
+        `Listing ${l.status.toLowerCase()} (stale review); view updated details.`,
+      );
     if (
       !l ||
       l.status !== "OPEN" ||
@@ -1056,6 +1120,31 @@ export function executeCredits(
       c.expectedPrice !== l.price
     )
       throw Error("Invalid or stale listing");
+    if (c.review) {
+      const q = s.requests[`${actor.id}:${c.review}`]?.result as
+        | {
+            listing?: string;
+            card?: string;
+            version?: number;
+            price?: number;
+            policy?: string;
+            expires?: number;
+          }
+        | undefined;
+      if (
+        !q ||
+        q.listing !== c.listing ||
+        q.card !== l.card ||
+        q.version !== l.version ||
+        q.price !== l.price ||
+        q.policy !== s.policy.version ||
+        !q.expires ||
+        q.expires <= now
+      )
+        throw Error(
+          "Purchase review expired or changed. Review this listing again.",
+        );
+    }
     const meta = canTrade(l.card, l.member, l.version),
       parts = select(actor.id, l.price),
       quote = sellerQuote(l.price);
@@ -1081,8 +1170,16 @@ export function executeCredits(
     meta.restricted ||= parts.some((p) => !s.lots[p.lot].redeemable);
     transfer(l.card, actor.id, c.listing);
     l.status = "SOLD";
+    delete l.cancelledAt;
     l.buyer = actor.id;
-    result = quote;
+    l.receipt = {
+      reference: `${request}_sale`,
+      at: now,
+      price: l.price,
+      fee: quote.fee,
+      net: quote.net,
+    };
+    result = { ...quote, receipt: l.receipt, listing: c.listing, card: l.card };
   } else if (c.kind === "offer") {
     member();
     if (
@@ -1114,9 +1211,15 @@ export function executeCredits(
   ) {
     if (!("swap" in c)) throw Error("Swap required");
     const offer = s.swaps[c.swap];
-    if (!offer || offer.status !== "OPEN") throw Error("Offer closed");
+    if (!offer) throw Error("Offer closed");
+    if (c.kind === "expire-swap" && offer.status === "EXPIRED") {
+      if (actor.id !== offer.member && actor.id !== offer.other) admin();
+    } else if (offer.status !== "OPEN")
+      throw Error(
+        offer.status === "EXPIRED" ? "Offer expired" : "Offer closed",
+      );
     if (c.kind === "expire-swap") {
-      admin();
+      if (actor.id !== offer.member && actor.id !== offer.other) admin();
       if (now < offer.expires) throw Error("Not expired");
       offer.status = "EXPIRED";
     } else if (c.kind === "cancel-swap") {
@@ -1132,6 +1235,7 @@ export function executeCredits(
             v,
             i < offer.give.length ? offer.member : offer.other,
             offer.versions[i],
+            c.swap,
           ),
         );
         const fee = swapFeeQuote(

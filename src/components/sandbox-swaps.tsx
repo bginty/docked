@@ -1,4 +1,5 @@
 "use client";
+import { useServerClock } from "./use-server-clock";
 import { boundedFetch } from "@/core/bounded-request";
 import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useState, useRef } from "react";
@@ -17,6 +18,9 @@ export function SandboxSwaps({ member }: { member?: string }) {
     request_id: string;
     payload: Record<string, unknown>;
   } | null>(null);
+  const clock = useServerClock(
+    state ? Date.parse(state.window.server_time) : 0,
+  );
   async function refresh() {
     if (mutation.current) return;
     const requestSequence = ++sequence.current;
@@ -271,47 +275,62 @@ export function SandboxSwaps({ member }: { member?: string }) {
           )}
           <h3>Offers and completed swaps</h3>
           {!state.swaps.length && <p>No offers yet.</p>}
-          {state.swaps.map((s) => (
-            <article className="notice" key={s.id}>
-              <p>
-                {s.sender === state.user_id ? "You offer" : "They offer"}{" "}
-                {label(s.give_card)} for {label(s.take_card)}.
-              </p>
-              <p>
-                {s.state} · fee per person {formatAUD(s.fee_cents)} simulated
-                AUD · expires {new Date(s.expires_at).toLocaleString()}
-              </p>
-              {s.state === "pending" &&
-                (s.recipient === state.user_id ? (
-                  <>
+          {state.swaps.map((offer) => {
+            const s = {
+              ...offer,
+              state:
+                offer.state === "pending" &&
+                Date.parse(offer.expires_at) <= clock
+                  ? "expired"
+                  : offer.state,
+            };
+            return (
+              <article className="notice" key={s.id}>
+                <p>
+                  {s.sender === state.user_id ? "You offer" : "They offer"}{" "}
+                  {label(s.give_card)} for {label(s.take_card)}.
+                </p>
+                <p>
+                  {s.state} ·{" "}
+                  {state.mode === "FRIENDS_CARD_SWAP"
+                    ? "Free card swap"
+                    : `Legacy simulated fee ${formatAUD(s.fee_cents)}`}{" "}
+                  · expires {new Date(s.expires_at).toLocaleString()}
+                </p>
+                {s.state === "pending" &&
+                  (s.recipient === state.user_id ? (
+                    <>
+                      <button
+                        disabled={busy || !!pending}
+                        onClick={() =>
+                          void send("accept", {
+                            swap_id: s.id,
+                            fee_cents: s.fee_cents,
+                          })
+                        }
+                      >
+                        {state.mode === "FRIENDS_CARD_SWAP"
+                          ? "Accept free swap"
+                          : "Accept legacy swap terms"}
+                      </button>
+                      <button
+                        disabled={busy || !!pending}
+                        onClick={() => void send("reject", { swap_id: s.id })}
+                      >
+                        Reject
+                      </button>
+                    </>
+                  ) : (
                     <button
                       disabled={busy || !!pending}
-                      onClick={() =>
-                        void send("accept", {
-                          swap_id: s.id,
-                          fee_cents: s.fee_cents,
-                        })
-                      }
+                      onClick={() => void send("cancel", { swap_id: s.id })}
                     >
-                      Accept both cards and test fee
+                      Cancel offer
                     </button>
-                    <button
-                      disabled={busy || !!pending}
-                      onClick={() => void send("reject", { swap_id: s.id })}
-                    >
-                      Reject
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    disabled={busy || !!pending}
-                    onClick={() => void send("cancel", { swap_id: s.id })}
-                  >
-                    Cancel offer
-                  </button>
-                ))}
-            </article>
-          ))}
+                  ))}
+              </article>
+            );
+          })}
           <h3>Ownership history</h3>
           {state.ownership_history.map((e, i) => (
             <p key={e.reference + e.card_id + i}>

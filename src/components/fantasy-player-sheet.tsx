@@ -26,11 +26,43 @@ export function FantasySheet({
     const node = dialog.current,
       active = document.activeElement as HTMLElement | null;
     node?.showModal();
+    const containFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab" || !node) return;
+      const targets = [
+        ...node.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), summary, [tabindex="0"]',
+        ),
+      ].filter((el) => el.getClientRects().length > 0);
+      const first = targets[0],
+        last = targets.at(-1);
+      if (!first) {
+        event.preventDefault();
+        node.focus();
+        return;
+      }
+      if (
+        event.shiftKey &&
+        (document.activeElement === first ||
+          !node.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        last?.focus();
+      } else if (
+        !event.shiftKey &&
+        (document.activeElement === last ||
+          !node.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    node?.addEventListener("keydown", containFocus);
     const old = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const back = () => onClose();
     window.addEventListener("popstate", back);
     return () => {
+      node?.removeEventListener("keydown", containFocus);
       node?.close();
       document.body.style.overflow = old;
       window.removeEventListener("popstate", back);
@@ -298,6 +330,13 @@ export function FantasyPlayerDetails({
         {!onSelect && owned && !roundId && (
           <Link className="button" href={`/fantasy/play?card=${card.id}`}>
             Choose lineup · Free
+          </Link>
+        )}
+        {owned && state.nfl_beta && (
+          <Link
+            href={`/fantasy/market?tab=listings&sell=${encodeURIComponent(card.id)}`}
+          >
+            {card.listed ? "Listed · View listing" : "Sell Card"}
           </Link>
         )}
         <Link href="/fantasy/cards">View collection</Link>

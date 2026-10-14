@@ -53,6 +53,8 @@ const memberKinds = new Set([
   "list",
   "cancel-listing",
   "buy",
+  "review-buy",
+  "expire-swap",
   "offer",
   "accept",
   "reject",
@@ -61,6 +63,8 @@ const memberKinds = new Set([
 export function memberTestCommand(input: unknown) {
   const c = creditsCommand.parse(input);
   if (!memberKinds.has(c.kind)) throw Error("Test wallet action denied");
+  if (c.kind === "buy" && !c.review)
+    throw Error("Review the listing before confirming purchase");
   return c;
 }
 export function testCard(s: CreditsState, id: string): AwardedCard {
@@ -168,10 +172,18 @@ export function memberTestView(
     .filter(([, x]) => x.member === member || x.other === member)
     .map(([id, x]) => {
       x.give.concat(x.take).forEach((c) => visible.add(c));
-      return { id, ...x };
+      return {
+        id,
+        ...x,
+        status:
+          x.status === "OPEN" && x.expires <= now
+            ? ("EXPIRED" as const)
+            : x.status,
+      };
     });
   return {
     member,
+    serverTime: now,
     policy: s.policy.version,
     wallet: wallet(s, member),
     swapQuote: swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now),

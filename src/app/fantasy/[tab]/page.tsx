@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { boundedRead } from "@/core/bounded-request";
 
-import { SandboxSwaps } from "@/components/sandbox-swaps";
+import { Marketplace } from "@/components/marketplace";
+import { requireIdentity } from "@/server/auth";
+import "../../marketplace.css";
 
 import { notFound } from "next/navigation";
 
@@ -82,6 +84,24 @@ export default async function FantasyPage({
       </div>
     );
 
+  if (tab === "market" && process.env.DOCKED_FRIENDS_BETA === "true") {
+    try {
+      const who = await requireIdentity();
+      return (
+        <AppShell authenticated>
+          <Marketplace key={who.user.id} member={who.user.id} />
+        </AppShell>
+      );
+    } catch {
+      return (
+        <main className="fantasy-gate">
+          <h1>Docked Market</h1>
+          <p>Sign in with your invited account.</p>
+          <Link href="/app/login">Sign in</Link>
+        </main>
+      );
+    }
+  }
   let data;
 
   try {
@@ -158,9 +178,7 @@ export default async function FantasyPage({
             </p>
           )}
 
-        {tab === "market" && process.env.DOCKED_TWO_PERSON_BETA === "true" ? (
-          <SandboxSwaps key={data.state.user_id} member={data.state.user_id} />
-        ) : (
+        {
           <FantasyScreen
             key={`${tab}:${data.state.user_id}`}
 
@@ -170,7 +188,7 @@ export default async function FantasyPage({
 
             packExperience={packExperienceEnabled()}
           />
-        )}
+        }
 
         {process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
           process.env.DOCKED_FRIENDS_BETA !== "true" && (

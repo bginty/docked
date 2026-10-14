@@ -177,7 +177,7 @@ test("swaps reject/cancel free, accept debits 50 each exactly once; stale owners
   h.run(alice, { kind: "cancel-swap", swap: "swap2" });
   assert.equal(wallet(h.state, alice.id).available, 4900);
   h.run(alice, offer, "swap3");
-  h.run(alice, offer, "swap4");
+  assert.throws(() => h.run(alice, offer, "swap4"), /reserved/);
   h.run(bob, { kind: "accept", swap: "swap3" }, "accept");
   h.run(bob, { kind: "accept", swap: "swap3" }, "accept");
   assert.equal(wallet(h.state, alice.id).available, 4850);
@@ -185,7 +185,7 @@ test("swaps reject/cancel free, accept debits 50 each exactly once; stale owners
   assert.equal(financialReport(h.state).swapFees, 100);
   assert.throws(
     () => h.run(bob, { kind: "accept", swap: "swap4" }),
-    /Ownership/,
+    /closed/,
   );
   h.state.cards[cb].locked = true;
   assert.throws(

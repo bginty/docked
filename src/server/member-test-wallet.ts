@@ -11,7 +11,7 @@ import {
   assertMemberTestEconomy,
   testReceipt,
 } from "@/core/member-test-wallet";
-export async function memberTestWallet(input?: unknown) {
+export async function memberTestSource(input?: unknown) {
   if (
     process.env.DOCKED_FRIENDS_BETA !== "true" ||
     process.env.DOCKED_BETA_STAGING !== "true"
@@ -20,7 +20,7 @@ export async function memberTestWallet(input?: unknown) {
   const who = await requireIdentity(),
     sql = db();
   const [access] =
-    await sql`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled`;
+    await sql`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
   if (!access) throw Error("Test wallet admission required");
   const isOwner = access.kind === "owner";
   if (isOwner && who.aal !== "aal2") throw Error("Owner MFA required");
@@ -73,6 +73,13 @@ export async function memberTestWallet(input?: unknown) {
       if (!isOwner || who.aal !== "aal2") throw Error("Owner MFA required");
       command = parsed;
     } else command = memberTestCommand(body.command);
+    if (
+      process.env.DOCKED_TEST_MARKET_READ_ONLY === "true" &&
+      ["list", "buy", "offer", "accept"].includes(command.kind)
+    )
+      throw new CreditsRejected(
+        "Trading is temporarily paused. Your cards and credits are unchanged. You can still cancel listings and offers.",
+      );
     const other = command.kind === "offer" ? command.other : null;
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
@@ -104,12 +111,19 @@ export async function memberTestWallet(input?: unknown) {
   assertMemberTestEconomy(s);
   if (command?.kind === "open-pack")
     result = testReceipt(s, command.entitlement, who.user.id);
-  const view = memberTestView(
+  return {
     s,
-    who.user.id,
-    peers.map((p) => ({ id: String(p.id), label: String(p.label) })),
+    member: who.user.id,
+    peers: peers.map((p) => ({ id: String(p.id), label: String(p.label) })),
     isOwner,
-  );
+    result,
+    sql,
+  };
+}
+export async function memberTestWallet(input?: unknown) {
+  const { s, member, peers, isOwner, result, sql } =
+    await memberTestSource(input);
+  const view = memberTestView(s, member, peers, isOwner);
   if (isOwner)
     view.failures = (
       await sql`select request,product,category,recorded_at from credits_sandbox.pack_failures order by recorded_at desc limit 100`

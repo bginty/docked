@@ -14,40 +14,56 @@ export class CreditsSandboxStore {
     private authorize?: (tx: Sql, state: CreditsState) => Promise<void>,
   ) {}
   async execute(actor: Operator, request: string, command: unknown) {
-    return this.sql.begin(async (tx) => {
-      // Shared ordering with NFL team submissions: no ownership/lock race.
-      await tx`select pg_advisory_xact_lock(71820342)`;
-      const [row] =
-        await tx`select revision,document from credits_sandbox.state where id for update`;
-      if (!row) throw Error("Financial sandbox not initialized");
-      if (this.authorize)
-        await this.authorize(
-          tx as unknown as Sql,
-          row.document as CreditsState,
-        );
-      const [{ now }] =
-        await tx`select (extract(epoch from clock_timestamp())*1000)::bigint now`;
-      const old = row.document as CreditsState;
-      let executed: ReturnType<typeof executeCredits>;
-      try {
-        executed = executeCredits(old, actor, request, command, Number(now));
-      } catch (error) {
-        throw new CreditsRejected(
-          error instanceof Error ? error.message : "Rejected command",
-        );
-      }
-      const { state, result } = executed;
-      if (state.events.length !== old.events.length) {
-        for (const j of state.journal.slice(old.journal.length)) {
-          await tx`insert into credits_sandbox.journal values(${j.id},${tx.json(j as any)})`;
-          for (const [i, line] of j.lines.entries())
-            await tx`insert into credits_sandbox.lines values(${j.id},${i},${line.account},${line.credits})`;
+    return this.sql
+      .begin(async (tx) => {
+        // Shared ordering with NFL team submissions: no ownership/lock race.
+        await tx`select pg_advisory_xact_lock(71820342)`;
+        const [row] =
+          await tx`select revision,document from credits_sandbox.state where id for update`;
+        if (!row) throw Error("Financial sandbox not initialized");
+        if (this.authorize)
+          await this.authorize(
+            tx as unknown as Sql,
+            row.document as CreditsState,
+          );
+        const [{ now }] =
+          await tx`select (extract(epoch from clock_timestamp())*1000)::bigint now`;
+        const old = row.document as CreditsState;
+        let executed: ReturnType<typeof executeCredits>;
+        try {
+          executed = executeCredits(old, actor, request, command, Number(now));
+        } catch (error) {
+          throw new CreditsRejected(
+            error instanceof Error ? error.message : "Rejected command",
+          );
         }
-        await tx`insert into credits_sandbox.history(revision,actor,request,document) values(${Number(row.revision) + 1},${actor.id},${request},${tx.json(state as any)})`;
-        await tx`update credits_sandbox.state set revision=${Number(row.revision) + 1},document=${tx.json(state as any)} where id`;
-      }
-      return result;
-    });
+        const { state, result } = executed;
+        if (state.events.length !== old.events.length) {
+          for (const j of state.journal.slice(old.journal.length)) {
+            await tx`insert into credits_sandbox.journal values(${j.id},${tx.json(j as any)})`;
+            for (const [i, line] of j.lines.entries())
+              await tx`insert into credits_sandbox.lines values(${j.id},${i},${line.account},${line.credits})`;
+          }
+          await tx`insert into credits_sandbox.history(revision,actor,request,document) values(${Number(row.revision) + 1},${actor.id},${request},${tx.json(state as any)})`;
+          await tx`update credits_sandbox.state set revision=${Number(row.revision) + 1},document=${tx.json(state as any)} where id`;
+        }
+        return result;
+      })
+      .catch((error: unknown) => {
+        // PostgreSQL raised an application guard inside the transaction: the
+        // driver has rolled the entire transaction back, so this is conclusive.
+        // Transport/timeout failures remain unknown and retain the request ID.
+        if (
+          error &&
+          typeof error === "object" &&
+          "code" in error &&
+          error.code === "P0001"
+        )
+          throw new CreditsRejected(
+            error instanceof Error ? error.message : "Transaction rejected",
+          );
+        throw error;
+      });
   }
   async read() {
     const [row] = await this
