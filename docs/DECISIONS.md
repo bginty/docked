@@ -1,3 +1,5 @@
+14 October 2026 — Phase 1 marketplace is local-only under the latest owner specification. Extend the existing test-credit aggregate and shared competition lock; no parallel wallet/inventory. Retain core/free swaps separately; no cash features, hosted migration, deployment or member transactions in this task. See MARKETPLACE_PHASE_ONE.md.
+
 14 October 2026 — [Barry beta review](BARRY_BETA_REVIEW.md): competition-aware rules/copy, roster explanations, collection/results/loading fixes and versioned seven-player pack pool. Release acceptance tracked there; historical rules/assets remain unchanged.
 
 13 October 2026 — Credit-only economy: see [CREDIT_ONLY_RELEASE](CREDIT_ONLY_RELEASE.md). New isolated funding is credit-only; FIFO/provenance, settlement reconciliation and consent-safe swap-free windows extend the existing wallet. Real money remains disabled; historical grants, entitlements and seven-player competitions are preserved.

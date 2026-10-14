@@ -8,7 +8,7 @@ Owner decision, 10 October 2026: Docked is permanently a multi-sport fantasy spo
 
 The app destinations are Play, Cards, Market, Social and Profile. Authentication, MFA, invitation controls, moderation and account rights remain mandatory. Presentation does not grant gameplay access.
 
-Permanent card identity, finite edition supply, ownership provenance and atomic server-side transactions are product invariants. Rarity and money must never multiply fantasy points. No client can issue cards, select its pack outcome, alter a score or transact as another account.
+Permanent card identity, finite edition supply, ownership provenance and atomic server-side transactions are product invariants. Current Salary Cap/Open test rules apply saved rarity multipliers; legacy equal-scoring rounds remain unchanged. Spending does not alter a card’s configured multiplier. No client can issue cards, select its pack outcome, alter a score or transact as another account.
 
 ## Implemented scope versus ambition
 

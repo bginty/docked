@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-14T03:05:09.693Z",
+  "passed": true,
+  "scope": "LOCAL real components/domain engine with synthetic cookie identity and in-memory HTTP transport. NOT authenticated application HTTP/database E2E; NOT hosted or physical S24.",
+  "checks": [
+    "Keyboard Enter/Tab focus containment, Escape dismissal and focus restoration",
+    "Create listing, 1000/925/75 review, completed purchase response lost, reload and original receipt recovery exactly once",
+    "Filter URL/refresh, no results, injected HTTP failure and bounded recovery",
+    "Expired-session response recovery and wrong-account read rejected without displaying previous inventory",
+    "Definitive cancelled-purchase rejection refreshes authoritative listing and clears stale consent; no duplicate recovery ID",
+    "Expired offer labelled EXPIRED; no acceptance control",
+    "360/412/1440 responsive, axe WCAG A/AA and console checks"
+  ]
+}

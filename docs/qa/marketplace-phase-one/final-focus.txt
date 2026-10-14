@@ -1,0 +1,155 @@
+TAP version 13
+# Subtest: local PostgreSQL migrations: atomic races, immutable receipts, RLS, both-mode reservations and locked entitlement
+ok 1 - local PostgreSQL migrations: atomic races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 9676.1484
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 2 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 9148.8923
+  ...
+# Subtest: six authoritative rarities total 7951 limited cards; Core is unlimited and free
+ok 3 - six authoritative rarities total 7951 limited cards; Core is unlimited and free
+  ---
+  duration_ms: 3.0283
+  ...
+# Subtest: changed product consent, pause and client override cannot buy a new pack
+ok 4 - changed product consent, pause and client override cannot buy a new pack
+  ---
+  duration_ms: 64.2371
+  ...
+# Subtest: both packs yield nine unique non-Core cards and allow a deterministic Icon
+ok 5 - both packs yield nine unique non-Core cards and allow a deterministic Icon
+  ---
+  duration_ms: 13.2269
+  ...
+# Subtest: insufficient supply is atomic and no rarity substitution occurs
+ok 6 - insufficient supply is atomic and no rarity substitution occurs
+  ---
+  duration_ms: 13.5489
+  ...
+# Subtest: inactive/stale players abstain, preserve existing supply and never become retired by absence
+ok 7 - inactive/stale players abstain, preserve existing supply and never become retired by absence
+  ---
+  duration_ms: 8.0717
+  ...
+# Subtest: provider aliases cannot establish another allocation
+ok 8 - provider aliases cannot establish another allocation
+  ---
+  duration_ms: 0.6371
+  ...
+# Subtest: team/artwork/season do not reset player rarity serials
+ok 9 - team/artwork/season do not reset player rarity serials
+  ---
+  duration_ms: 13.6839
+  ...
+# Subtest: wallet retries preserve nine awards and one debit; open/replay never remints
+ok 10 - wallet retries preserve nine awards and one debit; open/replay never remints
+  ---
+  duration_ms: 28.8717
+  ...
+# Subtest: new products reject insufficient balance and legacy purchases; old sealed entitlements still open
+ok 11 - new products reject insufficient balance and legacy purchases; old sealed entitlements still open
+  ---
+  duration_ms: 20.494
+  ...
+# Subtest: rarity rounding applies to negative complete totals; old competition has no snapshot
+ok 12 - rarity rounding applies to negative complete totals; old competition has no snapshot
+  ---
+  duration_ms: 2.8075
+  ...
+# Subtest: listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+ok 13 - listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+  ---
+  duration_ms: 194.3161
+  ...
+# Subtest: stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+ok 14 - stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+  ---
+  duration_ms: 184.4504
+  ...
+# Subtest: active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+ok 15 - active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+  ---
+  duration_ms: 210.7723
+  ...
+# Subtest: stable cursor pages, filters, own listings and private projections
+ok 16 - stable cursor pages, filters, own listings and private projections
+  ---
+  duration_ms: 96.6873
+  ...
+# Subtest: commission half-up, Core restriction and economy isolation
+ok 17 - commission half-up, Core restriction and economy isolation
+  ---
+  duration_ms: 94.3763
+  ...
+# Subtest: one-time 100000 test grant, purchases, replay, private projection and non-redemption
+ok 18 - one-time 100000 test grant, purchases, replay, private projection and non-redemption
+  ---
+  duration_ms: 133.6646
+  ...
+# Subtest: test-card resale and swaps cannot create redeemable balances
+ok 19 - test-card resale and swaps cannot create redeemable balances
+  ---
+  duration_ms: 118.3954
+  ...
+# Subtest: reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+ok 20 - reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+  ---
+  duration_ms: 8.5183
+  ...
+# Subtest: mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+ok 21 - mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+  ---
+  duration_ms: 3.0782
+  ...
+# Subtest: salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+ok 22 - salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+  ---
+  duration_ms: 47.515
+  ...
+# Subtest: duplicate permanent identity, owner inventory and slot eligibility
+ok 23 - duplicate permanent identity, owner inventory and slot eligibility
+  ---
+  duration_ms: 0.7243
+  ...
+# Subtest: all six multipliers include negative scores and half-away rounding
+ok 24 - all six multipliers include negative scores and half-away rounding
+  ---
+  duration_ms: 0.6607
+  ...
+# Subtest: API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+ok 25 - API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+  ---
+  duration_ms: 30.5401
+  ...
+# Subtest: design Preview flag never activates on production or by a client flag
+ok 26 - design Preview flag never activates on production or by a client flag
+  ---
+  duration_ms: 2.6269
+  ...
+# Subtest: reveal progress is bounded and separated by user, receipt and awarded card order
+ok 27 - reveal progress is bounded and separated by user, receipt and awarded card order
+  ---
+  duration_ms: 1.0394
+  ...
+# Subtest: rarity rules require a separate explicitly scoped future competition
+ok 28 - rarity rules require a separate explicitly scoped future competition
+  ---
+  duration_ms: 38.0218
+  ...
+# Subtest: new rules lock rarity, preserve old periods, apply corrections and negative totals
+ok 29 - new rules lock rarity, preserve old periods, apply corrections and negative totals
+  ---
+  duration_ms: 63.31
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12228.5337

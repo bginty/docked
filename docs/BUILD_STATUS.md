@@ -1,3 +1,5 @@
+14 October 2026 — [Phase 1 NFL marketplace](MARKETPLACE_PHASE_ONE.md) implemented and verified LOCAL ONLY; not deployed. Prepared migration and separate review required. Hosted Barry review release below remains the live state.
+
 14 October 2026 — Barry review fixes released at fba1ae08. See [finding-by-finding report](BARRY_BETA_REVIEW.md) for tests, screenshots, migration/rollback and remaining physical review. v22 receives web changes automatically; no APK update required.
 
 14 October 2026 — [Barry beta review](BARRY_BETA_REVIEW.md): competition-aware rules/copy, roster explanations, collection/results/loading fixes and versioned seven-player pack pool. Release acceptance tracked there; historical rules/assets remain unchanged.

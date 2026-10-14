@@ -1,0 +1,10 @@
+
+> docked-value-platform@1.0.0 lint
+> eslint src scripts tests --max-warnings=0
+
+
+C:\Users\61412\Documents\ChatGPT\Docked.com.au\scripts\marketplace-local.ts
+  5:9  error  'randomUUID' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)
+

@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+ok 1 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 6947.0998
+  ...
+# Subtest: listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+ok 2 - listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+  ---
+  duration_ms: 107.2641
+  ...
+# Subtest: stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+ok 3 - stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+  ---
+  duration_ms: 85.8287
+  ...
+# Subtest: active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+ok 4 - active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+  ---
+  duration_ms: 54.9981
+  ...
+# Subtest: stable cursor pages, filters, own listings and private projections
+ok 5 - stable cursor pages, filters, own listings and private projections
+  ---
+  duration_ms: 60.1104
+  ...
+# Subtest: commission half-up, Core restriction and economy isolation
+ok 6 - commission half-up, Core restriction and economy isolation
+  ---
+  duration_ms: 27.6
+  ...
+# Subtest: owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+ok 7 - owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+  ---
+  duration_ms: 39.0668
+  ...
+# Subtest: fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+ok 8 - fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+  ---
+  duration_ms: 45.5658
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9007.9853
