@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "at": "2026-10-14T06:37:08.414Z",
+  "scope": "Actual local Next HTTP -> real GoTrue Auth -> PostgreSQL, synthetic QA assets only",
+  "checks": [
+    "Real Next login and GoTrue sessions; ordinary AAL1 admitted; owner AAL1 and unadmitted user denied",
+    "Seller listing, distinct signed-in buyer review/purchase, 1000/75/925, database ownership, private durable receipts, unauthorized mutations and lost-response same-ID recovery",
+    "Two DISTINCT real signed-in HTTP buyers reached separate blocked PostgreSQL connections: exactly one 100-credit sale, 8 commission, 92 proceeds",
+    "Actual logout revokes copied session; same cookie jar switches accounts without prior private activity",
+    "Persisted session reopened after actual JWT expiry; real GoTrue refresh succeeds and returns correct member inventory",
+    "Real authenticated browser market page and reload at 412px, using the renewed member session"
+  ],
+  "hostedOperations": false,
+  "physicalDevice": false
+}

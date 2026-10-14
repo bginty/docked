@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+ok 1 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 10414.4017
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 2 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 9272.6328
+  ...
+# Subtest: preview tester context is explicit, project-bound and restricted to social features without operators
+ok 3 - preview tester context is explicit, project-bound and restricted to social features without operators
+  ---
+  duration_ms: 17.1254
+  ...
+# Subtest: HTTPS Auth issue, refresh and deletion cookies are consistently private and secure
+ok 4 - HTTPS Auth issue, refresh and deletion cookies are consistently private and secure
+  ---
+  duration_ms: 21.7019
+  ...
+# Subtest: hosted preview accepts only the exact project and canonical external HTTPS origin
+ok 5 - hosted preview accepts only the exact project and canonical external HTTPS origin
+  ---
+  duration_ms: 7.6937
+  ...
+# Subtest: hosted mode rejects missing safety controls, provider activation and capture reuse
+ok 6 - hosted mode rejects missing safety controls, provider activation and capture reuse
+  ---
+  duration_ms: 7.8688
+  ...
+# Subtest: serverless database pool is opt-in and actual driver receives bounded settings
+ok 7 - serverless database pool is opt-in and actual driver receives bounded settings
+  ---
+  duration_ms: 9.5638
+  ...
+# Subtest: multipart budget fits hosted requests and streamed oversized bodies cannot bypass it
+ok 8 - multipart budget fits hosted requests and streamed oversized bodies cannot bypass it
+  ---
+  duration_ms: 39.6944
+  ...
+# Subtest: development eval is restricted to validated local acceptance and absent from normal headers
+ok 9 - development eval is restricted to validated local acceptance and absent from normal headers
+  ---
+  duration_ms: 11.5795
+  ...
+# Subtest: local profile accepts only loopback development, real restricted-role target and closed activation
+ok 10 - local profile accepts only loopback development, real restricted-role target and closed activation
+  ---
+  duration_ms: 14.843
+  ...
+# Subtest: local fixtures are generated for actual Auth identities without rewriting hashed journals
+ok 11 - local fixtures are generated for actual Auth identities without rewriting hashed journals
+  ---
+  duration_ms: 203.9055
+  ...
+# Subtest: listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+ok 12 - listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+  ---
+  duration_ms: 119.5291
+  ...
+# Subtest: stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+ok 13 - stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+  ---
+  duration_ms: 217.3255
+  ...
+# Subtest: active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+ok 14 - active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+  ---
+  duration_ms: 159.0191
+  ...
+# Subtest: stable cursor pages, filters, own listings and private projections
+ok 15 - stable cursor pages, filters, own listings and private projections
+  ---
+  duration_ms: 98.8652
+  ...
+# Subtest: commission half-up, Core restriction and economy isolation
+ok 16 - commission half-up, Core restriction and economy isolation
+  ---
+  duration_ms: 52.7963
+  ...
+# Subtest: owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+ok 17 - owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+  ---
+  duration_ms: 135.5929
+  ...
+# Subtest: fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+ok 18 - fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+  ---
+  duration_ms: 78.2255
+  ...
+# Subtest: reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+ok 19 - reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+  ---
+  duration_ms: 4.6058
+  ...
+# Subtest: mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+ok 20 - mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+  ---
+  duration_ms: 2.9909
+  ...
+# Subtest: salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+ok 21 - salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+  ---
+  duration_ms: 48.9279
+  ...
+# Subtest: duplicate permanent identity, owner inventory and slot eligibility
+ok 22 - duplicate permanent identity, owner inventory and slot eligibility
+  ---
+  duration_ms: 0.5822
+  ...
+# Subtest: all six multipliers include negative scores and half-away rounding
+ok 23 - all six multipliers include negative scores and half-away rounding
+  ---
+  duration_ms: 0.7499
+  ...
+# Subtest: API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+ok 24 - API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+  ---
+  duration_ms: 30.5869
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12727.5588

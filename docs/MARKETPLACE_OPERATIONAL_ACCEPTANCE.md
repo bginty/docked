@@ -1,77 +1,91 @@
 # Phase 1 marketplace — local operational acceptance
 
-14 October 2026. Continuation of `ed8bc02c` and `5694e454` on `pivot/fantasy-cards-preview-v1`. Barry's marketplace additions are retained.
+14 October 2026. Branch `pivot/fantasy-cards-preview-v1`; continued after `512e080c`, preserving `ed8bc02c` / `5694e454` and Barry's additions.
 
-**Decision: NOT READY for full operational acceptance.** Real multi-connection PostgreSQL acceptance now passes. Actual application HTTP → Supabase Auth → database acceptance remains unexecuted because the local Auth stack cannot start. No deployment, hosted database access, member operation, payment, invitation or message occurred. No application migration or production behavior was changed in this continuation.
+## Current decision
 
-## Infrastructure diagnosis and supported alternative
+**PASS for the local authenticated marketplace journey and separate-connection transaction tests. Full operational/release acceptance is not claimed.** The earlier Docker/Auth infrastructure blocker is resolved. Remaining coverage limits are the combined authenticated competition/catalogue/scoring-worker journey and physical S24 acceptance, described below. No deployment, hosted database access, existing-member mutation, payment, invitation or message occurred.
 
-Docker Desktop is installed (4.88.1; CLI 29.7.2). Starting its existing executable did not start an engine. The backend log at 04:44:11 UTC records a crash initializing the Ingest server: it cannot remove `C:/Users/61412/AppData/Local/Docker/run/sailor-ingest.sock` — “The file cannot be accessed by the system.” The Desktop error dialog offers Quit or factory reset. The Linux engine pipe remains absent and `docker info` has no Server result. WSL2 and the docker-desktop distribution exist; this is NOT evidence that virtualization is absent. No factory reset, permissions change, socket deletion, tenant change or hosted workaround was attempted.
+## What actually ran
 
-The earlier claim that PostgreSQL was unavailable because it was not on PATH is superseded. The repository already has the pinned `embedded-postgres@17.10.0-beta.17` Windows runner in `tmp/free-play-postgres-runtime`. Despite the package name, this runs a **real PostgreSQL 17.10 server with separate connections**, not PGlite. It creates a fresh loopback-only database, random password and port. The added `--marketplace-phase-one` option runs the existing store/SQL against isolated fixtures; it refuses a non-loopback/non-test database target. No new runtime dependency or service was purchased or installed.
+| Evidence category | Actual result |
+|---|---|
+| Real HTTP → Auth → PostgreSQL | [PASS receipt](qa/marketplace-authenticated/http.json). Actual Next handlers, GoTrue sessions/cookies, all repository migrations and `docked_beta_app` runtime role. Only isolated `.invalid` QA users and synthetic assets. |
+| Sale and recovery | Seller lists; a different signed-in buyer reviews/buys; balances, current owner, SOLD status and both private durable receipts reconcile. Discarding the first response and retrying its original operation ID returns the same result without another debit. |
+| Authorization | Ordinary AAL1 member admitted; owner AAL1 denied; unadmitted identity denied. Unrelated user cannot list/cancel another owner's asset or see the sale receipt. A forged `member` filter is ignored and the server returns the actual caller's identity. |
+| Sessions | Actual logout rejects copied old cookies. Account switching in the same cookie jar returns only the new identity. The real 120-second local JWT expires; reopening persisted cookies refreshes through GoTrue and returns the correct account. |
+| Authenticated buyer race | Two DISTINCT signed-in HTTP buyers reach separate blocked PostgreSQL connections. Exactly one purchase succeeds. 100 credits → 8 commission + 92 proceeds. The ordinary sale verifies 1,000 → 75 + 925. |
+| Actual hydrated browser | [PASS receipt](qa/marketplace-authenticated/browser.json). A 412px browser uses the real session, receives `/api/marketplace` 200, finishes loading and reloads. [Current screenshot](qa/marketplace-authenticated/member-market-mobile.png). Not a physical Android/WebView test. |
+| Native multi-connection PostgreSQL | [PASS receipt](qa/marketplace-operational/postgres.json), rerun after the fixture change. Three runtime-role PIDs; buyer/buyer, cancel/buy, swap/buy, submit/edit versus purchase in both modes, exact server-time lock predicate, same-ID recovery, injected settlement rollback, supply/serial integrity and nonnegative wallets. No new member-boundary credit issuance. |
+| Competition race limitation | Native tests use actual `seven_command`, reservations, triggers and locks, but explicit fixture identity/inventory adapters. They are NOT authenticated competition/catalogue end-to-end tests. The test crosses the real deadline, not an HTTP request synchronized to an exact microsecond. |
+| Locked scoring limitation | All 14 saved slot snapshots across Salary Cap/Open remain identical after permitted transfer. This run does not execute an entire imported-statistics worker round after the transfer. Existing scoring unit evidence is separate. |
+| Domain/PGlite regression | [24/24 PASS](qa/marketplace-authenticated/regression.txt). Includes marketplace, seven-slot rules, auth target guards, fixture hash integrity and CSP separation. PGlite is serialized, not contention evidence. |
+| Synthetic browser | Prior [PASS receipt](qa/marketplace-phase-one/browser.json): desktop/mobile layouts, keyboard/focus, axe, sale/cancel/recovery UI. Synthetic transport/cookies, distinct from the real browser check above. |
+| Static checks | Typecheck and repository lint pass. Clean-environment production build recorded separately in [build log](qa/marketplace-authenticated/build.txt); no hosted secrets/configuration are used. |
+| Physical S24 / hosted | NOT PERFORMED. No APK, domain or hosted state changed. |
 
-Run:
+## Docker and reproducible local setup
+
+Docker Desktop 4.88.1 / engine 29.7.2 now responds. The previous `sailor-ingest.sock` startup failure and request to restart Docker are superseded; no further owner infrastructure action is needed.
+
+The CLI attempted newer image downloads but stalled. The supported alternative uses the documented self-hosted Auth/Postgres/Kong subset with already-installed pinned images: PostgreSQL 17.6.1.166, GoTrue 2.195.0, Kong 2.8.1. No image/package upgrade, paid service or permissions workaround. This Docker PostgreSQL version is separate from the native PostgreSQL 17.10 runner.
+
+Only `docked-market-http` containers/network/volumes are used. PostgreSQL and the gateway bind to 127.0.0.1 ports 55322/55321; the app binds to 3033. Auth has only the internal network, no SMTP, external hooks or outbound email. Unrelated Docker projects are untouched. Failed local fixture/bootstrap volumes are preserved separately; no database reset or destructive cleanup occurred.
 
 ```text
+node scripts/marketplace-auth-infra.mjs
+docker compose -f tmp/marketplace-auth/compose.private.json up -d --force-recreate
+node --import tsx scripts/marketplace-auth-local.ts
+node --import tsx scripts/marketplace-auth-local.ts --browser-only
 node scripts/fantasy-production-local-postgres.mjs --marketplace-phase-one
 ```
 
-The installed Supabase CLI supports the standard local Docker stack. No existing local GoTrue binary or alternative Podman/nerdctl/Go runtime was found. Native PostgreSQL alone cannot provide Supabase Auth. See [official local-stack requirements](https://supabase.com/docs/guides/local-development/cli/getting-started). Do not replace authentication with a fake service and call that acceptance.
+Generated passwords, local signing keys and QA account details remain in ignored `tmp/marketplace-auth`. Never copy them into hosted configuration. The copied application has no `.env`; only an allowlisted environment, public local Auth key and restricted database login. Admin Auth credentials are used only by the isolated fixture harness. The harness refuses non-loopback destinations. Completed synthetic transactions remain recorded; repeated full purchase runs can exhaust the finite fixture inventory/balances. Browser-only repeats do not purchase. Use a new isolated fixture database for a new campaign rather than resetting genuine data or weakening supply guards.
 
-**Minimum unblock action:** quit the Docker error dialog and restart Windows/Docker Desktop normally, then verify `docker info` returns a Server section. This is a recovery attempt, not a guaranteed fix. If the same socket error remains, repair that specific Docker startup fault through Docker's supported troubleshooting; do not factory-reset or bypass permissions. Once the engine works, use an isolated local Supabase project/ports and local mail sink, with no hosted credentials, SMTP delivery, production hooks or linked remote project. Re-run the real Next application against that stack with fresh local QA users. No owner/Barry login or hosted access is needed.
+References: [Supabase local development](https://supabase.com/docs/guides/local-development/cli/getting-started), [self-hosted Auth configuration](https://supabase.com/docs/guides/self-hosting/auth/config). This is real Auth, not an emulator or mocked token issuer.
 
-## Executed evidence — keep these categories separate
+## Fixes and test-harness repairs
 
-| Category | Result and limits |
+- Added an explicit, nondeployable local marketplace target profile. It only allows development on exact loopback origins/ports with the restricted runtime DB role, admission/MFA controls and paid/sending flags off. Hosted/production use is rejected. Existing authentication, admission and transaction guards still execute.
+- Confirmed a local browser hydration failure: CSP blocked Webpack development eval, leaving the page on Loading market. [Captured error](qa/marketplace-authenticated/browser-errors.json). Only the validated local profile permits that development runtime; normal/hosted CSP is unchanged and tested. This is not evidence that Barry's deployed loading report had the same cause.
+- Generate fixture journals for actual local Auth IDs. Replacing UUIDs after generation invalidated their hashes; the real guard correctly rejected that fixture. The failed fixture was retained separately.
+- Corrected harness expectations: activity uses a prefixed event identity plus `listing`, and an unsupported identity query parameter is stripped rather than returning 400. Neither observation was a production authorization defect.
+- Refresh PostgreSQL activity snapshots when observing contention. Await all competing responses before teardown; request errors omit Playwright's cookie-bearing call logs from saved reports.
+
+No migration, financial rule, member balance, ownership rule, scoring rule or permanent cap changed.
+
+## Secret findings — raw FAIL retained
+
+[Current scanner output](qa/marketplace-authenticated/secret-scan.json) has nine candidate files. [Evidence classification](qa/marketplace-authenticated/secret-review.json) verifies prior file hashes without printing credential values. Scanner patterns were not suppressed or changed.
+
+| Finding | Classification |
 |---|---|
-| Native PostgreSQL | PASS: [receipt](qa/marketplace-operational/postgres.json). Three distinct runtime-role backend PIDs. `pg_stat_activity` confirms two blocked connections before releasing the shared advisory lock for buyer/buyer, cancel/buy and swap/buy races. |
-| Distinct buyers | Exactly one settlement. Durable 1,000-credit receipt retains 75 commission / 925 seller proceeds. Competing buyers have different fixture identities. |
-| Cancel / swap races | Cancellation or purchase wins once. An accepted reserved swap transfers once and makes the obsolete listing cancelled; competing purchase is rejected. |
-| Competition integration | Real `seven_command` rejects a listed/lost-ownership new entry against purchase. Salary Cap and Open edit/purchase races retain the original complete entry. Same-card use across both modes blocks pre-lock transfer. **Inventory and identity functions are explicit local test adapters**, not proof of authenticated catalogue mapping. |
-| Kickoff / historical entitlement | Real server clock crosses the fixture deadline; actual lock processing creates 14 snapshots across the two modes. Replacing a started player is rejected; a later permitted transfer preserves all saved scoring inputs. This tests before/after the boundary, not an HTTP request synchronized to the exact microsecond. A completed scoring-worker round after transfer is not newly demonstrated by this runner. |
-| Recovery / rollback | Repeated original operation ID returns the original durable result without another debit/transfer. Injected AFTER UPDATE error rolls back state, journal, normalized lines and history. Permanent instances/supply unchanged. Wallets nonnegative and actual member-boundary issuance unchanged. |
-| SQL authorization | Authenticated SQL role cannot read the private aggregate or call private market context. This does not validate real session/admission/MFA enforcement. |
-| Domain + PGlite regression | Marketplace 8/8 and seven-player 7/7 pass. PGlite is serialized, with controlled fixture identity. Seven-player salary, positions, API payload, rounding and lock/privacy regressions are distinct from native contention evidence. |
-| Synthetic browser | Re-run passed: listing, review, purchase, lost-response reload/recovery, private projection, expiry/error recovery, keyboard/focus, 360/412/1440 layouts and axe checks. [Receipt](qa/marketplace-phase-one/browser.json). These are actual components/engine with synthetic cookies and in-memory transport, not genuine session refresh. |
-| Static checks | Typecheck and lint passed. No runtime application edits requiring another production build were made. Prior build remains historical evidence. |
-| Actual authenticated HTTP/database | **BLOCKED / NOT RUN**: seller/buyer login, real token expiry/refresh, account switching, revocation, private receipts and authoritative inventory through application handlers. |
-| Physical S24 | **NOT PERFORMED**. No APK or hosted app was changed. |
+| Retired `market-data.test.ts` | Fictional configuration fixture. |
+| `fantasy-production-local-postgres.mjs` | Runtime interpolation of a new random local password. |
+| `preview-auth-gate.test.ts` | Fictional auth-gate configuration. |
+| `database-tls.test.ts` | Invalid-host parsing examples; no connection. |
+| `hosted-runtime.test.ts` | Synthetic configuration/local driver fixtures. |
+| `preview-auth.test.ts` | Fictional project/password identity rejection fixtures. |
+| `production-release-tools.test.ts` | Generated synthetic fixtures with output redaction assertions. |
+| New `marketplace-auth-infra.mjs` | Runtime interpolation of newly generated local-only database passwords into ignored configuration; no embedded credential. |
+| Existing untracked Android installation note | A real bearer download capability, not a synthetic fixture. Decoded download scope expires 18 October 2026 10:44:54 UTC; signature/remote validity not tested. Unchanged and excluded from the commit. Do not publish it in source. No revocation or hosted action performed. |
 
-The first runner drafts exposed test-harness defects (JSON property-order comparison and an incorrect normalized-line column name). Both were corrected; the final receipt is from the successful rerun. No application defect was established by these checks. The evidence file is reset to incomplete when a new native run starts so an earlier pass cannot stand in for a failed attempt.
+## Remaining limits and next acceptance boundary
 
-## Secret findings — no suppression
+There is no remaining Docker or real Auth prerequisite. Local marketplace HTTP/auth/transaction acceptance passes. A claim that the entire competition/scoring release is operational would still require running the authenticated catalogue mapping → both-mode entry/edit → scoring-worker flow without the native suite's fixture mapping adapters. The current evidence must not be relabelled as that combined acceptance.
 
-The unchanged heuristic scanner still returns **FAIL**, now with eight candidate files. [Raw report](qa/marketplace-operational/secret-scan.json) and [review with file hashes/line numbers](qa/marketplace-operational/secret-review.json) contain no credential values.
+A later hosted review/deployment is outside this authorization. Keep the signed download note out of source. Physical S24 acceptance remains pending; no user action to repair the local infrastructure is requested.
 
-| Original finding | Evidence / classification |
-|---|---|
-| `legacy/retired-product/tests/platform/market-data.test.ts` | Explicit fictional database configuration in a retired validation test. |
-| `scripts/fantasy-production-local-postgres.mjs` | String interpolation of a newly cryptographically generated password, used only for the disposable loopback DB and redacted in logs. No embedded password. |
-| `tests/database/preview-auth-gate.test.ts` | Fictional password in configuration-only auth-gate fixtures. |
-| `tests/platform/database-tls.test.ts` | Driver-parsing examples at an `.invalid` hostname; tests explicitly make no connection. |
-| `tests/platform/hosted-runtime.test.ts` | Synthetic configuration fixtures and an unused loopback driver test, not a connected credential. |
-| `tests/platform/preview-auth.test.ts` | Fictional project/password fixtures for identity rejection. |
-| `tests/platform/production-release-tools.test.ts` | Locally generated synthetic output fixture; assertions ensure values do not appear in stdout. |
+## Short S24 checklist — not performed
 
-Additional existing untracked finding: `artifacts/android/Docked-v20-Samsung-install.txt`, line 5, contains a signed token whose decoded scope is `download`, expiring **18 October 2026 10:44:54 UTC**. It is not a synthetic fixture. Decoding does not validate the signature or current remote access. The file remains untouched and excluded from this commit; the token/link is not reproduced. Treat it as a bearer download capability, not an account password. Do not publish it in source or attach it to this review. Revocation/expiry handling, if required, is a separate authorized artifact-provider action. No credential was printed, tested against a remote service or revoked. The seven reviewed false positives do not turn the raw scanner into a PASS.
+Use isolated QA accounts/assets on a separately approved connected build, not existing member teams.
 
-## Remaining acceptance work
+1. Sign in, background/reopen and switch accounts; no prior account's cards, balance or activity should appear.
+2. Browse → details → Sell Review. Check fantasy salary versus asking credits, exact card instance and owner-only reservation links.
+3. Second QA buyer purchases once. Verify both receipts and balances; double-tap/interruption/reopen must not settle twice.
+4. Cancel another listing through confirmation. Check Sold versus Cancelled and Activity filters.
+5. Test network loss/Retry, keyboard, Back, safe areas, scrolling and no horizontal overflow. Verify locked team history survives an allowed transfer.
 
-1. Restore the local Docker engine (specific socket crash above), start isolated Supabase Auth, then execute real application HTTP/auth/database acceptance with new local users: seller lists, distinct buyer buys, both private receipts/balances/ownership reconcile; unrelated user denied; genuine expiry/refresh, account switching and interrupted-response recovery pass.
-2. Extend that same authenticated path through both-mode entry/edit/transfer races and deadline behavior. Current native SQL contention evidence is substantial but uses fixture identity/inventory. Observe scoring-worker outputs after transfer using the saved round rules; do not substitute unchanged snapshots for a full worker execution.
-3. Keep the untracked signed download note out of source/distribution evidence. Raw scan status and reviewed exceptions remain visible.
-4. Complete the physical checklist below. Later hosted review/deployment still requires separate authorization; this task authorizes neither.
+## Review and rollback
 
-## S24 checklist for the owner and Barry — pending
-
-Use designated QA accounts/assets on a separately approved connected build; do not mutate existing member teams for verification.
-
-1. Sign in, background/reopen and switch QA accounts. Confirm no previous account's cards, balance or activity flashes on screen.
-2. Browse → card details → Sell review. Check fantasy salary is distinct from asking credits, exact card identity and reservation explanation/link.
-3. With the second QA buyer, review and buy once. Confirm 100 → 8 fee / 92 proceeds, ownership and both private receipts. Double tap and interrupt/reopen; confirm no duplicate settlement.
-4. Cancel a separate listing through review; verify Cancelled versus Sold, Activity filters and receipt access.
-5. Exercise network loss/Retry, Back/Escape, keyboard focus, scrolling, bottom safe area and no horizontal overflow. Confirm existing lineup locks and scores remain unchanged after any permitted test transfer.
-
-## Change / review / rollback
-
-Only local verification tooling and evidence/docs changed. No new migration, app feature, dependency, financial policy, account or supply change. Review the local commit diff; do not merge or deploy it as implied acceptance. Rollback is simply not running the optional new test flag (or reverting that test/docs commit through normal review). Never restore a fixture over real state. Local database directories under `tmp/free-play-pg-*` contain synthetic records and are not committed. The preexisting untracked Android installation note is excluded.
+Local commit only: no push, merge or deployment. Review the guard/CSP changes and harness separately from evidence. Roll back by not enabling `DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE`, or revert the local commit through normal review. Stop only this task's stack with `docker compose -f tmp/marketplace-auth/compose.private.json stop`; preserve its volumes if needed for inspection. Never restore local fixtures over hosted state. Existing member data and the untracked Android note are untouched.

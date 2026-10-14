@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "at": "2026-10-14T06:42:15.037Z",
+  "scope": "Actual local Next HTTP -> real GoTrue Auth -> PostgreSQL, synthetic QA assets only",
+  "checks": [
+    "Real authenticated browser market API returns 200 and loading completes; market page and reload at 412px"
+  ],
+  "hostedOperations": false,
+  "physicalDevice": false
+}

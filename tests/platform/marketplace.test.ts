@@ -4,6 +4,7 @@ import {
   executeCredits,
   wallet,
   financialReport,
+  validateCredits,
 } from "../../src/core/credits-sandbox";
 import { marketplaceView, marketQuery } from "../../src/core/marketplace";
 import {
@@ -17,6 +18,20 @@ import {
   marketLabels,
 } from "../fixtures/marketplace-state";
 const now = 1791936000000;
+test("local fixtures are generated for actual Auth identities without rewriting hashed journals", () => {
+  const actors = marketActors.map((a, i) => ({
+    ...a,
+    id: `10000000-0000-4000-8000-${String(i + 1).padStart(12, "0")}`,
+  }));
+  const state = marketplaceFixture(now, actors);
+  validateCredits(state);
+  assert.ok(
+    Object.values(state.commerce.cards)
+      .filter((c) => c.owner !== null)
+      .every((c) => actors.some((a) => a.id === c.owner)),
+    "Fixture ownership matches input actors",
+  );
+});
 function harness() {
   let s = marketplaceFixture(now),
     seq = 0;

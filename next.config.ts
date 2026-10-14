@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { localMarketplaceAcceptance } from "./src/core/local-marketplace-acceptance.mjs";
 const retired = [
   "/shipping-returns.html",
   "/warranty.html",
@@ -35,6 +36,11 @@ const config: NextConfig = {
     ];
   },
   async headers() {
+    // Webpack's development runtime requires eval. Enable only for the validated,
+    // loopback-only acceptance profile; production/hosted use rejects that profile.
+    const developmentEval = localMarketplaceAcceptance()
+      ? " 'unsafe-eval'"
+      : "";
     return [
       {
         source: "/:path*",
@@ -48,8 +54,7 @@ const config: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'",
+            value: `default-src 'self'; script-src 'self' 'unsafe-inline'${developmentEval}; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'`,
           },
         ],
       },

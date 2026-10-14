@@ -13,7 +13,7 @@ export const marketLabels = marketActors.map((a, i) => ({
   label: ["Local Alice", "Local Bob", "Local Charlie"][i],
 }));
 /** Only imported by local tests/preview. Never an application data source. */
-export function marketplaceFixture(now = Date.now()) {
+export function marketplaceFixture(now = Date.now(), actors = marketActors) {
   let s = initialMemberTestCredits();
   s.economy = initialCardEconomy(
     Array.from({ length: 28 }, (_, i) => ({
@@ -33,7 +33,7 @@ export function marketplaceFixture(now = Date.now()) {
     now,
   );
   sevenPlayerPackUpgrade(s.economy, now);
-  for (const a of marketActors) {
+  for (const a of actors) {
     s = executeCredits(
       s,
       { id: "local-operator", role: "reviewer", aal: "aal2" },
