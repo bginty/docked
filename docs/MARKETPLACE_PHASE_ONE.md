@@ -1,4 +1,4 @@
-> 14 October continuation: [Local operational acceptance](MARKETPLACE_OPERATIONAL_ACCEPTANCE.md) supersedes the PostgreSQL-unavailable gate below. Real multi-connection PostgreSQL now passes; genuine HTTP/Auth integration remains blocked by the documented Docker socket crash. No hosted release.
+> Superseded checkpoint: [Current release acceptance](MARKETPLACE_RELEASE.md) records the completed real HTTP/Auth/catalogue/lock/scoring chain and latest authorised release. Docker is working. The original local-only boundary and blockers below describe this document's historical stage, not current instructions.
 
 # Phase 1 NFL marketplace — local implementation
 

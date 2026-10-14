@@ -3,7 +3,13 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { randomBytes, createHmac } from "node:crypto";
 import { resolve } from "node:path";
-const dir = resolve("tmp/marketplace-auth");
+const integrated = process.argv.includes("--integrated");
+const dir = resolve(
+  integrated ? "tmp/marketplace-integrated-v2" : "tmp/marketplace-auth",
+);
+const volume = integrated
+  ? "docked-market-integrated-data-v2"
+  : "docked-market-http-data-v3";
 await mkdir(dir, { recursive: true });
 let secret;
 try {
@@ -80,7 +86,7 @@ await writeFile(
             POSTGRES_DB: "postgres",
           },
           volumes: [
-            "docked-market-http-data-v3:/var/lib/postgresql/data",
+            `${volume}:/var/lib/postgresql/data`,
             "./init.private.sql:/etc/postgresql.schema.sql:ro",
           ],
           healthcheck: {
@@ -137,7 +143,7 @@ await writeFile(
           volumes: ["./kong.private.json:/etc/kong/local.json:ro"],
         },
       },
-      volumes: { "docked-market-http-data-v3": {} },
+      volumes: { [volume]: {} },
       networks: { default: { internal: true }, loopback: {} },
     },
     null,

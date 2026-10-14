@@ -1,5 +1,7 @@
 # Phase 1 marketplace — local operational acceptance
 
+> Historical checkpoint. [Current release acceptance](MARKETPLACE_RELEASE.md) supersedes the incomplete-chain and release-pending conclusions below. Real authenticated catalogue → both-mode entries → locks → transfer → worker → correction now passes, including the actual restricted worker role. Preserve the earlier evidence categories and failures; do not treat old blockers as current.
+
 14 October 2026. Branch `pivot/fantasy-cards-preview-v1`; continued after `512e080c`, preserving `ed8bc02c` / `5694e454` and Barry's additions.
 
 ## Current decision

@@ -1,6 +1,6 @@
-14 October 2026 — [Marketplace operational acceptance](MARKETPLACE_OPERATIONAL_ACCEPTANCE.md): native PostgreSQL 17.10 contention/rollback checks PASS; actual HTTP/Supabase Auth integration BLOCKED by local Docker startup socket error. Local-only continuation; no hosted or member changes. Secret scanner remains FAIL with reviewed fixture findings and one preserved untracked signed download note.
+14 October 2026 — [Marketplace release acceptance](MARKETPLACE_RELEASE.md): connected local Auth/HTTP/catalogue/dual-mode entry/lock/transfer/scoring/correction chain PASS. Platform 342/342, database 152/152, native races, browser, typecheck/lint/build/client boundary PASS. Earlier Docker and connected-worker blockers resolved. Exact hosted release status is in the linked report/receipts; physical S24 and genuine member round remain pending.
 
-14 October 2026 — [Phase 1 NFL marketplace](MARKETPLACE_PHASE_ONE.md) implemented and verified LOCAL ONLY; not deployed. Prepared migration and separate review required. Hosted Barry review release below remains the live state.
+Historical checkpoint: [Phase 1 NFL marketplace](MARKETPLACE_PHASE_ONE.md) was first implemented locally. The owner's subsequent release authority and current report above supersede that local-only restriction.
 
 14 October 2026 — Barry review fixes released at fba1ae08. See [finding-by-finding report](BARRY_BETA_REVIEW.md) for tests, screenshots, migration/rollback and remaining physical review. v22 receives web changes automatically; no APK update required.
 

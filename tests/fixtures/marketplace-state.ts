@@ -13,18 +13,32 @@ export const marketLabels = marketActors.map((a, i) => ({
   label: ["Local Alice", "Local Bob", "Local Charlie"][i],
 }));
 /** Only imported by local tests/preview. Never an application data source. */
-export function marketplaceFixture(now = Date.now(), actors = marketActors) {
+export function marketplaceFixture(
+  now = Date.now(),
+  actors = marketActors,
+  canonicalNfl = false,
+) {
   let s = initialMemberTestCredits();
   s.economy = initialCardEconomy(
     Array.from({ length: 28 }, (_, i) => ({
-      id: `local-player-${i}`,
-      provider: "fixture",
-      providerId: `local-${i}`,
+      id: canonicalNfl
+        ? `90000000-0000-4000-8000-${String(i).padStart(12, "0")}`
+        : `local-player-${i}`,
+      provider: canonicalNfl ? "nflverse" : "fixture",
+      providerId: canonicalNfl
+        ? `99-${String(i).padStart(7, "0")}`
+        : `local-${i}`,
       name: `Local Player ${String(i).padStart(2, "0")}`,
       sport: "nfl",
       assetKind: "player",
       position: ["QB", "RB", "WR", "TE", "K", "DST", "WR"][i % 7],
-      currentTeam: i % 2 ? "TEST A" : "TEST B",
+      currentTeam: canonicalNfl
+        ? i % 2
+          ? "NE"
+          : "NYJ"
+        : i % 2
+          ? "TEST A"
+          : "TEST B",
       status: "active",
       observedAt: now,
       sourceRevision: "local-synthetic",

@@ -8,7 +8,7 @@ import {
 import { connectLockedNflEntries } from "./nfl-member-rounds";
 import { reconcileNflBundle } from "./nfl-postgame-reconcile";
 import permit from "../../config/nfl-postgame-permit.json";
-import type { PostgameMapping } from "../core/postgame-nflverse";
+import { postgameMappingFromRound } from "../core/postgame-nflverse";
 
 export async function runNflCollection(
   sql: Sql,
@@ -49,7 +49,8 @@ export async function runNflCollection(
             await sql`select raw_id from sports_feed.postgame_cache where resource=${nflResource("pbp", season)}`;
           if (!weekly?.raw_id || !pbp?.raw_id)
             throw Error("Source not available");
-          for (const mapping of round.fixtures as PostgameMapping[]) {
+          for (const fixture of round.fixtures as Record<string, unknown>[]) {
+            const mapping = postgameMappingFromRound(fixture);
             const [complete] =
               await sql`select first_observed_at from sports_feed.completions where game_id=${mapping.gameId}`;
             if (

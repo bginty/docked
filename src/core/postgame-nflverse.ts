@@ -312,6 +312,31 @@ const mappingSchema = z
   .strict();
 export type PostgameMapping = z.infer<typeof mappingSchema>;
 
+/** Round fixtures also carry lineup scheduling metadata. The statistics adapter
+ * accepts only its explicit, validated mapping; never forward the whole round. */
+export function postgameMappingFromRound(
+  input: Record<string, unknown>,
+): PostgameMapping {
+  return mappingSchema.parse(
+    Object.fromEntries(
+      [
+        "fixtureId",
+        "gameId",
+        "season",
+        "seasonType",
+        "home",
+        "away",
+        "players",
+        "endedAt",
+        "completionObservedAt",
+        "completionEvidence",
+      ]
+        .filter((key) => input[key] !== undefined)
+        .map((key) => [key, input[key]]),
+    ),
+  );
+}
+
 export function nflversePostgame(
   csv: string,
   input: PostgameMapping,

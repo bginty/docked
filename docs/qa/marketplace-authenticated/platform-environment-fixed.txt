@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: beta deployment cannot enable public registration or use an unknown channel
+ok 1 - beta deployment cannot enable public registration or use an unknown channel
+  ---
+  duration_ms: 11.5079
+  ...
+# Subtest: free-play production requires separate reviewed identities and cannot borrow Preview configuration
+ok 2 - free-play production requires separate reviewed identities and cannot borrow Preview configuration
+  ---
+  duration_ms: 1.4964
+  ...
+# Subtest: free-play action boundary rejects monetary requests and device-selected daily periods
+ok 3 - free-play action boundary rejects monetary requests and device-selected daily periods
+  ---
+  duration_ms: 45.6874
+  ...
+# Subtest: reviewed community-only production is isolated and does not treat inert keys as activation
+ok 4 - reviewed community-only production is isolated and does not treat inert keys as activation
+  ---
+  duration_ms: 2.3672
+  ...
+# Subtest: production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+ok 5 - production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+  ---
+  duration_ms: 23.2926
+  ...
+# Subtest: production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+ok 6 - production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+  ---
+  duration_ms: 6.5013
+  ...
+# Subtest: database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+ok 7 - database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+  ---
+  duration_ms: 12.23
+  ...
+# Subtest: plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+ok 8 - plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+  ---
+  duration_ms: 3260.8936
+  ...
+# Subtest: Netlify production binds site, account and build provenance without pretending to be Vercel
+ok 9 - Netlify production binds site, account and build provenance without pretending to be Vercel
+  ---
+  duration_ms: 7.1102
+  ...
+# Subtest: controlled Netlify staging uses only its reviewed exact platform URL before DNS cutover
+ok 10 - controlled Netlify staging uses only its reviewed exact platform URL before DNS cutover
+  ---
+  duration_ms: 2.1372
+  ...
+# Subtest: Netlify guard writes only validated non-secret build metadata and denies unreviewed contexts
+ok 11 - Netlify guard writes only validated non-secret build metadata and denies unreviewed contexts
+  ---
+  duration_ms: 4508.3577
+  ...
+# Subtest: production environment preparation keeps credentials private and all initial activation closed
+ok 12 - production environment preparation keeps credentials private and all initial activation closed
+  ---
+  duration_ms: 6247.175
+  ...
+# Subtest: production export requires approved identities and exports only committed deployable sources
+ok 13 - production export requires approved identities and exports only committed deployable sources
+  ---
+  duration_ms: 3392.57
+  ...
+# Subtest: production export rejects every unreviewed manifest boundary before preparing any source
+ok 14 - production export rejects every unreviewed manifest boundary before preparing any source
+  ---
+  duration_ms: 22696.6828
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 34629.6378

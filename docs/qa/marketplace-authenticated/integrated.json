@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "at": "2026-10-14T08:15:37.166Z",
+  "scope": "Actual local Next HTTP -> real GoTrue Auth -> PostgreSQL, synthetic QA assets only",
+  "checks": [
+    "A: Actual catalogue joins resolve owned paid/Core cards to the same permanent NFL player; synthetic provider IDs explicitly isolated",
+    "B/C: Both real HTTP entries reserve the exact owned card; listing rejected; owner reservation explanation present",
+    "D/E: One-mode replacement still blocks; both replacements release; stale entry revision rejected",
+    "F/G: Different authenticated buyer settles once; 1000=75 commission+925 proceeds, ownership and both collections reconcile",
+    "H: Worker created 28 actual lock snapshots at server kickoff; transfer preserves them; late first entry and buyer insertion rejected",
+    "I: Actual collection/reconciliation worker, retained weekly+PBP sources, member read, correction and replay preserve locked seller entitlement after transfer; no duplicate scores/settlements",
+    "Real authenticated browser market API returns 200 and loading completes; market page and reload at 412px"
+  ],
+  "hostedOperations": false,
+  "physicalDevice": false
+}

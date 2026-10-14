@@ -21,9 +21,16 @@ import { marketplaceFixture } from "../tests/fixtures/marketplace-state";
 import { rarityConfiguration } from "../src/core/card-rarity";
 import { initialMemberTestCredits } from "../src/core/member-test-wallet";
 import { validateCredits } from "../src/core/credits-sandbox";
+import {
+  prepareIntegratedCatalogue,
+  runIntegratedMarketplace,
+} from "./marketplace-integrated-local";
 
+const integrated = process.argv.includes("--integrated");
 const root = process.cwd(),
-  dir = resolve("tmp/marketplace-auth"),
+  dir = resolve(
+    integrated ? "tmp/marketplace-integrated-v2" : "tmp/marketplace-auth",
+  ),
   origin = "http://127.0.0.1:3033",
   authOrigin = "http://127.0.0.1:55321";
 function totp(secret: string) {
@@ -62,7 +69,7 @@ async function main() {
   let stage = "migrations";
   await mkdir("docs/qa/marketplace-authenticated", { recursive: true });
   const browserOnly = process.argv.includes("--browser-only");
-  const receipt = `docs/qa/marketplace-authenticated/${browserOnly ? "browser" : "http"}.json`;
+  const receipt = `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
     JSON.stringify({
@@ -202,6 +209,7 @@ async function main() {
         qa.users
           .slice(0, 3)
           .map((u: any) => ({ id: u.id, role: "member" as const })),
+        integrated,
       );
       await sql`insert into credits_sandbox.rarity_configuration values(${rarityConfiguration.version},${sql.json(rarityConfiguration)})`;
       for (const p of Object.values(state.economy!.players) as any[])
@@ -213,6 +221,7 @@ async function main() {
         await sql`insert into credits_sandbox.journal values(${j.id},${sql.json(j)})`;
       await sql`update credits_sandbox.state set document=${sql.json(JSON.parse(JSON.stringify(state)))}`;
     }
+    if (integrated) await prepareIntegratedCatalogue(sql, qa.users.slice(0, 3));
     await sql.unsafe(
       `alter role docked_beta_app login password '${qa.dbPassword}'`,
     );
@@ -342,7 +351,17 @@ async function main() {
       return { status: r.status(), body: await r.json() };
     };
     let browserState = await contexts[1].storageState();
-    if (!browserOnly) {
+    if (integrated && !browserOnly) {
+      stage = "integrated-competition-transfer-scoring";
+      checks.push(
+        ...(await runIntegratedMarketplace(
+          sql,
+          contexts,
+          qa.users.slice(0, 3),
+        )),
+      );
+    }
+    if (!browserOnly && !integrated) {
       const seller = await read(0),
         buyer = await read(1);
       assert.notEqual(seller.state.member, buyer.state.member);
@@ -626,15 +645,18 @@ async function main() {
       });
       const page = await context.newPage();
       const browserErrors: string[] = [];
-      page.on("pageerror", e => browserErrors.push(e.message.split("\n")[0]));
+      page.on("pageerror", (e) => browserErrors.push(e.message.split("\n")[0]));
       const response = page.waitForResponse(
         (r) =>
           r.url().startsWith(origin + "/api/marketplace") &&
           r.request().method() === "GET",
       );
       await page.goto(origin + "/fantasy/market");
-      const responseOrError = await response.catch(async e => {
-        await writeFile("docs/qa/marketplace-authenticated/browser-errors.json", JSON.stringify(browserErrors, null, 2));
+      const responseOrError = await response.catch(async (e) => {
+        await writeFile(
+          "docs/qa/marketplace-authenticated/browser-errors.json",
+          JSON.stringify(browserErrors, null, 2),
+        );
         throw e;
       });
       assert.equal(

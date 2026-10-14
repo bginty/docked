@@ -1,10 +1,10 @@
-Current local work: [Phase 1 marketplace](docs/MARKETPLACE_PHASE_ONE.md) is LOCAL ONLY. Do not deploy or modify hosted databases for this milestone.
+Current authority: [Phase 1 marketplace release](docs/MARKETPLACE_RELEASE.md) supersedes its earlier local-only boundary. Deploy only the exact reviewed candidate to the existing admitted test beta after the recorded gates pass; no hosted QA transactions, new admission or real-money activation.
 
 # Docked — Fantasy Sports Cards
 
 **COLLECT. BUILD. COMPETE.** Docked is a multi-sport fantasy card platform. The permanent product authority is [PRODUCT_DIRECTION](docs/PRODUCT_DIRECTION.md).
 
-The current implementation offers fictional football cards, limited editions, collections, team selection, simulated competitions, rankings and isolated Preview transactions. The shared scoring framework has isolated EPL/NFL/AFL fixture verification; operational real-statistics scoring and real player catalogues are not connected. See the current friends-release documents before activating external access.
+The admitted NFL beta uses real-player test cards, nine-card test-credit packs, seven-player Salary Cap/Open entries, rolling locks and post-game scoring. Historical/synthetic acceptance is explicitly separate from genuine future-round observation. EPL remains unavailable. Existing fictional cards/history are preserved; test assets have no cash value. See current release evidence before claiming operational acceptance.
 
 11 October 2026: the owner approved all current EPL/NFL players for the isolated free beta, removing the first-year restriction for new beta grants/competitions. This is not data-rights or spending approval. [Current handover](docs/FREE_BETA_DATA_HANDOVER.md), [provider activation](docs/FREE_BETA_PROVIDER_ACTIVATION.md), and [privacy proposal](docs/FREE_BETA_PRIVACY_PROPOSAL.md) supersede the older unresolved eligibility question. Never rename fictional owned cards, rewrite locked history or alter commercial supply to fulfil it.
 

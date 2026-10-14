@@ -5,6 +5,7 @@ import {
   nflversePlayerStatistics,
   nflversePostgame,
   parseStatisticsCsv,
+  postgameMappingFromRound,
 } from "../../src/core/postgame-nflverse";
 import { scorePlayer } from "../../src/core/scoring-v1";
 import { currentRulesets } from "../../src/core/scoring-release";
@@ -41,6 +42,22 @@ const map = {
   endedAt: "2026-09-13T22:00:00Z",
   completionEvidence: "https://example.invalid/synthetic-completion-contract",
 };
+
+test("Scheduled round metadata is projected into the strict scoring mapping without weakening validation", () => {
+  const round = {
+    ...map,
+    scheduledAt: "2026-09-13T19:00:00Z",
+    playerIds: ["qa:rodgers"],
+  };
+  assert.deepEqual(postgameMappingFromRound(round), map);
+  assert.throws(() =>
+    postgameMappingFromRound({
+      ...round,
+      players: [{ ...map.players[0], gsisId: "unmapped" }],
+    }),
+  );
+  assert.throws(() => nflversePostgame(csv, round, 1, now));
+});
 
 test("Downloaded completed-match statistics reconcile Docked half-PPR, not provider fantasy totals", () => {
   assert.equal(rows.length, 20);

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "at": "2026-10-14T08:20:53.508Z",
+  "role": "docked_nfl_worker",
+  "scope": "Actual local role and worker; retained synthetic acceptance; no downloads",
+  "runs": [
+    {
+      "status": "reconciled",
+      "competition": "fb951fc7-5aec-4c1e-901d-ac3c50bdb441",
+      "issues": [],
+      "task": "reconcile",
+      "season": 2026
+    },
+    {
+      "status": "reconciled",
+      "competition": "92fc3019-1071-4f71-8bb8-c0b66bba43b2",
+      "issues": [],
+      "task": "reconcile",
+      "season": 2026
+    }
+  ],
+  "duplicateScoring": false
+}

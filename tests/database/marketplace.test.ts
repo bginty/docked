@@ -461,6 +461,13 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
     );
     await pg.exec("set role authenticated");
     await assert.rejects(
+      () =>
+        pg.query(
+          "select sports_feed.card_entry_reserved('legacy-card-id'::text)",
+        ),
+      /permission/,
+    );
+    await assert.rejects(
       () => pg.query("select * from credits_sandbox.state"),
       /permission/,
     );
@@ -472,6 +479,14 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
       /permission/,
     );
     await pg.exec("reset role");
+    assert.equal(
+      (
+        await pg.query<{ reserved: boolean }>(
+          "select sports_feed.card_entry_reserved('legacy-card-id'::text) reserved",
+        )
+      ).rows[0].reserved,
+      false,
+    );
   } finally {
     await pg.close();
   }
