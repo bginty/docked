@@ -1,4 +1,6 @@
-Current release: [Stable pack reveal](docs/REVEAL_STABILITY_REVIEW.md), live on docked.com.au from source `7c1303f3`. One smooth per-card turn, stable inspection handoff and simplified light/Icon effects. Application-only update; saved results and member data are unchanged.
+Current release: [Numbered premium card refinement](docs/JERSEY_REFINEMENT.md), live on docked.com.au from source `4e823789`. Larger original jerseys and repaired roster-number import; the fresh scheduled import remains pending. Invitation-only beta and all real-money restrictions remain unchanged.
+
+Previous release: [Stable pack reveal](docs/REVEAL_STABILITY_REVIEW.md), source `7c1303f3`. One smooth per-card turn, stable inspection handoff and simplified light/Icon effects. Saved results and member data are unchanged.
 
 Current economy / prior application rollback: [Premium pack rarity pool v3](docs/PREMIUM_POOL_V3_REVIEW.md), source `1a726368`. Newly purchased Premium packs contain nine Ultra Rare-or-better cards with 90% Ultra Rare / 9.9% Legendary / 0.1% Icon per-card attempts. Standard and all prior purchased pack results are unchanged. No admission expansion or real-money activation.
 

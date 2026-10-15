@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-15T11:50:49.022Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "source": {
+    "row": {
+      "resource": "2ec2841459fd1e30d65678ab101250bc9d55d27fb157bdec19c411817b3311fe",
+      "next_attempt": "2026-10-15T12:15:00.935Z",
+      "checked_at": "2026-10-15T00:15:01.952Z",
+      "error_code": null,
+      "raw_id": "16",
+      "projection_version": null
+    },
+    "jobs": [
+      {
+        "jobname": "docked-nfl-rosters",
+        "schedule": "15 0,12 * * *",
+        "active": true
+      }
+    ]
+  },
+  "authentication": {
+    "missingJwt": 401,
+    "missingWorkerToken": 403,
+    "authorizedInvalidTask": 400
+  },
+  "refresh": "Cooldown preserved; next scheduled roster collection will fetch projection v2",
+  "catalogue": {
+    "rows": 986,
+    "withNumbers": 0,
+    "queryMs": 532,
+    "examples": [
+      {
+        "name": "Aaron Rodgers",
+        "team": "PIT",
+        "verified_jersey_number": null
+      },
+      {
+        "name": "Brandin Cooks",
+        "team": "SF",
+        "verified_jersey_number": null
+      },
+      {
+        "name": "Davante Adams",
+        "team": "LA",
+        "verified_jersey_number": null
+      },
+      {
+        "name": "Michael Burton",
+        "team": "CLE",
+        "verified_jersey_number": null
+      },
+      {
+        "name": "Ameer Abdullah",
+        "team": "JAX",
+        "verified_jersey_number": null
+      }
+    ]
+  },
+  "secrets": {
+    "rawStatus": "FAIL",
+    "existingFindings": 9,
+    "newFindingPaths": [],
+    "reviewedFixtureHashesUnchanged": true,
+    "capability": "Remains untracked and excluded from committed web-only export; not used. Prior documented remote validity remains unverified."
+  },
+  "memberCommands": 0,
+  "schemaChanges": 0
+}

@@ -1,6 +1,19 @@
 # Numbered premium card refinement — local review, 15 October 2026
 
-The owner reconfirmed the earlier premium Play mockup as the reference. This pass improves the shared original jersey illustration and repairs the actual number-import omission. It is **implemented and tested locally, not deployed**. The live application remains the recovered premium release described in `SIGNIN_RECOVERY.md`.
+The owner reconfirmed the earlier premium Play mockup as the reference. This pass improves the shared original jersey illustration and repairs the actual number-import omission. Following the owner's subsequent “deploy” instruction, it is **released to the existing admitted beta** at https://docked.com.au/app.
+
+## Deployment — 15 October 2026
+
+- Web source `4e823789ae41bf03d835fe1abeb71948bcc2ddc0` (artwork/import fix `1c6a5335`, followed only by release-evidence routing).
+- Vercel deployment `dpl_8fp6iXZZ9YtAx5QptNwsJ1bi5rg2`, READY and promoted to both existing custom domains. Eight protected-candidate checks and eight live checks passed. Exact deployed commit, database identity, anonymous denials, current assets and disabled redemption were checked; no fresh member login or hosted transaction is claimed.
+- Existing `nfl-postgame` collector deployed as version 17, JWT verification retained plus dedicated worker-token authentication. Other functions and schedules unchanged. Supabase MCP access was unavailable; the existing authenticated CLI independently verified the exact target and completed deployment.
+- **Live numbers pending fresh collection:** at 11:50 UTC the existing roster cache still had the old projection and 0 of 986 catalogue players had numbers. The 12-hour cooldown was retained, with next scheduled collection at 12:15 UTC / 11:15 pm Australia/Sydney on 15 October. Successful fresh projection import has not yet been observed. No numbers were fabricated or manually backfilled.
+- Restricted runtime catalogue read passed in 532 ms under a five-second statement deadline. The optimized single-pass view remains in place. No migrations were needed.
+- Raw secret scan still reports nine pre-existing findings; reviewed fixture hashes match the prior report, with no new finding paths. The untracked signed APK capability remains excluded from the committed web export and unused. This is not a raw scanner pass or confirmation of remote token revocation.
+- Working and review branches pushed; no merge to main. Only committed application files were deployed. No member assets/teams/balances changed by QA, no messages/invitations, no real-money or document-collection activation.
+- v22 retains its hosted-web configuration: fully close/reopen, or refresh the website. No new APK required. Physical S24 acceptance remains pending.
+
+Release evidence: `qa/jersey-refinement/release/`. App rollback: `dpl_5vnGoyBCXpy6rLK5W1PjNfKQhU2V`. Collector version-16 source was downloaded before replacement to ignored `private-data/jersey-release/worker-rollback/supabase/functions/nfl-postgame`; redeploy that saved source only if required, retaining JWT/token controls. Leave the compatible optimized view and all retained source/ledger/history intact. Never restore member snapshots over subsequent activity.
 
 ## Visual changes
 
@@ -34,4 +47,4 @@ Read-only public-source verification through the corrected importer found curren
 
 Changed areas: `player-jersey.tsx`, collection/lineup sizing in `play-cards.css`, CSV optional fields in `postgame-nflverse.ts`, roster projection/version in `nflverse-evidence.ts`, conditional fetch handling in `nflverse-bundle.ts`, rebuilt `nfl-postgame/worker.mjs`, focused tests and evidence helpers.
 
-To release after visual review, deploy the reviewed web revision and rebuilt existing NFL collector through the established workflow, retaining all gates. The collector must import a fresh roster revision before real live cards can display numbers; deploying only the web artwork is insufficient. Do not backfill numbers from the mockup or edit existing card identities. Keep the optimized database view from the sign-in recovery; no new schema migration is required here.
+The web revision and collector have now been released through the established workflow. The collector must still import a fresh roster revision before real live cards can display numbers. Do not backfill numbers from the mockup or edit existing card identities. Keep the optimized database view from the sign-in recovery; no new schema migration is required here.

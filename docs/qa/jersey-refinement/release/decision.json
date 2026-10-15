@@ -1,0 +1,30 @@
+{
+  "commit": "4e823789ae41bf03d835fe1abeb71948bcc2ddc0",
+  "decision": "RELEASE",
+  "authorization": "Owner requested deploy after local visual review",
+  "at": "2026-10-15T11:53:45.1741777Z",
+  "deployment": "dpl_8fp6iXZZ9YtAx5QptNwsJ1bi5rg2",
+  "secrets": "Nine existing raw findings; reviewed fixture hashes unchanged; no new finding paths; private APK capability excluded",
+  "publicSignup": false,
+  "financialActivation": false,
+  "rollback": "dpl_5vnGoyBCXpy6rLK5W1PjNfKQhU2V",
+  "checks": {
+    "platform": 367,
+    "database": 1,
+    "finalLayout": 1,
+    "candidate": 8,
+    "lint": "PASS",
+    "build": "PASS",
+    "browser": 6,
+    "migrations": 0,
+    "clientBoundary": "PASS",
+    "memberMutations": 0,
+    "typecheck": "PASS"
+  },
+  "collector": {
+    "workerToken": true,
+    "version": 17,
+    "verifyJwt": true,
+    "freshProjection": "Pending normal cooldown; next roster schedule 2026-10-15T12:15:00Z"
+  }
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": 1791457956619,
+    "entrypoint_path": "file:///tmp/user_fn_pojoymtniryarxxunyvz_ef679810-f5e1-4e7e-8dc5-7524e22263b4_41/source/supabase/functions/docked-auth-email/index.ts",
+    "ezbr_sha256": "cc8cc7c6ecce565857064e0857b8fa77247102ae98380568cb7aa8ef1d1c197c",
+    "id": "ef679810-f5e1-4e7e-8dc5-7524e22263b4",
+    "import_map": false,
+    "name": "docked-auth-email",
+    "slug": "docked-auth-email",
+    "status": "ACTIVE",
+    "updated_at": 1791697158603,
+    "verify_jwt": false,
+    "version": 45
+  },
+  {
+    "created_at": 1791678979834,
+    "entrypoint_path": "file:///tmp/user_fn_pojoymtniryarxxunyvz_2ce30880-0486-48f6-a788-4e73a9f7136c_17/source/supabase/functions/nfl-postgame/index.ts",
+    "ezbr_sha256": "42a29da75db7182e6156436ccf5b133a18c284d1849b7aa0921d1838e090da6e",
+    "id": "2ce30880-0486-48f6-a788-4e73a9f7136c",
+    "import_map": false,
+    "name": "nfl-postgame",
+    "slug": "nfl-postgame",
+    "status": "ACTIVE",
+    "updated_at": 1792064934783,
+    "verify_jwt": true,
+    "version": 17
+  },
+  {
+    "created_at": 1791695363652,
+    "entrypoint_path": "file:///tmp/user_fn_pojoymtniryarxxunyvz_450a8bb3-9b56-4058-83a7-b136062eb177_2/source/supabase/functions/customer-signup/index.ts",
+    "ezbr_sha256": "65d63d70fd915fa7f4e117afe6c0b8abd88c5f4039f622e9bca26e939e16e89d",
+    "id": "450a8bb3-9b56-4058-83a7-b136062eb177",
+    "import_map": false,
+    "name": "customer-signup",
+    "slug": "customer-signup",
+    "status": "ACTIVE",
+    "updated_at": 1791695426937,
+    "verify_jwt": false,
+    "version": 10
+  }
+]
