@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-15T04:37:50.317Z",
+  "decision": "RELEASE",
+  "commit": "1a72636892bc5862263e17088f349beeba37f246",
+  "authorization": "Owner requested deployment after Premium local review",
+  "platformTests": 349,
+  "databaseTests": 153,
+  "browserTests": 8,
+  "typecheck": true,
+  "lint": true,
+  "build": true,
+  "clientBoundary": true,
+  "hostedConfigurationRollbackReview": true,
+  "memberTransactionsAuthorized": false,
+  "realPayments": false,
+  "publicRegistration": false
+}

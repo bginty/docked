@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-15T04:41:39.266Z",
+  "mode": "verify",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "passed": true,
+  "revision": "75",
+  "stateHash": "1d2b269898f2bd69a1d76bd32b20464dd6e45182809c90749c73ae603e7d8e32",
+  "sourceOfferHash": "fd6f7415bb66ae176881208164f9d6d69ac85fe26c3aa4138977d83cc25f0a9a",
+  "standardHash": "ae365e7354f567c7faadc9134bb2879a1d6c30548c00258bd4386b6a1b0c838c",
+  "activeProducts": [
+    {
+      "id": "standard-nine-seven-test-v2",
+      "price": 900,
+      "cards": 9,
+      "weights": {
+        "ICON": 1,
+        "RARE": 8500,
+        "ELITE": 1200,
+        "LEGENDARY": 49,
+        "ULTRA_RARE": 250
+      },
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "duplicatePlayers": "deny",
+      "guaranteedSlots": {},
+      "eligiblePlayers": 489
+    },
+    {
+      "id": "premium-nine-seven-test-v3",
+      "price": 1800,
+      "cards": 9,
+      "weights": {
+        "ICON": 10,
+        "RARE": 0,
+        "ELITE": 0,
+        "LEGENDARY": 990,
+        "ULTRA_RARE": 9000
+      },
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "duplicatePlayers": "deny",
+      "guaranteedSlots": {},
+      "eligiblePlayers": 489
+    }
+  ],
+  "retainedPacks": 16,
+  "retainedUnopenedPacks": 1,
+  "testOnly": true,
+  "hostedMemberCommands": 0,
+  "schemaChanges": 0,
+  "privilegeChanges": 0,
+  "odds": {
+    "headline": "9 cards · Ultra Rare or better on every card",
+    "guarantee": "Every card is guaranteed Ultra Rare or better. Legendary and Icon cards are not guaranteed.",
+    "excluded": [
+      "Core",
+      "Rare",
+      "Elite"
+    ],
+    "rows": [
+      {
+        "rarity": "ULTRA_RARE",
+        "label": "Ultra Rare",
+        "percent": 90
+      },
+      {
+        "rarity": "LEGENDARY",
+        "label": "Legendary",
+        "percent": 9.9
+      },
+      {
+        "rarity": "ICON",
+        "label": "Icon",
+        "percent": 0.1
+      }
+    ]
+  }
+}

@@ -1,4 +1,6 @@
-Current release: [Play and Cards redesign](docs/PLAY_CARDS_REDESIGN_REVIEW.md), live on docked.com.au from source `7730267b` after owner visual approval and candidate/live verification. No admission expansion or real-money activation.
+Current release: [Premium pack rarity pool v3](docs/PREMIUM_POOL_V3_REVIEW.md), live on docked.com.au from source `1a726368`. Newly purchased Premium packs contain nine Ultra Rare-or-better cards with 90% Ultra Rare / 9.9% Legendary / 0.1% Icon per-card attempts. Standard and all prior purchased pack results are unchanged. No admission expansion or real-money activation.
+
+Previous release: [Play and Cards redesign](docs/PLAY_CARDS_REDESIGN_REVIEW.md), source `7730267b`. Its immutable deployment is retained as an application rollback reference; pause new Premium sales before reverting to an application without the v3 disclosure.
 
 Previous release / rollback: [NFL rarity frames and reveal update](docs/RARITY_FRAME_REVIEW.md), source `74191226`. Its immutable deployment remains the application rollback target.
 

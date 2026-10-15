@@ -57,10 +57,24 @@ Before activation commit, ordinary SQL rollback discards the whole transition. A
 - `src/server/premium-pack-transition.ts`, `scripts/premium-pack-local.ts`: atomic audited registration and guarded local runner.
 - Local preview/build helpers and focused platform/database/browser tests.
 
-No real-money activation, purchases by existing members, new grants, deployment, invitations or messages. Physical S24 acceptance remains unperformed. Review the preview before any release.
+The local implementation phase made no hosted changes, member purchases, grants, invitations or messages. Physical S24 acceptance remains unperformed. The subsequent owner-authorised release is recorded below.
 
 ## Authorised release preparation
 
 The owner requested deployment after reviewing the local result. Read-only hosted preflight verified the intended database, registered v2 products, test-only wallet/admission controls, 489 eligible players, and preservation of 14 existing purchased packs (one unopened). Prices remain Standard 900 / Premium 1,800 test credits. Existing live rollback: `dpl_4KKgVnB3qHLosnWKiM7w8TXLg1nH` / source `7730267b`.
 
 A hosted rollback-only rehearsal identified a driver-specific JSON serialization issue: passing JSON strings to postgres.js double-encoded parameters for JSONB columns. The transition now passes objects, which both drivers serialize correctly. The focused embedded database test passed again and the hosted PostgreSQL rehearsal passed with complete rollback; no product was activated by that rehearsal. Its protected-state hash was unchanged. The release-only runner `scripts/premium-pack-hosted.ts` verifies the exact project, registered configuration, existing Standard hash and test economy, and stores an affected-aggregate backup privately before applying. No schema or privilege changes are needed.
+
+## Live release — 15 October 2026, 15:41 Sydney
+
+- Live packs: https://docked.com.au/fantasy/test-wallet#packs
+- Source committed and pushed: `1a72636892bc5862263e17088f349beeba37f246`.
+- Deployment: `dpl_3Etm1PzzUD6CsJNv6pvNkjMZFNYh`, existing project `prj_l0rpVDPRuIRp9UcBUkudeyUK5yST`. Both docked.com.au aliases verified against that deployment.
+- Staged production with `--skip-domain`; candidate checks 7/7 passed, then promoted; live checks 7/7 passed. These are anonymous read-only HTTP/asset checks, not authenticated hosted purchase acceptance. [Candidate](qa/premium-v3/candidate.json), [live](qa/premium-v3/live.json), [release decision](qa/premium-v3/decision.json).
+- Configuration transition committed atomically at aggregate revision **75**, version `premium-nine-seven-test-v3`, configuration hash `fd6f7415bb66ae176881208164f9d6d69ac85fe26c3aa4138977d83cc25f0a9a`. The post-commit read verifies exact weights, price, count, player pool and derived UI disclosure. [Application receipt](qa/premium-v3/configuration-apply.json), [read-only verification](qa/premium-v3/configuration-verify.json).
+- Member activity advanced the aggregate between preflight and cutover. The transaction used the latest state (revision 74), preserved **all 16 purchased packs, including one unopened pack**, and asserted every non-configuration field unchanged. No existing member activity was overwritten. Standard's full configuration hash is unchanged. We made no hosted pack purchases, grants, trades or member commands.
+- Private affected-aggregate backup was written and read back before activation; its hash is retained in the application receipt. This is not a full Auth/storage backup and must never be restored over subsequent transactions.
+- Source/evidence secret review: the unchanged scanner reported one existing intentional build-canary template in the credential-free build helper, with zero exact known-secret matches. The raw FAIL and reviewed classification are separately retained; the scanner was not weakened. Private grant material, unrelated files and the old APK-download capability were excluded from the commit/export.
+- Android shell confirmed `au.com.docked.app` loads `https://docked.com.au/app`. Fully close and reopen the installed app, or refresh the browser. No new APK, uninstall or clearing data is required.
+- Rollback reference remains `dpl_4KKgVnB3qHLosnWKiM7w8TXLg1nH` / `7730267b`. Before reverting to that application, pause new Premium offers through an audited active-product change; otherwise its older UI would omit the v3 guarantee wording. Preserve v3 registrations, receipts, cards, serials and ledger history. Re-enabling v2 for new purchases requires its own reviewed disclosure decision.
+- Real payments, cash redemption, withdrawals, prizes and public registration remain disabled. Additional recurring cost $0. No messages/invitations. Physical S24 verification remains pending; this release does not claim a hosted transactional purchase test.
