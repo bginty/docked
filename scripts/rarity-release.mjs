@@ -5,11 +5,18 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { request } from "@playwright/test";
 const mode = process.argv[2];
 assert.ok(["inspect", "access", "candidate", "promote", "live"].includes(mode));
-const playCards = process.argv[3] === "--play-cards";
-const root = playCards ? "docs/qa/play-cards" : "docs/qa/rarity-frames",
-  privateRoot = playCards
-    ? "private-data/play-cards-release"
-    : "private-data/rarity-release";
+const premium = process.argv[3] === "--premium";
+const playCards = process.argv[3] === "--play-cards" || premium;
+const root = premium
+    ? "docs/qa/premium-v3"
+    : playCards
+      ? "docs/qa/play-cards"
+      : "docs/qa/rarity-frames",
+  privateRoot = premium
+    ? "private-data/premium-v3-release"
+    : playCards
+      ? "private-data/play-cards-release"
+      : "private-data/rarity-release";
 mkdirSync(root, { recursive: true });
 mkdirSync(privateRoot, { recursive: true });
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",

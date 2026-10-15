@@ -17,6 +17,7 @@ import {
   marketLabels,
 } from "../tests/fixtures/marketplace-state";
 import { executeCredits } from "../src/core/credits-sandbox";
+import { premiumUltraPackUpgrade } from "../src/core/card-economy";
 import { marketQuery, marketplaceView } from "../src/core/marketplace";
 import {
   memberTestView,
@@ -30,6 +31,8 @@ async function main() {
   let s = marketplaceFixture(),
     origin = "",
     dropBuy = false;
+  if (process.argv.includes("--premium-v3"))
+    premiumUltraPackUpgrade(s.economy!, Date.now());
   const own = (i: number) =>
     Object.keys(s.cards).filter(
       (id) => s.commerce.cards[id].owner === marketActors[i].id,

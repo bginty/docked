@@ -1,13 +1,15 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--play-cards")
-  ? "docs/qa/play-cards"
-  : process.argv.includes("--rarity")
-    ? "docs/qa/rarity-frames"
-    : process.argv.includes("--visual")
-      ? "docs/qa/mobile-cleanup"
-      : "docs/qa/marketplace-release";
+const evidence = process.argv.includes("--premium")
+  ? "docs/qa/premium-v3"
+  : process.argv.includes("--play-cards")
+    ? "docs/qa/play-cards"
+    : process.argv.includes("--rarity")
+      ? "docs/qa/rarity-frames"
+      : process.argv.includes("--visual")
+        ? "docs/qa/mobile-cleanup"
+        : "docs/qa/marketplace-release";
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve("tmp/marketplace-release-build");

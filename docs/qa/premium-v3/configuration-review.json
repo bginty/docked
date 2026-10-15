@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-15T04:33:23.480Z",
+  "mode": "review",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "passed": true,
+  "revision": "70",
+  "stateHash": "e4c2eeb9bcac974bffd13ccd2c3919897ec1405627fbb84f1c4c194701aa3be2",
+  "sourceOfferHash": "742ed3051fd9b29c3237711535f7736dce93e65677cdfed820a5f607ab8250c3",
+  "standardHash": "ae365e7354f567c7faadc9134bb2879a1d6c30548c00258bd4386b6a1b0c838c",
+  "activeProducts": [
+    {
+      "id": "standard-nine-seven-test-v2",
+      "price": 900,
+      "cards": 9,
+      "weights": {
+        "ICON": 1,
+        "RARE": 8500,
+        "ELITE": 1200,
+        "LEGENDARY": 49,
+        "ULTRA_RARE": 250
+      },
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "duplicatePlayers": "deny",
+      "guaranteedSlots": {},
+      "eligiblePlayers": 489
+    },
+    {
+      "id": "premium-nine-seven-test-v2",
+      "price": 1800,
+      "cards": 9,
+      "weights": {
+        "ICON": 1,
+        "RARE": 6000,
+        "ELITE": 3000,
+        "LEGENDARY": 149,
+        "ULTRA_RARE": 850
+      },
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "duplicatePlayers": "deny",
+      "guaranteedSlots": {},
+      "eligiblePlayers": 489
+    }
+  ],
+  "retainedPacks": 14,
+  "retainedUnopenedPacks": 1,
+  "testOnly": true,
+  "hostedMemberCommands": 0,
+  "schemaChanges": 0,
+  "privilegeChanges": 0,
+  "transition": {
+    "changed": true,
+    "revision": 71,
+    "configuration": "premium-nine-seven-test-v3",
+    "configurationHash": "7482c365b955a41359b612b904e851f9d527d5c1573af43eaf883f94a45d6b68",
+    "protectedStateUnchanged": true
+  },
+  "rolledBack": true
+}

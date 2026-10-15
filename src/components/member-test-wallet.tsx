@@ -200,6 +200,11 @@ export function MemberTestWallet({
               {s.products.map((p) => (
                 <article key={p.id}>
                   <h3>{p.name}</h3>
+                  {p.odds?.headline && (
+                    <p>
+                      <strong>{p.odds.headline}</strong>
+                    </p>
+                  )}
                   <p>
                     {p.price.toLocaleString()} test credits · {p.cards} cards
                   </p>
@@ -217,7 +222,11 @@ export function MemberTestWallet({
                           </thead>
                           <tbody>
                             {rarities
-                              .filter((r) => r !== "CORE")
+                              .filter(
+                                (r) =>
+                                  r !== "CORE" &&
+                                  (!p.odds?.headline || p.weights![r] > 0),
+                              )
                               .map((r) => (
                                 <tr key={r}>
                                   <td>{rarityRule(r).label}</td>
@@ -226,7 +235,11 @@ export function MemberTestWallet({
                               ))}
                           </tbody>
                         </table>
+                        {p.odds?.headline && (
+                          <p>{p.odds.excluded.join(", ")}: not included.</p>
+                        )}
                       </details>
+                      {p.odds?.guarantee && <p>{p.odds.guarantee}</p>}
                       <details className="pack-terms">
                         <summary>Pack details</summary>
                         <p>
@@ -236,15 +249,16 @@ export function MemberTestWallet({
                           cards and receipts are unchanged.
                         </p>
                         <p>
-                          {Object.keys(p.guaranteedSlots).length
-                            ? "Guaranteed slots: " +
-                              Object.entries(p.guaranteedSlots)
-                                .map(
-                                  ([slot, r]) =>
-                                    String(Number(slot) + 1) + ": " + r,
-                                )
-                                .join(", ")
-                            : "No guaranteed rarity."}
+                          {p.odds?.guarantee ??
+                            (Object.keys(p.guaranteedSlots).length
+                              ? "Guaranteed slots: " +
+                                Object.entries(p.guaranteedSlots)
+                                  .map(
+                                    ([slot, r]) =>
+                                      String(Number(slot) + 1) + ": " + r,
+                                  )
+                                  .join(", ")
+                              : "No guaranteed rarity.")}
                         </p>
                         <p>
                           Percentages are per-card rarity attempts before supply
@@ -270,7 +284,7 @@ export function MemberTestWallet({
                     onClick={() => {
                       if (
                         confirm(
-                          `Buy ${p.name} for ${p.price.toLocaleString()} test credits?`,
+                          `Buy ${p.name} for ${p.price.toLocaleString()} test credits?${p.odds?.headline ? ` ${p.odds.headline}. ${p.odds.guarantee}` : ""}`,
                         )
                       )
                         act({
@@ -299,6 +313,9 @@ export function MemberTestWallet({
                 <span>
                   {p.name} ·{" "}
                   {p.status === "SEALED" ? "Ready to open" : "Opened"}
+                  {p.configuration && (
+                    <small> · Purchase terms: {p.configuration}</small>
+                  )}
                 </span>
                 <button disabled={busy} onClick={() => setPack(p.id)}>
                   {p.status === "SEALED" ? "Open pack" : "Replay saved pack"}

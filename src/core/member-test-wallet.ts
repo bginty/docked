@@ -1,6 +1,7 @@
 import { rarityRule } from "./card-rarity";
 import { swapFeeQuote } from "./credit-only";
 import { economySupply, eligibleCatalogue } from "./card-economy";
+import { packOdds } from "./pack-odds";
 import {
   initialCredits,
   wallet,
@@ -204,6 +205,7 @@ export function memberTestView(
             tier: p.type,
             cards: p.cards,
             weights: p.weights,
+            odds: packOdds(p),
             positions: p.positions,
             guaranteedSlots: p.guaranteedSlots,
             duplicatePlayers: p.duplicatePlayers,
@@ -221,6 +223,7 @@ export function memberTestView(
           tier: p.inventoryTier,
           cards: 1,
           weights: null,
+          odds: null,
           positions: [],
           guaranteedSlots: {},
           duplicatePlayers: "n/a",
@@ -233,6 +236,7 @@ export function memberTestView(
       .map(([id, e]) => ({
         id,
         status: e.status,
+        configuration: s.economy?.packs[id]?.product.version ?? null,
         name:
           s.economy?.packs[id]?.product.name ??
           s.policy.products.find(

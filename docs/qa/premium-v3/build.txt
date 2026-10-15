@@ -1,0 +1,99 @@
+▲ Next.js 16.3.8 (Turbopack)
+✓ Running next.config.ts took 266ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.9s
+  Running TypeScript ...
+  Finished TypeScript in 19.0s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/36) ...
+  Generating static pages using 7 workers (9/36)
+  Generating static pages using 7 workers (18/36)
+  Generating static pages using 7 workers (27/36)
+✓ Generating static pages using 7 workers (36/36) in 1515ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[section]
+├ ○ /account-deletion
+├ ƒ /admin
+├ ƒ /admin/analytics
+├ ƒ /admin/community
+├ ƒ /admin/community/[section]
+├ ƒ /admin/operations
+├ ƒ /admin/preview-testers
+├ ƒ /api/admin/community-analytics
+├ ƒ /api/admin/operations
+├ ƒ /api/admin/preview-testers
+├ ƒ /api/analytics
+├ ƒ /api/app-session
+├ ƒ /api/auth
+├ ƒ /api/auth/customer-invitation
+├ ƒ /api/auth/customer-signup
+├ ƒ /api/auth/invitation-setup
+├ ƒ /api/beta-release
+├ ƒ /api/beta/invitations
+├ ƒ /api/community
+├ ƒ /api/fantasy
+├ ƒ /api/fantasy/market-proposal
+├ ƒ /api/fantasy/results
+├ ƒ /api/fantasy/swaps
+├ ƒ /api/marketplace
+├ ƒ /api/member
+├ ƒ /api/notifications
+├ ƒ /api/status
+├ ƒ /api/test-wallet
+├ ƒ /api/unsubscribe
+├ ƒ /api/webhooks/email
+├ ƒ /app
+├ ƒ /app/check-email
+├ ƒ /app/email-change-pending
+├ ƒ /app/forgot-password
+├ ƒ /app/invitation-setup
+├ ƒ /app/link-expired
+├ ƒ /app/login
+├ ƒ /app/onboarding
+├ ƒ /app/owner-setup
+├ ƒ /app/password-updated
+├ ƒ /app/reset-password
+├ ƒ /app/signup
+├ ƒ /app/verified
+├ ○ /apple-icon.png
+├ ƒ /auth/callback
+├ ƒ /auth/invite
+├ ƒ /auth/recovery
+├ ƒ /auth/verify
+├ ƒ /beta-policies
+├ ○ /community
+├ ƒ /community/[post]
+├ ƒ /community/posts/[id]
+├ ○ /competitions
+├ ƒ /compose
+├ ƒ /dashboard
+├ ƒ /fantasy/[tab]
+├ ƒ /fantasy/results
+├ ƒ /fantasy/scoring
+├ ƒ /fantasy/scoring/how-it-works
+├ ƒ /fantasy/test-wallet
+├ ƒ /feed
+├ ƒ /following
+├ ○ /home
+├ ○ /manifest.webmanifest
+├ ƒ /notifications
+├ ○ /opengraph-image
+├ ƒ /preview/pack-opening
+├ ƒ /profile
+├ ƒ /profile/[handle]
+├ ○ /robots.txt
+├ ƒ /search
+├ ○ /sitemap.xml
+├ ○ /sports
+└ ƒ /sports/[sport]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

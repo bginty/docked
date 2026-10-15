@@ -154,6 +154,18 @@ export function initialCardEconomy(
   return economy;
 }
 export function validateProduct(p: NinePackProduct) {
+  if (p.id === premiumUltraVersion || p.version === premiumUltraVersion) {
+    if (
+      p.id !== premiumUltraVersion ||
+      p.version !== premiumUltraVersion ||
+      p.type !== "PREMIUM" ||
+      digest(p.weights) !== digest(premiumUltraWeights) ||
+      Object.keys(p.guaranteedSlots).length !== 0
+    )
+      throw Error(
+        "Premium v3 requires exact Ultra Rare-or-better weights and no extra guaranteed slots",
+      );
+  }
   if (
     p.cards !== 9 ||
     p.status !== "TEST_ONLY" ||
@@ -402,4 +414,45 @@ export function sevenPlayerPackUpgrade(e: CardEconomy, now: number) {
   }
   e.activeProductVersions = active;
   validateCardEconomy(e);
+}
+
+export const premiumUltraVersion = "premium-nine-seven-test-v3";
+const premiumUltraWeights = Object.freeze({
+  RARE: 0,
+  ELITE: 0,
+  ULTRA_RARE: 9000,
+  LEGENDARY: 990,
+  ICON: 10,
+});
+
+/** Explicit additive configuration transition. Never called by a read or an opening. */
+export function premiumUltraPackUpgrade(original: CardEconomy, now: number) {
+  const e = structuredClone(original);
+  validateCardEconomy(e);
+  const active = e.activeProductVersions ?? Object.keys(e.products);
+  const premium = active
+    .map((id) => e.products[id])
+    .filter((p) => p.type === "PREMIUM");
+  if (premium.length !== 1)
+    throw Error("Exactly one active Premium configuration required");
+  const old = premium[0];
+  if (old.version === premiumUltraVersion) return old;
+  if (Object.keys(old.guaranteedSlots).length)
+    throw Error("Review existing Premium guaranteed slots before transition");
+  if (e.products[premiumUltraVersion])
+    throw Error(
+      "Premium v3 already exists but is not active; explicit review required",
+    );
+  const next: NinePackProduct = {
+    ...structuredClone(old),
+    id: premiumUltraVersion,
+    version: premiumUltraVersion,
+    weights: { ...premiumUltraWeights },
+    effectiveAt: now,
+  };
+  e.products[next.id] = next;
+  e.activeProductVersions = active.map((id) => (id === old.id ? next.id : id));
+  validateCardEconomy(e);
+  Object.assign(original, e);
+  return next;
 }
