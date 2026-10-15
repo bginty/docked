@@ -1,4 +1,4 @@
-# Reveal stability — local review, 15 October 2026
+# Reveal stability — released 15 October 2026
 
 Continues from live Premium v3 source `1a726368` and release receipt `75a71ab8`. The owner subsequently authorised deployment of this reviewed fix. No database changes, purchases, grants or member mutations are required. Deployment completion is recorded separately below when verified.
 
@@ -39,3 +39,14 @@ Application: `src/components/pack-opening.tsx`, `src/app/mobile-cleanup.css`.
 Verification: `tests/browser/reveal-stability.test.ts`, `tests/browser/rarity-frames.test.ts`, `tests/reveal-stability.config.ts`; build helper accepts `--reveal-stability` to preserve previous release evidence.
 
 Owner release approval received. Physical S24 replay check remains pending: check several consecutive cards, tilt only after settling, Skip, close/reopen and reduced motion using an already-opened pack. No purchases are needed. Application rollback target is `dpl_3Etm1PzzUD6CsJNv6pvNkjMZFNYh` / source `1a726368`, which already supports Premium v3. Do not revert economy configuration or member data.
+
+## Live release receipt — 16:26 Sydney
+
+- Live: https://docked.com.au/fantasy/cards. Both docked.com.au and www aliases verified against deployment `dpl_EQTfcz1qZ7HoYgLPJBgk6xRUVodn`.
+- Application source: `7c1303f388d40483113be57d88ec16e5eb2afdc0`, pushed to the existing working/review branches. Exact committed web export, production target, `--skip-domain`, followed by candidate acceptance and authorised promotion.
+- Existing project `prj_l0rpVDPRuIRp9UcBUkudeyUK5yST`, team `team_tf6xweKKyVCj9bTppUKttJ4l`, runtime project ref `pojoymtniryarxxunyvz` verified. Deployment protection unchanged.
+- [Candidate](qa/reveal-stability/candidate.json) **8/8 passed**; [live](qa/reveal-stability/live.json) **8/8 passed**. These are anonymous read-only HTTP/version/asset and admission checks, not hosted member transactions or physical-device verification.
+- [Release decision](qa/reveal-stability/decision.json), [rollback reference](qa/reveal-stability/rollback.json). The unchanged raw secret scanner reports one intentional build-canary template, with zero exact known-secret matches; [reviewed classification](qa/reveal-stability/secret-review.json) is retained separately from the raw FAIL. No exclusions added or private capabilities committed.
+- Android package `au.com.docked.app` remains connected to `https://docked.com.au/app`. Fully close and reopen the installed app; refresh an open browser page. No new APK, reinstall or cleared app data is required.
+- No database/configuration migration, member purchases, grants, trades, team edits, messages or invitations. Premium v3, Standard and all persisted receipts remain unchanged. Real payments, withdrawals, prizes and public registration remain disabled. Additional recurring cost $0.
+- Roll back only the application to `dpl_3Etm1PzzUD6CsJNv6pvNkjMZFNYh` if necessary; it includes the current Premium disclosures. Never restore an older database state over subsequent member activity.

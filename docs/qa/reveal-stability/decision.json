@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-15T05:22:34.194Z",
+  "decision": "RELEASE",
+  "commit": "7c1303f388d40483113be57d88ec16e5eb2afdc0",
+  "authorization": "Owner requested deployment of the verified reveal fix",
+  "browserTests": 14,
+  "focusedPlatformTests": 10,
+  "typecheck": true,
+  "lint": true,
+  "build": true,
+  "clientBoundary": true,
+  "secretReview": "REVIEWED_PASS; one intentional canary template",
+  "databaseChanges": false,
+  "memberMutations": false,
+  "realPayments": false,
+  "publicRegistration": false
+}

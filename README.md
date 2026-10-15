@@ -1,4 +1,6 @@
-Current release: [Premium pack rarity pool v3](docs/PREMIUM_POOL_V3_REVIEW.md), live on docked.com.au from source `1a726368`. Newly purchased Premium packs contain nine Ultra Rare-or-better cards with 90% Ultra Rare / 9.9% Legendary / 0.1% Icon per-card attempts. Standard and all prior purchased pack results are unchanged. No admission expansion or real-money activation.
+Current release: [Stable pack reveal](docs/REVEAL_STABILITY_REVIEW.md), live on docked.com.au from source `7c1303f3`. One smooth per-card turn, stable inspection handoff and simplified light/Icon effects. Application-only update; saved results and member data are unchanged.
+
+Current economy / prior application rollback: [Premium pack rarity pool v3](docs/PREMIUM_POOL_V3_REVIEW.md), source `1a726368`. Newly purchased Premium packs contain nine Ultra Rare-or-better cards with 90% Ultra Rare / 9.9% Legendary / 0.1% Icon per-card attempts. Standard and all prior purchased pack results are unchanged. No admission expansion or real-money activation.
 
 Previous release: [Play and Cards redesign](docs/PLAY_CARDS_REDESIGN_REVIEW.md), source `7730267b`. Its immutable deployment is retained as an application rollback reference; pause new Premium sales before reverting to an application without the v3 disclosure.
 
