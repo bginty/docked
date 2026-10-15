@@ -1,3 +1,4 @@
+const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/mobile-cleanup";
 import { test, expect } from "@playwright/test";
 import { readFile, mkdir } from "node:fs/promises";
 import { bundleCommunityFixture } from "../fixtures/bundle-community";
@@ -5,13 +6,13 @@ import { previewReceipt } from "../../src/components/pack-opening-preview";
 test("cinematic timing, background interruption and visual recording", async ({
   browser,
 }) => {
-  await mkdir("docs/qa/mobile-cleanup/cinematic-regression/visual-recording", {
+  await mkdir(`${evidence}/cinematic-regression/visual-recording`, {
     recursive: true,
   });
   const context = await browser.newContext({
     viewport: { width: 412, height: 915 },
     recordVideo: {
-      dir: "docs/qa/mobile-cleanup/cinematic-regression/visual-recording",
+      dir: `${evidence}/cinematic-regression/visual-recording`,
       size: { width: 412, height: 915 },
     },
   });
@@ -56,11 +57,11 @@ test("cinematic timing, background interruption and visual recording", async ({
   ).toBeVisible();
   await page.waitForTimeout(400);
   await page.screenshot({
-    path: "docs/qa/mobile-cleanup/cinematic-regression/cinematic-tunnel.png",
+    path: `${evidence}/cinematic-regression/cinematic-tunnel.png`,
   });
   await page.waitForTimeout(600);
   await page.screenshot({
-    path: "docs/qa/mobile-cleanup/cinematic-regression/cinematic-burst.png",
+    path: `${evidence}/cinematic-regression/cinematic-burst.png`,
   });
   await expect(
     page.getByRole("button", { name: "Reveal next card" }),
@@ -68,7 +69,7 @@ test("cinematic timing, background interruption and visual recording", async ({
     timeout: 5000,
   });
   await page.screenshot({
-    path: "docs/qa/mobile-cleanup/cinematic-regression/cinematic-readable.png",
+    path: `${evidence}/cinematic-regression/cinematic-readable.png`,
   });
   await page.getByRole("button", { name: "Reveal next card" }).click();
   await expect(
@@ -91,7 +92,5 @@ test("cinematic timing, background interruption and visual recording", async ({
   await context.close();
   await page
     .video()!
-    .saveAs(
-      "docs/qa/mobile-cleanup/cinematic-regression/reveal-background-recovery.webm",
-    );
+    .saveAs(`${evidence}/cinematic-regression/reveal-background-recovery.webm`);
 });

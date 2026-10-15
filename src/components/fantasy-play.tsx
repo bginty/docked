@@ -1,4 +1,6 @@
 "use client";
+import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
+import { RarityBadge } from "./rarity-badge";
 import Link from "next/link";
 import { NflSevenPlay } from "./nfl-seven-play";
 import { rarities, rarityRule } from "@/core/card-rarity";
@@ -683,7 +685,10 @@ function LegacyFantasyPlay({
                             return (
                               <button
                                 key={`${position}${index}`}
-                                className={`field-player ${card ? "" : "empty-slot"}`}
+                                className={`field-player ${card ? rarityFrame(card.tier) : "empty-slot"}`}
+                                style={
+                                  card ? rarityStyle(card.tier) : undefined
+                                }
                                 disabled={
                                   busy ||
                                   (!card && (view === "points" || locked))
@@ -717,17 +722,22 @@ function LegacyFantasyPlay({
                                       ? `${card.position} · ${card.status}`
                                       : position}
                                 </small>
-                                {card &&
-                                  (view === "points" ? viewed : comp)?.rules
-                                    .inventory_scope ===
-                                    "invited-nfl-test-v2" && (
-                                    <small>
-                                      {rarityRule(card.tier).label} ·{" "}
-                                      {rarityRule(card.tier).multiplierTenths /
-                                        10}
-                                      ×
-                                    </small>
-                                  )}
+                                {card && (
+                                  <RarityBadge
+                                    tier={card.tier}
+                                    compact
+                                    appliedMultiplier={
+                                      (view === "points" ? viewed : comp)?.rules
+                                        .inventory_scope ===
+                                      "invited-nfl-test-v2"
+                                        ? (card.multiplier ??
+                                          rarityRule(card.tier)
+                                            .multiplierTenths / 10)
+                                        : rarityRule("CORE").multiplierTenths /
+                                          10
+                                    }
+                                  />
+                                )}
                               </button>
                             );
                           })}
@@ -756,12 +766,24 @@ function LegacyFantasyPlay({
                         .map((c) => (
                           <button
                             key={c.id}
+                            className={rarityFrame(c.tier)}
+                            style={rarityStyle(c.tier)}
                             disabled={busy || locked}
                             onClick={() => setDetail(c)}
                           >
                             <PlayerShirt card={c} />
                             <span>{c.name}</span>
                             <small>{c.position}</small>
+                            <RarityBadge
+                              tier={c.tier}
+                              compact
+                              appliedMultiplier={
+                                comp.rules.inventory_scope ===
+                                "invited-nfl-test-v2"
+                                  ? rarityRule(c.tier).multiplierTenths / 10
+                                  : rarityRule("CORE").multiplierTenths / 10
+                              }
+                            />
                           </button>
                         ))}
                     </div>
@@ -956,6 +978,8 @@ function LegacyFantasyPlay({
             {candidates.map((c) => (
               <button
                 key={c.id}
+                className={rarityFrame(c.tier)}
+                style={rarityStyle(c.tier)}
                 disabled={busy || locked}
                 onClick={() => add(c)}
               >
@@ -969,8 +993,15 @@ function LegacyFantasyPlay({
                     {c.tier === "CORE"
                       ? "Free Core · unlimited"
                       : `${c.tier} #${c.serial} / ${c.max_supply}`}
-                    {comp.rules.inventory_scope === "invited-nfl-test-v2" &&
-                      ` · ${rarityRule(c.tier).multiplierTenths / 10}×`}
+                    <RarityBadge
+                      tier={c.tier}
+                      compact
+                      appliedMultiplier={
+                        comp.rules.inventory_scope === "invited-nfl-test-v2"
+                          ? rarityRule(c.tier).multiplierTenths / 10
+                          : rarityRule("CORE").multiplierTenths / 10
+                      }
+                    />
                   </small>
                 </span>
                 <b>Select</b>

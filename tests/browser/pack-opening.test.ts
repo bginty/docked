@@ -1,3 +1,4 @@
+const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/mobile-cleanup";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFile, mkdir } from "node:fs/promises";
@@ -56,11 +57,11 @@ for (const width of [360, 412, 1366])
       await page.getByRole("button", { name: "Open viewer" }).click();
     }
     await mount();
-    await mkdir("docs/qa/mobile-cleanup/reveal-regression", {
+    await mkdir(`${evidence}/reveal-regression`, {
       recursive: true,
     });
     await page.screenshot({
-      path: `docs/qa/mobile-cleanup/reveal-regression/sealed-${width}.png`,
+      path: `${evidence}/reveal-regression/sealed-${width}.png`,
       fullPage: true,
     });
     await page.getByRole("button", { name: "Open pack seal" }).dblclick();
@@ -85,7 +86,7 @@ for (const width of [360, 412, 1366])
     const axe = await new AxeBuilder({ page }).include("dialog").analyze();
     expect(axe.violations).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/mobile-cleanup/reveal-regression/revealed-${width}.png`,
+      path: `${evidence}/reveal-regression/revealed-${width}.png`,
       fullPage: true,
     });
     await page
@@ -93,7 +94,7 @@ for (const width of [360, 412, 1366])
       .click();
     await expect(page.locator(".pack-summary li")).toHaveCount(10);
     await page.screenshot({
-      path: `docs/qa/mobile-cleanup/reveal-regression/summary-${width}.png`,
+      path: `${evidence}/reveal-regression/summary-${width}.png`,
       fullPage: true,
     });
     await mount();

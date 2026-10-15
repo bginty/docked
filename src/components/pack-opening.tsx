@@ -1,4 +1,5 @@
 "use client";
+import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 import {
   useCallback,
   useEffect,
@@ -301,6 +302,7 @@ export default function PackOpening(props: PackOpeningProps) {
             </p>
             <div
               key={`${receipt.id}:${index}`}
+              style={rarityStyle(card.tier)}
               data-reveal-index={index}
               className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${stage === "opening" ? "pack-rising" : ""}`}
             >
@@ -327,104 +329,136 @@ export default function PackOpening(props: PackOpeningProps) {
                   )}
                 </>
               )}
+              {card.tier === "ICON" && stage === "opening" && !motionOff && (
+                <div className="pack-icon-celebration" aria-hidden="true">
+                  <span className="icon-halo" />
+                  {[0, 1, 2].map((burst) => (
+                    <span
+                      className={`icon-firework icon-firework-${burst}`}
+                      key={burst}
+                    >
+                      {Array.from({ length: 10 }, (_, ray) => (
+                        <i
+                          key={ray}
+                          style={{ "--ray": `${ray * 36}deg` } as CSSProperties}
+                        />
+                      ))}
+                    </span>
+                  ))}
+                </div>
+              )}
               <div
-                className="pack-case"
-                tabIndex={0}
-                role="group"
-                aria-label={`Inspect ${card.name}. Drag or use arrow keys to tilt; Escape resets tilt.`}
-                style={
-                  {
-                    "--tilt-x": `${tilt.x}deg`,
-                    "--tilt-y": `${tilt.y}deg`,
-                  } as CSSProperties
-                }
-                onPointerDown={(e) => {
-                  if (!motionOff) {
-                    e.currentTarget.setPointerCapture(e.pointerId);
-                    swipe.current = { x: e.clientX, y: e.clientY };
-                  }
-                }}
-                onPointerMove={(e) => {
-                  const p = swipe.current;
+                className="pack-arrival"
+                onAnimationEnd={(e) => {
                   if (
-                    p &&
-                    e.currentTarget.hasPointerCapture(e.pointerId) &&
-                    !motionOff
+                    e.target === e.currentTarget &&
+                    e.animationName === "docked-single-reveal"
                   )
-                    setTilt({
-                      x: Math.max(-12, Math.min(12, (p.y - e.clientY) / 7)),
-                      y: Math.max(-16, Math.min(16, (e.clientX - p.x) / 7)),
-                    });
-                }}
-                onPointerUp={() => {
-                  swipe.current = null;
-                }}
-                onPointerCancel={() => {
-                  swipe.current = null;
-                  setTilt({ x: 0, y: 0 });
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Escape") {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setTilt({ x: 0, y: 0 });
-                  }
-                  if (
-                    !motionOff &&
-                    [
-                      "ArrowLeft",
-                      "ArrowRight",
-                      "ArrowUp",
-                      "ArrowDown",
-                    ].includes(e.key)
-                  ) {
-                    e.preventDefault();
-                    setTilt((t) => ({
-                      x: Math.max(
-                        -12,
-                        Math.min(
-                          12,
-                          t.x +
-                            (e.key === "ArrowUp"
-                              ? -3
-                              : e.key === "ArrowDown"
-                                ? 3
-                                : 0),
-                        ),
-                      ),
-                      y: Math.max(
-                        -16,
-                        Math.min(
-                          16,
-                          t.y +
-                            (e.key === "ArrowLeft"
-                              ? -3
-                              : e.key === "ArrowRight"
-                                ? 3
-                                : 0),
-                        ),
-                      ),
-                    }));
-                  }
+                    setStage("revealed");
                 }}
               >
-                <div className="pack-case-label">
-                  <img
-                    src={fantasyAssets.compact}
-                    width="90"
-                    height="25"
-                    alt="Docked"
-                  />
-                  <span>
-                    Test economy · {rarityRule(card.tier).label.toUpperCase()}
-                  </span>
-                </div>
-                <FantasyCardArtwork card={card} faceOnly />
-                <div className="pack-case-foot">
-                  {card.sport.toUpperCase()} · {card.position} ·{" "}
-                  {card.tier === "CORE"
-                    ? "Core · unlimited"
-                    : `#${String(card.serial).padStart(3, "0")} / ${card.max_supply.toLocaleString()}`}
+                <div className="pack-card-back" aria-hidden="true" />
+                <div
+                  className={`pack-case ${rarityFrame(card.tier)}`}
+                  tabIndex={0}
+                  role="group"
+                  aria-label={`Inspect ${card.name}. Drag or use arrow keys to tilt; Escape resets tilt.`}
+                  style={
+                    {
+                      "--tilt-x": `${tilt.x}deg`,
+                      "--tilt-y": `${tilt.y}deg`,
+                    } as CSSProperties
+                  }
+                  onPointerDown={(e) => {
+                    if (!motionOff && stage === "revealed") {
+                      e.currentTarget.setPointerCapture(e.pointerId);
+                      swipe.current = { x: e.clientX, y: e.clientY };
+                    }
+                  }}
+                  onPointerMove={(e) => {
+                    const p = swipe.current;
+                    if (
+                      p &&
+                      e.currentTarget.hasPointerCapture(e.pointerId) &&
+                      !motionOff &&
+                      stage === "revealed"
+                    )
+                      setTilt({
+                        x: Math.max(-12, Math.min(12, (p.y - e.clientY) / 7)),
+                        y: Math.max(-16, Math.min(16, (e.clientX - p.x) / 7)),
+                      });
+                  }}
+                  onPointerUp={() => {
+                    swipe.current = null;
+                  }}
+                  onPointerCancel={() => {
+                    swipe.current = null;
+                    setTilt({ x: 0, y: 0 });
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setTilt({ x: 0, y: 0 });
+                    }
+                    if (
+                      !motionOff &&
+                      stage === "revealed" &&
+                      [
+                        "ArrowLeft",
+                        "ArrowRight",
+                        "ArrowUp",
+                        "ArrowDown",
+                      ].includes(e.key)
+                    ) {
+                      e.preventDefault();
+                      setTilt((t) => ({
+                        x: Math.max(
+                          -12,
+                          Math.min(
+                            12,
+                            t.x +
+                              (e.key === "ArrowUp"
+                                ? -3
+                                : e.key === "ArrowDown"
+                                  ? 3
+                                  : 0),
+                          ),
+                        ),
+                        y: Math.max(
+                          -16,
+                          Math.min(
+                            16,
+                            t.y +
+                              (e.key === "ArrowLeft"
+                                ? -3
+                                : e.key === "ArrowRight"
+                                  ? 3
+                                  : 0),
+                          ),
+                        ),
+                      }));
+                    }
+                  }}
+                >
+                  <div className="pack-case-label">
+                    <img
+                      src={fantasyAssets.compact}
+                      width="90"
+                      height="25"
+                      alt="Docked"
+                    />
+                    <span>
+                      Test economy · {rarityRule(card.tier).label.toUpperCase()}
+                    </span>
+                  </div>
+                  <FantasyCardArtwork card={card} faceOnly />
+                  <div className="pack-case-foot">
+                    {card.sport.toUpperCase()} · {card.position} ·{" "}
+                    {card.tier === "CORE"
+                      ? "Core · unlimited"
+                      : `#${String(card.serial).padStart(3, "0")} / ${card.max_supply.toLocaleString()}`}
+                  </div>
                 </div>
               </div>
             </div>
@@ -464,6 +498,7 @@ export default function PackOpening(props: PackOpeningProps) {
                 <li key={c.id}>
                   <span
                     className={`pack-position tier-${c.tier.toLowerCase()}`}
+                    style={rarityStyle(c.tier)}
                   >
                     {c.position}
                   </span>

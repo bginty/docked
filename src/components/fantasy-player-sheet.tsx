@@ -1,4 +1,7 @@
 "use client";
+import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
+import { RarityBadge } from "./rarity-badge";
+
 import { useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import {
@@ -216,17 +219,18 @@ export function FantasyPlayerDetails({
         onClose={onClose}
         className="lineup-profile"
       >
-        <div className="lineup-profile-hero">
+        <div
+          className={`lineup-profile-hero ${rarityFrame(card.tier)}`}
+          style={rarityStyle(card.tier)}
+        >
           <PlayerShirt card={card} hideNumber />
           <div>
             <h3>{fullTeamName(card)}</h3>
-            <p>
-              {card.position} · {rarityRule(card.tier).label}
-            </p>
-            <strong>
-              {lineup.multiplier}×{" "}
-              <small>{lineup.mode === "OPEN" ? "Open" : "Salary Cap"}</small>
-            </strong>
+            <p>{card.position}</p>
+            <RarityBadge
+              tier={card.tier}
+              appliedMultiplier={lineup.multiplier}
+            />
           </div>
         </div>
         <div className="profile-facts">
@@ -353,13 +357,28 @@ export function FantasyPlayerDetails({
   }
   return (
     <FantasySheet title={card.name} onClose={onClose}>
-      <div className="player-sheet-identity">
+      <div
+        className={`player-sheet-identity ${rarityFrame(card.tier)}`}
+        style={rarityStyle(card.tier)}
+      >
         <PlayerShirt card={card} />
         <div>
           <p className="eyebrow">
             {card.sport} · {card.position}
           </p>
           <h3>{card.team}</h3>
+          <RarityBadge
+            tier={card.tier}
+            appliedMultiplier={
+              roundId
+                ? (selected?.multiplier ??
+                  (state.competitions.find((c) => c.id === roundId)?.rules
+                    .inventory_scope === "invited-nfl-test-v2"
+                    ? rarityRule(card.tier).multiplierTenths / 10
+                    : rarityRule("CORE").multiplierTenths / 10))
+                : undefined
+            }
+          />
           {card.edition_team && card.edition_team !== card.team && (
             <p>
               Edition team: {card.edition_team}. Current roster team shown

@@ -1,4 +1,6 @@
 "use client";
+import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
+import { RarityBadge } from "./rarity-badge";
 
 import Link from "next/link";
 
@@ -465,7 +467,8 @@ export function NflSevenPlay({
             <div className="seven-slot" key={s.id}>
               <button
                 disabled={!card && (!editable || locked || busy)}
-                className="field-player"
+                className={`field-player ${card ? rarityFrame(card.tier) : ""}`}
+                style={card ? rarityStyle(card.tier) : undefined}
                 onClick={() => {
                   if (card)
                     setProfile({ card: card.id, slot: s.id, candidate: false });
@@ -489,11 +492,14 @@ export function NflSevenPlay({
                   )}
                 </span>
                 {card && (
-                  <strong className="lineup-multiplier">
-                    {card.multiplier ??
-                      rarityRule(card.tier).multiplierTenths / 10}
-                    ×
-                  </strong>
+                  <RarityBadge
+                    tier={card.tier}
+                    compact
+                    appliedMultiplier={
+                      card.multiplier ??
+                      rarityRule(card.tier).multiplierTenths / 10
+                    }
+                  />
                 )}
                 {locked && <small className="entry-badge">Locked</small>}
                 {!!issue && (
@@ -972,7 +978,8 @@ export function NflSevenPlay({
               const reason = candidate(c);
               return (
                 <button
-                  className="seven-candidate compact-candidate"
+                  className={`seven-candidate compact-candidate ${rarityFrame(c.tier)}`}
+                  style={rarityStyle(c.tier)}
                   key={c.id}
                   onClick={() =>
                     setProfile({ card: c.id, slot, candidate: true })
@@ -983,8 +990,7 @@ export function NflSevenPlay({
                     <strong>{c.name}</strong>
                     <span className="block-note">{fullTeamName(c)}</span>
                     <span className="candidate-meta">
-                      {c.position} · {rarityRule(c.tier).label} ·{" "}
-                      {rarityRule(c.tier).multiplierTenths / 10}×
+                      {c.position} <RarityBadge tier={c.tier} compact />
                     </span>
                     <small className="block-note">
                       {c.tier === "CORE"

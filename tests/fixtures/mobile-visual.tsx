@@ -1,4 +1,5 @@
 // Local visual fixtures only. No application authentication, provider or database.
+import { RarityGallery } from "./rarity-gallery";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
 import { AppShell } from "../../src/components/app-shell";
@@ -249,6 +250,8 @@ function Fixture({ member }: { member: string }) {
   const [open, setOpen] = useState(false),
     [detail, setDetail] = useState<(typeof cards)[number] | null>(null);
   const tab = path.split("/")[2] || "play";
+  if (path === "/preview/rarity-frames")
+    return <RarityGallery base={cards[3]} />;
   return (
     <EnvironmentProvider
       value={{

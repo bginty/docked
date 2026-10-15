@@ -7,26 +7,30 @@ import {
   collectibleOnly,
   multiplierLabel,
 } from "@/core/card-display";
-import { rarityRule } from "@/core/card-rarity";
+import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
+import { RarityBadge } from "./rarity-badge";
 export function FantasyCardArtwork({
   card,
   children,
   faceOnly = false,
   onInspect,
   scoringLabel,
+  appliedMultiplier,
 }: {
   card: AwardedCard;
   children?: React.ReactNode;
   faceOnly?: boolean;
   onInspect?: () => void;
   scoringLabel?: string;
+  appliedMultiplier?: number;
 }) {
   const jersey = jerseyPresentation(card);
   return (
     <article
-      className={`fantasy-card compact-card tier-${card.tier.toLowerCase()}`}
+      className={`fantasy-card compact-card tier-${card.tier.toLowerCase()} ${rarityFrame(card.tier)}`}
       style={
         {
+          ...rarityStyle(card.tier),
           "--shirt": jersey.primary,
           "--shirt-accent": jersey.accent,
         } as CSSProperties
@@ -46,7 +50,7 @@ export function FantasyCardArtwork({
         aria-label={onInspect ? `View ${card.name} card details` : undefined}
       >
         <div className="card-top">
-          <span>{rarityRule(card.tier).label}</span>
+          <RarityBadge tier={card.tier} appliedMultiplier={appliedMultiplier} />
           <span>{card.position}</span>
         </div>
         <div className="card-shirt" aria-hidden="true">
@@ -74,12 +78,9 @@ export function FantasyCardArtwork({
         </div>
         <p className="card-team">{card.team}</p>
         <h3>{card.name}</h3>
-        <span
-          className="card-multiplier"
-          title={scoringLabel ?? multiplierLabel(card.tier)}
-        >
-          {scoringLabel ?? multiplierLabel(card.tier)}
-        </span>
+        {scoringLabel && (
+          <span className="card-scoring-context">{scoringLabel}</span>
+        )}
       </div>
       {!faceOnly && !onInspect && (
         <details className="card-information">

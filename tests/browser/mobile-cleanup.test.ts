@@ -1,3 +1,4 @@
+const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/mobile-cleanup";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
@@ -50,7 +51,7 @@ test.beforeEach(async ({ context }) => {
 test("mobile/desktop hierarchy, card details, independent drafts, explicit social posting", async ({
   page,
 }) => {
-  await mkdir("docs/qa/mobile-cleanup", { recursive: true });
+  await mkdir(evidence, { recursive: true });
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   for (const width of [412, 1440]) {
@@ -64,7 +65,7 @@ test("mobile/desktop hierarchy, card details, independent drafts, explicit socia
         ),
       ).toBe(true);
       await page.screenshot({
-        path: `docs/qa/mobile-cleanup/after-${tab}-${width}.png`,
+        path: `${evidence}/after-${tab}-${width}.png`,
       });
     }
   }
@@ -148,9 +149,9 @@ test("nine distinct animations, short viewport fit, rapid taps, skip and reopen 
     ).toBeVisible();
     expect(
       await page
-        .locator(".pack-case")
+        .locator(".pack-arrival")
         .evaluate((e) => getComputedStyle(e).animationName),
-    ).toBe("docked-mobile-reveal");
+    ).toBe("docked-single-reveal");
     await expect(
       page.getByRole("button", { name: "Reveal next card" }),
     ).toBeEnabled();
@@ -164,7 +165,7 @@ test("nine distinct animations, short viewport fit, rapid taps, skip and reopen 
     ).toBe(true);
     if (i === 1)
       await page.screenshot({
-        path: "docs/qa/mobile-cleanup/reveal-second.png",
+        path: `${evidence}/reveal-second.png`,
       });
     if (i < 2)
       await page
@@ -218,10 +219,10 @@ test("nine distinct animations, short viewport fit, rapid taps, skip and reopen 
   ).toBe(true);
   await expect(page.getByRole("button", { name: "Close panel" })).toBeVisible();
   await page.screenshot({
-    path: "docs/qa/mobile-cleanup/reveal-enlarged-text.png",
+    path: `${evidence}/reveal-enlarged-text.png`,
   });
   await context.close();
-  await page.video()!.saveAs("docs/qa/mobile-cleanup/nine-card-reveal.webm");
+  await page.video()!.saveAs(`${evidence}/nine-card-reveal.webm`);
 });
 
 test("compact lineup profile and explicit transfer retain independent drafts", async ({
@@ -237,7 +238,7 @@ test("compact lineup profile and explicit transfer retain independent drafts", a
   await expect(page.getByRole("button", { name: /^Remove / })).toHaveCount(0);
   await page
     .locator(".seven-field")
-    .screenshot({ path: "docs/qa/mobile-cleanup/lineup-refined.png" });
+    .screenshot({ path: `${evidence}/lineup-refined.png` });
   await te.click();
   const profile = page.getByRole("dialog");
   await expect(profile).toContainText("Pittsburgh Steelers");
@@ -246,7 +247,7 @@ test("compact lineup profile and explicit transfer retain independent drafts", a
   await expect(profile).toContainText("Awaiting verified scoring history");
   await expect(profile).toContainText("Upcoming games");
   await profile.screenshot({
-    path: "docs/qa/mobile-cleanup/player-profile.png",
+    path: `${evidence}/player-profile.png`,
   });
   expect(
     (await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze())
@@ -356,6 +357,6 @@ test("pack chances show only per-card rarity percentages with separate terms", a
     ),
   ).toBe(true);
   await chances.screenshot({
-    path: "docs/qa/mobile-release/rarity-chances.png",
+    path: `${evidence}/rarity-chances.png`,
   });
 });

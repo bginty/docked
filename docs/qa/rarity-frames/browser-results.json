@@ -1,0 +1,556 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "tests/rarity-visual.config.ts"
+    ],
+    "configFile": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\rarity-visual.config.ts",
+    "rootDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tmp/rarity-frame-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/Documents/ChatGPT/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "rarity-frames.test.ts",
+          "pack-opening.test.ts",
+          "pack-cinematic.test.ts",
+          "mobile-cleanup.test.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../docs/qa/rarity-frames/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "mobile-cleanup.test.ts",
+      "file": "mobile-cleanup.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "touch viewport, compact pack discovery and keyboard-safe reveal controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7070,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:30:41.164Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5c783f7459995f9568d-3c70de125f0d9af572e7",
+          "file": "mobile-cleanup.test.ts",
+          "line": 6,
+          "column": 5
+        },
+        {
+          "title": "mobile/desktop hierarchy, card details, independent drafts, explicit social posting",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9992,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:30:49.277Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5c783f7459995f9568d-f14387ad13f1daf9aba6",
+          "file": "mobile-cleanup.test.ts",
+          "line": 51,
+          "column": 5
+        },
+        {
+          "title": "nine distinct animations, short viewport fit, rapid taps, skip and reopen recording",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 32945,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:30:59.310Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5c783f7459995f9568d-6c357c0a2a89639f2b80",
+          "file": "mobile-cleanup.test.ts",
+          "line": 124,
+          "column": 5
+        },
+        {
+          "title": "compact lineup profile and explicit transfer retain independent drafts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5311,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:31:32.305Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5c783f7459995f9568d-3974ac962b97f4116193",
+          "file": "mobile-cleanup.test.ts",
+          "line": 228,
+          "column": 5
+        },
+        {
+          "title": "locked player profile remains readable without transfer or removal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2046,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:31:37.663Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5c783f7459995f9568d-0773d14a30c3c6438bb3",
+          "file": "mobile-cleanup.test.ts",
+          "line": 304,
+          "column": 5
+        },
+        {
+          "title": "pack chances show only per-card rarity percentages with separate terms",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1606,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:31:39.772Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5c783f7459995f9568d-e5558fe4f8cc554c31fc",
+          "file": "mobile-cleanup.test.ts",
+          "line": 339,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "pack-cinematic.test.ts",
+      "file": "pack-cinematic.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "cinematic timing, background interruption and visual recording",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20303,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:31:42.169Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8db4c6b11c10b805b5ec-9d6d45027c30cfa9d34a",
+          "file": "pack-cinematic.test.ts",
+          "line": 6,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "pack-opening.test.ts",
+      "file": "pack-opening.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "confirmed multi-card reveal, resume, replay and accessibility 360",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:32:02.545Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-e3a4760271eb3f4c0893",
+          "file": "pack-opening.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "confirmed multi-card reveal, resume, replay and accessibility 412",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25264,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:32:27.877Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-ac33132a4817d0fd7cd2",
+          "file": "pack-opening.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "confirmed multi-card reveal, resume, replay and accessibility 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25091,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:32:53.197Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-789bd5de06ad5a18465d",
+          "file": "pack-opening.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "single card, reduced motion, keyboard opening and duplicate taps",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2426,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:33:18.337Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-5a90084970d28ae5b53c",
+          "file": "pack-opening.test.ts",
+          "line": 119,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "rarity-frames.test.ts",
+      "file": "rarity-frames.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "outer reveal frames, single forward turn and Icon celebration preserve the receipt",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15399,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:33:20.838Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b30fcb35176a221d57d0-8d6663f4488f6dcf9590",
+          "file": "rarity-frames.test.ts",
+          "line": 5,
+          "column": 5
+        },
+        {
+          "title": "six rarity frames preserve jersey, identity, focus and legacy context across palettes and viewports",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11841,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T00:33:36.275Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b30fcb35176a221d57d0-55f2bf970bde0bf01b5f",
+          "file": "rarity-frames.test.ts",
+          "line": 105,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-15T00:30:37.066Z",
+    "duration": 192015.093,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
