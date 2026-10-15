@@ -135,6 +135,7 @@ export async function MemberProfile({
                   Saved community posts
                 </Link>
                 <Link href="/notifications">Notifications</Link>
+                <Link href="/profile/withdrawals">Withdrawals</Link>
                 <Link href="/dashboard">Privacy & settings</Link>
               </>
             )}

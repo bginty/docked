@@ -234,7 +234,7 @@ test("compact lineup profile and explicit transfer retain independent drafts", a
   await expect(te).toContainText("Pittsburgh Steelers");
   await expect(te).toContainText("1.1×");
   await expect(te).not.toContainText("600,000");
-  await expect(te.locator("svg text")).toHaveCount(0);
+  await expect(te.locator("svg text")).toHaveText("84"); // Explicit synthetic verified metadata.
   await expect(page.getByRole("button", { name: /^Remove / })).toHaveCount(0);
   await page
     .locator(".seven-field")

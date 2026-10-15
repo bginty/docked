@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: application query needs a real capture row, not only enabled configuration or proof ID
+ok 1 - application query needs a real capture row, not only enabled configuration or proof ID
+  ---
+  duration_ms: 4666.3568
+  ...
+# Subtest: live hook definition changes, revoked proof and expired configuration immediately close app authorization
+ok 2 - live hook definition changes, revoked proof and expired configuration immediately close app authorization
+  ---
+  duration_ms: 71.3402
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6874.9585

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="none">
+  <!-- Original Docked field illustration; decorative, no team/league marks. -->
+  <defs>
+    <linearGradient id="grass" x2="1" y2=".3"><stop stop-color="#081f17"/><stop offset=".48" stop-color="#185035"/><stop offset="1" stop-color="#061a14"/></linearGradient>
+    <pattern id="mow" width="800" height="160" patternUnits="userSpaceOnUse"><path fill="#96c68c" fill-opacity=".045" d="M0 0H800V80H0Z"/></pattern>
+    <pattern id="blades" width="11" height="13" patternUnits="userSpaceOnUse"><path d="m2 10 1-6m4 8 2-5m-6-5 1-2" stroke="#9cd79b" stroke-opacity=".08" stroke-width=".6"/></pattern>
+    <radialGradient id="light"><stop stop-color="#c8f8ce" stop-opacity=".09"/><stop offset="1" stop-color="#000b0a" stop-opacity=".66"/></radialGradient>
+    <pattern id="hash" width="800" height="16" patternUnits="userSpaceOnUse"><path d="M273 8h10M517 8h10" stroke="#d8eadd" stroke-opacity=".17" stroke-width="2"/></pattern>
+  </defs>
+  <path fill="url(#grass)" d="M0 0H800V1000H0Z"/>
+  <path fill="url(#mow)" d="M0 0H800V1000H0Z"/>
+  <path fill="url(#blades)" d="M0 0H800V1000H0Z"/>
+  <g fill="none" stroke="#d8eadd" stroke-opacity=".21" stroke-width="2">
+    <path d="M74 25H726L791 975H9Z" stroke-width="4"/>
+    <path d="M70 85H730M65 165H735M59 245H741M54 325H746M48 405H752M43 485H757M37 565H763M32 645H768M26 725H774M21 805H779M15 885H785"/>
+  </g>
+  <path fill="url(#hash)" d="M75 25H725L790 975H10Z"/>
+  <g fill="#d1e9db" fill-opacity=".2" font-family="Arial,sans-serif" font-size="31" font-weight="bold" text-anchor="middle">
+    <text x="120" y="184">10</text><text x="680" y="184">10</text>
+    <text x="110" y="344">20</text><text x="690" y="344">20</text>
+    <text x="100" y="504">30</text><text x="700" y="504">30</text>
+    <text x="90" y="664">40</text><text x="710" y="664">40</text>
+    <text x="80" y="824">50</text><text x="720" y="824">50</text>
+  </g>
+  <path fill="url(#light)" d="M0 0H800V1000H0Z"/>
+</svg>

@@ -9,6 +9,7 @@ import {
 } from "@/core/card-display";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 import { RarityBadge } from "./rarity-badge";
+import { PlayerJersey } from "./player-jersey";
 export function FantasyCardArtwork({
   card,
   children,
@@ -50,30 +51,11 @@ export function FantasyCardArtwork({
         aria-label={onInspect ? `View ${card.name} card details` : undefined}
       >
         <div className="card-top">
-          <RarityBadge tier={card.tier} appliedMultiplier={appliedMultiplier} />
           <span>{card.position}</span>
+          <RarityBadge tier={card.tier} appliedMultiplier={appliedMultiplier} />
         </div>
         <div className="card-shirt" aria-hidden="true">
-          <svg viewBox="0 0 160 150">
-            <path
-              d="M49 10 12 31 29 65 44 57 44 138 116 138 116 57 131 65 148 31 111 10 97 20 63 20Z"
-              fill="var(--shirt)"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="M16 33 31 57 M129 57 144 33 M49 115 H111"
-              stroke="var(--shirt-accent)"
-              strokeWidth="8"
-              fill="none"
-            />
-            <path
-              d="M63 20Q80 43 97 20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-            />
-          </svg>
+          <PlayerJersey card={card} />
         </div>
         <h3>{card.name}</h3>
         <p className="card-team">{fullTeamName(card)}</p>

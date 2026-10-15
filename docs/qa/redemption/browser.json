@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "Customer desktop/mobile, exact quote, invalid amount retained, explicit confirmation, reservation and history",
+    "Staff approval/claim/audited bank reveal/explicit sent; customer cannot cancel claimed payment or see internal notes",
+    "Interrupted response recovered on refresh by original operation ID, no duplicate reservation",
+    "Account switching hides prior history; evidence submission does not approve identity",
+    "Keyboard Escape/focus restoration, 360px enlarged text, reduced motion and no page overflow"
+  ],
+  "screenshots": 8,
+  "backend": "Actual component + local HTTP + in-memory authoritative domain; fixture sessions, not Supabase",
+  "physicalDevice": false
+}

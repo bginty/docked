@@ -26,7 +26,7 @@ export function RarityGallery({ base }: { base: FantasyCard }) {
     position: "WR",
     serial: tier === "CORE" ? 0 : tier === "ICON" ? 1 : 17 + i,
     max_supply: rarityRule(tier).lifetimeCap ?? 0,
-    verifiedJerseyNumber: undefined,
+    verifiedJerseyNumber: 17, // Explicit synthetic gallery fixture, not a real player's number.
   }));
   return (
     <main className="rarity-gallery">

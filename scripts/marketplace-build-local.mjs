@@ -1,17 +1,19 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--reveal-stability")
-  ? "docs/qa/reveal-stability"
-  : process.argv.includes("--premium")
-    ? "docs/qa/premium-v3"
-    : process.argv.includes("--play-cards")
-      ? "docs/qa/play-cards"
-      : process.argv.includes("--rarity")
-        ? "docs/qa/rarity-frames"
-        : process.argv.includes("--visual")
-          ? "docs/qa/mobile-cleanup"
-          : "docs/qa/marketplace-release";
+const evidence = process.argv.includes("--redemption")
+  ? "docs/qa/redemption"
+  : process.argv.includes("--reveal-stability")
+    ? "docs/qa/reveal-stability"
+    : process.argv.includes("--premium")
+      ? "docs/qa/premium-v3"
+      : process.argv.includes("--play-cards")
+        ? "docs/qa/play-cards"
+        : process.argv.includes("--rarity")
+          ? "docs/qa/rarity-frames"
+          : process.argv.includes("--visual")
+            ? "docs/qa/mobile-cleanup"
+            : "docs/qa/marketplace-release";
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve("tmp/marketplace-release-build");
@@ -51,6 +53,7 @@ for (const [key, label] of Object.entries({
   RESULTS_API_KEY: "RESULTS",
   SCANNER_API_KEY: "SCANNER",
   EMAIL_API_KEY: "EMAIL",
+  DOCKED_REDEMPTION_BANK_KEY: "REDEMPTION",
 }))
   env[key] = `DOCKED_BUILD_CANARY_${label}_20261002`;
 async function run(args, path) {

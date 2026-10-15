@@ -3,8 +3,8 @@ import { rarityRule, type Rarity } from "./card-rarity";
 /** Presentation only. Scoring/supply stay in card-rarities-v1. */
 export const rarityThemes = {
   CORE: {
-    accent: "#8894a6",
-    frame: "linear-gradient(135deg,#7a8799,#a1acb9,#687587)",
+    accent: "#b4c1d2",
+    frame: "linear-gradient(135deg,#526071,#d3dce6 22%,#8190a3 45%,#b6c4d4 75%,#526071)",
     badge: "#536174",
     ink: "#ffffff",
     treatment: "matte",

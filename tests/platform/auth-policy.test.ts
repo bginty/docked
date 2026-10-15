@@ -30,7 +30,7 @@ test("verified-token claim parser refuses wrong subject, malformed session and u
       token({ sub: uid, session_id: sid, aal: "aal2" }),
       uid,
     ),
-    { sessionId: sid, aal: "aal2" },
+    { sessionId: sid, aal: "aal2", authenticatedAt: 0 },
   );
   assert.equal(
     verifiedSessionClaims(
@@ -54,4 +54,25 @@ test("verified-token claim parser refuses wrong subject, malformed session and u
     null,
   );
   assert.equal(verifiedSessionClaims("invalid", uid), null);
+  const refreshed = token({
+    sub: uid,
+    session_id: sid,
+    aal: "aal1",
+    iat: 2000000000,
+    amr: [
+      { method: "password", timestamp: 1700000000 },
+      { method: "token_refresh", timestamp: 2000000000 },
+    ],
+  });
+  assert.equal(
+    verifiedSessionClaims(refreshed, uid)?.authenticatedAt,
+    1700000000000,
+  );
+  assert.equal(
+    verifiedSessionClaims(
+      token({ sub: uid, session_id: sid, aal: "aal1", iat: 2000000000 }),
+      uid,
+    )?.authenticatedAt,
+    0,
+  );
 });

@@ -19,6 +19,7 @@ import "./pack-opening.css";
 import "./scoring.css";
 import "./mobile-cleanup.css";
 import "./play-cards.css";
+import "./redemption.css";
 import { fantasyTagline } from "@/core/fantasy";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 import { reviewOrigin } from "@/core/hosted-review.mjs";

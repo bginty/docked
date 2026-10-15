@@ -8,6 +8,7 @@ export default defineConfig({
     "pack-opening.test.ts",
     "pack-cinematic.test.ts",
     "mobile-cleanup.test.ts",
+    "premium-completion.test.ts",
   ],
   timeout: 120000,
   workers: 1,

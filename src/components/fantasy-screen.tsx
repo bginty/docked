@@ -1307,6 +1307,7 @@ export function FantasyScreen({
             </p>
             <div className="actions">
               <Link href="/profile">Social profile, followers & following</Link>
+              <Link href="/profile/withdrawals">Withdrawals</Link>
               <Link href="/dashboard">Settings & privacy</Link>
               {data.admin && (
                 <Link href="/admin/operations">Owner dashboard</Link>

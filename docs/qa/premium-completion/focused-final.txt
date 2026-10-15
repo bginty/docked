@@ -1,0 +1,250 @@
+TAP version 13
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 1 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 2.8907
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 2 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 3.6377
+  ...
+# Subtest: NFL legacy placeholder numbers are never presented as verified jerseys
+ok 3 - NFL legacy placeholder numbers are never presented as verified jerseys
+  ---
+  duration_ms: 3.1802
+  ...
+# Subtest: current-team presentation has a stable fallback and does not modify card identity
+ok 4 - current-team presentation has a stable fallback and does not modify card identity
+  ---
+  duration_ms: 2.2807
+  ...
+# Subtest: full NFL team names preserve unknown data without inventing a club
+ok 5 - full NFL team names preserve unknown data without inventing a club
+  ---
+  duration_ms: 0.744
+  ...
+# Subtest: confirmed funding, not redirects; merchant/amount/reference, exact cents, receivable and settlement fees
+ok 6 - confirmed funding, not redirects; merchant/amount/reference, exact cents, receivable and settlement fees
+  ---
+  duration_ms: 119.5597
+  ...
+# Subtest: FIFO transfer provenance survives multiple resales; 1000 = 925 seller + 75 fee; no new issuance
+ok 7 - FIFO transfer provenance survives multiple resales; 1000 = 925 seller + 75 fee; no new issuance
+  ---
+  duration_ms: 29.9998
+  ...
+# Subtest: withdrawal reserves once, unknown stays reserved, paid extinguishes once; refunds block reserved funding
+ok 8 - withdrawal reserves once, unknown stays reserved, paid extinguishes once; refunds block reserved funding
+  ---
+  duration_ms: 54.4042
+  ...
+# Subtest: free window zero-balance atomic swap; expiry cannot increase fee without fresh consent
+ok 9 - free window zero-balance atomic swap; expiry cannot increase fee without fresh consent
+  ---
+  duration_ms: 11.5313
+  ...
+# Subtest: whole-credit half-up conserves value; mismatches and unbacked grants are visible
+ok 10 - whole-credit half-up conserves value; mismatches and unbacked grants are visible
+  ---
+  duration_ms: 25.5296
+  ...
+# Subtest: FIFO uses acquisition order, including grants; disputes do not freeze unrelated funded lots
+ok 11 - FIFO uses acquisition order, including grants; disputes do not freeze unrelated funded lots
+  ---
+  duration_ms: 13.498
+  ...
+# Subtest: acceptor's stale free quote cannot incur fee; failed balance check leaves both cards unchanged
+ok 12 - acceptor's stale free quote cannot incur fee; failed balance check leaves both cards unchanged
+  ---
+  duration_ms: 16.0543
+  ...
+# Subtest: unused purchased withdrawals remain disabled; legacy entitlements survive policy activation
+ok 13 - unused purchased withdrawals remain disabled; legacy entitlements survive policy activation
+  ---
+  duration_ms: 74.3504
+  ...
+# Subtest: dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+ok 14 - dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+  ---
+  duration_ms: 163.1909
+  ...
+# Subtest: Sydney date boundaries handle DST and invalid/reversed ranges
+ok 15 - Sydney date boundaries handle DST and invalid/reversed ranges
+  ---
+  duration_ms: 6.1054
+  ...
+# Subtest: free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+ok 16 - free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+  ---
+  duration_ms: 14.1487
+  ...
+# Subtest: missing funding record or altered posting is detected; CSV neutralises formula text
+ok 17 - missing funding record or altered posting is detected; CSV neutralises formula text
+  ---
+  duration_ms: 11.0922
+  ...
+# Subtest: expired swap, forged ownership, failed purchase and stale amount preserve all records
+ok 18 - expired swap, forged ownership, failed purchase and stale amount preserve all records
+  ---
+  duration_ms: 19.3155
+  ...
+# Subtest: AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+ok 19 - AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+  ---
+  duration_ms: 158.857
+  ...
+# Subtest: inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+ok 20 - inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+  ---
+  duration_ms: 13.3921
+  ...
+# Subtest: seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+ok 21 - seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+  ---
+  duration_ms: 29.0565
+  ...
+# Subtest: swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+ok 22 - swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+  ---
+  duration_ms: 45.6149
+  ...
+# Subtest: insufficient counterparty swap fee rolls back both owners and all fees
+ok 23 - insufficient counterparty swap fee rolls back both owners and all fees
+  ---
+  duration_ms: 37.4977
+  ...
+# Subtest: promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+ok 24 - promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+  ---
+  duration_ms: 28.4996
+  ...
+# Subtest: funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+ok 25 - funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+  ---
+  duration_ms: 36.9632
+  ...
+# Subtest: withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+ok 26 - withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+  ---
+  duration_ms: 62.0506
+  ...
+# Subtest: refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+ok 27 - refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+  ---
+  duration_ms: 41.0378
+  ...
+# Subtest: reserved keys, client-supplied prices, fake providers and live mode fail closed
+ok 28 - reserved keys, client-supplied prices, fake providers and live mode fail closed
+  ---
+  duration_ms: 5.1999
+  ...
+# Subtest: Pending cumulative full refund compensates all credits; expired reservations release finite supply
+ok 29 - Pending cumulative full refund compensates all credits; expired reservations release finite supply
+  ---
+  duration_ms: 9.2888
+  ...
+# Subtest: Unspent funded promotion reverses with compensating entries and restores its approved budget
+ok 30 - Unspent funded promotion reverses with compensating entries and restores its approved budget
+  ---
+  duration_ms: 4.8894
+  ...
+# Subtest: Restricted card value cannot become redeemable through an intermediate pure swap
+ok 31 - Restricted card value cannot become redeemable through an intermediate pure swap
+  ---
+  duration_ms: 26.7481
+  ...
+# Subtest: local beta uses admitted Auth projections without granting direct access to Auth tables
+ok 32 - local beta uses admitted Auth projections without granting direct access to Auth tables
+  ---
+  duration_ms: 2.1671
+  ...
+# Subtest: redemption integration profile remains explicitly loopback and nondeployable
+ok 33 - redemption integration profile remains explicitly loopback and nondeployable
+  ---
+  duration_ms: 1.791
+  ...
+# Subtest: exact integer cent conversion and malformed amounts
+ok 34 - exact integer cent conversion and malformed amounts
+  ---
+  duration_ms: 43.1827
+  ...
+# Subtest: existing test and promotional lots cannot become cash; reservation is a subset
+ok 35 - existing test and promotional lots cannot become cash; reservation is a subset
+  ---
+  duration_ms: 26.3995
+  ...
+# Subtest: identity submission requires review; forged rate and eligibility rejected
+ok 36 - identity submission requires review; forged rate and eligibility rejected
+  ---
+  duration_ms: 4.5075
+  ...
+# Subtest: reserve and duplicate/lost response retry post once; spending sees reduced available
+ok 37 - reserve and duplicate/lost response retry post once; spending sees reduced available
+  ---
+  duration_ms: 9.7153
+  ...
+# Subtest: cancel/reject releases exactly once and preserves original eligibility
+ok 38 - cancel/reject releases exactly once and preserves original eligibility
+  ---
+  duration_ms: 14.8227
+  ...
+# Subtest: claim excludes second staff and cancellation; uncertain outcomes stay reserved
+ok 39 - claim excludes second staff and cancellation; uncertain outcomes stay reserved
+  ---
+  duration_ms: 14.6411
+  ...
+# Subtest: sent consumes reservation only; returned EFT restores original lots once
+ok 40 - sent consumes reservation only; returned EFT restores original lots once
+  ---
+  duration_ms: 21.6478
+  ...
+# Subtest: snapshot survives bank change; ciphertext bound to member and destination
+ok 41 - snapshot survives bank change; ciphertext bound to member and destination
+  ---
+  duration_ms: 16.7823
+  ...
+# Subtest: private projections omit ciphertext, full bank details and other members
+ok 42 - private projections omit ciphertext, full bank details and other members
+  ---
+  duration_ms: 18.0701
+  ...
+# Subtest: revoked identity, restrictions and expired authentication fail closed, including retries
+ok 43 - revoked identity, restrictions and expired authentication fail closed, including retries
+  ---
+  duration_ms: 12.3206
+  ...
+# Subtest: limits, mismatched bank holder, unsafe documents and live environments rejected
+ok 44 - limits, mismatched bank holder, unsafe documents and live environments rejected
+  ---
+  duration_ms: 9.0803
+  ...
+# Subtest: business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+ok 45 - business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+  ---
+  duration_ms: 43.2055
+  ...
+# Subtest: cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+ok 46 - cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+  ---
+  duration_ms: 20.9414
+  ...
+# Subtest: internal staff notes never appear in customer history or notification records
+ok 47 - internal staff notes never appear in customer history or notification records
+  ---
+  duration_ms: 9.891
+  ...
+# Subtest: future policy version does not rewrite a saved obligation, rate or eligibility classification
+ok 48 - future policy version does not rewrite a saved obligation, rate or eligibility classification
+  ---
+  duration_ms: 13.867
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6574.5472

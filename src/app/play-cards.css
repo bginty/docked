@@ -925,3 +925,268 @@
   background: #10315b;
   box-shadow: inset 3px 0 var(--workspace-blue);
 }
+
+/* Premium collectible depth: shared art, restrained illumination, no gameplay changes. */
+.player-jersey {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 7px 4px #0008);
+}
+.pitch-shirt.player-jersey {
+  width: 62px;
+  height: 65px;
+}
+.rarity-badge {
+  flex-shrink: 0;
+}
+.card-shirt .player-jersey {
+  max-height: 100%;
+}
+.compact-card .card-top {
+  align-items: start;
+}
+.compact-card .card-top > span:first-child {
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 6px 0;
+}
+.compact-card .card-top .rarity-badge {
+  margin-left: auto;
+}
+.fantasy-mode .field-player > .rarity-badge {
+  background: var(--rarity-badge);
+  color: var(--rarity-ink);
+}
+.fantasy-mode
+  :is(
+    .fantasy-card,
+    .field-player,
+    .seven-candidate,
+    .lineup-profile-hero
+  ).rarity-frame {
+  background:
+    radial-gradient(ellipse at 45% 15%, #ffffff0d, transparent 65%) padding-box,
+    linear-gradient(#142033, #080f1a) padding-box,
+    var(--rarity-frame) border-box;
+  box-shadow:
+    inset 0 0 0 2px #040a14,
+    inset 0 3px 8px #ffffff10,
+    0 9px 16px #0008,
+    0 0 9px color-mix(in srgb, var(--tier) 22%, transparent);
+}
+.fantasy-mode :is(.fantasy-card, .field-player).rarity-frame {
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease;
+}
+@media (hover: hover) {
+  .fantasy-mode :is(.fantasy-card, .field-player).rarity-frame:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 0 0 2px #040a14,
+      0 12px 20px #0009,
+      0 0 12px color-mix(in srgb, var(--tier) 40%, transparent);
+  }
+}
+.fantasy-mode :is(.fantasy-card, .field-player).rarity-frame:active {
+  transform: translateY(1px);
+}
+.fantasy-mode .pack-case .fantasy-card.rarity-frame {
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+}
+.lineup-pitch .seven-field {
+  position: relative;
+  background: #09271d url("/brand/nfl-turf.svg") center / 100% 100% no-repeat;
+  border: 1px solid #2d5143;
+  box-shadow:
+    inset 0 0 35px #020e0cd9,
+    0 10px 24px #0005;
+  border-radius: 12px;
+  padding: 14px max(18px, calc((100% - 340px) / 2));
+  gap: 12px 24px;
+}
+.lineup-pitch .seven-slot .field-player {
+  width: 100%;
+  min-width: 0;
+  border-radius: 9px;
+  padding: 7px;
+  gap: 3px;
+}
+.lineup-pitch .seven-slot .pitch-shirt {
+  height: 80px;
+  filter: drop-shadow(0 5px 3px #0009);
+}
+.lineup-pitch .seven-slot .rarity-badge {
+  min-width: 0;
+  padding: 3px 4px;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.6rem;
+  background: var(--rarity-badge);
+  color: var(--rarity-ink);
+  box-shadow: none;
+}
+.lineup-pitch .seven-slot .rarity-badge-name {
+  color: inherit;
+}
+.lineup-pitch .seven-slot .rarity-badge-value {
+  display: none;
+}
+.lineup-pitch .seven-slot .rarity-badge {
+  min-height: 0;
+  line-height: 1.15;
+}
+.lineup-pitch .lineup-applied {
+  grid-column: 1;
+  grid-row: 4;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-align: left;
+  color: #edf5ff;
+}
+.lineup-pitch .lineup-salary {
+  grid-column: 2;
+  grid-row: 4;
+}
+.lineup-pitch .seven-slot .lineup-name-team {
+  gap: 3px;
+}
+.lineup-pitch .seven-slot .field-player-name {
+  font-size: 0.8rem;
+  line-height: 1.22;
+}
+.lineup-pitch .lineup-team {
+  font-size: 0.6rem;
+}
+.lineup-pitch .lineup-salary {
+  font-weight: 700;
+  font-size: 0.7rem;
+}
+.lineup-pitch .field-toolbar {
+  color: #c2d7cb;
+}
+.lineup-summary {
+  background: linear-gradient(145deg, #111e30, #080f1b);
+  box-shadow:
+    inset 0 1px #ffffff07,
+    0 8px 22px #0003;
+}
+.lineup-summary .seven-budget h2 {
+  font-size: clamp(2.3rem, 3.8vw, 3.5rem);
+  letter-spacing: -0.04em;
+}
+.lineup-summary .seven-actions button:last-child {
+  flex: 1;
+  min-height: 46px;
+  background: linear-gradient(#198bff, #0762db);
+  box-shadow: inset 0 1px #ffffff30;
+}
+.lineup-summary .round-summary {
+  background: #0b1727;
+  border: 1px solid #27394f;
+  border-radius: 10px;
+  padding: 14px;
+}
+@media (min-width: 1000px) {
+  .lineup-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+  }
+  .community-shell .app-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: 100dvh;
+    width: 205px;
+    left: max(0px, calc((100vw - 1600px) / 2));
+    overflow-y: auto;
+  }
+  .community-shell .app-workspace {
+    grid-column: 2;
+  }
+  .lineup-pitch .seven-field {
+    padding-inline: max(16px, calc((100% - 342px) / 2));
+  }
+  .lineup-pitch .field-toolbar {
+    top: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .lineup-pitch .seven-field {
+    padding: 12px;
+    gap: 12px 18px;
+  }
+  .seven-play > label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    max-width: none;
+    font-size: 0.7rem;
+    margin: 0;
+  }
+  .seven-play > label select {
+    width: auto;
+    flex: 1;
+    margin: 0;
+    min-height: 40px;
+    padding: 8px;
+  }
+  .fantasy-screen-play .seven-mode-tabs {
+    margin: 8px 0;
+  }
+  .lineup-pitch {
+    position: relative;
+  }
+  .lineup-pitch .field-toolbar {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    z-index: 2;
+  }
+  .lineup-pitch .field-toolbar h2 {
+    max-width: 65px;
+    font-size: 0.6rem;
+    line-height: 1.5;
+  }
+  .lineup-pitch .field-toolbar button {
+    padding: 4px 7px;
+    font-size: 0.65rem;
+    min-height: 44px;
+  }
+  .lineup-pitch .seven-slot .pitch-shirt {
+    height: 93px;
+  }
+  .lineup-pitch .seven-slot .field-player-name {
+    font-size: 0.85rem;
+  }
+  .lineup-pitch .lineup-team {
+    font-size: 0.65rem;
+  }
+  .lineup-pitch .seven-slot .slot-position {
+    font-size: 0.7rem;
+  }
+  .lineup-summary .seven-budget h2 {
+    font-size: 2.7rem;
+  }
+}
+@media (max-width: 380px) {
+  .lineup-pitch .seven-field {
+    gap: 10px;
+    padding: 10px;
+  }
+  .lineup-pitch .seven-slot .pitch-shirt {
+    height: 82px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fantasy-mode :is(.fantasy-card, .field-player).rarity-frame {
+    transition: none;
+  }
+  .fantasy-mode :is(.fantasy-card, .field-player).rarity-frame:hover {
+    transform: none;
+  }
+}

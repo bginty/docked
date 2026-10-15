@@ -509,6 +509,18 @@ export function NflSevenPlay({
                         <FantasyAmount value={salary(card.tier, cfg)} />
                       </span>
                     )}
+                    {card && (
+                      <span
+                        className="lineup-applied"
+                        title="Applied competition multiplier"
+                      >
+                        {(
+                          card.multiplier ??
+                          rarityRule(card.tier).multiplierTenths / 10
+                        ).toFixed(1)}
+                        ×
+                      </span>
+                    )}
                     {locked && <small className="entry-badge">Locked</small>}
                     {!!issue && (
                       <small className="entry-badge">Needs attention</small>

@@ -1,14 +1,11 @@
 "use client";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 import { RarityBadge } from "./rarity-badge";
+import { PlayerJersey } from "./player-jersey";
 
 import { useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
-import {
-  jerseyPresentation,
-  fullTeamName,
-  type JerseyMetadata,
-} from "@/core/card-presentation";
+import { fullTeamName, type JerseyMetadata } from "@/core/card-presentation";
 import {
   availability,
   cardIdentity,
@@ -103,21 +100,7 @@ export function FantasySheet({
   );
 }
 export function PlayerShirt({ card }: { card?: JerseyMetadata }) {
-  return (
-    <svg className="pitch-shirt" viewBox="0 0 100 90" aria-hidden="true">
-      <path
-        d="M30 8 8 23 19 43 29 38 29 84 71 84 71 38 81 43 92 23 70 8 61 16 39 16Z"
-        fill={card ? jerseyPresentation(card).primary : "var(--field-empty)"}
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <path
-        d="M12 25 20 36 M80 36 88 25 M32 71 H68"
-        stroke={jerseyPresentation(card).accent}
-        strokeWidth="5"
-      />
-    </svg>
-  );
+  return <PlayerJersey card={card} className="pitch-shirt" />;
 }
 export function FantasyPlayerDetails({
   card,

@@ -1,0 +1,95 @@
+TAP version 13
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 1 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 2.5397
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 2 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 3.9756
+  ...
+# Subtest: exact integer cent conversion and malformed amounts
+ok 3 - exact integer cent conversion and malformed amounts
+  ---
+  duration_ms: 61.3007
+  ...
+# Subtest: existing test and promotional lots cannot become cash; reservation is a subset
+ok 4 - existing test and promotional lots cannot become cash; reservation is a subset
+  ---
+  duration_ms: 34.5354
+  ...
+# Subtest: identity submission requires review; forged rate and eligibility rejected
+ok 5 - identity submission requires review; forged rate and eligibility rejected
+  ---
+  duration_ms: 4.7825
+  ...
+# Subtest: reserve and duplicate/lost response retry post once; spending sees reduced available
+ok 6 - reserve and duplicate/lost response retry post once; spending sees reduced available
+  ---
+  duration_ms: 12.1572
+  ...
+# Subtest: cancel/reject releases exactly once and preserves original eligibility
+ok 7 - cancel/reject releases exactly once and preserves original eligibility
+  ---
+  duration_ms: 16.6838
+  ...
+# Subtest: claim excludes second staff and cancellation; uncertain outcomes stay reserved
+ok 8 - claim excludes second staff and cancellation; uncertain outcomes stay reserved
+  ---
+  duration_ms: 15.0367
+  ...
+# Subtest: sent consumes reservation only; returned EFT restores original lots once
+ok 9 - sent consumes reservation only; returned EFT restores original lots once
+  ---
+  duration_ms: 18.2523
+  ...
+# Subtest: snapshot survives bank change; ciphertext bound to member and destination
+ok 10 - snapshot survives bank change; ciphertext bound to member and destination
+  ---
+  duration_ms: 5.388
+  ...
+# Subtest: private projections omit ciphertext, full bank details and other members
+ok 11 - private projections omit ciphertext, full bank details and other members
+  ---
+  duration_ms: 6.4465
+  ...
+# Subtest: revoked identity, restrictions and expired authentication fail closed, including retries
+ok 12 - revoked identity, restrictions and expired authentication fail closed, including retries
+  ---
+  duration_ms: 5.7665
+  ...
+# Subtest: limits, mismatched bank holder, unsafe documents and live environments rejected
+ok 13 - limits, mismatched bank holder, unsafe documents and live environments rejected
+  ---
+  duration_ms: 5.1245
+  ...
+# Subtest: business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+ok 14 - business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+  ---
+  duration_ms: 18.3844
+  ...
+# Subtest: cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+ok 15 - cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+  ---
+  duration_ms: 6.768
+  ...
+# Subtest: internal staff notes never appear in customer history or notification records
+ok 16 - internal staff notes never appear in customer history or notification records
+  ---
+  duration_ms: 3.9327
+  ...
+# Subtest: future policy version does not rewrite a saved obligation, rate or eligibility classification
+ok 17 - future policy version does not rewrite a saved obligation, rate or eligibility classification
+  ---
+  duration_ms: 5.4324
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4274.5921

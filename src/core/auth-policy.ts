@@ -58,6 +58,21 @@ export function verifiedSessionClaims(token: string, userId: string) {
     return {
       sessionId: claims.session_id as string,
       aal: claims.aal as string,
+      // Refresh/iat does not prove a recent credential challenge. Use only
+      // signed AMR entries from the token already verified by Auth.getUser.
+      authenticatedAt: Array.isArray(claims.amr)
+        ? Math.max(
+            0,
+            ...claims.amr
+              .filter(
+                (a: { method?: string; timestamp?: number }) =>
+                  ["password", "otp", "totp", "sso/saml", "oauth"].includes(
+                    a.method ?? "",
+                  ) && Number.isSafeInteger(a.timestamp),
+              )
+              .map((a: { timestamp: number }) => a.timestamp * 1000),
+          )
+        : 0,
     };
   } catch {
     return null;

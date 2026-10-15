@@ -62,6 +62,15 @@ export async function fantasyRequest(
         });
       }
       view.cards = [...collection.values()];
+      const observations =
+        await tx`select id,team,verified_jersey_number from credits_sandbox.current_player_jerseys`;
+      const numbers = new Map(observations.map((r) => [r.id, r]));
+      // View metadata only; locked snapshots and saved receipts are not rewritten.
+      for (const card of [...view.cards, ...(view.seven?.inventory ?? [])]) {
+        const r = numbers.get(card.canonical_player_id ?? card.player_id);
+        card.verifiedJerseyNumber =
+          r?.team === card.team ? r.verified_jersey_number : null;
+      }
     }
     if (
       production &&

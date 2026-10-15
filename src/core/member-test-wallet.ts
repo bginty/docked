@@ -89,6 +89,7 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
       edition_team: instance.printedTeam,
       colour: "#1A2AFF",
       shirt: 0,
+      verifiedJerseyNumber: player.verifiedJerseyNumber,
       status: player.status,
       sport: player.sport,
       tradeable: true,

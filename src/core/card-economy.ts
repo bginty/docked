@@ -19,6 +19,7 @@ export type EconomyPlayer = {
   status: "active" | "inactive" | "retired" | "unknown";
   observedAt: number;
   sourceRevision: string;
+  verifiedJerseyNumber?: number | null;
   presentation: string;
 };
 export type NinePackProduct = {

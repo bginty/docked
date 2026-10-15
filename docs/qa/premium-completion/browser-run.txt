@@ -1,0 +1,194 @@
+
+Running 17 tests using 1 worker
+
+(node:46312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:46312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\mobile-cleanup.test.ts:6:5 › touch viewport, compact pack discovery and keyboard-safe reveal controls (7.6s)
+  ok  2 tests\browser\mobile-cleanup.test.ts:51:5 › mobile/desktop hierarchy, card details, independent drafts, explicit social posting (10.9s)
+  ok  3 tests\browser\mobile-cleanup.test.ts:124:5 › nine distinct animations, short viewport fit, rapid taps, skip and reopen recording (27.8s)
+  x   4 tests\browser\mobile-cleanup.test.ts:228:5 › compact lineup profile and explicit transfer retain independent drafts (6.5s)
+(node:55020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  5 tests\browser\mobile-cleanup.test.ts:304:5 › locked player profile remains readable without transfer or removal (3.9s)
+  ok  6 tests\browser\mobile-cleanup.test.ts:339:5 › pack chances show only per-card rarity percentages with separate terms (1.4s)
+  ok  7 tests\browser\pack-cinematic.test.ts:6:5 › cinematic timing, background interruption and visual recording (19.9s)
+  ok  8 tests\browser\pack-opening.test.ts:9:7 › confirmed multi-card reveal, resume, replay and accessibility 360 (24.5s)
+  ok  9 tests\browser\pack-opening.test.ts:9:7 › confirmed multi-card reveal, resume, replay and accessibility 412 (26.7s)
+  ok 10 tests\browser\pack-opening.test.ts:9:7 › confirmed multi-card reveal, resume, replay and accessibility 1366 (33.8s)
+  ok 11 tests\browser\pack-opening.test.ts:119:5 › single card, reduced motion, keyboard opening and duplicate taps (14.4s)
+  x  12 tests\browser\play-cards-redesign.test.ts:25:5 › desktop and phone composition preserves data, formation, verified-number jerseys and focus (5.7s)
+(node:122472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:122472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 tests\browser\play-cards-redesign.test.ts:93:5 › collection rarity counts, paging, filtering, list and empty states are source-backed (4.6s)
+  ok 14 tests\browser\play-cards-redesign.test.ts:143:5 › incomplete invalid entered and partially locked states remain honest in both modes (6.1s)
+  ok 15 tests\browser\play-cards-redesign.test.ts:209:5 › enlarged text and reduced motion keep card data and actions readable (3.3s)
+  ok 16 tests\browser\rarity-frames.test.ts:6:5 › outer reveal frames, single forward turn and Icon celebration preserve the receipt (14.1s)
+  x  17 tests\browser\rarity-frames.test.ts:109:5 › six rarity frames preserve jersey, identity, focus and legacy context across palettes and viewports (13.0s)
+
+
+  1) tests\browser\mobile-cleanup.test.ts:228:5 › compact lineup profile and explicit transfer retain independent drafts
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('button', { name: /TE1: Taylor West/ }).locator('svg text')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('button', { name: /TE1: Taylor West/ }).locator('svg text') with timeout 5000ms
+      - waiting for getByRole('button', { name: /TE1: Taylor West/ }).locator('svg text')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      235 |   await expect(te).toContainText("1.1×");
+      236 |   await expect(te).not.toContainText("600,000");
+    > 237 |   await expect(te.locator("svg text")).toHaveCount(0);
+          |                                        ^
+      238 |   await expect(page.getByRole("button", { name: /^Remove / })).toHaveCount(0);
+      239 |   await page
+      240 |     .locator(".seven-field")
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\mobile-cleanup.test.ts:237:40
+
+    Error Context: tmp\play-cards-results-final\mobile-cleanup-compact-lin-b08c3-r-retain-independent-drafts\error-context.md
+
+  2) tests\browser\play-cards-redesign.test.ts:25:5 › desktop and phone composition preserves data, formation, verified-number jerseys and focus
+
+    Error: UNKNOWN: unknown error, open 'C:\Users\61412\Documents\ChatGPT\Docked.com.au\docs\qa\play-cards\play-1366.png'
+
+      69 |         ).toBeVisible();
+      70 |       }
+    > 71 |       await page.screenshot({
+         |       ^
+      72 |         path: `${out}/${tab}-${width}.png`,
+      73 |         fullPage: true,
+      74 |       });
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\play-cards-redesign.test.ts:71:7
+
+    Error Context: tmp\play-cards-results-final\play-cards-redesign-deskto-bec9c-ed-number-jerseys-and-focus\error-context.md
+
+  3) tests\browser\rarity-frames.test.ts:109:5 › six rarity frames preserve jersey, identity, focus and legacy context across palettes and viewports
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 93
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#0b0f1a",
+    +               "contrastRatio": 1.23,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#18243a",
+    +               "fontSize": "7.2pt (9.6px)",
+    +               "fontWeight": "bold",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 1.23 (foreground color: #18243a, background color: #0b0f1a, font size: 7.2pt (9.6px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<body class=\"fantasy-mode\" style=\"\">",
+    +                 "target": Array [
+    +                   "body",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.23 (foreground color: #18243a, background color: #0b0f1a, font size: 7.2pt (9.6px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"rarity-badge-name\"><svg class=\"rarity-crown\" viewBox=\"0 0 24 18\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M2 4 7 8 12 1 17 8 22 4 19 14H5Z\" fill=\"currentColor\"></path><path d=\"M5 17H19\" stroke=\"currentColor\" stroke-width=\"2\"></path></svg>ICON</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".rarity-prism.field-player > .rarity-badge-compact.rarity-badge > .rarity-badge-name",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#0b0f1a",
+    +               "contrastRatio": 1.23,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#18243a",
+    +               "fontSize": "8.8pt (11.68px)",
+    +               "fontWeight": "bold",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 1.23 (foreground color: #18243a, background color: #0b0f1a, font size: 8.8pt (11.68px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<body class=\"fantasy-mode\" style=\"\">",
+    +                 "target": Array [
+    +                   "body",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.23 (foreground color: #18243a, background color: #0b0f1a, font size: 8.8pt (11.68px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"rarity-badge-value\">1.5×</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".rarity-prism.field-player > .rarity-badge-compact.rarity-badge > .rarity-badge-value",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+      231 |     .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      232 |     .analyze();
+    > 233 |   expect(a.violations).toEqual([]);
+          |                        ^
+      234 |   expect(errors).toEqual([]);
+      235 |   await page.evaluate(() => {
+      236 |     document.documentElement.style.fontSize = "24px";
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\rarity-frames.test.ts:233:24
+
+    Error Context: tmp\play-cards-results-final\rarity-frames-six-rarity-f-4c75f-ross-palettes-and-viewports\error-context.md
+
+  3 failed
+    tests\browser\mobile-cleanup.test.ts:228:5 › compact lineup profile and explicit transfer retain independent drafts
+    tests\browser\play-cards-redesign.test.ts:25:5 › desktop and phone composition preserves data, formation, verified-number jerseys and focus
+    tests\browser\rarity-frames.test.ts:109:5 › six rarity frames preserve jersey, identity, focus and legacy context across palettes and viewports
+  14 passed (4.2m)

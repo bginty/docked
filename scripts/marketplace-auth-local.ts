@@ -26,14 +26,20 @@ import {
   runIntegratedMarketplace,
 } from "./marketplace-integrated-local";
 
+import { seedRedemptionAuth, runRedemptionAuth } from "./redemption-auth-local";
+const redemption = process.argv.includes("--redemption");
 const integrated = process.argv.includes("--integrated");
 const socialOnly = process.argv.includes("--social-only");
 const root = process.cwd(),
   dir = resolve(
-    integrated ? "tmp/marketplace-integrated-v2" : "tmp/marketplace-auth",
+    redemption
+      ? "tmp/redemption-auth"
+      : integrated
+        ? "tmp/marketplace-integrated-v2"
+        : "tmp/marketplace-auth",
   ),
   origin = "http://127.0.0.1:3033",
-  authOrigin = "http://127.0.0.1:55321";
+  authOrigin = redemption ? "http://127.0.0.1:55331" : "http://127.0.0.1:55321";
 function totp(secret: string) {
   let bits = "";
   for (const c of secret.toUpperCase().replace(/=+$/, ""))
@@ -58,8 +64,11 @@ async function main() {
   assert.equal(keys.API_URL, authOrigin);
   const dbUrl = new URL(keys.DB_URL);
   assert.equal(dbUrl.hostname, "127.0.0.1");
-  assert.equal(dbUrl.port, "55322");
-  assert.equal(dbUrl.pathname, "/postgres");
+  assert.equal(dbUrl.port, redemption ? "55332" : "55322");
+  assert.equal(
+    dbUrl.pathname,
+    redemption ? "/docked_redemption_local_auth" : "/postgres",
+  );
   const sql = postgres(dbUrl.href, { max: 3, onnotice: () => {} }),
     admin = createClient(authOrigin, keys.SERVICE_ROLE_KEY, {
       auth: { persistSession: false, autoRefreshToken: false },
@@ -71,9 +80,12 @@ async function main() {
   await mkdir("docs/qa/marketplace-authenticated", { recursive: true });
   const browserOnly = process.argv.includes("--browser-only");
   await mkdir("docs/qa/mobile-release", { recursive: true });
-  const receipt = socialOnly
-    ? "docs/qa/mobile-release/social-http.json"
-    : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
+  await mkdir("docs/qa/premium-completion", { recursive: true });
+  const receipt = redemption
+    ? "docs/qa/premium-completion/authenticated.json"
+    : socialOnly
+      ? "docs/qa/mobile-release/social-http.json"
+      : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
     JSON.stringify({
@@ -212,7 +224,11 @@ async function main() {
         where not exists(select 1 from beta_private.region_policies where version='local-social-acceptance' and effective_to>clock_timestamp())`;
     }
     stage = "inventory";
-    if (!(await sql`select id from credits_sandbox.state`).length) {
+    if (redemption) await seedRedemptionAuth(sql, qa.users);
+    if (
+      !redemption &&
+      !(await sql`select id from credits_sandbox.state`).length
+    ) {
       const state = marketplaceFixture(
         Date.now(),
         qa.users
@@ -257,6 +273,18 @@ async function main() {
         "junction",
       );
     }
+    if (redemption) {
+      // Local diagnostic copy only: report SQLSTATE/permission identifiers, never request or secret values.
+      const route = resolve(app, "src/app/api/redemptions/route.ts");
+      await writeFile(
+        route,
+        (await readFile(route, "utf8")).replace(
+          "} catch (e) {",
+          `} catch (e) {
+        if (typeof e === "object" && e && "code" in e) console.error("LOCAL_SQLSTATE", e.code, e instanceof Error && /^(permission denied|new row violates row-level security policy)/.test(e.message) ? e.message : "details withheld");`,
+        ),
+      );
+    }
     const runtime = new URL(dbUrl.href);
     runtime.username = "docked_beta_app";
     runtime.password = qa.dbPassword;
@@ -275,7 +303,13 @@ async function main() {
       DOCKED_FRIENDS_BETA: "true",
       DOCKED_OWNER_GAMEPLAY: "true",
       BETA_ACCESS_ENABLED: "true",
-      APP_ENV: "production",
+      APP_ENV: redemption ? "development" : "production",
+      ...(redemption
+        ? {
+            DOCKED_REDEMPTION_LOCAL: "true",
+            DOCKED_REDEMPTION_BANK_KEY: Buffer.alloc(32, 7).toString("base64"),
+          }
+        : {}),
       SUPABASE_ENV: "production",
       SITE_URL: origin,
       NEXT_PUBLIC_SUPABASE_URL: authOrigin,
@@ -347,6 +381,30 @@ async function main() {
         },
       });
       assert.equal((await r.json()).ok, true, "Real application login " + i);
+    }
+    if (redemption) {
+      stage = "redemption-auth-http";
+      checks.push(
+        ...(await runRedemptionAuth({ sql, contexts, qa, totp, origin })),
+      );
+      await writeFile(
+        receipt,
+        JSON.stringify(
+          {
+            passed: true,
+            at: new Date().toISOString(),
+            scope:
+              "Actual Next routes, real local Supabase Auth/MFA, restricted-role PostgreSQL; isolated fixtures",
+            checks,
+            hostedOperations: false,
+            physicalDevice: false,
+          },
+          null,
+          2,
+        ),
+      );
+      console.log(JSON.stringify({ passed: true, checks }));
+      return;
     }
     if (socialOnly) {
       stage = "social-http";

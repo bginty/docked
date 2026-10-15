@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "Separate PostgreSQL connections: duplicate submission reserves once; cancellation releases once",
+    "Concurrent distinct request IDs cannot over-redeem",
+    "Cancellation versus payment claim: one transition wins; uncertainty stays reserved",
+    "Competing payment staff claims, duplicate sent and duplicate return: one claim, one finalisation, one compensation",
+    "Injected persistence failure fully rolls back reservation, history and notification",
+    "Database enforces immutable classifications/financial snapshots and denies member staff-table access",
+    "Actual local HTTP → fixture session → PostgreSQL reservation/retry/receipt/privacy journey (not Supabase authentication)",
+    "Real marketplace purchase versus redemption shares transaction lock/FIFO: no overspend, negative balances or new issuance",
+    "Existing in-app account-notice table receives deduplicated generic events without bank/evidence content"
+  ],
+  "distinctConnections": true,
+  "authentication": "Local fixture sessions; Supabase integration not exercised",
+  "hostedMutation": false
+}

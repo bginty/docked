@@ -6,6 +6,8 @@ export type Operator = {
   id: string;
   role: "member" | "reviewer" | "payment-provider" | "identity-provider";
   aal?: "aal1" | "aal2";
+  /** Server-derived last credential authentication, never token refresh time. */
+  authenticatedAt?: number;
 };
 export type Order = {
   id: string;

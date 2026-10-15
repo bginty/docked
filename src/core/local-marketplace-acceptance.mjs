@@ -3,6 +3,7 @@
 /** @param {Record<string,string|undefined>} [env] */
 export function localMarketplaceAcceptance(env = process.env) {
   if (!env.DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE) return false;
+  const redemption = env.DOCKED_REDEMPTION_LOCAL === "true";
   const fail = () => {
     throw Error("Invalid local marketplace acceptance configuration");
   };
@@ -17,8 +18,9 @@ export function localMarketplaceAcceptance(env = process.env) {
     env.DOCKED_HOSTED_PRODUCTION === "true" ||
     env.DOCKED_HOSTED_REVIEW === "true" ||
     env.SITE_URL !== "http://127.0.0.1:3033" ||
-    env.NEXT_PUBLIC_SUPABASE_URL !== "http://127.0.0.1:55321" ||
-    env.APP_ENV !== "production" ||
+    env.NEXT_PUBLIC_SUPABASE_URL !==
+      (redemption ? "http://127.0.0.1:55331" : "http://127.0.0.1:55321") ||
+    env.APP_ENV !== (redemption ? "development" : "production") ||
     env.SUPABASE_ENV !== "production" ||
     env.DOCKED_BETA_STAGING !== "true" ||
     env.DOCKED_FRIENDS_BETA !== "true" ||
@@ -36,8 +38,9 @@ export function localMarketplaceAcceptance(env = process.env) {
     !db ||
     db.protocol !== "postgresql:" ||
     db.hostname !== "127.0.0.1" ||
-    db.port !== "55322" ||
-    db.pathname !== "/postgres" ||
+    db.port !== (redemption ? "55332" : "55322") ||
+    db.pathname !==
+      (redemption ? "/docked_redemption_local_auth" : "/postgres") ||
     db.username !== "docked_beta_app" ||
     !db.password ||
     db.search ||

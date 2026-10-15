@@ -19,6 +19,15 @@ import {
   swapFeeQuote,
   type CreditOnly,
 } from "./credit-only";
+import {
+  redemptionCommand,
+  applyRedemption,
+  authorizeRedemption,
+  validateRedemption,
+  type RedemptionProgram,
+  type ManualRedemption,
+  type RedemptionStatus,
+} from "./redemption";
 
 // Operator-only domain. No public route accepts an actor, provider claim or balance.
 // Admitted friends may use the restricted member adapter; never real money.
@@ -32,6 +41,9 @@ type Lot = {
   provenance: string;
   created: number;
   parentLot?: string;
+  // Only explicitly seeded isolated QA lots can exercise redemption. Legacy
+  // test lots, including those with redeemable=true, never acquire cash value.
+  cashEligibility?: { scope: "local-redemption-fixture"; policy: string };
 };
 type Line = { account: string; credits: number };
 type Journal = {
@@ -51,6 +63,7 @@ type Card = {
   history: { from: string | null; to: string; reference: string; at: number }[];
 };
 type Withdrawal = {
+  manual?: ManualRedemption;
   member: string;
   amount: number;
   beneficiary: string;
@@ -61,11 +74,13 @@ type Withdrawal = {
     | "UNCERTAIN"
     | "PAID"
     | "FAILED"
-    | "CANCELLED";
+    | "CANCELLED"
+    | RedemptionStatus;
   parts: { lot: string; amount: number }[];
   provider?: string;
 };
 export type CreditsState = {
+  redemption?: RedemptionProgram;
   mode: "financial-sandbox-only";
   creditOnly?: CreditOnly;
   economy?: CardEconomy;
@@ -192,6 +207,7 @@ const amount = z.number().int().positive().max(1_000_000_000);
 const reason = z.string().trim().min(12).max(600);
 const base = <T extends z.ZodRawShape>(shape: T) => z.object(shape).strict();
 export const creditsCommand = z.discriminatedUnion("kind", [
+  redemptionCommand,
   base({ kind: z.literal("credit-only-policy"), reason }),
   base({
     kind: z.literal("swap-window"),
@@ -495,6 +511,7 @@ export function executeCredits(
   now: number,
 ) {
   validateCredits(original);
+  validateRedemption(original);
   id.parse(request);
   id.parse(actor.id);
   if (!Number.isSafeInteger(now)) throw Error("Server timestamp required");
@@ -508,6 +525,9 @@ export function executeCredits(
   };
   // Reauthorize even idempotent replays; cached admin results never skip MFA.
   if (actor.role === "reviewer") admin();
+  if (c.kind === "redemption") authorizeRedemption(s, actor, c, now);
+  if ("withdrawal" in c && s.withdrawals[c.withdrawal]?.manual)
+    throw Error("Manual EFT requests require the redemption workflow");
   if (s.requests[key]) {
     if (s.requests[key].fingerprint !== fingerprint)
       throw Error("Idempotency conflict");
@@ -700,7 +720,9 @@ export function executeCredits(
       throw Error("Verified current KYC required");
   };
   let result: unknown = { ok: true };
-  if (c.kind === "credit-only-policy") {
+  if (c.kind === "redemption") {
+    result = applyRedemption(s, actor, request, c, now, post);
+  } else if (c.kind === "credit-only-policy") {
     admin();
     s.creditOnly ??= newCreditOnly();
   } else if (c.kind === "swap-window") {
@@ -1643,6 +1665,7 @@ export function executeCredits(
   });
   s.requests[key] = { fingerprint, result: structuredClone(result) };
   validateCredits(s);
+  validateRedemption(s);
   return { state: s, result };
 }
 
@@ -1759,11 +1782,21 @@ export function financialReport(s: CreditsState) {
       .reduce((n, l) => n + l.price, 0),
     pendingWithdrawals: Object.values(s.withdrawals)
       .filter((w) =>
-        ["REQUESTED", "REVIEWED", "SUBMITTED", "UNCERTAIN"].includes(w.status),
+        w.manual
+          ? [
+              "REQUESTED",
+              "UNDER_REVIEW",
+              "APPROVED",
+              "PAYMENT_IN_PROGRESS",
+              "EXCEPTION",
+            ].includes(w.manual.status)
+          : ["REQUESTED", "REVIEWED", "SUBMITTED", "UNCERTAIN"].includes(
+              w.status,
+            ),
       )
       .reduce((n, w) => n + w.amount, 0),
     completedWithdrawals: Object.values(s.withdrawals)
-      .filter((w) => w.status === "PAID")
+      .filter((w) => w.status === "PAID" || w.manual?.status === "SENT")
       .reduce((n, w) => n + w.amount, 0),
     deposits: Object.entries(s.deposits).map(([id, d]) => ({ id, ...d })),
     bonusEntitlements: Object.values(s.entitlements).filter(

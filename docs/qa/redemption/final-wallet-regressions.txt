@@ -1,0 +1,225 @@
+TAP version 13
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 1 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 3.0126
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 2 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 11.1525
+  ...
+# Subtest: confirmed funding, not redirects; merchant/amount/reference, exact cents, receivable and settlement fees
+ok 3 - confirmed funding, not redirects; merchant/amount/reference, exact cents, receivable and settlement fees
+  ---
+  duration_ms: 71.5908
+  ...
+# Subtest: FIFO transfer provenance survives multiple resales; 1000 = 925 seller + 75 fee; no new issuance
+ok 4 - FIFO transfer provenance survives multiple resales; 1000 = 925 seller + 75 fee; no new issuance
+  ---
+  duration_ms: 26.6306
+  ...
+# Subtest: withdrawal reserves once, unknown stays reserved, paid extinguishes once; refunds block reserved funding
+ok 5 - withdrawal reserves once, unknown stays reserved, paid extinguishes once; refunds block reserved funding
+  ---
+  duration_ms: 56.8587
+  ...
+# Subtest: free window zero-balance atomic swap; expiry cannot increase fee without fresh consent
+ok 6 - free window zero-balance atomic swap; expiry cannot increase fee without fresh consent
+  ---
+  duration_ms: 14.8662
+  ...
+# Subtest: whole-credit half-up conserves value; mismatches and unbacked grants are visible
+ok 7 - whole-credit half-up conserves value; mismatches and unbacked grants are visible
+  ---
+  duration_ms: 20.1398
+  ...
+# Subtest: FIFO uses acquisition order, including grants; disputes do not freeze unrelated funded lots
+ok 8 - FIFO uses acquisition order, including grants; disputes do not freeze unrelated funded lots
+  ---
+  duration_ms: 16.7609
+  ...
+# Subtest: acceptor's stale free quote cannot incur fee; failed balance check leaves both cards unchanged
+ok 9 - acceptor's stale free quote cannot incur fee; failed balance check leaves both cards unchanged
+  ---
+  duration_ms: 16.8739
+  ...
+# Subtest: unused purchased withdrawals remain disabled; legacy entitlements survive policy activation
+ok 10 - unused purchased withdrawals remain disabled; legacy entitlements survive policy activation
+  ---
+  duration_ms: 54.5513
+  ...
+# Subtest: dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+ok 11 - dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+  ---
+  duration_ms: 132.0878
+  ...
+# Subtest: Sydney date boundaries handle DST and invalid/reversed ranges
+ok 12 - Sydney date boundaries handle DST and invalid/reversed ranges
+  ---
+  duration_ms: 6.1771
+  ...
+# Subtest: free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+ok 13 - free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+  ---
+  duration_ms: 16.89
+  ...
+# Subtest: missing funding record or altered posting is detected; CSV neutralises formula text
+ok 14 - missing funding record or altered posting is detected; CSV neutralises formula text
+  ---
+  duration_ms: 7.3802
+  ...
+# Subtest: expired swap, forged ownership, failed purchase and stale amount preserve all records
+ok 15 - expired swap, forged ownership, failed purchase and stale amount preserve all records
+  ---
+  duration_ms: 18.4979
+  ...
+# Subtest: AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+ok 16 - AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+  ---
+  duration_ms: 112.4231
+  ...
+# Subtest: inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+ok 17 - inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+  ---
+  duration_ms: 15.8979
+  ...
+# Subtest: seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+ok 18 - seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+  ---
+  duration_ms: 30.4547
+  ...
+# Subtest: swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+ok 19 - swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+  ---
+  duration_ms: 64.9173
+  ...
+# Subtest: insufficient counterparty swap fee rolls back both owners and all fees
+ok 20 - insufficient counterparty swap fee rolls back both owners and all fees
+  ---
+  duration_ms: 55.5722
+  ...
+# Subtest: promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+ok 21 - promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+  ---
+  duration_ms: 15.2574
+  ...
+# Subtest: funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+ok 22 - funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+  ---
+  duration_ms: 31.6506
+  ...
+# Subtest: withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+ok 23 - withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+  ---
+  duration_ms: 56.9036
+  ...
+# Subtest: refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+ok 24 - refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+  ---
+  duration_ms: 47.8175
+  ...
+# Subtest: reserved keys, client-supplied prices, fake providers and live mode fail closed
+ok 25 - reserved keys, client-supplied prices, fake providers and live mode fail closed
+  ---
+  duration_ms: 14.1501
+  ...
+# Subtest: Pending cumulative full refund compensates all credits; expired reservations release finite supply
+ok 26 - Pending cumulative full refund compensates all credits; expired reservations release finite supply
+  ---
+  duration_ms: 14.9968
+  ...
+# Subtest: Unspent funded promotion reverses with compensating entries and restores its approved budget
+ok 27 - Unspent funded promotion reverses with compensating entries and restores its approved budget
+  ---
+  duration_ms: 10.9921
+  ...
+# Subtest: Restricted card value cannot become redeemable through an intermediate pure swap
+ok 28 - Restricted card value cannot become redeemable through an intermediate pure swap
+  ---
+  duration_ms: 39.0431
+  ...
+# Subtest: exact integer cent conversion and malformed amounts
+ok 29 - exact integer cent conversion and malformed amounts
+  ---
+  duration_ms: 69.9526
+  ...
+# Subtest: existing test and promotional lots cannot become cash; reservation is a subset
+ok 30 - existing test and promotional lots cannot become cash; reservation is a subset
+  ---
+  duration_ms: 50.9066
+  ...
+# Subtest: identity submission requires review; forged rate and eligibility rejected
+ok 31 - identity submission requires review; forged rate and eligibility rejected
+  ---
+  duration_ms: 8.2362
+  ...
+# Subtest: reserve and duplicate/lost response retry post once; spending sees reduced available
+ok 32 - reserve and duplicate/lost response retry post once; spending sees reduced available
+  ---
+  duration_ms: 20.3645
+  ...
+# Subtest: cancel/reject releases exactly once and preserves original eligibility
+ok 33 - cancel/reject releases exactly once and preserves original eligibility
+  ---
+  duration_ms: 34.0668
+  ...
+# Subtest: claim excludes second staff and cancellation; uncertain outcomes stay reserved
+ok 34 - claim excludes second staff and cancellation; uncertain outcomes stay reserved
+  ---
+  duration_ms: 27.0982
+  ...
+# Subtest: sent consumes reservation only; returned EFT restores original lots once
+ok 35 - sent consumes reservation only; returned EFT restores original lots once
+  ---
+  duration_ms: 23.5972
+  ...
+# Subtest: snapshot survives bank change; ciphertext bound to member and destination
+ok 36 - snapshot survives bank change; ciphertext bound to member and destination
+  ---
+  duration_ms: 16.9036
+  ...
+# Subtest: private projections omit ciphertext, full bank details and other members
+ok 37 - private projections omit ciphertext, full bank details and other members
+  ---
+  duration_ms: 18.241
+  ...
+# Subtest: revoked identity, restrictions and expired authentication fail closed, including retries
+ok 38 - revoked identity, restrictions and expired authentication fail closed, including retries
+  ---
+  duration_ms: 23.9674
+  ...
+# Subtest: limits, mismatched bank holder, unsafe documents and live environments rejected
+ok 39 - limits, mismatched bank holder, unsafe documents and live environments rejected
+  ---
+  duration_ms: 46.1856
+  ...
+# Subtest: business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+ok 40 - business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+  ---
+  duration_ms: 54.1967
+  ...
+# Subtest: cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+ok 41 - cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+  ---
+  duration_ms: 15.9918
+  ...
+# Subtest: internal staff notes never appear in customer history or notification records
+ok 42 - internal staff notes never appear in customer history or notification records
+  ---
+  duration_ms: 7.8371
+  ...
+# Subtest: future policy version does not rewrite a saved obligation, rate or eligibility classification
+ok 43 - future policy version does not rewrite a saved obligation, rate or eligibility classification
+  ---
+  duration_ms: 12.9704
+  ...
+1..43
+# tests 43
+# suites 0
+# pass 43
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7220.6722

@@ -5,6 +5,7 @@ import {
   type CreditsState,
 } from "../core/credits-sandbox";
 import type { Operator } from "../core/commerce-sandbox";
+import { validateRedemption } from "../core/redemption";
 export class CreditsRejected extends Error {}
 /** Transactional test aggregate. Hosted callers supply server-derived identity
  * and recheck admission against the locked state before any command executes. */
@@ -12,6 +13,16 @@ export class CreditsSandboxStore {
   constructor(
     private sql: Sql,
     private authorize?: (tx: Sql, state: CreditsState) => Promise<void>,
+    private prepare?: (
+      state: CreditsState,
+      command: unknown,
+      now: number,
+    ) => unknown,
+    private persist?: (
+      tx: Sql,
+      previous: CreditsState,
+      current: CreditsState,
+    ) => Promise<void>,
   ) {}
   async execute(actor: Operator, request: string, command: unknown) {
     return this.sql
@@ -31,7 +42,13 @@ export class CreditsSandboxStore {
         const old = row.document as CreditsState;
         let executed: ReturnType<typeof executeCredits>;
         try {
-          executed = executeCredits(old, actor, request, command, Number(now));
+          executed = executeCredits(
+            old,
+            actor,
+            request,
+            this.prepare ? this.prepare(old, command, Number(now)) : command,
+            Number(now),
+          );
         } catch (error) {
           throw new CreditsRejected(
             error instanceof Error ? error.message : "Rejected command",
@@ -46,6 +63,8 @@ export class CreditsSandboxStore {
           }
           await tx`insert into credits_sandbox.history(revision,actor,request,document) values(${Number(row.revision) + 1},${actor.id},${request},${tx.json(state as any)})`;
           await tx`update credits_sandbox.state set revision=${Number(row.revision) + 1},document=${tx.json(state as any)} where id`;
+          if (this.persist)
+            await this.persist(tx as unknown as Sql, old, state);
         }
         return result;
       })
@@ -70,6 +89,7 @@ export class CreditsSandboxStore {
       .sql`select document from credits_sandbox.state where id`;
     const s = row.document as CreditsState;
     validateCredits(s);
+    validateRedemption(s);
     return s;
   }
 }

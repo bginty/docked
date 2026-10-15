@@ -55,7 +55,9 @@ if (
   throw new Error(
     "Production target identity has not been reviewed and approved",
   );
-const roots = ["src/", "public/"];
+// Current application modules import several reviewed, tracked policy manifests.
+// Export them together; omitting newer manifests produces an incomplete candidate.
+const roots = ["src/", "public/", "config/"];
 const explicit = new Set([
   "package.json",
   "package-lock.json",

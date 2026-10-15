@@ -87,6 +87,7 @@ export async function identity() {
     profile: p[0],
     aal: claims.aal as string,
     sessionId: claims.sessionId,
+    authenticatedAt: claims.authenticatedAt,
   };
 }
 export async function requireIdentity() {

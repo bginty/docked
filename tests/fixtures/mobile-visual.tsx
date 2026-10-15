@@ -51,6 +51,8 @@ const cards: FantasyState["cards"] = tiers.map((tier, i) => ({
   position: ["QB", "RB", "RB", "WR", "WR", "TE", "RB", "WR", "K"][i],
   colour: "#1677FF",
   shirt: 1,
+  // Synthetic verified-number metadata for visual acceptance; never production player facts.
+  verifiedJerseyNumber: [8, 31, 28, 17, 13, 84, 87, null, 0][i],
   status: "active",
   tradeable: tier !== "CORE",
   listed: false,

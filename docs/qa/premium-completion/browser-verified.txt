@@ -1,0 +1,27 @@
+
+Running 18 tests using 1 worker
+
+(node:30396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\mobile-cleanup.test.ts:6:5 › touch viewport, compact pack discovery and keyboard-safe reveal controls (7.3s)
+  ok  2 tests\browser\mobile-cleanup.test.ts:51:5 › mobile/desktop hierarchy, card details, independent drafts, explicit social posting (10.3s)
+  ok  3 tests\browser\mobile-cleanup.test.ts:124:5 › nine distinct animations, short viewport fit, rapid taps, skip and reopen recording (26.6s)
+  ok  4 tests\browser\mobile-cleanup.test.ts:228:5 › compact lineup profile and explicit transfer retain independent drafts (6.0s)
+  ok  5 tests\browser\mobile-cleanup.test.ts:304:5 › locked player profile remains readable without transfer or removal (2.1s)
+  ok  6 tests\browser\mobile-cleanup.test.ts:339:5 › pack chances show only per-card rarity percentages with separate terms (1.6s)
+  ok  7 tests\browser\pack-cinematic.test.ts:6:5 › cinematic timing, background interruption and visual recording (19.9s)
+  ok  8 tests\browser\pack-opening.test.ts:9:7 › confirmed multi-card reveal, resume, replay and accessibility 360 (24.5s)
+  ok  9 tests\browser\pack-opening.test.ts:9:7 › confirmed multi-card reveal, resume, replay and accessibility 412 (24.3s)
+  ok 10 tests\browser\pack-opening.test.ts:9:7 › confirmed multi-card reveal, resume, replay and accessibility 1366 (23.9s)
+  ok 11 tests\browser\pack-opening.test.ts:119:5 › single card, reduced motion, keyboard opening and duplicate taps (2.7s)
+  ok 12 tests\browser\play-cards-redesign.test.ts:28:5 › desktop and phone composition preserves data, formation, verified-number jerseys and focus (16.9s)
+  ok 13 tests\browser\play-cards-redesign.test.ts:96:5 › collection rarity counts, paging, filtering, list and empty states are source-backed (3.6s)
+  ok 14 tests\browser\play-cards-redesign.test.ts:146:5 › incomplete invalid entered and partially locked states remain honest in both modes (6.9s)
+  ok 15 tests\browser\play-cards-redesign.test.ts:212:5 › enlarged text and reduced motion keep card data and actions readable (3.7s)
+  ok 16 tests\browser\premium-completion.test.ts:3:5 › premium cards use verified fixture numbers and preserve mobile field interaction (7.3s)
+  ok 17 tests\browser\rarity-frames.test.ts:6:5 › outer reveal frames, single forward turn and Icon celebration preserve the receipt (13.7s)
+  ok 18 tests\browser\rarity-frames.test.ts:109:5 › six rarity frames preserve jersey, identity, focus and legacy context across palettes and viewports (13.6s)
+
+  18 passed (3.7m)

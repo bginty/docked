@@ -1,0 +1,138 @@
+{
+  "base": "e72dd10a24c9ac8d600eb3ef1e363ae18a39e662",
+  "status": "local working-tree review; not committed or deployed",
+  "files": [
+    {
+      "path": "docs/CREDIT_REDEMPTION_LOCAL_REVIEW.md",
+      "sha256": "1090e16cf74833490d8a900e8458127d8ba3a1dea68e9f2f8c40545f98e16a10"
+    },
+    {
+      "path": "scripts/check-client-boundary.ts",
+      "sha256": "ce9e2b5dcf995855d64e8e783bd5bdde2aab2549b304297962c9c2b9555722de"
+    },
+    {
+      "path": "scripts/fantasy-production-local-postgres.mjs",
+      "sha256": "ccb27e38028af84952a53f80e7aa0121567496afcad7ddf00df978ec547d82e3"
+    },
+    {
+      "path": "scripts/marketplace-build-local.mjs",
+      "sha256": "81ce050a778d31f2dc8c8353426e3669096804136ec73de05dc4c09c409e3a38"
+    },
+    {
+      "path": "scripts/redemption-browser.ts",
+      "sha256": "6b281d5c50c4bc784276c11a85785d8bc1440e6cf2d90656953283b09e44afa3"
+    },
+    {
+      "path": "scripts/redemption-local.ts",
+      "sha256": "04de06deba6b4f5d51eba05981b646e9e4ed1f69148c6474ba68eb47929c26f1"
+    },
+    {
+      "path": "scripts/redemption-postgres.ts",
+      "sha256": "44810689cb369374908c05bf63b75c8b98a101305b27af6d06ff89de2513c1c3"
+    },
+    {
+      "path": "src/app/admin/redemptions/page.tsx",
+      "sha256": "2abfc282f7f7a523139f729616ee90a10802ee9590d2aeed7608a2d46917fa79"
+    },
+    {
+      "path": "src/app/api/redemptions/route.ts",
+      "sha256": "af611f9372ad4ba70f15ffddbb4e1dc70e0ee021df6d47562d956978c6555996"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "sha256": "75281d79e78e8ac2d2a3039bc0083a63c6fe5a08950d3b13752eef92527683bc"
+    },
+    {
+      "path": "src/app/profile/withdrawals/page.tsx",
+      "sha256": "4a05f49d35218b49393bc6d9e525d48b695c0d2c5ea48093c07b5723902de54e"
+    },
+    {
+      "path": "src/app/redemption.css",
+      "sha256": "963fd8e17df92afd97ef5556ff667a686331aa6c27248c8e6d713f42947ceae4"
+    },
+    {
+      "path": "src/components/fantasy-screen.tsx",
+      "sha256": "3942de372262d944af381ea9a1c98a892fbc2a816f7da8329b1d9ed22881aa59"
+    },
+    {
+      "path": "src/components/member-profile.tsx",
+      "sha256": "259695989b56b386d72539eb9d1d9d92cca93716c0bb5987818f4867f3653624"
+    },
+    {
+      "path": "src/components/withdrawals.tsx",
+      "sha256": "f30625b11d4314615fee75f9b9642e6d852187f722deffbca20886f81f575b68"
+    },
+    {
+      "path": "src/core/auth-policy.ts",
+      "sha256": "f31494130405158e82b533d3e569451f470ed29448b9bcc93e23b9dcdd0a8d83"
+    },
+    {
+      "path": "src/core/commerce-sandbox.ts",
+      "sha256": "b4e0281fdb5cbbbd17623b33225dfd94e8d175a8e2e27641a255db92bbe37fdf"
+    },
+    {
+      "path": "src/core/credits-sandbox.ts",
+      "sha256": "8028c32cb24b36c4d81059557405a181b63d0d8b77cd77ea179e353f390c76ea"
+    },
+    {
+      "path": "src/core/redemption-money.ts",
+      "sha256": "843f98d654dabdc296d5ce4f15a6bd9af388ff01a18fef6d1dd81edd128edc2f"
+    },
+    {
+      "path": "src/core/redemption-view.ts",
+      "sha256": "fd42d0f15eeddfba225e2143dd7ead926252f791a9958054c81464176d0737d7"
+    },
+    {
+      "path": "src/core/redemption.ts",
+      "sha256": "dcc95c2535ab8bf90b0e099e5de6a677c89c8c720a186ed5f07af55147ed843f"
+    },
+    {
+      "path": "src/server/auth.ts",
+      "sha256": "cebc8541f9eab44e043025f30f21dff60ea5eea8c029335b41d3ca36e06a8fc5"
+    },
+    {
+      "path": "src/server/community-social.ts",
+      "sha256": "c1d1edf1df14a74c143aae3338bd40cef0ad2824f837d263579723a668673436"
+    },
+    {
+      "path": "src/server/credits-sandbox-store.ts",
+      "sha256": "5c749b0b7ec5a0c2027aae368782802a9cb7c35ff6e8f3b6b6d797fe286d1829"
+    },
+    {
+      "path": "src/server/redemption-adapter.ts",
+      "sha256": "9f20894bd7d9db8497ed45efae988108cbc4ba35bcbe9703aa2dbbd1ecb3fcfc"
+    },
+    {
+      "path": "src/server/redemption-notifications.ts",
+      "sha256": "3d03d2d4d2c4533ad2c9c00f5476057a16c8b01a1e567310ed3de02399706a7a"
+    },
+    {
+      "path": "src/server/redemption-vault.ts",
+      "sha256": "3046a7fbc95afdf53c9bdc3a47aee2a0fd737fc7ff26f5058c8e931a303f5d3c"
+    },
+    {
+      "path": "src/server/redemptions.ts",
+      "sha256": "a0bdbfc666c1702579900980a30b94393c1d0dab04e18c7a496673f38f11ec96"
+    },
+    {
+      "path": "supabase/migrations/20261015055109_manual_credit_redemption.sql",
+      "sha256": "39414ef1070fca79d9e4312851e045f6471c8676fcba437976c64cdc40d1a1ee"
+    },
+    {
+      "path": "tests/fixtures/redemption-preview.tsx",
+      "sha256": "3b9da0e69235f737aeb86a2cd93e549cf1f5a398645c1e2b5d8bf5f46d82a73a"
+    },
+    {
+      "path": "tests/fixtures/redemption-state.ts",
+      "sha256": "90c33812b4a91d7f7935fb8f1f3fa5c44415e9fa4cc6bd94506df9572a94ef5a"
+    },
+    {
+      "path": "tests/platform/auth-policy.test.ts",
+      "sha256": "a0e991136d9032e52a475fcac576b0870711b99857abe720cc7612d279dce95a"
+    },
+    {
+      "path": "tests/platform/redemption.test.ts",
+      "sha256": "c619c1ecc170ce58ca9762917ad5c3da47efd1dd8081900b1038090d01582ffd"
+    }
+  ]
+}

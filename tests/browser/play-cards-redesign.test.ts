@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
 const base = "http://127.0.0.1:3023";
-const out = "docs/qa/play-cards";
+const out = "docs/qa/premium-completion";
 test.beforeEach(async ({ page }) => {
   await page.route("**/*", (r) =>
     new URL(r.request().url()).hostname === "127.0.0.1"
@@ -19,10 +19,13 @@ async function noOverflow(page: import("@playwright/test").Page) {
 }
 async function noMarks(page: import("@playwright/test").Page) {
   await expect(
-    page.locator(".card-shirt b,.card-shirt text,.pitch-shirt text"),
+    page.locator('.player-jersey[data-number-source="unavailable"] text'),
   ).toHaveCount(0);
+  for (const n of await page.locator(".player-jersey text").allTextContents())
+    expect(n).toMatch(/^\d{1,2}$/);
+  await expect(page.locator(".player-jersey image")).toHaveCount(0);
 }
-test("desktop and phone composition preserves data, formation, colour-only jerseys and focus", async ({
+test("desktop and phone composition preserves data, formation, verified-number jerseys and focus", async ({
   page,
 }) => {
   await mkdir(out, { recursive: true });
