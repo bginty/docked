@@ -456,9 +456,9 @@
 }
 .fantasy-screen-cards .card-shirt {
   width: 100%;
-  height: 140px;
-  max-width: 150px;
-  margin: 10px auto;
+  height: 165px;
+  max-width: 185px;
+  margin: 6px auto 10px;
 }
 .fantasy-screen-cards .card-face h3 {
   font-size: 0.9rem;
@@ -682,7 +682,7 @@
     max-width: none;
   }
   .fantasy-screen-cards .card-shirt {
-    height: 110px;
+    height: 140px;
   }
   .collection-card-footer button {
     min-height: 44px;
@@ -1016,7 +1016,7 @@
   gap: 3px;
 }
 .lineup-pitch .seven-slot .pitch-shirt {
-  height: 80px;
+  height: 110px;
   filter: drop-shadow(0 5px 3px #0009);
 }
 .lineup-pitch .seven-slot .rarity-badge {
@@ -1158,7 +1158,7 @@
     min-height: 44px;
   }
   .lineup-pitch .seven-slot .pitch-shirt {
-    height: 93px;
+    height: 120px;
   }
   .lineup-pitch .seven-slot .field-player-name {
     font-size: 0.85rem;
@@ -1179,7 +1179,7 @@
     padding: 10px;
   }
   .lineup-pitch .seven-slot .pitch-shirt {
-    height: 82px;
+    height: 106px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

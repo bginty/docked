@@ -49,6 +49,13 @@ export const rosterColumns = [
   "game_type",
 ] as const;
 export type NflDataset = "weekly" | "pbp" | "rosters";
+export const nflRosterProjectionVersion = 2;
+/** A 304 must not perpetuate an older projection which discarded number data. */
+export function rosterProjectionCurrent(
+  body: { projectionVersion?: unknown } | null | undefined,
+) {
+  return body?.projectionVersion === nflRosterProjectionVersion;
+}
 export const nflSourceUrl = (dataset: NflDataset, season: number) => {
   if (!Number.isInteger(season) || season < 1999 || season > 2100)
     throw Error("Invalid NFL season");
@@ -65,6 +72,8 @@ export function parseNflDataset(
   season: number,
 ) {
   const rows = parseStatisticsCsv(csv, {
+    // Presentation metadata only. Older retained files may legitimately omit it.
+    optionalColumns: dataset === "rosters" ? ["jersey_number"] : [],
     columns:
       dataset === "pbp"
         ? pbpColumns
@@ -169,17 +178,15 @@ export function inspectNflRosters(
       },
     ];
   });
-  const coverage = [...teams]
-    .sort()
-    .map((team) => ({
-      team,
-      positions: Object.fromEntries(
-        ["QB", "RB", "WR", "TE"].map((p) => [
-          p,
-          players.filter((r) => r.team === team && r.position === p).length,
-        ]),
-      ),
-    }));
+  const coverage = [...teams].sort().map((team) => ({
+    team,
+    positions: Object.fromEntries(
+      ["QB", "RB", "WR", "TE"].map((p) => [
+        p,
+        players.filter((r) => r.team === team && r.position === p).length,
+      ]),
+    ),
+  }));
   if (teams.size !== 32)
     issues.push("Expected 32 team coverage not established");
   if (coverage.some((t) => Object.values(t.positions).some((n) => !n)))

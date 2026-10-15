@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { PGlite } from "@electric-sql/pglite";
+import { parseNflDataset } from "../../src/core/nflverse-evidence";
 test("jersey projection rejects missing/conflicting/stale/wrong-team source facts and grants no raw access", async () => {
   const db = new PGlite();
   try {
@@ -11,12 +12,11 @@ test("jersey projection rejects missing/conflicting/stale/wrong-team source fact
   create table sports_feed.raw_revisions(id bigint,provider text,body jsonb,expires_at timestamptz);
   insert into credits_sandbox.permanent_players values('player','00-0000001','nflverse','nfl');
   insert into credits_sandbox.current_player_status values('player','PIT','Synthetic Player',clock_timestamp(),'1');`);
-    const row = {
-      gsis_id: "00-0000001",
-      team: "PIT",
-      full_name: "Synthetic Player",
-      jersey_number: "0",
-    };
+    const row = parseNflDataset(
+      "season,team,position,status,full_name,gsis_id,week,game_type,jersey_number\n2026,PIT,QB,ACT,Synthetic Player,00-0000001,6,REG,0",
+      "rosters",
+      2026,
+    )[0];
     await db.query(
       `insert into sports_feed.raw_revisions values(1,'nflverse',$1,clock_timestamp()+interval '1 day')`,
       [JSON.stringify({ dataset: "rosters", rows: [row] })],
@@ -27,7 +27,12 @@ test("jersey projection rejects missing/conflicting/stale/wrong-team source fact
         "utf8",
       ),
     );
-    await db.exec(await readFile("supabase/migrations/20261015102845_jersey_projection_single_pass.sql", "utf8"));
+    await db.exec(
+      await readFile(
+        "supabase/migrations/20261015102845_jersey_projection_single_pass.sql",
+        "utf8",
+      ),
+    );
     const read = async () =>
       (
         await db.query<{ verified_jersey_number: number | null }>(
@@ -73,15 +78,31 @@ test("jersey projection rejects missing/conflicting/stale/wrong-team source fact
     await db.exec(`update credits_sandbox.current_player_status set checked_at=clock_timestamp();
       insert into credits_sandbox.permanent_players select 'scale-'||i,'provider-'||i,'nflverse','nfl' from generate_series(1,1000) i;
       insert into credits_sandbox.current_player_status select 'scale-'||i,'PIT','Player '||i,clock_timestamp(),'1' from generate_series(1,1000) i;`);
-    const scaleRows = Array.from({length:1000},(_,i)=>({gsis_id:`provider-${i+1}`,team:"PIT",full_name:`Player ${i+1}`,jersey_number:String(i%100)}));
-    await db.query(`update sports_feed.raw_revisions set body=$1`, [JSON.stringify({dataset:"rosters",rows:[row,...scaleRows]})]);
+    const scaleRows = Array.from({ length: 1000 }, (_, i) => ({
+      gsis_id: `provider-${i + 1}`,
+      team: "PIT",
+      full_name: `Player ${i + 1}`,
+      jersey_number: String(i % 100),
+    }));
+    await db.query(`update sports_feed.raw_revisions set body=$1`, [
+      JSON.stringify({ dataset: "rosters", rows: [row, ...scaleRows] }),
+    ]);
     assert.equal((await read()).length, 1001);
-    const plan = (await db.query<{"QUERY PLAN": Array<{Plan: unknown}>}>("explain (analyze, format json) select * from credits_sandbox.current_player_jerseys")).rows[0]["QUERY PLAN"][0].Plan;
-    const scans: Record<string,unknown>[]=[];
-    const walk=(node:unknown)=>{if(!node || typeof node!=="object")return;const p=node as Record<string,unknown>;if(p["Node Type"]==="Function Scan")scans.push(p);for(const child of (p.Plans??[]) as unknown[])walk(child);};
+    const plan = (
+      await db.query<{ "QUERY PLAN": Array<{ Plan: unknown }> }>(
+        "explain (analyze, format json) select * from credits_sandbox.current_player_jerseys",
+      )
+    ).rows[0]["QUERY PLAN"][0].Plan;
+    const scans: Record<string, unknown>[] = [];
+    const walk = (node: unknown) => {
+      if (!node || typeof node !== "object") return;
+      const p = node as Record<string, unknown>;
+      if (p["Node Type"] === "Function Scan") scans.push(p);
+      for (const child of (p.Plans ?? []) as unknown[]) walk(child);
+    };
     walk(plan);
-    assert.equal(scans.length,1);
-    assert.equal(scans[0]["Actual Loops"],1);
+    assert.equal(scans.length, 1);
+    assert.equal(scans[0]["Actual Loops"], 1);
     assert.equal(
       (
         await db.query<{ allowed: boolean }>(

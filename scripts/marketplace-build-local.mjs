@@ -1,7 +1,9 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--redemption")
+const evidence = process.argv.includes("--jersey")
+  ? "docs/qa/jersey-refinement"
+  : process.argv.includes("--redemption")
   ? "docs/qa/redemption"
   : process.argv.includes("--reveal-stability")
     ? "docs/qa/reveal-stability"

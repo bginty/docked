@@ -7,6 +7,8 @@ import {
   completedNflGame,
   nflSourceUrl,
   parseNflDataset,
+  nflRosterProjectionVersion,
+  rosterProjectionCurrent,
   type NflDataset,
 } from "../core/nflverse-evidence";
 import { requirePostgamePermit } from "./postgame-download";
@@ -99,6 +101,9 @@ export async function fetchNflDataset(
     modified,
     body: {
       dataset,
+      ...(dataset === "rosters"
+        ? { projectionVersion: nflRosterProjectionVersion }
+        : {}),
       season,
       source: nflSourceUrl(dataset, season),
       sourceSha256: createHash("sha256").update(bytes).digest("hex"),
@@ -132,7 +137,10 @@ export async function downloadNflDataset(
     const data = await fetchNflDataset(
       dataset,
       season,
-      retained ? { etag: cache.etag, modified: cache.source_modified } : {},
+      retained &&
+        (dataset !== "rosters" || rosterProjectionCurrent(retained.body))
+        ? { etag: cache.etag, modified: cache.source_modified }
+        : {},
       fetcher,
     );
     if (data.notModified && !retained)

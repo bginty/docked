@@ -5,6 +5,7 @@ import {
   completedNflGame,
   inspectNflRosters,
   parseNflDataset,
+  rosterProjectionCurrent,
 } from "../../src/core/nflverse-evidence";
 import {
   nflversePlayerStatistics,
@@ -51,6 +52,28 @@ test("CSV projection strips unused source columns; malformed or missing schema f
   );
   assert.throws(() => parseNflDataset("season,game_id\n2026,x", "pbp", 2026));
   assert.throws(() => parseStatisticsCsv('a,b\n1,"bad'));
+});
+
+test("roster importer retains optional jersey numbers without making old files invalid or retaining private columns", () => {
+  assert.equal(rosterProjectionCurrent(undefined), false);
+  assert.equal(rosterProjectionCurrent({}), false);
+  assert.equal(rosterProjectionCurrent({ projectionVersion: 1 }), false);
+  assert.equal(rosterProjectionCurrent({ projectionVersion: 2 }), true);
+  const header = "season,team,position,status,full_name,gsis_id,week,game_type";
+  const player = "2026,PIT,QB,ACT,Synthetic Player,00-test,6,REG";
+  for (const number of ["8", "0", "", "100"]) {
+    const [row] = parseNflDataset(
+      `${header},jersey_number,birth_date\n${player},${number},private-unused`,
+      "rosters",
+      2026,
+    );
+    assert.equal(row.jersey_number, number);
+    assert.equal(row.birth_date, undefined);
+  }
+  assert.equal(
+    parseNflDataset(`${header}\n${player}`, "rosters", 2026)[0].jersey_number,
+    undefined,
+  );
 });
 test("offensive recovery TD counted once; overlapping or multiple attribution stays pending", () => {
   const r: Record<string, string> = {

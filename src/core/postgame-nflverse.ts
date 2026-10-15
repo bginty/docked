@@ -37,6 +37,7 @@ export function parseStatisticsCsv(
   text: string,
   profile?: {
     columns: readonly string[];
+    optionalColumns?: readonly string[];
     maxChars: number;
     maxRows: number;
     maxColumns: number;
@@ -83,7 +84,11 @@ export function parseStatisticsCsv(
       rows.push(
         Object.fromEntries(
           headers.flatMap((h, i) =>
-            !profile || profile.columns.includes(h) ? [[h, row[i]]] : [],
+            !profile ||
+            profile.columns.includes(h) ||
+            profile.optionalColumns?.includes(h)
+              ? [[h, row[i]]]
+              : [],
           ),
         ),
       );
