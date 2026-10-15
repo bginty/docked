@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-15T02:43:41.388Z",
+  "passed": true,
+  "deployment": "dpl_4KKgVnB3qHLosnWKiM7w8TXLg1nH",
+  "commit": "7730267b259e1e89161ae7d969dc08ba729bfbb4",
+  "base": "https://docked-production-ezbdmlg8e-briant-s-projects.vercel.app",
+  "checks": [
+    "Exact source/deployment/database identity; invite-only admission",
+    "Anonymous denied: /api/marketplace",
+    "Anonymous denied: /api/marketplace?tab=activity",
+    "Anonymous denied: /api/test-wallet",
+    "Anonymous denied: /api/fantasy",
+    "Shared rarity frame, single reveal and Icon celebration styles present",
+    "Play/Cards shared shell, field summary and collection toolbar styles present"
+  ],
+  "hostedMemberMutations": 0,
+  "scope": "Anonymous read-only HTTP and deployed assets; local fixture transactions tested separately"
+}

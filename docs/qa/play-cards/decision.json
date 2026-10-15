@@ -1,0 +1,21 @@
+{
+  "decision": "RELEASE",
+  "commit": "7730267b259e1e89161ae7d969dc08ba729bfbb4",
+  "scope": "Owner-approved Play and Cards visual redesign for existing admitted beta",
+  "authority": "Owner approved visual preview and requested push/deployment on 15 October 2026",
+  "gates": {
+    "browser": "17/17 full suite and 4/4 final focused checks",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "cleanBuild": "PASS",
+    "clientBoundary": "PASS",
+    "secretScan": "PASS; account-operation records excluded from push",
+    "review": "Existing components; no rules, schema, transaction or admission changes",
+    "rollback": "dpl_9BQYQsDsrjJrHjFqGYS57xD9AokK",
+    "candidateReadOnlyVerification": "PASS 7/7"
+  },
+  "physicalDeviceAcceptance": "Pending",
+  "hostedTransactionalAcceptancePerformed": false,
+  "releasedDeployment": "dpl_4KKgVnB3qHLosnWKiM7w8TXLg1nH",
+  "liveChecks": "7/7; domain/callback/admission 15/15"
+}

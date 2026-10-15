@@ -14,7 +14,7 @@ Run `node --import tsx scripts/marketplace-local.ts --serve --visual`:
 - [Empty collection](http://127.0.0.1:3023/fantasy/cards?scenario=empty)
 - [Reveal regression preview](http://127.0.0.1:3023/fantasy/reveal)
 
-These routes use non-persistent/sessional synthetic fixtures. Preview names, dates, balances, entitlements and states are explicitly local test data, not real members or genuine NFL results. Application requests retain their existing authenticated server routes and validations. No hosted access, database migration, member mutation, credit/card issuance, posts, messages or deployment is part of this task.
+These routes use non-persistent/sessional synthetic fixtures. Preview names, dates, balances, entitlements and states are explicitly local test data, not real members or genuine NFL results. Application requests retain their existing authenticated server routes and validations. The local visual implementation used no hosted access, database migration, member mutation, credit/card issuance, posts, messages or deployment. The subsequent owner-authorised release is recorded below.
 
 ## Implementation
 
@@ -55,3 +55,16 @@ Screenshots (synthetic preview data):
 The fixture banner and fictional names deliberately distinguish visual evidence from member accounts and imported NFL results. Full-page captures include content below the viewport; the fixed mobile navigation remains viewport-anchored. Long-name lineups can require vertical scrolling at shorter desktop heights.
 
 Physical review checklist: open Play in both modes; inspect/replace an unlocked card using designated QA inventory; check saved versus submitted states; search/filter Cards and open card details; follow Open/Buy packs without accidental mutation; confirm text, scrolling, Back and touch targets on the S24. Hosted transactional testing is not part of this local visual review.
+
+## Live release — 15 October 2026, 13:44 Sydney
+
+Live [Play](https://docked.com.au/fantasy/play) and [Cards](https://docked.com.au/fantasy/cards) now use application commit `7730267b259e1e89161ae7d969dc08ba729bfbb4`, deployment `dpl_4KKgVnB3qHLosnWKiM7w8TXLg1nH`. Both custom-domain aliases were verified against this deployment. The working branch and existing deployment-review branch were fast-forwarded without force pushes; unrelated/private files were excluded.
+
+- Production candidate staged with `--skip-domain`, then verified before promotion: 7/7 checks. Live checks: 7/7. [Candidate](qa/play-cards/candidate.json), [live](qa/play-cards/live.json).
+- Domain/callback/admission boundaries: 15/15 passed. These are anonymous read-only/non-consuming boundary checks, not authenticated hosted transactions or physical-device acceptance. Local visual and database regression evidence remains separately labelled.
+- Exact Vercel project, team, source commit and Supabase target verified; registration remains invitation-only. Real payments, withdrawals and prizes remain disabled. No migrations, scoring/pack rules, member gameplay actions, invitations or messages were part of deployment.
+- Existing installed Android shell: `au.com.docked.app`, server `https://docked.com.au/app`. Fully close and reopen; refresh browser tabs. No new APK, uninstall or data clearing is required.
+- Rollback: promote immutable prior deployment `dpl_9BQYQsDsrjJrHjFqGYS57xD9AokK` (source `74191226`) through the same project. Do not restore the database or reverse completed ledger entries. [Rollback snapshot](qa/play-cards/rollback.json).
+- Additional recurring cost: $0. Physical S24 review and genuine future-round observation remain pending.
+
+Automatic approval review rejected an initial push that included personal account-operation material. Those files were unstaged and retained locally; a staged-diff assertion confirmed their identifiers and receipts were absent before the successful push. The application release contains no private grant records.
