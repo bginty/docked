@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-15T10:18:03.1622859Z",
+  "applicationSource": "45b570aefd70962c7266f785b20404de6b5baeac",
+  "productionReleaseToolTests": {
+    "passed": 3,
+    "uninterrupted": true,
+    "failed": 0
+  },
+  "liveChecks": {
+    "passed": 8,
+    "initialFailure": "Probe expected 401/403; route correctly returned documented 400 rejected. Helper corrected; repeat passed."
+  },
+  "releaseHelperLint": "PASS",
+  "applicationChecks": "Previously completed in docs/PREMIUM_WALLET_COMPLETION.md; no application code changed in release-record commit"
+}

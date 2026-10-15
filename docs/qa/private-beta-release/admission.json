@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-15T10:15:59.033Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "passed": true,
+  "testers": [
+    {
+      "tester": "Barry",
+      "confirmed": true,
+      "admitted": true,
+      "gameplay": true,
+      "mfa_required": false,
+      "wallet": true
+    },
+    {
+      "tester": "Luke",
+      "confirmed": true,
+      "admitted": true,
+      "gameplay": true,
+      "mfa_required": false,
+      "wallet": true
+    },
+    {
+      "tester": "Owner",
+      "confirmed": true,
+      "admitted": true,
+      "gameplay": true,
+      "mfa_required": true,
+      "wallet": true
+    }
+  ],
+  "scope": "Read-only account/admission/MFA-policy verification; not interactive login or hosted transactional acceptance",
+  "invitationsRequired": false,
+  "invitationsSent": 0,
+  "memberMutations": 0
+}

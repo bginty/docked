@@ -1,5 +1,7 @@
 # Wallet completion and premium fantasy review — 15 October 2026
 
+> Subsequent release update: the owner later explicitly authorised Production deployment. See [the release record](PRIVATE_BETA_RELEASE.md) for the deployed revision, migration evidence and remaining checks. The text below preserves the earlier local implementation handover and its verification history.
+
 Implemented locally on `pivot/fantasy-cards-preview-v1`, continuing from `e72dd10a`. The prior uncommitted redemption implementation is retained and included in this review. Production, hosted databases, existing members and financial activation were not changed. No real document, EFT, grant, pack purchase, post, invitation or message was created.
 
 ## Review links and visual evidence

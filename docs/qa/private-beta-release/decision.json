@@ -1,0 +1,17 @@
+{
+  "rollback": "rollback.json",
+  "realDocumentCollectionEnabled": false,
+  "migration": "migration-applied.json",
+  "commit": "45b570aefd70962c7266f785b20404de6b5baeac",
+  "memberQaMutations": 0,
+  "deployment": "dpl_5vnGoyBCXpy6rLK5W1PjNfKQhU2V",
+  "candidate": "candidate.json",
+  "decision": "RELEASE",
+  "authorization": "User explicitly requested Production deployment after private beta authorization",
+  "secretReview": "secret-review.json",
+  "publicSignupEnabled": false,
+  "applicationVerification": "docs/PREMIUM_WALLET_COMPLETION.md",
+  "realRedemptionEnabled": false,
+  "target": "Existing admitted test beta at docked.com.au",
+  "at": "2026-10-15T10:13:43.2340835Z"
+}

@@ -213,9 +213,16 @@ if (mode === "inspect") {
           headers: { origin: new URL(base).origin },
         });
         assert.ok(
-          [401, 403].includes(denied.status()),
+          [400, 401, 403].includes(denied.status()),
           "Hosted redemption remains disabled",
         );
+        const denial = await denied.json();
+        assert.equal(denial.outcome, "rejected");
+        if (denied.status() === 400)
+          assert.equal(
+            denial.error,
+            "Redemption is disabled or this request is invalid.",
+          );
         checks.push(
           "Premium turf/jerseys present; redemption history private and hosted mutations disabled",
         );

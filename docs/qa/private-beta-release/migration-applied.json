@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "applied": true,
+  "projectRef": "pojoymtniryarxxunyvz",
+  "migrations": [
+    {
+      "file": "20261015055109_manual_credit_redemption.sql",
+      "sha256": "f9199e456939138590725a65e87b0b279e9ef2fe8de35ce52a508aefc5639a82",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261015080107_verified_jersey_presentation.sql",
+      "sha256": "e82b7cdad31738468e8ef76477fc252790e38137601c0066d1833c2cafe993a8",
+      "alreadyApplied": false
+    }
+  ],
+  "backup": {
+    "path": "private-data/private-beta-release/before-1446599f798c3d975a780df539ae08d13e668d21d8db44577bf062cd66f194eb.json",
+    "sha256": "1446599f798c3d975a780df539ae08d13e668d21d8db44577bf062cd66f194eb",
+    "verifiedReadable": true,
+    "tables": 11,
+    "scope": "Affected ledger/inventory/team data; not full Auth/storage disaster recovery"
+  },
+  "memberDataUnchanged": true,
+  "redemptionActivated": false
+}
