@@ -3,8 +3,6 @@
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { request } from "@playwright/test";
-import { execFileSync } from "node:child_process";
-import { resolve, join } from "node:path";
 const mode = process.argv[2];
 assert.ok(["inspect", "candidate", "promote", "live"].includes(mode));
 const root = "docs/qa/rarity-frames",
@@ -84,64 +82,23 @@ if (mode === "inspect") {
     const base = mode === "live" ? "https://docked.com.au" : d.url;
     const client = await request.newContext();
     try {
-      const get = async (path) => {
-        if (mode === "live")
-          return client.get(base + path, { maxRedirects: 0, timeout: 30000 });
-        // Official CLI uses the owner's existing auth for the exact protected candidate.
-        // Capture output privately; never expose auth headers or capability URLs.
-        let output;
+      if (mode === "candidate") {
+        // Existing deployment-scoped share capability; one hour, never logged.
+        // CLI curl forwarding fails on this Windows CLI version. Protection stays on.
+        const access = JSON.parse(readFileSync(privateRoot + "/candidate-access.json"));
+        const tokens = Object.keys(access.protectionBypass ?? {});
+        assert.equal(tokens.length, 1);
+        const url = new URL(base);
+        url.searchParams.set("_vercel_share", tokens[0]);
         try {
-          output = execFileSync(
-            process.execPath,
-            [
-              join(
-                process.env.LOCALAPPDATA,
-                "npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js",
-              ),
-              "curl",
-              base + path,
-              "--cwd",
-              resolve("private-data/friends-deploy/" + d.commit + "/source"),
-              "--global-config",
-              resolve("private-data/vercel-cli"),
-              "--scope",
-              team,
-              "--",
-              "--silent",
-              "--show-error",
-              "--max-time",
-              "30",
-              "--write-out",
-              "\\n%{http_code}",
-            ],
-            {
-              encoding: "utf8",
-              windowsHide: true,
-              timeout: 90000,
-              stdio: ["ignore", "pipe", "pipe"],
-              maxBuffer: 10 * 1024 * 1024,
-            },
-          );
-        } catch (e) {
-          writeFileSync(
-            privateRoot + "/curl-error.txt",
-            String(e.stderr ?? "CLI request failed"),
-            { mode: 0o600 },
-          );
-          throw Error(
-            "Protected candidate CLI request failed; private diagnostic retained",
-          );
+          const initial = await client.get(url.href, { timeout: 30000 });
+          assert.equal(new URL(initial.url()).origin, new URL(base).origin);
+          assert.equal(initial.status(), 200);
+        } catch {
+          throw Error("Candidate private access failed; capability omitted from diagnostics");
         }
-        const split = output.lastIndexOf("\n"),
-          body = output.slice(0, split),
-          code = Number(output.slice(split + 1));
-        assert.ok(code >= 100 && code <= 599, "Expected CLI HTTP status");
-        return {
-          status: () => code,
-          text: async () => body,
-          json: async () => JSON.parse(body),
-        };
-      };
+      }
+      const get = (path) => client.get(base + path, { maxRedirects: 0, timeout: 30000 });
       const release = await get("/api/beta-release"),
         version = await release.json();
       assert.equal(release.status(), 200);

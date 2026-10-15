@@ -1,4 +1,4 @@
-# NFL rarity frames — local review, 15 October 2026
+# NFL rarity frames — released 15 October 2026
 
 This is a presentation-only change after release 8a585d1b. The owner subsequently requested outer reveal frames, one smooth reveal, Icon effects, and deployment for existing testers. Release is authorised after verification; the release receipt below records completion. No cards, balances, teams, catalogue records, rules or database schema are changed. The original written rarity treatment and the later physical-device reveal screenshots are the visual references.
 
@@ -49,3 +49,16 @@ Completed checks:
 Compare Rare with Ultra Rare and Legendary with Icon, inspect long names and enlarged text, tap a card, and try the reveal. All rarities keep the same jersey and live text. Core remains unlimited; limited serials/caps come from each card.
 
 No migration or data rollback is needed. The verified prior live deployment is `dpl_3nnwtajpgUqHRrELA3xnDtoaLVbq` (source `8a585d1b`). Promote that deployment through the existing Vercel project if the application release fails; never restore database data or overwrite subsequent transactions. The current Android shell's server URL is `https://docked.com.au/app`, package `au.com.docked.app`; web changes arrive on close/reopen with no rebuild or uninstall required.
+
+## Live release receipt
+
+Released at 11:45 Australia/Sydney on 15 October 2026. Both domain aliases point to `dpl_9BQYQsDsrjJrHjFqGYS57xD9AokK`, application source `74191226e9d957ec0930e0da496df00ed2f510bb`. Live: https://docked.com.au/fantasy/cards. The six-frame gallery remains development-only.
+
+- Staged candidate and live checks each passed six checks: exact source/project/database binding, invitation-only registration boundary, private marketplace/activity/wallet/gameplay API denials, and deployed frame/reveal/effect assets.
+- Public domain/callback/admission suite: 15/15 passed. These are anonymous boundary and asset checks, not hosted member transactions. No member data or database migrations were performed.
+- The Windows CLI curl wrapper incorrectly forwarded global arguments to native curl. Candidate verification used the existing deployment-scoped one-hour private share mechanism. Its capability is stored only in ignored private-data and is omitted from evidence. Deployment protection remains unchanged.
+- The existing Android shell loads https://docked.com.au/app. Fully close and reopen v22; refresh an open browser tab. No APK rebuild, reinstall or data clearing is required.
+- No invitations/messages, payments, grants or member gameplay mutations. Existing economy and saved scoring rules remain unchanged.
+- S24 follow-up: replay an existing saved pack, check outer rarity frames and one smooth reveal for each card, try Skip and close/reopen, inspect Icon effects if present in that saved result, and confirm reduced-motion controls. Replays award nothing. Physical-device acceptance remains unperformed.
+
+Evidence: [candidate](qa/rarity-frames/candidate.json), [live](qa/rarity-frames/live.json), [domain boundaries](qa/friends-cutover/domain-boundary.json). Roll back only the application to `dpl_3nnwtajpgUqHRrELA3xnDtoaLVbq` using the existing project promotion workflow; preserve all database transactions and history.

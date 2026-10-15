@@ -1,0 +1,22 @@
+{
+  "decision": "RELEASE",
+  "commit": "74191226e9d957ec0930e0da496df00ed2f510bb",
+  "scope": "Existing admitted friends beta; rarity frames and reveal presentation only",
+  "authority": "Owner requested making the completed update live for Barry and the new tester",
+  "gates": {
+    "browser": "13/13 passed, including one-way reveal, all six outer frames, Icon effects, reduced motion, replay and duplicate taps",
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "cleanBuild": "PASS",
+    "clientBoundary": "PASS",
+    "secretScan": "PASS; no findings or errors",
+    "review": "Presentation changes only; no database migration or economy/rules/ownership changes",
+    "rollback": "dpl_3nnwtajpgUqHRrELA3xnDtoaLVbq",
+    "candidateReadOnlyVerification": "PASS; exact candidate receipt recorded before promotion"
+  },
+  "physicalDeviceAcceptance": "Pending",
+  "hostedTransactionalAcceptancePerformed": false,
+  "hostedMemberQaMutations": 0,
+  "releasedDeployment": "dpl_9BQYQsDsrjJrHjFqGYS57xD9AokK",
+  "liveChecks": "6/6 passed; domain/callback/admission 15/15 passed"
+}
