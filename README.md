@@ -1,3 +1,5 @@
+Approved release candidate: [Play and Cards redesign](docs/PLAY_CARDS_REDESIGN_REVIEW.md). The owner approved the visual preview and requested deployment for existing testers. Release follows candidate verification; no admission expansion or real-money activation.
+
 Current release: [NFL rarity frames and reveal update](docs/RARITY_FRAME_REVIEW.md), live on docked.com.au from source 74191226 after verification. No admission expansion, account/asset mutations or real-money activation.
 
 Previous release: [Mobile cleanup release](docs/MOBILE_CLEANUP_REVIEW.md). On 15 October 2026 the owner authorised deploying the reviewed visual refinements, concise rarity chances and Social feed improvements to the existing admitted beta after verification. No admission expansion, real-money activation or member QA mutations.

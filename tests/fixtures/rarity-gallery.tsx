@@ -86,7 +86,7 @@ export function RarityGallery({ base }: { base: FantasyCard }) {
             style={rarityStyle(c.tier)}
             onClick={() => setDetail(c)}
           >
-            <PlayerShirt card={c} hideNumber />
+            <PlayerShirt card={c} />
             <strong className="field-player-name">{c.name}</strong>
             <span>
               {c.team} · {c.position}

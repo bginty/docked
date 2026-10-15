@@ -1,3 +1,4 @@
+const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/rarity-frames";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
@@ -31,7 +32,7 @@ test("outer reveal frames, single forward turn and Icon celebration preserve the
       await expect(page.locator(".pack-icon-celebration")).toHaveCount(1);
       await page.waitForTimeout(1100);
       await page.screenshot({
-        path: "docs/qa/rarity-frames/icon-celebration.png",
+        path: `${evidence}/icon-celebration.png`,
       });
     } else {
       await expect(page.locator(".pack-icon-celebration")).toHaveCount(0);
@@ -83,7 +84,7 @@ test("outer reveal frames, single forward turn and Icon celebration preserve the
     expect(box!.y + box!.height).toBeLessThan(740);
     if (i === 1 || i === 5)
       await page.screenshot({
-        path: `docs/qa/rarity-frames/reveal-outer-${i}.png`,
+        path: `${evidence}/reveal-outer-${i}.png`,
       });
     await next.click();
   }
@@ -100,12 +101,12 @@ test("outer reveal frames, single forward turn and Icon celebration preserve the
   ).toBeEnabled();
   expect(mutations).toBe(0);
   await context.close();
-  await page.video()!.saveAs("docs/qa/rarity-frames/reveal-update.webm");
+  await page.video()!.saveAs(`${evidence}/reveal-update.webm`);
 });
 test("six rarity frames preserve jersey, identity, focus and legacy context across palettes and viewports", async ({
   page,
 }) => {
-  await mkdir("docs/qa/rarity-frames", { recursive: true });
+  await mkdir(evidence, { recursive: true });
   await page.route("**/*", (r) =>
     new URL(r.request().url()).hostname === "127.0.0.1"
       ? r.continue()
@@ -150,7 +151,7 @@ test("six rarity frames preserve jersey, identity, focus and legacy context acro
       }
       if (width === 1440 || palette === "CHI")
         await page.screenshot({
-          path: `docs/qa/rarity-frames/${palette}-${width}.png`,
+          path: `${evidence}/${palette}-${width}.png`,
           fullPage: true,
         });
     }
@@ -167,7 +168,7 @@ test("six rarity frames preserve jersey, identity, focus and legacy context acro
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/qa/rarity-frames/long-${width}.png`,
+      path: `${evidence}/long-${width}.png`,
       fullPage: true,
     });
   }
@@ -237,7 +238,7 @@ test("six rarity frames preserve jersey, identity, focus and legacy context acro
     ),
   ).toBe(true);
   await page.screenshot({
-    path: "docs/qa/rarity-frames/enlarged.png",
+    path: `${evidence}/enlarged.png`,
     fullPage: true,
   });
 });

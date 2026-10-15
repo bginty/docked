@@ -102,13 +102,7 @@ export function FantasySheet({
     </dialog>
   );
 }
-export function PlayerShirt({
-  card,
-  hideNumber = false,
-}: {
-  card?: JerseyMetadata;
-  hideNumber?: boolean;
-}) {
+export function PlayerShirt({ card }: { card?: JerseyMetadata }) {
   return (
     <svg className="pitch-shirt" viewBox="0 0 100 90" aria-hidden="true">
       <path
@@ -122,18 +116,6 @@ export function PlayerShirt({
         stroke={jerseyPresentation(card).accent}
         strokeWidth="5"
       />
-      {!hideNumber && (
-        <text
-          x="50"
-          y="59"
-          textAnchor="middle"
-          fill="white"
-          fontSize="27"
-          fontWeight="800"
-        >
-          {card ? jerseyPresentation(card).number : "+"}
-        </text>
-      )}
     </svg>
   );
 }
@@ -223,7 +205,7 @@ export function FantasyPlayerDetails({
           className={`lineup-profile-hero ${rarityFrame(card.tier)}`}
           style={rarityStyle(card.tier)}
         >
-          <PlayerShirt card={card} hideNumber />
+          <PlayerShirt card={card} />
           <div>
             <h3>{fullTeamName(card)}</h3>
             <p>{card.position}</p>

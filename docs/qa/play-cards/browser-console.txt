@@ -1,0 +1,13 @@
+
+Running 4 tests using 1 worker
+
+(node:58004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\play-cards-redesign.test.ts:25:5 › desktop and phone composition preserves data, formation, colour-only jerseys and focus (27.7s)
+  ok 2 tests\browser\play-cards-redesign.test.ts:93:5 › collection rarity counts, paging, filtering, list and empty states are source-backed (5.8s)
+  ok 3 tests\browser\play-cards-redesign.test.ts:143:5 › incomplete invalid entered and partially locked states remain honest in both modes (14.9s)
+  ok 4 tests\browser\play-cards-redesign.test.ts:209:5 › enlarged text and reduced motion keep card data and actions readable (5.0s)
+
+  4 passed (2.2m)

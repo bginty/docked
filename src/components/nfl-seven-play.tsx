@@ -36,6 +36,24 @@ import { fullTeamName } from "@/core/card-presentation";
 
 import { LocalDateTime } from "./local-date-time";
 
+function FantasyAmount({ value }: { value: number }) {
+  const exact = value.toLocaleString("en-AU");
+  const compact =
+    Math.abs(value) >= 1_000_000
+      ? (value / 1_000_000).toFixed(2) + "m"
+      : Math.abs(value) >= 1000
+        ? (value / 1000).toLocaleString("en-AU", { maximumFractionDigits: 1 }) +
+          "k"
+        : exact;
+  return (
+    <span
+      title={exact + " fantasy salary dollars"}
+      aria-label={exact + " fantasy salary dollars"}
+    >
+      $ {compact}
+    </span>
+  );
+}
 type Draft = {
   picks: SlotSelection[];
 
@@ -270,12 +288,15 @@ export function NflSevenPlay({
     editable =
       !!comp && !comp.scored_at && (!closed || !!entry) && !comp.rules.disabled;
 
-  const nextLock = entry?.snapshot
-
-    .map((c) => c.kickoff)
-
-    .filter((t) => Date.parse(t) > now)
-
+  const nextLock = (
+    entry
+      ? entry.snapshot.map((card) => card.kickoff)
+      : picks.map((pick) => {
+          const card = inventory.find((c) => c.id === pick.card);
+          return card ? kickoff(card)?.scheduledAt : undefined;
+        })
+  )
+    .filter((t): t is string => !!t && Date.parse(t) > now)
     .sort()[0];
 
   const close = useCallback(() => setSlot(null), []);
@@ -391,414 +412,446 @@ export function NflSevenPlay({
         </select>
       </label>
 
-      <div className="seven-budget">
+      <div className="round-timing">
+        {" "}
         <strong>
-          {closed ? "New entries closed" : "Enter before"}{" "}
+          {closed ? "New entries closed" : "Entry deadline"}{" "}
           <LocalDateTime value={comp.locks_at} />
         </strong>
-
         <p>
           {nextLock ? (
             <>
-              Next player lock: <LocalDateTime value={nextLock} />
+              {entry ? "Next player lock" : "Next selected kickoff"}:{" "}
+              <LocalDateTime value={nextLock} />
             </>
           ) : (
             "Each submitted player locks at their own kickoff."
           )}
         </p>
+      </div>
+      <div className="lineup-workspace">
+        <div className="lineup-pitch">
+          {" "}
+          <div className="field-toolbar">
+            <h2>QB · 2 RB · 2 WR · TE · FLEX</h2>
 
-        {mode === "SALARY_CAP" ? (
-          <>
-            <h2>
-              {check.total.toLocaleString("en-AU")} /{" "}
-              {cfg.salaryCap.toLocaleString("en-AU")}
-            </h2>
-
-            <progress
-              value={Math.min(check.total, cfg.salaryCap)}
-
-              max={cfg.salaryCap}
-
-              aria-label="Salary cap used"
-            />
-
-            <p>
-              {check.remaining.toLocaleString("en-AU")} remaining ·{" "}
-              {((100 * check.total) / cfg.salaryCap).toFixed(1)}% used
+            <button onClick={() => setList(!list)} aria-pressed={list}>
+              {list ? "Field view" : "List view"}
+            </button>
+          </div>
+          {restoredLocks && (
+            <p role="status">
+              Started slots now show your confirmed entry. Unsubmitted
+              replacements for those slots were not entered.
             </p>
+          )}
+          <div
+            className={list ? "seven-list" : "fantasy-field seven-field"}
 
-            <small>Fantasy salary · no credit charge.</small>
-          </>
-        ) : (
-          <>
-            <strong>No Salary Cap · 1.0×–1.5×</strong>
-          </>
-        )}
-      </div>
+            aria-label="Seven-player lineup"
+          >
+            {cfg.slots.map((s) => {
+              const selected = picks.find((p) => p.slot === s.id),
+                card = inventory.find((c) => c.id === selected?.card),
+                locked = locks.has(s.id);
 
-      <div className="field-toolbar">
-        <h2>Pick your seven</h2>
+              const issue =
+                card && !locked ? sevenEligibility(card, data, comp.id) : "";
+              return (
+                <div className="seven-slot" key={s.id} data-slot={s.id}>
+                  <button
+                    disabled={!card && (!editable || locked || busy)}
+                    className={`field-player ${card ? rarityFrame(card.tier) : ""}`}
+                    style={card ? rarityStyle(card.tier) : undefined}
+                    onClick={() => {
+                      if (card)
+                        setProfile({
+                          card: card.id,
+                          slot: s.id,
+                          candidate: false,
+                        });
+                      else {
+                        setSlot(s.id);
+                        setSearch("");
+                      }
+                    }}
+                    aria-label={`${s.id}: ${card?.name ?? "Choose owned card"}${card ? ", " + card.tier + ", " + cardIdentity(card) : ""}${locked ? ", locked" : ""}`}
+                  >
+                    {!list && <PlayerShirt card={card} />}
+                    <span className="slot-position">
+                      {s.id.replace(/[0-9]/g, "")}
+                    </span>
+                    <span className="lineup-name-team">
+                      <strong className="field-player-name">
+                        {card?.name ?? "Choose player"}
+                      </strong>
+                      {card && (
+                        <span className="lineup-team">
+                          {fullTeamName(card)}
+                        </span>
+                      )}
+                    </span>
+                    {card && (
+                      <RarityBadge
+                        tier={card.tier}
+                        compact
+                        appliedMultiplier={
+                          card.multiplier ??
+                          rarityRule(card.tier).multiplierTenths / 10
+                        }
+                      />
+                    )}
+                    {card && mode === "SALARY_CAP" && (
+                      <span
+                        className="lineup-salary"
+                        aria-label="Fantasy salary"
+                      >
+                        <FantasyAmount value={salary(card.tier, cfg)} />
+                      </span>
+                    )}
+                    {locked && <small className="entry-badge">Locked</small>}
+                    {!!issue && (
+                      <small className="entry-badge">Needs attention</small>
+                    )}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <aside className="lineup-summary" aria-label="Team summary">
+          {" "}
+          <div className="seven-budget">
+            {mode === "SALARY_CAP" ? (
+              <>
+                <span className="budget-label">Salary Cap</span>
+                <h2>
+                  <FantasyAmount value={check.remaining} />
+                </h2>
+                <span className="budget-label">Remaining fantasy budget</span>
 
-        <button onClick={() => setList(!list)} aria-pressed={list}>
-          {list ? "Field view" : "List view"}
-        </button>
-      </div>
+                <progress
+                  value={Math.min(check.total, cfg.salaryCap)}
 
-      {restoredLocks && (
-        <p role="status">
-          Started slots now show your confirmed entry. Unsubmitted replacements
-          for those slots were not entered.
-        </p>
-      )}
+                  max={cfg.salaryCap}
 
-      <div
-        className={list ? "seven-list" : "fantasy-field seven-field"}
+                  aria-label="Salary cap used"
+                />
 
-        aria-label="Seven-player lineup"
-      >
-        {cfg.slots.map((s) => {
-          const selected = picks.find((p) => p.slot === s.id),
-            card = inventory.find((c) => c.id === selected?.card),
-            locked = locks.has(s.id);
+                <p>
+                  Used <FantasyAmount value={check.total} /> /{" "}
+                  <FantasyAmount value={cfg.salaryCap} /> ·{" "}
+                  {((100 * check.total) / cfg.salaryCap).toFixed(1)}% used
+                </p>
 
-          const issue =
-            card && !locked ? sevenEligibility(card, data, comp.id) : "";
-          return (
-            <div className="seven-slot" key={s.id}>
+                <small>Fantasy salary · no credit charge.</small>
+              </>
+            ) : (
+              <>
+                <strong>No Salary Cap · 1.0×–1.5×</strong>
+              </>
+            )}
+          </div>
+          <p className="selection-count">
+            {picks.length}/{cfg.slots.length} selected · {draftState}
+          </p>
+          {check.errors.length > 0 && (
+            <ul role="alert">
+              {check.errors.map((e) => (
+                <li key={e}>{e}</li>
+              ))}
+            </ul>
+          )}
+          {entry && (
+            <p className="last-saved">
+              Last confirmed entry: <LocalDateTime value={entry.updated_at} />
+            </p>
+          )}
+          {saved && (
+            <p>
+              Last draft save: <LocalDateTime value={saved.updated_at} />
+            </p>
+          )}
+          <div className="seven-actions">
+            <button
+              hidden={!!entry}
+              disabled={busy || !editable || !!check.errors.length}
+
+              onClick={() => void save("seven_draft")}
+            >
+              Save Draft
+            </button>
+
+            <button
+              disabled={
+                busy ||
+                !editable ||
+                !!full.errors.length ||
+                (!!entry && !notSubmitted)
+              }
+
+              onClick={() => void save("seven_enter")}
+            >
+              {entry ? "Update Team" : "Enter Competition"}
+            </button>
+          </div>
+          <p role="status">{notice}</p>
+          <details className="team-secondary">
+            <summary>Team options & history</summary>
+            {entry && !closed && (
               <button
-                disabled={!card && (!editable || locked || busy)}
-                className={`field-player ${card ? rarityFrame(card.tier) : ""}`}
-                style={card ? rarityStyle(card.tier) : undefined}
+                disabled={busy}
+
                 onClick={() => {
-                  if (card)
-                    setProfile({ card: card.id, slot: s.id, candidate: false });
-                  else {
-                    setSlot(s.id);
-                    setSearch("");
+                  if (
+                    window.confirm(
+                      "Withdraw this entry? Your draft will remain saved.",
+                    )
+                  )
+                    void save("seven_withdraw");
+                }}
+              >
+                Withdraw entry
+              </button>
+            )}
+
+            {entry && (
+              <button
+                onClick={() => {
+                  if (
+                    !draft?.dirty ||
+                    window.confirm(
+                      "Discard unsaved changes and view your confirmed entry?",
+                    )
+                  ) {
+                    update({
+                      picks: entry.snapshot.map((c) => ({
+                        slot: c.slot,
+
+                        card: c.card_id,
+                      })),
+
+                      revision: saved?.revision ?? 0,
+
+                      entryRevision: entry.revision,
+
+                      dirty: false,
+                    });
+
+                    setNotice(
+                      "Your confirmed entry is shown. Saving a draft does not change it.",
+                    );
                   }
                 }}
-                aria-label={`${s.id}: ${card?.name ?? "Choose owned card"}${card ? ", " + card.tier + ", " + cardIdentity(card) : ""}${locked ? ", locked" : ""}`}
               >
-                {!list && <PlayerShirt card={card} hideNumber={!!card} />}
-                <span className="slot-position">
-                  {s.id.replace(/[0-9]/g, "")}
-                </span>
-                <span className="lineup-name-team">
-                  <strong className="field-player-name">
-                    {card?.name ?? "Choose player"}
-                  </strong>
-                  {card && (
-                    <span className="lineup-team">{fullTeamName(card)}</span>
-                  )}
-                </span>
-                {card && (
-                  <RarityBadge
-                    tier={card.tier}
-                    compact
-                    appliedMultiplier={
-                      card.multiplier ??
-                      rarityRule(card.tier).multiplierTenths / 10
-                    }
-                  />
-                )}
-                {locked && <small className="entry-badge">Locked</small>}
-                {!!issue && (
-                  <small className="entry-badge">Needs attention</small>
-                )}
+                View confirmed entry
               </button>
-            </div>
-          );
-        })}
-      </div>
+            )}
 
-      <p>
-        {picks.length}/{cfg.slots.length} selected · {draftState}
-      </p>
-      {check.errors.length > 0 && (
-        <ul role="alert">
-          {check.errors.map((e) => (
-            <li key={e}>{e}</li>
-          ))}
-        </ul>
-      )}
-
-      {entry && (
-        <p className="last-saved">
-          Last confirmed entry: <LocalDateTime value={entry.updated_at} />
-        </p>
-      )}
-
-      {saved && (
-        <p>
-          Last draft save: <LocalDateTime value={saved.updated_at} />
-        </p>
-      )}
-
-      <div className="seven-actions">
-        <button
-          hidden={!!entry}
-          disabled={busy || !editable || !!check.errors.length}
-
-          onClick={() => void save("seven_draft")}
-        >
-          Save Draft
-        </button>
-
-        <button
-          disabled={
-            busy ||
-            !editable ||
-            !!full.errors.length ||
-            (!!entry && !notSubmitted)
-          }
-
-          onClick={() => void save("seven_enter")}
-        >
-          {entry ? "Update Team" : "Enter Competition"}
-        </button>
-      </div>
-
-      <p role="status">{notice}</p>
-
-      <details className="team-secondary">
-        <summary>Team options & history</summary>
-        {entry && !closed && (
-          <button
-            disabled={busy}
-
-            onClick={() => {
-              if (
-                window.confirm(
-                  "Withdraw this entry? Your draft will remain saved.",
-                )
-              )
-                void save("seven_withdraw");
-            }}
-          >
-            Withdraw entry
-          </button>
-        )}
-
-        {entry && (
-          <button
-            onClick={() => {
-              if (
-                !draft?.dirty ||
-                window.confirm(
-                  "Discard unsaved changes and view your confirmed entry?",
-                )
-              ) {
-                update({
-                  picks: entry.snapshot.map((c) => ({
-                    slot: c.slot,
-
-                    card: c.card_id,
-                  })),
-
-                  revision: saved?.revision ?? 0,
-
-                  entryRevision: entry.revision,
-
-                  dirty: false,
-                });
-
-                setNotice(
-                  "Your confirmed entry is shown. Saving a draft does not change it.",
-                );
-              }
-            }}
-          >
-            View confirmed entry
-          </button>
-        )}
-
-        <button
-          onClick={() => {
-            if (
-              !draft?.dirty ||
-              window.confirm(
-                "Discard unsaved changes and reload the latest saved team?",
-              )
-            ) {
-              update({
-                picks:
-                  saved?.selections ??
-                  entry?.snapshot.map((c) => ({
-                    slot: c.slot,
-
-                    card: c.card_id,
-                  })) ??
-                  [],
-
-                revision: saved?.revision ?? 0,
-
-                entryRevision: entry?.revision ?? 0,
-
-                dirty: false,
-              });
-
-              setNotice(
-                "Loaded latest server state. Use Refresh team & points below to check for changes from another device.",
-              );
-            }
-          }}
-        >
-          Reload saved draft
-        </button>
-
-        {rounds.filter((c) => c.id !== comp.id).length > 0 && (
-          <label>
-            Copy previous team to draft
-            <select
-              defaultValue=""
-
-              onChange={(e) => {
-                const prev = data.seven?.entries.find(
-                  (x) => x.competition_id === e.target.value,
-                );
-
+            <button
+              onClick={() => {
                 if (
-                  prev &&
-                  (!draft?.dirty ||
-                    window.confirm(
-                      "Replace unsaved draft with this previous team?",
-                    ))
-                )
+                  !draft?.dirty ||
+                  window.confirm(
+                    "Discard unsaved changes and reload the latest saved team?",
+                  )
+                ) {
                   update({
-                    ...draft!,
+                    picks:
+                      saved?.selections ??
+                      entry?.snapshot.map((c) => ({
+                        slot: c.slot,
 
-                    picks: prev.snapshot.map((c) => ({
-                      slot: c.slot,
+                        card: c.card_id,
+                      })) ??
+                      [],
 
-                      card: c.card_id,
-                    })),
+                    revision: saved?.revision ?? 0,
 
-                    dirty: true,
+                    entryRevision: entry?.revision ?? 0,
+
+                    dirty: false,
                   });
 
-                e.target.value = "";
+                  setNotice(
+                    "Loaded latest server state. Use Refresh team & points below to check for changes from another device.",
+                  );
+                }
               }}
             >
-              <option value="">Choose previous team…</option>
+              Reload saved draft
+            </button>
 
-              {rounds
+            {rounds.filter((c) => c.id !== comp.id).length > 0 && (
+              <label>
+                Copy previous team to draft
+                <select
+                  defaultValue=""
 
-                .filter(
-                  (c) =>
-                    c.id !== comp.id &&
-                    data.seven?.entries.some((e) => e.competition_id === c.id),
-                )
+                  onChange={(e) => {
+                    const prev = data.seven?.entries.find(
+                      (x) => x.competition_id === e.target.value,
+                    );
 
-                .map((c) => (
-                  <option value={c.id} key={c.id}>
-                    {c.name}
-                  </option>
-                ))}
-            </select>
-            <small>Copied teams require validation and explicit entry.</small>
-          </label>
-        )}
-      </details>
-      {data.admin && (
-        <details className="seven-owner-menu">
-          <summary>Owner competition controls</summary>
+                    if (
+                      prev &&
+                      (!draft?.dirty ||
+                        window.confirm(
+                          "Replace unsaved draft with this previous team?",
+                        ))
+                    )
+                      update({
+                        ...draft!,
 
+                        picks: prev.snapshot.map((c) => ({
+                          slot: c.slot,
+
+                          card: c.card_id,
+                        })),
+
+                        dirty: true,
+                      });
+
+                    e.target.value = "";
+                  }}
+                >
+                  <option value="">Choose previous team…</option>
+
+                  {rounds
+
+                    .filter(
+                      (c) =>
+                        c.id !== comp.id &&
+                        data.seven?.entries.some(
+                          (e) => e.competition_id === c.id,
+                        ),
+                    )
+
+                    .map((c) => (
+                      <option value={c.id} key={c.id}>
+                        {c.name}
+                      </option>
+                    ))}
+                </select>
+                <small>
+                  Copied teams require validation and explicit entry.
+                </small>
+              </label>
+            )}
+          </details>
+          {data.admin && (
+            <details className="seven-owner-menu">
+              <summary>Owner competition controls</summary>
+
+              <p>
+                Rules and scoring snapshots are immutable. Pausing blocks new
+                entries and edits; existing locked scoring continues.
+              </p>
+
+              <button
+                disabled={busy}
+
+                onClick={() => {
+                  const reason = window.prompt(
+                    "Reason for this audited availability change (12+ characters)",
+                  );
+
+                  if (reason && reason.trim().length >= 12)
+                    void act("seven_admin_control", {
+                      competition_id: comp.id,
+
+                      revision: Number(comp.rules.control_revision ?? 0),
+
+                      enabled: !!comp.rules.disabled,
+
+                      standings_visible: comp.rules.standings_visible !== false,
+
+                      reason,
+                    });
+                }}
+              >
+                {comp.rules.disabled
+                  ? "Enable entries and editing"
+                  : "Pause entries and editing"}
+              </button>
+
+              <button
+                disabled={busy}
+
+                onClick={() => {
+                  const reason = window.prompt(
+                    "Reason for this audited standings visibility change (12+ characters)",
+                  );
+
+                  if (reason && reason.trim().length >= 12)
+                    void act("seven_admin_control", {
+                      competition_id: comp.id,
+
+                      revision: Number(comp.rules.control_revision ?? 0),
+
+                      enabled: !comp.rules.disabled,
+
+                      standings_visible: comp.rules.standings_visible === false,
+
+                      reason,
+                    });
+                }}
+              >
+                {comp.rules.standings_visible === false
+                  ? "Show standings"
+                  : "Hide standings for review"}
+              </button>
+            </details>
+          )}
+          <section className="round-summary">
+            <h3>This round</h3>
+            <p>
+              {comp.scored_at
+                ? "Results available"
+                : closed
+                  ? "Awaiting final results"
+                  : "Awaiting game"}
+            </p>
+            <small>Post-game scoring · pending statistics stay pending.</small>
+            <Link href={`/fantasy/results?competition=${comp.id}`}>
+              View standings →
+            </Link>
+          </section>
           <p>
-            Rules and scoring snapshots are immutable. Pausing blocks new
-            entries and edits; existing locked scoring continues.
+            <Link href={`/fantasy/scoring/how-it-works?competition=${comp.id}`}>
+              Scoring rules
+            </Link>
+            {" · "}
+            <Link href={`/fantasy/results?competition=${comp.id}`}>
+              Player points & weekly standings →
+            </Link>{" "}
+            · <Link href="/fantasy/cards">My cards →</Link>
           </p>
+          <details>
+            <summary>Locks, transfers and scoring</summary>
 
-          <button
-            disabled={busy}
+            <p>
+              New entries close at the first fixture. Entered teams can replace
+              unstarted players while keeping all seven positions valid. A
+              started player stays in their original slot.
+            </p>
 
-            onClick={() => {
-              const reason = window.prompt(
-                "Reason for this audited availability change (12+ characters)",
-              );
+            <p>
+              Before kickoff, replace a submitted card or withdraw before
+              entries close to sell or swap it. After kickoff, a transfer
+              preserves your locked score; the buyer cannot add that started
+              player. Draft-only cards may transfer and will need revalidation.
+            </p>
 
-              if (reason && reason.trim().length >= 12)
-                void act("seven_admin_control", {
-                  competition_id: comp.id,
-
-                  revision: Number(comp.rules.control_revision ?? 0),
-
-                  enabled: !!comp.rules.disabled,
-
-                  standings_visible: comp.rules.standings_visible !== false,
-
-                  reason,
-                });
-            }}
-          >
-            {comp.rules.disabled
-              ? "Enable entries and editing"
-              : "Pause entries and editing"}
-          </button>
-
-          <button
-            disabled={busy}
-
-            onClick={() => {
-              const reason = window.prompt(
-                "Reason for this audited standings visibility change (12+ characters)",
-              );
-
-              if (reason && reason.trim().length >= 12)
-                void act("seven_admin_control", {
-                  competition_id: comp.id,
-
-                  revision: Number(comp.rules.control_revision ?? 0),
-
-                  enabled: !comp.rules.disabled,
-
-                  standings_visible: comp.rules.standings_visible === false,
-
-                  reason,
-                });
-            }}
-          >
-            {comp.rules.standings_visible === false
-              ? "Show standings"
-              : "Hide standings for review"}
-          </button>
-        </details>
-      )}
-
-      <p>
-        <Link href={`/fantasy/scoring/how-it-works?competition=${comp.id}`}>
-          Scoring rules
-        </Link>
-        {" · "}
-        <Link href={`/fantasy/results?competition=${comp.id}`}>
-          Player points & weekly standings →
-        </Link>{" "}
-        · <Link href="/fantasy/cards">My cards →</Link>
-      </p>
-
-      <details>
-        <summary>Locks, transfers and scoring</summary>
-
-        <p>
-          New entries close at the first fixture. Entered teams can replace
-          unstarted players while keeping all seven positions valid. A started
-          player stays in their original slot.
-        </p>
-
-        <p>
-          Before kickoff, replace a submitted card or withdraw before entries
-          close to sell or swap it. After kickoff, a transfer preserves your
-          locked score; the buyer cannot add that started player. Draft-only
-          cards may transfer and will need revalidation.
-        </p>
-
-        <p>
-          Base NFL points × locked rarity multiplier, including negative scores,
-          rounded once to two decimals (half away from zero). Corrections use
-          the saved rules. Missing data stays pending. Other members cannot
-          inspect your selections.
-        </p>
-      </details>
-
+            <p>
+              Base NFL points × locked rarity multiplier, including negative
+              scores, rounded once to two decimals (half away from zero).
+              Corrections use the saved rules. Missing data stays pending. Other
+              members cannot inspect your selections.
+            </p>
+          </details>
+        </aside>
+      </div>
       {profile &&
         (() => {
           const card = inventory.find((c) => c.id === profile.card);
@@ -985,7 +1038,7 @@ export function NflSevenPlay({
                     setProfile({ card: c.id, slot, candidate: true })
                   }
                 >
-                  <PlayerShirt card={c} hideNumber />
+                  <PlayerShirt card={c} />
                   <span>
                     <strong>{c.name}</strong>
                     <span className="block-note">{fullTeamName(c)}</span>

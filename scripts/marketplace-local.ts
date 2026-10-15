@@ -65,6 +65,7 @@ async function main() {
     "test-wallet",
     "marketplace",
     ...(requireExists("src/app/mobile-cleanup.css") ? ["mobile-cleanup"] : []),
+    ...(requireExists("src/app/play-cards.css") ? ["play-cards"] : []),
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");

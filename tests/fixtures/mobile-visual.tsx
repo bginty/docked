@@ -147,6 +147,56 @@ try {
     if (value.user_id === "visual-member") state = value;
   }
 } catch {}
+// Explicit local-only visual states. No server, account or catalogue mutation.
+const scenario = new URLSearchParams(location.search).get("scenario");
+if (scenario === "empty") {
+  state.cards = [];
+  state.seven!.inventory = [];
+  state.seven!.drafts.forEach((d) => (d.selections = []));
+}
+if (scenario === "incomplete")
+  state.seven!.drafts.forEach((d) => (d.selections = d.selections.slice(0, 4)));
+if (scenario === "invalid")
+  state.seven!.inventory = state.seven!.inventory.filter(
+    (c) => c.id !== cards[0].id,
+  );
+if (scenario === "all-rarities") {
+  const all = ["CORE", "RARE", "ELITE", "ULTRA_RARE", "LEGENDARY", "ICON"];
+  state.cards = Array.from({ length: 23 }, (_, i) => ({
+    ...cards[i % cards.length],
+    id: "gallery-card-" + i,
+    tier: all[i % 6],
+    serial: i % 6 === 5 ? 1 : i + 1,
+    max_supply: rarityRule(all[i % 6]).lifetimeCap ?? 0,
+  }));
+}
+if (["entered", "partial"].includes(scenario ?? "")) {
+  state.seven!.entries = rounds.map((round) => ({
+    competition_id: round.id,
+    revision: 1,
+    updated_at: now,
+    snapshot: nflSeven.slots.map((slot, i) => ({
+      ...cards[i],
+      slot: slot.id,
+      card_id: cards[i].id,
+      kickoff:
+        scenario === "partial" && i === 0
+          ? new Date(Date.now() - 60000).toISOString()
+          : future,
+      salary: salary(cards[i].tier),
+      multiplier: rarityRule(cards[i].tier).multiplierTenths / 10,
+    })),
+  }));
+}
+if (scenario === "packs")
+  state.packs = [
+    {
+      id: "local-free-1",
+      name: "Local free pack",
+      opened_at: null,
+      cards: null,
+    },
+  ];
 const fetchOriginal = window.fetch.bind(window);
 window.fetch = async (input, init) => {
   const url = new URL(
@@ -157,6 +207,23 @@ window.fetch = async (input, init) => {
         : input.url,
     location.origin,
   );
+  if (
+    url.origin === location.origin &&
+    url.pathname === "/api/test-wallet" &&
+    ["/fantasy/play", "/fantasy/cards"].includes(location.pathname) &&
+    (!init?.method || init.method === "GET")
+  ) {
+    return Response.json({
+      state: {
+        member: state.user_id,
+        wallet: { spendable: 12500 },
+        packs:
+          scenario === "packs"
+            ? [{ status: "SEALED" }, { status: "SEALED" }]
+            : [],
+      },
+    });
+  }
   if (url.origin !== location.origin || url.pathname !== "/api/fantasy")
     return fetchOriginal(input, init);
   try {

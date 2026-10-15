@@ -1,5 +1,5 @@
 "use client";
-import { jerseyPresentation } from "@/core/card-presentation";
+import { jerseyPresentation, fullTeamName } from "@/core/card-presentation";
 import type { CSSProperties } from "react";
 import type { AwardedCard } from "@/core/pack-opening";
 import {
@@ -74,10 +74,9 @@ export function FantasyCardArtwork({
               strokeWidth="3"
             />
           </svg>
-          <b>{jersey.number}</b>
         </div>
-        <p className="card-team">{card.team}</p>
         <h3>{card.name}</h3>
+        <p className="card-team">{fullTeamName(card)}</p>
         {scoringLabel && (
           <span className="card-scoring-context">{scoringLabel}</span>
         )}

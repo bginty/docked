@@ -58,7 +58,7 @@ export function FantasyPlay({
   return (
     <>
       <header className="compact-page-title">
-        <h1>Play</h1>
+        <h1>Your lineup</h1>
         <details>
           <summary>More</summary>
           <button onClick={() => setMode("existing")}>Legacy rounds</button>

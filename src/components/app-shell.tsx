@@ -97,7 +97,12 @@ export function AppShell({
   const shell = useEditingViewport(authenticated);
   if (!authenticated) return <div className="community-public">{children}</div>;
   return (
-    <div ref={shell} className="community-shell" data-authenticated="true">
+    <div
+      ref={shell}
+      className="community-shell"
+      data-authenticated="true"
+      data-workspace={destination.split("/").at(-1)}
+    >
       <aside className="app-sidebar">
         <Link className="brand" href="/fantasy/play" aria-label="Docked home">
           <FantasyLogo />
@@ -115,7 +120,8 @@ export function AppShell({
             </Link>
           ))}
         </nav>
-        <div className="app-secondary">
+        <details className="app-secondary">
+          <summary>More & settings</summary>
           <Link href="/compose">
             <AppIcon name="plus" /> Create a post
           </Link>
@@ -126,7 +132,11 @@ export function AppShell({
           <Link href="/dashboard">Settings & privacy</Link>
 
           <Link href="/">Public site</Link>
-        </div>
+        </details>
+        <Link className="sidebar-account" href="/fantasy/profile">
+          <AppIcon name="profile" />
+          Your account <span aria-hidden="true">→</span>
+        </Link>
         <p className="small-note">
           18+ · Fantasy Cards
           <br />
@@ -149,7 +159,15 @@ export function AppShell({
               </span>
             )}
           </div>
+          <strong className="workspace-location">
+            {nav.find((n) => n.href === destination)?.label}
+          </strong>
           <nav aria-label="App utilities">
+            <span id="workspace-wallet-slot">
+              <Link className="workspace-wallet" href="/fantasy/test-wallet">
+                Wallet
+              </Link>
+            </span>
             <Link
               className="app-desktop-search"
               href="/search"

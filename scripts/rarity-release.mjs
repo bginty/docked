@@ -4,9 +4,12 @@ import assert from "node:assert/strict";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { request } from "@playwright/test";
 const mode = process.argv[2];
-assert.ok(["inspect", "candidate", "promote", "live"].includes(mode));
-const root = "docs/qa/rarity-frames",
-  privateRoot = "private-data/rarity-release";
+assert.ok(["inspect", "access", "candidate", "promote", "live"].includes(mode));
+const playCards = process.argv[3] === "--play-cards";
+const root = playCards ? "docs/qa/play-cards" : "docs/qa/rarity-frames",
+  privateRoot = playCards
+    ? "private-data/play-cards-release"
+    : "private-data/rarity-release";
 mkdirSync(root, { recursive: true });
 mkdirSync(privateRoot, { recursive: true });
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
@@ -58,7 +61,26 @@ if (mode === "inspect") {
   assert.equal(actual.projectId, project);
   assert.equal(actual.target, "production");
   assert.equal(actual.meta.githubCommitSha, d.commit);
-  if (mode === "promote") {
+  if (mode === "access") {
+    const access = await api(
+      "/aliases/" + d.id + "/protection-bypass",
+      "PATCH",
+      { ttl: 3600 },
+    );
+    assert.equal(Object.keys(access.protectionBypass ?? {}).length, 1);
+    writeFileSync(
+      privateRoot + "/candidate-access.json",
+      JSON.stringify(access),
+      { mode: 0o600 },
+    );
+    console.log(
+      JSON.stringify({
+        deployment: d.id,
+        privateCandidateAccess: true,
+        ttlSeconds: 3600,
+      }),
+    );
+  } else if (mode === "promote") {
     const check = JSON.parse(readFileSync(root + "/candidate.json"));
     const decision = JSON.parse(readFileSync(root + "/decision.json"));
     assert.equal(check.passed, true);
@@ -85,7 +107,9 @@ if (mode === "inspect") {
       if (mode === "candidate") {
         // Existing deployment-scoped share capability; one hour, never logged.
         // CLI curl forwarding fails on this Windows CLI version. Protection stays on.
-        const access = JSON.parse(readFileSync(privateRoot + "/candidate-access.json"));
+        const access = JSON.parse(
+          readFileSync(privateRoot + "/candidate-access.json"),
+        );
         const tokens = Object.keys(access.protectionBypass ?? {});
         assert.equal(tokens.length, 1);
         const url = new URL(base);
@@ -95,10 +119,13 @@ if (mode === "inspect") {
           assert.equal(new URL(initial.url()).origin, new URL(base).origin);
           assert.equal(initial.status(), 200);
         } catch {
-          throw Error("Candidate private access failed; capability omitted from diagnostics");
+          throw Error(
+            "Candidate private access failed; capability omitted from diagnostics",
+          );
         }
       }
-      const get = (path) => client.get(base + path, { maxRedirects: 0, timeout: 30000 });
+      const get = (path) =>
+        client.get(base + path, { maxRedirects: 0, timeout: 30000 });
       const release = await get("/api/beta-release"),
         version = await release.json();
       assert.equal(release.status(), 200);
@@ -140,6 +167,17 @@ if (mode === "inspect") {
       checks.push(
         "Shared rarity frame, single reveal and Icon celebration styles present",
       );
+      if (playCards) {
+        assert.ok(
+          styles.includes("lineup-workspace") &&
+            styles.includes("collection-toolbar") &&
+            styles.includes("workspace-wallet"),
+          "Play/Cards redesign CSS deployed",
+        );
+        checks.push(
+          "Play/Cards shared shell, field summary and collection toolbar styles present",
+        );
+      }
       if (mode === "live")
         assert.ok(aliases.every((a) => a.deployment === d.id));
       save(mode, {

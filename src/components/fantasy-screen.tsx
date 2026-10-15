@@ -1,11 +1,15 @@
 "use client";
+import { createPortal } from "react-dom";
+import { useWorkspaceWallet } from "./use-workspace-wallet";
 import { boundedFetch } from "@/core/bounded-request";
 import {
   collectionPositions,
   sevenEligibility,
   scoringContext,
 } from "@/core/card-display";
-import { rarities } from "@/core/card-rarity";
+import { fullTeamName } from "@/core/card-presentation";
+import { rarityStyle } from "@/core/rarity-theme";
+import { rarities, rarityRule } from "@/core/card-rarity";
 import { FantasyCardArtwork as Card } from "./fantasy-card-artwork";
 import { PackProducts } from "./pack-products";
 import Link from "next/link";
@@ -49,7 +53,20 @@ export function FantasyScreen({
   packExperience?: boolean;
 }) {
   const production = initial.mode === "production";
+  const wallet = useWorkspaceWallet(
+    initial.user_id,
+    ["play", "cards"].includes(tab),
+  );
+  const [walletSlot, setWalletSlot] = useState<HTMLElement | null>(null);
+  useEffect(
+    () => setWalletSlot(document.getElementById("workspace-wallet-slot")),
+    [],
+  );
   const [showPacks, setShowPacks] = useState(false);
+  const [teamFilter, setTeamFilter] = useState("");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [collectionView, setCollectionView] = useState<"grid" | "list">("grid");
+  const [collectionPage, setCollectionPage] = useState({ key: "", index: 0 });
   const [data, setData] = useState(initial),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
@@ -191,6 +208,7 @@ export function FantasyScreen({
             .toLowerCase()
             .includes(search.toLowerCase())) &&
         c.sport === sport &&
+        (!teamFilter || c.team === teamFilter) &&
         (!competitionFilter || !sevenEligibility(c, data, competitionFilter)) &&
         (!tier || c.tier === tier) &&
         (!position || c.position === position) &&
@@ -211,6 +229,24 @@ export function FantasyScreen({
               ? b.season.localeCompare(a.season)
               : b.created_at.localeCompare(a.created_at),
     );
+  const pageKey = JSON.stringify([
+    data.user_id,
+    sport,
+    search,
+    tier,
+    position,
+    subset,
+    sort,
+    competitionFilter,
+    teamFilter,
+  ]);
+  const pageCount = Math.max(1, Math.ceil(filtered.length / 10));
+  const pageIndex = Math.min(
+    collectionPage.key === pageKey ? collectionPage.index : 0,
+    pageCount - 1,
+  );
+  const visibleCards = filtered.slice(pageIndex * 10, pageIndex * 10 + 10);
+  const sportCards = data.cards.filter((c) => c.sport === sport);
   const toggle = (id: string, list: string[], setter: (v: string[]) => void) =>
     setter(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
   const title: Record<string, string> = {
@@ -248,8 +284,27 @@ export function FantasyScreen({
     />
   ) : null;
   return (
-    <div className="fantasy-screen" aria-busy={busy}>
-      {!["play", "social"].includes(tab) && (
+    <div className={`fantasy-screen fantasy-screen-${tab}`} aria-busy={busy}>
+      {walletSlot &&
+        ["play", "cards"].includes(tab) &&
+        createPortal(
+          <Link
+            className="workspace-balance"
+            href="/fantasy/test-wallet"
+            title="Available test Docked Credits · no cash value"
+          >
+            {wallet.value ? (
+              <>
+                <strong>{wallet.value.balance.toLocaleString("en-AU")}</strong>{" "}
+                <span>test Docked Credits</span>
+              </>
+            ) : (
+              <span>{wallet.status || "Balance unavailable"} · Wallet</span>
+            )}
+          </Link>,
+          walletSlot,
+        )}
+      {!["play", "social", "cards"].includes(tab) && (
         <header className="fantasy-heading">
           <div>
             <p className="eyebrow">
@@ -285,39 +340,44 @@ export function FantasyScreen({
         </button>
       )}
       {tab === "cards" && (
-        <div className="pack-discovery">
-          <Link
-            href="/fantasy/test-wallet#packs"
-            className="pack-discovery-tile"
-          >
-            <span className="mini-foil" aria-hidden="true">
-              D
-            </span>
-            <strong>Buy packs</strong>
-            <small>Test Docked Credits</small>
-          </Link>
-          <a
-            className="pack-discovery-tile"
-            href={
-              data.rewards?.starter_entitled && !data.rewards.starter_claimed
-                ? "#starter-pack"
-                : "#my-packs"
-            }
-            onClick={() => setShowPacks(true)}
-          >
-            <span className="mini-foil open-foil" aria-hidden="true">
-              D
-            </span>
-            <strong>Open packs</strong>
-            <small>
-              {data.packs.filter((p) => !p.opened_at).length +
-                (data.rewards?.starter_entitled &&
-                !data.rewards?.starter_claimed
-                  ? 1
-                  : 0)}{" "}
-              unopened
-            </small>
-          </a>
+        <div className="collection-heading">
+          <div>
+            <h1>My collection</h1>
+            <p>
+              {sportCards.length} cards · {sport.toUpperCase()}
+            </p>
+          </div>
+          <div className="pack-discovery compact-pack-actions">
+            <a
+              className="pack-discovery-tile"
+              href={
+                wallet.value?.unopened
+                  ? "/fantasy/test-wallet#packs"
+                  : data.rewards?.starter_entitled &&
+                      !data.rewards.starter_claimed
+                    ? "#starter-pack"
+                    : "#my-packs"
+              }
+              onClick={() => setShowPacks(true)}
+            >
+              Open packs (
+              {wallet.value
+                ? wallet.value.unopened +
+                  data.packs.filter((p) => !p.opened_at).length +
+                  (data.rewards?.starter_entitled &&
+                  !data.rewards.starter_claimed
+                    ? 1
+                    : 0)
+                : "…"}
+              )
+            </a>
+            <Link
+              href="/fantasy/test-wallet#packs"
+              className="pack-discovery-tile buy-packs"
+            >
+              Buy packs
+            </Link>
+          </div>
         </div>
       )}
       {production &&
@@ -651,13 +711,152 @@ export function FantasyScreen({
               </button>
             </section>
           )}
-          <section>
-            <h2>
-              My Cards · <span className="muted">{data.cards.length}</span>
-            </h2>
+          <section className="collection-workspace" aria-label="My cards">
+            <div
+              className="rarity-counts"
+              aria-label="Rarity counts in selected sport"
+            >
+              {tiers.map((t) => (
+                <button
+                  key={t}
+                  style={rarityStyle(t)}
+                  aria-pressed={tier === t}
+                  onClick={() => {
+                    setTier(tier === t ? "" : t);
+                    setCollectionPage({ key: "", index: 0 });
+                  }}
+                >
+                  <span className="rarity-dot" aria-hidden="true" />
+                  <span>{rarityRule(t).label}</span>
+                  <strong>
+                    {sportCards.filter((c) => c.tier === t).length}
+                  </strong>
+                </button>
+              ))}
+            </div>
+            <div className="collection-toolbar">
+              <label className="collection-search">
+                <span className="sr-only">Search your cards</span>
+                <input
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setCollectionPage({ key: "", index: 0 });
+                  }}
+                  placeholder="Search players, teams or serials"
+                />
+              </label>
+              <button
+                className="mobile-filter-toggle"
+                aria-expanded={filtersOpen}
+                aria-controls="collection-filter-fields"
+                onClick={() => setFiltersOpen(!filtersOpen)}
+              >
+                Filters
+                {[teamFilter, position, tier].filter(Boolean).length
+                  ? " · active"
+                  : ""}
+              </button>
+              <div
+                id="collection-filter-fields"
+                className={
+                  "collection-filter-fields" + (filtersOpen ? " is-open" : "")
+                }
+              >
+                <label>
+                  Team
+                  <select
+                    aria-label="Team"
+                    value={teamFilter}
+                    onChange={(e) => {
+                      setTeamFilter(e.target.value);
+                      setCollectionPage({ key: "", index: 0 });
+                    }}
+                  >
+                    <option value="">All teams</option>
+                    {[...new Set(sportCards.map((c) => c.team))]
+                      .sort()
+                      .map((t) => (
+                        <option key={t} value={t}>
+                          {fullTeamName({ sport, team: t })}
+                        </option>
+                      ))}
+                  </select>
+                </label>
+                <label>
+                  Position
+                  <select
+                    aria-label="Position"
+                    value={position}
+                    onChange={(e) => {
+                      setPosition(e.target.value);
+                      setCollectionPage({ key: "", index: 0 });
+                    }}
+                  >
+                    <option value="">All positions</option>
+                    {collectionPositions(sport).map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Rarity
+                  <select
+                    aria-label="Rarity"
+                    value={tier}
+                    onChange={(e) => {
+                      setTier(e.target.value);
+                      setCollectionPage({ key: "", index: 0 });
+                    }}
+                  >
+                    <option value="">All rarities</option>
+                    {tiers.map((t) => (
+                      <option key={t} value={t}>
+                        {rarityRule(t).label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Sort
+                  <select
+                    aria-label="Sort"
+                    value={sort}
+                    onChange={(e) => {
+                      setSort(e.target.value);
+                      setCollectionPage({ key: "", index: 0 });
+                    }}
+                  >
+                    {["newest", "rarity", "player", "serial", "season"].map(
+                      (t) => (
+                        <option key={t}>{t}</option>
+                      ),
+                    )}
+                  </select>
+                </label>
+              </div>
+              <div
+                className="collection-view"
+                role="group"
+                aria-label="Collection view"
+              >
+                <button
+                  aria-pressed={collectionView === "grid"}
+                  onClick={() => setCollectionView("grid")}
+                >
+                  Grid
+                </button>
+                <button
+                  aria-pressed={collectionView === "list"}
+                  onClick={() => setCollectionView("list")}
+                >
+                  List
+                </button>
+              </div>
+            </div>
             <details className="collection-options">
-              <summary>Filters & scoring rules</summary>
-              <p>{scoringContext}</p>
+              <summary>Eligibility & collection options</summary>
+
               <p>
                 <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
                 <Link href="/fantasy/test-wallet">
@@ -670,7 +869,9 @@ export function FantasyScreen({
                   value={sport}
                   onChange={(e) => {
                     setSport(e.target.value);
+                    setCollectionPage({ key: "", index: 0 });
                     setPosition("");
+                    setTeamFilter("");
                     setCompetitionFilter("");
                   }}
                 >
@@ -691,7 +892,10 @@ export function FantasyScreen({
                 Eligible for this competition
                 <select
                   value={competitionFilter}
-                  onChange={(e) => setCompetitionFilter(e.target.value)}
+                  onChange={(e) => {
+                    setCompetitionFilter(e.target.value);
+                    setCollectionPage({ key: "", index: 0 });
+                  }}
                 >
                   <option value="">
                     All owned cards, including collectibles
@@ -706,88 +910,95 @@ export function FantasyScreen({
                 </select>
               </label>
 
-              <div className="fantasy-filters">
-                <label>
-                  Player, team, serial or season
-                  <input
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search your cards"
-                  />
-                </label>
-                <label>
-                  Tier
-                  <select
-                    value={tier}
-                    onChange={(e) => setTier(e.target.value)}
-                  >
-                    <option value="">All tiers</option>
-                    {tiers.map((t) => (
-                      <option key={t}>{t}</option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  Position
-                  <select
-                    value={position}
-                    onChange={(e) => setPosition(e.target.value)}
-                  >
-                    <option value="">All positions</option>
-                    {collectionPositions(sport).map((t) => (
-                      <option key={t}>{t}</option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  Collection
-                  <select
-                    value={subset}
-                    onChange={(e) => setSubset(e.target.value)}
-                  >
-                    {[
-                      ["all", "All owned"],
-                      ["first", "First Year"],
-                      ["listed", "Listed"],
-                      ["tradeable", "Tradeable"],
-                      ["retired", "Retired"],
-                    ].map(([v, l]) => (
-                      <option value={v} key={v}>
-                        {l}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  Sort
-                  <select
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value)}
-                  >
-                    {["newest", "rarity", "player", "serial", "season"].map(
-                      (t) => (
-                        <option key={t}>{t}</option>
-                      ),
-                    )}
-                  </select>
-                </label>
-              </div>
+              <label>
+                Collection
+                <select
+                  value={subset}
+                  onChange={(e) => {
+                    setSubset(e.target.value);
+                    setCollectionPage({ key: "", index: 0 });
+                  }}
+                >
+                  {[
+                    ["all", "All owned"],
+                    ["first", "First Year"],
+                    ["listed", "Listed"],
+                    ["tradeable", "Tradeable"],
+                    ["retired", "Retired"],
+                  ].map(([v, l]) => (
+                    <option value={v} key={v}>
+                      {l}
+                    </option>
+                  ))}
+                </select>
+              </label>
             </details>
-            <div className="card-grid">
-              {filtered.map((c) => (
+            <details className="collection-scoring">
+              <summary>Scoring rules</summary>
+              <p>{scoringContext}</p>
+              <Link href="/fantasy/scoring/how-it-works">
+                View rules & scoring →
+              </Link>
+            </details>
+            <h2 className="sr-only">Owned cards</h2>
+            <div className={`card-grid collection-${collectionView}`}>
+              {visibleCards.map((c) => (
                 <Card key={c.id} card={c} onInspect={() => setDetail(c.id)}>
-                  <button
-                    onClick={() => setDetail(detail === c.id ? null : c.id)}
-                    aria-expanded={detail === c.id}
-                  >
-                    Card details
-                  </button>
+                  <div className="collection-card-footer">
+                    <span>
+                      {c.tier === "CORE"
+                        ? "Unlimited"
+                        : `#${String(c.serial).padStart(3, "0")} / ${c.max_supply.toLocaleString("en-AU")}`}
+                    </span>
+                    <button
+                      onClick={() => setDetail(detail === c.id ? null : c.id)}
+                      aria-expanded={detail === c.id}
+                    >
+                      View card →
+                    </button>
+                  </div>
+                  {c.listed && <span className="collection-state">Listed</span>}
                 </Card>
               ))}
             </div>
+            <nav
+              className="collection-pagination"
+              aria-label="Collection pages"
+            >
+              <span>
+                {filtered.length
+                  ? "Showing " +
+                    (pageIndex * 10 + 1) +
+                    "–" +
+                    Math.min(filtered.length, (pageIndex + 1) * 10) +
+                    " of " +
+                    filtered.length
+                  : "0 matching cards"}
+              </span>
+              <button
+                disabled={pageIndex === 0}
+                onClick={() =>
+                  setCollectionPage({ key: pageKey, index: pageIndex - 1 })
+                }
+              >
+                Previous
+              </button>
+              <span>
+                Page {pageIndex + 1} of {pageCount}
+              </span>
+              <button
+                disabled={pageIndex + 1 >= pageCount}
+                onClick={() =>
+                  setCollectionPage({ key: pageKey, index: pageIndex + 1 })
+                }
+              >
+                Next
+              </button>
+            </nav>
             {!filtered.length && (
               <p className="fantasy-empty">
-                No cards match these filters. Your free Starter pack is above.
+                No cards match these filters. Try another rarity, team or
+                position.
               </p>
             )}
           </section>
@@ -849,12 +1060,21 @@ export function FantasyScreen({
                 Search player
                 <input
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setCollectionPage({ key: "", index: 0 });
+                  }}
                 />
               </label>
               <label>
                 Tier
-                <select value={tier} onChange={(e) => setTier(e.target.value)}>
+                <select
+                  value={tier}
+                  onChange={(e) => {
+                    setTier(e.target.value);
+                    setCollectionPage({ key: "", index: 0 });
+                  }}
+                >
                   <option value="">All tiers</option>
                   {tiers.map((t) => (
                     <option key={t}>{t}</option>
