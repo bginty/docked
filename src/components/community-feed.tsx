@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MemberAvatar } from "./member-avatar";
 import type { ReactNode } from "react";
 import type { CommunityFeed } from "@/core/community-social";
 import { SocialCard, ProfileActions } from "./social-interactions";
@@ -149,6 +150,7 @@ export function MemberDiscovery({
       {profiles.length ? (
         profiles.map((profile) => (
           <div className="discovery-member" key={profile.id}>
+            <MemberAvatar profile={profile} />
             <Link href={`/profile/${profile.handle}`}>
               <strong>{profile.displayName}</strong>
               <br />@{profile.handle}

@@ -1,4 +1,6 @@
-Current local work: [Social, private collections, local offers and automatic pack reveals](docs/SOCIAL_PLATFORM_UPGRADE.md). Local QA only; no deployment or live trading activation. This task does not authorise Production changes.
+Current local work: [Premium Social visuals, profile photos and protected Preview readiness](docs/SOCIAL_VISUAL_PREVIEW.md). Implementation and isolated acceptance complete; Preview deployment is blocked by the runtime/schema and invitation configuration gaps documented there. No Production deployment or live trading activation.
+
+Previous local work: [Social, private collections, local offers and automatic pack reveals](docs/SOCIAL_PLATFORM_UPGRADE.md).
 
 Current release: [Numbered premium card refinement](docs/JERSEY_REFINEMENT.md), live on docked.com.au from source `4e823789`. Larger original jerseys and repaired roster-number import; the fresh scheduled import remains pending. Invitation-only beta and all real-money restrictions remain unchanged.
 

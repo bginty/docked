@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import type { SocialProfile, CommunityFeed } from "@/core/community-social";
 import { sports, type SportSlug } from "@/content/sports";
 import { AppIcon, type AppIconName } from "./app-icon";
-import { BrandLogo } from "./brand-logo";
+import { MemberAvatar } from "./member-avatar";
 import { AppHeading, OfficialBadge } from "./community-basics";
 import { ProfileActions } from "./social-interactions";
 import { SocialTimeline } from "./social-timeline";
@@ -40,20 +40,6 @@ export function MemberMetrics({
   );
 }
 
-function MemberAvatar({ profile }: { profile: SocialProfile }) {
-  return (
-    <span className="member-avatar" aria-hidden="true">
-      {profile.isOfficial ? (
-        <BrandLogo variant="mark" className="brand-avatar" decorative />
-      ) : profile.avatarUrl ? (
-        <img src={profile.avatarUrl} width={56} height={56} alt="" />
-      ) : (
-        profile.displayName.slice(0, 1).toUpperCase()
-      )}
-    </span>
-  );
-}
-
 export function MemberIdentity({ profile }: { profile: SocialProfile }) {
   return (
     <section className="member-identity" aria-label="Your community profile">
@@ -65,7 +51,7 @@ export function MemberIdentity({ profile }: { profile: SocialProfile }) {
             @{profile.handle} {profile.isOfficial && <OfficialBadge />}
           </p>
         </div>
-        <Link className="button small ghost" href="/profile#edit">
+        <Link className="button small ghost" href="/profile?tab=about#edit">
           Edit profile
         </Link>
       </div>

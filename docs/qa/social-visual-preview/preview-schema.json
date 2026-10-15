@@ -1,0 +1,294 @@
+{
+  "at": "2026-10-15T21:02:06.429Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "readOnly": true,
+  "migrations": [
+    {
+      "version": "20261002113546",
+      "name": "docked_platform"
+    },
+    {
+      "version": "20261002122714",
+      "name": "phase2_security_and_validation"
+    },
+    {
+      "version": "20261003002609",
+      "name": "phase3_membership_and_rewards"
+    },
+    {
+      "version": "20261003002709",
+      "name": "phase3_social_core"
+    },
+    {
+      "version": "20261003002935",
+      "name": "phase3_community_edge_ledger"
+    },
+    {
+      "version": "20261003021118",
+      "name": "session_helper_execute_hardening"
+    },
+    {
+      "version": "20261003030722",
+      "name": "phase4_market_reference"
+    },
+    {
+      "version": "20261003061548",
+      "name": "hosted_preview_tester_community"
+    },
+    {
+      "version": "20261003062615",
+      "name": "session_wall_clock_revalidation"
+    },
+    {
+      "version": "20261003121257",
+      "name": "phase45_preview_beta_auth"
+    },
+    {
+      "version": "20261003121502",
+      "name": "phase45_preview_market_fixtures"
+    },
+    {
+      "version": "20261003143903",
+      "name": "phase5_edge_scanner_market_data"
+    },
+    {
+      "version": "20261003214310",
+      "name": "production_community_runtime_role"
+    },
+    {
+      "version": "20261003225203",
+      "name": "phase5a_manual_provider_trial"
+    },
+    {
+      "version": "20261003232606",
+      "name": "phase5a_reviewed_driver_recovery"
+    },
+    {
+      "version": "20261004003850",
+      "name": "phase5b_independent_football_model_ledger"
+    },
+    {
+      "version": "20261004023247",
+      "name": "phase5c_governed_match_research"
+    },
+    {
+      "version": "20261004044506",
+      "name": "phase5d_fitted_poisson_research"
+    },
+    {
+      "version": "20261007204317",
+      "name": "fantasy_cards_preview_v1"
+    }
+  ],
+  "schemas": [
+    {
+      "nspname": "fantasy"
+    },
+    {
+      "nspname": "preview_auth"
+    },
+    {
+      "nspname": "private"
+    }
+  ],
+  "auth": [
+    {
+      "accounts": 7,
+      "confirmed": 7
+    }
+  ],
+  "roles": [
+    {
+      "rolname": "docked_app"
+    }
+  ],
+  "tables": [
+    {
+      "schemaname": "fantasy",
+      "tablename": "admin_events"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "cards"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "competitions"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "editions"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "entries"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "journals"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "ledger"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "listings"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "members"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "ownership_events"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "pack_definitions"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "pack_items"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "packs"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "players"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "replacements"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "requests"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "results"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "round_inputs"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "round_scores"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "sales"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "scoring_rules"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "settings"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "sports"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "status_events"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "tiers"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "trade_items"
+    },
+    {
+      "schemaname": "fantasy",
+      "tablename": "trades"
+    },
+    {
+      "schemaname": "preview_auth",
+      "tablename": "allowed_recipients"
+    },
+    {
+      "schemaname": "preview_auth",
+      "tablename": "allowed_redirects"
+    },
+    {
+      "schemaname": "preview_auth",
+      "tablename": "captured_mail"
+    },
+    {
+      "schemaname": "preview_auth",
+      "tablename": "configuration"
+    }
+  ],
+  "testers": [
+    {
+      "tester": "Owner",
+      "accounts": 1,
+      "confirmed": 1,
+      "recipientFromExistingInvitationRecord": true
+    },
+    {
+      "tester": "Barry",
+      "accounts": 0,
+      "confirmed": 0,
+      "recipientFromExistingInvitationRecord": true
+    },
+    {
+      "tester": "Luke",
+      "accounts": 0,
+      "confirmed": 0,
+      "recipientFromExistingInvitationRecord": true
+    }
+  ],
+  "missing": [
+    "20261007234952_fantasy_free_play_production.sql",
+    "20261008145441_nfl_community_catalogue.sql",
+    "20261008151700_fantasy_beta_result_isolation.sql",
+    "20261008224142_beta_namespace_isolation.sql",
+    "20261008224144_beta_atomic_admission.sql",
+    "20261008225828_beta_owner_acceptance_boundary.sql",
+    "20261008232200_beta_admission_snapshot_serialization.sql",
+    "20261009220656_owner_only_fantasy_gameplay.sql",
+    "20261010072625_fantasy_play_read_model.sql",
+    "20261010083630_two_person_beta_access.sql",
+    "20261010083836_two_person_sandbox_swaps.sql",
+    "20261010090152_two_person_owner_session_mfa.sql",
+    "20261010092154_scoring_v1_isolated_journal.sql",
+    "20261010112653_friends_beta_admission_boundary.sql",
+    "20261010112939_owner_operations_read_model.sql",
+    "20261010114202_friends_card_swap_boundary.sql",
+    "20261010210741_support_privacy_and_beta_catalogue.sql",
+    "20261010231416_nfl_postgame_isolated_feed.sql",
+    "20261010233559_nfl_beta_raw_retention.sql",
+    "20261011002634_nfl_member_rounds.sql",
+    "20261011004639_nfl_member_read_projection.sql",
+    "20261011011400_nfl_swap_projection.sql",
+    "20261011045327_customer_beta_onboarding.sql",
+    "20261011045504_customer_invitation_eligibility.sql",
+    "20261011052829_beta_team_names.sql",
+    "20261011060614_pack_opening_receipt.sql",
+    "20261011100229_financial_test_wallet.sql",
+    "20261012101915_lifetime_card_economy.sql",
+    "20261012120429_nfl_rarity_member_rounds.sql",
+    "20261012123000_nfl_rarity_core_identity.sql",
+    "20261013064456_nfl_seven_slot_modes.sql",
+    "20261013073543_nfl_seven_final_write_guard.sql",
+    "20261013223206_barry_beta_review_projection.sql",
+    "20261014021342_marketplace_phase_one_guards.sql",
+    "20261014081315_marketplace_legacy_identity_compatibility.sql",
+    "20261014081931_nfl_locked_worker_read_scope.sql",
+    "20261015055109_manual_credit_redemption.sql",
+    "20261015080107_verified_jersey_presentation.sql",
+    "20261015102845_jersey_projection_single_pass.sql",
+    "20261015131955_premium_social_collections.sql",
+    "20261015140207_premium_social_runtime_guards.sql"
+  ]
+}

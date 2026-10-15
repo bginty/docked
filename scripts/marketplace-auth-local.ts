@@ -31,6 +31,7 @@ const redemption = process.argv.includes("--redemption");
 const integrated = process.argv.includes("--integrated");
 const socialOnly = process.argv.includes("--social-only");
 const socialUpgrade = process.argv.includes("--social-upgrade");
+const socialVisual = process.argv.includes("--social-visual");
 const root = process.cwd(),
   dir = resolve(
     redemption
@@ -84,13 +85,16 @@ async function main() {
   await mkdir("docs/qa/mobile-release", { recursive: true });
   await mkdir("docs/qa/premium-completion", { recursive: true });
   await mkdir("docs/qa/social-upgrade", { recursive: true });
-  const receipt = redemption
-    ? "docs/qa/premium-completion/authenticated.json"
-    : socialOnly
-      ? socialUpgrade
-        ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
-        : "docs/qa/mobile-release/social-http.json"
-      : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
+  await mkdir("docs/qa/social-visual-preview", { recursive: true });
+  const receipt = socialVisual
+    ? "docs/qa/social-visual-preview/authenticated.json"
+    : redemption
+      ? "docs/qa/premium-completion/authenticated.json"
+      : socialOnly
+        ? socialUpgrade
+          ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
+          : "docs/qa/mobile-release/social-http.json"
+        : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
     JSON.stringify({
@@ -492,6 +496,12 @@ async function main() {
       assert.equal(stored.n, 1);
       const browser = await chromium.launch({ channel: "msedge" });
       try {
+        if (socialVisual)
+          checks.push(
+            ...(await (
+              await import("./social-avatar-acceptance")
+            ).verifySocialAvatars(contexts, browser, origin)),
+          );
         const context = await browser.newContext({
           storageState: await contexts[0].storageState(),
           viewport: { width: 412, height: 815 },
@@ -553,7 +563,12 @@ async function main() {
           checks.push(
             ...(await (
               await import("./social-upgrade-browser")
-            ).captureSocialUpgrade(browser, contexts, origin)),
+            ).captureSocialUpgrade(
+              browser,
+              contexts,
+              origin,
+              socialVisual ? "docs/qa/social-visual-preview" : undefined,
+            )),
           );
         await context.close();
       } finally {

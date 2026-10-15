@@ -4,8 +4,10 @@ import { SocialComposer } from "./social-composer";
 import { SocialTimeline } from "./social-timeline";
 import { CommunityDirectory } from "./social-hub";
 import { SocialDiscovery } from "./social-discovery";
+import { socialHub } from "@/server/social-hub";
+import { SocialShowcase, SocialRail } from "./social-showcase";
 
-export function SocialHome({
+export async function SocialHome({
   feed,
   tab,
   view,
@@ -20,6 +22,9 @@ export function SocialHome({
   playerId?: string;
   sport?: string;
 }) {
+  // Uses the same authorised collection projection as the member's Cards view.
+  // A missing hub must not prevent reading the feed or imply an empty inventory.
+  const hub = feed.viewer ? await socialHub().catch(() => null) : null;
   return (
     <section className="premium-social">
       <header className="social-hero">
@@ -40,11 +45,7 @@ export function SocialHome({
             </Link>
           </div>
         </div>
-        <div className="social-hero-art" aria-hidden="true">
-          <span>COLLECT</span>
-          <span>COMPETE</span>
-          <span>CONNECT</span>
-        </div>
+        <SocialShowcase cards={hub?.cards.map(({ card }) => card) ?? []} />
       </header>
       <nav className="community-tabs" aria-label="Social sections">
         {[
@@ -85,10 +86,12 @@ export function SocialHome({
                 </div>
               )}
               <div id="social-compose">
+                <h2 className="social-feed-heading">What’s happening</h2>
                 <SocialComposer
                   inline
                   initialSport={sport ?? "nfl"}
                   memberName={feed.viewer?.displayName}
+                  memberProfile={feed.viewer}
                   communityId={communityId}
                   playerId={playerId}
                 />
@@ -105,6 +108,7 @@ export function SocialHome({
           )}
         </div>
         <aside>
+          <SocialRail hub={hub} profiles={feed.profiles} />
           <section className="app-panel">
             <h2>Your next move</h2>
             <Link href="/fantasy/play">Build your lineup →</Link>
@@ -112,11 +116,6 @@ export function SocialHome({
               Explore packs →
             </Link>
             <Link href="/fantasy/market">Browse Market →</Link>
-          </section>
-          <section className="app-panel">
-            <h2>Make it yours</h2>
-            <p>Share your pulls, follow members and talk players.</p>
-            <Link href="/profile">Your profile & collection →</Link>
           </section>
           <small>Private beta · Test credits have no cash value.</small>
         </aside>

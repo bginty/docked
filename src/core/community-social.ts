@@ -214,6 +214,7 @@ const text = (max: number) =>
     .refine(safeSocialText, "Unsupported control characters");
 const uuid = z.string().uuid();
 export const socialActionSchema = z.discriminatedUnion("action", [
+  z.object({ action: z.literal("avatar"), mediaId: uuid.nullable() }).strict(),
   z
     .object({
       action: z.literal("profile"),

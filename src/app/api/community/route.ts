@@ -26,7 +26,10 @@ export async function GET(request: Request) {
     view = params.get("view") ?? "feed";
   try {
     if (view === "media") {
-      const value = await communityMedia(params.get("id") ?? "");
+      const value = await communityMedia(
+        params.get("id") ?? "",
+        params.get("variant") === "avatar",
+      );
       return new NextResponse(new Uint8Array(value.content), {
         headers: {
           "Content-Type": value.mime,
@@ -102,10 +105,21 @@ export async function POST(request: Request) {
           headers: { "Content-Type": request.headers.get("content-type")! },
         }).formData(),
         file = data.get("file");
-      if (data.get("action") !== "media_upload" || !(file instanceof File))
+      if (
+        !["media_upload", "avatar_upload"].includes(
+          String(data.get("action")),
+        ) ||
+        !(file instanceof File)
+      )
         throw new Error("Image required");
       return NextResponse.json(
-        await uploadCommunityMedia(file, String(data.get("alt") ?? "")),
+        await uploadCommunityMedia(
+          file,
+          String(data.get("alt") ?? ""),
+          data.get("action") === "avatar_upload"
+            ? JSON.parse(String(data.get("crop")))
+            : undefined,
+        ),
       );
     }
     if (length > 20000)

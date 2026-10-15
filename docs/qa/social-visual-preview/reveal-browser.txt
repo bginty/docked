@@ -1,0 +1,14 @@
+
+Running 5 tests using 1 worker
+
+(node:100356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:100356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\nine-card-reveal.test.ts:37:7 › confirmed nine-card reveal, resume, replay and accessibility 360 (39.1s)
+  ok 2 tests\browser\nine-card-reveal.test.ts:37:7 › confirmed nine-card reveal, resume, replay and accessibility 412 (37.8s)
+  ok 3 tests\browser\nine-card-reveal.test.ts:37:7 › confirmed nine-card reveal, resume, replay and accessibility 1366 (37.8s)
+  ok 4 tests\browser\nine-card-reveal.test.ts:152:5 › single card, reduced motion, keyboard opening and duplicate taps (3.2s)
+  ok 5 tests\browser\reveal-stability.test.ts:3:5 › delayed compositor finishes once without a timed snap or inspection handoff jump (5.1s)
+
+  5 passed (2.2m)

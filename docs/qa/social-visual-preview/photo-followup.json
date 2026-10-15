@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-15T21:03:07.821Z",
+  "passed": true,
+  "scope": "Isolated local Auth and real HTTP",
+  "checks": [
+    "Fresh independent sign-in retains saved avatar",
+    "Profile avatar visible at desktop and mobile",
+    "Anonymous upload denied",
+    "Disguised SVG upload denied without changing avatar"
+  ]
+}

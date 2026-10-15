@@ -1,4 +1,6 @@
 "use client";
+import type { SocialProfile } from "@/core/community-social";
+import { MemberAvatar } from "./member-avatar";
 import { useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { communityAction } from "./social-interactions";
@@ -11,6 +13,7 @@ export function SocialComposer({
   inline = false,
   initialBody = "",
   memberName = "You",
+  memberProfile,
   communityId,
   playerId,
 }: {
@@ -19,6 +22,7 @@ export function SocialComposer({
   inline?: boolean;
   initialBody?: string;
   memberName?: string;
+  memberProfile?: SocialProfile | null;
   communityId?: string;
   playerId?: string;
 }) {
@@ -100,9 +104,15 @@ export function SocialComposer({
     >
       <fieldset className="app-panel" disabled={!ready || busy}>
         {inline ? (
-          <span className="composer-avatar" aria-hidden="true">
-            {memberName.slice(0, 1).toUpperCase()}
-          </span>
+          <MemberAvatar
+            profile={
+              memberProfile ?? {
+                displayName: memberName,
+                avatarUrl: null,
+                isOfficial: false,
+              }
+            }
+          />
         ) : (
           <h2>Create post</h2>
         )}
@@ -194,20 +204,22 @@ export function SocialComposer({
             <button className="button" disabled={busy || !body.trim()}>
               Post
             </button>
-            <button
-              type="button"
-              className="button ghost"
-              disabled={busy}
-              onClick={() => {
-                setBody("");
-                setMedia([]);
-                setCards([]);
-                setKey(crypto.randomUUID());
-                setMessage("Draft cleared.");
-              }}
-            >
-              Cancel
-            </button>
+            {(body || cardIds.length > 0 || mediaIds.length > 0) && (
+              <button
+                type="button"
+                className="button ghost"
+                disabled={busy}
+                onClick={() => {
+                  setBody("");
+                  setMedia([]);
+                  setCards([]);
+                  setKey(crypto.randomUUID());
+                  setMessage("Draft cleared.");
+                }}
+              >
+                Cancel
+              </button>
+            )}
           </div>
         </form>
         <details>

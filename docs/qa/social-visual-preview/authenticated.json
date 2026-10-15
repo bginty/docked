@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "at": "2026-10-15T20:58:48.421Z",
+  "scope": "Local real GoTrue authentication -> application HTTP -> PostgreSQL plus Edge browser; isolated QA identities only",
+  "checks": [
+    "Actual owner AAL1 denied; real GoTrue MFA permits community creation/closure; ordinary member cannot manage",
+    "Actual catalogue player discussion, follow and reply; unknown player rejected; closed community hidden and rejects new posts",
+    "Unadmitted direct collection API denied",
+    "Private avatar upload/crop, pending approval enforcement, real owner MFA moderation, cross-account selection denied, authenticated no-store 256px retrieval, anonymous denial",
+    "Mobile crop preview and reposition, save/remove/reselect/reload persistence, broken-photo initials fallback",
+    "Actual authenticated Edge browser: Social, collection, communities, offers and packs at 1440×960, 412×815 and 815×412; no horizontal overflow",
+    "Collection filtering, dialog Escape and focus restoration; reduced motion; no browser exceptions",
+    "Axe WCAG A/AA: no serious or critical violations on five desktop surfaces",
+    "Ordinary member post and own/second-member feed visibility",
+    "Same idempotency key returns one retained post",
+    "Other-member deletion and anonymous feed denied",
+    "Inline composer publishes, returns to feed and survives refresh",
+    "Following and My posts navigate correctly"
+  ],
+  "hostedPosts": false
+}

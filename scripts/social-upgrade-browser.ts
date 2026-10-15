@@ -2,16 +2,43 @@ import assert from "node:assert/strict";
 import { mkdir } from "node:fs/promises";
 import { expect, type Browser, type APIRequestContext } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { randomUUID } from "node:crypto";
 
 /** Real local sessions and HTTP; no response interception or fabricated UI data. */
 export async function captureSocialUpgrade(
   browser: Browser,
   sessions: APIRequestContext[],
   origin: string,
+  root = "docs/qa/social-upgrade",
 ) {
   assert.equal(new URL(origin).hostname, "127.0.0.1");
-  const root = "docs/qa/social-upgrade";
   await mkdir(root, { recursive: true });
+  if (root === "docs/qa/social-visual-preview") {
+    const feed = await (
+      await sessions[1].get("/api/community?view=feed&tab=latest")
+    ).json();
+    const body =
+      "Local QA · A closer look at my collection. Which card would you build around?";
+    if (!feed.posts.some((p: { body: string }) => p.body === body)) {
+      const hub = await (
+        await sessions[1].get("/api/community?view=hub")
+      ).json();
+      const posted = await sessions[1].post("/api/community", {
+        data: {
+          action: "post",
+          kind: "discussion",
+          body: "Local QA · A closer look at my collection. Which card would you build around?",
+          sport: "nfl",
+          mediaIds: [],
+          cardIds: hub.cards
+            .slice(0, 2)
+            .map((v: { card: { id: string } }) => v.card.id),
+          idempotencyKey: randomUUID(),
+        },
+      });
+      assert.equal(posted.status(), 200, await posted.text());
+    }
+  }
   const context = await browser.newContext({
     storageState: await sessions[1].storageState(),
     viewport: { width: 1440, height: 960 },
@@ -43,6 +70,21 @@ export async function captureSocialUpgrade(
           page.getByText(ready, { exact: false }).first(),
         ).toBeVisible({ timeout: 30000 });
         await page.evaluate(() => document.fonts.ready);
+        await page.waitForFunction(
+          () =>
+            [
+              ...document.querySelectorAll<HTMLImageElement>(
+                ".member-photo img",
+              ),
+            ]
+              .filter((img) => {
+                const r = img.getBoundingClientRect();
+                return r.top < innerHeight && r.bottom > 0;
+              })
+              .every((img) => img.complete && img.naturalWidth > 0),
+          {},
+          { timeout: 15000 },
+        );
         if (name === "social")
           await expect(
             page.locator('[data-composer-ready="true"]'),
@@ -57,13 +99,23 @@ export async function captureSocialUpgrade(
           path: `${root}/${name}-${viewport.width}.png`,
           fullPage: false,
         });
-        if(name==="collection") {
+        if (name === "collection") {
           await page.locator(".social-card-grid").scrollIntoViewIfNeeded();
-          await page.screenshot({path:`${root}/collection-cards-${viewport.width}.png`});
+          await page.screenshot({
+            path: `${root}/collection-cards-${viewport.width}.png`,
+          });
         }
-        if(name==="social" && await page.locator(".social-shared-cards").count()) {
-          await page.locator(".social-shared-cards").first().scrollIntoViewIfNeeded();
-          await page.screenshot({path:`${root}/social-cards-${viewport.width}.png`});
+        if (
+          name === "social" &&
+          (await page.locator(".social-shared-cards").count())
+        ) {
+          await page
+            .locator(".social-shared-cards")
+            .first()
+            .scrollIntoViewIfNeeded();
+          await page.screenshot({
+            path: `${root}/social-cards-${viewport.width}.png`,
+          });
         }
         if (name === "collection" && viewport.width === 412) {
           await page

@@ -12,7 +12,9 @@ import { AppIcon } from "./app-icon";
 import { OfficialBadge } from "./community-basics";
 import { LocalTimestamp } from "./local-timestamp";
 import { RelativeSocialTime } from "./relative-social-time";
-import { BrandLogo } from "./brand-logo";
+import { MemberAvatar } from "./member-avatar";
+import { AvatarEditor } from "./avatar-editor";
+import { SocialPhoto } from "./social-photo";
 import { useClientReady } from "./use-client-ready";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 export async function communityAction(
@@ -273,6 +275,7 @@ function Comment({ comment }: { comment: SocialComment }) {
   }
   return (
     <div className="social-comment">
+      <MemberAvatar profile={comment.author} size={32} />
       <Link href={`/profile/${comment.author.handle}`}>
         <strong>@{comment.author.handle}</strong>
       </Link>
@@ -343,22 +346,7 @@ export function SocialCard({
       data-social-ready={ready}
     >
       <div className={`social-author ${compact ? "social-author-row" : ""}`}>
-        <span className="avatar" aria-hidden="true">
-          {post.author.isOfficial ? (
-            <BrandLogo variant="mark" className="brand-avatar" decorative />
-          ) : post.author.avatarUrl ? (
-            <img
-              className="profile-avatar-image"
-              src={post.author.avatarUrl}
-              width={40}
-              height={40}
-              alt=""
-              loading="lazy"
-            />
-          ) : (
-            post.author.displayName.slice(0, 1).toUpperCase()
-          )}
-        </span>
+        <MemberAvatar profile={post.author} />
         <div>
           <Link
             href={`/profile/${post.author.handle}`}
@@ -427,17 +415,7 @@ export function SocialCard({
       {post.moderationStatus === "visible" &&
         post.media
           .filter((m) => m.status === "approved" && m.url)
-          .map((m) => (
-            <img
-              key={m.id}
-              className="social-photo"
-              src={m.url!}
-              width={m.width}
-              height={m.height}
-              alt={m.alt}
-              loading="lazy"
-            />
-          ))}
+          .map((m) => <SocialPhoto key={m.id} media={m} />)}
 
       <div className="social-actions">
         <button
@@ -552,9 +530,6 @@ export function ProfileEditor({ profile }: { profile: SocialProfile | null }) {
         displayName: d.get("displayName"),
         bio: d.get("bio"),
         visibility: d.get("visibility"),
-        ...(d.get("avatarMediaId") !== "unchanged"
-          ? { avatarMediaId: d.get("avatarMediaId") || null }
-          : {}),
       });
       setMessage("Profile saved.");
       router.refresh();
@@ -611,81 +586,14 @@ export function ProfileEditor({ profile }: { profile: SocialProfile | null }) {
           Private settings and email are never displayed. A privacy change does
           not erase card ownership history or competition audit records.
         </p>
-        <label>
-          Avatar
-          <select name="avatarMediaId" defaultValue="unchanged">
-            <option value="unchanged">Keep current avatar</option>
-            <option value="">Use initials</option>
-            {media
-              .filter((m) => m.status === "approved")
-              .map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.alt}
-                </option>
-              ))}
-          </select>
-          <span className="form-help">
-            Only your approved images are available as avatars.
-          </span>
-        </label>
         <button className="button" disabled={busy}>
           Save profile
         </button>
         <p role="status">{message}</p>
       </form>
-      <AvatarUpload onUploaded={reloadMedia} />
+      {profile && (
+        <AvatarEditor profile={profile} media={media} reload={reloadMedia} />
+      )}
     </section>
-  );
-}
-function AvatarUpload({ onUploaded }: { onUploaded: () => Promise<void> }) {
-  const [message, setMessage] = useState(""),
-    [busy, setBusy] = useState(false);
-  async function upload(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const body = new FormData(e.currentTarget);
-    body.set("action", "media_upload");
-    setBusy(true);
-    try {
-      const response = await fetch("/api/community", { method: "POST", body });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? "Upload unavailable.");
-      setMessage(
-        "Avatar image is in private quarantine. Return after moderation approval to select it.",
-      );
-      await onUploaded();
-    } catch (e) {
-      setMessage(e instanceof Error ? e.message : "Upload not confirmed.");
-    } finally {
-      setBusy(false);
-    }
-  }
-  return (
-    <details>
-      <summary>Upload an avatar for review</summary>
-      <form className="app-form" method="post" onSubmit={upload}>
-        <label>
-          Avatar image
-          <input
-            type="file"
-            name="file"
-            accept="image/jpeg,image/png,image/webp"
-            required
-          />
-        </label>
-        <label>
-          Image description
-          <input name="alt" minLength={5} maxLength={240} required />
-        </label>
-        <p className="form-help">
-          Static JPEG, PNG or WebP up to 4 MB. Use an image you have rights to
-          share. Remove private identifiers. Review is required before public
-          display.
-        </p>
-        <button className="button ghost" disabled={busy}>
-          Upload for moderation
-        </button>
-        <p role="status">{message}</p>
-      </form>
-    </details>
   );
 }

@@ -1,7 +1,11 @@
 import "server-only";
 import { snapshotSocialCards } from "./social-card-projection";
 import { createHash } from "node:crypto";
-import { encodeCommunityImage } from "./community-image";
+import {
+  encodeCommunityImage,
+  encodeCommunityAvatar,
+  avatarThumbnail,
+} from "./community-image";
 import { communityImageMaxBytes } from "@/core/community-media";
 import {
   rateLimitedAction,
@@ -105,7 +109,9 @@ async function profiles(
     handle: String(r.handle),
     displayName: String(r.display_name),
     bio: String(r.bio),
-    avatarUrl: r.avatar_ready ? mediaUrl(String(r.avatar_media_id)) : null,
+    avatarUrl: r.avatar_ready
+      ? mediaUrl(String(r.avatar_media_id)) + "&variant=avatar"
+      : null,
     isOfficial: r.is_official === true,
     visibility: r.visibility as SocialProfile["visibility"],
     status: r.status as SocialProfile["status"],
@@ -624,7 +630,7 @@ export async function ownCommunityMedia() {
     }),
   );
 }
-export async function communityMedia(id: string) {
+export async function communityMedia(id: string, thumbnail = false) {
   z.string().uuid().parse(id);
   const who = await requireIdentity();
   return db().begin(async (tx) => {
@@ -650,11 +656,20 @@ export async function communityMedia(id: string) {
     const rows =
       await tx`select m.content,m.mime from private.social_media m where m.id=${id} and m.content is not null and (${staff} or (m.status='approved' and private.social_profile_visible(${viewer},m.owner_id,false) and (m.owner_id=${viewer} or exists(select 1 from private.social_post_media l where l.media_id=m.id and private.social_post_visible(${viewer},l.post_id)) or exists(select 1 from private.social_profiles p where p.avatar_media_id=m.id and private.social_profile_visible(${viewer},p.id,false)))))`;
     if (!rows.length) throw new Error("Media unavailable");
-    return { content: rows[0].content as Buffer, mime: "image/webp" };
+    return {
+      content: thumbnail
+        ? await avatarThumbnail(rows[0].content as Buffer)
+        : (rows[0].content as Buffer),
+      mime: "image/webp",
+    };
   });
 }
 
-export async function uploadCommunityMedia(file: File, alt: string) {
+export async function uploadCommunityMedia(
+  file: File,
+  alt: string,
+  crop?: unknown,
+) {
   const authenticated = await requireIdentity();
   await requireCommunityAccess("community_social");
   if (!(await rateLimit(`social:media:${authenticated.user.id}`, 8, 3600)))
@@ -671,7 +686,10 @@ export async function uploadCommunityMedia(file: File, alt: string) {
       "JPEG, PNG or WebP up to 4 MB and useful alt text required",
     );
   const input = Buffer.from(await file.arrayBuffer());
-  const encoded = await encodeCommunityImage(input);
+  const encoded =
+    crop === undefined
+      ? await encodeCommunityImage(input)
+      : await encodeCommunityAvatar(input, crop);
   return withCommunityActor(
     "community_social",
     true,
@@ -833,6 +851,18 @@ export async function mutateCommunity(input: unknown) {
       "moderate",
     ].includes(action.action),
     async (tx, actor, profileId) => {
+      if (action.action === "avatar") {
+        if (
+          action.mediaId &&
+          !(
+            await tx`select 1 from private.social_media where id=${action.mediaId} and owner_id=${profileId} and status='approved' and content is not null`
+          ).length
+        )
+          throw Error("Approved owned avatar required");
+        await tx`update private.social_profiles set avatar_media_id=${action.mediaId},updated_at=clock_timestamp() where id=${profileId}`;
+        await audit(tx, actor.user.id, "avatar_changed", profileId);
+        return { ok: true };
+      }
       if (action.action === "post") {
         await tx`select pg_advisory_xact_lock(71820342)`;
         let authorId = profileId;

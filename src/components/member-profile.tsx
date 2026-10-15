@@ -16,7 +16,7 @@ import {
 } from "./social-interactions";
 import { appViewer } from "@/server/app-view";
 import { NativeShare } from "./native-share";
-import { BrandLogo } from "./brand-logo";
+import { MemberAvatar } from "./member-avatar";
 import { ProfileCollection } from "./social-hub";
 import { PrivateOffersInbox } from "./private-card-offers";
 export async function MemberProfile({
@@ -70,25 +70,7 @@ export async function MemberProfile({
         <div className="premium-profile">
           <section className="profile-hero">
             <div className="profile-top">
-              <span className="avatar" aria-hidden="true">
-                {p.isOfficial ? (
-                  <BrandLogo
-                    variant="mark"
-                    className="brand-avatar"
-                    decorative
-                  />
-                ) : p.avatarUrl ? (
-                  <img
-                    className="profile-avatar-image"
-                    src={p.avatarUrl}
-                    alt=""
-                    width={76}
-                    height={76}
-                  />
-                ) : (
-                  p.displayName.slice(0, 1).toUpperCase()
-                )}
-              </span>
+              <MemberAvatar profile={p} size={76} />
               <div>
                 <h1>{p.displayName}</h1>
                 <p>
