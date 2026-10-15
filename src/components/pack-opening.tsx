@@ -53,6 +53,7 @@ export default function PackOpening(props: PackOpeningProps) {
     alive = useRef(true);
   const swipe = useRef<{ x: number; y: number } | null>(null);
   const title = useRef<HTMLHeadingElement>(null);
+  const arrival = useRef<HTMLDivElement>(null);
   const save = useCallback(
     (r: PackReceipt, next: number) => {
       try {
@@ -96,8 +97,17 @@ export default function PackOpening(props: PackOpeningProps) {
       setStage("revealed");
       return;
     }
-    const finish = () => setStage("revealed");
-    const timer = setTimeout(finish, 1800);
+    const finish = () => {
+      // Finish the compositor's turn before enabling inspection. Never remove
+      // an in-flight animation merely because a wall-clock timer has elapsed.
+      arrival.current
+        ?.getAnimations()
+        .forEach((animation) => animation.finish());
+      setStage("revealed");
+    };
+    // Recovery only: normal completion comes from animationend. Allow delayed
+    // frames/startup without cutting the turn short on a busy mobile browser.
+    const timer = setTimeout(finish, 5000);
     // Backgrounding ends presentation only; the receipt is already persisted.
     const hidden = () => {
       if (document.hidden) finish();
@@ -308,13 +318,8 @@ export default function PackOpening(props: PackOpeningProps) {
             >
               {stage === "opening" && (
                 <>
-                  <div className="pack-tunnel" aria-hidden="true">
-                    {[0, 1, 2, 3, 4].map((n) => (
-                      <i key={n} style={{ "--ring": n } as CSSProperties} />
-                    ))}
-                  </div>
                   <div className="pack-blue-light" aria-hidden="true" />
-                  {index === 0 && (
+                  {index === 0 && !replaying && (
                     <div className="pack-opening-envelope" aria-hidden="true">
                       <span className="pack-torn-seal" />
                       <img
@@ -348,9 +353,11 @@ export default function PackOpening(props: PackOpeningProps) {
                 </div>
               )}
               <div
-                className="pack-arrival"
+                ref={arrival}
+                className={`pack-arrival ${motionOff ? "" : "pack-turn"}`}
                 onAnimationEnd={(e) => {
                   if (
+                    stage === "opening" &&
                     e.target === e.currentTarget &&
                     e.animationName === "docked-single-reveal"
                   )
@@ -550,6 +557,7 @@ export default function PackOpening(props: PackOpeningProps) {
               type="button"
               onClick={() => {
                 setIndex(0);
+                setTilt({ x: 0, y: 0 });
                 setReplaying(true);
                 setStage(motionOff ? "revealed" : "opening");
               }}

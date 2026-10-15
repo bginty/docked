@@ -76,8 +76,11 @@ test("outer reveal frames, single forward turn and Icon celebration preserve the
     expect(
       await page
         .locator(".pack-arrival")
-        .evaluate((e) => getComputedStyle(e).transform),
-    ).toBe("none");
+        .evaluate(
+          (e) =>
+            new DOMMatrixReadOnly(getComputedStyle(e).transform).isIdentity,
+        ),
+    ).toBe(true);
     await expect(page.locator(".pack-card-back")).toBeHidden();
     const box = await caseCard.boundingBox();
     expect(box!.y).toBeGreaterThan(0);

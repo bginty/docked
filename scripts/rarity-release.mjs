@@ -6,17 +6,22 @@ import { request } from "@playwright/test";
 const mode = process.argv[2];
 assert.ok(["inspect", "access", "candidate", "promote", "live"].includes(mode));
 const premium = process.argv[3] === "--premium";
-const playCards = process.argv[3] === "--play-cards" || premium;
-const root = premium
-    ? "docs/qa/premium-v3"
-    : playCards
-      ? "docs/qa/play-cards"
-      : "docs/qa/rarity-frames",
-  privateRoot = premium
-    ? "private-data/premium-v3-release"
-    : playCards
-      ? "private-data/play-cards-release"
-      : "private-data/rarity-release";
+const reveal = process.argv[3] === "--reveal-stability";
+const playCards = process.argv[3] === "--play-cards" || premium || reveal;
+const root = reveal
+    ? "docs/qa/reveal-stability"
+    : premium
+      ? "docs/qa/premium-v3"
+      : playCards
+        ? "docs/qa/play-cards"
+        : "docs/qa/rarity-frames",
+  privateRoot = reveal
+    ? "private-data/reveal-stability-release"
+    : premium
+      ? "private-data/premium-v3-release"
+      : playCards
+        ? "private-data/play-cards-release"
+        : "private-data/rarity-release";
 mkdirSync(root, { recursive: true });
 mkdirSync(privateRoot, { recursive: true });
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
@@ -183,6 +188,17 @@ if (mode === "inspect") {
         );
         checks.push(
           "Play/Cards shared shell, field summary and collection toolbar styles present",
+        );
+      }
+      if (reveal) {
+        assert.ok(
+          styles.includes("pack-arrival.pack-turn") &&
+            styles.includes("docked-reveal-seal") &&
+            styles.includes("docked-reveal-light"),
+          "Stable reveal handoff and simplified effects deployed",
+        );
+        checks.push(
+          "Persistent reveal turn and simplified seal/light styles present",
         );
       }
       if (mode === "live")

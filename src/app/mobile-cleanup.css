@@ -429,6 +429,7 @@ h1.compact-page-title,
   width: min(100%, 300px, calc((100dvh - 230px) * 0.66));
   position: relative;
   transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0) rotateY(0deg);
 }
 .pack-viewport .pack-case {
   width: 100%;
@@ -485,18 +486,23 @@ h1.compact-page-title,
 .pack-viewport .pack-case::before {
   content: none;
 }
-.pack-viewport .pack-rising .pack-arrival {
-  animation: docked-single-reveal 1.8s cubic-bezier(0.22, 0.65, 0.3, 1) both;
+.pack-viewport .pack-arrival.pack-turn {
+  /* Retain the completed animation and compositor layer through inspection.
+     The keyed card starts its own turn, even for identical consecutive tiers. */
+  animation: docked-single-reveal 1.4s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
-.pack-viewport .pack-opening-envelope,
-.pack-viewport .pack-torn-seal,
-.pack-viewport .pack-blue-light,
-.pack-viewport .pack-tunnel i {
-  animation-duration: 1.8s;
+.pack-viewport .pack-blue-light {
+  z-index: -1;
+  animation: docked-reveal-light 1.4s ease-out both;
 }
 .pack-viewport .pack-opening-envelope {
   width: 170px;
   height: 235px;
+  margin-top: -117px;
+  animation: docked-reveal-seal 280ms ease-out both;
+}
+.pack-viewport .pack-torn-seal {
+  animation-duration: 280ms;
 }
 .pack-viewport.pack-stage-summary .pack-opening {
   display: block;
@@ -523,13 +529,35 @@ h1.compact-page-title,
 }
 @keyframes docked-single-reveal {
   0% {
-    transform: translateY(24px) rotateY(180deg) scale(0.94);
+    transform: translate3d(0, 0, 0) rotateY(180deg);
   }
-  15% {
-    transform: translateY(12px) rotateY(180deg) scale(0.96);
+  20% {
+    transform: translate3d(0, 0, 0) rotateY(180deg);
   }
   100% {
-    transform: translateY(0) rotateY(0) scale(1);
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+  }
+}
+@keyframes docked-reveal-seal {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(45px);
+    visibility: hidden;
+  }
+}
+@keyframes docked-reveal-light {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  55% {
+    opacity: 0.45;
+    transform: scale(1);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1017,7 +1045,7 @@ h1.compact-page-title,
     #e7bd5122 63%,
     transparent 75%
   );
-  animation: icon-halo 1.8s ease-out both;
+  animation: icon-halo 1.4s ease-out both;
 }
 .icon-firework {
   position: absolute;
@@ -1039,13 +1067,13 @@ h1.compact-page-title,
   border-radius: 3px;
   background: linear-gradient(#fff2c3, #dbab47);
   opacity: 0;
-  animation: icon-spark 850ms 650ms ease-out both;
+  animation: icon-spark 550ms 550ms ease-out both;
 }
 .icon-firework-1 i {
-  animation-delay: 800ms;
+  animation-delay: 650ms;
 }
 .icon-firework-2 i {
-  animation-delay: 950ms;
+  animation-delay: 750ms;
 }
 .tier-icon .pack-tunnel,
 .tier-icon .pack-blue-light {
