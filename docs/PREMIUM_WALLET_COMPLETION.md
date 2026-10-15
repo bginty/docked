@@ -74,7 +74,7 @@ The ninth is the untouched, untracked signed APK download capability. Its encode
 
 Both are tested locally only. Roll back application presentation first if needed. Drop the jersey view only after its readers are removed. Disable redemption rather than restoring an old aggregate over transactions. Preserve journals, pending reservations, request history and the vault key; resolve funds only through audited lifecycle transitions. Do not delete financial history to roll back.
 
-The existing source-export workflow is retained and now includes all tracked policy manifests required by current imports. This prepares source only; it cannot apply migrations or deploy.
+The existing source-export workflow is retained and now includes all tracked policy manifests required by current imports. Its first real candidate export exposed an obsolete required betting-policy filename, retired in `f1ab0133`; this was replaced with the current `nfl-seven-v1.json` requirement and the export regression was updated. This prepares source only; it cannot apply migrations or deploy.
 
 Read-only Vercel inspection found the configured `docked-preview` project (`prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR`) has no SSO/password/IP deployment protection. The separate historical credential-free review project `docked-production` (`prj_l0rpVDPRuIRp9UcBUkudeyUK5yST`) has SSO protection, but is a different deployment profile/branch. Neither existing environment was changed. No push that could trigger an unreviewed deployment was performed.
 

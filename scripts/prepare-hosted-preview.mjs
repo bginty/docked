@@ -73,7 +73,7 @@ const explicit = new Set([
   "config/hosted-production.json",
   "config/hosted-beta.json",
   "config/netlify-build.json",
-  "config/football-v1-research-policy.json",
+  "config/nfl-seven-v1.json",
 ]);
 const allowed = (file) =>
   explicit.has(file) || roots.some((prefix) => file.startsWith(prefix));
