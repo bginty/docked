@@ -2,11 +2,18 @@ import manifest from "../../config/hosted-beta.json" with { type: "json" };
 import friendsRelease from "../../config/friends-release.json" with { type: "json" };
 import { localMarketplaceAcceptance } from "./local-marketplace-acceptance.mjs";
 import {
+  assertPrivatePreview,
+  privatePreviewOrigin,
+} from "./private-preview.mjs";
+import {
   assertFriendsTarget,
   assertFriendsReadiness,
 } from "./friends-release.mjs";
 /** @param {Record<string,string|undefined>} env */
 export function betaOrigin(env) {
+  if (env.DOCKED_PRIVATE_PREVIEW) {
+    if (assertPrivatePreview(env)) return privatePreviewOrigin(env);
+  }
   if (localMarketplaceAcceptance(env)) return "http://127.0.0.1:3033";
   if (env.DOCKED_FRIENDS_BETA === "true") {
     assertFriendsTarget(env);
@@ -64,6 +71,7 @@ export function betaOwnerAuthenticationOnly(env) {
  * changes config/hosted-production.json. Credentials alone cannot enable access.
  * @param {Record<string,string|undefined>} env @param {Record<string,any>} [release] */
 export function assertHostedBeta(env, release = friendsRelease) {
+  if (assertPrivatePreview(env)) return true;
   if (localMarketplaceAcceptance(env)) return true;
   if (
     env.DOCKED_FRIENDS_BETA &&

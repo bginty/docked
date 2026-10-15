@@ -1,0 +1,177 @@
+{
+  "passed": true,
+  "at": "2026-10-15T21:41:53.689Z",
+  "hosted": true,
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "applied": 41,
+  "migrations": [
+    {
+      "file": "20261007234952_fantasy_free_play_production.sql",
+      "sha256": "38e1181f33889e94512167854c1bc50bd45e7dbef79c9111d893d5f5b3cb67c2"
+    },
+    {
+      "file": "20261008145441_nfl_community_catalogue.sql",
+      "sha256": "1d12c2e8e8f6430304ef68a23348aef452862b29f43942fadd192e7c415fb478"
+    },
+    {
+      "file": "20261008151700_fantasy_beta_result_isolation.sql",
+      "sha256": "d92df78cd30ec567335a47d2ef0177cd0f2220326873960c660d4b1c13d23e5c"
+    },
+    {
+      "file": "20261008224142_beta_namespace_isolation.sql",
+      "sha256": "83e359f9098de42edbca15348eb22e2f648bf8bbda25a38943aabe8ac0ebfbee"
+    },
+    {
+      "file": "20261008224144_beta_atomic_admission.sql",
+      "sha256": "9efb3edf35ae9b998d7ae06ca32c3c2f23c32e115058eea9b2573c14d17c914a"
+    },
+    {
+      "file": "20261008225828_beta_owner_acceptance_boundary.sql",
+      "sha256": "02198d7dfdd2f9a9e6978c76471af469e805f68fc6f4a903405dc68580fb84e0"
+    },
+    {
+      "file": "20261008232200_beta_admission_snapshot_serialization.sql",
+      "sha256": "8c9045fc39134dd5077a0df0dd92156c388d5a47e5db616963cacb458debf604"
+    },
+    {
+      "file": "20261009220656_owner_only_fantasy_gameplay.sql",
+      "sha256": "194ee56c781866097e4edfd989c2c6d3ca0d11d0d41d312ee3a514f11f82adec"
+    },
+    {
+      "file": "20261010072625_fantasy_play_read_model.sql",
+      "sha256": "f72334e5c9c4cdec96d224222e9aef1550d0174ad39543d4f31ce7be44085a7d"
+    },
+    {
+      "file": "20261010083630_two_person_beta_access.sql",
+      "sha256": "c9cd3a5c8b15325827d92b16127eb390d025ee72eac2708e0a82cc41a5a65470"
+    },
+    {
+      "file": "20261010083836_two_person_sandbox_swaps.sql",
+      "sha256": "3b48b75d6e033db1827384e2ed2d7e7fbe3bb52022716ca8895825eab7952555"
+    },
+    {
+      "file": "20261010090152_two_person_owner_session_mfa.sql",
+      "sha256": "5f814aa4815ab53e5849c1fdd4e35c592c3327e22995a4b82438478ace072c98"
+    },
+    {
+      "file": "20261010092154_scoring_v1_isolated_journal.sql",
+      "sha256": "9e9905522a1cad60eefe8f488bf2f5312dd40421e698f1c863fd8b8c8aedd6d1"
+    },
+    {
+      "file": "20261010112653_friends_beta_admission_boundary.sql",
+      "sha256": "34969bac70c3a8a6a9d0381192191f6ad39daefbd30762a22e56073506db97ef"
+    },
+    {
+      "file": "20261010112939_owner_operations_read_model.sql",
+      "sha256": "2ca3f31b25fb5f468dcfbe6ebde5f5ae4346e18354d2516586f505d4e2cfd7e5"
+    },
+    {
+      "file": "20261010114202_friends_card_swap_boundary.sql",
+      "sha256": "24583c5710af74f73f4a47824e9527f8054d4c2d69e93f547114e6f49815f811"
+    },
+    {
+      "file": "20261010210741_support_privacy_and_beta_catalogue.sql",
+      "sha256": "63701c521c3daf6d5f410cd37c275f73ea3923a35fe9e255f2f6dcf08fa51c72"
+    },
+    {
+      "file": "20261010231416_nfl_postgame_isolated_feed.sql",
+      "sha256": "262abfb640410ceb73ffef7bcf43e50af879953897ec6253e762e730124764b3"
+    },
+    {
+      "file": "20261010233559_nfl_beta_raw_retention.sql",
+      "sha256": "b723eb9e31e33b1f86516209cb78564db6461cf6cad7c633862b44d5bf0373b3"
+    },
+    {
+      "file": "20261011002634_nfl_member_rounds.sql",
+      "sha256": "09071bc3dcee755712e12b2bbcbe26ed4939a7a097bc43a07ae4d9d5e5f0d3d1"
+    },
+    {
+      "file": "20261011004639_nfl_member_read_projection.sql",
+      "sha256": "9666399cbf9b61241da0d499a3da4ffdc628fdd5bc8a237bb9ed0e5125c20c03"
+    },
+    {
+      "file": "20261011011400_nfl_swap_projection.sql",
+      "sha256": "31e90b107124b61f80a639a9d88cdd17fa29df78a23f83bcc04e9a623f71c4bd"
+    },
+    {
+      "file": "20261011045327_customer_beta_onboarding.sql",
+      "sha256": "5c02881d271b8d3a9799f05868c45b5bcbdb7968ee9f320174464fa42dbc6443"
+    },
+    {
+      "file": "20261011045504_customer_invitation_eligibility.sql",
+      "sha256": "17e81963222ae54d17e7f731bdf46f8520f8545785834471367ae5be4860b0ef"
+    },
+    {
+      "file": "20261011052829_beta_team_names.sql",
+      "sha256": "46140f1201f3059cda5aa86919be78a29c05d29988d67d2280cc17aca966b437"
+    },
+    {
+      "file": "20261011060614_pack_opening_receipt.sql",
+      "sha256": "c2a46b98911837b6f1073adea3fed8ff6ef79946b81db2d282d7eabbb93eb7f1"
+    },
+    {
+      "file": "20261011100229_financial_test_wallet.sql",
+      "sha256": "b4f0caa0ee908e6baf79e4ae577065ad867d21ddd9a8406b6e040e2493f51bda"
+    },
+    {
+      "file": "20261012101915_lifetime_card_economy.sql",
+      "sha256": "c5b54d73b764a01e05843dfdc51cd3e403c16011fabef306db8ac4a37f685ad0"
+    },
+    {
+      "file": "20261012120429_nfl_rarity_member_rounds.sql",
+      "sha256": "df5504643443663cbc9e8ea76cb32b5d7763ade5ac1a355ab93d2386a724aefa"
+    },
+    {
+      "file": "20261012123000_nfl_rarity_core_identity.sql",
+      "sha256": "0a538b3e286d3dd929644247db26355ac1388ca0c50b2ea69cd482ec64a35a0e"
+    },
+    {
+      "file": "20261013064456_nfl_seven_slot_modes.sql",
+      "sha256": "405304809f64ba596f8d4027f590b92d4a67188ccd1c3b5856fff88bf85c81bf"
+    },
+    {
+      "file": "20261013073543_nfl_seven_final_write_guard.sql",
+      "sha256": "ef19da120c9f3e32864fb3fbcc325692a6149c95df6b1618a80444786acacc85"
+    },
+    {
+      "file": "20261013223206_barry_beta_review_projection.sql",
+      "sha256": "a5671012661fab1517006477142346f2b63285faa55ba05c0cf80ab63c645400"
+    },
+    {
+      "file": "20261014021342_marketplace_phase_one_guards.sql",
+      "sha256": "c5794001b05b0803ec4620c83eed23f98eff24a10ea69ae3a8aa22fe4a3ad54c"
+    },
+    {
+      "file": "20261014081315_marketplace_legacy_identity_compatibility.sql",
+      "sha256": "6e91ef6b60ddb1282f6a236788f76dbe7ce3a4306f34c465ae37b8b5935c8201"
+    },
+    {
+      "file": "20261014081931_nfl_locked_worker_read_scope.sql",
+      "sha256": "cd50ab4bbc66dffd15c18b3e93057945731a368f0eee0db3ba107c31e7f696e9"
+    },
+    {
+      "file": "20261015055109_manual_credit_redemption.sql",
+      "sha256": "39414ef1070fca79d9e4312851e045f6471c8676fcba437976c64cdc40d1a1ee"
+    },
+    {
+      "file": "20261015080107_verified_jersey_presentation.sql",
+      "sha256": "8fa9500c916e46fb0ce3e5d35565804a9f98c5614be748def199924b82fe95a5"
+    },
+    {
+      "file": "20261015102845_jersey_projection_single_pass.sql",
+      "sha256": "12cc5eae3b4793efed456b79c919917b35ad604af2c9a834f6b281ce45d8ebf2"
+    },
+    {
+      "file": "20261015131955_premium_social_collections.sql",
+      "sha256": "ff86126405448e796da324564bbb858ce2ede4e8f7a4256dfca0e9027a52ec8e"
+    },
+    {
+      "file": "20261015140207_premium_social_runtime_guards.sql",
+      "sha256": "b1e4cd69a9dab8255e96f4eb1d32749ffc73032bea76de813ccbe5c412c24bb9"
+    }
+  ],
+  "admissionEnabled": false,
+  "admissions": 0,
+  "creditStates": 0,
+  "restrictedRole": true
+}

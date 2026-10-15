@@ -13,7 +13,9 @@ import {
 try {
   if (assertHostedBeta(process.env)) {
     console.log(
-      "Isolated production-connected beta Preview; admission remains independently gated.",
+      process.env.DOCKED_PRIVATE_PREVIEW === "true"
+        ? "Isolated private Preview; owner setup only, member admission remains closed."
+        : "Isolated production-connected beta Preview; admission remains independently gated.",
     );
   } else if (assertHostedReview(process.env)) {
     console.log(

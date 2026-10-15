@@ -28,6 +28,8 @@ import { passwordResetFailure } from "@/core/auth-policy";
 import { mfaFlow } from "@/server/mfa-flow";
 import { consentRenewalDestination } from "@/core/mfa-flow";
 import { verifiedSessionClaims } from "@/core/auth-policy";
+import { assertPrivatePreview } from "@/core/private-preview.mjs";
+import { previewOwnerAuth } from "@/core/preview-owner-auth";
 function signupTransaction(tx: TransactionSql): SignupTransaction {
   return {
     query: async (text, parameters) => [...(await tx.unsafe(text, parameters))],
@@ -74,9 +76,11 @@ const schema = z.object({
 export async function POST(request: Request) {
   if (!sameOrigin(request))
     return NextResponse.json({ error: "Origin denied" }, { status: 403 });
+  const ownerSetup = assertPrivatePreview(process.env);
   if (
     process.env.DOCKED_BETA_STAGING === "true" &&
-    process.env.BETA_ACCESS_ENABLED !== "true"
+    process.env.BETA_ACCESS_ENABLED !== "true" &&
+    !ownerSetup
   )
     return NextResponse.json(
       { error: "Controlled beta acceptance is not enabled." },
@@ -104,6 +108,25 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   const v = parsed.data;
+  if (ownerSetup) {
+    if (
+      !(await rateLimit(
+        `preview-owner:${hash(request.headers.get("x-forwarded-for") ?? "unknown")}`,
+        6,
+        300,
+      ))
+    )
+      return NextResponse.json(
+        { error: "Please wait before trying again." },
+        { status: 429 },
+      );
+    const client = (await authClient())!;
+    const result = await previewOwnerAuth(client.auth, v, process.env);
+    return NextResponse.json(result, {
+      status: "error" in result ? 403 : 200,
+      headers: { "Cache-Control": "private, no-store" },
+    });
+  }
   const invited = v.action === "signup" && !!v.invitationCode;
   const productionDenial = productionAuthRequestDenial(
     v.action,

@@ -1,0 +1,9 @@
+{
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "owner": {
+    "accounts": 1,
+    "mfa_verified": 0
+  },
+  "checks": "Read-only existing owner account and verified MFA-factor counts; no credentials or factor secrets accessed",
+  "superseded": "Earlier candidate lookup, not proof of owner role. Explicit owner support@docked.com.au is recorded in owner-invite.json."
+}

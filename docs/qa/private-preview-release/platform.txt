@@ -1,0 +1,2018 @@
+
+> docked-value-platform@1.0.0 test
+> tsx --test --test-concurrency=2 tests/platform/*.test.ts
+
+TAP version 13
+# Subtest: analytics accepts the finite taxonomy and rejects sensitive free-form payloads
+ok 1 - analytics accepts the finite taxonomy and rejects sensitive free-form payloads
+  ---
+  duration_ms: 7.6164
+  ...
+# Subtest: browser telemetry cannot forge successful community or account actions
+ok 2 - browser telemetry cannot forge successful community or account actions
+  ---
+  duration_ms: 3.0889
+  ...
+# Subtest: delivery filename follows package version and separates owner QA from friends beta
+ok 3 - delivery filename follows package version and separates owner QA from friends beta
+  ---
+  duration_ms: 3.111
+  ...
+# Subtest: APK archive survives a cleared Gradle output and refuses corrupted prior copies
+ok 4 - APK archive survives a cleared Gradle output and refuses corrupted prior copies
+  ---
+  duration_ms: 231.8009
+  ...
+# Subtest: closed-test signing refuses absent credentials, source-tree keys and debug keys
+ok 5 - closed-test signing refuses absent credentials, source-tree keys and debug keys
+  ---
+  duration_ms: 8.4144
+  ...
+# Subtest: closed-test build has an independent upload signing gate while production stays blocked
+ok 6 - closed-test build has an independent upload signing gate while production stays blocked
+  ---
+  duration_ms: 7.9186
+  ...
+# Subtest: debug packaging refuses assets left by beta or hosted Preview sync
+ok 7 - debug packaging refuses assets left by beta or hosted Preview sync
+  ---
+  duration_ms: 3.3308
+  ...
+# Subtest: release provenance retains verified Netlify build metadata and rejects a mixed Vercel runtime
+ok 8 - release provenance retains verified Netlify build metadata and rejects a mixed Vercel runtime
+  ---
+  duration_ms: 1.5941
+  ...
+# Subtest: Android beta selects the exact live backend and preserves installed owner package without copying extra fields
+ok 9 - Android beta selects the exact live backend and preserves installed owner package without copying extra fields
+  ---
+  duration_ms: 3.7933
+  ...
+# Subtest: Android beta rechecks the live deployment and rejects rollout or registration drift
+ok 10 - Android beta rechecks the live deployment and rejects rollout or registration drift
+  ---
+  duration_ms: 67.5971
+  ...
+# Subtest: Android beta refuses failed, stale, unrelated or public registration receipts
+ok 11 - Android beta refuses failed, stale, unrelated or public registration receipts
+  ---
+  duration_ms: 2.0204
+  ...
+# Subtest: Android beta cannot fall back to preview, localhost or inspection
+ok 12 - Android beta cannot fall back to preview, localhost or inspection
+  ---
+  duration_ms: 1.508
+  ...
+# Subtest: Vercel Android acceptance requires exact production project/team and current live provenance
+ok 13 - Vercel Android acceptance requires exact production project/team and current live provenance
+  ---
+  duration_ms: 10.5713
+  ...
+# Subtest: connected owner QA pins protected Preview without privileged credentials
+ok 14 - connected owner QA pins protected Preview without privileged credentials
+  ---
+  duration_ms: 8.163
+  ...
+# Subtest: hosted Android config binds one approved origin and whitelists only public metadata
+ok 15 - hosted Android config binds one approved origin and whitelists only public metadata
+  ---
+  duration_ms: 20.9551
+  ...
+# Subtest: hosted Android build fails closed without current preview identity and disabled services
+ok 16 - hosted Android build fails closed without current preview identity and disabled services
+  ---
+  duration_ms: 2.5539
+  ...
+# Subtest: a stored pending-rights provider requires explicit non-polling and publication-off proof
+ok 17 - a stored pending-rights provider requires explicit non-polling and publication-off proof
+  ---
+  duration_ms: 2.664
+  ...
+# Subtest: intermediate email change selects instructions only, never code or error responses
+ok 18 - intermediate email change selects instructions only, never code or error responses
+  ---
+  duration_ms: 3.2204
+  ...
+# Subtest: authentication callbacks retain only reviewed app and legacy destinations
+ok 19 - authentication callbacks retain only reviewed app and legacy destinations
+  ---
+  duration_ms: 0.5298
+  ...
+# Subtest: production recipient policy defaults closed, support tests cannot email friends, beta requires exact list
+ok 20 - production recipient policy defaults closed, support tests cannot email friends, beta requires exact list
+  ---
+  duration_ms: 3.7059
+  ...
+# Subtest: invitation GET and mail scanner requests cannot consume a token
+ok 21 - invitation GET and mail scanner requests cannot consume a token
+  ---
+  duration_ms: 69.1783
+  ...
+# Subtest: confirmation rejects forged origins, malformed/duplicate fields and oversize bodies before Auth
+ok 22 - confirmation rejects forged origins, malformed/duplicate fields and oversize bodies before Auth
+  ---
+  duration_ms: 15.6408
+  ...
+# Subtest: only confirmed invite gets fixed password destination; invalid and uncertain outcomes stay distinct
+ok 23 - only confirmed invite gets fixed password destination; invalid and uncertain outcomes stay distinct
+  ---
+  duration_ms: 8.9226
+  ...
+# Subtest: invites require exact production identity and both new and existing activation gates
+ok 24 - invites require exact production identity and both new and existing activation gates
+  ---
+  duration_ms: 0.9774
+  ...
+# Subtest: invite messages use gated browser confirmation and encrypted stable queue identities
+ok 25 - invite messages use gated browser confirmation and encrypted stable queue identities
+  ---
+  duration_ms: 56.7348
+  ...
+# Subtest: alternate invitation host is rejected before rendering or verifying
+ok 26 - alternate invitation host is rejected before rendering or verifying
+  ---
+  duration_ms: 1.76
+  ...
+# Subtest: production dispatch rejects previously queued unapproved recipients before certificate or Graph requests
+ok 27 - production dispatch rejects previously queued unapproved recipients before certificate or Graph requests
+  ---
+  duration_ms: 5170.3598
+  ...
+# Subtest: ciphertext is randomized, identities stable, tampering fails before Graph
+ok 28 - ciphertext is randomized, identities stable, tampering fails before Graph
+  ---
+  duration_ms: 26.9568
+  ...
+# Subtest: two concurrent workers make one Graph submission; accepted retry is idle
+ok 29 - two concurrent workers make one Graph submission; accepted retry is idle
+  ---
+  duration_ms: 123.1438
+  ...
+# Subtest: bounded worker clears 32 healthy queued jobs in eight ticks and admission rejects overflow
+ok 30 - bounded worker clears 32 healthy queued jobs in eight ticks and admission rejects overflow
+  ---
+  duration_ms: 786.1294
+  ...
+# Subtest: Graph response lost after acceptance is held unknown and never resubmitted
+ok 31 - Graph response lost after acceptance is held unknown and never resubmitted
+  ---
+  duration_ms: 27.6897
+  ...
+# Subtest: authorization failure is retriable but dispatch-fence failure never sends
+ok 32 - authorization failure is retriable but dispatch-fence failure never sends
+  ---
+  duration_ms: 39.5999
+  ...
+# Subtest: confirmed Graph 429 and 5xx are held; invalid transition cannot retry dispatch
+ok 33 - confirmed Graph 429 and 5xx are held; invalid transition cannot retry dispatch
+  ---
+  duration_ms: 81.9485
+  ...
+# docked_auth_email_prepare_rejected:validation
+# docked_auth_email_prepare_rejected:validation
+# docked_auth_email_prepare_rejected:validation
+# Subtest: signed controlled queue is support-only and production path stays disabled
+ok 34 - signed controlled queue is support-only and production path stays disabled
+  ---
+  duration_ms: 75.0594
+  ...
+# Subtest: production enqueue and worker require both activation gates
+ok 35 - production enqueue and worker require both activation gates
+  ---
+  duration_ms: 5.8552
+  ...
+# Subtest: controlled diagnostic fixes recipient and content and deduplicates
+ok 36 - controlled diagnostic fixes recipient and content and deduplicates
+  ---
+  duration_ms: 41.4059
+  ...
+# Subtest: accepted Graph send with failed receipt write never sends again
+ok 37 - accepted Graph send with failed receipt write never sends again
+  ---
+  duration_ms: 30.0317
+  ...
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 38 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 3.3073
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 39 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 3.8701
+  ...
+# Subtest: recovery link scanners cannot consume tokens; only explicit POST reaches provider
+ok 40 - recovery link scanners cannot consume tokens; only explicit POST reaches provider
+  ---
+  duration_ms: 57.6553
+  ...
+# Subtest: recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+ok 41 - recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+  ---
+  duration_ms: 10.6917
+  ...
+# Subtest: missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+ok 42 - missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+  ---
+  duration_ms: 5.3922
+  ...
+# Subtest: recovery verifier presence is bound to the dedicated project and supports SSR chunks
+ok 43 - recovery verifier presence is bound to the dedicated project and supports SSR chunks
+  ---
+  duration_ms: 0.5142
+  ...
+# Subtest: Authorised feed boundary denies unknown rights, gaps, stale data and other football competitions
+ok 44 - Authorised feed boundary denies unknown rights, gaps, stale data and other football competitions
+  ---
+  duration_ms: 27.0759
+  ...
+# Subtest: avatar crop stays within decoded image for every position and zoom
+ok 45 - avatar crop stays within decoded image for every position and zoom
+  ---
+  duration_ms: 8.6662
+  ...
+# Subtest: JPEG PNG WebP avatar crops become bounded metadata-free 256px WebP
+ok 46 - JPEG PNG WebP avatar crops become bounded metadata-free 256px WebP
+  ---
+  duration_ms: 298.3293
+  ...
+# Subtest: avatar crop rejects malformed files, SVG, excessive pixels/bytes and animation
+ok 47 - avatar crop rejects malformed files, SVG, excessive pixels/bytes and animation
+  ---
+  duration_ms: 137.014
+  ...
+# Subtest: new gameplay packs exclude K without modifying old receipts, caps or prices
+ok 48 - new gameplay packs exclude K without modifying old receipts, caps or prices
+  ---
+  duration_ms: 70.4796
+  ...
+# Subtest: probability formatting never turns near-certainty into a guarantee
+ok 49 - probability formatting never turns near-certainty into a guarantee
+  ---
+  duration_ms: 0.7
+  ...
+# Subtest: NFL filters and Core identity never imply football positions or limited Core supply
+ok 50 - NFL filters and Core identity never imply football positions or limited Core supply
+  ---
+  duration_ms: 1.2481
+  ...
+# Subtest: same-player duplicates remain invalid; salary replacement includes outgoing card; Open ignores cap
+ok 51 - same-player duplicates remain invalid; salary replacement includes outgoing card; Open ignores cap
+  ---
+  duration_ms: 23.3167
+  ...
+# Subtest: hung read is bounded and never automatically repeats a request
+ok 52 - hung read is bounded and never automatically repeats a request
+  ---
+  duration_ms: 25.8143
+  ...
+# Subtest: beta roster permits ten Australian members plus the separate designated owner without enabling sends
+ok 53 - beta roster permits ten Australian members plus the separate designated owner without enabling sends
+  ---
+  duration_ms: 12.6285
+  ...
+# Subtest: beta roster rejects excess capacity, duplicates, owner reuse, overseas entries and role injection
+ok 54 - beta roster rejects excess capacity, duplicates, owner reuse, overseas entries and role injection
+  ---
+  duration_ms: 4.3105
+  ...
+# Subtest: approved beta content preserves all seven owner-approved hashes and closed external gates
+ok 55 - approved beta content preserves all seven owner-approved hashes and closed external gates
+  ---
+  duration_ms: 31.6399
+  ...
+# Subtest: beta logout revokes only the current session and never requests global sign-out
+ok 56 - beta logout revokes only the current session and never requests global sign-out
+  ---
+  duration_ms: 5.855
+  ...
+# Subtest: beta logout does not report success after a provider rejection or uncertain response
+ok 57 - beta logout does not report success after a provider rejection or uncertain response
+  ---
+  duration_ms: 2.1138
+  ...
+# Subtest: email accepts only the exact operator-pinned beta callback and at most eleven recipients
+ok 58 - email accepts only the exact operator-pinned beta callback and at most eleven recipients
+  ---
+  duration_ms: 4.2878
+  ...
+# Subtest: friends email can pin the exact authorised domain without allowing old QA callbacks
+ok 59 - friends email can pin the exact authorised domain without allowing old QA callbacks
+  ---
+  duration_ms: 1.2689
+  ...
+# Subtest: owner setup retains Fantasy identity without opening gameplay or community
+ok 60 - owner setup retains Fantasy identity without opening gameplay or community
+  ---
+  duration_ms: 2.9106
+  ...
+# Subtest: beta staging accepts only its exact protected Preview and beta database role
+ok 61 - beta staging accepts only its exact protected Preview and beta database role
+  ---
+  duration_ms: 1.7009
+  ...
+# Subtest: owner auth approval still rejects testers, public signup, games and privileged web credentials
+ok 62 - owner auth approval still rejects testers, public signup, games and privileged web credentials
+  ---
+  duration_ms: 1.6406
+  ...
+# Subtest: owner gameplay needs explicit scope and cannot open external admission
+ok 63 - owner gameplay needs explicit scope and cannot open external admission
+  ---
+  duration_ms: 1.2261
+  ...
+# Subtest: owner authentication binds exact approved beta policies without public production approval
+ok 64 - owner authentication binds exact approved beta policies without public production approval
+  ---
+  duration_ms: 2.0148
+  ...
+# Subtest: SQL routing covers all three namespaces without rewriting already routed identifiers
+ok 65 - SQL routing covers all three namespaces without rewriting already routed identifiers
+  ---
+  duration_ms: 0.4383
+  ...
+# Subtest: SQL routing leaves bound text and JSON data intact
+ok 66 - SQL routing leaves bound text and JSON data intact
+  ---
+  duration_ms: 1.2329
+  ...
+# Subtest: six authoritative rarities total 7951 limited cards; Core is unlimited and free
+ok 67 - six authoritative rarities total 7951 limited cards; Core is unlimited and free
+  ---
+  duration_ms: 3.169
+  ...
+# Subtest: changed product consent, pause and client override cannot buy a new pack
+ok 68 - changed product consent, pause and client override cannot buy a new pack
+  ---
+  duration_ms: 70.0241
+  ...
+# Subtest: both packs yield nine unique non-Core cards and allow a deterministic Icon
+ok 69 - both packs yield nine unique non-Core cards and allow a deterministic Icon
+  ---
+  duration_ms: 10.5285
+  ...
+# Subtest: insufficient supply is atomic and no rarity substitution occurs
+ok 70 - insufficient supply is atomic and no rarity substitution occurs
+  ---
+  duration_ms: 4.8445
+  ...
+# Subtest: inactive/stale players abstain, preserve existing supply and never become retired by absence
+ok 71 - inactive/stale players abstain, preserve existing supply and never become retired by absence
+  ---
+  duration_ms: 4.0833
+  ...
+# Subtest: provider aliases cannot establish another allocation
+ok 72 - provider aliases cannot establish another allocation
+  ---
+  duration_ms: 0.5648
+  ...
+# Subtest: team/artwork/season do not reset player rarity serials
+ok 73 - team/artwork/season do not reset player rarity serials
+  ---
+  duration_ms: 4.4471
+  ...
+# Subtest: wallet retries preserve nine awards and one debit; open/replay never remints
+ok 74 - wallet retries preserve nine awards and one debit; open/replay never remints
+  ---
+  duration_ms: 24.5241
+  ...
+# Subtest: new products reject insufficient balance and legacy purchases; old sealed entitlements still open
+ok 75 - new products reject insufficient balance and legacy purchases; old sealed entitlements still open
+  ---
+  duration_ms: 33.5736
+  ...
+# Subtest: rarity rounding applies to negative complete totals; old competition has no snapshot
+ok 76 - rarity rounding applies to negative complete totals; old competition has no snapshot
+  ---
+  duration_ms: 1.683
+  ...
+# Subtest: NFL legacy placeholder numbers are never presented as verified jerseys
+ok 77 - NFL legacy placeholder numbers are never presented as verified jerseys
+  ---
+  duration_ms: 2.3508
+  ...
+# Subtest: current-team presentation has a stable fallback and does not modify card identity
+ok 78 - current-team presentation has a stable fallback and does not modify card identity
+  ---
+  duration_ms: 2.1456
+  ...
+# Subtest: full NFL team names preserve unknown data without inventing a club
+ok 79 - full NFL team names preserve unknown data without inventing a club
+  ---
+  duration_ms: 0.4758
+  ...
+# Subtest: conditional source checks count without inventing a new download or completed member round
+ok 80 - conditional source checks count without inventing a new download or completed member round
+  ---
+  duration_ms: 7.0128
+  ...
+# Subtest: idle, cooldown, stale evidence, wrong raw revision and cron-only success cannot pass
+ok 81 - idle, cooldown, stale evidence, wrong raw revision and cron-only success cannot pass
+  ---
+  duration_ms: 1.9823
+  ...
+# Subtest: a not-yet-due check stays waiting and unrelated projects are rejected
+ok 82 - a not-yet-due check stays waiting and unrelated projects are rejected
+  ---
+  duration_ms: 0.7629
+  ...
+# Subtest: Approved Premium/Elite offers preserve tier identity and keep charges disabled
+ok 83 - Approved Premium/Elite offers preserve tier identity and keep charges disabled
+  ---
+  duration_ms: 4.7855
+  ...
+# Subtest: Random sandbox packs reserve one eligible unit without exposing selection or accepting client choice
+ok 84 - Random sandbox packs reserve one eligible unit without exposing selection or accepting client choice
+  ---
+  duration_ms: 20.9976
+  ...
+# Subtest: Random pool cancellation releases only the reserved unit; retries retain their original result
+ok 85 - Random pool cancellation releases only the reserved unit; retries retain their original result
+  ---
+  duration_ms: 9.8977
+  ...
+# Subtest: Orders reserve finite supply; server price, confirmed bank payment, single issuance and idempotency
+ok 86 - Orders reserve finite supply; server price, confirmed bank payment, single issuance and idempotency
+  ---
+  duration_ms: 4.3666
+  ...
+# Subtest: Expired, cancelled, partial/excess payments cannot issue; failures preserve original state
+ok 87 - Expired, cancelled, partial/excess payments cannot issue; failures preserve original state
+  ---
+  duration_ms: 5.1503
+  ...
+# Subtest: PayPal requires bound verified completed capture; duplicate event cannot be reused
+ok 88 - PayPal requires bound verified completed capture; duplicate event cannot be reused
+  ---
+  duration_ms: 7.2159
+  ...
+# Subtest: KYC and beneficiary gate withdrawal, reserve only eligible funds, never enable payouts
+ok 89 - KYC and beneficiary gate withdrawal, reserve only eligible funds, never enable payouts
+  ---
+  duration_ms: 16.4078
+  ...
+# Subtest: Identity webhook verifies raw HMAC and rejects tampering
+ok 90 - Identity webhook verifies raw HMAC and rejects tampering
+  ---
+  duration_ms: 2.6178
+  ...
+# Subtest: PayPal transport pins sandbox and verifies signature, event kind, currency, amount and order
+ok 91 - PayPal transport pins sandbox and verifies signature, event kind, currency, amount and order
+  ---
+  duration_ms: 93.2907
+  ...
+# Subtest: community quarantine codec decodes pixels, bounds size and strips private metadata
+ok 92 - community quarantine codec decodes pixels, bounds size and strips private metadata
+  ---
+  duration_ms: 370.4704
+  ...
+# Subtest: community quarantine rejects malformed, non-raster, oversized-byte and oversized-pixel inputs
+ok 93 - community quarantine rejects malformed, non-raster, oversized-byte and oversized-pixel inputs
+  ---
+  duration_ms: 147.7281
+  ...
+# Subtest: production Auth projections are fixed and Preview retains its existing schema
+ok 94 - production Auth projections are fixed and Preview retains its existing schema
+  ---
+  duration_ms: 2.6153
+  ...
+# Subtest: community maintenance drains bounded deletion jobs before independent retention and in-app work
+ok 95 - community maintenance drains bounded deletion jobs before independent retention and in-app work
+  ---
+  duration_ms: 3.7916
+  ...
+# Subtest: remote erasure failure records retry outcome but cannot strand the next account or in-app work
+ok 96 - remote erasure failure records retry outcome but cannot strand the next account or in-app work
+  ---
+  duration_ms: 1.2882
+  ...
+# Subtest: malformed deletion identity never invokes Auth and unacknowledged jobs do not claim success
+ok 97 - malformed deletion identity never invokes Auth and unacknowledged jobs do not claim success
+  ---
+  duration_ms: 2.1305
+  ...
+# Subtest: all runners exclude retired publication records from social fanout
+ok 98 - all runners exclude retired publication records from social fanout
+  ---
+  duration_ms: 51.1232
+  ...
+# Subtest: private quarantine review permits MFA staff including read-only auditors independently of public region activation
+ok 99 - private quarantine review permits MFA staff including read-only auditors independently of public region activation
+  ---
+  duration_ms: 2.71
+  ...
+# Subtest: anonymous community upload and notification requests reject before accessing body bytes
+ok 100 - anonymous community upload and notification requests reject before accessing body bytes
+  ---
+  duration_ms: 9356.1811
+  ...
+# Subtest: reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+ok 101 - reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+  ---
+  duration_ms: 9.9981
+  ...
+# Subtest: social-only input cannot supply verification, official ownership, settlement or cash stake fields
+ok 102 - social-only input cannot supply verification, official ownership, settlement or cash stake fields
+  ---
+  duration_ms: 14.7882
+  ...
+# Subtest: separate in-app preferences cannot enable outbound email or push
+ok 103 - separate in-app preferences cannot enable outbound email or push
+  ---
+  duration_ms: 4.1754
+  ...
+# Subtest: following a member does not implicitly opt into individual notifications
+ok 104 - following a member does not implicitly opt into individual notifications
+  ---
+  duration_ms: 2.7477
+  ...
+# Subtest: social cursor accepts only an exact timestamp and UUID pair
+ok 105 - social cursor accepts only an exact timestamp and UUID pair
+  ---
+  duration_ms: 5.9309
+  ...
+# Subtest: body cap counts streamed bytes without relying on missing or forged Content-Length
+ok 106 - body cap counts streamed bytes without relying on missing or forged Content-Length
+  ---
+  duration_ms: 95.3168
+  ...
+# Subtest: confirmed funding, not redirects; merchant/amount/reference, exact cents, receivable and settlement fees
+ok 107 - confirmed funding, not redirects; merchant/amount/reference, exact cents, receivable and settlement fees
+  ---
+  duration_ms: 87.615
+  ...
+# Subtest: FIFO transfer provenance survives multiple resales; 1000 = 925 seller + 75 fee; no new issuance
+ok 108 - FIFO transfer provenance survives multiple resales; 1000 = 925 seller + 75 fee; no new issuance
+  ---
+  duration_ms: 23.8995
+  ...
+# Subtest: withdrawal reserves once, unknown stays reserved, paid extinguishes once; refunds block reserved funding
+ok 109 - withdrawal reserves once, unknown stays reserved, paid extinguishes once; refunds block reserved funding
+  ---
+  duration_ms: 55.9946
+  ...
+# Subtest: free window zero-balance atomic swap; expiry cannot increase fee without fresh consent
+ok 110 - free window zero-balance atomic swap; expiry cannot increase fee without fresh consent
+  ---
+  duration_ms: 9.951
+  ...
+# Subtest: whole-credit half-up conserves value; mismatches and unbacked grants are visible
+ok 111 - whole-credit half-up conserves value; mismatches and unbacked grants are visible
+  ---
+  duration_ms: 16.1142
+  ...
+# Subtest: FIFO uses acquisition order, including grants; disputes do not freeze unrelated funded lots
+ok 112 - FIFO uses acquisition order, including grants; disputes do not freeze unrelated funded lots
+  ---
+  duration_ms: 11.5577
+  ...
+# Subtest: acceptor's stale free quote cannot incur fee; failed balance check leaves both cards unchanged
+ok 113 - acceptor's stale free quote cannot incur fee; failed balance check leaves both cards unchanged
+  ---
+  duration_ms: 18.8111
+  ...
+# Subtest: unused purchased withdrawals remain disabled; legacy entitlements survive policy activation
+ok 114 - unused purchased withdrawals remain disabled; legacy entitlements survive policy activation
+  ---
+  duration_ms: 41.7719
+  ...
+# Subtest: dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+ok 115 - dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+  ---
+  duration_ms: 163.892
+  ...
+# Subtest: Sydney date boundaries handle DST and invalid/reversed ranges
+ok 116 - Sydney date boundaries handle DST and invalid/reversed ranges
+  ---
+  duration_ms: 6.3082
+  ...
+# Subtest: free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+ok 117 - free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+  ---
+  duration_ms: 19.4193
+  ...
+# Subtest: missing funding record or altered posting is detected; CSV neutralises formula text
+ok 118 - missing funding record or altered posting is detected; CSV neutralises formula text
+  ---
+  duration_ms: 8.1314
+  ...
+# Subtest: expired swap, forged ownership, failed purchase and stale amount preserve all records
+ok 119 - expired swap, forged ownership, failed purchase and stale amount preserve all records
+  ---
+  duration_ms: 22.712
+  ...
+# Subtest: Wallet funding contract verifies authenticated merchant, order attribution, currency and exact captured amount
+ok 120 - Wallet funding contract verifies authenticated merchant, order attribution, currency and exact captured amount
+  ---
+  duration_ms: 128.4841
+  ...
+# Subtest: AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+ok 121 - AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+  ---
+  duration_ms: 104.5808
+  ...
+# Subtest: inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+ok 122 - inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+  ---
+  duration_ms: 10.0112
+  ...
+# Subtest: seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+ok 123 - seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+  ---
+  duration_ms: 27.1389
+  ...
+# Subtest: swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+ok 124 - swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+  ---
+  duration_ms: 69.7818
+  ...
+# Subtest: insufficient counterparty swap fee rolls back both owners and all fees
+ok 125 - insufficient counterparty swap fee rolls back both owners and all fees
+  ---
+  duration_ms: 36.0089
+  ...
+# Subtest: promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+ok 126 - promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+  ---
+  duration_ms: 10.1073
+  ...
+# Subtest: funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+ok 127 - funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+  ---
+  duration_ms: 17.9499
+  ...
+# Subtest: withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+ok 128 - withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+  ---
+  duration_ms: 51.6664
+  ...
+# Subtest: refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+ok 129 - refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+  ---
+  duration_ms: 44.7916
+  ...
+# Subtest: reserved keys, client-supplied prices, fake providers and live mode fail closed
+ok 130 - reserved keys, client-supplied prices, fake providers and live mode fail closed
+  ---
+  duration_ms: 5.7663
+  ...
+# Subtest: Pending cumulative full refund compensates all credits; expired reservations release finite supply
+ok 131 - Pending cumulative full refund compensates all credits; expired reservations release finite supply
+  ---
+  duration_ms: 10.3248
+  ...
+# Subtest: Unspent funded promotion reverses with compensating entries and restores its approved budget
+ok 132 - Unspent funded promotion reverses with compensating entries and restores its approved budget
+  ---
+  duration_ms: 5.7031
+  ...
+# Subtest: Restricted card value cannot become redeemable through an intermediate pure swap
+ok 133 - Restricted card value cannot become redeemable through an intermediate pure swap
+  ---
+  duration_ms: 39.1544
+  ...
+# Subtest: invitation signup proves eligibility first; creates unverified identity only; retries do not reset password
+ok 134 - invitation signup proves eligibility first; creates unverified identity only; retries do not reset password
+  ---
+  duration_ms: 3.3757
+  ...
+# Subtest: uncertain account creation recovers only the exact reserved identity and never changes credentials
+ok 135 - uncertain account creation recovers only the exact reserved identity and never changes credentials
+  ---
+  duration_ms: 0.8463
+  ...
+# Subtest: email verification GET never consumes tokens; POST origin, shape and provider outcome are enforced
+ok 136 - email verification GET never consumes tokens; POST origin, shape and provider outcome are enforced
+  ---
+  duration_ms: 53.6734
+  ...
+# Subtest: actual Postgres.js parsing cannot downgrade remote certificate verification through URL TLS options
+ok 137 - actual Postgres.js parsing cannot downgrade remote certificate verification through URL TLS options
+  ---
+  duration_ms: 26.7192
+  ...
+# Subtest: explicit remote TLS and URL target also override ambient PostgreSQL TLS/host/port variables
+ok 138 - explicit remote TLS and URL target also override ambient PostgreSQL TLS/host/port variables
+  ---
+  duration_ms: 2.0084
+  ...
+# Subtest: reviewed absolute CA is loaded; missing, relative, malformed or private-key material never falls back
+ok 139 - reviewed absolute CA is loaded; missing, relative, malformed or private-key material never falls back
+  ---
+  duration_ms: 41.6165
+  ...
+# Subtest: certificate identity stays bound to the requested host, including IP targets
+ok 140 - certificate identity stays bound to the requested host, including IP targets
+  ---
+  duration_ms: 1.6501
+  ...
+# Subtest: hosted preview resolves the traced public CA without a host-specific absolute path
+ok 141 - hosted preview resolves the traced public CA without a host-specific absolute path
+  ---
+  duration_ms: 4.1165
+  ...
+# Subtest: local-only databases preserve plaintext development; ambiguous multi-host and non-PostgreSQL targets fail
+ok 142 - local-only databases preserve plaintext development; ambiguous multi-host and non-PostgreSQL targets fail
+  ---
+  duration_ms: 3.3362
+  ...
+# Subtest: current roster mapping preserves established identities and adds stable kicker identities
+ok 143 - current roster mapping preserves established identities and adds stable kicker identities
+  ---
+  duration_ms: 8.5489
+  ...
+# Subtest: conflicting latest roster fails closed; old records cannot override current status
+ok 144 - conflicting latest roster fails closed; old records cannot override current status
+  ---
+  duration_ms: 2.4752
+  ...
+# Subtest: NFL calculation is explicit, fractional, reproducible and broken down by stat
+ok 145 - NFL calculation is explicit, fractional, reproducible and broken down by stat
+  ---
+  duration_ms: 19.7493
+  ...
+# Subtest: NFL missing or malformed observations cannot silently score as zero
+ok 146 - NFL missing or malformed observations cannot silently score as zero
+  ---
+  duration_ms: 4.9183
+  ...
+# Subtest: all offensive categories use only configured weights, not position or rarity
+ok 147 - all offensive categories use only configured weights, not position or rarity
+  ---
+  duration_ms: 4.3572
+  ...
+# Subtest: NFL slot matching handles FLEX reassignments regardless of card order
+ok 148 - NFL slot matching handles FLEX reassignments regardless of card order
+  ---
+  duration_ms: 16.2296
+  ...
+# Subtest: NFL slot validation denies duplicates, wrong sport, unsupported positions and bench
+ok 149 - NFL slot validation denies duplicates, wrong sport, unsupported positions and bench
+  ---
+  duration_ms: 10.8463
+  ...
+# Subtest: prepared NFL calculators do not activate existing Preview or production commands
+ok 150 - prepared NFL calculators do not activate existing Preview or production commands
+  ---
+  duration_ms: 27.4423
+  ...
+# Subtest: approved XI; unknown sport does not inherit football rules
+ok 151 - approved XI; unknown sport does not inherit football rules
+  ---
+  duration_ms: 3.8806
+  ...
+# Subtest: owned-card selector rejects wrong ownership, position and duplicate player
+ok 152 - owned-card selector rejects wrong ownership, position and duplicate player
+  ---
+  duration_ms: 0.5361
+  ...
+# Subtest: points snapshot never falls back to todays cards; current and editable round differ
+ok 153 - points snapshot never falls back to todays cards; current and editable round differ
+  ---
+  duration_ms: 1.3438
+  ...
+# Subtest: unsupported statistics remain unavailable, no rarity multiplier
+ok 154 - unsupported statistics remain unavailable, no rarity multiplier
+  ---
+  duration_ms: 1.1754
+  ...
+# Subtest: live epoch unset; 48h/28d boundaries use integer cents and expire before fee changes
+ok 155 - live epoch unset; 48h/28d boundaries use integer cents and expire before fee changes
+  ---
+  duration_ms: 4.9614
+  ...
+# Subtest: uncertain transaction or response errors retain the same retry identity
+ok 156 - uncertain transaction or response errors retain the same retry identity
+  ---
+  duration_ms: 4.2231
+  ...
+# Subtest: only explicit authoritative rejection allows a new operation
+ok 157 - only explicit authoritative rejection allows a new operation
+  ---
+  duration_ms: 0.9459
+  ...
+# Subtest: a rejected retry cannot resolve an earlier ambiguous commit or receipt replay
+ok 158 - a rejected retry cannot resolve an earlier ambiguous commit or receipt replay
+  ---
+  duration_ms: 1.1293
+  ...
+# Subtest: retired routes include descendants without blocking fantasy marketplace or social posts
+ok 159 - retired routes include descendants without blocking fantasy marketplace or social posts
+  ---
+  duration_ms: 5.5371
+  ...
+# Subtest: fantasy identity cannot grant gameplay, and retired switches cannot reactivate services
+ok 160 - fantasy identity cannot grant gameplay, and retired switches cannot reactivate services
+  ---
+  duration_ms: 1.7783
+  ...
+# Subtest: Android accepts only current fantasy destinations and rejects retired push families
+ok 161 - Android accepts only current fantasy destinations and rejects retired push families
+  ---
+  duration_ms: 1.7387
+  ...
+# Subtest: notification and invitation APIs cannot opt into retired capabilities
+ok 162 - notification and invitation APIs cannot opt into retired capabilities
+  ---
+  duration_ms: 7.1999
+  ...
+# Subtest: extracted account hashing preserves canonical digest semantics
+ok 163 - extracted account hashing preserves canonical digest semantics
+  ---
+  duration_ms: 30.3505
+  ...
+# Subtest: single-tier packs and partial tier eligibility accept configured tiers only
+ok 164 - single-tier packs and partial tier eligibility accept configured tiers only
+  ---
+  duration_ms: 29.094
+  ...
+# Subtest: lost committed response retry retains exact idempotency key
+ok 165 - lost committed response retry retains exact idempotency key
+  ---
+  duration_ms: 2.4327
+  ...
+# Subtest: fantasy feature remains disabled in production and by default
+ok 166 - fantasy feature remains disabled in production and by default
+  ---
+  duration_ms: 0.5095
+  ...
+# Subtest: fantasy commands reject client ownership or unexpected admin fields
+ok 167 - fantasy commands reject client ownership or unexpected admin fields
+  ---
+  duration_ms: 4.3663
+  ...
+# Subtest: Current squad import preserves stable identity, current club and mapped positions without rookie restriction
+ok 168 - Current squad import preserves stable identity, current club and mapped positions without rookie restriction
+  ---
+  duration_ms: 29.9623
+  ...
+# Subtest: Approved beta current-player eligibility supports complete EPL/NFL teams without rookie facts
+ok 169 - Approved beta current-player eligibility supports complete EPL/NFL teams without rookie facts
+  ---
+  duration_ms: 54.9835
+  ...
+# Subtest: Provider contract fields preserve missingness and do not turn deprecated NFL statistics into zero
+ok 170 - Provider contract fields preserve missingness and do not turn deprecated NFL statistics into zero
+  ---
+  duration_ms: 58.871
+  ...
+# Subtest: Documented Sportmonks fixture envelope excludes other leagues and requires exact timing evidence
+ok 171 - Documented Sportmonks fixture envelope excludes other leagues and requires exact timing evidence
+  ---
+  duration_ms: 19.9263
+  ...
+# Subtest: Provider fetch gate, quota, fixed paths, redirects and secret-bearing errors
+ok 172 - Provider fetch gate, quota, fixed paths, redirects and secret-bearing errors
+  ---
+  duration_ms: 74.7368
+  ...
+# Subtest: Real-source engine uses the shared rules, frozen lineups, corrections and complete finalisation; samples are test-only
+ok 173 - Real-source engine uses the shared rules, frozen lineups, corrections and complete finalisation; samples are test-only
+  ---
+  duration_ms: 66.4515
+  ...
+# Subtest: friends policy digest matches exact versioned sources and preserves qualified privacy commitments
+ok 174 - friends policy digest matches exact versioned sources and preserves qualified privacy commitments
+  ---
+  duration_ms: 24.84
+  ...
+# Subtest: AFL new version uses owner weights and never mutates old competitions
+ok 175 - AFL new version uses owner weights and never mutates old competitions
+  ---
+  duration_ms: 13.4203
+  ...
+# Subtest: Pack offers preserve approved Premium mapping and random pool while activation stays off
+ok 176 - Pack offers preserve approved Premium mapping and random pool while activation stays off
+  ---
+  duration_ms: 2.8681
+  ...
+# Subtest: Catalogue fails closed on rights, stale sources, duplicates and non-EPL football
+ok 177 - Catalogue fails closed on rights, stale sources, duplicates and non-EPL football
+  ---
+  duration_ms: 17.3986
+  ...
+# Subtest: complete friends guard retains exact project, role, commercial and secret boundaries
+ok 178 - complete friends guard retains exact project, role, commercial and secret boundaries
+  ---
+  duration_ms: 12.6182
+  ...
+# Subtest: release authority alone cannot enable friends or impersonate readiness
+ok 179 - release authority alone cannot enable friends or impersonate readiness
+  ---
+  duration_ms: 1.3321
+  ...
+# Subtest: friends target binds the authorised domain and retains server identity gate
+ok 180 - friends target binds the authorised domain and retains server identity gate
+  ---
+  duration_ms: 1.0937
+  ...
+# Subtest: each free-beta evidence gate and scope restriction is mandatory
+ok 181 - each free-beta evidence gate and scope restriction is mandatory
+  ---
+  duration_ms: 1.4378
+  ...
+# Subtest: staged gameplay permits explicitly pending collection without waiving other evidence
+ok 182 - staged gameplay permits explicitly pending collection without waiving other evidence
+  ---
+  duration_ms: 0.8126
+  ...
+# Subtest: friends consent binds the actual packet and cannot relabel historical copy
+ok 183 - friends consent binds the actual packet and cannot relabel historical copy
+  ---
+  duration_ms: 1.0726
+  ...
+# Subtest: hosted build refuses platform production, missing scope and local execution before compilation
+ok 184 - hosted build refuses platform production, missing scope and local execution before compilation
+  ---
+  duration_ms: 6944.5823
+  ...
+# Subtest: beta deployment cannot enable public registration or use an unknown channel
+ok 185 - beta deployment cannot enable public registration or use an unknown channel
+  ---
+  duration_ms: 19.1766
+  ...
+# Subtest: free-play production requires separate reviewed identities and cannot borrow Preview configuration
+ok 186 - free-play production requires separate reviewed identities and cannot borrow Preview configuration
+  ---
+  duration_ms: 3.1743
+  ...
+# Subtest: free-play action boundary rejects monetary requests and device-selected daily periods
+ok 187 - free-play action boundary rejects monetary requests and device-selected daily periods
+  ---
+  duration_ms: 102.997
+  ...
+# Subtest: reviewed community-only production is isolated and does not treat inert keys as activation
+ok 188 - reviewed community-only production is isolated and does not treat inert keys as activation
+  ---
+  duration_ms: 23.379
+  ...
+# Subtest: production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+ok 189 - production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+  ---
+  duration_ms: 41.2827
+  ...
+# Subtest: production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+ok 190 - production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+  ---
+  duration_ms: 14.4154
+  ...
+# Subtest: database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+ok 191 - database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+  ---
+  duration_ms: 39.3239
+  ...
+# Subtest: plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+not ok 192 - plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+  ---
+  duration_ms: 1094.5913
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\platform\\hosted-production.test.ts:393:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    1 !== 0
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\hosted-production.test.ts:422:12)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: review allows the existing shell with no services while production remains unapproved
+ok 193 - review allows the existing shell with no services while production remains unapproved
+  ---
+  duration_ms: 3.8214
+  ...
+# Subtest: review accepts only its validated deployment origin and fails closed on configuration drift
+ok 194 - review accepts only its validated deployment origin and fails closed on configuration drift
+  ---
+  duration_ms: 2.4035
+  ...
+# Subtest: review refuses production, other projects, branches, origins and incomplete identities
+ok 195 - review refuses production, other projects, branches, origins and incomplete identities
+  ---
+  duration_ms: 1.9969
+  ...
+# Subtest: review rejects every enabled or omitted capability and any supplied service credential
+ok 196 - review rejects every enabled or omitted capability and any supplied service credential
+  ---
+  duration_ms: 4
+  ...
+# Subtest: review is opt-in and cannot enable the production target through the hosted build command
+ok 197 - review is opt-in and cannot enable the production target through the hosted build command
+  ---
+  duration_ms: 3906.8546
+  ...
+# Subtest: preview tester context is explicit, project-bound and restricted to social features without operators
+ok 198 - preview tester context is explicit, project-bound and restricted to social features without operators
+  ---
+  duration_ms: 5.3696
+  ...
+# Subtest: HTTPS Auth issue, refresh and deletion cookies are consistently private and secure
+ok 199 - HTTPS Auth issue, refresh and deletion cookies are consistently private and secure
+  ---
+  duration_ms: 13.9594
+  ...
+# Subtest: hosted preview accepts only the exact project and canonical external HTTPS origin
+ok 200 - hosted preview accepts only the exact project and canonical external HTTPS origin
+  ---
+  duration_ms: 7.9133
+  ...
+# Subtest: hosted mode rejects missing safety controls, provider activation and capture reuse
+ok 201 - hosted mode rejects missing safety controls, provider activation and capture reuse
+  ---
+  duration_ms: 5.6266
+  ...
+# Subtest: serverless database pool is opt-in and actual driver receives bounded settings
+ok 202 - serverless database pool is opt-in and actual driver receives bounded settings
+  ---
+  duration_ms: 7.714
+  ...
+# Subtest: multipart budget fits hosted requests and streamed oversized bodies cannot bypass it
+ok 203 - multipart budget fits hosted requests and streamed oversized bodies cannot bypass it
+  ---
+  duration_ms: 31.6317
+  ...
+# Subtest: Australian names and codes normalize before admission; unknown regions fail validation
+ok 204 - Australian names and codes normalize before admission; unknown regions fail validation
+  ---
+  duration_ms: 11.5542
+  ...
+# Subtest: invited setup requires every explicit policy choice and validated profile fields
+ok 205 - invited setup requires every explicit policy choice and validated profile fields
+  ---
+  duration_ms: 1.1179
+  ...
+# Subtest: only an Auth-confirmed invited nonanonymous identity can begin invited setup
+ok 206 - only an Auth-confirmed invited nonanonymous identity can begin invited setup
+  ---
+  duration_ms: 0.3558
+  ...
+# Subtest: development eval is restricted to validated local acceptance and absent from normal headers
+ok 207 - development eval is restricted to validated local acceptance and absent from normal headers
+  ---
+  duration_ms: 8.1739
+  ...
+# Subtest: local profile accepts only loopback development, real restricted-role target and closed activation
+ok 208 - local profile accepts only loopback development, real restricted-role target and closed activation
+  ---
+  duration_ms: 1.9385
+  ...
+# Subtest: local fixtures are generated for actual Auth identities without rewriting hashed journals
+ok 209 - local fixtures are generated for actual Auth identities without rewriting hashed journals
+  ---
+  duration_ms: 120.2441
+  ...
+# Subtest: listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+ok 210 - listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+  ---
+  duration_ms: 90.1741
+  ...
+# Subtest: stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+ok 211 - stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+  ---
+  duration_ms: 177.9688
+  ...
+# Subtest: active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+ok 212 - active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+  ---
+  duration_ms: 127.5829
+  ...
+# Subtest: stable cursor pages, filters, own listings and private projections
+ok 213 - stable cursor pages, filters, own listings and private projections
+  ---
+  duration_ms: 77.4075
+  ...
+# Subtest: commission half-up, Core restriction and economy isolation
+ok 214 - commission half-up, Core restriction and economy isolation
+  ---
+  duration_ms: 46.7393
+  ...
+# Subtest: owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+ok 215 - owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+  ---
+  duration_ms: 74.0973
+  ...
+# Subtest: fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+ok 216 - fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+  ---
+  duration_ms: 60.0963
+  ...
+# Subtest: one-time 100000 test grant, purchases, replay, private projection and non-redemption
+ok 217 - one-time 100000 test grant, purchases, replay, private projection and non-redemption
+  ---
+  duration_ms: 103.4279
+  ...
+# Subtest: test-card resale and swaps cannot create redeemable balances
+ok 218 - test-card resale and swaps cannot create redeemable balances
+  ---
+  duration_ms: 48.5086
+  ...
+# Subtest: community policy cannot inherit a tips-only approval, expired review or unknown region
+ok 219 - community policy cannot inherit a tips-only approval, expired review or unknown region
+  ---
+  duration_ms: 1.7639
+  ...
+# Subtest: social analytics taxonomy excludes cash, loss targeting and arbitrary private payloads
+ok 220 - social analytics taxonomy excludes cash, loss targeting and arbitrary private payloads
+  ---
+  duration_ms: 6.923
+  ...
+# Subtest: owner renewal challenges existing MFA before showing consent; members need no mandatory MFA
+ok 221 - owner renewal challenges existing MFA before showing consent; members need no mandatory MFA
+  ---
+  duration_ms: 2.4431
+  ...
+# Subtest: MFA automatically uses verified own factor, never exposes factor ID or reenrols
+ok 222 - MFA automatically uses verified own factor, never exposes factor ID or reenrols
+  ---
+  duration_ms: 2.6819
+  ...
+# Subtest: MFA AAL2 session persists without another code or new factor
+ok 223 - MFA AAL2 session persists without another code or new factor
+  ---
+  duration_ms: 0.3165
+  ...
+# Subtest: First enrolment provides a QR image and once-only setup key; pending factor is reused
+ok 224 - First enrolment provides a QR image and once-only setup key; pending factor is reused
+  ---
+  duration_ms: 0.9451
+  ...
+# Subtest: Invalid codes, factor confusion and redirects fail safely
+ok 225 - Invalid codes, factor confusion and redirects fail safely
+  ---
+  duration_ms: 0.6715
+  ...
+# Subtest: mobile UX fixture binds the fresh disposable identity, project, origin and expiry
+ok 226 - mobile UX fixture binds the fresh disposable identity, project, origin and expiry
+  ---
+  duration_ms: 8.3041
+  ...
+# Subtest: mobile UX browser permits only exact-origin reads and ordinary auth actions
+ok 227 - mobile UX browser permits only exact-origin reads and ordinary auth actions
+  ---
+  duration_ms: 2.3109
+  ...
+# Subtest: pending consent does not interrupt owner MFA on native navigation or resume
+ok 228 - pending consent does not interrupt owner MFA on native navigation or resume
+  ---
+  duration_ms: 9.6881
+  ...
+# Subtest: native app entry, recovery and expired-session transitions retain UI context without new authority
+ok 229 - native app entry, recovery and expired-session transitions retain UI context without new authority
+  ---
+  duration_ms: 9.9908
+  ...
+# Subtest: mobile app tabs are exact deep links without expanding push or auth authority
+ok 230 - mobile app tabs are exact deep links without expanding push or auth authority
+  ---
+  duration_ms: 1.4656
+  ...
+# Subtest: native links canonicalize official results and community records without importing session tokens
+ok 231 - native links canonicalize official results and community records without importing session tokens
+  ---
+  duration_ms: 1.1564
+  ...
+# Subtest: native auth callbacks accept only a code for the original same-origin PKCE exchange
+ok 232 - native auth callbacks accept only a code for the original same-origin PKCE exchange
+  ---
+  duration_ms: 1.2236
+  ...
+# Subtest: push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+ok 233 - push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+  ---
+  duration_ms: 0.7393
+  ...
+# Subtest: Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+ok 234 - Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+  ---
+  duration_ms: 24.7841
+  ...
+# Subtest: native offline fallback needs no network subresources and has exact CSP hashes
+ok 235 - native offline fallback needs no network subresources and has exact CSP hashes
+  ---
+  duration_ms: 20.8739
+  ...
+# Subtest: bundled shell cannot initiate an unconfigured connection
+ok 236 - bundled shell cannot initiate an unconfigured connection
+  ---
+  duration_ms: 10.2363
+  ...
+# Subtest: Netlify production binds site, account and build provenance without pretending to be Vercel
+ok 237 - Netlify production binds site, account and build provenance without pretending to be Vercel
+  ---
+  duration_ms: 8.6816
+  ...
+# Subtest: controlled Netlify staging uses only its reviewed exact platform URL before DNS cutover
+ok 238 - controlled Netlify staging uses only its reviewed exact platform URL before DNS cutover
+  ---
+  duration_ms: 2.4157
+  ...
+# Subtest: Netlify guard writes only validated non-secret build metadata and denies unreviewed contexts
+not ok 239 - Netlify guard writes only validated non-secret build metadata and denies unreviewed contexts
+  ---
+  duration_ms: 988.1193
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\platform\\netlify-production.test.ts:165:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    1 !== 0
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\netlify-production.test.ts:194:12)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: source diagnostics are bounded codes, not raw error or credential text
+ok 240 - source diagnostics are bounded codes, not raw error or credential text
+  ---
+  duration_ms: 5.8022
+  ...
+# Subtest: lifetime inventory stays out of free rounds; mapped rarity round accepts old artwork seasons and rejects byes/listed cards
+ok 241 - lifetime inventory stays out of free rounds; mapped rarity round accepts old artwork seasons and rejects byes/listed cards
+  ---
+  duration_ms: 2.9825
+  ...
+# Subtest: NFL fixed positions and each permitted FLEX consume seven distinct owned players
+ok 242 - NFL fixed positions and each permitted FLEX consume seven distinct owned players
+  ---
+  duration_ms: 5.0819
+  ...
+# Subtest: reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+ok 243 - reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+  ---
+  duration_ms: 8.0222
+  ...
+# Subtest: mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+ok 244 - mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+  ---
+  duration_ms: 4.7259
+  ...
+# Subtest: salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+ok 245 - salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+  ---
+  duration_ms: 43.7378
+  ...
+# Subtest: duplicate permanent identity, owner inventory and slot eligibility
+ok 246 - duplicate permanent identity, owner inventory and slot eligibility
+  ---
+  duration_ms: 0.7039
+  ...
+# Subtest: all six multipliers include negative scores and half-away rounding
+ok 247 - all six multipliers include negative scores and half-away rounding
+  ---
+  duration_ms: 1.0004
+  ...
+# Subtest: API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+ok 248 - API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+  ---
+  duration_ms: 25.3433
+  ...
+# Subtest: idle reconciliation is traceable and never presented as collection success
+ok 249 - idle reconciliation is traceable and never presented as collection success
+  ---
+  duration_ms: 4.576
+  ...
+# Subtest: worker failure retains task/season without putting credentials or raw errors in telemetry
+ok 250 - worker failure retains task/season without putting credentials or raw errors in telemetry
+  ---
+  duration_ms: 2.3167
+  ...
+# Subtest: completion requires explicit final active END_GAME; no inferred end time
+ok 251 - completion requires explicit final active END_GAME; no inferred end time
+  ---
+  duration_ms: 3.8114
+  ...
+# Subtest: CSV projection strips unused source columns; malformed or missing schema fails
+ok 252 - CSV projection strips unused source columns; malformed or missing schema fails
+  ---
+  duration_ms: 2.1799
+  ...
+# Subtest: roster importer retains optional jersey numbers without making old files invalid or retaining private columns
+ok 253 - roster importer retains optional jersey numbers without making old files invalid or retaining private columns
+  ---
+  duration_ms: 1.0543
+  ...
+# Subtest: offensive recovery TD counted once; overlapping or multiple attribution stays pending
+ok 254 - offensive recovery TD counted once; overlapping or multiple attribution stays pending
+  ---
+  duration_ms: 7.0985
+  ...
+# Subtest: missing weekly rows are pending, roster membership never proves DNP
+ok 255 - missing weekly rows are pending, roster membership never proves DNP
+  ---
+  duration_ms: 13.7569
+  ...
+# Subtest: return touchdown overlapping a passing/rushing touchdown is not counted twice
+ok 256 - return touchdown overlapping a passing/rushing touchdown is not counted twice
+  ---
+  duration_ms: 15.9285
+  ...
+# Subtest: download refuses an arbitrary redirect or HTML
+ok 257 - download refuses an arbitrary redirect or HTML
+  ---
+  duration_ms: 49.9918
+  ...
+# Subtest: source decoding works without Node's global Buffer
+ok 258 - source decoding works without Node's global Buffer
+  ---
+  duration_ms: 8.2864
+  ...
+# Subtest: dispatch requires current narrowly scoped approval before any network request
+ok 259 - dispatch requires current narrowly scoped approval before any network request
+  ---
+  duration_ms: 10.4969
+  ...
+# Subtest: one signed fixed drain, exact endpoint, no redirect and no delivery claim
+ok 260 - one signed fixed drain, exact endpoint, no redirect and no delivery claim
+  ---
+  duration_ms: 45.8946
+  ...
+# Subtest: ambiguous, rejected, malformed and oversized responses are never retried or disclosed
+ok 261 - ambiguous, rejected, malformed and oversized responses are never retried or disclosed
+  ---
+  duration_ms: 7.6852
+  ...
+# Subtest: worker uncertainty and pre-send authorization failure require operator review
+ok 262 - worker uncertainty and pre-send authorization failure require operator review
+  ---
+  duration_ms: 4.252
+  ...
+# Subtest: Owner CSV protects formulas; reporting defaults live and uses Sydney date boundaries
+ok 263 - Owner CSV protects formulas; reporting defaults live and uses Sydney date boundaries
+  ---
+  duration_ms: 85.3581
+  ...
+# Subtest: Payment totals separate test/live and include refunds fees and chargebacks; not profit
+ok 264 - Payment totals separate test/live and include refunds fees and chargebacks; not profit
+  ---
+  duration_ms: 1.4507
+  ...
+# Subtest: Final prizes exactly once, provisional denial, ties held, corrections preserve fulfilled audit
+ok 265 - Final prizes exactly once, provisional denial, ties held, corrections preserve fulfilled audit
+  ---
+  duration_ms: 5.1966
+  ...
+# Subtest: design Preview flag never activates on production or by a client flag
+ok 266 - design Preview flag never activates on production or by a client flag
+  ---
+  duration_ms: 2.4678
+  ...
+# Subtest: reveal progress is bounded and separated by user, receipt and awarded card order
+ok 267 - reveal progress is bounded and separated by user, receipt and awarded card order
+  ---
+  duration_ms: 0.9288
+  ...
+# Subtest: Each league uses top 20 Elite and next 150 Premium without changing source records
+ok 268 - Each league uses top 20 Elite and next 150 Premium without changing source records
+  ---
+  duration_ms: 36.8127
+  ...
+# Subtest: Cutoff ties cannot be decided by arbitrary player ID; within-tier ties are allowed
+ok 269 - Cutoff ties cannot be decided by arbitrary player ID; within-tier ties are allowed
+  ---
+  duration_ms: 33.2764
+  ...
+# Subtest: Incomplete, provisional or missing points cannot create a sale-pool proposal
+ok 270 - Incomplete, provisional or missing points cannot create a sale-pool proposal
+  ---
+  duration_ms: 15.5291
+  ...
+# Subtest: Mixed leagues, duplicate identities, fractional units and invalid seasons rejected
+ok 271 - Mixed leagues, duplicate identities, fractional units and invalid seasons rejected
+  ---
+  duration_ms: 15.7622
+  ...
+# Subtest: actual recovery MFA denial asks for existing factor without replacing the email/session
+ok 272 - actual recovery MFA denial asks for existing factor without replacing the email/session
+  ---
+  duration_ms: 2.6915
+  ...
+# Subtest: password policy failures do not falsely expire a valid recovery session
+ok 273 - password policy failures do not falsely expire a valid recovery session
+  ---
+  duration_ms: 0.8177
+  ...
+# Subtest: unclassified provider failures remain unconfirmed and do not expose raw details
+ok 274 - unclassified provider failures remain unconfirmed and do not expose raw details
+  ---
+  duration_ms: 1.2263
+  ...
+# Subtest: hosted beta accepts only its fresh exact invited roster and labelled seed identities
+ok 275 - hosted beta accepts only its fresh exact invited roster and labelled seed identities
+  ---
+  duration_ms: 16.7212
+  ...
+# Subtest: hosted beta browser requests cannot target owners, external hosts, real ledgers or seed deletion
+ok 276 - hosted beta browser requests cannot target owners, external hosts, real ledgers or seed deletion
+  ---
+  duration_ms: 3.1218
+  ...
+# Subtest: Scheduled round metadata is projected into the strict scoring mapping without weakening validation
+ok 277 - Scheduled round metadata is projected into the strict scoring mapping without weakening validation
+  ---
+  duration_ms: 20.0367
+  ...
+# Subtest: Downloaded completed-match statistics reconcile Docked half-PPR, not provider fantasy totals
+ok 278 - Downloaded completed-match statistics reconcile Docked half-PPR, not provider fantasy totals
+  ---
+  duration_ms: 18.8603
+  ...
+# Subtest: Missing, malformed and ambiguous NFL fields remain pending, explicit zero aggregates are safe
+ok 279 - Missing, malformed and ambiguous NFL fields remain pending, explicit zero aggregates are safe
+  ---
+  duration_ms: 1.5866
+  ...
+# Subtest: Real companion match plays resolve Myles Price punt return without guessing or changing rules
+ok 280 - Real companion match plays resolve Myles Price punt return without guessing or changing rules
+  ---
+  duration_ms: 21.4682
+  ...
+# Subtest: Stable game/GSIS/team/position mapping and missing-player abstention
+ok 281 - Stable game/GSIS/team/position mapping and missing-player abstention
+  ---
+  duration_ms: 11.7854
+  ...
+# Subtest: CSV rejects malformed schemas and handles quoted names without formula evaluation
+ok 282 - CSV rejects malformed schemas and handles quoted names without formula evaluation
+  ---
+  duration_ms: 2.1469
+  ...
+# Subtest: Free-beta rights do not require purchasing a commercial API; approval and expiry still enforced
+ok 283 - Free-beta rights do not require purchasing a commercial API; approval and expiry still enforced
+  ---
+  duration_ms: 27.7731
+  ...
+# Subtest: Bulk downloader follows only public asset CDN, uses conditional cache and detects changed schema
+ok 284 - Bulk downloader follows only public asset CDN, uses conditional cache and detects changed schema
+  ---
+  duration_ms: 152.8352
+  ...
+# Subtest: all 10000 Premium boundaries in each of nine slots exclude lower rarities; Standard is byte-for-byte unchanged
+ok 285 - all 10000 Premium boundaries in each of nine slots exclude lower rarities; Standard is byte-for-byte unchanged
+  ---
+  duration_ms: 83.1319
+  ...
+# Subtest: nine cards, distinct players, exact serial caps, selected-rarity exhaustion rolls back all earlier draws
+ok 286 - nine cards, distinct players, exact serial caps, selected-rarity exhaustion rolls back all earlier draws
+  ---
+  duration_ms: 27.7413
+  ...
+# Subtest: purchase/open retry settles once; old unopened Premium and replay retain purchase-time configuration
+ok 287 - purchase/open retry settles once; old unopened Premium and replay retain purchase-time configuration
+  ---
+  duration_ms: 91.2581
+  ...
+# Subtest: insufficient funds and supply leave no charge, journal, ownership or partial pack
+ok 288 - insufficient funds and supply leave no charge, journal, ownership or partial pack
+  ---
+  duration_ms: 36.5143
+  ...
+# Subtest: hosted capture needs exact project-bound direct or Sydney session connection and explicit preview intent
+ok 289 - hosted capture needs exact project-bound direct or Sydney session connection and explicit preview intent
+  ---
+  duration_ms: 4.3759
+  ...
+# Subtest: connection parser rejects transaction ports, credential-host tricks, unknown options and ambient-port fallbacks
+ok 290 - connection parser rejects transaction ports, credential-host tricks, unknown options and ambient-port fallbacks
+  ---
+  duration_ms: 1.0673
+  ...
+# Subtest: only an exact reserved allowlisted address is eligible; matching a prefix/domain alone cannot send
+ok 291 - only an exact reserved allowlisted address is eligible; matching a prefix/domain alone cannot send
+  ---
+  duration_ms: 0.6739
+  ...
+# Subtest: missing, altered, expired, revoked or future capture proof fails closed
+ok 292 - missing, altered, expired, revoked or future capture proof fails closed
+  ---
+  duration_ms: 2.8674
+  ...
+# Subtest: local mail-sink behavior remains available and production cannot repurpose the verified preview project
+ok 293 - local mail-sink behavior remains available and production cannot repurpose the verified preview project
+  ---
+  duration_ms: 5.0286
+  ...
+# Subtest: authentication outages remain unknown while expired or revoked sessions fail closed
+ok 294 - authentication outages remain unknown while expired or revoked sessions fail closed
+  ---
+  duration_ms: 2.9735
+  ...
+# Subtest: invitation signup requires separate legal acceptances, reserved-safe username and defaults marketing off
+ok 295 - invitation signup requires separate legal acceptances, reserved-safe username and defaults marketing off
+  ---
+  duration_ms: 16.5978
+  ...
+# Subtest: capabilities are explicit, unique and cannot become genuine features or production privileges
+ok 296 - capabilities are explicit, unique and cannot become genuine features or production privileges
+  ---
+  duration_ms: 2.583
+  ...
+# Subtest: onboarding canonicalizes selected sports without duplicating choices or fabricating legal consent
+ok 297 - onboarding canonicalizes selected sports without duplicating choices or fabricating legal consent
+  ---
+  duration_ms: 7.1051
+  ...
+# Subtest: administrator confirmation never counts as proof of email ownership; legacy staff/session exports remain intact
+ok 298 - administrator confirmation never counts as proof of email ownership; legacy staff/session exports remain intact
+  ---
+  duration_ms: 1.3951
+  ...
+# Subtest: preview fanout is deferred, limited per actor and globally, and runs one injected batch
+ok 299 - preview fanout is deferred, limited per actor and globally, and runs one injected batch
+  ---
+  duration_ms: 9.0127
+  ...
+# Subtest: ordinary/local/production/wrong-project/open-service environments cannot schedule preview work
+ok 300 - ordinary/local/production/wrong-project/open-service environments cannot schedule preview work
+  ---
+  duration_ms: 2.9376
+  ...
+# Subtest: ineligible or rate-limited actors cannot trigger a batch
+ok 301 - ineligible or rate-limited actors cannot trigger a batch
+  ---
+  duration_ms: 1.5884
+  ...
+# Subtest: grant/session revocation and changed safety flags are rechecked after response
+ok 302 - grant/session revocation and changed safety flags are rechecked after response
+  ---
+  duration_ms: 1.8369
+  ...
+# Subtest: batch and audit failures never reject a successfully saved user mutation
+ok 303 - batch and audit failures never reject a successfully saved user mutation
+  ---
+  duration_ms: 2.2179
+  ...
+# Subtest: owner bootstrap pins verified identity, not metadata or email alone
+ok 304 - owner bootstrap pins verified identity, not metadata or email alone
+  ---
+  duration_ms: 4.2093
+  ...
+# Subtest: closed bootstrap denies signup/recovery and ordinary-member login before calling provider
+ok 305 - closed bootstrap denies signup/recovery and ordinary-member login before calling provider
+  ---
+  duration_ms: 2.6229
+  ...
+# Subtest: wrong ID with owner email cannot gain a setup session
+ok 306 - wrong ID with owner email cannot gain a setup session
+  ---
+  duration_ms: 1.181
+  ...
+# Subtest: only confirmed exact owner can set initial password; later resets require existing MFA
+ok 307 - only confirmed exact owner can set initial password; later resets require existing MFA
+  ---
+  duration_ms: 1.6562
+  ...
+# Subtest: owner MFA confirmation returns only to setup or permitted password page, not arbitrary URLs
+ok 308 - owner MFA confirmation returns only to setup or permitted password page, not arbitrary URLs
+  ---
+  duration_ms: 1.9155
+  ...
+# Subtest: artifact scanner loads only the two known credential files and excludes public keys
+ok 309 - artifact scanner loads only the two known credential files and excludes public keys
+  ---
+  duration_ms: 68.3184
+  ...
+# Subtest: exact secrets are found in plain, URI, JSON, HTML/RSC and UTF-16 assets without returning values
+ok 310 - exact secrets are found in plain, URI, JSON, HTML/RSC and UTF-16 assets without returning values
+  ---
+  duration_ms: 11.5394
+  ...
+# Subtest: generic signatures flag privileged keys, JWTs, credentials, private keys and canaries
+ok 311 - generic signatures flag privileged keys, JWTs, credentials, private keys and canaries
+  ---
+  duration_ms: 5.1263
+  ...
+# Subtest: explicit target audit scans compressed JS and extracted APK bytes but refuses unreadable paths and archives
+ok 312 - explicit target audit scans compressed JS and extracted APK bytes but refuses unreadable paths and archives
+  ---
+  duration_ms: 110.3381
+  ...
+# Subtest: compressed containers cannot conceal unscanned archive entries
+ok 313 - compressed containers cannot conceal unscanned archive entries
+  ---
+  duration_ms: 78.4285
+  ...
+# Subtest: filenames containing secret values are redacted and safe scanned content passes
+ok 314 - filenames containing secret values are redacted and safe scanned content passes
+  ---
+  duration_ms: 30.7849
+  ...
+# Subtest: CLI reports filenames and counts without credentials, never changes inputs and refuses invalid known sources
+ok 315 - CLI reports filenames and counts without credentials, never changes inputs and refuses invalid known sources
+  ---
+  duration_ms: 3011.6242
+  ...
+# Subtest: collections default private and followers never bypass profile blocking
+ok 316 - collections default private and followers never bypass profile blocking
+  ---
+  duration_ms: 11.4146
+  ...
+# Subtest: private offer activation cannot reach hosting, production, or non-loopback databases
+ok 317 - private offer activation cannot reach hosting, production, or non-loopback databases
+  ---
+  duration_ms: 1.0516
+  ...
+# Subtest: acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+ok 318 - acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+  ---
+  duration_ms: 299.8723
+  ...
+# Subtest: two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+ok 319 - two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+  ---
+  duration_ms: 134.3201
+  ...
+# Subtest: decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+ok 320 - decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+  ---
+  duration_ms: 90.3584
+  ...
+# Subtest: blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+ok 321 - blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+  ---
+  duration_ms: 64.853
+  ...
+# Subtest: closed Preview binds the isolated project and restricted database role
+ok 322 - closed Preview binds the isolated project and restricted database role
+  ---
+  duration_ms: 4.3066
+  ...
+# Subtest: Preview refuses Production, privileged roles, capture mode and unsupported activation
+ok 323 - Preview refuses Production, privileged roles, capture mode and unsupported activation
+  ---
+  duration_ms: 6.8985
+  ...
+# Subtest: live beta denies public signup even when ordinary registration flags are enabled
+ok 324 - live beta denies public signup even when ordinary registration flags are enabled
+  ---
+  duration_ms: 7.8953
+  ...
+# Subtest: production Auth mail is off by default and independent of optional delivery
+ok 325 - production Auth mail is off by default and independent of optional delivery
+  ---
+  duration_ms: 1.1256
+  ...
+# Subtest: a Preview invitation cannot bypass production mail or registration gates
+ok 326 - a Preview invitation cannot bypass production mail or registration gates
+  ---
+  duration_ms: 0.6691
+  ...
+# Subtest: all signup paths require explicit age, Terms and separate Privacy acceptance
+ok 327 - all signup paths require explicit age, Terms and separate Privacy acceptance
+  ---
+  duration_ms: 0.7078
+  ...
+# Subtest: production policy versions never default to draft and require operator readiness
+ok 328 - production policy versions never default to draft and require operator readiness
+  ---
+  duration_ms: 3.5262
+  ...
+# Subtest: safe UI registration projection includes database authority and cannot expose credentials
+ok 329 - safe UI registration projection includes database authority and cannot expose credentials
+  ---
+  duration_ms: 0.5468
+  ...
+# Subtest: changed production legal versions require fresh explicit acceptance
+ok 330 - changed production legal versions require fresh explicit acceptance
+  ---
+  duration_ms: 0.8182
+  ...
+# Subtest: only genuine username collisions are recoverable during signup provisioning
+ok 331 - only genuine username collisions are recoverable during signup provisioning
+  ---
+  duration_ms: 0.6012
+  ...
+# Subtest: real GoTrue project site_url is accepted only with the pinned beta callback
+ok 332 - real GoTrue project site_url is accepted only with the pinned beta callback
+  ---
+  duration_ms: 14.3664
+  ...
+# Subtest: Auth links bind production project and exact callbacks; secure email-change hashes map to their intended recipients
+ok 333 - Auth links bind production project and exact callbacks; secure email-change hashes map to their intended recipients
+  ---
+  duration_ms: 3.9739
+  ...
+# Subtest: Certificate OAuth assertion uses PS256, fixed tenant endpoint and short expiry
+ok 334 - Certificate OAuth assertion uses PS256, fixed tenant endpoint and short expiry
+  ---
+  duration_ms: 41.8835
+  ...
+# Subtest: Graph transport pins sender, refuses redirects/errors and does not interpret acceptance as delivery
+ok 335 - Graph transport pins sender, refuses redirects/errors and does not interpret acceptance as delivery
+  ---
+  duration_ms: 100.0829
+  ...
+# Subtest: Signed hook rejects unsigned, altered, expired and oversized requests before sending and redacts provider failures
+ok 336 - Signed hook rejects unsigned, altered, expired and oversized requests before sending and redacts provider failures
+  ---
+  duration_ms: 109.4643
+  ...
+# Subtest: Graph timeout aborts authorization within one shared budget
+ok 337 - Graph timeout aborts authorization within one shared budget
+  ---
+  duration_ms: 4006.6153
+  ...
+# Subtest: Partial secure-email-change submission and send timeout never report complete success
+ok 338 - Partial secure-email-change submission and send timeout never report complete success
+  ---
+  duration_ms: 30.3307
+  ...
+# Subtest: production environment preparation keeps credentials private and all initial activation closed
+not ok 339 - production environment preparation keeps credentials private and all initial activation closed
+  ---
+  duration_ms: 587.7331
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\platform\\production-release-tools.test.ts:85:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Command failed: git init --initial-branch=codex/docked-value-platform
+    error: could not write config file C:/Users/61412/AppData/Local/Packages/sandbox.{8055c5d5-3000-41da-9090-ddcd0c1cb3a3}/AC/Temp/docked-release-test-hSTf27/.git/config: Permission denied
+    fatal: could not set 'core.repositoryformatversion' to '0'
+
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:882:11)
+    execFileSync (node:child_process:918:15)
+    git (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:56:7)
+    fixture (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:57:5)
+    async TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:86:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: production export requires approved identities and exports only committed deployable sources
+not ok 340 - production export requires approved identities and exports only committed deployable sources
+  ---
+  duration_ms: 541.3271
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\platform\\production-release-tools.test.ts:348:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Command failed: git init --initial-branch=codex/docked-value-platform
+    error: could not write config file C:/Users/61412/AppData/Local/Packages/sandbox.{8055c5d5-3000-41da-9090-ddcd0c1cb3a3}/AC/Temp/docked-release-test-oefCkm/.git/config: Permission denied
+    fatal: could not set 'core.repositoryformatversion' to '0'
+
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:882:11)
+    execFileSync (node:child_process:918:15)
+    git (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:56:7)
+    fixture (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:57:5)
+    async TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:349:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: production export rejects every unreviewed manifest boundary before preparing any source
+not ok 341 - production export rejects every unreviewed manifest boundary before preparing any source
+  ---
+  duration_ms: 518.3466
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\platform\\production-release-tools.test.ts:431:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Command failed: git init --initial-branch=codex/docked-value-platform
+    error: could not write config file C:/Users/61412/AppData/Local/Packages/sandbox.{8055c5d5-3000-41da-9090-ddcd0c1cb3a3}/AC/Temp/docked-release-test-tTMjyd/.git/config: Permission denied
+    fatal: could not set 'core.repositoryformatversion' to '0'
+
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    genericNodeError (node:internal/errors:983:15)
+    wrappedFn (node:internal/errors:537:14)
+    checkExecSyncError (node:child_process:882:11)
+    execFileSync (node:child_process:918:15)
+    git (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:56:7)
+    fixture (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:57:5)
+    async TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\production-release-tools.test.ts:432:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: scoped inventory finds an empty organization without granting provisioning or billing approval
+ok 342 - scoped inventory finds an empty organization without granting provisioning or billing approval
+  ---
+  duration_ms: 71.0504
+  ...
+# Subtest: existing production project must independently match the approved organization and Sydney
+ok 343 - existing production project must independently match the approved organization and Sydney
+  ---
+  duration_ms: 15.5667
+  ...
+# Subtest: inventory rejects excluded projects, duplicate matches, malformed pages and incomplete pagination
+ok 344 - inventory rejects excluded projects, duplicate matches, malformed pages and incomplete pagination
+  ---
+  duration_ms: 5.5461
+  ...
+# Subtest: a target on a later page is found without account-wide discovery or following server URLs
+ok 345 - a target on a later page is found without account-wide discovery or following server URLs
+  ---
+  duration_ms: 5.6307
+  ...
+# Subtest: missing credentials and transport/provider failures never trigger fallback or leak provider error bodies
+ok 346 - missing credentials and transport/provider failures never trigger fallback or leak provider error bodies
+  ---
+  duration_ms: 2.742
+  ...
+# Subtest: rarity rules require a separate explicitly scoped future competition
+ok 347 - rarity rules require a separate explicitly scoped future competition
+  ---
+  duration_ms: 47.413
+  ...
+# Subtest: new rules lock rarity, preserve old periods, apply corrections and negative totals
+ok 348 - new rules lock rarity, preserve old periods, apply corrections and negative totals
+  ---
+  duration_ms: 62.5892
+  ...
+# Subtest: local beta uses admitted Auth projections without granting direct access to Auth tables
+ok 349 - local beta uses admitted Auth projections without granting direct access to Auth tables
+  ---
+  duration_ms: 3.1672
+  ...
+# Subtest: redemption integration profile remains explicitly loopback and nondeployable
+ok 350 - redemption integration profile remains explicitly loopback and nondeployable
+  ---
+  duration_ms: 2.0222
+  ...
+# Subtest: exact integer cent conversion and malformed amounts
+ok 351 - exact integer cent conversion and malformed amounts
+  ---
+  duration_ms: 47.4155
+  ...
+# Subtest: existing test and promotional lots cannot become cash; reservation is a subset
+ok 352 - existing test and promotional lots cannot become cash; reservation is a subset
+  ---
+  duration_ms: 42.6453
+  ...
+# Subtest: identity submission requires review; forged rate and eligibility rejected
+ok 353 - identity submission requires review; forged rate and eligibility rejected
+  ---
+  duration_ms: 5.6979
+  ...
+# Subtest: reserve and duplicate/lost response retry post once; spending sees reduced available
+ok 354 - reserve and duplicate/lost response retry post once; spending sees reduced available
+  ---
+  duration_ms: 16.3232
+  ...
+# Subtest: cancel/reject releases exactly once and preserves original eligibility
+ok 355 - cancel/reject releases exactly once and preserves original eligibility
+  ---
+  duration_ms: 30.6906
+  ...
+# Subtest: claim excludes second staff and cancellation; uncertain outcomes stay reserved
+ok 356 - claim excludes second staff and cancellation; uncertain outcomes stay reserved
+  ---
+  duration_ms: 13.0948
+  ...
+# Subtest: sent consumes reservation only; returned EFT restores original lots once
+ok 357 - sent consumes reservation only; returned EFT restores original lots once
+  ---
+  duration_ms: 20.0158
+  ...
+# Subtest: snapshot survives bank change; ciphertext bound to member and destination
+ok 358 - snapshot survives bank change; ciphertext bound to member and destination
+  ---
+  duration_ms: 16.5437
+  ...
+# Subtest: private projections omit ciphertext, full bank details and other members
+ok 359 - private projections omit ciphertext, full bank details and other members
+  ---
+  duration_ms: 14.0115
+  ...
+# Subtest: revoked identity, restrictions and expired authentication fail closed, including retries
+ok 360 - revoked identity, restrictions and expired authentication fail closed, including retries
+  ---
+  duration_ms: 13.1285
+  ...
+# Subtest: limits, mismatched bank holder, unsafe documents and live environments rejected
+ok 361 - limits, mismatched bank holder, unsafe documents and live environments rejected
+  ---
+  duration_ms: 9.6642
+  ...
+# Subtest: business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+ok 362 - business target: weekends, holidays, after cutoff, Sydney DST and absent policy
+  ---
+  duration_ms: 39.7325
+  ...
+# Subtest: cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+ok 363 - cached bank access rechecks revocation and staff permission; legacy payout cannot bypass workflow
+  ---
+  duration_ms: 14.6652
+  ...
+# Subtest: internal staff notes never appear in customer history or notification records
+ok 364 - internal staff notes never appear in customer history or notification records
+  ---
+  duration_ms: 6.3288
+  ...
+# Subtest: future policy version does not rewrite a saved obligation, rate or eligibility classification
+ok 365 - future policy version does not rewrite a saved obligation, rate or eligibility classification
+  ---
+  duration_ms: 9.3579
+  ...
+# Subtest: reviewed research native links are retired even within the approved origin without broadening push routes
+ok 366 - reviewed research native links are retired even within the approved origin without broadening push routes
+  ---
+  duration_ms: 2.1709
+  ...
+# Subtest: EPL alternative appearance brackets, clean sheet and position goals
+ok 367 - EPL alternative appearance brackets, clean sheet and position goals
+  ---
+  duration_ms: 33.8439
+  ...
+# Subtest: EPL save groups, penalties, dismissal and conceded groups
+ok 368 - EPL save groups, penalties, dismissal and conceded groups
+  ---
+  duration_ms: 19.7062
+  ...
+# Subtest: EPL ordered substitution and added-time events, no inferred on-pitch totals
+ok 369 - EPL ordered substitution and added-time events, no inferred on-pitch totals
+  ---
+  duration_ms: 6.4125
+  ...
+# Subtest: NFL half-PPR fractions, negative yards, turnovers, conversions and individual returns
+ok 370 - NFL half-PPR fractions, negative yards, turnovers, conversions and individual returns
+  ---
+  duration_ms: 11.3487
+  ...
+# Subtest: AFL transparent events, partial appearances have no multiplier
+ok 371 - AFL transparent events, partial appearances have no multiplier
+  ---
+  duration_ms: 1.8212
+  ...
+# Subtest: epl: locked two-user results, pending, correction, finalisation and rule version isolation
+ok 372 - epl: locked two-user results, pending, correction, finalisation and rule version isolation
+  ---
+  duration_ms: 134.8941
+  ...
+# Subtest: nfl: locked two-user results, pending, correction, finalisation and rule version isolation
+ok 373 - nfl: locked two-user results, pending, correction, finalisation and rule version isolation
+  ---
+  duration_ms: 52.2332
+  ...
+# Subtest: afl: locked two-user results, pending, correction, finalisation and rule version isolation
+ok 374 - afl: locked two-user results, pending, correction, finalisation and rule version isolation
+  ---
+  duration_ms: 28.8199
+  ...
+# Subtest: sport-specific positions and NFL FLEX use a non-greedy assignment
+ok 375 - sport-specific positions and NFL FLEX use a non-greedy assignment
+  ---
+  duration_ms: 4.0678
+  ...
+# Subtest: double fixtures sum once; postponement, abandonment, outage and unknown IDs cannot become final zero
+ok 376 - double fixtures sum once; postponement, abandonment, outage and unknown IDs cannot become final zero
+  ---
+  duration_ms: 53.353
+  ...
+# Subtest: bye is explicit, pending is not zero, unsupported stats and roles fail closed
+ok 377 - bye is explicit, pending is not zero, unsupported stats and roles fail closed
+  ---
+  duration_ms: 2.1483
+  ...
+# Subtest: registered sport photos select the next generated size and fall back to their native asset
+ok 378 - registered sport photos select the next generated size and fall back to their native asset
+  ---
+  duration_ms: 156.5836
+  ...
+# Subtest: sport image loading rejects remote, unregistered, transformed and traversal sources
+ok 379 - sport image loading rejects remote, unregistered, transformed and traversal sources
+  ---
+  duration_ms: 1.926
+  ...
+# Subtest: sport image loading rejects invalid dimensions instead of constructing invalid URLs
+ok 380 - sport image loading rejects invalid dimensions instead of constructing invalid URLs
+  ---
+  duration_ms: 1.0245
+  ...
+# Subtest: server transaction callbacks never reacquire global DB, identity, policy or analytics connections
+ok 381 - server transaction callbacks never reacquire global DB, identity, policy or analytics connections
+  ---
+  duration_ms: 1207.29
+  ...
+# Subtest: notification actions retain explicit per-user limits on their transaction boundary
+ok 382 - notification actions retain explicit per-user limits on their transaction boundary
+  ---
+  duration_ms: 39.7722
+  ...
+# Subtest: signed webhook accepts unchanged payload and rejects tampering/replay age
+ok 383 - signed webhook accepts unchanged payload and rejects tampering/replay age
+  ---
+  duration_ms: 114.2691
+  ...
+1..383
+# tests 383
+# suites 0
+# pass 378
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 138147.9822

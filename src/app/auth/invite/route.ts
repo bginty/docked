@@ -7,11 +7,14 @@ import { authClient } from "@/server/auth";
 import { config } from "@/server/config";
 import { rateLimit } from "@/server/db";
 import { hash } from "@/core/canonical-hash";
+import { assertPrivatePreview } from "@/core/private-preview.mjs";
+import { previewOwnerMatches } from "@/core/preview-owner";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 async function handle(request: Request) {
-  const enabled = productionInvitationsEnabled(process.env);
+  const ownerSetup = assertPrivatePreview(process.env);
+  const enabled = ownerSetup || productionInvitationsEnabled(process.env);
   // Validate the full deployment binding before any configured Auth access.
   const siteUrl = enabled ? config().siteUrl : "https://docked.com.au";
   return invitationRequest(request, {
@@ -39,6 +42,10 @@ async function handle(request: Request) {
         !isEmailOwnershipVerified(data.user)
       )
         return "unavailable";
+      if (ownerSetup && !previewOwnerMatches(data.user, process.env)) {
+        await client.auth.signOut({ scope: "local" });
+        return "invalid";
+      }
       return "confirmed";
     },
   });

@@ -2,7 +2,7 @@
 # --capture-quota30 requires the user's explicit approval before the operator runs it.
 param(
   [Parameter(Position = 0)]
-  [ValidateSet('--inspect', '--capture-quota30', '--restore-quota2')]
+  [ValidateSet('--inspect', '--capture-quota30', '--restore-quota2', '--private-owner-setup')]
   [string]$Mode = '--inspect'
 )
 $ErrorActionPreference = 'Stop'
@@ -68,6 +68,20 @@ public static class DockedPreviewCredential {
   $previewStage = 'auth-read'
   $previewConfig = Invoke-RestMethod -Method Get -Uri ($previewApi + '/config/auth') -Headers $previewHeaders -MaximumRedirection 0
   $beforeRate = $previewConfig.rate_limit_email_sent
+  if ($Mode -eq '--private-owner-setup') {
+    $previewStage = 'private-owner-setup'
+    if ($previewConfig.disable_signup -ne $true -or $previewConfig.mailer_autoconfirm -ne $false -or $previewConfig.external_anonymous_users_enabled -ne $false) { throw 'Closed authentication prerequisites failed' }
+    $previewBackupPath = Join-Path (Get-Location) 'private-data/private-preview-release/auth-before.private.json'
+    if (-not (Test-Path -LiteralPath $previewBackupPath)) {
+      [IO.File]::WriteAllText($previewBackupPath, ($previewConfig | ConvertTo-Json -Depth 20))
+    }
+    $previewOrigin = 'https://docked-preview-s24-briant-ginty.vercel.app'
+    $previewPatch = @{site_url=$previewOrigin; uri_allow_list=($previewOrigin + '/auth/callback,' + $previewOrigin + '/auth/invite'); hook_send_email_enabled=$false} | ConvertTo-Json
+    $null = Invoke-RestMethod -Method Patch -Uri ($previewApi + '/config/auth') -Headers $previewHeaders -ContentType 'application/json' -Body $previewPatch -MaximumRedirection 0
+    $afterConfig = Invoke-RestMethod -Method Get -Uri ($previewApi + '/config/auth') -Headers $previewHeaders -MaximumRedirection 0
+    if ($afterConfig.site_url -ne $previewOrigin -or $afterConfig.hook_send_email_enabled -ne $false -or $afterConfig.disable_signup -ne $true -or $afterConfig.mailer_autoconfirm -ne $false -or $afterConfig.external_anonymous_users_enabled -ne $false) { throw 'Private owner Auth verification failed' }
+    $previewConfig = $afterConfig
+  }
   if ($Mode -eq '--capture-quota30') {
     if ($previewConfig.hook_send_email_enabled -ne $true -or
         $previewConfig.hook_send_email_uri -ne 'pg-functions://postgres/preview_auth/capture_email' -or
@@ -84,7 +98,7 @@ public static class DockedPreviewCredential {
     $previewStage = 'restore-quota-write'
     $null = Invoke-RestMethod -Method Patch -Uri ($previewApi + '/config/auth') -Headers $previewHeaders -ContentType 'application/json' -Body '{"rate_limit_email_sent":2}' -MaximumRedirection 0
   }
-  if ($Mode -ne '--inspect') {
+  if ($Mode -in @('--capture-quota30', '--restore-quota2')) {
     $previewStage = 'auth-verify'
     $afterConfig = Invoke-RestMethod -Method Get -Uri ($previewApi + '/config/auth') -Headers $previewHeaders -MaximumRedirection 0
     $expectedRate = if ($Mode -eq '--capture-quota30') { 30 } else { 2 }
