@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "deployment": "dpl_4qvuSUiN9w1tzuAfCREGiWKP1dW1",
+  "commit": "cae26d29b26047d3decf76062c5404d513ea3ce2",
+  "checks": [
+    "Anonymous Vercel protection",
+    "Screen /app/login",
+    "Screen /mfa",
+    "Screen /app/reset-password",
+    "Owner setup requires signed-in exact owner",
+    "Private Preview does not claim Production release",
+    "Invalid invitation rejected without consumption",
+    "Unauthorised signup denied",
+    "Unauthorised login denied",
+    "Unauthorised mfa_status denied",
+    "Foreign origin rejected",
+    "Anonymous community API denied",
+    "Login browser 1440px, no horizontal overflow",
+    "Login browser 412px, no horizontal overflow"
+  ],
+  "scope": "Hosted read-only screens and denied unauthenticated requests only. No member session, post, purchase or gameplay mutation."
+}

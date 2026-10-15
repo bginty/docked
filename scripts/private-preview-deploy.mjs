@@ -248,6 +248,24 @@ try {
       JSON.stringify(record, null, 2),
     );
     console.log(JSON.stringify(record));
+  } else if (mode === "--record-rollback") {
+    const alias = await api(`/v4/aliases/${new URL(target.origin).hostname}`);
+    assert.equal(alias.projectId, target.projectId);
+    const record = {
+      origin: target.origin,
+      projectId: alias.projectId,
+      deploymentId: alias.deploymentId ?? alias.deployment?.id,
+      recordedAt: new Date().toISOString(),
+      instruction:
+        "Restore application alias only; preserve subsequent Auth, ledger and receipt history.",
+    };
+    assert.match(record.deploymentId, /^dpl_/);
+    await writeFile(
+      evidence + "rollback.json",
+      JSON.stringify(record, null, 2),
+      { flag: "wx" },
+    );
+    console.log(JSON.stringify(record));
   } else if (mode === "--status") {
     const saved = JSON.parse(
       await readFile(evidence + "deployment-submitted.json", "utf8"),

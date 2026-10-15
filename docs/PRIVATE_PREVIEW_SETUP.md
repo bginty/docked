@@ -2,6 +2,14 @@
 
 This continues the Social/profile-photo release at `3b6cbe25`. Production and its member assets are unchanged. The separate Preview is being prepared for the owner, Barry and Luke; a deployed owner setup page is not acceptance of member gameplay.
 
+**Deployed:** `cae26d29b26047d3decf76062c5404d513ea3ce2`, deployment `dpl_4qvuSUiN9w1tzuAfCREGiWKP1dW1`, READY. Stable protected URL: https://docked-preview-s24-briant-ginty.vercel.app/app/login. Source pushed to the existing `codex/vercel-beta-review` branch; main and Production were not changed.
+
+The exact-owner setup email was submitted through the existing Docked mailbox to `support@docked.com.au` at 22:20:50 UTC on 15 October (09:20:50 Sydney on 16 October). Microsoft Graph returned 202; inbox receipt is not independently confirmed. Open the invitation, authenticate to Vercel if requested, choose a Preview password and verify the authenticator. Do not share passwords/codes in chat. Barry/Luke invitations remain unsent. **This is not yet a playable three-person beta.**
+
+Hosted evidence: eight candidate checks and 14 stable-origin checks passed, including Vercel protection, account screens, anonymous owner-page redirect, invalid invitation, denied unauthorised signup/login/MFA and foreign-origin requests, empty sign-in-required community data, and 1440px/412px browser screenshots. No member session or gameplay/social transaction was performed. Initial assertions expected an HTTP redirect and a 403 feed response; actual safe contracts are Next.js streamed login redirect and HTTP 200 with `sign_in_required`, null viewer and empty arrays. Verification was corrected; application security was not weakened.
+
+The Preview runtime no longer carries its old privileged Supabase web key or retired odds credentials. Only Preview-scoped variables were changed. Owner invitation generation and mail credentials remain operator-only and outside the exported source.
+
 ## Completed infrastructure preparation
 
 - Verified Vercel `docked-preview`, project `prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR`, team `team_tf6xweKKyVCj9bTppUKttJ4l`, protection on all deployments and no Production domains.
@@ -41,3 +49,7 @@ Deployment receipts are written under `qa/private-preview-release`. Use the exac
 Rollback changes the application alias to its recorded prior Preview deployment; keep compatible schema and all later Auth/ledger/receipt history. Do not restore the pre-migration archive over newer account or transaction data. Production rollback references are unchanged.
 
 Android package `au.com.docked.app.preview` must point at the protected Preview origin. Its old receipt is stale. Do not label an APK usable for testers before authentication/protection sessions and gameplay are accepted. No protection secret may be embedded in the APK.
+
+Android audit: current Gradle version is 22 / 1.21, Preview signing uses the existing sideload certificate and WebView debugging is disabled. The installed v22 beta and isolated Preview use the same package suffix, so a replacement must be explicitly identified as Preview and must not silently redirect the user's installed beta. Capacitor currently attaches only the configured host; Vercel login/protection persistence in the native WebView has not been accepted. No new APK or embedded bypass was produced. The web Preview can be used for owner setup now; physical S24 and protected native-session acceptance remain pending.
+
+Application rollback reference: `dpl_GfKbTUCepPqeNQENA21ifT6u7ndP` on this same isolated Preview project (`qa/private-preview-release/rollback.json`).
