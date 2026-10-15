@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "scope": "Actual local PostgreSQL store fault injection, separate observer connection; not HTTP/authentication",
+  "checks": [
+    "OPEN→SOLD existing database guards preserved",
+    "Intermediate private listing never visible outside transaction",
+    "Injected failure rolls back ownership, balances, journal, offer, operation identity, history and revision"
+  ],
+  "at": "2026-10-15T14:27:26.501Z"
+}

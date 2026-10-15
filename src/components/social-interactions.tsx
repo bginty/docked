@@ -11,8 +11,10 @@ import type {
 import { AppIcon } from "./app-icon";
 import { OfficialBadge } from "./community-basics";
 import { LocalTimestamp } from "./local-timestamp";
+import { RelativeSocialTime } from "./relative-social-time";
 import { BrandLogo } from "./brand-logo";
 import { useClientReady } from "./use-client-ready";
+import { FantasyCardArtwork } from "./fantasy-card-artwork";
 export async function communityAction(
   body: Record<string, unknown>,
   endpoint = "/api/community",
@@ -76,7 +78,7 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
   }
   if (profile.isOwn)
     return (
-      <Link className="button ghost" href="/profile#edit">
+      <Link className="button ghost" href="/profile?tab=about#edit">
         Edit profile
       </Link>
     );
@@ -91,7 +93,7 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
           {following ? "Unfollow" : "Follow"}
         </button>
         <details>
-          <summary>Member controls</summary>
+          <summary aria-label="Member options">•••</summary>
           <div className="social-menu">
             <button
               disabled={!ready || busy}
@@ -106,23 +108,20 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
               {profile.isBlocked ? "Unblock" : "Block"}
             </button>
             <ReportForm profileId={profile.id} />
+            {following && !profile.isBlocked && (
+              <label className="check small-note">
+                <input
+                  type="checkbox"
+                  checked={notify}
+                  disabled={!ready || busy}
+                  onChange={(e) => act("follow", true, e.target.checked)}
+                />
+                Notify me in Docked
+              </label>
+            )}
           </div>
         </details>
       </div>
-      {following && !profile.isBlocked && (
-        <label className="check small-note">
-          <input
-            type="checkbox"
-            checked={notify}
-            disabled={!ready || busy}
-            onChange={(e) => act("follow", true, e.target.checked)}
-          />
-          <span>
-            Notify me about this member in the app. Followed-member
-            notifications must also be enabled in my preferences.
-          </span>
-        </label>
-      )}
       <p role="status" className="form-help">
         {message}
       </p>
@@ -372,7 +371,7 @@ export function SocialCard({
             {compact && (
               <>
                 {" "}
-                · <LocalTimestamp value={post.createdAt} />
+                · <RelativeSocialTime value={post.createdAt} />
               </>
             )}
           </span>
@@ -385,6 +384,46 @@ export function SocialCard({
           ? "COMMENTARY REMOVED BY MODERATION"
           : post.body}
       </p>
+      {!!post.cardSnapshots?.length && post.moderationStatus === "visible" && (
+        <div className="social-shared-cards">
+          {post.cardSnapshots.map((card) => (
+            <div key={card.id}>
+              <FantasyCardArtwork card={card} faceOnly />
+              <small>
+                {card.tier === "CORE"
+                  ? "Unlimited Core"
+                  : `#${card.serial} / ${card.max_supply.toLocaleString()}`}
+              </small>
+            </div>
+          ))}
+          <span className="form-help">
+            Shared card snapshot · ownership may have changed
+          </span>
+        </div>
+      )}
+      {post.playerId && (
+        <div className="actions">
+          <Link
+            href={`/fantasy/social?player=${encodeURIComponent(post.playerId)}`}
+          >
+            Player discussion
+          </Link>
+          <button
+            disabled={!ready || busy}
+            onClick={() =>
+              action("discussion_follow", {
+                post: post.id,
+                postId: undefined,
+                enabled: !post.discussionFollowed,
+              })
+            }
+          >
+            {post.discussionFollowed
+              ? "Unfollow discussion"
+              : "Follow discussion"}
+          </button>
+        </div>
+      )}
       {post.moderationStatus === "visible" &&
         post.media
           .filter((m) => m.status === "approved" && m.url)

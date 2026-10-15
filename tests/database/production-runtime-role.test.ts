@@ -1,3 +1,4 @@
+import { assertSocialDefinerBoundary } from "../fixtures/social-definer-boundary";
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
@@ -298,12 +299,7 @@ test("browser table privileges remain unchanged and production server cannot rea
 });
 
 test("runtime cannot escalate roles or execute privileged helper paths", async () => {
-  const elevated = await pg.query<{ name: string; fixed_path: boolean }>(
-    "select p.proname name,coalesce(p.proconfig @> array['search_path=\"\"'],false) fixed_path from pg_proc p where p.pronamespace='private'::regnamespace and p.prosecdef and has_function_privilege('docked_app',p.oid,'EXECUTE')",
-  );
-  assert.deepEqual(elevated.rows, [
-    { name: "active_member_session", fixed_path: true },
-  ]);
+  await assertSocialDefinerBoundary(pg);
   await pg.exec("set session authorization docked_app");
   for (const sql of [
     "set role postgres",
@@ -317,6 +313,11 @@ test("runtime cannot escalate roles or execute privileged helper paths", async (
     "select private.transition_strategy('unapproved','APPROVED_FOR_LIVE','00000000-0000-4000-8000-000000000601','denied','0000000000000000000000000000000000000000',null)",
   ])
     await deny(sql);
+  for (const sql of [
+    "select private.social_legacy_cards('00000000-0000-4000-8000-000000000601')",
+    "select private.social_player_exists('forged-player')",
+  ])
+    await assert.rejects(pg.exec(sql), /Active authenticated session required/);
   await pg.exec(
     "select set_config('request.jwt.claim.sub','',false),set_config('request.jwt.claims','{}',false)",
   );

@@ -7,7 +7,8 @@ export const metadata = {
   title: "Docked · Test wallet",
   robots: { index: false, follow: false },
 };
-export default async function TestWalletPage() {
+export default async function TestWalletPage({searchParams}:{searchParams:Promise<{view?:string}>}) {
+  const {view}=await searchParams;
   let data;
   try {
     data = await memberTestWallet();
@@ -25,7 +26,7 @@ export default async function TestWalletPage() {
   }
   return (
     <AppShell authenticated>
-      <MemberTestWallet initial={data.state} />
+      <MemberTestWallet initial={data.state} surface={view==="packs"?"packs":"wallet"}/>
     </AppShell>
   );
 }

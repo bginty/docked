@@ -1,0 +1,115 @@
+
+Running 4 tests using 1 worker
+
+
+
+(node:104384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:104384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/4] tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 360
+[2/4] tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 412
+  1) tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 412
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  getByRole('button', { name: 'Reveal next card' })
+    Expected: enabled
+    Received: disabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: 'Reveal next card' }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Reveal next card' })
+        14 × locator resolved to <button disabled type="button" class="pack-next" aria-label="Reveal next card">→</button>
+           - unexpected value "disabled"
+
+
+      105 |     await expect(page.getByText("2 of 9 · ULTRA RARE")).toBeVisible();
+      106 |     const inspect = page.getByRole("group", { name: /Inspect Preview QB 2/ });
+    > 107 |     await expect(
+          |                  ^
+      108 |       page.getByRole("button", { name: "Reveal next card" }),
+      109 |     ).toBeEnabled();
+      110 |     await inspect.focus();
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\nine-card-reveal.test.ts:107:74
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+(node:69240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:69240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[3/4] tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 1366
+  2) tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 1366
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  getByRole('button', { name: 'Reveal next card' })
+    Expected: enabled
+    Received: disabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: 'Reveal next card' }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Reveal next card' })
+        14 × locator resolved to <button disabled type="button" class="pack-next" aria-label="Reveal next card">→</button>
+           - unexpected value "disabled"
+
+
+      130 |     await mount();
+      131 |     await expect(page.locator(".pack-summary li")).toHaveCount(9);
+    > 132 |     expect(opens).toBe(1);
+          |                           ^
+      133 |     await page
+      134 |       .getByRole("button", { name: "Replay saved result · no new cards" })
+      135 |       .click();
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\nine-card-reveal.test.ts:132:74
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:83024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:83024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[4/4] tests\browser\nine-card-reveal.test.ts:146:5 › single card, reduced motion, keyboard opening and duplicate taps
+  2 failed
+    tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 412
+    tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 1366
+  2 passed (2.1m)

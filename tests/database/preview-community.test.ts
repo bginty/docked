@@ -1,3 +1,4 @@
+import { assertSocialDefinerBoundary } from "../fixtures/social-definer-boundary";
 import { after, before, test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
@@ -328,14 +329,7 @@ test("browser roles cannot enumerate or self-enroll, even with forged preview/ad
     ).rows[0].relrowsecurity,
     true,
   );
-  assert.equal(
-    (
-      await pg.query<{ n: number }>(
-        "select count(*)::int n from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='private' and p.prosecdef",
-      )
-    ).rows[0].n,
-    1,
-  );
+  await assertSocialDefinerBoundary(pg);
 });
 
 test("hard deletion removes tester identity mapping while retaining minimal grant audit", async () => {

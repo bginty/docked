@@ -1,3 +1,5 @@
+Current local work: [Social, private collections, local offers and automatic pack reveals](docs/SOCIAL_PLATFORM_UPGRADE.md). Local QA only; no deployment or live trading activation. This task does not authorise Production changes.
+
 Current release: [Numbered premium card refinement](docs/JERSEY_REFINEMENT.md), live on docked.com.au from source `4e823789`. Larger original jerseys and repaired roster-number import; the fresh scheduled import remains pending. Invitation-only beta and all real-money restrictions remain unchanged.
 
 Previous release: [Stable pack reveal](docs/REVEAL_STABILITY_REVIEW.md), source `7c1303f3`. One smooth per-card turn, stable inspection handoff and simplified light/Icon effects. Saved results and member data are unchanged.

@@ -352,7 +352,7 @@ export function FantasyScreen({
               className="pack-discovery-tile"
               href={
                 wallet.value?.unopened
-                  ? "/fantasy/test-wallet#packs"
+                  ? "/fantasy/test-wallet?view=packs#packs"
                   : data.rewards?.starter_entitled &&
                       !data.rewards.starter_claimed
                     ? "#starter-pack"
@@ -372,7 +372,7 @@ export function FantasyScreen({
               )
             </a>
             <Link
-              href="/fantasy/test-wallet#packs"
+              href="/fantasy/test-wallet?view=packs#packs"
               className="pack-discovery-tile buy-packs"
             >
               Buy packs
@@ -625,7 +625,7 @@ export function FantasyScreen({
             {!data.packs.some((p) => !p.opened_at) && (
               <p>
                 No unopened packs.{" "}
-                <Link href="/fantasy/test-wallet#packs">Browse packs</Link>
+                <Link href="/fantasy/test-wallet?view=packs#packs">Browse packs</Link>
               </p>
             )}
             {data.packs.map((p) => (
@@ -858,7 +858,7 @@ export function FantasyScreen({
               <summary>Eligibility & collection options</summary>
 
               <p>
-                <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
+                <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link> ·{" "}
                 <Link href="/fantasy/test-wallet">
                   Wallet & transaction history
                 </Link>

@@ -1,0 +1,208 @@
+
+Running 7 tests using 1 worker
+
+
+
+(node:49204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:49204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/7] tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 360
+  1) tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 360
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Card 1 of 9 · RARE')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Card 1 of 9 · RARE') with timeout 5000ms
+      - waiting for getByText('Card 1 of 9 · RARE')
+
+
+       97 |     // Response was lost AFTER the server committed. Reopening reads that same result.
+       98 |     await mount();
+    >  99 |     await expect(page.getByText("Card 1 of 9 · RARE")).toBeVisible();
+          |                                                        ^
+      100 |     expect(opens).toBe(1);
+      101 |     await page.getByRole("button", { name: "Reveal next" }).click();
+      102 |     await expect(page.getByText("Card 2 of 9 · ULTRA RARE")).toBeVisible();
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\nine-card-reveal.test.ts:99:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-7d5ac-eplay-and-accessibility-360\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\nine-card-reveal-confirmed-7d5ac-eplay-and-accessibility-360\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-7d5ac-eplay-and-accessibility-360\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\nine-card-reveal-confirmed-7d5ac-eplay-and-accessibility-360\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:94892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:94892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/7] tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 412
+  2) tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 412
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Card 1 of 9 · RARE')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Card 1 of 9 · RARE') with timeout 5000ms
+      - waiting for getByText('Card 1 of 9 · RARE')
+
+
+       97 |     // Response was lost AFTER the server committed. Reopening reads that same result.
+       98 |     await mount();
+    >  99 |     await expect(page.getByText("Card 1 of 9 · RARE")).toBeVisible();
+          |                                                        ^
+      100 |     expect(opens).toBe(1);
+      101 |     await page.getByRole("button", { name: "Reveal next" }).click();
+      102 |     await expect(page.getByText("Card 2 of 9 · ULTRA RARE")).toBeVisible();
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\nine-card-reveal.test.ts:99:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+
+(node:9112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+(node:9112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[3/7] tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 1366
+  3) tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 1366
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Card 1 of 9 · RARE')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Card 1 of 9 · RARE') with timeout 5000ms
+      - waiting for getByText('Card 1 of 9 · RARE')
+
+
+       97 |     // Response was lost AFTER the server committed. Reopening reads that same result.
+       98 |     await mount();
+    >  99 |     await expect(page.getByText("Card 1 of 9 · RARE")).toBeVisible();
+          |                                                        ^
+      100 |     expect(opens).toBe(1);
+      101 |     await page.getByRole("button", { name: "Reveal next" }).click();
+      102 |     await expect(page.getByText("Card 2 of 9 · ULTRA RARE")).toBeVisible();
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\nine-card-reveal.test.ts:99:56
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:61132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+
+(node:61132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[4/7] tests\browser\nine-card-reveal.test.ts:142:5 › single card, reduced motion, keyboard opening and duplicate taps
+  4) tests\browser\nine-card-reveal.test.ts:142:5 › single card, reduced motion, keyboard opening and duplicate taps
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Card 1 of 1 · RARE')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Card 1 of 1 · RARE') with timeout 5000ms
+      - waiting for getByText('Card 1 of 1 · RARE')
+
+
+      192 |   await confirmed;
+      193 |   await page.getByRole("button", { name: "Open viewer" }).click();
+    > 194 |   await expect(page.getByText("Card 1 of 1 · RARE")).toBeVisible();
+          |                                                      ^
+      195 |   expect(opens).toBe(1);
+      196 |   await expect(
+      197 |     page.getByRole("button", { name: "Skip animation" }),
+        at C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\browser\nine-card-reveal.test.ts:194:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-single-ca-3e680--opening-and-duplicate-taps\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\nine-card-reveal-single-ca-3e680--opening-and-duplicate-taps\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\nine-card-reveal-single-ca-3e680--opening-and-duplicate-taps\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\nine-card-reveal-single-ca-3e680--opening-and-duplicate-taps\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:29752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+(node:29752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[5/7] tests\browser\pack-cinematic.test.ts:6:5 › cinematic timing, background interruption and visual recording
+[6/7] tests\browser\premium-completion.test.ts:3:5 › premium cards use verified fixture numbers and preserve mobile field interaction
+[7/7] tests\browser\reveal-stability.test.ts:3:5 › delayed compositor finishes once without a timed snap or inspection handoff jump
+  4 failed
+    tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 360
+    tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 412
+    tests\browser\nine-card-reveal.test.ts:39:7 › confirmed nine-card reveal, resume, replay and accessibility 1366
+    tests\browser\nine-card-reveal.test.ts:142:5 › single card, reduced motion, keyboard opening and duplicate taps
+  3 passed (2.5m)

@@ -1,0 +1,1614 @@
+TAP version 13
+# Subtest: community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+not ok 1 - community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+  ---
+  duration_ms: 13161.1728
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-ledger.test.ts:16:506'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+
+      [
+        {
+    +     browser: false,
+    -     browser: true,
+          fixed_path: true,
+    +     name: 'accept_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_admission_verified',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_customer_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'active_member_session',
+          runtime: true
+        },
+        {
+          browser: false,
+          fixed_path: true,
+    +     name: 'admin_reserve_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted_before_owner_gameplay',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'begin_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity_before_friends',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'customer_signup_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'disable_account',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'finish_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'gameplay_mfa_required',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'manage_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_operations',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pending_beta_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pre_admission_session',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'profile_admission_guard',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_customer_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'social_discussion_reply_notice',
+          runtime: false
+        },
+        {
+          browser: false,
+    ...
+        },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_case',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_export',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_redact',
+    +     runtime: false
+    +   }
+      ]
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: true
+      runtime: true
+    1:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+  actual:
+    0:
+      name: 'accept_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    1:
+      name: 'accept_admission_verified'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'accept_customer_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: false
+      runtime: true
+    4:
+      name: 'admin_reserve_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    5:
+      name: 'admitted'
+      fixed_path: true
+      browser: false
+      runtime: true
+    6:
+      name: 'admitted_before_owner_gameplay'
+      fixed_path: true
+      browser: false
+      runtime: false
+    7:
+      name: 'begin_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    8:
+      name: 'beta_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    9:
+      name: 'beta_gameplay_identity_before_friends'
+      fixed_path: true
+      browser: false
+      runtime: false
+    10:
+      name: 'customer_signup_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    11:
+      name: 'disable_account'
+      fixed_path: true
+      browser: false
+      runtime: true
+    12:
+      name: 'finish_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    13:
+      name: 'gameplay_mfa_required'
+      fixed_path: true
+      browser: false
+      runtime: true
+    14:
+      name: 'manage_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    15:
+      name: 'owner_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    16:
+      name: 'owner_operations'
+      fixed_path: true
+      browser: false
+      runtime: true
+    17:
+      name: 'pending_beta_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    18:
+      name: 'pre_admission_session'
+      fixed_path: true
+      browser: false
+      runtime: false
+    19:
+      name: 'profile_admission_guard'
+      fixed_path: true
+      browser: false
+      runtime: false
+    20:
+      name: 'renew_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    21:
+      name: 'renew_customer_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    22:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    23:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    24:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+    25:
+      name: 'support_privacy_case'
+      fixed_path: true
+      browser: false
+      runtime: false
+    26:
+      name: 'support_privacy_export'
+      fixed_path: true
+      browser: false
+      runtime: false
+    27:
+      name: 'support_privacy_redact'
+      fixed_path: true
+      browser: false
+      runtime: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertSocialDefinerBoundary (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\fixtures\social-definer-boundary.ts:17:12)
+    async TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-ledger.test.ts:208:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: unknown provider classification, promotions and historical/demo records cannot be promoted
+ok 2 - unknown provider classification, promotions and historical/demo records cannot be promoted
+  ---
+  duration_ms: 93.2468
+  ...
+# Subtest: atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+ok 3 - atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+  ---
+  duration_ms: 145.4915
+  ...
+# Subtest: newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+ok 4 - newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+  ---
+  duration_ms: 75.7408
+  ...
+# Subtest: latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+ok 5 - latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+  ---
+  duration_ms: 49.6747
+  ...
+# Subtest: canonical records survive social tombstone, private identity and blocking
+ok 6 - canonical records survive social tombstone, private identity and blocking
+  ---
+  duration_ms: 46.3246
+  ...
+# Subtest: authorized results only, no silent correction, finite scores, append-only approval revocation
+ok 7 - authorized results only, no silent correction, finite scores, append-only approval revocation
+  ---
+  duration_ms: 112.8254
+  ...
+# Subtest: integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+ok 8 - integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+  ---
+  duration_ms: 114.9342
+  ...
+# Subtest: leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+ok 9 - leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+  ---
+  duration_ms: 40.9983
+  ...
+# Subtest: ordered migrations leave all new tables RLS protected and no public private-payload grants
+not ok 10 - ordered migrations leave all new tables RLS protected and no public private-payload grants
+  ---
+  duration_ms: 10646.4276
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\phase2-security.test.ts:7:2275'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+
+      [
+        {
+    +     browser: false,
+    -     browser: true,
+          fixed_path: true,
+    +     name: 'accept_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_admission_verified',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_customer_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'active_member_session',
+          runtime: true
+        },
+        {
+          browser: false,
+          fixed_path: true,
+    +     name: 'admin_reserve_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted_before_owner_gameplay',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'begin_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity_before_friends',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'customer_signup_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'disable_account',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'finish_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'gameplay_mfa_required',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'manage_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_operations',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pending_beta_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pre_admission_session',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'profile_admission_guard',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_customer_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'social_discussion_reply_notice',
+          runtime: false
+        },
+        {
+          browser: false,
+    ...
+        },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_case',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_export',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_redact',
+    +     runtime: false
+    +   }
+      ]
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: true
+      runtime: true
+    1:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+  actual:
+    0:
+      name: 'accept_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    1:
+      name: 'accept_admission_verified'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'accept_customer_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: false
+      runtime: true
+    4:
+      name: 'admin_reserve_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    5:
+      name: 'admitted'
+      fixed_path: true
+      browser: false
+      runtime: true
+    6:
+      name: 'admitted_before_owner_gameplay'
+      fixed_path: true
+      browser: false
+      runtime: false
+    7:
+      name: 'begin_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    8:
+      name: 'beta_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    9:
+      name: 'beta_gameplay_identity_before_friends'
+      fixed_path: true
+      browser: false
+      runtime: false
+    10:
+      name: 'customer_signup_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    11:
+      name: 'disable_account'
+      fixed_path: true
+      browser: false
+      runtime: true
+    12:
+      name: 'finish_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    13:
+      name: 'gameplay_mfa_required'
+      fixed_path: true
+      browser: false
+      runtime: true
+    14:
+      name: 'manage_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    15:
+      name: 'owner_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    16:
+      name: 'owner_operations'
+      fixed_path: true
+      browser: false
+      runtime: true
+    17:
+      name: 'pending_beta_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    18:
+      name: 'pre_admission_session'
+      fixed_path: true
+      browser: false
+      runtime: false
+    19:
+      name: 'profile_admission_guard'
+      fixed_path: true
+      browser: false
+      runtime: false
+    20:
+      name: 'renew_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    21:
+      name: 'renew_customer_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    22:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    23:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    24:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+    25:
+      name: 'support_privacy_case'
+      fixed_path: true
+      browser: false
+      runtime: false
+    26:
+      name: 'support_privacy_export'
+      fixed_path: true
+      browser: false
+      runtime: false
+    27:
+      name: 'support_privacy_redact'
+      fixed_path: true
+      browser: false
+      runtime: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertSocialDefinerBoundary (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\fixtures\social-definer-boundary.ts:17:12)
+    async TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\phase2-security.test.ts:99:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: anonymous denied; active members only see own rows and cannot forge another session
+ok 11 - anonymous denied; active members only see own rows and cannot forge another session
+  ---
+  duration_ms: 22.6596
+  ...
+# Subtest: staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+ok 12 - staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+  ---
+  duration_ms: 40.3832
+  ...
+# Subtest: disabled profile and revoked or expired session block every member Data API table
+ok 13 - disabled profile and revoked or expired session block every member Data API table
+  ---
+  duration_ms: 27.5351
+  ...
+# Subtest: strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+ok 14 - strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+  ---
+  duration_ms: 67.8295
+  ...
+# Subtest: paper publication is pre-event immutable and never creates public notification outbox
+ok 15 - paper publication is pre-event immutable and never creates public notification outbox
+  ---
+  duration_ms: 46.1143
+  ...
+# Subtest: mismatched candidate event and malformed EV fail closed
+ok 16 - mismatched candidate event and malformed EV fail closed
+  ---
+  duration_ms: 12.2832
+  ...
+# Subtest: correction cannot link settlements from different publications or rewrite original outcome
+ok 17 - correction cannot link settlements from different publications or rewrite original outcome
+  ---
+  duration_ms: 25.3133
+  ...
+# Subtest: account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+ok 18 - account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+  ---
+  duration_ms: 48.8626
+  ...
+# Subtest: candidate and observation evidence cannot be silently rewritten or removed
+ok 19 - candidate and observation evidence cannot be silently rewritten or removed
+  ---
+  duration_ms: 12.0267
+  ...
+# Subtest: Phase 2 backup restores session policies and immutable strategy/paper evidence
+ok 20 - Phase 2 backup restores session policies and immutable strategy/paper evidence
+  ---
+  duration_ms: 6369.4206
+  ...
+# Subtest: quota reservations survive external failure and preserve unknown balances
+ok 21 - quota reservations survive external failure and preserve unknown balances
+  ---
+  duration_ms: 20.8459
+  ...
+# Subtest: policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+ok 22 - policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+  ---
+  duration_ms: 24.4673
+  ...
+# Subtest: as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+ok 23 - as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+  ---
+  duration_ms: 6.6091
+  ...
+# Subtest: completion analytics cannot double count repeated or concurrent callbacks
+ok 24 - completion analytics cannot double count repeated or concurrent callbacks
+  ---
+  duration_ms: 11.1542
+  ...
+# Subtest: research sensitivity settings cannot freeze below the release floor or outside the release odds range
+ok 25 - research sensitivity settings cannot freeze below the release floor or outside the release odds range
+  ---
+  duration_ms: 54.0153
+  ...
+# Subtest: repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+ok 26 - repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+  ---
+  duration_ms: 19.6425
+  ...
+# Subtest: preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+ok 27 - preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+  ---
+  duration_ms: 11399.5466
+  ...
+# Subtest: preview grant fails closed without exact trusted hosted context or live same-user session
+ok 28 - preview grant fails closed without exact trusted hosted context or live same-user session
+  ---
+  duration_ms: 52.2593
+  ...
+# Subtest: tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+ok 29 - tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+  ---
+  duration_ms: 72.0843
+  ...
+# Subtest: expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+ok 30 - expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+  ---
+  duration_ms: 93.9343
+  ...
+# Subtest: ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+ok 31 - ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+  ---
+  duration_ms: 45.3485
+  ...
+# Subtest: preview marker and grant constraints prevent scope broadening or mutable enrollment
+ok 32 - preview marker and grant constraints prevent scope broadening or mutable enrollment
+  ---
+  duration_ms: 65.3983
+  ...
+# Subtest: browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+not ok 33 - browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+  ---
+  duration_ms: 78.6318
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\preview-community.test.ts:16:7558'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+
+      [
+        {
+    +     browser: false,
+    -     browser: true,
+          fixed_path: true,
+    +     name: 'accept_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_admission_verified',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_customer_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'active_member_session',
+          runtime: true
+        },
+        {
+          browser: false,
+          fixed_path: true,
+    +     name: 'admin_reserve_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted_before_owner_gameplay',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'begin_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity_before_friends',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'customer_signup_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'disable_account',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'finish_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'gameplay_mfa_required',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'manage_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_operations',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pending_beta_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pre_admission_session',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'profile_admission_guard',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_customer_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'social_discussion_reply_notice',
+          runtime: false
+        },
+        {
+          browser: false,
+    ...
+        },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_case',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_export',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_redact',
+    +     runtime: false
+    +   }
+      ]
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: true
+      runtime: true
+    1:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+  actual:
+    0:
+      name: 'accept_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    1:
+      name: 'accept_admission_verified'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'accept_customer_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: false
+      runtime: true
+    4:
+      name: 'admin_reserve_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    5:
+      name: 'admitted'
+      fixed_path: true
+      browser: false
+      runtime: true
+    6:
+      name: 'admitted_before_owner_gameplay'
+      fixed_path: true
+      browser: false
+      runtime: false
+    7:
+      name: 'begin_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    8:
+      name: 'beta_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    9:
+      name: 'beta_gameplay_identity_before_friends'
+      fixed_path: true
+      browser: false
+      runtime: false
+    10:
+      name: 'customer_signup_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    11:
+      name: 'disable_account'
+      fixed_path: true
+      browser: false
+      runtime: true
+    12:
+      name: 'finish_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    13:
+      name: 'gameplay_mfa_required'
+      fixed_path: true
+      browser: false
+      runtime: true
+    14:
+      name: 'manage_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    15:
+      name: 'owner_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    16:
+      name: 'owner_operations'
+      fixed_path: true
+      browser: false
+      runtime: true
+    17:
+      name: 'pending_beta_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    18:
+      name: 'pre_admission_session'
+      fixed_path: true
+      browser: false
+      runtime: false
+    19:
+      name: 'profile_admission_guard'
+      fixed_path: true
+      browser: false
+      runtime: false
+    20:
+      name: 'renew_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    21:
+      name: 'renew_customer_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    22:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    23:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    24:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+    25:
+      name: 'support_privacy_case'
+      fixed_path: true
+      browser: false
+      runtime: false
+    26:
+      name: 'support_privacy_export'
+      fixed_path: true
+      browser: false
+      runtime: false
+    27:
+      name: 'support_privacy_redact'
+      fixed_path: true
+      browser: false
+      runtime: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertSocialDefinerBoundary (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\fixtures\social-definer-boundary.ts:17:12)
+    async TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\preview-community.test.ts:332:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: hard deletion removes tester identity mapping while retaining minimal grant audit
+ok 34 - hard deletion removes tester identity mapping while retaining minimal grant audit
+  ---
+  duration_ms: 64.2157
+  ...
+# Subtest: session expiry uses wall clock even when transaction start remains before expiry
+ok 35 - session expiry uses wall clock even when transaction start remains before expiry
+  ---
+  duration_ms: 227.627
+  ...
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+ok 36 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 11291.1098
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 37 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 42.3455
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 38 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 59.9757
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+not ok 39 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 69.6903
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:7105'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+
+      [
+        {
+    +     browser: false,
+    -     browser: true,
+          fixed_path: true,
+    +     name: 'accept_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_admission_verified',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'accept_customer_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'active_member_session',
+          runtime: true
+        },
+        {
+          browser: false,
+          fixed_path: true,
+    +     name: 'admin_reserve_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'admitted_before_owner_gameplay',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'begin_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'beta_gameplay_identity_before_friends',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'customer_signup_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'disable_account',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'finish_customer_signup',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'gameplay_mfa_required',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'manage_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_gameplay_identity',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'owner_operations',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pending_beta_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'pre_admission_session',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'profile_admission_guard',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_admission',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'renew_customer_consent',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'social_discussion_reply_notice',
+          runtime: false
+        },
+        {
+          browser: false,
+    ...
+        },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_case',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_export',
+    +     runtime: false
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'support_privacy_redact',
+    +     runtime: false
+    +   }
+      ]
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: true
+      runtime: true
+    1:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+  actual:
+    0:
+      name: 'accept_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    1:
+      name: 'accept_admission_verified'
+      fixed_path: true
+      browser: false
+      runtime: false
+    2:
+      name: 'accept_customer_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: false
+      runtime: true
+    4:
+      name: 'admin_reserve_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    5:
+      name: 'admitted'
+      fixed_path: true
+      browser: false
+      runtime: true
+    6:
+      name: 'admitted_before_owner_gameplay'
+      fixed_path: true
+      browser: false
+      runtime: false
+    7:
+      name: 'begin_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    8:
+      name: 'beta_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    9:
+      name: 'beta_gameplay_identity_before_friends'
+      fixed_path: true
+      browser: false
+      runtime: false
+    10:
+      name: 'customer_signup_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    11:
+      name: 'disable_account'
+      fixed_path: true
+      browser: false
+      runtime: true
+    12:
+      name: 'finish_customer_signup'
+      fixed_path: true
+      browser: false
+      runtime: false
+    13:
+      name: 'gameplay_mfa_required'
+      fixed_path: true
+      browser: false
+      runtime: true
+    14:
+      name: 'manage_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    15:
+      name: 'owner_gameplay_identity'
+      fixed_path: true
+      browser: false
+      runtime: true
+    16:
+      name: 'owner_operations'
+      fixed_path: true
+      browser: false
+      runtime: true
+    17:
+      name: 'pending_beta_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    18:
+      name: 'pre_admission_session'
+      fixed_path: true
+      browser: false
+      runtime: false
+    19:
+      name: 'profile_admission_guard'
+      fixed_path: true
+      browser: false
+      runtime: false
+    20:
+      name: 'renew_admission'
+      fixed_path: true
+      browser: false
+      runtime: true
+    21:
+      name: 'renew_customer_consent'
+      fixed_path: true
+      browser: false
+      runtime: true
+    22:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    23:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    24:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+    25:
+      name: 'support_privacy_case'
+      fixed_path: true
+      browser: false
+      runtime: false
+    26:
+      name: 'support_privacy_export'
+      fixed_path: true
+      browser: false
+      runtime: false
+    27:
+      name: 'support_privacy_redact'
+      fixed_path: true
+      browser: false
+      runtime: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertSocialDefinerBoundary (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\fixtures\social-definer-boundary.ts:17:12)
+    async TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\production-runtime-role.test.ts:302:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 40 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 52.8541
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 41 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 77.542
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 42 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 70.4097
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 43 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 32.3999
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 44 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 416.6197
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 45 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 7.2934
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 46 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 20.3594
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 47 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 214.9526
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 48 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 62.5661
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 44
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 66611.3256

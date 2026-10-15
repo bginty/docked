@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: database enforces permanent supply, serial immutability, nine-card receipts and private access
+ok 1 - database enforces permanent supply, serial immutability, nine-card receipts and private access
+  ---
+  duration_ms: 5317.6352
+  ...
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 2 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 11347.2556
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 3 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 46.4098
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+ok 4 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 36.679
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+ok 5 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 8.4737
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+ok 6 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 16.215
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+ok 7 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 27.0805
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 8 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 76.144
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 9 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 24.7758
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 10 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 26.4118
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 11 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 72.7439
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 12 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 21.9572
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 13 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 23.038
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 14 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 7.9033
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 15 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 16.1866
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 16 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 19.869
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 17 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 5.3845
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 18 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 36.9996
+  ...
+# Subtest: jersey projection rejects missing/conflicting/stale/wrong-team source facts and grants no raw access
+ok 19 - jersey projection rejects missing/conflicting/stale/wrong-team source facts and grants no raw access
+  ---
+  duration_ms: 5591.4466
+  ...
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+ok 20 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 18572.3201
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 21 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 14969.6142
+  ...
+# Subtest: capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+ok 22 - capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+  ---
+  duration_ms: 13476.4476
+  ...
+# Subtest: wrong project, no session, caller metadata and revoked grants cannot authorize
+ok 23 - wrong project, no session, caller metadata and revoked grants cannot authorize
+  ---
+  duration_ms: 40.0281
+  ...
+# Subtest: capability arrays cannot smuggle genuine permissions or mutate an existing grant
+ok 24 - capability arrays cannot smuggle genuine permissions or mutate an existing grant
+  ---
+  duration_ms: 20.5791
+  ...
+# Subtest: invitation reservation is one-use and identity-bound; redemption removes credential hashes
+ok 25 - invitation reservation is one-use and identity-bound; redemption removes credential hashes
+  ---
+  duration_ms: 45.3518
+  ...
+# Subtest: revoked invitation cannot reserve or reveal retained token/email hash
+ok 26 - revoked invitation cannot reserve or reveal retained token/email hash
+  ---
+  duration_ms: 18.3548
+  ...
+# Subtest: wall-clock expiry rejects reservation and capability inside an earlier transaction
+ok 27 - wall-clock expiry rejects reservation and capability inside an earlier transaction
+  ---
+  duration_ms: 90.3163
+  ...
+# Subtest: private tables are RLS-enabled with no browser read/write/function privilege
+ok 28 - private tables are RLS-enabled with no browser read/write/function privilege
+  ---
+  duration_ms: 19.3291
+  ...
+# Subtest: administrator operations require actual private role plus MFA, not metadata
+ok 29 - administrator operations require actual private role plus MFA, not metadata
+  ---
+  duration_ms: 23.4798
+  ...
+# Subtest: erasure clears personal onboarding/grants and invitation FK even outside preview context
+ok 30 - erasure clears personal onboarding/grants and invitation FK even outside preview context
+  ---
+  duration_ms: 61.7703
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 86970.1327

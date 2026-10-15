@@ -30,6 +30,7 @@ import { seedRedemptionAuth, runRedemptionAuth } from "./redemption-auth-local";
 const redemption = process.argv.includes("--redemption");
 const integrated = process.argv.includes("--integrated");
 const socialOnly = process.argv.includes("--social-only");
+const socialUpgrade = process.argv.includes("--social-upgrade");
 const root = process.cwd(),
   dir = resolve(
     redemption
@@ -74,6 +75,7 @@ async function main() {
       auth: { persistSession: false, autoRefreshToken: false },
     });
   let child: ReturnType<typeof spawn> | undefined;
+  let previewReady = false;
   const contexts: Awaited<ReturnType<typeof request.newContext>>[] = [];
   const checks: string[] = [];
   let stage = "migrations";
@@ -81,10 +83,13 @@ async function main() {
   const browserOnly = process.argv.includes("--browser-only");
   await mkdir("docs/qa/mobile-release", { recursive: true });
   await mkdir("docs/qa/premium-completion", { recursive: true });
+  await mkdir("docs/qa/social-upgrade", { recursive: true });
   const receipt = redemption
     ? "docs/qa/premium-completion/authenticated.json"
     : socialOnly
-      ? "docs/qa/mobile-release/social-http.json"
+      ? socialUpgrade
+        ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
+        : "docs/qa/mobile-release/social-http.json"
       : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
@@ -221,7 +226,7 @@ async function main() {
     if (socialOnly) {
       await sql`insert into beta_private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence)
         select 'AU','NSW','local-social-acceptance',clock_timestamp()-interval '1 minute',clock_timestamp()+interval '1 day',clock_timestamp()+interval '1 day',true,18,array['community_social','public_profiles'],'Isolated local social fixture; not hosted approval'
-        where not exists(select 1 from beta_private.region_policies where version='local-social-acceptance' and effective_to>clock_timestamp())`;
+        where not exists(select 1 from beta_private.region_policies where version='local-social-acceptance' and effective_to>clock_timestamp()) on conflict(country,state,version) do update set effective_from=clock_timestamp()-interval '1 minute',effective_to=clock_timestamp()+interval '1 day',review_at=clock_timestamp()+interval '1 day'`;
     }
     stage = "inventory";
     if (redemption) await seedRedemptionAuth(sql, qa.users);
@@ -285,6 +290,16 @@ async function main() {
         ),
       );
     }
+    if (socialUpgrade) {
+      const route = resolve(app, "src/server/community-social.ts");
+      await writeFile(
+        route,
+        (await readFile(route, "utf8")).replace(
+          '} catch {\n    return gate(\n      "unavailable",',
+          '} catch (e) {\n    console.error("LOCAL_SOCIAL_READ", e instanceof Error ? e.message : "unknown");\n    return gate(\n      "unavailable",',
+        ),
+      );
+    }
     const runtime = new URL(dbUrl.href);
     runtime.username = "docked_beta_app";
     runtime.password = qa.dbPassword;
@@ -299,6 +314,7 @@ async function main() {
     Object.assign(env, {
       NODE_ENV: "development",
       DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE: "true",
+      ...(socialUpgrade ? { DOCKED_PRIVATE_OFFERS_LOCAL: "true" } : {}),
       DOCKED_BETA_STAGING: "true",
       DOCKED_FRIENDS_BETA: "true",
       DOCKED_OWNER_GAMEPLAY: "true",
@@ -408,7 +424,7 @@ async function main() {
     }
     if (socialOnly) {
       stage = "social-http";
-      for (const i of [0, 1]) {
+      for (const i of socialUpgrade ? [0, 1, 2] : [0, 1]) {
         const existingProfile =
           await sql`select id from beta_private.social_profiles where user_id=${qa.users[i].id} and handle=${"localreader" + i}`;
         if (existingProfile.length) continue;
@@ -427,6 +443,18 @@ async function main() {
           "Social profile " + i + ": " + (await r.text()),
         );
       }
+      if (socialUpgrade && !browserOnly)
+        checks.push(
+          ...(await (
+            await import("./social-upgrade-acceptance")
+          ).runSocialUpgrade(sql, contexts)),
+        );
+      if (socialUpgrade)
+        checks.push(
+          ...(await (
+            await import("./social-upgrade-access")
+          ).verifySocialAccess(contexts, totp(qa.totp.secret))),
+        );
       const marker = "Isolated social acceptance " + randomUUID();
       const payload = {
         action: "post",
@@ -443,7 +471,7 @@ async function main() {
       const retry = await contexts[0].post("/api/community", { data: payload });
       assert.equal(retry.status(), 200, await retry.text());
       assert.equal((await retry.json()).id, first.id);
-      for (const i of [0, 1]) {
+      for (const i of socialUpgrade ? [0, 1, 2] : [0, 1]) {
         const r = await contexts[i].get("/api/community?view=feed&tab=latest");
         assert.equal(r.status(), 200);
         const f = await r.json();
@@ -474,7 +502,7 @@ async function main() {
           waitUntil: "domcontentloaded",
         });
         await expect(
-          page.getByRole("navigation", { name: "Social feeds" }),
+          page.getByRole("navigation", { name: "Social sections" }),
         ).toBeVisible();
         await expect(page.getByText(marker, { exact: true })).toBeVisible();
         const browserMarker = "Local browser post " + randomUUID();
@@ -506,7 +534,9 @@ async function main() {
           .getByRole("link", { name: "Following", exact: true })
           .click();
         await expect(page).toHaveURL(/tab=following/);
-        await page.getByRole("link", { name: "My posts", exact: true }).click();
+        await page
+          .getByRole("link", { name: "My activity", exact: true })
+          .click();
         await expect(page).toHaveURL(/profile\/localreader0/, {
           timeout: 120000,
         });
@@ -514,9 +544,17 @@ async function main() {
           page.getByText(browserMarker, { exact: true }),
         ).toBeVisible({ timeout: 30000 });
         await page.screenshot({
-          path: "docs/qa/mobile-release/my-posts-mobile.png",
+          path: socialUpgrade
+            ? "docs/qa/social-upgrade/my-posts-mobile.png"
+            : "docs/qa/mobile-release/my-posts-mobile.png",
           fullPage: true,
         });
+        if (socialUpgrade)
+          checks.push(
+            ...(await (
+              await import("./social-upgrade-browser")
+            ).captureSocialUpgrade(browser, contexts, origin)),
+          );
         await context.close();
       } finally {
         await browser.close();
@@ -527,6 +565,7 @@ async function main() {
         scope:
           "Local real GoTrue authentication -> application HTTP -> PostgreSQL plus Edge browser; isolated QA identities only",
         checks: [
+          ...checks,
           "Ordinary member post and own/second-member feed visibility",
           "Same idempotency key returns one retained post",
           "Other-member deletion and anonymous feed denied",
@@ -537,6 +576,27 @@ async function main() {
       };
       await writeFile(receipt, JSON.stringify(report, null, 2));
       console.log(JSON.stringify(report));
+      if (socialUpgrade && process.argv.includes("--keep-preview")) {
+        const preview = await chromium.launch({
+          channel: "msedge",
+          headless: false,
+        });
+        const previewContext = await preview.newContext({
+          storageState: await contexts[1].storageState(),
+          viewport: { width: 1440, height: 960 },
+        });
+        const previewPage = await previewContext.newPage();
+        await previewPage.goto(origin + "/fantasy/social", {
+          waitUntil: "domcontentloaded",
+        });
+        previewReady = true;
+        preview.on("disconnected", () => child?.kill());
+        console.log(
+          "Local QA preview ready at " +
+            origin +
+            "/fantasy/social. Close its Edge window to stop the preview.",
+        );
+      }
       return;
     }
     const read = async (i: number, query = "") => {
@@ -929,7 +989,7 @@ async function main() {
     throw e;
   } finally {
     await Promise.all(contexts.map((c) => c.dispose()));
-    child?.kill();
+    if (!previewReady) child?.kill();
     await sql.end();
   }
 }

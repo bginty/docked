@@ -308,7 +308,14 @@ function LocalWallet() {
       .then((r) => setValue(r.state));
   }, []);
   return value ? (
-    <MemberTestWallet initial={value} />
+    <MemberTestWallet
+      initial={value}
+      surface={
+        new URLSearchParams(location.search).get("view") === "packs"
+          ? "packs"
+          : "wallet"
+      }
+    />
   ) : (
     <p>Loading local wallet…</p>
   );

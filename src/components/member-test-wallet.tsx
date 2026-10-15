@@ -19,7 +19,7 @@ export function MemberTestWallet({
   surface = "wallet",
 }: {
   initial: MemberTestView;
-  surface?: "wallet" | "swaps";
+  surface?: "wallet" | "swaps" | "packs";
 }) {
   const [s, setS] = useState(initial),
     [busy, setBusy] = useState(false),
@@ -32,6 +32,8 @@ export function MemberTestWallet({
   } | null>(null);
   const pending = useRef<{ key: string; id: string } | null>(null);
   const [recovery, setRecovery] = useState(false);
+  const [autoPack, setAutoPack] = useState<string | null>(null);
+  const [replayPack, setReplayPack] = useState<string | null>(null);
   const storageKey = `docked:test-wallet:pending:${initial.member}`;
   useEffect(() => {
     try {
@@ -75,6 +77,13 @@ export function MemberTestWallet({
         throw Error(data.error);
       }
       setS(data.state);
+      if (
+        command.kind === "buy-pack" &&
+        typeof data.result?.entitlement === "string"
+      ) {
+        setAutoPack(data.result.entitlement);
+        setPack(data.result.entitlement);
+      }
       if (command.kind === "accept") {
         const before = new Set(
           s.cards.filter((c) => c.owner === s.member).map((c) => c.id),
@@ -183,7 +192,7 @@ export function MemberTestWallet({
           </button>
         </p>
       )}
-      {surface === "wallet" && (
+      {(surface === "wallet" || surface === "packs") && (
         <>
           <section id="packs">
             <h2>
@@ -191,14 +200,21 @@ export function MemberTestWallet({
                 ? "NFL nine-card packs"
                 : "Legacy single-card packs"}
             </h2>
-            <p>
-              {s.economyEnabled
-                ? "Exactly nine NFL player cards. No Core. Icon is eligible in both packs. Prices and chances below are test settings, not approved commercial offers. Test cards can enter the eligible Salary Cap and Open rounds; legacy free rounds keep their original eligibility."
-                : "Legacy receipts retain their original single-card terms."}
-            </p>
+            <p>Collect your next nine. Test Docked Credits · no cash value.</p>
+            <a className="button ghost" href="#pack-history">
+              History
+            </a>
             <div className="test-wallet-grid">
               {s.products.map((p) => (
                 <article key={p.id}>
+                  <div
+                    className={`social-pack-art ${p.tier === "PREMIUM" ? "premium" : ""}`}
+                    aria-hidden="true"
+                  >
+                    <span>DOCKED</span>
+                    <strong>{p.name}</strong>
+                    <span>COLLECT · COMPETE</span>
+                  </div>
                   <h3>{p.name}</h3>
                   {p.odds?.headline && (
                     <p>
@@ -239,7 +255,6 @@ export function MemberTestWallet({
                           <p>{p.odds.excluded.join(", ")}: not included.</p>
                         )}
                       </details>
-                      {p.odds?.guarantee && <p>{p.odds.guarantee}</p>}
                       <details className="pack-terms">
                         <summary>Pack details</summary>
                         <p>
@@ -305,27 +320,54 @@ export function MemberTestWallet({
                 </article>
               ))}
             </div>
-            {s.pool.length > 0 && (
-              <EconomyCatalogue pool={s.pool} owner={!!s.ownerReport} />
-            )}
-            {s.packs.map((p) => (
-              <div className="test-wallet-row" key={p.id} data-pack-id={p.id}>
-                <span>
-                  {p.name} ·{" "}
-                  {p.status === "SEALED" ? "Ready to open" : "Opened"}
-                  {p.configuration && (
-                    <small> · Purchase terms: {p.configuration}</small>
-                  )}
-                </span>
-                <button disabled={busy} onClick={() => setPack(p.id)}>
-                  {p.status === "SEALED" ? "Open pack" : "Replay saved pack"}
-                </button>
-              </div>
-            ))}
+            <details>
+              <summary>Eligible players</summary>
+              {s.pool.length > 0 && (
+                <EconomyCatalogue pool={s.pool} owner={!!s.ownerReport} />
+              )}
+            </details>
+            <details id="pack-history" className="pack-history">
+              <summary>Purchase history · {s.packs.length} packs</summary>
+              {s.packs.map((p) => (
+                <div className="test-wallet-row" key={p.id} data-pack-id={p.id}>
+                  <span>
+                    {p.name} ·{" "}
+                    {p.status === "SEALED" ? "Ready to open" : "Opened"}
+                    <small>
+                      {p.purchasedAt
+                        ? sydney(p.purchasedAt)
+                        : "Date unavailable"}{" "}
+                      ·{" "}
+                      {p.paidCredits === null
+                        ? "Historical amount unavailable"
+                        : `${p.paidCredits.toLocaleString()} test credits`}{" "}
+                      ·{" "}
+                      {p.receipt
+                        ? `${p.receipt.cards.length} cards received`
+                        : `${p.cardCount ?? "—"} cards awaiting opening`}
+                    </small>
+                    {p.configuration && (
+                      <small> · Purchase terms: {p.configuration}</small>
+                    )}
+                  </span>
+                  <button
+                    disabled={busy}
+                    onClick={() => {
+                      setReplayPack(p.status === "OPENED" ? p.id : null);
+                      setPack(p.id);
+                    }}
+                  >
+                    {p.status === "SEALED" ? "Open pack" : "Replay saved pack"}
+                  </button>
+                </div>
+              ))}
+            </details>
           </section>
           {p && (
             <PackOpening
               key={p.id}
+              replay={p.id === replayPack}
+              autoOpen={p.id === autoPack && p.status === "SEALED"}
               userId={s.member}
               name={p.name}
               receipt={p.receipt}

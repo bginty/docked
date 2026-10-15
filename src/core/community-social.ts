@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { AwardedCard } from "./pack-opening";
 
 export const OFFICIAL_PROFILE_ID = "00000000-0000-4000-8000-000000000001";
 /** Privileged case review is separate from public community-region activation. */
@@ -52,6 +53,10 @@ export type SocialComment = {
   moderationStatus: "visible" | "removed" | "review";
 };
 export type SocialPost = {
+  cardSnapshots?: AwardedCard[];
+  playerId?: string | null;
+  communityId?: string | null;
+  discussionFollowed?: boolean;
   id: string;
   author: SocialProfile;
   kind:
@@ -138,6 +143,8 @@ export type CommunityModeration = {
   media: SocialMedia[];
 };
 export type CommunityFeedOptions = {
+  playerId?: string;
+  communityId?: string;
   tab?: "for_you" | "following" | "latest";
   sport?: string;
   cursor?: string;
@@ -232,6 +239,13 @@ export const socialActionSchema = z.discriminatedUnion("action", [
       body: text(4000).min(1),
       sport: text(60).optional(),
       mediaIds: z.array(uuid).max(4).default([]),
+      cardIds: z
+        .array(z.string().min(1).max(150))
+        .max(4)
+        .refine((v) => new Set(v).size === v.length)
+        .default([]),
+      playerId: z.string().min(1).max(150).optional(),
+      communityId: uuid.optional(),
       promotional: z.literal(false).default(false),
       idempotencyKey: uuid,
     })

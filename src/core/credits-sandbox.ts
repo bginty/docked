@@ -80,6 +80,10 @@ type Withdrawal = {
   provider?: string;
 };
 export type CreditsState = {
+  privateCardOffers?: Record<
+    string,
+    import("./private-card-offers").PrivateCardOffer
+  >;
   redemption?: RedemptionProgram;
   mode: "financial-sandbox-only";
   creditOnly?: CreditOnly;
@@ -139,6 +143,7 @@ export type CreditsState = {
       card: string;
       version: number;
       price: number;
+      privateOffer?: string;
       status: "OPEN" | "SOLD" | "CANCELLED";
       buyer?: string;
       createdAt?: number;

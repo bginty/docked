@@ -23,6 +23,13 @@ export class CreditsSandboxStore {
       previous: CreditsState,
       current: CreditsState,
     ) => Promise<void>,
+    private transition?: (
+      state: CreditsState,
+      actor: Operator,
+      request: string,
+      command: unknown,
+      now: number,
+    ) => ReturnType<typeof executeCredits> & { steps?: CreditsState[] },
   ) {}
   async execute(actor: Operator, request: string, command: unknown) {
     return this.sql
@@ -40,9 +47,11 @@ export class CreditsSandboxStore {
         const [{ now }] =
           await tx`select (extract(epoch from clock_timestamp())*1000)::bigint now`;
         const old = row.document as CreditsState;
-        let executed: ReturnType<typeof executeCredits>;
+        let executed: ReturnType<typeof executeCredits> & {
+          steps?: CreditsState[];
+        };
         try {
-          executed = executeCredits(
+          executed = (this.transition ?? executeCredits)(
             old,
             actor,
             request,
@@ -56,6 +65,15 @@ export class CreditsSandboxStore {
         }
         const { state, result } = executed;
         if (state.events.length !== old.events.length) {
+          // Intermediate aggregate states satisfy existing transition guards.
+          // They share this transaction/advisory lock and cannot be observed by
+          // other connections. History records the single committed operation.
+          for (const step of executed.steps ?? []) {
+            validateCredits(step);
+            if (step.journal.length !== old.journal.length)
+              throw Error("Intermediate settlement journal is not supported");
+            await tx`update credits_sandbox.state set document=${tx.json(step as any)} where id`;
+          }
           for (const j of state.journal.slice(old.journal.length)) {
             await tx`insert into credits_sandbox.journal values(${j.id},${tx.json(j as any)})`;
             for (const [i, line] of j.lines.entries())

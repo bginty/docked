@@ -1,3 +1,4 @@
+import { assertSocialDefinerBoundary } from "../fixtures/social-definer-boundary";
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
@@ -95,14 +96,7 @@ test("ordered migrations leave all new tables RLS protected and no public privat
     "select grantee,table_name from information_schema.role_table_grants where table_schema='private' and grantee in ('anon','authenticated','PUBLIC')",
   );
   assert.deepEqual(grants.rows, []);
-  const definers = await pg.query<{ proname: string; proconfig: string[] }>(
-    "select proname,proconfig from pg_proc p join pg_namespace n on p.pronamespace=n.oid where n.nspname in ('private','public') and p.prosecdef",
-  );
-  assert.equal(definers.rows.length, 1);
-  assert.equal(definers.rows[0].proname, "active_member_session");
-  assert.ok(
-    definers.rows[0].proconfig.some((v) => v.startsWith("search_path=")),
-  );
+  await assertSocialDefinerBoundary(pg);
   const execution = await pg.query<{ rolname: string; proname: string }>(
     "select r.rolname,p.proname from pg_roles r cross join pg_proc p join pg_namespace n on n.oid=p.pronamespace where r.rolname in ('anon','authenticated') and n.nspname='private' and has_function_privilege(r.oid,p.oid,'EXECUTE') order by r.rolname,p.proname",
   );

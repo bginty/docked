@@ -1,3 +1,4 @@
+import { assertSocialDefinerBoundary } from "../fixtures/social-definer-boundary";
 import { before, after, test } from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
@@ -172,7 +173,7 @@ async function submit(
     )
   ).rows[0];
 }
-test("community private tables RLS deny anonymous/member reads and writes; no new definer", async () => {
+test("community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary", async () => {
   for (const table of [
     "community_edges",
     "community_quote_evidence",
@@ -204,14 +205,7 @@ test("community private tables RLS deny anonymous/member reads and writes; no ne
       await pg.exec("reset role");
     }
   }
-  assert.equal(
-    (
-      await pg.query(
-        "select 1 from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='private' and p.prosecdef",
-      )
-    ).rows.length,
-    1,
-  );
+  await assertSocialDefinerBoundary(pg);
 });
 test("unknown provider classification, promotions and historical/demo records cannot be promoted", async () => {
   const unknown = await market({ metadata: false });

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "at": "2026-10-15T14:19:42.146Z",
+  "scope": "Local real GoTrue authentication -> application HTTP -> PostgreSQL plus Edge browser; isolated QA identities only",
+  "checks": [
+    "Authenticated private-default collection, owner-only settings and cross-account denial",
+    "Owned card attachment and immutable idempotent replay after actual transfer",
+    "Community membership enforced; ordinary member creation denied (owner fixture inserted directly)",
+    "Authenticated private offer acceptance: exact 1,000 debit / 925 proceeds / 75 commission, one journal on concurrent duplicate",
+    "Two distinct buyers through separate HTTP/database requests: exactly one settles",
+    "Private receipt/inbox and collection privacy revocation",
+    "Ordinary member post and own/second-member feed visibility",
+    "Same idempotency key returns one retained post",
+    "Other-member deletion and anonymous feed denied",
+    "Inline composer publishes, returns to feed and survives refresh",
+    "Following and My posts navigate correctly"
+  ],
+  "hostedPosts": false
+}

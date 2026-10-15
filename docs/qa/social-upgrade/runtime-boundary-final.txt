@@ -1,0 +1,75 @@
+TAP version 13
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+ok 1 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 9665.4705
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 2 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 42.9977
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 3 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 47.5044
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+ok 4 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 52.2686
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 5 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 22.1747
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 6 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 43.335
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 7 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 40.9653
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 8 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 18.5327
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 9 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 429.1932
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 10 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 8.2604
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 11 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 19.7377
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 12 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 187.5269
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 13 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 54.926
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13481.8449

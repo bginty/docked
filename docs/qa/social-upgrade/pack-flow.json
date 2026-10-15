@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "scope": "Local actual React components and domain engine; synthetic cookie identity/in-memory HTTP, not authenticated database E2E",
+  "checks": [
+    "Lost purchase response and full-page reload recover same operation and issued entitlement",
+    "Purchase recovery automatically opens the actual nine-card result; one charge and one opening",
+    "All nine consecutive card stages settle; next controls within mobile viewport",
+    "Replay and Skip reuse retained cards without issuance or charge"
+  ],
+  "physicalS24": false
+}

@@ -22,6 +22,7 @@ import { marketQuery, marketplaceView } from "../src/core/marketplace";
 import {
   memberTestView,
   memberTestCommand,
+  testReceipt,
 } from "../src/core/member-test-wallet";
 async function main() {
   const dir = process.argv.includes("--visual-regression")
@@ -47,7 +48,7 @@ async function main() {
       Date.now(),
     ).state;
   const script = await bundleCommunityFixture(
-    process.argv.includes("--visual")
+    process.argv.includes("--visual") || process.argv.includes("--pack-flow")
       ? "tests/fixtures/mobile-visual.tsx"
       : "tests/fixtures/marketplace.tsx",
   );
@@ -69,6 +70,7 @@ async function main() {
     "marketplace",
     ...(requireExists("src/app/mobile-cleanup.css") ? ["mobile-cleanup"] : []),
     ...(requireExists("src/app/play-cards.css") ? ["play-cards"] : []),
+    ...(requireExists("src/app/social-hub.css") ? ["social-hub"] : []),
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");
@@ -102,7 +104,9 @@ async function main() {
           const out = executeCredits(s, actor, input.request, cmd, Date.now());
           s = out.state;
           result = out.result;
-          if (dropBuy && cmd.kind === "buy") {
+          if (cmd.kind === "open-pack")
+            result = testReceipt(s, cmd.entitlement, actor.id);
+          if (dropBuy && (cmd.kind === "buy" || cmd.kind === "buy-pack")) {
             dropBuy = false;
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end("{");
@@ -172,6 +176,19 @@ async function main() {
   const browser = await chromium.launch({ channel: "msedge" });
   const checks: string[] = [];
   try {
+    if (process.argv.includes("--pack-flow")) {
+      await (
+        await import("./social-pack-flow")
+      ).verifyPackFlow(
+        browser,
+        origin,
+        () => s,
+        () => {
+          dropBuy = true;
+        },
+      );
+      return;
+    }
     const a = await browser.newContext({
         viewport: { width: 412, height: 915 },
         timezoneId: "Australia/Sydney",

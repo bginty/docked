@@ -31,6 +31,7 @@ export type PackOpeningProps = {
   ownedIds: string[];
   replay?: boolean;
   preview?: boolean;
+  autoOpen?: boolean;
   collectionHref?: string;
   teamHref?: string | null;
 };
@@ -54,6 +55,7 @@ export default function PackOpening(props: PackOpeningProps) {
   const swipe = useRef<{ x: number; y: number } | null>(null);
   const title = useRef<HTMLHeadingElement>(null);
   const arrival = useRef<HTMLDivElement>(null);
+  const autoStarted = useRef(false);
   const save = useCallback(
     (r: PackReceipt, next: number) => {
       try {
@@ -146,7 +148,11 @@ export default function PackOpening(props: PackOpeningProps) {
       setReceipt(result);
       setIndex(0);
       save(result, 0);
-      setStage(reduced || simple ? "revealed" : "opening");
+      setStage(
+        matchMedia("(prefers-reduced-motion: reduce)").matches || simple
+          ? "revealed"
+          : "opening",
+      );
     } catch {
       if (alive.current) {
         setError(
@@ -158,6 +164,13 @@ export default function PackOpening(props: PackOpeningProps) {
       busy.current = false;
     }
   }
+  useEffect(() => {
+    if (props.autoOpen && !initialReceipt && !autoStarted.current) {
+      autoStarted.current = true;
+      void open();
+    }
+    // One attempt for this mounted entitlement; retries use the visible button.
+  }, [props.autoOpen, initialReceipt]);
   function advance(all = false) {
     if (!receipt || advancing.current || (!all && stage !== "revealed")) return;
     advancing.current = true;

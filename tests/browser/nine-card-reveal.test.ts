@@ -24,16 +24,14 @@ const previewReceipt: PackReceipt = {
   ...starterReceipt,
   id: "nine-card-fixture",
   name: "Nine-card test pack",
-  cards: starterReceipt.cards
-    .slice(0, 9)
-    .map((c, i) => ({
-      ...c,
-      tier: tiers[i],
-      max_supply: rarityRule(tiers[i]).lifetimeCap!,
-      serial: 1,
-      rarity_version: rarityConfiguration.version,
-      multiplier: rarityRule(tiers[i]).multiplierTenths / 10,
-    })),
+  cards: starterReceipt.cards.slice(0, 9).map((c, i) => ({
+    ...c,
+    tier: tiers[i],
+    max_supply: rarityRule(tiers[i]).lifetimeCap!,
+    serial: 1,
+    rarity_version: rarityConfiguration.version,
+    multiplier: rarityRule(tiers[i]).multiplierTenths / 10,
+  })),
 };
 for (const width of [360, 412, 1366])
   test(`confirmed nine-card reveal, resume, replay and accessibility ${width}`, async ({
@@ -86,9 +84,11 @@ for (const width of [360, 412, 1366])
       await page.getByRole("button", { name: "Open viewer" }).click();
     }
     await mount();
-    await mkdir("docs/qa/economy-v2", { recursive: true });
+    await mkdir("docs/qa/social-upgrade/reveal-regression", {
+      recursive: true,
+    });
     await page.screenshot({
-      path: `docs/qa/economy-v2/sealed-${width}.png`,
+      path: `docs/qa/social-upgrade/reveal-regression/sealed-${width}.png`,
       fullPage: true,
     });
     await page.getByRole("button", { name: "Open pack seal" }).dblclick();
@@ -96,14 +96,17 @@ for (const width of [360, 412, 1366])
     expect(opens).toBe(1);
     // Response was lost AFTER the server committed. Reopening reads that same result.
     await mount();
-    await expect(page.getByText("Card 1 of 9 · RARE")).toBeVisible();
+    await expect(page.getByText("1 of 9 · RARE")).toBeVisible();
     expect(opens).toBe(1);
-    await page.getByRole("button", { name: "Reveal next" }).click();
-    await expect(page.getByText("Card 2 of 9 · ULTRA RARE")).toBeVisible();
+    await page.getByRole("button", { name: "Reveal next card" }).click();
+    await expect(page.getByText("2 of 9 · ULTRA RARE")).toBeVisible();
     await page.getByRole("button", { name: "Close panel" }).click();
     await page.getByRole("button", { name: "Open viewer" }).click();
-    await expect(page.getByText("Card 2 of 9 · ULTRA RARE")).toBeVisible();
+    await expect(page.getByText("2 of 9 · ULTRA RARE")).toBeVisible();
     const inspect = page.getByRole("group", { name: /Inspect Preview QB 2/ });
+    await expect(
+      page.getByRole("button", { name: "Reveal next card" }),
+    ).toBeEnabled({ timeout: 10000 });
     await inspect.focus();
     await inspect.press("ArrowRight");
     expect(
@@ -113,13 +116,15 @@ for (const width of [360, 412, 1366])
     const axe = await new AxeBuilder({ page }).include("dialog").analyze();
     expect(axe.violations).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/economy-v2/revealed-${width}.png`,
+      path: `docs/qa/social-upgrade/reveal-regression/revealed-${width}.png`,
       fullPage: true,
     });
-    await page.getByRole("button", { name: "Reveal all", exact: true }).click();
+    await page
+      .getByRole("button", { name: "Skip remaining reveals", exact: true })
+      .click();
     await expect(page.locator(".pack-summary li")).toHaveCount(9);
     await page.screenshot({
-      path: `docs/qa/economy-v2/summary-${width}.png`,
+      path: `docs/qa/social-upgrade/reveal-regression/summary-${width}.png`,
       fullPage: true,
     });
     await mount();
@@ -128,10 +133,15 @@ for (const width of [360, 412, 1366])
     await page
       .getByRole("button", { name: "Replay saved result · no new cards" })
       .click();
-    await page.getByRole("button", { name: "Skip animation" }).click();
-    await expect(page.getByText("Card 1 of 9 · RARE")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Reveal next card" }),
+    ).toBeEnabled({ timeout: 10000 });
+    await expect(page.getByText("1 of 9 · RARE")).toBeVisible();
     expect(opens).toBe(1);
     await expect(page.getByRole("button", { name: "Sound off" })).toBeVisible();
+    await page.getByRole("button", { name: "Skip remaining reveals" }).click();
+    await expect(page.locator(".pack-summary li")).toHaveCount(9);
+    expect(opens).toBe(1);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -191,19 +201,19 @@ test("single card, reduced motion, keyboard opening and duplicate taps", async (
   await page.getByRole("button", { name: "Close panel" }).click();
   await confirmed;
   await page.getByRole("button", { name: "Open viewer" }).click();
-  await expect(page.getByText("Card 1 of 1 · RARE")).toBeVisible();
+  await expect(page.getByText("1 of 1 · RARE")).toBeVisible();
   expect(opens).toBe(1);
   await expect(
     page.getByRole("button", { name: "Skip animation" }),
   ).toHaveCount(0);
   await expect(
-    page.getByRole("button", { name: "Reveal all", exact: true }),
-  ).toHaveCount(0);
+    page.getByRole("button", { name: "Skip remaining reveals", exact: true }),
+  ).toBeVisible();
   expect(
     await page
       .locator(".pack-case")
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
-  await page.getByRole("button", { name: "Collection summary" }).click();
+  await page.getByRole("button", { name: "View pack summary" }).click();
   await expect(page.locator(".pack-summary li")).toHaveCount(1);
 });

@@ -1,4 +1,5 @@
 import "server-only";
+import { snapshotSocialCards } from "./social-card-projection";
 import { createHash } from "node:crypto";
 import { encodeCommunityImage } from "./community-image";
 import { communityImageMaxBytes } from "@/core/community-media";
@@ -65,6 +66,7 @@ export async function withCommunityActor<T>(
     profileId: string,
   ) => Promise<T>,
   budget?: ActionRateBudget,
+  economyLock = false,
 ): Promise<T> {
   const who = await requireIdentity();
   await requireCommunityAccess(feature);
@@ -74,6 +76,7 @@ export async function withCommunityActor<T>(
     rateLimit,
     async () =>
       (await db().begin(async (tx) => {
+        if (economyLock) await tx`select pg_advisory_xact_lock(71820342)`;
         await setCommunityClaims(tx, who);
         const rows =
           await tx`select private.community_actor(${who.user.id},${feature},${requirePosting}) as id`;
@@ -210,12 +213,20 @@ async function projectPosts(
    (select count(*)::int from private.social_reactions r where r.post_id=p.id) as reactions,
    (select count(*)::int from private.social_comments c where c.post_id=p.id and c.deleted_at is null and c.moderation_status='visible' and private.social_profile_visible(${viewer},c.author_id,false)) as comments,
    exists(select 1 from private.social_reactions r where r.post_id=p.id and r.profile_id=${viewer}) as reacted,
-   exists(select 1 from private.social_saved s where s.post_id=p.id and s.profile_id=${viewer}) as saved from private.social_posts p where p.id=any(${ids}) and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration')`;
+   exists(select 1 from private.social_saved s where s.post_id=p.id and s.profile_id=${viewer}) as saved,
+   exists(select 1 from private.social_discussion_follows f where f.post_id=p.id and f.profile_id=${viewer}) as discussion_followed from private.social_posts p where p.id=any(${ids}) and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration')`;
   const countsById = new Map(counts.map((r) => [String(r.id), r]));
   return rows.map((r) => {
     const count = countsById.get(String(r.id))!;
     return {
       id: String(r.id),
+      cardSnapshots:
+        r.moderation_status === "visible" && !r.deleted_at
+          ? ((r.card_snapshots ?? []) as SocialPost["cardSnapshots"])
+          : [],
+      playerId: r.player_id ? String(r.player_id) : null,
+      communityId: r.community_id ? String(r.community_id) : null,
+      discussionFollowed: count.discussion_followed === true,
       author: byId.get(String(r.author_id))!,
       kind: r.kind as SocialPost["kind"],
       body:
@@ -269,6 +280,8 @@ async function selectPosts(
     await tx`select p.* from private.social_posts p join private.social_profiles a on a.id=p.author_id
    where private.social_post_visible(${profileId},p.id) and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration')
    and (${options.author ?? null}::text is null or a.handle=${options.author ?? null})
+   and (${options.playerId ?? null}::text is null or p.player_id=${options.playerId ?? null})
+   and (${options.communityId ?? null}::uuid is null or p.community_id=${options.communityId ?? null})
    and (${options.postId ?? null}::uuid is null or p.id=${options.postId ?? null})
    and (${options.officialTipId ?? null}::uuid is null or p.official_tip_id=${options.officialTipId ?? null})
    and (${options.communityEdgeId ?? null}::uuid is null or p.community_edge_id=${options.communityEdgeId ?? null})
@@ -398,9 +411,9 @@ export async function communityNotifications(): Promise<CommunityNotifications> 
     async (c) => {
       if (!c.profileId) return { items: [], unread: 0, preferences: null };
       const rows =
-        await c.tx`select n.id,n.type,n.title,n.href,n.created_at,n.read_at,n.group_key from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key='redemption')) and n.recipient_id=${c.profileId} and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id)) order by created_at desc,id desc limit 50`;
+        await c.tx`select n.id,n.type,n.title,n.href,n.created_at,n.read_at,n.group_key from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key in ('redemption','card-offers'))) and n.recipient_id=${c.profileId} and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id)) order by created_at desc,id desc limit 50`;
       const unread =
-        await c.tx`select count(*)::int as count from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key='redemption')) and n.recipient_id=${c.profileId} and n.read_at is null and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id))`;
+        await c.tx`select count(*)::int as count from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key in ('redemption','card-offers'))) and n.recipient_id=${c.profileId} and n.read_at is null and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id))`;
       const pref =
         await c.tx`select * from private.social_notification_preferences where profile_id=${c.profileId}`;
       return {
@@ -437,11 +450,14 @@ export async function enqueueCommunityNotification(
   if (
     !["comment", "reply", "reaction", "follower", "followed_post"].includes(
       input.type,
-    )
+    ) &&
+    !(input.type === "account" && input.groupKey === "card-offers")
   )
     return;
   const category =
-    input.type === "followed_post" ? "followed_members" : "social";
+    input.type === "followed_post" && input.groupKey !== "community-posts"
+      ? "followed_members"
+      : "social";
   const target =
     await tx`select p.id,p.user_id,p.status,a.timezone,pref.*,n.paused,n.quiet_start,n.quiet_end from private.social_profiles p join public.profiles a on a.id=p.user_id join private.social_notification_preferences pref on pref.profile_id=p.id left join public.notification_preferences n on n.user_id=p.user_id where p.id=${input.recipientId} and p.status='active' and a.disabled_at is null for update of p`;
   const r = target[0];
@@ -505,7 +521,7 @@ export async function processCommunityNotifications(
   return db().begin(async (tx) => {
     await setPreviewCommunityContext(tx);
     const jobs =
-      await tx`select j.*,p.author_id,p.official_tip_id,p.community_edge_id,p.created_at post_created_at,p.deleted_at,p.moderation_status from private.social_notification_jobs j join private.social_posts p on p.id=j.post_id join private.social_profiles author on author.id=p.author_id where j.completed_at is null
+      await tx`select j.*,p.author_id,p.community_id,p.official_tip_id,p.community_edge_id,p.created_at post_created_at,p.deleted_at,p.moderation_status from private.social_notification_jobs j join private.social_posts p on p.id=j.post_id join private.social_profiles author on author.id=p.author_id where j.completed_at is null
       and p.official_tip_id is null and p.community_edge_id is null and p.kind in ('discussion','analysis','question','celebration') and not author.is_official
       and (${!options.previewOnly} or (p.official_tip_id is null and p.community_edge_id is null and p.kind<>'official' and not author.is_official and author.status='active' and private.preview_tester_policy(author.user_id,'community_social') is not null))
       order by j.created_at,j.id limit 1 for update of j skip locked`;
@@ -521,7 +537,7 @@ export async function processCommunityNotifications(
     }
     const recipients =
       await tx`select p.id from private.social_profiles p join private.social_notification_preferences n on n.profile_id=p.id where p.status='active' and p.user_id is not null and p.id<>${job.author_id} and n.in_app and n.updated_at<=${job.created_at}
-      and n.followed_members and exists(select 1 from private.social_follows f where f.actor_id=p.id and f.target_id=${job.author_id} and f.notifications and f.created_at<=${job.created_at})
+      and ((n.followed_members and exists(select 1 from private.social_follows f where f.actor_id=p.id and f.target_id=${job.author_id} and f.notifications and f.created_at<=${job.created_at})) or (n.social and exists(select 1 from private.social_community_members m join private.social_communities c on c.id=m.community_id where m.profile_id=p.id and m.community_id=${job.community_id ?? null}::uuid and c.status='active' and m.joined_at<=${job.created_at})))
       and (${!options.previewOnly} or private.preview_tester_policy(p.user_id,'community_social') is not null)
       and (${job.cursor_profile_id ?? null}::uuid is null or p.id>${job.cursor_profile_id ?? null}::uuid) order by p.id limit ${batchSize + 1}`;
     const page = recipients.slice(0, batchSize);
@@ -532,10 +548,12 @@ export async function processCommunityNotifications(
         actorId: String(job.author_id),
         postId: String(job.post_id),
         type: "followed_post",
-        title: "A member you follow shared a post.",
+        title: job.community_id
+          ? "New conversation in your community."
+          : "A member you follow shared a post.",
         href: `/community/posts/${job.post_id}`,
         dedupeKey: `${job.dedupe_key}:${recipient.id}`,
-        groupKey: "followed_posts",
+        groupKey: job.community_id ? "community-posts" : "followed_posts",
       });
       if (inserted) queued++;
     }
@@ -816,6 +834,7 @@ export async function mutateCommunity(input: unknown) {
     ].includes(action.action),
     async (tx, actor, profileId) => {
       if (action.action === "post") {
+        await tx`select pg_advisory_xact_lock(71820342)`;
         let authorId = profileId;
         if (action.kind === "official") {
           await staffInTransaction(tx, actor);
@@ -828,7 +847,7 @@ export async function mutateCommunity(input: unknown) {
         )
           throw new Error("Unknown sport");
         const duplicate =
-          await tx`select id,body,kind,sport,claim_label from private.social_posts where author_id=${authorId} and idempotency_key=${action.idempotencyKey}`;
+          await tx`select id,body,kind,sport,claim_label,card_snapshots,player_id,community_id from private.social_posts where author_id=${authorId} and idempotency_key=${action.idempotencyKey}`;
         if (duplicate[0]) {
           const media =
             await tx`select media_id from private.social_post_media where post_id=${duplicate[0].id} order by position`;
@@ -836,6 +855,13 @@ export async function mutateCommunity(input: unknown) {
             duplicate[0].body !== action.body ||
             duplicate[0].kind !== action.kind ||
             duplicate[0].sport !== (action.sport || null) ||
+            duplicate[0].player_id !== (action.playerId ?? null) ||
+            duplicate[0].community_id !== (action.communityId ?? null) ||
+            JSON.stringify(
+              (duplicate[0].card_snapshots as { id: string }[]).map(
+                (c) => c.id,
+              ),
+            ) !== JSON.stringify(action.cardIds) ||
             JSON.stringify(media.map((m) => String(m.media_id))) !==
               JSON.stringify(action.mediaIds) ||
             duplicate[0].claim_label !==
@@ -854,8 +880,27 @@ export async function mutateCommunity(input: unknown) {
           ).length
         )
           throw new Error("Duplicate recent post");
+        const snapshots = await snapshotSocialCards(
+          tx,
+          actor.user.id,
+          action.cardIds,
+        );
+        if (
+          action.playerId &&
+          !(
+            await tx`select private.social_player_exists(${action.playerId}) allowed`
+          )[0]?.allowed
+        )
+          throw Error("Player unavailable");
+        if (
+          action.communityId &&
+          !(
+            await tx`select 1 from private.social_communities c join private.social_community_members m on m.community_id=c.id where c.id=${action.communityId} and c.status='active' and m.profile_id=${profileId}`
+          ).length
+        )
+          throw Error("Join this community before posting");
         const rows =
-          await tx`insert into private.social_posts(author_id,kind,body,sport,claim_label,idempotency_key) values(${authorId},${action.kind},${action.body},${action.sport || null},${action.promotional ? "promotional_price" : "social_only"},${action.idempotencyKey}) returning id`;
+          await tx`insert into private.social_posts(author_id,kind,body,sport,claim_label,idempotency_key,card_snapshots,player_id,community_id) values(${authorId},${action.kind},${action.body},${action.sport || null},${action.promotional ? "promotional_price" : "social_only"},${action.idempotencyKey},${tx.json(JSON.parse(JSON.stringify(snapshots)))},${action.playerId ?? null},${action.communityId ?? null}) returning id`;
         const id = String(rows[0].id);
         for (const [position, mediaId] of action.mediaIds.entries())
           await tx`insert into private.social_post_media(post_id,media_id,position) values(${id},${mediaId},${position})`;
@@ -1015,8 +1060,7 @@ export async function mutateCommunity(input: unknown) {
         await audit(tx, actor.user.id, "social_post_tombstoned", action.postId);
         return {
           ok: true,
-          message:
-            "Social commentary removed. Audit history is retained.",
+          message: "Social commentary removed. Audit history is retained.",
         };
       }
       if (action.action === "delete_comment") {
@@ -1126,6 +1170,8 @@ export async function mutateCommunity(input: unknown) {
       }
       throw new Error("Unsupported action");
     },
+    undefined,
+    action.action === "post",
   );
   const analytics =
     action.action === "post"

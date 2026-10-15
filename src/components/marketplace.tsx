@@ -254,7 +254,7 @@ export function Marketplace({ member }: { member: string }) {
         <h1>Market</h1>
         <p>Test cards · Test Docked Credits — no cash value.</p>
         <nav aria-label="Market shortcuts">
-          <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
+          <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link> ·{" "}
           <Link href="/fantasy/test-wallet">Wallet & history</Link> ·{" "}
           <Link href="/fantasy/cards">Collection</Link>
         </nav>
@@ -266,6 +266,7 @@ export function Marketplace({ member }: { member: string }) {
         )}
       </header>
       <nav className="market-tabs" aria-label="Marketplace sections">
+        <Link className="button ghost" href="/fantasy/test-wallet?view=packs#packs">Packs</Link>
         {tabs.map(([v, label]) => (
           <button
             key={v}

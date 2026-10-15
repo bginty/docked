@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { SocialComposer } from "@/components/social-composer";
+import { SocialHome } from "@/components/social-home";
+import { z } from "zod";
 import { boundedRead } from "@/core/bounded-request";
 
 import { Marketplace } from "@/components/marketplace";
@@ -24,8 +25,6 @@ import { FantasyScreen } from "@/components/fantasy-screen";
 import { packExperienceEnabled } from "@/core/pack-experience";
 
 import { communityFeed } from "@/server/community-social";
-
-import { FeedContent } from "@/components/community-feed";
 
 import { fantasyAssets } from "@/brand/fantasy-assets";
 
@@ -58,7 +57,13 @@ export default async function FantasyPage({
   searchParams,
 }: {
   params: Promise<{ tab: string }>;
-  searchParams: Promise<{ tab?: string; sport?: string; cursor?: string }>;
+  searchParams: Promise<{
+    tab?: string;
+    sport?: string;
+    cursor?: string;
+    community?: string;
+    player?: string;
+  }>;
 }) {
   const { tab } = await params;
 
@@ -131,6 +136,10 @@ export default async function FantasyPage({
           tab: feedTab,
           sport: query.sport,
           cursor: query.cursor,
+          communityId: z.string().uuid().safeParse(query.community).success
+            ? query.community
+            : undefined,
+          playerId: query.player?.slice(0, 150),
         }),
       );
     } catch {
@@ -148,43 +157,22 @@ export default async function FantasyPage({
     }
     return (
       <AppShell authenticated>
-        <section className="fantasy-social">
-          <h1 className="compact-page-title">Social</h1>
-          <SocialComposer
-            initialSport="nfl"
-            inline
-            memberName={feed.viewer?.displayName}
-          />
-          <nav className="community-tabs" aria-label="Social feeds">
-            <Link
-              href="/fantasy/social?tab=latest"
-              aria-current={feedTab === "latest" ? "page" : undefined}
-            >
-              Feed
-            </Link>
-            <Link
-              href="/fantasy/social?tab=following"
-              aria-current={feedTab === "following" ? "page" : undefined}
-            >
-              Following
-            </Link>
-            {feed.viewer && (
-              <Link href={`/profile/${feed.viewer.handle}`}>My posts</Link>
-            )}
-            <Link href="/search">Discover</Link>
-          </nav>
-
-          <FeedContent
-            feed={feed}
-
-            base="/fantasy/social"
-
-            tab={feedTab}
-            sport={query.sport}
-
-            compact
-          />
-        </section>
+        <SocialHome
+          feed={feed}
+          tab={feedTab}
+          view={
+            query.tab === "communities" || query.tab === "discover"
+              ? query.tab
+              : undefined
+          }
+          communityId={
+            z.string().uuid().safeParse(query.community).success
+              ? query.community
+              : undefined
+          }
+          playerId={query.player?.slice(0, 150)}
+          sport={query.sport}
+        />
       </AppShell>
     );
   }
@@ -241,7 +229,7 @@ export default async function FantasyPage({
       <div>
         {testWallet && !["play", "cards", "social"].includes(tab) && (
           <p className="actions">
-            <Link href="/fantasy/test-wallet#packs">Packs</Link> ·{" "}
+            <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link> ·{" "}
             <Link href="/fantasy/test-wallet">Open test wallet</Link>
           </p>
         )}

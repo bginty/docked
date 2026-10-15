@@ -140,6 +140,9 @@ export function marketplaceView(
     };
   };
   const rows = Object.entries(s.listings)
+    .filter(
+      ([, l]) => !l.privateOffer || l.member === member || l.buyer === member,
+    )
     .filter(([id, l]) =>
       query.tab === "activity"
         ? (l.status === "SOLD" &&

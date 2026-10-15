@@ -1,0 +1,125 @@
+TAP version 13
+# Subtest: production Auth projections are fixed and Preview retains its existing schema
+ok 1 - production Auth projections are fixed and Preview retains its existing schema
+  ---
+  duration_ms: 3.669
+  ...
+# Subtest: community maintenance drains bounded deletion jobs before independent retention and in-app work
+ok 2 - community maintenance drains bounded deletion jobs before independent retention and in-app work
+  ---
+  duration_ms: 5.824
+  ...
+# Subtest: remote erasure failure records retry outcome but cannot strand the next account or in-app work
+ok 3 - remote erasure failure records retry outcome but cannot strand the next account or in-app work
+  ---
+  duration_ms: 1.4615
+  ...
+# Subtest: malformed deletion identity never invokes Auth and unacknowledged jobs do not claim success
+ok 4 - malformed deletion identity never invokes Auth and unacknowledged jobs do not claim success
+  ---
+  duration_ms: 2.6097
+  ...
+# Subtest: all runners exclude retired publication records from social fanout
+ok 5 - all runners exclude retired publication records from social fanout
+  ---
+  duration_ms: 40.6433
+  ...
+# Subtest: private quarantine review permits MFA staff including read-only auditors independently of public region activation
+ok 6 - private quarantine review permits MFA staff including read-only auditors independently of public region activation
+  ---
+  duration_ms: 2.8608
+  ...
+# Subtest: anonymous community upload and notification requests reject before accessing body bytes
+ok 7 - anonymous community upload and notification requests reject before accessing body bytes
+  ---
+  duration_ms: 6499.4107
+  ...
+# Subtest: reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+ok 8 - reserved official identity resists case, separator, badge, math, full-width and common Unicode spoofing
+  ---
+  duration_ms: 7.9863
+  ...
+# Subtest: social-only input cannot supply verification, official ownership, settlement or cash stake fields
+ok 9 - social-only input cannot supply verification, official ownership, settlement or cash stake fields
+  ---
+  duration_ms: 16.7637
+  ...
+# Subtest: separate in-app preferences cannot enable outbound email or push
+ok 10 - separate in-app preferences cannot enable outbound email or push
+  ---
+  duration_ms: 3.8282
+  ...
+# Subtest: following a member does not implicitly opt into individual notifications
+ok 11 - following a member does not implicitly opt into individual notifications
+  ---
+  duration_ms: 3.1832
+  ...
+# Subtest: social cursor accepts only an exact timestamp and UUID pair
+ok 12 - social cursor accepts only an exact timestamp and UUID pair
+  ---
+  duration_ms: 8.5568
+  ...
+# Subtest: body cap counts streamed bytes without relying on missing or forged Content-Length
+ok 13 - body cap counts streamed bytes without relying on missing or forged Content-Length
+  ---
+  duration_ms: 64.6387
+  ...
+# Subtest: design Preview flag never activates on production or by a client flag
+ok 14 - design Preview flag never activates on production or by a client flag
+  ---
+  duration_ms: 2.6772
+  ...
+# Subtest: reveal progress is bounded and separated by user, receipt and awarded card order
+ok 15 - reveal progress is bounded and separated by user, receipt and awarded card order
+  ---
+  duration_ms: 0.8003
+  ...
+# Subtest: collections default private and followers never bypass profile blocking
+ok 16 - collections default private and followers never bypass profile blocking
+  ---
+  duration_ms: 19.0888
+  ...
+# Subtest: private offer activation cannot reach hosting, production, or non-loopback databases
+ok 17 - private offer activation cannot reach hosting, production, or non-loopback databases
+  ---
+  duration_ms: 1.5599
+  ...
+# Subtest: acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+ok 18 - acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+  ---
+  duration_ms: 284.008
+  ...
+# Subtest: two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+ok 19 - two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+  ---
+  duration_ms: 226.4761
+  ...
+# Subtest: decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+ok 20 - decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+  ---
+  duration_ms: 116.1292
+  ...
+# Subtest: blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+ok 21 - blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+  ---
+  duration_ms: 96.8873
+  ...
+# Subtest: server transaction callbacks never reacquire global DB, identity, policy or analytics connections
+ok 22 - server transaction callbacks never reacquire global DB, identity, policy or analytics connections
+  ---
+  duration_ms: 888.0653
+  ...
+# Subtest: notification actions retain explicit per-user limits on their transaction boundary
+ok 23 - notification actions retain explicit per-user limits on their transaction boundary
+  ---
+  duration_ms: 38.9838
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10576.819

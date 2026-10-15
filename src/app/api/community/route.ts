@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server";
+import { socialHub, mutateSocialHub } from "@/server/social-hub";
+import { hubAction } from "@/core/social-hub";
+import { privateOffers } from "@/server/private-card-offers";
+import { CreditsRejected } from "@/server/credits-sandbox-store";
 import { z } from "zod";
 import { sameOrigin, requireIdentity } from "@/server/auth";
 import { requireCommunityAccess } from "@/server/community-policy";
@@ -33,24 +37,32 @@ export async function GET(request: Request) {
       });
     }
     const data =
-      view === "profile"
-        ? await communityProfile(params.get("handle") ?? undefined, {
-            cursor: params.get("cursor") ?? undefined,
-            saved: params.get("saved") === "true",
-          })
-        : view === "search"
-          ? await communitySearch(params.get("q") ?? "")
-          : view === "post"
-            ? await communityPost(params.get("id") ?? "")
-            : view === "own_media"
-              ? await ownCommunityMedia()
-              : await communityFeed({
-                  tab: z
-                    .enum(["for_you", "following", "latest"])
-                    .parse(params.get("tab") ?? "latest"),
-                  sport: params.get("sport") ?? undefined,
-                  cursor: params.get("cursor") ?? undefined,
-                });
+      view === "offers"
+        ? await privateOffers()
+        : view === "hub"
+          ? await socialHub(params.get("handle") ?? undefined)
+          : view === "profile"
+            ? await communityProfile(params.get("handle") ?? undefined, {
+                cursor: params.get("cursor") ?? undefined,
+                saved: params.get("saved") === "true",
+              })
+            : view === "search"
+              ? await communitySearch(params.get("q") ?? "")
+              : view === "post"
+                ? await communityPost(params.get("id") ?? "")
+                : view === "own_media"
+                  ? await ownCommunityMedia()
+                  : await communityFeed({
+                      tab: z
+                        .enum(["for_you", "following", "latest"])
+                        .parse(params.get("tab") ?? "latest"),
+                      sport: params.get("sport") ?? undefined,
+                      cursor: params.get("cursor") ?? undefined,
+                      playerId: params.get("player") ?? undefined,
+                      communityId: params.has("community")
+                        ? z.string().uuid().parse(params.get("community"))
+                        : undefined,
+                    });
     return NextResponse.json(data, {
       headers: { "Cache-Control": "private, no-store" },
     });
@@ -62,6 +74,7 @@ export async function GET(request: Request) {
   }
 }
 export async function POST(request: Request) {
+  let privateOfferRequest = false;
   if (!sameOrigin(request))
     return NextResponse.json({ error: "Origin denied" }, { status: 403 });
   if (!process.env.DATABASE_URL)
@@ -98,9 +111,17 @@ export async function POST(request: Request) {
     if (length > 20000)
       return NextResponse.json({ error: "Request too large" }, { status: 413 });
     const bounded = await boundedCommunityBody(request, 20000);
-    const result = await mutateCommunity(
-      JSON.parse(new TextDecoder().decode(bounded)),
-    );
+    const input = JSON.parse(new TextDecoder().decode(bounded));
+    privateOfferRequest = input.action === "card_offer";
+    const result =
+      input.action === "card_offer"
+        ? await privateOffers({
+            request: input.request,
+            command: input.command,
+          })
+        : hubAction.safeParse(input).success
+          ? await mutateSocialHub(input)
+          : await mutateCommunity(input);
     await schedulePreviewNotifications(who);
     return NextResponse.json(result, {
       headers: { "Cache-Control": "private, no-store" },
@@ -109,11 +130,21 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          error instanceof z.ZodError
-            ? "Check the form fields and confirmation."
-            : "Action could not be completed. Check account eligibility, permissions and current content.",
+          privateOfferRequest && error instanceof CreditsRejected
+            ? error.message
+            : error instanceof z.ZodError
+              ? "Check the form fields and confirmation."
+              : "Action could not be completed. Check account eligibility, permissions and current content.",
       },
-      { status: 403, headers: { "Cache-Control": "private, no-store" } },
+      {
+        status:
+          privateOfferRequest &&
+          !(error instanceof CreditsRejected) &&
+          !(error instanceof z.ZodError)
+            ? 503
+            : 403,
+        headers: { "Cache-Control": "private, no-store" },
+      },
     );
   }
 }

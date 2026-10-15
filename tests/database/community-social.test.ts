@@ -105,6 +105,103 @@ async function rollback(fn: () => Promise<void>) {
     await pg.exec("rollback");
   }
 }
+test("collection preferences default private, and runtime writes cannot target another profile", async () => {
+  await rollback(async () => {
+    await pg.query(
+      "insert into private.social_collection_settings(profile_id) values($1),($2)",
+      [profile, otherProfile],
+    );
+    assert.deepEqual(
+      (
+        await pg.query(
+          "select visibility,offers from private.social_collection_settings where profile_id=$1",
+          [profile],
+        )
+      ).rows,
+      [{ visibility: "private", offers: "nobody" }],
+    );
+    await pg.exec("set local role docked_app");
+    await pg.query(
+      "update private.social_collection_settings set visibility='members' where profile_id=$1",
+      [profile],
+    );
+    await pg.query(
+      "update private.social_collection_settings set visibility='members' where profile_id=$1",
+      [otherProfile],
+    );
+    await pg.query(
+      "delete from private.social_collection_settings where profile_id=$1",
+      [otherProfile],
+    );
+    assert.deepEqual(
+      (
+        await pg.query(
+          "select visibility from private.social_collection_settings where profile_id=$1",
+          [otherProfile],
+        )
+      ).rows,
+      [{ visibility: "private" }],
+    );
+  });
+});
+test("community creation requires authoritative staff and MFA even through the database runtime role", async () => {
+  await rollback(async () => {
+    await pg.exec("set local role docked_app");
+    await assert.rejects(
+      pg.query(
+        "insert into private.social_communities(name,description,rules,created_by) values('Ordinary member attempt','fixture','Respect one another',$1)",
+        [profile],
+      ),
+      /row-level security/,
+    );
+  });
+});
+test("post card snapshot and player/community context cannot be silently rewritten", async () => {
+  await rollback(async () => {
+    await assert.rejects(
+      pg.query(
+        'update private.social_posts set card_snapshots=\'[{"id":"different-card"}]\' where id=$1',
+        [post],
+      ),
+      /immutable/,
+    );
+  });
+  await rollback(async () => {
+    await assert.rejects(
+      pg.query(
+        "update private.social_posts set player_id='different-player' where id=$1",
+        [post],
+      ),
+      /immutable/,
+    );
+  });
+});
+test("followed player discussion replies create one private in-app notification", async () => {
+  await rollback(async () => {
+    const discussion = "30000000-0000-4000-8000-000000000091";
+    await pg.query(
+      "insert into private.social_posts(id,author_id,kind,body,player_id) values($1,$2,'discussion','Local player discussion','fixture-player')",
+      [discussion, otherProfile],
+    );
+    await pg.query(
+      "insert into private.social_discussion_follows values($1,$2)",
+      [discussion, profile],
+    );
+    await pg.query(
+      "insert into private.social_comments(post_id,author_id,body,idempotency_key) values($1,$2,'Local discussion reply',$3)",
+      [discussion, otherProfile, "40000000-0000-4000-8000-000000000091"],
+    );
+    assert.equal(
+      (
+        await pg.query<{ n: number }>(
+          "select count(*)::int n from private.social_notifications where recipient_id=$1 and group_key=$2",
+          [profile, "discussion:" + discussion],
+        )
+      ).rows[0].n,
+      1,
+    );
+  });
+});
 test("all social rows and private helpers deny direct anonymous/member access even with staff claims", async () => {
   const tables = (
     await pg.query<{ tablename: string }>(

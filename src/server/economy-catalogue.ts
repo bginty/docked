@@ -1,7 +1,10 @@
-import type { Sql } from "postgres";
+import type { Sql, TransactionSql } from "postgres";
 import type { CreditsState } from "../core/credits-sandbox";
 /** Current season/team/status are observations, never new permanent identities. */
-export async function refreshEconomyCatalogue(sql: Sql, state: CreditsState) {
+export async function refreshEconomyCatalogue(
+  sql: Sql | TransactionSql,
+  state: CreditsState,
+) {
   if (!state.economy) return;
   const rows =
     await sql`select c.*,j.verified_jersey_number from credits_sandbox.current_player_status c left join credits_sandbox.current_player_jerseys j on j.id=c.id`;

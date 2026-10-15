@@ -27,6 +27,10 @@ export function FantasySheet({
   className?: string;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const close = useRef(onClose);
+  useEffect(() => {
+    close.current = onClose;
+  }, [onClose]);
   useEffect(() => {
     const node = dialog.current,
       active = document.activeElement as HTMLElement | null;
@@ -64,7 +68,7 @@ export function FantasySheet({
     node?.addEventListener("keydown", containFocus);
     const old = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const back = () => onClose();
+    const back = () => close.current();
     window.addEventListener("popstate", back);
     return () => {
       node?.removeEventListener("keydown", containFocus);
@@ -73,7 +77,7 @@ export function FantasySheet({
       window.removeEventListener("popstate", back);
       active?.focus();
     };
-  }, [onClose]);
+  }, []);
   return (
     <dialog
       ref={dialog}

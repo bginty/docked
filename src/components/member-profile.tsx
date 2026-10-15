@@ -7,7 +7,6 @@ import {
   AppHeading,
   AccessGate,
   CommunityEmpty,
-  IntegrityNote,
   OfficialBadge,
 } from "./community-basics";
 import {
@@ -18,6 +17,8 @@ import {
 import { appViewer } from "@/server/app-view";
 import { NativeShare } from "./native-share";
 import { BrandLogo } from "./brand-logo";
+import { ProfileCollection } from "./social-hub";
+import { PrivateOffersInbox } from "./private-card-offers";
 export async function MemberProfile({
   handle,
   query,
@@ -66,7 +67,7 @@ export async function MemberProfile({
           )}
         </>
       ) : (
-        <>
+        <div className="premium-profile">
           <section className="profile-hero">
             <div className="profile-top">
               <span className="avatar" aria-hidden="true">
@@ -128,18 +129,59 @@ export async function MemberProfile({
             </div>
           </section>
           <nav className="community-tabs" aria-label="Profile sections">
-            <a href="#posts">Posts</a>
+            {[
+              ["collection", "Collection"],
+              ["teams", "Teams"],
+              ["activity", "Activity"],
+              ["about", "About"],
+            ].map(([key, label]) => (
+              <Link
+                key={key}
+                href={`${base}?tab=${key}`}
+                aria-current={
+                  (query.tab ?? "collection") === key ? "page" : undefined
+                }
+              >
+                {label}
+              </Link>
+            ))}
             {p.isOwn && (
               <>
                 <Link href={`${base}?tab=saved#posts`}>
                   Saved community posts
                 </Link>
                 <Link href="/notifications">Notifications</Link>
+                <Link href={`${base}?tab=offers`}>Private offers</Link>
                 <Link href="/profile/withdrawals">Withdrawals</Link>
                 <Link href="/dashboard">Privacy & settings</Link>
               </>
             )}
           </nav>
+          {(!query.tab || query.tab === "collection") && (
+            <ProfileCollection key={p.id} handle={p.handle} />
+          )}
+          {query.tab === "teams" && (
+            <section className="app-panel">
+              <h2>Teams</h2>
+              <p>
+                Fantasy teams are private. Only explicitly shared team posts
+                appear in Activity.
+              </p>
+              {p.isOwn && (
+                <Link href="/fantasy/play">Manage your lineup →</Link>
+              )}
+            </section>
+          )}
+          {query.tab === "about" && (
+            <section className="app-panel">
+              <h2>About</h2>
+              <p>{p.bio || "No bio yet."}</p>
+              {p.isOwn && <ProfileEditor profile={p} />}
+            </section>
+          )}
+          {query.tab === "offers" && p.isOwn && (
+            <PrivateOffersInbox member={p.id} />
+          )}
           {graph && (
             <section id="connections">
               <nav className="period-tabs" aria-label="Member relationships">
@@ -177,37 +219,37 @@ export async function MemberProfile({
               )}
             </section>
           )}
-          <section id="posts">
-            <div className="section-row">
-              <h2>
-                {query.tab === "saved" && p.isOwn
-                  ? "Saved community posts"
-                  : "Posts and discussion"}
-              </h2>
-            </div>
-            {data.posts.length ? (
-              <div className="app-feed">
-                {data.posts.map((post) => (
-                  <SocialCard key={post.id} post={post} />
-                ))}
+          {(query.tab === "activity" || query.tab === "saved") && (
+            <section id="posts">
+              <div className="section-row">
+                <h2>
+                  {query.tab === "saved" && p.isOwn
+                    ? "Saved community posts"
+                    : "Posts and discussion"}
+                </h2>
               </div>
-            ) : (
-              <CommunityEmpty title="No visible posts">
-                Start a conversation about cards, teams or sport.
-              </CommunityEmpty>
-            )}
-            {data.nextCursor && (
-              <Link
-                className="button ghost"
-                href={`${base}?period=${period}${query.tab === "saved" ? "&tab=saved" : ""}&postsCursor=${encodeURIComponent(data.nextCursor)}#posts`}
-              >
-                Older posts
-              </Link>
-            )}
-          </section>
-          <IntegrityNote />
-          {p.isOwn && <ProfileEditor profile={p} />}
-        </>
+              {data.posts.length ? (
+                <div className="app-feed">
+                  {data.posts.map((post) => (
+                    <SocialCard key={post.id} post={post} />
+                  ))}
+                </div>
+              ) : (
+                <CommunityEmpty title="No visible posts">
+                  Start a conversation about cards, teams or sport.
+                </CommunityEmpty>
+              )}
+              {data.nextCursor && (
+                <Link
+                  className="button ghost"
+                  href={`${base}?tab=${query.tab === "saved" ? "saved" : "activity"}&postsCursor=${encodeURIComponent(data.nextCursor)}#posts`}
+                >
+                  Older posts
+                </Link>
+              )}
+            </section>
+          )}
+        </div>
       )}
     </AppShell>
   );

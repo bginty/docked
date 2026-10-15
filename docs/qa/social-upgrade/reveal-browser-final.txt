@@ -1,0 +1,19 @@
+
+Running 7 tests using 1 worker
+
+
+
+(node:69784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:69784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/7] tests\browser\nine-card-reveal.test.ts:37:7 › confirmed nine-card reveal, resume, replay and accessibility 360
+[2/7] tests\browser\nine-card-reveal.test.ts:37:7 › confirmed nine-card reveal, resume, replay and accessibility 412
+[3/7] tests\browser\nine-card-reveal.test.ts:37:7 › confirmed nine-card reveal, resume, replay and accessibility 1366
+[4/7] tests\browser\nine-card-reveal.test.ts:152:5 › single card, reduced motion, keyboard opening and duplicate taps
+[5/7] tests\browser\pack-cinematic.test.ts:6:5 › cinematic timing, background interruption and visual recording
+[6/7] tests\browser\premium-completion.test.ts:3:5 › premium cards use verified fixture numbers and preserve mobile field interaction
+[7/7] tests\browser\reveal-stability.test.ts:3:5 › delayed compositor finishes once without a timed snap or inspection handoff jump
+  7 passed (2.6m)

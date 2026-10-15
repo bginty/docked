@@ -11,6 +11,8 @@ type TimelineProps = {
   base: string;
   tab: "for_you" | "following" | "latest";
   sport?: string;
+  communityId?: string;
+  playerId?: string;
 };
 const pageLimit = 20;
 const retainedLimit = 100;
@@ -26,7 +28,14 @@ export function SocialTimeline(props: TimelineProps) {
   );
 }
 
-function TimelinePage({ feed, base, tab, sport }: TimelineProps) {
+function TimelinePage({
+  feed,
+  base,
+  tab,
+  sport,
+  communityId,
+  playerId,
+}: TimelineProps) {
   const router = useRouter();
   const [posts, setPosts] = useState(feed.status === "ready" ? feed.posts : []);
   const [cursor, setCursor] = useState(
@@ -84,6 +93,8 @@ function TimelinePage({ feed, base, tab, sport }: TimelineProps) {
         tab,
         ...(pageCursor ? { cursor: pageCursor } : {}),
         ...(sport ? { sport } : {}),
+        ...(communityId ? { community: communityId } : {}),
+        ...(playerId ? { player: playerId } : {}),
       });
       const response = await fetch(`/api/community?${params}`, {
         cache: "no-store",
@@ -153,7 +164,13 @@ function TimelinePage({ feed, base, tab, sport }: TimelineProps) {
     }
   }
 
-  const safeBase = ["/feed", "/following", "/home", "/community"].includes(base)
+  const safeBase = [
+    "/feed",
+    "/following",
+    "/home",
+    "/community",
+    "/fantasy/social",
+  ].includes(base)
     ? base
     : "/feed";
   return (
@@ -190,7 +207,7 @@ function TimelinePage({ feed, base, tab, sport }: TimelineProps) {
       {cursor && !blocked && posts.length > retainedLimit - pageLimit && (
         <Link
           className="button ghost feed-load-more"
-          href={`${safeBase}?${new URLSearchParams({ tab, cursor, ...(sport ? { sport } : {}) })}`}
+          href={`${safeBase}?${new URLSearchParams({ tab, cursor, ...(sport ? { sport } : {}), ...(communityId ? { community: communityId } : {}), ...(playerId ? { player: playerId } : {}) })}`}
         >
           Continue with older posts
         </Link>
