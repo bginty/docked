@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-15T22:40:48.941Z",
+  "passed": true,
+  "applied": false,
+  "projectRef": "pojoymtniryarxxunyvz",
+  "missing": [
+    "20261010092154_scoring_v1_isolated_journal.sql",
+    "20261010231416_nfl_postgame_isolated_feed.sql",
+    "20261010233559_nfl_beta_raw_retention.sql",
+    "20261015131955_premium_social_collections.sql",
+    "20261015140207_premium_social_runtime_guards.sql"
+  ],
+  "migrations": [
+    {
+      "file": "20261015131955_premium_social_collections.sql",
+      "alreadyApplied": false,
+      "sha256": "30114d1a61b38fb726fcb6e8aaf4abe0987b966c32e3cb6ae179cc61aac9e3ea"
+    },
+    {
+      "file": "20261015140207_premium_social_runtime_guards.sql",
+      "alreadyApplied": false,
+      "sha256": "b1e4cd69a9dab8255e96f4eb1d32749ffc73032bea76de813ccbe5c412c24bb9"
+    }
+  ],
+  "members": [
+    {
+      "member": "Luke",
+      "confirmed": true,
+      "status": "accepted",
+      "mfa_required": false,
+      "mfa_enrolled": false
+    },
+    {
+      "member": "Other admitted tester",
+      "confirmed": true,
+      "status": "accepted",
+      "mfa_required": false,
+      "mfa_enrolled": false
+    },
+    {
+      "member": "Other admitted tester",
+      "confirmed": true,
+      "status": "accepted",
+      "mfa_required": false,
+      "mfa_enrolled": false
+    },
+    {
+      "member": "Owner",
+      "confirmed": true,
+      "status": "accepted",
+      "mfa_required": true,
+      "mfa_enrolled": true
+    }
+  ],
+  "admission": {
+    "enabled": true,
+    "testers_enabled": true
+  },
+  "backup": null,
+  "memberMutations": 0
+}

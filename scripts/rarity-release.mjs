@@ -264,12 +264,18 @@ if (mode === "inspect") {
         assert.equal(body.viewer, null);
         assert.deepEqual(body.posts, []);
         assert.deepEqual(body.profiles, []);
-        for (const view of ["hub", "offers", "own_media"])
+        for (const view of ["hub", "offers"])
           assert.ok(
             [401, 403].includes(
               (await get("/api/community?view=" + view)).status(),
             ),
           );
+        const media = await get("/api/community?view=own_media");
+        assert.equal(media.status(), 200);
+        const emptyMedia = await media.json();
+        assert.equal(emptyMedia.status, "sign_in_required");
+        assert.equal(emptyMedia.viewer, null);
+        assert.deepEqual(emptyMedia.media, []);
         checks.push(
           "Premium Social/profile-photo assets; anonymous feed empty; collections, offers and owned media private",
         );

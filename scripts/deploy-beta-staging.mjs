@@ -127,6 +127,9 @@ if (mode === "--status") {
     DOCKED_PACK_REVEAL_PREVIEW: packPreview ? "true" : "false",
     // Owner explicitly requested pack opening in Barry's next friends update.
     DOCKED_FRIENDS_PACK_REVEAL: friends ? "true" : "false",
+    // Latest live release authority retains non-settling trading. Reading and
+    // cancellation remain available; packs and fantasy entries are unaffected.
+    DOCKED_TEST_MARKET_READ_ONLY: "true",
     // Keep the protected application's CSP intact; the optional toolbar is not part of Docked.
     VERCEL_PREVIEW_FEEDBACK_ENABLED: "0",
     DOCKED_BETA_STAGING: "true",
