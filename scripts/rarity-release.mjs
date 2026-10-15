@@ -7,21 +7,27 @@ const mode = process.argv[2];
 assert.ok(["inspect", "access", "candidate", "promote", "live"].includes(mode));
 const premium = process.argv[3] === "--premium";
 const reveal = process.argv[3] === "--reveal-stability";
-const playCards = process.argv[3] === "--play-cards" || premium || reveal;
-const root = reveal
-    ? "docs/qa/reveal-stability"
-    : premium
-      ? "docs/qa/premium-v3"
-      : playCards
-        ? "docs/qa/play-cards"
-        : "docs/qa/rarity-frames",
-  privateRoot = reveal
-    ? "private-data/reveal-stability-release"
-    : premium
-      ? "private-data/premium-v3-release"
-      : playCards
-        ? "private-data/play-cards-release"
-        : "private-data/rarity-release";
+const walletPremium = process.argv[3] === "--wallet-premium";
+const playCards =
+  process.argv[3] === "--play-cards" || premium || reveal || walletPremium;
+const root = walletPremium
+    ? "docs/qa/private-beta-release"
+    : reveal
+      ? "docs/qa/reveal-stability"
+      : premium
+        ? "docs/qa/premium-v3"
+        : playCards
+          ? "docs/qa/play-cards"
+          : "docs/qa/rarity-frames",
+  privateRoot = walletPremium
+    ? "private-data/private-beta-release"
+    : reveal
+      ? "private-data/reveal-stability-release"
+      : premium
+        ? "private-data/premium-v3-release"
+        : playCards
+          ? "private-data/play-cards-release"
+          : "private-data/rarity-release";
 mkdirSync(root, { recursive: true });
 mkdirSync(privateRoot, { recursive: true });
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
@@ -188,6 +194,30 @@ if (mode === "inspect") {
         );
         checks.push(
           "Play/Cards shared shell, field summary and collection toolbar styles present",
+        );
+      }
+      if (walletPremium) {
+        assert.ok(
+          styles.includes("nfl-turf.svg") && styles.includes("player-jersey"),
+          "Premium field and shared jersey styles deployed",
+        );
+        assert.ok(
+          [401, 403].includes((await get("/api/redemptions")).status()),
+          "Anonymous redemption history denied",
+        );
+        const denied = await client.post(base + "/api/redemptions", {
+          data: {
+            request: "00000000-0000-4000-8000-000000000000",
+            operation: { action: "submit", credits: 100 },
+          },
+          headers: { origin: new URL(base).origin },
+        });
+        assert.ok(
+          [401, 403].includes(denied.status()),
+          "Hosted redemption remains disabled",
+        );
+        checks.push(
+          "Premium turf/jerseys present; redemption history private and hosted mutations disabled",
         );
       }
       if (reveal) {
