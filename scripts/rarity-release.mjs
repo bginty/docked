@@ -8,27 +8,37 @@ assert.ok(["inspect", "access", "candidate", "promote", "live"].includes(mode));
 const premium = process.argv[3] === "--premium";
 const reveal = process.argv[3] === "--reveal-stability";
 const jersey = process.argv[3] === "--jersey";
-const walletPremium = process.argv[3] === "--wallet-premium" || jersey;
+const social = process.argv[3] === "--social";
+const walletPremium =
+  process.argv[3] === "--wallet-premium" || jersey || social;
 const playCards =
   process.argv[3] === "--play-cards" || premium || reveal || walletPremium;
-const root = jersey ? "docs/qa/jersey-refinement/release" : walletPremium
-    ? "docs/qa/private-beta-release"
-    : reveal
-      ? "docs/qa/reveal-stability"
-      : premium
-        ? "docs/qa/premium-v3"
-        : playCards
-          ? "docs/qa/play-cards"
-          : "docs/qa/rarity-frames",
-  privateRoot = jersey ? "private-data/jersey-release" : walletPremium
-    ? "private-data/private-beta-release"
-    : reveal
-      ? "private-data/reveal-stability-release"
-      : premium
-        ? "private-data/premium-v3-release"
-        : playCards
-          ? "private-data/play-cards-release"
-          : "private-data/rarity-release";
+const root = social
+    ? "docs/qa/social-live-release"
+    : jersey
+      ? "docs/qa/jersey-refinement/release"
+      : walletPremium
+        ? "docs/qa/private-beta-release"
+        : reveal
+          ? "docs/qa/reveal-stability"
+          : premium
+            ? "docs/qa/premium-v3"
+            : playCards
+              ? "docs/qa/play-cards"
+              : "docs/qa/rarity-frames",
+  privateRoot = social
+    ? "private-data/social-live-release"
+    : jersey
+      ? "private-data/jersey-release"
+      : walletPremium
+        ? "private-data/private-beta-release"
+        : reveal
+          ? "private-data/reveal-stability-release"
+          : premium
+            ? "private-data/premium-v3-release"
+            : playCards
+              ? "private-data/play-cards-release"
+              : "private-data/rarity-release";
 mkdirSync(root, { recursive: true });
 mkdirSync(privateRoot, { recursive: true });
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
@@ -241,6 +251,29 @@ if (mode === "inspect") {
       }
       if (mode === "live")
         assert.ok(aliases.every((a) => a.deployment === d.id));
+      if (social) {
+        assert.ok(
+          styles.includes("premium-social") &&
+            styles.includes("member-photo") &&
+            styles.includes("avatar-crop-preview"),
+        );
+        const feed = await get("/api/community");
+        assert.equal(feed.status(), 200);
+        const body = await feed.json();
+        assert.equal(body.status, "sign_in_required");
+        assert.equal(body.viewer, null);
+        assert.deepEqual(body.posts, []);
+        assert.deepEqual(body.profiles, []);
+        for (const view of ["hub", "offers", "own_media"])
+          assert.ok(
+            [401, 403].includes(
+              (await get("/api/community?view=" + view)).status(),
+            ),
+          );
+        checks.push(
+          "Premium Social/profile-photo assets; anonymous feed empty; collections, offers and owned media private",
+        );
+      }
       save(mode, {
         at: new Date().toISOString(),
         passed: true,
