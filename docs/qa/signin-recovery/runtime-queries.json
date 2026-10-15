@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-15T10:31:58.453Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "jersey",
+      "rows": 986,
+      "queryMs": 2773
+    },
+    {
+      "name": "wallet-catalogue",
+      "rows": 986,
+      "queryMs": 544
+    }
+  ],
+  "scope": "Actual hosted restricted-role SELECTs; not member login or transactional acceptance"
+}

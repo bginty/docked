@@ -6,19 +6,21 @@ import { ownerDatabase, projectRef } from "./owner-gameplay-db.mjs";
 async function main() {
   const apply = process.argv[2] === "--apply";
   assert.ok(apply || process.argv[2] === "--inspect");
-  const files = [
+  const jerseyHotfix = process.argv[3] === "--jersey-hotfix";
+  const files = jerseyHotfix ? ["20261015102845_jersey_projection_single_pass.sql"] : [
     "20261015055109_manual_credit_redemption.sql",
     "20261015080107_verified_jersey_presentation.sql",
   ];
   const sql = ownerDatabase();
   const hash = (v: unknown) =>
     createHash("sha256").update(JSON.stringify(v)).digest("hex");
-  const out = "docs/qa/private-beta-release",
-    vault = "private-data/private-beta-release";
+  const out = jerseyHotfix ? "docs/qa/signin-recovery" : "docs/qa/private-beta-release",
+    vault = jerseyHotfix ? "private-data/signin-recovery" : "private-data/private-beta-release";
   mkdirSync(out, { recursive: true });
   mkdirSync(vault, { recursive: true });
   try {
     const report = await sql.begin(async (tx) => {
+      if (jerseyHotfix) await tx`set local lock_timeout='5s'`;
       await tx`select pg_advisory_xact_lock(71820342)`;
       await tx`lock table credits_sandbox.state in share row exclusive mode`;
       const tables = [

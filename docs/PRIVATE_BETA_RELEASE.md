@@ -1,5 +1,7 @@
 # Premium Docked beta release — 15 October 2026
 
+> Follow-up: a member reported a loading regression. The jersey query was repaired and the premium release restored; see [sign-in recovery](SIGNIN_RECOVERY.md) for the temporary rollback, cause and live verification.
+
 **Released to the existing admitted Production beta:** https://docked.com.au/app. This follows the owner's explicit subsequent request to push to Production. The existing beta remains invitation-only; this is not commercial activation or public signup.
 
 - Application source: `45b570aefd70962c7266f785b20404de6b5baeac`.

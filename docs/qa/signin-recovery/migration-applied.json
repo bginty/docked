@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "applied": true,
+  "projectRef": "pojoymtniryarxxunyvz",
+  "migrations": [
+    {
+      "file": "20261015102845_jersey_projection_single_pass.sql",
+      "sha256": "0f07c11f868718a3b3a2da76bc9a9f3a92f8f5f4494f57daf6e8032ce34c27de",
+      "alreadyApplied": false
+    }
+  ],
+  "backup": {
+    "path": "private-data/signin-recovery/before-1446599f798c3d975a780df539ae08d13e668d21d8db44577bf062cd66f194eb.json",
+    "sha256": "1446599f798c3d975a780df539ae08d13e668d21d8db44577bf062cd66f194eb",
+    "verifiedReadable": true,
+    "tables": 11,
+    "scope": "Affected ledger/inventory/team data; not full Auth/storage disaster recovery"
+  },
+  "memberDataUnchanged": true,
+  "redemptionActivated": false
+}
