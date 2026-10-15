@@ -7,10 +7,11 @@ const mode = process.argv[2];
 assert.ok(["inspect", "access", "candidate", "promote", "live"].includes(mode));
 const premium = process.argv[3] === "--premium";
 const reveal = process.argv[3] === "--reveal-stability";
-const walletPremium = process.argv[3] === "--wallet-premium";
+const jersey = process.argv[3] === "--jersey";
+const walletPremium = process.argv[3] === "--wallet-premium" || jersey;
 const playCards =
   process.argv[3] === "--play-cards" || premium || reveal || walletPremium;
-const root = walletPremium
+const root = jersey ? "docs/qa/jersey-refinement/release" : walletPremium
     ? "docs/qa/private-beta-release"
     : reveal
       ? "docs/qa/reveal-stability"
@@ -19,7 +20,7 @@ const root = walletPremium
         : playCards
           ? "docs/qa/play-cards"
           : "docs/qa/rarity-frames",
-  privateRoot = walletPremium
+  privateRoot = jersey ? "private-data/jersey-release" : walletPremium
     ? "private-data/private-beta-release"
     : reveal
       ? "private-data/reveal-stability-release"
