@@ -1,0 +1,1769 @@
+{
+  "passed": true,
+  "out": "docs/qa/owner-reference/browser-1792156234598",
+  "reference": {
+    "path": ".codex-remote-attachments/01a0fc4b-1049-7211-91c9-af9141548b22/e978069f-8cb2-4a15-84d7-a5e70c4f6ced/1-1000050648.jpg",
+    "width": 1280,
+    "height": 853
+  },
+  "scope": "Actual production presentation components with isolated synthetic aggregates and simulated search API. Not authentication, hosted actions, physical-device or pixel-perfect acceptance.",
+  "checks": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "pageOverflow": false,
+      "criticalOrSeriousAxe": 0,
+      "keyboardSearch": "pass",
+      "searchFailureRecovery": "pass",
+      "navigationHrefs": [
+        {
+          "label": "Skip to dashboard content",
+          "href": "#admin-main"
+        },
+        {
+          "label": "PLAY. COLLECT. COMPETE.",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Dashboard",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Users",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Cards & Inventory",
+          "href": "/admin/workspace/cards"
+        },
+        {
+          "label": "Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Marketplace",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Competitions",
+          "href": "/admin/workspace/competitions"
+        },
+        {
+          "label": "Content & News",
+          "href": "/admin/workspace/content"
+        },
+        {
+          "label": "Moderation3",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "Payments & Wallets",
+          "href": "/admin/workspace/payments"
+        },
+        {
+          "label": "Rewards & Credits",
+          "href": "/admin/workspace/rewards"
+        },
+        {
+          "label": "Analytics",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Communications",
+          "href": "/admin/workspace/communications"
+        },
+        {
+          "label": "Settings",
+          "href": "/admin/workspace/settings"
+        },
+        {
+          "label": "",
+          "href": "/notifications"
+        },
+        {
+          "label": "My profile",
+          "href": "/fantasy/profile"
+        },
+        {
+          "label": "Manage account",
+          "href": "/dashboard"
+        },
+        {
+          "label": "View Live Site",
+          "href": "/fantasy/play"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "NFL Premium PackNFL Premium Pack9 cards · NFL47,200",
+          "href": "/admin/workspace/packs?record=synthetic-premium"
+        },
+        {
+          "label": "NFL Standard PackNFL Standard Pack9 cards · NFL87,200",
+          "href": "/admin/workspace/packs?record=synthetic-standard"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "1QBRARE1.1×Synthetic Collector One#001 / 1,000Synthetic Collector OneNFL · QB3 sales1,500test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-1"
+        },
+        {
+          "label": "2WRELITE1.2×Synthetic Collector Two#002 / 500Synthetic Collector TwoNFL · WR1 sales1,200test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-2"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "New member registeredIsolated fixture member2m ago",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Pack purchasedNFL Standard Pack · test credits5m ago",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Card listedIsolated test listing8m ago",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Report submittedEvidence restricted to moderators12m ago",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "✓Database",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?API",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Web App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Android App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Background Jobs",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Email Service",
+          "href": "#owner-data"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "2Reported Content",
+          "href": "/admin/community/reports?kind=content"
+        },
+        {
+          "label": "1User Reviews",
+          "href": "/admin/community/reports?kind=members"
+        },
+        {
+          "label": "—Card Listings",
+          "href": "/admin/community/reports?kind=listings"
+        },
+        {
+          "label": "Issue Credits",
+          "href": "/admin/workspace/rewards?action=issue"
+        },
+        {
+          "label": "Send Announcement",
+          "href": "/admin/workspace/communications?action=draft"
+        },
+        {
+          "label": "Manage Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "View Reports",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Attention",
+          "href": "#owner-attention"
+        },
+        {
+          "label": "Activity",
+          "href": "#owner-activity"
+        },
+        {
+          "label": "Economy",
+          "href": "#owner-economy"
+        },
+        {
+          "label": "Data & competitions",
+          "href": "#owner-data"
+        },
+        {
+          "label": "Operations",
+          "href": "#owner-controls"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Inspect wallet records",
+          "href": "/fantasy/test-wallet"
+        },
+        {
+          "label": "Standings",
+          "href": "/fantasy/standings"
+        },
+        {
+          "label": "Competition operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Invitations & admissionManage approved beta access",
+          "href": "/admin/preview-testers"
+        },
+        {
+          "label": "Moderation & reportsReview evidence and audited actions",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Cards & competitionsExisting permission-controlled operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Finance operationsRestricted workspace · activation remains disabled",
+          "href": "/admin/redemptions"
+        },
+        {
+          "label": "Consent-based analyticsAvailable acquisition measurements",
+          "href": "/admin/analytics"
+        },
+        {
+          "label": "Staff portalRole-specific access and MFA",
+          "href": "/admin"
+        }
+      ],
+      "chartSelects": [
+        {
+          "label": "Revenue reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "New users reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "User growth reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        }
+      ],
+      "geometry": [
+        {
+          "className": "admin-sidebar ",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 218,
+            "height": 1024,
+            "top": 0,
+            "right": 218,
+            "bottom": 1024,
+            "left": 0
+          }
+        },
+        {
+          "className": "admin-topbar",
+          "bounds": {
+            "x": 218,
+            "y": 0,
+            "width": 1318,
+            "height": 65,
+            "top": 0,
+            "right": 1536,
+            "bottom": 65,
+            "left": 218
+          }
+        },
+        {
+          "className": "owner-welcome",
+          "bounds": {
+            "x": 245,
+            "y": 65,
+            "width": 1269,
+            "height": 124,
+            "top": 65,
+            "right": 1514,
+            "bottom": 189,
+            "left": 245
+          }
+        },
+        {
+          "className": "owner-reference-kpis",
+          "bounds": {
+            "x": 245,
+            "y": 189,
+            "width": 1269,
+            "height": 120,
+            "top": 189,
+            "right": 1514,
+            "bottom": 309,
+            "left": 245
+          }
+        },
+        {
+          "className": "owner-reference-charts",
+          "bounds": {
+            "x": 245,
+            "y": 321,
+            "width": 1269,
+            "height": 251.5,
+            "top": 321,
+            "right": 1514,
+            "bottom": 572.5,
+            "left": 245
+          }
+        }
+      ],
+      "runtimeErrors": []
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "pageOverflow": false,
+      "criticalOrSeriousAxe": 0,
+      "keyboardSearch": "pass",
+      "searchFailureRecovery": "pass",
+      "navigationHrefs": [
+        {
+          "label": "Skip to dashboard content",
+          "href": "#admin-main"
+        },
+        {
+          "label": "PLAY. COLLECT. COMPETE.",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Dashboard",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Users",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Cards & Inventory",
+          "href": "/admin/workspace/cards"
+        },
+        {
+          "label": "Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Marketplace",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Competitions",
+          "href": "/admin/workspace/competitions"
+        },
+        {
+          "label": "Content & News",
+          "href": "/admin/workspace/content"
+        },
+        {
+          "label": "Moderation3",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "Payments & Wallets",
+          "href": "/admin/workspace/payments"
+        },
+        {
+          "label": "Rewards & Credits",
+          "href": "/admin/workspace/rewards"
+        },
+        {
+          "label": "Analytics",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Communications",
+          "href": "/admin/workspace/communications"
+        },
+        {
+          "label": "Settings",
+          "href": "/admin/workspace/settings"
+        },
+        {
+          "label": "",
+          "href": "/notifications"
+        },
+        {
+          "label": "My profile",
+          "href": "/fantasy/profile"
+        },
+        {
+          "label": "Manage account",
+          "href": "/dashboard"
+        },
+        {
+          "label": "View Live Site",
+          "href": "/fantasy/play"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "NFL Premium PackNFL Premium Pack9 cards · NFL47,200",
+          "href": "/admin/workspace/packs?record=synthetic-premium"
+        },
+        {
+          "label": "NFL Standard PackNFL Standard Pack9 cards · NFL87,200",
+          "href": "/admin/workspace/packs?record=synthetic-standard"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "1QBRARE1.1×Synthetic Collector One#001 / 1,000Synthetic Collector OneNFL · QB3 sales1,500test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-1"
+        },
+        {
+          "label": "2WRELITE1.2×Synthetic Collector Two#002 / 500Synthetic Collector TwoNFL · WR1 sales1,200test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-2"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "New member registeredIsolated fixture member2m ago",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Pack purchasedNFL Standard Pack · test credits5m ago",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Card listedIsolated test listing8m ago",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Report submittedEvidence restricted to moderators12m ago",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "✓Database",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?API",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Web App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Android App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Background Jobs",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Email Service",
+          "href": "#owner-data"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "2Reported Content",
+          "href": "/admin/community/reports?kind=content"
+        },
+        {
+          "label": "1User Reviews",
+          "href": "/admin/community/reports?kind=members"
+        },
+        {
+          "label": "—Card Listings",
+          "href": "/admin/community/reports?kind=listings"
+        },
+        {
+          "label": "Issue Credits",
+          "href": "/admin/workspace/rewards?action=issue"
+        },
+        {
+          "label": "Send Announcement",
+          "href": "/admin/workspace/communications?action=draft"
+        },
+        {
+          "label": "Manage Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "View Reports",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Attention",
+          "href": "#owner-attention"
+        },
+        {
+          "label": "Activity",
+          "href": "#owner-activity"
+        },
+        {
+          "label": "Economy",
+          "href": "#owner-economy"
+        },
+        {
+          "label": "Data & competitions",
+          "href": "#owner-data"
+        },
+        {
+          "label": "Operations",
+          "href": "#owner-controls"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Inspect wallet records",
+          "href": "/fantasy/test-wallet"
+        },
+        {
+          "label": "Standings",
+          "href": "/fantasy/standings"
+        },
+        {
+          "label": "Competition operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Invitations & admissionManage approved beta access",
+          "href": "/admin/preview-testers"
+        },
+        {
+          "label": "Moderation & reportsReview evidence and audited actions",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Cards & competitionsExisting permission-controlled operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Finance operationsRestricted workspace · activation remains disabled",
+          "href": "/admin/redemptions"
+        },
+        {
+          "label": "Consent-based analyticsAvailable acquisition measurements",
+          "href": "/admin/analytics"
+        },
+        {
+          "label": "Staff portalRole-specific access and MFA",
+          "href": "/admin"
+        }
+      ],
+      "chartSelects": [
+        {
+          "label": "Revenue reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "New users reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "User growth reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        }
+      ],
+      "geometry": [
+        {
+          "className": "admin-sidebar ",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 218,
+            "height": 900,
+            "top": 0,
+            "right": 218,
+            "bottom": 900,
+            "left": 0
+          }
+        },
+        {
+          "className": "admin-topbar",
+          "bounds": {
+            "x": 218,
+            "y": 0,
+            "width": 1222,
+            "height": 65,
+            "top": 0,
+            "right": 1440,
+            "bottom": 65,
+            "left": 218
+          }
+        },
+        {
+          "className": "owner-welcome",
+          "bounds": {
+            "x": 245,
+            "y": 65,
+            "width": 1173,
+            "height": 124,
+            "top": 65,
+            "right": 1418,
+            "bottom": 189,
+            "left": 245
+          }
+        },
+        {
+          "className": "owner-reference-kpis",
+          "bounds": {
+            "x": 245,
+            "y": 189,
+            "width": 1173,
+            "height": 134.71875,
+            "top": 189,
+            "right": 1418,
+            "bottom": 323.71875,
+            "left": 245
+          }
+        },
+        {
+          "className": "owner-reference-charts",
+          "bounds": {
+            "x": 245,
+            "y": 335.71875,
+            "width": 1173,
+            "height": 251.5,
+            "top": 335.71875,
+            "right": 1418,
+            "bottom": 587.21875,
+            "left": 245
+          }
+        }
+      ],
+      "runtimeErrors": []
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "pageOverflow": false,
+      "criticalOrSeriousAxe": 0,
+      "keyboardSearch": "pass",
+      "searchFailureRecovery": "pass",
+      "navigationHrefs": [
+        {
+          "label": "Skip to dashboard content",
+          "href": "#admin-main"
+        },
+        {
+          "label": "PLAY. COLLECT. COMPETE.",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Dashboard",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Users",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Cards & Inventory",
+          "href": "/admin/workspace/cards"
+        },
+        {
+          "label": "Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Marketplace",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Competitions",
+          "href": "/admin/workspace/competitions"
+        },
+        {
+          "label": "Content & News",
+          "href": "/admin/workspace/content"
+        },
+        {
+          "label": "Moderation3",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "Payments & Wallets",
+          "href": "/admin/workspace/payments"
+        },
+        {
+          "label": "Rewards & Credits",
+          "href": "/admin/workspace/rewards"
+        },
+        {
+          "label": "Analytics",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Communications",
+          "href": "/admin/workspace/communications"
+        },
+        {
+          "label": "Settings",
+          "href": "/admin/workspace/settings"
+        },
+        {
+          "label": "",
+          "href": "/notifications"
+        },
+        {
+          "label": "My profile",
+          "href": "/fantasy/profile"
+        },
+        {
+          "label": "Manage account",
+          "href": "/dashboard"
+        },
+        {
+          "label": "View Live Site",
+          "href": "/fantasy/play"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "NFL Premium PackNFL Premium Pack9 cards · NFL47,200",
+          "href": "/admin/workspace/packs?record=synthetic-premium"
+        },
+        {
+          "label": "NFL Standard PackNFL Standard Pack9 cards · NFL87,200",
+          "href": "/admin/workspace/packs?record=synthetic-standard"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "1QBRARE1.1×Synthetic Collector One#001 / 1,000Synthetic Collector OneNFL · QB3 sales1,500test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-1"
+        },
+        {
+          "label": "2WRELITE1.2×Synthetic Collector Two#002 / 500Synthetic Collector TwoNFL · WR1 sales1,200test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-2"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "New member registeredIsolated fixture member2m ago",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Pack purchasedNFL Standard Pack · test credits5m ago",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Card listedIsolated test listing8m ago",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Report submittedEvidence restricted to moderators12m ago",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "✓Database",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?API",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Web App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Android App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Background Jobs",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Email Service",
+          "href": "#owner-data"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "2Reported Content",
+          "href": "/admin/community/reports?kind=content"
+        },
+        {
+          "label": "1User Reviews",
+          "href": "/admin/community/reports?kind=members"
+        },
+        {
+          "label": "—Card Listings",
+          "href": "/admin/community/reports?kind=listings"
+        },
+        {
+          "label": "Issue Credits",
+          "href": "/admin/workspace/rewards?action=issue"
+        },
+        {
+          "label": "Send Announcement",
+          "href": "/admin/workspace/communications?action=draft"
+        },
+        {
+          "label": "Manage Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "View Reports",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Attention",
+          "href": "#owner-attention"
+        },
+        {
+          "label": "Activity",
+          "href": "#owner-activity"
+        },
+        {
+          "label": "Economy",
+          "href": "#owner-economy"
+        },
+        {
+          "label": "Data & competitions",
+          "href": "#owner-data"
+        },
+        {
+          "label": "Operations",
+          "href": "#owner-controls"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Inspect wallet records",
+          "href": "/fantasy/test-wallet"
+        },
+        {
+          "label": "Standings",
+          "href": "/fantasy/standings"
+        },
+        {
+          "label": "Competition operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Invitations & admissionManage approved beta access",
+          "href": "/admin/preview-testers"
+        },
+        {
+          "label": "Moderation & reportsReview evidence and audited actions",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Cards & competitionsExisting permission-controlled operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Finance operationsRestricted workspace · activation remains disabled",
+          "href": "/admin/redemptions"
+        },
+        {
+          "label": "Consent-based analyticsAvailable acquisition measurements",
+          "href": "/admin/analytics"
+        },
+        {
+          "label": "Staff portalRole-specific access and MFA",
+          "href": "/admin"
+        }
+      ],
+      "chartSelects": [
+        {
+          "label": "Revenue reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "New users reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "User growth reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        }
+      ],
+      "geometry": [
+        {
+          "className": "admin-sidebar ",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "className": "admin-topbar",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 65,
+            "top": 0,
+            "right": 1024,
+            "bottom": 65,
+            "left": 0
+          }
+        },
+        {
+          "className": "owner-welcome",
+          "bounds": {
+            "x": 18,
+            "y": 65,
+            "width": 988,
+            "height": 124,
+            "top": 65,
+            "right": 1006,
+            "bottom": 189,
+            "left": 18
+          }
+        },
+        {
+          "className": "owner-reference-kpis",
+          "bounds": {
+            "x": 18,
+            "y": 189,
+            "width": 988,
+            "height": 252,
+            "top": 189,
+            "right": 1006,
+            "bottom": 441,
+            "left": 18
+          }
+        },
+        {
+          "className": "owner-reference-charts",
+          "bounds": {
+            "x": 18,
+            "y": 453,
+            "width": 988,
+            "height": 275,
+            "top": 453,
+            "right": 1006,
+            "bottom": 728,
+            "left": 18
+          }
+        }
+      ],
+      "runtimeErrors": []
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "pageOverflow": false,
+      "criticalOrSeriousAxe": 0,
+      "keyboardSearch": "pass",
+      "searchFailureRecovery": "pass",
+      "navigationHrefs": [
+        {
+          "label": "Skip to dashboard content",
+          "href": "#admin-main"
+        },
+        {
+          "label": "PLAY. COLLECT. COMPETE.",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Dashboard",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Users",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Cards & Inventory",
+          "href": "/admin/workspace/cards"
+        },
+        {
+          "label": "Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Marketplace",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Competitions",
+          "href": "/admin/workspace/competitions"
+        },
+        {
+          "label": "Content & News",
+          "href": "/admin/workspace/content"
+        },
+        {
+          "label": "Moderation3",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "Payments & Wallets",
+          "href": "/admin/workspace/payments"
+        },
+        {
+          "label": "Rewards & Credits",
+          "href": "/admin/workspace/rewards"
+        },
+        {
+          "label": "Analytics",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Communications",
+          "href": "/admin/workspace/communications"
+        },
+        {
+          "label": "Settings",
+          "href": "/admin/workspace/settings"
+        },
+        {
+          "label": "",
+          "href": "/notifications"
+        },
+        {
+          "label": "My profile",
+          "href": "/fantasy/profile"
+        },
+        {
+          "label": "Manage account",
+          "href": "/dashboard"
+        },
+        {
+          "label": "View Live Site",
+          "href": "/fantasy/play"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "NFL Premium PackNFL Premium Pack9 cards · NFL47,200",
+          "href": "/admin/workspace/packs?record=synthetic-premium"
+        },
+        {
+          "label": "NFL Standard PackNFL Standard Pack9 cards · NFL87,200",
+          "href": "/admin/workspace/packs?record=synthetic-standard"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "1QBRARE1.1×Synthetic Collector One#001 / 1,000Synthetic Collector OneNFL · QB3 sales1,500test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-1"
+        },
+        {
+          "label": "2WRELITE1.2×Synthetic Collector Two#002 / 500Synthetic Collector TwoNFL · WR1 sales1,200test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-2"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "New member registeredIsolated fixture member2m ago",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Pack purchasedNFL Standard Pack · test credits5m ago",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Card listedIsolated test listing8m ago",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Report submittedEvidence restricted to moderators12m ago",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "✓Database",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?API",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Web App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Android App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Background Jobs",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Email Service",
+          "href": "#owner-data"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "2Reported Content",
+          "href": "/admin/community/reports?kind=content"
+        },
+        {
+          "label": "1User Reviews",
+          "href": "/admin/community/reports?kind=members"
+        },
+        {
+          "label": "—Card Listings",
+          "href": "/admin/community/reports?kind=listings"
+        },
+        {
+          "label": "Issue Credits",
+          "href": "/admin/workspace/rewards?action=issue"
+        },
+        {
+          "label": "Send Announcement",
+          "href": "/admin/workspace/communications?action=draft"
+        },
+        {
+          "label": "Manage Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "View Reports",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Attention",
+          "href": "#owner-attention"
+        },
+        {
+          "label": "Activity",
+          "href": "#owner-activity"
+        },
+        {
+          "label": "Economy",
+          "href": "#owner-economy"
+        },
+        {
+          "label": "Data & competitions",
+          "href": "#owner-data"
+        },
+        {
+          "label": "Operations",
+          "href": "#owner-controls"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Inspect wallet records",
+          "href": "/fantasy/test-wallet"
+        },
+        {
+          "label": "Standings",
+          "href": "/fantasy/standings"
+        },
+        {
+          "label": "Competition operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Invitations & admissionManage approved beta access",
+          "href": "/admin/preview-testers"
+        },
+        {
+          "label": "Moderation & reportsReview evidence and audited actions",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Cards & competitionsExisting permission-controlled operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Finance operationsRestricted workspace · activation remains disabled",
+          "href": "/admin/redemptions"
+        },
+        {
+          "label": "Consent-based analyticsAvailable acquisition measurements",
+          "href": "/admin/analytics"
+        },
+        {
+          "label": "Staff portalRole-specific access and MFA",
+          "href": "/admin"
+        }
+      ],
+      "chartSelects": [
+        {
+          "label": "Revenue reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "New users reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "User growth reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        }
+      ],
+      "geometry": [
+        {
+          "className": "admin-sidebar ",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "className": "admin-topbar",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 412,
+            "height": 62,
+            "top": 0,
+            "right": 412,
+            "bottom": 62,
+            "left": 0
+          }
+        },
+        {
+          "className": "owner-welcome",
+          "bounds": {
+            "x": 12,
+            "y": 62,
+            "width": 388,
+            "height": 180,
+            "top": 62,
+            "right": 400,
+            "bottom": 242,
+            "left": 12
+          }
+        },
+        {
+          "className": "owner-reference-kpis",
+          "bounds": {
+            "x": 12,
+            "y": 242,
+            "width": 388,
+            "height": 336.9375,
+            "top": 242,
+            "right": 400,
+            "bottom": 578.9375,
+            "left": 12
+          }
+        },
+        {
+          "className": "owner-reference-charts",
+          "bounds": {
+            "x": 12,
+            "y": 588.9375,
+            "width": 388,
+            "height": 797,
+            "top": 588.9375,
+            "right": 400,
+            "bottom": 1385.9375,
+            "left": 12
+          }
+        }
+      ],
+      "runtimeErrors": []
+    },
+    {
+      "width": 360,
+      "height": 800,
+      "pageOverflow": false,
+      "criticalOrSeriousAxe": 0,
+      "keyboardSearch": "pass",
+      "searchFailureRecovery": "pass",
+      "navigationHrefs": [
+        {
+          "label": "Skip to dashboard content",
+          "href": "#admin-main"
+        },
+        {
+          "label": "PLAY. COLLECT. COMPETE.",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Dashboard",
+          "href": "/admin/operations"
+        },
+        {
+          "label": "Users",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Cards & Inventory",
+          "href": "/admin/workspace/cards"
+        },
+        {
+          "label": "Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Marketplace",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Competitions",
+          "href": "/admin/workspace/competitions"
+        },
+        {
+          "label": "Content & News",
+          "href": "/admin/workspace/content"
+        },
+        {
+          "label": "Moderation3",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "Payments & Wallets",
+          "href": "/admin/workspace/payments"
+        },
+        {
+          "label": "Rewards & Credits",
+          "href": "/admin/workspace/rewards"
+        },
+        {
+          "label": "Analytics",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Communications",
+          "href": "/admin/workspace/communications"
+        },
+        {
+          "label": "Settings",
+          "href": "/admin/workspace/settings"
+        },
+        {
+          "label": "",
+          "href": "/notifications"
+        },
+        {
+          "label": "My profile",
+          "href": "/fantasy/profile"
+        },
+        {
+          "label": "Manage account",
+          "href": "/dashboard"
+        },
+        {
+          "label": "View Live Site",
+          "href": "/fantasy/play"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "NFL Premium PackNFL Premium Pack9 cards · NFL47,200",
+          "href": "/admin/workspace/packs?record=synthetic-premium"
+        },
+        {
+          "label": "NFL Standard PackNFL Standard Pack9 cards · NFL87,200",
+          "href": "/admin/workspace/packs?record=synthetic-standard"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "1QBRARE1.1×Synthetic Collector One#001 / 1,000Synthetic Collector OneNFL · QB3 sales1,500test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-1"
+        },
+        {
+          "label": "2WRELITE1.2×Synthetic Collector Two#002 / 500Synthetic Collector TwoNFL · WR1 sales1,200test credits",
+          "href": "/admin/workspace/cards?record=synthetic-card-2"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "New member registeredIsolated fixture member2m ago",
+          "href": "/admin/workspace/users"
+        },
+        {
+          "label": "Pack purchasedNFL Standard Pack · test credits5m ago",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "Card listedIsolated test listing8m ago",
+          "href": "/admin/workspace/marketplace"
+        },
+        {
+          "label": "Report submittedEvidence restricted to moderators12m ago",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "✓Database",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?API",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Web App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Android App",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Background Jobs",
+          "href": "#owner-data"
+        },
+        {
+          "label": "?Email Service",
+          "href": "#owner-data"
+        },
+        {
+          "label": "View all",
+          "href": "/admin/workspace/moderation"
+        },
+        {
+          "label": "2Reported Content",
+          "href": "/admin/community/reports?kind=content"
+        },
+        {
+          "label": "1User Reviews",
+          "href": "/admin/community/reports?kind=members"
+        },
+        {
+          "label": "—Card Listings",
+          "href": "/admin/community/reports?kind=listings"
+        },
+        {
+          "label": "Issue Credits",
+          "href": "/admin/workspace/rewards?action=issue"
+        },
+        {
+          "label": "Send Announcement",
+          "href": "/admin/workspace/communications?action=draft"
+        },
+        {
+          "label": "Manage Packs",
+          "href": "/admin/workspace/packs"
+        },
+        {
+          "label": "View Reports",
+          "href": "/admin/workspace/analytics"
+        },
+        {
+          "label": "Attention",
+          "href": "#owner-attention"
+        },
+        {
+          "label": "Activity",
+          "href": "#owner-activity"
+        },
+        {
+          "label": "Economy",
+          "href": "#owner-economy"
+        },
+        {
+          "label": "Data & competitions",
+          "href": "#owner-data"
+        },
+        {
+          "label": "Operations",
+          "href": "#owner-controls"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Moderation report awaiting review",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Inspect wallet records",
+          "href": "/fantasy/test-wallet"
+        },
+        {
+          "label": "Standings",
+          "href": "/fantasy/standings"
+        },
+        {
+          "label": "Competition operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Invitations & admissionManage approved beta access",
+          "href": "/admin/preview-testers"
+        },
+        {
+          "label": "Moderation & reportsReview evidence and audited actions",
+          "href": "/admin/community/reports"
+        },
+        {
+          "label": "Cards & competitionsExisting permission-controlled operations",
+          "href": "/fantasy/admin"
+        },
+        {
+          "label": "Finance operationsRestricted workspace · activation remains disabled",
+          "href": "/admin/redemptions"
+        },
+        {
+          "label": "Consent-based analyticsAvailable acquisition measurements",
+          "href": "/admin/analytics"
+        },
+        {
+          "label": "Staff portalRole-specific access and MFA",
+          "href": "/admin"
+        }
+      ],
+      "chartSelects": [
+        {
+          "label": "Revenue reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "New users reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        },
+        {
+          "label": "User growth reporting period",
+          "options": [
+            "7",
+            "30",
+            "90",
+            "365"
+          ]
+        }
+      ],
+      "geometry": [
+        {
+          "className": "admin-sidebar ",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "className": "admin-topbar",
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 360,
+            "height": 62,
+            "top": 0,
+            "right": 360,
+            "bottom": 62,
+            "left": 0
+          }
+        },
+        {
+          "className": "owner-welcome",
+          "bounds": {
+            "x": 12,
+            "y": 62,
+            "width": 336,
+            "height": 180,
+            "top": 62,
+            "right": 348,
+            "bottom": 242,
+            "left": 12
+          }
+        },
+        {
+          "className": "owner-reference-kpis",
+          "bounds": {
+            "x": 12,
+            "y": 242,
+            "width": 336,
+            "height": 336.9375,
+            "top": 242,
+            "right": 348,
+            "bottom": 578.9375,
+            "left": 12
+          }
+        },
+        {
+          "className": "owner-reference-charts",
+          "bounds": {
+            "x": 12,
+            "y": 588.9375,
+            "width": 336,
+            "height": 797,
+            "top": 588.9375,
+            "right": 348,
+            "bottom": 1385.9375,
+            "left": 12
+          }
+        }
+      ],
+      "runtimeErrors": []
+    }
+  ],
+  "restrictedEditorSidebar": true,
+  "noMutationRequests": true
+}

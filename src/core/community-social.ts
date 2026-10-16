@@ -117,10 +117,14 @@ export type SocialReport = {
 };
 export function filterModerationReports(reports: SocialReport[], filters: { status: string; type: string; search: string }) {
   const search = filters.search.trim().toLocaleLowerCase();
-  return reports.filter(r => (!filters.status || r.status === filters.status) &&
-    (!filters.type || r.targetType === filters.type) && (!search ||
+  return reports.filter(r => (!filters.status || (filters.status === "outstanding" ? ["open", "escalated"].includes(r.status) : r.status === filters.status)) &&
+    (!filters.type || (filters.type === "content" ? ["post", "comment", "media"].includes(r.targetType) : r.targetType === filters.type)) && (!search ||
       [r.id, r.targetId, r.reason, r.details, r.reporter?.name, r.reporter?.handle, r.target?.content]
         .filter(Boolean).join(" ").toLocaleLowerCase().includes(search)));
+}
+export type ModerationQueueKind = "content" | "members" | "listings";
+export function moderationQueueKind(value: string | undefined): ModerationQueueKind | undefined {
+  return value === "content" || value === "members" || value === "listings" ? value : undefined;
 }
 export type CommunityBase = {
   status: CommunityStatus;

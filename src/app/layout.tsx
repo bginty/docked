@@ -100,3 +100,4 @@ export default async function Layout({
     </html>
   );
 }
+import "./owner-reference.css";

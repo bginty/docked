@@ -19,7 +19,7 @@ import { identity, requireIdentity, requireRole } from "./auth";
 import { requireCommunityAccess } from "./community-policy";
 import type { CommunityFeature } from "@/core/community-policy";
 import { recordAnalytics } from "./analytics";
-import { moderationReportsQuery } from "./community-moderation-query";
+import { moderationQueueReportsQuery } from "./community-moderation-query";
 import {
   OFFICIAL_PROFILE_ID,
   decodeSocialCursor,
@@ -587,7 +587,7 @@ export async function purgeCommunityRetention() {
   });
 }
 
-export async function communityModeration(): Promise<CommunityModeration> {
+export async function communityModeration(kind?: "content" | "members"): Promise<CommunityModeration> {
   if (!process.env.DATABASE_URL)
     return {
       status: "not_configured",
@@ -599,7 +599,7 @@ export async function communityModeration(): Promise<CommunityModeration> {
     await requireRole(["owner", "admin", "editor", "auditor"]);
     const tx = db();
     const [reports, media] = await Promise.all([
-      tx.unsafe(moderationReportsQuery),
+      tx.unsafe(moderationQueueReportsQuery(kind)),
       tx`select id,alt,width,height,status from private.social_media where status='quarantine' and content is not null and expires_at>now() order by created_at limit 50`,
     ]);
     return {

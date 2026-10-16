@@ -6,7 +6,14 @@ import { AppShell } from "./app-shell";
 import { AppHeading, CommunityEmpty } from "./community-basics";
 import { ModerationPanel, AdminReadPanel } from "./community-admin";
 import { communityAdminSections } from "@/core/community-navigation";
-export async function CommunityAdminPage({ section }: { section: string }) {
+import { moderationQueueKind } from "@/core/community-social";
+export async function CommunityAdminPage({
+  section,
+  kind,
+}: {
+  section: string;
+  kind?: string;
+}) {
   if (!communityAdminSections.some(([id]) => id === section)) notFound();
   let staff;
   try {
@@ -19,15 +26,19 @@ export async function CommunityAdminPage({ section }: { section: string }) {
     );
   }
   const audit = ["owner", "admin", "auditor"].includes(staff.role);
+  const queueKind =
+    section === "reports" ? moderationQueueKind(kind) : undefined;
   if (!audit && ["analytics", "notifications"].includes(section))
     return (
       <CommunityEmpty title="Additional permission required">
         Return to reports for moderation.
       </CommunityEmpty>
     );
-  const moderation = ["overview", "reports", "integrity"].includes(section)
-    ? await communityModeration()
-    : null;
+  const moderation =
+    ["overview", "reports", "integrity"].includes(section) &&
+    queueKind !== "listings"
+      ? await communityModeration(queueKind)
+      : null;
   return (
     <AppShell authenticated>
       <AppHeading
@@ -50,11 +61,31 @@ export async function CommunityAdminPage({ section }: { section: string }) {
             </Link>
           ))}
       </nav>
+      {queueKind && queueKind !== "listings" && (
+        <p className="small-note">
+          Showing outstanding {queueKind === "members" ? "member" : "content"}{" "}
+          reports.{" "}
+          <Link href="/admin/community/reports">
+            View all report categories
+          </Link>
+        </p>
+      )}
+      {queueKind === "listings" && (
+        <CommunityEmpty title="Listing case queue unavailable">
+          Marketplace-specific case intake is not configured. Existing social
+          reports do not establish a count of listing cases.
+          <Link className="button ghost" href="/admin/workspace/marketplace">
+            Review marketplace operations
+          </Link>
+        </CommunityEmpty>
+      )}
       {moderation &&
         (moderation.status === "ready" ? (
           <ModerationPanel
+            key={queueKind ?? "all"}
             data={moderation}
             canWrite={staff.role !== "auditor"}
+            initialKind={queueKind === "listings" ? undefined : queueKind}
           />
         ) : (
           <CommunityEmpty title="Moderation unavailable">

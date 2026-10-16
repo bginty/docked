@@ -1,504 +1,567 @@
 import Link from "next/link";
-import { DateTime } from "luxon";
+import type { ReactNode } from "react";
 import type { Operations } from "@/core/owner-operations";
-import { ownerAlerts } from "@/core/owner-command-centre";
-const time = (v: string | null) =>
-  v
-    ? DateTime.fromISO(v).setZone("Australia/Sydney").toFormat("d LLL, h:mm a")
-    : "Not recorded";
-const count = (v: number | undefined) =>
-  v === undefined ? "Unavailable" : v.toLocaleString("en-AU");
-function Metric({
+import type {
+  DashboardMetric,
+  OwnerReferenceData,
+} from "@/core/owner-reference-data";
+import { AdminIcon } from "./admin-icon";
+import { OwnerPeriod } from "./owner-period";
+import { PackArtwork } from "./pack-artwork";
+import { OwnerOperationsDetail } from "./owner-operations-detail";
+import { OwnerDetailDisclosure } from "./owner-detail-disclosure";
+import { CollectibleFace } from "./collectible-face";
+function activityAge(at: string, generatedAt: string) {
+  const minutes = Math.max(
+    0,
+    Math.floor((Date.parse(generatedAt) - Date.parse(at)) / 60000),
+  );
+  return minutes < 1
+    ? "Just now"
+    : minutes < 60
+      ? `${minutes}m ago`
+      : minutes < 1440
+        ? `${Math.floor(minutes / 60)}h ago`
+        : `${Math.floor(minutes / 1440)}d ago`;
+}
+const number = (v: number | null | undefined) =>
+  v == null ? "Unavailable" : v.toLocaleString("en-AU");
+function Change({ value }: { value: number | null | undefined }) {
+  return (
+    <span
+      className={`owner-change ${value == null || value === 0 ? "is-neutral" : value < 0 ? "is-negative" : ""}`}
+    >
+      {value == null
+        ? "Comparison unavailable"
+        : `${value === 0 ? "" : value > 0 ? "↑ " : "↓ "}${Math.abs(value).toFixed(1)}%`}
+    </span>
+  );
+}
+function Title({ children, href }: { children: ReactNode; href?: string }) {
+  return (
+    <div className="owner-panel-title">
+      <h2>{children}</h2>
+      {href && <Link href={href}>View all</Link>}
+    </div>
+  );
+}
+function Kpi({
   label,
-  value,
-  detail,
+  metric,
+  icon,
+  colour,
 }: {
   label: string;
-  value: number | undefined;
-  detail: string;
+  metric?: DashboardMetric;
+  icon: string;
+  colour: string;
 }) {
   return (
-    <article className="command-metric">
-      <span>{label}</span>
-      <strong>{count(value)}</strong>
-      <small>{detail}</small>
+    <article className={`owner-kpi tone-${colour}`}>
+      <span className="owner-kpi-icon">
+        <AdminIcon name={icon} />
+      </span>
+      <div>
+        <span>{label}</span>
+        <strong
+          className={metric?.current == null ? "is-unavailable" : undefined}
+        >
+          {metric?.unit === "AUD" && metric.current != null ? "$" : ""}
+          {number(metric?.current)}
+        </strong>
+        <Change value={metric?.changePercent} />
+        <small title={metric?.detail}>
+          {metric?.unit === "AUD" ? "Settled cash only" : "vs. previous period"}
+        </small>
+      </div>
     </article>
   );
 }
-export function OwnerDashboard({ data }: { data: Operations | null }) {
-  if (!data)
+function RegistrationChart({
+  rows,
+  cumulative = false,
+}: {
+  rows: OwnerReferenceData["registrations"];
+  cumulative?: boolean;
+}) {
+  if (!rows.length)
     return (
-      <section className="command-panel">
-        <h2>Commercial reporting is not connected</h2>
-        <p>
-          Select Beta / test to inspect existing invited-beta records. Missing
-          payment data is never shown as zero revenue.
-        </p>
-        <Link className="button ghost" href="/admin/operations?scope=beta">
-          View beta operations
-        </Link>
-      </section>
+      <p className="owner-chart-empty">No registration data for this period.</p>
     );
-  const c = data.centre,
-    w = data.wallet,
-    alerts = ownerAlerts(data);
-  const days = c?.daily ?? [],
-    max = Math.max(1, ...days.map((d) => d.entries + d.packs + d.posts));
+  const max =
+    Math.ceil(
+      Math.max(
+        2,
+        ...rows.map((r) => (cumulative ? r.cumulative : r.registrations)),
+      ) / 2,
+    ) * 2;
+  const points = rows
+    .map(
+      (r, i) =>
+        `${40 + (i * 340) / Math.max(1, rows.length - 1)},${125 - ((cumulative ? r.cumulative : r.registrations) * 110) / max}`,
+    )
+    .join(" ");
   return (
-    <div className="owner-operations command-centre">
-      <div className="command-status">
-        <span className="command-badge">Invited beta · Test credits only</span>
-        <span>Updated {time(data.generatedAt)} · Australia/Sydney</span>
-      </div>
-      <div className="command-kpis">
-        <Metric
-          label="Admitted members"
-          value={data.metrics.admitted}
-          detail={`${count(c?.pendingInvitations)} pending invitations`}
-        />
-        <Metric
-          label="Active in range"
-          value={c?.activeMembers}
-          detail="Saved teams, opened packs or posts"
-        />
-        <Metric
-          label="Packs opened"
-          value={c?.packsOpened}
-          detail="Selected period and known sport"
-        />
-        <Metric
-          label="Test credits outstanding"
-          value={w?.outstanding}
-          detail={`${count(w?.reserved)} reserved · Account-wide`}
-        />
-      </div>
-      <nav className="command-nav" aria-label="Owner sections">
-        <a href="#owner-attention">Attention</a>
-        <a href="#owner-activity">Activity</a>
-        <a href="#owner-economy">Economy</a>
-        <a href="#owner-data">Data & competitions</a>
-        <a href="#owner-controls">Operations</a>
-      </nav>
-      <div className="command-grid">
-        <section className="command-panel" id="owner-attention">
-          <div className="command-heading">
-            <div>
-              <p className="eyebrow">EXCEPTIONS</p>
-              <h2>Needs attention</h2>
-            </div>
-            <span className="command-badge">{alerts.length} recorded</span>
-          </div>
-          <p className="command-muted">
-            Evidence from available sources, not a complete security or uptime
-            monitor.
-          </p>
-          {alerts.length ? (
-            <ul className="command-alerts">
-              {alerts.slice(0, 8).map((a) => (
-                <li key={a.id} data-severity={a.severity}>
-                  <div>
-                    <span className="command-severity">{a.severity}</span>
-                    <time dateTime={a.at}>{time(a.at)}</time>
-                  </div>
-                  <h3>
-                    <Link href={a.href}>{a.title}</Link>
-                  </h3>
-                  <p>{a.detail}</p>
-                  <small>{a.status}</small>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="command-empty">
-              No exceptions in the available records.
-            </p>
-          )}
-          {alerts.length > 8 && (
-            <details>
-              <summary>View {alerts.length - 8} more exceptions</summary>
-              {alerts.slice(8).map((a) => (
-                <p key={a.id}>
-                  <Link href={a.href}>{a.title}</Link> · {time(a.at)} ·{" "}
-                  {a.status}
-                </p>
-              ))}
-            </details>
-          )}
-        </section>
-        <section className="command-panel" id="owner-activity">
-          <p className="eyebrow">ENGAGEMENT</p>
-          <h2>Activity in your date range</h2>
-          <div className="command-legend">
-            <span>Entries {count(c?.entriesUpdated)}</span>
-            <span>Packs {count(c?.packsOpened)}</span>
-            <span>Posts {count(c?.posts)}</span>
-          </div>
-          {days.length ? (
-            <>
-              <svg
-                className="command-chart"
-                viewBox="0 0 600 150"
-                role="img"
-                aria-label="Daily entry, pack and post activity. Exact counts are in the daily table."
-              >
-                <line
-                  x1="0"
-                  y1="145"
-                  x2="600"
-                  y2="145"
-                  stroke="currentColor"
-                  opacity=".2"
-                />
-                {days.map((d, i) => {
-                  const width = 600 / days.length;
-                  let bottom = 145;
-                  return (
-                    <g key={d.day}>
-                      <title>
-                        {d.day}: {d.entries} entries, {d.packs} packs, {d.posts}{" "}
-                        posts
-                      </title>
-                      {[d.entries, d.packs, d.posts].map((n, k) => {
-                        const height = (n / max) * 125;
-                        bottom -= height;
-                        return (
-                          <rect
-                            key={k}
-                            x={i * width + 1}
-                            y={bottom}
-                            width={Math.max(0.5, width - 2)}
-                            height={height}
-                            fill={["#238bff", "#31d0dc", "#b98bff"][k]}
-                            rx="1"
-                          />
-                        );
-                      })}
-                    </g>
-                  );
-                })}
-              </svg>
-              <div className="command-chart-dates">
-                <span>{days[0].day}</span>
-                <span>{days.at(-1)?.day}</span>
-              </div>
-              <details>
-                <summary>Daily activity table</summary>
-                <div
-                  className="operations-scroll"
-                  tabIndex={0}
-                  role="region"
-                  aria-label="Daily activity"
-                >
-                  <table>
-                    <thead>
-                      <tr>
-                        <th scope="col">Sydney date</th>
-                        <th scope="col">Entries updated</th>
-                        <th scope="col">Packs opened</th>
-                        <th scope="col">Posts</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {days.map((d) => (
-                        <tr key={d.day}>
-                          <th scope="row">{d.day}</th>
-                          <td>{d.entries}</td>
-                          <td>{d.packs}</td>
-                          <td>{d.posts}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </details>
-            </>
-          ) : (
-            <p>No daily reporting source available.</p>
-          )}
-          <p className="command-muted">
-            Entries use their latest saved update. Activity is not login
-            activity or retention.
-          </p>
-          <div className="command-mini">
-            <span>
-              New accounts{" "}
-              <strong>{count(data.metrics.newRegistrations)}</strong>
-            </span>
-            <span>
-              Suspended <strong>{count(c?.suspendedMembers)}</strong>
-            </span>
-          </div>
-        </section>
-      </div>
-      <section className="command-panel" id="owner-economy">
-        <div className="command-heading">
-          <div>
-            <p className="eyebrow">WALLET & COLLECTIBLES</p>
-            <h2>Test economy</h2>
-          </div>
-          <Link className="button ghost" href="/fantasy/test-wallet">
-            Inspect wallet records
-          </Link>
-        </div>
-        {w ? (
+    <>
+      <svg
+        className="owner-chart"
+        viewBox="0 0 400 155"
+        role="img"
+        aria-label={
+          cumulative
+            ? "Cumulative registered members, zero baseline"
+            : "Daily registrations, zero baseline"
+        }
+      >
+        <defs>
+          <linearGradient id="owner-growth-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop stopColor="#147aff" stopOpacity=".45" />
+            <stop offset="1" stopColor="#147aff" stopOpacity=".03" />
+          </linearGradient>
+        </defs>
+        {[0, 0.5, 1].map((f) => (
+          <g key={f}>
+            <line x1="38" x2="385" y1={125 - f * 110} y2={125 - f * 110} />
+            <text x="30" y={129 - f * 110} textAnchor="end">
+              {Math.round(max * f)}
+            </text>
+          </g>
+        ))}
+        {cumulative ? (
           <>
-            <div className="command-kpis">
-              <Metric
-                label="Issued"
-                value={w.issued}
-                detail="Lifetime test-ledger issuance"
-              />
-              <Metric
-                label="Spent / extinguished"
-                value={w.extinguished}
-                detail="Excludes member-to-member movement"
-              />
-              <Metric
-                label="Spendable"
-                value={w.spendable}
-                detail="Excludes holds, pending and reservations"
-              />
-              <Metric
-                label="Reconciliation difference"
-                value={w.difference}
-                detail={`${w.unbalancedTransactions} unbalanced journals`}
-              />
-            </div>
-            <div className="command-mini">
-              <span>
-                Pack spending <strong>{count(w.packSpend)} credits</strong>
-              </span>
-              <span>
-                Recorded fees <strong>{count(w.fees)} credits</strong>
-              </span>
-              <span>
-                Open listings <strong>{w.listings}</strong>
-              </span>
-              <span>
-                Open private offers <strong>{w.pendingOffers}</strong>
-              </span>
-            </div>
-            <details>
-              <summary>Issuance categories and balance definitions</summary>
-              <p>
-                Wallet totals are account-wide lifetime snapshots, including
-                staff. Pending: {count(w.pending)}. Reserved:{" "}
-                {count(w.reserved)}. Neither is spendable.
-              </p>
-              {Object.entries(w.categories).map(([name, n]) => (
-                <p key={name}>
-                  {name}: {count(n)} outstanding test credits
-                </p>
-              ))}
-              <p>
-                Category names record provenance; they do not establish cash
-                backing or redeemability.
-              </p>
-            </details>
+            <polygon
+              points={`40,125 ${points} 380,125`}
+              fill="url(#owner-growth-fill)"
+            />
+            <polyline
+              points={points}
+              fill="none"
+              stroke="#268bff"
+              strokeWidth="2.5"
+            />
           </>
         ) : (
-          <p>Wallet source unavailable. No estimated balance is shown.</p>
+          rows.map((r, i) => (
+            <rect
+              key={r.day}
+              x={40 + (i * 340) / rows.length}
+              y={125 - (r.registrations * 110) / max}
+              width={Math.max(1, 270 / rows.length)}
+              height={(r.registrations * 110) / max}
+              fill="#1685ff"
+            />
+          ))
         )}
-        <div className="command-rarity">
-          {c?.inventorySummary.map((r) => (
-            <article key={r.tier}>
-              <span>{r.tier.replaceAll("_", " ")}</span>
-              <strong>{count(r.issued)}</strong>
-              <small>
-                {r.tier === "CORE"
-                  ? "Issued · unlimited Core rules preserved"
-                  : `${count(r.cap - r.issued)} unissued across recorded editions`}
-              </small>
-            </article>
+        {[0, Math.floor((rows.length - 1) / 2), rows.length - 1]
+          .filter((v, i, a) => a.indexOf(v) === i)
+          .map((i) => (
+            <text
+              key={i}
+              x={40 + (i * 340) / Math.max(1, rows.length - 1)}
+              y="148"
+              textAnchor={
+                i === 0 ? "start" : i === rows.length - 1 ? "end" : "middle"
+              }
+            >
+              {rows[i].day.slice(5)}
+            </text>
           ))}
-        </div>
-        <p className="command-muted">
-          Issued supply includes sealed paid-pack allocations. Unissued capacity
-          does not guarantee purchasable stock.
-        </p>
-        <aside className="command-financial">
-          <strong>Real-money reporting unavailable</strong>
-          <p>
-            No connected commercial receipts or settlement source. Test credits,
-            simulated fees and pack spending are not revenue. Payments,
-            redemption and banking remain disabled.
-          </p>
-        </aside>
-      </section>
-      <div className="command-grid" id="owner-data">
-        <section className="command-panel">
-          <p className="eyebrow">SPORTS DATA</p>
-          <h2>Feed operations</h2>
-          <dl className="command-facts">
-            <div>
-              <dt>Latest NFL roster observation</dt>
-              <dd>{time(c?.lastRosterSync ?? null)}</dd>
-            </div>
-            <div>
-              <dt>Weekly Core rewards</dt>
-              <dd>
-                {c
-                  ? c.weeklyEnabled
-                    ? "Database enabled · application gate also required"
-                    : "Disabled"
-                  : "Unavailable"}
-              </dd>
-            </div>
-            <div>
-              <dt>Commercial provider approval</dt>
-              <dd>Not established by this report</dd>
-            </div>
-          </dl>
-          <p className="command-muted">
-            A roster observation is not evidence of complete scoring data or
-            licensed commercial use.
-          </p>
-          <details>
-            <summary>Worker history and job exceptions</summary>
-            {c?.workerRuns.length ? (
-              c.workerRuns.map((r) => (
-                <p key={r.id}>
-                  Run {r.id} · {r.status} · {time(r.started_at)} ·{" "}
-                  {r.finished_at
-                    ? `finished ${time(r.finished_at)}`
-                    : "No finish recorded"}
-                </p>
-              ))
-            ) : (
-              <p>No worker runs recorded.</p>
-            )}
-            {c?.feedJobs.map((j) => (
-              <p key={j.id}>
-                {j.provider} · {j.state} · {j.attempts} attempts ·{" "}
-                {j.error_code ?? "No error code"}
-                <br />
-                <small>Job {j.id}</small>
-              </p>
-            ))}
-          </details>
-        </section>
-        <section className="command-panel">
-          <div className="command-heading">
-            <div>
-              <p className="eyebrow">FANTASY</p>
-              <h2>Competitions & deadlines</h2>
-            </div>
-            <Link className="button ghost" href="/fantasy/standings">
-              Standings
-            </Link>
-          </div>
-          {!data.competitions.length ? (
-            <p>No competitions overlap this range.</p>
-          ) : (
-            <ul className="command-competitions">
-              {data.competitions.map((c) => (
-                <li key={c.id}>
-                  <strong>{c.name}</strong>
-                  <span>
-                    {c.sport.toUpperCase()} · Round {c.round} · {c.entries}{" "}
-                    entries
-                  </span>
-                  <span>
-                    Lock {time(c.locks_at)} ·{" "}
-                    {Date.parse(c.locks_at) <= Date.parse(data.generatedAt)
-                      ? "Locked"
-                      : "Upcoming"}
-                  </span>
-                  <small>
-                    {c.scored_entries}/{c.entries} score records · Verify
-                    finalisation in the competition record.
-                  </small>
-                </li>
-              ))}
-            </ul>
-          )}
-          <Link className="button ghost" href="/fantasy/admin">
-            Competition operations
-          </Link>
-        </section>
-      </div>
-      <section className="command-panel" id="owner-controls">
-        <p className="eyebrow">CONTROLLED WORKSPACES</p>
-        <h2>Operate Docked</h2>
-        <nav className="command-workspaces" aria-label="Operational workspaces">
-          <Link href="/admin/preview-testers">
-            <strong>Invitations & admission</strong>
-            <span>Manage approved beta access</span>
-          </Link>
-          <Link href="/admin/community/reports">
-            <strong>Moderation & reports</strong>
-            <span>Review evidence and audited actions</span>
-          </Link>
-          <Link href="/fantasy/admin">
-            <strong>Cards & competitions</strong>
-            <span>Existing permission-controlled operations</span>
-          </Link>
-          <Link href="/admin/redemptions">
-            <strong>Finance operations</strong>
-            <span>Restricted workspace · activation remains disabled</span>
-          </Link>
-          <Link href="/admin/analytics">
-            <strong>Consent-based analytics</strong>
-            <span>Available acquisition measurements</span>
-          </Link>
-          <Link href="/admin">
-            <strong>Staff portal</strong>
-            <span>Role-specific access and MFA</span>
-          </Link>
-        </nav>
-        <p className="command-muted">
-          Each workspace rechecks server-side permissions. No direct balance,
-          ownership or scarcity editing is provided here.
-        </p>
-      </section>
-      <details className="command-panel">
-        <summary>Reporting definitions, limitations & legacy inventory</summary>
-        {[...(c?.limitations ?? []), ...data.limitations].map((l, i) => (
-          <p key={i}>{l}</p>
-        ))}
-        <p>
-          Legacy day, week and month metrics use Sydney calendar boundaries, not
-          rolling retention.
-        </p>
-        <div
-          className="operations-scroll"
-          tabIndex={0}
-          role="region"
-          aria-label="Legacy inventory integrity"
-        >
-          <table>
-            <thead>
-              <tr>
-                <th>Player / edition</th>
-                <th>Rarity</th>
-                <th>Issued</th>
-                <th>Integrity</th>
+      </svg>
+      <details className="owner-chart-data">
+        <summary>Chart data</summary>
+        <table>
+          <caption>
+            {cumulative ? "Cumulative members" : "Daily registrations"}
+          </caption>
+          <thead>
+            <tr>
+              <th>Date · Sydney</th>
+              <th>Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.day}>
+                <td>{r.day}</td>
+                <td>{cumulative ? r.cumulative : r.registrations}</td>
               </tr>
-            </thead>
-            <tbody>
-              {data.inventory.map((e) => (
-                <tr key={e.id}>
-                  <th>
-                    {e.name}
-                    <small>
-                      {e.sport} · {e.season}
-                    </small>
-                  </th>
-                  <td>{e.tier}</td>
-                  <td>{e.issued}</td>
-                  <td>
-                    {e.issued === e.cards &&
-                    e.cards === e.distinct_serials &&
-                    e.issued <= e.max_supply
-                      ? "Reconciled"
-                      : "Review required"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </details>
+    </>
+  );
+}
+export function OwnerDashboard({
+  data,
+  displayName = "Admin",
+  siteUrl = "/",
+  period = "30",
+}: {
+  data: Operations | null;
+  displayName?: string;
+  siteUrl?: string;
+  period?: string;
+}) {
+  const report = data?.reference;
+  const healthy = ["database", "api", "web", "android", "jobs", "email"].every(
+    (id) =>
+      report?.health.some((item) => item.id === id && item.status === "passed"),
+  );
+  return (
+    <div className="owner-reference-dashboard">
+      <section className="owner-welcome">
+        <img src="/brand/docked/admin/three-sport-banner.webp" alt="" />
+        <div>
+          <h1>
+            Welcome back, {displayName} <span aria-hidden="true">👋</span>
+          </h1>
+          <p>Here’s what’s happening on Docked today.</p>
+        </div>
+        <div className="owner-banner-tagline" aria-hidden="true">
+          COLLECT.
+          <br />
+          BUILD.
+          <br />
+          COMPETE.
+        </div>
+        <div className="owner-live">
+          <a
+            className="admin-control"
+            href={siteUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Live Site <AdminIcon name="external" />
+          </a>
+          <span
+            className={healthy ? "owner-status passed" : "owner-status unknown"}
+          >
+            {healthy ? "All Systems Operational" : "System checks incomplete"}
+          </span>
+        </div>
+      </section>
+      <section className="owner-reference-kpis" aria-label="Executive metrics">
+        <Kpi
+          label="Total Users"
+          metric={report?.kpis.users}
+          icon="users"
+          colour="blue"
+        />
+        <Kpi
+          label="Packs Sold"
+          metric={report?.kpis.packs}
+          icon="pack"
+          colour="purple"
+        />
+        <Kpi
+          label="Revenue (AUD)"
+          metric={report?.kpis.revenue}
+          icon="wallet"
+          colour="green"
+        />
+        <Kpi
+          label="Marketplace Trades"
+          metric={report?.kpis.trades}
+          icon="market"
+          colour="cyan"
+        />
+        <Kpi
+          label="Total Cards in Circulation"
+          metric={report?.kpis.circulation}
+          icon="cards"
+          colour="violet"
+        />
+      </section>
+      <section className="owner-reference-charts" aria-label="Analytics">
+        <article className="owner-reference-panel">
+          <div className="owner-panel-title">
+            <h2>Revenue Overview</h2>
+            <OwnerPeriod label="Revenue reporting period" value={period} />
+          </div>
+          <div className="owner-chart-total">
+            {number(report?.kpis.revenue.current)}{" "}
+            <Change value={report?.kpis.revenue.changePercent} />
+          </div>
+          <div className="owner-revenue-empty">
+            <AdminIcon name="chart" />
+            <p>Settled AUD reporting is not connected.</p>
+            <small>Beta credits are excluded from revenue.</small>
+          </div>
+          <div className="owner-chart-legend">
+            <span>Pack sales</span>
+            <span>Marketplace fees</span>
+            <span>Other approved revenue</span>
+          </div>
+        </article>
+        <article className="owner-reference-panel">
+          <div className="owner-panel-title">
+            <h2>New Users</h2>
+            <OwnerPeriod label="New users reporting period" value={period} />
+          </div>
+          <div className="owner-chart-total">
+            {number(report?.newUsers.current)}{" "}
+            <Change value={report?.newUsers.changePercent} />
+          </div>
+          <RegistrationChart rows={report?.registrations ?? []} />
+        </article>
+        <article className="owner-reference-panel">
+          <div className="owner-panel-title">
+            <h2>User Growth</h2>
+            <OwnerPeriod label="User growth reporting period" value={period} />
+          </div>
+          <div className="owner-chart-total">
+            {number(report?.registrations.at(-1)?.cumulative)}
+          </div>
+          <RegistrationChart rows={report?.registrations ?? []} cumulative />
+        </article>
+      </section>
+      <section
+        className="owner-reference-middle"
+        aria-label="Commercial and member activity"
+      >
+        <article className="owner-reference-panel">
+          <Title href="/admin/workspace/packs">Pack Sales</Title>
+          <div className="owner-row-head">
+            <span>Pack</span>
+            <span>Sold</span>
+            <span>Test credits</span>
+          </div>
+          {report?.packSales.length ? (
+            report.packSales.slice(0, 3).map((pack) => (
+              <Link
+                className="owner-pack-row"
+                href={`/admin/workspace/packs?record=${encodeURIComponent(pack.id)}`}
+                key={pack.id}
+              >
+                <PackArtwork
+                  name={pack.name}
+                  premium={pack.type === "PREMIUM"}
+                  compact
+                />
+                <div>
+                  <strong>{pack.name}</strong>
+                  <small>
+                    {pack.cards} cards · {pack.sport.toUpperCase()}
+                  </small>
+                </div>
+                <b>{number(pack.sold)}</b>
+                <span>{number(pack.testCredits)}</span>
+              </Link>
+            ))
+          ) : (
+            <p className="owner-panel-empty">
+              No completed pack purchases in this reporting scope.
+            </p>
+          )}
+        </article>
+        <article className="owner-reference-panel">
+          <Title href="/admin/workspace/marketplace">
+            Top Cards <small>(selected period)</small>
+          </Title>
+          {report?.topCards.length ? (
+            report.topCards.slice(0, 5).map((card, i) => (
+              <Link
+                className="owner-card-row"
+                href={`/admin/workspace/cards?record=${encodeURIComponent(card.id)}`}
+                key={card.id}
+              >
+                <b className="owner-rank">{i + 1}</b>
+                <span className="owner-card-glyph" aria-hidden="true">
+                  <CollectibleFace
+                    card={
+                      card.thumbnail ?? {
+                        name: card.name,
+                        position: card.position,
+                        sport: card.sport,
+                        tier: card.rarity,
+                      }
+                    }
+                    variant="compact"
+                  />
+                </span>
+                <div>
+                  <strong>{card.name}</strong>
+                  <small>
+                    {card.sport.toUpperCase()} · {card.position}
+                  </small>
+                </div>
+                <small>{card.sales} sales</small>
+                <span>
+                  {number(card.testCredits)}
+                  <small>test credits</small>
+                </span>
+              </Link>
+            ))
+          ) : (
+            <p className="owner-panel-empty">
+              No completed card sales in this reporting scope.
+            </p>
+          )}
+        </article>
+        <article className="owner-reference-panel">
+          <Title href="/admin/workspace/analytics">Recent Activity</Title>
+          {report?.recent.length ? (
+            report.recent.slice(0, 5).map((item) => (
+              <Link
+                className="owner-activity-row"
+                href={item.href}
+                key={item.id}
+              >
+                <span
+                  className={`owner-activity-icon tone-${item.kind === "report" ? "red" : "blue"}`}
+                >
+                  <AdminIcon
+                    name={
+                      item.kind === "registration"
+                        ? "users"
+                        : item.kind === "pack"
+                          ? "pack"
+                          : item.kind === "report"
+                            ? "shield"
+                            : "file"
+                    }
+                  />
+                </span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <small>{item.detail}</small>
+                </div>
+                <time dateTime={item.at}>
+                  {activityAge(item.at, report.generatedAt)}
+                </time>
+              </Link>
+            ))
+          ) : (
+            <p className="owner-panel-empty">
+              No recent activity is available.
+            </p>
+          )}
+        </article>
+      </section>
+      <section
+        className="owner-reference-bottom"
+        aria-label="Operational controls"
+      >
+        <article className="owner-reference-panel">
+          <Title>Platform Health</Title>
+          <div className="owner-health-grid">
+            {(
+              report?.health ??
+              [
+                "Database",
+                "API",
+                "Web application",
+                "Android application",
+                "Background jobs",
+                "Email service",
+              ].map((label) => ({
+                id: label,
+                label,
+                status: "unknown",
+                detail: "Check unavailable",
+                href: "/admin/workspace/settings",
+              }))
+            ).map((item) => (
+              <Link key={item.id} href={item.href} title={item.detail}>
+                <span
+                  className={`owner-status-dot ${item.status}`}
+                  aria-label={item.status}
+                >
+                  {item.status === "passed" ? "✓" : "?"}
+                </span>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </article>
+        <article className="owner-reference-panel">
+          <Title href="/admin/workspace/moderation">Moderation Queue</Title>
+          <div className="owner-moderation-grid">
+            {(
+              [
+                { key: "content", name: "Reported Content", icon: "shield" },
+                { key: "members", name: "User Reviews", icon: "users" },
+                { key: "listings", name: "Card Listings", icon: "cards" },
+              ] as const
+            ).map((item) => (
+              <Link
+                href={`/admin/community/reports?kind=${item.key}`}
+                key={item.key}
+              >
+                <span>
+                  <AdminIcon name={item.icon} />
+                  <b
+                    aria-label={
+                      report?.moderation[item.key] == null
+                        ? "Unavailable"
+                        : undefined
+                    }
+                    title={
+                      report?.moderation[item.key] == null
+                        ? "Case source unavailable"
+                        : undefined
+                    }
+                  >
+                    {report?.moderation[item.key] == null
+                      ? "—"
+                      : number(report.moderation[item.key])}
+                  </b>
+                </span>
+                <small>{item.name}</small>
+              </Link>
+            ))}
+          </div>
+        </article>
+        <article className="owner-reference-panel">
+          <Title>Quick Actions</Title>
+          <div className="owner-quick-actions">
+            {[
+              {
+                label: "Issue Credits",
+                href: "/admin/workspace/rewards?action=issue",
+                icon: "credits",
+              },
+              {
+                label: "Send Announcement",
+                href: "/admin/workspace/communications?action=draft",
+                icon: "send",
+              },
+              {
+                label: "Manage Packs",
+                href: "/admin/workspace/packs",
+                icon: "pack",
+              },
+              {
+                label: "View Reports",
+                href: "/admin/workspace/analytics",
+                icon: "chart",
+              },
+            ].map((item) => (
+              <Link className="admin-control" key={item.label} href={item.href}>
+                <AdminIcon name={item.icon} />
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </article>
+      </section>
+      <footer className="owner-reference-freshness">
+        {data?.scope === "beta"
+          ? "Invited beta · test-credit activity"
+          : "Reporting unavailable"}{" "}
+        ·{" "}
+        {report
+          ? `Updated ${new Date(report.generatedAt).toLocaleString("en-AU", { timeZone: "Australia/Sydney" })} Sydney`
+          : "No estimated totals"}{" "}
+        · Charts share the selected period.
+      </footer>
+      <OwnerDetailDisclosure>
+        <OwnerOperationsDetail data={data} />
+        {report?.limitations.map((text) => (
+          <p key={text}>{text}</p>
+        ))}
+      </OwnerDetailDisclosure>
     </div>
   );
 }

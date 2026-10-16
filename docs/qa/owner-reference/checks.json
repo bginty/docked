@@ -1,0 +1,14 @@
+{
+  "platform": {"passed":436,"failed":0,"exitCode":0,"log":"platform.txt"},
+  "database": {"passed":166,"failed":0,"exitCode":0,"log":"database.txt","scope":"isolated PGlite, one worker, no hosted writes"},
+  "typecheck": {"exitCode":0,"log":"typecheck-latest.txt"},
+  "lint": {"exitCode":0,"log":"lint-final.txt","scope":"full src, scripts and tests"},
+  "build": {"exitCode":0,"log":"build-latest-run.txt","scope":"isolated clean environment, latest accepted source"},
+  "clientBoundary": {"passed":true,"browserAssets":63,"log":"client-boundary.txt"},
+  "broadSecretScan": {"status":"FAIL","findings":9,"inspected":3972,"log":"secret-scan.json","note":"Existing findings remain; capability note untracked and excluded from commit."},
+  "browser": {"passed":true,"widths":[1536,1440,1024,412,360],"seriousOrCriticalAxeFindings":0,"evidence":"final/acceptance.json","scope":"production components with isolated synthetic aggregates, not hosted auth"},
+  "productionModified":false,
+  "physicalSamsungTested":false,
+  "hostedMfaAccepted":false,
+  "knownLimits":"See OWNER_REFERENCE_HANDOVER.md; absent revenue/health sources and restricted operations are not marked complete."
+}

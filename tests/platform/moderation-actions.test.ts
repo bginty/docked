@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   moderationActions,
   filterModerationReports,
+  moderationQueueKind,
   type SocialReport,
 } from "../../src/core/community-social";
 import { readFileSync } from "node:fs";
@@ -61,7 +62,7 @@ test("moderation filters intersect and staff evidence stays behind the AAL2 serv
   );
   assert.ok(
     guarded.indexOf("await requireRole") <
-      guarded.indexOf("tx.unsafe(moderationReportsQuery)"),
+      guarded.indexOf("tx.unsafe(moderationQueueReportsQuery(kind))"),
   );
   assert.match(
     readFileSync("src/server/auth.ts", "utf8"),
@@ -71,6 +72,39 @@ test("moderation filters intersect and staff evidence stays behind the AAL2 serv
     readFileSync("src/app/api/community/route.ts", "utf8"),
     /communityModeration|moderationReportsQuery/,
   );
+});
+
+test("dashboard moderation groups preserve outstanding content/member boundaries", () => {
+  const reports = [
+    { id: "post", targetType: "post", status: "open" },
+    { id: "comment", targetType: "comment", status: "escalated" },
+    { id: "resolved", targetType: "post", status: "dismissed" },
+    { id: "member", targetType: "profile", status: "open" },
+  ].map((report) => ({
+    ...report,
+    targetId: report.id,
+    reason: "spam",
+    details: "",
+    createdAt: "2026-10-16",
+  }));
+  assert.deepEqual(
+    filterModerationReports(reports, {
+      status: "outstanding",
+      type: "content",
+      search: "",
+    }).map((report) => report.id),
+    ["post", "comment"],
+  );
+  assert.deepEqual(
+    filterModerationReports(reports, {
+      status: "outstanding",
+      type: "profile",
+      search: "",
+    }).map((report) => report.id),
+    ["member"],
+  );
+  assert.equal(moderationQueueKind("listings"), "listings");
+  assert.equal(moderationQueueKind("untrusted"), undefined);
 });
 
 test("moderation offers only the existing server-authorised actions for each target", () => {

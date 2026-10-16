@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: staff queue query returns current content and bounded audit history without private credentials
+ok 1 - staff queue query returns current content and bounded audit history without private credentials
+  ---
+  duration_ms: 6435.1984
+  ...
+# Subtest: dashboard queue categories filter outstanding reports before the 100-record limit
+ok 2 - dashboard queue categories filter outstanding reports before the 100-record limit
+  ---
+  duration_ms: 62.1159
+  ...
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 3 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 30.7842
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 4 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 22.0602
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+ok 5 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 20.9356
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+ok 6 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 7.2412
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+ok 7 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 13.0498
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+ok 8 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 20.1967
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 9 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 48.3177
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 10 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 18.8563
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 11 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 26.8316
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 12 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 26.7468
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 13 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 16.6727
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 14 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 11.5279
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 15 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 6.8413
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 16 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 16.4441
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 17 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 16.0166
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 18 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 6.133
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+ok 19 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 27.9709
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+ok 20 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 6.7727
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 21 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 49.402
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8303.53

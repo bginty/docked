@@ -1,4 +1,5 @@
 import "server-only";
+import { readOwnerReferenceData } from "./owner-reference-data";
 import { requireRole } from "./auth";
 import { db } from "./db";
 import { operationFilters, type Operations } from "../core/owner-operations";
@@ -19,7 +20,7 @@ export async function ownerOperations(
       await tx`select private.owner_command_centre(${filters.startAt}::timestamptz,${filters.endAt}::timestamptz,${filters.sport === "all" ? null : filters.sport},${filters.staff === "true"}) value`;
     const [state] =
       await tx`select document from credits_sandbox.state where id`;
-    return {
+    const operations = {
       ...r.value,
       competitions: (r.value.competitions as Operations["competitions"]).map(
         (competition) => ({
@@ -37,6 +38,15 @@ export async function ownerOperations(
           )
         : null,
     } as Operations;
+    return {
+      ...operations,
+      reference: await readOwnerReferenceData(
+        tx,
+        filters,
+        state?.document ?? null,
+        operations,
+      ),
+    };
   });
   return { filters, data: data as Operations };
 }

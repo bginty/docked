@@ -12,16 +12,24 @@ import { communityAction } from "./social-interactions";
 export function ModerationPanel({
   data,
   canWrite,
+  initialKind,
 }: {
   data: CommunityModeration;
   canWrite: boolean;
+  initialKind?: "content" | "members";
 }) {
   const [message, setMessage] = useState(""),
     [busy, setBusy] = useState(false);
   const sending = useRef(false);
   const router = useRouter();
-  const [status, setStatus] = useState("");
-  const [type, setType] = useState("");
+  const [status, setStatus] = useState(initialKind ? "outstanding" : "");
+  const [type, setType] = useState(
+    initialKind === "members"
+      ? "profile"
+      : initialKind === "content"
+        ? "content"
+        : "",
+  );
   const [search, setSearch] = useState("");
   const reports = filterModerationReports(data.reports, {
     status,
@@ -88,8 +96,8 @@ export function ModerationPanel({
           ))}
         </div>
         <p className="small-note">
-          Counts cover up to 100 loaded reports and 50 queued images. Escalated and open
-          reports appear first.
+          Counts cover up to 100 loaded reports and 50 queued images. Escalated
+          and open reports appear first.
         </p>
         <div className="moderation-filters app-form">
           <label>
@@ -105,6 +113,7 @@ export function ModerationPanel({
             Report status
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
               <option value="">All statuses</option>
+              <option value="outstanding">Open & escalated</option>
               {["open", "escalated", "actioned", "dismissed"].map((v) => (
                 <option key={v}>{v}</option>
               ))}
@@ -114,6 +123,7 @@ export function ModerationPanel({
             Content type
             <select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="">All types</option>
+              <option value="content">Posts, comments & media</option>
               {["post", "comment", "profile", "media"].map((v) => (
                 <option key={v}>{v}</option>
               ))}

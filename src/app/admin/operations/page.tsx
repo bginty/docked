@@ -1,7 +1,10 @@
 import { ownerOperations } from "@/server/owner-operations";
 import { requireRole } from "@/server/auth";
-import { AppShell } from "@/components/app-shell";
+import { AdminShell } from "@/components/admin-shell";
 import { OwnerDashboard } from "@/components/owner-dashboard";
+import { ownerReportPeriod } from "@/core/owner-report-period";
+import { adminDisplayName } from "@/server/admin-display-name";
+import { adminUnreadNotifications } from "@/server/admin-unread-notifications";
 import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 export const metadata = {
@@ -13,17 +16,22 @@ export default async function OperationsPage({
 }: {
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
+  let who;
   try {
-    await requireRole(["owner"]);
+    who = await requireRole(["owner"]);
   } catch {
     notFound();
   }
-  const query = await searchParams;
+  const [displayName, unreadCount] = await Promise.all([
+    adminDisplayName(who),
+    adminUnreadNotifications(),
+  ]);
+  const selected = ownerReportPeriod(await searchParams);
   try {
     const { filters, data } = await ownerOperations({
-      ...query,
+      ...selected.query,
       scope:
-        query.scope ??
+        selected.query.scope ??
         (process.env.DOCKED_BETA_STAGING === "true" ? "beta" : "live"),
     });
     const params = new URLSearchParams({
@@ -34,13 +42,26 @@ export default async function OperationsPage({
       staff: filters.staff,
     });
     return (
-      <AppShell authenticated>
-        <section className="scoring-review owner-command-page">
-          <p className="eyebrow">DOCKED OPERATIONS</p>
-          <h1>Owner Command Centre</h1>
-          <p className="command-muted">
-            Platform health, member activity and controlled operations.
-          </p>
+      <AdminShell
+        role={who.role}
+        displayName={displayName}
+        moderationCount={
+          data?.reference
+            ? data.reference.moderation.content +
+              data.reference.moderation.members
+            : 0
+        }
+        unreadCount={unreadCount}
+        build={process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7)}
+      >
+        <OwnerDashboard
+          data={data}
+          displayName={displayName}
+          siteUrl={process.env.SITE_URL ?? "/"}
+          period={selected.period}
+        />
+        <details className="owner-reference-detail">
+          <summary>Advanced reporting filters & export</summary>
           <form className="scoring-controls">
             <label>
               From · Sydney
@@ -82,33 +103,31 @@ export default async function OperationsPage({
                 <option value="true">Include owner/admin</option>
               </select>
             </label>
-            <button className="button">Apply filters</button>
+            <button className="admin-control">Apply filters</button>
           </form>
-          <p className="command-actions">
-            <a
-              className="button ghost"
-              href={`/api/admin/operations?${params}&format=csv`}
-            >
-              Download inventory CSV
-            </a>
-            <a className="button ghost" href="/fantasy/profile">
-              Back to Profile
-            </a>
-          </p>
-          <OwnerDashboard data={data} />
-        </section>
-      </AppShell>
+          <a
+            className="admin-control"
+            href={`/api/admin/operations?${params}&format=csv`}
+          >
+            Download inventory CSV
+          </a>
+        </details>
+      </AdminShell>
     );
   } catch {
     return (
-      <AppShell authenticated>
-        <h1>Report unavailable</h1>
-        <p>
-          Check the date range and try again. No cached or estimated totals are
-          shown.
-        </p>
-        <a href="/admin/operations">Reset report filters</a>
-      </AppShell>
+      <AdminShell role={who.role} displayName={displayName}>
+        <section className="scoring-review">
+          <h1>Report unavailable</h1>
+          <p>
+            Check the date range and try again. No cached or estimated totals
+            are shown.
+          </p>
+          <a className="admin-control" href="/admin/operations">
+            Reset report filters
+          </a>
+        </section>
+      </AdminShell>
     );
   }
 }

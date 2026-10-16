@@ -8,10 +8,18 @@ export const metadata = {
 };
 export default async function Page({
   params,
+  searchParams,
 }: {
   params: Promise<{ section: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { section } = await params;
   if (!communityAdminSections.some(([id]) => id === section)) notFound();
-  return <CommunityAdminPage section={section} />;
+  const query = await searchParams;
+  return (
+    <CommunityAdminPage
+      section={section}
+      kind={typeof query.kind === "string" ? query.kind : undefined}
+    />
+  );
 }

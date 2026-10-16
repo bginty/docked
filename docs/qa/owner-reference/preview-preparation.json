@@ -1,0 +1,28 @@
+{
+  "status": "prepared-not-deployed",
+  "checkedSydneyDate": "2026-10-17",
+  "vercel": {
+    "project": "docked-preview",
+    "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+    "ssoProtectionEnabled": true,
+    "ssoDeploymentType": "all",
+    "domains": [],
+    "live": false,
+    "source": "fresh read-only Vercel get_project response"
+  },
+  "supabase": {
+    "previouslyEstablishedIsolatedProject": "bckkllmndoxzpzdqrevb",
+    "liveBetaProjectNotModified": "pojoymtniryarxxunyvz",
+    "freshReadStatus": "connector-permission-denied",
+    "currentIsolationAndOwnerReadinessReverified": false,
+    "previousOwnerSetup": "email/password/MFA incomplete in isolated Preview at last successful check",
+    "hostedMigrationsApplied": false
+  },
+  "migrationsInOrder": [
+    "20261016124504_owner_reference_reporting.sql",
+    "20261016125231_admin_search_projection.sql"
+  ],
+  "productionChanged": false,
+  "financialFeaturesActivated": false,
+  "hostedMemberAssetsMutated": false
+}

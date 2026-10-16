@@ -25,5 +25,17 @@ left join lateral (
  where e.target_type=r.target_type and e.target_id=r.target_id
  order by e.created_at desc,e.id desc limit 20) h
 ) history on true
+/* dashboard-queue-filter */
 order by case when r.status='escalated' then 0 when r.status='open' then 1 else 2 end,r.created_at desc,r.id desc
 limit 100`;
+
+/** Closed permitlist: dashboard categories are filtered before the bounded queue limit. */
+export function moderationQueueReportsQuery(kind?: "content" | "members") {
+  const filter =
+    kind === "content"
+      ? "where r.target_type in ('post','comment','media') and r.status in ('open','escalated')"
+      : kind === "members"
+        ? "where r.target_type='profile' and r.status in ('open','escalated')"
+        : "";
+  return moderationReportsQuery.replace("/* dashboard-queue-filter */", filter);
+}

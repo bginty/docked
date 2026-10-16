@@ -1,0 +1,12 @@
+tests/platform/owner-report-period.test.ts(7,76): error TS2345: Argument of type 'DateTime<true> | DateTime<false>' is not assignable to parameter of type 'DateTime<true> | undefined'.
+  Type 'DateTime<false>' is not assignable to type 'DateTime<true>'.
+    Type 'false' is not assignable to type 'true'.
+tests/platform/owner-report-period.test.ts(8,50): error TS2345: Argument of type 'DateTime<true> | DateTime<false>' is not assignable to parameter of type 'DateTime<true> | undefined'.
+  Type 'DateTime<false>' is not assignable to type 'DateTime<true>'.
+    Type 'false' is not assignable to type 'true'.
+tests/platform/owner-report-period.test.ts(9,72): error TS2345: Argument of type 'DateTime<true> | DateTime<false>' is not assignable to parameter of type 'DateTime<true> | undefined'.
+  Type 'DateTime<false>' is not assignable to type 'DateTime<true>'.
+    Type 'false' is not assignable to type 'true'.
+tests/platform/owner-report-period.test.ts(10,49): error TS2345: Argument of type 'DateTime<true> | DateTime<false>' is not assignable to parameter of type 'DateTime<true> | undefined'.
+  Type 'DateTime<false>' is not assignable to type 'DateTime<true>'.
+    Type 'false' is not assignable to type 'true'.

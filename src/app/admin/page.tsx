@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { requireRole } from "@/server/auth";
 import { AppAuthShell } from "@/components/app-auth-shell";
-import { AppShell } from "@/components/app-shell";
+import { AdminShell } from "@/components/admin-shell";
+import { adminDisplayName } from "@/server/admin-display-name";
+import { adminUnreadNotifications } from "@/server/admin-unread-notifications";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Fantasy operations",
@@ -20,8 +22,16 @@ export default async function Admin() {
       </AppAuthShell>
     );
   }
+  const [displayName, unreadCount] = await Promise.all([
+    adminDisplayName(who),
+    adminUnreadNotifications(),
+  ]);
   return (
-    <AppShell authenticated>
+    <AdminShell
+      role={who.role}
+      displayName={displayName}
+      unreadCount={unreadCount}
+    >
       <section className="scoring-review owner-command-page">
         <p className="eyebrow">RESTRICTED OPERATIONS</p>
         <h1>Staff portal</h1>
@@ -55,6 +65,6 @@ export default async function Admin() {
           remains separately gated.
         </p>
       </section>
-    </AppShell>
+    </AdminShell>
   );
 }
