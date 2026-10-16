@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-16T23:41:50.218Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "applied": true,
+  "target": "ef641248-67be-4c32-9b12-9205bfcee15b",
+  "account": "bazzzzz",
+  "role": "admin",
+  "mfaEnrolled": false,
+  "access": {
+    "admitted": true,
+    "identity": true,
+    "mfa_required": true,
+    "luke_admitted": true,
+    "luke_mfa_required": false
+  },
+  "ownerCommandCentre": "owner-only",
+  "assetsUnchanged": true,
+  "otherRolesUnchanged": true,
+  "admissionsUnchanged": true,
+  "migration": "20261016233803_delegated_beta_admin_admission.sql",
+  "sourceHash": "ff874e628338bb1c5d30f1357764bb7450c44add31dfcc079bd8c046b1865fa6",
+  "authority": "Owner request 17 October 2026: give Barry admin access to see dashboard and admin tools; existing owner-only permissions and MFA retained."
+}

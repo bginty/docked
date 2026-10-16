@@ -2,7 +2,7 @@
 
 The exact thirteen-item navigation reuses the existing `owner`, `admin`, `analyst`, `editor` and `auditor` roles. No new authority system or generic super-admin permission was added. Every workspace checks the current server role and AAL2 before rendering; the sidebar is a convenience, not the access boundary.
 
-Current live beta admission allows the owner as the privileged staff member. The matrix below describes service permissions after admission; it does not enable non-owner staff admission. Genuine local AAL2 role-revocation checks confirm immediate denial after owner-to-auditor changes. See [current completion handover](ADMIN_COMPLETION_HANDOVER.md).
+Current live beta admission allows the owner and explicitly approved named administrators. Barry now has an audited named admin grant; all privileged operations still require MFA and current role checks. The matrix describes service permissions after admission and does not itself grant access. See [Barry access and MFA status](BARRY_ADMIN_ACCESS.md) and the [completion handover](ADMIN_COMPLETION_HANDOVER.md).
 
 ## Permissions matrix
 
@@ -62,3 +62,4 @@ The migration is additive and read-only: `20261016125231_admin_search_projection
 ## Evidence and limits
 
 `tests/database/admin-search.test.ts` executes the actual migration against isolated SQL fixtures and checks real records, role categories, AAL1/inactive denial, direct table denial, anonymous execute denial, safe field projection, literal-injection strings and deterministic pagination. Its active-session adapter is isolated; the existing full authentication/RLS suites remain required for actual session semantics. `tests/platform/admin-navigation.test.ts` covers exact navigation order, permission routing, bounded inputs and activation boundaries. Browser interaction evidence is recorded separately by the owner-reference acceptance harness. No hosted member record was changed or announcement delivered.
+

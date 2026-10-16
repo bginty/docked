@@ -1,5 +1,7 @@
 # Docked remaining-work follow-up — 17 October 2026
 
+> Subsequent owner instruction: Barry was explicitly granted standard admin access with a named beta admission. MFA setup remains pending; the separate Owner Command Centre remains owner-only. See [BARRY_ADMIN_ACCESS.md](BARRY_ADMIN_ACCESS.md). This supersedes the owner-only staff admission limitation below for Barry specifically.
+
 This report supplements the historical pre-launch and exact-dashboard handovers. The user's subsequent instruction makes the existing invited live beta the release destination. The unused Preview projects remain intact; their setup is no longer a prerequisite for this live-beta workflow. This does not authorise commercial payments, public registration, unrestricted trading, or changes to existing member assets.
 
 ## Verified live release
@@ -66,3 +68,4 @@ Genuine local role-revocation acceptance also passed: changing the isolated owne
 - [Android/payments readiness](PRELAUNCH_ANDROID_PAYMENTS.md), [provider readiness](PROVIDER_READINESS.md), and [security audit](PRELAUNCH_BACKEND_SECURITY_AUDIT.md).
 
 Unavailable broader workspaces remain explicitly labelled: separate support-case and appeal-intake systems, a general CMS approval system, arbitrary configuration editing and financial correction execution. These are not represented as implemented features. Financial execution, broadcast delivery and non-owner staff activation require their approved policies; physical and hosted-user acceptance require external access/evidence.
+
