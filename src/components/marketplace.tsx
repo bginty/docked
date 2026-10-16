@@ -1,4 +1,5 @@
 "use client";
+import { competitionNames } from "@/core/competition-display";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { MarketplaceView } from "@/core/marketplace";
@@ -949,12 +950,12 @@ export function Marketplace({ member }: { member: string }) {
           <p>{detail.card.availability}</p>
           <p>{detail.card.gameplay}</p>
           <p>
-            Salary Cap fantasy salary:{" "}
+            {competitionNames.SALARY_CAP} fantasy salary:{" "}
             {detail.card.salary === null
               ? "Unavailable"
               : detail.card.salary.toLocaleString("en-AU")}{" "}
             · {detail.card.salaryRules ?? "Rules unavailable"}. This is a roster
-            budget, not Docked Credits or a charge. Open has no salary cap.
+            budget, not Docked Credits or a charge. {competitionNames.OPEN} has no salary cap.
           </p>
           <p>
             Asking price: {credits(detail.price)} Docked Credits ·{" "}

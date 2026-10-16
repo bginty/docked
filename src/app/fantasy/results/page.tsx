@@ -1,24 +1,25 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
-import { postgameResults, nflStandings } from "@/server/postgame-results";
+import { postgameResults, nflStandings, playStandings } from "@/server/postgame-results";
 import { fantasyRequest } from "@/server/fantasy";
 import { CompetitionResults } from "@/components/competition-results";
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "NFL results & leaderboards",
+  title: "Standings · Traditional & All-Star",
   robots: { index: false, follow: false },
 };
 export default async function Page({
   searchParams,
 }: {
-  searchParams: Promise<{ competition?: string }>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const query = await searchParams;
   try {
-    const [{ state }, records, standings] = await Promise.all([
+    const [{ state }, records, standings, weekly] = await Promise.all([
       fantasyRequest(),
       postgameResults(),
       nflStandings(),
+      playStandings(),
     ]);
     return (
       <AppShell authenticated>
@@ -27,6 +28,8 @@ export default async function Page({
           records={records}
           standings={standings}
           initial={query.competition}
+          selection={query}
+          weekly={weekly}
         />
       </AppShell>
     );

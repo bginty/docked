@@ -1,4 +1,5 @@
 "use client";
+import { competitionLabel } from "@/core/competition-display";
 import { createPortal } from "react-dom";
 import { PortfolioSummary } from "./portfolio-summary";
 import { useWorkspaceWallet } from "./use-workspace-wallet";
@@ -548,7 +549,7 @@ export function FantasyScreen({
                     .filter((c) => !c.scored_at)
                     .map((c) => (
                       <option key={c.id} value={c.id}>
-                        {c.name}
+                        {competitionLabel(c)}
                       </option>
                     ))}
                 </select>
@@ -1458,7 +1459,7 @@ export function FantasyScreen({
                       .filter((c) => !c.scored_at)
                       .map((c) => (
                         <option key={c.id} value={c.id}>
-                          {c.name} · {stamp(c.locks_at)}
+                          {competitionLabel(c)} · {stamp(c.locks_at)}
                         </option>
                       ))}
                   </select>

@@ -1,4 +1,5 @@
 "use client";
+import { competitionNames } from "@/core/competition-display";
 import type { FantasyState } from "@/core/fantasy";
 export function FantasyRewards({
   rewards,
@@ -32,7 +33,7 @@ export function FantasyRewards({
         <p>
           Ten free CORE cards: 2 QB, 3 RB, 3 WR and 2 TE. Start seven, including
           one FLEX. Free test cards have no cash value. Core scores at 1.0×.
-          Salary Cap and Open apply rarity multipliers; legacy equal-scoring
+          {competitionNames.SALARY_CAP} and {competitionNames.OPEN} apply rarity multipliers; legacy equal-scoring
           competitions retain their saved rules.
         </p>
         {!rewards.starter_claimed ? (

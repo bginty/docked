@@ -1,4 +1,6 @@
 "use client";
+import { competitionName, competitionLabel } from "@/core/competition-display";
+import { slotPool, filterSlotPool } from "@/core/lineup-picker";
 import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 
@@ -8,7 +10,6 @@ import {
   availability,
   cardIdentity,
   sevenEligibility,
-  sevenPositions,
 } from "@/core/card-display";
 
 import { useCallback, useEffect, useState } from "react";
@@ -32,7 +33,7 @@ import {
   PlayerShirt,
 } from "./fantasy-player-sheet";
 
-import { displayCity } from "@/core/card-presentation";
+import { teamFilter } from "@/core/card-presentation";
 
 import { LocalDateTime } from "./local-date-time";
 
@@ -96,6 +97,25 @@ export function NflSevenPlay({
     [notice, setNotice] = useState(""),
     [list, setList] = useState(false);
 
+  const [teamName, setTeamName] = useState(data.team_name ?? "");
+  const [editingName, setEditingName] = useState(false);
+  const [pickerPage, setPickerPage] = useState(1);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setChosen(params.get("competition") ?? "");
+  }, []);
+  function openSlot(id: string) {
+    setSlot(id);
+    setSearch("");
+    setTeam("");
+    setTier("");
+    setPosition("");
+    setSort("name");
+    setPickerPage(1);
+  }
+  useEffect(() => {
+    setPickerPage(1);
+  }, [search, team, tier, position, sort]);
   const [profile, setProfile] = useState<{
     card: string;
     slot: string;
@@ -379,16 +399,78 @@ export function NflSevenPlay({
   if (!comp || !data.seven)
     return (
       <section className="fantasy-panel">
-        <h2>{mode === "OPEN" ? "Open" : "Salary Cap"}</h2>
+        <h2>{competitionName(mode)}</h2>
 
         <p>No verified upcoming round is available yet.</p>
       </section>
     );
 
+  const pool = slot
+    ? slotPool(data.seven.inventory, data.user_id, comp, slot, cfg)
+    : [];
+  const filtered = filterSlotPool(pool, { search, team, tier, position }).sort(
+    (a, b) => {
+      const availabilityOrder = Number(!!candidate(a)) - Number(!!candidate(b));
+      return (
+        availabilityOrder ||
+        (sort === "salary"
+          ? salary(a.tier, cfg) - salary(b.tier, cfg)
+          : sort === "rarity"
+            ? rarityRule(b.tier).multiplierTenths -
+              rarityRule(a.tier).multiplierTenths
+            : a.name.localeCompare(b.name)) ||
+        a.id.localeCompare(b.id)
+      );
+    },
+  );
+  const page = Math.min(
+    pickerPage,
+    Math.max(1, Math.ceil(filtered.length / 20)),
+  );
+  const teams = [
+    ...new Map(
+      pool.map((c) => {
+        const t = teamFilter(c.team);
+        return [t.key, t];
+      }),
+    ).values(),
+  ].sort((a, b) => a.label.localeCompare(b.label));
   return (
     <section className="fantasy-play seven-play">
       <header className="play-heading compact-entry-heading">
-        <strong>{data.team_name ?? "Your team"}</strong>
+        <div className="lineup-team-name">
+          <small>Team name</small>
+          <strong>{data.team_name || "Unnamed team"}</strong>
+          <button
+            className="play-support"
+            aria-label="Edit team name"
+            onClick={() => setEditingName(!editingName)}
+          >
+            Edit
+          </button>
+          {editingName && (
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const result = await act("name_team", {
+                  name: teamName.trim(),
+                });
+                if (result) setEditingName(false);
+              }}
+            >
+              <label>
+                Team name
+                <input
+                  value={teamName}
+                  maxLength={40}
+                  onChange={(e) => setTeamName(e.target.value)}
+                  required
+                />
+              </label>
+              <button disabled={busy || !teamName.trim()}>Save name</button>
+            </form>
+          )}
+        </div>
         <span className="entry-badge" role="status">
           {draftState}
         </span>
@@ -400,6 +482,9 @@ export function NflSevenPlay({
 
           onChange={(e) => {
             setChosen(e.target.value);
+            const url = new URL(window.location.href);
+            url.searchParams.set("competition", e.target.value);
+            window.history.replaceState(null, "", url);
 
             setNotice("");
           }}
@@ -471,14 +556,14 @@ export function NflSevenPlay({
                           candidate: false,
                         });
                       else {
-                        setSlot(s.id);
-                        setSearch("");
+                        openSlot(s.id);
                       }
                     }}
                     aria-label={`${s.id}: ${card?.name ?? "Choose owned card"}${card ? ", " + card.tier + ", " + cardIdentity(card) : ""}${locked ? ", locked" : ""}`}
                   >
                     {card ? (
                       <CollectibleFace
+                        showNumber={false}
                         card={card}
                         appliedMultiplier={
                           card.multiplier ??
@@ -520,7 +605,7 @@ export function NflSevenPlay({
           <div className="seven-budget">
             {mode === "SALARY_CAP" ? (
               <>
-                <span className="budget-label">Salary Cap</span>
+                <span className="budget-label">{competitionName(mode)}</span>
                 <h2>
                   <FantasyAmount value={check.remaining} />
                 </h2>
@@ -540,11 +625,11 @@ export function NflSevenPlay({
                   {((100 * check.total) / cfg.salaryCap).toFixed(1)}% used
                 </p>
 
-                <small>Fantasy salary · no credit charge.</small>
+                <small>Fantasy salary.</small>
               </>
             ) : (
               <>
-                <strong>No Salary Cap · 1.0×–1.5×</strong>
+                <strong>No salary cap</strong>
               </>
             )}
           </div>
@@ -725,7 +810,7 @@ export function NflSevenPlay({
 
                     .map((c) => (
                       <option value={c.id} key={c.id}>
-                        {c.name}
+                        {competitionLabel(c)}
                       </option>
                     ))}
                 </select>
@@ -809,20 +894,24 @@ export function NflSevenPlay({
                   : "Awaiting game"}
             </p>
             <small>Post-game scoring · pending statistics stay pending.</small>
-            <Link href={`/fantasy/results?competition=${comp.id}`}>
+            <Link
+              className="play-secondary"
+              href={`/fantasy/results?competition=${comp.id}&mode=${mode}&period=weekly&season=${encodeURIComponent(comp.season)}&week=${comp.round}`}
+            >
               View standings →
             </Link>
           </section>
-          <p>
-            <Link href={`/fantasy/scoring/how-it-works?competition=${comp.id}`}>
+          <div className="play-support-actions">
+            <Link
+              className="play-support"
+              href={`/fantasy/scoring/how-it-works?competition=${comp.id}`}
+            >
               Scoring rules
             </Link>
-            {" · "}
-            <Link href={`/fantasy/results?competition=${comp.id}`}>
-              Player points & weekly standings →
-            </Link>{" "}
-            · <Link href="/fantasy/cards">My cards →</Link>
-          </p>
+            <Link className="play-support" href="/fantasy/cards">
+              My Cards
+            </Link>
+          </div>
           <details>
             <summary>Locks, transfers and scoring</summary>
 
@@ -891,8 +980,7 @@ export function NflSevenPlay({
                 onTransfer:
                   !profile.candidate && canEdit
                     ? () => {
-                        setSlot(profile.slot);
-                        setSearch("");
+                        openSlot(profile.slot);
                         setProfile(null);
                       }
                     : undefined,
@@ -929,9 +1017,15 @@ export function NflSevenPlay({
         })()}
 
       {slot && !profile && (
-        <FantasySheet title={`Choose ${slot}`} onClose={close}>
+        <FantasySheet
+          title={`Choose ${slot.startsWith("FLEX") ? "FLEX" : slot}`}
+          onClose={close}
+        >
           <p>
-            Owned cards only ·{" "}
+            {slot.startsWith("FLEX")
+              ? "Your owned FLEX cards · RB, WR or TE"
+              : `Your owned ${slot.replace(/[0-9]/g, "")} cards`}{" "}
+            ·{" "}
             {mode === "SALARY_CAP"
               ? `${(check.remaining + (inventory.find((c) => c.id === picks.find((p) => p.slot === slot)?.card) ? salary(inventory.find((c) => c.id === picks.find((p) => p.slot === slot)?.card)!.tier, cfg) : 0)).toLocaleString("en-AU")} available for replacement`
               : "No salary restriction"}
@@ -954,9 +1048,9 @@ export function NflSevenPlay({
               <select value={team} onChange={(e) => setTeam(e.target.value)}>
                 <option value="">All teams</option>
 
-                {[...new Set(inventory.map((c) => c.team))].sort().map((t) => (
-                  <option key={t} value={t}>
-                    {displayCity({ sport: "nfl", team: t })}
+                {teams.map((t) => (
+                  <option key={t.key} value={t.key}>
+                    {t.label}
                   </option>
                 ))}
               </select>
@@ -975,20 +1069,21 @@ export function NflSevenPlay({
               </select>
             </label>
 
-            <label>
-              Position
-              <select
-                value={position}
-
-                onChange={(e) => setPosition(e.target.value)}
-              >
-                <option value="">All positions</option>
-
-                {sevenPositions.map((p) => (
-                  <option key={p}>{p}</option>
-                ))}
-              </select>
-            </label>
+            {slot.startsWith("FLEX") && (
+              <label>
+                Position
+                <select
+                  aria-label="Position"
+                  value={position}
+                  onChange={(e) => setPosition(e.target.value)}
+                >
+                  <option value="">All · RB / WR / TE</option>
+                  {["RB", "WR", "TE"].map((p) => (
+                    <option key={p}>{p}</option>
+                  ))}
+                </select>
+              </label>
+            )}
 
             <label>
               Sort
@@ -1004,67 +1099,92 @@ export function NflSevenPlay({
             </label>
           </div>
 
-          {inventory
-
-            .filter(
-              (c) =>
-                (!team || c.team === team) &&
-                (!tier || c.tier === tier) &&
-                (!position || c.position === position) &&
-                c.name.toLowerCase().includes(search.toLowerCase()),
-            )
-
-            .sort((a, b) =>
-              sort === "salary"
-                ? salary(a.tier, cfg) - salary(b.tier, cfg)
-                : sort === "rarity"
-                  ? rarityRule(b.tier).multiplierTenths -
-                    rarityRule(a.tier).multiplierTenths
-                  : a.name.localeCompare(b.name),
-            )
-
-            .map((c) => {
-              const reason = candidate(c);
-              return (
-                <button
-                  className={`seven-candidate compact-candidate ${rarityFrame(c.tier)}`}
-                  style={rarityStyle(c.tier)}
-                  key={c.id}
-                  onClick={() =>
-                    setProfile({ card: c.id, slot, candidate: true })
-                  }
-                >
-                  <span className="candidate-collectible">
-                    <CollectibleFace
-                      card={c}
-                      appliedMultiplier={
-                        c.multiplier ?? rarityRule(c.tier).multiplierTenths / 10
-                      }
-                    />
-                  </span>
-                  <span className="candidate-context">
-                    {mode === "SALARY_CAP" && (
-                      <small className="block-note">
-                        Fantasy salary{" "}
-                        {salary(c.tier, cfg).toLocaleString("en-AU")}
-                      </small>
-                    )}
-                    {reason && (
-                      <small className="block-note candidate-reason">
-                        {reason}
-                      </small>
-                    )}
-                  </span>
-                  <span aria-hidden="true">›</span>
-                </button>
-              );
-            })}
-
-          {!inventory.length && (
+          <div className="picker-results" role="status">
+            {filtered.length} matching cards
+            {(search || team || tier || position) && (
+              <button
+                className="play-support"
+                onClick={() => {
+                  setSearch("");
+                  setTeam("");
+                  setTier("");
+                  setPosition("");
+                }}
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
+          {!pool.length ? (
+            <p>No owned cards for this position in this competition.</p>
+          ) : !filtered.length ? (
+            <p>No cards match your current filters.</p>
+          ) : filtered.every((c) => candidate(c)) ? (
             <p>
-              No eligible owned cards yet. Open your free starter pack in My
-              Cards. We never buy cards automatically.
+              Matching cards exist, but none are currently selectable. See the
+              reasons below.
             </p>
+          ) : null}
+          {filtered.slice((page - 1) * 20, page * 20).map((c) => {
+            const reason = candidate(c);
+            return (
+              <button
+                className={`seven-candidate compact-candidate ${rarityFrame(c.tier)}`}
+                style={rarityStyle(c.tier)}
+                key={c.id}
+                disabled={!!reason}
+                onClick={() =>
+                  setProfile({ card: c.id, slot, candidate: true })
+                }
+              >
+                <span className="candidate-collectible">
+                  <CollectibleFace
+                    showNumber={false}
+                    card={c}
+                    appliedMultiplier={
+                      c.multiplier ?? rarityRule(c.tier).multiplierTenths / 10
+                    }
+                  />
+                </span>
+                <span className="candidate-context">
+                  {mode === "SALARY_CAP" && (
+                    <small className="block-note">
+                      Fantasy salary{" "}
+                      {salary(c.tier, cfg).toLocaleString("en-AU")}
+                    </small>
+                  )}
+                  {reason && (
+                    <small className="block-note candidate-reason">
+                      {reason}
+                    </small>
+                  )}
+                </span>
+                <span aria-hidden="true">›</span>
+              </button>
+            );
+          })}
+
+          {filtered.length > 20 && (
+            <nav
+              aria-label="Player results pages"
+              className="play-support-actions"
+            >
+              <button
+                disabled={page === 1}
+                onClick={() => setPickerPage(page - 1)}
+              >
+                Previous
+              </button>
+              <span>
+                Page {page} of {Math.ceil(filtered.length / 20)}
+              </span>
+              <button
+                disabled={page * 20 >= filtered.length}
+                onClick={() => setPickerPage(page + 1)}
+              >
+                Next
+              </button>
+            </nav>
           )}
         </FantasySheet>
       )}

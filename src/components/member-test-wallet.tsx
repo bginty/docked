@@ -1,4 +1,5 @@
 "use client";
+import { competitionNames } from "@/core/competition-display";
 import { AcquisitionShare } from "./acquisition-share";
 import { useServerClock } from "./use-server-clock";
 import { boundedFetch } from "@/core/bounded-request";
@@ -407,7 +408,7 @@ export function MemberTestWallet({
                     </p>
                     <p>
                       {c.rarity_version
-                        ? "Choose Salary Cap or Open in Play. K and DEF/DST cards are collectible only in these seven-player competitions and cannot occupy their lineup slots."
+                        ? `Choose ${competitionNames.SALARY_CAP} or ${competitionNames.OPEN} in Play. K and DEF/DST cards are collectible only in these seven-player competitions and cannot occupy their lineup slots.`
                         : "Legacy test card; original edition terms preserved."}
                     </p>
                     <a href="/fantasy/scoring/how-it-works">Scoring rules</a>

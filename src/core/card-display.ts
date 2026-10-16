@@ -1,8 +1,9 @@
+import { competitionNames } from "./competition-display";
 import { rarityRule } from "./card-rarity";
 import { nflSeven } from "./nfl-seven";
 import type { FantasyCard, FantasyState } from "./fantasy";
 export const scoringContext =
-  "Salary Cap and Open use rarity multipliers (1.0×–1.5×). Legacy equal-scoring rounds remain 1.0×. Scoring depends on the competition’s saved rules.";
+  `${competitionNames.SALARY_CAP} and ${competitionNames.OPEN} use rarity multipliers (1.0×–1.5×). Legacy equal-scoring rounds remain 1.0×. Scoring depends on the competition’s saved rules.`;
 export const sevenPositions = [
   ...new Set(nflSeven.slots.flatMap((s) => s.positions)),
 ];
@@ -70,7 +71,7 @@ export function sevenEligibility(
   return "";
 }
 export function multiplierLabel(tier: string) {
-  return `${rarityRule(tier).multiplierTenths / 10}× · Salary Cap / Open`;
+  return `${rarityRule(tier).multiplierTenths / 10}× · ${competitionNames.SALARY_CAP} / ${competitionNames.OPEN}`;
 }
 export function probabilityLabel(p: number) {
   if (p === 1) return "100%";

@@ -1,7 +1,7 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--market-overhaul")
+const evidence = process.argv.includes("--play-standings") ? "docs/qa/play-standings" : process.argv.includes("--market-overhaul")
   ? "docs/qa/market-overhaul"
   : process.argv.includes("--master-v2")
     ? "docs/qa/master-v2"
@@ -29,7 +29,7 @@ const evidence = process.argv.includes("--market-overhaul")
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve(
-    process.argv.includes("--market-overhaul")
+    process.argv.includes("--play-standings") ? "tmp/play-standings-build" : process.argv.includes("--market-overhaul")
       ? "tmp/market-overhaul-build"
       : "tmp/marketplace-release-build",
   );

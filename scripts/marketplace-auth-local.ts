@@ -27,6 +27,7 @@ import {
 } from "./marketplace-integrated-local";
 
 import { seedRedemptionAuth, runRedemptionAuth } from "./redemption-auth-local";
+const playStandings = process.argv.includes("--play-standings");
 const redemption = process.argv.includes("--redemption");
 const integrated = process.argv.includes("--integrated");
 const socialOnly = process.argv.includes("--social-only");
@@ -99,19 +100,22 @@ async function main() {
   await mkdir("docs/qa/social-upgrade", { recursive: true });
   await mkdir("docs/qa/social-visual-preview", { recursive: true });
   await mkdir("docs/qa/master-v2", { recursive: true });
-  const receipt = marketOverhaul
-    ? "docs/qa/market-overhaul/authenticated-harness.json"
-    : masterV2
-      ? "docs/qa/master-v2/authenticated.json"
-      : socialVisual
-        ? "docs/qa/social-visual-preview/authenticated.json"
-        : redemption
-          ? "docs/qa/premium-completion/authenticated.json"
-          : socialOnly
-            ? socialUpgrade
-              ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
-              : "docs/qa/mobile-release/social-http.json"
-            : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
+  await mkdir("docs/qa/play-standings", { recursive: true });
+  const receipt = playStandings
+    ? "docs/qa/play-standings/authenticated.json"
+    : marketOverhaul
+      ? "docs/qa/market-overhaul/authenticated-harness.json"
+      : masterV2
+        ? "docs/qa/master-v2/authenticated.json"
+        : socialVisual
+          ? "docs/qa/social-visual-preview/authenticated.json"
+          : redemption
+            ? "docs/qa/premium-completion/authenticated.json"
+            : socialOnly
+              ? socialUpgrade
+                ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
+                : "docs/qa/mobile-release/social-http.json"
+              : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
     JSON.stringify({
@@ -507,6 +511,89 @@ async function main() {
             checks,
             hostedOperations: false,
             physicalDevice: false,
+          },
+          null,
+          2,
+        ),
+      );
+      console.log(JSON.stringify({ passed: true, checks }));
+      return;
+    }
+    if (playStandings) {
+      stage = "play-standings-authenticated-read";
+      const browser = await chromium.launch({ channel: "msedge" });
+      try {
+        for (const i of [0, 1, 2]) {
+          const response = await contexts[i].get("/fantasy/results", {
+            timeout: 120000,
+          });
+          assert.equal(response.status(), 200);
+          assert.ok((await response.text()).includes("Standings"));
+          const context = await browser.newContext({
+            storageState: await contexts[i].storageState(),
+            viewport: { width: i === 0 ? 1440 : 412, height: 900 },
+          });
+          const page = await context.newPage();
+          await page.goto(origin + "/fantasy/results", {
+            waitUntil: "domcontentloaded",
+            timeout: 120000,
+          });
+          await expect(
+            page.getByRole("heading", { name: "Standings", exact: true }),
+          ).toBeVisible({ timeout: 60000 });
+          await expect(page.locator(".standings-page")).toHaveAttribute(
+            "data-ready",
+            "true",
+            { timeout: 60000 },
+          );
+          await page
+            .getByRole("button", { name: "Season", exact: true })
+            .click();
+          await expect(
+            page.getByRole("button", { name: "Season", exact: true }),
+          ).toHaveAttribute("aria-pressed", "true");
+          await page.reload();
+          await expect(
+            page.getByRole("button", { name: "Season", exact: true }),
+          ).toHaveAttribute("aria-pressed", "true");
+          await page.screenshot({
+            path: `docs/qa/play-standings/authenticated-${i}.png`,
+            fullPage: true,
+          });
+          await context.close();
+        }
+        for (const i of [3, 4]) {
+          const response = await contexts[i].get("/fantasy/results", {
+            timeout: 120000,
+          });
+          const html = await response.text();
+          assert.ok(
+            !html.includes('class="standings-table"'),
+            "Unauthorised/MFA-incomplete account gets no standings rows",
+          );
+        }
+        const anonymous = await request.newContext({ baseURL: origin });
+        const response = await anonymous.get("/fantasy/results", {
+          timeout: 120000,
+        });
+        assert.ok(!(await response.text()).includes('class="standings-table"'));
+        await anonymous.dispose();
+        checks.push(
+          "Three separate real local GoTrue sessions render protected standings",
+          "Season selection survives authenticated route refresh",
+          "Owner AAL1 and unadmitted/anonymous reads receive no standings table",
+        );
+      } finally {
+        await browser.close();
+      }
+      await writeFile(
+        receipt,
+        JSON.stringify(
+          {
+            passed: true,
+            scope:
+              "Actual local GoTrue, Next routes and restricted PostgreSQL; read-only browser checks; no hosted operations",
+            checks,
           },
           null,
           2,

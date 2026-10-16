@@ -1,3 +1,4 @@
+import { competitionName } from "@/core/competition-display";
 import { memberLockedLineups } from "@/server/lineup-privacy";
 import Link from "next/link";
 import { communityProfile } from "@/server/community-social";
@@ -155,7 +156,7 @@ export async function MemberProfile({
               </p>
               {teams.map((team) => (
                 <article key={team.competition} className="app-panel">
-                  <h3>{team.name}</h3>
+                  <h3>{["SALARY_CAP", "OPEN"].includes(team.mode) ? competitionName(team.mode) : team.name}</h3>
                   <p>
                     {team.sport.toUpperCase()} · {team.season} · Round{" "}
                     {team.round} · Locked lineup

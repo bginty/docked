@@ -17,9 +17,11 @@ export type CollectibleIdentity = JerseyMetadata & {
 export function CollectibleFace({
   card,
   appliedMultiplier,
+  showNumber = true,
 }: {
   card: CollectibleIdentity;
   appliedMultiplier?: number;
+  showNumber?: boolean;
 }) {
   return (
     <span className="collectible-face">
@@ -32,7 +34,7 @@ export function CollectibleFace({
         />
       </span>
       <span className="collectible-art" aria-hidden="true">
-        <PlayerJersey card={card} />
+        <PlayerJersey card={card} showNumber={showNumber} />
       </span>
       <span className="collectible-name">{card.name}</span>
       <span className="collectible-city">{displayCity(card)}</span>

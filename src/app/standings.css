@@ -1,0 +1,515 @@
+.competition-label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #abc0da;
+  margin: 10px 0 7px;
+}
+.seven-mode-tabs button small,
+.standings-segments button small {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #bed4ef;
+  margin-top: 3px;
+}
+.play-secondary,
+.play-support {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+  border: 1px solid #31567c !important;
+  border-radius: 999px !important;
+  background: #0c1c30 !important;
+  color: #dcecff !important;
+  padding: 9px 16px !important;
+  font-size: 0.88rem !important;
+  min-height: 40px;
+  line-height: 1.25;
+  white-space: normal;
+}
+.play-support {
+  padding: 7px 13px !important;
+  font-size: 0.8rem !important;
+  min-height: 36px;
+}
+.play-support-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+.play-secondary:focus-visible,
+.play-support:focus-visible,
+.standings-page button:focus-visible {
+  outline: 3px solid #71ccff;
+  outline-offset: 3px;
+}
+.lineup-team-name {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.lineup-team-name > small {
+  width: 100%;
+  color: #a6bad1;
+  font-size: 0.72rem;
+}
+.lineup-team-name form {
+  flex-basis: 100%;
+}
+.picker-results {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  color: #b5c7dc;
+}
+.seven-candidate:disabled {
+  opacity: 0.68;
+  cursor: not-allowed;
+}
+.seven-candidate:disabled .candidate-reason {
+  color: #f8cbb0;
+  opacity: 1;
+}
+.standings-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #e9f2ff;
+  min-width: 0;
+}
+.standings-hero {
+  padding: 24px;
+  border: 1px solid #23405c;
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 95% 0%, #11305a 0, transparent 65%), #081322;
+}
+.standings-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.04em;
+  margin: 16px 0 3px;
+}
+.standings-hero p {
+  color: #adc1dc;
+  margin: 0 0 20px;
+}
+.standings-segments {
+  display: flex;
+  border: 1px solid #304760;
+  border-radius: 13px;
+  padding: 3px;
+  background: #06111f;
+  width: fit-content;
+  max-width: 100%;
+}
+.standings-segments button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px 22px;
+  min-width: 110px;
+  color: #d0dded;
+  font-weight: 600;
+}
+.standings-segments button[aria-pressed="true"] {
+  background: linear-gradient(#0875ff, #045bd9);
+  border-color: #48a6ff;
+  color: white;
+  box-shadow: 0 2px 9px #004ea044;
+}
+.standings-controls {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+.standings-controls label {
+  font-size: 0.75rem;
+  color: #adc1dc;
+}
+.standings-controls select {
+  display: block;
+  min-width: 110px;
+  margin-top: 4px;
+  background: #0a192a;
+  color: white;
+  border: 1px solid #304760;
+  border-radius: 10px;
+  padding: 10px;
+}
+.standings-context,
+.standings-column-note {
+  color: #9bb3cf;
+  font-size: 0.8rem;
+}
+.standings-column-note {
+  display: block;
+}
+.standings-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.standings-metrics > div {
+  background: linear-gradient(125deg, #102942, #0b192a);
+  border: 1px solid #1d3752;
+  border-radius: 13px;
+  padding: 18px;
+}
+.standings-metrics span {
+  display: block;
+  color: #b2c4dc;
+  font-size: 0.8rem;
+}
+.standings-metrics strong {
+  display: block;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  margin-top: 7px;
+  font-variant-numeric: tabular-nums;
+}
+.standings-search {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 20px 0;
+}
+.standings-search label {
+  color: #b6c7dd;
+  font-size: 0.78rem;
+  flex: 1;
+  max-width: 460px;
+}
+.standings-search input {
+  display: block;
+  background: #091726;
+  border: 1px solid #29435d;
+  border-radius: 999px;
+  color: white;
+  width: 100%;
+  padding: 12px 17px;
+  margin-top: 5px;
+}
+.standings-table-wrap {
+  border: 1px solid #213c57;
+  border-radius: 13px;
+  overflow-x: auto;
+}
+.standings-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+  background: #081522;
+}
+.standings-table th,
+.standings-table td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #1c3046;
+}
+.standings-table thead {
+  background: #10243b;
+  color: #b4c8e1;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+.standings-table td {
+  font-variant-numeric: tabular-nums;
+}
+.standings-table th[scope="row"] {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  min-width: 130px;
+}
+.standings-table .current-member {
+  background: linear-gradient(90deg, #0a3c80, #0b2749);
+  box-shadow: inset 3px 0 #1a91ff;
+}
+.standings-table th small {
+  color: #a6d7ff;
+  white-space: nowrap;
+}
+.standings-table td:last-child {
+  text-align: right;
+}
+.standings-pagination {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0;
+}
+.standings-pagination span {
+  color: #9db5d2;
+  font-size: 0.8rem;
+}
+.standings-page button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.standings-explanation {
+  border: 1px solid #203a56;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 14px 0;
+  background: #0a192b;
+}
+.standings-explanation p {
+  color: #aec1d9;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+.standings-empty {
+  padding: 28px;
+  border: 1px solid #203a56;
+  border-radius: 12px;
+}
+.standings-lineup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+.standings-player-card {
+  max-width: 240px;
+  border-radius: 12px;
+  padding: 4px;
+  background: var(--rarity-frame);
+  border: 3px solid var(--rarity-color);
+}
+.standings-lineup dl {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-size: 0.8rem;
+  gap: 5px;
+}
+.standings-lineup dd {
+  margin: 0;
+}
+.standings-lineup p {
+  font-size: 0.8rem;
+}
+.standings-week {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 14px 0;
+  border-bottom: 1px solid #203a56;
+}
+@media (max-width: 600px) {
+  .standings-page {
+    padding: 12px 8px;
+  }
+  .standings-hero {
+    padding: 17px;
+  }
+  .standings-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .standings-metrics > div {
+    padding: 13px;
+  }
+  .standings-controls {
+    gap: 8px;
+  }
+  .standings-segments button {
+    min-width: 100px;
+    padding: 9px 13px;
+  }
+  .standings-search {
+    align-items: center;
+  }
+  .standings-search .play-secondary {
+    max-width: 115px;
+  }
+  .standings-table {
+    font-size: 0.78rem;
+  }
+  .standings-table th,
+  .standings-table td {
+    padding: 10px 7px;
+  }
+  .standings-table th[scope="row"] {
+    min-width: 100px;
+  }
+  .standings-table .play-support {
+    font-size: 0.72rem !important;
+    padding: 7px 9px !important;
+  }
+  .standings-pagination {
+    gap: 6px;
+  }
+  .standings-table-wrap {
+    max-width: 100%;
+  }
+}
+
+/* Override generic editorial table headers inside the dark standings table only. */
+.standings-page .standings-table th {
+  background: transparent;
+  color: inherit;
+}
+.standings-page .standings-table thead th {
+  background: #10243b;
+  color: #b4c8e1;
+}
+@media (max-width: 600px) {
+  .standings-page .standings-table-wrap {
+    overflow: visible;
+  }
+  .standings-table,
+  .standings-table tbody {
+    display: block;
+    width: 100%;
+  }
+  .standings-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .standings-table tr {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 10px;
+    column-gap: 7px;
+    border-bottom: 1px solid #243b52;
+  }
+  .standings-page .standings-table td,
+  .standings-page .standings-table th[scope="row"] {
+    border: 0;
+    padding: 4px 0;
+    min-width: 0;
+  }
+  .standings-table td:first-child {
+    grid-row: 1 / 3;
+    grid-column: 1;
+    color: #bfd7f2;
+    font-size: 0.95rem;
+  }
+  .standings-table th[scope="row"] {
+    grid-row: 1;
+    grid-column: 2;
+    font-size: 0.87rem;
+  }
+  .standings-table td:nth-child(3) {
+    grid-row: 1;
+    grid-column: 3;
+    text-align: right;
+    font-size: 0.9rem;
+  }
+  .standings-table td:nth-child(4) {
+    grid-row: 2;
+    grid-column: 2;
+    color: #a8bfd8;
+    font-size: 0.75rem;
+  }
+  .standings-table td:last-child {
+    grid-row: 2;
+    grid-column: 3;
+  }
+  .standings-page .standings-table .play-support {
+    min-height: 36px;
+    white-space: nowrap;
+  }
+  .standings-search label {
+    min-width: 0;
+  }
+  .standings-search .play-secondary {
+    max-width: none;
+    white-space: nowrap;
+    font-size: 0.77rem !important;
+    padding: 9px 11px !important;
+  }
+}
+
+.fantasy-mode .seven-candidate .collectible-face {
+  aspect-ratio: auto;
+  grid-template-rows: auto auto minmax(min-content, auto) auto auto;
+}
+.fantasy-mode .seven-candidate .collectible-name {
+  height: auto;
+  min-height: 0;
+  line-height: 1.25;
+}
+.fantasy-mode .seven-candidate .collectible-city {
+  margin-top: 3px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .standings-table[data-period="season"] td:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+    font-size: 0.73rem;
+    color: #aec5df;
+  }
+  .standings-table[data-period="season"] td:nth-child(3)::before {
+    content: "Weeks: ";
+  }
+  .standings-table[data-period="season"] td:nth-child(4) {
+    grid-column: 3;
+    grid-row: 1;
+    font-size: 0.9rem;
+    color: #e9f2ff;
+    text-align: right;
+  }
+}
+
+.standings-page .standings-table tbody th[scope="row"] {
+  font-size: 0.9rem;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.standings-table[data-period="weekly"] :is(th, td):nth-child(3),
+.standings-table[data-period="season"] :is(th, td):nth-child(4) {
+  text-align: right;
+}
+@media (min-width: 900px) {
+  .standings-hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 36px;
+  }
+  .standings-hero > a {
+    grid-column: 1;
+    width: fit-content;
+  }
+  .standings-hero h1 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .standings-hero > p {
+    grid-column: 1;
+    grid-row: 3;
+    margin-bottom: 0;
+  }
+  .standings-hero > .competition-label {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+  }
+  .standings-hero > .standings-segments {
+    grid-column: 2;
+    grid-row: 3;
+    align-self: center;
+  }
+  .standings-table th,
+  .standings-table td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

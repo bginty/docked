@@ -1,3 +1,4 @@
+import { competitionNames } from "@/core/competition-display";
 import Link from "next/link";
 import { FantasyHero, FantasyLogo } from "@/components/fantasy-brand";
 export const metadata = {
@@ -67,8 +68,8 @@ export default function Home() {
         <div>
           <h2>Build</h2>
           <p>
-            Build your seven-player NFL team from cards you own. Salary Cap and
-            Open apply their published rarity multipliers; legacy rounds keep
+            Build your seven-player NFL team from cards you own. {competitionNames.SALARY_CAP} and
+            {competitionNames.OPEN} apply their published rarity multipliers; legacy rounds keep
             their saved rules.
           </p>
         </div>

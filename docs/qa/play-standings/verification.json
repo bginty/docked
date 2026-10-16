@@ -1,0 +1,112 @@
+{
+  "scope": "Local implementation and verification only; no hosted migration, release or production data changes",
+  "platform": {
+    "tests": 405,
+    "passed": 405,
+    "failed": 0
+  },
+  "database": {
+    "tests": 160,
+    "passed": 160,
+    "failed": 0,
+    "engine": "isolated PGlite, full migrations"
+  },
+  "focused": {
+    "tests": 7,
+    "passed": 7,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "browser": {
+    "scope": "Interactive production components with isolated synthetic fixtures; not hosted auth or physical Samsung",
+    "checks": [
+      {
+        "width": 1440,
+        "errors": [],
+        "axe": []
+      },
+      {
+        "width": 1024,
+        "errors": [],
+        "axe": []
+      },
+      {
+        "width": 412,
+        "errors": [],
+        "axe": []
+      },
+      {
+        "width": 360,
+        "errors": [],
+        "axe": []
+      }
+    ]
+  },
+  "authenticated": {
+    "passed": true,
+    "scope": "Actual local GoTrue, Next routes and restricted PostgreSQL; read-only browser checks; no hosted operations",
+    "checks": [
+      "Three separate real local GoTrue sessions render protected standings",
+      "Season selection survives authenticated route refresh",
+      "Owner AAL1 and unadmitted/anonymous reads receive no standings table"
+    ]
+  },
+  "build": "Passed: final production build and canary client-secret boundary scan",
+  "retries": [
+    "First browser run failed FLEX accessible-label assertion; fixed",
+    "Initial visual review found table contrast and compact long-name overlap; fixed",
+    "Expanded SQL fixture: admission, consent and UUID parameter setup corrected over three failed attempts; final full suite passed",
+    "Authenticated first attempt clicked before hydration; second timed out during cold compilation; third passed"
+  ],
+  "physicalSamsung": "not performed",
+  "hostedDeployment": "not performed",
+  "localReview": "http://127.0.0.1:3025/fantasy/play?scenario=entered",
+  "remaining": [
+    "Physical S24 acceptance",
+    "Reviewed deployment of the two read-only migrations and application when separately requested",
+    "Opposing lineup publication remains governed by existing approved competition policy"
+  ],
+  "files": [
+    "scripts/marketplace-auth-local.ts",
+    "scripts/marketplace-build-local.mjs",
+    "src/app/[section]/page.tsx",
+    "src/app/fantasy/results/page.tsx",
+    "src/app/fantasy/scoring/how-it-works/page.tsx",
+    "src/app/layout.tsx",
+    "src/app/page.tsx",
+    "src/app/sports/[sport]/page.tsx",
+    "src/components/collectible-face.tsx",
+    "src/components/competition-results.tsx",
+    "src/components/economy-catalogue.tsx",
+    "src/components/fantasy-card-artwork.tsx",
+    "src/components/fantasy-play.tsx",
+    "src/components/fantasy-player-sheet.tsx",
+    "src/components/fantasy-rewards.tsx",
+    "src/components/fantasy-screen.tsx",
+    "src/components/marketplace.tsx",
+    "src/components/member-profile.tsx",
+    "src/components/member-test-wallet.tsx",
+    "src/components/nfl-seven-play.tsx",
+    "src/components/pack-products.tsx",
+    "src/components/player-jersey.tsx",
+    "src/core/card-display.ts",
+    "src/core/card-presentation.ts",
+    "src/core/marketplace.ts",
+    "src/core/nfl-seven.ts",
+    "src/server/fantasy.ts",
+    "src/server/postgame-results.ts",
+    "tests/database/nfl-seven.test.ts",
+    "src/core/competition-display.ts",
+    "src/core/lineup-picker.ts",
+    "src/core/standings.ts",
+    "src/app/standings.css",
+    "src/components/legacy-competition-results.tsx",
+    "scripts/play-standings-browser.ts",
+    "tests/fixtures/play-standings-visual.tsx",
+    "tests/fixtures/standings-data.ts",
+    "tests/platform/play-standings.test.ts",
+    "supabase/migrations/20261016040851_play_standings_read_model.sql",
+    "supabase/migrations/20261016043013_competition_display_context.sql"
+  ]
+}

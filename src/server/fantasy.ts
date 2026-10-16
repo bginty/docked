@@ -1,4 +1,8 @@
 import "server-only";
+import {
+  competitionLabel,
+  reviewCompetitionLabel,
+} from "@/core/competition-display";
 import { db, rateLimit } from "./db";
 import { requireIdentity } from "./auth";
 import {
@@ -87,6 +91,16 @@ export async function fantasyRequest(
       view.starter_receipt = (
         await tx`select fantasy.my_nfl_pack_receipt() receipt`
       )[0].receipt;
+    // Presentation projection only; persisted competition names and rules remain immutable.
+    view.competitions = view.competitions.map((c) => ({
+      ...c,
+      name: competitionLabel(c),
+    }));
+    if (view.review)
+      view.review.rounds = view.review.rounds.map((r) => ({
+        ...r,
+        name: reviewCompetitionLabel(r),
+      }));
     return {
       state: view,
       result: (output[0]?.result ?? {}) as Record<string, unknown>,

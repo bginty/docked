@@ -9,9 +9,11 @@ import {
 export function PlayerJersey({
   card,
   className = "",
+  showNumber = true,
 }: {
   card?: JerseyMetadata;
   className?: string;
+  showNumber?: boolean;
 }) {
   const id = useId().replace(/[^a-zA-Z0-9_-]/g, ""),
     p = jerseyPresentation(card);
@@ -24,7 +26,7 @@ export function PlayerJersey({
       aria-hidden="true"
       focusable="false"
       data-number-source={
-        p.number !== "—" ? "verified-metadata" : "unavailable"
+        showNumber && p.number !== "—" ? "verified-metadata" : "unavailable"
       }
     >
       <defs>
@@ -75,7 +77,10 @@ export function PlayerJersey({
       />
       <g clipPath={`url(#${id}-cut)`}>
         <path d={shape} fill={`url(#${id}-body)`} />
-        <path d="M43 40Q90 26 137 40L140 158Q90 170 40 158Z" fill={`url(#${id}-chest)`} />
+        <path
+          d="M43 40Q90 26 137 40L140 158Q90 170 40 158Z"
+          fill={`url(#${id}-chest)`}
+        />
         <path
           d="M57 13 69 19Q90 29 111 19L123 13 151 24 143 56Q90 46 37 56L29 24Z"
           fill={`url(#${id}-shoulder)`}
@@ -127,7 +132,7 @@ export function PlayerJersey({
           strokeOpacity=".3"
           strokeWidth="2"
         />
-        {p.number !== "—" && (
+        {showNumber && p.number !== "—" && (
           <text
             className="jersey-number"
             x="90"

@@ -1,0 +1,61 @@
+TAP version 13
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+not ok 1 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 14018.1127
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\nfl-seven.test.ts:8:1'
+  failureType: 'testCodeFailure'
+  error: 'Accepted beta admission required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: picker slot pool precedes intersected filters and pagination; no foreign inventory
+ok 2 - picker slot pool precedes intersected filters and pagination; no foreign inventory
+  ---
+  duration_ms: 4.3316
+  ...
+# Subtest: team filters distinguish shared cities, canonical aliases and unknown metadata
+ok 3 - team filters distinguish shared cities, canonical aliases and unknown metadata
+  ---
+  duration_ms: 0.56
+  ...
+# Subtest: season totals isolate mode, season, series; reopened and missing weeks are excluded
+ok 4 - season totals isolate mode, season, series; reopened and missing weeks are excluded
+  ---
+  duration_ms: 26.478
+  ...
+# Subtest: shared ranks retain gaps and pending prevents invented rank; Find My Team reaches true page
+ok 5 - shared ranks retain gaps and pending prevents invented rank; Find My Team reaches true page
+  ---
+  duration_ms: 1.1693
+  ...
+# Subtest: display names leave stable modes and saved historical labels intact
+ok 6 - display names leave stable modes and saved historical labels intact
+  ---
+  duration_ms: 0.3698
+  ...
+# Subtest: upcoming fixtures deduplicate identities, preserving distinct games and selected snapshot
+ok 7 - upcoming fixtures deduplicate identities, preserving distinct games and selected snapshot
+  ---
+  duration_ms: 0.6463
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 6
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19716.7427

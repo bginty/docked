@@ -1,4 +1,6 @@
 "use client";
+import { upcomingFixtures } from "@/core/lineup-picker";
+import { competitionNames } from "@/core/competition-display";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { PlayerJersey } from "./player-jersey";
 import { registerModal, topModal } from "@/core/modal-lifecycle";
@@ -162,18 +164,12 @@ export function FantasyPlayerDetails({
   );
   if (lineup) {
     const playerId = card.canonical_player_id ?? card.player_id;
-    const fixtures = [
-      ...new Map(
-        Object.values(state.seven?.fixtures ?? {})
-          .flat()
-          .filter(
-            (f) =>
-              f.playerIds.includes(playerId) &&
-              Date.parse(f.scheduledAt) > lineup.now,
-          )
-          .map((f) => [f.fixtureId, f]),
-      ).values(),
-    ].sort((a, b) => Date.parse(a.scheduledAt) - Date.parse(b.scheduledAt));
+    const fixtures = upcomingFixtures(
+      state.seven?.fixtures ?? {},
+      roundId,
+      playerId,
+      lineup.now,
+    );
     const recent = scores
       .filter((s) => Number.isFinite(s.score))
       .sort(
@@ -190,6 +186,7 @@ export function FantasyPlayerDetails({
       >
         <div className="card-detail-art">
           <FantasyCardArtwork
+            showNumber={false}
             card={card}
             faceOnly
             appliedMultiplier={lineup.multiplier}
@@ -199,7 +196,7 @@ export function FantasyPlayerDetails({
           <div>
             <small>Fantasy salary</small>
             <strong>{lineup.salary.toLocaleString("en-AU")}</strong>
-            <small>Roster budget · not Docked Credits</small>
+            <small>Roster budget</small>
           </div>
           <div>
             <small>Roster status</small>
@@ -234,7 +231,7 @@ export function FantasyPlayerDetails({
         <div className="profile-actions">
           {lineup.onTransfer && (
             <button className="button" onClick={lineup.onTransfer}>
-              Transfer
+              Replace player
             </button>
           )}
           {lineup.onChoose && (
@@ -248,9 +245,7 @@ export function FantasyPlayerDetails({
           )}
         </div>
         {(lineup.onTransfer || lineup.onChoose) && (
-          <small>
-            Free lineup change · save or update your team to confirm.
-          </small>
+          <small>Lineup change · save or update your team to confirm.</small>
         )}
         <section>
           <h3>Recent scores</h3>
@@ -350,8 +345,9 @@ export function FantasyPlayerDetails({
       <div className="player-detail-metrics">
         <p>
           {rarityRule(card.tier).label} ·{" "}
-          {rarityRule(card.tier).multiplierTenths / 10}× in Salary Cap / Open.
-          Legacy equal-scoring competitions remain 1.0×.
+          {rarityRule(card.tier).multiplierTenths / 10}× in{" "}
+          {competitionNames.SALARY_CAP} / {competitionNames.OPEN}. Legacy
+          equal-scoring competitions remain 1.0×.
         </p>
         <div>
           <small>

@@ -1,3 +1,4 @@
+import { competitionNames } from "@/core/competition-display";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sports } from "@/content/sports";
@@ -15,7 +16,7 @@ export default async function Sport({
       <h1>{item.title}</h1>
       <p>
         {sport === "nfl"
-          ? "The invited NFL beta offers seven-player Salary Cap and Open competitions with post-game scoring."
+          ? `The invited NFL beta offers seven-player ${competitionNames.SALARY_CAP} and ${competitionNames.OPEN} competitions with post-game scoring.`
           : "Fantasy gameplay for this sport is not available yet."}
       </p>
       {sport === "nfl" && (

@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 1 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 15555.3118
+  ...
+# Subtest: picker slot pool precedes intersected filters and pagination; no foreign inventory
+ok 2 - picker slot pool precedes intersected filters and pagination; no foreign inventory
+  ---
+  duration_ms: 6.0466
+  ...
+# Subtest: team filters distinguish shared cities, canonical aliases and unknown metadata
+ok 3 - team filters distinguish shared cities, canonical aliases and unknown metadata
+  ---
+  duration_ms: 0.6444
+  ...
+# Subtest: season totals isolate mode, season, series; reopened and missing weeks are excluded
+ok 4 - season totals isolate mode, season, series; reopened and missing weeks are excluded
+  ---
+  duration_ms: 52.1288
+  ...
+# Subtest: shared ranks retain gaps and pending prevents invented rank; Find My Team reaches true page
+ok 5 - shared ranks retain gaps and pending prevents invented rank; Find My Team reaches true page
+  ---
+  duration_ms: 3.059
+  ...
+# Subtest: display names leave stable modes and saved historical labels intact
+ok 6 - display names leave stable modes and saved historical labels intact
+  ---
+  duration_ms: 0.9309
+  ...
+# Subtest: upcoming fixtures deduplicate identities, preserving distinct games and selected snapshot
+ok 7 - upcoming fixtures deduplicate identities, preserving distinct games and selected snapshot
+  ---
+  duration_ms: 1.7911
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 20521.4348

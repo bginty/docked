@@ -22,6 +22,7 @@ import "./play-cards.css";
 import "./redemption.css";
 import "./social-hub.css";
 import "./collectible.css";
+import "./standings.css";
 import { fantasyTagline } from "@/core/fantasy";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 import { reviewOrigin } from "@/core/hosted-review.mjs";

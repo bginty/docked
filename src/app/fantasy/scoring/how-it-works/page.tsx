@@ -1,3 +1,4 @@
+import { competitionNames, reviewCompetitionLabel } from "@/core/competition-display";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { fantasyRequest } from "@/server/fantasy";
@@ -68,7 +69,7 @@ export default async function RulesPage({
               <option value="">Current seven-player reference</option>
               {rounds.map((r) => (
                 <option value={r.id} key={r.id}>
-                  {r.name} · {r.season}
+                  {reviewCompetitionLabel(r)}
                 </option>
               ))}
             </select>
@@ -89,7 +90,7 @@ export default async function RulesPage({
             <tr>
               <th>Rarity</th>
               <th>Multiplier</th>
-              {rolling && <th>Salary Cap salary</th>}
+              {rolling && <th>Fantasy salary</th>}
             </tr>
           </thead>
           <tbody>
@@ -128,9 +129,8 @@ export default async function RulesPage({
         </p>
         {rolling && (
           <p>
-            Salary Cap: {config.salaryCap.toLocaleString("en-AU")} fantasy
-            dollars; exactly the cap is allowed. Open has no salary limit. These
-            budgets never debit Docked Credits. Each mode has its own entry; the
+            {competitionNames.SALARY_CAP}: {config.salaryCap.toLocaleString("en-AU")} fantasy
+            dollars; exactly the cap is allowed. {competitionNames.OPEN} has no salary limit. Each mode has its own entry; the
             same owned card can be used in both.
           </p>
         )}

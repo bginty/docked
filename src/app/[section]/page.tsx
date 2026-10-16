@@ -1,3 +1,4 @@
+import { competitionNames } from "@/core/competition-display";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ApiForm } from "@/components/forms";
@@ -62,7 +63,7 @@ export default async function Page({
       </h1>
       <p>
         Docked is a fantasy sports card platform. Collect limited cards, build
-        seven-player NFL teams and compete in Salary Cap or Open. EPL and
+        seven-player NFL teams and compete in {competitionNames.SALARY_CAP} or {competitionNames.OPEN}. EPL and
         other sports are not available yet.
       </p>
       <p>

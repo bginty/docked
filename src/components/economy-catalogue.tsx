@@ -1,4 +1,5 @@
 "use client";
+import { competitionNames } from "@/core/competition-display";
 import { useState } from "react";
 import type { MemberTestView } from "@/core/member-test-wallet";
 import { rarityRule, rarities } from "@/core/card-rarity";
@@ -80,7 +81,7 @@ export function EconomyCatalogue({
       <details>
         <summary>New rarity scoring rules</summary>
         <p>
-          Salary Cap, Open and explicitly labelled rarity test competitions
+          {competitionNames.SALARY_CAP}, {competitionNames.OPEN} and explicitly labelled rarity test competitions
           apply these multipliers. The existing free friends round retains its
           original scoring. Each complete player base score, including negative
           scores, is multiplied once and rounded to 0.01 points, halves away

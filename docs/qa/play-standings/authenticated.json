@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "scope": "Actual local GoTrue, Next routes and restricted PostgreSQL; read-only browser checks; no hosted operations",
+  "checks": [
+    "Three separate real local GoTrue sessions render protected standings",
+    "Season selection survives authenticated route refresh",
+    "Owner AAL1 and unadmitted/anonymous reads receive no standings table"
+  ]
+}

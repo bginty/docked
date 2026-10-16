@@ -1,4 +1,8 @@
 "use client";
+import {
+  competitionName,
+  competitionSubtitle,
+} from "@/core/competition-display";
 import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 import Link from "next/link";
@@ -59,20 +63,13 @@ export function FantasyPlay({
     <>
       <header className="compact-page-title">
         <h1>Your lineup</h1>
-        <details>
-          <summary>More</summary>
-          <button onClick={() => setMode("existing")}>Legacy rounds</button>
-          <Link href="/fantasy/test-wallet">Wallet</Link>
-        </details>
       </header>
+      <span className="competition-label">Competition</span>
       <nav className="seven-mode-tabs" aria-label="NFL competition mode">
         {(["SALARY_CAP", "OPEN"] as const).map((m) => (
           <button key={m} aria-pressed={mode === m} onClick={() => setMode(m)}>
-            {m === "SALARY_CAP"
-              ? "Salary Cap"
-              : m === "OPEN"
-                ? "Open"
-                : "Legacy rounds"}
+            {competitionName(m)}
+            <small>{competitionSubtitle(m)}</small>
           </button>
         ))}
       </nav>

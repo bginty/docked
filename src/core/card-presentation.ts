@@ -168,3 +168,17 @@ export function collectibleSerial(card: {
     ? `#${String(card.serial).padStart(3, "0")} / ${card.max_supply!.toLocaleString("en-AU")}`
     : "Edition details unavailable";
 }
+
+/** Canonical team filter identity, independent of the city-only card-face label. */
+export function teamFilter(team?: string) {
+  const input = team?.trim() ?? "";
+  let code = Object.keys(nflTeamNames).find(
+    (k) =>
+      k === input.toUpperCase() ||
+      nflTeamNames[k].toLowerCase() === input.toLowerCase(),
+  );
+  if (code === "LA") code = "LAR";
+  return code
+    ? { key: code, label: `${nflTeamNames[code]} (${code})` }
+    : { key: "unknown", label: "Team unavailable" };
+}

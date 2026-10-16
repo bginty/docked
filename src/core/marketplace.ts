@@ -1,3 +1,7 @@
+import {
+  contextualCompetitionName,
+  type CompetitionDisplayContext,
+} from "./competition-display";
 import { z } from "zod";
 import { rarities } from "./card-rarity";
 import { sevenPositions, collectibleOnly, cardIdentity } from "./card-display";
@@ -45,6 +49,7 @@ export type MarketContext = {
     name: string;
     slot: string;
     withdrawable: boolean;
+    display?: CompetitionDisplayContext;
   }[];
   freeSwaps?: {
     id: string;
@@ -57,6 +62,7 @@ export type MarketContext = {
     id: string;
     name: string;
     configuration?: typeof nflSeven | null;
+    display?: CompetitionDisplayContext;
     fixtures: {
       playerIds: string[];
       scheduledAt: string;
@@ -77,6 +83,18 @@ export function marketplaceView(
   now = Date.now(),
 ) {
   assertMemberTestEconomy(s);
+  context = {
+    ...context,
+    rounds: context.rounds.map((r) => ({
+      ...r,
+      name: contextualCompetitionName(r.name, r.display),
+    })),
+    ownerReservations: context.ownerReservations?.map((r) => ({
+      ...r,
+      name: contextualCompetitionName(r.name, r.display),
+    })),
+  };
+
   const activeSwap = (id: string) =>
     Object.values(s.swaps).some(
       (x) =>

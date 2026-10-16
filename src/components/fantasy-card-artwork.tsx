@@ -16,6 +16,7 @@ export function FantasyCardArtwork({
   onInspect,
   scoringLabel,
   appliedMultiplier,
+  showNumber = true,
 }: {
   card: AwardedCard;
   children?: React.ReactNode;
@@ -23,6 +24,7 @@ export function FantasyCardArtwork({
   onInspect?: () => void;
   scoringLabel?: string;
   appliedMultiplier?: number;
+  showNumber?: boolean;
 }) {
   const jersey = jerseyPresentation(card);
   return (
@@ -49,7 +51,11 @@ export function FantasyCardArtwork({
         }}
         aria-label={onInspect ? `View ${card.name} card details` : undefined}
       >
-        <CollectibleFace card={card} appliedMultiplier={appliedMultiplier} />
+        <CollectibleFace
+          showNumber={showNumber}
+          card={card}
+          appliedMultiplier={appliedMultiplier}
+        />
         {scoringLabel && (
           <span className="card-scoring-context">{scoringLabel}</span>
         )}

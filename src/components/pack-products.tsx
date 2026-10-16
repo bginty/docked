@@ -1,3 +1,4 @@
+import { competitionNames } from "@/core/competition-display";
 import Link from "next/link";
 export function PackProducts() {
   return (
@@ -15,7 +16,7 @@ export function PackProducts() {
         Explore test packs
       </Link>
       <p>
-        Scoring follows each competition’s published rules. Salary Cap budgets
+        Scoring follows each competition’s published rules. {competitionNames.SALARY_CAP} budgets
         are separate from your wallet.
       </p>
     </section>

@@ -122,6 +122,50 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       4400000,
     );
     await command("seven_draft", rounds[0], picks.slice(0, 3), 0);
+    await q(
+      `insert into beta_fantasy.team_names(user_id,name) values($1,'Local Team')`,
+      [u],
+    );
+    const standings = async () =>
+      (await q(`select sports_feed.play_standings() rows`))[0].rows;
+    const ownStandings = await standings();
+    const ownRound = ownStandings.find(
+      (r: any) => r.competitionId === rounds[0],
+    );
+    assert.equal(ownRound.rows[0].name, "Local Team");
+    assert.equal(ownRound.rows[0].centipoints, null);
+    assert.equal(ownRound.rows[0].rank, null);
+    assert.equal(ownRound.finalised, false);
+    assert.equal(ownRound.rows[0].lineup.length, 7);
+    assert.equal(
+      JSON.stringify(ownStandings).includes(u),
+      false,
+      "No auth account IDs in read model",
+    );
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [other]);
+    const opponent = (await standings()).find(
+      (r: any) => r.competitionId === rounds[0],
+    );
+    assert.equal(
+      opponent.rows[0].lineup,
+      null,
+      "Opposing editable lineup is not serialized",
+    );
+    assert.equal(
+      opponent.rows[0].key,
+      ownRound.rows[0].key,
+      "Opaque season identity is stable",
+    );
+    await pg.exec("set role authenticated");
+    await assert.rejects(
+      () => q(`select sports_feed.play_standings()`),
+      /permission denied/,
+    );
+    await pg.exec("reset role");
+    await q(`select set_config('request.jwt.claim.sub','',false)`);
+    await assert.rejects(standings, /Active admitted session/);
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [u]);
+
     await assert.rejects(
       () =>
         q(
@@ -230,6 +274,27 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       [ownerProfile, u, viewerProfile, other],
     );
     await pg.exec(
+      `create or replace function beta_private.admitted(p_user uuid) returns boolean language sql as $$select p_user is not null$$;`,
+    );
+    for (const member of [u, other]) {
+      await q(
+        `insert into beta_private.admissions(email,user_id,token_digest,request_id,expires_at) values($1,$2::uuid,md5(($2::uuid)::text)||md5(($2::uuid)::text),gen_random_uuid(),clock_timestamp()+interval '1 day')`,
+        [member + "@fixture.invalid", member],
+      );
+      await q(
+        `update beta_private.admissions set status='accepted',accepted_at=clock_timestamp(),country='AU',state='NSW',age_attested=true,policy_digest=repeat('a',64),policy_versions='{"terms":"fixture"}' where user_id=$1`,
+        [member],
+      );
+    }
+    await q(
+      `insert into beta_public.profiles(id,country,state,age_attested,accepted_version) values($1,'AU','NSW',true,'fixture'),($2,'AU','NSW',true,'fixture')`,
+      [u, other],
+    );
+    await q(
+      `insert into beta_private.social_profiles(id,user_id,handle,display_name) values($1,$2,'lockedowner','Local Owner'),($3,$4,'lockedviewer','Local Viewer')`,
+      [ownerProfile, u, viewerProfile, other],
+    );
+    await pg.exec(
       `create or replace function private.community_actor(p_actor uuid,p_feature text,p_require_posting boolean default true) returns uuid language sql as $$select id from private.social_profiles where user_id=p_actor$$;create or replace function beta_private.admitted(p_user uuid) returns boolean language sql as $$select p_user is not null$$;`,
     );
     await q(`select set_config('request.jwt.claim.sub',$1,false)`, [u]);
@@ -290,6 +355,120 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
     const visible = await published();
     assert.equal(visible.length, 1);
     assert.equal(visible[0].players.length, 7);
+    let publishedStandings = (await standings()).find(
+      (r: any) => r.competitionId === publicRound,
+    );
+    assert.equal(
+      publishedStandings.rows[0].lineup.length,
+      7,
+      "Approved fully locked opposing entry is visible",
+    );
+    await q(
+      `insert into beta_private.social_blocks(actor_id,target_id) values($1,$2)`,
+      [viewerProfile, ownerProfile],
+    );
+    assert.equal(
+      (await standings()).find((r: any) => r.competitionId === publicRound)
+        .rows[0].lineup,
+      null,
+      "Bilateral block enforced with profile identity",
+    );
+    await q(`delete from beta_private.social_blocks where actor_id=$1`, [
+      viewerProfile,
+    ]);
+    const snapshot = (
+      await q(
+        `select snapshot from beta_fantasy.entries where competition_id=$1`,
+        [publicRound],
+      )
+    )[0].snapshot;
+    const scoringRows = [
+      {
+        member: u,
+        centipoints: 12345,
+        rank: 1,
+        status: "final",
+        players: snapshot.map((c: any) => ({
+          cardId: c.card_id,
+          baseCentipoints: 1000,
+          centipoints: 1500,
+          matches: [
+            {
+              score: {
+                parts: [
+                  { statistic: "fixture", quantity: 1, centipoints: 1000 },
+                ],
+              },
+            },
+          ],
+        })),
+      },
+    ];
+    await q(
+      `insert into sports_feed.journal(stream_id,revision,previous_hash,state_hash,body,calculated) values($1,1,'fixture','fixture-final',$2,$3)`,
+      [
+        publicStream,
+        JSON.stringify({
+          scope: "authorised-free-beta",
+          period: { rules: rule },
+          finalisedAt: new Date().toISOString(),
+        }),
+        JSON.stringify({ rows: scoringRows }),
+      ],
+    );
+    await q(
+      `update beta_fantasy.competitions set scored_at=clock_timestamp() where id=$1`,
+      [publicRound],
+    );
+    publishedStandings = (await standings()).find(
+      (r: any) => r.competitionId === publicRound,
+    );
+    assert.equal(publishedStandings.finalised, true);
+    assert.equal(publishedStandings.rows[0].centipoints, 12345);
+    assert.equal(publishedStandings.rows[0].lineup[0].baseCentipoints, 1000);
+    assert.equal(
+      publishedStandings.rows[0].lineup[0].parts[0].statistic,
+      "fixture",
+    );
+    await q(`update public.qa_inventory set cards='[]' where owner=$1`, [u]);
+    assert.deepEqual(
+      (await standings()).find((r: any) => r.competitionId === publicRound)
+        .rows[0].lineup,
+      publishedStandings.rows[0].lineup,
+      "Current inventory changes do not affect historical snapshots",
+    );
+    await q(`update public.qa_inventory set cards=$1 where owner=$2`, [
+      JSON.stringify(cards),
+      u,
+    ]);
+    await q(
+      `insert into sports_feed.journal(stream_id,revision,previous_hash,state_hash,body,calculated) values($1,2,'fixture-final','fixture-reopened',$2,$3)`,
+      [
+        publicStream,
+        JSON.stringify({
+          scope: "authorised-free-beta",
+          period: { rules: rule },
+          finalisedAt: null,
+        }),
+        JSON.stringify({
+          rows: scoringRows.map((r) => ({
+            ...r,
+            status: "provisional",
+            centipoints: 12001,
+          })),
+        }),
+      ],
+    );
+    publishedStandings = (await standings()).find(
+      (r: any) => r.competitionId === publicRound,
+    );
+    assert.equal(
+      publishedStandings.finalised,
+      false,
+      "Latest review overrides previously finalised week",
+    );
+    assert.equal(publishedStandings.rows[0].centipoints, 12001);
+
     assert.equal(JSON.stringify(visible).includes("card_id"), false);
     assert.equal(JSON.stringify(visible).includes("selections"), false);
     await q(
