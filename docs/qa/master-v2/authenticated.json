@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "at": "2026-10-16T00:50:42.536Z",
+  "checks": [
+    "V2 eight surfaces at 1440/1024/412/360; filters apply/persist/clear; no horizontal overflow; Axe serious/critical checks"
+  ],
+  "scope": "Actual localhost Auth, restricted-role PostgreSQL and browser; existing isolated QA accounts only",
+  "hostedOperations": false
+}

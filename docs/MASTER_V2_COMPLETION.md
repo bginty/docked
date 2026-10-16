@@ -24,7 +24,7 @@ This lifecycle defect was reproduced and regression-tested. The reported Samsung
 - Isolated Marketplace acceptance: **8 groups passed** (`market-final.txt`), including URL filters, no results, error/session recovery, privacy, original purchase-receipt recovery and responsive/Axe checks.
 - Pack recovery: **4 groups passed** (`pack-flow.json`). Uses actual React/domain code with synthetic in-memory HTTP. Lost response and reload recover one purchase/opening; all nine stages settle; replay/Skip do not charge or issue again. This is explicitly not authenticated hosted purchase testing.
 - Actual local GoTrue/PostgreSQL security and avatar checks passed before the V2 screen-matrix checks: owner AAL1 denial/MFA approval, ordinary-member denial, discussions/community restrictions, private avatar upload/crop/moderation, cross-account/anonymous denial, replacement/removal/reload persistence and broken-image fallback. Preserved in `auth-security-and-avatar.json`; the enclosing run failed later and is not called a full pass.
-- Final authenticated local journey: **passed**, including actual touch-start/move/end scrolling, attach/remove/cancel, network-failure retry with the same idempotency key, and one successful publication (`authenticated-journey-final.json`). Eight surfaces were checked at 1440/1024/412/360 with no page overflow and no serious/critical desktop Axe findings. A separate fully loaded screenshot pass follows; physical-device acceptance remains pending.
+- Final authenticated local journey: **passed**, including actual touch-start/move/end scrolling, attach/remove/cancel, network-failure retry with the same idempotency key, and one successful publication (`authenticated-journey-final.json`). A separate final capture pass also passed (`authenticated.json`): eight surfaces at 1440/1024/412/360, no page overflow and no serious/critical desktop Axe findings. Physical-device acceptance remains pending.
 - Typecheck, lint, clean production build and client-canary boundary checks passed. Eight focused modal/city/network tests also passed after the recovery changes.
 
 ## Failed and retried checks
@@ -41,7 +41,30 @@ The raw secret scan remains **FAIL with nine known matches**. Eight unchanged fi
 
 ## Delivery authority
 
-The owner’s latest instruction supersedes the earlier Preview-only release direction: release this verified revision to the existing live Docked beta for Owner, Barry and Luke. Use existing accounts and admission controls. No Preview account reset or MFA setup is required for live access. The prior live deployment is recorded in `release/rollback.json`. Release remains pending until the final local and hosted checks complete.
+The owner’s latest instruction supersedes the earlier Preview-only release direction. **Released to the existing live beta at [docked.com.au/app](https://docked.com.au/app)** on 16 October 2026. Both `docked.com.au` and `www.docked.com.au` were verified against deployment `dpl_6vjJaVrhN3zgqT3FEz7ASrmDm85d`, source commit `3513d9f1688bd98bc8200821571731e5379d6900`.
+
+The candidate and live site each passed ten hosted checks: exact build/database identity, invite-only admission, anonymous member-data denial, deployed card/Market/Social/reveal assets and disabled redemption. Evidence: `docs/qa/master-v2/release/candidate.json` and `live.json`. Prior live deployment is recorded in `release/rollback.json`.
+
+This intentionally reuses the existing live beta database and accounts, not a new isolated Preview. No migrations, hosted fixture creation, member transactions, invitations or role changes were performed. Owner, Barry and Luke use their existing accounts. No additional member MFA requirement or owner MFA reset was introduced. Fresh hosted authenticated member journeys were not performed; authenticated acceptance used isolated local Auth/PostgreSQL fixtures. No new Android APK was built in this V2 web release.
+
+## Screenshots and reference comparison
+
+Final local authenticated browser captures are in `docs/qa/master-v2/final/` at desktop 1440, tablet 1024, mobile 412 and narrow mobile 360. They show isolated fictional QA data, not live member data. Missing verified city/number metadata is deliberately not fabricated. Local development indicators can appear in these captures.
+
+- [Social desktop](qa/master-v2/final/social-1440.png) / [mobile](qa/master-v2/final/social-412.png)
+- [Market desktop](qa/master-v2/final/market-1440.png) / [mobile](qa/master-v2/final/market-412.png)
+- [Profile desktop](qa/master-v2/final/profile-1440.png) / [mobile](qa/master-v2/final/profile-412.png)
+- [Cards desktop](qa/master-v2/final/cards-1440.png) / [mobile](qa/master-v2/final/cards-412.png)
+- [Populated lineup desktop](qa/master-v2/final/populated-lineup-1440.png) / [mobile](qa/master-v2/final/populated-lineup-412.png): isolated visual fixtures, separate from the authenticated empty-round fixture.
+- [Pack reveal](qa/master-v2/final/pack-reveal-412.png): isolated purchase/recovery fixture.
+
+The supplied Social reference informed the navy shell, compact feed, collection showcase and suggested-member rail. The result uses live components, existing Docked branding and real counts rather than the reference's logos, invented activity or flattened card artwork. It is an adaptation, not a pixel-identical reproduction.
+
+## Files and remaining limitations
+
+Shared presentation: `collectible-face.tsx`, `collectible.css`, `card-presentation.ts`, `fantasy-card-artwork.tsx`, NFL/EPL lineup and selector components. Reliability: `modal-lifecycle.ts`, `fantasy-screen.tsx`, `native-bridge.tsx`, Social composer/hub/acquisition sharing. Market: `marketplace.tsx` and `marketplace.css`. Test/release helpers and focused platform/browser regressions were updated. The exact source list is in `qa/master-v2/release/changed-files.txt`. **No migrations.**
+
+Remaining acceptance: physical Samsung Internet/system Back/keyboard/orientation behavior, fresh hosted owner/tester authenticated journeys, and an updated Android package. Raw secret scanning still reports the nine reviewed matches described above. No real-money or document-collection activation is included or approved by this release.
 
 ## Physical S24 acceptance still pending
 

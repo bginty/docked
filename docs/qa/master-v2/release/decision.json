@@ -1,0 +1,20 @@
+{
+  "decision": "RELEASE",
+  "commit": "3513d9f1688bd98bc8200821571731e5379d6900",
+  "deployment": "dpl_6vjJaVrhN3zgqT3FEz7ASrmDm85d",
+  "authority": "Owner's latest explicit instruction: push changes live for Barry and Luke, using the existing live beta rather than a separate Preview environment.",
+  "verification": {
+    "platformTests": 386,
+    "databaseTests": 158,
+    "visualGameplayRevealBrowserTests": 14,
+    "marketAcceptanceGroups": 8,
+    "packRecoveryGroups": 4,
+    "authenticatedLocalJourney": "passed",
+    "finalEightScreenFourViewportCapture": "passed",
+    "typecheckLintBuildClientBoundary": "passed",
+    "hostedCandidateChecks": 10
+  },
+  "securityReview": "Nine unchanged raw scanner matches remain documented: eight reviewed fixture/generated values and one previously revoked untracked APK capability. No new findings or exclusions. Candidate denies anonymous member data access.",
+  "boundaries": "No migrations, member asset mutations, new services, public signup, real redemption, document collection or live trading activation. Existing member admission and owner MFA remain enforced.",
+  "limits": "Physical Samsung acceptance and fresh hosted authenticated owner/tester journeys remain pending. Local authenticated transactions use isolated fixtures; hosted checks do not impersonate members."
+}
