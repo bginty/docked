@@ -831,6 +831,10 @@ export async function mutateCommunity(input: unknown) {
       const rows =
         await tx`insert into private.social_profiles(user_id,handle,display_name,bio,visibility,avatar_media_id) values(${who.user.id},${action.handle},${action.displayName},${action.bio},${action.visibility},${avatar}) on conflict(user_id) do update set handle=excluded.handle,display_name=excluded.display_name,bio=excluded.bio,visibility=excluded.visibility,avatar_media_id=excluded.avatar_media_id,updated_at=clock_timestamp() returning id`;
       await tx`insert into private.social_notification_preferences(profile_id) values(${rows[0].id}) on conflict do nothing`;
+      // Only newly created profiles that saw and accepted the disclosure get
+      // the member-visible default. Existing private settings are never rewritten.
+      if (!existing.length && action.collectionDisclosure === true)
+        await tx`insert into private.social_collection_settings(profile_id,visibility,visibility_acknowledged_at) values(${rows[0].id},'members',clock_timestamp()) on conflict do nothing`;
       await audit(tx, who.user.id, "social_profile_saved", String(rows[0].id));
       return {
         ok: true,

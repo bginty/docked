@@ -1,0 +1,170 @@
+TAP version 13
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 1 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 10975.4938
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 2 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 26.1288
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+ok 3 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 20.6112
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+ok 4 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 4.4192
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+ok 5 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 11.7831
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+ok 6 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 41.7514
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 7 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 84.6891
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 8 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 31.2282
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 9 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 51.2146
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 10 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 38.191
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 11 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 37.4638
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 12 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 17.3038
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 13 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 11.3287
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 14 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 24.1983
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 15 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 26.5004
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 16 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 9.5042
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+ok 17 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 56.1177
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+ok 18 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 8.2959
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 19 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 64.7513
+  ...
+# Subtest: seller lists sale, swap or both without choosing a counterparty
+ok 20 - seller lists sale, swap or both without choosing a counterparty
+  ---
+  duration_ms: 147.2507
+  ...
+# Subtest: credit, card and combined offers settle exact assets once using existing wallet
+ok 21 - credit, card and combined offers settle exact assets once using existing wallet
+  ---
+  duration_ms: 366.5017
+  ...
+# Subtest: changing listing terms invalidates pending offers and retains original terms
+ok 22 - changing listing terms invalidates pending offers and retains original terms
+  ---
+  duration_ms: 81.9775
+  ...
+# Subtest: failed acceptance never mutates input or partially transfers
+ok 23 - failed acceptance never mutates input or partially transfers
+  ---
+  duration_ms: 405.5265
+  ...
+# Subtest: two offers cannot transfer the same requested card twice
+ok 24 - two offers cannot transfer the same requested card twice
+  ---
+  duration_ms: 86.9032
+  ...
+# Subtest: no invented valuation, multiple cards or combined fee default
+ok 25 - no invented valuation, multiple cards or combined fee default
+  ---
+  duration_ms: 47.846
+  ...
+# Subtest: hidden listings absent from browse and alternate wallet projections; owner retains access
+ok 26 - hidden listings absent from browse and alternate wallet projections; owner retains access
+  ---
+  duration_ms: 41.3099
+  ...
+# Subtest: combined fee is exactly higher of 7.5 percent credits and current swap floor
+ok 27 - combined fee is exactly higher of 7.5 percent credits and current swap floor
+  ---
+  duration_ms: 1.3114
+  ...
+# Subtest: one offered card cannot settle twice against two different sellers
+ok 28 - one offered card cannot settle twice against two different sellers
+  ---
+  duration_ms: 95.5818
+  ...
+# Subtest: listing cancellation and acceptance cannot both win
+ok 29 - listing cancellation and acceptance cannot both win
+  ---
+  duration_ms: 154.3439
+  ...
+# Subtest: portfolio uses completed comparable sales, integer median and owner-only coverage
+ok 30 - portfolio uses completed comparable sales, integer median and owner-only coverage
+  ---
+  duration_ms: 205.4941
+  ...
+# Subtest: insufficient, hidden, stale, future, private and incomplete sales remain unvalued
+ok 31 - insufficient, hidden, stale, future, private and incomplete sales remain unvalued
+  ---
+  duration_ms: 602.735
+  ...
+# Subtest: asking prices and unopened packs do not create values or reveal contents
+ok 32 - asking prices and unopened packs do not create values or reveal contents
+  ---
+  duration_ms: 46.9212
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13919.7568

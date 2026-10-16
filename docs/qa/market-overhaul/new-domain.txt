@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: seller lists sale, swap or both without choosing a counterparty
+ok 1 - seller lists sale, swap or both without choosing a counterparty
+  ---
+  duration_ms: 246.635
+  ...
+# Subtest: credit, card and combined offers settle exact assets once using existing wallet
+ok 2 - credit, card and combined offers settle exact assets once using existing wallet
+  ---
+  duration_ms: 298.4771
+  ...
+# Subtest: changing listing terms invalidates pending offers and retains original terms
+ok 3 - changing listing terms invalidates pending offers and retains original terms
+  ---
+  duration_ms: 90.8533
+  ...
+# Subtest: failed acceptance never mutates input or partially transfers
+ok 4 - failed acceptance never mutates input or partially transfers
+  ---
+  duration_ms: 445.9308
+  ...
+# Subtest: two offers cannot transfer the same requested card twice
+ok 5 - two offers cannot transfer the same requested card twice
+  ---
+  duration_ms: 89.4364
+  ...
+# Subtest: no invented valuation, multiple cards or combined fee default
+ok 6 - no invented valuation, multiple cards or combined fee default
+  ---
+  duration_ms: 28.5887
+  ...
+# Subtest: hidden listings absent from browse and alternate wallet projections; owner retains access
+ok 7 - hidden listings absent from browse and alternate wallet projections; owner retains access
+  ---
+  duration_ms: 31.5513
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3922.203

@@ -1,0 +1,165 @@
+TAP version 13
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 1 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 12166.4073
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 2 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 31.7924
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+ok 3 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 29.9544
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+ok 4 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 13.891
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+ok 5 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 14.1865
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+ok 6 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 33.231
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 7 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 85.5362
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 8 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 33.0602
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 9 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 51.0809
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 10 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 50.6646
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 11 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 30.877
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 12 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 13.8897
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 13 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 8.445
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 14 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 20.098
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 15 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 25.486
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 16 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 15.3201
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+ok 17 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 41.4863
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 18 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 69.8385
+  ...
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+ok 19 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 13896.6487
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 20 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 35.1921
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 21 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 53.932
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+ok 22 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 59.6777
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 23 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 14.8857
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 24 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 46.0613
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 25 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 40.3684
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 26 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 31.6138
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 27 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 427.3073
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 28 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 9.5301
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 29 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 21.1831
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 30 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 189.7974
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 31 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 76.014
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 33747.8231

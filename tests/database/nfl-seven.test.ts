@@ -217,14 +217,118 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       () => command("seven_enter", rounds[1], picks, 0),
       /Owned/,
     );
+    // Publication gate uses real SQL; community admission is an isolated transport fixture.
+    const ownerProfile = randomUUID(),
+      viewerProfile = randomUUID(),
+      publicRound = randomUUID();
+    await q(
+      `insert into public.profiles(id,country,state,age_attested,accepted_version) values($1,'XX','QA',true,'fixture'),($2,'XX','QA',true,'fixture')`,
+      [u, other],
+    );
+    await q(
+      `insert into private.social_profiles(id,user_id,handle,display_name) values($1,$2,'lockedowner','Local Owner'),($3,$4,'lockedviewer','Local Viewer')`,
+      [ownerProfile, u, viewerProfile, other],
+    );
+    await pg.exec(
+      `create or replace function private.community_actor(p_actor uuid,p_feature text,p_require_posting boolean default true) returns uuid language sql as $$select id from private.social_profiles where user_id=p_actor$$;create or replace function beta_private.admitted(p_user uuid) returns boolean language sql as $$select p_user is not null$$;`,
+    );
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [u]);
+    await q(
+      `insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize) select $1,'LOCAL PUBLICATION FIXTURE',sport,season,1001,clock_timestamp()+interval '2 seconds',rules,scoring_id,prize from beta_fantasy.competitions where id=$2`,
+      [publicRound, rounds[1]],
+    );
+    const publicStream = "beta-real:qa:" + publicRound;
+    await q(`insert into sports_feed.streams(id) values($1)`, [publicStream]);
+    await q(
+      `insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures) values($1,$2,'member',$3)`,
+      [
+        publicRound,
+        publicStream,
+        JSON.stringify([
+          {
+            fixtureId: publicStream + ":f",
+            scheduledAt: new Date(Date.now() + 3000).toISOString(),
+            playerIds: cards.map((c) => c.player_id),
+          },
+        ]),
+      ],
+    );
+    await command("seven_enter", publicRound, picks, 0);
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [other]);
+    const published = async () =>
+      (
+        await q(`select private.social_locked_lineups($1) teams`, [
+          ownerProfile,
+        ])
+      )[0].teams;
+    assert.deepEqual(await published(), []);
+    await q(
+      `insert into beta_fantasy.lineup_publication_policy(competition_id,enabled,policy_version,authority_note) values($1,true,'isolated-test','Local fixture publication only')`,
+      [publicRound],
+    );
+    assert.deepEqual(
+      await published(),
+      [],
+      "deadline and kickoff not yet passed",
+    );
+    await q(`select pg_sleep(3.1)`);
+    assert.deepEqual(
+      await published(),
+      [],
+      "clock alone cannot publish an unsaved lock",
+    );
+    await q(
+      `insert into beta_fantasy.slot_locks(competition_id,user_id,slot,snapshot,locked_at) select competition_id,user_id,s->>'slot',s,(s->>'kickoff')::timestamptz from beta_fantasy.entries,jsonb_array_elements(snapshot) s where competition_id=$1 and s->>'slot'<>'FLEX1'`,
+      [publicRound],
+    );
+    assert.deepEqual(
+      await published(),
+      [],
+      "partial rolling lineup remains private",
+    );
+    await q(`select sports_feed.seven_lock_due()`);
+    const visible = await published();
+    assert.equal(visible.length, 1);
+    assert.equal(visible[0].players.length, 7);
+    assert.equal(JSON.stringify(visible).includes("card_id"), false);
+    assert.equal(JSON.stringify(visible).includes("selections"), false);
+    await q(
+      `insert into private.social_blocks(actor_id,target_id) values($1,$2)`,
+      [viewerProfile, ownerProfile],
+    );
+    assert.deepEqual(
+      await published(),
+      [],
+      "blocked members cannot view locked lineups",
+    );
+    await q(`delete from private.social_blocks where actor_id=$1`, [
+      viewerProfile,
+    ]);
+    await q(
+      `update beta_fantasy.lineup_publication_policy set enabled=false where competition_id=$1`,
+      [publicRound],
+    );
+    assert.deepEqual(
+      await published(),
+      [],
+      "publication policy revocation is immediate",
+    );
     // Member-facing review metadata never includes other users' selections.
-    const review = (await q(`select sports_feed.member_review_context() r`))[0].r;
-    assert.equal(review.rounds.length, 2);
-    assert.ok(review.rounds.every((r: any) => !r.entered && r.rules.version === rule.version));
+    const review = (await q(`select sports_feed.member_review_context() r`))[0]
+      .r;
+    assert.equal(review.rounds.length, 3);
+    assert.ok(
+      review.rounds.every(
+        (r: any) => !r.entered && r.rules.version === rule.version,
+      ),
+    );
     assert.equal(JSON.stringify(review).includes(cards[0].id), false);
-    await pg.exec('set role authenticated');
-    await assert.rejects(() => q(`select sports_feed.member_review_context()`), /permission denied/);
-    await pg.exec('reset role');
+    await pg.exec("set role authenticated");
+    await assert.rejects(
+      () => q(`select sports_feed.member_review_context()`),
+      /permission denied/,
+    );
+    await pg.exec("reset role");
   } finally {
     await pg.close();
   }

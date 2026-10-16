@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: seller lists sale, swap or both without choosing a counterparty
+ok 1 - seller lists sale, swap or both without choosing a counterparty
+  ---
+  duration_ms: 314.3162
+  ...
+# Subtest: credit, card and combined offers settle exact assets once using existing wallet
+ok 2 - credit, card and combined offers settle exact assets once using existing wallet
+  ---
+  duration_ms: 367.0025
+  ...
+# Subtest: changing listing terms invalidates pending offers and retains original terms
+ok 3 - changing listing terms invalidates pending offers and retains original terms
+  ---
+  duration_ms: 81.8952
+  ...
+# Subtest: failed acceptance never mutates input or partially transfers
+ok 4 - failed acceptance never mutates input or partially transfers
+  ---
+  duration_ms: 523.3217
+  ...
+# Subtest: two offers cannot transfer the same requested card twice
+ok 5 - two offers cannot transfer the same requested card twice
+  ---
+  duration_ms: 91.627
+  ...
+# Subtest: no invented valuation, multiple cards or combined fee default
+ok 6 - no invented valuation, multiple cards or combined fee default
+  ---
+  duration_ms: 88.3548
+  ...
+# Subtest: hidden listings absent from browse and alternate wallet projections; owner retains access
+ok 7 - hidden listings absent from browse and alternate wallet projections; owner retains access
+  ---
+  duration_ms: 82.7578
+  ...
+# Subtest: local fixtures are generated for actual Auth identities without rewriting hashed journals
+ok 8 - local fixtures are generated for actual Auth identities without rewriting hashed journals
+  ---
+  duration_ms: 151.5722
+  ...
+# Subtest: listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+ok 9 - listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+  ---
+  duration_ms: 108.8554
+  ...
+# Subtest: stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+ok 10 - stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+  ---
+  duration_ms: 135.0133
+  ...
+# Subtest: active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+ok 11 - active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+  ---
+  duration_ms: 135.6641
+  ...
+# Subtest: stable cursor pages, filters, own listings and private projections
+ok 12 - stable cursor pages, filters, own listings and private projections
+  ---
+  duration_ms: 129.6315
+  ...
+# Subtest: commission half-up, Core restriction and economy isolation
+ok 13 - commission half-up, Core restriction and economy isolation
+  ---
+  duration_ms: 64.232
+  ...
+# Subtest: owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+ok 14 - owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+  ---
+  duration_ms: 74.0358
+  ...
+# Subtest: fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+ok 15 - fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+  ---
+  duration_ms: 112.7419
+  ...
+# Subtest: collections default private and followers never bypass profile blocking
+ok 16 - collections default private and followers never bypass profile blocking
+  ---
+  duration_ms: 16.7602
+  ...
+# Subtest: private offer activation cannot reach hosting, production, or non-loopback databases
+ok 17 - private offer activation cannot reach hosting, production, or non-loopback databases
+  ---
+  duration_ms: 11.3778
+  ...
+# Subtest: acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+ok 18 - acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+  ---
+  duration_ms: 334.9192
+  ...
+# Subtest: two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+ok 19 - two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+  ---
+  duration_ms: 217.3064
+  ...
+# Subtest: decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+ok 20 - decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+  ---
+  duration_ms: 130.9527
+  ...
+# Subtest: blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+ok 21 - blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+  ---
+  duration_ms: 157.0939
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5291.7645

@@ -1,0 +1,7 @@
+{
+  "mode": "browser",
+  "passed": false,
+  "checks": [],
+  "error": "expect(locator).toBeEnabled() failed\n\nLocator: getByRole('button', { name: 'Make offer', exact: true })\nExpected: enabled\nTimeout: 60000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeEnabled\" getByRole('button', { name: 'Make offer', exact: true }) with timeout 60000ms\n  - waiting for getByRole('button', { name: 'Make offer', exact: true })\n",
+  "at": "2026-10-16T03:41:25.842Z"
+}

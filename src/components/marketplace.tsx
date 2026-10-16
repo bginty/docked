@@ -13,6 +13,7 @@ import { AcquisitionShare } from "./acquisition-share";
 import { PlayerShirt } from "./fantasy-player-sheet";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { MemberTestWallet } from "./member-test-wallet";
+import { MakeCardOffer, PrivateOffersInbox } from "./private-card-offers";
 import { SandboxSwaps } from "./sandbox-swaps";
 import type { MemberTestView } from "@/core/member-test-wallet";
 type Row = MarketplaceView["rows"][number];
@@ -36,28 +37,20 @@ const tabs = [
 ] as const;
 export function Marketplace({ member }: { member: string }) {
   const ready = useClientReady();
-  const [params, setParams] = useState<URLSearchParams>(
-    () =>
-      new URLSearchParams(
-        typeof window === "undefined" ? "" : window.location.search,
-      ),
-  );
+  const [params, setParams] = useState(() => new URLSearchParams());
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [data, setData] = useState<MarketplaceView | null>(null),
     [error, setError] = useState(""),
     [loading, setLoading] = useState(true),
     [busy, setBusy] = useState(false);
-  const [ownedCard, setOwnedCard] = useState(() =>
-      typeof window === "undefined"
-        ? ""
-        : (new URLSearchParams(window.location.search).get("sell") ?? ""),
-    ),
-    [askPrice, setAskPrice] = useState("1000");
   const [detail, setDetail] = useState<Row | null>(null),
     [review, setReview] = useState<Review | null>(null),
-    [listing, setListing] = useState<{ card: string; price: number } | null>(
-      null,
-    ),
+    [listing, setListing] = useState<{
+      card: string;
+      price: number;
+      preference: "sell" | "swap" | "both";
+      listing?: string;
+    } | null>(null),
     [cancel, setCancel] = useState<Row | null>(null);
   const [receipt, setReceipt] = useState<Record<string, unknown> | null>(null),
     [recovery, setRecovery] = useState<Envelope | null>(null),
@@ -112,6 +105,7 @@ export function Marketplace({ member }: { member: string }) {
     }
   }, [query, member, tab]);
   useEffect(() => {
+    if (!ready) return;
     void refresh();
     const online = () => void refresh();
     window.addEventListener("online", online);
@@ -120,9 +114,10 @@ export function Marketplace({ member }: { member: string }) {
       window.removeEventListener("online", online);
       window.removeEventListener("docked-app-resume", online);
     };
-  }, [refresh]);
+  }, [refresh, ready]);
   useEffect(() => {
     const back = () => setParams(new URLSearchParams(window.location.search));
+    back();
     window.addEventListener("popstate", back);
     return () => window.removeEventListener("popstate", back);
   }, []);
@@ -251,7 +246,11 @@ export function Marketplace({ member }: { member: string }) {
     closeCancel = useCallback(() => setCancel(null), []);
   const credits = (n: number) => n.toLocaleString("en-AU");
   return (
-    <main className="test-wallet marketplace" data-market-ready={ready} inert={!ready}>
+    <main
+      className="test-wallet marketplace"
+      data-market-ready={ready}
+      inert={!ready}
+    >
       <header>
         <p className="eyebrow">DOCKED · NFL</p>
         <h1>Market</h1>
@@ -268,6 +267,38 @@ export function Marketplace({ member }: { member: string }) {
           </p>
         )}
       </header>
+      <nav className="market-primary" aria-label="Buy or sell">
+        <button
+          className="button"
+          aria-pressed={tab === "listings"}
+          onClick={() =>
+            navigate({
+              tab: "listings",
+              q: "",
+              inventoryPage: "0",
+              own: "only",
+            })
+          }
+        >
+          Sell / Swap
+        </button>
+        <button
+          className="button"
+          aria-pressed={tab === "browse"}
+          onClick={() => navigate({ tab: "browse", q: "", own: "exclude" })}
+        >
+          Buy / Browse
+        </button>
+      </nav>
+      {data && !data.tradingEnabled && (
+        <p className="notice" role="status">
+          Trading is paused. Browse your cards and prepare listings; buying,
+          listing and acceptance are unavailable until beta trading is approved.
+        </p>
+      )}
+      <Link className="market-offers-link" href="/fantasy/market?tab=swaps">
+        Offers received & sent →
+      </Link>
       <nav className="market-tabs" aria-label="Marketplace sections">
         <Link
           className="button ghost"
@@ -404,10 +435,63 @@ export function Marketplace({ member }: { member: string }) {
               </select>
             </label>
           </form>
-          {[...params].some(([key, value]) => value && !["tab", "sort", "cursor", "sell"].includes(key)) && <div className="market-filter-chips" aria-label="Active filters">
-            {[...params].filter(([key,value]) => value && !["tab","sort","cursor","sell"].includes(key)).map(([key,value]) => <button type="button" key={key} onClick={() => navigate({[key]:""})} aria-label={`Remove ${key} filter`}><span>{({q:"Player",min:"Min",max:"Max",team:"Team",position:"Position",rarity:"Rarity",round:"Competition",playable:"Gameplay",available:"Roster",own:"Listings"} as Record<string,string>)[key] ?? "Filter"}: {key === "round" ? data?.rounds.find(r=>r.id===value)?.name ?? "Selected" : value}</span> ×</button>)}
-            <button type="button" onClick={() => navigate(Object.fromEntries([...params].filter(([k])=>!["tab","sort"].includes(k)).map(([k])=>[k,""])))}>Clear all</button>
-          </div>}
+          {[...params].some(
+            ([key, value]) =>
+              value && !["tab", "sort", "cursor", "sell"].includes(key),
+          ) && (
+            <div className="market-filter-chips" aria-label="Active filters">
+              {[...params]
+                .filter(
+                  ([key, value]) =>
+                    value && !["tab", "sort", "cursor", "sell"].includes(key),
+                )
+                .map(([key, value]) => (
+                  <button
+                    type="button"
+                    key={key}
+                    onClick={() => navigate({ [key]: "" })}
+                    aria-label={`Remove ${key} filter`}
+                  >
+                    <span>
+                      {(
+                        {
+                          q: "Player",
+                          min: "Min",
+                          max: "Max",
+                          team: "Team",
+                          position: "Position",
+                          rarity: "Rarity",
+                          round: "Competition",
+                          playable: "Gameplay",
+                          available: "Roster",
+                          own: "Listings",
+                        } as Record<string, string>
+                      )[key] ?? "Filter"}
+                      :{" "}
+                      {key === "round"
+                        ? (data?.rounds.find((r) => r.id === value)?.name ??
+                          "Selected")
+                        : value}
+                    </span>{" "}
+                    ×
+                  </button>
+                ))}
+              <button
+                type="button"
+                onClick={() =>
+                  navigate(
+                    Object.fromEntries(
+                      [...params]
+                        .filter(([k]) => !["tab", "sort"].includes(k))
+                        .map(([k]) => [k, ""]),
+                    ),
+                  )
+                }
+              >
+                Clear all
+              </button>
+            </div>
+          )}
           {filtersOpen && (
             <FantasySheet
               title="Market filters"
@@ -581,110 +665,52 @@ export function Marketplace({ member }: { member: string }) {
               </button>
             ))}
           </div>
-          <details open={!!params.get("sell") || undefined}>
-            <summary>Create listing from your owned cards</summary>
-            <p>{sevenTransferNotice}</p>
-            <p>
-              Core cards remain in your collection and cannot be sold for
-              credits.
-            </p>
-            {ownedCard && !data.inventory.some((c) => c.id === ownedCard) && (
-              <p>
-                This card is not an eligible opened card in this credit economy,
-                or is on another inventory page. Free Core cards cannot be sold
-                for credits.
-              </p>
-            )}
-            {data.inventory
-              .filter((c) => c.id === ownedCard)
-              .map((c) => (
-                <section key={c.id}>
-                  <p>
-                    {c.transferReason ||
-                      "Eligible to list, subject to confirmation."}
-                  </p>
-                  {c.listingId && (
-                    <Link
-                      href={`/fantasy/market?listing=${encodeURIComponent(c.listingId)}`}
-                    >
-                      Listed · View listing
-                    </Link>
-                  )}
-                  {c.ownerReservations.map((r) => (
-                    <p key={`${r.competition}:${r.slot}`}>
-                      {r.name} · Entry slot {r.slot}.{" "}
-                      <Link
-                        href={`/fantasy/play?competition=${encodeURIComponent(r.competition)}`}
-                      >
-                        Replace card
-                        {r.withdrawable
-                          ? " or withdraw entry"
-                          : " (withdrawal closed)"}
-                      </Link>
-                    </p>
-                  ))}
-                </section>
-              ))}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const f = new FormData(e.currentTarget);
-                setFiltersOpen(false);
-                setListing({
-                  card: String(f.get("card")),
-                  price: Number(f.get("price")),
-                });
-              }}
-            >
-              <label>
-                Exact owned card
-                <select
-                  name="card"
-                  required
-                  value={ownedCard}
-                  onChange={(e) => setOwnedCard(e.target.value)}
-                >
-                  <option value="">Select a card</option>
-                  {data.inventory.map((c) => (
-                    <option key={c.id} value={c.id} disabled={false}>
-                      {c.name} · {c.tier} #{c.serial} · {c.id.slice(-8)}
-                      {c.listed
-                        ? " — listed"
-                        : c.transferReason
-                          ? ` — ${c.transferReason}`
-                          : ""}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Asking price · Docked Credits
-                <input
-                  name="price"
-                  type="number"
-                  min="1"
-                  max="1000000000"
-                  step="1"
-                  required
-                  value={askPrice}
-                  onChange={(e) => setAskPrice(e.target.value)}
+          <h3>Select a card</h3>
+          <div className="market-owned-grid">
+            {data.inventory.map((c) => (
+              <article key={c.id}>
+                <FantasyCardArtwork
+                  card={c}
+                  faceOnly
+                  onInspect={() => {
+                    if (!c.listed && !c.transferReason)
+                      setListing({
+                        card: c.id,
+                        price: 1000,
+                        preference: "sell",
+                      });
+                  }}
                 />
-              </label>
-              <button
-                disabled={
-                  busy ||
-                  !data.inventory.some(
-                    (c) => c.id === ownedCard && !c.listed && !c.transferReason,
-                  )
-                }
-              >
-                Review listing
-              </button>
-            </form>
-            <p>
-              {data.inventoryTotal} owned opened test cards · showing page{" "}
-              {data.query.inventoryPage + 1}
-            </p>
+                <small>
+                  {c.listed
+                    ? "Listed"
+                    : c.transferReason || "Available to list"}
+                </small>
+                {c.listed ? (
+                  <Link
+                    href={`/fantasy/market?listing=${encodeURIComponent(c.listingId ?? "")}`}
+                  >
+                    Manage listing
+                  </Link>
+                ) : (
+                  <button
+                    disabled={!!c.transferReason}
+                    onClick={() =>
+                      setListing({
+                        card: c.id,
+                        price: 1000,
+                        preference: "sell",
+                      })
+                    }
+                  >
+                    Select card
+                  </button>
+                )}
+              </article>
+            ))}
+          </div>
+          {!data.inventory.length && <p>No owned cards match these filters.</p>}
+          <div className="actions">
             <button
               disabled={data.query.inventoryPage === 0}
               onClick={() =>
@@ -694,8 +720,9 @@ export function Marketplace({ member }: { member: string }) {
                 })
               }
             >
-              Previous owned cards
+              Previous cards
             </button>
+            <span>{data.inventoryTotal} owned cards</span>
             <button
               disabled={
                 (data.query.inventoryPage + 1) * 40 >= data.inventoryTotal
@@ -707,15 +734,9 @@ export function Marketplace({ member }: { member: string }) {
                 })
               }
             >
-              Next owned cards
+              Next cards
             </button>
-            {!data.inventory.some((c) => !c.listed && !c.transferReason) && (
-              <p>
-                No eligible owned test cards. Open an owned pack, cancel a
-                listing/offer, or replace a card in Play where permitted.
-              </p>
-            )}
-          </details>
+          </div>
         </section>
       )}
       {data && tab !== "swaps" && tab !== "activity" && (
@@ -735,7 +756,14 @@ export function Marketplace({ member }: { member: string }) {
                   }}
                 />
                 <div className="market-listing-footer">
-                  <strong>{credits(l.price)} Docked Credits</strong>
+                  <strong>
+                    {l.preference === "swap"
+                      ? "Open to swaps"
+                      : `${credits(l.price)} Docked Credits`}
+                  </strong>
+                  {l.preference === "both" && (
+                    <small>Also open to swap offers</small>
+                  )}
                   <small>{l.status}</small>
                   {["K", "DEF", "DST"].includes(l.card.position) && (
                     <p>Collectible only · no seven-player slot</p>
@@ -760,7 +788,7 @@ export function Marketplace({ member }: { member: string }) {
                     {l.status === "OPEN"
                       ? l.own
                         ? "Manage listing"
-                        : "View card & buy"
+                        : "View card & offers"
                       : "View card"}
                   </button>
                 </div>
@@ -882,6 +910,7 @@ export function Marketplace({ member }: { member: string }) {
           </button>
         </section>
       )}
+      {tab === "swaps" && <PrivateOffersInbox member={member} />}
       {tab === "swaps" && (
         <>
           <div className="actions">
@@ -972,69 +1001,97 @@ export function Marketplace({ member }: { member: string }) {
           </Link>
           {detail.status === "OPEN" &&
             (detail.own ? (
-              <button
-                disabled={busy}
-                onClick={() => {
-                  setCancel(detail);
-                  setDetail(null);
-                }}
-              >
-                Cancel listing
-              </button>
+              <div className="actions">
+                <button
+                  disabled={busy || !data?.tradingEnabled}
+                  onClick={() => {
+                    setListing({
+                      card: detail.card.id,
+                      price: detail.price,
+                      preference: detail.preference,
+                      listing: detail.id,
+                    });
+                    setDetail(null);
+                  }}
+                >
+                  Edit listing
+                </button>
+                <button
+                  disabled={busy}
+                  onClick={() => {
+                    setCancel(detail);
+                    setDetail(null);
+                  }}
+                >
+                  Cancel listing
+                </button>
+              </div>
             ) : (
               <>
-                {!review ? (
-                  <button
-                    disabled={
-                      busy || !!recovery || !!detail.card.transferReason
-                    }
-                    onClick={() =>
-                      void send({ kind: "review-buy", listing: detail.id })
-                    }
-                  >
-                    Review purchase
-                  </button>
-                ) : (
-                  <section>
-                    <h3>Confirm purchase</h3>
-                    <p>Exact card {review.card}</p>
-                    <p>
-                      Debit {credits(review.price)} Docked Credits. Available{" "}
-                      {credits(data?.wallet.spendable ?? 0)}. Remaining{" "}
-                      {credits((data?.wallet.spendable ?? 0) - review.price)}.
-                    </p>
-                    <p>
-                      Marketplace commission {credits(review.fee)}. Seller
-                      receives {credits(review.net)}. No extra buyer fee.
-                    </p>
-                    <p>
-                      {(data?.wallet.spendable ?? 0) < review.price &&
-                        `Shortfall: ${credits(review.price - (data?.wallet.spendable ?? 0))} Docked Credits. Cash funding is unavailable. `}
-                      Review valid until{" "}
-                      {new Date(review.expires).toLocaleTimeString()}. Test
-                      assets only, no cash value.
-                    </p>
+                <MakeCardOffer
+                  card={detail.card.id}
+                  member={member}
+                  enabled={!!data?.offersEnabled}
+                  listing={detail.id}
+                  preference={detail.preference}
+                />
+                {detail.preference !== "swap" &&
+                  (!review ? (
                     <button
                       disabled={
                         busy ||
+                        !data?.tradingEnabled ||
                         !!recovery ||
-                        (data?.wallet.spendable ?? 0) < review.price
+                        !!detail.card.transferReason
                       }
                       onClick={() =>
-                        void send({
-                          kind: "buy",
-                          listing: review.listing,
-                          review: review.review,
-                          expectedPrice: review.price,
-                          policy: review.policy,
-                          confirmed: true,
-                        })
+                        void send({ kind: "review-buy", listing: detail.id })
                       }
                     >
-                      Confirm purchase · {credits(review.price)} credits
+                      Review purchase
                     </button>
-                  </section>
-                )}
+                  ) : (
+                    <section>
+                      <h3>Confirm purchase</h3>
+                      <p>Exact card {review.card}</p>
+                      <p>
+                        Debit {credits(review.price)} Docked Credits. Available{" "}
+                        {credits(data?.wallet.spendable ?? 0)}. Remaining{" "}
+                        {credits((data?.wallet.spendable ?? 0) - review.price)}.
+                      </p>
+                      <p>
+                        Marketplace commission {credits(review.fee)}. Seller
+                        receives {credits(review.net)}. No extra buyer fee.
+                      </p>
+                      <p>
+                        {(data?.wallet.spendable ?? 0) < review.price &&
+                          `Shortfall: ${credits(review.price - (data?.wallet.spendable ?? 0))} Docked Credits. Cash funding is unavailable. `}
+                        Review valid until{" "}
+                        {new Date(review.expires).toLocaleTimeString()}. Test
+                        assets only, no cash value.
+                      </p>
+                      <button
+                        disabled={
+                          busy ||
+                          !data?.tradingEnabled ||
+                          !!recovery ||
+                          (data?.wallet.spendable ?? 0) < review.price
+                        }
+                        onClick={() =>
+                          void send({
+                            kind: "buy",
+                            listing: review.listing,
+                            review: review.review,
+                            expectedPrice: review.price,
+                            policy: review.policy,
+                            confirmed: true,
+                          })
+                        }
+                      >
+                        Confirm purchase · {credits(review.price)} credits
+                      </button>
+                    </section>
+                  ))}
               </>
             ))}
           {error && <p role="alert">{error}</p>}
@@ -1060,21 +1117,89 @@ export function Marketplace({ member }: { member: string }) {
             <summary>Exact card identity</summary>
             <p>{listing.card}</p>
           </details>
-          <p>Asking price {credits(listing.price)} Docked Credits</p>
+          <label>
+            Listing preference
+            <select
+              value={listing.preference}
+              onChange={(e) =>
+                setListing({
+                  ...listing,
+                  preference: e.target.value as "sell" | "swap" | "both",
+                  price: e.target.value === "swap" ? 0 : listing.price || 1000,
+                })
+              }
+            >
+              <option value="sell">Sell for credits</option>
+              <option value="swap">Open to swaps</option>
+              <option value="both">Sell or swap</option>
+            </select>
+          </label>
+          {listing.preference !== "swap" && (
+            <label>
+              Asking price · test credits
+              <input
+                type="number"
+                min={1}
+                max={1000000000}
+                step={1}
+                value={listing.price || ""}
+                onChange={(e) =>
+                  setListing({ ...listing, price: Number(e.target.value) })
+                }
+              />
+            </label>
+          )}
+          {listing.preference === "swap" ? (
+            <p>
+              Buyers propose their own card. Review the exact offer and
+              applicable swap fee before accepting.
+            </p>
+          ) : (
+            listing.price > 0 &&
+            Number.isSafeInteger(listing.price) &&
+            listing.price <= 1000000000 && (
+              <p>
+                Sale commission {credits(sellerQuote(listing.price).fee)}{" "}
+                credits (7.5%). You receive{" "}
+                {credits(sellerQuote(listing.price).net)} credits.
+              </p>
+            )
+          )}
+          {listing.listing && (
+            <p>
+              Saving replaces this listing. Offers made against the previous
+              terms cannot be accepted.
+            </p>
+          )}
           <p>
-            Marketplace commission {credits(sellerQuote(listing.price).fee)}{" "}
-            (7.5%, half-up whole credit). Seller receives{" "}
-            {credits(sellerQuote(listing.price).net)}.
+            Visible only to members allowed by your{" "}
+            <Link href="/profile">collection privacy</Link>. Hidden cards stay
+            hidden. Enable offers in your collection settings to receive
+            proposals.
           </p>
           <p>
             No listing fee. Ownership remains yours until a completed purchase.
             Listed cards cannot be newly selected into a team.
           </p>
           <button
-            disabled={busy}
-            onClick={() => void send({ kind: "list", ...listing })}
+            disabled={
+              busy ||
+              !data.tradingEnabled ||
+              (listing.preference !== "sell" && !data.offersEnabled) ||
+              !Number.isSafeInteger(listing.price) ||
+              listing.price < (listing.preference === "swap" ? 0 : 1) ||
+              listing.price > 1000000000
+            }
+            onClick={() =>
+              void send({
+                kind: listing.listing ? "replace-listing" : "list",
+                ...listing,
+              })
+            }
           >
-            Confirm listing
+            {data.tradingEnabled
+              ? "List card"
+              : "Listing unavailable — trading paused"}
           </button>
           {error && <p role="alert">{error}</p>}
         </FantasySheet>

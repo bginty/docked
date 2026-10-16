@@ -11,7 +11,11 @@ import {
   type Operator,
   type State as Commerce,
 } from "./commerce-sandbox";
-import { creditsPolicy, sellerQuote } from "./credits-policy";
+import {
+  creditsPolicy,
+  sellerQuote,
+  combinedOfferQuote,
+} from "./credits-policy";
 import { generatePrizes, type PrizeRegister } from "./prize-register";
 import {
   creditsFromAudCents,
@@ -143,6 +147,7 @@ export type CreditsState = {
       card: string;
       version: number;
       price: number;
+      preference?: "sell" | "swap" | "both";
       privateOffer?: string;
       status: "OPEN" | "SOLD" | "CANCELLED";
       buyer?: string;
@@ -168,6 +173,8 @@ export type CreditsState = {
       expires: number;
       status: "OPEN" | "ACCEPTED" | "REJECTED" | "CANCELLED" | "EXPIRED";
       feeEach: number;
+      creditTopUp?: number;
+      creditFeeMinimum?: number;
       completedFeeEach?: number;
     }
   >;
@@ -253,7 +260,19 @@ export const creditsCommand = z.discriminatedUnion("kind", [
     policy: id,
   }),
   base({ kind: z.literal("open-pack"), entitlement: id }),
-  base({ kind: z.literal("list"), card: id, price: amount }),
+  base({
+    kind: z.literal("list"),
+    card: id,
+    price: z.number().int().min(0).max(1000000000),
+    preference: z.enum(["sell", "swap", "both"]).optional(),
+  }),
+  base({
+    kind: z.literal("replace-listing"),
+    listing: id,
+    card: id,
+    price: z.number().int().min(0).max(1000000000),
+    preference: z.enum(["sell", "swap", "both"]),
+  }),
   base({ kind: z.literal("cancel-listing"), listing: id }),
   base({ kind: z.literal("review-buy"), listing: id }),
   base({
@@ -270,6 +289,8 @@ export const creditsCommand = z.discriminatedUnion("kind", [
     give: z.array(id).min(1).max(10),
     take: z.array(id).min(1).max(10),
     feeEach: z.union([z.literal(0), z.literal(50)]),
+    creditTopUp: z.number().int().min(1).max(1000000000).optional(),
+    creditFeeMinimum: z.union([z.literal(0), z.literal(50)]).optional(),
   }),
   base({
     kind: z.enum(["accept", "reject", "cancel-swap", "expire-swap"]),
@@ -1087,8 +1108,24 @@ export function executeCredits(
       card: s.commerce.orders[e.order].card,
       source: e.source,
     };
-  } else if (c.kind === "list") {
+  } else if (c.kind === "list" || c.kind === "replace-listing") {
     member();
+    if (c.kind === "replace-listing") {
+      const old = s.listings[c.listing];
+      if (
+        !old ||
+        old.member !== actor.id ||
+        old.card !== c.card ||
+        old.status !== "OPEN"
+      )
+        throw Error("Listing changed or closed");
+      old.status = "CANCELLED";
+      old.cancelledAt = now;
+    }
+    if ((c.preference === "swap") !== (c.price === 0))
+      throw Error(
+        "Swap listings have no asking price; credit sales require a positive price",
+      );
     canTrade(c.card, actor.id);
     if (
       Object.values(s.listings).some(
@@ -1102,10 +1139,15 @@ export function executeCredits(
       card: c.card,
       version: s.cards[c.card].version,
       price: c.price,
+      ...(c.preference ? { preference: c.preference } : {}),
       status: "OPEN",
       createdAt: now,
     };
-    result = { listing: request, status: "OPEN", ...sellerQuote(c.price) };
+    result = {
+      listing: request,
+      status: "OPEN",
+      ...(c.price ? sellerQuote(c.price) : { price: 0, fee: 0, net: 0 }),
+    };
   } else if (c.kind === "cancel-listing") {
     const l = s.listings[c.listing];
     if (!l) throw Error("Unknown listing");
@@ -1119,6 +1161,8 @@ export function executeCredits(
     member();
     const l = s.listings[c.listing];
     if (!l || l.member === actor.id) throw Error("Listing unavailable");
+    if (l.preference === "swap")
+      throw Error("This card is open to swap offers only");
     if (l.status !== "OPEN")
       throw Error(`Listing ${l.status.toLowerCase()}; review updated details.`);
     canTrade(l.card, l.member, l.version);
@@ -1144,6 +1188,7 @@ export function executeCredits(
       !l ||
       l.status !== "OPEN" ||
       l.member === actor.id ||
+      l.preference === "swap" ||
       c.expectedPrice !== l.price
     )
       throw Error("Invalid or stale listing");
@@ -1217,10 +1262,20 @@ export function executeCredits(
       throw Error("Invalid swap");
     c.give.forEach((v) => canTrade(v, actor.id));
     c.take.forEach((v) => canTrade(v, c.other));
-    const fee = swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now).feeEach;
+    const fee = c.creditTopUp
+      ? 0
+      : swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now).feeEach;
+    if (c.creditTopUp) {
+      if (
+        c.creditFeeMinimum !==
+        swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now).feeEach
+      )
+        throw Error("Combined fee changed; review a new offer");
+      combinedOfferQuote(c.creditTopUp, c.creditFeeMinimum);
+    }
     if (c.feeEach !== fee)
       throw Error("Swap fee changed; review a fresh quote");
-    select(actor.id, fee);
+    select(actor.id, fee + (c.creditTopUp ?? 0));
     select(c.other, fee);
     s.swaps[request] = {
       member: actor.id,
@@ -1231,6 +1286,9 @@ export function executeCredits(
       expires: now + 86400000,
       status: "OPEN",
       feeEach: fee,
+      ...(c.creditTopUp
+        ? { creditTopUp: c.creditTopUp, creditFeeMinimum: c.creditFeeMinimum }
+        : {}),
     };
     result = { offer: request, feeEach: fee, total: fee * 2 };
   } else if (
@@ -1265,17 +1323,53 @@ export function executeCredits(
             c.swap,
           ),
         );
-        const fee = swapFeeQuote(
-          s.creditOnly,
-          s.policy.swapFeeEach,
-          now,
-        ).feeEach;
+        const fee = offer.creditTopUp
+          ? 0
+          : swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now).feeEach;
         if (fee > offer.feeEach)
           throw Error(
             "Swap fee increased; both participants must consent to a new offer",
           );
         if (s.creditOnly && c.feeEach !== fee)
           throw Error("Swap fee changed; review before accepting");
+        if (offer.creditTopUp) {
+          const quote = combinedOfferQuote(
+            offer.creditTopUp,
+            offer.creditFeeMinimum ?? s.policy.swapFeeEach,
+          );
+          const parts = select(offer.member, offer.creditTopUp);
+          const lines = debit(parts);
+          let remainingFee = quote.fee;
+          const restricted = [...offer.give, ...offer.take].some(
+            (v) => s.cards[v].restricted,
+          );
+          for (const part of parts) {
+            const fee = Math.min(remainingFee, part.amount);
+            remainingFee -= fee;
+            if (part.amount > fee) {
+              const dest = lot(
+                offer.other,
+                "sale",
+                s.lots[part.lot].redeemable && !restricted,
+                s.lots[part.lot].provenance,
+              );
+              s.lots[dest].parentLot = part.lot;
+              lines.push({
+                account: account(dest, "available"),
+                credits: part.amount - fee,
+              });
+            }
+          }
+          lines.push({ account: "system:commission", credits: quote.fee });
+          post(
+            "exchange-credit",
+            lines,
+            `Card exchange ${c.swap}: credit component commission`,
+          );
+          if (parts.some((p) => !s.lots[p.lot].redeemable))
+            for (const id of [...offer.give, ...offer.take])
+              s.cards[id].restricted = true;
+        }
         const a = select(offer.member, fee),
           b = select(offer.other, fee);
         post(

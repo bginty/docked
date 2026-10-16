@@ -41,7 +41,10 @@ export async function GET(request: Request) {
     }
     const data =
       view === "offers"
-        ? await privateOffers()
+        ? await privateOffers(undefined, {
+            q: params.get("q") ?? undefined,
+            inventoryPage: params.get("inventoryPage") ?? undefined,
+          })
         : view === "hub"
           ? await socialHub(params.get("handle") ?? undefined)
           : view === "profile"

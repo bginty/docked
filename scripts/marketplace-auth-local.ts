@@ -30,19 +30,27 @@ import { seedRedemptionAuth, runRedemptionAuth } from "./redemption-auth-local";
 const redemption = process.argv.includes("--redemption");
 const integrated = process.argv.includes("--integrated");
 const socialOnly = process.argv.includes("--social-only");
-const socialUpgrade = process.argv.includes("--social-upgrade");
+const marketOverhaul = process.argv.includes("--market-overhaul");
+const socialUpgrade =
+  process.argv.includes("--social-upgrade") || marketOverhaul;
 const masterV2 = process.argv.includes("--master-v2");
 const socialVisual = process.argv.includes("--social-visual");
 const root = process.cwd(),
   dir = resolve(
-    redemption
-      ? "tmp/redemption-auth"
-      : integrated
-        ? "tmp/marketplace-integrated-v2"
-        : "tmp/marketplace-auth",
+    marketOverhaul
+      ? "tmp/market-overhaul-auth"
+      : redemption
+        ? "tmp/redemption-auth"
+        : integrated
+          ? "tmp/marketplace-integrated-v2"
+          : "tmp/marketplace-auth",
   ),
   origin = "http://127.0.0.1:3033",
-  authOrigin = redemption ? "http://127.0.0.1:55331" : "http://127.0.0.1:55321";
+  authOrigin = marketOverhaul
+    ? "http://127.0.0.1:55341"
+    : redemption
+      ? "http://127.0.0.1:55331"
+      : "http://127.0.0.1:55321";
 function totp(secret: string) {
   let bits = "";
   for (const c of secret.toUpperCase().replace(/=+$/, ""))
@@ -67,7 +75,10 @@ async function main() {
   assert.equal(keys.API_URL, authOrigin);
   const dbUrl = new URL(keys.DB_URL);
   assert.equal(dbUrl.hostname, "127.0.0.1");
-  assert.equal(dbUrl.port, redemption ? "55332" : "55322");
+  assert.equal(
+    dbUrl.port,
+    marketOverhaul ? "55342" : redemption ? "55332" : "55322",
+  );
   assert.equal(
     dbUrl.pathname,
     redemption ? "/docked_redemption_local_auth" : "/postgres",
@@ -88,17 +99,19 @@ async function main() {
   await mkdir("docs/qa/social-upgrade", { recursive: true });
   await mkdir("docs/qa/social-visual-preview", { recursive: true });
   await mkdir("docs/qa/master-v2", { recursive: true });
-  const receipt = masterV2
-    ? "docs/qa/master-v2/authenticated.json"
-    : socialVisual
-      ? "docs/qa/social-visual-preview/authenticated.json"
-      : redemption
-        ? "docs/qa/premium-completion/authenticated.json"
-        : socialOnly
-          ? socialUpgrade
-            ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
-            : "docs/qa/mobile-release/social-http.json"
-          : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
+  const receipt = marketOverhaul
+    ? "docs/qa/market-overhaul/authenticated-harness.json"
+    : masterV2
+      ? "docs/qa/master-v2/authenticated.json"
+      : socialVisual
+        ? "docs/qa/social-visual-preview/authenticated.json"
+        : redemption
+          ? "docs/qa/premium-completion/authenticated.json"
+          : socialOnly
+            ? socialUpgrade
+              ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
+              : "docs/qa/mobile-release/social-http.json"
+            : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
     JSON.stringify({
@@ -324,6 +337,33 @@ async function main() {
         ),
       );
     }
+    if (marketOverhaul) {
+      const localGate = resolve(
+        app,
+        "src/core/local-marketplace-acceptance.mjs",
+      );
+      await writeFile(
+        localGate,
+        (await readFile(localGate, "utf8"))
+          .replaceAll("55321", "55341")
+          .replaceAll("55322", "55342"),
+      );
+      // This old local campaign uses provider=fixture, which intentionally cannot
+      // match the live NFL source. Adapt only its observation transport, never
+      // eligibility, randomness, ownership, fees, transactions or hosted code.
+      await sql`create or replace view credits_sandbox.local_market_player_status as
+        select p.id,p.identity->>'name' name,p.identity->>'position' position,p.identity->>'currentTeam' team,'ACT'::text status,clock_timestamp() checked_at,'isolated-market-fixture'::text raw_id from credits_sandbox.permanent_players p where p.provider='fixture'
+        union all select c.* from credits_sandbox.current_player_status c join credits_sandbox.permanent_players p on p.id=c.id where p.provider<>'fixture'`;
+      await sql`grant select on credits_sandbox.local_market_player_status to docked_beta_app`;
+      const path = resolve(app, "src/server/economy-catalogue.ts");
+      await writeFile(
+        path,
+        (await readFile(path, "utf8")).replace(
+          "credits_sandbox.current_player_status",
+          "credits_sandbox.local_market_player_status",
+        ),
+      );
+    }
     const runtime = new URL(dbUrl.href);
     runtime.username = "docked_beta_app";
     runtime.password = qa.dbPassword;
@@ -495,6 +535,36 @@ async function main() {
           200,
           "Social profile " + i + ": " + (await r.text()),
         );
+      }
+      if (marketOverhaul) {
+        checks.push(
+          ...(await (
+            await import("./market-overhaul-acceptance")
+          ).runMarketOverhaul(
+            sql,
+            contexts,
+            process.argv.includes("--market-browser-only")
+              ? "browser"
+              : process.argv.includes("--market-finish")
+                ? "finish"
+                : "all",
+          )),
+        );
+        await writeFile(
+          "docs/qa/market-overhaul/authenticated.json",
+          JSON.stringify(
+            {
+              passed: true,
+              checks,
+              at: new Date().toISOString(),
+              scope:
+                "Actual local GoTrue, Next HTTP routes, restricted PostgreSQL and browser. No hosted operations.",
+            },
+            null,
+            2,
+          ),
+        );
+        return;
       }
       if (socialUpgrade && !browserOnly)
         checks.push(
@@ -1071,6 +1141,15 @@ async function main() {
   }
 }
 main().catch((e) => {
-  console.error({ name: e.name, message: e.message.split("\nCall log:")[0] });
+  console.error({
+    name: e.name,
+    message: e.message.split("\nCall log:")[0],
+    frames: marketOverhaul
+      ? e.stack
+          ?.split("\n")
+          .filter((line: string) => line.trim().startsWith("at "))
+          .slice(0, 6)
+      : undefined,
+  });
   process.exitCode = 1;
 });

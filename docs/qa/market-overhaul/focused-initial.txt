@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: local fixtures are generated for actual Auth identities without rewriting hashed journals
+ok 1 - local fixtures are generated for actual Auth identities without rewriting hashed journals
+  ---
+  duration_ms: 108.3042
+  ...
+# Subtest: listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+ok 2 - listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history
+  ---
+  duration_ms: 144.4592
+  ...
+# Subtest: stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+ok 3 - stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+  ---
+  duration_ms: 135.9936
+  ...
+# Subtest: active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+ok 4 - active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+  ---
+  duration_ms: 70.0214
+  ...
+# Subtest: stable cursor pages, filters, own listings and private projections
+ok 5 - stable cursor pages, filters, own listings and private projections
+  ---
+  duration_ms: 88.7807
+  ...
+# Subtest: commission half-up, Core restriction and economy isolation
+ok 6 - commission half-up, Core restriction and economy isolation
+  ---
+  duration_ms: 54.2927
+  ...
+# Subtest: owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+ok 7 - owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+  ---
+  duration_ms: 61.9602
+  ...
+# Subtest: fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+ok 8 - fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+  ---
+  duration_ms: 78.1614
+  ...
+# Subtest: collections default private and followers never bypass profile blocking
+ok 9 - collections default private and followers never bypass profile blocking
+  ---
+  duration_ms: 16.7374
+  ...
+# Subtest: private offer activation cannot reach hosting, production, or non-loopback databases
+ok 10 - private offer activation cannot reach hosting, production, or non-loopback databases
+  ---
+  duration_ms: 0.8758
+  ...
+# Subtest: acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+ok 11 - acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+  ---
+  duration_ms: 282.9198
+  ...
+# Subtest: two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+ok 12 - two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+  ---
+  duration_ms: 173.9886
+  ...
+# Subtest: decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+ok 13 - decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+  ---
+  duration_ms: 126.8908
+  ...
+# Subtest: blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+ok 14 - blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+  ---
+  duration_ms: 93.262
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8426.427

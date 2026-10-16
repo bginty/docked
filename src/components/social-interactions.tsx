@@ -96,7 +96,13 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
           {following ? "Unfollow" : "Follow"}
         </button>
         <details>
-          <summary aria-label="Member options"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></summary>
+          <summary aria-label="Member options">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="5" cy="12" r="2" fill="currentColor" />
+              <circle cx="12" cy="12" r="2" fill="currentColor" />
+              <circle cx="19" cy="12" r="2" fill="currentColor" />
+            </svg>
+          </summary>
           <div className="social-menu">
             <button
               disabled={!ready || busy}
@@ -526,6 +532,9 @@ export function ProfileEditor({ profile }: { profile: SocialProfile | null }) {
         displayName: d.get("displayName"),
         bio: d.get("bio"),
         visibility: d.get("visibility"),
+        ...(!profile
+          ? { collectionDisclosure: d.get("collectionDisclosure") === "on" }
+          : {}),
       });
       setMessage("Profile saved.");
       router.refresh();
@@ -539,6 +548,14 @@ export function ProfileEditor({ profile }: { profile: SocialProfile | null }) {
     <section className="app-panel" id="edit">
       <h2>Your community profile</h2>
       <form className="app-form" method="post" onSubmit={save}>
+        {!profile && (
+          <label className="check">
+            <input type="checkbox" name="collectionDisclosure" defaultChecked />
+            Show my collectible cards to admitted Docked members. I can hide my
+            collection or individual cards later. This does not share my fantasy
+            lineup or enable sales.
+          </label>
+        )}
         <label>
           Username
           <input

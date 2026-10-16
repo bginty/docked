@@ -62,6 +62,7 @@ export async function runSocialUpgrade(
   const prefs = {
     action: "collection_preferences",
     visibility: "members",
+    acknowledgeVisibility: true,
     offers: "everyone",
     minimum: 50,
     cards: { [card.id]: { enabled: true, minimum: 100, asking: 150 } },

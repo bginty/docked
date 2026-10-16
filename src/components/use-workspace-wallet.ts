@@ -1,4 +1,5 @@
 "use client";
+import type { PortfolioValuation } from "@/core/portfolio-valuation";
 import { useEffect, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 /** Existing authenticated wallet projection only. Never substitute gameplay points. */
@@ -7,6 +8,7 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
     member: string;
     balance: number;
     unopened: number;
+    portfolio: PortfolioValuation | null;
   } | null>(null);
   const [status, setStatus] = useState("Loading balance…");
   useEffect(() => {
@@ -36,6 +38,7 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
           setValue({
             member,
             balance: state.wallet.spendable,
+            portfolio: state.portfolio ?? null,
             unopened: state.packs.filter(
               (p: { status: string }) => p.status === "SEALED",
             ).length,

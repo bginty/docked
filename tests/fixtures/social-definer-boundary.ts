@@ -29,6 +29,12 @@ export async function assertSocialDefinerBoundary(pg: PGlite) {
         runtime: true,
       },
       {
+        name: "social_collection_cards",
+        fixed_path: true,
+        browser: false,
+        runtime: true,
+      },
+      {
         name: "social_discussion_reply_notice",
         fixed_path: true,
         browser: false,
@@ -36,6 +42,18 @@ export async function assertSocialDefinerBoundary(pg: PGlite) {
       },
       {
         name: "social_legacy_cards",
+        fixed_path: true,
+        browser: false,
+        runtime: true,
+      },
+      {
+        name: "social_legacy_cards_before_card_privacy",
+        fixed_path: true,
+        browser: false,
+        runtime: false,
+      },
+      {
+        name: "social_locked_lineups",
         fixed_path: true,
         browser: false,
         runtime: true,

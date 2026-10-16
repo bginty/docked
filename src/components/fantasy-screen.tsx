@@ -1,5 +1,6 @@
 "use client";
 import { createPortal } from "react-dom";
+import { PortfolioSummary } from "./portfolio-summary";
 import { useWorkspaceWallet } from "./use-workspace-wallet";
 import { boundedFetch } from "@/core/bounded-request";
 import {
@@ -380,6 +381,12 @@ export function FantasyScreen({
           </div>
         </div>
       )}
+      {tab === "cards" && (
+        <PortfolioSummary
+          value={wallet.value?.portfolio ?? null}
+          collectionCount={data.cards.length}
+        />
+      )}
       {production &&
         (tab === "profile" ||
           (tab === "cards" && !data.rewards?.starter_claimed)) &&
@@ -625,7 +632,9 @@ export function FantasyScreen({
             {!data.packs.some((p) => !p.opened_at) && (
               <p>
                 No unopened packs.{" "}
-                <Link href="/fantasy/test-wallet?view=packs#packs">Browse packs</Link>
+                <Link href="/fantasy/test-wallet?view=packs#packs">
+                  Browse packs
+                </Link>
               </p>
             )}
             {data.packs.map((p) => (
@@ -858,7 +867,8 @@ export function FantasyScreen({
               <summary>Eligibility & collection options</summary>
 
               <p>
-                <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link> ·{" "}
+                <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link>{" "}
+                ·{" "}
                 <Link href="/fantasy/test-wallet">
                   Wallet & transaction history
                 </Link>

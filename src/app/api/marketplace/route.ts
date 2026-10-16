@@ -51,7 +51,13 @@ export async function POST(req: Request) {
         request: z.string().uuid(),
         command: z
           .object({
-            kind: z.enum(["list", "cancel-listing", "review-buy", "buy"]),
+            kind: z.enum([
+              "list",
+              "replace-listing",
+              "cancel-listing",
+              "review-buy",
+              "buy",
+            ]),
           })
           .passthrough(),
       })

@@ -5,6 +5,10 @@ import { db, rateLimit } from "./db";
 import { CreditsSandboxStore, CreditsRejected } from "./credits-sandbox-store";
 import { creditsCommand } from "@/core/credits-sandbox";
 import { refreshEconomyCatalogue } from "./economy-catalogue";
+import { setCommunityClaims } from "./community-social";
+import type { TransactionSql } from "postgres";
+import { privateOfferEnabled } from "../core/private-card-offers";
+import { hiddenMarketCards } from "./market-visibility";
 import {
   memberTestCommand,
   memberTestView,
@@ -30,6 +34,7 @@ export async function memberTestSource(input?: unknown) {
     await sql`select user_id::text id,label from credits_sandbox.access where enabled and beta_private.admitted(user_id)`;
   let command: ReturnType<typeof memberTestCommand> | undefined;
   const store = new CreditsSandboxStore(sql, async (tx, state) => {
+    await setCommunityClaims(tx as unknown as TransactionSql, who);
     assertMemberTestEconomy(state);
     await refreshEconomyCatalogue(tx, state);
     const rows =
@@ -61,6 +66,30 @@ export async function memberTestSource(input?: unknown) {
       )
         throw Error("Counterparty no longer admitted");
     }
+    if (command?.kind === "buy" || command?.kind === "review-buy") {
+      const l = state.listings[command.listing];
+      if (l) {
+        const [v] =
+          await tx`select private.social_collection_cards(${l.member}::uuid,${tx.json([{ id: l.card }])}) cards`;
+        if (!v?.cards?.length) throw new CreditsRejected("Listing unavailable");
+      }
+    }
+    const swap = command?.kind === "accept" ? state.swaps[command.swap] : null;
+    const otherCards =
+      command?.kind === "offer"
+        ? command.take
+        : swap
+          ? [...swap.give, ...swap.take].filter(
+              (id) => state.commerce.cards[id]?.owner !== who.user.id,
+            )
+          : [];
+    for (const id of otherCards) {
+      const owner = state.commerce.cards[id]?.owner;
+      if (!owner) throw new CreditsRejected("Card unavailable");
+      const [v] =
+        await tx`select private.social_collection_cards(${owner}::uuid,${tx.json([{ id }])}) cards`;
+      if (!v?.cards?.length) throw new CreditsRejected("Card unavailable");
+    }
   });
   let result: unknown = null;
   if (input !== undefined) {
@@ -75,11 +104,20 @@ export async function memberTestSource(input?: unknown) {
     } else command = memberTestCommand(body.command);
     if (
       process.env.DOCKED_TEST_MARKET_READ_ONLY === "true" &&
-      ["list", "buy", "offer", "accept"].includes(command.kind)
+      ["list", "replace-listing", "buy", "offer", "accept"].includes(
+        command.kind,
+      )
     )
       throw new CreditsRejected(
         "Trading is temporarily paused. Your cards and credits are unchanged. You can still cancel listings and offers.",
       );
+    if (
+      (command.kind === "list" || command.kind === "replace-listing") &&
+      command.preference &&
+      command.preference !== "sell" &&
+      !privateOfferEnabled(process.env)
+    )
+      throw new CreditsRejected("Swap listings await beta trading approval");
     const other = command.kind === "offer" ? command.other : null;
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
@@ -106,24 +144,35 @@ export async function memberTestSource(input?: unknown) {
       throw error;
     }
   }
-  const s = await store.read();
-  await refreshEconomyCatalogue(sql, s);
-  assertMemberTestEconomy(s);
+  const { s, hidden } = await sql.begin(async (tx) => {
+    await setCommunityClaims(tx, who);
+    await tx`select pg_advisory_xact_lock(71820342)`;
+    const [access] =
+      await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
+    if (!access || (access.kind === "owner" && who.aal !== "aal2"))
+      throw Error("Admission revoked");
+    const s = await new CreditsSandboxStore(tx as unknown as typeof sql).read();
+    await refreshEconomyCatalogue(tx, s);
+    assertMemberTestEconomy(s);
+    return { s, hidden: await hiddenMarketCards(tx, s, who.user.id) };
+  });
   if (command?.kind === "open-pack")
     result = testReceipt(s, command.entitlement, who.user.id);
   return {
     s,
+    hidden,
     member: who.user.id,
     peers: peers.map((p) => ({ id: String(p.id), label: String(p.label) })),
     isOwner,
     result,
     sql,
+    who,
   };
 }
 export async function memberTestWallet(input?: unknown) {
-  const { s, member, peers, isOwner, result, sql } =
+  const { s, hidden, member, peers, isOwner, result, sql } =
     await memberTestSource(input);
-  const view = memberTestView(s, member, peers, isOwner);
+  const view = memberTestView(s, member, peers, isOwner, Date.now(), hidden);
   if (isOwner)
     view.failures = (
       await sql`select request,product,category,recorded_at from credits_sandbox.pack_failures order by recorded_at desc limit 100`

@@ -99,6 +99,8 @@ function Collection({ data }: { data: SocialHub }) {
       await communityAction({
         action: "collection_preferences",
         ...settings,
+        acknowledgeVisibility:
+          new FormData(e.currentTarget).get("acknowledgeVisibility") === "on",
         cards: changes,
       });
       savedCards.current = settings.cards;
@@ -119,6 +121,7 @@ function Collection({ data }: { data: SocialHub }) {
           selected.map((id) => [
             id,
             {
+              ...settings.cards[id],
               enabled,
               minimum: settings.cards[id]?.minimum ?? null,
               asking: settings.cards[id]?.asking ?? null,
@@ -172,6 +175,33 @@ function Collection({ data }: { data: SocialHub }) {
                 </select>
               </label>
             </div>
+            {data.visibility === "private" &&
+              settings.visibility !== "private" && (
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    name="acknowledgeVisibility"
+                    required
+                  />
+                  I choose to show my collection to the selected audience.
+                  Hidden cards remain hidden.
+                </label>
+              )}
+            <label className="check">
+              <input
+                type="checkbox"
+                checked={settings.muteOffers}
+                onChange={(e) =>
+                  setSettings({ ...settings, muteOffers: e.target.checked })
+                }
+              />
+              Mute offer notifications
+            </label>
+            <p className="form-help">
+              Hiding cards removes them from member collection browsing and
+              listings. Posts you deliberately shared retain their original
+              audience and card snapshot.
+            </p>
             <label>
               Private minimum offer (whole test credits)
               <input
@@ -200,6 +230,35 @@ function Collection({ data }: { data: SocialHub }) {
                 <button type="button" onClick={() => bulk(false)}>
                   Disable selected
                 </button>
+                {[true, false].map((hidden) => (
+                  <button
+                    type="button"
+                    key={String(hidden)}
+                    onClick={() =>
+                      setSettings({
+                        ...settings,
+                        cards: {
+                          ...settings.cards,
+                          ...Object.fromEntries(
+                            selected.map((id) => [
+                              id,
+                              {
+                                ...(settings.cards[id] ?? {
+                                  enabled: false,
+                                  minimum: null,
+                                  asking: null,
+                                }),
+                                hidden,
+                              },
+                            ]),
+                          ),
+                        },
+                      })
+                    }
+                  >
+                    {hidden ? "Hide selected" : "Show selected"}
+                  </button>
+                ))}
               </div>
             )}
             <button className="button" disabled={busy}>
@@ -350,9 +409,57 @@ function Collection({ data }: { data: SocialHub }) {
                       enabled={data.offersLive}
                     />
                   )}
-                  {data.own && settings && card.tier !== "CORE" && (
+                  {data.own && settings && (
                     <details>
-                      <summary>Offer settings</summary>
+                      <summary>Visibility & offers</summary>
+                      <label className="check">
+                        <input
+                          type="checkbox"
+                          checked={settings.cards[card.id]?.hidden !== true}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              cards: {
+                                ...settings.cards,
+                                [card.id]: {
+                                  ...(settings.cards[card.id] ?? {
+                                    enabled: false,
+                                    minimum: null,
+                                    asking: null,
+                                  }),
+                                  hidden: !e.target.checked,
+                                },
+                              },
+                            })
+                          }
+                        />
+                        Visible to other members
+                      </label>
+                      {card.tier !== "CORE" && (
+                        <label className="check">
+                          <input
+                            type="checkbox"
+                            checked={settings.cards[card.id]?.swaps === true}
+                            onChange={(e) =>
+                              setSettings({
+                                ...settings,
+                                cards: {
+                                  ...settings.cards,
+                                  [card.id]: {
+                                    ...(settings.cards[card.id] ?? {
+                                      enabled: false,
+                                      minimum: null,
+                                      asking: null,
+                                    }),
+                                    swaps: e.target.checked,
+                                  },
+                                },
+                              })
+                            }
+                          />
+                          Open to card swaps
+                        </label>
+                      )}
                       <label className="check">
                         <input
                           type="checkbox"

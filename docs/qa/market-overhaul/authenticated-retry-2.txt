@@ -1,0 +1,10 @@
+{
+  name: 'AssertionError',
+  message: '{"error":"Selected rarity has insufficient eligible supply; no charge or cards issued","outcome":"rejected"}\n' +
+    '\n' +
+    '400 !== 200\n',
+  frames: [
+    '    at Object.runMarketOverhaul (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\scripts\\market-overhaul-acceptance.ts:31:10)',
+    '    at async main (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\scripts\\marketplace-auth-local.ts:501:24)'
+  ]
+}

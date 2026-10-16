@@ -1,0 +1,8 @@
+{
+  name: 'AssertionError',
+  message: 'Seller needs an eligible unlisted isolated fixture card',
+  frames: [
+    '    at Object.runMarketOverhaul (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\scripts\\market-overhaul-acceptance.ts:27:50)',
+    '    at async main (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\scripts\\marketplace-auth-local.ts:501:24)'
+  ]
+}

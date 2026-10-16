@@ -1,0 +1,6 @@
+{
+  name: 'AssertionError',
+  message: 'The expression evaluated to a falsy value:\n' +
+    '\n' +
+    '  get(1,"/api/community?view=hub&handle="+hubs[0].handle)\n'
+}

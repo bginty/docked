@@ -47,7 +47,9 @@ export async function socialInventory(tx: TransactionSql, member: string) {
             [...s.give, ...s.take].includes(id),
         ),
     });
-  return [...cards.values()];
+  const [visible] =
+    await tx`select private.social_collection_cards(${member}::uuid,${tx.json([...cards.values()])}) cards`;
+  return (visible?.cards ?? []) as (AwardedCard & { offerEligible: boolean })[];
 }
 
 export async function snapshotSocialCards(

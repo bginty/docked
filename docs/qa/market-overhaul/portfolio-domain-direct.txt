@@ -1,0 +1,91 @@
+TAP version 13
+# Subtest: seller lists sale, swap or both without choosing a counterparty
+ok 1 - seller lists sale, swap or both without choosing a counterparty
+  ---
+  duration_ms: 323.722
+  ...
+# Subtest: credit, card and combined offers settle exact assets once using existing wallet
+ok 2 - credit, card and combined offers settle exact assets once using existing wallet
+  ---
+  duration_ms: 920.0125
+  ...
+# Subtest: changing listing terms invalidates pending offers and retains original terms
+ok 3 - changing listing terms invalidates pending offers and retains original terms
+  ---
+  duration_ms: 129.2222
+  ...
+# Subtest: failed acceptance never mutates input or partially transfers
+ok 4 - failed acceptance never mutates input or partially transfers
+  ---
+  duration_ms: 668.9792
+  ...
+# Subtest: two offers cannot transfer the same requested card twice
+ok 5 - two offers cannot transfer the same requested card twice
+  ---
+  duration_ms: 107.4265
+  ...
+# Subtest: no invented valuation, multiple cards or combined fee default
+ok 6 - no invented valuation, multiple cards or combined fee default
+  ---
+  duration_ms: 49.6345
+  ...
+# Subtest: hidden listings absent from browse and alternate wallet projections; owner retains access
+ok 7 - hidden listings absent from browse and alternate wallet projections; owner retains access
+  ---
+  duration_ms: 58.5876
+  ...
+# Subtest: combined fee is exactly higher of 7.5 percent credits and current swap floor
+ok 8 - combined fee is exactly higher of 7.5 percent credits and current swap floor
+  ---
+  duration_ms: 1.4375
+  ...
+# Subtest: portfolio uses completed comparable sales, integer median and owner-only coverage
+not ok 9 - portfolio uses completed comparable sales, integer median and owner-only coverage
+  ---
+  duration_ms: 270.1348
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\platform\\portfolio-valuation.test.ts:28:1'
+  failureType: 'testCodeFailure'
+  error: ''
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    executeCredits (C:\Users\61412\Documents\ChatGPT\Docked.com.au\src\core\credits-sandbox.ts:544:28)
+    salesFixture (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\portfolio-valuation.test.ts:21:9)
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\portfolio-valuation.test.ts:29:19)
+    Test.runInAsyncScope (node:async_hooks:211:14)
+    Test.run (node:internal/test_runner/test:979:25)
+    Test.start (node:internal/test_runner/test:877:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: insufficient, hidden, stale, future, private and incomplete sales remain unvalued
+not ok 10 - insufficient, hidden, stale, future, private and incomplete sales remain unvalued
+  ---
+  duration_ms: 102.8854
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\platform\\portfolio-valuation.test.ts:38:1'
+  failureType: 'testCodeFailure'
+  error: ''
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    executeCredits (C:\Users\61412\Documents\ChatGPT\Docked.com.au\src\core\credits-sandbox.ts:544:28)
+    salesFixture (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\portfolio-valuation.test.ts:21:9)
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\platform\portfolio-valuation.test.ts:40:21)
+    Test.runInAsyncScope (node:async_hooks:211:14)
+    Test.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    Test.postRun (node:internal/test_runner/test:1090:19)
+    Test.run (node:internal/test_runner/test:1018:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: asking prices and unopened packs do not create values or reveal contents
+ok 11 - asking prices and unopened packs do not create values or reveal contents
+  ---
+  duration_ms: 45.1619
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 9
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7587.202

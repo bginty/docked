@@ -1,3 +1,4 @@
+import { portfolioValuation } from "./portfolio-valuation";
 import { rarityRule } from "./card-rarity";
 import { swapFeeQuote } from "./credit-only";
 import { economySupply, eligibleCatalogue } from "./card-economy";
@@ -52,6 +53,7 @@ const memberKinds = new Set([
   "buy-pack",
   "open-pack",
   "list",
+  "replace-listing",
   "cancel-listing",
   "buy",
   "review-buy",
@@ -64,6 +66,8 @@ const memberKinds = new Set([
 export function memberTestCommand(input: unknown) {
   const c = creditsCommand.parse(input);
   if (!memberKinds.has(c.kind)) throw Error("Test wallet action denied");
+  if (c.kind === "offer" && c.creditTopUp !== undefined)
+    throw Error("Combined offers require the reviewed private-offer workflow");
   if (c.kind === "buy" && !c.review)
     throw Error("Review the listing before confirming purchase");
   return c;
@@ -149,6 +153,7 @@ export function memberTestView(
   peers: { id: string; label: string }[],
   owner = false,
   now = Date.now(),
+  hiddenCards: string[] = [],
 ) {
   assertMemberTestEconomy(s);
   const supplyRows = s.economy ? economySupply(s.economy) : [];
@@ -162,6 +167,12 @@ export function memberTestView(
     )
       visible.add(id);
   const listings = Object.entries(s.listings)
+    .filter(
+      ([, l]) =>
+        l.member === member ||
+        l.buyer === member ||
+        (!l.privateOffer && !hiddenCards.includes(l.card)),
+    )
     .filter(
       ([, l]) =>
         l.status === "OPEN" || l.member === member || l.buyer === member,
@@ -188,6 +199,7 @@ export function memberTestView(
     serverTime: now,
     policy: s.policy.version,
     wallet: wallet(s, member),
+    portfolio: portfolioValuation(s, member, now, hiddenCards),
     swapQuote: swapFeeQuote(s.creditOnly, s.policy.swapFeeEach, now),
     swapWindows: owner ? (s.creditOnly?.windows ?? []) : [],
     peers,

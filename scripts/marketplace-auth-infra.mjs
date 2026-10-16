@@ -3,20 +3,25 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { randomBytes, createHmac } from "node:crypto";
 import { resolve } from "node:path";
+const marketOverhaul = process.argv.includes("--market-overhaul");
 const integrated = process.argv.includes("--integrated");
 const redemption = process.argv.includes("--redemption");
 const dir = resolve(
-  redemption
-    ? "tmp/redemption-auth"
-    : integrated
-      ? "tmp/marketplace-integrated-v2"
-      : "tmp/marketplace-auth",
+  marketOverhaul
+    ? "tmp/market-overhaul-auth"
+    : redemption
+      ? "tmp/redemption-auth"
+      : integrated
+        ? "tmp/marketplace-integrated-v2"
+        : "tmp/marketplace-auth",
 );
-const volume = redemption
-  ? "docked-redemption-auth-local-v1"
-  : integrated
-    ? "docked-market-integrated-data-v2"
-    : "docked-market-http-data-v3";
+const volume = marketOverhaul
+  ? "docked-market-overhaul-data-v1"
+  : redemption
+    ? "docked-redemption-auth-local-v1"
+    : integrated
+      ? "docked-market-integrated-data-v2"
+      : "docked-market-http-data-v3";
 await mkdir(dir, { recursive: true });
 let secret;
 try {
@@ -49,8 +54,8 @@ const anon = token("anon"),
 await writeFile(
   resolve(dir, "status.private.json"),
   JSON.stringify({
-    API_URL: `http://127.0.0.1:${redemption ? 55331 : 55321}`,
-    DB_URL: `postgresql://postgres:${secret.password}@127.0.0.1:${redemption ? 55332 : 55322}/${redemption ? "docked_redemption_local_auth" : "postgres"}`,
+    API_URL: `http://127.0.0.1:${marketOverhaul ? 55341 : redemption ? 55331 : 55321}`,
+    DB_URL: `postgresql://postgres:${secret.password}@127.0.0.1:${marketOverhaul ? 55342 : redemption ? 55332 : 55322}/${redemption ? "docked_redemption_local_auth" : "postgres"}`,
     ANON_KEY: anon,
     SERVICE_ROLE_KEY: service,
   }),
@@ -81,13 +86,19 @@ await writeFile(
   resolve(dir, "compose.private.json"),
   JSON.stringify(
     {
-      name: redemption ? "docked-redemption-http" : "docked-market-http",
+      name: marketOverhaul
+        ? "docked-market-overhaul-http"
+        : redemption
+          ? "docked-redemption-http"
+          : "docked-market-http",
       services: {
         db: {
           networks: ["default", "loopback"],
           image: "public.ecr.aws/supabase/postgres:17.6.1.166",
           pull_policy: "never",
-          ports: [`127.0.0.1:${redemption ? 55332 : 55322}:5432`],
+          ports: [
+            `127.0.0.1:${marketOverhaul ? 55342 : redemption ? 55332 : 55322}:5432`,
+          ],
           environment: {
             POSTGRES_PASSWORD: secret.password,
             POSTGRES_DB: redemption
@@ -112,7 +123,7 @@ await writeFile(
           environment: {
             GOTRUE_API_HOST: "0.0.0.0",
             GOTRUE_API_PORT: "9999",
-            API_EXTERNAL_URL: `http://127.0.0.1:${redemption ? 55331 : 55321}/auth/v1`,
+            API_EXTERNAL_URL: `http://127.0.0.1:${marketOverhaul ? 55341 : redemption ? 55331 : 55321}/auth/v1`,
             GOTRUE_DB_DRIVER: "postgres",
             GOTRUE_DB_DATABASE_URL: `postgresql://supabase_auth_admin:${secret.password}@db:5432/${redemption ? "docked_redemption_local_auth" : "postgres"}`,
             GOTRUE_SITE_URL: "http://127.0.0.1:3033",
@@ -140,7 +151,9 @@ await writeFile(
           image: "public.ecr.aws/supabase/kong:2.8.1",
           pull_policy: "never",
           depends_on: { auth: { condition: "service_healthy" } },
-          ports: [`127.0.0.1:${redemption ? 55331 : 55321}:8000`],
+          ports: [
+            `127.0.0.1:${marketOverhaul ? 55341 : redemption ? 55331 : 55321}:8000`,
+          ],
           environment: {
             KONG_DATABASE: "off",
             KONG_DECLARATIVE_CONFIG: "/etc/kong/local.json",

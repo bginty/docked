@@ -1,4 +1,5 @@
 import "server-only";
+import { privateOfferEnabled } from "../core/private-card-offers";
 import { memberTestSource } from "./member-test-wallet";
 import {
   marketQuery,
@@ -10,12 +11,16 @@ export async function memberMarketplace(
   input?: unknown,
 ) {
   const query = marketQuery.parse(Object.fromEntries(params));
-  const { s, member, result, sql } = await memberTestSource(input);
+  const { s, hidden, member, result, sql } = await memberTestSource(input);
   const [row] =
     await sql`select credits_sandbox.market_context(${member}::uuid) context`;
   const context = row.context as MarketContext & {
     labels: { id: string; label: string }[];
   };
+  context.hiddenCards = hidden;
+  context.tradingEnabled = process.env.DOCKED_TEST_MARKET_READ_ONLY !== "true";
+  context.offersEnabled =
+    context.tradingEnabled && privateOfferEnabled(process.env);
   const safeResult =
     result && typeof result === "object"
       ? Object.fromEntries(

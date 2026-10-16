@@ -1,0 +1,38 @@
+scripts/marketplace-auth-infra.mjs 230ms
+scripts/marketplace-auth-local.ts 742ms
+scripts/marketplace-build-local.mjs 91ms
+scripts/social-upgrade-acceptance.ts 153ms (unchanged)
+src/app/api/community/route.ts 50ms (unchanged)
+src/app/api/marketplace/route.ts 36ms (unchanged)
+src/app/marketplace.css 202ms
+src/components/fantasy-screen.tsx 632ms (unchanged)
+src/components/marketplace.tsx 335ms (unchanged)
+src/components/member-profile.tsx 51ms
+src/components/private-card-offers.tsx 97ms
+src/components/social-hub.tsx 114ms (unchanged)
+src/components/social-interactions.tsx 164ms (unchanged)
+src/components/use-workspace-wallet.ts 20ms (unchanged)
+src/core/community-social.ts 85ms (unchanged)
+src/core/credits-policy.ts 23ms (unchanged)
+src/core/credits-sandbox.ts 596ms (unchanged)
+src/core/marketplace.ts 173ms (unchanged)
+src/core/member-test-wallet.ts 108ms (unchanged)
+src/core/private-card-offers.ts 84ms (unchanged)
+src/core/social-hub.ts 27ms (unchanged)
+src/server/community-social.ts 297ms (unchanged)
+src/server/marketplace.ts 13ms
+src/server/member-test-wallet.ts 53ms
+src/server/private-card-offers.ts 67ms (unchanged)
+src/server/social-card-projection.ts 23ms (unchanged)
+src/server/social-hub.ts 28ms (unchanged)
+tests/database/community-social.test.ts 161ms
+tests/database/nfl-seven.test.ts 63ms (unchanged)
+tests/fixtures/social-definer-boundary.ts 6ms
+src/components/portfolio-summary.tsx 18ms
+src/core/portfolio-valuation.ts 44ms (unchanged)
+src/server/lineup-privacy.ts 8ms (unchanged)
+src/server/market-visibility.ts 16ms
+scripts/market-overhaul-acceptance.ts 100ms
+scripts/market-overhaul-rollback.ts 23ms
+tests/platform/market-overhaul.test.ts 79ms
+tests/platform/portfolio-valuation.test.ts 29ms (unchanged)

@@ -1,3 +1,4 @@
+import { memberLockedLineups } from "@/server/lineup-privacy";
 import Link from "next/link";
 import { communityProfile } from "@/server/community-social";
 import { communityGraph } from "@/server/community-discovery";
@@ -34,6 +35,8 @@ export async function MemberProfile({
     }),
   ]);
   const p = data.profile;
+  const teams =
+    p && query.tab === "teams" ? await memberLockedLineups(p.id) : [];
   const period = "all";
   const graphDirection =
     query.graph === "following" ? "following" : "followers";
@@ -146,9 +149,29 @@ export async function MemberProfile({
             <section className="app-panel">
               <h2>Teams</h2>
               <p>
-                Fantasy teams are private. Only explicitly shared team posts
-                appear in Activity.
+                Lineups stay private until the entry deadline and every player
+                lock have passed. Only competitions with approved lineup sharing
+                appear here.
               </p>
+              {teams.map((team) => (
+                <article key={team.competition} className="app-panel">
+                  <h3>{team.name}</h3>
+                  <p>
+                    {team.sport.toUpperCase()} · {team.season} · Round{" "}
+                    {team.round} · Locked lineup
+                  </p>
+                  <ul>
+                    {team.players.map((player) => (
+                      <li key={player.slot}>
+                        <strong>{player.slot}</strong> ·{" "}
+                        {player.name || "Player name unavailable"} ·{" "}
+                        {player.tier?.replaceAll("_", " ")}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+              {!teams.length && <p>No published locked lineups.</p>}
               {p.isOwn && (
                 <Link href="/fantasy/play">Manage your lineup →</Link>
               )}
@@ -162,7 +185,7 @@ export async function MemberProfile({
             </section>
           )}
           {query.tab === "offers" && p.isOwn && (
-            <PrivateOffersInbox member={p.id} />
+            <PrivateOffersInbox member={who.user.id} />
           )}
           {graph && (
             <section id="connections">

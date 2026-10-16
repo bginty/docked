@@ -36,6 +36,9 @@ export const marketQuery = z.object({
 export type MarketQuery = z.infer<typeof marketQuery>;
 export type MarketContext = {
   reserved: string[];
+  hiddenCards?: string[];
+  tradingEnabled?: boolean;
+  offersEnabled?: boolean;
   ownerReservations?: {
     card: string;
     competition: string;
@@ -141,6 +144,12 @@ export function marketplaceView(
   };
   const rows = Object.entries(s.listings)
     .filter(
+      ([, l]) =>
+        l.member === member ||
+        l.buyer === member ||
+        !(context.hiddenCards ?? []).includes(l.card),
+    )
+    .filter(
       ([, l]) => !l.privateOffer || l.member === member || l.buyer === member,
     )
     .filter(([id, l]) =>
@@ -196,6 +205,7 @@ export function marketplaceView(
         own: l.member === member,
         seller: labels.find((p) => p.id === l.member)?.label ?? "Docked member",
         price: l.price,
+        preference: l.preference ?? "sell",
         status: l.status,
         version: l.version,
         createdAt,
@@ -207,7 +217,9 @@ export function marketplaceView(
               (e.command as { listing?: string }).listing === id,
           )?.at ??
           null,
-        quote: sellerQuote(l.price),
+        quote: l.price
+          ? sellerQuote(l.price)
+          : { price: 0, fee: 0, net: 0, policy: s.policy.version },
         receipt: l.member === member || l.buyer === member ? receipt : null,
         direction: l.member === member ? "Sale" : "Purchase",
       };
@@ -269,7 +281,15 @@ export function marketplaceView(
         (!s.economy?.instances[id] ||
           s.economy.packs[s.economy.instances[id].source]?.openedAt),
     )
-    .map(card);
+    .map(card)
+    .filter(
+      (c) =>
+        query.tab !== "listings" ||
+        ((!query.q || c.name.toLowerCase().includes(query.q.toLowerCase())) &&
+          (!query.team || c.team === query.team) &&
+          (!query.position || c.position === query.position) &&
+          (!query.rarity || c.tier === query.rarity)),
+    );
   const requestedIndex = query.sell
     ? inventory.findIndex((c) => c.id === query.sell)
     : -1;
@@ -359,6 +379,8 @@ export function marketplaceView(
       : null;
   return {
     member,
+    tradingEnabled: context.tradingEnabled ?? false,
+    offersEnabled: context.offersEnabled ?? false,
     activity,
     activityTotal: filteredActivity.length,
     activityNext,

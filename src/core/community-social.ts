@@ -225,6 +225,7 @@ export const socialActionSchema = z.discriminatedUnion("action", [
       bio: text(280),
       visibility: z.enum(["members", "private"]),
       avatarMediaId: uuid.nullable().optional(),
+      collectionDisclosure: z.boolean().optional(),
     })
     .strict(),
   z

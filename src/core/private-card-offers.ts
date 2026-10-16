@@ -6,7 +6,8 @@ import {
   type CreditsState,
 } from "./credits-sandbox";
 import type { Operator } from "./commerce-sandbox";
-import { sellerQuote } from "./credits-policy";
+import { sellerQuote, combinedOfferQuote } from "./credits-policy";
+import { swapFeeQuote } from "./credit-only";
 
 export type PrivateCardOffer = {
   id: string;
@@ -22,13 +23,20 @@ export type PrivateCardOffer = {
   closed?: number;
   receipt?: string;
   listing?: string;
+  requestedListing?: string;
+  offeredCards?: { id: string; version: number }[];
+  feeEach?: number;
+  creditFeeMinimum?: number;
+  combinedPolicy?: "credit-commission-floor-v1";
 };
 export const privateOfferCommand = z.discriminatedUnion("kind", [
   z
     .object({
       kind: z.literal("private-offer"),
       card: z.string().min(1).max(150),
-      price: z.number().int().min(1).max(1000000000),
+      price: z.number().int().min(0).max(1000000000),
+      offeredCards: z.array(z.string().min(1).max(150)).max(1).optional(),
+      listing: z.string().max(150).optional(),
     })
     .strict(),
   z
@@ -39,7 +47,26 @@ export const privateOfferCommand = z.discriminatedUnion("kind", [
     .strict(),
 ]);
 /** Server-derived preferences and relationship checks, never accepted from HTTP. */
-export type OfferPermission = { allowed: boolean; minimum: number | null };
+export type OfferPermission = {
+  allowed: boolean;
+  minimum: number | null;
+  swaps?: boolean;
+  combinedPolicy?: "credit-commission-floor-v1";
+};
+export function privateOfferQuote(
+  price: number,
+  feeEach = 0,
+  creditFeeMinimum?: number,
+) {
+  return {
+    ...(price
+      ? creditFeeMinimum === undefined
+        ? sellerQuote(price)
+        : combinedOfferQuote(price, creditFeeMinimum)
+      : { price: 0, fee: 0, net: 0 }),
+    feeEach,
+  };
+}
 export const privateOfferPolicy = Object.freeze({
   version: "local-offer-policy-v1",
   newPerDay: 3,
@@ -96,6 +123,13 @@ export function executePrivateOffer(
   let result: unknown;
   const steps: CreditsState[] = [];
   if (c.kind === "private-offer") {
+    const offered = c.offeredCards ?? [];
+    if ((!offered.length && c.price === 0) || offered.includes(c.card))
+      throw Error("Offer credits, one owned card, or both");
+    if (offered.length && !permission.swaps)
+      throw Error("Swaps are disabled for this card");
+    if (offered.length && c.price > 0 && !permission.combinedPolicy)
+      throw Error("Combined settlement awaits fee-policy approval");
     const seller = state.commerce.cards[c.card]?.owner;
     if (!permission.allowed || !seller || seller === actor.id)
       throw Error("This card is not accepting offers from you");
@@ -129,14 +163,64 @@ export function executePrivateOffer(
       )
     )
       throw Error("Wait 24 hours after a declined offer");
-    // Validate the existing transfer policy without creating a sale or reservation.
+    const activeListing = Object.entries(state.listings).find(
+      ([, l]) => l.card === c.card && l.status === "OPEN" && !l.privateOffer,
+    );
+    if (c.listing && activeListing?.[0] !== c.listing)
+      throw Error("Listing changed or closed");
+    if (activeListing) {
+      const mode = activeListing[1].preference ?? "sell";
+      if (
+        (mode === "sell" && offered.length) ||
+        (mode === "swap" && !offered.length)
+      )
+        throw Error("Offer does not match the listing preference");
+    }
+    // Validate on a clone; no listing, card or credit reservation is made by a proposal.
+    let checked = structuredClone(state);
+    if (activeListing)
+      checked = executeCredits(
+        checked,
+        { id: seller, role: "member" },
+        `${request}-check-cancel`,
+        { kind: "cancel-listing", listing: activeListing[0] },
+        now,
+      ).state;
     executeCredits(
-      state,
+      checked,
       { id: seller, role: "member" },
       `${request}-check`,
-      { kind: "list", card: c.card, price: c.price },
+      {
+        kind: "list",
+        card: c.card,
+        price: c.price || 0,
+        ...(c.price ? {} : { preference: "swap" }),
+      },
       now,
     );
+    const creditFeeMinimum =
+      offered.length && c.price
+        ? swapFeeQuote(state.creditOnly, state.policy.swapFeeEach, now).feeEach
+        : undefined;
+    const feeEach =
+      offered.length && !c.price
+        ? swapFeeQuote(state.creditOnly, state.policy.swapFeeEach, now).feeEach
+        : 0;
+    if (offered.length)
+      executeCredits(
+        state,
+        actor,
+        `${request}-check-swap`,
+        {
+          kind: "offer",
+          other: seller,
+          give: offered,
+          take: [c.card],
+          feeEach,
+          ...(c.price ? { creditTopUp: c.price, creditFeeMinimum } : {}),
+        },
+        now,
+      );
     if (wallet(state, actor.id).spendable < c.price)
       throw Error(
         `Insufficient test credits: ${c.price - wallet(state, actor.id).spendable} more required`,
@@ -152,8 +236,25 @@ export function executePrivateOffer(
       created: now,
       expires: now + privateOfferPolicy.expiryDays * 86400000,
       status: "OPEN",
+      ...(activeListing ? { requestedListing: activeListing[0] } : {}),
+      ...(offered.length
+        ? {
+            offeredCards: offered.map((id) => ({
+              id,
+              version: state.cards[id].version,
+            })),
+            feeEach,
+            ...(c.price
+              ? { combinedPolicy: permission.combinedPolicy, creditFeeMinimum }
+              : {}),
+          }
+        : {}),
     };
-    result = { offer: request, status: "OPEN", ...sellerQuote(c.price) };
+    result = {
+      offer: request,
+      status: "OPEN",
+      ...privateOfferQuote(c.price, feeEach, creditFeeMinimum),
+    };
   } else {
     const offer = state.privateCardOffers[c.offer];
     if (
@@ -176,54 +277,137 @@ export function executePrivateOffer(
         throw Error("Card ownership changed");
       if (offer.policy !== state.policy.version)
         throw Error("Trading policy changed; request a new offer");
-      const listing = `${request}-private-list`,
-        review = `${request}-private-review`,
-        buy = `${request}-private-buy`;
-      state = executeCredits(
-        state,
-        { id: offer.seller, role: "member" },
-        listing,
-        { kind: "list", card: offer.card, price: offer.price },
-        now,
-      ).state;
-      // The existing database guard requires OPEN → SOLD. Both writes occur
-      // inside one locked transaction; the private listing is never public.
-      state.listings[listing].privateOffer = c.offer;
-      steps.push(structuredClone(state));
-      state = executeCredits(
-        state,
-        { id: offer.buyer, role: "member" },
-        review,
-        { kind: "review-buy", listing },
-        now,
-      ).state;
-      const settled = executeCredits(
-        state,
-        { id: offer.buyer, role: "member" },
-        buy,
-        {
-          kind: "buy",
+      if (
+        offer.requestedListing &&
+        (state.listings[offer.requestedListing]?.status !== "OPEN" ||
+          state.listings[offer.requestedListing]?.member !== offer.seller)
+      )
+        throw Error("Listing changed or closed; request a new offer");
+      const offered = offer.offeredCards ?? [];
+      if (offered.length) {
+        if (
+          !permission.swaps ||
+          (offer.price > 0 &&
+            (!offer.combinedPolicy ||
+              permission.combinedPolicy !== offer.combinedPolicy))
+        )
+          throw Error("Swap or combined fee permission changed");
+        for (const card of offered)
+          if (
+            state.commerce.cards[card.id]?.owner !== offer.buyer ||
+            state.cards[card.id]?.version !== card.version
+          )
+            throw Error("Offered card ownership changed");
+        const swap = `${request}-private-swap`;
+        state = executeCredits(
+          state,
+          { id: offer.buyer, role: "member" },
+          swap,
+          {
+            kind: "offer",
+            other: offer.seller,
+            give: offered.map((c) => c.id),
+            take: [offer.card],
+            feeEach: offer.feeEach ?? 0,
+            ...(offer.price
+              ? {
+                  creditTopUp: offer.price,
+                  creditFeeMinimum: offer.creditFeeMinimum,
+                }
+              : {}),
+          },
+          now,
+        ).state;
+        // Database competition guards inspect this OPEN state in the same transaction.
+        // Cancel affected public listings first: they cannot coexist with a reserved swap.
+        for (const listing of Object.values(state.listings))
+          if (
+            listing.status === "OPEN" &&
+            [offer.card, ...offered.map((c) => c.id)].includes(listing.card)
+          ) {
+            listing.status = "CANCELLED";
+            listing.cancelledAt = now;
+          }
+        steps.push(structuredClone(state));
+        state = executeCredits(
+          state,
+          actor,
+          `${request}-private-settle`,
+          { kind: "accept", swap, feeEach: offer.feeEach ?? 0 },
+          now,
+        ).state;
+        const accepted = state.privateCardOffers![c.offer];
+        accepted.status = "ACCEPTED";
+        accepted.closed = now;
+        accepted.receipt = swap;
+        result = {
+          offer: c.offer,
+          status: "ACCEPTED",
+          receipt: swap,
+          ...privateOfferQuote(
+            offer.price,
+            offer.feeEach,
+            offer.creditFeeMinimum,
+          ),
+        };
+      } else {
+        const listing = `${request}-private-list`,
+          review = `${request}-private-review`,
+          buy = `${request}-private-buy`;
+        if (offer.requestedListing)
+          state = executeCredits(
+            state,
+            actor,
+            `${request}-close-public`,
+            { kind: "cancel-listing", listing: offer.requestedListing },
+            now,
+          ).state;
+        state = executeCredits(
+          state,
+          { id: offer.seller, role: "member" },
           listing,
+          { kind: "list", card: offer.card, price: offer.price },
+          now,
+        ).state;
+        // The existing database guard requires OPEN → SOLD. Both writes occur
+        // inside one locked transaction; the private listing is never public.
+        state.listings[listing].privateOffer = c.offer;
+        steps.push(structuredClone(state));
+        state = executeCredits(
+          state,
+          { id: offer.buyer, role: "member" },
           review,
-          policy: offer.policy,
-          expectedPrice: offer.price,
-          confirmed: true,
-        },
-        now,
-      );
-      state = settled.state;
-      const accepted = state.privateCardOffers![c.offer];
-      accepted.status = "ACCEPTED";
-      accepted.closed = now;
-      accepted.listing = listing;
-      accepted.receipt = state.listings[listing].receipt!.reference;
-      result = {
-        offer: c.offer,
-        status: "ACCEPTED",
-        receipt: accepted.receipt,
-        listing,
-        ...sellerQuote(offer.price),
-      };
+          { kind: "review-buy", listing },
+          now,
+        ).state;
+        const settled = executeCredits(
+          state,
+          { id: offer.buyer, role: "member" },
+          buy,
+          {
+            kind: "buy",
+            listing,
+            review,
+            policy: offer.policy,
+            expectedPrice: offer.price,
+            confirmed: true,
+          },
+          now,
+        );
+        state = settled.state;
+        const accepted = state.privateCardOffers![c.offer];
+        accepted.status = "ACCEPTED";
+        accepted.closed = now;
+        accepted.listing = listing;
+        accepted.receipt = state.listings[listing].receipt!.reference;
+        result = {
+          offer: c.offer,
+          status: "ACCEPTED",
+          receipt: accepted.receipt,
+          listing,
+          ...sellerQuote(offer.price),
+        };
+      }
     } else {
       offer.status = c.kind === "private-decline" ? "DECLINED" : "CANCELLED";
       offer.closed = now;

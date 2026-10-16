@@ -1,0 +1,16 @@
+{
+  name: 'Error',
+  message: 'expect(locator).toBeEnabled() failed\n' +
+    '\n' +
+    "Locator: getByRole('button', { name: 'Make offer', exact: true })\n" +
+    'Expected: enabled\n' +
+    'Timeout: 60000ms\n' +
+    'Error: element(s) not found\n',
+  frames: [
+    '    at captureRawStack (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\playwright-core\\lib\\coreBundle.js:8588:17)',
+    '    at callMatcherAsStep (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\playwright\\lib\\matchers\\expect.js:13310:57)',
+    '    at Object.toBeEnabled (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\node_modules\\playwright\\lib\\matchers\\expect.js:13302:23)',
+    '    at Object.runMarketOverhaul (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\scripts\\market-overhaul-acceptance.ts:391:77)',
+    '    at async main (C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\scripts\\marketplace-auth-local.ts:516:15)'
+  ]
+}

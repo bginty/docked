@@ -578,6 +578,75 @@ test("notification settings are private, email/push cannot activate and recipien
   );
   await pg.exec("reset role");
 });
+test("collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access", async () => {
+  await rollback(async () => {
+    const cards = [{ id: "local-one" }, { id: "local-two" }];
+    const view = async (target = other) =>
+      (
+        await pg.query<{ cards: unknown[] }>(
+          "select private.social_collection_cards($1,$2::jsonb) cards",
+          [target, JSON.stringify(cards)],
+        )
+      ).rows[0].cards;
+    assert.deepEqual(await view(), []);
+    await pg.query(
+      "insert into private.social_collection_settings(profile_id,visibility,card_preferences) values($1,'members',$2) on conflict(profile_id) do update set visibility='members',card_preferences=excluded.card_preferences",
+      [otherProfile, JSON.stringify({ "local-one": { hidden: true } })],
+    );
+    assert.deepEqual(await view(), [{ id: "local-two" }]);
+    await claims(other, otherSession);
+    assert.deepEqual(await view(), cards);
+    await claims();
+    await pg.query(
+      "insert into private.social_blocks(actor_id,target_id) values($1,$2)",
+      [profile, otherProfile],
+    );
+    assert.deepEqual(await view(), []);
+    await pg.query("delete from private.social_blocks where actor_id=$1", [
+      profile,
+    ]);
+    await pg.query(
+      "update private.social_collection_settings set visibility='private' where profile_id=$1",
+      [otherProfile],
+    );
+    assert.deepEqual(await view(), []);
+    for (const role of ["anon", "authenticated", "service_role"]) {
+      const r = (
+        await pg.query<{ allowed: boolean }>(
+          "select has_function_privilege($1,'private.social_collection_cards(uuid,jsonb)','EXECUTE') allowed",
+          [role],
+        )
+      ).rows[0];
+      assert.equal(r.allowed, false);
+    }
+    assert.equal(
+      (
+        await pg.query<{ allowed: boolean }>(
+          "select has_function_privilege('docked_app','private.social_legacy_cards_before_card_privacy(uuid)','EXECUTE') allowed",
+        )
+      ).rows[0].allowed,
+      false,
+    );
+  });
+});
+
+test("collection projections reject an expired session even when reading own cards", async () => {
+  await rollback(async () => {
+    await claims();
+    await pg.query(
+      "update auth.sessions set not_after=now()-interval '1 minute' where id=$1",
+      [session],
+    );
+    await assert.rejects(
+      () =>
+        pg.query("select private.social_collection_cards($1,'[]'::jsonb)", [
+          user,
+        ]),
+      /Active authenticated session/,
+    );
+  });
+});
+
 test("account erasure purges personal social content but preserves durable referenced records and the other member", async () => {
   await pg.exec(
     "create table private.social_ledger_test(profile_id uuid references private.social_profiles(id),result text)",

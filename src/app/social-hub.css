@@ -857,3 +857,31 @@
     padding: 16px;
   }
 }
+
+.market-offer-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 180px));
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 14px;
+}
+.market-offer-cards .social-offer-card {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+.market-offer-cards small {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+.social-offers > .app-panel h3 {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.offer-card-preview {
+  max-width: 140px;
+  margin: 10px auto;
+}

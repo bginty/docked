@@ -30,3 +30,22 @@ export function sellerQuote(price: number) {
   const fee = Number((BigInt(price) * 750n + 5000n) / 10000n);
   return { price, fee, net: price - fee, policy: creditsPolicy.version };
 }
+
+/** Owner-approved 16 Oct 2026: combined offers charge the higher of the
+ * existing credit commission or the applicable per-member swap fee. Cards
+ * have no invented valuation. The credit component must cover the fee. */
+export function combinedOfferQuote(price: number, swapFeeMinimum: number) {
+  if (!Number.isSafeInteger(swapFeeMinimum) || swapFeeMinimum < 0)
+    throw Error("Invalid swap fee minimum");
+  const quote = sellerQuote(price);
+  const fee = Math.max(quote.fee, swapFeeMinimum);
+  if (fee > price)
+    throw Error(`Offer at least ${fee} credits to cover the combined fee`);
+  return {
+    ...quote,
+    fee,
+    net: price - fee,
+    minimumFee: swapFeeMinimum,
+    feePolicy: "credit-commission-floor-v1" as const,
+  };
+}

@@ -1,0 +1,30 @@
+{
+  "implemented": true,
+  "deployed": false,
+  "hostedTradingActivated": false,
+  "productionChanged": false,
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS",
+    "clientCanaryAssets": 58,
+    "platformFull": {
+      "passed": 397,
+      "failed": 0
+    },
+    "databaseFullAfterAllowlistReview": {
+      "passed": 159,
+      "failed": 0
+    },
+    "focusedFinalAfterTestExpectationCorrection": {
+      "passed": 32,
+      "failed": 0
+    },
+    "httpCompletedGroups": 7,
+    "browser": "PASS on separate resumed run",
+    "postgresInjectedRollback": "PASS",
+    "physicalDevice": "PENDING",
+    "rawSecretScan": "Nine existing findings remain; see review"
+  },
+  "at": "2026-10-16T03:50:58.426046+00:00"
+}

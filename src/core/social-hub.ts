@@ -3,7 +3,13 @@ import { safeSocialText } from "./community-social";
 export const collectionVisibility = z.enum(["private", "followers", "members"]);
 const minimum = z.number().int().min(1).max(1000000000).nullable();
 export const cardOfferPreference = z
-  .object({ enabled: z.boolean(), minimum, asking: minimum })
+  .object({
+    enabled: z.boolean(),
+    minimum,
+    asking: minimum,
+    hidden: z.boolean().optional(),
+    swaps: z.boolean().optional(),
+  })
   .strict();
 export const hubAction = z.discriminatedUnion("action", [
   z
@@ -12,6 +18,8 @@ export const hubAction = z.discriminatedUnion("action", [
       visibility: collectionVisibility,
       offers: z.enum(["nobody", "followers", "everyone"]),
       minimum,
+      acknowledgeVisibility: z.boolean().optional(),
+      muteOffers: z.boolean().optional(),
       cards: z
         .record(z.string().max(150), cardOfferPreference)
         .refine((v) => Object.keys(v).length <= 100),

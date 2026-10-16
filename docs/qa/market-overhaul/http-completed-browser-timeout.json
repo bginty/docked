@@ -1,0 +1,15 @@
+{
+  "mode": "all",
+  "passed": false,
+  "checks": [
+    "Global/per-card privacy, owner read, alternate wallet/listing API denial and explicit existing-account consent",
+    "sell: listing, exact offer, concurrent duplicate acceptance, atomic ownership/credits, unchanged issuance",
+    "swap: listing, exact offer, concurrent duplicate acceptance, atomic ownership/credits, unchanged issuance",
+    "both: listing, exact offer, concurrent duplicate acceptance, atomic ownership/credits, unchanged issuance",
+    "Two buyers racing on separate PostgreSQL connections: exactly one settlement",
+    "Edit and cancel preserve immutable original listing terms",
+    "Unadmitted account denied; owner AAL1 denied; admitted testers work without MFA"
+  ],
+  "error": "page.goto: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:3033/fantasy/market?tab=listings\", waiting until \"load\"\u001b[22m\n",
+  "at": "2026-10-16T03:30:57.138Z"
+}

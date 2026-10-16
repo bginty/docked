@@ -1,0 +1,34 @@
+scripts/marketplace-auth-local.ts 852ms
+scripts/social-upgrade-acceptance.ts 110ms
+src/app/api/community/route.ts 81ms
+src/app/api/marketplace/route.ts 27ms (unchanged)
+src/app/marketplace.css 147ms
+src/components/fantasy-screen.tsx 679ms
+src/components/marketplace.tsx 407ms
+src/components/member-profile.tsx 54ms
+src/components/private-card-offers.tsx 121ms
+src/components/social-hub.tsx 126ms (unchanged)
+src/components/social-interactions.tsx 111ms (unchanged)
+src/components/use-workspace-wallet.ts 12ms
+src/core/community-social.ts 89ms (unchanged)
+src/core/credits-policy.ts 16ms (unchanged)
+src/core/credits-sandbox.ts 509ms (unchanged)
+src/core/marketplace.ts 166ms (unchanged)
+src/core/member-test-wallet.ts 89ms
+src/core/private-card-offers.ts 60ms (unchanged)
+src/core/social-hub.ts 20ms (unchanged)
+src/server/community-social.ts 238ms (unchanged)
+src/server/marketplace.ts 10ms (unchanged)
+src/server/member-test-wallet.ts 39ms (unchanged)
+src/server/private-card-offers.ts 36ms
+src/server/social-card-projection.ts 18ms (unchanged)
+src/server/social-hub.ts 35ms (unchanged)
+tests/database/community-social.test.ts 163ms
+tests/database/nfl-seven.test.ts 58ms
+src/core/portfolio-valuation.ts 22ms
+src/components/portfolio-summary.tsx 6ms
+src/server/market-visibility.ts 7ms (unchanged)
+src/server/lineup-privacy.ts 5ms
+tests/platform/market-overhaul.test.ts 32ms
+tests/platform/portfolio-valuation.test.ts 15ms
+scripts/market-overhaul-acceptance.ts 109ms

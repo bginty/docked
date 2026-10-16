@@ -40,17 +40,22 @@ export async function socialHub(handle?: string) {
         handle: String(target.handle),
         visibility: settings?.visibility ?? "private",
         visible,
-        cards: inventory.map((card) => ({
-          card,
-          offers:
-            card.offerEligible &&
-            !!settings &&
-            settings.offers !== "nobody" &&
-            (settings.offers !== "followers" || following) &&
-            settings.card_preferences[card.id]?.enabled === true &&
-            card.tier !== "CORE",
-          asking: settings?.card_preferences[card.id]?.asking ?? null,
-        })),
+        cards: inventory
+          .filter(
+            (card) =>
+              own || settings?.card_preferences?.[card.id]?.hidden !== true,
+          )
+          .map((card) => ({
+            card,
+            offers:
+              card.offerEligible &&
+              !!settings &&
+              settings.offers !== "nobody" &&
+              (settings.offers !== "followers" || following) &&
+              settings.card_preferences[card.id]?.enabled === true &&
+              card.tier !== "CORE",
+            asking: settings?.card_preferences[card.id]?.asking ?? null,
+          })),
         settings: own
           ? {
               visibility: settings?.visibility ?? "private",
@@ -60,6 +65,7 @@ export async function socialHub(handle?: string) {
                 settings?.minimum_credits === undefined
                   ? null
                   : Number(settings.minimum_credits),
+              muteOffers: settings?.mute_offers ?? false,
               cards: Object.fromEntries(
                 Object.entries(settings?.card_preferences ?? {}).filter(
                   ([id]) => inventory.some((c) => c.id === id),
@@ -94,6 +100,16 @@ export async function mutateSocialHub(input: unknown) {
     async (tx, who, profile) => {
       await tx`select pg_advisory_xact_lock(71820342)`;
       if (action.action === "collection_preferences") {
+        const [previous] =
+          await tx`select visibility from private.social_collection_settings where profile_id=${profile}`;
+        if (
+          (previous?.visibility ?? "private") === "private" &&
+          action.visibility !== "private" &&
+          !action.acknowledgeVisibility
+        )
+          throw Error(
+            "Confirm that admitted members may see your collection before sharing it",
+          );
         const owned = await socialInventory(tx, who.user.id);
         if (
           Object.keys(action.cards).some(
@@ -102,6 +118,7 @@ export async function mutateSocialHub(input: unknown) {
         )
           throw Error("Card ownership changed");
         await tx`insert into private.social_collection_settings(profile_id,visibility,offers,minimum_credits,card_preferences) values(${profile},${action.visibility},${action.offers},${action.minimum},${tx.json(action.cards)}) on conflict(profile_id) do update set visibility=excluded.visibility,offers=excluded.offers,minimum_credits=excluded.minimum_credits,card_preferences=private.social_collection_settings.card_preferences||excluded.card_preferences,updated_at=clock_timestamp()`;
+        await tx`update private.social_collection_settings set mute_offers=${action.muteOffers ?? false},visibility_acknowledged_at=case when ${action.acknowledgeVisibility ?? false} then clock_timestamp() else visibility_acknowledged_at end where profile_id=${profile}`;
       } else if (action.action === "community_manage") {
         if (
           who.aal !== "aal2" ||
