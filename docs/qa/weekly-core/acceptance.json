@@ -1,0 +1,45 @@
+{
+  "task": "Profile, account-wide header balance and Weekly Core Pack",
+  "status": "Implemented locally; not deployed or activated",
+  "productionMutations": false,
+  "localReview": "http://127.0.0.1:3031/fantasy/profile",
+  "policy": {
+    "version": "weekly-core-nfl-v1",
+    "firstPack": "At actual eligible account enrolment",
+    "intervalSeconds": 604800,
+    "cards": 4,
+    "rarity": "CORE",
+    "positions": ["QB", "RB", "WR", "TE"],
+    "uniquePlayersWithinPack": true,
+    "ownedPlayersAllowed": true,
+    "creditCharge": 0,
+    "retroactiveBeforeEnrolment": false,
+    "unopenedExpiry": null
+  },
+  "verification": {
+    "typecheck": {"result": "passed", "log": "typecheck-verified.txt"},
+    "lint": {"result": "passed", "log": "lint-verified.txt"},
+    "cleanEnvironmentBuild": {"result": "passed", "log": "build.txt"},
+    "clientBoundary": {"result": "passed", "assets": 59, "log": "client-boundary.txt", "scope": "Server-secret canaries in generated client assets; not a claim of a clean repository-wide secret scan"},
+    "platform": {"fullRunPassed": 410, "fullRunTotal": 411, "log": "platform-final.txt", "failure": "Existing production release-tool child process timed out with empty stderr", "isolatedRerun": "3/3 release-tool tests passed", "rerunLog": "release-tests-final-retry.txt", "uninterruptedFullSuitePass": false},
+    "database": {"fullRunPassed": 160, "fullRunTotal": 161, "log": "database.txt", "failure": "Existing Premium transition PGlite process exited with Windows access violation 3221225477", "isolatedRerun": "1/1 Premium transition test passed", "rerunLog": "premium-transition-retry.txt", "uninterruptedFullSuitePass": false},
+    "nativePostgres": {"result": "passed", "log": "postgres-final.txt", "scope": "Disposable database, actual migrations; six concurrent connections for reconciliation, jobs and opening; identity helpers are isolated test fixtures"},
+    "browser": {"result": "passed", "directory": "browser-1792146920199", "widths": [1440,1024,412,360], "criticalOrSeriousAxeViolations": 0, "scope": "Actual React components against isolated HTTP fixtures; shared shell route screenshots are not hosted route/auth acceptance"},
+    "physicalSamsungS24": "Not performed",
+    "hostedAuthentication": "Not performed for this change"
+  },
+  "earlierAttempts": [
+    "Initial platform run: 408/411; sandbox blocked temporary Git fixtures. Separate release-tool retry passed 3/3.",
+    "Initial native PostgreSQL setup/connection and Edge launch were restricted in the sandbox; rerun using scoped local execution.",
+    "Native test runner shutdown hung in the pinned Windows embedded runtime. Weekly runner now uses pg_ctl for its own fresh local cluster; final run exited successfully.",
+    "Initial database fixtures required corrections to auth setup and valid player fields; final migration/concurrency runs passed.",
+    "Browser checks exposed private text contrast and narrow layout issues, which were corrected. Later test-harness lost-response and transpiled-function issues were corrected before final acceptance.",
+    "Final source lint/typecheck initially found an unused hook after simplifying Cards navigation and an uninitialised browser fixture variable; both corrected and checks rerun successfully."
+  ],
+  "remaining": [
+    "Owner review, approved migration/application deployment, feature activation and pg_cron registration per docs/weekly-core-profile.md",
+    "Physical Samsung S24 acceptance",
+    "Hosted account/authentication and scheduled-job checks after authorised deployment",
+    "Intermittent Windows/PGlite and child-process test-runtime failures prevented an uninterrupted full-suite pass; separately rerun affected tests passed"
+  ]
+}

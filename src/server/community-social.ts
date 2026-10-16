@@ -371,6 +371,13 @@ export async function communityProfile(
     },
   );
 }
+/** Private Profile header: reuse approved avatar storage and its authorised media URL. */
+export async function ownProfileIdentity() {
+  return readCommunity("public_profiles", { avatarUrl: null as string | null, displayName: undefined as string | undefined }, async c => {
+    const profile=c.profileId ? (await profiles(c.tx,[c.profileId],c.profileId))[0] : null;
+    return { avatarUrl:profile?.avatarUrl ?? null, displayName:profile?.displayName };
+  });
+}
 export async function communitySearch(query: string): Promise<CommunitySearch> {
   return readCommunity(
     "community_social",

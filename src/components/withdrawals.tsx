@@ -197,6 +197,7 @@ export function Withdrawals({ admin = false }: { admin?: boolean }) {
         sessionStorage.removeItem(key(expectedMember));
       } catch {}
       setData(result);
+      window.dispatchEvent(new Event("docked-app-resume"));
       setReview(null);
       setBankForm(false);
       setBank({ holder: "", bsb: "", account: "" });

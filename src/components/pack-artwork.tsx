@@ -4,14 +4,16 @@ export function PackArtwork({
   name,
   premium = false,
   compact = false,
+  core = false,
 }: {
   name: string;
   premium?: boolean;
   compact?: boolean;
+  core?: boolean;
 }) {
   return (
     <div
-      className={`pack-wrapper ${premium ? "pack-wrapper-gold" : "pack-wrapper-blue"} ${compact ? "pack-wrapper-compact" : ""}`}
+      className={`pack-wrapper ${core ? "pack-wrapper-core" : premium ? "pack-wrapper-gold" : "pack-wrapper-blue"} ${compact ? "pack-wrapper-compact" : ""}`}
     >
       <span className="wrapper-crimp" aria-hidden="true" />
       <img src={fantasyAssets.splash} width="768" height="521" alt="Docked" />

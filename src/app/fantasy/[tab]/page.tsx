@@ -5,6 +5,10 @@ import { boundedRead } from "@/core/bounded-request";
 
 import { Marketplace } from "@/components/marketplace";
 import { requireIdentity } from "@/server/auth";
+import {
+  privateAccountSummary,
+  type PrivateAccountSummary,
+} from "@/core/profile-overview";
 import "../../marketplace.css";
 
 import { notFound } from "next/navigation";
@@ -24,7 +28,7 @@ import { FantasyScreen } from "@/components/fantasy-screen";
 
 import { packExperienceEnabled } from "@/core/pack-experience";
 
-import { communityFeed } from "@/server/community-social";
+import { communityFeed, ownProfileIdentity } from "@/server/community-social";
 
 import { fantasyAssets } from "@/brand/fantasy-assets";
 
@@ -223,16 +227,29 @@ export default async function FantasyPage({
   }
 
   const testWallet = process.env.DOCKED_FRIENDS_BETA === "true";
+  let account: PrivateAccountSummary | undefined;
+  if (tab === "profile") {
+    try {
+      const owner = await boundedRead(requireIdentity());
+      if (owner.user.id === data.state.user_id) {
+        account = privateAccountSummary(owner.user);
+        try { account = {...account,...await boundedRead(ownProfileIdentity())}; } catch { /* Initial fallback remains available. */ }
+      }
+    } catch {
+      /* Keep unknown status explicit; no guessed verification or email. */
+    }
+  }
 
   return (
     <AppShell authenticated>
       <div>
-        {testWallet && !["play", "cards", "social"].includes(tab) && (
-          <p className="actions">
-            <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link> ·{" "}
-            <Link href="/fantasy/test-wallet">Open test wallet</Link>
-          </p>
-        )}
+        {testWallet &&
+          !["play", "cards", "social", "profile"].includes(tab) && (
+            <p className="actions">
+              <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link> ·{" "}
+              <Link href="/fantasy/test-wallet">Open test wallet</Link>
+            </p>
+          )}
 
         {tab === "play" &&
           (process.env.VERCEL_ENV === "preview" ||
@@ -257,6 +274,7 @@ export default async function FantasyPage({
             tab={tab}
 
             initial={data.state}
+            account={account}
 
             packExperience={packExperienceEnabled()}
           />

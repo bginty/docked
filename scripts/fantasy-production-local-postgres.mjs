@@ -60,7 +60,9 @@ try {
       : [
           "--import",
           "tsx",
-          process.argv.includes("--redemption")
+          process.argv.includes("--weekly-core")
+            ? "tests/database/weekly-core.test.ts"
+            : process.argv.includes("--redemption")
             ? "scripts/redemption-postgres.ts"
             : process.argv.includes("--marketplace-phase-one")
               ? "scripts/marketplace-postgres.ts"
@@ -97,6 +99,7 @@ try {
       env: {
         ...process.env,
         FANTASY_TEST_DATABASE_URL: `postgres://postgres:${password}@127.0.0.1:${port}/${database}`,
+        ...(process.argv.includes("--weekly-core") ? {WEEKLY_CORE_TEST_DB:`postgres://postgres:${password}@127.0.0.1:${port}/${database}`} : {}),
       },
     },
   );
@@ -110,7 +113,19 @@ try {
   );
   process.exitCode = 1;
 } finally {
-  if (started) await pg.stop();
+  if (started && process.platform === "win32" && process.argv.includes("--weekly-core")) {
+    // The pinned runtime uses taskkill and can hang when Windows denies it.
+    // Shut down only this runner's fresh local cluster through PostgreSQL itself.
+    const directory=resolve(`tmp/free-play-pg-${stamp}`);
+    if(!directory.startsWith(resolve("tmp") + "\\")) throw Error("Unsafe test cluster path");
+    const code=await new Promise((done,reject)=>{
+      const stop=spawn(resolve("tmp/free-play-postgres-runtime/node_modules/@embedded-postgres/windows-x64/native/bin/pg_ctl.exe"),["-D",directory,"-m","fast","-w","-t","30","stop"],{windowsHide:true,stdio:"ignore"});
+      stop.on("error",reject);stop.on("exit",done);
+    });
+    if(code!==0) {outcome=1;console.error("Local test cluster shutdown could not be confirmed");}
+    // Native shutdown already completed; prevent the library's beforeExit taskkill.
+    pg.process=undefined;
+  } else if (started) await pg.stop();
   process.exitCode = outcome;
 }
 // embedded-postgres's async beforeExit hook otherwise replaces a child's failed

@@ -86,6 +86,7 @@ export function MemberTestWallet({
           "Your account session changed. Sign in again before continuing.",
         );
       setS(data.state);
+      window.dispatchEvent(new Event("docked-app-resume"));
       if (
         command.kind === "buy-pack" &&
         typeof data.result?.entitlement === "string"
@@ -224,7 +225,8 @@ export function MemberTestWallet({
               });
               if (!r.ok) throw Error("Could not refresh packs");
               const data = await r.json();
-              if(data.state?.member !== initial.member) throw Error("Your account session changed. Sign in again.");
+              if (data.state?.member !== initial.member)
+                throw Error("Your account session changed. Sign in again.");
               setS(data.state);
               setError("");
             }}

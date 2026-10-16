@@ -26,7 +26,7 @@ import { rarityRule } from "@/core/card-rarity";
 export type PackOpeningProps = {
   userId: string;
   name: string;
-  packType?: "STANDARD" | "PREMIUM" | null;
+  packType?: "STANDARD" | "PREMIUM" | "WEEKLY_CORE" | null;
   receipt?: PackReceipt | null;
   openPack: () => Promise<PackReceipt>;
   onClose: () => void;
@@ -319,6 +319,7 @@ export default function PackOpening(props: PackOpeningProps) {
                 }}
               >
                 <PackArtwork
+                  core={props.packType === "WEEKLY_CORE"}
                   premium={props.packType === "PREMIUM"}
                   name={props.name}
                 />
@@ -376,6 +377,7 @@ export default function PackOpening(props: PackOpeningProps) {
                     <div className="pack-opening-envelope" aria-hidden="true">
                       <span className="pack-torn-seal" />
                       <PackArtwork
+                        core={props.packType === "WEEKLY_CORE"}
                         premium={props.packType === "PREMIUM"}
                         name={props.name}
                       />
@@ -497,7 +499,7 @@ export default function PackOpening(props: PackOpeningProps) {
                     }
                   }}
                 >
-                  <FantasyCardArtwork card={card} faceOnly variant="reveal" />
+                  <FantasyCardArtwork card={card} faceOnly variant="reveal" showNumber={props.packType !== "WEEKLY_CORE"} />
                 </div>
               </div>
             </div>

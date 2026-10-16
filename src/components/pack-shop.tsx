@@ -12,6 +12,8 @@ import {
 } from "@/core/pack-presentation";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { PackArtwork } from "./pack-artwork";
+import { WeeklyCorePanel } from "./weekly-core-panel";
+import { StarterPackHistory } from "./starter-pack-history";
 type Product = MemberTestView["products"][number];
 export function PackShop({
   state: s,
@@ -86,7 +88,7 @@ export function PackShop({
         {(
           [
             ["buy", "Buy Packs"],
-            ["mine", `My Packs (${unopened.length})`],
+            ["mine", "My Packs"],
             ["history", "History"],
           ] as const
         ).map(([id, label]) => (
@@ -206,12 +208,14 @@ export function PackShop({
       )}
       {tab !== "buy" && (
         <section id="pack-history" className="pack-library">
-          <h2>{tab === "mine" ? "My Packs" : "Purchase history"}</h2>
+          <h2>{tab === "mine" ? "My Packs" : "Pack history"}</h2>
+          <WeeklyCorePanel member={s.member} history={tab === "history"} />
+          {tab === "history" && <StarterPackHistory member={s.member}/>}
           {(tab === "mine" ? unopened : historyPacks).length === 0 && (
             <p>
               {tab === "mine"
-                ? "No unopened packs. Your saved results are in History."
-                : "Your pack purchases will appear here."}
+                ? "No unopened purchased packs. Weekly rewards are shown above."
+                : "Your purchased pack history will appear here."}
             </p>
           )}
           {(tab === "mine" ? unopened : historyPacks).map((p) => (

@@ -5,6 +5,8 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { AppIcon, type AppIconName } from "./app-icon";
 import { SportSelector, SportScope } from "./sport-context";
 import { PwaStatus } from "./pwa-status";
+import { WorkspaceWalletProvider } from "./use-workspace-wallet";
+import { WorkspaceWalletLink } from "./workspace-wallet-link";
 import { FantasyLogo } from "./fantasy-brand";
 import { useEnvironmentPresentation } from "./environment-context";
 const nav: { href: string; label: string; icon: AppIconName }[] = [
@@ -98,19 +100,110 @@ export function AppShell({
   const shell = useEditingViewport(authenticated);
   if (!authenticated) return <div className="community-public">{children}</div>;
   return (
-    <div
-      ref={shell}
-      className="community-shell"
-      data-authenticated="true"
-      data-workspace={destination.split("/").at(-1)}
-    >
-      <aside className="app-sidebar">
-        <Link className="brand" href="/fantasy/play" aria-label="Docked home">
-          <FantasyLogo />
-        </Link>
+    <WorkspaceWalletProvider>
+      <div
+        ref={shell}
+        className="community-shell"
+        data-authenticated="true"
+        data-workspace={destination.split("/").at(-1)}
+      >
+        <aside className="app-sidebar">
+          <Link className="brand" href="/fantasy/play" aria-label="Docked home">
+            <FantasyLogo />
+          </Link>
 
-        <SportSelector />
-        <nav aria-label="App navigation">
+          <SportSelector />
+          <nav aria-label="App navigation">
+            {activeNav.map((n) => (
+              <Link
+                key={n.href}
+                href={n.href}
+                aria-current={destination === n.href ? "page" : undefined}
+              >
+                <AppIcon name={n.icon} />
+                {n.label}
+              </Link>
+            ))}
+          </nav>
+          <details className="app-secondary">
+            <summary>More & settings</summary>
+            <Link href="/compose">
+              <AppIcon name="plus" /> Create a post
+            </Link>
+            <Link href="/search">
+              <AppIcon name="search" /> Search Docked
+            </Link>
+
+            <Link href="/dashboard">Settings & privacy</Link>
+
+            <Link href="/">Public site</Link>
+          </details>
+          <Link className="sidebar-account" href="/fantasy/profile">
+            <AppIcon name="profile" />
+            Your account <span aria-hidden="true">→</span>
+          </Link>
+          <p className="small-note">
+            18+ · Fantasy Cards
+            <br />
+            Free play. No cash value.
+          </p>
+        </aside>
+        <div className="app-workspace">
+          <header className="app-topbar">
+            <div className="app-brand-lockup">
+              <Link
+                className="brand"
+                href="/fantasy/play"
+                aria-label="Docked home"
+              >
+                <FantasyLogo />
+              </Link>
+              {(liveBeta || !production) && (
+                <span className="app-preview-label">
+                  {liveBeta ? "BETA" : "PREVIEW"}
+                </span>
+              )}
+            </div>
+            <strong className="workspace-location">
+              {nav.find((n) => n.href === destination)?.label}
+            </strong>
+            <nav aria-label="App utilities">
+              <span id="workspace-wallet-slot">
+                <WorkspaceWalletLink />
+              </span>
+              <Link
+                className="app-desktop-search"
+                href="/search"
+                aria-label="Search Docked"
+              >
+                <AppIcon name="search" />
+              </Link>
+              <Link href="/notifications" aria-label="Notifications">
+                <AppIcon name="bell" />
+              </Link>
+              <Link href="/dashboard" aria-label="Settings">
+                <AppIcon name="settings" />
+              </Link>
+            </nav>
+          </header>
+          <div className="shell-mobile-sport">
+            <SportSelector mobile />
+          </div>
+          <PwaStatus allowInstall={destination === "/fantasy/profile"} />
+          <div className="app-content">
+            {["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(
+              destination,
+            ) ? (
+              <SportScope>{children}</SportScope>
+            ) : (
+              children
+            )}
+          </div>
+          <p className="app-footnote">
+            Invited test beta · No cash value. Competition rules apply.
+          </p>
+        </div>
+        <nav className="app-bottom-nav" aria-label="Mobile app navigation">
           {activeNav.map((n) => (
             <Link
               key={n.href}
@@ -118,102 +211,11 @@ export function AppShell({
               aria-current={destination === n.href ? "page" : undefined}
             >
               <AppIcon name={n.icon} />
-              {n.label}
+              <span>{n.label}</span>
             </Link>
           ))}
         </nav>
-        <details className="app-secondary">
-          <summary>More & settings</summary>
-          <Link href="/compose">
-            <AppIcon name="plus" /> Create a post
-          </Link>
-          <Link href="/search">
-            <AppIcon name="search" /> Search Docked
-          </Link>
-
-          <Link href="/dashboard">Settings & privacy</Link>
-
-          <Link href="/">Public site</Link>
-        </details>
-        <Link className="sidebar-account" href="/fantasy/profile">
-          <AppIcon name="profile" />
-          Your account <span aria-hidden="true">→</span>
-        </Link>
-        <p className="small-note">
-          18+ · Fantasy Cards
-          <br />
-          Free play. No cash value.
-        </p>
-      </aside>
-      <div className="app-workspace">
-        <header className="app-topbar">
-          <div className="app-brand-lockup">
-            <Link
-              className="brand"
-              href="/fantasy/play"
-              aria-label="Docked home"
-            >
-              <FantasyLogo />
-            </Link>
-            {(liveBeta || !production) && (
-              <span className="app-preview-label">
-                {liveBeta ? "BETA" : "PREVIEW"}
-              </span>
-            )}
-          </div>
-          <strong className="workspace-location">
-            {nav.find((n) => n.href === destination)?.label}
-          </strong>
-          <nav aria-label="App utilities">
-            <span id="workspace-wallet-slot">
-              <Link className="workspace-wallet" href="/fantasy/test-wallet">
-                Wallet
-              </Link>
-            </span>
-            <Link
-              className="app-desktop-search"
-              href="/search"
-              aria-label="Search Docked"
-            >
-              <AppIcon name="search" />
-            </Link>
-            <Link href="/notifications" aria-label="Notifications">
-              <AppIcon name="bell" />
-            </Link>
-            <Link href="/dashboard" aria-label="Settings">
-              <AppIcon name="settings" />
-            </Link>
-          </nav>
-        </header>
-        <div className="shell-mobile-sport">
-          <SportSelector mobile />
-        </div>
-        <PwaStatus allowInstall={destination === "/fantasy/profile"} />
-        <div className="app-content">
-          {["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(
-            destination,
-          ) ? (
-            <SportScope>{children}</SportScope>
-          ) : (
-            children
-          )}
-        </div>
-        <p className="app-footnote">
-          Invited test beta · No cash value. Competition rules apply.
-        </p>
       </div>
-      <nav className="app-bottom-nav" aria-label="Mobile app navigation">
-        {activeNav.map((n) => (
-          <Link
-            key={n.href}
-            href={n.href}
-            aria-current={destination === n.href ? "page" : undefined}
-          >
-            <AppIcon name={n.icon} />
-            <span>{n.label}</span>
-          </Link>
-        ))}
-      </nav>
-    </div>
+    </WorkspaceWalletProvider>
   );
 }

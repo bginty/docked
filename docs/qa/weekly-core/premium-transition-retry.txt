@@ -1,0 +1,15 @@
+TAP version 13
+# Subtest: registered Premium transition is atomic and idempotent; database retains sealed receipts and rejects altered configuration
+ok 1 - registered Premium transition is atomic and idempotent; database retains sealed receipts and rejects altered configuration
+  ---
+  duration_ms: 6516.1399
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10155.8754

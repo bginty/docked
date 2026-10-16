@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { isDockedNative } from "./native-bridge";
 import { useEnvironmentPresentation } from "./environment-context";
 type InstallEvent = Event & {
@@ -19,6 +20,12 @@ export function PwaStatus({
   const [offline, setOffline] = useState(false),
     [update, setUpdate] = useState<ServiceWorker | null>(null),
     [install, setInstall] = useState<InstallEvent | null>(null);
+  const [installSlot, setInstallSlot] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setInstallSlot(
+      allowInstall ? document.getElementById("profile-install-slot") : null,
+    );
+  }, [allowInstall, install]);
   useEffect(() => {
     if (isDockedNative()) return;
     const onOnline = () => setOffline(!navigator.onLine);
@@ -103,19 +110,23 @@ export function PwaStatus({
           </button>
         </p>
       )}
-      {allowInstall && install && (
-        <button
-          className="install-button"
-          onClick={async () => {
-            await install.prompt();
-            await install.userChoice;
-            deferredInstall = null;
-            setInstall(null);
-          }}
-        >
-          Install Docked web app
-        </button>
-      )}
+      {allowInstall &&
+        install &&
+        installSlot &&
+        createPortal(
+          <button
+            className="pack-control secondary install-button"
+            onClick={async () => {
+              await install.prompt();
+              await install.userChoice;
+              deferredInstall = null;
+              setInstall(null);
+            }}
+          >
+            Install Docked
+          </button>,
+          installSlot,
+        )}
     </div>
   );
 }

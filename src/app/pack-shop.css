@@ -251,6 +251,11 @@ a.pack-control {
   --foil-light: #fff0b3;
   --foil-dark: #53340b;
 }
+.pack-wrapper-core {
+  --foil: #9facbd;
+  --foil-light: #f3f8ff;
+  --foil-dark: #354453;
+}
 .pack-wrapper img {
   width: 100%;
   height: auto;

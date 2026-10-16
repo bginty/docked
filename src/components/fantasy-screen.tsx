@@ -1,12 +1,12 @@
 "use client";
 import { competitionLabel } from "@/core/competition-display";
-import { createPortal } from "react-dom";
 import { useSport } from "./sport-context";
-import { useWorkspaceWallet } from "./use-workspace-wallet";
 import { boundedFetch } from "@/core/bounded-request";
 import { collectionPositions, sevenEligibility } from "@/core/card-display";
 import { fullTeamName } from "@/core/card-presentation";
-import { rarityStyle } from "@/core/rarity-theme";
+import { RarityCounts } from "./rarity-counts";
+import { ProfileOverview } from "./profile-overview";
+import type { PrivateAccountSummary } from "@/core/profile-overview";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { FantasyCardArtwork as Card } from "./fantasy-card-artwork";
 import { PackProducts } from "./pack-products";
@@ -45,21 +45,14 @@ export function FantasyScreen({
   tab,
   initial,
   packExperience = false,
+  account,
 }: {
   tab: string;
   initial: FantasyState;
   packExperience?: boolean;
+  account?: PrivateAccountSummary;
 }) {
   const production = initial.mode === "production";
-  const wallet = useWorkspaceWallet(
-    initial.user_id,
-    ["play", "cards"].includes(tab),
-  );
-  const [walletSlot, setWalletSlot] = useState<HTMLElement | null>(null);
-  useEffect(
-    () => setWalletSlot(document.getElementById("workspace-wallet-slot")),
-    [],
-  );
   const [showPacks, setShowPacks] = useState(false);
   const [teamFilter, setTeamFilter] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -77,7 +70,8 @@ export function FantasyScreen({
     [sort, setSort] = useState("newest");
   useEffect(() => {
     setSearch("");
-    setTier("");
+    const requested = new URLSearchParams(location.search).get("rarity") ?? "";
+    setTier(tiers.includes(requested) ? requested : "");
     setPosition("");
     setTeamFilter("");
     setCollectionPage({ key: "", index: 0 });
@@ -200,11 +194,6 @@ export function FantasyScreen({
   }
   const name = (id: string) =>
     data.members.find((m) => m.id === id)?.name ?? "Preview member";
-  const points =
-    data.my_championship_points ??
-    data.results
-      .filter((r) => r.user_id === data.user_id)
-      .reduce((n, r) => n + r.championship_points, 0);
   const filtered = data.cards
     .filter(
       (c) =>
@@ -290,26 +279,7 @@ export function FantasyScreen({
   ) : null;
   return (
     <div className={`fantasy-screen fantasy-screen-${tab}`} aria-busy={busy}>
-      {walletSlot &&
-        ["play", "cards"].includes(tab) &&
-        createPortal(
-          <Link
-            className="workspace-balance"
-            href="/fantasy/test-wallet"
-            title="Available test Docked Credits · no cash value"
-          >
-            {wallet.value ? (
-              <>
-                <strong>{wallet.value.balance.toLocaleString("en-AU")}</strong>{" "}
-                <span>test Docked Credits</span>
-              </>
-            ) : (
-              <span>{wallet.status || "Balance unavailable"} · Wallet</span>
-            )}
-          </Link>,
-          walletSlot,
-        )}
-      {!["play", "social", "cards"].includes(tab) && (
+      {!["play", "social", "cards", "profile"].includes(tab) && (
         <header className="fantasy-heading">
           <div>
             <p className="eyebrow">
@@ -356,8 +326,8 @@ export function FantasyScreen({
             <a
               className="pack-discovery-tile"
               href={
-                wallet.value?.unopened
-                  ? "/fantasy/test-wallet?view=packs#packs"
+                sport === "nfl"
+                  ? "/fantasy/test-wallet?view=packs&packs=mine#packs"
                   : data.rewards?.starter_entitled &&
                       !data.rewards.starter_claimed
                     ? "#starter-pack"
@@ -365,16 +335,7 @@ export function FantasyScreen({
               }
               onClick={() => setShowPacks(true)}
             >
-              Open packs (
-              {wallet.value
-                ? wallet.value.unopened +
-                  data.packs.filter((p) => !p.opened_at).length +
-                  (data.rewards?.starter_entitled &&
-                  !data.rewards.starter_claimed
-                    ? 1
-                    : 0)
-                : "…"}
-              )
+              Open packs
             </a>
             <Link
               href="/fantasy/test-wallet?view=packs#packs"
@@ -386,8 +347,8 @@ export function FantasyScreen({
         </div>
       )}
       {production &&
-        (tab === "profile" ||
-          (tab === "cards" && !data.rewards?.starter_claimed)) &&
+        tab === "cards" &&
+        !data.rewards?.starter_claimed &&
         rewardsPanel}
       {production && tab === "market" && (
         <section className="fantasy-panel">
@@ -719,28 +680,15 @@ export function FantasyScreen({
             </section>
           )}
           <section className="collection-workspace" aria-label="My cards">
-            <div
-              className="rarity-counts"
-              aria-label="Rarity counts in selected sport"
-            >
-              {tiers.map((t) => (
-                <button
-                  key={t}
-                  style={rarityStyle(t)}
-                  aria-pressed={tier === t}
-                  onClick={() => {
-                    setTier(tier === t ? "" : t);
-                    setCollectionPage({ key: "", index: 0 });
-                  }}
-                >
-                  <span className="rarity-dot" aria-hidden="true" />
-                  <span>{rarityRule(t).label}</span>
-                  <strong>
-                    {sportCards.filter((c) => c.tier === t).length}
-                  </strong>
-                </button>
-              ))}
-            </div>
+            <RarityCounts
+              cards={data.cards}
+              sport={sport}
+              selected={tier}
+              onSelect={(value) => {
+                setTier(value);
+                setCollectionPage({ key: "", index: 0 });
+              }}
+            />
             <div className="collection-toolbar">
               <label className="collection-search">
                 <span className="sr-only">Search your cards</span>
@@ -1166,110 +1114,7 @@ export function FantasyScreen({
         </>
       )}
       {tab === "profile" && (
-        <>
-          <section className="fantasy-panel">
-            <p className="eyebrow">{name(data.user_id)}</p>
-            <h2>Your collection. Your record.</h2>
-            <div className="fantasy-stats">
-              <div>
-                <strong>{data.cards.length}</strong>
-                <span>Cards</span>
-              </div>
-              <div>
-                <strong>
-                  {data.nfl_beta
-                    ? data.entries.filter((e) =>
-                        data.competitions.some(
-                          (c) => c.id === e.competition_id,
-                        ),
-                      ).length
-                    : data.cards.filter((c) => c.kind === "first_year").length}
-                </strong>
-                <span>{data.nfl_beta ? "Rounds entered" : "First Year"}</span>
-              </div>
-              <div>
-                <strong>
-                  {data.nfl_beta
-                    ? data.results.length
-                      ? data.results.reduce((n, r) => n + r.score, 0)
-                      : "—"
-                    : points}
-                </strong>
-                <span>
-                  {data.nfl_beta ? "Post-game points" : "Championship points"}
-                </span>
-              </div>
-            </div>
-            <p>
-              {data.nfl_beta
-                ? "Current first-place standings"
-                : "Competition wins"}
-              :{" "}
-              {
-                data.results.filter(
-                  (r) => r.user_id === data.user_id && r.rank === 1,
-                ).length
-              }{" "}
-              · Completed trades:{" "}
-              {data.trades.filter((t) => t.state === "accepted").length}
-            </p>
-            <p>
-              {tiers
-                .map(
-                  (t) =>
-                    `${t}: ${data.cards.filter((c) => c.tier === t).length}`,
-                )
-                .join(" · ")}
-            </p>
-            <div className="actions">
-              <Link href="/profile">Social profile, followers & following</Link>
-              <Link href="/profile/withdrawals">Withdrawals</Link>
-              <Link href="/dashboard">Settings & privacy</Link>
-              {data.admin && (
-                <Link href="/admin/operations">Owner dashboard</Link>
-              )}
-            </div>
-          </section>
-          {!production && (
-            <section className="fantasy-panel">
-              <h2>Test wallet</h2>
-              <strong className="wallet-balance">
-                {Number(data.credits).toLocaleString()}
-              </strong>
-              <p>Available Credits</p>
-              <button disabled>Withdraw</button>
-              <small>Not available in Preview</small>
-              <h3>Transaction history</h3>
-              {data.ledger.map((l) => (
-                <div className="fantasy-row" key={l.id}>
-                  <span>
-                    {l.reason}
-                    <small>{stamp(l.created_at)}</small>
-                  </span>
-                  <strong>
-                    {Number(l.amount) > 0 ? "+" : ""}
-                    {l.amount}
-                  </strong>
-                </div>
-              ))}
-              {!data.ledger.length && <p>No test credit transactions yet.</p>}
-            </section>
-          )}
-          <section className="fantasy-panel">
-            <h2>Replacement eligibility</h2>
-            {data.replacements.map((r) => (
-              <p key={r.card_id}>
-                {data.cards.find((c) => c.id === r.card_id)?.name ??
-                  "Retired card"}{" "}
-                ·{" "}
-                {r.pack_id
-                  ? "Replacement pack issued"
-                  : "Eligible — awaiting admin issue"}
-              </p>
-            ))}
-            <p>Retired cards stay in your collection permanently.</p>
-          </section>
-        </>
+        <ProfileOverview data={data} account={account} onRefresh={refresh} />
       )}
       {tab === "admin" &&
         !production &&

@@ -1,18 +1,40 @@
 "use client";
 import type { PortfolioValuation } from "@/core/portfolio-valuation";
-import { useEffect, useState } from "react";
+import {
+  createContext,
+  createElement,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { boundedFetch } from "@/core/bounded-request";
+import { usePathname } from "next/navigation";
+type WalletProjection = {
+  member: string;
+  balance: number;
+  unopened: number;
+  openedPacks: number;
+  completedTrades: number;
+  portfolio: PortfolioValuation | null;
+};
+const WalletContext = createContext<{
+  value: WalletProjection | null;
+  status: string;
+} | null>(null);
+export function WorkspaceWalletProvider({ children }: { children: ReactNode }) {
+  const wallet = useWorkspaceWallet("", true);
+  return createElement(WalletContext.Provider, { value: wallet }, children);
+}
 /** Existing authenticated wallet projection only. Never substitute gameplay points. */
 export function useWorkspaceWallet(member: string, enabled: boolean) {
-  const [value, setValue] = useState<{
-    member: string;
-    balance: number;
-    unopened: number;
-    portfolio: PortfolioValuation | null;
-  } | null>(null);
+  const shared = useContext(WalletContext);
+  const pathname = usePathname();
+  const hasShared = shared !== null;
+  const [value, setValue] = useState<WalletProjection | null>(null);
   const [status, setStatus] = useState("Loading balance…");
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled || hasShared) return;
     let current: AbortController | undefined;
     let disposed = false;
     const read = async () => {
@@ -29,19 +51,29 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
         if (!response.ok) throw Error();
         const { state } = await response.json();
         if (
-          state.member !== member ||
+          typeof state.member !== "string" ||
+          !state.member ||
+          (member && state.member !== member) ||
           !Number.isSafeInteger(state.wallet?.spendable) ||
           !Array.isArray(state.packs)
         )
           throw Error();
         if (!disposed && !controller.signal.aborted) {
           setValue({
-            member,
+            member: state.member,
             balance: state.wallet.spendable,
             portfolio: state.portfolio ?? null,
             unopened: state.packs.filter(
               (p: { status: string }) => p.status === "SEALED",
             ).length,
+            openedPacks: state.packs.filter(
+              (p: { status: string }) => p.status === "OPENED",
+            ).length,
+            completedTrades: Array.isArray(state.swaps)
+              ? state.swaps.filter(
+                  (s: { status: string }) => s.status === "ACCEPTED",
+                ).length
+              : 0,
           });
           setStatus("");
         }
@@ -69,6 +101,10 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
       window.removeEventListener("docked-app-resume", resume);
       document.removeEventListener("visibilitychange", visible);
     };
-  }, [member, enabled]);
-  return { value: value?.member === member ? value : null, status };
+  }, [member, enabled, hasShared, pathname]);
+  const result = shared ?? { value, status };
+  return {
+    ...result,
+    value: !member || result.value?.member === member ? result.value : null,
+  };
 }
