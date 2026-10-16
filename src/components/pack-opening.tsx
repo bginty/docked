@@ -17,6 +17,8 @@ import {
 } from "@/core/pack-opening";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { PackArtwork } from "./pack-artwork";
+import { AppIcon } from "./app-icon";
 import { packSound } from "./pack-feedback";
 import { AcquisitionShare } from "./acquisition-share";
 import { rarityRule } from "@/core/card-rarity";
@@ -24,6 +26,7 @@ import { rarityRule } from "@/core/card-rarity";
 export type PackOpeningProps = {
   userId: string;
   name: string;
+  packType?: "STANDARD" | "PREMIUM" | null;
   receipt?: PackReceipt | null;
   openPack: () => Promise<PackReceipt>;
   onClose: () => void;
@@ -74,6 +77,7 @@ export default function PackOpening(props: PackOpeningProps) {
     motion.addEventListener("change", change);
     try {
       setMuted(localStorage.getItem("docked:pack:sound") !== "on");
+      setSimple(localStorage.getItem("docked:pack:reduce-motion") === "on");
     } catch {}
     const r = initialReceipt;
     if (r) {
@@ -127,9 +131,15 @@ export default function PackOpening(props: PackOpeningProps) {
     if (stage === "revealed" || stage === "summary")
       title.current?.focus({ preventScroll: true });
   }, [stage, index]);
+  useEffect(() => {
+    if (reduced || simple) {
+      setTilt({ x: 0, y: 0 });
+      swipe.current = null;
+    }
+  }, [reduced, simple]);
   function feedback() {
     if (!muted && !document.hidden) packSound();
-    if (!reduced)
+    if (!reduced && !simple)
       void import("./native-share")
         .then((m) => m.lightNativeFeedback())
         .catch(() => {});
@@ -203,15 +213,18 @@ export default function PackOpening(props: PackOpeningProps) {
           {receipt && stage !== "summary" && (
             <button
               type="button"
+              className="pack-control secondary"
               onClick={() => advance(true)}
               aria-label="Skip remaining reveals"
             >
-              Skip
+              Reveal all / Skip
             </button>
           )}
           <button
             type="button"
+            className="pack-control secondary pack-tool-icon"
             aria-pressed={!muted}
+            aria-label={muted ? "Sound off" : "Sound on"}
             onClick={() => {
               const next = !muted;
               setMuted(next);
@@ -221,15 +234,52 @@ export default function PackOpening(props: PackOpeningProps) {
               if (!next) packSound();
             }}
           >
-            {muted ? "Sound off" : "Sound on"}
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              aria-hidden="true"
+            >
+              <path d="M3 9h4l5-4v14l-5-4H3Z" />
+              {muted ? (
+                <path d="m16 9 5 6m0-6-5 6" />
+              ) : (
+                <path d="M16 8q5 4 0 8M19 5q8 7 0 14" />
+              )}
+            </svg>
           </button>
-          <button
-            type="button"
-            aria-pressed={simple}
-            onClick={() => setSimple(!simple)}
-          >
-            Simple view
-          </button>
+          <details className="pack-settings">
+            <summary
+              className="pack-control secondary pack-tool-icon"
+              aria-label="Opening settings"
+            >
+              <AppIcon name="settings" />
+            </summary>
+            <div className="pack-settings-content">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={simple || reduced}
+                  disabled={reduced}
+                  onChange={(event) => {
+                    setSimple(event.target.checked);
+                    try {
+                      localStorage.setItem(
+                        "docked:pack:reduce-motion",
+                        event.target.checked ? "on" : "off",
+                      );
+                    } catch {}
+                  }}
+                />{" "}
+                Reduce motion
+              </label>
+              <p>Reduce tilt and reveal animations.</p>
+              {reduced && <small>Enabled by your device preference.</small>}
+            </div>
+          </details>
         </div>
         <p className="pack-kicker">
           {props.preview
@@ -251,7 +301,7 @@ export default function PackOpening(props: PackOpeningProps) {
               </div>
               <button
                 type="button"
-                className="docked-foil-pack"
+                className="branded-seal"
                 disabled={stage === "waiting"}
                 aria-label="Open pack seal"
                 onClick={() => void open()}
@@ -268,25 +318,15 @@ export default function PackOpening(props: PackOpeningProps) {
                   swipe.current = null;
                 }}
               >
-                <span className="pack-seal" aria-hidden="true" />
-                <img
-                  src="/brand/docked/icons/docked-icon-512.png"
-                  width="132"
-                  height="132"
-                  alt="Docked"
-                />
-                <span className="pack-foil-line" aria-hidden="true" />
-                <span className="pack-sport">FANTASY CARDS</span>
-                <span className="pack-edition">{props.name}</span>
-                <span
-                  className="pack-seal pack-seal-bottom"
-                  aria-hidden="true"
+                <PackArtwork
+                  premium={props.packType === "PREMIUM"}
+                  name={props.name}
                 />
               </button>
             </div>
             <button
               type="button"
-              className="pack-open-button"
+              className="pack-open-button pack-control pack-primary"
               disabled={stage === "waiting"}
               onClick={() => void open()}
             >
@@ -335,14 +375,10 @@ export default function PackOpening(props: PackOpeningProps) {
                   {index === 0 && !replaying && (
                     <div className="pack-opening-envelope" aria-hidden="true">
                       <span className="pack-torn-seal" />
-                      <img
-                        src="/brand/docked/icons/docked-icon-512.png"
-                        width="132"
-                        height="132"
-                        alt=""
+                      <PackArtwork
+                        premium={props.packType === "PREMIUM"}
+                        name={props.name}
                       />
-                      <strong>DOCKED</strong>
-                      <small>COLLECT. BUILD. COMPETE.</small>
                     </div>
                   )}
                 </>
@@ -483,7 +519,7 @@ export default function PackOpening(props: PackOpeningProps) {
               </div>
             </div>
             <button
-              className="pack-next"
+              className="pack-next pack-control pack-primary"
               type="button"
               aria-label={
                 index + 1 === receipt.cards.length
@@ -493,6 +529,9 @@ export default function PackOpening(props: PackOpeningProps) {
               disabled={stage === "opening"}
               onClick={() => advance()}
             >
+              {index + 1 === receipt.cards.length
+                ? "View all cards"
+                : "Reveal Next"}{" "}
               →
             </button>
             <p className="pack-inspect-hint">
@@ -531,6 +570,7 @@ export default function PackOpening(props: PackOpeningProps) {
                   </span>
                   <button
                     type="button"
+                    className="pack-control secondary"
                     aria-label={`View ${c.name}`}
                     onClick={() => props.onViewCard(c)}
                   >
@@ -551,16 +591,20 @@ export default function PackOpening(props: PackOpeningProps) {
             <div className="pack-actions">
               {props.teamHref !== null && (
                 <Link
-                  className="button"
+                  className="pack-control primary"
                   href={props.teamHref ?? "/fantasy/play"}
                   onClick={props.onClose}
                 >
                   Build team
                 </Link>
               )}
-              <button type="button" onClick={props.onClose}>
-                Back to collection
-              </button>
+              <Link
+                className="pack-control"
+                href={props.collectionHref ?? "/fantasy/cards"}
+                onClick={props.onClose}
+              >
+                View Collection
+              </Link>
             </div>
             <p className="pack-disclosure">
               Your pack result is saved. Replaying it never awards additional
@@ -568,6 +612,7 @@ export default function PackOpening(props: PackOpeningProps) {
             </p>
             <button
               type="button"
+              className="pack-control"
               onClick={() => {
                 setIndex(0);
                 setTilt({ x: 0, y: 0 });

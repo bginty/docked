@@ -11,7 +11,9 @@ export async function verifyPackFlow(
   read: () => CreditsState,
   drop: () => void,
 ) {
-  const root = process.argv.includes("--master-v2") ? "docs/qa/master-v2" : "docs/qa/social-upgrade";
+  const root = process.argv.includes("--master-v2")
+    ? "docs/qa/master-v2"
+    : "docs/qa/social-upgrade";
   await mkdir(root, { recursive: true });
   const context = await browser.newContext({
     viewport: { width: 412, height: 815 },
@@ -33,6 +35,9 @@ export async function verifyPackFlow(
       member = marketActors[0].id;
     drop();
     await buy.click();
+    await page
+      .getByRole("button", { name: "Confirm Purchase", exact: true })
+      .click();
     await expect(
       page.getByRole("button", { name: "Retry pending transaction" }),
     ).toBeVisible();
@@ -84,9 +89,9 @@ export async function verifyPackFlow(
       page.getByText("9 confirmed cards", { exact: false }),
     ).toBeVisible();
     await page.keyboard.press("Escape");
-    await page.getByText(/^Purchase history ·/).click();
+    await page.getByRole("button", { name: "History", exact: true }).click();
     await page
-      .getByRole("button", { name: "Replay saved pack" })
+      .getByRole("button", { name: "Replay", exact: true })
       .last()
       .click();
     await page.getByRole("button", { name: "Skip remaining reveals" }).click();

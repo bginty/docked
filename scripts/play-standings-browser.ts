@@ -6,7 +6,7 @@ import { chromium, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 async function main() {
-  const out = "docs/qa/play-standings";
+  const out = process.argv.includes("--packs-regression") ? "docs/qa/pack-shopping/play" : "docs/qa/play-standings";
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/play-standings-visual.tsx",
@@ -32,6 +32,7 @@ async function main() {
     "social-hub",
     "collectible",
     "standings",
+    "pack-shop",
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");

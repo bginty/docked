@@ -256,6 +256,7 @@ export const creditsCommand = z.discriminatedUnion("kind", [
     kind: z.literal("buy-pack"),
     product: id,
     configuration: id.optional(),
+    expectedPrice: z.number().int().min(0).max(1000000000).optional(),
     confirmed: z.literal(true),
     policy: id,
   }),
@@ -834,6 +835,11 @@ export function executeCredits(
       throw Error(
         "Pack configuration changed. Refresh and review before confirming.",
       );
+    if (
+      c.expectedPrice !== undefined &&
+      c.expectedPrice !== product.priceCredits
+    )
+      throw Error("Pack price changed. Refresh and review before confirming.");
     const parts = select(actor.id, product.priceCredits);
     const pack = allocateNine(s.economy, c.product, actor.id, request, now);
     for (const cardId of pack.cards) {
@@ -902,6 +908,10 @@ export function executeCredits(
         throw Error("Sandbox promotion limit; live frequency undecided");
     } else {
       policy(c.policy);
+      if (c.expectedPrice !== undefined && c.expectedPrice !== p.priceCredits)
+        throw Error(
+          "Pack price changed. Refresh and review before confirming.",
+        );
       parts = select(actor.id, p.priceCredits);
     }
     const o = commerce(actor, request, {

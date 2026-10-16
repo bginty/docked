@@ -4,7 +4,7 @@ import { MemberTestWallet } from "@/components/member-test-wallet";
 import { memberTestWallet } from "@/server/member-test-wallet";
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Docked · Test wallet",
+  title: "Docked · Packs & test wallet",
   robots: { index: false, follow: false },
 };
 export default async function TestWalletPage({searchParams}:{searchParams:Promise<{view?:string}>}) {

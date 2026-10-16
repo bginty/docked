@@ -1,4 +1,5 @@
 "use client";
+import { useSportDraftGuard } from "./sport-context";
 import { competitionName, competitionLabel } from "@/core/competition-display";
 import { slotPool, filterSlotPool } from "@/core/lineup-picker";
 import { CollectibleFace } from "./collectible-face";
@@ -220,6 +221,8 @@ export function NflSevenPlay({
 
   const draft = comp ? drafts[comp.id] : undefined,
     draftPicks = draft?.picks ?? [];
+
+  useSportDraftGuard(Boolean(draft?.dirty));
 
   const fixtures = data.seven?.fixtures[comp?.id ?? ""] ?? [];
 

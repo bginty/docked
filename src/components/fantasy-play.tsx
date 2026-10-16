@@ -3,6 +3,7 @@ import {
   competitionName,
   competitionSubtitle,
 } from "@/core/competition-display";
+import { useSport, useSportDraftGuard } from "./sport-context";
 import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 import Link from "next/link";
@@ -99,8 +100,8 @@ function LegacyFantasyPlay({
   busy: boolean;
   act: Act;
 }) {
-  const [sport, setSport] = useState(data.nfl_beta ? "nfl" : "football"),
-    [view, setView] = useState<"team" | "points">(() => {
+  const {sport} = useSport();
+  const [view, setView] = useState<"team" | "points">(() => {
       const at = Date.parse(
         data.server_time ??
           data.rewards?.server_time ??
@@ -134,6 +135,7 @@ function LegacyFantasyPlay({
     [detail, setDetail] = useState<FantasyCard | null>(null),
     [search, setSearch] = useState(""),
     [tier, setTier] = useState("");
+  useSportDraftGuard(dirty);
   const [pointRound, setPointRound] = useState("");
   const [teamName, setTeamName] = useState(data.team_name ?? "");
   const close = useCallback(() => {
@@ -149,18 +151,6 @@ function LegacyFantasyPlay({
       setView("team");
     }
   }, [data.competitions]);
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(`docked-sport:${data.user_id}`);
-      if (
-        (!data.nfl_beta || saved === "nfl") &&
-        fantasySports.some((s) => s.id === saved)
-      )
-        setSport(saved!);
-    } catch {
-      /* Preference storage is optional. */
-    }
-  }, [data.user_id]);
   useEffect(() => {
     const base = Date.parse(
       data.server_time ?? data.rewards?.server_time ?? new Date().toISOString(),
@@ -310,37 +300,6 @@ function LegacyFantasyPlay({
           <p className="eyebrow">YOUR CLUB · YOUR ROUND</p>
           <h1>Your club.</h1>
         </div>
-        <label>
-          Sport
-          <select
-            aria-label="Fantasy sport"
-            value={sport}
-            onChange={(e) => {
-              if (!discard()) return;
-              setSport(e.target.value);
-              setChosen("");
-              setDirty(false);
-              setPointRound("");
-              try {
-                localStorage.setItem(
-                  `docked-sport:${data.user_id}`,
-                  e.target.value,
-                );
-              } catch {}
-            }}
-          >
-            {fantasySports.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-                {data.nfl_beta && s.id !== "nfl"
-                  ? " · unavailable"
-                  : s.ready
-                    ? ""
-                    : " · coming later"}
-              </option>
-            ))}
-          </select>
-        </label>
       </header>
       <p className="simulation-label">
         {data.nfl_beta

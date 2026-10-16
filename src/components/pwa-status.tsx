@@ -6,7 +6,13 @@ type InstallEvent = Event & {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: string }>;
 };
-export function PwaStatus() {
+// Keep the browser-issued prompt across client navigation to Profile.
+let deferredInstall: InstallEvent | null = null;
+export function PwaStatus({
+  allowInstall = false,
+}: {
+  allowInstall?: boolean;
+}) {
   const { fantasyPreview: previewOnly, fantasyProduction } =
     useEnvironmentPresentation();
   const fantasyPreview = previewOnly || fantasyProduction;
@@ -17,13 +23,24 @@ export function PwaStatus() {
     if (isDockedNative()) return;
     const onOnline = () => setOffline(!navigator.onLine);
     onOnline();
+    const standalone = () =>
+      matchMedia("(display-mode: standalone)").matches ||
+      !!(navigator as Navigator & { standalone?: boolean }).standalone;
+    if (!standalone()) setInstall(deferredInstall);
+    const installed = () => {
+      deferredInstall = null;
+      setInstall(null);
+    };
     const onInstall = (event: Event) => {
+      if (standalone()) return;
       event.preventDefault();
+      deferredInstall = event as InstallEvent;
       setInstall(event as InstallEvent);
     };
     window.addEventListener("online", onOnline);
     window.addEventListener("offline", onOnline);
     window.addEventListener("beforeinstallprompt", onInstall);
+    window.addEventListener("appinstalled", installed);
     let alive = true;
     if ("serviceWorker" in navigator)
       void navigator.serviceWorker
@@ -58,6 +75,7 @@ export function PwaStatus() {
       window.removeEventListener("online", onOnline);
       window.removeEventListener("offline", onOnline);
       window.removeEventListener("beforeinstallprompt", onInstall);
+      window.removeEventListener("appinstalled", installed);
     };
   }, [fantasyPreview, fantasyProduction]);
   return (
@@ -85,12 +103,13 @@ export function PwaStatus() {
           </button>
         </p>
       )}
-      {install && (
+      {allowInstall && install && (
         <button
           className="install-button"
           onClick={async () => {
             await install.prompt();
             await install.userChoice;
+            deferredInstall = null;
             setInstall(null);
           }}
         >

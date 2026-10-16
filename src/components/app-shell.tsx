@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, type ReactNode } from "react";
 import { AppIcon, type AppIconName } from "./app-icon";
+import { SportSelector, SportScope } from "./sport-context";
 import { PwaStatus } from "./pwa-status";
 import { FantasyLogo } from "./fantasy-brand";
 import { useEnvironmentPresentation } from "./environment-context";
@@ -14,7 +15,7 @@ const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/fantasy/profile", label: "Profile", icon: "profile" },
 ];
 export function appDestination(path: string) {
-  if (/^\/fantasy\/test-wallet(\/|$)/.test(path)) return "/fantasy/market";
+  if (/^\/fantasy\/test-wallet(\/|$)/.test(path)) return "/fantasy/cards";
   if (/^\/fantasy\/(play|cards|market|social|profile)(\/|$)/.test(path))
     return path.split("/").slice(0, 3).join("/");
   if (/^\/(feed|following|community|compose|search)(\/|$)/.test(path))
@@ -108,6 +109,7 @@ export function AppShell({
           <FantasyLogo />
         </Link>
 
+        <SportSelector />
         <nav aria-label="App navigation">
           {activeNav.map((n) => (
             <Link
@@ -183,8 +185,19 @@ export function AppShell({
             </Link>
           </nav>
         </header>
-        <PwaStatus />
-        <div className="app-content">{children}</div>
+        <div className="shell-mobile-sport">
+          <SportSelector mobile />
+        </div>
+        <PwaStatus allowInstall={destination === "/fantasy/profile"} />
+        <div className="app-content">
+          {["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(
+            destination,
+          ) ? (
+            <SportScope>{children}</SportScope>
+          ) : (
+            children
+          )}
+        </div>
         <p className="app-footnote">
           Invited test beta · No cash value. Competition rules apply.
         </p>

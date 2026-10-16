@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: review arithmetic, safe pack tabs and stable newest-first history
+ok 1 - review arithmetic, safe pack tabs and stable newest-first history
+  ---
+  duration_ms: 50.8093
+  ...
+# Subtest: stale purchase review cannot charge a different price; confirmed retry issues once
+ok 2 - stale purchase review cannot charge a different price; confirmed retry issues once
+  ---
+  duration_ms: 66.4615
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3590.0351

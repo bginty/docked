@@ -12,7 +12,7 @@ export function PackProducts() {
         Real-money purchases are unavailable. Free starter packs and existing
         entitlements keep their original terms.
       </p>
-      <Link className="fantasy-button" href="/fantasy/test-wallet">
+      <Link className="fantasy-button" href="/fantasy/test-wallet?view=packs">
         Explore test packs
       </Link>
       <p>

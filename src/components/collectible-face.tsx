@@ -17,7 +17,7 @@ export type CollectibleIdentity = JerseyMetadata & {
 export function CollectibleFace({
   card,
   appliedMultiplier,
-  showNumber = true,
+  showNumber = false,
 }: {
   card: CollectibleIdentity;
   appliedMultiplier?: number;

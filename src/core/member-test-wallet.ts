@@ -249,6 +249,7 @@ export function memberTestView(
       .map(([id, e]) => ({
         id,
         status: e.status,
+        type: s.economy?.packs[id]?.product.type ?? null,
         purchasedAt: s.economy?.packs[id]?.createdAt ?? null,
         paidCredits: s.economy?.packs[id]?.product.priceCredits ?? null,
         cardCount: s.economy?.packs[id]?.product.cards ?? null,

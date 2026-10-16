@@ -1,14 +1,10 @@
 "use client";
 import { competitionLabel } from "@/core/competition-display";
 import { createPortal } from "react-dom";
-import { PortfolioSummary } from "./portfolio-summary";
+import { useSport } from "./sport-context";
 import { useWorkspaceWallet } from "./use-workspace-wallet";
 import { boundedFetch } from "@/core/bounded-request";
-import {
-  collectionPositions,
-  sevenEligibility,
-  scoringContext,
-} from "@/core/card-display";
+import { collectionPositions, sevenEligibility } from "@/core/card-display";
 import { fullTeamName } from "@/core/card-presentation";
 import { rarityStyle } from "@/core/rarity-theme";
 import { rarities, rarityRule } from "@/core/card-rarity";
@@ -72,13 +68,20 @@ export function FantasyScreen({
   const [data, setData] = useState(initial),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
-  const [sport, setSport] = useState(initial.nfl_beta ? "nfl" : "football"),
-    [competitionFilter, setCompetitionFilter] = useState("");
+  const { sport } = useSport();
+  const [competitionFilter] = useState("");
   const [search, setSearch] = useState(""),
     [tier, setTier] = useState(""),
     [position, setPosition] = useState(""),
-    [subset, setSubset] = useState("all"),
+    [subset] = useState("all"),
     [sort, setSort] = useState("newest");
+  useEffect(() => {
+    setSearch("");
+    setTier("");
+    setPosition("");
+    setTeamFilter("");
+    setCollectionPage({ key: "", index: 0 });
+  }, [sport]);
   const [detail, setDetail] = useState<string | null>(null),
     [reveal, setReveal] = useState<string[]>([]),
     [revealIndex, setRevealIndex] = useState(0);
@@ -381,12 +384,6 @@ export function FantasyScreen({
             </Link>
           </div>
         </div>
-      )}
-      {tab === "cards" && (
-        <PortfolioSummary
-          value={wallet.value?.portfolio ?? null}
-          collectionCount={data.cards.length}
-        />
       )}
       {production &&
         (tab === "profile" ||
@@ -864,93 +861,6 @@ export function FantasyScreen({
                 </button>
               </div>
             </div>
-            <details className="collection-options">
-              <summary>Eligibility & collection options</summary>
-
-              <p>
-                <Link href="/fantasy/test-wallet?view=packs#packs">Packs</Link>{" "}
-                ·{" "}
-                <Link href="/fantasy/test-wallet">
-                  Wallet & transaction history
-                </Link>
-              </p>
-              <label>
-                Sport
-                <select
-                  value={sport}
-                  onChange={(e) => {
-                    setSport(e.target.value);
-                    setCollectionPage({ key: "", index: 0 });
-                    setPosition("");
-                    setTeamFilter("");
-                    setCompetitionFilter("");
-                  }}
-                >
-                  {[
-                    ...new Set(
-                      data.cards
-                        .map((c) => c.sport)
-                        .concat(data.nfl_beta ? ["nfl"] : []),
-                    ),
-                  ].map((s) => (
-                    <option key={s} value={s}>
-                      {s.toUpperCase()}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Eligible for this competition
-                <select
-                  value={competitionFilter}
-                  onChange={(e) => {
-                    setCompetitionFilter(e.target.value);
-                    setCollectionPage({ key: "", index: 0 });
-                  }}
-                >
-                  <option value="">
-                    All owned cards, including collectibles
-                  </option>
-                  {data.competitions
-                    .filter((c) => c.rules.lineup_version && c.sport === sport)
-                    .map((c) => (
-                      <option value={c.id} key={c.id}>
-                        {c.name}
-                      </option>
-                    ))}
-                </select>
-              </label>
-
-              <label>
-                Collection
-                <select
-                  value={subset}
-                  onChange={(e) => {
-                    setSubset(e.target.value);
-                    setCollectionPage({ key: "", index: 0 });
-                  }}
-                >
-                  {[
-                    ["all", "All owned"],
-                    ["first", "First Year"],
-                    ["listed", "Listed"],
-                    ["tradeable", "Tradeable"],
-                    ["retired", "Retired"],
-                  ].map(([v, l]) => (
-                    <option value={v} key={v}>
-                      {l}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </details>
-            <details className="collection-scoring">
-              <summary>Scoring rules</summary>
-              <p>{scoringContext}</p>
-              <Link href="/fantasy/scoring/how-it-works">
-                View rules & scoring →
-              </Link>
-            </details>
             <h2 className="sr-only">Owned cards</h2>
             <div className={`card-grid collection-${collectionView}`}>
               {visibleCards.map((c) => (

@@ -4,6 +4,7 @@ import { standingsFixture } from "./standings-data";
 import { RarityGallery } from "./rarity-gallery";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
+import { SportProvider } from "../../src/components/sport-context";
 import { AppShell } from "../../src/components/app-shell";
 import { EnvironmentProvider } from "../../src/components/environment-context";
 import { FantasyScreen } from "../../src/components/fantasy-screen";
@@ -360,101 +361,104 @@ function Fixture({ member }: { member: string }) {
         reason: "",
       }}
     >
-      <AppShell authenticated>
-        {tab === "results" ? (
-          <CompetitionResults
-            rounds={[]}
-            records={[]}
-            standings={[]}
-            weekly={standingsFixture}
-          />
-        ) : tab === "market" ? (
-          <Marketplace member={member} />
-        ) : tab === "test-wallet" ? (
-          <LocalWallet />
-        ) : tab === "reveal" ? (
-          <>
-            <h1>Pack preview</h1>
-            <p>Illustrative cards only. No awards or charges.</p>
-            <button onClick={() => setOpen(true)}>
-              Open nine-card preview
-            </button>
-          </>
-        ) : tab === "social" ? (
-          <>
-            <h1 className="compact-page-title">Social</h1>
-            <p className="small-note">
-              Local visual preview. Posting is unavailable here.{" "}
-              <a href="https://docked.com.au/fantasy/social">
-                Open your live feed
-              </a>
-            </p>
-            <SocialComposer initialSport="nfl" inline />
-            <nav className="actions">
-              <a href="/fantasy/social">Following</a>
-              <a href="/fantasy/social">Discover</a>
-            </nav>
-            <article
-              className="social-card app-panel"
-              style={{
-                background: "#142037",
-                color: "white",
-                padding: 16,
-                borderRadius: 16,
-              }}
-            >
-              <strong>Local member</strong>
-              <p>
-                Ready for the next round. Which position are you strengthening?
+      <SportProvider>
+        <AppShell authenticated>
+          {tab === "results" ? (
+            <CompetitionResults
+              rounds={[]}
+              records={[]}
+              standings={[]}
+              weekly={standingsFixture}
+            />
+          ) : tab === "market" ? (
+            <Marketplace member={member} />
+          ) : tab === "test-wallet" ? (
+            <LocalWallet />
+          ) : tab === "reveal" ? (
+            <>
+              <h1>Pack preview</h1>
+              <p>Illustrative cards only. No awards or charges.</p>
+              <button onClick={() => setOpen(true)}>
+                Open nine-card preview
+              </button>
+            </>
+          ) : tab === "social" ? (
+            <>
+              <h1 className="compact-page-title">Social</h1>
+              <p className="small-note">
+                Local visual preview. Posting is unavailable here.{" "}
+                <a href="https://docked.com.au/fantasy/social">
+                  Open your live feed
+                </a>
               </p>
-            </article>
-          </>
-        ) : (
-          <FantasyScreen tab={tab} initial={state} packExperience />
-        )}
-        {open && (
-          <PackOpening
-            name="Premium · nine cards"
-            userId="visual-member"
-            receipt={{
-              id: "visual-nine-v1",
-              name: "Premium",
-              opened_at: now,
-              cards: cards.map((c, i) => {
-                const tier = [
-                  "RARE",
-                  "RARE",
-                  "ELITE",
-                  "ULTRA_RARE",
-                  "LEGENDARY",
-                  "ICON",
-                  "RARE",
-                  "RARE",
-                  "RARE",
-                ][i];
-                return {
-                  ...c,
-                  tier,
-                  serial: tier === "ICON" ? 1 : c.serial,
-                  max_supply: rarityRule(tier).lifetimeCap ?? 0,
-                };
-              }),
-            }}
-            openPack={async () => {
-              throw Error("Visual only");
-            }}
-            ownedIds={cards.map((c) => c.id)}
-            onClose={() => setOpen(false)}
-            onViewCard={(c) => setDetail(c as (typeof cards)[number])}
-            preview
-          />
-        )}
-        {detail && (
-          <FantasySheet title={detail.name} onClose={() => setDetail(null)}>
-            <FantasyCardArtwork card={detail} />
-          </FantasySheet>
-        )}
-      </AppShell>
+              <SocialComposer initialSport="nfl" inline />
+              <nav className="actions">
+                <a href="/fantasy/social">Following</a>
+                <a href="/fantasy/social">Discover</a>
+              </nav>
+              <article
+                className="social-card app-panel"
+                style={{
+                  background: "#142037",
+                  color: "white",
+                  padding: 16,
+                  borderRadius: 16,
+                }}
+              >
+                <strong>Local member</strong>
+                <p>
+                  Ready for the next round. Which position are you
+                  strengthening?
+                </p>
+              </article>
+            </>
+          ) : (
+            <FantasyScreen tab={tab} initial={state} packExperience />
+          )}
+          {open && (
+            <PackOpening
+              name="Premium · nine cards"
+              userId="visual-member"
+              receipt={{
+                id: "visual-nine-v1",
+                name: "Premium",
+                opened_at: now,
+                cards: cards.map((c, i) => {
+                  const tier = [
+                    "RARE",
+                    "RARE",
+                    "ELITE",
+                    "ULTRA_RARE",
+                    "LEGENDARY",
+                    "ICON",
+                    "RARE",
+                    "RARE",
+                    "RARE",
+                  ][i];
+                  return {
+                    ...c,
+                    tier,
+                    serial: tier === "ICON" ? 1 : c.serial,
+                    max_supply: rarityRule(tier).lifetimeCap ?? 0,
+                  };
+                }),
+              }}
+              openPack={async () => {
+                throw Error("Visual only");
+              }}
+              ownedIds={cards.map((c) => c.id)}
+              onClose={() => setOpen(false)}
+              onViewCard={(c) => setDetail(c as (typeof cards)[number])}
+              preview
+            />
+          )}
+          {detail && (
+            <FantasySheet title={detail.name} onClose={() => setDetail(null)}>
+              <FantasyCardArtwork card={detail} />
+            </FantasySheet>
+          )}
+        </AppShell>
+      </SportProvider>
     </EnvironmentProvider>
   );
 }

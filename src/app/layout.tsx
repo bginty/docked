@@ -23,6 +23,8 @@ import "./redemption.css";
 import "./social-hub.css";
 import "./collectible.css";
 import "./standings.css";
+import "./pack-shop.css";
+import { SportProvider } from "@/components/sport-context";
 import { fantasyTagline } from "@/core/fantasy";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 import { reviewOrigin } from "@/core/hosted-review.mjs";
@@ -72,24 +74,26 @@ export default async function Layout({
     <html lang="en">
       <body className="fantasy-mode">
         <EnvironmentProvider value={environment}>
-          {environment.liveBeta && (
-            <div
-              className="topline"
-              role="region"
-              aria-label="Beta participation notice"
-            >
-              <span>DOCKED BETA · Invited members only</span>
-              <span>
-                18+ · Experimental gameplay and rankings · No cash value
-              </span>
-            </div>
-          )}
-          <AnalyticsObserver />
-          <NativeBridge />
-          <a className="skip-link" href="#main">
-            Skip to content
-          </a>
-          <main id="main">{children}</main>
+          <SportProvider>
+            {environment.liveBeta && (
+              <div
+                className="topline"
+                role="region"
+                aria-label="Beta participation notice"
+              >
+                <span>DOCKED BETA · Invited members only</span>
+                <span>
+                  18+ · Experimental gameplay and rankings · No cash value
+                </span>
+              </div>
+            )}
+            <AnalyticsObserver />
+            <NativeBridge />
+            <a className="skip-link" href="#main">
+              Skip to content
+            </a>
+            <main id="main">{children}</main>
+          </SportProvider>
         </EnvironmentProvider>
       </body>
     </html>

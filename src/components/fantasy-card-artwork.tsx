@@ -16,7 +16,7 @@ export function FantasyCardArtwork({
   onInspect,
   scoringLabel,
   appliedMultiplier,
-  showNumber = true,
+  showNumber = false,
 }: {
   card: AwardedCard;
   children?: React.ReactNode;

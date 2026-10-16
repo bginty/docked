@@ -9,7 +9,7 @@ import {
 export function PlayerJersey({
   card,
   className = "",
-  showNumber = true,
+  showNumber = false,
 }: {
   card?: JerseyMetadata;
   className?: string;

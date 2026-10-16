@@ -10,8 +10,8 @@ import type { MemberTestView } from "@/core/member-test-wallet";
 import type { PackReceipt } from "@/core/pack-opening";
 import PackOpening from "./pack-opening";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
-import { rarities, rarityRule } from "@/core/card-rarity";
-import { EconomyCatalogue } from "./economy-catalogue";
+import { PackShop } from "./pack-shop";
+import { packTitle } from "@/core/pack-presentation";
 import { EconomyOwnerReport } from "./economy-owner-report";
 import { audEquivalent } from "@/core/credit-only";
 
@@ -50,7 +50,10 @@ export function MemberTestWallet({
       setError("Enable device storage before spending test credits.");
     }
   }, [storageKey]);
+  const inFlight = useRef(false);
   async function send(command: Record<string, unknown>) {
+    if (inFlight.current)
+      throw Error("A transaction is already being confirmed.");
     const key = JSON.stringify(command);
     if (pending.current && pending.current.key !== key)
       throw Error("Check the pending request first");
@@ -60,6 +63,7 @@ export function MemberTestWallet({
     // A lost response or app restart must retrieve this operation, not purchase again.
     localStorage.setItem(storageKey, JSON.stringify(pending.current));
     setRecovery(true);
+    inFlight.current = true;
     setBusy(true);
     setError("");
     try {
@@ -77,6 +81,10 @@ export function MemberTestWallet({
         }
         throw Error(data.error);
       }
+      if (data.state?.member !== initial.member)
+        throw Error(
+          "Your account session changed. Sign in again before continuing.",
+        );
       setS(data.state);
       if (
         command.kind === "buy-pack" &&
@@ -110,6 +118,7 @@ export function MemberTestWallet({
       );
       throw e;
     } finally {
+      inFlight.current = false;
       setBusy(false);
     }
   }
@@ -126,7 +135,7 @@ export function MemberTestWallet({
       timeStyle: "short",
     });
   return (
-    <div className="test-wallet">
+    <div className={`test-wallet ${surface === "packs" ? "pack-wallet" : ""}`}>
       {share && (
         <AcquisitionShare
           member={s.member}
@@ -195,182 +204,43 @@ export function MemberTestWallet({
       )}
       {(surface === "wallet" || surface === "packs") && (
         <>
-          <section id="packs">
-            <h2>
-              {s.economyEnabled
-                ? "NFL nine-card packs"
-                : "Legacy single-card packs"}
-            </h2>
-            <p>Collect your next nine. Test Docked Credits · no cash value.</p>
-            <a className="button ghost" href="#pack-history">
-              History
-            </a>
-            <div className="test-wallet-grid">
-              {s.products.map((p) => (
-                <article key={p.id}>
-                  <div
-                    className={`social-pack-art ${p.tier === "PREMIUM" ? "premium" : ""}`}
-                    aria-hidden="true"
-                  >
-                    <span>DOCKED</span>
-                    <strong>{p.name}</strong>
-                    <span>COLLECT · COMPETE</span>
-                  </div>
-                  <h3>{p.name}</h3>
-                  {p.odds?.headline && (
-                    <p>
-                      <strong>{p.odds.headline}</strong>
-                    </p>
-                  )}
-                  <p>
-                    {p.price.toLocaleString()} test credits · {p.cards} cards
-                  </p>
-                  {p.weights && (
-                    <div>
-                      <details className="pack-chances">
-                        <summary>Rarity chances</summary>
-                        <table>
-                          <caption>Per card · test settings</caption>
-                          <thead>
-                            <tr>
-                              <th>Rarity</th>
-                              <th>Chance</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {rarities
-                              .filter(
-                                (r) =>
-                                  r !== "CORE" &&
-                                  (!p.odds?.headline || p.weights![r] > 0),
-                              )
-                              .map((r) => (
-                                <tr key={r}>
-                                  <td>{rarityRule(r).label}</td>
-                                  <td>{p.weights![r] / 100}%</td>
-                                </tr>
-                              ))}
-                          </tbody>
-                        </table>
-                        {p.odds?.headline && (
-                          <p>{p.odds.excluded.join(", ")}: not included.</p>
-                        )}
-                      </details>
-                      <details className="pack-terms">
-                        <summary>Pack details</summary>
-                        <p>
-                          {p.eligiblePlayers} eligible players ·{" "}
-                          {p.positions.join(", ")}. Nine different players. No
-                          Core, K or DEF/DST in new gameplay packs. Existing
-                          cards and receipts are unchanged.
-                        </p>
-                        <p>
-                          {p.odds?.guarantee ??
-                            (Object.keys(p.guaranteedSlots).length
-                              ? "Guaranteed slots: " +
-                                Object.entries(p.guaranteedSlots)
-                                  .map(
-                                    ([slot, r]) =>
-                                      String(Number(slot) + 1) + ": " + r,
-                                  )
-                                  .join(", ")
-                              : "No guaranteed rarity.")}
-                        </p>
-                        <p>
-                          Percentages are per-card rarity attempts before supply
-                          checks, not the chance across a whole pack. Guaranteed
-                          slots, if configured, override that slot’s draw.
-                          Player draws exclude duplicates. Within a rarity,
-                          eligible players are equally likely. If supply cannot
-                          fulfil the pack, it fails without charge or
-                          substitution; completed-pack frequencies may differ
-                          near exhaustion.
-                        </p>
-                        <small>
-                          Configuration: {p.version}. Premium is a pack type,
-                          not a rarity.
-                        </small>
-                      </details>
-                    </div>
-                  )}
-                  <button
-                    disabled={
-                      busy || !p.available || s.wallet.spendable < p.price
-                    }
-                    onClick={() => {
-                      if (
-                        confirm(
-                          `Buy ${p.name} for ${p.price.toLocaleString()} test credits?${p.odds?.headline ? ` ${p.odds.headline}. ${p.odds.guarantee}` : ""}`,
-                        )
-                      )
-                        act({
-                          kind: "buy-pack",
-                          product: p.id,
-                          ...(s.economyEnabled
-                            ? { configuration: p.version }
-                            : {}),
-                          confirmed: true,
-                          policy: s.policy,
-                        });
-                    }}
-                  >
-                    {s.economyEnabled
-                      ? `Buy ${p.name}`
-                      : `Buy ${p.tier === "RARE" ? "Premium" : "Elite"} pack`}
-                  </button>
-                </article>
-              ))}
-            </div>
-            <details>
-              <summary>Eligible players</summary>
-              {s.pool.length > 0 && (
-                <EconomyCatalogue pool={s.pool} owner={!!s.ownerReport} />
-              )}
-            </details>
-            <details id="pack-history" className="pack-history">
-              <summary>Purchase history · {s.packs.length} packs</summary>
-              {s.packs.map((p) => (
-                <div className="test-wallet-row" key={p.id} data-pack-id={p.id}>
-                  <span>
-                    {p.name} ·{" "}
-                    {p.status === "SEALED" ? "Ready to open" : "Opened"}
-                    <small>
-                      {p.purchasedAt
-                        ? sydney(p.purchasedAt)
-                        : "Date unavailable"}{" "}
-                      ·{" "}
-                      {p.paidCredits === null
-                        ? "Historical amount unavailable"
-                        : `${p.paidCredits.toLocaleString()} test credits`}{" "}
-                      ·{" "}
-                      {p.receipt
-                        ? `${p.receipt.cards.length} cards received`
-                        : `${p.cardCount ?? "—"} cards awaiting opening`}
-                    </small>
-                    {p.configuration && (
-                      <small> · Purchase terms: {p.configuration}</small>
-                    )}
-                  </span>
-                  <button
-                    disabled={busy}
-                    onClick={() => {
-                      setReplayPack(p.status === "OPENED" ? p.id : null);
-                      setPack(p.id);
-                    }}
-                  >
-                    {p.status === "SEALED" ? "Open pack" : "Replay saved pack"}
-                  </button>
-                </div>
-              ))}
-            </details>
-          </section>
+          <PackShop
+            state={s}
+            busy={busy}
+            recovery={recovery}
+            purchase={(product) =>
+              send({
+                kind: "buy-pack",
+                product: product.id,
+                ...(s.economyEnabled ? { configuration: product.version } : {}),
+                expectedPrice: product.price,
+                confirmed: true,
+                policy: s.policy,
+              })
+            }
+            refresh={async () => {
+              const r = await boundedFetch("/api/test-wallet", {
+                cache: "no-store",
+              });
+              if (!r.ok) throw Error("Could not refresh packs");
+              const data = await r.json();
+              if(data.state?.member !== initial.member) throw Error("Your account session changed. Sign in again.");
+              setS(data.state);
+              setError("");
+            }}
+            open={(id, replay) => {
+              setReplayPack(replay ? id : null);
+              setPack(id);
+            }}
+          />
           {p && (
             <PackOpening
               key={p.id}
               replay={p.id === replayPack}
               autoOpen={p.id === autoPack && p.status === "SEALED"}
               userId={s.member}
-              name={p.name}
+              name={packTitle(p)}
+              packType={p.type ?? undefined}
               receipt={p.receipt}
               ownedIds={mine.map((c) => c.id)}
               openPack={async () =>
@@ -388,12 +258,14 @@ export function MemberTestWallet({
               teamHref={s.economyEnabled ? "/fantasy/play" : null}
             />
           )}
-          <p id="collection">
-            <Link href="/fantasy/cards">View your complete collection</Link> ·{" "}
-            <Link href="/fantasy/market?tab=listings">
-              Manage listings in Market
-            </Link>
-          </p>
+          {surface !== "packs" && (
+            <p id="collection">
+              <Link href="/fantasy/cards">View your complete collection</Link> ·{" "}
+              <Link href="/fantasy/market?tab=listings">
+                Manage listings in Market
+              </Link>
+            </p>
+          )}
           {details && (
             <section>
               <h2>Card details and ownership</h2>

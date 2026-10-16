@@ -1,0 +1,142 @@
+{
+  "status": "Implemented and verified locally; not deployed",
+  "changes": [
+    "Cards: removed portfolio valuation and the scoring/options sections; ordinary collection controls retained.",
+    "Shared shell sport selector; NFL active, unsupported sports blocked; draft-change guard and safe deep-link handling.",
+    "Buy Packs / My Packs / History navigation, Cards context, installation access restricted to supported Profile use.",
+    "Shared blue/gold pack wrappers using the unchanged original Docked logo.",
+    "Accessible purchase review with authoritative price, count, guarantee and balance arithmetic; expected-price validation, duplicate guard and persisted idempotency recovery.",
+    "Reveal Next, Reveal all / Skip, replay, quieter sound/settings controls; persisted Reduce motion plus OS preference.",
+    "Jersey numbers hidden through shared presentation defaults; historical identities and metadata unchanged.",
+    "Newest-first pack history with stable missing-date ordering."
+  ],
+  "databaseMigrations": [],
+  "assets": "Existing /brand/docked/splash/docked-splash-logo-768w.png reused without modification; wrappers are CSS and live text.",
+  "verification": {
+    "platform": {
+      "passed": 407,
+      "failed": 0,
+      "command": "npm test",
+      "evidence": "platform-unsandboxed.txt"
+    },
+    "database": {
+      "passed": 160,
+      "failed": 0,
+      "command": "npm run db:test",
+      "environment": "Local isolated PostgreSQL-compatible fixtures; uninterrupted run"
+    },
+    "focused": {
+      "passed": 2,
+      "failed": 0,
+      "evidence": "focused.txt"
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "productionBuild": "passed in isolated clean environment",
+    "clientBoundary": "passed; 58 browser assets checked against server-only credential canaries",
+    "browser": {
+      "out": "docs/qa/pack-shopping/browser-1792135127468",
+      "results": [
+        {
+          "width": 1440,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 1024,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 412,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 360,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "errorsAndLostResponse": true,
+          "motionToggle": true,
+          "unsupportedSport": true,
+          "sportPersistence": true,
+          "installGating": true
+        }
+      ]
+    },
+    "playStandings": {
+      "scope": "Interactive production components with isolated synthetic fixtures; not hosted auth or physical Samsung",
+      "checks": [
+        {
+          "width": 1440,
+          "errors": [],
+          "axe": []
+        },
+        {
+          "width": 1024,
+          "errors": [],
+          "axe": []
+        },
+        {
+          "width": 412,
+          "errors": [],
+          "axe": []
+        },
+        {
+          "width": 360,
+          "errors": [],
+          "axe": []
+        }
+      ]
+    }
+  },
+  "retries": [
+    "Initial platform runs passed 404/407; three disposable-Git fixture setups were denied by the Windows sandbox. Full rerun outside the sandbox passed 407/407.",
+    "Initial Edge launch was denied temporary-profile access in the sandbox; permitted local browser runs succeeded.",
+    "Browser harness corrected to return the same receipt projection as the real HTTP service. An uncertain purchase response is modelled as HTTP 504 after durable issuance; replay reuses the original idempotency key.",
+    "Screenshot overwrite failure resolved by unique run directories; an installation-event test serialization issue was fixed in the harness. Final browser run passed."
+  ],
+  "limitations": [
+    "Browser testing uses actual React components and the actual domain engine over isolated local fixture transport, not hosted authenticated acceptance.",
+    "Samsung S24 physical-device testing and an actual installed Android/PWA acceptance run remain pending. Installation capability events and reduced-motion preferences were simulated in browser tests.",
+    "No production purchases, inventory/balance changes, deployment or financial activation performed."
+  ],
+  "reproduce": [
+    "npx tsx scripts/pack-shopping-browser.ts",
+    "npx tsx scripts/pack-shopping-browser.ts --serve",
+    "npx tsx scripts/play-standings-browser.ts --packs-regression",
+    "node scripts/marketplace-build-local.mjs --pack-shopping"
+  ],
+  "filesChanged": [
+    "scripts/marketplace-build-local.mjs",
+    "scripts/pack-shopping-browser.ts",
+    "scripts/play-standings-browser.ts",
+    "scripts/social-pack-flow.ts",
+    "src/app/fantasy/test-wallet/page.tsx",
+    "src/app/layout.tsx",
+    "src/app/pack-shop.css",
+    "src/components/app-shell.tsx",
+    "src/components/collectible-face.tsx",
+    "src/components/fantasy-card-artwork.tsx",
+    "src/components/fantasy-play.tsx",
+    "src/components/fantasy-screen.tsx",
+    "src/components/member-test-wallet.tsx",
+    "src/components/nfl-seven-play.tsx",
+    "src/components/pack-artwork.tsx",
+    "src/components/pack-opening.tsx",
+    "src/components/pack-products.tsx",
+    "src/components/pack-shop.tsx",
+    "src/components/player-jersey.tsx",
+    "src/components/pwa-status.tsx",
+    "src/components/sport-context.tsx",
+    "src/core/credits-sandbox.ts",
+    "src/core/member-test-wallet.ts",
+    "src/core/pack-presentation.ts",
+    "tests/fixtures/pack-economy.ts",
+    "tests/fixtures/pack-shopping.tsx",
+    "tests/fixtures/play-standings-visual.tsx",
+    "tests/platform/pack-shopping.test.ts"
+  ]
+}
