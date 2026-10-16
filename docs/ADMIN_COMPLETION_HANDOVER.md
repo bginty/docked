@@ -4,20 +4,22 @@ This report supplements the historical pre-launch and exact-dashboard handovers.
 
 ## Verified live release
 
-Commit `c72dd83f6606995649e60f783d34d19bdd66a3a3` is deployed to `https://docked.com.au`, Vercel deployment `dpl_HSRxPLZepRvnv2gf1H3QZs7LkJo8`. The three reporting/search migrations were applied to the existing live beta database. Before/after fingerprints of credit state, issued cards, entries, revisions, locks and reward stores matched. No reward activation or tester transaction was performed.
+Application commit `64c3463528fab5ff23885beb000e06eb0c5dd42e` is live at https://docked.com.au and https://www.docked.com.au, deployment `dpl_A1YNTWaqYY2dca9aJinRjPWko4bK`. It supersedes the earlier c72dd83f reporting release. The protected production candidate passed 18 access/configuration/asset checks before promotion; the same 18 checks passed on the live domain and both aliases point to this exact deployment. Evidence: `qa/admin-completion/live-release/`.
 
-The candidate built, passed 12 read-only access/configuration/asset checks, and was promoted only after verification. The same 12 checks passed on the live domain. Evidence: `qa/owner-reference/live-release/`. These checks prove the deployed identity and anonymous access boundaries; they do not constitute authenticated owner, physical-device or commercial-launch acceptance.
+Six additive workflow migrations were applied to the approved existing beta database after a targeted private backup. Before/after fingerprints of credits, cards, entries, revisions, locks and reward stores matched. Twelve function grants and nine RLS-protected tables were independently checked. No reward activation, hosted QA transaction, member-asset change or announcement delivery occurred. A targeted migration backup is not a full restore drill.
 
-The first build was rejected by the existing secret boundary because a Supabase integration injected unnecessary privileged credentials. The accepted candidate supplies empty overrides for those keys and retains the restricted application database connection. No guard was relaxed. An initial page check incorrectly expected an HTTP denial for the existing server-rendered staff sign-in gate; it was corrected to verify the actual safe page and absence of private panels. API denial remains enforced.
+The immutable web-only export passed its secret scan: 562 files, no findings. Existing hosted build/runtime guards and restricted database connection remain intact. Unnecessary integration-injected privileged variables are empty in this deployment. Broader local secret-scan findings remain separately tracked. No source was pushed to the public GitHub repository.
 
-## Completed implementation for the next live release
+These hosted checks prove release identity and anonymous boundaries. Genuine owner MFA and mutation acceptance were performed against isolated local GoTrue and native PostgreSQL, not the live owner account. Physical Samsung acceptance remains pending.
+
+## Completed implementation deployed to live beta
 
 - Persisted announcement drafts, preview, review status, optimistic concurrency, exact retry receipts, archive/restore and immutable staff history. Delivery remains separately disabled. See `ADMIN_ANNOUNCEMENT_DRAFTS.md`.
 - Read-only administrative record drilldowns for members, cards, packs, credit journals, competitions and moderation, with bounded history and role-specific projections. See `ADMIN_RECORD_REVIEW.md`.
 - Owner-triggered API/web health evidence with fixed targets, bounded requests, current role/MFA checks, database timestamps and expiry. Missing/stale checks remain unknown. See `OWNER_HEALTH_OBSERVATIONS.md`.
 - Moderation case assignment, severity, review, escalation, resolution and reversible holds, with optimistic concurrency and immutable events. Removed evidence remains protected for review under the existing 90-day policy; author deletion still takes precedence. See `MODERATION_CASE_WORKFLOW.md`.
 - Beta credit request, recipient selection, amount/reason/confirmation and auditable approval/decline/cancellation. Approval does not issue credits or change a balance. See `BETA_CREDIT_REQUEST_REVIEW.md`.
-- Actual local Auth/avatar/Social testing has resumed after restoring the existing isolated Docker services. Failed and incomplete attempts remain recorded rather than counted as passes.
+- Genuine local Auth, avatar and Social acceptance completed with isolated fixtures. Failed and incomplete attempts remain recorded rather than counted as passes.
 
 The genuine native-PostgreSQL owner check found an integration defect that isolated SQL-engine tests missed: reporting transactions marked SQL `READ ONLY` called the existing admission guard, whose `SELECT FOR SHARE` locks PostgreSQL correctly rejects in that mode. The affected reporting wrappers now retain the guard and its locks in ordinary transactions; the owner report retains a repeatable-read snapshot. The queries still perform no domain writes, and no role, grant or RLS rule was relaxed. Actual local owner MFA then successfully loaded reporting, search and record APIs while ordinary members and owner AAL1 sessions remained denied. Live authenticated acceptance remains separate.
 
@@ -54,3 +56,13 @@ The application is an invited free beta, not a certified commercial launch. Unsu
 
 Genuine local role-revocation acceptance also passed: changing the isolated owner fixture to auditor immediately denied reads and mutations with the same AAL2 session; restoring owner admission restored access. This verifies revocation, not positive staff activation. Evidence: `qa/auth-recovery-20261017/admin-staff-role.json`.
 
+
+## Screenshots and operational documentation
+
+- [Authenticated local desktop dashboard](qa/auth-recovery-20261017/owner-1792189419697/owner-1536.png) and [mobile dashboard](qa/auth-recovery-20261017/owner-1792189419697/owner-412.png).
+- [Tablet](qa/owner-reference/final/owner-1024-full.png) and [reference comparison](qa/owner-reference/final/comparison.html).
+- [Persisted announcement review](qa/admin-announcements/announcement-412.png), [record drilldown](qa/admin-record/record-412.png), and the moderation/credit screenshots in their matching QA folders.
+- [Permission matrix and functional destinations](ADMIN_WORKSPACE_ACCESS.md).
+- [Android/payments readiness](PRELAUNCH_ANDROID_PAYMENTS.md), [provider readiness](PROVIDER_READINESS.md), and [security audit](PRELAUNCH_BACKEND_SECURITY_AUDIT.md).
+
+Unavailable broader workspaces remain explicitly labelled: separate support-case and appeal-intake systems, a general CMS approval system, arbitrary configuration editing and financial correction execution. These are not represented as implemented features. Financial execution, broadcast delivery and non-owner staff activation require their approved policies; physical and hosted-user acceptance require external access/evidence.

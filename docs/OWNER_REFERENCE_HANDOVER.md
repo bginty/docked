@@ -1,5 +1,7 @@
 # Docked Owner/Admin reference implementation
 
+> Historical implementation baseline. Deployment, completed workflows, current test results and remaining blockers are superseded by [ADMIN_COMPLETION_HANDOVER.md](ADMIN_COMPLETION_HANDOVER.md). The owner subsequently approved the existing live beta as the release destination; separate Preview setup is no longer required.
+
 ## Outcome
 
 The owner dashboard is implemented against `1000050648.jpg`, using its measured desktop composition, sampled navy surfaces, electric-blue navigation, five KPI cards, three chart panels, three activity panels and three operational panels. The exact thirteen-item sidebar is shared by the owner and permitted staff workspaces. Existing member screens and fantasy rules were not redesigned by this change.

@@ -1,5 +1,7 @@
 # Owner dashboard reference acceptance
 
+> Historical visual baseline. Current workflow, native authentication and release evidence is in [ADMIN_COMPLETION_HANDOVER.md](ADMIN_COMPLETION_HANDOVER.md). Later persisted draft and review work supersedes the old action limitations below.
+
 The supplied `1000050648.jpg` is the design target. Its native dimensions are **1280 × 853**, not 1536 × 1024. The 1536 × 1024 review uses the same approximate 1.2 scale and composition. This report distinguishes rendered local fixtures from authenticated or hosted acceptance.
 
 ## Reference measurements
@@ -90,3 +92,4 @@ Dashboard moderation links pass `kind=content` or `kind=members` to the existing
 - **Send Announcement:** opens Communications. Actual draft/preview/clear UI works locally; it does not send, save or imply delivery. External delivery is not activated.
 - **Manage Packs:** opens the existing pack/search/catalogue workspace. Pricing, odds and availability retain reviewed release controls.
 - **View Reports:** opens Analytics with existing reports available according to role.
+

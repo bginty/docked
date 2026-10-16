@@ -2,6 +2,8 @@
 
 The exact thirteen-item navigation reuses the existing `owner`, `admin`, `analyst`, `editor` and `auditor` roles. No new authority system or generic super-admin permission was added. Every workspace checks the current server role and AAL2 before rendering; the sidebar is a convenience, not the access boundary.
 
+Current live beta admission allows the owner as the privileged staff member. The matrix below describes service permissions after admission; it does not enable non-owner staff admission. Genuine local AAL2 role-revocation checks confirm immediate denial after owner-to-auditor changes. See [current completion handover](ADMIN_COMPLETION_HANDOVER.md).
+
 ## Permissions matrix
 
 | Workspace / search category | Owner | Admin | Auditor | Editor | Analyst |
@@ -15,7 +17,7 @@ The exact thirteen-item navigation reuses the existing `owner`, `admin`, `analys
 | Content & News | Draft | Draft | Read/review | Draft | — |
 | Moderation / reports | Existing actions | Existing actions | Read only | Existing target-specific actions | — |
 | Payments & Wallets / transactions | Read/review | — | — | — | — |
-| Rewards & Credits | Restricted activation review | — | — | — | — |
+| Rewards & Credits | Request/review; issuance disabled | — | — | — | — |
 | Analytics | Owner + existing reports | Existing reports | Existing reports | — | — |
 | Communications | Draft + delivery inspection | Draft + delivery inspection | Delivery inspection | Draft only | — |
 | Settings | Existing account/admission tools | Existing account/admission tools | — | — | — |
@@ -42,8 +44,8 @@ Missing support-case, appeal-intake, CMS approval, configuration editor and fina
 
 ## Quick actions
 
-- **Issue Credits** opens the Rewards & Credits activation review. It is explicitly restricted: the legacy local-preview allocation form is not an approved hosted recipient/amount/reason/confirmation workflow. This change issues no credits and does not expose that local command as a hosted capability.
-- **Send Announcement** opens a real in-memory draft and preview, with clear-draft support and a proposed admitted-member audience. It does not save, send or claim delivery. External email, push and bulk in-app delivery remain unavailable pending their existing approvals.
+- **Issue Credits** opens recipient/amount/reason/confirmation requests with auditable review, approval, decline and cancellation. Approval does not issue credits: the current policy remains PROPOSED_SANDBOX_ONLY. No arbitrary balance edit or hosted issuance is enabled.
+- **Send Announcement** opens persisted drafts, audience preview, submission/review, archive/restore and immutable history. Conflict and exact-retry handling are enforced by the server. External email, push and bulk in-app delivery remain unavailable pending their existing approvals.
 - **Manage Packs** opens pack record/configuration lookup, the existing catalogue and owner issuance reporting. Pricing, odds and availability remain controlled configuration releases.
 - **View Reports** opens permitted authoritative reporting workspaces.
 
@@ -51,11 +53,11 @@ Missing support-case, appeal-intake, CMS approval, configuration editor and fina
 
 `GET /api/admin/search?q=…&category=…&page=…` returns twenty results and a `hasMore` flag. Search requires two characters, caps input at 120 characters and pages at 100, matches literal substrings, and rate-limits forty requests per member per minute. Queries have a four-second timeout. Responses are `private, no-store`.
 
-The existing identity pipeline verifies email, live session, admission and enabled account; `requireRole` enforces AAL2/current database role. The read-only transaction rechecks the role. The new narrowly projected `beta_private.admin_search` function independently checks active session, AAL2 and category permission, with execute granted only to the existing application runtime role. No new table privileges or broad RLS bypass are granted. `anon`, `authenticated`, ordinary members and inactive/AAL1 sessions cannot invoke the search projection successfully.
+The existing identity pipeline verifies email, live session, admission and enabled account; `requireRole` enforces AAL2/current database role. The reporting transaction rechecks the role and retains the admission guard’s row locks; it performs no domain writes. The new narrowly projected `beta_private.admin_search` function independently checks active session, AAL2 and category permission, with execute granted only to the existing application runtime role. No new table privileges or broad RLS bypass are granted. `anon`, `authenticated`, ordinary members and inactive/AAL1 sessions cannot invoke the search projection successfully.
 
 Sources: existing profile/social identity tables; legacy and current issued cards; current card editions; legacy purchases, current purchases and configurations, Weekly Core entitlements; current credit journal references; fantasy competition definitions; moderation report classifications. Search excludes member emails, raw journal lines, card owners, private lineups, provider credentials and raw JSON state. Transactions are owner-only, explicitly test-credit records. Current competition names use Traditional/All-Star only when their saved rule context identifies those modes; immutable records remain unchanged.
 
-The migration is additive and read-only: `20261016125231_admin_search_projection.sql`. It has not been applied to any hosted database by this workstream. Deploy the reviewed migration before enabling the new route; otherwise search reports unavailable without leaking database errors.
+The migration is additive and read-only: `20261016125231_admin_search_projection.sql`. It was applied to the approved live beta during the preceding release; the six subsequent workflow migrations add scoped, audited administrative records without changing member assets.
 
 ## Evidence and limits
 

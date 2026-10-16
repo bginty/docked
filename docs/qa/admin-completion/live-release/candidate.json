@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-16T23:01:56.840Z",
+  "passed": true,
+  "deployment": "dpl_A1YNTWaqYY2dca9aJinRjPWko4bK",
+  "commit": "64c3463528fab5ff23885beb000e06eb0c5dd42e",
+  "base": "https://docked-production-4n6i2vgk3-briant-s-projects.vercel.app",
+  "checks": [
+    "Exact source/deployment/database identity; invite-only admission",
+    "Anonymous denied: /api/marketplace",
+    "Anonymous denied: /api/marketplace?tab=activity",
+    "Anonymous denied: /api/test-wallet",
+    "Anonymous denied: /api/fantasy",
+    "Anonymous denied and no-store: /api/admin/announcements",
+    "Anonymous denied and no-store: /api/admin/credit-requests",
+    "Anonymous denied and no-store: /api/admin/moderation-retention",
+    "Anonymous denied and no-store: /api/admin/record?category=members&id=00000000-0000-4000-8000-000000000000",
+    "Anonymous denied and no-store: /api/admin/moderation-cases?id=00000000-0000-4000-8000-000000000000",
+    "Owner health recording denied without authentication",
+    "Shared rarity frame, single reveal and Icon celebration styles present",
+    "Play/Cards shared shell, field summary and collection toolbar styles present",
+    "Premium turf/jerseys present; redemption history private and hosted mutations disabled",
+    "Premium Social/profile-photo assets; anonymous feed empty; collections, offers and owned media private",
+    "Universal collectible face, city presentation and compact Market styles present",
+    "Owner/admin search and workspaces deny anonymous access",
+    "Weekly/Profile assets present; anonymous weekly pack access denied"
+  ],
+  "hostedMemberMutations": 0,
+  "scope": "Anonymous read-only HTTP and deployed assets; local fixture transactions tested separately"
+}

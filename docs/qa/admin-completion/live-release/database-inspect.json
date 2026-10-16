@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-16T22:56:14.699Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "commit": "64c3463528fab5ff23885beb000e06eb0c5dd42e",
+  "mode": "inspect",
+  "passed": true,
+  "ownerVerifiedMfa": true,
+  "admissionRestricted": true,
+  "migrations": [
+    {
+      "file": "20261016214135_admin_announcement_drafts.sql",
+      "sha256": "fa76c6c33865f886039e0178a1e1c00e9f41375d632fe4dcf871980084ded3de",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261016214339_admin_record_details.sql",
+      "sha256": "94dc9a469be6131993dd0b60dfee1feb9a13ba48045e19fddcfa753179d7b0d1",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261016214620_owner_health_observations.sql",
+      "sha256": "af385da4dc87e7c3adf78ac7aa4536ef588d6261e11e3b49c6bd10d9e5641700",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261016215755_moderation_case_workflow.sql",
+      "sha256": "014b7f7fb86cdf8b197479525fa0f1cd8a95ad6923de52775532f73ce54433b2",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261016220005_beta_credit_requests.sql",
+      "sha256": "2ae5622678532fbf8766aa176040f7cb972b4ca7a3b29ed4b04fc9fb8d1c84f7",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261016220848_moderation_evidence_retention.sql",
+      "sha256": "cb8b20d060272e830fb12b9acacb74a672e825e35c600bd95b54242a4a73ff5f",
+      "alreadyApplied": false
+    }
+  ],
+  "permissions": [],
+  "tablePermissions": [],
+  "assetFingerprints": {
+    "credits_sandbox.state": {
+      "count": 1,
+      "digest": "b6aeb9fe088cce230cf2926513627ada"
+    },
+    "credits_sandbox.card_instances": {
+      "count": 315,
+      "digest": "be9acf50e832dbd1f39a098d640b51eb"
+    },
+    "beta_fantasy.cards": {
+      "count": 51,
+      "digest": "75c2fa2221e0cf1a00da47e17b2e88c7"
+    },
+    "beta_fantasy.entries": {
+      "count": 8,
+      "digest": "23ac5c03dbb0dda2471c087a8d997165"
+    },
+    "beta_fantasy.entry_revisions": {
+      "count": 45,
+      "digest": "eed9982d8fd6e4ce145fcb352715cc55"
+    },
+    "beta_fantasy.slot_locks": {
+      "count": 2,
+      "digest": "daa9c8b25c0c0cb6cf9956004b463dee"
+    },
+    "sports_feed.nfl_allocations": {
+      "count": 4,
+      "digest": "7d2fab9fc87675c7b1c8e0d2859347d1"
+    },
+    "sports_feed.weekly_core_packs": {
+      "count": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.weekly_core_schedules": {
+      "count": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  },
+  "memberAssetMutations": 0
+}
