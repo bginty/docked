@@ -1,0 +1,12 @@
+{
+  "decision": "RELEASE",
+  "commit": "c72dd83f6606995649e60f783d34d19bdd66a3a3",
+  "deployment": "dpl_HSRxPLZepRvnv2gf1H3QZs7LkJo8",
+  "scope": "Existing invited live beta only; not commercial or physical-device acceptance",
+  "authority": "User explicitly requested live Docked for future changes and completion of unfinished work",
+  "evidence": ["candidate.json", "database-apply.json", "deployment-status.json", "../final/acceptance.json", "../checks.json"],
+  "localChecks": {"platformPassed":436,"databasePassed":166,"typecheck":true,"lint":true,"productionBuild":true,"clientBoundary":true},
+  "constraints": ["No public registration", "No real payments or redemption", "No hosted settlement", "Weekly reward activation unchanged", "Existing member asset fingerprints unchanged"],
+  "remaining": ["Authenticated hosted owner browser journey", "Physical Samsung acceptance", "Separate uncommitted admin workflow improvements", "Commercial data and payments approval"],
+  "retryNotes": ["First candidate failed correctly on extra integration-provided privileged environment keys; second candidate supplies empty overrides while retaining restricted database credentials", "First anonymous page check expected HTTP denial; corrected to verify actual server-rendered staff sign-in gate with no private panels. API denial remains HTTP401/403"]
+}

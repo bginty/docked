@@ -8,6 +8,7 @@ export async function verifySocialAvatars(
   contexts: APIRequestContext[],
   browser: Browser,
   origin: string,
+  root = "docs/qa/social-visual-preview",
 ) {
   assert.equal(origin, "http://127.0.0.1:3033");
   const post = async (i: number, data: unknown) =>
@@ -81,7 +82,12 @@ export async function verifySocialAvatars(
   });
   const page = await context.newPage();
   try {
-    await page.goto(origin + "/profile?tab=about");
+    await page.goto(origin + "/profile?tab=about", {
+      // The authenticated local harness starts a cold Next development server.
+      // Compilation is not an avatar-network timeout or a hosted performance claim.
+      timeout: 120000,
+      waitUntil: "domcontentloaded",
+    });
     await expect(page.locator(".profile-top .member-photo img")).toBeVisible({
       timeout: 30000,
     });
@@ -104,12 +110,12 @@ export async function verifySocialAvatars(
     await page
       .getByRole("slider", { name: "Horizontal position" })
       .press("ArrowRight");
-    await mkdir("docs/qa/social-visual-preview", { recursive: true });
+    await mkdir(root, { recursive: true });
     await page
       .getByLabel("Profile photo crop preview")
       .scrollIntoViewIfNeeded();
     await page.screenshot({
-      path: "docs/qa/social-visual-preview/avatar-crop-mobile.png",
+      path: `${root}/avatar-crop-mobile.png`,
     });
     await page.getByRole("button", { name: "Cancel crop" }).click();
     await page.getByRole("button", { name: "Remove profile picture" }).click();
@@ -138,14 +144,19 @@ export async function verifySocialAvatars(
       "L",
     );
   } catch (error) {
-    await page.screenshot({
-      path: "docs/qa/social-visual-preview/avatar-failed.png",
-      fullPage: true,
-    });
-    await writeFile(
-      "tmp/avatar-failed.txt",
-      await page.locator(".avatar-editor").innerText(),
-    );
+    // Failed diagnostics must not replace the actual acceptance failure, e.g.
+    // when navigation fails before the editor exists or an artifact is locked.
+    await Promise.allSettled([
+      page.screenshot({
+        path: `${root}/avatar-failed.png`,
+        fullPage: true,
+        timeout: 10000,
+      }),
+      page
+        .locator(".avatar-editor")
+        .innerText({ timeout: 5000 })
+        .then((body) => writeFile("tmp/avatar-failed.txt", body)),
+    ]);
     throw error;
   } finally {
     await context.close();

@@ -4,11 +4,13 @@
 export function localMarketplaceAcceptance(env = process.env) {
   if (!env.DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE) return false;
   const redemption = env.DOCKED_REDEMPTION_LOCAL === "true";
+  const admin = env.DOCKED_ADMIN_LOCAL_ACCEPTANCE === "true";
   const fail = () => {
     throw Error("Invalid local marketplace acceptance configuration");
   };
   if (
     env.DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE !== "true" ||
+    (env.DOCKED_ADMIN_LOCAL_ACCEPTANCE !== undefined && !admin) ||
     env.NODE_ENV !== "development" ||
     env.VERCEL ||
     env.VERCEL_ENV ||
@@ -20,7 +22,7 @@ export function localMarketplaceAcceptance(env = process.env) {
     env.SITE_URL !== "http://127.0.0.1:3033" ||
     env.NEXT_PUBLIC_SUPABASE_URL !==
       (redemption ? "http://127.0.0.1:55331" : "http://127.0.0.1:55321") ||
-    env.APP_ENV !== (redemption ? "development" : "production") ||
+    env.APP_ENV !== (redemption || admin ? "development" : "production") ||
     env.SUPABASE_ENV !== "production" ||
     env.DOCKED_BETA_STAGING !== "true" ||
     env.DOCKED_FRIENDS_BETA !== "true" ||

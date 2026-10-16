@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-16T22:45:29.144Z",
+  "passed": true,
+  "scope": "Real local GoTrue -> Next HTTP -> restricted Postgres, isolated QA users",
+  "checks": [
+    "Ordinary member and owner AAL1 denied at every tested administrative HTTP projection",
+    "Real GoTrue owner MFA enables reporting/search/record/announcements/credit-request projections, no-store headers, no member email disclosure, credit execution disabled",
+    "Native announcement draft create/exact retry/submit/owner approval and three-event history; member mutation denied; no delivery action invoked",
+    "Real owner MFA health observation POST and identical-key retry recorded; member denied; health values remain actual pass/fail observations",
+    "Native member report -> owner case update/hide/restore -> audited moderation removal retains evidence -> retention review/restore; ordinary member case API denied",
+    "Real owner MFA concurrent duplicate request creates one result; exact retry matches; concurrent same-revision approvals yield200/409; member mutation denied; entire credits/commerce document unchanged; no issuance"
+  ],
+  "hosted": false,
+  "applicationMutations": "Isolated local review records only; no ledger issuance"
+}

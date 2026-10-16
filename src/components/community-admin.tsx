@@ -9,6 +9,8 @@ import {
 } from "@/core/community-social";
 import { LocalTimestamp } from "./local-timestamp";
 import { communityAction } from "./social-interactions";
+import { ModerationCasePanel } from "./moderation-case-panel";
+import { ModerationRetentionPanel } from "./moderation-retention-panel";
 export function ModerationPanel({
   data,
   canWrite,
@@ -67,6 +69,7 @@ export function ModerationPanel({
         Moderation controls commentary, media and account participation. It
         cannot change card ownership, card scarcity or competition scores.
       </p>
+      <ModerationRetentionPanel />
       <section className="moderation-queue" aria-label="Moderation queue">
         <div className="section-row">
           <h2>Report queue</h2>
@@ -211,6 +214,7 @@ export function ModerationPanel({
                 <p className="small-note">
                   Report {r.id} · Target {r.targetId}
                 </p>
+                <ModerationCasePanel reportId={r.id} />
                 {canWrite && (
                   <form className="app-form" method="post" onSubmit={moderate}>
                     <input type="hidden" name="reportId" value={r.id} />

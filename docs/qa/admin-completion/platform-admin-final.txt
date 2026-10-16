@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: announcement requests are bounded and cannot request delivery or claim an actor
+ok 1 - announcement requests are bounded and cannot request delivery or claim an actor
+  ---
+  duration_ms: 45.814
+  ...
+# Subtest: record lookup rejects cross-role categories and bounds exact IDs and history pages
+ok 2 - record lookup rejects cross-role categories and bounds exact IDs and history pages
+  ---
+  duration_ms: 23.1867
+  ...
+# Subtest: beta credit request is bounded, explicitly confirmed, and cannot contain execution or redeemable fields
+ok 3 - beta credit request is bounded, explicitly confirmed, and cannot contain execution or redeemable fields
+  ---
+  duration_ms: 22.7077
+  ...
+# Subtest: case workflow inputs cannot inject actor, evidence, assets or unsupported actions
+ok 4 - case workflow inputs cannot inject actor, evidence, assets or unsupported actions
+  ---
+  duration_ms: 32.6929
+  ...
+# Subtest: health probes cannot choose third-party, credentialed or arbitrary hosted origins
+ok 5 - health probes cannot choose third-party, credentialed or arbitrary hosted origins
+  ---
+  duration_ms: 14.9713
+  ...
+# Subtest: health evidence expires, rejects future timestamps and never upgrades unobserved services
+ok 6 - health evidence expires, rejects future timestamps and never upgrades unobserved services
+  ---
+  duration_ms: 10.0483
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 27503.5467

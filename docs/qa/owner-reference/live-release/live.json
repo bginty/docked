@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-16T22:42:10.324Z",
+  "passed": true,
+  "deployment": "dpl_HSRxPLZepRvnv2gf1H3QZs7LkJo8",
+  "commit": "c72dd83f6606995649e60f783d34d19bdd66a3a3",
+  "base": "https://docked.com.au",
+  "checks": [
+    "Exact source/deployment/database identity; invite-only admission",
+    "Anonymous denied: /api/marketplace",
+    "Anonymous denied: /api/marketplace?tab=activity",
+    "Anonymous denied: /api/test-wallet",
+    "Anonymous denied: /api/fantasy",
+    "Shared rarity frame, single reveal and Icon celebration styles present",
+    "Play/Cards shared shell, field summary and collection toolbar styles present",
+    "Premium turf/jerseys present; redemption history private and hosted mutations disabled",
+    "Premium Social/profile-photo assets; anonymous feed empty; collections, offers and owned media private",
+    "Universal collectible face, city presentation and compact Market styles present",
+    "Owner/admin search and workspaces deny anonymous access",
+    "Weekly/Profile assets present; anonymous weekly pack access denied"
+  ],
+  "hostedMemberMutations": 0,
+  "scope": "Anonymous read-only HTTP and deployed assets; local fixture transactions tested separately"
+}

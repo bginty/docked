@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-16T22:52:54.782Z",
+  "passed": true,
+  "scope": "Real local GoTrue -> Next HTTP -> restricted Postgres, isolated QA users",
+  "checks": [
+    "Ordinary member and owner AAL1 denied at every tested administrative HTTP projection",
+    "Real GoTrue owner MFA enables reporting/search/record/announcements/credit-request projections, no-store headers, no member email disclosure, credit execution disabled",
+    "Actual GoTrue AAL2 same-identity role change owner->auditor is immediately denied by current owner-only friends-beta admission, including previously permitted reads and announcement/credit mutations; this is role-revocation acceptance, not positive staff access",
+    "Local QA role and admission restored in finally; the original real AAL2 session regains authorized read access"
+  ],
+  "hosted": false,
+  "applicationMutations": "Isolated QA owner role temporarily changed to auditor and restored in finally",
+  "positiveNonOwnerStaffAccess": "Blocked by deliberate owner-only privileged friends-beta admission; activation/policy decision required"
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "Completed administrative workflows and preserved invited beta",
+  "database": {"passed":172,"failed":0,"skipped":0,"evidence":"database-final.txt"},
+  "platform": {"total":444,"fullRunPassed":441,"fullRunBlockedByTemporaryGitFixtureSandbox":3,"affectedRetryPassed":3,"unresolved":0,"evidence":["platform-final.txt","platform-release-tools-retry.txt"]},
+  "lint": {"passed":true,"evidence":"lint-final.txt"},
+  "typecheck": {"passed":true,"evidence":"typecheck-final.txt"},
+  "cleanProductionBuild": {"passed":true,"evidence":"build.txt"},
+  "clientBoundary": {"passed":true,"browserAssets":63,"evidence":"client-boundary.txt"},
+  "genuineLocalMfaAndAdministrativeWorkflows": {"passed":true,"evidence":"../auth-recovery-20261017/admin-authenticated.json"},
+  "hostedAuthenticatedOwnerAcceptance": false,
+  "physicalSamsungAcceptance": false,
+  "commercialLaunchAcceptance": false,
+  "failedAndInterruptedAttemptsRetained": true
+}

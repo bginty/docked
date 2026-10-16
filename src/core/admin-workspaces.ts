@@ -174,7 +174,7 @@ export const adminWorkspaces: Record<
       },
     ],
     restrictions: [
-      "Issue Credits is restricted: hosted discretionary issuance has no approved recipient/amount/reason/confirmation workflow. Existing local-preview credit allocation is not a hosted authorisation. No credits are issued from this page.",
+      "Owner-only beta-credit requests can be saved and reviewed with recipient, amount, reason and confirmation. Approval records a request decision only; hosted discretionary issuance remains disabled. Existing local-preview allocation is not hosted authorisation. No credits are issued from this page.",
       "Weekly reward activation remains subject to its existing environment and approval gates.",
     ],
   },
@@ -200,7 +200,7 @@ export const adminWorkspaces: Record<
   },
   communications: {
     description:
-      "Draft and preview an announcement, and inspect existing in-app notification delivery.",
+      "Save announcement drafts for staff review, and inspect existing in-app notification delivery.",
     actions: [
       {
         label: "Notification delivery",
@@ -210,7 +210,7 @@ export const adminWorkspaces: Record<
       { label: "Community publishing", href: "/fantasy/social" },
     ],
     restrictions: [
-      "Bulk announcement delivery is not activated. Drafts are kept only while this page is open. External email and push require separate audience and delivery approval.",
+      "Drafts are saved with version checks and an immutable staff review history. Approval does not send or publish them. Bulk delivery, external email and push are not activated; they require separate audience and delivery approval.",
     ],
   },
   settings: {

@@ -10,19 +10,22 @@ export async function captureSocialUpgrade(
   sessions: APIRequestContext[],
   origin: string,
   root = "docs/qa/social-upgrade",
+  seedVisualPost = root === "docs/qa/social-visual-preview",
 ) {
   assert.equal(new URL(origin).hostname, "127.0.0.1");
   await mkdir(root, { recursive: true });
-  if (root === "docs/qa/social-visual-preview") {
-    const feed = await (
-      await sessions[1].get("/api/community?view=feed&tab=latest")
-    ).json();
+  if (seedVisualPost) {
+    const feedResponse = await sessions[1].get(
+      "/api/community?view=feed&tab=latest",
+    );
+    assert.equal(feedResponse.status(), 200, await feedResponse.text());
+    const feed = await feedResponse.json();
     const body =
       "Local QA · A closer look at my collection. Which card would you build around?";
     if (!feed.posts.some((p: { body: string }) => p.body === body)) {
-      const hub = await (
-        await sessions[1].get("/api/community?view=hub")
-      ).json();
+      const hubResponse = await sessions[1].get("/api/community?view=hub");
+      assert.equal(hubResponse.status(), 200, await hubResponse.text());
+      const hub = await hubResponse.json();
       const posted = await sessions[1].post("/api/community", {
         data: {
           action: "post",
@@ -59,7 +62,7 @@ export async function captureSocialUpgrade(
         ["social", "/fantasy/social", "More than cards."],
         ["collection", "/profile/localreader1", "Collection privacy & offers"],
         ["communities", "/fantasy/social?tab=communities", "Community rules"],
-        ["packs", "/fantasy/test-wallet?view=packs", "NFL nine-card packs"],
+        ["packs", "/fantasy/test-wallet?view=packs", "NFL Packs"],
         ["offers", "/profile?tab=offers", "Private offers"],
       ]) {
         await page.goto(origin + path, {
@@ -70,6 +73,10 @@ export async function captureSocialUpgrade(
           page.getByText(ready, { exact: false }).first(),
         ).toBeVisible({ timeout: 30000 });
         await page.evaluate(() => document.fonts.ready);
+        await expect(page.locator("#workspace-wallet-slot")).not.toContainText(
+          "Loading balance",
+          { timeout: 30000 },
+        );
         await page.waitForFunction(
           () =>
             [

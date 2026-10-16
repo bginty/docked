@@ -1,0 +1,30 @@
+{
+  "synthetic": true,
+  "hosted": false,
+  "checks": [
+    {
+      "width": 412,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    }
+  ],
+  "requests": 4,
+  "uniqueReceipts": 3,
+  "drafts": 1,
+  "errors": [],
+  "journeys": [
+    "preview without write",
+    "uncertain save exact retry",
+    "reload persistence",
+    "discard unsaved edit",
+    "submit staff review",
+    "owner approval requires reason",
+    "archive",
+    "responsive accessibility"
+  ]
+}

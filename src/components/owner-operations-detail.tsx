@@ -154,10 +154,7 @@ export function OwnerOperationsDetail({ data }: { data: Operations | null }) {
                   let bottom = 145;
                   return (
                     <g key={d.day}>
-                      <title>
-                        {d.day}: {d.entries} entries, {d.packs} packs, {d.posts}{" "}
-                        posts
-                      </title>
+                      <title>{`${d.day}: ${d.entries} entries, ${d.packs} packs, ${d.posts} posts`}</title>
                       {[d.entries, d.packs, d.posts].map((n, k) => {
                         const height = (n / max) * 125;
                         bottom -= height;

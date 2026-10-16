@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { localMarketplaceAcceptance } from "../../src/core/local-marketplace-acceptance.mjs";
 import config from "../../next.config";
+import { healthOrigin } from "../../src/core/owner-health";
 const local = () => ({
   DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE: "true",
   NODE_ENV: "development",
@@ -69,4 +70,29 @@ test("local profile accepts only loopback development, real restricted-role targ
     { SUPABASE_SERVICE_ROLE_KEY: "fixture" },
   ])
     assert.throws(() => localMarketplaceAcceptance({ ...local(), ...change }));
+});
+test("explicit local admin health acceptance retains every nondeployable target boundary", () => {
+  const admin = {
+    ...local(),
+    DOCKED_ADMIN_LOCAL_ACCEPTANCE: "true",
+    APP_ENV: "development",
+  };
+  assert.equal(localMarketplaceAcceptance(admin), true);
+  assert.equal(healthOrigin(admin.SITE_URL, false), admin.SITE_URL);
+  assert.throws(() => healthOrigin(admin.SITE_URL, true));
+  assert.throws(() =>
+    localMarketplaceAcceptance({ ...local(), APP_ENV: "development" }),
+  );
+  for (const change of [
+    { VERCEL: "1" },
+    { NODE_ENV: "production" },
+    { DOCKED_HOSTED_PRODUCTION: "true" },
+    { SITE_URL: "https://docked.com.au" },
+    { NEXT_PUBLIC_SUPABASE_URL: "https://example.supabase.co" },
+    { DATABASE_URL: "postgresql://postgres:qa@127.0.0.1:55322/postgres" },
+    { SENDING_ENABLED: "true" },
+    { SUPABASE_SERVICE_ROLE_KEY: "fixture" },
+    { DOCKED_ADMIN_LOCAL_ACCEPTANCE: "false" },
+  ])
+    assert.throws(() => localMarketplaceAcceptance({ ...admin, ...change }));
 });

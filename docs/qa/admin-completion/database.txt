@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: announcement persistence: real SQL authorization, concurrency, independent review, replay and immutable audit
+ok 1 - announcement persistence: real SQL authorization, concurrency, independent review, replay and immutable audit
+  ---
+  duration_ms: 10007.1228
+  ...
+# Subtest: administrative details execute real projection with private-field, role, session and history boundaries
+ok 2 - administrative details execute real projection with private-field, role, session and history boundaries
+  ---
+  duration_ms: 12873.5611
+  ...
+# Subtest: admin search: actual migration, scoped grants, MFA/session denial, safe data and pagination
+ok 3 - admin search: actual migration, scoped grants, MFA/session denial, safe data and pagination
+  ---
+  duration_ms: 12178.9811
+  ...
+# Subtest: mail RPC and encrypted tables are unavailable to public/member/runtime roles
+ok 4 - mail RPC and encrypted tables are unavailable to public/member/runtime roles
+  ---
+  duration_ms: 12586.4081
+  ...
+# Subtest: duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+ok 5 - duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+  ---
+  duration_ms: 106.8418
+  ...
+# Subtest: worker fencing prevents a second claim and a stale worker dispatch
+ok 6 - worker fencing prevents a second claim and a stale worker dispatch
+  ---
+  duration_ms: 123.8855
+  ...
+# Subtest: lost dispatch acknowledgement becomes unknown and can never auto retry
+ok 7 - lost dispatch acknowledgement becomes unknown and can never auto retry
+  ---
+  duration_ms: 72.0649
+  ...
+# Subtest: only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+ok 8 - only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+  ---
+  duration_ms: 97.2422
+  ...
+# Subtest: expired queued links are erased without dispatch and modes cannot cross
+ok 9 - expired queued links are erased without dispatch and modes cannot cross
+  ---
+  duration_ms: 40.743
+  ...
+# Subtest: live dispatch lease cannot return to pending for any retry reason
+ok 10 - live dispatch lease cannot return to pending for any retry reason
+  ---
+  duration_ms: 33.8354
+  ...
+# Subtest: credit requests persist auditable review only, with idempotency, owner MFA, immutable events and no ledger changes
+ok 11 - credit requests persist auditable review only, with idempotency, owner MFA, immutable events and no ledger changes
+  ---
+  duration_ms: 13998.1896
+  ...
+# Subtest: database enforces permanent supply, serial immutability, nine-card receipts and private access
+ok 12 - database enforces permanent supply, serial immutability, nine-card receipts and private access
+  ---
+  duration_ms: 17054.63
+  ...
+# Subtest: community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+ok 13 - community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+  ---
+  duration_ms: 31960.2255
+  ...
+# Subtest: unknown provider classification, promotions and historical/demo records cannot be promoted
+ok 14 - unknown provider classification, promotions and historical/demo records cannot be promoted
+  ---
+  duration_ms: 262.7229
+  ...
+# Subtest: atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+ok 15 - atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+  ---
+  duration_ms: 223.9783
+  ...
+# Subtest: newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+ok 16 - newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+  ---
+  duration_ms: 170.6623
+  ...
+# Subtest: latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+ok 17 - latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+  ---
+  duration_ms: 56.6464
+  ...
+# Subtest: canonical records survive social tombstone, private identity and blocking
+ok 18 - canonical records survive social tombstone, private identity and blocking
+  ---
+  duration_ms: 139.4359
+  ...
+# Subtest: authorized results only, no silent correction, finite scores, append-only approval revocation
+ok 19 - authorized results only, no silent correction, finite scores, append-only approval revocation
+  ---
+  duration_ms: 195.2347
+  ...
+# Subtest: integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+ok 20 - integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+  ---
+  duration_ms: 193.5425
+  ...
+# Subtest: leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+ok 21 - leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+  ---
+  duration_ms: 58.6831
+  ...

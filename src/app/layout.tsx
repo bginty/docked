@@ -72,7 +72,7 @@ export default async function Layout({
 }) {
   const environment = await environmentPresentation();
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className="fantasy-mode">
         <EnvironmentProvider value={environment}>
           <SportProvider>

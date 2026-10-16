@@ -1,6 +1,6 @@
 import "server-only";
 import { snapshotSocialCards } from "./social-card-projection";
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import {
   encodeCommunityImage,
   encodeCommunityAvatar,
@@ -375,10 +375,22 @@ export async function communityProfile(
 }
 /** Private Profile header: reuse approved avatar storage and its authorised media URL. */
 export async function ownProfileIdentity() {
-  return readCommunity("public_profiles", { avatarUrl: null as string | null, displayName: undefined as string | undefined }, async c => {
-    const profile=c.profileId ? (await profiles(c.tx,[c.profileId],c.profileId))[0] : null;
-    return { avatarUrl:profile?.avatarUrl ?? null, displayName:profile?.displayName };
-  });
+  return readCommunity(
+    "public_profiles",
+    {
+      avatarUrl: null as string | null,
+      displayName: undefined as string | undefined,
+    },
+    async (c) => {
+      const profile = c.profileId
+        ? (await profiles(c.tx, [c.profileId], c.profileId))[0]
+        : null;
+      return {
+        avatarUrl: profile?.avatarUrl ?? null,
+        displayName: profile?.displayName,
+      };
+    },
+  );
 }
 export async function communitySearch(query: string): Promise<CommunitySearch> {
   return readCommunity(
@@ -587,7 +599,9 @@ export async function purgeCommunityRetention() {
   });
 }
 
-export async function communityModeration(kind?: "content" | "members"): Promise<CommunityModeration> {
+export async function communityModeration(
+  kind?: "content" | "members",
+): Promise<CommunityModeration> {
   if (!process.env.DATABASE_URL)
     return {
       status: "not_configured",
@@ -613,8 +627,13 @@ export async function communityModeration(kind?: "content" | "members"): Promise
         details: String(r.details),
         status: String(r.status),
         createdAt: iso(r.created_at),
-        reporter: r.reporter_handle ? { name: String(r.reporter_name), handle: String(r.reporter_handle) } : null,
-        target: { content: r.target_content === null ? null : String(r.target_content), status: r.target_status === null ? null : String(r.target_status) },
+        reporter: r.reporter_handle
+          ? { name: String(r.reporter_name), handle: String(r.reporter_handle) }
+          : null,
+        target: {
+          content: r.target_content === null ? null : String(r.target_content),
+          status: r.target_status === null ? null : String(r.target_status),
+        },
         history: Array.isArray(r.history) ? r.history : [],
       })),
       media: media.map((r) => toMedia(r, true)),
@@ -1164,6 +1183,18 @@ export async function mutateCommunity(input: unknown) {
         const allowed = moderationActions(action.targetType);
         if (!allowed.includes(action.decision))
           throw new Error("Invalid moderation action");
+        // Match retention/case lock order before touching source evidence.
+        if (["post", "comment", "media"].includes(action.targetType)) {
+          const parents =
+            action.targetType === "media"
+              ? await tx`select post_id from private.social_post_media where media_id=${action.targetId} order by post_id`
+              : action.targetType === "comment"
+                ? await tx`select post_id from private.social_comments where id=${action.targetId}`
+                : [];
+          for (const parent of parents)
+            await tx`select pg_advisory_xact_lock(hashtextextended(${"case-content:post:" + parent.post_id},0))`;
+          await tx`select pg_advisory_xact_lock(hashtextextended(${"case-content:" + action.targetType + ":" + action.targetId},0))`;
+        }
         if (action.targetType === "profile") {
           if (action.targetId === OFFICIAL_PROFILE_ID)
             throw new Error("Official identity protected");
@@ -1176,13 +1207,12 @@ export async function mutateCommunity(input: unknown) {
         }
         if (action.targetType === "post" && action.decision === "remove") {
           const r =
-            await tx`update private.social_posts set body='',moderation_status='removed',updated_at=clock_timestamp() where id=${action.targetId} returning id`;
+            await tx`update private.social_posts set moderation_status='removed',updated_at=clock_timestamp() where id=${action.targetId} and deleted_at is null returning id`;
           if (!r.length) throw new Error("Post unavailable");
-          await tx`delete from private.social_post_media where post_id=${action.targetId}`;
         }
         if (action.targetType === "comment" && action.decision === "remove") {
           const r =
-            await tx`update private.social_comments set body='',moderation_status='removed' where id=${action.targetId} returning id`;
+            await tx`update private.social_comments set moderation_status='removed' where id=${action.targetId} and deleted_at is null returning id`;
           if (!r.length) throw new Error("Comment unavailable");
         }
         if (
@@ -1190,9 +1220,15 @@ export async function mutateCommunity(input: unknown) {
           ["approve", "reject"].includes(action.decision)
         ) {
           const r =
-            await tx`update private.social_media set status=${action.decision === "approve" ? "approved" : "rejected"},content=case when ${action.decision === "reject"} then null else content end,reviewed_by=${actor.user.id},reviewed_at=clock_timestamp() where id=${action.targetId} and content is not null and expires_at>clock_timestamp() returning id`;
+            await tx`update private.social_media set status=${action.decision === "approve" ? "approved" : "rejected"},reviewed_by=${actor.user.id},reviewed_at=clock_timestamp() where id=${action.targetId} and status='quarantine' and content is not null and expires_at>clock_timestamp() returning id`;
           if (!r.length) throw new Error("Media unavailable");
         }
+        if (
+          (["post", "comment"].includes(action.targetType) &&
+            action.decision === "remove") ||
+          (action.targetType === "media" && action.decision === "reject")
+        )
+          await tx`select private.moderation_retention_command(${tx.json({ requestId: randomUUID(), targetType: action.targetType, targetId: action.targetId, version: 0, action: "retain", reason: action.reason, confirmation: "" })}::jsonb)`;
         await tx`insert into private.social_moderation_events(actor,report_id,target_type,target_id,decision,reason) values(${actor.user.id},${action.reportId ?? null},${action.targetType},${action.targetId},${action.decision},${action.reason})`;
         if (action.reportId)
           await tx`update private.social_reports set status=${action.decision === "dismiss" ? "dismissed" : action.decision === "escalate" ? "escalated" : "actioned"},closed_at=clock_timestamp() where id=${action.reportId}`;

@@ -1,0 +1,38 @@
+{
+  "synthetic": true,
+  "hosted": false,
+  "checks": [
+    {
+      "width": 360,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    },
+    {
+      "width": 412,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    }
+  ],
+  "retentionRequests": 2,
+  "uniqueReceipts": 1,
+  "errors": [],
+  "journeys": [
+    "assign severity and review",
+    "hide evidence",
+    "release hold after source removal",
+    "retention reason required",
+    "erasure typed confirmation required",
+    "uncertain review retries same request",
+    "responsive keyboard-accessible controls"
+  ]
+}

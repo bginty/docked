@@ -10,6 +10,7 @@ import { OwnerPeriod } from "./owner-period";
 import { PackArtwork } from "./pack-artwork";
 import { OwnerOperationsDetail } from "./owner-operations-detail";
 import { OwnerDetailDisclosure } from "./owner-detail-disclosure";
+import { OwnerHealthCheck } from "./owner-health-check";
 import { CollectibleFace } from "./collectible-face";
 function activityAge(at: string, generatedAt: string) {
   const minutes = Math.max(
@@ -474,6 +475,15 @@ export function OwnerDashboard({
               </Link>
             ))}
           </div>
+          <details id="owner-health-evidence">
+            <summary>Check evidence</summary>
+            {report?.health.map((item) => (
+              <p key={item.id}>
+                <strong>{item.label}</strong>: {item.detail}
+              </p>
+            ))}
+            <OwnerHealthCheck />
+          </details>
         </article>
         <article className="owner-reference-panel">
           <Title href="/admin/workspace/moderation">Moderation Queue</Title>

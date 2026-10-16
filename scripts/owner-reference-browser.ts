@@ -238,6 +238,8 @@ async function main() {
     .join("\n");
   const publicRoot = resolve("public");
   const requests: { method: string; path: string }[] = [];
+  let healthAttempt = 0;
+  const healthKeys: string[] = [];
   const server = createServer((request, response) => {
     const url = new URL(request.url!, "http://127.0.0.1");
     requests.push({ method: request.method!, path: url.pathname });
@@ -286,6 +288,26 @@ async function main() {
               : [],
         }),
       );
+    } else if (url.pathname === "/api/admin/health") {
+      let body = "";
+      request.on("data", (chunk) => {
+        body += String(chunk);
+      });
+      request.on("end", () => {
+        healthKeys.push(JSON.parse(body).request);
+        healthAttempt++;
+        response.setHeader("Content-Type", "application/json");
+        response.statusCode = healthAttempt === 1 ? 503 : 200;
+        response.end(
+          JSON.stringify(
+            healthAttempt === 1
+              ? { error: "Isolated failed response" }
+              : healthAttempt === 2
+                ? {}
+                : { recorded: true },
+          ),
+        );
+      });
     } else if (url.pathname.startsWith("/api/")) {
       response.setHeader("Content-Type", "application/json");
       response.statusCode = 503;
@@ -608,6 +630,46 @@ async function main() {
       viewport: { width: 1440, height: 900 },
     });
     const page = await context.newPage();
+    await page.goto(base + "/admin/operations");
+    await page.locator("#owner-health-evidence summary").click();
+    const healthButton = page.getByRole("button", {
+      name: "Check API & web",
+      exact: true,
+    });
+    await healthButton.click();
+    await expect(
+      page.getByText(
+        "Check unavailable. Verify your owner session and retry shortly.",
+        { exact: true },
+      ),
+    ).toBeVisible();
+    await healthButton.click();
+    await expect(
+      page.getByText(
+        "The check result could not be confirmed. Retry shortly.",
+        { exact: true },
+      ),
+    ).toBeVisible();
+    await healthButton.click();
+    await expect(
+      page.getByText("Checks recorded. Results expire after five minutes.", {
+        exact: true,
+      }),
+    ).toBeVisible();
+    assert.equal(
+      new Set(healthKeys).size,
+      1,
+      "Uncertain health retry retains request identity",
+    );
+    await page.screenshot({
+      path: `${out}/health-evidence.png`,
+      fullPage: true,
+    });
+    checks.push({
+      healthRetry: true,
+      malformedSuccessRejected: true,
+      requestIdentityPreserved: true,
+    });
     await page.goto(base + "/admin/operations?state=unavailable");
     await expect(
       page.getByText(/unavailable|not connected/i).first(),
@@ -626,28 +688,14 @@ async function main() {
         `${section} hidden from editor sidebar`,
       );
     await page.goto(base + "/admin/workspace/communications");
-    await page
-      .getByLabel("Title", { exact: true })
-      .fill("Isolated review notice");
-    await page
-      .getByLabel("Message", { exact: true })
-      .fill("Synthetic announcement preview. No delivery requested.");
-    await page
-      .getByRole("button", { name: "Preview announcement", exact: true })
-      .click();
+    // This dashboard fixture deliberately has no draft backend. Persisted save,
+    // retry, review and reload journeys run in admin-announcements-browser.ts.
     await expect(
-      page.getByRole("article", { name: "Announcement preview" }),
+      page.getByText("Saved drafts are unavailable. Reload to try again."),
     ).toBeVisible();
     await expect(
-      page.getByText("Draft · not sent or saved", { exact: true }),
-    ).toBeVisible();
-    await page
-      .getByRole("button", { name: "Clear draft", exact: true })
-      .click();
-    await expect(page.getByLabel("Title", { exact: true })).toHaveValue("");
-    await expect(
-      page.getByRole("article", { name: "Announcement preview" }),
-    ).toBeHidden();
+      page.getByRole("button", { name: "Save draft", exact: true }),
+    ).toHaveCount(0);
     for (const [kind, shown, hidden] of [
       ["content", "content case", "member case"],
       ["members", "member case", "content case"],
@@ -671,7 +719,11 @@ async function main() {
     }
     await context.close();
     assert.deepEqual(
-      requests.filter((request) => request.method !== "GET"),
+      requests.filter(
+        (request) =>
+          request.method !== "GET" &&
+          !(request.method === "POST" && request.path === "/api/admin/health"),
+      ),
       [],
       "Presentation review cannot issue financial or member mutations",
     );
@@ -688,7 +740,8 @@ async function main() {
         "Actual production presentation components with isolated synthetic aggregates and simulated search API. Not authentication, hosted actions, physical-device or pixel-perfect acceptance.",
       checks,
       restrictedEditorSidebar: true,
-      noMutationRequests: true,
+      noMemberOrFinancialMutationRequests: true,
+      syntheticHealthRequests: healthKeys.length,
     };
     writeFileSync(`${out}/acceptance.json`, JSON.stringify(result, null, 2));
     cpSync(out, "docs/qa/owner-reference/final", { recursive: true });

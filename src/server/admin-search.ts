@@ -30,7 +30,8 @@ export async function adminSearch(
   if (!(await rateLimit(`admin-search:${actor.user.id}`, 40, 60)))
     throw Error("Search rate limit");
   const rows = await db().begin(async (tx) => {
-    await tx`set transaction read only`;
+    // Admission checks take FOR SHARE locks; SQL READ ONLY would reject them.
+    // Read branches still call only permission-scoped reporting projections.
     await tx`set local statement_timeout='4000ms'`;
     await tx`select set_config('request.jwt.claim.sub',${actor.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: actor.user.id, session_id: actor.sessionId, aal: actor.aal })},true)`;
     // Recheck current role in the transaction; revocation between authentication

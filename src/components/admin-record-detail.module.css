@@ -1,0 +1,62 @@
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+  margin-block: 1rem 1.5rem;
+}
+.fields div {
+  min-width: 0;
+  padding: 0.75rem;
+  border: 1px solid #16324b;
+  border-radius: 0.65rem;
+  background: #071626;
+}
+.fields dt {
+  color: #a6bed3;
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+.fields dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+.panel {
+  min-width: 0;
+  padding: clamp(14px, 2vw, 24px);
+  margin-block: 18px;
+  border: 1px solid #17334d;
+  border-radius: 12px;
+  background: #061322;
+}
+.panel h2 {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  margin-block: 8px;
+  overflow-wrap: anywhere;
+}
+.eyebrow {
+  color: #82caff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.history {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.history li {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border-left: 2px solid #2da7ff;
+  background: #0a1c30;
+  overflow-wrap: anywhere;
+}
+.history small {
+  color: #a6bed3;
+}

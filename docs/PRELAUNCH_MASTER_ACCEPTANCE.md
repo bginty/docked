@@ -1,5 +1,7 @@
 # Docked pre-launch acceptance — 16 October 2026
 
+> Historical baseline. The subsequent live-beta authorisation, verified deployment and remaining-work follow-up are recorded in [ADMIN_COMPLETION_HANDOVER.md](ADMIN_COMPLETION_HANDOVER.md). Preview-only release blockers below were superseded by the user's live-beta direction; commercial, financial and physical-device gates remain distinct.
+
 ## Decision
 
 This is a local implementation and evidence package for owner review. Docked is **not yet accepted for commercial launch or Google Play submission**. The current invited free beta remains the appropriate operating mode. No Production deployment, hosted migration, member-asset mutation, payment activation, trading activation or paid infrastructure was performed by this programme.

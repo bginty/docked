@@ -1,6 +1,7 @@
 // LOCAL ONLY: real Supabase Auth, Next HTTP handlers and restricted-role Postgres.
 // Run after marketplace-auth-infra.mjs and its local compose startup. Never loads .env.
 import assert from "node:assert/strict";
+import { createServer } from "node:net";
 import {
   readFile,
   writeFile,
@@ -12,7 +13,7 @@ import {
 } from "node:fs/promises";
 import { createWriteStream } from "node:fs";
 import { spawn } from "node:child_process";
-import { resolve } from "node:path";
+import { dirname, resolve, sep } from "node:path";
 import { randomBytes, randomUUID, createHash, createHmac } from "node:crypto";
 import postgres from "postgres";
 import { createClient } from "@supabase/supabase-js";
@@ -93,6 +94,14 @@ async function main() {
   const contexts: Awaited<ReturnType<typeof request.newContext>>[] = [];
   const checks: string[] = [];
   let stage = "migrations";
+  // Never let a stale server with different environment satisfy readiness.
+  await new Promise<void>((resolvePort, reject) => {
+    const probe = createServer();
+    probe.once("error", reject);
+    probe.listen(3033, "127.0.0.1", () =>
+      probe.close((error) => (error ? reject(error) : resolvePort())),
+    );
+  });
   await mkdir("docs/qa/marketplace-authenticated", { recursive: true });
   const browserOnly = process.argv.includes("--browser-only");
   await mkdir("docs/qa/mobile-release", { recursive: true });
@@ -101,7 +110,7 @@ async function main() {
   await mkdir("docs/qa/social-visual-preview", { recursive: true });
   await mkdir("docs/qa/master-v2", { recursive: true });
   await mkdir("docs/qa/play-standings", { recursive: true });
-  const receipt = playStandings
+  const defaultReceipt = playStandings
     ? "docs/qa/play-standings/authenticated.json"
     : marketOverhaul
       ? "docs/qa/market-overhaul/authenticated-harness.json"
@@ -116,6 +125,22 @@ async function main() {
                 ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
                 : "docs/qa/mobile-release/social-http.json"
               : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
+  const receipt = resolve(
+    process.argv.find((arg) => arg.startsWith("--receipt="))?.slice(10) ??
+      defaultReceipt,
+  );
+  assert.ok(
+    receipt.startsWith(resolve("docs/qa") + sep) && receipt.endsWith(".json"),
+  );
+  await mkdir(dirname(receipt), { recursive: true });
+  const evidenceArg = process.argv
+    .find((arg) => arg.startsWith("--evidence-dir="))
+    ?.slice(15);
+  const evidenceDir = evidenceArg ? resolve(evidenceArg) : undefined;
+  if (evidenceDir) {
+    assert.ok(evidenceDir.startsWith(resolve("docs/qa") + sep));
+    await mkdir(evidenceDir, { recursive: true });
+  }
   await writeFile(
     receipt,
     JSON.stringify({
@@ -134,7 +159,11 @@ async function main() {
       const prior =
         await sql`select hash from public.local_qa_migrations where name=${file}`;
       if (prior.length) {
-        assert.equal(prior[0].hash, hash);
+        assert.equal(
+          prior[0].hash,
+          hash,
+          `Local QA migration changed after application: ${file}. Reconcile only this isolated fixture database before retrying.`,
+        );
         continue;
       }
       try {
@@ -341,6 +370,16 @@ async function main() {
         ),
       );
     }
+    if (process.argv.includes("--diagnostic-owner")) {
+      const route = resolve(app, "src/app/api/admin/operations/route.ts");
+      await writeFile(
+        route,
+        (await readFile(route, "utf8")).replace(
+          "} catch {",
+          '} catch (error) { console.error("LOCAL_OWNER_REPORT", error instanceof Error ? error.message : "unknown");',
+        ),
+      );
+    }
     if (marketOverhaul) {
       const localGate = resolve(
         app,
@@ -382,12 +421,18 @@ async function main() {
     Object.assign(env, {
       NODE_ENV: "development",
       DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE: "true",
+      ...(process.argv.includes("--admin-local-acceptance")
+        ? { DOCKED_ADMIN_LOCAL_ACCEPTANCE: "true" }
+        : {}),
       ...(socialUpgrade ? { DOCKED_PRIVATE_OFFERS_LOCAL: "true" } : {}),
       DOCKED_BETA_STAGING: "true",
       DOCKED_FRIENDS_BETA: "true",
       DOCKED_OWNER_GAMEPLAY: "true",
       BETA_ACCESS_ENABLED: "true",
-      APP_ENV: redemption ? "development" : "production",
+      APP_ENV:
+        redemption || process.argv.includes("--admin-local-acceptance")
+          ? "development"
+          : "production",
       ...(redemption
         ? {
             DOCKED_REDEMPTION_LOCAL: "true",
@@ -448,6 +493,12 @@ async function main() {
         if (n === 89) throw e;
       }
       await new Promise((r) => setTimeout(r, 1000));
+    }
+    if (process.argv.includes("--server-only")) {
+      console.log(
+        "Isolated local acceptance server ready; no browser or fixture transaction campaign requested.",
+      );
+      return;
     }
     stage = "http-journey";
     for (let i = 0; i < 5; i++) {
@@ -706,7 +757,7 @@ async function main() {
           checks.push(
             ...(await (
               await import("./social-avatar-acceptance")
-            ).verifySocialAvatars(contexts, browser, origin)),
+            ).verifySocialAvatars(contexts, browser, origin, evidenceDir)),
           );
         if (masterV2)
           checks.push(
@@ -758,7 +809,7 @@ async function main() {
         await page
           .getByRole("link", { name: "Following", exact: true })
           .click();
-        await expect(page).toHaveURL(/tab=following/);
+        await expect(page).toHaveURL(/tab=following/, { timeout: 30000 });
         await page
           .getByRole("link", { name: "My activity", exact: true })
           .click();
@@ -769,12 +820,31 @@ async function main() {
           page.getByText(browserMarker, { exact: true }),
         ).toBeVisible({ timeout: 30000 });
         await page.screenshot({
-          path: socialUpgrade
-            ? "docs/qa/social-upgrade/my-posts-mobile.png"
-            : "docs/qa/mobile-release/my-posts-mobile.png",
+          path: evidenceDir
+            ? `${evidenceDir}/my-posts-mobile.png`
+            : socialUpgrade
+              ? "docs/qa/social-upgrade/my-posts-mobile.png"
+              : "docs/qa/mobile-release/my-posts-mobile.png",
           fullPage: true,
         });
-        if (socialUpgrade)
+        if (socialUpgrade) {
+          // Avatar browser testing owns a copied cookie jar and can rotate its
+          // short-lived real GoTrue refresh token. Begin the separate visual
+          // campaign with a new real login rather than replay that old API jar.
+          await contexts[1].dispose();
+          contexts[1] = await request.newContext({
+            baseURL: origin,
+            extraHTTPHeaders: { Origin: origin },
+          });
+          const visualLogin = await contexts[1].post("/api/auth", {
+            data: {
+              action: "login",
+              email: qa.users[1].email,
+              password: qa.password,
+              app: true,
+            },
+          });
+          assert.equal(visualLogin.status(), 200, await visualLogin.text());
           checks.push(
             ...(await (
               await import("./social-upgrade-browser")
@@ -782,13 +852,16 @@ async function main() {
               browser,
               contexts,
               origin,
-              masterV2
-                ? "docs/qa/master-v2"
-                : socialVisual
-                  ? "docs/qa/social-visual-preview"
-                  : undefined,
+              evidenceDir ??
+                (masterV2
+                  ? "docs/qa/master-v2"
+                  : socialVisual
+                    ? "docs/qa/social-visual-preview"
+                    : undefined),
+              socialVisual,
             )),
           );
+        }
         await context.close();
       } finally {
         await browser.close();
@@ -1206,6 +1279,13 @@ async function main() {
     );
     console.log(JSON.stringify({ passed: true, checks }));
   } catch (e) {
+    // Preserve the primary failure even if a Windows artifact lock prevents
+    // writing the receipt. Never include fixture credentials or request data.
+    console.error({
+      stage,
+      error: (e as Error).message.split("\nCall log:")[0],
+      completedChecks: checks,
+    });
     await writeFile(
       receipt,
       JSON.stringify(
@@ -1223,6 +1303,14 @@ async function main() {
     throw e;
   } finally {
     await Promise.all(contexts.map((c) => c.dispose()));
+    if (
+      process.argv.includes("--keep-server") &&
+      child &&
+      child.exitCode === null
+    ) {
+      previewReady = true;
+      console.log("Isolated local QA server retained at " + origin);
+    }
     if (!previewReady) child?.kill();
     await sql.end();
   }

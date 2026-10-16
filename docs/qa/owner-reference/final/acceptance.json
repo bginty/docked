@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "out": "docs/qa/owner-reference/browser-1792156234598",
+  "out": "docs/qa/owner-reference/browser-1792188208808",
   "reference": {
     "path": ".codex-remote-attachments/01a0fc4b-1049-7211-91c9-af9141548b22/e978069f-8cb2-4a15-84d7-a5e70c4f6ced/1-1000050648.jpg",
     "width": 1280,
@@ -1762,8 +1762,14 @@
         }
       ],
       "runtimeErrors": []
+    },
+    {
+      "healthRetry": true,
+      "malformedSuccessRejected": true,
+      "requestIdentityPreserved": true
     }
   ],
   "restrictedEditorSidebar": true,
-  "noMutationRequests": true
+  "noMemberOrFinancialMutationRequests": true,
+  "syntheticHealthRequests": 3
 }

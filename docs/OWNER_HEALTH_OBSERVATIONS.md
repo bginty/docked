@@ -1,0 +1,13 @@
+# Owner health evidence
+
+The owner can run a bounded check of the configured public beta release API and sign-in page from Platform Health → Check evidence. The server chooses the targets; the browser cannot supply a URL, reported status or timestamp. The production target is restricted to `https://docked.com.au`. Local fixture testing may use loopback HTTP only.
+
+Each probe has a five-second deadline and a bounded response body. Redirects are rejected. The API check requires the configured Supabase project, valid commit identity, invited authentication and closed registration. The web check verifies the successful branded sign-in page response. Neither is an authenticated end-to-end gameplay or availability certificate.
+
+Results are recorded by the existing restricted runtime after current owner role, live session and AAL2 checks. The private table denies direct anonymous, member, service-role and application access. An owner-gated function records two observations under a unique request ID; retries cannot overwrite a prior result. Timestamps and five-minute expiry are assigned by PostgreSQL. No credentials, returned HTML, member data or response payload are retained. Owner attribution is private.
+
+The dashboard uses the latest observation per service and displays stale, missing or future-dated observations as unknown. Recorded failures remain failures while fresh. Diagnostics include status code, duration, check time, expiry and the explicitly narrow scope. The database indicator still refers to the current authorised reporting transaction. Android, email and full worker health remain unknown without their separate evidence; a successful web/API probe cannot turn those green or claim all systems operational.
+
+Migration: `20261016214620_owner_health_observations.sql`. This changes operational evidence storage only; it does not change wallets, cards, members or gameplay. Application rollback can leave the unused evidence table and functions intact. No monitoring subscription or automatic outbound message is created.
+
+Verification: isolated PostgreSQL-engine tests execute the actual migration and exercise owner/session/MFA checks, direct-table denial, invalid service rejection and retry idempotency. Core tests verify allowed origins and stale/future evidence. Actual rendered dashboard checks cover failed responses, malformed success responses and successful recording at five viewport sizes. Failed or uncertain responses retain the request ID. These fixture checks do not claim that the live button has been exercised in an authenticated owner session. Operational evidence retention must follow the existing policy; this migration adds no automatic purge job.

@@ -1,0 +1,88 @@
+{
+  "at": "2026-10-16T21:43:46.284Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "commit": "c72dd83f6606995649e60f783d34d19bdd66a3a3",
+  "mode": "apply",
+  "passed": true,
+  "ownerVerifiedMfa": true,
+  "admissionRestricted": true,
+  "migrations": [
+    {
+      "file": "20261016115553_owner_command_centre.sql",
+      "sha256": "403178707d43e0b810d72cd378fc24c28f7d751ffd518bb87fa07a83f7548fbd",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261016124504_owner_reference_reporting.sql",
+      "sha256": "d9b841ce6c0723c4b4dcc3a335362b92d220ac984cee6d70a276e242a1501e5e",
+      "alreadyApplied": false
+    },
+    {
+      "file": "20261016125231_admin_search_projection.sql",
+      "sha256": "b08e02868a4cb9df3ed03b3f17f0f22570f35902f5c34f84a6dcfea62ad6e638",
+      "alreadyApplied": false
+    }
+  ],
+  "permissions": [
+    {
+      "proname": "admin_search",
+      "anonymous": false,
+      "authenticated": false,
+      "service": false,
+      "app": true
+    },
+    {
+      "proname": "owner_command_centre",
+      "anonymous": false,
+      "authenticated": false,
+      "service": false,
+      "app": true
+    },
+    {
+      "proname": "owner_reference_reporting",
+      "anonymous": false,
+      "authenticated": false,
+      "service": false,
+      "app": true
+    }
+  ],
+  "assetFingerprints": {
+    "credits_sandbox.state": {
+      "count": 1,
+      "digest": "226e2d980c53e873c9077c2b18c33404"
+    },
+    "credits_sandbox.card_instances": {
+      "count": 288,
+      "digest": "6009db1d53a4d72b1252f8c6781d9fc1"
+    },
+    "beta_fantasy.cards": {
+      "count": 51,
+      "digest": "75c2fa2221e0cf1a00da47e17b2e88c7"
+    },
+    "beta_fantasy.entries": {
+      "count": 8,
+      "digest": "23ac5c03dbb0dda2471c087a8d997165"
+    },
+    "beta_fantasy.entry_revisions": {
+      "count": 45,
+      "digest": "eed9982d8fd6e4ce145fcb352715cc55"
+    },
+    "beta_fantasy.slot_locks": {
+      "count": 2,
+      "digest": "daa9c8b25c0c0cb6cf9956004b463dee"
+    },
+    "sports_feed.nfl_allocations": {
+      "count": 4,
+      "digest": "7d2fab9fc87675c7b1c8e0d2859347d1"
+    },
+    "sports_feed.weekly_core_packs": {
+      "count": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.weekly_core_schedules": {
+      "count": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  },
+  "memberAssetMutations": 0
+}

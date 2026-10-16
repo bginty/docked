@@ -2,6 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireRole } from "@/server/auth";
 import { adminSearch } from "@/server/admin-search";
+import { adminRecord } from "@/server/admin-record";
+import type { AdminRecord } from "@/core/admin-record";
+import { AdminRecordDetail } from "@/components/admin-record-detail";
+import { BetaCreditRequestPanel } from "@/components/beta-credit-request-panel";
 import {
   adminRoles,
   adminNavigation,
@@ -53,15 +57,28 @@ export default async function AdminWorkspacePage({
   const workspace =
     adminWorkspaces[section as Exclude<AdminSection, "dashboard">];
   const query = await searchParams;
-  const q =
-    typeof query.record === "string"
-      ? query.record
-      : typeof query.q === "string"
-        ? query.q
-        : "";
+  const selectedRecord = typeof query.record === "string" ? query.record : "";
+  const q = typeof query.q === "string" ? query.q : "";
   const page = typeof query.page === "string" ? query.page : "1";
   let search: AdminSearchResponse | null = null;
+  let record: AdminRecord | null = null;
+  let recordProblem = "";
   let problem = "";
+  if (workspace.category && selectedRecord) {
+    try {
+      record = await adminRecord({
+        record: selectedRecord,
+        category: workspace.category,
+        historyPage:
+          typeof query.historyPage === "string" ? query.historyPage : "1",
+      });
+      if (!record)
+        recordProblem = "Record not found. Search for another record below.";
+    } catch {
+      recordProblem =
+        "Record details are unavailable. Check your permissions and try again.";
+    }
+  }
   if (workspace.category && q.trim().length >= 2) {
     try {
       search = await adminSearch({ q, page, category: workspace.category });
@@ -70,7 +87,10 @@ export default async function AdminWorkspacePage({
         "Records are unavailable. Check your permissions and try again.";
     }
   }
-  const [displayName, unreadCount] = await Promise.all([adminDisplayName(who), adminUnreadNotifications()]);
+  const [displayName, unreadCount] = await Promise.all([
+    adminDisplayName(who),
+    adminUnreadNotifications(),
+  ]);
   return (
     <AdminShell
       role={who.role}
@@ -99,6 +119,11 @@ export default async function AdminWorkspacePage({
               </Link>
             ))}
         </nav>
+        {recordProblem && <p role="alert">{recordProblem}</p>}
+        {record && <AdminRecordDetail record={record} />}
+        {section === "rewards" && who.role === "owner" && (
+          <BetaCreditRequestPanel />
+        )}
         {workspace.category && (
           <section className="admin-workspace-panel">
             <h2>Find records</h2>
@@ -128,7 +153,9 @@ export default async function AdminWorkspacePage({
                 <ul className="admin-records">
                   {search.results.map((record) => (
                     <li key={`${record.category}:${record.id}`}>
-                      <strong>{record.title}</strong>
+                      <Link href={record.href}>
+                        <strong>{record.title}</strong>
+                      </Link>
                       <span>{record.detail}</span>
                       <small>Record: {record.id}</small>
                     </li>
@@ -156,9 +183,7 @@ export default async function AdminWorkspacePage({
             )}
           </section>
         )}
-        {section === "communications" && who.role !== "auditor" && (
-          <AdminAnnouncementDraft />
-        )}
+        {section === "communications" && <AdminAnnouncementDraft />}
         <section className="admin-workspace-panel">
           <h2>Access & activation</h2>
           {workspace.restrictions.map((restriction) => (
