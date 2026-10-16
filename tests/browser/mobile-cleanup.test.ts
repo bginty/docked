@@ -2,7 +2,7 @@ const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/mobile-cleanup";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
-const base = "http://127.0.0.1:3023";
+const base = process.env.DOCKED_LOCAL_VISUAL_ORIGIN ?? "http://127.0.0.1:3023";
 test("touch viewport, compact pack discovery and keyboard-safe reveal controls", async ({
   browser,
 }) => {
@@ -111,8 +111,9 @@ test("mobile/desktop hierarchy, card details, independent drafts, explicit socia
     .getByRole("textbox", { name: "Your post" })
     .fill("Local only unsent draft");
   expect(posts).toBe(0);
+  await page.getByRole("button", { name: "Preview post", exact: true }).click();
   await page.getByRole("button", { name: "Post", exact: true }).click();
-  await expect(page.getByRole("status")).toContainText("Local recovery test");
+  await expect(page.getByRole("dialog").getByRole("status")).toContainText("Local recovery test");
   await expect(page.getByRole("textbox", { name: "Your post" })).toHaveValue(
     "Local only unsent draft",
   );
@@ -231,7 +232,7 @@ test("compact lineup profile and explicit transfer retain independent drafts", a
   await page.setViewportSize({ width: 412, height: 815 });
   await page.goto(base + "/fantasy/play");
   const te = page.getByRole("button", { name: /TE1: Taylor West/ });
-  await expect(te).toContainText("Pittsburgh Steelers");
+  await expect(te).toContainText("Pittsburgh");
   await expect(te).toContainText("1.1×");
   await expect(te).not.toContainText("600,000");
   await expect(te.locator("svg text")).toHaveText("84"); // Explicit synthetic verified metadata.
@@ -241,7 +242,7 @@ test("compact lineup profile and explicit transfer retain independent drafts", a
     .screenshot({ path: `${evidence}/lineup-refined.png` });
   await te.click();
   const profile = page.getByRole("dialog");
-  await expect(profile).toContainText("Pittsburgh Steelers");
+  await expect(profile).toContainText("Pittsburgh");
   await expect(profile).toContainText("Fantasy salary");
   await expect(profile).toContainText("600,000");
   await expect(profile).toContainText("Awaiting verified scoring history");

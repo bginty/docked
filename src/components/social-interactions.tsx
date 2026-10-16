@@ -17,11 +17,12 @@ import { AvatarEditor } from "./avatar-editor";
 import { SocialPhoto } from "./social-photo";
 import { useClientReady } from "./use-client-ready";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { boundedFetch as communityRequest } from "@/core/bounded-request";
 export async function communityAction(
   body: Record<string, unknown>,
   endpoint = "/api/community",
 ) {
-  const response = await fetch(endpoint, {
+  const response = await communityRequest(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -95,7 +96,7 @@ function ProfileActionControls({ profile }: { profile: SocialProfile }) {
           {following ? "Unfollow" : "Follow"}
         </button>
         <details>
-          <summary aria-label="Member options">•••</summary>
+          <summary aria-label="Member options"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></summary>
           <div className="social-menu">
             <button
               disabled={!ready || busy}
@@ -377,11 +378,6 @@ export function SocialCard({
           {post.cardSnapshots.map((card) => (
             <div key={card.id}>
               <FantasyCardArtwork card={card} faceOnly />
-              <small>
-                {card.tier === "CORE"
-                  ? "Unlimited Core"
-                  : `#${card.serial} / ${card.max_supply.toLocaleString()}`}
-              </small>
             </div>
           ))}
           <span className="form-help">

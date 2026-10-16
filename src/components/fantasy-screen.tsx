@@ -945,11 +945,6 @@ export function FantasyScreen({
               {visibleCards.map((c) => (
                 <Card key={c.id} card={c} onInspect={() => setDetail(c.id)}>
                   <div className="collection-card-footer">
-                    <span>
-                      {c.tier === "CORE"
-                        ? "Unlimited"
-                        : `#${String(c.serial).padStart(3, "0")} / ${c.max_supply.toLocaleString("en-AU")}`}
-                    </span>
                     <button
                       onClick={() => setDetail(detail === c.id ? null : c.id)}
                       aria-expanded={detail === c.id}

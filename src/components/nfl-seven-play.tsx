@@ -1,6 +1,6 @@
 "use client";
+import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
-import { RarityBadge } from "./rarity-badge";
 
 import Link from "next/link";
 
@@ -32,7 +32,7 @@ import {
   PlayerShirt,
 } from "./fantasy-player-sheet";
 
-import { fullTeamName } from "@/core/card-presentation";
+import { displayCity } from "@/core/card-presentation";
 
 import { LocalDateTime } from "./local-date-time";
 
@@ -477,50 +477,34 @@ export function NflSevenPlay({
                     }}
                     aria-label={`${s.id}: ${card?.name ?? "Choose owned card"}${card ? ", " + card.tier + ", " + cardIdentity(card) : ""}${locked ? ", locked" : ""}`}
                   >
-                    {!list && <PlayerShirt card={card} />}
-                    <span className="slot-position">
-                      {s.id.replace(/[0-9]/g, "")}
-                    </span>
-                    <span className="lineup-name-team">
-                      <strong className="field-player-name">
-                        {card?.name ?? "Choose player"}
-                      </strong>
-                      {card && (
-                        <span className="lineup-team">
-                          {fullTeamName(card)}
-                        </span>
-                      )}
-                    </span>
-                    {card && (
-                      <RarityBadge
-                        tier={card.tier}
-                        compact
+                    {card ? (
+                      <CollectibleFace
+                        card={card}
                         appliedMultiplier={
                           card.multiplier ??
                           rarityRule(card.tier).multiplierTenths / 10
                         }
                       />
+                    ) : (
+                      <>
+                        <PlayerShirt />
+                        <span className="slot-position">
+                          {s.id.replace(/[0-9]/g, "")}
+                        </span>
+                        <strong>Choose player</strong>
+                      </>
                     )}
-                    {card && mode === "SALARY_CAP" && (
-                      <span
-                        className="lineup-salary"
-                        aria-label="Fantasy salary"
-                      >
-                        <FantasyAmount value={salary(card.tier, cfg)} />
-                      </span>
-                    )}
-                    {card && (
-                      <span
-                        className="lineup-applied"
-                        title="Applied competition multiplier"
-                      >
-                        {(
-                          card.multiplier ??
-                          rarityRule(card.tier).multiplierTenths / 10
-                        ).toFixed(1)}
-                        ×
-                      </span>
-                    )}
+                    <span className="collectible-context">
+                      <span>{s.id}</span>
+                      {card && mode === "SALARY_CAP" && (
+                        <span
+                          className="lineup-salary"
+                          aria-label="Fantasy salary"
+                        >
+                          <FantasyAmount value={salary(card.tier, cfg)} />
+                        </span>
+                      )}
+                    </span>
                     {locked && <small className="entry-badge">Locked</small>}
                     {!!issue && (
                       <small className="entry-badge">Needs attention</small>
@@ -972,7 +956,7 @@ export function NflSevenPlay({
 
                 {[...new Set(inventory.map((c) => c.team))].sort().map((t) => (
                   <option key={t} value={t}>
-                    {fullTeamName({ sport: "nfl", team: t })}
+                    {displayCity({ sport: "nfl", team: t })}
                   </option>
                 ))}
               </select>
@@ -1050,18 +1034,15 @@ export function NflSevenPlay({
                     setProfile({ card: c.id, slot, candidate: true })
                   }
                 >
-                  <PlayerShirt card={c} />
-                  <span>
-                    <strong>{c.name}</strong>
-                    <span className="block-note">{fullTeamName(c)}</span>
-                    <span className="candidate-meta">
-                      {c.position} <RarityBadge tier={c.tier} compact />
-                    </span>
-                    <small className="block-note">
-                      {c.tier === "CORE"
-                        ? "Core · " + c.id.slice(-8)
-                        : "#" + c.serial + " / " + c.max_supply}
-                    </small>
+                  <span className="candidate-collectible">
+                    <CollectibleFace
+                      card={c}
+                      appliedMultiplier={
+                        c.multiplier ?? rarityRule(c.tier).multiplierTenths / 10
+                      }
+                    />
+                  </span>
+                  <span className="candidate-context">
                     {mode === "SALARY_CAP" && (
                       <small className="block-note">
                         Fantasy salary{" "}

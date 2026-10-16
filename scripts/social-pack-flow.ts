@@ -11,7 +11,7 @@ export async function verifyPackFlow(
   read: () => CreditsState,
   drop: () => void,
 ) {
-  const root = "docs/qa/social-upgrade";
+  const root = process.argv.includes("--master-v2") ? "docs/qa/master-v2" : "docs/qa/social-upgrade";
   await mkdir(root, { recursive: true });
   const context = await browser.newContext({
     viewport: { width: 412, height: 815 },

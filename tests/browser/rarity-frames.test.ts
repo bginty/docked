@@ -2,7 +2,7 @@ const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/rarity-frames";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
-const base = "http://127.0.0.1:3023";
+const base = process.env.DOCKED_LOCAL_VISUAL_ORIGIN ?? "http://127.0.0.1:3023";
 test("outer reveal frames, single forward turn and Icon celebration preserve the receipt", async ({
   browser,
 }) => {
@@ -163,7 +163,7 @@ test("six rarity frames preserve jersey, identity, focus and legacy context acro
     await expect(
       cards
         .first()
-        .getByRole("heading", { name: "Alex Northbridge-Wellington" }),
+        .getByText("Alex Northbridge-Wellington", { exact: true }),
     ).toBeVisible();
     expect(
       await page.evaluate(

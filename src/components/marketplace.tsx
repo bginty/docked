@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { MarketplaceView } from "@/core/marketplace";
 import { boundedFetch } from "@/core/bounded-request";
+import { useClientReady } from "./use-client-ready";
 import { rarities } from "@/core/card-rarity";
 import { cardIdentity, multiplierLabel } from "@/core/card-display";
 import { sellerQuote } from "@/core/credits-policy";
@@ -34,12 +35,14 @@ const tabs = [
   ["swaps", "Swaps"],
 ] as const;
 export function Marketplace({ member }: { member: string }) {
+  const ready = useClientReady();
   const [params, setParams] = useState<URLSearchParams>(
     () =>
       new URLSearchParams(
         typeof window === "undefined" ? "" : window.location.search,
       ),
   );
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [data, setData] = useState<MarketplaceView | null>(null),
     [error, setError] = useState(""),
     [loading, setLoading] = useState(true),
@@ -248,7 +251,7 @@ export function Marketplace({ member }: { member: string }) {
     closeCancel = useCallback(() => setCancel(null), []);
   const credits = (n: number) => n.toLocaleString("en-AU");
   return (
-    <main className="test-wallet marketplace">
+    <main className="test-wallet marketplace" data-market-ready={ready} inert={!ready}>
       <header>
         <p className="eyebrow">DOCKED · NFL</p>
         <h1>Market</h1>
@@ -266,7 +269,12 @@ export function Marketplace({ member }: { member: string }) {
         )}
       </header>
       <nav className="market-tabs" aria-label="Marketplace sections">
-        <Link className="button ghost" href="/fantasy/test-wallet?view=packs#packs">Packs</Link>
+        <Link
+          className="button ghost"
+          href="/fantasy/test-wallet?view=packs#packs"
+        >
+          Packs
+        </Link>
         {tabs.map(([v, label]) => (
           <button
             key={v}
@@ -355,143 +363,208 @@ export function Marketplace({ member }: { member: string }) {
         </section>
       )}
       {tab !== "swaps" && tab !== "activity" && (
-        <details className="market-filter-panel">
-          <summary>Search & filters</summary>
+        <section
+          className="market-filter-panel"
+          aria-label="Search and filters"
+        >
           <form
+            className="market-quick-search"
             key={query}
-            ref={inputForm}
-            className="market-filters"
             onSubmit={(e) => {
               e.preventDefault();
-              const f = new FormData(e.currentTarget);
-              navigate(
-                Object.fromEntries([...f].map(([k, v]) => [k, String(v)])),
-              );
+              navigate({
+                q: String(new FormData(e.currentTarget).get("q") ?? ""),
+              });
             }}
           >
             <label>
-              Player search
+              <span className="sr-only">Search players</span>
               <input
                 name="q"
+                type="search"
+                placeholder="Search players…"
                 defaultValue={params.get("q") ?? ""}
                 maxLength={100}
               />
             </label>
+            <button type="submit">Search</button>
+            <button type="button" onClick={() => setFiltersOpen(true)}>
+              Filters
+            </button>
             <label>
-              Team
-              <select name="team" defaultValue={params.get("team") ?? ""}>
-                <option value="">All teams</option>
-                {data?.teams.map((t) => (
-                  <option key={t}>{t}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Position
+              <span className="sr-only">Sort listings</span>
               <select
-                name="position"
-                defaultValue={params.get("position") ?? ""}
+                value={params.get("sort") ?? "newest"}
+                onChange={(e) => navigate({ sort: e.target.value })}
               >
-                <option value="">All positions</option>
-                {(data?.positions ?? ["QB", "RB", "WR", "TE", "K"]).map((t) => (
-                  <option key={t}>{t}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Rarity
-              <select name="rarity" defaultValue={params.get("rarity") ?? ""}>
-                <option value="">All rarities</option>
-                {rarities.map((t) => (
-                  <option key={t}>{t}</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Minimum credits
-              <input
-                name="min"
-                type="number"
-                min="0"
-                max="1000000000"
-                defaultValue={params.get("min") ?? "0"}
-              />
-            </label>
-            <label>
-              Maximum credits
-              <input
-                name="max"
-                type="number"
-                min="0"
-                max="1000000000"
-                defaultValue={params.get("max") ?? "1000000000"}
-              />
-            </label>
-            <label>
-              Sort
-              <select name="sort" defaultValue={params.get("sort") ?? "newest"}>
                 <option value="newest">Newest</option>
                 <option value="price-asc">Price: low to high</option>
                 <option value="price-desc">Price: high to low</option>
                 <option value="rarity">Rarity</option>
               </select>
             </label>
-            <label>
-              Own listings
-              <select name="own" defaultValue={params.get("own") ?? "include"}>
-                <option value="include">Include</option>
-                <option value="exclude">Exclude</option>
-                <option value="only">Only mine</option>
-              </select>
-            </label>
-            <label>
-              Gameplay
-              <select
-                name="playable"
-                defaultValue={params.get("playable") ?? ""}
-              >
-                <option value="">All collectibles</option>
-                <option value="yes">Seven-player positions</option>
-              </select>
-            </label>
-            <label>
-              Eligible for competition
-              <select name="round" defaultValue={params.get("round") ?? ""}>
-                <option value="">Any / not selected</option>
-                {data?.rounds.map((r) => (
-                  <option key={r.id} value={r.id}>
-                    {r.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Roster
-              <select
-                name="available"
-                defaultValue={params.get("available") ?? ""}
-              >
-                <option value="">All / unknown included</option>
-                <option value="yes">Verified fresh active roster</option>
-              </select>
-            </label>
-            <div>
-              <button>Apply filters</button>{" "}
-              <button
-                type="button"
-                onClick={() => {
-                  if (inFlight.current) return;
-                  inputForm.current?.reset();
-                  const p = new URLSearchParams({ tab });
-                  window.history.pushState({}, "", `?${p}`);
-                  setParams(p);
+          </form>
+          {[...params].some(([key, value]) => value && !["tab", "sort", "cursor", "sell"].includes(key)) && <div className="market-filter-chips" aria-label="Active filters">
+            {[...params].filter(([key,value]) => value && !["tab","sort","cursor","sell"].includes(key)).map(([key,value]) => <button type="button" key={key} onClick={() => navigate({[key]:""})} aria-label={`Remove ${key} filter`}><span>{({q:"Player",min:"Min",max:"Max",team:"Team",position:"Position",rarity:"Rarity",round:"Competition",playable:"Gameplay",available:"Roster",own:"Listings"} as Record<string,string>)[key] ?? "Filter"}: {key === "round" ? data?.rounds.find(r=>r.id===value)?.name ?? "Selected" : value}</span> ×</button>)}
+            <button type="button" onClick={() => navigate(Object.fromEntries([...params].filter(([k])=>!["tab","sort"].includes(k)).map(([k])=>[k,""])))}>Clear all</button>
+          </div>}
+          {filtersOpen && (
+            <FantasySheet
+              title="Market filters"
+              onClose={() => setFiltersOpen(false)}
+            >
+              <form
+                key={query}
+                ref={inputForm}
+                className="market-filters"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const f = new FormData(e.currentTarget);
+                  setFiltersOpen(false);
+                  navigate(
+                    Object.fromEntries([...f].map(([k, v]) => [k, String(v)])),
+                  );
                 }}
               >
-                Clear filters
-              </button>
-            </div>
-          </form>
-        </details>
+                <label>
+                  Player search
+                  <input
+                    name="q"
+                    defaultValue={params.get("q") ?? ""}
+                    maxLength={100}
+                  />
+                </label>
+                <label>
+                  Team
+                  <select name="team" defaultValue={params.get("team") ?? ""}>
+                    <option value="">All teams</option>
+                    {data?.teams.map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Position
+                  <select
+                    name="position"
+                    defaultValue={params.get("position") ?? ""}
+                  >
+                    <option value="">All positions</option>
+                    {(data?.positions ?? ["QB", "RB", "WR", "TE", "K"]).map(
+                      (t) => (
+                        <option key={t}>{t}</option>
+                      ),
+                    )}
+                  </select>
+                </label>
+                <label>
+                  Rarity
+                  <select
+                    name="rarity"
+                    defaultValue={params.get("rarity") ?? ""}
+                  >
+                    <option value="">All rarities</option>
+                    {rarities.map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Minimum credits
+                  <input
+                    name="min"
+                    type="number"
+                    min="0"
+                    max="1000000000"
+                    placeholder="No minimum"
+                    defaultValue={params.get("min") ?? ""}
+                  />
+                </label>
+                <label>
+                  Maximum credits
+                  <input
+                    name="max"
+                    type="number"
+                    min="0"
+                    max="1000000000"
+                    placeholder="No maximum"
+                    defaultValue={params.get("max") ?? ""}
+                  />
+                </label>
+                <label>
+                  Sort
+                  <select
+                    name="sort"
+                    defaultValue={params.get("sort") ?? "newest"}
+                  >
+                    <option value="newest">Newest</option>
+                    <option value="price-asc">Price: low to high</option>
+                    <option value="price-desc">Price: high to low</option>
+                    <option value="rarity">Rarity</option>
+                  </select>
+                </label>
+                <label>
+                  Own listings
+                  <select
+                    name="own"
+                    defaultValue={params.get("own") ?? "include"}
+                  >
+                    <option value="include">Include</option>
+                    <option value="exclude">Exclude</option>
+                    <option value="only">Only mine</option>
+                  </select>
+                </label>
+                <label>
+                  Gameplay
+                  <select
+                    name="playable"
+                    defaultValue={params.get("playable") ?? ""}
+                  >
+                    <option value="">All collectibles</option>
+                    <option value="yes">Seven-player positions</option>
+                  </select>
+                </label>
+                <label>
+                  Eligible for competition
+                  <select name="round" defaultValue={params.get("round") ?? ""}>
+                    <option value="">Any / not selected</option>
+                    {data?.rounds.map((r) => (
+                      <option key={r.id} value={r.id}>
+                        {r.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Roster
+                  <select
+                    name="available"
+                    defaultValue={params.get("available") ?? ""}
+                  >
+                    <option value="">All / unknown included</option>
+                    <option value="yes">Verified fresh active roster</option>
+                  </select>
+                </label>
+                <div>
+                  <button>Apply filters</button>{" "}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (inFlight.current) return;
+                      inputForm.current?.reset();
+                      setFiltersOpen(false);
+                      const p = new URLSearchParams({ tab });
+                      window.history.pushState({}, "", `?${p}`);
+                      setParams(p);
+                    }}
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              </form>
+            </FantasySheet>
+          )}
+        </section>
       )}
       {loading && <p role="status">Loading market…</p>}
       {data && tab === "listings" && (
@@ -556,6 +629,7 @@ export function Marketplace({ member }: { member: string }) {
               onSubmit={(e) => {
                 e.preventDefault();
                 const f = new FormData(e.currentTarget);
+                setFiltersOpen(false);
                 setListing({
                   card: String(f.get("card")),
                   price: Number(f.get("price")),
@@ -660,38 +734,36 @@ export function Marketplace({ member }: { member: string }) {
                     setReview(null);
                   }}
                 />
-                <small className="listing-identity">
-                  {l.card.tier === "CORE"
-                    ? "Core · unlimited"
-                    : `#${l.card.serial} / ${l.card.max_supply.toLocaleString()}`}
-                </small>
-                <strong>{credits(l.price)} Docked Credits</strong>
-                <small>{l.status}</small>
-                {["K", "DEF", "DST"].includes(l.card.position) && (
-                  <p>Collectible only · no seven-player slot</p>
-                )}
-                {l.receipt && (
-                  <details>
-                    <summary>Transaction details</summary>
-                    <p>
-                      {l.direction} · {new Date(l.receipt.at).toLocaleString()}{" "}
-                      · commission {credits(l.receipt.fee)} · seller receives{" "}
-                      {credits(l.receipt.net)} · receipt {l.receipt.reference}
-                    </p>
-                  </details>
-                )}
-                <button
-                  onClick={() => {
-                    setDetail(l);
-                    setReview(null);
-                  }}
-                >
-                  {l.status === "OPEN"
-                    ? l.own
-                      ? "Manage listing"
-                      : "View card & buy"
-                    : "View card"}
-                </button>
+                <div className="market-listing-footer">
+                  <strong>{credits(l.price)} Docked Credits</strong>
+                  <small>{l.status}</small>
+                  {["K", "DEF", "DST"].includes(l.card.position) && (
+                    <p>Collectible only · no seven-player slot</p>
+                  )}
+                  {l.receipt && (
+                    <details>
+                      <summary>Transaction details</summary>
+                      <p>
+                        {l.direction} ·{" "}
+                        {new Date(l.receipt.at).toLocaleString()} · commission{" "}
+                        {credits(l.receipt.fee)} · seller receives{" "}
+                        {credits(l.receipt.net)} · receipt {l.receipt.reference}
+                      </p>
+                    </details>
+                  )}
+                  <button
+                    onClick={() => {
+                      setDetail(l);
+                      setReview(null);
+                    }}
+                  >
+                    {l.status === "OPEN"
+                      ? l.own
+                        ? "Manage listing"
+                        : "View card & buy"
+                      : "View card"}
+                  </button>
+                </div>
               </article>
             ))}
           </div>

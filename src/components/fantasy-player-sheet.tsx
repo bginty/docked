@@ -1,11 +1,11 @@
 "use client";
-import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
-import { RarityBadge } from "./rarity-badge";
+import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { PlayerJersey } from "./player-jersey";
+import { registerModal, topModal } from "@/core/modal-lifecycle";
 
 import { useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
-import { fullTeamName, type JerseyMetadata } from "@/core/card-presentation";
+import { type JerseyMetadata } from "@/core/card-presentation";
 import {
   availability,
   cardIdentity,
@@ -34,9 +34,12 @@ export function FantasySheet({
   useEffect(() => {
     const node = dialog.current,
       active = document.activeElement as HTMLElement | null;
-    node?.showModal();
+    if (!node) return;
+    node.showModal();
+    const release = registerModal(node, () => close.current());
+    node.addEventListener("close", release);
     const containFocus = (event: KeyboardEvent) => {
-      if (event.key !== "Tab" || !node) return;
+      if (event.key !== "Tab" || topModal() !== node) return;
       const targets = [
         ...node.querySelectorAll<HTMLElement>(
           'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), summary, [tabindex="0"]',
@@ -66,16 +69,13 @@ export function FantasySheet({
       }
     };
     node?.addEventListener("keydown", containFocus);
-    const old = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const back = () => close.current();
-    window.addEventListener("popstate", back);
     return () => {
       node?.removeEventListener("keydown", containFocus);
+      node.removeEventListener("close", release);
       node?.close();
-      document.body.style.overflow = old;
-      window.removeEventListener("popstate", back);
-      active?.focus();
+      release();
+      if (active?.isConnected && (!topModal() || topModal()?.contains(active)))
+        active.focus({ preventScroll: true });
     };
   }, []);
   return (
@@ -188,19 +188,12 @@ export function FantasyPlayerDetails({
         onClose={onClose}
         className="lineup-profile"
       >
-        <div
-          className={`lineup-profile-hero ${rarityFrame(card.tier)}`}
-          style={rarityStyle(card.tier)}
-        >
-          <PlayerShirt card={card} />
-          <div>
-            <h3>{fullTeamName(card)}</h3>
-            <p>{card.position}</p>
-            <RarityBadge
-              tier={card.tier}
-              appliedMultiplier={lineup.multiplier}
-            />
-          </div>
+        <div className="card-detail-art">
+          <FantasyCardArtwork
+            card={card}
+            faceOnly
+            appliedMultiplier={lineup.multiplier}
+          />
         </div>
         <div className="profile-facts">
           <div>
@@ -326,40 +319,34 @@ export function FantasyPlayerDetails({
   }
   return (
     <FantasySheet title={card.name} onClose={onClose}>
-      <div
-        className={`player-sheet-identity ${rarityFrame(card.tier)}`}
-        style={rarityStyle(card.tier)}
-      >
-        <PlayerShirt card={card} />
-        <div>
-          <p className="eyebrow">
-            {card.sport} · {card.position}
-          </p>
-          <h3>{card.team}</h3>
-          <RarityBadge
-            tier={card.tier}
-            appliedMultiplier={
-              roundId
-                ? (selected?.multiplier ??
-                  (state.competitions.find((c) => c.id === roundId)?.rules
-                    .inventory_scope === "invited-nfl-test-v2"
-                    ? rarityRule(card.tier).multiplierTenths / 10
-                    : rarityRule("CORE").multiplierTenths / 10))
-                : undefined
-            }
-          />
-          {card.edition_team && card.edition_team !== card.team && (
-            <p>
-              Edition team: {card.edition_team}. Current roster team shown
-              above.
-            </p>
-          )}
-          <p>
-            {card.status} ·{" "}
-            {owned ? "In your collection" : "Historical lineup card"}
-          </p>
-        </div>
+      <div className="card-detail-art">
+        <FantasyCardArtwork
+          card={card}
+          faceOnly
+          appliedMultiplier={
+            roundId
+              ? (selected?.multiplier ??
+                (state.competitions.find((c) => c.id === roundId)?.rules
+                  .inventory_scope === "invited-nfl-test-v2"
+                  ? rarityRule(card.tier).multiplierTenths / 10
+                  : 1))
+              : undefined
+          }
+        />
       </div>
+      <p>
+        {owned ? "In your collection" : "Historical lineup card"} ·{" "}
+        {card.status}
+      </p>
+      {card.edition_team && card.edition_team !== card.team && (
+        <details>
+          <summary>Edition affiliation</summary>
+          <p>
+            Edition team: {card.edition_team}. Current roster metadata is shown
+            on the card.
+          </p>
+        </details>
+      )}
       <div className="player-detail-metrics">
         <p>
           {rarityRule(card.tier).label} ·{" "}

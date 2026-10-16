@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-const origin = "http://127.0.0.1:3023";
+const origin = process.env.DOCKED_LOCAL_VISUAL_ORIGIN ?? "http://127.0.0.1:3023";
 test("premium cards use verified fixture numbers and preserve mobile field interaction", async ({
   page,
 }) => {
@@ -21,7 +21,7 @@ test("premium cards use verified fixture numbers and preserve mobile field inter
       page.locator(".seven-slot:first-child .jersey-number"),
     ).toHaveText("8");
     await expect(
-      page.locator(".seven-slot:first-child .lineup-applied"),
+      page.locator(".seven-slot:first-child .rarity-badge-value"),
     ).toHaveText("1.0×");
     const background = await page
       .locator(".seven-field")
@@ -37,7 +37,7 @@ test("premium cards use verified fixture numbers and preserve mobile field inter
     await page.keyboard.press("Escape");
     await expect(page.getByRole("dialog")).toHaveCount(0);
     await page.screenshot({
-      path: `docs/qa/premium-completion/play-entered-${width}x${height}.png`,
+      path: `${process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/premium-completion"}/play-entered-${width}x${height}.png`,
       fullPage: true,
     });
   }

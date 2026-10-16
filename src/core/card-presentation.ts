@@ -106,3 +106,65 @@ export function fullTeamName(card: Pick<JerseyMetadata, "sport" | "team">) {
     nflTeamNames[card.team?.trim().toUpperCase() ?? ""] ?? "Team unavailable"
   );
 }
+
+/** Presentation only. Use the team on the card/snapshot, never a new roster lookup.
+ * Regional franchise names without explicit city metadata deliberately stay neutral.
+ * Historical codes remain distinct; no relocation or affiliation is inferred.
+ */
+const nflCities: Readonly<Record<string, string>> = {
+  ATL: "Atlanta",
+  BAL: "Baltimore",
+  BUF: "Buffalo",
+  CHI: "Chicago",
+  CIN: "Cincinnati",
+  CLE: "Cleveland",
+  DAL: "Dallas",
+  DEN: "Denver",
+  DET: "Detroit",
+  GB: "Green Bay",
+  HOU: "Houston",
+  IND: "Indianapolis",
+  JAX: "Jacksonville",
+  KC: "Kansas City",
+  LV: "Las Vegas",
+  LAC: "Los Angeles",
+  LA: "Los Angeles",
+  LAR: "Los Angeles",
+  MIA: "Miami",
+  NO: "New Orleans",
+  NYG: "New York",
+  NYJ: "New York",
+  PHI: "Philadelphia",
+  PIT: "Pittsburgh",
+  SEA: "Seattle",
+  SF: "San Francisco",
+  TB: "Tampa Bay",
+  WAS: "Washington",
+  OAK: "Oakland",
+  SD: "San Diego",
+  STL: "St. Louis",
+};
+export function displayCity(card: Pick<JerseyMetadata, "sport" | "team">) {
+  const team = card.team?.trim() ?? "";
+  if (card.sport === "nfl") {
+    const code = nflTeamNames[team.toUpperCase()]
+      ? team.toUpperCase()
+      : (Object.keys(nflTeamNames).find(
+          (key) => nflTeamNames[key].toLowerCase() === team.toLowerCase(),
+        ) ?? team.toUpperCase());
+    return nflCities[code] ?? "Location unavailable";
+  }
+  // Existing non-NFL team strings do not constitute verified city metadata.
+  return "Location unavailable";
+}
+
+export function collectibleSerial(card: {
+  tier: string;
+  serial?: number;
+  max_supply?: number;
+}) {
+  if (card.tier === "CORE") return "Unlimited Core";
+  return Number.isInteger(card.serial) && Number.isInteger(card.max_supply)
+    ? `#${String(card.serial).padStart(3, "0")} / ${card.max_supply!.toLocaleString("en-AU")}`
+    : "Edition details unavailable";
+}

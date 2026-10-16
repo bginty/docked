@@ -1,5 +1,5 @@
 "use client";
-import { jerseyPresentation, fullTeamName } from "@/core/card-presentation";
+import { jerseyPresentation } from "@/core/card-presentation";
 import type { CSSProperties } from "react";
 import type { AwardedCard } from "@/core/pack-opening";
 import {
@@ -8,8 +8,7 @@ import {
   multiplierLabel,
 } from "@/core/card-display";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
-import { RarityBadge } from "./rarity-badge";
-import { PlayerJersey } from "./player-jersey";
+import { CollectibleFace } from "./collectible-face";
 export function FantasyCardArtwork({
   card,
   children,
@@ -28,7 +27,7 @@ export function FantasyCardArtwork({
   const jersey = jerseyPresentation(card);
   return (
     <article
-      className={`fantasy-card compact-card tier-${card.tier.toLowerCase()} ${rarityFrame(card.tier)}`}
+      className={`fantasy-card compact-card docked-collectible tier-${card.tier.toLowerCase()} ${rarityFrame(card.tier)}`}
       style={
         {
           ...rarityStyle(card.tier),
@@ -50,15 +49,7 @@ export function FantasyCardArtwork({
         }}
         aria-label={onInspect ? `View ${card.name} card details` : undefined}
       >
-        <div className="card-top">
-          <span>{card.position}</span>
-          <RarityBadge tier={card.tier} appliedMultiplier={appliedMultiplier} />
-        </div>
-        <div className="card-shirt" aria-hidden="true">
-          <PlayerJersey card={card} />
-        </div>
-        <h3>{card.name}</h3>
-        <p className="card-team">{fullTeamName(card)}</p>
+        <CollectibleFace card={card} appliedMultiplier={appliedMultiplier} />
         {scoringLabel && (
           <span className="card-scoring-context">{scoringLabel}</span>
         )}

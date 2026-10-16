@@ -8,6 +8,8 @@ import { NativeImagePicker } from "./native-image-picker";
 import { useClientReady } from "./use-client-ready";
 import { useSocialHub } from "./social-hub";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { FantasySheet } from "./fantasy-player-sheet";
+import { boundedFetch as communityRequest } from "@/core/bounded-request";
 export function SocialComposer({
   initialSport,
   inline = false,
@@ -16,6 +18,9 @@ export function SocialComposer({
   memberProfile,
   communityId,
   playerId,
+  initialCardIds = [],
+  onPublished,
+  onCancel,
 }: {
   previewFixtures?: boolean;
   initialSport?: string;
@@ -25,9 +30,18 @@ export function SocialComposer({
   memberProfile?: SocialProfile | null;
   communityId?: string;
   playerId?: string;
+  initialCardIds?: string[];
+  onPublished?: () => void;
+  onCancel?: () => void;
 }) {
-  const { data: hub, error: hubError } = useSocialHub();
-  const [cardIds, setCards] = useState<string[]>([]);
+  const { data: hub, error: hubError, reload: reloadCards } = useSocialHub();
+  const [cardIds, setCards] = useState<string[]>(() =>
+    initialCardIds.slice(0, 4),
+  );
+  const [picker, setPicker] = useState(false);
+  const [search, setSearch] = useState("");
+  const [preview, setPreview] = useState(false);
+  const postForm = useRef<HTMLFormElement>(null);
   const [body, setBody] = useState(initialBody),
     [mediaIds, setMedia] = useState<string[]>([]),
     [busy, setBusy] = useState(false),
@@ -44,7 +58,10 @@ export function SocialComposer({
     sending.current = true;
     setBusy(true);
     try {
-      const r = await fetch("/api/community", { method: "POST", body: data });
+      const r = await communityRequest("/api/community", {
+        method: "POST",
+        body: data,
+      });
       const v = await r.json();
       if (!r.ok) throw new Error(v.error ?? "Upload not accepted.");
       const id = v.media?.id ?? v.id;
@@ -82,6 +99,9 @@ export function SocialComposer({
       setCards([]);
       setKey(crypto.randomUUID());
       setMessage("Social post published.");
+      setPreview(false);
+      setPicker(false);
+      onPublished?.();
       if (inline)
         router.push(
           `/fantasy/social?tab=latest${communityId ? `&community=${communityId}` : ""}${playerId ? `&player=${encodeURIComponent(playerId)}` : ""}`,
@@ -116,7 +136,7 @@ export function SocialComposer({
         ) : (
           <h2>Create post</h2>
         )}
-        <form className="app-form" method="post" onSubmit={post}>
+        <form ref={postForm} className="app-form" method="post" onSubmit={post}>
           <label>
             Your post
             <textarea
@@ -168,41 +188,96 @@ export function SocialComposer({
               visible until approved.
             </p>
           )}
-          <details className="composer-card-picker">
-            <summary>
-              Attach your cards {cardIds.length ? `(${cardIds.length}/4)` : ""}
-            </summary>
-            {hubError && <p>{hubError}</p>}
-            {!hub && !hubError && <p>Loading your opened cards…</p>}
-            {hub?.cards.length === 0 && <p>No opened cards available.</p>}
-            <div className="social-attachment-grid">
-              {hub?.cards.map(({ card }) => (
-                <label key={card.id}>
-                  <input
-                    type="checkbox"
-                    checked={cardIds.includes(card.id)}
-                    disabled={!cardIds.includes(card.id) && cardIds.length >= 4}
-                    onChange={(e) =>
-                      setCards(
-                        e.target.checked
-                          ? [...cardIds, card.id]
-                          : cardIds.filter((id) => id !== card.id),
-                      )
-                    }
-                  />
-                  <FantasyCardArtwork card={card} faceOnly />
-                  <small>
-                    {card.tier === "CORE"
-                      ? "Unlimited Core"
-                      : `#${card.serial} / ${card.max_supply.toLocaleString()}`}
-                  </small>
-                </label>
-              ))}
+          <button
+            type="button"
+            className="composer-card-picker"
+            onClick={() => setPicker(true)}
+          >
+            Attach your cards {cardIds.length ? `(${cardIds.length}/4)` : ""}
+          </button>
+          {cardIds.length > 0 && (
+            <div
+              className="social-attachment-preview"
+              aria-label="Selected cards"
+            >
+              {hub?.cards
+                .filter(({ card }) => cardIds.includes(card.id))
+                .map(({ card }) => (
+                  <FantasyCardArtwork key={card.id} card={card} faceOnly />
+                ))}
             </div>
-          </details>
+          )}
+          {picker && (
+            <FantasySheet
+              title="Attach your cards"
+              onClose={() => setPicker(false)}
+              className="attachment-sheet"
+            >
+              <label>
+                Search owned players
+                <input
+                  type="search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </label>
+              {hubError && (
+                <p role="alert">
+                  {hubError}{" "}
+                  <button type="button" onClick={reloadCards}>
+                    Retry cards
+                  </button>
+                </p>
+              )}
+              {!hub && !hubError && <p>Loading your opened cards…</p>}
+              {hub?.cards.length === 0 && <p>No opened cards available.</p>}
+              <div className="social-attachment-grid">
+                {hub?.cards
+                  .filter(({ card }) =>
+                    card.name
+                      .toLowerCase()
+                      .includes(search.trim().toLowerCase()),
+                  )
+                  .map(({ card }) => (
+                    <label key={card.id}>
+                      <input
+                        type="checkbox"
+                        checked={cardIds.includes(card.id)}
+                        disabled={
+                          !cardIds.includes(card.id) && cardIds.length >= 4
+                        }
+                        onChange={(e) =>
+                          setCards(
+                            e.target.checked
+                              ? [...cardIds, card.id]
+                              : cardIds.filter((id) => id !== card.id),
+                          )
+                        }
+                      />
+                      <FantasyCardArtwork card={card} faceOnly />
+                    </label>
+                  ))}
+              </div>
+              <button
+                type="button"
+                className="button"
+                onClick={() => setPicker(false)}
+              >
+                Done · {cardIds.length} selected
+              </button>
+            </FantasySheet>
+          )}
           <div className="composer-submit actions">
-            <button className="button" disabled={busy || !body.trim()}>
-              Post
+            <button
+              type="button"
+              className="button"
+              disabled={busy || !body.trim()}
+              onClick={() => {
+                setMessage("");
+                setPreview(true);
+              }}
+            >
+              Preview post
             </button>
             {(body || cardIds.length > 0 || mediaIds.length > 0) && (
               <button
@@ -215,6 +290,9 @@ export function SocialComposer({
                   setCards([]);
                   setKey(crypto.randomUUID());
                   setMessage("Draft cleared.");
+                  setPicker(false);
+                  setPreview(false);
+                  onCancel?.();
                 }}
               >
                 Cancel
@@ -255,6 +333,43 @@ export function SocialComposer({
           {message}
         </p>
       </fieldset>
+      {preview && (
+        <FantasySheet
+          title="Preview post"
+          onClose={() => setPreview(false)}
+          className="post-preview-sheet"
+        >
+          <p className="social-body">{body}</p>
+          <div className="social-attachment-preview">
+            {hub?.cards
+              .filter(({ card }) => cardIds.includes(card.id))
+              .map(({ card }) => (
+                <FantasyCardArtwork key={card.id} card={card} faceOnly />
+              ))}
+          </div>
+          {!!mediaIds.length && (
+            <p>{mediaIds.length} image(s) awaiting moderation.</p>
+          )}
+          <p role="status">{message}</p>
+          <div className="actions">
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => setPreview(false)}
+            >
+              Keep editing
+            </button>
+            <button
+              type="button"
+              className="button"
+              disabled={busy}
+              onClick={() => postForm.current?.requestSubmit()}
+            >
+              {busy ? "Publishing…" : "Post"}
+            </button>
+          </div>
+        </FantasySheet>
+      )}
     </div>
   );
 }

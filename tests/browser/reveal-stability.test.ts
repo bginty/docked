@@ -9,7 +9,7 @@ test("delayed compositor finishes once without a timed snap or inspection handof
       ? r.continue()
       : r.abort(),
   );
-  await page.goto("http://127.0.0.1:3023/preview/rarity-frames");
+  await page.goto((process.env.DOCKED_LOCAL_VISUAL_ORIGIN ?? "http://127.0.0.1:3023") + "/preview/rarity-frames");
   await page.getByRole("button", { name: "Preview six-card reveal" }).click();
   const turn = page.locator(".pack-arrival");
   // A delayed compositor must not be replaced by a front face at 1.8 seconds.

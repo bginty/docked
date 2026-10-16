@@ -81,7 +81,7 @@ export function SocialRail({
                 : `${hub.visibility === "followers" ? "Followers" : "Members"} can browse`}
             </p>
             <div className="social-mini-collection">
-              {hub.cards.slice(0, 3).map(({ card }) => (
+              {hub.cards.slice(0, 2).map(({ card }) => (
                 <Link
                   href={`/fantasy/cards?card=${encodeURIComponent(card.id)}`}
                   key={card.id}

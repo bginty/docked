@@ -8,37 +8,42 @@ assert.ok(["inspect", "access", "candidate", "promote", "live"].includes(mode));
 const premium = process.argv[3] === "--premium";
 const reveal = process.argv[3] === "--reveal-stability";
 const jersey = process.argv[3] === "--jersey";
-const social = process.argv[3] === "--social";
+const masterV2 = process.argv[3] === "--master-v2";
+const social = process.argv[3] === "--social" || masterV2;
 const walletPremium =
   process.argv[3] === "--wallet-premium" || jersey || social;
 const playCards =
   process.argv[3] === "--play-cards" || premium || reveal || walletPremium;
-const root = social
-    ? "docs/qa/social-live-release"
-    : jersey
-      ? "docs/qa/jersey-refinement/release"
-      : walletPremium
-        ? "docs/qa/private-beta-release"
-        : reveal
-          ? "docs/qa/reveal-stability"
-          : premium
-            ? "docs/qa/premium-v3"
-            : playCards
-              ? "docs/qa/play-cards"
-              : "docs/qa/rarity-frames",
-  privateRoot = social
-    ? "private-data/social-live-release"
-    : jersey
-      ? "private-data/jersey-release"
-      : walletPremium
-        ? "private-data/private-beta-release"
-        : reveal
-          ? "private-data/reveal-stability-release"
-          : premium
-            ? "private-data/premium-v3-release"
-            : playCards
-              ? "private-data/play-cards-release"
-              : "private-data/rarity-release";
+const root = masterV2
+    ? "docs/qa/master-v2/release"
+    : social
+      ? "docs/qa/social-live-release"
+      : jersey
+        ? "docs/qa/jersey-refinement/release"
+        : walletPremium
+          ? "docs/qa/private-beta-release"
+          : reveal
+            ? "docs/qa/reveal-stability"
+            : premium
+              ? "docs/qa/premium-v3"
+              : playCards
+                ? "docs/qa/play-cards"
+                : "docs/qa/rarity-frames",
+  privateRoot = masterV2
+    ? "private-data/master-v2-release"
+    : social
+      ? "private-data/social-live-release"
+      : jersey
+        ? "private-data/jersey-release"
+        : walletPremium
+          ? "private-data/private-beta-release"
+          : reveal
+            ? "private-data/reveal-stability-release"
+            : premium
+              ? "private-data/premium-v3-release"
+              : playCards
+                ? "private-data/play-cards-release"
+                : "private-data/rarity-release";
 mkdirSync(root, { recursive: true });
 mkdirSync(privateRoot, { recursive: true });
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
@@ -278,6 +283,17 @@ if (mode === "inspect") {
         assert.deepEqual(emptyMedia.media, []);
         checks.push(
           "Premium Social/profile-photo assets; anonymous feed empty; collections, offers and owned media private",
+        );
+      }
+      if (masterV2) {
+        assert.ok(
+          styles.includes("collectible-face") &&
+            styles.includes("collectible-city") &&
+            styles.includes("market-quick-search"),
+          "Shared V2 cards and compact filters deployed",
+        );
+        checks.push(
+          "Universal collectible face, city presentation and compact Market styles present",
         );
       }
       save(mode, {

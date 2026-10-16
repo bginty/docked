@@ -25,7 +25,7 @@ import {
   testReceipt,
 } from "../src/core/member-test-wallet";
 async function main() {
-  const dir = process.argv.includes("--visual-regression")
+  const dir = process.argv.includes("--master-v2") ? "docs/qa/master-v2/market" : process.argv.includes("--visual-regression")
     ? "docs/qa/mobile-cleanup/market-regression"
     : "docs/qa/marketplace-phase-one";
   mkdirSync(dir, { recursive: true });
@@ -71,6 +71,7 @@ async function main() {
     ...(requireExists("src/app/mobile-cleanup.css") ? ["mobile-cleanup"] : []),
     ...(requireExists("src/app/play-cards.css") ? ["play-cards"] : []),
     ...(requireExists("src/app/social-hub.css") ? ["social-hub"] : []),
+    "collectible",
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");
@@ -166,7 +167,7 @@ async function main() {
     }
   });
   await new Promise<void>((r) =>
-    server.listen(process.argv.includes("--serve") ? 3023 : 0, "127.0.0.1", r),
+    server.listen(process.argv.includes("--serve") ? (process.argv.includes("--master-v2") ? 3024 : 3023) : 0, "127.0.0.1", r),
   );
   origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
   if (process.argv.includes("--serve")) {
@@ -308,6 +309,7 @@ async function main() {
     assert.equal(posts, 0);
     const draft = buyer.getByRole("textbox", { name: "Your post" });
     assert.ok(!(await draft.inputValue()).includes("1000"));
+    await buyer.getByRole("button", { name: "Preview post", exact: true }).click();
     await buyer.getByRole("button", { name: "Post", exact: true }).click();
     await expect(buyer.getByRole("status").last()).toContainText(
       "Synthetic post recovery",
@@ -338,14 +340,14 @@ async function main() {
     ).toBeVisible();
     await capture(buyer, "activity");
     await page.getByRole("button", { name: "Browse", exact: true }).click();
-    await page.getByText("Search & filters", { exact: true }).click();
+    await page.getByRole("button", { name: "Filters", exact: true }).click();
     await page.getByLabel("Player search").fill("zz-missing");
     await page.getByRole("button", { name: "Apply filters" }).click();
     await expect(
       page.getByRole("heading", { name: "No matching results" }),
     ).toBeVisible();
     await page.reload();
-    await page.getByText("Search & filters", { exact: true }).click();
+    await page.getByRole("button", { name: "Filters", exact: true }).click();
     await expect(page.getByLabel("Player search")).toHaveValue("zz-missing");
     await page.getByRole("button", { name: "Clear filters" }).click();
     await page.route("**/api/marketplace?**", (r) =>

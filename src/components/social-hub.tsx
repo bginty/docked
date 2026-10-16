@@ -8,15 +8,17 @@ import { useRouter } from "next/navigation";
 import { MakeCardOffer } from "./private-card-offers";
 import { FantasySheet } from "./fantasy-player-sheet";
 import type { AwardedCard } from "@/core/pack-opening";
+import { boundedFetch } from "@/core/bounded-request";
 
 export function useSocialHub(handle?: string) {
   const [data, setData] = useState<SocialHub | null>(null),
     [error, setError] = useState("");
+  const [attempt, setAttempt] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
     setData(null);
     setError("");
-    fetch(
+    boundedFetch(
       `/api/community?view=hub${handle ? `&handle=${encodeURIComponent(handle)}` : ""}`,
       { cache: "no-store", signal: controller.signal },
     )
@@ -30,16 +32,16 @@ export function useSocialHub(handle?: string) {
         if (!controller.signal.aborted) setError(e.message);
       });
     return () => controller.abort();
-  }, [handle]);
-  return { data, error };
+  }, [handle, attempt]);
+  return { data, error, reload: () => setAttempt((value) => value + 1) };
 }
 export function ProfileCollection({ handle }: { handle?: string }) {
-  const { data, error } = useSocialHub(handle);
+  const { data, error, reload } = useSocialHub(handle);
   return (
     <section className="social-collection">
       {error ? (
         <p role="alert">
-          {error} <button onClick={() => location.reload()}>Retry</button>
+          {error} <button onClick={reload}>Retry</button>
         </p>
       ) : data ? (
         <Collection data={data} />

@@ -71,6 +71,9 @@ export function AcquisitionShare({
           <SocialComposer
             initialSport="nfl"
             inline
+            initialCardIds={[card.id]}
+            onPublished={close}
+            onCancel={close}
             initialBody={`Added ${card.name}${card.tier ? ` (${card.tier.replaceAll("_", " ")})` : ""} to my Docked collection.`}
           />
         </FantasySheet>

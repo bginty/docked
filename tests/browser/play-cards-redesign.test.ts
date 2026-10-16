@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
-const base = "http://127.0.0.1:3023";
-const out = "docs/qa/premium-completion";
+const base = process.env.DOCKED_LOCAL_VISUAL_ORIGIN ?? "http://127.0.0.1:3023";
+const out = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/premium-completion";
 test.beforeEach(async ({ page }) => {
   await page.route("**/*", (r) =>
     new URL(r.request().url()).hostname === "127.0.0.1"
@@ -141,7 +141,7 @@ test("collection rarity counts, paging, filtering, list and empty states are sou
   await page.goto(base + "/fantasy/cards?scenario=packs");
   await expect(
     page.getByRole("link", { name: "Open packs (3)" }),
-  ).toHaveAttribute("href", "/fantasy/test-wallet#packs");
+  ).toHaveAttribute("href", "/fantasy/test-wallet?view=packs#packs");
 });
 test("incomplete invalid entered and partially locked states remain honest in both modes", async ({
   page,

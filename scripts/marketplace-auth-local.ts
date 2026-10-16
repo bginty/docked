@@ -31,6 +31,7 @@ const redemption = process.argv.includes("--redemption");
 const integrated = process.argv.includes("--integrated");
 const socialOnly = process.argv.includes("--social-only");
 const socialUpgrade = process.argv.includes("--social-upgrade");
+const masterV2 = process.argv.includes("--master-v2");
 const socialVisual = process.argv.includes("--social-visual");
 const root = process.cwd(),
   dir = resolve(
@@ -86,15 +87,18 @@ async function main() {
   await mkdir("docs/qa/premium-completion", { recursive: true });
   await mkdir("docs/qa/social-upgrade", { recursive: true });
   await mkdir("docs/qa/social-visual-preview", { recursive: true });
-  const receipt = socialVisual
-    ? "docs/qa/social-visual-preview/authenticated.json"
-    : redemption
-      ? "docs/qa/premium-completion/authenticated.json"
-      : socialOnly
-        ? socialUpgrade
-          ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
-          : "docs/qa/mobile-release/social-http.json"
-        : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
+  await mkdir("docs/qa/master-v2", { recursive: true });
+  const receipt = masterV2
+    ? "docs/qa/master-v2/authenticated.json"
+    : socialVisual
+      ? "docs/qa/social-visual-preview/authenticated.json"
+      : redemption
+        ? "docs/qa/premium-completion/authenticated.json"
+        : socialOnly
+          ? socialUpgrade
+            ? `docs/qa/social-upgrade/${browserOnly ? "browser" : "authenticated"}.json`
+            : "docs/qa/mobile-release/social-http.json"
+          : `docs/qa/marketplace-authenticated/${integrated ? (browserOnly ? "integrated-readback" : "integrated") : browserOnly ? "browser" : "http"}.json`;
   await writeFile(
     receipt,
     JSON.stringify({
@@ -233,6 +237,22 @@ async function main() {
         where not exists(select 1 from beta_private.region_policies where version='local-social-acceptance' and effective_to>clock_timestamp()) on conflict(country,state,version) do update set effective_from=clock_timestamp()-interval '1 minute',effective_to=clock_timestamp()+interval '1 day',review_at=clock_timestamp()+interval '1 day'`;
     }
     stage = "inventory";
+    if (masterV2) {
+      // This harness is pinned above to a disposable localhost database. Social-only
+      // fixtures did not configure Fantasy, so a genuine authenticated Play read
+      // previously failed its environment gate before rendering any UI.
+      const manifest = JSON.parse(
+        await readFile("config/hosted-production.json", "utf8"),
+      );
+      await sql`update beta_fantasy.settings set enabled=true,deployment_mode='production',production_ref=${manifest.supabaseProjectRef},terms_version='local-http-qa-v1',privacy_version='local-http-qa-v1'`;
+      await sql`update sports_feed.nfl_control set enabled=true`;
+      for (const u of qa.users.slice(0, 4)) {
+        await sql`insert into beta_fantasy.members(user_id,expires_at) values(${u.id},'infinity') on conflict do nothing`;
+        await sql`insert into beta_private.consent_events(user_id,purpose,granted,version,actor)
+          select ${u.id},'privacy',true,'local-http-qa-v1','isolated-v2-fixture'
+          where not exists(select 1 from beta_private.consent_events where user_id=${u.id} and purpose='privacy' and version='local-http-qa-v1')`;
+      }
+    }
     if (redemption) await seedRedemptionAuth(sql, qa.users);
     if (
       !redemption &&
@@ -260,7 +280,7 @@ async function main() {
       `alter role docked_beta_app login password '${qa.dbPassword}'`,
     );
     stage = "app-start";
-    const app = resolve(dir, "app");
+    const app = resolve(dir, masterV2 ? "app-v2" : "app");
     await mkdir(app, { recursive: true });
     for (const path of [
       "src",
@@ -402,6 +422,35 @@ async function main() {
       });
       assert.equal((await r.json()).ok, true, "Real application login " + i);
     }
+    if (masterV2 && process.argv.includes("--v2-browser-only")) {
+      stage = "master-v2-authenticated-browser";
+      const browser = await chromium.launch({ channel: "msedge" });
+      try {
+        checks.push(
+          ...(await (
+            await import("./master-v2-browser")
+          ).verifyMasterV2(browser, contexts, origin)),
+        );
+        await writeFile(
+          receipt,
+          JSON.stringify(
+            {
+              passed: true,
+              at: new Date().toISOString(),
+              checks,
+              scope:
+                "Actual localhost Auth, restricted-role PostgreSQL and browser; existing isolated QA accounts only",
+              hostedOperations: false,
+            },
+            null,
+            2,
+          ),
+        );
+      } finally {
+        await browser.close();
+      }
+      return;
+    }
     if (redemption) {
       stage = "redemption-auth-http";
       checks.push(
@@ -502,6 +551,12 @@ async function main() {
               await import("./social-avatar-acceptance")
             ).verifySocialAvatars(contexts, browser, origin)),
           );
+        if (masterV2)
+          checks.push(
+            ...(await (
+              await import("./master-v2-browser")
+            ).verifyMasterV2(browser, contexts, origin)),
+          );
         const context = await browser.newContext({
           storageState: await contexts[0].storageState(),
           viewport: { width: 412, height: 815 },
@@ -525,6 +580,9 @@ async function main() {
             r.request().method() === "POST",
           { timeout: 30000 },
         );
+        await page
+          .getByRole("button", { name: "Preview post", exact: true })
+          .click();
         await page.getByRole("button", { name: "Post", exact: true }).click();
         assert.equal((await posted).status(), 200);
         await expect(
@@ -567,7 +625,11 @@ async function main() {
               browser,
               contexts,
               origin,
-              socialVisual ? "docs/qa/social-visual-preview" : undefined,
+              masterV2
+                ? "docs/qa/master-v2"
+                : socialVisual
+                  ? "docs/qa/social-visual-preview"
+                  : undefined,
             )),
           );
         await context.close();

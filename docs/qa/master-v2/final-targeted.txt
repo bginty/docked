@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: new gameplay packs exclude K without modifying old receipts, caps or prices
+ok 1 - new gameplay packs exclude K without modifying old receipts, caps or prices
+  ---
+  duration_ms: 63.4734
+  ...
+# Subtest: probability formatting never turns near-certainty into a guarantee
+ok 2 - probability formatting never turns near-certainty into a guarantee
+  ---
+  duration_ms: 0.5992
+  ...
+# Subtest: NFL filters and Core identity never imply football positions or limited Core supply
+ok 3 - NFL filters and Core identity never imply football positions or limited Core supply
+  ---
+  duration_ms: 1.1532
+  ...
+# Subtest: same-player duplicates remain invalid; salary replacement includes outgoing card; Open ignores cap
+ok 4 - same-player duplicates remain invalid; salary replacement includes outgoing card; Open ignores cap
+  ---
+  duration_ms: 27.768
+  ...
+# Subtest: hung read is bounded and never automatically repeats a request
+ok 5 - hung read is bounded and never automatically repeats a request
+  ---
+  duration_ms: 28.5446
+  ...
+# Subtest: city display preserves canonical and historical team identity without splitting names
+ok 6 - city display preserves canonical and historical team identity without splitting names
+  ---
+  duration_ms: 11.2554
+  ...
+# Subtest: serials and verified jersey numbers remain authoritative
+ok 7 - serials and verified jersey numbers remain authoritative
+  ---
+  duration_ms: 52.2099
+  ...
+# Subtest: nested and out-of-order modal teardown never leaves a stale body lock
+ok 8 - nested and out-of-order modal teardown never leaves a stale body lock
+  ---
+  duration_ms: 3.8094
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2515.3521

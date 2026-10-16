@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "at": "2026-10-16T00:41:40.657Z",
+  "checks": [
+    "V2 authenticated local browser: owned-card attach/remove, three close cycles, simulated Android cancel, network failure then idempotent publication, feed scrolling",
+    "V2 eight surfaces at 1440/1024/412/360; filters apply/persist/clear; no horizontal overflow; Axe serious/critical checks"
+  ],
+  "scope": "Actual localhost Auth, restricted-role PostgreSQL and browser; existing isolated QA accounts only",
+  "hostedOperations": false
+}

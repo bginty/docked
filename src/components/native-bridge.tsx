@@ -9,6 +9,7 @@ import {
   nativeAuthenticationScreen,
 } from "@/core/native-navigation";
 import { brand } from "@/brand/brand";
+import { topModal } from "@/core/modal-lifecycle";
 export function isDockedNative() {
   return (
     typeof window !== "undefined" &&
@@ -92,7 +93,10 @@ export function NativeBridge() {
           App.addListener("backButton", ({ canGoBack }) => {
             if (!alive) return;
             const panel =
-              document.querySelector<HTMLDialogElement>("dialog[open]");
+              topModal() ??
+              [
+                ...document.querySelectorAll<HTMLDialogElement>("dialog[open]"),
+              ].at(-1);
             if (panel) {
               panel.dispatchEvent(new Event("cancel", { cancelable: true }));
               return;

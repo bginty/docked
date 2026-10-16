@@ -1,7 +1,7 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--private-preview")
+const evidence = process.argv.includes("--master-v2") ? "docs/qa/master-v2" : process.argv.includes("--private-preview")
   ? "docs/qa/private-preview-release"
   : process.argv.includes("--social-visual")
     ? "docs/qa/social-visual-preview"
