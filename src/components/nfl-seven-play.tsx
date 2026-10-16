@@ -566,7 +566,8 @@ export function NflSevenPlay({
                   >
                     {card ? (
                       <CollectibleFace
-                        showNumber={false}
+                        variant="lineup"
+                        showNumber
                         card={card}
                         appliedMultiplier={
                           card.multiplier ??
@@ -1142,7 +1143,8 @@ export function NflSevenPlay({
               >
                 <span className="candidate-collectible">
                   <CollectibleFace
-                    showNumber={false}
+                    variant="lineup"
+                    showNumber
                     card={c}
                     appliedMultiplier={
                       c.multiplier ?? rarityRule(c.tier).multiplierTenths / 10

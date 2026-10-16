@@ -30,7 +30,7 @@ const tiers = [
   "RARE",
   "RARE",
 ];
-const cards: FantasyState["cards"] = tiers.map((tier, i) => ({
+export const cards: FantasyState["cards"] = tiers.map((tier, i) => ({
   id: `visual-card-${i}`,
   edition_id: `visual-edition-${i}`,
   owner_id: "visual-member",
@@ -74,7 +74,7 @@ const rounds = ["SALARY_CAP", "OPEN"].map((mode, i) => ({
   scored_at: null,
   rules: { mode, lineup_version: nflSeven.version },
 }));
-let state: FantasyState = {
+export let state: FantasyState = {
   team_name: "Local Test Team",
   user_id: "visual-member",
   mode: "production",
@@ -462,10 +462,11 @@ function Fixture({ member }: { member: string }) {
     </EnvironmentProvider>
   );
 }
-fetch("/local-identity")
-  .then((r) => r.json())
-  .then(({ member }) =>
-    createRoot(document.getElementById("fixture-root")!).render(
-      <Fixture member={member} />,
-    ),
-  );
+if (!new URLSearchParams(location.search).has("futuristic"))
+  fetch("/local-identity")
+    .then((r) => r.json())
+    .then(({ member }) =>
+      createRoot(document.getElementById("fixture-root")!).render(
+        <Fixture member={member} />,
+      ),
+    );

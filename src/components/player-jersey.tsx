@@ -9,7 +9,7 @@ import {
 export function PlayerJersey({
   card,
   className = "",
-  showNumber = false,
+  showNumber = true,
 }: {
   card?: JerseyMetadata;
   className?: string;
@@ -17,6 +17,13 @@ export function PlayerJersey({
 }) {
   const id = useId().replace(/[^a-zA-Z0-9_-]/g, ""),
     p = jerseyPresentation(card);
+  const rgb = /^#[0-9a-f]{6}$/i.test(p.primary)
+    ? [1, 3, 5].map((i) => parseInt(p.primary.slice(i, i + 2), 16))
+    : [0, 0, 0];
+  const print =
+    rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114 > 175
+      ? "#152338"
+      : "#f4f0e6";
   const shape =
     "M57 13Q42 16 29 24Q17 29 11 36L3 63Q17 74 30 78L43 65Q45 113 40 158Q90 170 140 158Q135 113 137 65L150 78Q163 74 177 63L169 36Q163 29 151 24Q138 16 123 13L111 19Q90 27 69 19Z";
   return (
@@ -65,7 +72,31 @@ export function PlayerJersey({
           height="5"
           patternUnits="userSpaceOnUse"
         >
-          <circle cx="2.5" cy="2.5" r=".5" fill="#fff" opacity=".09" />
+          <circle cx="2.5" cy="2.5" r=".4" fill="#fff" opacity=".06" />
+        </pattern>
+        <linearGradient id={`${id}-crease`} x1="0" y1="0" x2="1" y2="0">
+          <stop stopColor="#000" stopOpacity="0" />
+          <stop offset=".42" stopColor="#000" stopOpacity=".5" />
+          <stop offset=".59" stopColor="#fff" stopOpacity=".17" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id={`${id}-hem`} x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#000" stopOpacity=".3" />
+          <stop offset=".55" stopColor="#fff" stopOpacity=".17" />
+          <stop offset="1" stopColor="#000" stopOpacity=".4" />
+        </linearGradient>
+        <pattern
+          id={`${id}-weave`}
+          width="1.5"
+          height="1.5"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M0 .4H1.5M.4 0V1.5"
+            stroke="#d8e6f8"
+            strokeWidth=".18"
+            opacity=".045"
+          />
         </pattern>
       </defs>
       <path
@@ -132,25 +163,65 @@ export function PlayerJersey({
           strokeOpacity=".3"
           strokeWidth="2"
         />
+        <path
+          d="M43 50Q90 44 137 50"
+          fill="none"
+          stroke="#000"
+          strokeOpacity=".3"
+          strokeWidth=".7"
+        />
+        <path
+          d="M43 51Q90 45 137 51"
+          fill="none"
+          stroke="#fff"
+          strokeOpacity=".17"
+          strokeWidth=".5"
+          strokeDasharray="1.2 1.2"
+        />
+        <path
+          d="M28 28Q18 42 16 55L21 57Q18 42 33 25ZM151 28Q162 40 165 57L159 60Q164 42 146 25Z"
+          fill={`url(#${id}-crease)`}
+        />
+        <path
+          d="M40 154Q90 166 140 154L140 159Q90 171 40 159Z"
+          fill={`url(#${id}-hem)`}
+        />
         {showNumber && p.number !== "—" && (
           <text
             className="jersey-number"
             x="90"
-            y="120"
+            y="119"
             textAnchor="middle"
-            fill="#f6f8fb"
+            fill={print}
             stroke="#050b15"
-            strokeWidth="3"
+            strokeWidth="2"
             strokeLinejoin="round"
             paintOrder="stroke"
             fontFamily="Impact, 'Arial Black', Arial, sans-serif"
-            fontSize="68"
+            fontSize="61"
             fontWeight="900"
             letterSpacing="-2"
           >
             {p.number}
           </text>
         )}
+        <path
+          d="M49 57Q58 84 49 121L47 154 58 158Q54 119 61 89Q62 64 55 54ZM124 55Q116 79 128 112L132 158 120 160Q126 117 115 91Q110 66 124 55Z"
+          fill={`url(#${id}-crease)`}
+        />
+        <path
+          d="M52 127Q64 132 70 160L78 163Q67 136 52 127ZM121 120Q114 139 100 165L109 162Q117 141 128 128Z"
+          fill={`url(#${id}-fold)`}
+        />
+        <path d={shape} fill={`url(#${id}-weave)`} />
+        <path
+          d="M31 27Q39 40 41 58M149 27Q141 40 139 58M44 156Q90 167 136 156"
+          fill="none"
+          stroke="#fff"
+          strokeOpacity=".22"
+          strokeWidth=".6"
+          strokeDasharray="1 1.3"
+        />
       </g>
     </svg>
   );

@@ -1,0 +1,25 @@
+// Isolated visual ownership only. This card never enters a database or provider catalogue.
+import type { FantasyCard } from "../../src/core/fantasy";
+export const futuristicCard: FantasyCard = {
+  id: "visual-card-5",
+  edition_id: "futuristic-local-edition",
+  player_id: "visual-player-5",
+  owner_id: "visual-member",
+  name: "Taylor McBride",
+  sport: "nfl",
+  team: "ARI",
+  position: "TE",
+  tier: "ICON",
+  serial: 1,
+  max_supply: 1,
+  verifiedJerseyNumber: 85,
+  shirt: 1,
+  colour: "#97233f",
+  status: "active",
+  tradeable: true,
+  listed: false,
+  season: "2026",
+  kind: "season",
+  created_at: "2026-10-16T00:00:00Z",
+  acquired_at: "2026-10-16T00:00:00Z",
+};

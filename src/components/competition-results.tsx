@@ -477,7 +477,8 @@ export function CompetitionResults({
                     style={rarityStyle(p.tier)}
                   >
                     <CollectibleFace
-                      showNumber={false}
+                      variant="lineup"
+                      showNumber
                       card={{
                         ...p,
                         name: p.name || "Player name unavailable",

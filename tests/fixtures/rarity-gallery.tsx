@@ -1,32 +1,32 @@
 import { useState } from "react";
 import { FantasyCardArtwork } from "../../src/components/fantasy-card-artwork";
-import {
-  FantasySheet,
-  PlayerShirt,
-} from "../../src/components/fantasy-player-sheet";
-import { RarityBadge } from "../../src/components/rarity-badge";
+import { FantasySheet } from "../../src/components/fantasy-player-sheet";
+import { CollectibleFace } from "../../src/components/collectible-face";
 import PackOpening from "../../src/components/pack-opening";
 import { rarities, rarityRule } from "../../src/core/card-rarity";
 import { rarityFrame, rarityStyle } from "../../src/core/rarity-theme";
 import type { FantasyCard } from "../../src/core/fantasy";
 export function RarityGallery({ base }: { base: FantasyCard }) {
   const [reveal, setReveal] = useState(false);
-  const [team, setTeam] = useState("CHI"),
+  const [missingNumber, setMissingNumber] = useState(false);
+  const [team, setTeam] = useState("ARI"),
     [long, setLong] = useState(false),
     [detail, setDetail] = useState<FantasyCard | null>(null);
   const cards = rarities.map((tier, i) => ({
     ...base,
     id: `rarity-visual-${tier}`,
-    name: long ? "Alex Northbridge-Wellington" : "Jordan Field",
+    name: long ? "Alex Northbridge-Wellington" : base.name,
     team: ["WHITE", "GOLD"].includes(team) ? "Colour study" : team,
     sport: ["WHITE", "GOLD"].includes(team) ? "visual" : "nfl",
     colour: team === "WHITE" ? "#f3f4f6" : "#d3bc8d",
     shirt: 0,
     tier,
-    position: "WR",
+    position: base.position,
     serial: tier === "CORE" ? 0 : tier === "ICON" ? 1 : 17 + i,
     max_supply: rarityRule(tier).lifetimeCap ?? 0,
-    verifiedJerseyNumber: 17, // Explicit synthetic gallery fixture, not a real player's number.
+    verifiedJerseyNumber: missingNumber
+      ? null
+      : (base.verifiedJerseyNumber ?? 17), // Explicit synthetic gallery fixture, not a real player's number.
   }));
   return (
     <main className="rarity-gallery">
@@ -37,6 +37,7 @@ export function RarityGallery({ base }: { base: FantasyCard }) {
           Team palette{" "}
           <select value={team} onChange={(e) => setTeam(e.target.value)}>
             {[
+              ["ARI", "Arizona · crimson"],
               ["CHI", "Navy"],
               ["WHITE", "White · colour study"],
               ["KC", "Red"],
@@ -58,6 +59,14 @@ export function RarityGallery({ base }: { base: FantasyCard }) {
             onChange={(e) => setLong(e.target.checked)}
           />{" "}
           Long player name
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={missingNumber}
+            onChange={(e) => setMissingNumber(e.target.checked)}
+          />
+          No verified number
         </label>
       </div>
       <h2>Collection / marketplace / reveal face</h2>
@@ -86,12 +95,7 @@ export function RarityGallery({ base }: { base: FantasyCard }) {
             style={rarityStyle(c.tier)}
             onClick={() => setDetail(c)}
           >
-            <PlayerShirt card={c} />
-            <strong className="field-player-name">{c.name}</strong>
-            <span>
-              {c.team} · {c.position}
-            </span>
-            <RarityBadge tier={c.tier} compact />
+            <CollectibleFace card={c} variant="lineup" />
           </button>
         ))}
       </div>

@@ -1,0 +1,53 @@
+{
+  "task": "Futuristic reusable collectible cards",
+  "date": "2026-10-16",
+  "deployment": "Local only. Neither Preview nor Production deployed; no database migrations or member-asset changes.",
+  "rootCauses": [
+    "Card content was partially shared but parent components separately painted frames, headers and footers, so reveals and collection cards had different composition.",
+    "Page-specific picker styles overrode the card aspect ratio and applied flex layout to every nested span.",
+    "Jersey number defaults and explicit per-surface overrides still reflected the earlier number-free brief.",
+    "Regional NFL locations fell through to a visible unavailable placeholder."
+  ],
+  "architecture": {
+    "projection": "src/core/card-presentation.ts: collectiblePresentation preserves identity, maps canonical snapshot team location, groups name suffixes and formats the existing serial/supply.",
+    "face": "src/components/collectible-face.tsx owns all artwork and live text; compact, standard, detailed, reveal and lineup share a fixed 2:3 composition.",
+    "frame": "src/components/collectible-frame.tsx supplies original decorative SVG geometry; src/core/rarity-theme.ts supplies all six materials without changing rarity rules.",
+    "jersey": "src/components/player-jersey.tsx renders original SVG fabric, folds, stitching and printed verified numbers. Missing metadata stays number-free. No official logos or player photography.",
+    "context": "FantasyCardArtwork wraps the canonical face. Scoring context, details and actions sit outside the collectible. Existing Social, Market, collections, private offers and pack history inherit it; Play, selectors and standings use the same face directly.",
+    "performance": "Reusable vector/CSS layers, unique SVG gradient IDs, existing optimized brand assets, no new dependencies or continuous grid animations."
+  },
+  "materials": {
+    "Core": "Gunmetal/silver",
+    "Rare": "Royal electric-blue metal",
+    "Elite": "Violet illuminated metal",
+    "Ultra Rare": "Bright cyan metal",
+    "Legendary": "Gold/amber",
+    "Icon": "Platinum/chrome with crown and white-blue highlights"
+  },
+  "checks": {
+    "platform": "409 passed, 0 failed; platform.txt",
+    "database": "160 passed, 0 failed in an uninterrupted run; database.txt",
+    "playPickerStandings": "Four viewports passed; play-regression-1792140835942/browser.json",
+    "packPurchaseAndRecovery": "Four viewports plus lost-response, balance/supply failure, replay, motion and sport checks passed; pack-regression/browser-1792140252629/browser.json",
+    "visual": "See review.html and the linked final browser results. Seven contexts and six rarities at 1440, 1024, 412 and 360px; long names, missing metadata, contrasting jersey palettes, keyboard focus and reduced motion.",
+    "build": "Clean isolated production build and canary client-secret-boundary passed; build.txt and client-boundary.txt",
+    "typecheckLint": "Final npm run typecheck and npm run lint both passed (exit 0).",
+    "finalVisualRun": "browser-1792141101153/results.json: four widths, all seven contexts, all six rarities, normal-motion six-card progression and forward-only reveal passed; zero replay POST requests."
+  },
+  "failuresAndRetries": [
+    "Initial typecheck/build found an unknown-typed receipt conditional; changed it to a boolean guard.",
+    "Initial lint found an unused brand import after reveal wrapper cleanup; removed it.",
+    "Initial keyboard test used mouse modality; corrected to exercise keyboard focus-visible.",
+    "Play regression exposed the old picker aspect-ratio override; removed it and narrowed nested-span rules, then passed all four viewports.",
+    "Name splitting omitted a text-node space between first and last name; restored the space and reran standings drilldown checks.",
+    "One Play rerun hit a Windows screenshot file-open error; subsequent evidence uses a unique run directory and passed.",
+    "Normal-motion sampling initially failed on TSX helper serialization, then on a string-evaluation attempt. Replaced it with browser-native animation-frame sampling. These were test-harness failures, not accepted passes."
+  ],
+  "visualComparison": "Inspected real browser screenshots against the supplied reference. Sculpted chrome rails, inset dark separator, watermark, dominant original jersey, centred metallic surname, regional location and bottom serial/wordmark follow the reference. Artwork remains lightweight original vector illustration, not the reference's photorealistic rendered shirt.",
+  "limitations": [
+    "All mutations and visual ownership are isolated synthetic fixtures, not real member accounts. The same-card comparison uses Taylor McBride with explicit fixture number metadata.",
+    "Physical Samsung S24, installed-app and hosted authenticated acceptance remain pending.",
+    "Existing data without verified jersey numbers remains number-free; no number lookup or roster reassignment was performed.",
+    "No financial activation, trading activation, public registration or production data changes."
+  ]
+}

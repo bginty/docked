@@ -186,7 +186,8 @@ export function FantasyPlayerDetails({
       >
         <div className="card-detail-art">
           <FantasyCardArtwork
-            showNumber={false}
+            variant="detailed"
+            showNumber
             card={card}
             faceOnly
             appliedMultiplier={lineup.multiplier}
@@ -316,6 +317,7 @@ export function FantasyPlayerDetails({
     <FantasySheet title={card.name} onClose={onClose}>
       <div className="card-detail-art">
         <FantasyCardArtwork
+          variant="detailed"
           card={card}
           faceOnly
           appliedMultiplier={

@@ -7,8 +7,8 @@ import {
   collectibleOnly,
   multiplierLabel,
 } from "@/core/card-display";
-import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
-import { CollectibleFace } from "./collectible-face";
+import { rarityStyle } from "@/core/rarity-theme";
+import { CollectibleFace, type CollectibleVariant } from "./collectible-face";
 export function FantasyCardArtwork({
   card,
   children,
@@ -16,7 +16,8 @@ export function FantasyCardArtwork({
   onInspect,
   scoringLabel,
   appliedMultiplier,
-  showNumber = false,
+  showNumber = true,
+  variant = "standard",
 }: {
   card: AwardedCard;
   children?: React.ReactNode;
@@ -25,11 +26,12 @@ export function FantasyCardArtwork({
   scoringLabel?: string;
   appliedMultiplier?: number;
   showNumber?: boolean;
+  variant?: CollectibleVariant;
 }) {
   const jersey = jerseyPresentation(card);
   return (
     <article
-      className={`fantasy-card compact-card docked-collectible tier-${card.tier.toLowerCase()} ${rarityFrame(card.tier)}`}
+      className={`fantasy-card compact-card docked-collectible tier-${card.tier.toLowerCase()}`}
       style={
         {
           ...rarityStyle(card.tier),
@@ -53,13 +55,14 @@ export function FantasyCardArtwork({
       >
         <CollectibleFace
           showNumber={showNumber}
+          variant={variant}
           card={card}
           appliedMultiplier={appliedMultiplier}
         />
-        {scoringLabel && (
-          <span className="card-scoring-context">{scoringLabel}</span>
-        )}
       </div>
+      {scoringLabel && (
+        <span className="card-scoring-context">{scoringLabel}</span>
+      )}
       {!faceOnly && !onInspect && (
         <details className="card-information">
           <summary>Card details</summary>

@@ -13,7 +13,7 @@ import {
 import { executeCredits } from "../src/core/credits-sandbox";
 import { memberTestView, testReceipt } from "../src/core/member-test-wallet";
 async function main() {
-  const out = `docs/qa/pack-shopping/browser-${Date.now()}`;
+  const out = `docs/qa/${process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/pack-shopping.tsx",

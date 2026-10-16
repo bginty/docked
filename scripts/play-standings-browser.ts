@@ -6,7 +6,11 @@ import { chromium, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 async function main() {
-  const out = process.argv.includes("--packs-regression") ? "docs/qa/pack-shopping/play" : "docs/qa/play-standings";
+  const out = process.argv.includes("--futuristic")
+    ? `docs/qa/futuristic-cards/play-regression-${Date.now()}`
+    : process.argv.includes("--packs-regression")
+      ? "docs/qa/pack-shopping/play"
+      : "docs/qa/play-standings";
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/play-standings-visual.tsx",
@@ -123,7 +127,7 @@ async function main() {
         await page
           .locator('.seven-play svg[data-number-source="verified-metadata"]')
           .count(),
-        0,
+        7,
       );
       for (const slot of ["QB1", "RB1", "WR1", "TE1", "FLEX1"]) {
         await page.locator(`[data-slot="${slot}"] .field-player`).click();

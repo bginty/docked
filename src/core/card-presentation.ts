@@ -46,10 +46,14 @@ export type JerseyMetadata = {
 };
 export function jerseyPresentation(card?: JerseyMetadata) {
   if (card?.sport === "nfl") {
-    const colours = nflColours[card.team?.trim().toUpperCase() ?? ""] ?? [
-      "#17294b",
-      "#59cce5",
-    ];
+    const team = card.team?.trim() ?? "";
+    const code =
+      Object.keys(nflTeamNames).find(
+        (k) =>
+          k === team.toUpperCase() ||
+          nflTeamNames[k].toLowerCase() === team.toLowerCase(),
+      ) ?? team.toUpperCase();
+    const colours = nflColours[code] ?? ["#17294b", "#59cce5"];
     const n = card.verifiedJerseyNumber;
     return {
       primary: colours[0],
@@ -60,7 +64,17 @@ export function jerseyPresentation(card?: JerseyMetadata) {
   return {
     primary: card?.colour ?? "#17294b",
     accent: "#9fc7e2",
-    number: card?.shirt ? String(card.shirt) : "—",
+    number:
+      Number.isInteger(card?.verifiedJerseyNumber) &&
+      card!.verifiedJerseyNumber! >= 0 &&
+      card!.verifiedJerseyNumber! <= 99
+        ? String(card!.verifiedJerseyNumber)
+        : card?.sport === "football" &&
+            Number.isInteger(card.shirt) &&
+            card.shirt! >= 0 &&
+            card.shirt! <= 99
+          ? String(card.shirt)
+          : "—",
   };
 }
 
@@ -108,10 +122,15 @@ export function fullTeamName(card: Pick<JerseyMetadata, "sport" | "team">) {
 }
 
 /** Presentation only. Use the team on the card/snapshot, never a new roster lookup.
- * Regional franchise names without explicit city metadata deliberately stay neutral.
+ * Regional franchise locations (Arizona, New England, etc.) retain their canonical names.
  * Historical codes remain distinct; no relocation or affiliation is inferred.
  */
 const nflCities: Readonly<Record<string, string>> = {
+  ARI: "Arizona",
+  CAR: "Carolina",
+  MIN: "Minnesota",
+  NE: "New England",
+  TEN: "Tennessee",
   ATL: "Atlanta",
   BAL: "Baltimore",
   BUF: "Buffalo",
@@ -167,6 +186,32 @@ export function collectibleSerial(card: {
   return Number.isInteger(card.serial) && Number.isInteger(card.max_supply)
     ? `#${String(card.serial).padStart(3, "0")} / ${card.max_supply!.toLocaleString("en-AU")}`
     : "Edition details unavailable";
+}
+
+/** A display projection only: no roster lookup, identity mutation or number inference. */
+export function collectiblePresentation(
+  card: JerseyMetadata & {
+    name: string;
+    tier: string;
+    serial?: number;
+    max_supply?: number;
+  },
+) {
+  const name = card.name.trim().replace(/\s+/g, " ") || "Player";
+  const words = name.split(" ");
+  const suffix = /^(?:Jr\.?|Sr\.?|II|III|IV|V)$/i.test(words.at(-1) ?? "");
+  const familyStart = Math.max(0, words.length - (suffix ? 2 : 1));
+  const given = words.slice(0, familyStart).join(" ");
+  const family = words.slice(familyStart).join(" ");
+  const location = displayCity(card);
+  return {
+    name,
+    given,
+    family,
+    longName: family.length > 14,
+    location: location === "Location unavailable" ? "" : location,
+    serial: collectibleSerial(card),
+  };
 }
 
 /** Canonical team filter identity, independent of the city-only card-face label. */

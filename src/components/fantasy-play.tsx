@@ -100,7 +100,7 @@ function LegacyFantasyPlay({
   busy: boolean;
   act: Act;
 }) {
-  const {sport} = useSport();
+  const { sport } = useSport();
   const [view, setView] = useState<"team" | "points">(() => {
       const at = Date.parse(
         data.server_time ??
@@ -664,6 +664,7 @@ function LegacyFantasyPlay({
                               >
                                 {card ? (
                                   <CollectibleFace
+                                    variant="lineup"
                                     card={card}
                                     appliedMultiplier={
                                       (view === "points" ? viewed : comp)?.rules
@@ -722,6 +723,7 @@ function LegacyFantasyPlay({
                             onClick={() => setDetail(c)}
                           >
                             <CollectibleFace
+                              variant="lineup"
                               card={c}
                               appliedMultiplier={
                                 comp.rules.inventory_scope ===
@@ -931,6 +933,7 @@ function LegacyFantasyPlay({
               >
                 <span className="candidate-collectible">
                   <CollectibleFace
+                    variant="lineup"
                     card={c}
                     appliedMultiplier={
                       comp.rules.inventory_scope === "invited-nfl-test-v2"

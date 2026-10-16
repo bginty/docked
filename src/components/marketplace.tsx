@@ -11,7 +11,7 @@ import { sellerQuote } from "@/core/credits-policy";
 import { sevenTransferNotice } from "@/core/nfl-seven";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { AcquisitionShare } from "./acquisition-share";
-import { PlayerShirt } from "./fantasy-player-sheet";
+
 import { FantasySheet } from "./fantasy-player-sheet";
 import { MemberTestWallet } from "./member-test-wallet";
 import { MakeCardOffer, PrivateOffersInbox } from "./private-card-offers";
@@ -340,7 +340,15 @@ export function Marketplace({ member }: { member: string }) {
       )}
       {receipt && (
         <section className="market-success" role="status">
-          <PlayerShirt card={receipt.displayCard as Row["card"] | undefined} />
+          {!!receipt.displayCard && (
+            <div className="market-receipt-card">
+              <FantasyCardArtwork
+                card={receipt.displayCard as Row["card"]}
+                faceOnly
+                variant="compact"
+              />
+            </div>
+          )}
           <div>
             <h2>
               {receipt.action === "list"
@@ -955,7 +963,8 @@ export function Marketplace({ member }: { member: string }) {
               ? "Unavailable"
               : detail.card.salary.toLocaleString("en-AU")}{" "}
             · {detail.card.salaryRules ?? "Rules unavailable"}. This is a roster
-            budget, not Docked Credits or a charge. {competitionNames.OPEN} has no salary cap.
+            budget, not Docked Credits or a charge. {competitionNames.OPEN} has
+            no salary cap.
           </p>
           <p>
             Asking price: {credits(detail.price)} Docked Credits ·{" "}

@@ -4,7 +4,8 @@ import { rarityRule, type Rarity } from "./card-rarity";
 export const rarityThemes = {
   CORE: {
     accent: "#b4c1d2",
-    frame: "linear-gradient(135deg,#526071,#d3dce6 22%,#8190a3 45%,#b6c4d4 75%,#526071)",
+    frame:
+      "linear-gradient(135deg,#526071,#d3dce6 22%,#8190a3 45%,#b6c4d4 75%,#526071)",
     badge: "#536174",
     ink: "#ffffff",
     treatment: "matte",
@@ -71,6 +72,12 @@ export function rarityStyle(tier: string): CSSProperties {
   const t = rarityPresentation(tier);
   return {
     "--tier": t.accent,
+    "--metal-highlight":
+      tier === "CORE"
+        ? "#aebdce"
+        : tier === "ICON"
+          ? "#f7fcff"
+          : `color-mix(in srgb, ${t.accent} 65%, white)`,
     "--rarity-frame": t.frame,
     "--rarity-badge": t.badge,
     "--rarity-ink": t.ink,

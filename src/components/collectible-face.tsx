@@ -1,10 +1,12 @@
 import {
-  displayCity,
-  collectibleSerial,
+  collectiblePresentation,
   type JerseyMetadata,
 } from "@/core/card-presentation";
+import { rarityStyle, rarityPresentation } from "@/core/rarity-theme";
+import { fantasyAssets } from "@/brand/fantasy-assets";
 import { PlayerJersey } from "./player-jersey";
 import { RarityBadge } from "./rarity-badge";
+import { CollectibleFrame } from "./collectible-frame";
 
 export type CollectibleIdentity = JerseyMetadata & {
   name: string;
@@ -13,18 +15,29 @@ export type CollectibleIdentity = JerseyMetadata & {
   serial?: number;
   max_supply?: number;
 };
-/** One non-interactive face, also safe inside a selection button or a card link. */
+export type CollectibleVariant =
+  "compact" | "standard" | "detailed" | "reveal" | "lineup";
+/** The entire collectible. Context actions must be siblings, never children of this face. */
 export function CollectibleFace({
   card,
   appliedMultiplier,
-  showNumber = false,
+  showNumber = true,
+  variant = "standard",
 }: {
   card: CollectibleIdentity;
   appliedMultiplier?: number;
   showNumber?: boolean;
+  variant?: CollectibleVariant;
 }) {
+  const p = collectiblePresentation(card);
   return (
-    <span className="collectible-face">
+    <span
+      className={`collectible-face collectible-${variant} collectible-material-${rarityPresentation(card.tier).treatment}${p.longName ? " collectible-long-name" : ""}`}
+      style={rarityStyle(card.tier)}
+      data-card-design="futuristic-v1"
+    >
+      <span className="collectible-watermark" aria-hidden="true" />
+      <CollectibleFrame />
       <span className="collectible-top">
         <span className="collectible-position">{card.position || "—"}</span>
         <RarityBadge
@@ -36,9 +49,22 @@ export function CollectibleFace({
       <span className="collectible-art" aria-hidden="true">
         <PlayerJersey card={card} showNumber={showNumber} />
       </span>
-      <span className="collectible-name">{card.name}</span>
-      <span className="collectible-city">{displayCity(card)}</span>
-      <span className="collectible-serial">{collectibleSerial(card)}</span>
+      <span className="collectible-name" data-player-name={p.name}>
+        {p.given && <span className="collectible-given">{p.given} </span>}
+        <span className="collectible-family">{p.family}</span>
+      </span>
+      <span className="collectible-city">{p.location}</span>
+      <span className="collectible-edition">
+        <span className="collectible-serial">{p.serial}</span>
+        <img
+          className="collectible-brand"
+          src={fantasyAssets.compact}
+          width="100"
+          height="28"
+          alt="Docked"
+          loading="lazy"
+        />
+      </span>
     </span>
   );
 }

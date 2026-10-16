@@ -436,19 +436,6 @@
   }
 }
 
-.fantasy-mode .seven-candidate .collectible-face {
-  aspect-ratio: auto;
-  grid-template-rows: auto auto minmax(min-content, auto) auto auto;
-}
-.fantasy-mode .seven-candidate .collectible-name {
-  height: auto;
-  min-height: 0;
-  line-height: 1.25;
-}
-.fantasy-mode .seven-candidate .collectible-city {
-  margin-top: 3px;
-  line-height: 1.4;
-}
 @media (max-width: 600px) {
   .standings-table[data-period="season"] td:nth-child(3) {
     grid-column: 2;

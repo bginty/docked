@@ -1,5 +1,5 @@
 "use client";
-import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
+import { rarityStyle } from "@/core/rarity-theme";
 import {
   useCallback,
   useEffect,
@@ -8,7 +8,7 @@ import {
   type CSSProperties,
 } from "react";
 import Link from "next/link";
-import { fantasyAssets } from "@/brand/fantasy-assets";
+
 import {
   revealIndex,
   revealKey,
@@ -415,7 +415,7 @@ export default function PackOpening(props: PackOpeningProps) {
               >
                 <div className="pack-card-back" aria-hidden="true" />
                 <div
-                  className={`pack-case ${rarityFrame(card.tier)}`}
+                  className="pack-case"
                   tabIndex={0}
                   role="group"
                   aria-label={`Inspect ${card.name}. Drag or use arrow keys to tilt; Escape resets tilt.`}
@@ -497,24 +497,7 @@ export default function PackOpening(props: PackOpeningProps) {
                     }
                   }}
                 >
-                  <div className="pack-case-label">
-                    <img
-                      src={fantasyAssets.compact}
-                      width="90"
-                      height="25"
-                      alt="Docked"
-                    />
-                    <span>
-                      Test economy · {rarityRule(card.tier).label.toUpperCase()}
-                    </span>
-                  </div>
-                  <FantasyCardArtwork card={card} faceOnly />
-                  <div className="pack-case-foot">
-                    {card.sport.toUpperCase()} · {card.position} ·{" "}
-                    {card.tier === "CORE"
-                      ? "Core · unlimited"
-                      : `#${String(card.serial).padStart(3, "0")} / ${card.max_supply.toLocaleString()}`}
-                  </div>
+                  <FantasyCardArtwork card={card} faceOnly variant="reveal" />
                 </div>
               </div>
             </div>

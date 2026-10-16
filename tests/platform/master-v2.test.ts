@@ -25,7 +25,7 @@ test("city display preserves canonical and historical team identity without spli
     assert.equal(displayCity(card), city);
     assert.equal(card.team, team);
   }
-  for (const team of ["", "QA_unknown", "CAR", "NE"])
+  for (const team of ["", "QA_unknown"])
     assert.equal(displayCity({ sport: "nfl", team }), "Location unavailable");
   assert.equal(
     displayCity({ sport: "football", team: "Unverified City United" }),

@@ -67,7 +67,8 @@ test("outer reveal frames, single forward turn and Icon celebration preserve the
     const caseCard = page.locator(".pack-case");
     expect(
       await caseCard.evaluate((e) => getComputedStyle(e).borderTopWidth),
-    ).toBe("4px");
+    ).toBe("0px");
+    await expect(caseCard.locator(".collectible-frame")).toHaveCount(1);
     expect(
       await caseCard
         .locator(".fantasy-card")
