@@ -1,6 +1,48 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PayPalSandbox } from "../../src/server/paypal-sandbox";
+import { PayPalSandbox, paypalAmount } from "../../src/server/paypal-sandbox";
+
+test("PayPal decimal strings retain every integer ledger cent without floating rounding", async () => {
+  for (const [cents, expected] of [
+    [1, "0.01"],
+    [100, "1.00"],
+    [4900, "49.00"],
+    [Number.MAX_SAFE_INTEGER, "90071992547409.91"],
+  ] as const)
+    assert.equal(paypalAmount(cents), expected);
+  for (const invalid of [
+    0,
+    -1,
+    0.1,
+    NaN,
+    Infinity,
+    Number.MAX_SAFE_INTEGER + 1,
+  ])
+    assert.throws(() => paypalAmount(invalid), /integer cents/);
+  let calls = 0;
+  const api = new PayPalSandbox(
+    {
+      clientId: "fixture",
+      secret: "fixture",
+      webhookId: "fixture",
+      merchantId: "fixture",
+    },
+    (async () => {
+      calls++;
+      throw Error("No provider request expected");
+    }) as typeof fetch,
+  );
+  await assert.rejects(
+    () => api.verifiedCapture(new Headers(), {}, { order: "PP1", price: 0 }),
+    /integer cents/,
+  );
+  await assert.rejects(
+    () =>
+      api.verifiedCapture(new Headers(), {}, { order: "../wrong", price: 100 }),
+    /Bound provider/,
+  );
+  assert.equal(calls, 0);
+});
 test("Wallet funding contract verifies authenticated merchant, order attribution, currency and exact captured amount", async () => {
   const order = {
     id: "PP1",
@@ -27,6 +69,11 @@ test("Wallet funding contract verifies authenticated merchant, order attribution
   const transport = (async (url, options) => {
     const u = String(url);
     calls.push({ url: u, method: options?.method ?? "GET" });
+    assert.equal(
+      options?.redirect,
+      "error",
+      "Provider credentials must not follow redirects",
+    );
     assert.ok(u.startsWith("https://api-m.sandbox.paypal.com/"));
     if (u.endsWith("/token")) {
       assert.equal(options?.method, "POST");

@@ -1,0 +1,119 @@
+{
+  "status": "LOCAL_REVIEW_ONLY_NOT_FOR_UPLOAD",
+  "checkedAt": "2026-10-16",
+  "policySource": "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en",
+  "screenshots": [
+    {
+      "source": "docs/qa/futuristic-cards/browser-1792151829916/collection-412.png",
+      "name": "phone-collection-SYNTHETIC-REVIEW.png",
+      "device": "Phone viewport",
+      "top": 0,
+      "maxHeight": 824,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 412,
+        "height": 824
+      },
+      "width": 412,
+      "height": 824,
+      "sourceSha256": "a2f77b1a990e100ac538ba34e6ec5ba3f430f1f9ae2d015d33a85d4cadb719cb",
+      "sha256": "5dec81d5ab5022e3599094a320d9769b836af1b73cdc0defebed1969b41e9935",
+      "dimensionsPass": true,
+      "publicationReady": false,
+      "scope": "Actual rendered shared components in synthetic local browser fixtures; not native or hosted acceptance. QA navigation/data may differ from production. Do not upload as final store screenshots."
+    },
+    {
+      "source": "docs/qa/prelaunch/experience-1792153750630/post-preview-412.png",
+      "name": "phone-post-preview-SYNTHETIC-REVIEW.png",
+      "device": "Phone viewport",
+      "top": 76,
+      "maxHeight": 824,
+      "crop": {
+        "left": 0,
+        "top": 76,
+        "width": 412,
+        "height": 824
+      },
+      "width": 412,
+      "height": 824,
+      "sourceSha256": "b2d3ca4ad0aa8e03650f14a72b7d39f41b4465d8ef8d794cc19f30a94d53e9f7",
+      "sha256": "0fdd96c528b42fb8a916e2383a86382afc709ce2dbfea21881275a48605e650a",
+      "dimensionsPass": true,
+      "publicationReady": false,
+      "scope": "Actual rendered shared components in synthetic local browser fixtures; not native or hosted acceptance. QA navigation/data may differ from production. Do not upload as final store screenshots."
+    },
+    {
+      "source": "docs/qa/futuristic-cards/browser-1792151829916/collection-1024.png",
+      "name": "tablet-collection-SYNTHETIC-REVIEW.png",
+      "device": "Tablet viewport",
+      "top": 0,
+      "maxHeight": 2048,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1024,
+        "height": 1703
+      },
+      "width": 1024,
+      "height": 1703,
+      "sourceSha256": "bdef674f725999240b50e7e46d5442a9759500d5379d2b3ae465939d959bdd13",
+      "sha256": "44dd3ff0d6b16e756134019a986d30cb060357346fa7bbd4bf781f000a6c1d25",
+      "dimensionsPass": true,
+      "publicationReady": false,
+      "scope": "Actual rendered shared components in synthetic local browser fixtures; not native or hosted acceptance. QA navigation/data may differ from production. Do not upload as final store screenshots."
+    },
+    {
+      "source": "docs/qa/futuristic-cards/browser-1792151829916/detail-1024.png",
+      "name": "tablet-detail-SYNTHETIC-REVIEW.png",
+      "device": "Tablet viewport",
+      "top": 0,
+      "maxHeight": 2048,
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1024,
+        "height": 900
+      },
+      "width": 1024,
+      "height": 900,
+      "sourceSha256": "9f81a6c6a2b43f6442d94eaf61bcf4a9c27c1769a290fddab91a36cdb2af6326",
+      "sha256": "f0ffce962f37c6a79690416b2f3bb4c73df49d94fa1ad230f154ccdc198d89bd",
+      "dimensionsPass": true,
+      "publicationReady": false,
+      "scope": "Actual rendered shared components in synthetic local browser fixtures; not native or hosted acceptance. QA navigation/data may differ from production. Do not upload as final store screenshots."
+    }
+  ],
+  "icon": {
+    "source": "public/brand/docked/icons/docked-icon-512.png",
+    "file": "docked-icon-original-REVIEW.png",
+    "width": 512,
+    "height": 512,
+    "hasAlpha": false,
+    "sha256": "73491d176a647c16257c7239906f14d5a20b6d3d6aaf1473035e40901454efa2",
+    "changed": false,
+    "decision": "Original Docked mark retained; baked-in rounded/glowing frame and PNG format require store icon-spec review. No automatic approval."
+  },
+  "featureGraphic": {
+    "status": "PREPARED_FOR_OWNER_REVIEW",
+    "requiredDimensions": "1024x500",
+    "file": "feature-graphic-review.png",
+    "editableSource": "feature-graphic-review.html",
+    "provenance": "feature-graphic-provenance.json",
+    "publicationReady": false,
+    "decision": "Original CSS geometry with existing unchanged Docked wordmark and approved tagline. No fake app UI, scores, team marks or financial claims. Requires owner/store review."
+  },
+  "ownerComparison": {
+    "before": "../prelaunch-owner/before-c588d793",
+    "after": "../prelaunch-owner/browser-1792154014484",
+    "scope": "Owner-only synthetic evidence, excluded from customer store screenshot set."
+  },
+  "pending": [
+    "Capture actual approved Android build",
+    "Remove QA-only navigation by capturing real routes, not editing screenshots",
+    "Confirm accurate enabled feature set",
+    "Owner review of icon/feature graphic",
+    "Play Console upload/acceptance",
+    "Physical Samsung S24 testing"
+  ]
+}

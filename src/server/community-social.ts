@@ -19,6 +19,7 @@ import { identity, requireIdentity, requireRole } from "./auth";
 import { requireCommunityAccess } from "./community-policy";
 import type { CommunityFeature } from "@/core/community-policy";
 import { recordAnalytics } from "./analytics";
+import { moderationReportsQuery } from "./community-moderation-query";
 import {
   OFFICIAL_PROFILE_ID,
   decodeSocialCursor,
@@ -27,6 +28,7 @@ import {
   notificationActionSchema,
   safeSocialText,
   canReviewCommunityMedia,
+  moderationActions,
 } from "@/core/community-social";
 import type {
   SocialProfile,
@@ -597,7 +599,7 @@ export async function communityModeration(): Promise<CommunityModeration> {
     await requireRole(["owner", "admin", "editor", "auditor"]);
     const tx = db();
     const [reports, media] = await Promise.all([
-      tx`select id,target_type,target_id,reason,details,status,created_at from private.social_reports order by case when status='open' then 0 else 1 end,created_at desc limit 100`,
+      tx.unsafe(moderationReportsQuery),
       tx`select id,alt,width,height,status from private.social_media where status='quarantine' and content is not null and expires_at>now() order by created_at limit 50`,
     ]);
     return {
@@ -611,6 +613,9 @@ export async function communityModeration(): Promise<CommunityModeration> {
         details: String(r.details),
         status: String(r.status),
         createdAt: iso(r.created_at),
+        reporter: r.reporter_handle ? { name: String(r.reporter_name), handle: String(r.reporter_handle) } : null,
+        target: { content: r.target_content === null ? null : String(r.target_content), status: r.target_status === null ? null : String(r.target_status) },
+        history: Array.isArray(r.history) ? r.history : [],
       })),
       media: media.map((r) => toMedia(r, true)),
     };
@@ -1156,19 +1161,7 @@ export async function mutateCommunity(input: unknown) {
           ).length
         )
           throw new Error("Report target mismatch");
-        const allowed = {
-          post: ["remove", "dismiss", "warn", "escalate"],
-          comment: ["remove", "dismiss", "warn", "escalate"],
-          profile: [
-            "warn",
-            "restrict",
-            "suspend",
-            "restore",
-            "dismiss",
-            "escalate",
-          ],
-          media: ["approve", "reject", "dismiss", "escalate"],
-        }[action.targetType];
+        const allowed = moderationActions(action.targetType);
         if (!allowed.includes(action.decision))
           throw new Error("Invalid moderation action");
         if (action.targetType === "profile") {

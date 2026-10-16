@@ -7,6 +7,7 @@ import {
   type FeedRequest,
   requireFeedPermit,
   feedRequest,
+  feedRetentionExpiresAt,
 } from "./sports-feed-client";
 const json = (value: unknown) => JSON.parse(JSON.stringify(value));
 
@@ -88,7 +89,7 @@ export class SportsFeedStore {
       await tx`update sports_feed.raw_revisions set body=null,purged_at=clock_timestamp()
         where provider=${permit.provider} and resource=${resource} and expires_at<=clock_timestamp() and body is not null`;
       await tx`insert into sports_feed.raw_revisions(provider,resource,body_hash,body,observed_at,rights_evidence,expires_at)
-        values(${permit.provider},${resource},${digest(payload)},${tx.json(json(payload))},${observedAt},${permit.evidence},${observedAt}::timestamptz+make_interval(days=>${permit.rawRetentionDays})) on conflict do nothing`;
+        values(${permit.provider},${resource},${digest(payload)},${tx.json(json(payload))},${observedAt},${permit.evidence},${feedRetentionExpiresAt(permit, observedAt)}::timestamptz) on conflict do nothing`;
       const [raw] =
         await tx`select id from sports_feed.raw_revisions where provider=${permit.provider} and resource=${resource} and body_hash=${digest(payload)} and body is not null`;
       await tx`update sports_feed.jobs set state='done',last_success=clock_timestamp(),error_code=null,lease=null,lease_until=null where id=${id}`;

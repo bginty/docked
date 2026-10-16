@@ -87,6 +87,9 @@ export function FantasySheet({
       aria-label={title}
       onCancel={(e) => {
         e.preventDefault();
+        // React propagates cancel through the component tree even though the
+        // native dialog event does not bubble. Close only the active sheet.
+        e.stopPropagation();
         onClose();
       }}
       onClick={(e) => {

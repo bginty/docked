@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 1 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 11643.0527
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 2 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 34.3501
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+ok 3 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 28.0622
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+ok 4 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 7.4027
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+ok 5 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 11.1784
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+ok 6 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 31.1618
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 7 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 82.0639
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 8 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 26.5042
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 9 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 39.3599
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 10 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 32.4881
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 11 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 23.9692
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 12 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 23.872
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 13 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 16.2115
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 14 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 22.7023
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 15 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 29.2638
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 16 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 12.4357
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+ok 17 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 41.5873
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+ok 18 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 7.4078
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 19 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 59.5329
+  ...
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+ok 20 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 12639.7379
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 21 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 17000.669
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 51606.8316

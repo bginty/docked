@@ -14,7 +14,7 @@ export function FantasyHero() {
       <source media="(max-width: 1100px)" srcSet={fantasyAssets.heroTablet} />
       <img
         src={fantasyAssets.hero}
-        alt="Docked. Collect. Build. Compete."
+        alt="Docked fantasy cards"
         width={1600}
         height={900}
         fetchPriority="high"

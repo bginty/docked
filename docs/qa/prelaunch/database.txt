@@ -1,0 +1,756 @@
+TAP version 13
+# Subtest: mail RPC and encrypted tables are unavailable to public/member/runtime roles
+ok 1 - mail RPC and encrypted tables are unavailable to public/member/runtime roles
+  ---
+  duration_ms: 9004.9492
+  ...
+# Subtest: duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+ok 2 - duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+  ---
+  duration_ms: 30.5468
+  ...
+# Subtest: worker fencing prevents a second claim and a stale worker dispatch
+ok 3 - worker fencing prevents a second claim and a stale worker dispatch
+  ---
+  duration_ms: 57.9295
+  ...
+# Subtest: lost dispatch acknowledgement becomes unknown and can never auto retry
+ok 4 - lost dispatch acknowledgement becomes unknown and can never auto retry
+  ---
+  duration_ms: 45.6773
+  ...
+# Subtest: only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+ok 5 - only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+  ---
+  duration_ms: 48.1924
+  ...
+# Subtest: expired queued links are erased without dispatch and modes cannot cross
+ok 6 - expired queued links are erased without dispatch and modes cannot cross
+  ---
+  duration_ms: 26.5366
+  ...
+# Subtest: live dispatch lease cannot return to pending for any retry reason
+ok 7 - live dispatch lease cannot return to pending for any retry reason
+  ---
+  duration_ms: 36.1739
+  ...
+# Subtest: database enforces permanent supply, serial immutability, nine-card receipts and private access
+ok 8 - database enforces permanent supply, serial immutability, nine-card receipts and private access
+  ---
+  duration_ms: 7135.1896
+  ...
+# Subtest: community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+ok 9 - community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+  ---
+  duration_ms: 14026.7078
+  ...
+# Subtest: unknown provider classification, promotions and historical/demo records cannot be promoted
+ok 10 - unknown provider classification, promotions and historical/demo records cannot be promoted
+  ---
+  duration_ms: 99.187
+  ...
+# Subtest: atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+ok 11 - atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+  ---
+  duration_ms: 110.3713
+  ...
+# Subtest: newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+ok 12 - newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+  ---
+  duration_ms: 81.0893
+  ...
+# Subtest: latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+ok 13 - latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+  ---
+  duration_ms: 51.2369
+  ...
+# Subtest: canonical records survive social tombstone, private identity and blocking
+ok 14 - canonical records survive social tombstone, private identity and blocking
+  ---
+  duration_ms: 83.1611
+  ...
+# Subtest: authorized results only, no silent correction, finite scores, append-only approval revocation
+ok 15 - authorized results only, no silent correction, finite scores, append-only approval revocation
+  ---
+  duration_ms: 112.2365
+  ...
+# Subtest: integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+ok 16 - integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+  ---
+  duration_ms: 94.3192
+  ...
+# Subtest: leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+ok 17 - leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+  ---
+  duration_ms: 34.6018
+  ...
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 18 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 12951.1076
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 19 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 46.5472
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+ok 20 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 32.444
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+ok 21 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 6.0622
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+ok 22 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 13.6876
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+ok 23 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 39.3669
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 24 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 87.221
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 25 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 36.2587
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 26 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 54.2114
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 27 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 36.0363
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 28 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 33.7964
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 29 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 22.8314
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 30 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 16.9076
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 31 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 22.0332
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 32 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 26.6994
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 33 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 19.6389
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+ok 34 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 54.4763
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+ok 35 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 8.1203
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 36 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 65.9646
+  ...
+# Subtest: customer eligibility is not account creation: cap, binding, verification, consent and roles
+ok 37 - customer eligibility is not account creation: cap, binding, verification, consent and roles
+  ---
+  duration_ms: 15387.3239
+  ...
+# Subtest: unfunded buyers cannot reserve pack inventory
+ok 38 - unfunded buyers cannot reserve pack inventory
+  ---
+  duration_ms: 14937.4973
+  ...
+# Subtest: fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+ok 39 - fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+  ---
+  duration_ms: 29.9314
+  ...
+# Subtest: fourth member, forged session, revoked member and disabled profile fail closed
+ok 40 - fourth member, forged session, revoked member and disabled profile fail closed
+  ---
+  duration_ms: 24.2539
+  ...
+# Subtest: three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+ok 41 - three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+  ---
+  duration_ms: 349.9069
+  ...
+# Subtest: scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+ok 42 - scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+  ---
+  duration_ms: 14.2766
+  ...
+# Subtest: market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+ok 43 - market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+  ---
+  duration_ms: 47.3789
+  ...
+# Subtest: stale trades roll back all ownership; valid multi-card trade is atomic
+ok 44 - stale trades roll back all ownership; valid multi-card trade is atomic
+  ---
+  duration_ms: 70.8816
+  ...
+# Subtest: invalid position and duplicate lineups fail; admin authorization is enforced
+ok 45 - invalid position and duplicate lineups fail; admin authorization is enforced
+  ---
+  duration_ms: 15.4229
+  ...
+# Subtest: empty configured formation is rejected and distinct serials cannot duplicate a player by default
+ok 46 - empty configured formation is rejected and distinct serials cannot duplicate a player by default
+  ---
+  duration_ms: 26.7528
+  ...
+# Subtest: rarity is absent from scoring; unavailable player has zero score, no bench
+ok 47 - rarity is absent from scoring; unavailable player has zero score, no bench
+  ---
+  duration_ms: 10.9328
+  ...
+# Subtest: three-user locked round publishes immutable results and championship points once
+ok 48 - three-user locked round publishes immutable results and championship points once
+  ---
+  duration_ms: 2777.429
+  ...
+# Subtest: pack issuance failure rolls back debit, serial allocation and opening items
+ok 49 - pack issuance failure rolls back debit, serial allocation and opening items
+  ---
+  duration_ms: 73.3832
+  ...
+# Subtest: retirement preserves ownership, rejects new lineup and issues one replacement
+ok 50 - retirement preserves ownership, rejects new lineup and issues one replacement
+  ---
+  duration_ms: 41.6923
+  ...
+# Subtest: idempotency keys reject changed payloads and ledgers reconcile to zero
+ok 51 - idempotency keys reject changed payloads and ledgers reconcile to zero
+  ---
+  duration_ms: 9.2839
+  ...
+# Subtest: runtime read projection cannot reveal other users wallets or private provenance
+ok 52 - runtime read projection cannot reveal other users wallets or private provenance
+  ---
+  duration_ms: 40.3979
+  ...
+# Subtest: manual statistics and versioned scoring are permissioned and freeze after results
+ok 53 - manual statistics and versioned scoring are permissioned and freeze after results
+  ---
+  duration_ms: 954.823
+  ...
+# Subtest: account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+ok 54 - account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+  ---
+  duration_ms: 26.029
+  ...
+# Subtest: bilateral consent, exact per-trade fees, idempotent receipt, immutable history
+ok 55 - bilateral consent, exact per-trade fees, idempotent receipt, immutable history
+  ---
+  duration_ms: 7574.5659
+  ...
+# Subtest: fee-window boundary demands fresh quote and fresh bilateral consent
+ok 56 - fee-window boundary demands fresh quote and fresh bilateral consent
+  ---
+  duration_ms: 118.3598
+  ...
+# Subtest: insufficient mock balance and payment failure roll back fees, transfers and second consent
+ok 57 - insufficient mock balance and payment failure roll back fees, transfers and second consent
+  ---
+  duration_ms: 129.1216
+  ...
+# Subtest: stale ownership, locked lineups, foreign accounts and policy changes fail closed
+ok 58 - stale ownership, locked lineups, foreign accounts and policy changes fail closed
+  ---
+  duration_ms: 150.8235
+  ...
+# Subtest: bundle charged once, sale transfers price atomically, cancellation is free
+ok 59 - bundle charged once, sale transfers price atomically, cancellation is free
+  ---
+  duration_ms: 152.2834
+  ...
+# Subtest: cancellation and rejection never charge; cancelled quotes cannot commit
+ok 60 - cancellation and rejection never charge; cancelled quotes cannot commit
+  ---
+  duration_ms: 71.3035
+  ...
+# Subtest: unconfigured live schedule blocks, policy revision invalidates consent
+ok 61 - unconfigured live schedule blocks, policy revision invalidates consent
+  ---
+  duration_ms: 99.7947
+  ...
+# Subtest: offer edits cannot substitute terms after consent; sale and decline rules
+ok 62 - offer edits cannot substitute terms after consent; sale and decline rules
+  ---
+  duration_ms: 92.7785
+  ...
+# Subtest: production starter is permanent, atomic and duplicate-safe across fresh request IDs
+ok 63 - production starter is permanent, atomic and duplicate-safe across fresh request IDs
+  ---
+  duration_ms: 42584.2022
+  ...
+# Subtest: daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+ok 64 - daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+  ---
+  duration_ms: 61.5235
+  ...
+# Subtest: production denies all monetary/trade paths and original Preview entry even as MFA admin
+ok 65 - production denies all monetary/trade paths and original Preview entry even as MFA admin
+  ---
+  duration_ms: 150.479
+  ...
+# Subtest: unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+ok 66 - unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+  ---
+  duration_ms: 190.644
+  ...
+# Subtest: production supports more than three verified members and isolates their inventory/history
+ok 67 - production supports more than three verified members and isolates their inventory/history
+  ---
+  duration_ms: 484.0254
+  ...
+# Subtest: seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+ok 68 - seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+  ---
+  duration_ms: 78.3699
+  ...
+# Subtest: failed partial starter allocation rolls back membership, stock, cards and provenance
+ok 69 - failed partial starter allocation rolls back membership, stock, cards and provenance
+  ---
+  duration_ms: 80.9619
+  ...
+# Subtest: runtime role executes eligible commands; missing context and revoked membership deny
+ok 70 - runtime role executes eligible commands; missing context and revoked membership deny
+  ---
+  duration_ms: 34.3257
+  ...
+# Subtest: daily card limit and exhausted inventory award only points with stable receipts
+ok 71 - daily card limit and exhausted inventory award only points with stable receipts
+  ---
+  duration_ms: 123.8775
+  ...
+# Subtest: new MFA free rounds preserve fixed scoring and immutable prior results
+ok 72 - new MFA free rounds preserve fixed scoring and immutable prior results
+  ---
+  duration_ms: 311.4483
+  ...
+# Subtest: starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+ok 73 - starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+  ---
+  duration_ms: 131.118
+  ...
+# Subtest: old daily request replay never consumes a new UTC period
+ok 74 - old daily request replay never consumes a new UTC period
+  ---
+  duration_ms: 63.2078
+  ...
+# Subtest: unexpected optional-card issuance failure rolls back points, receipt and stock
+ok 75 - unexpected optional-card issuance failure rolls back points, receipt and stock
+  ---
+  duration_ms: 114.2374
+  ...
+# Subtest: shared standings respect profile privacy, bilateral blocks and active membership without exposing auth identities
+ok 76 - shared standings respect profile privacy, bilateral blocks and active membership without exposing auth identities
+  ---
+  duration_ms: 761.0455
+  ...
+# Subtest: stable release excludes beta rounds and points without resetting permanent cards or permitting a second daily claim
+ok 77 - stable release excludes beta rounds and points without resetting permanent cards or permitting a second daily claim
+  ---
+  duration_ms: 292.4891
+  ...
+# Subtest: release history is immutable and runtime cannot invoke legacy bypasses or edit channel records
+ok 78 - release history is immutable and runtime cannot invoke legacy bypasses or edit channel records
+  ---
+  duration_ms: 104.7099
+  ...
+# Subtest: jersey projection rejects missing/conflicting/stale/wrong-team source facts and grants no raw access
+ok 79 - jersey projection rejects missing/conflicting/stale/wrong-team source facts and grants no raw access
+  ---
+  duration_ms: 14125.121
+  ...
+# \#
+# \# Fatal process out of memory: Zone
+# \#
+# ----- Native stack trace -----
+#  1: 00007FF6F1A020AD node::SetCppgcReference+17245
+#  2: 00007FF6F18E62CF node::TriggerNodeReport+75631
+#  3: 00007FF6F2AB16E6 v8::base::FatalOOM+54
+#  4: 00007FF6F24D6EA1 v8::Function::Experimental_IsNopFunction+2289
+#  5: 00007FF6F1FA8ECB v8::SnapshotCreator::GetIsolate+52139
+#  6: 00007FF6F1D358B0 CrashForExceptionInNonABICompliantCodeRange+293712
+#  7: 00007FF6F2C1F679 v8::internal::compiler::CompilationDependencies::TransitionDependencyOffTheRecord+210057
+#  8: 00007FF6F2C1F528 v8::internal::compiler::CompilationDependencies::TransitionDependencyOffTheRecord+209720
+#  9: 00007FF6F2BD3ECF v8::internal::compiler::CompilationDependencies::~CompilationDependencies+810895
+# 10: 00007FF6F2BCA930 v8::internal::compiler::CompilationDependencies::~CompilationDependencies+772592
+# 11: 00007FF6F2AE11F3 inflateInit2_+105347
+# 12: 00007FF6F1E5E9CD v8::WasmStreaming::Unpack+962941
+# 13: 00007FF6F1E5DE9A v8::WasmStreaming::Unpack+960074
+# 14: 00007FF6F1E39498 v8::WasmStreaming::Unpack+810056
+# 15: 00007FF6F1E3EE3F v8::WasmStreaming::Unpack+833007
+# 16: 00007FF6F26DB995 v8::PropertyDescriptor::writable+1996821
+# 17: 00007FF6F18E8B59 EVP_CIPHER_CTX_get_cipher_data+713
+# 18: 00007FF6F1A62323 uv_poll_stop+291
+# 19: 00007FF6F31C066E inflateValidate+153502
+# 20: 00007FFF2C63DDA7 BaseThreadInitThunk+23
+# 21: 00007FFF2D53EE4C RtlUserThreadStart+44
+# Subtest: tests\\database\\marketplace.test.ts
+not ok 10 - tests\\database\\marketplace.test.ts
+  ---
+  duration_ms: 21630.2247
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\marketplace.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 2147483651
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# \#
+# \# Fatal process out of memory: Re-embedded builtins: set permissions
+# \#
+# ----- Native stack trace -----
+#  1: 00007FF6F1A020AD 
+#  2: 00007FF6F18E62CF 
+#  3: 00007FF6F2AB16E6 
+#  4: 00007FF6F24EA203 
+#  5: 00007FF6F24D7096 
+#  6: 00007FF6F2372C6A 
+#  7: 00007FF6F239A24A 
+#  8: 00007FF6F2398293 
+#  9: 00007FF6F1FC7F5E 
+# 10: 00007FF6F24DFEA1 
+# 11: 00007FF6F1A417ED 
+# 12: 00007FF6F19150B3 
+# 13: 00007FF6F19B1E52 
+# 14: 00007FF6F19B0BC7 
+# 15: 00007FF6F16DE66C 
+# 16: 00007FF6F31A2094 
+# 17: 00007FFF2C63DDA7 BaseThreadInitThunk+23
+# 18: 00007FFF2D53EE4C 
+# Subtest: tests\\database\\nfl-member.test.ts
+not ok 11 - tests\\database\\nfl-member.test.ts
+  ---
+  duration_ms: 3009.7651
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\nfl-member.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 2147483651
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+#   \#  C:\\Windows\\System32\\cmd.exe[91084]: class std::unique_ptr<void *,struct std::default_delete<void *> > __cdecl node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start(void) at c:\\ws\\src\\node_platform.cc:68
+#   \#  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+# ----- Native stack trace -----
+#  1: 00007FF6F1A020AD 
+#  2: 00007FF6F19682D1 
+#  3: 00007FF6F18E7795 
+#  4: 00007FF6F18E71D6 
+#  5: 00007FF6F19AD2DB 
+#  6: 00007FF6F19AF2B0 
+#  7: 00007FF6F19B19C7 
+#  8: 00007FF6F19B0BC7 
+#  9: 00007FF6F16DE66C 
+# 10: 00007FF6F31A2094 
+# 11: 00007FFF2C63DDA7 
+# 12: 00007FFF2D53EE4C 
+# Subtest: tests\\database\\nfl-seven.test.ts
+not ok 12 - tests\\database\\nfl-seven.test.ts
+  ---
+  duration_ms: 2357.549
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\nfl-seven.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 134
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tests\\database\\owner-command-centre.test.ts
+not ok 13 - tests\\database\\owner-command-centre.test.ts
+  ---
+  duration_ms: 2485.6411
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\owner-command-centre.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 3221226505
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tests\\database\\phase2-security.test.ts
+not ok 14 - tests\\database\\phase2-security.test.ts
+  ---
+  duration_ms: 1656.1628
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\phase2-security.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 3221225773
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tests\\database\\phase3-benefits.test.ts
+not ok 15 - tests\\database\\phase3-benefits.test.ts
+  ---
+  duration_ms: 5.9002
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\phase3-benefits.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\premium-transition.test.ts
+not ok 16 - tests\\database\\premium-transition.test.ts
+  ---
+  duration_ms: 5.7846
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\premium-transition.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\preview-acquisition.test.ts
+not ok 17 - tests\\database\\preview-acquisition.test.ts
+  ---
+  duration_ms: 5.8175
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\preview-acquisition.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+#   \#  C:\\Windows\\System32\\cmd.exe[97728]: class std::shared_ptr<class node::InitializationResultImpl> __cdecl node::InitializeOncePerProcessInternal(const class std::vector<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::allocator<class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > > > &,enum node::ProcessInitializationFlags::Flags) at c:\\ws\\src\\node.cc:1200
+#   \#  Assertion failed: ncrypto::CSPRNG(nullptr, 0)
+# ----- Native stack trace -----
+#  1: 00007FF6F1A020AD 
+#  2: 00007FF6F19682D1 
+#  3: 00007FF6F19AF3D4 
+#  4: 00007FF6F19B19C7 
+#  5: 00007FF6F19B0BC7 
+#  6: 00007FF6F16DE66C 
+#  7: 00007FF6F31A2094 
+#  8: 00007FFF2C63DDA7 
+#  9: 00007FFF2D53EE4C RtlUserThreadStart+44
+# Subtest: tests\\database\\preview-auth-capture.test.ts
+not ok 18 - tests\\database\\preview-auth-capture.test.ts
+  ---
+  duration_ms: 2589.993
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\preview-auth-capture.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 134
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tests\\database\\preview-auth-gate.test.ts
+not ok 19 - tests\\database\\preview-auth-gate.test.ts
+  ---
+  duration_ms: 1911.4212
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\preview-auth-gate.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 3221226505
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: tests\\database\\preview-beta-auth.test.ts
+not ok 20 - tests\\database\\preview-beta-auth.test.ts
+  ---
+  duration_ms: 7.0748
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\preview-community.test.ts
+not ok 21 - tests\\database\\preview-community.test.ts
+  ---
+  duration_ms: 5.9251
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\preview-community.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\production-runtime-role.test.ts
+not ok 22 - tests\\database\\production-runtime-role.test.ts
+  ---
+  duration_ms: 7.1627
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\production-signup.test.ts
+not ok 23 - tests\\database\\production-signup.test.ts
+  ---
+  duration_ms: 5.8558
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\production-signup.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\schema.test.ts
+not ok 24 - tests\\database\\schema.test.ts
+  ---
+  duration_ms: 6.4228
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\schema.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\transaction-rate-limit.test.ts
+not ok 25 - tests\\database\\transaction-rate-limit.test.ts
+  ---
+  duration_ms: 62.2256
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\transaction-rate-limit.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: tests\\database\\weekly-core.test.ts
+not ok 26 - tests\\database\\weekly-core.test.ts
+  ---
+  duration_ms: 27.7343
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\weekly-core.test.ts:1:1'
+  failureType: 'testCodeFailure'
+  error: 'spawn UNKNOWN'
+  code: 'UNKNOWN'
+  stack: |-
+    ChildProcess.spawn (node:internal/child_process:420:11)
+    spawn (node:child_process:753:9)
+    TestContext.<anonymous> (node:internal/test_runner/runner:376:19)
+    FileTest.runInAsyncScope (node:async_hooks:211:14)
+    FileTest.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    FileTest.postRun (node:internal/test_runner/test:1090:19)
+    FileTest.run (node:internal/test_runner/test:1018:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+1..96
+# tests 96
+# suites 0
+# pass 79
+# fail 17
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 212990.1583

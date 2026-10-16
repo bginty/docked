@@ -1,0 +1,58 @@
+{
+  "reviewDate": "2026-10-16",
+  "baselineCommit": "c588d7930129987796f8aa309d42040abafc5938",
+  "decision": "LOCAL_OWNER_REVIEW; NOT_COMMERCIAL_OR_PLAY_ACCEPTANCE",
+  "productionChanged": false,
+  "hostedMigrationApplied": false,
+  "financialOrTradingActivation": false,
+  "checks": {
+    "platform": {"passed":425,"failed":0,"skipped":0,"evidence":"platform.txt"},
+    "finalChangedPlatform": {"passed":5,"failed":0,"evidence":"final-changed-tests.txt"},
+    "databaseFirstAttempt": {"passed":79,"failedFiles":17,"reason":"Local process memory exhaustion and subsequent process-start failures","evidence":"database.txt"},
+    "databaseInterruptedFilesRetry1": {"passed":4,"failed":0,"evidence":"database-retry-1.txt"},
+    "databaseInterruptedFilesRetry2": {"passed":79,"failed":0,"evidence":"database-retry-2.txt"},
+    "laterModerationScope": {"databasePassed":20,"platformPassed":2,"failed":0,"note":"Overlaps earlier suite; do not sum as independent unique checks. See prelaunch-experience-audit.md."},
+    "nativePostgresFeed": {"passed":11,"scope":"Local PostgreSQL, including 20-way concurrency; no hosted provider"},
+    "typecheck":"PASS",
+    "lint":"PASS_FULL_SOURCE_SCRIPTS_TESTS",
+    "productionBuild":"PASS_CLEAN_ENVIRONMENT",
+    "clientCanaries":{"passed":true,"browserAssets":59},
+    "npmAuditProduction":{"reportedVulnerabilities":0},
+    "npmAuditAll":{"reportedVulnerabilities":0},
+    "knownSecretSourceScan":{"files":516,"findings":0,"errors":0},
+    "broadSecretScan":{"status":"FAIL_DOCUMENTED_FINDINGS_REMAIN","findings":9,"fixtureOrGenerated":8,"signedCapability":1,"oldObjectPath":"404; prior private relocation independently confirmed","tokenCryptographicallyRevoked":false}
+  },
+  "visualEvidence": {
+    "owner":"../prelaunch-owner/browser-1792154014484/acceptance.json",
+    "ownerBefore":"../prelaunch-owner/before-c588d793/provenance.json",
+    "socialModeration":"experience-1792153750630/results.json",
+    "cards":"../futuristic-cards/browser-1792151829916/results.json",
+    "profileWeeklyPack":"../weekly-core/browser-1792151843358/results.json",
+    "storeReview":"../prelaunch-store-assets/index.html",
+    "widths":[1440,1024,412,360],
+    "seriousCriticalAxeFindingsInOwnerSocialWeeklySuites":0,
+    "scope":"Actual shared components and local synthetic fixtures; inspected screenshots. Not physical Android or hosted authentication."
+  },
+  "preview": {
+    "newDeployment":false,
+    "protection":"Vercel SSO all deployments; no Production domains",
+    "supabaseProject":"bckkllmndoxzpzdqrevb",
+    "ownerSetupComplete":false,
+    "ownerVerifiedMfa":false,
+    "admissionEnabled":false,
+    "admissions":0,
+    "runtimeConfigurationFullyAttested":false,
+    "blocker":"Normal owner email/password/MFA and admission setup required in the separate isolated project. Existing live-beta login is not evidence of this project setup."
+  },
+  "incomplete": [
+    "Fresh genuine-auth avatar upload/persistence: local Docker/GoTrue unavailable",
+    "Hosted owner/tester/staff acceptance and complete runtime isolation attestation",
+    "Physical Samsung S24, Samsung Internet and native-shell acceptance",
+    "Play upload-key/Console programme and final signed AAB acceptance",
+    "Licensed provider trial semantics and commercial rights",
+    "Real payment approval and Billing/token/refund reconciliation implementation",
+    "Approved moderation evidence-retention, assignment and appeals workflows",
+    "Actual-environment backup/restore and physical performance acceptance",
+    "Final approved-build store screenshots and Play declarations"
+  ]
+}

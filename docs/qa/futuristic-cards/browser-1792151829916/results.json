@@ -1,0 +1,35 @@
+{
+  "scope": "Production components with isolated local fixtures; no hosted or physical-device acceptance",
+  "results": [
+    {
+      "width": 1440,
+      "contexts": 7,
+      "rarities": 6,
+      "passed": true
+    },
+    {
+      "width": 1024,
+      "contexts": 7,
+      "rarities": 6,
+      "passed": true
+    },
+    {
+      "width": 412,
+      "contexts": 7,
+      "rarities": 6,
+      "passed": true
+    },
+    {
+      "width": 360,
+      "contexts": 7,
+      "rarities": 6,
+      "passed": true
+    },
+    {
+      "normalMotion": true,
+      "singleForwardReveal": true,
+      "sixCards": true,
+      "mutations": 0
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { competitionNames } from "@/core/competition-display";
+import { brand } from "@/brand/brand";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ApiForm } from "@/components/forms";
@@ -59,7 +60,7 @@ export default async function Page({
   return (
     <AppAuthShell>
       <h1>
-        {section === "about" ? "Collect. Build. Compete." : "Docked support"}
+        {section === "about" ? brand.tagline : "Docked support"}
       </h1>
       <p>
         Docked is a fantasy sports card platform. Collect limited cards, build

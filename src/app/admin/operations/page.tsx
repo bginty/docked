@@ -20,7 +20,12 @@ export default async function OperationsPage({
   }
   const query = await searchParams;
   try {
-    const { filters, data } = await ownerOperations(query);
+    const { filters, data } = await ownerOperations({
+      ...query,
+      scope:
+        query.scope ??
+        (process.env.DOCKED_BETA_STAGING === "true" ? "beta" : "live"),
+    });
     const params = new URLSearchParams({
       start: filters.start,
       end: filters.end,
@@ -30,8 +35,12 @@ export default async function OperationsPage({
     });
     return (
       <AppShell authenticated>
-        <section className="scoring-review">
-          <h1>Owner dashboard</h1>
+        <section className="scoring-review owner-command-page">
+          <p className="eyebrow">DOCKED OPERATIONS</p>
+          <h1>Owner Command Centre</h1>
+          <p className="command-muted">
+            Platform health, member activity and controlled operations.
+          </p>
           <form className="scoring-controls">
             <label>
               From · Sydney
@@ -57,7 +66,6 @@ export default async function OperationsPage({
                 <option value="all">All sports</option>
                 <option value="football">EPL</option>
                 <option value="nfl">NFL</option>
-                <option value="afl">AFL</option>
               </select>
             </label>
             <label>
@@ -76,11 +84,16 @@ export default async function OperationsPage({
             </label>
             <button className="button">Apply filters</button>
           </form>
-          <p>
-            <a href={`/api/admin/operations?${params}&format=csv`}>
+          <p className="command-actions">
+            <a
+              className="button ghost"
+              href={`/api/admin/operations?${params}&format=csv`}
+            >
               Download inventory CSV
-            </a>{" "}
-            · <a href="/fantasy/profile">Back to Profile</a>
+            </a>
+            <a className="button ghost" href="/fantasy/profile">
+              Back to Profile
+            </a>
           </p>
           <OwnerDashboard data={data} />
         </section>

@@ -1,0 +1,35 @@
+TAP version 13
+# Subtest: moderation filters intersect and staff evidence stays behind the AAL2 server path
+ok 1 - moderation filters intersect and staff evidence stays behind the AAL2 server path
+  ---
+  duration_ms: 8.5331
+  ...
+# Subtest: moderation offers only the existing server-authorised actions for each target
+ok 2 - moderation offers only the existing server-authorised actions for each target
+  ---
+  duration_ms: 1.1577
+  ...
+# Subtest: owner wallet projection reads the existing ledger without exposing identities or fabricating cash receipts
+ok 3 - owner wallet projection reads the existing ledger without exposing identities or fabricating cash receipts
+  ---
+  duration_ms: 69.5487
+  ...
+# Subtest: owner alerts use stored evidence and server report time, not a guessed outage
+ok 4 - owner alerts use stored evidence and server report time, not a guessed outage
+  ---
+  duration_ms: 1.751
+  ...
+# Subtest: pending offer totals exclude expiry at the authoritative reporting instant
+ok 5 - pending offer totals exclude expiry at the authoritative reporting instant
+  ---
+  duration_ms: 0.9675
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3596.3868

@@ -22,7 +22,7 @@ export function appDestination(path: string) {
     return path.split("/").slice(0, 3).join("/");
   if (/^\/(feed|following|community|compose|search)(\/|$)/.test(path))
     return "/fantasy/social";
-  if (/^\/(profile|dashboard|notifications)(\/|$)/.test(path))
+  if (/^\/(profile|dashboard|notifications|admin)(\/|$)/.test(path))
     return "/fantasy/profile";
   return "/fantasy/play";
 }
@@ -165,7 +165,11 @@ export function AppShell({
               )}
             </div>
             <strong className="workspace-location">
-              {nav.find((n) => n.href === destination)?.label}
+              {path.startsWith("/admin/operations")
+                ? "Owner operations"
+                : path.startsWith("/admin")
+                  ? "Staff operations"
+                  : nav.find((n) => n.href === destination)?.label}
             </strong>
             <nav aria-label="App utilities">
               <span id="workspace-wallet-slot">

@@ -31,12 +31,15 @@ export function operationFilters(input: Record<string, string | undefined>) {
   return { ...v, startAt: start.toUTC().toISO()!, endAt: end.toUTC().toISO()! };
 }
 export type Operations = {
+  centre?: import("./owner-command-centre").CommandCentre;
+  wallet?: import("./owner-wallet-summary").OwnerWalletSummary | null;
   scope: string;
   generatedAt: string;
   metrics: Record<string, number>;
   competitions: {
     id: string;
     name: string;
+    display?: import("./competition-display").CompetitionDisplayContext;
     sport: string;
     round: number;
     locks_at: string;

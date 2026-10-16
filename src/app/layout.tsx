@@ -24,6 +24,7 @@ import "./social-hub.css";
 import "./collectible.css";
 import "./standings.css";
 import "./pack-shop.css";
+import "./owner-command.css";
 import { SportProvider } from "@/components/sport-context";
 import { fantasyTagline } from "@/core/fantasy";
 import { fantasyAssets } from "@/brand/fantasy-assets";

@@ -35,14 +35,14 @@ import { fantasyAssets } from "@/brand/fantasy-assets";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Fantasy Cards | COLLECT. BUILD. COMPETE.",
+  title: `Fantasy Cards | ${fantasyTagline}`,
 
   description: "Collect player cards and build your fantasy team.",
 
   robots: { index: false, follow: false },
 
   openGraph: {
-    title: "Docked | COLLECT. BUILD. COMPETE.",
+    title: `Docked | ${fantasyTagline}`,
 
     description: "Fantasy Cards Preview",
 
@@ -50,7 +50,7 @@ export const metadata = {
   },
 
   twitter: {
-    title: "Docked | COLLECT. BUILD. COMPETE.",
+    title: `Docked | ${fantasyTagline}`,
 
     images: [fantasyAssets.social],
   },

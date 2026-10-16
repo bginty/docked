@@ -1,6 +1,7 @@
 import { z } from "zod";
+import brandTokens from "../brand/brand-tokens.json";
 import { previewDatabaseBound, dockedPreviewOrigin } from "./preview-auth";
-export const fantasyTagline = "COLLECT. BUILD. COMPETE.";
+export const fantasyTagline = brandTokens.tagline;
 export function fantasyEnabled(
   env: Record<string, string | undefined> = process.env,
 ) {

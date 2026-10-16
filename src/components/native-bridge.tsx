@@ -10,6 +10,7 @@ import {
 } from "@/core/native-navigation";
 import { brand } from "@/brand/brand";
 import { topModal } from "@/core/modal-lifecycle";
+import { nativeListenerScope } from "@/core/native-listener-scope";
 export function isDockedNative() {
   return (
     typeof window !== "undefined" &&
@@ -30,6 +31,8 @@ export function NativeBridge() {
     document.documentElement.classList.add("docked-native");
     let alive = true;
     const cleanup: (() => void)[] = [];
+    const listeners = nativeListenerScope();
+    cleanup.push(() => listeners.close());
     const external = (event: MouseEvent) => {
       const anchor = (event.target as Element | null)?.closest?.("a");
       if (!anchor || anchor.hasAttribute("download")) return;
@@ -86,50 +89,56 @@ export function NativeBridge() {
               );
           }
         }
-        const handles = await Promise.all([
-          App.addListener("appUrlOpen", ({ url }) => {
-            if (alive) open(url);
-          }),
-          App.addListener("backButton", ({ canGoBack }) => {
-            if (!alive) return;
-            const panel =
-              topModal() ??
-              [
-                ...document.querySelectorAll<HTMLDialogElement>("dialog[open]"),
-              ].at(-1);
-            if (panel) {
-              panel.dispatchEvent(new Event("cancel", { cancelable: true }));
-              return;
-            }
-            if (canGoBack) router.back();
-            else void App.minimizeApp();
-          }),
-          App.addListener("appStateChange", ({ isActive }) => {
-            if (alive && isActive) {
-              router.refresh();
-              window.dispatchEvent(new Event("docked-app-resume"));
-            }
-          }),
-          Network.addListener("networkStatusChange", (status) => {
-            if (alive) {
-              setOnline(status.connected);
-              if (status.connected) {
+        await Promise.all([
+          listeners.track(
+            App.addListener("appUrlOpen", ({ url }) => {
+              if (alive) open(url);
+            }),
+          ),
+          listeners.track(
+            App.addListener("backButton", ({ canGoBack }) => {
+              if (!alive) return;
+              const panel =
+                topModal() ??
+                [
+                  ...document.querySelectorAll<HTMLDialogElement>(
+                    "dialog[open]",
+                  ),
+                ].at(-1);
+              if (panel) {
+                panel.dispatchEvent(new Event("cancel", { cancelable: true }));
+                return;
+              }
+              if (canGoBack) router.back();
+              else void App.minimizeApp();
+            }),
+          ),
+          listeners.track(
+            App.addListener("appStateChange", ({ isActive }) => {
+              if (alive && isActive) {
                 router.refresh();
                 window.dispatchEvent(new Event("docked-app-resume"));
               }
-            }
-          }),
+            }),
+          ),
+          listeners.track(
+            Network.addListener("networkStatusChange", (status) => {
+              if (alive) {
+                setOnline(status.connected);
+                if (status.connected) {
+                  router.refresh();
+                  window.dispatchEvent(new Event("docked-app-resume"));
+                }
+              }
+            }),
+          ),
         ]);
-        for (const handle of handles) {
-          if (alive)
-            cleanup.push(() => {
-              void handle.remove();
-            });
-          else await handle.remove();
-        }
         if (!alive) return;
-        setOnline((await Network.getStatus()).connected);
+        const connection = await Network.getStatus();
+        if (!alive) return;
+        setOnline(connection.connected);
         const launch = await App.getLaunchUrl();
+        if (!alive) return;
         if (launch?.url) open(launch.url);
         await SplashScreen.hide();
       })

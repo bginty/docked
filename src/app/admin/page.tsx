@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { requireRole } from "@/server/auth";
 import { AppAuthShell } from "@/components/app-auth-shell";
+import { AppShell } from "@/components/app-shell";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Fantasy operations",
   robots: { index: false, follow: false },
 };
 export default async function Admin() {
+  let who;
   try {
-    await requireRole(["owner", "admin", "analyst", "editor", "auditor"]);
+    who = await requireRole(["owner", "admin", "analyst", "editor", "auditor"]);
   } catch {
     return (
       <AppAuthShell>
@@ -19,25 +21,40 @@ export default async function Admin() {
     );
   }
   return (
-    <AppAuthShell>
-      <h1>Fantasy operations</h1>
-      <nav aria-label="Operations">
-        <p><Link href="/admin/operations">Owner dashboard</Link></p>
-        <p><Link href="/admin/operations">Owner dashboard</Link></p>
+    <AppShell authenticated>
+      <section className="scoring-review owner-command-page">
+        <p className="eyebrow">RESTRICTED OPERATIONS</p>
+        <h1>Staff portal</h1>
+        <p>Signed in with the {who.role} role · Verified MFA</p>
+        <nav className="command-workspaces" aria-label="Operations">
+          {who.role === "owner" && (
+            <Link href="/admin/operations">
+              <strong>Owner Command Centre</strong>
+              <span>Business oversight and operational exceptions</span>
+            </Link>
+          )}
+          <Link href="/fantasy/admin">
+            <strong>Cards & competitions</strong>
+            <span>Review catalogue, schedules and existing operations</span>
+          </Link>
+          {who.role !== "analyst" && (
+            <Link href="/admin/community">
+              <strong>Community moderation</strong>
+              <span>Reports, member safety and audit history</span>
+            </Link>
+          )}
+          {["owner", "admin", "auditor"].includes(who.role) && (
+            <Link href="/admin/analytics">
+              <strong>Acquisition & retention</strong>
+              <span>Consent-based measurements and definitions</span>
+            </Link>
+          )}
+        </nav>
         <p>
-          <Link href="/fantasy/admin">Card and competition administration</Link>
+          Each workspace enforces its own permissions. Gameplay activation
+          remains separately gated.
         </p>
-        <p>
-          <Link href="/admin/community">Community moderation</Link>
-        </p>
-        <p>
-          <Link href="/admin/analytics">Acquisition and retention</Link>
-        </p>
-      </nav>
-      <p>
-        Each workspace enforces its own permissions. Gameplay activation remains
-        separately gated.
-      </p>
-    </AppAuthShell>
+      </section>
+    </AppShell>
   );
 }

@@ -4,7 +4,7 @@
 
 Owner decision, 10 October 2026: Docked is permanently a multi-sport fantasy sports card platform.
 
-**COLLECT. BUILD. COMPETE.** The approved supplied fantasy assets in `public/brand/docked` are the brand. Do not redraw the logo or restore the former tagline, navigation or product.
+**Collect. Compete. Connect.** The owner's master pre-launch brief supersedes the earlier live-text tagline. The approved supplied fantasy assets in `public/brand/docked` remain the brand and are unchanged. Do not redraw the logo or restore retired navigation or product features. Live tagline copy is centralised in `src/brand/brand-tokens.json`.
 
 The app destinations are Play, Cards, Market, Social and Profile. Authentication, MFA, invitation controls, moderation and account rights remain mandatory. Presentation does not grant gameplay access.
 

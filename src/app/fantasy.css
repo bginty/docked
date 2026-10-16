@@ -15,6 +15,21 @@
   background: #0b0f1a;
   color: #fff;
 }
+/* Shared operational/settings panels must inherit the dark shell on desktop
+   as well as mobile; the generic public panel defaults are light surfaces. */
+.fantasy-mode .community-shell .app-panel {
+  background: #101827;
+  border-color: #28324b;
+  color: #e1e9f5;
+}
+.fantasy-mode .community-shell .app-state-banner {
+  background: #13223a;
+  color: #d5e5fc;
+  border-color: #2488ff;
+}
+.fantasy-mode .community-shell .small-note {
+  color: #adbed2;
+}
 .fantasy-mode .app-sidebar,
 .fantasy-mode .app-topbar,
 .fantasy-mode .app-bottom-nav {

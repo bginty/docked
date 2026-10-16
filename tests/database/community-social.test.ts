@@ -2,6 +2,7 @@ import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { PGlite } from "@electric-sql/pglite";
+import { moderationReportsQuery } from "../../src/server/community-moderation-query";
 let pg: PGlite;
 const user = "10000000-0000-4000-8000-000000000001",
   other = "10000000-0000-4000-8000-000000000002",
@@ -10,6 +11,29 @@ const user = "10000000-0000-4000-8000-000000000001",
 const profile = "20000000-0000-4000-8000-000000000001",
   otherProfile = "20000000-0000-4000-8000-000000000002",
   post = "30000000-0000-4000-8000-000000000001";
+test("staff queue query returns current content and bounded audit history without private credentials", async () => {
+  const target = "30000000-0000-4000-8000-000000000088";
+  const report = "40000000-0000-4000-8000-000000000088";
+  await pg.query("insert into private.social_posts(id,author_id,kind,body) values($1,$2,'discussion','Synthetic reported content')", [target, otherProfile]);
+  await pg.query("insert into private.social_reports(id,reporter_id,target_type,target_id,reason,details) values($1,$2,'post',$3,'harassment','Synthetic report details')", [report, profile, target]);
+  await pg.query("insert into private.social_reports(id,reporter_id,target_type,target_id,reason,details,status) values('40000000-0000-4000-8000-000000000089',$1,'post',$2,'harassment','Already escalated report','escalated')", [otherProfile, target]);
+  assert.equal((await pg.query<{id:string}>(moderationReportsQuery)).rows[0].id, "40000000-0000-4000-8000-000000000089");
+  for (let i = 0; i < 23; i++) await pg.query("insert into private.social_moderation_events(actor,report_id,target_type,target_id,decision,reason,created_at) values($1,$2,'post',$3,'warn',$4,now()+$5::int*interval '1 second')", [user, report, target, `Synthetic history entry ${i}`, i]);
+  const read = async () => (await pg.query<Record<string, any>>(moderationReportsQuery)).rows.find(r => r.id === report)!;
+  const row = await read();
+  assert.equal(row.target_content, "Synthetic reported content");
+  assert.equal(typeof row.reporter_handle, "string");
+  assert.equal(row.history.length, 20);
+  assert.equal(row.history[0].reason, "Synthetic history entry 22");
+  assert.equal(row.history.at(-1).reason, "Synthetic history entry 3");
+  assert.equal("email" in row, false);
+  assert.equal("user_id" in row, false);
+  await pg.query("update private.social_posts set body='',moderation_status='removed' where id=$1", [target]);
+  const removed = await read();
+  assert.equal(removed.target_content, null);
+  assert.equal(removed.target_status, "removed");
+  assert.equal(removed.history.length, 20);
+});
 before(async () => {
   pg = new PGlite();
   await pg.exec(

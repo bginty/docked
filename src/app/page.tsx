@@ -1,4 +1,5 @@
 import { competitionNames } from "@/core/competition-display";
+import { brand } from "@/brand/brand";
 import Link from "next/link";
 import { FantasyHero, FantasyLogo } from "@/components/fantasy-brand";
 export const metadata = {
@@ -83,7 +84,7 @@ export default function Home() {
         </div>
       </section>
       <footer>
-        <p>DOCKED · COLLECT. BUILD. COMPETE.</p>
+        <p>DOCKED · {brand.tagline}</p>
         <Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link>
       </footer>
     </div>

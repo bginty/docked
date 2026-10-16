@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: Authorised feed boundary denies unknown rights, gaps, stale data and other football competitions
+ok 1 - Authorised feed boundary denies unknown rights, gaps, stale data and other football competitions
+  ---
+  duration_ms: 32.0897
+  ...
+# Subtest: Current squad import preserves stable identity, current club and mapped positions without rookie restriction
+ok 2 - Current squad import preserves stable identity, current club and mapped positions without rookie restriction
+  ---
+  duration_ms: 25.8562
+  ...
+# Subtest: Approved beta current-player eligibility supports complete EPL/NFL teams without rookie facts
+ok 3 - Approved beta current-player eligibility supports complete EPL/NFL teams without rookie facts
+  ---
+  duration_ms: 55.7779
+  ...
+# Subtest: Provider contract fields preserve missingness and do not turn deprecated NFL statistics into zero
+ok 4 - Provider contract fields preserve missingness and do not turn deprecated NFL statistics into zero
+  ---
+  duration_ms: 56.0869
+  ...
+# Subtest: Documented Sportmonks fixture envelope excludes other leagues and requires exact timing evidence
+ok 5 - Documented Sportmonks fixture envelope excludes other leagues and requires exact timing evidence
+  ---
+  duration_ms: 10.1428
+  ...
+# Subtest: Provider fetch gate, quota, fixed paths, redirects and secret-bearing errors
+ok 6 - Provider fetch gate, quota, fixed paths, redirects and secret-bearing errors
+  ---
+  duration_ms: 65.6105
+  ...
+# Subtest: Real-source engine uses the shared rules, frozen lineups, corrections and complete finalisation; samples are test-only
+ok 7 - Real-source engine uses the shared rules, frozen lineups, corrections and complete finalisation; samples are test-only
+  ---
+  duration_ms: 48.893
+  ...
+# Subtest: Raw retention is capped at rights expiry rather than extending storage permission
+ok 8 - Raw retention is capped at rights expiry rather than extending storage permission
+  ---
+  duration_ms: 22.8186
+  ...
+# Subtest: Frozen mappings reject missing, aliased, duplicate, extra and unsafe identities before either provider adapter
+ok 9 - Frozen mappings reject missing, aliased, duplicate, extra and unsafe identities before either provider adapter
+  ---
+  duration_ms: 13.6506
+  ...
+# Subtest: Provider adapters validate revision/time and retain missing statistics as pending
+ok 10 - Provider adapters validate revision/time and retain missing statistics as pending
+  ---
+  duration_ms: 15.5089
+  ...
+# Subtest: US Eastern timestamps reject spring gaps and autumn ambiguity instead of shifting fixture times
+ok 11 - US Eastern timestamps reject spring gaps and autumn ambiguity instead of shifting fixture times
+  ---
+  duration_ms: 63.3085
+  ...
+# Subtest: Free-beta feed approval cannot be projected into commercial permission
+ok 12 - Free-beta feed approval cannot be projected into commercial permission
+  ---
+  duration_ms: 17.9629
+  ...
+# Subtest: Provider credential echoes are blocked after JSON unescaping, including nested values and keys
+ok 13 - Provider credential echoes are blocked after JSON unescaping, including nested values and keys
+  ---
+  duration_ms: 67.9977
+  ...
+# Subtest: Safe provider sample survives validation without invented fields or credentials
+ok 14 - Safe provider sample survives validation without invented fields or credentials
+  ---
+  duration_ms: 2.0847
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4504.3329

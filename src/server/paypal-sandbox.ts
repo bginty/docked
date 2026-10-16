@@ -1,4 +1,12 @@
 import { z } from "zod";
+
+/** Provider amounts are decimal strings; never round an integer ledger amount. */
+export function paypalAmount(cents: number): string {
+  if (!Number.isSafeInteger(cents) || cents <= 0)
+    throw Error("Positive integer cents required");
+  const value = BigInt(cents);
+  return `${value / 100n}.${String(value % 100n).padStart(2, "0")}`;
+}
 const captureSchema = z.object({
   id: z.string(),
   status: z.literal("COMPLETED"),
@@ -39,6 +47,7 @@ export class PayPalSandbox {
       },
       body: "grant_type=client_credentials",
       signal: AbortSignal.timeout(15000),
+      redirect: "error",
     });
     if (!auth.ok) throw Error("PayPal sandbox authentication unavailable");
     const token = z
@@ -53,6 +62,7 @@ export class PayPalSandbox {
       },
       body: body === undefined ? undefined : JSON.stringify(body),
       signal: AbortSignal.timeout(15000),
+      redirect: "error",
     });
     if (!r.ok)
       throw Error(
@@ -80,7 +90,7 @@ export class PayPalSandbox {
             payee: { merchant_id: this.config.merchantId },
             amount: {
               currency_code: "AUD",
-              value: (order.price / 100).toFixed(2),
+              value: paypalAmount(order.price),
             },
           },
         ],
@@ -102,6 +112,9 @@ export class PayPalSandbox {
     event: unknown,
     expected: { order: string; price: number },
   ) {
+    paypalAmount(expected.price);
+    if (!/^[a-zA-Z0-9_-]{1,100}$/.test(expected.order))
+      throw Error("Bound provider order required");
     const required = [
       "paypal-auth-algo",
       "paypal-cert-url",
@@ -201,7 +214,7 @@ export class PayPalSandbox {
       unit.custom_id !== expected.reference ||
       unit.invoice_id !== expected.reference ||
       unit.payee.merchant_id !== this.config.merchantId ||
-      unit.amount.value !== (expected.price / 100).toFixed(2) ||
+      unit.amount.value !== paypalAmount(expected.price) ||
       capture.length !== 1 ||
       capture[0].id !== receipt.capture ||
       capture[0].amount.value !== unit.amount.value

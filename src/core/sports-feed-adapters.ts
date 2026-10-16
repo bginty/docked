@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { nflStats } from "./scoring-v1";
 import type { AuthorisedScoringSnapshot } from "./authorised-scoring-feed";
 
-const id = z.number().int().positive();
+const id = z.number().int().positive().max(Number.MAX_SAFE_INTEGER);
 const object = z.record(z.string(), z.unknown());
 const nflFields = {
   passing_yards: "PassingYards",
@@ -22,12 +22,42 @@ const nflFields = {
   punt_return_touchdowns: "PuntReturnTouchdowns",
 } as const;
 export const nflRequiredProviderFields = Object.values(nflFields);
-export type FeedMapping = {
-  fixtureId: string;
-  providerFixtureId: number;
-  playerIds: string[];
-  providerPlayers: Record<string, string>;
-};
+const canonicalId = z.string().regex(/^[A-Za-z0-9:._-]{1,120}$/);
+/** A frozen fixture map must be a bijection, never a name-based best guess. */
+export const feedMapping = z
+  .object({
+    fixtureId: canonicalId,
+    providerFixtureId: id,
+    playerIds: z.array(canonicalId).min(1).max(200),
+    providerPlayers: z.record(
+      canonicalId,
+      z
+        .string()
+        .regex(/^[1-9]\d*$/)
+        .refine(
+          (value) => Number.isSafeInteger(Number(value)),
+          "Unsafe provider player identifier",
+        ),
+    ),
+  })
+  .strict()
+  .superRefine((mapping, ctx) => {
+    const keys = Object.keys(mapping.providerPlayers);
+    if (
+      new Set(mapping.playerIds).size !== mapping.playerIds.length ||
+      keys.length !== mapping.playerIds.length ||
+      mapping.playerIds.some(
+        (key) => !Object.hasOwn(mapping.providerPlayers, key),
+      ) ||
+      new Set(Object.values(mapping.providerPlayers)).size !== keys.length
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Fixture/player mapping must be one-to-one and complete",
+      });
+    }
+  });
+export type FeedMapping = z.infer<typeof feedMapping>;
 export type AdapterResult = {
   snapshot: AuthorisedScoringSnapshot;
   issues: string[];
@@ -36,13 +66,21 @@ export type AdapterResult = {
 /** SportsDataIO dates are US Eastern, not server-local time. Ambiguous DST
  * timestamps cannot be safely assigned an instant without explicit offset. */
 export function sportsDataTime(value: unknown): string {
-  const text = z.string().parse(value);
+  const text = z
+    .string()
+    .regex(
+      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})?$/,
+    )
+    .parse(value);
+  const offsetProvided = /(Z|[+-]\d\d:\d\d)$/.test(text);
   const d = DateTime.fromISO(text, { zone: "America/New_York" });
   if (
     !d.isValid ||
-    (!/(Z|[+-]\d\d:\d\d)$/.test(text) && d.getPossibleOffsets().length !== 1)
+    (!offsetProvided &&
+      (d.getPossibleOffsets().length !== 1 ||
+        d.toFormat("yyyy-MM-dd'T'HH:mm:ss") !== text.slice(0, 19)))
   )
-    throw Error("Ambiguous provider timestamp");
+    throw Error("Ambiguous or nonexistent provider timestamp");
   return d.toUTC().toISO()!;
 }
 
@@ -52,6 +90,9 @@ export function sportsDataBoxscore(
   revision: number,
   observedAt: string,
 ): AdapterResult {
+  mapping = feedMapping.parse(mapping);
+  z.number().int().positive().parse(revision);
+  z.iso.datetime().parse(observedAt);
   const box = z
     .object({ Score: object, PlayerGames: z.array(object) })
     .parse(raw);
@@ -133,6 +174,9 @@ export function sportmonksFixture(
   revision: number,
   observedAt: string,
 ): AdapterResult {
+  mapping = feedMapping.parse(mapping);
+  z.number().int().positive().parse(revision);
+  z.iso.datetime().parse(observedAt);
   const data = z
     .object({
       data: z.object({

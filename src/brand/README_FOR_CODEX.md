@@ -1,6 +1,6 @@
 # Docked fantasy brand — active instructions
 
-The permanent product is multi-sport fantasy sports cards. Tagline: **COLLECT. BUILD. COMPETE.** Read docs/PRODUCT_DIRECTION.md before changing branding.
+The permanent product is multi-sport fantasy sports cards. Current live-text tagline (owner master pre-launch brief): **Collect. Compete. Connect.** Read docs/PRODUCT_DIRECTION.md before changing branding. Existing supplied logo artwork remains unchanged; live tagline copy comes from brand-tokens.json.
 
 Use the owner-supplied Website + Mobile Kit already integrated in public/brand/docked through fantasy-assets.ts. Header: compact supplied wordmark; app icon: supplied standalone mark; hero: supplied stadium responsive assets. Keep logos as image assets, preserve their aspect ratios and use dark surfaces for contrast. Do not redraw or reconstruct the wordmark in CSS.
 

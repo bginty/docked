@@ -1,5 +1,6 @@
 "use client";
 import { rarityStyle } from "@/core/rarity-theme";
+import { brand } from "@/brand/brand";
 import {
   useCallback,
   useEffect,
@@ -286,7 +287,7 @@ export default function PackOpening(props: PackOpeningProps) {
             ? "DESIGN PREVIEW · NO CARDS AWARDED"
             : props.replay || replaying
               ? "REPLAY · NO NEW AWARDS"
-              : "COLLECT. BUILD. COMPETE."}
+              : brand.tagline}
         </p>
         {(stage === "sealed" || stage === "waiting") && (
           <>
@@ -499,7 +500,7 @@ export default function PackOpening(props: PackOpeningProps) {
                     }
                   }}
                 >
-                  <FantasyCardArtwork card={card} faceOnly variant="reveal" showNumber={props.packType !== "WEEKLY_CORE"} />
+                  <FantasyCardArtwork card={card} faceOnly variant="reveal" />
                 </div>
               </div>
             </div>

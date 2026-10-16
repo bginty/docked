@@ -111,7 +111,17 @@ export type SocialReport = {
   details: string;
   status: string;
   createdAt: string;
+  reporter?: { name: string; handle: string } | null;
+  target?: { content: string | null; status: string | null };
+  history?: { id: string; decision: string; reason: string; actor: string; createdAt: string }[];
 };
+export function filterModerationReports(reports: SocialReport[], filters: { status: string; type: string; search: string }) {
+  const search = filters.search.trim().toLocaleLowerCase();
+  return reports.filter(r => (!filters.status || r.status === filters.status) &&
+    (!filters.type || r.targetType === filters.type) && (!search ||
+      [r.id, r.targetId, r.reason, r.details, r.reporter?.name, r.reporter?.handle, r.target?.content]
+        .filter(Boolean).join(" ").toLocaleLowerCase().includes(search)));
+}
 export type CommunityBase = {
   status: CommunityStatus;
   message: string;
@@ -136,6 +146,16 @@ export type CommunityNotifications = CommunityBase & {
   unread: number;
   preferences: NotificationPreferences | null;
 };
+/** Shared with the server validator so staff are only offered valid target actions. */
+export function moderationActions(target: string): readonly string[] {
+  const actions: Record<string, readonly string[]> = {
+    post: ["remove", "dismiss", "warn", "escalate"],
+    comment: ["remove", "dismiss", "warn", "escalate"],
+    profile: ["warn", "restrict", "suspend", "restore", "dismiss", "escalate"],
+    media: ["approve", "reject", "dismiss", "escalate"],
+  };
+  return Object.hasOwn(actions, target) ? actions[target] : [];
+}
 export type CommunityModeration = {
   status: CommunityStatus;
   message: string;

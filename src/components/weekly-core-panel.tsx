@@ -233,7 +233,7 @@ export function WeeklyCorePanel({
       )}
       {detail && (
         <FantasySheet title={detail.name} onClose={() => setDetail(null)}>
-          <FantasyCardArtwork card={detail} showNumber={false} />
+          <FantasyCardArtwork card={detail} />
         </FantasySheet>
       )}
     </>

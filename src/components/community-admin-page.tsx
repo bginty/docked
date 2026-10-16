@@ -34,15 +34,20 @@ export async function CommunityAdminPage({ section }: { section: string }) {
         eyebrow="FANTASY COMMUNITY"
         title={communityAdminSections.find(([id]) => id === section)![1]}
       />
-      <nav aria-label="Community operations">
+      <nav className="actions" aria-label="Community operations">
         {communityAdminSections
           .filter(
             ([id]) => audit || !["analytics", "notifications"].includes(id),
           )
           .map(([id, label]) => (
-            <p key={id}>
-              <Link href={"/admin/community/" + id}>{label}</Link>
-            </p>
+            <Link
+              key={id}
+              href={"/admin/community/" + id}
+              className={`button ${id === section ? "" : "ghost"}`}
+              aria-current={id === section ? "page" : undefined}
+            >
+              {label}
+            </Link>
           ))}
       </nav>
       {moderation &&

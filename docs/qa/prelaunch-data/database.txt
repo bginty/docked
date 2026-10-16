@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+not ok 1 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 11196.5357
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:34:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+not ok 2 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 146.8978
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:74:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+not ok 3 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 0.1923
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:108:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+not ok 4 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 0.093
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:147:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+not ok 5 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 0.1921
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:159:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+not ok 6 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 0.1502
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:179:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+not ok 7 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 0.1227
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:205:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+not ok 8 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 0.4001
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:237:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+not ok 9 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 0.6726
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:262:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+not ok 10 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 0.3676
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:318:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+not ok 11 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 0.3223
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:364:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+not ok 12 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 0.1301
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:409:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+not ok 13 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 0.0965
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:458:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+not ok 14 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 0.0895
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:486:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+not ok 15 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 0.0894
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:526:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+not ok 16 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 0.3323
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:553:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+not ok 17 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 0.1436
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:581:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+not ok 18 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 0.1052
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:633:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+not ok 19 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 0.0932
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\community-social.test.ts:650:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261016115553_owner_command_centre.sql: error: syntax error at or near "day"'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\tests\database\community-social.test.ts:24:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+not ok 20 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 11046.2325
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\marketplace.test.ts:17:1'
+  failureType: 'testCodeFailure'
+  error: 'syntax error at or near "day"'
+  code: '42601'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+not ok 21 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 12787.499
+  location: 'C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tests\\database\\nfl-seven.test.ts:8:1'
+  failureType: 'testCodeFailure'
+  error: 'syntax error at or near "day"'
+  code: '42601'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 0
+# fail 21
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 46334.5473

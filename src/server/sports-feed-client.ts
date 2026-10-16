@@ -48,6 +48,57 @@ export function requireFeedPermit(input: unknown, provider: string, now: Date) {
   return p;
 }
 
+/** Preserve the approved use when crossing into the scoring boundary. A free-beta
+ * permit is not evidence of commercial fantasy or collectible-sale rights. */
+export function scoringApprovalFromFeedPermit(
+  input: unknown,
+  provider: string,
+  now: Date,
+) {
+  const permit = requireFeedPermit(input, provider, now);
+  return {
+    provider: permit.provider,
+    competition:
+      permit.provider === "sportmonks" ? ("EPL" as const) : ("NFL" as const),
+    intendedUse: permit.scope,
+    fantasyUse: permit.fantasyUse,
+    storage: permit.derivedStorage,
+    evidence: permit.evidence,
+    reviewExpires: permit.expiresAt,
+    maxAgeSeconds: 86400,
+  };
+}
+
+/** Rights expiry is a hard retention ceiling, even for a longer storage window. */
+export function feedRetentionExpiresAt(input: unknown, observedAt: string) {
+  z.iso.datetime().parse(observedAt);
+  const permit = feedPermit.parse(input);
+  const observed = Date.parse(observedAt);
+  if (observed >= Date.parse(permit.expiresAt))
+    throw Error("Feed rights expired before observation");
+  return new Date(
+    Math.min(
+      observed + permit.rawRetentionDays * 86400000,
+      Date.parse(permit.expiresAt),
+    ),
+  ).toISOString();
+}
+
+function containsCredential(value: unknown, credential: string): boolean {
+  const pending = [value];
+  while (pending.length) {
+    const item = pending.pop();
+    if (typeof item === "string" && item.includes(credential)) return true;
+    if (item && typeof item === "object") {
+      for (const [key, child] of Object.entries(item)) {
+        if (key.includes(credential)) return true;
+        pending.push(child);
+      }
+    }
+  }
+  return false;
+}
+
 /** Fixed vendor hosts/paths; no user URLs, redirects, credentials in query strings,
  * provider error bodies, or automatic retry that can silently burn quota. */
 export async function fetchSportsFeed(
@@ -124,6 +175,11 @@ export async function fetchSportsFeed(
   } catch {
     throw Error("Provider JSON malformed");
   }
+  // JSON escapes can conceal a credential from a raw-byte substring check.
+  if (containsCredential(payload, secret))
+    throw Error(
+      "Provider response contains credential material; storage blocked",
+    );
   // Persist data only, never headers/credential-bearing transport metadata.
   return { payload, observedAt: new Date().toISOString(), request, permit: p };
 }

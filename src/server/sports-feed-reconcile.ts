@@ -7,10 +7,11 @@ import {
 import {
   sportmonksFixture,
   sportsDataBoxscore,
+  feedMapping,
   type FeedMapping,
 } from "../core/sports-feed-adapters";
 import { SportsFeedStore } from "./sports-feed-store";
-import { requireFeedPermit } from "./sports-feed-client";
+import { scoringApprovalFromFeedPermit } from "./sports-feed-client";
 
 /** Reconciliation is deterministic against retained raw bytes and a frozen mapping.
  * A worker crash between fetch and reconciliation is recoverable by raw revision ID. */
@@ -24,23 +25,22 @@ export async function reconcileFeed(
   at = new Date().toISOString(),
   lateReason?: string,
 ) {
+  mapping = feedMapping.parse(mapping);
   const [raw] =
     await sql`select * from sports_feed.raw_revisions where id=${rawId} and expires_at>clock_timestamp()`;
   if (!raw || digest(raw.body) !== raw.body_hash)
     throw Error("Raw revision unavailable or corrupt");
-  const permit = requireFeedPermit(approval, raw.provider, new Date(at));
+  const scoringApproval = scoringApprovalFromFeedPermit(
+    approval,
+    raw.provider,
+    new Date(at),
+  );
   const resource = digest({
     provider: raw.provider,
     kind: raw.provider === "sportmonks" ? "fixture" : "boxscore",
     id: mapping.providerFixtureId,
   });
-  if (
-    resource !== raw.resource ||
-    new Set(Object.values(mapping.providerPlayers)).size !==
-      mapping.playerIds.length ||
-    mapping.playerIds.some((p) => !mapping.providerPlayers[p])
-  )
-    throw Error("Fixture/player mapping mismatch");
+  if (resource !== raw.resource) throw Error("Fixture/player mapping mismatch");
   const store = new SportsFeedStore(sql);
   let issues: string[] = [];
   const state = await store.change(
@@ -72,15 +72,14 @@ export async function reconcileFeed(
           digest(previous)
       )
         return s;
-      return importStatistics(s, r.snapshot, operator, at, lateReason, {
-        provider: permit.provider,
-        competition: r.snapshot.competition,
-        commercialFantasy: true,
-        storage: true,
-        evidence: permit.evidence,
-        reviewExpires: permit.expiresAt,
-        maxAgeSeconds: 86400,
-      });
+      return importStatistics(
+        s,
+        r.snapshot,
+        operator,
+        at,
+        lateReason,
+        scoringApproval,
+      );
     },
     rawId,
   );

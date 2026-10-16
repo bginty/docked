@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-export const alt = "Docked — COLLECT. BUILD. COMPETE.";
+export const alt = "Docked fantasy cards";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/jpeg";
 export default async function Image() {

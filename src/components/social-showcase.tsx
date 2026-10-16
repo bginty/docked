@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { brand } from "@/brand/brand";
 import type { AwardedCard } from "@/core/pack-opening";
 import type { SocialProfile } from "@/core/community-social";
 import type { SocialHub } from "@/server/social-hub";
@@ -29,7 +30,7 @@ export function SocialShowcase({ cards }: { cards: AwardedCard[] }) {
       ) : (
         <div className="social-stage-brand">
           <BrandLogo surface="dark" />
-          <span>Collect. Build. Compete.</span>
+          <span>{brand.tagline}</span>
         </div>
       )}
     </div>

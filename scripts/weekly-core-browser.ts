@@ -328,9 +328,9 @@ async function main() {
       await expect(page.locator(".collectible-face")).toBeVisible();
       assert.equal(opens, 1);
       assert.equal(
-        await page.locator(".collectible-art text").count(),
-        0,
-        "weekly jerseys suppress even fixture verified numbers",
+        await page.locator(".collectible-art .jersey-number").textContent(),
+        "88",
+        "weekly reveals retain the same verified number as collection cards",
       );
       await page.screenshot({
         path: `${out}/weekly-reveal-${width}.png`,

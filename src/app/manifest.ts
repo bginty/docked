@@ -4,7 +4,7 @@ import { brand } from "@/brand/brand";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/home",
-    name: "Docked — COLLECT. BUILD. COMPETE.",
+    name: `Docked — ${brand.tagline}`,
     short_name: "Docked",
     description: "Fantasy sports cards. Closed Preview.",
     start_url: "/app",

@@ -88,6 +88,13 @@ async function main() {
     );
     assert.equal(outcome.status, "recorded");
     const rawId = outcome.rawId!;
+    const [retained] =
+      await sql`select expires_at from sports_feed.raw_revisions where id=${rawId}`;
+    assert.equal(
+      new Date(retained.expires_at).toISOString(),
+      future,
+      "Raw storage must stop at rights expiry even when retention days extend beyond it",
+    );
     const f = syntheticScenario("nfl");
     const before = new Date(now.getTime() - 7200000).toISOString(),
       lock = new Date(now.getTime() - 3600000).toISOString();
@@ -197,6 +204,7 @@ async function main() {
         "20-way job claim",
         "stale lease rejected",
         "retry and raw persistence",
+        "raw retention capped at source rights expiry",
         "20-way reconciliation exactly once",
         "missing stats stay pending; finalisation denied",
         "immutable journal",
