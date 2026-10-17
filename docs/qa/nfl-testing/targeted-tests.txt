@@ -1,0 +1,35 @@
+TAP version 13
+# Subtest: page atomicity, lease, restart checkpoint, tombstones, conflicts and epoch replacement
+ok 1 - page atomicity, lease, restart checkpoint, tombstones, conflicts and epoch replacement
+  ---
+  duration_ms: 9114.8608
+  ...
+# Subtest: whole fixture uses existing journal; corrections, pending, frozen teams and reviewer gates
+ok 2 - whole fixture uses existing journal; corrections, pending, frozen teams and reviewer gates
+  ---
+  duration_ms: 8426.7779
+  ...
+# Subtest: separate full-PPR test version preserves old scoring and demands current required fields
+ok 3 - separate full-PPR test version preserves old scoring and demands current required fields
+  ---
+  duration_ms: 36.5319
+  ...
+# Subtest: HTTP credentials stay on allowlisted server, redirects denied, retries bounded, 410 explicit
+ok 4 - HTTP credentials stay on allowlisted server, redirects denied, retries bounded, 410 explicit
+  ---
+  duration_ms: 87.0722
+  ...
+# Subtest: reviewed provider identities never merge namesakes or guess a position
+ok 5 - reviewed provider identities never merge namesakes or guess a position
+  ---
+  duration_ms: 4.2215
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 25922.4798

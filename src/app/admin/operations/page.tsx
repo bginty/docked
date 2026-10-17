@@ -62,6 +62,9 @@ export default async function OperationsPage({
         />
         <details className="owner-reference-detail">
           <summary>Advanced reporting filters & export</summary>
+          <a className="button secondary" href="/admin/nfl-testing">
+            NFL postgame test feed
+          </a>
           <form className="scoring-controls">
             <label>
               From · Sydney

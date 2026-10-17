@@ -1,0 +1,8 @@
+locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Player', { exact: true })[22m
+
+    at main (C:\Users\61412\Documents\ChatGPT\Docked.com.au\scripts\nfl-testing-browser.ts:72:56) {
+  log: [ "  - waiting for getByLabel('Player', { exact: true })" ],
+  name: 'TimeoutError'
+}

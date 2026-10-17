@@ -1,0 +1,4 @@
+Error: Please use browser.newContext()
+ Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md
+    at AxeBuilder.analyze (C:\Users\61412\Documents\ChatGPT\Docked.com.au\node_modules\@axe-core\playwright\dist\index.js:253:13)
+    at async main (C:\Users\61412\Documents\ChatGPT\Docked.com.au\scripts\nfl-testing-browser.ts:84:9)

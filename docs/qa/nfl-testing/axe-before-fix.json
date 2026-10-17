@@ -1,0 +1,193 @@
+[
+  {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+      "cat.color",
+      "wcag2aa",
+      "wcag143",
+      "TTv5",
+      "TT13.c",
+      "EN-301-549",
+      "EN-9.1.4.3",
+      "ACT",
+      "RGAAv4",
+      "RGAA-3.2.1"
+    ],
+    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#b4c8e3",
+              "bgColor": "#f8fafc",
+              "contrastRatio": 1.63,
+              "fontSize": "9.0pt (12px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body>",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 1.63 (foreground color: #b4c8e3, background color: #f8fafc, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<p class=\"small-note\">OWNER OPERATIONS · ISOLATED TESTING</p>",
+        "target": [
+          "header > .small-note"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.63 (foreground color: #b4c8e3, background color: #f8fafc, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#e8f0ff",
+              "bgColor": "#f8fafc",
+              "contrastRatio": 1.09,
+              "fontSize": "30.0pt (40px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "3:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body>",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 1.09 (foreground color: #e8f0ff, background color: #f8fafc, font size: 30.0pt (40px), font weight: normal). Expected contrast ratio of 3:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<h1>NFL postgame feed</h1>",
+        "target": [
+          "h1"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.09 (foreground color: #e8f0ff, background color: #f8fafc, font size: 30.0pt (40px), font weight: normal). Expected contrast ratio of 3:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#e8f0ff",
+              "bgColor": "#f8fafc",
+              "contrastRatio": 1.09,
+              "fontSize": "12.0pt (16px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body>",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 1.09 (foreground color: #e8f0ff, background color: #f8fafc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<p>Postgame test feed connected</p>",
+        "target": [
+          "header > p:nth-child(3)"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.09 (foreground color: #e8f0ff, background color: #f8fafc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#e8f0ff",
+              "bgColor": "#f8fafc",
+              "contrastRatio": 1.09,
+              "fontSize": "12.0pt (16px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body>",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 1.09 (foreground color: #e8f0ff, background color: #f8fafc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<p>Player performance only. Historical statistics do not award member competition points.</p>",
+        "target": [
+          "header > p:nth-child(4)"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.09 (foreground color: #e8f0ff, background color: #f8fafc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#b4c8e3",
+              "bgColor": "#f8fafc",
+              "contrastRatio": 1.63,
+              "fontSize": "9.0pt (12px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body>",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 1.63 (foreground color: #b4c8e3, background color: #f8fafc, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<p class=\"small-note\">Last successful sync: 17/10/2026, 3:40:59 pm. This is an operational check, not a source correction.</p>",
+        "target": [
+          ".nfl-testing-panel > .small-note"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.63 (foreground color: #b4c8e3, background color: #f8fafc, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+      }
+    ]
+  }
+]

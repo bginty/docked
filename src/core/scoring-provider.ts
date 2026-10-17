@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { eplStats, nflStats, aflStats, type Sport } from "./scoring-v1";
+import { nflPostgameStats, nflPostgameVersion } from "./nfl-postgame-policy";
 
 const identifier = z.string().regex(/^[A-Za-z0-9:._-]{1,120}$/);
 export const sourceSnapshot = z
@@ -48,12 +49,13 @@ export interface ScoringProvider {
     sport: Sport,
     fixtureId: string,
     playerIds: string[],
+    scoringVersion?: string,
   ): SourceSnapshot;
 }
 export const syntheticProvider: ScoringProvider = {
   id: "docked-synthetic-v1",
   liveReady: false,
-  normalize(raw, sport, fixtureId, playerIds) {
+  normalize(raw, sport, fixtureId, playerIds, scoringVersion) {
     const data = sourceSnapshot.parse(raw);
     if (data.sport !== sport || data.fixtureId !== fixtureId)
       throw Error("Provider identity mismatch");
@@ -67,7 +69,9 @@ export const syntheticProvider: ScoringProvider = {
         (sport === "epl"
           ? eplStats
           : sport === "nfl"
-            ? nflStats
+            ? scoringVersion === nflPostgameVersion
+              ? nflPostgameStats
+              : nflStats
             : aflStats
         ).parse(row.stats);
       else if (row.stats !== null)

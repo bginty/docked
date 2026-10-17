@@ -36,7 +36,12 @@ export type AuthorisedScoringSnapshot = z.infer<typeof envelope>;
 export function validateAuthorisedScoring(
   raw: unknown,
   approval: unknown,
-  mapping: { sport: Sport; fixtureId: string; playerIds: string[] },
+  mapping: {
+    sport: Sport;
+    fixtureId: string;
+    playerIds: string[];
+    scoringVersion?: string;
+  },
   now: string,
 ): AuthorisedScoringSnapshot {
   const permit = rights.parse(approval),
@@ -62,6 +67,7 @@ export function validateAuthorisedScoring(
     mapping.sport,
     mapping.fixtureId,
     mapping.playerIds,
+    mapping.scoringVersion,
   );
   if (
     mapping.playerIds.some((id) => !data.players.some((p) => p.playerId === id))

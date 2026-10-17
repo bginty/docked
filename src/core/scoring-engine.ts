@@ -247,6 +247,7 @@ export function importStatistics(
           state.period.sport,
           fixture.id,
           fixture.playerIds,
+          state.period.rules.version,
         )
       : validateAuthorisedScoring(
           input,
@@ -255,6 +256,7 @@ export function importStatistics(
             sport: state.period.sport,
             fixtureId: fixture.id,
             playerIds: fixture.playerIds,
+            scoringVersion: state.period.rules.version,
           },
           at,
         );

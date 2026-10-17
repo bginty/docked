@@ -1,6 +1,11 @@
 import { z } from "zod";
 import { nflOffensiveStats, scoreNflOffense } from "./fantasy-nfl";
 import { rarityConfiguration, rarityRule, type Rarity } from "./card-rarity";
+import {
+  nflPostgameStats,
+  nflPostgameVersion,
+  nflPostgameWeights,
+} from "./nfl-postgame-policy";
 
 export const sports = ["epl", "nfl", "afl"] as const;
 export type Sport = (typeof sports)[number];
@@ -233,6 +238,14 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
       ["GK", "DEF"].includes(position) ? Math.floor(s.concededOnPitch / 2) : 0,
       w.concededPerTwo,
     );
+  } else if (rules.sport === "nfl" && rules.version === nflPostgameVersion) {
+    if (
+      JSON.stringify(Object.entries(rules.weights).sort()) !==
+      JSON.stringify(Object.entries(nflPostgameWeights).sort())
+    )
+      throw Error("Frozen postgame test weights changed");
+    for (const [key, value] of Object.entries(nflPostgameStats.parse(raw)))
+      add(key, value, rules.weights[key]);
   } else if (rules.sport === "nfl") {
     const { offensiveFumbleRecoveryTouchdowns, ...s } = nflStats.parse(raw);
     const { offensiveFumbleRecoveryTouchdowns: rate, ...weights } =
@@ -257,6 +270,20 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
 }
 export const points = (cp: number) =>
   (cp / 100).toFixed(2).replace(/\.00$/, "");
+export function nflPostgameTestRules(): Rules {
+  return {
+    ...structuredClone(rulesets.nfl),
+    version: nflPostgameVersion,
+    title: "NFL postgame testing · Full PPR",
+    weights: { ...nflPostgameWeights },
+    policy: [
+      "Local/test postgame player performance only; no historical member points.",
+      "Full PPR: reception 1; passing yards .04, TD 4, interception -2; rushing/receiving yards .1, TD 6; each credited two-point conversion 2.",
+      "Fumbles lost -2 once per responsible player, preserving the approved penalty.",
+      "Return touchdowns and offensive fumble-recovery touchdowns are not scored in this version. Existing versions still require and score them.",
+    ],
+  };
+}
 export type LockedCard = {
   cardId: string;
   playerId: string;

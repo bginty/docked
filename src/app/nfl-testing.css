@@ -1,0 +1,146 @@
+.nfl-testing-panel {
+  background: #060d1c;
+  max-width: 1260px;
+  margin: auto;
+  padding: 24px;
+  color: #e8f0ff;
+  min-width: 0;
+}
+body:has(.nfl-testing-panel) {
+  background: #060d1c;
+}
+.nfl-testing-panel select {
+  background: #0b1c32;
+  color: #e8f0ff;
+  border: 1px solid #385278;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 44px;
+}
+.nfl-testing-panel thead,
+.nfl-testing-panel th {
+  background: #12243c;
+  color: #d8e6fc;
+}
+.nfl-testing-panel meter::-webkit-meter-optimum-value {
+  background: #2489ff;
+}
+.nfl-testing-panel h1 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+.nfl-testing-panel p {
+  overflow-wrap: anywhere;
+}
+.nfl-testing-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+.nfl-testing-metrics article {
+  padding: 16px;
+  background: linear-gradient(135deg, #10243e, #091425);
+  border: 1px solid #243d60;
+  border-radius: 14px;
+}
+.nfl-testing-metrics span {
+  display: block;
+  color: #b4c8e3;
+  font-size: 0.8rem;
+}
+.nfl-testing-metrics strong {
+  display: block;
+  font-size: 1.7rem;
+  color: #63bbff;
+}
+.nfl-testing-filters {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.nfl-testing-filters label {
+  display: grid;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+.nfl-testing-filters select {
+  max-width: 100%;
+}
+.nfl-testing-trend {
+  display: flex;
+  gap: 12px;
+  overflow: auto;
+  padding: 16px 0;
+}
+.nfl-testing-trend > div {
+  display: grid;
+  gap: 5px;
+  min-width: 75px;
+}
+.nfl-testing-trend meter {
+  width: 75px;
+}
+.nfl-testing-table {
+  overflow: auto;
+  max-height: 480px;
+}
+.nfl-testing-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.nfl-testing-table td,
+.nfl-testing-table th {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #25344b;
+  font-size: 0.85rem;
+}
+.nfl-testing-table caption {
+  text-align: left;
+  padding: 12px;
+  color: #b4c8e3;
+  white-space: normal;
+}
+.nfl-testing-panel details {
+  margin-top: 16px;
+}
+.nfl-testing-panel li {
+  overflow-wrap: anywhere;
+  padding: 6px;
+}
+.nfl-testing-panel .small-note {
+  color: #b4c8e3;
+}
+@media (max-width: 700px) {
+  .nfl-testing-panel {
+    padding: 14px;
+  }
+  .nfl-testing-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .nfl-testing-table td,
+  .nfl-testing-table th {
+    padding: 8px 5px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .nfl-testing-table table {
+    table-layout: fixed;
+  }
+  .nfl-testing-table th:first-child {
+    width: 16%;
+  }
+  .nfl-testing-table th:nth-child(2) {
+    width: 21%;
+  }
+  .nfl-testing-table th:nth-child(3) {
+    width: 29%;
+  }
+  .nfl-testing-filters {
+    display: grid;
+  }
+  .nfl-testing-table {
+    font-size: 0.8rem;
+  }
+}

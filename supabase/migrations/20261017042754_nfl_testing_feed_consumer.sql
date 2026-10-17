@@ -1,0 +1,26 @@
+-- Prepared for isolated testing only. No grants to member or production runtime roles.
+create schema nfl_test_feed;
+revoke all on schema nfl_test_feed from public;
+create table nfl_test_feed.generations(id text primary key,dataset text not null,cursor text,created_at timestamptz not null default now());
+create table nfl_test_feed.consumer(id int primary key check(id=1),active text references nfl_test_feed.generations,pending text references nfl_test_feed.generations,lease text,lease_until timestamptz,last_success timestamptz,last_error text);
+insert into nfl_test_feed.consumer(id) values(1);
+create table nfl_test_feed.records(generation text references nfl_test_feed.generations,game text,player text,revision bigint not null,removed boolean not null,payload jsonb not null,primary key(generation,game,player));
+create index nfl_test_player_history on nfl_test_feed.records(generation,player);
+create table nfl_test_feed.games(generation text references nfl_test_feed.generations,game text,payload jsonb not null,primary key(generation,game));
+create table nfl_test_feed.players(generation text references nfl_test_feed.generations,player text,payload jsonb not null,primary key(generation,player));
+create table nfl_test_feed.mappings(dataset text,canonical text,docked text,position text check(position in('QB','RB','WR','TE')),evidence jsonb not null,reviewed_by text not null,reviewed_at timestamptz not null default now(),primary key(dataset,canonical),unique(dataset,docked));
+create table nfl_test_feed.fixtures(dataset text,game text,stream text,fixture text,season int,season_type text check(season_type in('REG','POST')),nfl_week int,evidence jsonb not null,primary key(dataset,game,stream),unique(stream,fixture));
+create table nfl_test_feed.outbox(id bigint generated always as identity primary key,generation text references nfl_test_feed.generations,game text,source_hash text,status text not null default 'pending' check(status in('pending','applied','review','unmapped')),reason text,unique(generation,game,source_hash));
+create index nfl_test_outbox_pending on nfl_test_feed.outbox(generation,status,game);
+create table nfl_test_feed.audit(id bigint generated always as identity primary key,at timestamptz not null default now(),action text not null,detail jsonb not null);
+alter table nfl_test_feed.generations enable row level security;
+alter table nfl_test_feed.consumer enable row level security;
+alter table nfl_test_feed.records enable row level security;
+alter table nfl_test_feed.games enable row level security;
+alter table nfl_test_feed.players enable row level security;
+alter table nfl_test_feed.mappings enable row level security;
+alter table nfl_test_feed.fixtures enable row level security;
+alter table nfl_test_feed.outbox enable row level security;
+alter table nfl_test_feed.audit enable row level security;
+revoke all on all tables in schema nfl_test_feed from public;
+revoke all on all sequences in schema nfl_test_feed from public;
