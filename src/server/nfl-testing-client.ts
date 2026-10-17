@@ -17,6 +17,7 @@ export class FeedFailure extends Error {
 /** Operator-side only. No default hosted origin, no redirects, no credential logs. */
 export class NflTestingClient {
   private base: URL;
+  expectedDataset?: string;
   constructor(
     base: string,
     private key: string,
@@ -80,7 +81,13 @@ export class NflTestingClient {
           const raw = await response.text();
           if (raw.length > 8_000_000)
             throw new FeedFailure("FEED_RESPONSE_SIZE");
-          return envelope.parse(JSON.parse(raw));
+          const result = envelope.parse(JSON.parse(raw));
+          if (
+            this.expectedDataset &&
+            result.dataset_id !== this.expectedDataset
+          )
+            throw new FeedFailure("FEED_DATASET_BINDING");
+          return result;
         }
       } catch (error) {
         if (error instanceof FeedFailure) throw error;

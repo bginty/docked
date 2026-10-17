@@ -15,7 +15,7 @@ export async function nflTestingReport(db: FeedDb) {
 async function readReport(db: FeedDb) {
   const current = (
     await db.query(
-      "select c.last_success,c.last_error,(c.lease is not null and c.lease_until>now()) as importing,g.* from nfl_test_feed.consumer c left join nfl_test_feed.generations g on g.id=c.active where c.id=1",
+      "select c.last_success,c.last_error,(c.lease is not null and c.lease_until>now()) as importing,(c.last_success is null or c.last_success<now()-interval '8 hours') as sync_stale,g.* from nfl_test_feed.consumer c left join nfl_test_feed.generations g on g.id=c.active where c.id=1",
     )
   ).rows[0];
   const generation = current?.id;
@@ -57,7 +57,7 @@ async function readReport(db: FeedDb) {
   const gameMap = new Map(
     games.rows.map((r) => {
       const g = feedGame.parse(r.payload);
-      if (current.last_error || current.importing) {
+      if (current.last_error || current.importing || current.sync_stale) {
         g.freshness.stale = true;
         g.usable = false;
       }
@@ -152,7 +152,9 @@ async function readReport(db: FeedDb) {
       ? "Sync in progress · retained data"
       : current.last_error
         ? "Sync failed · retained data"
-        : "Postgame test feed connected",
+        : current.sync_stale
+          ? "Sync overdue · retained data"
+          : "Postgame test feed connected",
     lastSuccess: current.last_success,
     dataset: current.dataset,
     rawRecords: rows.length,

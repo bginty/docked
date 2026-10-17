@@ -8,11 +8,24 @@ import {
 import { NflTestingStore } from "../src/server/nfl-testing-store";
 import { reconcileTestingGame } from "../src/server/nfl-testing-reconcile";
 import { requirePostgamePermit } from "../src/server/postgame-download";
+import {
+  nflHostedTarget,
+  requireNflHostedTarget,
+} from "../src/core/nfl-hosted-target.mjs";
 const argument = (name: string) =>
   process.argv.find((a) => a.startsWith(`--${name}=`))?.slice(name.length + 3);
 async function main() {
   if (process.env.DOCKED_NFL_TEST_COLLECTOR !== "standalone-postgame")
     throw Error("Explicit isolated collector selection required");
+  if (process.env.VERCEL_ENV === "preview") {
+    const target = requireNflHostedTarget();
+    if (
+      process.env.NFL_BASE_URL !== target.feedOrigin ||
+      process.env.NFL_ALLOWED_ORIGINS !== target.feedOrigin ||
+      process.argv.includes("--initialize")
+    )
+      throw Error("Hosted origin mismatch or runtime DDL attempted");
+  }
   const permit = requirePostgamePermit(
     JSON.parse(
       await readFile(
@@ -27,6 +40,8 @@ async function main() {
     process.env.NFL_API_KEY ?? "",
     (process.env.NFL_ALLOWED_ORIGINS ?? "").split(",").map((s) => s.trim()),
   );
+  if (process.env.VERCEL_ENV === "preview")
+    client.expectedDataset = nflHostedTarget.dataset;
   const c = connectTestingFeedDatabase(
     process.env.DOCKED_NFL_TEST_DATABASE_URL ?? "",
     process.env.VERCEL_ENV,
@@ -70,6 +85,11 @@ async function main() {
         [generation],
       )
     ).rows[0].dataset;
+    if (
+      process.env.VERCEL_ENV === "preview" &&
+      dataset !== nflHostedTarget.dataset
+    )
+      throw Error("Hosted dataset changed; review required");
     const mappingFile = argument("mappings");
     if (mappingFile) {
       const input = z
@@ -128,7 +148,7 @@ async function main() {
         applied,
         review,
         unmapped,
-        scope: "local testing; production disabled",
+        scope: "isolated testing; production disabled",
       }),
     );
   } finally {

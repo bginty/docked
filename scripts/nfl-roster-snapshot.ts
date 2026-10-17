@@ -8,8 +8,10 @@ async function main() {
   const sql = ownerDatabase();
   const directory = "private-data/nfl-roster-audit";
   await mkdir(directory, { recursive: true });
+  const liveRecovery = process.argv.includes("--live-recovery");
+  let deadline: ReturnType<typeof setTimeout> | undefined;
   try {
-    const snapshot = await sql.begin(
+    const snapshotRead = sql.begin(
       "isolation level repeatable read read only",
       async (tx) => {
         const tables: Record<string, unknown> = {};
@@ -59,18 +61,35 @@ async function main() {
         const source =
           await tx`select r.id,r.body,c.checked_at from sports_feed.postgame_cache c join sports_feed.raw_revisions r on r.id=c.raw_id where r.body->>'dataset'='rosters' order by c.checked_at desc limit 1`;
         return {
-          scope: "local-audit-copy-only",
+          scope: liveRecovery
+            ? "live-pre-rollout-recovery"
+            : "local-audit-copy-only",
           at: new Date().toISOString(),
           tables,
           source,
         };
       },
     );
+    const snapshot = await Promise.race([
+      snapshotRead,
+      new Promise<never>((_, reject) => {
+        deadline = setTimeout(
+          () =>
+            reject(
+              Object.assign(new Error("Snapshot deadline exceeded"), {
+                code: "BACKUP_TIMEOUT",
+              }),
+            ),
+          90000,
+        );
+      }),
+    ]);
+    clearTimeout(deadline);
     const body = JSON.stringify(snapshot, null, 2);
     const file = `${directory}/snapshot-${Date.now()}.json`;
     await writeFile(file, body, { flag: "wx", mode: 0o600 });
     await writeFile(
-      `${directory}/latest.json`,
+      `${directory}/${liveRecovery ? "latest-live" : "latest"}.json`,
       JSON.stringify({
         file,
         sha256: createHash("sha256").update(body).digest("hex"),
@@ -89,7 +108,8 @@ async function main() {
       }),
     );
   } finally {
-    await sql.end();
+    clearTimeout(deadline);
+    await sql.end({ timeout: 5 });
   }
 }
 main().catch((e) => {

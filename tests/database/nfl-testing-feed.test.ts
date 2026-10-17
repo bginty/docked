@@ -277,6 +277,18 @@ test("whole fixture uses existing journal; corrections, pending, frozen teams an
     );
     assert.equal((await get()).revision, firstRev);
     await db.query("update nfl_test_feed.consumer set last_error=null");
+    await db.query(
+      "update nfl_test_feed.consumer set last_success=now()-interval '9 hours'",
+    );
+    const overdue = await nflTestingReport(db);
+    assert.match(overdue.health, /overdue/);
+    assert.equal(overdue.players[0].seasons[0].points, null);
+    assert.equal(overdue.players[0].history[0].retainedPoints, 200);
+    await db.query("update nfl_test_feed.consumer set last_success=now()");
+    assert.equal(
+      (await nflTestingReport(db)).players[0].history[0].points,
+      200,
+    );
     await reconcileTestingGame(db, sql, "one", "g_one", actor, approval);
     assert.equal((await get()).revision, firstRev);
     // Corrected real input shape, downward and upward; no ownership lookup.

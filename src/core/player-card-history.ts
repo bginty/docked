@@ -16,6 +16,13 @@ export type PlayerHistorySource = {
   source: { status: string; availability: string; stats: unknown } | null;
 };
 export type PlayerHistory = {
+  feed?: {
+    version: string;
+    lastSuccess: string | null;
+    stale: boolean;
+    seasonBase: number | null;
+    complete: boolean;
+  };
   season: string | null;
   seasons: string[];
   averageBase: number | null;
@@ -26,6 +33,11 @@ export type PlayerHistory = {
     base: number | null;
     status: string;
     updatedAt: string | null;
+    rawStats?: {
+      game: string;
+      values: Record<string, number | null>;
+      incomplete: boolean;
+    }[];
   }[];
 };
 export function playerHistory(

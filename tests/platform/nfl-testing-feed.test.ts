@@ -129,3 +129,19 @@ test("reviewed provider identities never merge namesakes or guess a position", (
   assert.equal(result.approved[0].canonical, "p_wr");
   assert.deepEqual(result.quarantined, ["lb"]);
 });
+test("hosted dataset binding refuses a valid envelope from a different dataset", async () => {
+  const base = "http://127.0.0.1:8080";
+  const client = new NflTestingClient(
+    base,
+    "isolated-fixture-key-not-real",
+    [base],
+    async () => Response.json(eventPage(1)),
+  );
+  client.expectedDataset = "d2a5d96c-bf07-4a94-bf59-893f4fb3d432";
+  await assert.rejects(() => client.get("/v1/stat-changes"), /DATASET_BINDING/);
+  client.expectedDataset = eventPage(1).dataset_id;
+  assert.equal(
+    (await client.get("/v1/stat-changes")).dataset_id,
+    client.expectedDataset,
+  );
+});

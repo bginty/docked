@@ -47,6 +47,11 @@ test("closed Preview binds the isolated project and restricted database role", (
   assert.equal(assertPrivatePreview({}), false);
 });
 test("Preview refuses Production, privileged roles, capture mode and unsupported activation", () => {
+  assert.throws(
+    () =>
+      assertPrivatePreview({ ...valid(), DOCKED_NFL_HOSTED_TESTING: "true" }),
+    /not approved/,
+  );
   for (const [key, value] of Object.entries({
     VERCEL_ENV: "production",
     VERCEL_PROJECT_ID: "prj_l0rpVDPRuIRp9UcBUkR3rk4oRFegYR",

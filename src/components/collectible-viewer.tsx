@@ -198,6 +198,37 @@ export function FlippableCard({
                                   <th>
                                     {r.week}
                                     <small>{r.status}</small>
+                                    {r.rawStats && (
+                                      <details>
+                                        <summary>Raw stats</summary>
+                                        {r.rawStats.map((g) => (
+                                          <div key={g.game}>
+                                            {g.incomplete && (
+                                              <p>
+                                                Game incomplete; verified player
+                                                fields shown.
+                                              </p>
+                                            )}
+                                            <dl>
+                                              {Object.entries(g.values).map(
+                                                ([key, value]) => (
+                                                  <div key={key}>
+                                                    <dt>
+                                                      {key.replaceAll("_", " ")}
+                                                    </dt>
+                                                    <dd>
+                                                      {value === null
+                                                        ? "Missing / unconfirmed"
+                                                        : value}
+                                                    </dd>
+                                                  </div>
+                                                ),
+                                              )}
+                                            </dl>
+                                          </div>
+                                        ))}
+                                      </details>
+                                    )}
                                   </th>
                                   <td>{formatBasePoints(r.base)}</td>
                                   <td>
@@ -236,6 +267,50 @@ export function FlippableCard({
                       Adjusted = card reference, not owner-earned points. Base
                       averages exclude DNP/bye. Provisional results may change.
                     </p>
+                    {history.feed && (
+                      <details className="card-score-note">
+                        <summary>
+                          Season base:{" "}
+                          {formatBasePoints(history.feed.seasonBase)}
+                          {!history.feed.complete && " · partial"}
+                        </summary>
+                        <p>
+                          {history.feed.stale
+                            ? "Update overdue · retained history"
+                            : "Postgame history"}
+                          . Last import:{" "}
+                          {history.feed.lastSuccess
+                            ? new Date(
+                                history.feed.lastSuccess,
+                              ).toLocaleString()
+                            : "Unavailable"}
+                          .
+                        </p>
+                        <p>
+                          Reference scoring: {history.feed.version}. This
+                          history does not award competition points.
+                        </p>
+                        <p>
+                          Statistics:{" "}
+                          <a
+                            href="https://github.com/nflverse/nflverse-data"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            nflverse
+                          </a>
+                          ,{" "}
+                          <a
+                            href="https://creativecommons.org/licenses/by/4.0/"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            CC BY 4.0
+                          </a>
+                          . Fantasy points calculated by Docked.
+                        </p>
+                      </details>
+                    )}
                   </>
                 )
               )}

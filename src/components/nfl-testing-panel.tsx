@@ -4,7 +4,13 @@ import type { NflTestingReport } from "../server/nfl-testing-report";
 const points = (v: number | null) => (v === null ? "—" : (v / 100).toFixed(2));
 const timestamp = (v: number | null) =>
   v === null ? "Unavailable" : new Date(v * 1000).toLocaleString();
-export function NflTestingPanel({ report }: { report: NflTestingReport }) {
+export function NflTestingPanel({
+  report,
+  liveHistory = false,
+}: {
+  report: NflTestingReport;
+  liveHistory?: boolean;
+}) {
   const [selected, setSelected] = useState(report.players[0]?.id ?? ""),
     [season, setSeason] = useState("");
   const player = report.players.find((p) => p.id === selected),
@@ -17,7 +23,10 @@ export function NflTestingPanel({ report }: { report: NflTestingReport }) {
   return (
     <section className="nfl-testing-panel">
       <header>
-        <p className="small-note">OWNER OPERATIONS · ISOLATED TESTING</p>
+        <p className="small-note">
+          OWNER OPERATIONS ·{" "}
+          {liveHistory ? "PLAYER HISTORY" : "ISOLATED TESTING"}
+        </p>
         <h1>NFL postgame feed</h1>
         <p>{report.health}</p>
         <p>
@@ -30,7 +39,10 @@ export function NflTestingPanel({ report }: { report: NflTestingReport }) {
           ["Player-game records", report.rawRecords],
           ["Incomplete games", report.incompleteGames],
           ["Unmapped players", report.unmappedPlayers],
-          ["Recalculation work", report.pending],
+          [
+            liveHistory ? "History changes recorded" : "Recalculation work",
+            report.pending,
+          ],
           ["Revised records", report.corrections],
         ].map(([name, value]) => (
           <article key={name}>

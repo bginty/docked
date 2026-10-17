@@ -66,37 +66,41 @@ export class NflTestingStore {
         )
           throw new FeedFailure("FEED_EVENT_IDENTITY");
         seq = e.seq;
-        const prior = (
-          await tx.query(
-            "select revision,payload,removed from nfl_test_feed.records where generation=$1 and game=$2 and player=$3",
-            [generation, e.game_id, e.player_id],
-          )
-        ).rows[0];
-        if (
-          prior &&
-          Number(prior.revision) === e.revision &&
-          digest(prior.payload) !==
-            digest({ ...e.payload, removed: e.operation === "remove" })
-        )
+      }
+      const incoming = page.data.map((e) => ({
+        game: e.game_id,
+        player: e.player_id,
+        revision: e.revision,
+        removed: e.operation === "remove",
+        payload: { ...e.payload, removed: e.operation === "remove" },
+        hash: digest(e),
+      }));
+      const revisions = new Map<string, string>();
+      for (const r of incoming) {
+        const key = r.game + ":" + r.player + ":" + r.revision,
+          hash = digest(r.payload);
+        if (revisions.has(key) && revisions.get(key) !== hash)
           throw new FeedFailure("FEED_CONFLICTING_REVISION");
-        const { rows } = await tx.query(
-          `insert into nfl_test_feed.records values($1,$2,$3,$4,$5,$6)
-          on conflict(generation,game,player) do update set revision=excluded.revision,removed=excluded.removed,payload=excluded.payload
-          where nfl_test_feed.records.revision<excluded.revision returning player`,
-          [
-            generation,
-            e.game_id,
-            e.player_id,
-            e.revision,
-            e.operation === "remove",
-            JSON.stringify({ ...e.payload, removed: e.operation === "remove" }),
-          ],
+        revisions.set(key, hash);
+      }
+      if (incoming.length) {
+        const data = JSON.stringify(incoming);
+        const conflicts = await tx.query(
+          `select 1 from jsonb_to_recordset($2::jsonb) i(game text,player text,revision bigint,payload jsonb)
+          join nfl_test_feed.records r on r.generation=$1 and r.game=i.game and r.player=i.player and r.revision=i.revision where r.payload<>i.payload limit 1`,
+          [generation, data],
         );
-        if (rows.length)
-          await tx.query(
-            "insert into nfl_test_feed.outbox(generation,game,source_hash) values($1,$2,$3) on conflict do nothing",
-            [generation, e.game_id, digest(e)],
-          );
+        if (conflicts.rows.length)
+          throw new FeedFailure("FEED_CONFLICTING_REVISION");
+        await tx.query(
+          `with incoming as (select * from jsonb_to_recordset($2::jsonb) i(game text,player text,revision bigint,removed boolean,payload jsonb,hash text)),
+          latest as(select distinct on(game,player) * from incoming order by game,player,revision desc),
+          changed as(insert into nfl_test_feed.records select $1,game,player,revision,removed,payload from latest
+            on conflict(generation,game,player) do update set revision=excluded.revision,removed=excluded.removed,payload=excluded.payload
+            where nfl_test_feed.records.revision<excluded.revision returning game,player)
+          insert into nfl_test_feed.outbox(generation,game,source_hash) select $1,i.game,i.hash from latest i join changed c using(game,player) on conflict do nothing`,
+          [generation, data],
+        );
       }
       if (
         page.next_cursor !== `${page.dataset_id}:${seq}` ||
@@ -159,9 +163,25 @@ export class NflTestingStore {
       );
     });
   }
-  async sync(client: NflTestingClient, resync = false) {
+  async sync(
+    client: Pick<NflTestingClient, "get">,
+    resync = false,
+    batch?: { hash: string; exportedAt: number },
+  ) {
     const token = await this.lease();
     try {
+      // Checked under the existing exclusive consumer lease. Retries acknowledge
+      // an already imported batch without making old source data look fresh.
+      if (batch) {
+        const previous = (
+          await this.db.query(
+            "select detail from nfl_test_feed.audit where action='batch-imported' order by id desc limit 1",
+          )
+        ).rows[0]?.detail;
+        if (previous?.hash === batch.hash) return previous.generation as string;
+        if (previous && Number(previous.exportedAt) >= batch.exportedAt)
+          throw new FeedFailure("FEED_OLDER_BATCH");
+      }
       const active = (
         await this.db.query(
           "select g.* from nfl_test_feed.consumer c join nfl_test_feed.generations g on g.id=c.active where c.id=1",
@@ -213,28 +233,28 @@ export class NflTestingStore {
             throw new FeedFailure("FEED_RESYNC_REQUIRED");
           await this.db.transaction(async (tx) => {
             await this.assertLease(tx, token);
-            for (const item of list.data as Record<string, unknown>[]) {
-              const data = kind === "games" ? feedGame.parse(item) : item;
-              if (typeof data.id !== "string")
-                throw new FeedFailure("FEED_INVALID_IDENTITY");
-              const old = (
-                await tx.query(
-                  `select payload from nfl_test_feed.${kind} where generation=$1 and ${kind === "games" ? "game" : "player"}=$2`,
-                  [generation, data.id],
-                )
-              ).rows[0];
+            const items = (list.data as Record<string, unknown>[]).map(
+              (item) => {
+                const data = kind === "games" ? feedGame.parse(item) : item;
+                if (typeof data.id !== "string")
+                  throw new FeedFailure("FEED_INVALID_IDENTITY");
+                return { id: data.id, payload: data, hash: digest(data) };
+              },
+            );
+            if (new Set(items.map((i) => i.id)).size !== items.length)
+              throw new FeedFailure("FEED_INVALID_IDENTITY");
+            if (items.length) {
+              const column = kind === "games" ? "game" : "player";
+              const changed = `with incoming as(select * from jsonb_to_recordset($2::jsonb) i(id text,payload jsonb,hash text)),
+                changed as(insert into nfl_test_feed.${kind}(generation,${column},payload) select $1,id,payload from incoming
+                on conflict(generation,${column}) do update set payload=excluded.payload
+                where nfl_test_feed.${kind}.payload<>excluded.payload returning ${column})`;
               await tx.query(
-                `insert into nfl_test_feed.${kind} values($1,$2,$3) on conflict(generation,${kind === "games" ? "game" : "player"}) do update set payload=excluded.payload`,
-                [generation, data.id, JSON.stringify(data)],
+                kind === "games"
+                  ? `${changed} insert into nfl_test_feed.outbox(generation,game,source_hash) select $1,i.id,i.hash from incoming i join changed c on c.game=i.id on conflict do nothing`
+                  : `${changed} select count(*) from changed`,
+                [generation, JSON.stringify(items)],
               );
-              if (
-                kind === "games" &&
-                (!old || digest(old.payload) !== digest(data))
-              )
-                await tx.query(
-                  "insert into nfl_test_feed.outbox(generation,game,source_hash)values($1,$2,$3) on conflict do nothing",
-                  [generation, data.id, digest(data)],
-                );
             }
           });
           after = list.next_after as string | null;
@@ -259,6 +279,17 @@ export class NflTestingStore {
                 from: active?.id,
                 to: generation,
                 mappingsRequireDatasetReview: true,
+              }),
+            ],
+          );
+        if (batch)
+          await tx.query(
+            "insert into nfl_test_feed.audit(action,detail) values('batch-imported',$1)",
+            [
+              JSON.stringify({
+                ...batch,
+                generation,
+                dataset: first.dataset_id,
               }),
             ],
           );

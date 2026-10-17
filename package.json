@@ -4,6 +4,7 @@
   "private": true,
   "description": "Multi-sport fantasy cards with permanent scarcity and secure ownership",
   "scripts": {
+    "nfl:refresh": "node scripts/nfl-refresh.mjs",
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
     "images:build": "node scripts/build-sport-images.mjs",

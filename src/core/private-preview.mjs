@@ -1,4 +1,5 @@
 import target from "../../config/hosted-preview.json" with { type: "json" };
+import { requireNflHostedTarget } from "./nfl-hosted-target.mjs";
 
 export const privatePreviewDisabledFlags = Object.freeze([
   "DOCKED_FRIENDS_BETA",
@@ -33,6 +34,8 @@ export function assertPrivatePreview(env) {
   const fail = () => {
     throw Error("Unreviewed private Preview configuration");
   };
+  const nfl =
+    env.DOCKED_NFL_HOSTED_TESTING === "true" ? requireNflHostedTarget() : null;
   if (
     env.DOCKED_PRIVATE_PREVIEW !== "true" ||
     env.DOCKED_BETA_STAGING !== "true" ||
@@ -41,7 +44,8 @@ export function assertPrivatePreview(env) {
     (env.VERCEL_TARGET_ENV && env.VERCEL_TARGET_ENV !== "preview") ||
     env.VERCEL_PROJECT_ID !== target.projectId ||
     env.VERCEL_ORG_ID !== target.teamId ||
-    env.VERCEL_GIT_COMMIT_REF !== "pivot/fantasy-cards-preview-v1" ||
+    env.VERCEL_GIT_COMMIT_REF !==
+      (nfl ? "nfl-hosted-testing" : "pivot/fantasy-cards-preview-v1") ||
     !/^[a-f0-9]{40}$/.test(env.VERCEL_GIT_COMMIT_SHA ?? "") ||
     !/^docked-preview-[a-z0-9-]+\.vercel\.app$/.test(env.VERCEL_URL ?? "") ||
     env.SITE_URL !== target.origin ||
@@ -97,6 +101,12 @@ export function assertPrivatePreview(env) {
       )
     )
       fail();
+  if (
+    nfl &&
+    (nfl.projectRef !== target.supabaseProjectRef ||
+      nfl.vercelProjectId !== target.projectId)
+  )
+    fail();
   // This first target supports closed deployment verification. Admission remains
   // closed until the separate invitation delivery and identity setup is verified.
   for (const flag of [
@@ -106,7 +116,10 @@ export function assertPrivatePreview(env) {
     "DOCKED_AUTH_INVITES_READY",
     "FANTASY_FREE_PLAY_PRODUCTION",
   ])
-    if (env[flag] !== "false") fail();
+    if (
+      env[flag] !== (nfl && flag === "BETA_ACCESS_ENABLED" ? "true" : "false")
+    )
+      fail();
   return true;
 }
 

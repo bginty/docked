@@ -1,0 +1,18 @@
+{
+  "approved": true,
+  "approvalReference": "owner-2026-10-17-publish-real-player-history-test-simulations-local",
+  "origin": "https://docked.com.au",
+  "audience": "/api/nfl/history/import",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "vercelProjectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "dataset": "a78ff31f-6f3f-4ac6-9d45-34208626e325",
+  "marker": "docked-real-player-history-v1",
+  "readerRole": "docked_nfl_history_reader",
+  "writerRole": "docked_nfl_history_writer",
+  "scheduled": false,
+  "competitionSettlement": false,
+  "source": "nflverse",
+  "sourceLicence": "https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md",
+  "scope": "member-player-history-only",
+  "reviewExpiresAt": "2026-11-10T00:00:00.000Z"
+}

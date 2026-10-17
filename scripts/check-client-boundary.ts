@@ -9,6 +9,9 @@ const markers = [
   "EMAIL",
   "REDEMPTION",
   "NFL_FEED",
+  "NFL_HISTORY_BATCH",
+  "NFL_HISTORY_READER",
+  "NFL_HISTORY_WRITER",
 ].map((name) => `DOCKED_BUILD_CANARY_${name}_20261002`);
 async function inspect(directory: string): Promise<number> {
   let checked = 0;
