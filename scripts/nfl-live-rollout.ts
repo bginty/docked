@@ -38,6 +38,9 @@ async function main() {
     const report = await sql.begin(async (tx: any) => {
       await tx`set local lock_timeout='10s'`;
       await tx`set local statement_timeout='60s'`;
+      // Match marketplace and scheduled game-lock routines: advisory lock first.
+      // Taking dependency table locks first can deadlock their guarded updates.
+      await tx`select pg_advisory_xact_lock(71820342)`;
       // Lock dependencies before inspecting them so cleanup cannot race a lineup,
       // offer, purchase or ownership change. Timeout aborts the whole transaction.
       if (apply) {
