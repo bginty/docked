@@ -16,6 +16,8 @@ export type PlayerHistorySource = {
   source: { status: string; availability: string; stats: unknown } | null;
 };
 export type PlayerHistory = {
+  games?: PlayerGameHistory[];
+  scoringVersion?: string;
   feed?: {
     version: string;
     lastSuccess: string | null;
@@ -40,12 +42,38 @@ export type PlayerHistory = {
     }[];
   }[];
 };
+export type PlayerGameHistory = {
+  id: string;
+  week: number;
+  kickoff: string | null;
+  opponent: string | null;
+  venue: "home" | "away" | null;
+  gameStatus: string;
+  scoringStatus: string;
+  base: number | null;
+  played: boolean;
+  revision: number;
+  updatedAt: string;
+  incomplete: boolean;
+  missing: string[];
+  values: Record<string, number | null>;
+  parts: { statistic: string; quantity: number; centipoints: number }[];
+};
 export function playerHistory(
   input: PlayerHistorySource[],
   requested?: string,
 ): PlayerHistory {
   const seasons = [...new Set(input.map((r) => r.season))].sort().reverse();
   const season = requested ?? seasons[0] ?? null;
+  const selected = input.filter((r) => r.season === season);
+  const versions = [...new Set(selected.map((r) => r.rules.version))];
+  const policies = new Set(
+    selected.map((r) =>
+      JSON.stringify(
+        Object.entries(r.rules.weights).sort(([a], [b]) => a.localeCompare(b)),
+      ),
+    ),
+  );
   // Traditional and All-Star share fixtures. A newer correction wins, never a sum of both modes.
   const fixtures = new Map<string, PlayerHistorySource>();
   for (const r of input.filter((r) => r.season === season)) {
@@ -75,7 +103,8 @@ export function playerHistory(
     let base: number | null = null,
       status = "Pending",
       played = false;
-    if (!r.visible) status = "Under review";
+    if (policies.size > 1) status = "Scoring rules differ · review required";
+    else if (!r.visible) status = "Under review";
     else if (!s) status = "Missing data";
     else if (s.status === "completed" && s.availability !== "pending") {
       if (s.availability === "confirmed-dnp" || s.availability === "bye") {
@@ -118,6 +147,7 @@ export function playerHistory(
     }))
     .sort((a, b) => b.week - a.week);
   return {
+    ...(versions.length ? { scoringVersion: versions.join(" / ") } : {}),
     season,
     seasons,
     rows,

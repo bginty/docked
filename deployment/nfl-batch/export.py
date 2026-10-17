@@ -68,6 +68,14 @@ def export(source, database, output, key, quiescent=False, audience='/api/testin
                 if not after:
                     break
             metadata[kind] = api.envelope(items, next_after=None)
+        # Labels come from the SAME consistent source snapshot and canonical
+        # team identities, never a player-name guess or current roster join.
+        teams = {r['id']: r['name'] for r in db.rows("SELECT id,name FROM entities WHERE kind='team'")}
+        for game in metadata['games']['data']:
+            for side in ('home', 'away'):
+                name = teams.get(game.get(side + '_id'))
+                if name:
+                    game[side + '_name'] = name
         batch = {'batch_version': 'docked-raw-postgame-batch-v1',
                  'exported_at': time.time(), 'dataset_id': db.meta('dataset_id'),
                  'changes': changes, **metadata}

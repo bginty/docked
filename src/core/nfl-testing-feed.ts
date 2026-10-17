@@ -40,6 +40,10 @@ export const feedGame = z
     usable: z.boolean(),
     game_revision: z.number().int(),
     record_count: z.number().int(),
+    home_id: key.optional(),
+    away_id: key.optional(),
+    home_name: z.string().min(1).max(100).optional(),
+    away_name: z.string().min(1).max(100).optional(),
     freshness: z
       .object({
         stale: z.boolean(),
@@ -94,7 +98,7 @@ export function playerReadiness(
         Object.keys(nflPostgameWeights).map((k) => [k, raw.stats[k]]),
       ),
     );
-  const available =
+  const eligible =
     !!raw &&
     !raw.removed &&
     !!game &&
@@ -104,21 +108,19 @@ export function playerReadiness(
     raw.week === game.week &&
     game.status === "final" &&
     ["available", "incomplete"].includes(game.stats_state) &&
-    !game.freshness.stale &&
     ["stat_recorded", "played"].includes(raw.participation) &&
     !missing.length &&
     !!stats &&
     stats.success &&
     ["QB", "RB", "WR", "TE"].includes(position ?? "");
+  const available = eligible && !game!.freshness.stale;
   const points =
     available && stats?.success
       ? scorePlayer(nflPostgameTestRules(), position!, stats.data).centipoints
       : null;
+  // Retention never relaxes identity, completion or field-confidence checks.
   const retainedPoints =
-    raw &&
-    !raw.removed &&
-    stats?.success &&
-    ["QB", "RB", "WR", "TE"].includes(position ?? "")
+    eligible && stats?.success
       ? scorePlayer(nflPostgameTestRules(), position!, stats.data).centipoints
       : null;
   return {

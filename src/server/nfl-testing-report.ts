@@ -6,13 +6,13 @@ import {
 import { nflPostgameVersion } from "../core/nfl-postgame-policy";
 import type { FeedDb } from "./nfl-testing-store";
 
-export async function nflTestingReport(db: FeedDb) {
+export async function nflTestingReport(db: FeedDb, retainedHistory = false) {
   return db.transaction(async (tx) => {
     await tx.query("set transaction isolation level repeatable read read only");
-    return readReport(tx);
+    return readReport(tx, retainedHistory);
   });
 }
-async function readReport(db: FeedDb) {
+async function readReport(db: FeedDb, retainedHistory: boolean) {
   const current = (
     await db.query(
       "select c.last_success,c.last_error,(c.lease is not null and c.lease_until>now()) as importing,(c.last_success is null or c.last_success<now()-interval '8 hours') as sync_stale,g.* from nfl_test_feed.consumer c left join nfl_test_feed.generations g on g.id=c.active where c.id=1",
@@ -81,6 +81,10 @@ async function readReport(db: FeedDb) {
         game,
         mapping?.position,
       );
+      if (retainedHistory && !raw.synthetic) {
+        readiness.points = readiness.retainedPoints;
+        if (readiness.points !== null) readiness.status = "Available stats";
+      }
       void stats; // Raw statistics stay server-side; the panel receives the score projection.
       return {
         player: raw.player_id,
@@ -171,6 +175,7 @@ async function readReport(db: FeedDb) {
       status: g.stats_state,
       stale: g.freshness.stale,
       records: g.record_count,
+      gameStatus: g.status,
     })),
     players,
   };

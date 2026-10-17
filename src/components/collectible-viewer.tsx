@@ -2,16 +2,12 @@
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import type { AwardedCard } from "@/core/pack-opening";
-import { rarityRule } from "@/core/card-rarity";
 import { rarityStyle, rarityPresentation } from "@/core/rarity-theme";
 import { collectiblePresentation } from "@/core/card-presentation";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 import type { PlayerHistory } from "@/core/player-card-history";
 import { boundedFetch } from "@/core/bounded-request";
-import {
-  adjustedCardPoints,
-  formatBasePoints,
-} from "@/core/card-score-display";
+import { HistorySummary, PlayerStatistics } from "./player-statistics";
 import { CollectibleFrame } from "./collectible-frame";
 import { RarityBadge } from "./rarity-badge";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
@@ -31,12 +27,11 @@ export function FlippableCard({
     [error, setError] = useState(false),
     [loading, setLoading] = useState(true),
     [season, setSeason] = useState<string | undefined>(),
-    [page, setPage] = useState(0),
+    [details, setDetails] = useState(false),
     [retry, setRetry] = useState(0);
+  const detailsId = useId();
   const flip = useRef<HTMLButtonElement>(null),
     p = collectiblePresentation(card),
-    multiplier =
-      appliedMultiplier ?? rarityRule(card.tier).multiplierTenths / 10,
     player = card.canonical_player_id ?? card.player_id;
   useEffect(() => {
     const controller = new AbortController();
@@ -85,263 +80,151 @@ export function FlippableCard({
     flip.current?.focus({ preventScroll: true });
   };
   return (
-    <div className="collectible-flip" data-side={back ? "back" : "front"}>
-      <div className="collectible-flip-rotor">
-        <div className="collectible-flip-front" aria-hidden={back} inert={back}>
-          <FantasyCardArtwork
-            card={card}
-            faceOnly
-            variant="detailed"
-            appliedMultiplier={appliedMultiplier}
-          />
-        </div>
-        <div
-          className={`collectible-face collectible-back collectible-material-${rarityPresentation(card.tier).treatment}`}
-          style={rarityStyle(card.tier)}
-          aria-hidden={!back}
-          inert={!back}
-          onClick={toggle}
-        >
-          <span className="collectible-watermark" aria-hidden="true" />
-          <CollectibleFrame />
-          <span className="collectible-top">
-            <span className="collectible-position">{card.position}</span>
-            <RarityBadge
-              tier={card.tier}
+    <>
+      <div className="collectible-flip" data-side={back ? "back" : "front"}>
+        <div className="collectible-flip-rotor">
+          <div
+            className="collectible-flip-front"
+            aria-hidden={back}
+            inert={back}
+          >
+            <FantasyCardArtwork
+              card={card}
+              faceOnly
+              variant="detailed"
               appliedMultiplier={appliedMultiplier}
-              compact
             />
-          </span>
-          <div className="collectible-back-content">
-            <div className="collectible-back-identity">
-              <span className="collectible-given">{p.given}</span>
-              <strong className="collectible-family">{p.family}</strong>
-              <small>
-                {card.position}
-                {card.team ? ` · ${card.team}` : ""}
-              </small>
-            </div>
-            <div
-              className="collectible-back-history"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {loading ? (
-                <p role="status">Loading player scores…</p>
-              ) : error ? (
-                <div role="alert">
-                  <p>Scores unavailable.</p>
-                  <button
-                    onClick={() => {
-                      setLoading(true);
-                      setRetry((r) => r + 1);
-                    }}
-                  >
-                    Retry
-                  </button>
-                </div>
-              ) : (
-                history && (
-                  <>
-                    {history.seasons.length > 1 ? (
-                      <label className="card-season">
-                        Season{" "}
-                        <select
-                          value={history.season ?? ""}
-                          onChange={(e) => {
-                            setLoading(true);
-                            setSeason(e.target.value);
-                            setPage(0);
-                          }}
-                        >
-                          {history.seasons.map((s) => (
-                            <option key={s}>{s}</option>
-                          ))}
-                        </select>
-                      </label>
-                    ) : (
-                      <h3>
-                        {history.season
-                          ? `${history.season} season`
-                          : "Player history"}
-                      </h3>
-                    )}
-                    <dl className="card-base-stats">
-                      <div>
-                        <dt>Avg base</dt>
-                        <dd>{formatBasePoints(history.averageBase)}</dd>
-                      </div>
-                      <div>
-                        <dt>Best base</dt>
-                        <dd>{formatBasePoints(history.bestBase)}</dd>
-                      </div>
-                      <div>
-                        <dt>Played</dt>
-                        <dd>{history.played}</dd>
-                      </div>
-                    </dl>
-                    {history.rows.length ? (
-                      <>
-                        <h4>Recent scores</h4>
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>Week</th>
-                              <th>Base</th>
-                              <th>Adjusted ×{multiplier.toFixed(1)}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {history.rows
-                              .slice(page * 5, page * 5 + 5)
-                              .map((r) => (
-                                <tr key={r.week}>
-                                  <th>
-                                    {r.week}
-                                    <small>{r.status}</small>
-                                    {r.rawStats && (
-                                      <details>
-                                        <summary>Raw stats</summary>
-                                        {r.rawStats.map((g) => (
-                                          <div key={g.game}>
-                                            {g.incomplete && (
-                                              <p>
-                                                Game incomplete; verified player
-                                                fields shown.
-                                              </p>
-                                            )}
-                                            <dl>
-                                              {Object.entries(g.values).map(
-                                                ([key, value]) => (
-                                                  <div key={key}>
-                                                    <dt>
-                                                      {key.replaceAll("_", " ")}
-                                                    </dt>
-                                                    <dd>
-                                                      {value === null
-                                                        ? "Missing / unconfirmed"
-                                                        : value}
-                                                    </dd>
-                                                  </div>
-                                                ),
-                                              )}
-                                            </dl>
-                                          </div>
-                                        ))}
-                                      </details>
-                                    )}
-                                  </th>
-                                  <td>{formatBasePoints(r.base)}</td>
-                                  <td>
-                                    {formatBasePoints(
-                                      adjustedCardPoints(r.base, multiplier),
-                                    )}
-                                  </td>
-                                </tr>
-                              ))}
-                          </tbody>
-                        </table>
-                        {history.rows.length > 5 && (
-                          <nav aria-label="Score history pages">
-                            <button
-                              disabled={!page}
-                              onClick={() => setPage((n) => n - 1)}
-                            >
-                              Newer
-                            </button>
-                            <span>
-                              {page + 1} / {Math.ceil(history.rows.length / 5)}
-                            </span>
-                            <button
-                              disabled={(page + 1) * 5 >= history.rows.length}
-                              onClick={() => setPage((n) => n + 1)}
-                            >
-                              Older
-                            </button>
-                          </nav>
-                        )}
-                      </>
-                    ) : (
-                      <p>No published player scores yet.</p>
-                    )}
-                    <p className="card-score-note">
-                      Adjusted = card reference, not owner-earned points. Base
-                      averages exclude DNP/bye. Provisional results may change.
-                    </p>
-                    {history.feed && (
-                      <details className="card-score-note">
-                        <summary>
-                          Season base:{" "}
-                          {formatBasePoints(history.feed.seasonBase)}
-                          {!history.feed.complete && " · partial"}
-                        </summary>
-                        <p>
-                          {history.feed.stale
-                            ? "Update overdue · retained history"
-                            : "Postgame history"}
-                          . Last import:{" "}
-                          {history.feed.lastSuccess
-                            ? new Date(
-                                history.feed.lastSuccess,
-                              ).toLocaleString()
-                            : "Unavailable"}
-                          .
-                        </p>
-                        <p>
-                          Reference scoring: {history.feed.version}. This
-                          history does not award competition points.
-                        </p>
-                        <p>
-                          Statistics:{" "}
-                          <a
-                            href="https://github.com/nflverse/nflverse-data"
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            nflverse
-                          </a>
-                          ,{" "}
-                          <a
-                            href="https://creativecommons.org/licenses/by/4.0/"
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            CC BY 4.0
-                          </a>
-                          . Fantasy points calculated by Docked.
-                        </p>
-                      </details>
-                    )}
-                  </>
-                )
-              )}
-            </div>
           </div>
-          <span className="collectible-edition">
-            <span className="collectible-serial">{p.serial}</span>
-            <img
-              className="collectible-brand"
-              src={fantasyAssets.compact}
-              width="100"
-              height="28"
-              alt="Docked"
-            />
-          </span>
+          <div
+            className={`collectible-face collectible-back collectible-material-${rarityPresentation(card.tier).treatment}`}
+            style={rarityStyle(card.tier)}
+            aria-hidden={!back}
+            inert={!back}
+            onClick={toggle}
+          >
+            <span className="collectible-watermark" aria-hidden="true" />
+            <CollectibleFrame />
+            <span className="collectible-top">
+              <span className="collectible-position">{card.position}</span>
+              <RarityBadge
+                tier={card.tier}
+                appliedMultiplier={appliedMultiplier}
+                compact
+              />
+            </span>
+            <div className="collectible-back-content">
+              <div className="collectible-back-identity">
+                <span className="collectible-given">{p.given}</span>
+                <strong className="collectible-family">{p.family}</strong>
+                <small>
+                  {card.position}
+                  {card.team ? ` · ${card.team}` : ""}
+                </small>
+              </div>
+              <div
+                className="collectible-back-history"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {loading ? (
+                  <p role="status">Loading player scores…</p>
+                ) : error ? (
+                  <div role="alert">
+                    <p>Scores unavailable.</p>
+                    <button
+                      onClick={() => {
+                        setLoading(true);
+                        setRetry((r) => r + 1);
+                      }}
+                    >
+                      Retry
+                    </button>
+                  </div>
+                ) : (
+                  history && (
+                    <>
+                      <h3>{history.season ?? "Player history"}</h3>
+                      <HistorySummary
+                        history={history}
+                        position={card.position}
+                      />
+                      <button
+                        className="card-statistics-link"
+                        onClick={() => {
+                          setDetails(true);
+                          requestAnimationFrame(() =>
+                            document
+                              .getElementById(detailsId)
+                              ?.scrollIntoView({
+                                block: "start",
+                                behavior: "smooth",
+                              }),
+                          );
+                        }}
+                      >
+                        View full statistics
+                      </button>
+                    </>
+                  )
+                )}
+              </div>
+            </div>
+            <span className="collectible-edition">
+              <span className="collectible-serial">{p.serial}</span>
+              <img
+                className="collectible-brand"
+                src={fantasyAssets.compact}
+                width="100"
+                height="28"
+                alt="Docked"
+              />
+            </span>
+          </div>
         </div>
+        <button
+          ref={flip}
+          type="button"
+          className={`collectible-flip-control ${back ? "is-back" : ""}`}
+          onClick={toggle}
+          aria-label={`${back ? "Back" : "Front"} of ${card.name} card. Show ${back ? "front" : "player statistics"}.`}
+          aria-pressed={back}
+        >
+          {back && <span>↻ Tap to flip</span>}
+        </button>
+        <span className="sr-only" role="status">
+          {back ? "Card back: player statistics" : "Card front"}
+        </span>
       </div>
-      <button
-        ref={flip}
-        type="button"
-        className={`collectible-flip-control ${back ? "is-back" : ""}`}
-        onClick={toggle}
-        aria-label={`${back ? "Back" : "Front"} of ${card.name} card. Show ${back ? "front" : "player statistics"}.`}
-        aria-pressed={back}
-      >
-        {back && <span>↻ Tap to flip</span>}
-      </button>
-      <span className="sr-only" role="status">
-        {back ? "Card back: player statistics" : "Card front"}
-      </span>
-    </div>
+      {details && (
+        <div id={detailsId} className="player-statistics-container">
+          <button
+            type="button"
+            onClick={() => {
+              setDetails(false);
+              flip.current?.focus();
+            }}
+          >
+            Close statistics
+          </button>
+          {loading ? (
+            <p role="status">Loading statistics…</p>
+          ) : error ? (
+            <p role="alert">Statistics unavailable. Retry from the card.</p>
+          ) : (
+            history && (
+              <PlayerStatistics
+                history={history}
+                name={card.name}
+                position={card.position}
+                seasonChange={(value) => {
+                  setLoading(true);
+                  setSeason(value);
+                }}
+              />
+            )
+          )}
+        </div>
+      )}
+    </>
   );
 }
 export function CardSellAction({ card }: { card: ViewerCard }) {

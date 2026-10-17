@@ -357,9 +357,10 @@ export function results(state: ScoringState) {
             score,
           };
         });
-      const base = matches.every((m) => m.score !== null)
-        ? matches.reduce((n, m) => n + m.score!.centipoints, 0)
-        : null;
+      const base =
+        matches.length > 0 && matches.every((m) => m.score !== null)
+          ? matches.reduce((n, m) => n + m.score!.centipoints, 0)
+          : null;
       return {
         ...card,
         matches,

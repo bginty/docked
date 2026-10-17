@@ -1,0 +1,179 @@
+{
+  "at": "2026-10-17T13:41:29.730Z",
+  "scope": "READ ONLY; proposed half-PPR subtotal is NOT a valid legacy score until every legacy field is confirmed",
+  "mappedPlayers": 433,
+  "eligiblePlayerGames": 1673,
+  "unscored": 0,
+  "changedByReceptionPolicy": 1064,
+  "totalReceptionDeltaCentipoints": -162350,
+  "recordsWithMissingLegacyFields": 1673,
+  "rounds": [
+    {
+      "stream": "beta-real:nfl:rarity-test:2026:6",
+      "version": "docked-nfl-rarity-test-v1",
+      "entries": 0,
+      "sourceSnapshots": 0,
+      "finalised": null,
+      "projectionMatches": true,
+      "unchanged": true,
+      "rows": [],
+      "issues": [
+        "2026_06_SEA_DEN: awaiting completion or six-hour collection delay",
+        "2026_06_HOU_JAX: awaiting completion or six-hour collection delay",
+        "2026_06_CHI_ATL: awaiting completion or six-hour collection delay",
+        "2026_06_BAL_CLE: awaiting completion or six-hour collection delay",
+        "2026_06_TEN_IND: awaiting completion or six-hour collection delay",
+        "2026_06_NYJ_NE: awaiting completion or six-hour collection delay",
+        "2026_06_NO_NYG: awaiting completion or six-hour collection delay",
+        "2026_06_CAR_PHI: awaiting completion or six-hour collection delay",
+        "2026_06_PIT_TB: awaiting completion or six-hour collection delay",
+        "2026_06_ARI_LA: awaiting completion or six-hour collection delay",
+        "2026_06_LAC_KC: awaiting completion or six-hour collection delay",
+        "2026_06_BUF_LV: awaiting completion or six-hour collection delay",
+        "2026_06_DAL_GB: awaiting completion or six-hour collection delay",
+        "2026_06_WAS_SF: awaiting completion or six-hour collection delay"
+      ],
+      "lastChecked": "2026-10-17T07:45:01.349Z",
+      "nextCheck": "2026-10-17T13:45:01.349Z"
+    },
+    {
+      "stream": "beta-real:nfl:2026:6",
+      "version": "docked-nfl-half-ppr-beta-v1",
+      "entries": 2,
+      "sourceSnapshots": 0,
+      "finalised": null,
+      "projectionMatches": true,
+      "unchanged": true,
+      "rows": [
+        {
+          "points": null,
+          "rank": null,
+          "status": "pending-data"
+        },
+        {
+          "points": null,
+          "rank": null,
+          "status": "pending-data"
+        }
+      ],
+      "issues": [
+        "2026_06_SEA_DEN: awaiting completion or six-hour collection delay",
+        "2026_06_HOU_JAX: awaiting completion or six-hour collection delay",
+        "2026_06_CHI_ATL: awaiting completion or six-hour collection delay",
+        "2026_06_BAL_CLE: awaiting completion or six-hour collection delay",
+        "2026_06_TEN_IND: awaiting completion or six-hour collection delay",
+        "2026_06_NYJ_NE: awaiting completion or six-hour collection delay",
+        "2026_06_NO_NYG: awaiting completion or six-hour collection delay",
+        "2026_06_CAR_PHI: awaiting completion or six-hour collection delay",
+        "2026_06_PIT_TB: awaiting completion or six-hour collection delay",
+        "2026_06_ARI_LA: awaiting completion or six-hour collection delay",
+        "2026_06_LAC_KC: awaiting completion or six-hour collection delay",
+        "2026_06_BUF_LV: awaiting completion or six-hour collection delay",
+        "2026_06_DAL_GB: awaiting completion or six-hour collection delay",
+        "2026_06_WAS_SF: awaiting completion or six-hour collection delay"
+      ],
+      "lastChecked": "2026-10-17T13:30:02.788Z",
+      "nextCheck": "2026-10-17T19:30:02.788Z"
+    },
+    {
+      "stream": "beta-real:nfl:seven:salary_cap:2026:6",
+      "version": "docked-nfl-seven-rolling-test-v1",
+      "entries": 2,
+      "sourceSnapshots": 0,
+      "finalised": null,
+      "projectionMatches": true,
+      "unchanged": true,
+      "rows": [
+        {
+          "points": null,
+          "rank": null,
+          "status": "pending-data"
+        },
+        {
+          "points": null,
+          "rank": null,
+          "status": "pending-data"
+        }
+      ],
+      "issues": [
+        "2026_06_SEA_DEN: awaiting completion or six-hour collection delay",
+        "2026_06_HOU_JAX: awaiting completion or six-hour collection delay",
+        "2026_06_CHI_ATL: awaiting completion or six-hour collection delay",
+        "2026_06_BAL_CLE: awaiting completion or six-hour collection delay",
+        "2026_06_TEN_IND: awaiting completion or six-hour collection delay",
+        "2026_06_NYJ_NE: awaiting completion or six-hour collection delay",
+        "2026_06_NO_NYG: awaiting completion or six-hour collection delay",
+        "2026_06_CAR_PHI: awaiting completion or six-hour collection delay",
+        "2026_06_PIT_TB: awaiting completion or six-hour collection delay",
+        "2026_06_ARI_LA: awaiting completion or six-hour collection delay",
+        "2026_06_LAC_KC: awaiting completion or six-hour collection delay",
+        "2026_06_BUF_LV: awaiting completion or six-hour collection delay",
+        "2026_06_DAL_GB: awaiting completion or six-hour collection delay",
+        "2026_06_WAS_SF: awaiting completion or six-hour collection delay"
+      ],
+      "lastChecked": "2026-10-17T08:00:03.413Z",
+      "nextCheck": "2026-10-17T14:00:03.413Z"
+    },
+    {
+      "stream": "beta-real:nfl:seven:open:2026:6",
+      "version": "docked-nfl-seven-rolling-test-v1",
+      "entries": 1,
+      "sourceSnapshots": 0,
+      "finalised": null,
+      "projectionMatches": true,
+      "unchanged": true,
+      "rows": [
+        {
+          "points": null,
+          "rank": null,
+          "status": "pending-data"
+        }
+      ],
+      "issues": [
+        "2026_06_SEA_DEN: awaiting completion or six-hour collection delay",
+        "2026_06_HOU_JAX: awaiting completion or six-hour collection delay",
+        "2026_06_CHI_ATL: awaiting completion or six-hour collection delay",
+        "2026_06_BAL_CLE: awaiting completion or six-hour collection delay",
+        "2026_06_TEN_IND: awaiting completion or six-hour collection delay",
+        "2026_06_NYJ_NE: awaiting completion or six-hour collection delay",
+        "2026_06_NO_NYG: awaiting completion or six-hour collection delay",
+        "2026_06_CAR_PHI: awaiting completion or six-hour collection delay",
+        "2026_06_PIT_TB: awaiting completion or six-hour collection delay",
+        "2026_06_ARI_LA: awaiting completion or six-hour collection delay",
+        "2026_06_LAC_KC: awaiting completion or six-hour collection delay",
+        "2026_06_BUF_LV: awaiting completion or six-hour collection delay",
+        "2026_06_DAL_GB: awaiting completion or six-hour collection delay",
+        "2026_06_WAS_SF: awaiting completion or six-hour collection delay"
+      ],
+      "lastChecked": "2026-10-17T08:15:02.054Z",
+      "nextCheck": "2026-10-17T14:15:02.054Z"
+    }
+  ],
+  "workerRuns": [
+    {
+      "status": "running",
+      "count": 6
+    },
+    {
+      "status": "cooldown",
+      "count": 17
+    },
+    {
+      "status": "idle",
+      "count": 605
+    },
+    {
+      "status": "downloaded",
+      "count": 19
+    },
+    {
+      "status": "failed",
+      "count": 4
+    },
+    {
+      "status": "pending-review",
+      "count": 25
+    }
+  ],
+  "productionChanges": 0
+}

@@ -101,13 +101,153 @@
   color: #b9cce3;
 }
 .collectible-back-history {
-  overflow: auto;
+  overflow: visible;
   min-height: 0;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
   font-size: 3.1cqi;
-  touch-action: pan-y;
   line-height: 1.2;
+}
+.collectible-viewer .card-detail-art {
+  max-width: 680px;
+}
+.collectible-viewer .collectible-flip,
+.collectible-sell-action {
+  max-width: 340px;
+  margin-inline: auto;
+}
+.card-score-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1cqi;
+  margin: 2cqi 0;
+}
+.card-score-hero > span {
+  color: #bcefff;
+  font-size: 3.4cqi;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.card-score-hero > strong {
+  color: #fff;
+  font-size: 17cqi;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 24px #36c7fa44;
+}
+.card-score-hero > small {
+  color: #a9bfd5;
+  font-size: 3cqi;
+}
+.card-relevant-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2cqi 4cqi;
+  margin: 2cqi 0;
+}
+.card-relevant-stats dt {
+  font-size: 2.7cqi;
+  color: #a9bfd5;
+}
+.card-relevant-stats dd {
+  margin: 0;
+  font-size: 4.4cqi;
+  color: #fff;
+}
+.fantasy-mode .collectible-back-history .card-statistics-link {
+  min-height: 36px;
+  padding: 1.5cqi 3cqi;
+  font-size: 3.5cqi;
+  border: 1px solid #8cbdde;
+  color: #e5f6ff;
+  background: #09243c;
+}
+.player-statistics-container {
+  margin-top: 24px;
+  scroll-margin-top: 18px;
+}
+.player-statistics {
+  color: #e3edf9;
+  text-align: left;
+}
+.player-statistics > label {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.player-statistics select {
+  width: auto;
+}
+.player-game-row {
+  border: 1px solid #496782;
+  border-radius: 14px;
+  background: linear-gradient(140deg, #10283b, #09121f);
+  padding: 16px;
+  margin: 16px 0;
+}
+.player-game-row > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+.player-game-row > header span {
+  font-size: 12px;
+  color: #b2c7dd;
+}
+.fantasy-mode .player-game-row h4 {
+  margin: 6px 0;
+  font-size: 18px;
+}
+.player-game-points {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  flex-shrink: 0;
+}
+.player-game-points strong {
+  font-size: 28px;
+  color: #c3f2ff;
+  font-variant-numeric: tabular-nums;
+}
+.player-game-points small {
+  font-size: 11px;
+  color: #b2c7dd;
+}
+.player-game-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 0;
+  border-block: 1px solid #49678266;
+}
+.player-game-stats dt {
+  font-size: 11px;
+  color: #b2c7dd;
+}
+.player-game-stats dd {
+  font-size: 18px;
+  margin: 2px 0;
+}
+.player-game-row details summary {
+  cursor: pointer;
+  padding-block: 12px;
+  font-size: 14px;
+}
+.player-score-breakdown > div,
+.player-raw-statistics > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 0;
+  font-size: 13px;
+}
+.player-score-breakdown dd,
+.player-raw-statistics dd {
+  margin: 0;
+  flex-shrink: 0;
+}
+.player-statistics .small-note {
+  overflow-wrap: anywhere;
 }
 .fantasy-mode .collectible-back-history h3,
 .fantasy-mode .collectible-back-history h4 {

@@ -12,7 +12,9 @@ export function NflTestingPanel({
   liveHistory?: boolean;
 }) {
   const [selected, setSelected] = useState(report.players[0]?.id ?? ""),
-    [season, setSeason] = useState("");
+    [season, setSeason] = useState(""),
+    [gameFilter, setGameFilter] = useState("");
+  const observed = report.players.flatMap((p) => p.history);
   const player = report.players.find((p) => p.id === selected),
     period =
       player?.seasons.find((s) => s.key === season) ?? player?.seasons[0];
@@ -44,6 +46,18 @@ export function NflTestingPanel({
             report.pending,
           ],
           ["Revised records", report.corrections],
+          [
+            "Games awaiting data",
+            report.games.filter((g) => !g.records).length,
+          ],
+          [
+            "Calculated player-games",
+            observed.filter((r) => r.points !== null).length,
+          ],
+          [
+            "Missing scoring statistics",
+            observed.filter((r) => r.missing.length).length,
+          ],
         ].map(([name, value]) => (
           <article key={name}>
             <span>{name}</span>
@@ -58,6 +72,61 @@ export function NflTestingPanel({
           : "Not synced"}
         . This is an operational check, not a source correction.
       </p>
+      <p className="small-note">
+        History points are derived on read under {report.version}; no
+        competition scoring run is implied. Import failures are shown in feed
+        health. Finalised competition results and provisional standings remain
+        in <a href="/fantasy/standings">competition standings</a> under their
+        frozen rules.
+      </p>
+      <section className="fantasy-panel">
+        <h2>Game diagnostics</h2>
+        <label>
+          Game{" "}
+          <select
+            aria-label="Game diagnostics"
+            value={gameFilter}
+            onChange={(e) => setGameFilter(e.target.value)}
+          >
+            <option value="">Choose a game</option>
+            {report.games.map((g) => (
+              <option key={g.id} value={g.id}>
+                {g.season} · Week {g.week} · {g.status} · {g.id}
+              </option>
+            ))}
+          </select>
+        </label>
+        {gameFilter && (
+          <>
+            <p>
+              {report.games.find((g) => g.id === gameFilter)?.records ?? 0}{" "}
+              source records. Missing mappings: {report.unmappedPlayers} across
+              the feed. No points are inferred for unreviewed identities.
+            </p>
+            <ul>
+              {observed
+                .filter((r) => r.game === gameFilter)
+                .map((r) => (
+                  <li key={r.player}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelected(r.player);
+                        setSeason(`${r.season}:${r.seasonType}`);
+                      }}
+                    >
+                      {r.name}
+                    </button>
+                    : {points(r.points)} · {r.status} · revision {r.revision}
+                    {r.missing.length > 0 &&
+                      ` · Missing: ${r.missing.join(", ")}`}
+                    {!r.competitionReady && " · Competition readiness blocked"}
+                  </li>
+                ))}
+            </ul>
+          </>
+        )}
+      </section>
       <section className="fantasy-panel">
         <h2>Player performance</h2>
         <div className="nfl-testing-filters">
@@ -179,6 +248,21 @@ export function NflTestingPanel({
                         {!r.competitionReady && r.points !== null
                           ? " · Game incomplete"
                           : ""}
+                        {r.missing.length > 0 && (
+                          <details>
+                            <summary>Missing required data</summary>
+                            <p>
+                              {r.missing
+                                .map((k) => k.replaceAll("_", " "))
+                                .join(", ")}
+                            </p>
+                          </details>
+                        )}
+                        <small>
+                          {" "}
+                          · Revision {r.revision}
+                          {r.revision > 1 ? " · Corrected observation" : ""}
+                        </small>
                       </td>
                       <td>
                         Stats last retrieved: {timestamp(r.retrievedAt)}

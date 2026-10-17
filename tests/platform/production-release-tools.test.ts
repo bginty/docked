@@ -37,6 +37,8 @@ async function fixture(run: (directory: string) => Promise<void>) {
       "src/core/hosted-production.mjs",
       "src/core/hosted-beta.mjs",
       "src/core/private-preview.mjs",
+      "src/core/nfl-hosted-target.mjs",
+      "config/nfl-hosted-testing.json",
       "config/hosted-preview.json",
       "src/core/local-marketplace-acceptance.mjs",
       "config/hosted-beta.json",
