@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: official roster gates direct admin and pack mint paths; private evidence and append-only audit
+ok 1 - official roster gates direct admin and pack mint paths; private evidence and append-only audit
+  ---
+  duration_ms: 5574.7619
+  ...
+# Subtest: page atomicity, lease, restart checkpoint, tombstones, conflicts and epoch replacement
+ok 2 - page atomicity, lease, restart checkpoint, tombstones, conflicts and epoch replacement
+  ---
+  duration_ms: 5806.6961
+  ...
+# Subtest: whole fixture uses existing journal; corrections, pending, frozen teams and reviewer gates
+ok 3 - whole fixture uses existing journal; corrections, pending, frozen teams and reviewer gates
+  ---
+  duration_ms: 5480.4281
+  ...
+# Subtest: weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+ok 4 - weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+  ---
+  duration_ms: 9792.4726
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19194.0136

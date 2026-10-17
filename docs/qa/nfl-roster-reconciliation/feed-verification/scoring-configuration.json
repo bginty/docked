@@ -1,0 +1,80 @@
+{
+  "sport": "nfl",
+  "version": "docked-nfl-postgame-full-ppr-test-v1",
+  "title": "NFL postgame testing · Full PPR",
+  "beta": true,
+  "positions": [
+    "QB",
+    "RB",
+    "WR",
+    "TE"
+  ],
+  "slots": [
+    {
+      "id": "QB1",
+      "positions": [
+        "QB"
+      ]
+    },
+    {
+      "id": "RB1",
+      "positions": [
+        "RB"
+      ]
+    },
+    {
+      "id": "RB2",
+      "positions": [
+        "RB"
+      ]
+    },
+    {
+      "id": "WR1",
+      "positions": [
+        "WR"
+      ]
+    },
+    {
+      "id": "WR2",
+      "positions": [
+        "WR"
+      ]
+    },
+    {
+      "id": "TE1",
+      "positions": [
+        "TE"
+      ]
+    },
+    {
+      "id": "FLEX1",
+      "positions": [
+        "RB",
+        "WR",
+        "TE"
+      ]
+    }
+  ],
+  "weights": {
+    "passing_yards": 4,
+    "passing_touchdowns": 400,
+    "interceptions_thrown": -200,
+    "passing_two_point_conversions": 200,
+    "rushing_yards": 10,
+    "rushing_touchdowns": 600,
+    "rushing_two_point_conversions": 200,
+    "receiving_yards": 10,
+    "receptions": 100,
+    "receiving_touchdowns": 600,
+    "receiving_two_point_conversions": 200,
+    "fumbles_lost": -200
+  },
+  "correctionHours": 96,
+  "periodName": "week",
+  "policy": [
+    "Local/test postgame player performance only; no historical member points.",
+    "Full PPR: reception 1; passing yards .04, TD 4, interception -2; rushing/receiving yards .1, TD 6; each credited two-point conversion 2.",
+    "Fumbles lost -2 once per responsible player, preserving the approved penalty.",
+    "Return touchdowns and offensive fumble-recovery touchdowns are not scored in this version. Existing versions still require and score them."
+  ]
+}

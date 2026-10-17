@@ -13,7 +13,10 @@ import { nflPostgameWeights } from "../src/core/nfl-postgame-policy";
 import { realGameProof, verifyRestoredGame } from "./nfl-testing-game-proof";
 
 async function main() {
-  const out = resolve("docs/qa/nfl-testing"),
+  const out = resolve(
+      process.argv.find((a) => a.startsWith("--out="))?.slice(6) ??
+        "docs/qa/nfl-testing",
+    ),
     work = resolve(`tmp/nfl-testing-${Date.now()}`);
   await mkdir(out, { recursive: true });
   await mkdir(work, { recursive: true });
@@ -106,7 +109,17 @@ async function main() {
             providerId: p.external_id,
             position: p.position,
           }));
-    const bridge = reviewTestingIdentities(catalogue, info.identities);
+    const positionReviewPath = process.argv
+      .find((a) => a.startsWith("--position-reviews="))
+      ?.slice(19);
+    const positionReviews = positionReviewPath
+      ? JSON.parse(await readFile(positionReviewPath, "utf8"))
+      : [];
+    const bridge = reviewTestingIdentities(
+      catalogue,
+      info.identities,
+      positionReviews,
+    );
     for (const m of bridge.approved)
       await store.map(
         seasons.dataset_id,
@@ -121,6 +134,10 @@ async function main() {
             .update(m.verifiedIdentity)
             .digest("hex"),
           verifiedAt: new Date().toISOString(),
+          positionReview:
+            positionReviews.find(
+              (r: any) => r.providerId === m.verifiedIdentity,
+            ) ?? null,
         },
         "local-integration-review",
       );
@@ -271,6 +288,7 @@ async function main() {
             : "isolated fixture identities",
           catalogueRecords: catalogue.length,
           quarantined: bridge.quarantined,
+          noRecordedAppearances: bridge.noAppearances,
           duplicateImportUnchanged: true,
           unauthenticatedStatus: unauth.status,
           readerAdminStatus: denied.status,

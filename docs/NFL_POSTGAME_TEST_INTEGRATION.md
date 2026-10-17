@@ -105,7 +105,7 @@ Hosted Docked cannot reach this Windows machine by using `localhost:8080`; local
 
 Before Preview can import: provide an owner-approved reachable HTTPS service deployment, server-side reader secret and network allowlist; bind Docked to an isolated test database; review permanent Docked/player and frozen fixture mappings; validate source rights/retention; and rerun API, epoch-recovery, authorisation and scoring checks there. The current database connection guard deliberately rejects non-loopback/production activation. Changing that guard requires an explicit reviewed isolated-host binding, not replacing a URL with the production database.
 
-The six anonymous source rows still require source-owner identity resolution. The 65 unmatched/conflicting Docked catalogue identities remain unassigned until reliable evidence resolves them. No owner scoring decision is currently needed. Production ingestion and production deployment remain disabled.
+The six anonymous source rows still require source-owner identity resolution. The original run's 65 unmatched/conflicting catalogue identities were a pre-reconciliation observation, superseded by the 17 October roster reconciliation below. No owner scoring decision is currently needed. Production ingestion and production deployment remain disabled.
 
 ## Verification record
 
@@ -114,3 +114,11 @@ Real API: Carson Wentz week 2 = **6.32** (143 passing yards × .04 + 6 rushing y
 The final isolated recorded seven-card lineup, using verified existing Docked identities from an actual imported game, scored **33.64** through the existing journal. Duplicate import created no journal revision. A labelled synthetic local correction of one additional reception changed it to **34.64** and that player's season subtotal by **1.00**, without changing the frozen entry. Explicit resync restored both the observed season totals and the journal's **33.64** result. The earlier fixture-identity lineup scored 60.06; its different player selection explains that earlier value.
 
 Automated test and screenshot results, including corrected failures and remaining limitations, are recorded alongside `docs/qa/nfl-testing`. No production, hosted authenticated browser, Android APK or physical-device testing is claimed by these local artifacts.
+
+## 17 October roster reconciliation follow-up
+
+The accepted cleanup snapshot and removal audit from commit 08298555 remain unchanged. The reconciled active supported pool contains 493 players: **433 reviewed statistical mappings, 60 without recorded appearances in the supplied dataset, zero eligible mapping conflicts**. Absence of an appearance is not zero or a failed identity match. Eight explicit source-position reviews retain stable identities and historical raw positions without changing competition rules.
+
+The actual API proof was rerun with `--catalogue=docs/qa/nfl-roster-reconciliation/eligible-catalogue.json`, `--position-reviews=docs/qa/nfl-roster-reconciliation/position-reviews.json` and `--out=docs/qa/nfl-roster-reconciliation/feed-verification`. The local runner also uses Node's `--conditions=react-server`. Earlier evidence was not overwritten. The 33.64 frozen-lineup result, duplicate-import invariance, +1 correction and restoration all passed again; the source SQLite file remained unchanged.
+
+See the [complete reconciliation](qa/nfl-roster-reconciliation/README.md) for all 208 identity classifications, the overlap with 49 roster rows, team/position coverage and remaining excluded cases. The [hosted testing runbook](NFL_HOSTED_TESTING_PLAN.md) specifies the separate HTTPS service, isolated database, target-specific guard review, configuration, costs and rollback. No hosted activation occurred.

@@ -1,0 +1,49 @@
+{
+  "scope": "isolated-local-copy",
+  "recoverySnapshot": "a92574ebf511db72b2ba19a955f18ef4f6c51de1d9a619ff59b140c575ec0e2e",
+  "originalRemovalAuditPreserved": true,
+  "newRemovals": 0,
+  "activeAggregateCards": 316,
+  "legacyCards": 51,
+  "uncertainOwned": 0,
+  "uncertainLegacyOwned": 0,
+  "uncertainLineupSelections": 0,
+  "checkedLegacyReferences": {
+    "ownership_events": 51,
+    "pack_items": 11,
+    "listings": 0,
+    "trade_items": 0,
+    "entries": 68,
+    "drafts": 14,
+    "locks": 2,
+    "swaps": 12
+  },
+  "legacyOrphans": 0,
+  "acceptedRemovedCardsStillAbsent": 8,
+  "verifiedEligible": 493,
+  "pools": [
+    {
+      "product": "standard-nine-seven-test-v2",
+      "players": 493
+    },
+    {
+      "product": "premium-nine-seven-test-v3",
+      "players": 493
+    }
+  ],
+  "mapped": 433,
+  "noRecordedAppearances": 60,
+  "mappingConflicts": 0,
+  "reviewedPositionAliases": 8,
+  "unchanged": [
+    "accounts",
+    "wallet",
+    "ownership",
+    "scarcity",
+    "original removal archive",
+    "historical statistics",
+    "recorded entries",
+    "lineup totals"
+  ],
+  "activeAggregateOrphans": 0
+}
