@@ -4,6 +4,7 @@ import {
   type CardEconomy,
 } from "./card-economy";
 import { z } from "zod";
+import { nflCardEligibility } from "./nfl-card-eligibility";
 import { digest } from "./scoring-engine";
 import {
   executeCommerce,
@@ -884,9 +885,28 @@ export function executeCredits(
     own(pack.member);
     const e = s.entitlements[c.entitlement];
     if (!e || e.status === "REVIEW") throw Error("Entitlement held for review");
+    if (
+      !pack.openedAt &&
+      s.economy.rosterPolicy &&
+      pack.cards.some((id) => {
+        const instance = s.economy!.instances[id];
+        return (
+          instance &&
+          s.economy!.players[instance.playerId].sport === "nfl" &&
+          !nflCardEligibility(s.economy!.players[instance.playerId], now)
+            .eligible
+        );
+      })
+    )
+      throw Error(
+        "Pack contains a player awaiting roster review. Your entitlement is preserved.",
+      );
     pack.openedAt ??= now;
     e.status = "OPENED";
-    result = { receipt: pack.id, cards: pack.cards };
+    result = {
+      receipt: pack.id,
+      cards: pack.cards.filter((id) => !s.economy?.retiredTestInstances?.[id]),
+    };
   } else if (c.kind === "deposit" || c.kind === "buy-pack") {
     member();
     const p = s.policy.products.find((p) => p.id === c.product);

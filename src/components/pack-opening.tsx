@@ -289,6 +289,7 @@ export default function PackOpening(props: PackOpeningProps) {
               ? "REPLAY · NO NEW AWARDS"
               : brand.tagline}
         </p>
+        {receipt?.notice && <p role="status">{receipt.notice}</p>}
         {(stage === "sealed" || stage === "waiting") && (
           <>
             <h3 ref={title} tabIndex={-1}>

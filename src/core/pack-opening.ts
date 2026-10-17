@@ -27,6 +27,7 @@ export type PackReceipt = {
   name: string;
   opened_at: string;
   cards: AwardedCard[];
+  notice?: string;
 };
 
 export function packRevealPreview(

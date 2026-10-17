@@ -154,7 +154,8 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
         `insert into sports_feed.raw_revisions(provider,resource,body_hash,body,observed_at,rights_evidence,expires_at)values('synthetic','weekly','weekly','{}',clock_timestamp(),'isolated QA',clock_timestamp()+interval '1 day')returning id`,
       )
     )[0].id;
-    for (const [i, pos] of ["QB", "RB", "WR", "TE", "K"].entries()) {
+    let heldPlayer = "";
+    for (const [i, pos] of ["QB", "RB", "WR", "TE", "K", "WR"].entries()) {
       const player = randomUUID(),
         edition = randomUUID();
       await q(
@@ -169,11 +170,41 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
         "insert into sports_feed.nfl_players values($1,$2,$3,'TEST','ACT',$4,clock_timestamp(),'TEST')",
         [player, `weekly-${i}`, edition, raw],
       );
+      await q(
+        "insert into nfl_roster.observations values($1,$2,'TEST',$3,$4,true,'https://www.nfl.com/',repeat('a',64),clock_timestamp(),'{}')",
+        [
+          player,
+          `weekly-${i}`,
+          pos,
+          i === 5 ? "practice-squad" : i === 3 ? "reserve" : "active",
+        ],
+      );
+      if (i === 3) heldPlayer = player;
     }
+    await pg.exec("update nfl_roster.control set enabled=true");
     const pack = first.packs[0].id,
       request = randomUUID();
     const open = async (id = pack, key = request) =>
       (await q("select sports_feed.open_weekly_core($1,$2) r", [id, key]))[0].r;
+    await assert.rejects(() => open(), /Four eligible Core players/);
+    assert.equal(
+      (await q("select count(*)::int n from beta_fantasy.cards"))[0].n,
+      0,
+      "incomplete official pool rolls all draws back",
+    );
+    assert.equal(
+      (
+        await q(
+          "select receipt from sports_feed.weekly_core_packs where id=$1",
+          [pack],
+        )
+      )[0].receipt,
+      null,
+    );
+    await q(
+      "insert into nfl_roster.observations values($1,'weekly-3','TEST','TE','active',true,'https://www.nfl.com/',repeat('b',64),clock_timestamp(),'{}')",
+      [heldPlayer],
+    );
     if (racing) {
       const opened = await Promise.all(
         Array.from({ length: 6 }, () =>

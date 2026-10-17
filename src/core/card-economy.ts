@@ -1,6 +1,10 @@
 import { randomInt, randomUUID } from "node:crypto";
 import { digest } from "./scoring-engine";
 import {
+  nflCardEligibility,
+  type NflRosterEvidence,
+} from "./nfl-card-eligibility";
+import {
   limitedRarities,
   rarityConfiguration,
   rarityRule,
@@ -21,6 +25,7 @@ export type EconomyPlayer = {
   sourceRevision: string;
   verifiedJerseyNumber?: number | null;
   presentation: string;
+  roster?: NflRosterEvidence;
 };
 export type NinePackProduct = {
   id: string;
@@ -65,6 +70,7 @@ export type EconomyPack = {
   draws: { rarity: Rarity; eligiblePlayers: number; poolHash: string }[];
 };
 export type CardEconomy = {
+  rosterPolicy?: "official-nfl-roster-v1";
   activeProductVersions?: string[];
   id: "invited-nfl-test-v2";
   rarityVersion: string;
@@ -76,6 +82,8 @@ export type CardEconomy = {
     { playerId: string; rarity: Rarity; issued: number }
   >;
   instances: Record<string, EconomyInstance>;
+  /** Local test cleanup only: permanently consumed serials, never owned inventory. */
+  retiredTestInstances?: Record<string, EconomyInstance>;
   packs: Record<string, EconomyPack>;
 };
 export const definitionId = (player: string, rarity: string) =>
@@ -226,7 +234,10 @@ export function validateCardEconomy(e: CardEconomy) {
     throw Error("Invalid active product versions");
   const serials = new Set<string>(),
     counts: Record<string, number> = {};
-  for (const [id, c] of Object.entries(e.instances)) {
+  if (Object.keys(e.retiredTestInstances ?? {}).some((id) => !!e.instances[id]))
+    throw Error("Retired test allocation cannot be active");
+  const allocations = { ...e.retiredTestInstances, ...e.instances };
+  for (const [id, c] of Object.entries(allocations)) {
     const rule = rarityRule(c.rarity),
       key = `${c.definition}:${c.serial}`;
     if (
@@ -255,13 +266,13 @@ export function validateCardEconomy(e: CardEconomy) {
     for (let serial = 1; serial <= d.issued; serial++)
       if (!serials.has(`${id}:${serial}`)) throw Error("Serial reuse/gap");
   }
-  for (const c of Object.values(e.instances))
+  for (const c of Object.values(allocations))
     if (!e.definitions[c.definition]) throw Error("Missing supply definition");
   for (const p of Object.values(e.packs)) {
     if (
       p.cards.length !== 9 ||
       new Set(p.cards).size !== 9 ||
-      p.cards.some((id) => e.instances[id]?.source !== p.id) ||
+      p.cards.some((id) => allocations[id]?.source !== p.id) ||
       digest(p.product) !== p.configurationHash
     )
       throw Error("Pack receipt integrity");
@@ -305,6 +316,12 @@ export function allocateNine(
         (player) =>
           player.sport === p.sport &&
           player.assetKind === "player" &&
+          (player.sport !== "nfl" ||
+            nflCardEligibility(
+              player,
+              now,
+              e.rosterPolicy === "official-nfl-roster-v1",
+            ).eligible) &&
           (p.eligibleStatuses ?? ["active"]).includes(player.status) &&
           player.observedAt <= now &&
           now - player.observedAt <= p.freshnessHours * 3600000 &&
@@ -389,6 +406,9 @@ export function eligibleCatalogue(
     (x) =>
       x.sport === p.sport &&
       x.assetKind === "player" &&
+      (x.sport !== "nfl" ||
+        nflCardEligibility(x, now, e.rosterPolicy === "official-nfl-roster-v1")
+          .eligible) &&
       (p.eligibleStatuses ?? ["active"]).includes(x.status) &&
       p.positions.includes(x.position) &&
       x.observedAt <= now &&

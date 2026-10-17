@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: official roster gates direct admin and pack mint paths; private evidence and append-only audit
+ok 1 - official roster gates direct admin and pack mint paths; private evidence and append-only audit
+  ---
+  duration_ms: 3467.4842
+  ...
+# Subtest: current roster mapping preserves established identities and excludes unsupported kickers
+ok 2 - current roster mapping preserves established identities and excludes unsupported kickers
+  ---
+  duration_ms: 8.9533
+  ...
+# Subtest: conflicting latest roster fails closed; old records cannot override current status
+ok 3 - conflicting latest roster fails closed; old records cannot override current status
+  ---
+  duration_ms: 2.3381
+  ...
+# Subtest: only actual seven-slot positions; reserve/PS/unknown/stale never masquerade as active
+ok 4 - only actual seven-slot positions; reserve/PS/unknown/stale never masquerade as active
+  ---
+  duration_ms: 5.2076
+  ...
+# Subtest: trade and elevation update same identity; upstream failure retains last evidence
+ok 5 - trade and elevation update same identity; upstream failure retains last evidence
+  ---
+  duration_ms: 3.4362
+  ...
+# Subtest: preview and secure allocator share official eligibility even if product requests retired or kicker
+ok 6 - preview and secure allocator share official eligibility even if product requests retired or kicker
+  ---
+  duration_ms: 53.144
+  ...
+# Subtest: test cleanup removes offers/ownership; allocation tombstones preserve scarcity and retry safety
+ok 7 - test cleanup removes offers/ownership; allocation tombstones preserve scarcity and retry safety
+  ---
+  duration_ms: 58.0009
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5222.7332

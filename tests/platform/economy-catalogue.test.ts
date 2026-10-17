@@ -10,15 +10,16 @@ const rows = Array.from({ length: 128 }, (_, i) => ({
   week: "6",
 }));
 const at = "2026-10-12T00:00:00Z";
-test("current roster mapping preserves established identities and adds stable kicker identities", () => {
+test("current roster mapping preserves established identities and excludes unsupported kickers", () => {
   const p = nflEconomyCatalogue(
-    [{ id: "existing-identity", provider_id: rows[0].gsis_id }],
+    [{ id: "existing-identity", provider_id: rows[1].gsis_id }],
     rows,
     at,
     "raw",
   );
   assert.equal(p[0].id, "existing-identity");
-  assert.equal(p[0].position, "K");
+  assert.equal(p[0].position, "QB");
+  assert.ok(p.every((player) => player.position !== "K"));
   const changed = rows.map((r) => ({
     ...r,
     team: r.team === "T1" ? "T2" : r.team === "T2" ? "T1" : r.team,
@@ -33,7 +34,7 @@ test("conflicting latest roster fails closed; old records cannot override curren
     () =>
       nflEconomyCatalogue(
         [],
-        rows.concat({ ...rows[0], status: "RET" }),
+        rows.concat({ ...rows[1], status: "RET" }),
         at,
         "raw",
       ),

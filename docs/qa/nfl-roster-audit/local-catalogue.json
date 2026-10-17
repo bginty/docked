@@ -1,0 +1,218 @@
+{
+  "scope": "local-only",
+  "checkedAt": "2026-10-17T05:50:57.072Z",
+  "counts": [
+    {
+      "product": "standard-nine-seven-test-v2",
+      "beforeFreshPool": 490,
+      "afterVerifiedPool": 489
+    },
+    {
+      "product": "premium-nine-seven-test-v3",
+      "beforeFreshPool": 490,
+      "afterVerifiedPool": 489
+    }
+  ],
+  "verifiedActive": 489,
+  "eligibleByTeam": {
+    "MIA": {
+      "RB": 4,
+      "WR": 5,
+      "TE": 4,
+      "QB": 2
+    },
+    "JAX": {
+      "QB": 2,
+      "RB": 4,
+      "WR": 6,
+      "TE": 4
+    },
+    "DEN": {
+      "QB": 3,
+      "TE": 4,
+      "WR": 5,
+      "RB": 4
+    },
+    "KC": {
+      "WR": 5,
+      "RB": 4,
+      "TE": 4,
+      "QB": 3
+    },
+    "NE": {
+      "QB": 3,
+      "WR": 4,
+      "RB": 3,
+      "TE": 4
+    },
+    "TB": {
+      "TE": 4,
+      "RB": 3,
+      "WR": 5,
+      "QB": 2
+    },
+    "MIN": {
+      "TE": 3,
+      "RB": 4,
+      "WR": 5,
+      "QB": 3
+    },
+    "CAR": {
+      "WR": 5,
+      "QB": 3,
+      "RB": 2,
+      "TE": 5
+    },
+    "LAR": {
+      "WR": 7,
+      "QB": 3,
+      "RB": 3,
+      "TE": 5
+    },
+    "PIT": {
+      "TE": 3,
+      "QB": 4,
+      "RB": 5,
+      "WR": 5
+    },
+    "IND": {
+      "QB": 3,
+      "RB": 3,
+      "TE": 3,
+      "WR": 6
+    },
+    "TEN": {
+      "QB": 2,
+      "TE": 4,
+      "WR": 5,
+      "RB": 5
+    },
+    "NO": {
+      "WR": 4,
+      "RB": 3,
+      "TE": 4,
+      "QB": 3
+    },
+    "ARI": {
+      "WR": 6,
+      "RB": 3,
+      "QB": 3,
+      "TE": 4
+    },
+    "BUF": {
+      "TE": 4,
+      "WR": 6,
+      "QB": 2,
+      "RB": 3
+    },
+    "DAL": {
+      "WR": 6,
+      "TE": 3,
+      "RB": 4,
+      "QB": 2
+    },
+    "HOU": {
+      "TE": 5,
+      "WR": 5,
+      "RB": 3,
+      "QB": 2
+    },
+    "CLE": {
+      "TE": 3,
+      "WR": 6,
+      "RB": 3,
+      "QB": 3
+    },
+    "PHI": {
+      "QB": 3,
+      "WR": 6,
+      "RB": 3,
+      "TE": 3
+    },
+    "CIN": {
+      "TE": 5,
+      "QB": 2,
+      "WR": 5,
+      "RB": 3
+    },
+    "LV": {
+      "RB": 4,
+      "QB": 3,
+      "WR": 5,
+      "TE": 3
+    },
+    "SF": {
+      "QB": 3,
+      "RB": 4,
+      "WR": 5,
+      "TE": 3
+    },
+    "WAS": {
+      "TE": 4,
+      "WR": 6,
+      "RB": 3,
+      "QB": 3
+    },
+    "BAL": {
+      "TE": 4,
+      "RB": 3,
+      "WR": 5,
+      "QB": 3
+    },
+    "NYG": {
+      "TE": 4,
+      "WR": 4,
+      "QB": 3,
+      "RB": 5
+    },
+    "NYJ": {
+      "TE": 4,
+      "RB": 5,
+      "WR": 5,
+      "QB": 2
+    },
+    "GB": {
+      "RB": 3,
+      "WR": 5,
+      "TE": 4,
+      "QB": 2
+    },
+    "CHI": {
+      "TE": 3,
+      "WR": 5,
+      "QB": 3,
+      "RB": 3
+    },
+    "DET": {
+      "TE": 4,
+      "RB": 3,
+      "WR": 4,
+      "QB": 2
+    },
+    "ATL": {
+      "TE": 4,
+      "WR": 5,
+      "QB": 4,
+      "RB": 2
+    },
+    "LAC": {
+      "RB": 4,
+      "WR": 7,
+      "TE": 3,
+      "QB": 2
+    },
+    "SEA": {
+      "TE": 4,
+      "RB": 4,
+      "WR": 6,
+      "QB": 3
+    }
+  },
+  "observations": 778,
+  "quarantined": 208,
+  "feedExceptions": 65,
+  "rosterRowsMissingOrUnresolved": 49,
+  "scarcityUnchanged": true,
+  "issuedCards": 0,
+  "creditsIssued": 0
+}

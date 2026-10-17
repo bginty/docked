@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: official roster gates direct admin and pack mint paths; private evidence and append-only audit
+ok 1 - official roster gates direct admin and pack mint paths; private evidence and append-only audit
+  ---
+  duration_ms: 4415.0219
+  ...
+# Subtest: weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+ok 2 - weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+  ---
+  duration_ms: 7741.0005
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10348.3241

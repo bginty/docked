@@ -136,7 +136,15 @@ export function testReceipt(
       id,
       name: nine.product.name,
       opened_at: new Date(nine.openedAt!).toISOString(),
-      cards: nine.cards.map((card) => testCard(s, card)),
+      ...(nine.cards.some((card) => !!s.economy?.retiredTestInstances?.[card])
+        ? {
+            notice:
+              "Ineligible test cards were removed after a verified roster audit. Original allocations remain in the audit history; no replacements or credits were issued.",
+          }
+        : {}),
+      cards: nine.cards
+        .filter((card) => !s.economy?.retiredTestInstances?.[card])
+        .map((card) => testCard(s, card)),
     };
   return {
     id,
@@ -252,7 +260,10 @@ export function memberTestView(
         type: s.economy?.packs[id]?.product.type ?? null,
         purchasedAt: s.economy?.packs[id]?.createdAt ?? null,
         paidCredits: s.economy?.packs[id]?.product.priceCredits ?? null,
-        cardCount: s.economy?.packs[id]?.product.cards ?? null,
+        cardCount:
+          s.economy?.packs[id]?.cards.filter(
+            (card) => !s.economy?.retiredTestInstances?.[card],
+          ).length ?? null,
         configuration: s.economy?.packs[id]?.product.version ?? null,
         name:
           s.economy?.packs[id]?.product.name ??

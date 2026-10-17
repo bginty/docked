@@ -1,0 +1,152 @@
+{
+  "scope": "isolated-local-copy",
+  "localPath": "C:\\Users\\61412\\Documents\\ChatGPT\\Docked.com.au\\tmp\\nfl-roster-cleanup-7f79214ed0ae",
+  "snapshotSha256": "7f79214ed0ae8a2db426ff7cdcec5688264d97d4803400de3de53aea2c47fb69",
+  "removedPlayers": [
+    {
+      "name": "Wil Lutz",
+      "id": "nfl-2220b83dec52f2bac014968631026060",
+      "cards": [
+        "7c92289b-72a5-4d31-a28f-cbf9e8b40be7"
+      ]
+    },
+    {
+      "name": "Ka'imi Fairbairn",
+      "id": "nfl-d19626101c54d69142151b427dc4a751",
+      "cards": [
+        "f1577764-b6e7-4dd0-b058-388530fb83af"
+      ]
+    },
+    {
+      "name": "Eddy Pineiro",
+      "id": "nfl-458514b8e4b207d38fd9349b4614fb35",
+      "cards": [
+        "4e9c092d-43f7-4b97-b225-6c95dc588fa3"
+      ]
+    },
+    {
+      "name": "Chase McLaughlin",
+      "id": "nfl-5e033f170cbfe233d68db74557bdac06",
+      "cards": [
+        "02ada864-39a5-4935-b271-3a09359579bf",
+        "dea83257-2efe-43b5-afd4-5ac0366d6b1d"
+      ]
+    },
+    {
+      "name": "Ryan Miller",
+      "id": "08a15626-79e7-4fbb-bb4a-e9c010a6fd33",
+      "cards": [
+        "01227a90-2deb-41d7-959d-856b2dbf2ad2"
+      ]
+    },
+    {
+      "name": "Jake Bates",
+      "id": "nfl-0fec18a4a5472d851bbbfc91f28f5ad9",
+      "cards": [
+        "6adfb683-728c-4fb0-842a-20de80d808c2"
+      ]
+    },
+    {
+      "name": "Harrison Mevis",
+      "id": "nfl-ca835a5267266d4234f92fdc5dfb70f0",
+      "cards": [
+        "5fdf6268-8607-45eb-81c9-9f03934ef2c1"
+      ]
+    }
+  ],
+  "removedCards": 8,
+  "removedOwnedRecords": 8,
+  "removedOwnershipHistories": 8,
+  "retainedImmutableAllocations": 8,
+  "dependentRecords": [],
+  "affectedPacks": [
+    {
+      "id": "4a60d2ae-e6f8-42b8-b9b6-f882b5665e8c",
+      "opened": true,
+      "removedCards": [
+        "5fdf6268-8607-45eb-81c9-9f03934ef2c1",
+        "7c92289b-72a5-4d31-a28f-cbf9e8b40be7"
+      ],
+      "remaining": 7
+    },
+    {
+      "id": "70806331-0382-4a85-8ce0-922d57c8d571",
+      "opened": true,
+      "removedCards": [
+        "01227a90-2deb-41d7-959d-856b2dbf2ad2"
+      ],
+      "remaining": 8
+    },
+    {
+      "id": "ab43dd28-90df-440a-9981-4eac61666dd8",
+      "opened": true,
+      "removedCards": [
+        "f1577764-b6e7-4dd0-b058-388530fb83af"
+      ],
+      "remaining": 8
+    },
+    {
+      "id": "b1a07408-e7f2-4447-aaef-c9acbc5c5e7e",
+      "opened": true,
+      "removedCards": [
+        "6adfb683-728c-4fb0-842a-20de80d808c2",
+        "02ada864-39a5-4935-b271-3a09359579bf"
+      ],
+      "remaining": 7
+    },
+    {
+      "id": "d2a5befe-3772-4adb-824b-5f099eb7d36f",
+      "opened": true,
+      "removedCards": [
+        "dea83257-2efe-43b5-afd4-5ac0366d6b1d"
+      ],
+      "remaining": 8
+    },
+    {
+      "id": "e19ca0cd-c326-4fb3-ae7a-feced046a772",
+      "opened": true,
+      "removedCards": [
+        "4e9c092d-43f7-4b97-b225-6c95dc588fa3"
+      ],
+      "remaining": 8
+    }
+  ],
+  "affectedLineups": 0,
+  "lineupRecalculation": "Not needed: no selected removed card in any captured lineup or draft",
+  "walletUnchanged": true,
+  "accountsUnchanged": true,
+  "historicalStatisticsUntouched": true,
+  "scarcityUnchanged": true,
+  "idempotent": true,
+  "activeOrphanReferences": 0,
+  "unchangedTables": [
+    "beta_fantasy.players",
+    "beta_fantasy.editions",
+    "beta_fantasy.cards",
+    "beta_fantasy.ownership_events",
+    "beta_fantasy.pack_items",
+    "beta_fantasy.packs",
+    "beta_fantasy.listings",
+    "beta_fantasy.trades",
+    "beta_fantasy.trade_items",
+    "beta_fantasy.entries",
+    "beta_fantasy.entry_revisions",
+    "beta_fantasy.replacements",
+    "beta_fantasy.swaps",
+    "beta_fantasy.swap_reserve_packs",
+    "beta_fantasy.round_drafts",
+    "beta_fantasy.slot_locks",
+    "beta_fantasy.round_scores",
+    "beta_fantasy.members",
+    "beta_fantasy.ledger",
+    "beta_fantasy.journals",
+    "beta_fantasy.requests",
+    "credits_sandbox.card_definitions",
+    "credits_sandbox.pack_receipts",
+    "credits_sandbox.permanent_players",
+    "sports_feed.nfl_players",
+    "sports_feed.nfl_allocations",
+    "sports_feed.nfl_starter_entitlements",
+    "sports_feed.weekly_core_packs"
+  ]
+}

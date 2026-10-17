@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import type { EconomyPlayer } from "./card-economy";
+import { nflCardPositions } from "./nfl-card-eligibility";
 export function nflEconomyCatalogue(
   mapped: { id: string; provider_id: string }[],
   rows: Record<string, string>[],
@@ -16,7 +17,7 @@ export function nflEconomyCatalogue(
   for (const row of rows) {
     if (
       !/^[0-9]{2}-[0-9]{7}$/.test(row.gsis_id ?? "") ||
-      !["QB", "RB", "WR", "TE", "K"].includes(row.position)
+      !nflCardPositions.includes(row.position)
     )
       continue;
     const week = Number(row.week);

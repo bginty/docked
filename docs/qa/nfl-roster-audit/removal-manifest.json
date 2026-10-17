@@ -1,0 +1,176 @@
+{
+  "scope": "isolated-local-copy",
+  "at": "2026-10-17T05:28:31.472Z",
+  "snapshot": {
+    "file": "private-data/nfl-roster-audit/snapshot-1792214552985.json",
+    "sha256": "7f79214ed0ae8a2db426ff7cdcec5688264d97d4803400de3de53aea2c47fb69"
+  },
+  "approved": [
+    {
+      "playerId": "nfl-2220b83dec52f2bac014968631026060",
+      "name": "Wil Lutz",
+      "reason": "unsupported",
+      "cards": [
+        "7c92289b-72a5-4d31-a28f-cbf9e8b40be7"
+      ],
+      "evidence": [
+        "https://www.denverbroncos.com/team/players-roster/",
+        "https://www.denverbroncos.com/team/players-roster/wil-lutz/"
+      ]
+    },
+    {
+      "playerId": "nfl-d19626101c54d69142151b427dc4a751",
+      "name": "Ka'imi Fairbairn",
+      "reason": "unsupported",
+      "cards": [
+        "f1577764-b6e7-4dd0-b058-388530fb83af"
+      ],
+      "evidence": [
+        "https://www.houstontexans.com/team/players-roster/",
+        "https://www.houstontexans.com/team/players-roster/ka-imi-fairbairn/"
+      ]
+    },
+    {
+      "playerId": "nfl-458514b8e4b207d38fd9349b4614fb35",
+      "name": "Eddy Pineiro",
+      "reason": "unsupported",
+      "cards": [
+        "4e9c092d-43f7-4b97-b225-6c95dc588fa3"
+      ],
+      "evidence": [
+        "https://www.49ers.com/team/players-roster/",
+        "https://www.49ers.com/team/players-roster/eddy-pineiro/"
+      ]
+    },
+    {
+      "playerId": "nfl-5e033f170cbfe233d68db74557bdac06",
+      "name": "Chase McLaughlin",
+      "reason": "unsupported",
+      "cards": [
+        "02ada864-39a5-4935-b271-3a09359579bf",
+        "dea83257-2efe-43b5-afd4-5ac0366d6b1d"
+      ],
+      "evidence": [
+        "https://www.buccaneers.com/team/players-roster/",
+        "https://www.buccaneers.com/team/players-roster/chase-mclaughlin/"
+      ]
+    },
+    {
+      "playerId": "08a15626-79e7-4fbb-bb4a-e9c010a6fd33",
+      "name": "Ryan Miller",
+      "reason": "released",
+      "cards": [
+        "01227a90-2deb-41d7-959d-856b2dbf2ad2"
+      ],
+      "evidence": [
+        "https://www.miamidolphins.com/team/transactions/",
+        "https://www.miamidolphins.com/team/transactions/",
+        "https://www.giants.com/team/transactions/",
+        "https://www.giants.com/team/transactions/"
+      ]
+    },
+    {
+      "playerId": "nfl-0fec18a4a5472d851bbbfc91f28f5ad9",
+      "name": "Jake Bates",
+      "reason": "unsupported",
+      "cards": [
+        "6adfb683-728c-4fb0-842a-20de80d808c2"
+      ],
+      "evidence": [
+        "https://www.detroitlions.com/team/players-roster/",
+        "https://www.detroitlions.com/team/players-roster/jake-bates/",
+        "https://www.detroitlions.com/team/transactions/index"
+      ]
+    },
+    {
+      "playerId": "nfl-ca835a5267266d4234f92fdc5dfb70f0",
+      "name": "Harrison Mevis",
+      "reason": "unsupported",
+      "cards": [
+        "5fdf6268-8607-45eb-81c9-9f03934ef2c1"
+      ],
+      "evidence": [
+        "https://www.therams.com/team/players-roster/",
+        "https://www.therams.com/team/players-roster/harrison-mevis/",
+        "https://www.therams.com/team/transactions/index",
+        "https://www.therams.com/team/transactions/index",
+        "https://www.therams.com/team/transactions/index"
+      ]
+    }
+  ],
+  "cardIds": [
+    "7c92289b-72a5-4d31-a28f-cbf9e8b40be7",
+    "f1577764-b6e7-4dd0-b058-388530fb83af",
+    "4e9c092d-43f7-4b97-b225-6c95dc588fa3",
+    "02ada864-39a5-4935-b271-3a09359579bf",
+    "dea83257-2efe-43b5-afd4-5ac0366d6b1d",
+    "01227a90-2deb-41d7-959d-856b2dbf2ad2",
+    "6adfb683-728c-4fb0-842a-20de80d808c2",
+    "5fdf6268-8607-45eb-81c9-9f03934ef2c1"
+  ],
+  "dependentRecords": [],
+  "packs": [
+    {
+      "id": "4a60d2ae-e6f8-42b8-b9b6-f882b5665e8c",
+      "opened": true,
+      "removedCards": [
+        "5fdf6268-8607-45eb-81c9-9f03934ef2c1",
+        "7c92289b-72a5-4d31-a28f-cbf9e8b40be7"
+      ],
+      "remaining": 7
+    },
+    {
+      "id": "70806331-0382-4a85-8ce0-922d57c8d571",
+      "opened": true,
+      "removedCards": [
+        "01227a90-2deb-41d7-959d-856b2dbf2ad2"
+      ],
+      "remaining": 8
+    },
+    {
+      "id": "ab43dd28-90df-440a-9981-4eac61666dd8",
+      "opened": true,
+      "removedCards": [
+        "f1577764-b6e7-4dd0-b058-388530fb83af"
+      ],
+      "remaining": 8
+    },
+    {
+      "id": "b1a07408-e7f2-4447-aaef-c9acbc5c5e7e",
+      "opened": true,
+      "removedCards": [
+        "6adfb683-728c-4fb0-842a-20de80d808c2",
+        "02ada864-39a5-4935-b271-3a09359579bf"
+      ],
+      "remaining": 7
+    },
+    {
+      "id": "d2a5befe-3772-4adb-824b-5f099eb7d36f",
+      "opened": true,
+      "removedCards": [
+        "dea83257-2efe-43b5-afd4-5ac0366d6b1d"
+      ],
+      "remaining": 8
+    },
+    {
+      "id": "e19ca0cd-c326-4fb3-ae7a-feced046a772",
+      "opened": true,
+      "removedCards": [
+        "4e9c092d-43f7-4b97-b225-6c95dc588fa3"
+      ],
+      "remaining": 8
+    }
+  ],
+  "relationalDependencies": {
+    "beta_fantasy.cards": 0,
+    "beta_fantasy.listings": 0,
+    "beta_fantasy.swaps": 0,
+    "beta_fantasy.trade_items": 0,
+    "beta_fantasy.entries": 0,
+    "beta_fantasy.round_drafts": 0,
+    "beta_fantasy.slot_locks": 0,
+    "sports_feed.weekly_core_packs": 0
+  },
+  "beforeStateHash": "e9e93f190cbcce8d9233ea0c776ee0a71bc98cc223146d81ebfa3a920c2c272e",
+  "afterStateHash": "0dd2ca19ffb407cd4d0274efcbdc25d02550fe3461aba3f14155a35e25cc850d"
+}

@@ -1,0 +1,21 @@
+src/core/nfl-card-eligibility.ts 197ms (unchanged)
+src/core/nfl-test-cleanup.ts 65ms
+src/core/card-economy.ts 220ms
+src/core/credits-sandbox.ts 599ms (unchanged)
+src/core/member-test-wallet.ts 100ms (unchanged)
+src/core/pack-opening.ts 11ms (unchanged)
+src/core/economy-catalogue.ts 18ms (unchanged)
+src/server/economy-catalogue.ts 43ms
+src/components/pack-opening.tsx 142ms (unchanged)
+scripts/nfl-roster-audit.mjs 100ms (unchanged)
+scripts/nfl-roster-transactions.mjs 21ms (unchanged)
+scripts/nfl-roster-reconcile.mjs 78ms
+scripts/nfl-roster-snapshot.ts 21ms (unchanged)
+scripts/nfl-test-cleanup-local.ts 68ms
+scripts/nfl-roster-local-catalogue.ts 50ms (unchanged)
+scripts/nfl-roster-browser.ts 38ms
+scripts/marketplace-build-local.mjs 35ms (unchanged)
+tests/platform/nfl-roster-eligibility.test.ts 49ms
+tests/platform/economy-catalogue.test.ts 17ms (unchanged)
+tests/database/nfl-roster-eligibility.test.ts 32ms (unchanged)
+tests/fixtures/nfl-roster-replay.tsx 14ms
