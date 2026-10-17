@@ -1,0 +1,2284 @@
+{
+  "source": "Existing verified nflverse publication; read-only visual examples, not owned cards.",
+  "examples": [
+    {
+      "name": "Tommy DeVito",
+      "position": "QB",
+      "sport": "nfl",
+      "history": {
+        "scoringVersion": "docked-nfl-postgame-full-ppr-test-v1",
+        "games": [
+          {
+            "id": "g_c9b51c3ed1f54891af6e39a3a0a627f9",
+            "week": 3,
+            "kickoff": "2026-09-27T17:00:00.000Z",
+            "opponent": "JAX",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 140,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 5,
+              "passing_completions": 3,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 30,
+              "receiving_targets": 0,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 0,
+              "receptions": 0,
+              "rushing_attempts": 1,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 2,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 30,
+                "centipoints": 120
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 2,
+                "centipoints": 20
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          }
+        ],
+        "season": "2026",
+        "seasons": ["2026"],
+        "rows": [
+          {
+            "week": 3,
+            "base": 140,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_c9b51c3ed1f54891af6e39a3a0a627f9",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 5,
+                  "passing_completions": 3,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 30,
+                  "receiving_targets": 0,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 0,
+                  "receptions": 0,
+                  "rushing_attempts": 1,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 2,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          }
+        ],
+        "played": 1,
+        "averageBase": 140,
+        "bestBase": 140,
+        "feed": {
+          "version": "docked-nfl-postgame-full-ppr-test-v1",
+          "lastSuccess": "2026-10-17T13:42:40.149Z",
+          "stale": false,
+          "seasonBase": 140,
+          "complete": true
+        }
+      }
+    },
+    {
+      "name": "Jonathan Taylor",
+      "position": "RB",
+      "sport": "nfl",
+      "history": {
+        "scoringVersion": "docked-nfl-postgame-full-ppr-test-v1",
+        "games": [
+          {
+            "id": "g_243e892304ed43bc87fef24a47ffc003",
+            "week": 5,
+            "kickoff": "2026-10-11T17:00:00.000Z",
+            "opponent": "PIT",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 1120,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 4,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 37,
+              "receptions": 3,
+              "rushing_attempts": 15,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 45,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 45,
+                "centipoints": 450
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 3,
+                "centipoints": 300
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 37,
+                "centipoints": 370
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_7a5ffa26cc4247ecb48284eaaef79824",
+            "week": 4,
+            "kickoff": "2026-10-04T13:30:00.000Z",
+            "opponent": "WAS",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 2270,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 4,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 2,
+              "receptions": 1,
+              "rushing_attempts": 20,
+              "rushing_touchdowns": 2,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 95,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 95,
+                "centipoints": 950
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 2,
+                "centipoints": 1200
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 1,
+                "centipoints": 100
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 2,
+                "centipoints": 20
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_f6b06a8702b04b13bc7dc8b7dc4673b7",
+            "week": 3,
+            "kickoff": "2026-09-27T17:00:00.000Z",
+            "opponent": "HOU",
+            "venue": "home",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 920,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 3,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 4,
+              "receptions": 2,
+              "rushing_attempts": 23,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 68,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 68,
+                "centipoints": 680
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 2,
+                "centipoints": 200
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 4,
+                "centipoints": 40
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_523c0f8896e540f7b752dc021cb0221b",
+            "week": 2,
+            "kickoff": "2026-09-21T00:20:00.000Z",
+            "opponent": "KC",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 2920,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 4,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 40,
+              "receptions": 4,
+              "rushing_attempts": 24,
+              "rushing_touchdowns": 2,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 92,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 92,
+                "centipoints": 920
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 2,
+                "centipoints": 1200
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 4,
+                "centipoints": 400
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 40,
+                "centipoints": 400
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_c0c97b25b5db41aeb1450fe42c2c9a87",
+            "week": 1,
+            "kickoff": "2026-09-13T17:00:00.000Z",
+            "opponent": "BAL",
+            "venue": "home",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 2510,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 1,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 4,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 23,
+              "receptions": 3,
+              "rushing_attempts": 19,
+              "rushing_touchdowns": 2,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 98,
+              "total_fumbles": 1
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 98,
+                "centipoints": 980
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 2,
+                "centipoints": 1200
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 3,
+                "centipoints": 300
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 23,
+                "centipoints": 230
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 1,
+                "centipoints": -200
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          }
+        ],
+        "season": "2026",
+        "seasons": ["2026"],
+        "rows": [
+          {
+            "week": 5,
+            "base": 1120,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_243e892304ed43bc87fef24a47ffc003",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 4,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 37,
+                  "receptions": 3,
+                  "rushing_attempts": 15,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 45,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 4,
+            "base": 2270,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_7a5ffa26cc4247ecb48284eaaef79824",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 4,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 2,
+                  "receptions": 1,
+                  "rushing_attempts": 20,
+                  "rushing_touchdowns": 2,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 95,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 3,
+            "base": 920,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_f6b06a8702b04b13bc7dc8b7dc4673b7",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 3,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 4,
+                  "receptions": 2,
+                  "rushing_attempts": 23,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 68,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 2,
+            "base": 2920,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_523c0f8896e540f7b752dc021cb0221b",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 4,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 40,
+                  "receptions": 4,
+                  "rushing_attempts": 24,
+                  "rushing_touchdowns": 2,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 92,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 1,
+            "base": 2510,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_c0c97b25b5db41aeb1450fe42c2c9a87",
+                "values": {
+                  "fumbles_lost": 1,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 4,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 23,
+                  "receptions": 3,
+                  "rushing_attempts": 19,
+                  "rushing_touchdowns": 2,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 98,
+                  "total_fumbles": 1
+                },
+                "incomplete": false
+              }
+            ]
+          }
+        ],
+        "played": 5,
+        "averageBase": 1948,
+        "bestBase": 2920,
+        "feed": {
+          "version": "docked-nfl-postgame-full-ppr-test-v1",
+          "lastSuccess": "2026-10-17T13:42:40.149Z",
+          "stale": false,
+          "seasonBase": 9740,
+          "complete": true
+        }
+      }
+    },
+    {
+      "name": "Rome Odunze",
+      "position": "WR",
+      "sport": "nfl",
+      "history": {
+        "scoringVersion": "docked-nfl-postgame-full-ppr-test-v1",
+        "games": [
+          {
+            "id": "g_36296e003f4240f08b6947813d01c61b",
+            "week": 5,
+            "kickoff": "2026-10-11T17:00:00.000Z",
+            "opponent": "GB",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 500,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 1,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 9,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 40,
+              "receptions": 3,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 1
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 3,
+                "centipoints": 300
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 40,
+                "centipoints": 400
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 1,
+                "centipoints": -200
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_532b80904b0241d386dbc70199bf9437",
+            "week": 4,
+            "kickoff": "2026-10-04T17:00:00.000Z",
+            "opponent": "NYJ",
+            "venue": "home",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 1540,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 7,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 94,
+              "receptions": 6,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 6,
+                "centipoints": 600
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 94,
+                "centipoints": 940
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_9374731f9f124b4689bc024dd27a8e41",
+            "week": 3,
+            "kickoff": "2026-09-29T00:15:00.000Z",
+            "opponent": "PHI",
+            "venue": "home",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 740,
+            "played": true,
+            "revision": 3,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 6,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 44,
+              "receptions": 3,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 3,
+                "centipoints": 300
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 44,
+                "centipoints": 440
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_e8cba45e8c0a48019a51d5b202023bcc",
+            "week": 2,
+            "kickoff": "2026-09-20T17:00:00.000Z",
+            "opponent": "MIN",
+            "venue": "home",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 730,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 4,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 43,
+              "receptions": 3,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 3,
+                "centipoints": 300
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 43,
+                "centipoints": 430
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_152b6d64b5204236a93e8b774d608244",
+            "week": 1,
+            "kickoff": "2026-09-13T17:00:00.000Z",
+            "opponent": "CAR",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 720,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 3,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 52,
+              "receptions": 2,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 2,
+                "centipoints": 200
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 52,
+                "centipoints": 520
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          }
+        ],
+        "season": "2026",
+        "seasons": ["2026"],
+        "rows": [
+          {
+            "week": 5,
+            "base": 500,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_36296e003f4240f08b6947813d01c61b",
+                "values": {
+                  "fumbles_lost": 1,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 9,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 40,
+                  "receptions": 3,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 1
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 4,
+            "base": 1540,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_532b80904b0241d386dbc70199bf9437",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 7,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 94,
+                  "receptions": 6,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 3,
+            "base": 740,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_9374731f9f124b4689bc024dd27a8e41",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 6,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 44,
+                  "receptions": 3,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 2,
+            "base": 730,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_e8cba45e8c0a48019a51d5b202023bcc",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 4,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 43,
+                  "receptions": 3,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 1,
+            "base": 720,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_152b6d64b5204236a93e8b774d608244",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 3,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 52,
+                  "receptions": 2,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          }
+        ],
+        "played": 5,
+        "averageBase": 846,
+        "bestBase": 1540,
+        "feed": {
+          "version": "docked-nfl-postgame-full-ppr-test-v1",
+          "lastSuccess": "2026-10-17T13:42:40.149Z",
+          "stale": false,
+          "seasonBase": 4230,
+          "complete": true
+        }
+      }
+    },
+    {
+      "name": "Brock Bowers",
+      "position": "TE",
+      "sport": "nfl",
+      "history": {
+        "scoringVersion": "docked-nfl-postgame-full-ppr-test-v1",
+        "games": [
+          {
+            "id": "g_7adda4c7e08a4fa691545b62db4411a0",
+            "week": 5,
+            "kickoff": "2026-10-11T17:00:00.000Z",
+            "opponent": "NE",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 2300,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 1,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 10,
+              "receiving_touchdowns": 1,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 110,
+              "receptions": 8,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 1
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 8,
+                "centipoints": 800
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 110,
+                "centipoints": 1100
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 1,
+                "centipoints": 600
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 1,
+                "centipoints": -200
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_92371cbfe92f40b3a45b22bdc149bed3",
+            "week": 4,
+            "kickoff": "2026-10-04T20:25:00.000Z",
+            "opponent": "KC",
+            "venue": "home",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 2060,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 11,
+              "receiving_touchdowns": 1,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 86,
+              "receptions": 6,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 6,
+                "centipoints": 600
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 86,
+                "centipoints": 860
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 1,
+                "centipoints": 600
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_87a6d578a93c4d9c8d760c714f213b15",
+            "week": 3,
+            "kickoff": "2026-09-27T20:25:00.000Z",
+            "opponent": "NO",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 2760,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 13,
+              "receiving_touchdowns": 1,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 116,
+              "receptions": 10,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 10,
+                "centipoints": 1000
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 116,
+                "centipoints": 1160
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 1,
+                "centipoints": 600
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          }
+        ],
+        "season": "2026",
+        "seasons": ["2026"],
+        "rows": [
+          {
+            "week": 5,
+            "base": 2300,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_7adda4c7e08a4fa691545b62db4411a0",
+                "values": {
+                  "fumbles_lost": 1,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 10,
+                  "receiving_touchdowns": 1,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 110,
+                  "receptions": 8,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 1
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 4,
+            "base": 2060,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_92371cbfe92f40b3a45b22bdc149bed3",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 11,
+                  "receiving_touchdowns": 1,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 86,
+                  "receptions": 6,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 3,
+            "base": 2760,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_87a6d578a93c4d9c8d760c714f213b15",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 13,
+                  "receiving_touchdowns": 1,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 116,
+                  "receptions": 10,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          }
+        ],
+        "played": 3,
+        "averageBase": 2373.3333333333335,
+        "bestBase": 2760,
+        "feed": {
+          "version": "docked-nfl-postgame-full-ppr-test-v1",
+          "lastSuccess": "2026-10-17T13:42:40.149Z",
+          "stale": false,
+          "seasonBase": 7120,
+          "complete": true
+        }
+      }
+    },
+    {
+      "name": "Marquez Valdes-Scantling",
+      "position": "WR",
+      "sport": "nfl",
+      "history": {
+        "scoringVersion": "docked-nfl-postgame-full-ppr-test-v1",
+        "games": [
+          {
+            "id": "g_a1dbc3cc56f84b4aac8584a508c32916",
+            "week": 5,
+            "kickoff": "2026-10-11T20:05:00.000Z",
+            "opponent": "DEN",
+            "venue": "home",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 420,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 3,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 22,
+              "receptions": 2,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 2,
+                "centipoints": 200
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 22,
+                "centipoints": 220
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_d25136deb9d94bc1b2dc21c46a3f2335",
+            "week": 4,
+            "kickoff": "2026-10-04T20:25:00.000Z",
+            "opponent": "SEA",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 0,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 1,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 0,
+              "receptions": 0,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          },
+          {
+            "id": "g_05a8be1947e44d9f9621637fe0846ea6",
+            "week": 3,
+            "kickoff": "2026-09-27T17:00:00.000Z",
+            "opponent": "BUF",
+            "venue": "away",
+            "gameStatus": "final",
+            "scoringStatus": "Calculated · corrections possible",
+            "base": 0,
+            "played": true,
+            "revision": 2,
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "incomplete": false,
+            "missing": [],
+            "values": {
+              "fumbles_lost": 0,
+              "interceptions_thrown": 0,
+              "passing_attempts": 0,
+              "passing_completions": 0,
+              "passing_touchdowns": 0,
+              "passing_two_point_conversions": 0,
+              "passing_yards": 0,
+              "receiving_targets": 1,
+              "receiving_touchdowns": 0,
+              "receiving_two_point_conversions": 0,
+              "receiving_yards": 0,
+              "receptions": 0,
+              "rushing_attempts": 0,
+              "rushing_touchdowns": 0,
+              "rushing_two_point_conversions": 0,
+              "rushing_yards": 0,
+              "total_fumbles": 0
+            },
+            "parts": [
+              {
+                "statistic": "passing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "interceptions_thrown",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receptions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_yards",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_touchdowns",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "fumbles_lost",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "passing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "rushing_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              },
+              {
+                "statistic": "receiving_two_point_conversions",
+                "quantity": 0,
+                "centipoints": 0
+              }
+            ]
+          }
+        ],
+        "season": "2026",
+        "seasons": ["2026"],
+        "rows": [
+          {
+            "week": 5,
+            "base": 420,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_a1dbc3cc56f84b4aac8584a508c32916",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 3,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 22,
+                  "receptions": 2,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 4,
+            "base": 0,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_d25136deb9d94bc1b2dc21c46a3f2335",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 1,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 0,
+                  "receptions": 0,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          },
+          {
+            "week": 3,
+            "base": 0,
+            "status": "Available stats",
+            "updatedAt": "2026-10-16T13:59:45.000Z",
+            "rawStats": [
+              {
+                "game": "g_05a8be1947e44d9f9621637fe0846ea6",
+                "values": {
+                  "fumbles_lost": 0,
+                  "interceptions_thrown": 0,
+                  "passing_attempts": 0,
+                  "passing_completions": 0,
+                  "passing_touchdowns": 0,
+                  "passing_two_point_conversions": 0,
+                  "passing_yards": 0,
+                  "receiving_targets": 1,
+                  "receiving_touchdowns": 0,
+                  "receiving_two_point_conversions": 0,
+                  "receiving_yards": 0,
+                  "receptions": 0,
+                  "rushing_attempts": 0,
+                  "rushing_touchdowns": 0,
+                  "rushing_two_point_conversions": 0,
+                  "rushing_yards": 0,
+                  "total_fumbles": 0
+                },
+                "incomplete": false
+              }
+            ]
+          }
+        ],
+        "played": 3,
+        "averageBase": 140,
+        "bestBase": 420,
+        "feed": {
+          "version": "docked-nfl-postgame-full-ppr-test-v1",
+          "lastSuccess": "2026-10-17T13:42:40.149Z",
+          "stale": false,
+          "seasonBase": 420,
+          "complete": true
+        }
+      }
+    }
+  ]
+}

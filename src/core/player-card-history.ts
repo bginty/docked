@@ -16,6 +16,8 @@ export type PlayerHistorySource = {
   source: { status: string; availability: string; stats: unknown } | null;
 };
 export type PlayerHistory = {
+  seasonBase?: number | null;
+  complete?: boolean;
   games?: PlayerGameHistory[];
   scoringVersion?: string;
   feed?: {
@@ -98,6 +100,7 @@ export function playerHistory(
       at: string | null;
     }[]
   >();
+  const gameRows: PlayerGameHistory[] = [];
   for (const r of fixtures.values()) {
     const s = r.source;
     let base: number | null = null,
@@ -121,6 +124,33 @@ export function playerHistory(
       ...(weeks.get(r.week) ?? []),
       { base, status, played, at: r.observedAt },
     ]);
+    // Only publish accepted, visible source statistics. No held or missing data.
+    const values =
+      played && s?.stats && typeof s.stats === "object"
+        ? Object.fromEntries(
+            Object.entries(s.stats).filter(
+              (entry): entry is [string, number] =>
+                typeof entry[1] === "number" && Number.isFinite(entry[1]),
+            ),
+          )
+        : {};
+    gameRows.push({
+      id: r.fixture,
+      week: r.week,
+      kickoff: r.scheduledAt || null,
+      opponent: null,
+      venue: null,
+      gameStatus: s?.status ?? "Missing data",
+      scoringStatus: status,
+      base,
+      played,
+      revision: r.revision,
+      updatedAt: r.observedAt ?? "",
+      incomplete: base === null,
+      missing: [],
+      values,
+      parts: played ? scorePlayer(r.rules, r.position, s!.stats).parts : [],
+    });
   }
   const games = [...weeks.values()]
     .flat()
@@ -147,6 +177,15 @@ export function playerHistory(
     }))
     .sort((a, b) => b.week - a.week);
   return {
+    ...(selected.length
+      ? {
+          games: gameRows.sort((a, b) => b.week - a.week),
+          seasonBase: games.length
+            ? games.reduce((n, r) => n + r.base!, 0)
+            : null,
+          complete: gameRows.every((r) => r.base !== null),
+        }
+      : {}),
     ...(versions.length ? { scoringVersion: versions.join(" / ") } : {}),
     season,
     seasons,

@@ -6,11 +6,13 @@ export function FantasySheet({
   onClose,
   children,
   className = "",
+  historyEntry = false,
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
   className?: string;
+  historyEntry?: boolean;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const close = useRef(onClose);
@@ -22,7 +24,7 @@ export function FantasySheet({
       active = document.activeElement as HTMLElement | null;
     if (!node) return;
     node.showModal();
-    const release = registerModal(node, () => close.current());
+    const release = registerModal(node, () => close.current(), historyEntry);
     node.addEventListener("close", release);
     const containFocus = (event: KeyboardEvent) => {
       if (event.key !== "Tab" || topModal() !== node) return;
@@ -65,7 +67,7 @@ export function FantasySheet({
       if (active?.isConnected && (!topModal() || topModal()?.contains(active)))
         active.focus({ preventScroll: true });
     };
-  }, []);
+  }, [historyEntry]);
   return (
     <dialog
       ref={dialog}

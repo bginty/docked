@@ -23,6 +23,7 @@ import "./redemption.css";
 import "./social-hub.css";
 import "./collectible.css";
 import "./card-viewer.css";
+import "./player-statistics.css";
 import "./nfl-testing.css";
 import "./standings.css";
 import "./pack-shop.css";

@@ -1,3 +1,4 @@
+import { NflRefreshHealth } from "@/components/nfl-refresh-health";
 import { notFound } from "next/navigation";
 import { requireRole } from "@/server/auth";
 import { openNflHistory } from "@/server/nfl-history-connection";
@@ -22,16 +23,18 @@ export default async function HistoryOperations() {
   const c = openNflHistory("reader");
   try {
     const report = await nflTestingReport(historyStore(c.db), true);
+    const refreshHealth = await NflRefreshHealth({ db: c.db });
     if (report.health === "Postgame test feed connected")
       report.health = "Postgame history connected";
     return (
       <>
+        {refreshHealth}
         <NflTestingPanel report={report} liveHistory />
         <NflRoundOperations />
         <p className="small-note">
           Statistics:{" "}
           <a href="https://github.com/nflverse/nflverse-data">nflverse</a>, CC
-          BY 4.0. Fantasy calculations by Docked. Manual imports only. No
+          BY 4.0. Fantasy calculations by Docked. Scheduled postgame imports. No
           competition settlement.
         </p>
       </>

@@ -7,7 +7,7 @@ import { collectiblePresentation } from "@/core/card-presentation";
 import { fantasyAssets } from "@/brand/fantasy-assets";
 import type { PlayerHistory } from "@/core/player-card-history";
 import { boundedFetch } from "@/core/bounded-request";
-import { HistorySummary, PlayerStatistics } from "./player-statistics";
+import { PlayerStatistics } from "./player-statistics";
 import { CollectibleFrame } from "./collectible-frame";
 import { RarityBadge } from "./rarity-badge";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
@@ -18,22 +18,29 @@ export type ViewerCard = AwardedCard & { canonical_player_id?: string };
 export function FlippableCard({
   card,
   appliedMultiplier,
+  historySnapshot,
 }: {
   card: ViewerCard;
   appliedMultiplier?: number;
+  /** Read-only snapshots for protected visual previews; never used as awards. */
+  historySnapshot?: PlayerHistory;
 }) {
   const [back, setBack] = useState(false),
-    [history, setHistory] = useState<PlayerHistory | null>(null),
+    [history, setHistory] = useState<PlayerHistory | null>(
+      historySnapshot ?? null,
+    ),
     [error, setError] = useState(false),
-    [loading, setLoading] = useState(true),
+    [loading, setLoading] = useState(!historySnapshot),
     [season, setSeason] = useState<string | undefined>(),
     [details, setDetails] = useState(false),
     [retry, setRetry] = useState(0);
-  const detailsId = useId();
+  const [category, setCategory] = useState("");
+  const seasonCache = useRef(new Map<string, PlayerHistory>());
   const flip = useRef<HTMLButtonElement>(null),
     p = collectiblePresentation(card),
     player = card.canonical_player_id ?? card.player_id;
   useEffect(() => {
+    if (historySnapshot) return;
     const controller = new AbortController();
     let inFlight = false;
     async function refresh() {
@@ -52,6 +59,7 @@ export function FlippableCard({
         const body = (await res.json()) as PlayerHistory;
         if (controller.signal.aborted) return;
         setHistory(body);
+        if (body.season) seasonCache.current.set(body.season, body);
         setError(false);
         setLoading(false);
       } catch {
@@ -74,7 +82,14 @@ export function FlippableCard({
       window.removeEventListener("focus", onFocus);
       window.clearInterval(timer);
     };
-  }, [player, season, retry]);
+  }, [player, season, retry, historySnapshot]);
+  const changeSeason = (value: string) => {
+    const cached = seasonCache.current.get(value);
+    setHistory(cached ?? null);
+    setLoading(!cached);
+    setError(false);
+    setSeason(value);
+  };
   const toggle = () => {
     setBack((v) => !v);
     flip.current?.focus({ preventScroll: true });
@@ -114,12 +129,7 @@ export function FlippableCard({
             </span>
             <div className="collectible-back-content">
               <div className="collectible-back-identity">
-                <span className="collectible-given">{p.given}</span>
-                <strong className="collectible-family">{p.family}</strong>
-                <small>
-                  {card.position}
-                  {card.team ? ` · ${card.team}` : ""}
-                </small>
+                <strong title={card.name}>{card.name}</strong>
               </div>
               <div
                 className="collectible-back-history"
@@ -141,29 +151,17 @@ export function FlippableCard({
                   </div>
                 ) : (
                   history && (
-                    <>
-                      <h3>{history.season ?? "Player history"}</h3>
-                      <HistorySummary
-                        history={history}
-                        position={card.position}
-                      />
-                      <button
-                        className="card-statistics-link"
-                        onClick={() => {
-                          setDetails(true);
-                          requestAnimationFrame(() =>
-                            document
-                              .getElementById(detailsId)
-                              ?.scrollIntoView({
-                                block: "start",
-                                behavior: "smooth",
-                              }),
-                          );
-                        }}
-                      >
-                        View full statistics
-                      </button>
-                    </>
+                    <PlayerStatistics
+                      history={history}
+                      name={card.name}
+                      position={card.position}
+                      sport={card.sport}
+                      compact
+                      category={category}
+                      categoryChange={setCategory}
+                      seasonChange={changeSeason}
+                      onExpand={() => setDetails(true)}
+                    />
                   )
                 )}
               </div>
@@ -195,16 +193,12 @@ export function FlippableCard({
         </span>
       </div>
       {details && (
-        <div id={detailsId} className="player-statistics-container">
-          <button
-            type="button"
-            onClick={() => {
-              setDetails(false);
-              flip.current?.focus();
-            }}
-          >
-            Close statistics
-          </button>
+        <FantasySheet
+          title={`${card.name} · Game Log`}
+          className="statistics-sheet"
+          historyEntry
+          onClose={() => setDetails(false)}
+        >
           {loading ? (
             <p role="status">Loading statistics…</p>
           ) : error ? (
@@ -215,14 +209,14 @@ export function FlippableCard({
                 history={history}
                 name={card.name}
                 position={card.position}
-                seasonChange={(value) => {
-                  setLoading(true);
-                  setSeason(value);
-                }}
+                sport={card.sport}
+                category={category}
+                categoryChange={setCategory}
+                seasonChange={changeSeason}
               />
             )
           )}
-        </div>
+        </FantasySheet>
       )}
     </>
   );
