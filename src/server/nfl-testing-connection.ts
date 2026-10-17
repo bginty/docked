@@ -1,4 +1,5 @@
 import postgres from "postgres";
+import { feedPostgresTypes } from "./nfl-feed-postgres-types";
 import type { FeedDb } from "./nfl-testing-store";
 import { databaseConnectionOptions } from "./database-tls";
 import {
@@ -11,6 +12,7 @@ export function connectTestingFeedDatabase(
 ) {
   const target = testingDatabaseTarget(raw, vercelEnvironment);
   const sql = postgres(raw, {
+    types: feedPostgresTypes,
     max: 2,
     prepare: false,
     connect_timeout: 15,

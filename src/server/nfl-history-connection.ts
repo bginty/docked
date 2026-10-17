@@ -1,4 +1,5 @@
 import postgres from "postgres";
+import { feedPostgresTypes } from "./nfl-feed-postgres-types";
 import { databaseConnectionOptions } from "./database-tls";
 import {
   historyDatabaseTarget,
@@ -14,6 +15,7 @@ export function openNflHistory(role: "reader" | "writer") {
     ] ?? "";
   const expected = historyDatabaseTarget(raw, role);
   const sql = postgres(raw, {
+    types: feedPostgresTypes,
     max: 2,
     prepare: false,
     connect_timeout: 15,
