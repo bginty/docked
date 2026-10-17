@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-17T13:08:25.011Z",
+  "url": "https://docked.com.au",
+  "commit": "39f136e5eda7ec7175b72173f24531674a808ebb",
+  "deployment": "dpl_76yUzJmvCMtwhkpXukAyR7JhVMGG",
+  "release": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "39f136e5eda7ec7175b72173f24531674a808ebb",
+    "deploymentId": "dpl_76yUzJmvCMtwhkpXukAyR7JhVMGG",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  },
+  "sourceEvents": 11475,
+  "records": 5569,
+  "games": 272,
+  "players": 1603,
+  "mappings": 433,
+  "incompleteGames": [
+    "g_00a72b180d78482b9b779be3235411fd",
+    "g_40b624a5568b40a9aaa8deeab78789f5",
+    "g_bf328c13fa3c482c8eed20f2e1ff1f81",
+    "g_d02eb3de6bfb4c958f1b46da8c8ea633",
+    "g_f64cc152363c4790b05e127f3e5ebd51",
+    "g_f7303fd71e3f4c13beef2e0e6334bdb6"
+  ],
+  "gameStates": {
+    "scheduled/not_started": 192,
+    "final/incomplete": 6,
+    "final/available": 74
+  },
+  "scoredWeeks": 1673,
+  "rawPayloadComparisonPassed": true,
+  "independentScoringComparisonPassed": true,
+  "duplicate": {
+    "passed": true,
+    "recordHash": "6dfed0f57dca0b77c5b66dc7f6ef657b5537e23775a1419cd07b1db49e8dcc56",
+    "auditHash": "7d78528599a88109b6e81c886f729db0ec85854ba514771964f2c2061f59c729",
+    "importAudits": 1,
+    "lastSuccess": "2026-10-17T12:59:32.385Z"
+  },
+  "forgedSignature": {
+    "status": 422,
+    "rejected": true,
+    "noMutation": true
+  },
+  "cleanup": {
+    "runId": "authorised-nfl-rollout-20261017",
+    "applied": true,
+    "removed": 8,
+    "eligible": 493,
+    "mappings": 433,
+    "evidence": 961,
+    "beforeRevision": 122,
+    "afterRevision": 123,
+    "beforeHash": "e9e93f190cbcce8d9233ea0c776ee0a71bc98cc223146d81ebfa3a920c2c272e",
+    "afterHash": "f3626dae45bc5418a98a393a9ff5cb47db0c7c82d05d51c21d8a4f1362fe1335",
+    "backupSha256": "f4e3131abbdf1957c30663615cc67ed95402122f10a6d87d98c777da2e6237c7",
+    "immutableIssued": 324,
+    "activeEconomyCards": 316,
+    "legacyCardsUnchanged": 51
+  },
+  "preservedTableCount": 37,
+  "ownerBrowser": {
+    "passed": true,
+    "examples": [
+      "Aaron Jones: Week 5 base 18.70, Ultra Rare reference 24.31; season 70.20; raw stats verified",
+      "Will Howard: Missing data / em dash, not zero"
+    ]
+  },
+  "ordinaryMemberBrowser": {
+    "passed": false,
+    "status": "Awaiting existing member sign-in"
+  },
+  "physicalSamsung": {
+    "passed": false,
+    "status": "Not performed"
+  }
+}

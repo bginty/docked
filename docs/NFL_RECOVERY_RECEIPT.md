@@ -23,6 +23,30 @@ the current locked live aggregate; it never uploads a local test database.
 
 No hosted writes were made while creating or checking this export. Private backup files are ignored by Git and must never be uploaded with the application.
 
+## Applied rollout and recovery anchors
+
+Five migrations were applied after this snapshot; their exact versions are recorded
+in `private-data/nfl-live-recovery-20261017-refresh/migrations-applied.json`.
+Cleanup run `authorised-nfl-rollout-20261017` committed eight archived retirements,
+roster evidence and reviewed mappings. Its private `applied.json` records revision
+122 → 123 and postimage SHA-256
+`f3626dae45bc5418a98a393a9ff5cb47db0c7c82d05d51c21d8a4f1362fe1335`.
+The live append-only `nfl_roster.cleanup_runs` row also contains the full preimage
+and manifest; `nfl_roster.retired_test_cards` contains the eight exact card records.
+The earlier deadlocked attempt rolled back completely. No partial cleanup exists.
+
+After publication, all 37 other covered tables/ID references (excluding the
+independent collector projection) matched the snapshot. Immutable issuance remains
+324; active economy cards are 316. The retained source batch in
+`private-data/nfl-live-release/initial.json.gz` has SHA-256
+`6862c5bd654b8ad7c62c8539e5deda12fd7aba0bd466857feb3b7b37553756f3`.
+The active history generation is `4bad67fc-dcfe-4531-a859-d591eef115b3`.
+Duplicate delivery preserved its single import audit and last-success timestamp.
+
+Use the scoped recovery procedure below if needed. Preserve newly published raw
+history and immutable audits; never replace the live database or recycle retired
+serials. Application rollback must use a version compatible with retired cards.
+
 ## Captured material
 
 Directory: `private-data/nfl-live-recovery-20261017/`.
@@ -59,6 +83,6 @@ Run `node --import tsx scripts/nfl-live-cleanup-preflight.ts` for the offline re
 
 ## Connection and provider alternatives
 
-The saved connection uses session pooling on port 5432. Supabase documents direct connections for `pg_dump` and session pooling as the IPv4 alternative; transaction mode on 6543 is not interchangeable. The project API verified the direct hostname, but this command environment cannot resolve it or unrelated provider hosts. No guessed endpoint, disabled TLS or transaction-pooler substitution was used.
+The saved connection uses session pooling on port 5432. Supabase documents direct connections for `pg_dump` and session pooling as the IPv4 alternative; transaction mode on 6543 is not interchangeable. The project API verified the direct hostname. The earlier restricted command environment could not resolve it or unrelated provider hosts; the resumed Full access runtime resolves both verified hosts and completed the authenticated logical export over the saved session pooler with certificate verification. No guessed endpoint, disabled TLS or transaction-pooler substitution was used.
 
 [Supabase's backup documentation](https://supabase.com/docs/guides/platform/backups) describes dashboard backups and the Management API backup inventory. It also states modern physical backups are not downloadable logical exports. No authenticated dashboard session or callable backup-inventory tool was available here, and local Management API access is blocked by the same DNS restriction. Consequently no provider backup date, download or restore availability is claimed. The working connected SQL export provided the scoped recovery path above without purchasing a backup service.

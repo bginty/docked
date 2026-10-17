@@ -1,4 +1,75 @@
-# NFL live rollout — 17 October 2026
+# NFL live rollout — 18 October 2026 (Sydney)
+
+## Live publication verified; second-account browser acceptance pending
+
+Live URL: https://docked.com.au. Application commit
+`39f136e5eda7ec7175b72173f24531674a808ebb`, deployment
+`dpl_76yUzJmvCMtwhkpXukAyR7JhVMGG`, built from the committed web-only export,
+validated without domain promotion, then promoted to the existing live domains.
+The local operator lock-order correction is commit
+`8d30b88ec181ef5fba93beb67cba8115d8386b47`; it does not change deployed web code.
+
+- Full access now reaches the runtime. DNS, HTTPS, PostgreSQL TCP/authentication,
+  disposable Git writes and junction/build operations passed. No bypass, security
+  setting change, paid service or repeated elevation was used.
+- A fresh, consistent recovery export and offline restore drill passed before
+  mutation. See [recovery receipt](NFL_RECOVERY_RECEIPT.md).
+- Five reviewed migrations applied, bringing the migration count from 79 to 84.
+  The testing-only feed-consumer migration was not applied. Dedicated reader and
+  writer credentials are private and have no account/wallet/card/competition
+  mutation privileges. Signing credentials are excluded from Git and client output.
+- The real service batch contains 11,475 revision events. Live storage now has
+  **5,569 latest player-game records, 272 games and 1,603 players**. Every stored
+  payload was compared with the retained real export. There are 74 final/available
+  games, **six final/incomplete games**, and 192 scheduled/not-started games.
+- **433 reviewed player mappings** and provider-verified legacy aliases published;
+  **493 players** pass the official roster eligibility policy. 961 evidence records
+  were incorporated. Unresolved/no-appearance players are not given invented stats.
+- **Eight cards retired**, with exact allocation/ownership/history preimages and
+  approval archived in the same transaction. Economy revision advanced 122 to 123.
+  All 324 immutable issued allocations remain; 316 active economy cards remain.
+  The 51 legacy Core-card rows and all other covered dependency tables are unchanged.
+  Accounts, balances, eligible instances, pack receipts, serial scarcity and
+  competition rules/results were preserved.
+- An independent weighted calculation matched **1,673 mapped player-weeks** and
+  season totals. Full-PPR lost-fumble deduction is applied once. History does not
+  award competition points, activate rewards or run settlement.
+- Identical signed bytes were delivered twice successfully. The second delivery
+  kept the same generation, records hash, audit hash/count, scores and last-success
+  time. A forged signature was rejected (HTTP 422) with no data change.
+- On the actual signed-in live owner screen, Aaron Jones shows Week 5 **18.70**,
+  Ultra Rare reference **24.31**, season **70.20**; raw Week 5 data includes 113
+  rushing yards, one rushing TD, three receptions, four receiving yards and one
+  lost fumble. Will Howard shows **Missing data / —**, not a fabricated zero.
+- Ordinary-member admission/gameplay gates are enabled for the existing member,
+  and the history handler has no owner-role check. **Barry's separate browser
+  acceptance remains pending**; the user was asked to sign in using the existing
+  account. Physical Samsung acceptance has not been performed.
+
+Evidence is retained privately in `private-data/nfl-live-release/`, including
+candidate/promotion receipts, exact compressed source batch, before/after duplicate
+comparisons and live screenshots. No credentials or account data are published.
+
+Two failures were diagnosed and resolved: the first import rolled back its page
+because the PostgreSQL adapter encoded already-serialized JSON twice; a full real
+batch passed in a forced-rollback transaction after correction. The first cleanup
+rolled back on a deadlock with `sports_feed.nfl_lock_due()`. The operator now takes
+the existing marketplace advisory lock before dependency table locks, matching the
+app's order. A fresh guarded run then committed the eight approved retirements.
+
+### Live Samsung checks
+
+1. Open https://docked.com.au/fantasy/cards and choose **Update app** if offered.
+   Sign in separately as owner and Barry in Samsung Internet/Chrome.
+2. Find Aaron Jones, open the card and flip it. Check Week 5 18.70, season 70.20,
+   expand Raw stats and season attribution. Carson Wentz is another database-verified
+   example: Week 2 6.32, Week 1 19.22, season 25.54 (inspect if held/visible).
+3. Check a six-week player's Older/Newer controls, an incomplete-game disclosure,
+   and Will Howard's Missing data/— state. Missing is distinct from real zero/DNP.
+4. Check portrait/landscape, large text, card scrolling, Android Back and returning
+   from the background. Confirm wallet balance and eligible cards remain intact.
+
+## Historical execution notes (superseded by live status above)
 
 ## Resumed at 12:32 UTC
 
@@ -15,7 +86,7 @@ passed. Publication is in progress; the historical status below predates this ru
 
 The owner explicitly authorizes real NFL player history, the audited acquisition catalogue and evidence-supported retirement of ineligible test cards on live Docked. The live site is the owner/Barry test environment. Separate Preview/database and owner-only visibility requirements are superseded for this scope. No further deployment permission is required. No paid service, automated scheduler, competition settlement or financial activation is authorized.
 
-**Not deployed. No live migrations, role changes, environment changes, imports or card removals were performed in this execution.** Existing application: https://docked.com.au. This URL does not yet represent the new integration. No live examples or physical-device acceptance are claimed.
+At the earlier blocked attempt, no deployment, migrations, role changes, imports or card removals had occurred. The following historical notes describe that earlier state, not the current live release.
 
 Connected Supabase read-only inspection confirms project `pojoymtniryarxxunyvz`, latest migration `20261016233803`, with neither `nfl_history` nor `nfl_roster` present. Vercel project remains `prj_l0rpVDPRuIRp9UcBUkudeyUK5yST` (`docked-production`).
 
