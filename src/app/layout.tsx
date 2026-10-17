@@ -22,6 +22,7 @@ import "./play-cards.css";
 import "./redemption.css";
 import "./social-hub.css";
 import "./collectible.css";
+import "./card-viewer.css";
 import "./standings.css";
 import "./pack-shop.css";
 import "./owner-command.css";

@@ -4,8 +4,7 @@ import Link from "next/link";
 import { boundedFetch } from "@/core/bounded-request";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import PackOpening from "./pack-opening";
-import { FantasySheet } from "./fantasy-player-sheet";
-import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { CollectibleViewer } from "./collectible-viewer";
 /** Read the original allocation receipt; never recreate or award the starter. */
 export function StarterPackHistory({ member }: { member: string }) {
   const [receipt, setReceipt] = useState<PackReceipt | null>(null),
@@ -73,9 +72,7 @@ export function StarterPackHistory({ member }: { member: string }) {
         />
       )}
       {card && (
-        <FantasySheet title={card.name} onClose={() => setCard(null)}>
-          <FantasyCardArtwork card={card} />
-        </FantasySheet>
+        <CollectibleViewer card={card} onClose={() => setCard(null)} />
       )}
     </section>
   );

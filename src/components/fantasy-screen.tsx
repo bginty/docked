@@ -31,7 +31,7 @@ import { FantasyRewards } from "./fantasy-rewards";
 import { fantasyResponseRejects } from "@/core/fantasy-response";
 import type { FantasyCard, FantasyState } from "@/core/fantasy";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
-import { FantasySheet } from "./fantasy-player-sheet";
+import { CollectibleViewer } from "./collectible-viewer";
 const PackOpening = lazy(() => import("./pack-opening"));
 import { PackViewerBoundary } from "./pack-viewer-boundary";
 const tiers: string[] = rarities;
@@ -1363,13 +1363,7 @@ export function FantasyScreen({
         </PackViewerBoundary>
       )}
       {awardedDetail && (
-        <FantasySheet title="Original pack card" onClose={closeAwardedDetail}>
-          <Card card={awardedDetail} />
-          <p>
-            This original award is no longer in your collection. Current
-            ownership details remain private.
-          </p>
-        </FantasySheet>
+        <CollectibleViewer card={awardedDetail} onClose={closeAwardedDetail} />
       )}
       {tab === "market" && (
         <>

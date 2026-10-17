@@ -1,4 +1,5 @@
 "use client";
+import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -317,6 +318,7 @@ export function SocialCard({
   compact?: boolean;
   initialCommentsOpen?: boolean;
 }) {
+  const [viewCard, setViewCard] = useState<ViewerCard | null>(null);
   const ready = useClientReady();
   const router = useRouter(),
     [message, setMessage] = useState(""),
@@ -383,12 +385,22 @@ export function SocialCard({
         <div className="social-shared-cards">
           {post.cardSnapshots.map((card) => (
             <div key={card.id}>
-              <FantasyCardArtwork card={card} faceOnly />
+              <FantasyCardArtwork
+                card={card}
+                faceOnly
+                onInspect={() => setViewCard(card)}
+              />
             </div>
           ))}
           <span className="form-help">
             Shared card snapshot · ownership may have changed
           </span>
+          {viewCard && (
+            <CollectibleViewer
+              card={viewCard}
+              onClose={() => setViewCard(null)}
+            />
+          )}
         </div>
       )}
       {post.playerId && (

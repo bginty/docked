@@ -8,8 +8,7 @@ import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import { useServerClock } from "./use-server-clock";
 import { PackArtwork } from "./pack-artwork";
 import PackOpening from "./pack-opening";
-import { FantasySheet } from "./fantasy-player-sheet";
-import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { CollectibleViewer } from "./collectible-viewer";
 
 export function WeeklyCorePanel({
   member,
@@ -232,9 +231,7 @@ export function WeeklyCorePanel({
         />
       )}
       {detail && (
-        <FantasySheet title={detail.name} onClose={() => setDetail(null)}>
-          <FantasyCardArtwork card={detail} />
-        </FantasySheet>
+        <CollectibleViewer card={detail} onClose={() => setDetail(null)} />
       )}
     </>
   );

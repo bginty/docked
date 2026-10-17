@@ -43,6 +43,7 @@ async function main() {
     "collectible",
     "standings",
     "pack-shop",
+    "card-viewer",
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");
@@ -159,6 +160,17 @@ async function main() {
       }
       return json({ state: wallet() });
     }
+    if (url.pathname === "/api/fantasy/card-history")
+      return json({
+        season: null,
+        seasons: [],
+        rows: [],
+        played: 0,
+        averageBase: null,
+        bestBase: null,
+      });
+    if (url.pathname === "/api/marketplace")
+      return json({ state: { tradingEnabled: false, inventory: [] } });
     if (url.pathname === "/api/weekly-core") {
       if (req.method === "POST") {
         let raw = "";
@@ -354,12 +366,48 @@ async function main() {
         .click();
       await expect(page.locator(".collectible-face")).toBeVisible();
       assert.equal(opens, 1);
+      await page
+        .getByRole("button", { name: "Skip remaining reveals" })
+        .click();
+      await page
+        .getByRole("button", { name: `View ${cards[0].name}`, exact: true })
+        .first()
+        .click();
+      await page.getByRole("button", { name: /^Front of/ }).click();
+      await expect(
+        page.getByText("No published player scores yet."),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: "Sell card", exact: true }),
+      ).toBeDisabled();
+      await page.screenshot({
+        path: `${out}/weekly-card-back-${width}.png`,
+        fullPage: true,
+      });
       await page.keyboard.press("Escape");
       await page
         .getByRole("button", { name: "Replay Starter Pack", exact: true })
         .click();
       await expect(page.locator(".collectible-face")).toBeVisible();
       assert.equal(opens, 1, "original Starter replay awards nothing");
+      await page
+        .getByRole("button", { name: "Skip remaining reveals" })
+        .click();
+      await page
+        .getByRole("button", { name: `View ${cards[0].name}`, exact: true })
+        .first()
+        .click();
+      await page.getByRole("button", { name: /^Front of/ }).click();
+      await expect(
+        page.getByText("No published player scores yet."),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: "Sell card", exact: true }),
+      ).toBeDisabled();
+      await page.screenshot({
+        path: `${out}/starter-card-back-${width}.png`,
+        fullPage: true,
+      });
       await page.keyboard.press("Escape");
       results.push({
         width,

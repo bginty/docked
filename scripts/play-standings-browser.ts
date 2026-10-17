@@ -35,6 +35,7 @@ async function main() {
     "play-cards",
     "social-hub",
     "collectible",
+    "card-viewer",
     "standings",
     "pack-shop",
   ]

@@ -1,4 +1,5 @@
 "use client";
+import { CollectibleViewer } from "./collectible-viewer";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import type { SocialHub } from "@/server/social-hub";
@@ -6,7 +7,6 @@ import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { communityAction } from "./social-interactions";
 import { useRouter } from "next/navigation";
 import { MakeCardOffer } from "./private-card-offers";
-import { FantasySheet } from "./fantasy-player-sheet";
 import type { AwardedCard } from "@/core/pack-opening";
 import { boundedFetch } from "@/core/bounded-request";
 
@@ -555,27 +555,10 @@ function Collection({ data }: { data: SocialHub }) {
         </>
       )}
       {inspected && (
-        <FantasySheet title={inspected.name} onClose={() => setInspected(null)}>
-          <div className="social-offer-card">
-            <FantasyCardArtwork card={inspected} />
-          </div>
-          <p>
-            Current team: {inspected.team} · {inspected.status}
-          </p>
-          <p>Card reference: {inspected.id}</p>
-          <Link
-            href={`/fantasy/social?player=${encodeURIComponent(inspected.player_id)}`}
-          >
-            Discuss this player →
-          </Link>
-          {data.own && (
-            <Link
-              href={`/fantasy/cards?card=${encodeURIComponent(inspected.id)}`}
-            >
-              Manage your card →
-            </Link>
-          )}
-        </FantasySheet>
+        <CollectibleViewer
+          card={inspected}
+          onClose={() => setInspected(null)}
+        />
       )}
     </>
   );

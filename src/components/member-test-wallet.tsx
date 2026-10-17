@@ -1,5 +1,5 @@
 "use client";
-import { competitionNames } from "@/core/competition-display";
+import { CollectibleViewer } from "./collectible-viewer";
 import { AcquisitionShare } from "./acquisition-share";
 import { useServerClock } from "./use-server-clock";
 import { boundedFetch } from "@/core/bounded-request";
@@ -9,7 +9,6 @@ import Link from "next/link";
 import type { MemberTestView } from "@/core/member-test-wallet";
 import type { PackReceipt } from "@/core/pack-opening";
 import PackOpening from "./pack-opening";
-import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { PackShop } from "./pack-shop";
 import { packTitle } from "@/core/pack-presentation";
 import { EconomyOwnerReport } from "./economy-owner-report";
@@ -268,48 +267,16 @@ export function MemberTestWallet({
               </Link>
             </p>
           )}
-          {details && (
-            <section>
-              <h2>Card details and ownership</h2>
-              {s.cards
-                .filter((c) => c.id === details)
-                .map((c) => (
-                  <div key={c.id}>
-                    <FantasyCardArtwork card={c} />
-                    <p>
-                      Current team: {c.team} · {c.status}. Printed team:{" "}
-                      {c.edition_team ?? c.team}.
-                    </p>
-                    <p>
-                      {c.rarity_version
-                        ? `Choose ${competitionNames.SALARY_CAP} or ${competitionNames.OPEN} in Play. K and DEF/DST cards are collectible only in these seven-player competitions and cannot occupy their lineup slots.`
-                        : "Legacy test card; original edition terms preserved."}
-                    </p>
-                    <a href="/fantasy/scoring/how-it-works">Scoring rules</a>
-                    {s.supply
-                      .filter(
-                        (row) =>
-                          row.playerId === c.player_id && row.rarity === c.tier,
-                      )
-                      .map((row) => (
-                        <p key={row.rarity}>
-                          Lifetime test cap {row.cap.toLocaleString()} · issued{" "}
-                          {row.issued} · reserved {row.reserved} · available to
-                          issue {row.available.toLocaleString()}
-                        </p>
-                      ))}
-                  </div>
-                ))}
-              {s.cards
-                .find((c) => c.id === details)
-                ?.history.map((h, i) => (
-                  <p key={i}>
-                    {sydney(h.at)} Sydney · {h.reference}
-                  </p>
-                ))}
-              <button onClick={() => setDetails(null)}>Close history</button>
-            </section>
-          )}
+          {details &&
+            s.cards
+              .filter((c) => c.id === details)
+              .map((c) => (
+                <CollectibleViewer
+                  key={c.id}
+                  card={c}
+                  onClose={() => setDetails(null)}
+                />
+              ))}
         </>
       )}
       {surface === "wallet" && (

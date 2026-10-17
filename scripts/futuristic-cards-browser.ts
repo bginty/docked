@@ -34,6 +34,7 @@ async function main() {
     "play-cards",
     "social-hub",
     "collectible",
+    "card-viewer",
     "standings",
     "pack-shop",
   ]
@@ -221,6 +222,27 @@ async function main() {
       for (const view of ["market", "social", "member", "lineup"]) {
         await go(view);
         await capture(view);
+        if (view !== "lineup") {
+          await page
+            .getByRole("button", {
+              name: "View Taylor McBride card details",
+              exact: true,
+            })
+            .first()
+            .click();
+          await expect(
+            page.getByRole("dialog").locator(".collectible-flip"),
+          ).toBeVisible();
+          await page
+            .getByRole("dialog")
+            .getByRole("button", { name: /Front of/ })
+            .click();
+          await expect(
+            page.getByRole("dialog").locator(".collectible-flip"),
+          ).toHaveAttribute("data-side", "back");
+          await page.keyboard.press("Escape");
+          await expect(page.getByRole("dialog")).toHaveCount(0);
+        }
       }
       await go("reveal");
       await page.getByRole("button", { name: "Replay saved result" }).click();

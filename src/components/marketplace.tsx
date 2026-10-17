@@ -1,4 +1,9 @@
 "use client";
+import {
+  CollectibleViewer,
+  FlippableCard,
+  type ViewerCard,
+} from "./collectible-viewer";
 import { competitionNames } from "@/core/competition-display";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -37,6 +42,7 @@ const tabs = [
   ["swaps", "Swaps"],
 ] as const;
 export function Marketplace({ member }: { member: string }) {
+  const [viewCard, setViewCard] = useState<ViewerCard | null>(null);
   const ready = useClientReady();
   const [params, setParams] = useState(() => new URLSearchParams());
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -682,12 +688,7 @@ export function Marketplace({ member }: { member: string }) {
                   card={c}
                   faceOnly
                   onInspect={() => {
-                    if (!c.listed && !c.transferReason)
-                      setListing({
-                        card: c.id,
-                        price: 1000,
-                        preference: "sell",
-                      });
+                    setViewCard(c);
                   }}
                 />
                 <small>
@@ -760,8 +761,7 @@ export function Marketplace({ member }: { member: string }) {
                 <FantasyCardArtwork
                   card={l.card}
                   onInspect={() => {
-                    setDetail(l);
-                    setReview(null);
+                    setViewCard(l.card);
                   }}
                 />
                 <div className="market-listing-footer">
@@ -797,9 +797,10 @@ export function Marketplace({ member }: { member: string }) {
                     {l.status === "OPEN"
                       ? l.own
                         ? "Manage listing"
-                        : "View card & offers"
-                      : "View card"}
+                        : "View listing & offers"
+                      : "View transaction"}
                   </button>
+                  <button onClick={() => setViewCard(l.card)}>View card</button>
                 </div>
               </article>
             ))}
@@ -946,9 +947,14 @@ export function Marketplace({ member }: { member: string }) {
           )}
         </>
       )}
+      {viewCard && (
+        <CollectibleViewer card={viewCard} onClose={() => setViewCard(null)} />
+      )}
       {detail && (
         <FantasySheet title={detail.card.name} onClose={closeDetail}>
-          <FantasyCardArtwork card={detail.card} />
+          <div className="card-detail-art">
+            <FlippableCard card={detail.card} />
+          </div>
           <p>{cardIdentity(detail.card)} · Test economy</p>
           <p>
             Current team {detail.card.team}. Printed team{" "}
