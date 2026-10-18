@@ -198,9 +198,8 @@ function Collection({ data }: { data: SocialHub }) {
               Mute offer notifications
             </label>
             <p className="form-help">
-              Hiding cards removes them from member collection browsing and
-              listings. Posts you deliberately shared retain their original
-              audience and card snapshot.
+              Hidden cards won’t appear in collections or listings. Existing
+              posts keep their shared card image and original audience.
             </p>
             <label>
               Private minimum offer (whole test credits)

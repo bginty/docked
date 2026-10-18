@@ -55,7 +55,7 @@ export default async function RulesPage({
       <section className="scoring-review">
         <h1>NFL scoring rules</h1>
         <p>
-          {selected?.name ?? "NFL scoring reference"} · {rules.version}
+          {selected?.name ?? "NFL scoring reference"}
         </p>
         <p>
           {rules.rarityVersion
@@ -64,7 +64,7 @@ export default async function RulesPage({
         </p>
         <form>
           <label>
-            Competition / version
+            Competition
             <select name="competition" defaultValue={selected?.id ?? ""}>
               <option value="">Current seven-player reference</option>
               {rounds.map((r) => (

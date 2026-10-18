@@ -8,7 +8,7 @@ import { CollectibleViewer } from "./collectible-viewer";
 /** Read the original allocation receipt; never recreate or award the starter. */
 export function StarterPackHistory({ member }: { member: string }) {
   const [receipt, setReceipt] = useState<PackReceipt | null>(null),
-    [status, setStatus] = useState("Checking your original Starter Pack…"),
+    [status, setStatus] = useState("Loading Starter Pack…"),
     [open, setOpen] = useState(false),
     [card, setCard] = useState<AwardedCard | null>(null);
   useEffect(() => {
@@ -26,14 +26,14 @@ export function StarterPackHistory({ member }: { member: string }) {
           setReceipt(data.state.starter_receipt ?? null);
           setStatus(
             data.state.starter_receipt
-              ? "Original onboarding reward · saved result"
-              : "View your original onboarding pack in Cards.",
+              ? "Your original cards · replay anytime"
+              : "Find your Starter Pack in Cards.",
           );
         }
       })
       .catch(() => {
         if (!controller.signal.aborted)
-          setStatus("Original pack history could not be loaded.");
+          setStatus("Pack history couldn’t load. Try again later.");
       });
     return () => controller.abort();
   }, [member]);
@@ -71,9 +71,7 @@ export function StarterPackHistory({ member }: { member: string }) {
           ownedIds={[]}
         />
       )}
-      {card && (
-        <CollectibleViewer card={card} onClose={() => setCard(null)} />
-      )}
+      {card && <CollectibleViewer card={card} onClose={() => setCard(null)} />}
     </section>
   );
 }

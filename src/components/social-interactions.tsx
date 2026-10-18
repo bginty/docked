@@ -393,7 +393,7 @@ export function SocialCard({
             </div>
           ))}
           <span className="form-help">
-            Shared card snapshot · ownership may have changed
+            Card as shared · owner may have changed
           </span>
           {viewCard && (
             <CollectibleViewer

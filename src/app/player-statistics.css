@@ -87,8 +87,8 @@
 .player-statistics .statistics-summary {
   display: grid;
   grid-template-columns: 1.2fr 1fr 0.9fr;
-  margin: 12px 0 0;
-  padding: 14px 0;
+  margin: 8px 0 10px;
+  padding: 10px 0;
   border-block: 1px solid var(--stat-line);
 }
 .player-statistics .statistics-summary > div {
@@ -108,7 +108,7 @@
 }
 .player-statistics .statistics-summary dd {
   color: #fff;
-  font-size: 28px;
+  font-size: 25px;
   font-weight: 750;
   line-height: 1.15;
   margin: 5px 0 0;
@@ -157,7 +157,7 @@
   outline-offset: 2px;
 }
 .player-statistics .statistics-table-wrap {
-  margin-top: 14px;
+  margin-top: 8px;
 }
 .player-statistics .statistics-table {
   width: 100%;
@@ -168,7 +168,7 @@
 }
 .player-statistics .statistics-table th,
 .player-statistics .statistics-table td {
-  padding: 10px 5px;
+  padding: 4px 5px;
   height: auto;
   text-align: center;
   border: 0;
@@ -180,6 +180,7 @@
   line-height: 1.3;
 }
 .player-statistics .statistics-table thead th {
+  padding-block: 10px;
   color: #adc2da;
   font-size: 11px;
   font-weight: 650;
@@ -259,8 +260,8 @@
   font-weight: 600;
 }
 .player-statistics .statistics-game-detail {
-  margin-top: 20px;
-  padding: 18px;
+  margin-top: 12px;
+  padding: 12px;
   border: 1px solid var(--stat-line);
   border-radius: 16px;
   background: #102335;
@@ -277,7 +278,7 @@
   font-size: 18px;
 }
 .statistics-game-detail p,
-.statistics-disclosure p {
+.statistics-info p {
   font-size: 13px;
   line-height: 1.6;
   color: #b5c7dc;
@@ -299,13 +300,38 @@
   white-space: nowrap;
   color: #fff;
 }
-.statistics-disclosure {
-  margin-top: 24px;
+.player-statistics .statistics-information {
+  display: grid;
+  margin: 10px 0 0;
   border-top: 1px solid var(--stat-line);
-  padding-top: 12px;
+  padding: 0;
+  background: transparent;
+  text-align: left;
 }
-.statistics-disclosure a {
+.statistics-info a {
   color: #b7e8ff;
+}
+.player-statistics .statistics-info {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 13px;
+}
+.player-statistics .statistics-info summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 12px 0;
+  color: var(--stat-muted);
+  font-size: 13px;
+}
+.player-statistics .statistics-info summary:focus-visible {
+  outline: 2px solid #c7efff;
+  outline-offset: 2px;
+}
+.player-statistics .statistics-info p {
+  margin: 4px 0 12px;
+  line-height: 1.45;
 }
 .fantasy-mode .fantasy-sheet.statistics-sheet {
   width: min(800px, calc(100vw - 32px));
@@ -315,10 +341,13 @@
   padding-bottom: max(32px, env(safe-area-inset-bottom));
 }
 .statistics-sheet .sheet-inner > header {
-  align-items: start;
+  align-items: center;
+  top: 0;
+  z-index: 3;
+  padding: max(8px, env(safe-area-inset-top)) 0 8px;
 }
 .statistics-sheet .sheet-inner > header h2 {
-  font-size: clamp(20px, 4vw, 28px);
+  font-size: clamp(20px, 4vw, 24px);
   overflow-wrap: anywhere;
 }
 .statistics-expanded .statistics-table-wrap {
@@ -332,7 +361,7 @@
   position: sticky;
   left: 0;
   z-index: 1;
-  background: #101e31 !important;
+  background: #111c2e !important;
 }
 .collectible-back .statistics-compact .statistics-season {
   font-size: max(11px, 3.3cqi);
@@ -405,6 +434,7 @@
   line-height: 1.2;
 }
 .collectible-back .statistics-compact .statistics-expand {
+  margin-top: 8px;
   min-height: 44px;
   font-size: max(11px, 3.6cqi);
   padding: 4px 8px;

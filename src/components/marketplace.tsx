@@ -299,8 +299,8 @@ export function Marketplace({ member }: { member: string }) {
       </nav>
       {data && !data.tradingEnabled && (
         <p className="notice" role="status">
-          Trading is paused. Browse your cards and prepare listings; buying,
-          listing and acceptance are unavailable until beta trading is approved.
+          Trading is paused. You can browse cards; purchases, listings and
+          accepting offers are unavailable.
         </p>
       )}
       <Link className="market-offers-link" href="/fantasy/market?tab=swaps">

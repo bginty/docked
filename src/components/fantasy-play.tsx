@@ -609,8 +609,8 @@ function LegacyFantasyPlay({
                   </h3>
                   <p>
                     {view === "points"
-                      ? "Your immutable lineup and points appear after entering a round. Player scores are never reconstructed from your current collection."
-                      : "Your collection is safe. An approved round must be open before you can save a team."}
+                      ? "Enter a round to see your team’s points here."
+                      : "You can save a team when a round opens."}
                   </p>
                   <Link href="/fantasy/cards">View your cards</Link>
                 </div>

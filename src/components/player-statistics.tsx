@@ -5,6 +5,7 @@ import type {
   PlayerGameHistory,
 } from "@/core/player-card-history";
 import { formatBasePoints } from "@/core/card-score-display";
+import { nflPostgameWeights } from "@/core/nfl-postgame-policy";
 import {
   compactColumns,
   historyGameRows,
@@ -18,7 +19,7 @@ export function HistorySummary({ history }: { history: PlayerHistory }) {
   return (
     <dl className="statistics-summary">
       <div>
-        <dt>Season FPTS</dt>
+        <dt>Total FPTS</dt>
         <dd>{formatBasePoints(historyTotal(history))}</dd>
       </div>
       <div>
@@ -157,17 +158,18 @@ function GameTable({
               >
                 <strong>
                   {formatBasePoints(game.base)}
-                  {compact &&
-                    ["Calculated", "Provisional"].includes(
-                      gameScoreStatus(game),
-                    ) && <sup aria-label="Corrections possible">*</sup>}
+                  {["Calculated", "Provisional"].includes(
+                    gameScoreStatus(game),
+                  ) && <sup aria-label="Corrections possible">*</sup>}
                 </strong>
-                {!compact && (
+                {game.incomplete ||
+                !["Calculated", "Provisional", "Final"].includes(
+                  gameScoreStatus(game),
+                ) ? (
                   <small>
-                    {gameScoreStatus(game)}
-                    {game.incomplete ? " · Partial" : ""}
+                    {game.incomplete ? "Partial" : gameScoreStatus(game)}
                   </small>
-                )}
+                ) : null}
               </td>
               {columns.map((c) => (
                 <td key={c.key}>{game.values[c.key] ?? "—"}</td>
@@ -211,9 +213,6 @@ export function PlayerStatistics({
   const game = historyGameRows(history).find((g) => g.id === gameId);
   const partial = (history.feed?.complete ?? history.complete) === false;
   const coverageIncomplete = history.games?.some((g) => g.incomplete);
-  const provisional = historyGameRows(history)
-    .slice(0, 3)
-    .some((g) => ["Calculated", "Provisional"].includes(gameScoreStatus(g)));
   return (
     <section
       className={`player-statistics ${compact ? "statistics-compact" : "statistics-expanded"}`}
@@ -242,11 +241,13 @@ export function PlayerStatistics({
         </label>
       </div>
       <HistorySummary history={history} />
-      <p className="statistics-context">
-        {history.feed ? "Full-PPR reference" : "Published rules"} · Base points
-        {partial ? " · Partial season" : ""}
-        {!partial && coverageIncomplete ? " · Partial coverage" : ""}
-      </p>
+      {(partial || coverageIncomplete || history.feed?.stale) && (
+        <p className="statistics-context" role="status">
+          {partial || coverageIncomplete
+            ? "Partial statistics"
+            : "Update pending"}
+        </p>
+      )}
       {category ? (
         <>
           <CategoryTabs
@@ -275,9 +276,6 @@ export function PlayerStatistics({
       )}
       {compact ? (
         <>
-          <p className="statistics-key">
-            Latest 3 · {provisional ? "* May change · " : ""}— Unavailable
-          </p>
           <button
             type="button"
             className="statistics-expand"
@@ -288,10 +286,6 @@ export function PlayerStatistics({
         </>
       ) : (
         <>
-          <p className="statistics-key">
-            — Unavailable, never a guessed zero. Select a week for game details.{" "}
-            Swipe the table for additional columns on smaller screens.
-          </p>
           {game && (
             <section
               className="statistics-game-detail"
@@ -324,7 +318,6 @@ export function PlayerStatistics({
                 <p>
                   Unconfirmed:{" "}
                   {game.missing.map((k) => k.replaceAll("_", " ")).join(", ")}.
-                  No zeroes inferred.
                 </p>
               )}
               {game.parts.length > 0 && (
@@ -341,66 +334,99 @@ export function PlayerStatistics({
                     ))}
                 </dl>
               )}
-              <p>
-                Revision {game.revision}
-                {game.updatedAt
-                  ? ` · Updated ${new Date(game.updatedAt).toLocaleString()}`
-                  : ""}
-              </p>
+              <details className="statistics-info">
+                <summary>All game statistics</summary>
+                <dl className="statistics-breakdown">
+                  {Object.entries(game.values).map(([key, value]) => (
+                    <div key={key}>
+                      <dt>{statLabel(key)}</dt>
+                      <dd>{value ?? "—"}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {!Object.keys(game.values).length && (
+                  <p>No statistics available.</p>
+                )}
+              </details>
+              {game.revision > 1 && (
+                <p>Corrected statistics · Update {game.revision}</p>
+              )}
             </section>
           )}
-          <footer className="statistics-disclosure">
-            <p>
-              {history.feed
-                ? "Full-PPR player history is a reference. Competition results, standings and lineup awards retain their frozen rules and any explicitly approved card multiplier."
-                : "Player points use the published competition scoring engine. Saved competition results are unchanged."}{" "}
-              No rarity adjustment is applied here.
-            </p>
-            <p>
-              Rules:{" "}
-              {history.scoringVersion ??
-                history.feed?.version ??
-                "Not available"}
-              . Totals and averages cover scored appearances only; missing
-              appearances are not DNP.
-            </p>
-            {["epl", "football"].includes(sport.toLowerCase()) && (
-              <p>
-                Pass counts are not supplied by the approved feed. Only
-                supported EPL statistics are shown.
-              </p>
-            )}
-            {history.feed?.stale && (
-              <p role="status">Update overdue · retained statistics shown.</p>
-            )}
-            {history.feed && (
-              <p>
-                Last import:{" "}
-                {history.feed.lastSuccess
-                  ? new Date(history.feed.lastSuccess).toLocaleString()
-                  : "Unavailable"}
-                . Statistics:{" "}
-                <a
-                  href="https://github.com/nflverse/nflverse-data"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  nflverse
-                </a>
-                ,{" "}
-                <a
-                  href="https://creativecommons.org/licenses/by/4.0/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  CC BY 4.0
-                </a>
-                . Fantasy points calculated by Docked.
-              </p>
-            )}
-          </footer>
+          <StatisticsInformation history={history} sport={sport} />
         </>
       )}
     </section>
+  );
+}
+
+function statLabel(key: string) {
+  return key.replaceAll("_", " ").replace(/([a-z])([A-Z])/g, "$1 $2");
+}
+
+function StatisticsInformation({
+  history,
+  sport,
+}: {
+  history: PlayerHistory;
+  sport: string;
+}) {
+  return (
+    <footer className="statistics-information">
+      <details className="statistics-info">
+        <summary>Rules &amp; Scoring</summary>
+        <p>
+          Player points are shown before card bonuses. Competition scores follow
+          that competition’s rules.
+        </p>
+        {history.feed && (
+          <>
+            <p>Full-PPR · 1 point per reception.</p>
+            <dl className="statistics-breakdown">
+              {Object.entries(nflPostgameWeights).map(([stat, points]) => (
+                <div key={stat}>
+                  <dt>{statLabel(stat)}</dt>
+                  <dd>{formatBasePoints(points)} FPTS</dd>
+                </div>
+              ))}
+            </dl>
+          </>
+        )}
+        {sport.toLowerCase() === "nfl" && (
+          <a href="/fantasy/scoring/how-it-works">
+            Competition scoring rules ↗
+          </a>
+        )}
+        <p>Select a week to see its scoring breakdown.</p>
+      </details>
+      <details className="statistics-info">
+        <summary>
+          About Statistics{history.feed ? " · Data attribution" : ""}
+        </summary>
+        <p>— Unavailable · 0 Verified zero · * May change.</p>
+        <p>Totals and averages include scored appearances only.</p>
+        {history.feed && (
+          <p>
+            Statistics:{" "}
+            <a
+              href="https://github.com/nflverse/nflverse-data"
+              target="_blank"
+              rel="noreferrer"
+            >
+              nflverse
+            </a>{" "}
+            ·{" "}
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              CC BY 4.0
+            </a>
+            . Fantasy points calculated by Docked.
+          </p>
+        )}
+      </details>
+    </footer>
   );
 }
