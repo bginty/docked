@@ -60,6 +60,9 @@ export default async function OperationsPage({
           siteUrl={process.env.SITE_URL ?? "/"}
           period={selected.period}
         />
+        <a className="admin-control" href="/admin/marketplace">
+          Marketplace controls
+        </a>
         <details className="owner-reference-detail">
           <summary>Advanced reporting filters & export</summary>
           <a className="button secondary" href="/admin/nfl-testing">

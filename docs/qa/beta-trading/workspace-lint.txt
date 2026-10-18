@@ -1,0 +1,9 @@
+
+> docked-value-platform@1.0.0 lint
+> eslint src scripts tests --max-warnings=0
+
+
+C:\Users\61412\Documents\ChatGPT\Docked.com.au\scripts\nfl-schedule-release.mjs
+  10:7  error  'root' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (1 error, 0 warnings)

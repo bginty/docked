@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "widths": [
+    360,
+    412,
+    1440
+  ],
+  "scope": "Local real React component with mock HTTP report only; not Auth/DB/hosted acceptance or physical Samsung",
+  "checks": [
+    "Owner navigation",
+    "Pause requires reason",
+    "One pause submission",
+    "Status refresh",
+    "No page overflow",
+    "No console errors"
+  ]
+}

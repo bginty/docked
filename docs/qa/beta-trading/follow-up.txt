@@ -1,0 +1,115 @@
+TAP version 13
+# Subtest: administration has the exact navigation order and role-specific workspaces
+ok 1 - administration has the exact navigation order and role-specific workspaces
+  ---
+  duration_ms: 5.837
+  ...
+# Subtest: search is bounded and never accepts categories beyond the current role
+ok 2 - search is bounded and never accepts categories beyond the current role
+  ---
+  duration_ms: 1.2333
+  ...
+# Subtest: workspaces preserve activation boundaries and do not invent successful sends or grants
+ok 3 - workspaces preserve activation boundaries and do not invent successful sends or grants
+  ---
+  duration_ms: 0.7477
+  ...
+# Subtest: hosted trading needs its own explicit capability, never a funding flag or local flag
+ok 4 - hosted trading needs its own explicit capability, never a funding flag or local flag
+  ---
+  duration_ms: 1.6739
+  ...
+# Subtest: mode gates distinguish sale, swap and combined and leave cancellation available
+ok 5 - mode gates distinguish sale, swap and combined and leave cancellation available
+  ---
+  duration_ms: 0.4674
+  ...
+# Subtest: seller lists sale, swap or both without choosing a counterparty
+ok 6 - seller lists sale, swap or both without choosing a counterparty
+  ---
+  duration_ms: 143.107
+  ...
+# Subtest: credit, card and combined offers settle exact assets once using existing wallet
+ok 7 - credit, card and combined offers settle exact assets once using existing wallet
+  ---
+  duration_ms: 188.2243
+  ...
+# Subtest: changing listing terms invalidates pending offers and retains original terms
+ok 8 - changing listing terms invalidates pending offers and retains original terms
+  ---
+  duration_ms: 44.3591
+  ...
+# Subtest: failed acceptance never mutates input or partially transfers
+ok 9 - failed acceptance never mutates input or partially transfers
+  ---
+  duration_ms: 269.8522
+  ...
+# Subtest: two offers cannot transfer the same requested card twice
+ok 10 - two offers cannot transfer the same requested card twice
+  ---
+  duration_ms: 53.6529
+  ...
+# Subtest: no invented valuation, multiple cards or combined fee default
+ok 11 - no invented valuation, multiple cards or combined fee default
+  ---
+  duration_ms: 31.9988
+  ...
+# Subtest: hidden listings absent from browse and alternate wallet projections; owner retains access
+ok 12 - hidden listings absent from browse and alternate wallet projections; owner retains access
+  ---
+  duration_ms: 40.3239
+  ...
+# Subtest: combined fee is exactly higher of 7.5 percent credits and current swap floor
+ok 13 - combined fee is exactly higher of 7.5 percent credits and current swap floor
+  ---
+  duration_ms: 0.9931
+  ...
+# Subtest: one offered card cannot settle twice against two different sellers
+ok 14 - one offered card cannot settle twice against two different sellers
+  ---
+  duration_ms: 59.6409
+  ...
+# Subtest: listing cancellation and acceptance cannot both win
+ok 15 - listing cancellation and acceptance cannot both win
+  ---
+  duration_ms: 97.2491
+  ...
+# Subtest: collections default private and followers never bypass profile blocking
+ok 16 - collections default private and followers never bypass profile blocking
+  ---
+  duration_ms: 6.0622
+  ...
+# Subtest: private offer activation cannot reach hosting, production, or non-loopback databases
+ok 17 - private offer activation cannot reach hosting, production, or non-loopback databases
+  ---
+  duration_ms: 0.4915
+  ...
+# Subtest: acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+ok 18 - acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement
+  ---
+  duration_ms: 171.5029
+  ...
+# Subtest: two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+ok 19 - two distinct buyers: only one private offer can settle; competing public purchase makes acceptance stale
+  ---
+  duration_ms: 99.6135
+  ...
+# Subtest: decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+ok 20 - decline cooldown, one active offer, expiry boundary and daily limits are deterministic
+  ---
+  duration_ms: 74.3421
+  ...
+# Subtest: blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+ok 21 - blocked permissions, locks, insufficient funds, private minima and cross-account actions cannot settle
+  ---
+  duration_ms: 57.6705
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3440.8034

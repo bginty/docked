@@ -7,6 +7,12 @@ import { creditsCommand } from "@/core/credits-sandbox";
 import { refreshEconomyCatalogue } from "./economy-catalogue";
 import { setCommunityClaims } from "./community-social";
 import type { TransactionSql } from "postgres";
+import {
+  assertBetaTrade,
+  betaTradingAccess,
+  recordTradingFailure,
+} from "./beta-trading";
+import { tradingCommandMode, reviewedBetaTrading } from "../core/beta-trading";
 import { privateOfferEnabled } from "../core/private-card-offers";
 import { hiddenMarketCards } from "./market-visibility";
 import {
@@ -49,7 +55,7 @@ export async function memberTestSource(input?: unknown) {
     const counterparties =
       command?.kind === "offer"
         ? [command.other]
-        : command?.kind === "buy"
+        : command?.kind === "buy" || command?.kind === "review-buy"
           ? [state.listings[command.listing]?.member]
           : command?.kind === "accept"
             ? [
@@ -57,6 +63,25 @@ export async function memberTestSource(input?: unknown) {
                 state.swaps[command.swap]?.other,
               ]
             : [];
+    const mode =
+      command?.kind === "accept" && state.swaps[command.swap]?.creditTopUp
+        ? "combined"
+        : command && tradingCommandMode(command);
+    if (
+      command &&
+      ["list", "replace-listing"].includes(command.kind) &&
+      "preference" in command &&
+      command.preference &&
+      command.preference !== "sell" &&
+      !reviewedBetaTrading(process.env) &&
+      !privateOfferEnabled(process.env)
+    )
+      throw new CreditsRejected("Swap listings are temporarily unavailable");
+    if (mode)
+      await assertBetaTrade(tx, mode, [
+        who.user.id,
+        ...counterparties.filter((id): id is string => !!id),
+      ]);
     for (const id of counterparties) {
       if (
         !id ||
@@ -102,22 +127,6 @@ export async function memberTestSource(input?: unknown) {
       if (!isOwner || who.aal !== "aal2") throw Error("Owner MFA required");
       command = parsed;
     } else command = memberTestCommand(body.command);
-    if (
-      process.env.DOCKED_TEST_MARKET_READ_ONLY === "true" &&
-      ["list", "replace-listing", "buy", "offer", "accept"].includes(
-        command.kind,
-      )
-    )
-      throw new CreditsRejected(
-        "Trading is temporarily paused. Your cards and credits are unchanged. You can still cancel listings and offers.",
-      );
-    if (
-      (command.kind === "list" || command.kind === "replace-listing") &&
-      command.preference &&
-      command.preference !== "sell" &&
-      !privateOfferEnabled(process.env)
-    )
-      throw new CreditsRejected("Swap listings await beta trading approval");
     const other = command.kind === "offer" ? command.other : null;
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
@@ -131,6 +140,8 @@ export async function memberTestSource(input?: unknown) {
         command,
       );
     } catch (error) {
+      if (tradingCommandMode(command))
+        await recordTradingFailure(sql, who, body.request, error);
       if (command.kind === "buy-pack" && error instanceof CreditsRejected) {
         const category = /Insufficient/.test(error.message)
           ? "FUNDS"
@@ -144,7 +155,7 @@ export async function memberTestSource(input?: unknown) {
       throw error;
     }
   }
-  const { s, hidden } = await sql.begin(async (tx) => {
+  const { s, hidden, trading } = await sql.begin(async (tx) => {
     await setCommunityClaims(tx, who);
     await tx`select pg_advisory_xact_lock(71820342)`;
     const [access] =
@@ -154,13 +165,21 @@ export async function memberTestSource(input?: unknown) {
     const s = await new CreditsSandboxStore(tx as unknown as typeof sql).read();
     await refreshEconomyCatalogue(tx, s);
     assertMemberTestEconomy(s);
-    return { s, hidden: await hiddenMarketCards(tx, s, who.user.id) };
+    return {
+      s,
+      hidden: await hiddenMarketCards(tx, s, who.user.id),
+      trading: await betaTradingAccess(
+        tx as unknown as typeof sql,
+        who.user.id,
+      ),
+    };
   });
   if (command?.kind === "open-pack")
     result = testReceipt(s, command.entitlement, who.user.id);
   return {
     s,
     hidden,
+    trading,
     member: who.user.id,
     peers: peers.map((p) => ({ id: String(p.id), label: String(p.label) })),
     isOwner,

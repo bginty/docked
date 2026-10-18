@@ -50,6 +50,7 @@ export const adminNavigation = [
 ] as const;
 export type AdminSection = (typeof adminNavigation)[number]["id"];
 export function adminHref(id: AdminSection, role: string = "owner") {
+  if (id === "marketplace" && role === "owner") return "/admin/marketplace";
   return id === "dashboard"
     ? role === "owner"
       ? "/admin/operations"

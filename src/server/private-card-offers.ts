@@ -1,7 +1,13 @@
 import "server-only";
 import { z } from "zod";
 import { requireIdentity } from "./auth";
-import { db } from "./db";
+import { db, rateLimit } from "./db";
+import {
+  assertBetaTrade,
+  betaTradingAccess,
+  recordTradingFailure,
+} from "./beta-trading";
+import { reviewedBetaTrading, tradingCommandMode } from "../core/beta-trading";
 import { requireCommunityAccess } from "./community-policy";
 import {
   setCommunityClaims,
@@ -29,7 +35,8 @@ export async function privateOffers(
   const query = marketQuery.parse({ tab: "listings", ...inventoryQuery });
   const who = await requireIdentity();
   await requireCommunityAccess("community_social");
-  const enabled = privateOfferEnabled(process.env);
+  const enabled =
+    privateOfferEnabled(process.env) || reviewedBetaTrading(process.env);
   if (!enabled) {
     if (input)
       throw new CreditsRejected("Private offers await beta trading approval");
@@ -58,6 +65,8 @@ export async function privateOffers(
           .parse(input);
   let permission: OfferPermission = { allowed: false, minimum: null };
   const sql = db();
+  if (body && !(await rateLimit(`private-trade:${who.user.id}`, 40, 60)))
+    throw new CreditsRejected("Please wait before another request");
   const [access] =
     await sql`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
   if (!access || (access.kind === "owner" && who.aal !== "aal2"))
@@ -70,12 +79,6 @@ export async function privateOffers(
       assertMemberTestEconomy(state);
       await refreshEconomyCatalogue(tx, state);
       const cmd = body?.command;
-      if (
-        process.env.DOCKED_TEST_MARKET_READ_ONLY === "true" &&
-        cmd &&
-        ["private-offer", "private-accept"].includes(cmd.kind)
-      )
-        throw new CreditsRejected("Trading paused");
       const offer =
         cmd && cmd.kind !== "private-offer"
           ? state.privateCardOffers?.[cmd.offer]
@@ -86,6 +89,19 @@ export async function privateOffers(
           ? state.commerce.cards[cmd.card]?.owner
           : offer?.seller;
       const buyer = cmd?.kind === "private-offer" ? who.user.id : offer?.buyer;
+      const mode =
+        cmd?.kind === "private-accept" && offer
+          ? tradingCommandMode({
+              kind: "private-offer",
+              price: offer.price,
+              offeredCards: offer.offeredCards,
+            })
+          : cmd && tradingCommandMode(cmd);
+      if (mode)
+        await assertBetaTrade(tx, mode, [
+          who.user.id,
+          ...[seller, buyer].filter((id): id is string => !!id),
+        ]);
       for (const member of new Set(
         (cmd?.kind === "private-cancel" || cmd?.kind === "private-decline"
           ? [who.user.id]
@@ -172,12 +188,18 @@ export async function privateOffers(
     (s, a, r, c, n) => executePrivateOffer(s, a, r, c, n, permission),
   );
   let result: unknown = null;
-  if (body)
-    result = await store.execute(
-      { id: who.user.id, role: "member" },
-      body.request,
-      body.command,
-    );
+  if (body) {
+    try {
+      result = await store.execute(
+        { id: who.user.id, role: "member" },
+        body.request,
+        body.command,
+      );
+    } catch (error) {
+      await recordTradingFailure(sql, who, body.request, error);
+      throw error;
+    }
+  }
   const state = await store.read();
   const profiles =
     await sql`select p.user_id,p.display_name from private.social_profiles p where p.user_id in (select user_id from credits_sandbox.access where enabled)`;
@@ -211,15 +233,19 @@ export async function privateOffers(
     query,
     context.context,
   );
+  const trading = await sql.begin(async (tx) => {
+    await setCommunityClaims(tx, who);
+    return betaTradingAccess(tx as unknown as typeof sql, who.user.id);
+  });
   return {
-    enabled,
+    enabled: trading.offers,
     offers,
     result,
     inventory: inventoryView.inventory,
     inventoryTotal: inventoryView.inventoryTotal,
     inventoryPage: inventoryView.query.inventoryPage,
     member: who.user.id,
-    combinedEnabled: true,
+    combinedEnabled: trading.combined,
     swapFee: swapFeeQuote(
       state.creditOnly,
       state.policy.swapFeeEach,

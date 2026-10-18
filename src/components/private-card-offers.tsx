@@ -148,7 +148,7 @@ export function MakeCardOffer({
     (preference === "swap" && !offered) ||
     combinedBlocked ||
     !!feeError ||
-    !data;
+    !data?.enabled;
   return (
     <>
       <button
@@ -160,9 +160,7 @@ export function MakeCardOffer({
       >
         Make offer
       </button>
-      {!enabled && (
-        <small>Offers are a preview. Trading is not activated.</small>
-      )}
+      {!enabled && <small>Offers are temporarily unavailable.</small>}
       {open && (
         <FantasySheet title="Make an offer" onClose={() => setOpen(false)}>
           <p>
@@ -280,7 +278,7 @@ export function MakeCardOffer({
           </label>
           {combinedBlocked && (
             <p role="status">
-              Card-plus-credit settlement awaits approval of its fee policy.
+              Card-plus-credit offers are temporarily unavailable.
             </p>
           )}
           <p className="form-help">
@@ -384,8 +382,8 @@ export function PrivateOffersInbox({ member }: { member: string }) {
       {!data && !error && <p>Loading offers…</p>}
       {data && !data.enabled && (
         <p>
-          Private offers await beta trading approval. No hosted settlement is
-          enabled.
+          Trading is temporarily unavailable. You can still cancel or decline
+          existing offers.
         </p>
       )}
       {data?.enabled && data.offers.length === 0 && <p>No offers yet.</p>}
@@ -437,7 +435,9 @@ export function PrivateOffersInbox({ member }: { member: string }) {
                 <button
                   key={kind}
                   className="button ghost"
-                  disabled={busy}
+                  disabled={
+                    busy || (kind === "private-accept" && !data.enabled)
+                  }
                   onClick={() => setReview({ offer: o.id, kind })}
                 >
                   {kind === "private-accept"
@@ -459,7 +459,9 @@ export function PrivateOffersInbox({ member }: { member: string }) {
               <div className="actions">
                 <button
                   className="button"
-                  disabled={busy}
+                  disabled={
+                    busy || (review.kind === "private-accept" && !data.enabled)
+                  }
                   onClick={() =>
                     send({ kind: review.kind, offer: o.id }).then((ok) => {
                       if (ok) setReview(null);

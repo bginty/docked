@@ -1,0 +1,52 @@
+.admin-reference .owner-marketplace {
+  padding: 20px;
+}
+.owner-marketplace h1 {
+  font-size: clamp(1.35rem, 5vw, 2rem);
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+.owner-marketplace p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+.owner-marketplace label {
+  display: grid;
+  gap: 8px;
+  margin: 20px 0 12px;
+  font-size: 0.9rem;
+}
+.owner-marketplace input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #476078;
+  border-radius: 8px;
+  background: #071625;
+  color: #f4f8ff;
+  padding: 10px;
+  font: inherit;
+}
+.owner-marketplace .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.owner-marketplace button {
+  min-height: 44px;
+  border: 1px solid #536b82;
+  border-radius: 8px;
+  background: #152b41;
+  color: #f4f8ff;
+  padding: 8px 12px;
+  font: inherit;
+}
+.owner-marketplace button:disabled {
+  opacity: 0.5;
+}
+.owner-marketplace li {
+  overflow-wrap: anywhere;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
