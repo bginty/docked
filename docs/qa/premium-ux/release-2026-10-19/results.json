@@ -1,0 +1,117 @@
+{
+  "scope": "Real components with local simulated identity/persistence; timings are fixture render loads, not authenticated hosted navigation",
+  "evidence": [
+    {
+      "width": 1536,
+      "before": true,
+      "localFixtureLoadMs": 571
+    },
+    {
+      "width": 1536,
+      "before": true,
+      "cardCenterOffsetPx": -23
+    },
+    {
+      "width": 1536,
+      "before": false,
+      "localFixtureLoadMs": 552
+    },
+    {
+      "width": 1536,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 1440,
+      "before": true,
+      "localFixtureLoadMs": 208
+    },
+    {
+      "width": 1440,
+      "before": true,
+      "cardCenterOffsetPx": -23
+    },
+    {
+      "width": 1440,
+      "before": false,
+      "localFixtureLoadMs": 206
+    },
+    {
+      "width": 1440,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 1024,
+      "before": true,
+      "localFixtureLoadMs": 205
+    },
+    {
+      "width": 1024,
+      "before": true,
+      "cardCenterOffsetPx": -23
+    },
+    {
+      "width": 1024,
+      "before": false,
+      "localFixtureLoadMs": 209
+    },
+    {
+      "width": 1024,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 412,
+      "before": true,
+      "localFixtureLoadMs": 208
+    },
+    {
+      "width": 412,
+      "before": true,
+      "cardCenterOffsetPx": -23
+    },
+    {
+      "width": 412,
+      "before": false,
+      "localFixtureLoadMs": 209
+    },
+    {
+      "width": 412,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 360,
+      "before": true,
+      "localFixtureLoadMs": 192
+    },
+    {
+      "width": 360,
+      "before": true,
+      "cardCenterOffsetPx": -23
+    },
+    {
+      "width": 360,
+      "before": false,
+      "localFixtureLoadMs": 204
+    },
+    {
+      "width": 360,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    }
+  ],
+  "checks": [
+    "Week 7 draft independent of Week 6",
+    "historical sold cards restored from entry snapshot",
+    "cap-aware Auto Select preview/apply/cancel",
+    "all rarity reveal centering",
+    "five viewports",
+    "Back-safe sheets",
+    "reload saved draft",
+    "serious/critical accessibility checks",
+    "animated Next/Skip and immediate Escape dismissal; short-screen controls reachable"
+  ],
+  "errors": []
+}

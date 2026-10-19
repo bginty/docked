@@ -6,10 +6,12 @@ export function FantasyLoadError({
   authRequired = false,
   mfaRequired = false,
   permissionDenied = false,
+  compact = false,
 }: {
   authRequired?: boolean;
   mfaRequired?: boolean;
   permissionDenied?: boolean;
+  compact?: boolean;
 }) {
   const [next, setNext] = useState("/fantasy/play");
   useEffect(() => {
@@ -27,6 +29,7 @@ export function FantasyLoadError({
     <>
       <StartupReady />
       <LightSweep
+        compact={compact}
         failed
         authRequired={authRequired}
         failureMessage={

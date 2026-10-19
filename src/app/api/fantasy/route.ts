@@ -4,18 +4,35 @@ import { fantasyRequest } from "@/server/fantasy";
 import { boundedCommunityBody } from "@/core/community-social";
 import { fantasyFailureOutcome } from "@/core/fantasy-response";
 import { ZodError } from "zod";
+import { memberAccessFailure } from "@/core/member-access-recovery";
 export const runtime = "nodejs";
 const headers = { "Cache-Control": "private, no-store" };
 export async function GET() {
   try {
     return NextResponse.json(await fantasyRequest(), { headers });
-  } catch {
+  } catch (error) {
+    const kind = memberAccessFailure(error);
     return NextResponse.json(
       {
+        kind,
         error:
-          "Fantasy requires an eligible verified account, current consent and configured services.",
+          kind === "authentication"
+            ? "Please sign in again."
+            : kind === "mfa"
+              ? "Verify your identity to continue."
+              : kind === "permission"
+                ? "You don’t have access to this page."
+                : "Docked could not refresh. Please retry.",
       },
-      { status: 403, headers },
+      {
+        status:
+          kind === "authentication"
+            ? 401
+            : kind === "mfa" || kind === "permission"
+              ? 403
+              : 503,
+        headers,
+      },
     );
   }
 }

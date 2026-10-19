@@ -55,6 +55,7 @@ async function main() {
     "social-hub",
     "collectible",
     "card-viewer",
+    "premium-ux",
   ]
     .map((f) => readFileSync(`src/app/${f}.css`, "utf8"))
     .join("\n");
@@ -328,8 +329,23 @@ async function main() {
       .getByRole("button", { name: "Check original request", exact: true })
       .click();
     await expect(
-      pb.getByRole("heading", { name: "Request confirmed" }),
+      pb.getByRole("heading", { name: "Congratulations!" }),
     ).toBeVisible();
+    for (const width of [1536, 1440, 1024, 412, 360]) {
+      await pb.setViewportSize({ width, height: width > 600 ? 1024 : 915 });
+      await pb.screenshot({
+        path: `${dir}/purchase-${width}.png`,
+        fullPage: true,
+      });
+      const center = await pb.locator(".purchase-card").boundingBox();
+      assert.ok(
+        center && Math.abs(center.x + center.width / 2 - width / 2) < 3,
+      );
+    }
+    await expect(
+      pb.getByRole("link", { name: "View in My Cards" }),
+    ).toHaveAttribute("href", new RegExp(`card=${cardId}`));
+    await pb.getByRole("button", { name: "Continue Browsing" }).click();
     assert.equal(state.commerce.cards[cardId].owner, marketActors[1].id);
     assert.equal(wallet(state, marketActors[0].id).spendable, initial[0] + 950);
     assert.equal(

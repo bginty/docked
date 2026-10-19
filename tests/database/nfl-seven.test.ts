@@ -122,6 +122,65 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       4400000,
     );
     await command("seven_draft", rounds[0], picks.slice(0, 3), 0);
+    // An independently registered future week in the same mode must never mutate
+    // the current entry. Saving a draft does not create an entry or reservation.
+    const future = randomUUID(),
+      futureStream = "beta-real:qa:" + future;
+    const beforeCurrent = (
+      await q(
+        `select snapshot,lineup_revision from beta_fantasy.entries where competition_id=$1 and user_id=$2`,
+        [rounds[0], u],
+      )
+    )[0];
+    await q(
+      `insert into beta_fantasy.competitions(id,name,sport,season,round,opens_at,locks_at,rules,scoring_id,prize) select $1,'LOCAL FUTURE WEEK',sport,season,1000,clock_timestamp()+interval '7 days',clock_timestamp()+interval '8 days',rules,scoring_id,prize from beta_fantasy.competitions where id=$2`,
+      [future, rounds[0]],
+    );
+    await q(`insert into sports_feed.streams(id) values($1)`, [futureStream]);
+    await q(
+      `insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures) select $1,$2,'member',fixtures from sports_feed.nfl_rounds where competition_id=$3`,
+      [future, futureStream, rounds[0]],
+    );
+    const request = randomUUID();
+    await command("seven_draft", future, picks, 0, request);
+    await command("seven_draft", future, picks, 0, request);
+    await assert.rejects(
+      () => command("seven_enter", future, picks, 0),
+      /Competition unavailable/,
+    );
+    await pg.exec(
+      await readFile(
+        "supabase/migrations/20261019113000_future_week_private_drafts.sql",
+        "utf8",
+      ),
+    );
+    assert.equal(
+      (
+        await q(
+          `select revision from beta_fantasy.round_drafts where competition_id=$1`,
+          [future],
+        )
+      )[0].revision,
+      1,
+    );
+    assert.equal(
+      (
+        await q(
+          `select count(*)::int n from beta_fantasy.entries where competition_id=$1`,
+          [future],
+        )
+      )[0].n,
+      0,
+    );
+    assert.deepEqual(
+      (
+        await q(
+          `select snapshot,lineup_revision from beta_fantasy.entries where competition_id=$1 and user_id=$2`,
+          [rounds[0], u],
+        )
+      )[0],
+      beforeCurrent,
+    );
     await q(
       `insert into beta_fantasy.team_names(user_id,name) values($1,'Local Team')`,
       [u],
@@ -495,7 +554,10 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
     // Member-facing review metadata never includes other users' selections.
     const review = (await q(`select sports_feed.member_review_context() r`))[0]
       .r;
-    assert.equal(review.rounds.length, 3);
+    assert.deepEqual(
+      review.rounds.map((r: any) => r.id).sort(),
+      [...rounds, future, publicRound].sort(),
+    );
     assert.ok(
       review.rounds.every(
         (r: any) => !r.entered && r.rules.version === rule.version,

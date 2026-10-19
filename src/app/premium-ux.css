@@ -1,0 +1,215 @@
+.competition-weeks {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  gap: 8px;
+  align-items: center;
+  margin-block: 16px;
+}
+.competition-weeks .play-support {
+  min-width: 0;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px;
+}
+.competition-week-options {
+  display: grid;
+  gap: 10px;
+}
+.competition-week-options button {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+}
+.competition-week-options [aria-current] {
+  border-color: #3bd9ff;
+  background: #103455;
+}
+.historical-lineup-scores {
+  padding-left: 18px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.field-toolbar {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lineup-auto-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+.lineup-auto-actions small {
+  color: #b8cada;
+}
+.fantasy-mode dialog.purchase-celebration {
+  width: min(100%, 760px);
+  max-width: 100vw;
+  max-height: 100dvh;
+  margin: auto;
+  border: 1px solid #3d5d7d;
+  border-radius: 24px;
+  padding: 0;
+  background: #020a17;
+  color: #eef7ff;
+  scrollbar-gutter: stable both-edges;
+}
+.purchase-celebration .sheet-inner {
+  padding: clamp(16px, 3vw, 32px);
+  background:
+    radial-gradient(ellipse at 50% 50%, #123354 0, transparent 62%), #020a17;
+  overflow: hidden;
+}
+.purchase-celebration .sheet-inner > header {
+  align-items: center;
+  border: 0;
+  background: transparent;
+}
+.purchase-celebration .sheet-inner > header h2 {
+  flex: 1;
+  font-size: clamp(24px, 5.4vw, 44px);
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffe8ac;
+  text-shadow:
+    0 2px 0 #8d5f21,
+    0 0 20px #c78d3226;
+  margin: 10px 0;
+}
+.purchase-celebration .sheet-inner > header button {
+  flex: 0 0 44px;
+  padding: 8px;
+  min-height: 44px;
+}
+.purchase-stage {
+  text-align: center;
+}
+.purchase-eyebrow {
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  font-size: clamp(11px, 2.5vw, 16px);
+}
+.purchase-card-stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  padding: 18px 12px 28px;
+  margin-bottom: 20px;
+}
+.purchase-card-stage::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0 -40%;
+  background: conic-gradient(
+    from 220deg at 50% 100%,
+    transparent 0deg,
+    #bdeaff22 20deg,
+    transparent 32deg 45deg,
+    #bdeaff22 58deg,
+    transparent 65deg 220deg,
+    #bdeaff22 240deg,
+    transparent 255deg
+  );
+}
+.purchase-card {
+  width: min(300px, 66vw, 36dvh);
+  position: relative;
+  filter: drop-shadow(
+    0 0 16px color-mix(in srgb, var(--tier) 45%, transparent)
+  );
+}
+.purchase-card .collectible-art {
+  width: 100%;
+}
+.purchase-podium {
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  width: min(430px, 95%);
+  height: 44px;
+  border: 2px solid var(--tier);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #17324b, #030916 70%);
+  box-shadow:
+    0 0 26px color-mix(in srgb, var(--tier) 45%, transparent),
+    0 9px 0 #101a2d;
+}
+.purchase-sparks {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.purchase-sparks i {
+  position: absolute;
+  left: calc(5% + mod(var(--spark) * 17, 90) * 1%);
+  top: 80%;
+  width: 4px;
+  height: 9px;
+  background: var(--tier);
+  opacity: 0;
+  animation: purchase-spark 1.8s ease-out calc(var(--spark) * 0.045s) 1 both;
+}
+.purchase-icon .purchase-podium {
+  border-color: #ffe2a0;
+  box-shadow:
+    0 0 38px #e9ad4d99,
+    0 9px 0 #2d2010;
+}
+.purchase-actions {
+  display: grid;
+  gap: 12px;
+  margin: 18px auto 10px;
+  max-width: 510px;
+}
+.purchase-actions .button {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #008cff, #0059f7);
+}
+.purchase-actions .button.secondary {
+  background: #061426;
+  border: 1px solid #355575;
+}
+.purchase-stage .share-prompt {
+  justify-content: center;
+}
+@keyframes purchase-spark {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-320px) rotate(130deg);
+  }
+}
+@media (max-width: 600px) {
+  .fantasy-mode dialog.purchase-celebration {
+    width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+  .purchase-celebration .sheet-inner {
+    min-height: 100%;
+    padding: max(16px, env(safe-area-inset-top))
+      max(16px, env(safe-area-inset-right))
+      max(20px, env(safe-area-inset-bottom))
+      max(16px, env(safe-area-inset-left));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .purchase-sparks i {
+    animation: none;
+  }
+}

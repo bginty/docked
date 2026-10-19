@@ -1,4 +1,5 @@
 import { authSessionsRelation } from "@/core/auth-relations";
+import { cache } from "react";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { db } from "./db";
@@ -36,7 +37,9 @@ export async function authClient() {
     },
   );
 }
-export async function identity() {
+// React's server-render cache lasts one request only. Layout/loading/page may
+// ask concurrently; all still use the same verified session and MFA checks.
+export const identity = cache(async function identity() {
   const c = await authClient();
   if (!c) return null;
   const { data: session, error: sessionError } = await c.auth.getSession();
@@ -89,7 +92,7 @@ export async function identity() {
     sessionId: claims.sessionId,
     authenticatedAt: claims.authenticatedAt,
   };
-}
+});
 export async function requireIdentity() {
   const who = await identity();
   if (!who) throw new Error("Authentication required");

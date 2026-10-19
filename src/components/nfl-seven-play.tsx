@@ -40,6 +40,10 @@ import {
 import { teamFilter } from "@/core/card-presentation";
 
 import { LocalDateTime } from "./local-date-time";
+import { CompetitionWeekSelector } from "./competition-week-selector";
+import { WeeklyLineupResult } from "./weekly-lineup-result";
+import type { autoSelect } from "@/core/lineup-auto-select";
+import { boundedFetch } from "@/core/bounded-request";
 
 function FantasyAmount({ value }: { value: number }) {
   const exact = value.toLocaleString("en-AU");
@@ -91,6 +95,13 @@ export function NflSevenPlay({
   ) => Promise<Record<string, unknown> | null>;
 }) {
   const navigationQuery = useSearchParams();
+  const [autoBusy, setAutoBusy] = useState(false);
+  const [recommendation, setRecommendation] = useState<null | {
+    competition: string;
+    original: string;
+    result: ReturnType<typeof autoSelect>;
+    asOf: string | null;
+  }>(null);
   const [chosen, setChosen] = useState(""),
     [drafts, setDrafts] = useState<Record<string, Draft>>({}),
     [slot, setSlot] = useState<string | null>(null),
@@ -155,11 +166,17 @@ export function NflSevenPlay({
 
   const comp =
     rounds.find((c) => c.id === chosen) ??
+    rounds.find(
+      (c) =>
+        c.season === navigationQuery.get("season") &&
+        String(c.round) === navigationQuery.get("week"),
+    ) ??
     rounds.find((c) => Date.parse(c.locks_at) > now) ??
     rounds.at(-1);
 
-  const cfg =
-    data.seven?.configurations[String(comp?.rules.lineup_version)] ?? nflSeven;
+  const publishedConfig =
+    data.seven?.configurations[String(comp?.rules.lineup_version)];
+  const cfg = publishedConfig ?? nflSeven;
 
   const entry = data.seven?.entries.find((e) => e.competition_id === comp?.id),
     saved = data.seven?.drafts.find((d) => d.competition_id === comp?.id);
@@ -243,6 +260,7 @@ export function NflSevenPlay({
 
       .filter(
         (c) =>
+          !!comp?.scored_at ||
           Date.parse(c.kickoff) <= now ||
           data.seven?.locks.some(
             (l) => l.competition_id === comp?.id && l.slot === c.slot,
@@ -254,8 +272,13 @@ export function NflSevenPlay({
 
   const inventory = [...(data.seven?.inventory ?? [])];
 
+  const historical =
+    !!comp?.scored_at ||
+    (!!entry && locks.size === entry.snapshot.length && locks.size > 0);
   const picks = restoreLockedSelections(
-    draftPicks,
+    historical
+      ? (entry?.snapshot.map((c) => ({ slot: c.slot, card: c.card_id })) ?? [])
+      : draftPicks,
 
     [...locks.values()].map((c) => ({ slot: c.slot, card: c.card_id })),
   );
@@ -316,7 +339,70 @@ export function NflSevenPlay({
 
   const closed = !!comp && Date.parse(comp.locks_at) <= now,
     editable =
-      !!comp && !comp.scored_at && (!closed || !!entry) && !comp.rules.disabled;
+      !!comp &&
+      !!publishedConfig &&
+      !historical &&
+      (!closed || !!entry) &&
+      !comp.rules.disabled;
+  const entryOpensLater = !!comp?.opens_at && Date.parse(comp.opens_at) > now;
+
+  function selectWeek(id: string) {
+    const target = rounds.find((c) => c.id === id);
+    if (!target) return;
+    setChosen(id);
+    setRecommendation(null);
+    setProfile(null);
+    setSlot(null);
+    setNotice("");
+    const url = new URL(window.location.href);
+    for (const [k, v] of Object.entries({
+      competition: id,
+      season: target.season,
+      week: String(target.round),
+      mode,
+      sport: "nfl",
+    }))
+      url.searchParams.set(k, v);
+    window.history.pushState(null, "", url);
+  }
+  async function recommend() {
+    if (!comp || !editable || autoBusy) return;
+    setAutoBusy(true);
+    setNotice("");
+    try {
+      const response = await boundedFetch(
+        `/api/fantasy/auto-select?competition=${encodeURIComponent(comp.id)}`,
+        { cache: "no-store" },
+      );
+      const body = await response.json();
+      if (!response.ok)
+        throw Error(body.error || "Auto Select is unavailable.");
+      if (body.member !== data.user_id || body.competition !== comp.id)
+        throw Error("Account or competition changed. Please retry.");
+      const result = body.recommendation as ReturnType<typeof autoSelect>;
+      if (
+        !result ||
+        !Array.isArray(result.picks) ||
+        !Array.isArray(result.missing) ||
+        !Array.isArray(result.unranked)
+      )
+        throw Error("Recommendation unavailable. Please retry.");
+      setRecommendation({
+        competition: comp.id,
+        original: normalize(picks),
+        result,
+        asOf: body.asOf,
+      });
+    } catch (e) {
+      setNotice(
+        e instanceof Error
+          ? e.message
+          : "Auto Select failed. Your lineup is unchanged.",
+      );
+    } finally {
+      setAutoBusy(false);
+    }
+  }
 
   const nextLock = (
     entry
@@ -490,27 +576,29 @@ export function NflSevenPlay({
           {draftState}
         </span>
       </header>
-      <label>
-        Season / week
-        <select
-          value={comp.id}
-
-          onChange={(e) => {
-            setChosen(e.target.value);
-            const url = new URL(window.location.href);
-            url.searchParams.set("competition", e.target.value);
-            window.history.replaceState(null, "", url);
-
-            setNotice("");
-          }}
-        >
-          {rounds.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.season} · Week {c.round}
-            </option>
-          ))}
-        </select>
-      </label>
+      <CompetitionWeekSelector
+        rounds={rounds}
+        selected={comp.id}
+        onSelect={selectWeek}
+      />
+      {rounds.length === 1 && (
+        <p className="small-note">
+          Only this competition week is published so far. Future weeks appear
+          when their fixtures and rules are verified.
+        </p>
+      )}
+      {closed && !entry && (
+        <p role="status">
+          No submitted lineup is recorded for this week. A saved draft is not a
+          historical entry.
+        </p>
+      )}
+      {historical && (
+        <p role="status">
+          Saved competition entry · read-only. Selections and locked card
+          details are preserved independently of current ownership.
+        </p>
+      )}
 
       <Link
         className="play-support"
@@ -526,7 +614,12 @@ export function NflSevenPlay({
         🏆 Prizes
       </Link>
       <div className="round-timing">
-        {" "}
+        {entryOpensLater && (
+          <p>
+            Draft planning is available. Entries open{" "}
+            <LocalDateTime value={comp.opens_at!} />.
+          </p>
+        )}{" "}
         <strong>
           {closed ? "New entries closed" : "Entry deadline"}{" "}
           <LocalDateTime value={comp.locks_at} />
@@ -542,12 +635,21 @@ export function NflSevenPlay({
           )}
         </p>
       </div>
+      <div className="lineup-auto-actions">
+        <button
+          className="play-support"
+          disabled={busy || autoBusy || !editable}
+          onClick={() => void recommend()}
+        >
+          {autoBusy ? "Finding your lineup…" : "Auto Select"}
+        </button>
+        <small>Review a recommendation from your eligible cards.</small>
+      </div>
       <div className="lineup-workspace">
         <div className="lineup-pitch">
           {" "}
           <div className="field-toolbar">
             <h2>QB · 2 RB · 2 WR · TE · FLEX</h2>
-
             <button onClick={() => setList(!list)} aria-pressed={list}>
               {list ? "Field view" : "List view"}
             </button>
@@ -696,6 +798,7 @@ export function NflSevenPlay({
               disabled={
                 busy ||
                 !editable ||
+                entryOpensLater ||
                 !!full.errors.length ||
                 (!!entry && !notSubmitted)
               }
@@ -915,16 +1018,17 @@ export function NflSevenPlay({
           )}
           <section className="round-summary">
             <h3>This round</h3>
+            {entry && <WeeklyLineupResult competition={comp.id} />}
             <p>
-              {
-                roundProgress({
-                  closesAt: comp.locks_at,
-                  finalised: !!comp.scored_at,
-                  visible: comp.rules.standings_visible !== false,
-                  fixtures,
-                  now,
-                }).label
-              }
+              {entryOpensLater
+                ? "Draft planning · Entries not open"
+                : roundProgress({
+                    closesAt: comp.locks_at,
+                    finalised: !!comp.scored_at,
+                    visible: comp.rules.standings_visible !== false,
+                    fixtures,
+                    now,
+                  }).label}
             </p>
             <small>
               {locks.size} / {entry?.snapshot.length ?? picks.length} selected
@@ -967,9 +1071,9 @@ export function NflSevenPlay({
 
             <p>
               Before kickoff, replace a submitted card or withdraw before
-              entries close to sell or swap it. After kickoff, a transfer
-              preserves your locked score; the buyer cannot add that started
-              player. Draft-only cards may transfer and will need revalidation.
+              entries close to sell it. After kickoff, a transfer preserves your
+              locked score; the buyer cannot add that started player. Draft-only
+              cards may transfer and will need revalidation.
             </p>
 
             <p>
@@ -981,6 +1085,96 @@ export function NflSevenPlay({
           </details>
         </aside>
       </div>
+      {recommendation?.competition === comp.id && (
+        <FantasySheet
+          title="Review Auto Select"
+          onClose={() => setRecommendation(null)}
+          historyEntry
+        >
+          <p>
+            Based on up to five verified final appearances before this week,
+            using Full-PPR game-log performance and the card multiplier. This is
+            a historical ranking, not a forecast or a change to this round’s
+            scoring.
+          </p>
+          <ul>
+            {cfg.slots.map((s) => {
+              const pick = recommendation.result.picks.find(
+                  (p) => p.slot === s.id,
+                ),
+                card = inventory.find((c) => c.id === pick?.card);
+              return (
+                <li key={s.id}>
+                  <strong>{s.id}</strong>:{" "}
+                  {card?.name ?? "Missing eligible card"}
+                  {card && recommendation.result.unranked.includes(card.id)
+                    ? " · Unranked (no verified history)"
+                    : ""}
+                  {locks.has(s.id) ? " · Locked, unchanged" : ""}
+                </li>
+              );
+            })}
+          </ul>
+          {mode === "SALARY_CAP" && (
+            <p>
+              Salary: <FantasyAmount value={recommendation.result.cost} />
+            </p>
+          )}
+          {!!recommendation.result.missing.length && (
+            <p>
+              Missing positions: {recommendation.result.missing.join(", ")}. You
+              can apply this incomplete draft, but cannot enter until it is
+              valid. <Link href="/fantasy/cards">View My Cards</Link>
+            </p>
+          )}
+          {recommendation.asOf && (
+            <p>
+              History updated: <LocalDateTime value={recommendation.asOf} />
+            </p>
+          )}
+          <p>
+            Applying changes your draft only. Save or submit separately after
+            reviewing eligibility.
+          </p>
+          <button
+            className="button"
+            disabled={
+              !editable ||
+              busy ||
+              !draft ||
+              recommendation.original !== normalize(picks)
+            }
+            onClick={() => {
+              if (
+                !draft ||
+                !editable ||
+                recommendation.original !== normalize(picks)
+              )
+                return;
+              const safe = restoreLockedSelections(
+                recommendation.result.picks,
+                [...locks.values()].map((c) => ({
+                  slot: c.slot,
+                  card: c.card_id,
+                })),
+              );
+              update({ ...draft, picks: safe, dirty: true });
+              setRecommendation(null);
+              setNotice(
+                "Auto Select applied to this week’s draft. Review and save when ready.",
+              );
+            }}
+          >
+            Apply lineup
+          </button>
+          <button
+            className="button secondary"
+            onClick={() => setRecommendation(null)}
+          >
+            Cancel
+          </button>
+        </FantasySheet>
+      )}
       {profile &&
         (() => {
           const card = inventory.find((c) => c.id === profile.card);

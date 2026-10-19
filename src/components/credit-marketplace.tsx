@@ -10,6 +10,11 @@ import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { FantasySheet } from "./fantasy-sheet";
 import { MarketListingDialog, useMarketCommand } from "./market-listing-dialog";
 import { useSport } from "./sport-context";
+import {
+  completedAcquisition,
+  type CompletedAcquisition,
+} from "@/core/purchase-celebration";
+import { PurchaseCelebration } from "./purchase-celebration";
 type Row = MarketplaceView["rows"][number];
 type Review = {
   review: string;
@@ -26,6 +31,9 @@ const tabs = [
   ["activity", "Activity"],
 ] as const;
 export function Marketplace({ member }: { member: string }) {
+  const [acquisition, setAcquisition] = useState<CompletedAcquisition | null>(
+    null,
+  );
   const { sport } = useSport();
   const [params, setParams] = useState(new URLSearchParams()),
     [data, setData] = useState<MarketplaceView | null>(null),
@@ -62,6 +70,7 @@ export function Marketplace({ member }: { member: string }) {
   } = useMarketCommand(member, (r, c) => {
     if (c.kind === "review-buy") setReview(r as Review);
     else {
+      setAcquisition(completedAcquisition(r, c));
       setReceipt(r);
       setReview(null);
       setDetail(null);
@@ -206,7 +215,14 @@ export function Marketplace({ member }: { member: string }) {
           </button>
         </section>
       )}
-      {receipt && (
+      {acquisition && (
+        <PurchaseCelebration
+          receipt={acquisition}
+          member={member}
+          onClose={() => setAcquisition(null)}
+        />
+      )}
+      {receipt && !acquisition && (
         <section className="market-confirmed" role="status">
           <h2>Request confirmed</h2>
           {receipt.price !== undefined && (

@@ -1,14 +1,10 @@
+import { LightSweep } from "./startup-loading";
 export function ContentLoading({
-  label = "Loading Docked…",
+  label = "Getting Docked ready…",
 }: {
   label?: string;
 }) {
   return (
-    <section className="app-screen-loading" aria-busy="true" aria-label={label}>
-      <p role="status">{label}</p>
-      <div className="app-skeleton" aria-hidden="true" />
-      <div className="app-skeleton" aria-hidden="true" />
-      <div className="app-skeleton" aria-hidden="true" />
-    </section>
+    <LightSweep compact label={label} />
   );
 }

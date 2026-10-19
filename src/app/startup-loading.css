@@ -20,6 +20,29 @@
   overflow: hidden;
   box-sizing: border-box;
 }
+.light-sweep.light-sweep-compact {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  min-height: 280px;
+  border-radius: 20px;
+  margin-block: 16px;
+}
+.light-sweep-compact .loading-card {
+  width: 98px;
+  filter: none;
+}
+.light-sweep-compact .loading-brand > span:last-child {
+  display: none;
+}
+.light-sweep-compact .loading-message {
+  margin-top: 20px;
+  font-size: 1rem;
+}
+.light-sweep-compact .loading-track {
+  width: 130px;
+  margin-top: 12px;
+}
 .loading-card {
   width: min(290px, 57vw, 38svh);
   aspect-ratio: 0.7;

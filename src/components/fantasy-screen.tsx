@@ -1,6 +1,8 @@
 "use client";
 import { competitionLabel } from "@/core/competition-display";
 import { CollectionExport } from "./collection-export";
+import { FantasyLoadError } from "./fantasy-load-error";
+import type { MemberAccessFailure } from "@/core/member-access-recovery";
 import { useSport } from "./sport-context";
 import { boundedFetch } from "@/core/bounded-request";
 import { collectionPositions, sevenEligibility } from "@/core/card-display";
@@ -54,6 +56,9 @@ export function FantasyScreen({
   account?: PrivateAccountSummary;
 }) {
   const production = initial.mode === "production";
+  const [accessFailure, setAccessFailure] =
+    useState<MemberAccessFailure | null>(null);
+  const [refreshError, setRefreshError] = useState("");
   const [showPacks, setShowPacks] = useState(false);
   const [teamFilter, setTeamFilter] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -109,10 +114,14 @@ export function FantasyScreen({
         const r = await boundedFetch("/api/fantasy", { cache: "no-store" });
         if (generation !== readGeneration.current) return;
         if (!r.ok) {
-          if (r.status === 403)
-            setData({ ...initial, cards: [], seven: undefined });
+          const failure = await r.json().catch(() => ({}));
+          if (
+            (r.status === 401 || r.status === 403) &&
+            ["authentication", "mfa", "permission"].includes(failure.kind)
+          )
+            setAccessFailure(failure.kind);
           throw Error(
-            "Could not refresh. Sign in again if your session has expired.",
+            failure.error || "Docked could not refresh. Please retry.",
           );
         }
         const next = await r.json();
@@ -122,10 +131,16 @@ export function FantasyScreen({
           return;
         }
         setData(next.state);
+        setAccessFailure(null);
+        setRefreshError("");
         lastState.current = next.state;
         if (!background) setMessage("Updated from the server.");
-      } catch {
-        if (!background) setMessage("Could not refresh. Please retry.");
+      } catch (error) {
+        setRefreshError(
+          error instanceof Error
+            ? error.message
+            : "Docked could not refresh. Please retry.",
+        );
       } finally {
         refreshing.current = false;
         if (!background && !inFlight.current) setBusy(false);
@@ -290,8 +305,29 @@ export function FantasyScreen({
       }
     />
   ) : null;
+  if (accessFailure)
+    return (
+      <FantasyLoadError
+        compact
+        authRequired={accessFailure === "authentication"}
+        mfaRequired={accessFailure === "mfa"}
+        permissionDenied={accessFailure === "permission"}
+      />
+    );
   return (
     <div className={`fantasy-screen fantasy-screen-${tab}`} aria-busy={busy}>
+      {refreshError && (
+        <div className="market-error" role="alert">
+          <p>{refreshError} Your last loaded view is retained.</p>
+          <button
+            className="button"
+            disabled={busy}
+            onClick={() => void refresh()}
+          >
+            Retry refresh
+          </button>
+        </div>
+      )}
       {!["play", "social", "cards", "profile"].includes(tab) && (
         <header className="fantasy-heading">
           <div>

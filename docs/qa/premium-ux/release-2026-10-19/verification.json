@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-19",
+  "browserRun": "docs/qa/premium-ux/browser-1792409401687",
+  "platform": {
+    "passed": 502,
+    "failed": 0,
+    "log": "tmp/ux-tests-release.log"
+  },
+  "database": {
+    "passed": 187,
+    "failed": 0,
+    "log": "tmp/ux-db-final.log"
+  },
+  "boundaries": "Isolated browser transports and local PostgreSQL; no hosted member mutation, no native Android device acceptance.",
+  "queryTimings": {
+    "scope": "Read-only public historical statistics, same 30 canonical players / 128 result rows; alternating warm EXPLAIN ANALYZE executions. Not route navigation.",
+    "beforeMs": [
+      6.901,
+      7.028
+    ],
+    "afterMs": [
+      2.035,
+      2.09
+    ]
+  },
+  "hostedRounds": {
+    "season": 2026,
+    "registered": [
+      {
+        "mode": "Traditional",
+        "week": 6,
+        "entries": 2
+      },
+      {
+        "mode": "All-Star",
+        "week": 6,
+        "entries": 1
+      }
+    ],
+    "week7": {
+      "registered": false,
+      "importedFixtures": 14,
+      "firstKickoffUTC": "2026-10-23T00:15:00Z",
+      "lastKickoffUTC": "2026-10-27T00:15:00Z"
+    }
+  },
+  "lint": {
+    "passed": true,
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "passed": true,
+    "typecheck": true,
+    "cleanWebpack": true,
+    "exitCode": 0
+  },
+  "canaryBoundary": {
+    "passed": true,
+    "cleanEnvironment": true,
+    "testOnlyMarkers": true,
+    "browserAssets": 168,
+    "exitCode": 0
+  },
+  "marketplaceBrowser": {
+    "checks": [
+      "Exact-card dialog; cancel creates nothing",
+      "Listing persists once; active-only My Listings; already-open other browser updates by polling",
+      "Versioned repricing and removal update both browsers without logout",
+      "Browser Back closes sheet; stale version clears consent even after price returns to original amount",
+      "Lost purchase response recovers once; gross 1000 / fee 50 / seller 950; ownership and journal reconcile",
+      "Activity filters, snapshot identity, 1440/1024/412/360 no overflow, critical/serious axe checks",
+      "Read failure is distinct from empty feed; retry recovers"
+    ],
+    "errors": []
+  }
+}

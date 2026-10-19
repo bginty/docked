@@ -20,6 +20,8 @@ export function LightSweep({
   failureMessage,
   recoveryHref,
   recoveryLabel,
+  compact = false,
+  label = "Getting Docked ready…",
 }: {
   failed?: boolean;
   onRetry?: () => void;
@@ -27,6 +29,8 @@ export function LightSweep({
   failureMessage?: string;
   recoveryHref?: string;
   recoveryLabel?: string;
+  compact?: boolean;
+  label?: string;
 }) {
   const [late, setLate] = useState(false);
   useEffect(() => {
@@ -35,7 +39,7 @@ export function LightSweep({
   }, []);
   return (
     <section
-      className={`light-sweep${failed ? " light-sweep-failed" : ""}`}
+      className={`light-sweep${compact ? " light-sweep-compact" : ""}${failed ? " light-sweep-failed" : ""}`}
       aria-busy={!failed}
       aria-label={failed ? "Docked unavailable" : "Loading Docked"}
     >
@@ -57,7 +61,7 @@ export function LightSweep({
               : "Docked couldn’t load. Please try again."))
           : late
             ? "Taking longer than usual…"
-            : "Getting Docked ready…"}
+            : label}
       </p>
       {failed ? (
         <div className="loading-recovery">

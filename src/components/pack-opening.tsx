@@ -22,6 +22,7 @@ import { PackArtwork } from "./pack-artwork";
 import { AppIcon } from "./app-icon";
 import { packSound } from "./pack-feedback";
 import { AcquisitionShare } from "./acquisition-share";
+import { IconCelebration } from "./icon-celebration";
 import { rarityRule } from "@/core/card-rarity";
 
 export type PackOpeningProps = {
@@ -388,22 +389,7 @@ export default function PackOpening(props: PackOpeningProps) {
                 </>
               )}
               {card.tier === "ICON" && stage === "opening" && !motionOff && (
-                <div className="pack-icon-celebration" aria-hidden="true">
-                  <span className="icon-halo" />
-                  {[0, 1, 2].map((burst) => (
-                    <span
-                      className={`icon-firework icon-firework-${burst}`}
-                      key={burst}
-                    >
-                      {Array.from({ length: 10 }, (_, ray) => (
-                        <i
-                          key={ray}
-                          style={{ "--ray": `${ray * 36}deg` } as CSSProperties}
-                        />
-                      ))}
-                    </span>
-                  ))}
-                </div>
+                <IconCelebration />
               )}
               <div
                 ref={arrival}
