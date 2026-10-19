@@ -122,6 +122,35 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
       4,
       "enrolment + three due periods, no pre-enrolment grants",
     );
+    // Fail one account's first entitlement inside the job's subtransaction.
+    // Its schedule must roll back while another account still succeeds.
+    await pg.exec(
+      `create function public.fixture_weekly_failure() returns trigger language plpgsql as $$begin if new.user_id='${users[2]}'::uuid then raise exception 'Injected isolated issuance failure';end if;return new;end$$;create trigger fixture_weekly_failure before insert on sports_feed.weekly_core_packs for each row execute function public.fixture_weekly_failure();`,
+    );
+    assert.equal((await q("select sports_feed.weekly_core_job() n"))[0].n, 1);
+    assert.equal(
+      (
+        await q(
+          "select count(*)::int n from sports_feed.weekly_core_schedules where user_id=$1",
+          [users[2]],
+        )
+      )[0].n,
+      0,
+      "failed issuance rolls back schedule",
+    );
+    assert.equal(
+      (
+        await q(
+          "select count(*)::int n from sports_feed.weekly_core_job_failures where user_id=$1",
+          [users[2]],
+        )
+      )[0].n,
+      1,
+      "failure is auditable",
+    );
+    await pg.exec(
+      "drop trigger fixture_weekly_failure on sports_feed.weekly_core_packs;drop function public.fixture_weekly_failure()",
+    );
     const jobCount = racing
       ? (
           await Promise.all(
@@ -136,7 +165,7 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
           )
         ).reduce((a, b) => a + b, 0)
       : (await q("select sports_feed.weekly_core_job() n"))[0].n;
-    assert.equal(jobCount, 2, "worker enrols the other eligible accounts once");
+    assert.equal(jobCount, 1, "worker retries the failed account exactly once");
     assert.equal((await q("select sports_feed.weekly_core_job() n"))[0].n, 0);
     await q(
       "update credits_sandbox.access set enabled=false where user_id=$1",

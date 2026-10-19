@@ -28,6 +28,6 @@ export function weeklyCountdown(next: string | undefined, now: number) {
   const remaining = next ? Date.parse(next) - now : NaN;
   if (!Number.isFinite(remaining)) return "Checking schedule…";
   if (remaining <= 0) return "Checking your next pack…";
-  const minutes = Math.ceil(remaining / 60000);
-  return `${Math.floor(minutes / 1440)}d ${Math.floor(minutes / 60) % 24}h ${minutes % 60}m`;
+  const seconds = Math.ceil(remaining / 1000);
+  return `${Math.floor(seconds / 86400)}d ${Math.floor(seconds / 3600) % 24}h ${Math.floor(seconds / 60) % 60}m ${seconds % 60}s`;
 }

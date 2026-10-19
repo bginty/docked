@@ -1,4 +1,5 @@
 import { createServer } from "node:http";
+import { execFileSync } from "node:child_process";
 import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve, sep } from "node:path";
 import assert from "node:assert/strict";
@@ -16,10 +17,25 @@ import type { FantasyState } from "../src/core/fantasy";
 import type { WeeklyCoreView } from "../src/core/weekly-core";
 import { rarities, rarityRule } from "../src/core/card-rarity";
 async function main() {
-  const out = `docs/qa/weekly-core/browser-${Date.now()}`;
+  const before = process.argv.includes("--before");
+  const out = `docs/qa/weekly-core/${before ? "before-" : ""}browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/weekly-profile.tsx",
+    before
+      ? Object.fromEntries(
+          [
+            "src/components/weekly-core-panel.tsx",
+            "src/core/weekly-core.ts",
+          ].map((file) => [
+            resolve(file),
+            execFileSync("git", ["show", `HEAD:${file}`], {
+              encoding: "utf8",
+              windowsHide: true,
+            }),
+          ]),
+        )
+      : {},
   );
   const css = [
     "brand-theme",
@@ -44,7 +60,9 @@ async function main() {
     "standings",
     "pack-shop",
     "card-viewer",
+    "startup-loading",
   ]
+    .filter((n) => !before || n !== "startup-loading")
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");
   const now = Date.now();
@@ -293,6 +311,10 @@ async function main() {
         path: `${out}/profile-ready-${width}.png`,
         fullPage: true,
       });
+      if (process.argv.includes("--capture-only")) {
+        await context.close();
+        continue;
+      }
       assert.ok(
         await page.evaluate(
           () => document.documentElement.scrollWidth <= innerWidth,
@@ -374,9 +396,7 @@ async function main() {
         .first()
         .click();
       await page.getByRole("button", { name: /^Front of/ }).click();
-      await expect(
-        page.getByText("No published player scores yet."),
-      ).toBeVisible();
+      await expect(page.getByText("No published games yet.")).toBeVisible();
       await expect(
         page.getByRole("button", { name: "Sell card", exact: true }),
       ).toBeDisabled();
@@ -398,9 +418,7 @@ async function main() {
         .first()
         .click();
       await page.getByRole("button", { name: /^Front of/ }).click();
-      await expect(
-        page.getByText("No published player scores yet."),
-      ).toBeVisible();
+      await expect(page.getByText("No published games yet.")).toBeVisible();
       await expect(
         page.getByRole("button", { name: "Sell card", exact: true }),
       ).toBeDisabled();
@@ -418,6 +436,10 @@ async function main() {
         accessibility: 0,
       });
       await context.close();
+    }
+    if (process.argv.includes("--capture-only")) {
+      console.log(out);
+      return;
     }
     const page = await browser.newPage({
       viewport: { width: 412, height: 915 },

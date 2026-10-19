@@ -33,6 +33,7 @@ export function WeeklyCorePanel({
     flight = useRef(false),
     pending = useRef<{ pack: string; request: string } | null>(null);
   const generation = useRef(0);
+  const reconciledDue = useRef<number | null>(null);
   const read = useCallback(async () => {
     const current = ++generation.current;
     setChecking(true);
@@ -65,12 +66,14 @@ export function WeeklyCorePanel({
     };
     window.addEventListener("focus", focus);
     window.addEventListener("online", focus);
+    window.addEventListener("docked-app-resume", focus);
     document.addEventListener("visibilitychange", focus);
     return () => {
       alive.current = false;
       generation.current++;
       window.removeEventListener("focus", focus);
       window.removeEventListener("online", focus);
+      window.removeEventListener("docked-app-resume", focus);
       document.removeEventListener("visibilitychange", focus);
     };
   }, [read]);
@@ -81,9 +84,19 @@ export function WeeklyCorePanel({
   const due = state?.nextIssueAt ? Date.parse(state.nextIssueAt) : Infinity;
   const overdue = clock >= due;
   useEffect(() => {
-    if (!state?.enabled || !overdue || checking || error) return;
+    if (
+      !state?.enabled ||
+      !overdue ||
+      checking ||
+      error ||
+      reconciledDue.current === due
+    )
+      return;
     // One reconciliation for this due time. Errors require an explicit retry/focus.
-    const timer = setTimeout(() => void read(), 1000);
+    const timer = setTimeout(() => {
+      reconciledDue.current = due;
+      void read();
+    }, 1000);
     return () => clearTimeout(timer);
   }, [state?.enabled, overdue, due, checking, error, read]);
   const ready = state?.packs.filter((p) => !p.openedAt) ?? [];
@@ -128,12 +141,12 @@ export function WeeklyCorePanel({
     <>
       <section
         className="fantasy-panel weekly-core-panel"
-        aria-label="Weekly Core Pack"
+        aria-label="Weekly starter pack"
       >
-        <PackArtwork name="Weekly Core Pack" core />
+        <PackArtwork name="Starter Pack" core />
         <div className="weekly-core-copy">
-          <h2>Your weekly Core pack</h2>
-          <p>4 random Core cards · Free every 7 days</p>
+          <h2>Weekly starter pack</h2>
+          <p>4 random Core cards</p>
           {checking ? (
             <p role="status">Checking your packs…</p>
           ) : error ? (
@@ -176,9 +189,16 @@ export function WeeklyCorePanel({
         </div>
         {state?.enabled && (
           <div className="weekly-countdown">
-            <span>Next pack arrives in…</span>
-            <strong>{weeklyCountdown(state.nextIssueAt, clock)}</strong>
-            <small>Automatically added every 7 days</small>
+            <span>Next free pack in</span>
+            <strong aria-label="Days, hours, minutes and seconds until the next free pack">
+              {weeklyCountdown(state.nextIssueAt, clock)}
+            </strong>
+            <small>Free every seven days</small>
+            {overdue && !checking && (
+              <button className="play-support" onClick={() => void read()}>
+                Refresh packs
+              </button>
+            )}
           </div>
         )}
       </section>

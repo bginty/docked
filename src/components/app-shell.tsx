@@ -8,6 +8,7 @@ import { PwaStatus } from "./pwa-status";
 import { WorkspaceWalletProvider } from "./use-workspace-wallet";
 import { WorkspaceWalletLink } from "./workspace-wallet-link";
 import { FantasyLogo } from "./fantasy-brand";
+import { StartupReady } from "./startup-loading";
 import { useEnvironmentPresentation } from "./environment-context";
 const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/fantasy/play", label: "Play", icon: "trophy" },
@@ -89,18 +90,27 @@ function useEditingViewport(authenticated: boolean) {
 export function AppShell({
   children,
   authenticated = false,
+  loading = false,
 }: {
   children: ReactNode;
   authenticated?: boolean;
+  loading?: boolean;
 }) {
   const path = usePathname();
   const { production, liveBeta } = useEnvironmentPresentation();
   const activeNav = nav;
   const destination = appDestination(path);
   const shell = useEditingViewport(authenticated);
-  if (!authenticated) return <div className="community-public">{children}</div>;
+  if (!authenticated)
+    return (
+      <div className="community-public">
+        {!loading && <StartupReady />}
+        {children}
+      </div>
+    );
   return (
     <WorkspaceWalletProvider>
+      {!loading && <StartupReady />}
       <div
         ref={shell}
         className="community-shell"
@@ -169,7 +179,9 @@ export function AppShell({
                 ? "Owner operations"
                 : path.startsWith("/admin")
                   ? "Staff operations"
-                  : nav.find((n) => n.href === destination)?.label}
+                  : path.startsWith("/fantasy/prizes")
+                    ? "Prizes"
+                    : nav.find((n) => n.href === destination)?.label}
             </strong>
             <nav aria-label="App utilities">
               <span id="workspace-wallet-slot">

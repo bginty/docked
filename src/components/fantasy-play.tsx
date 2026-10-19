@@ -1,12 +1,9 @@
 "use client";
-import {
-  competitionName,
-  competitionSubtitle,
-} from "@/core/competition-display";
 import { useSport, useSportDraftGuard } from "./sport-context";
 import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 import Link from "next/link";
+import { CompetitionSwitch } from "./competition-switch";
 import { NflSevenPlay } from "./nfl-seven-play";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { LocalDateTime } from "./local-date-time";
@@ -46,17 +43,28 @@ export function FantasyPlay({
     "SALARY_CAP",
   );
   useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get("competition");
-    const c = data.competitions.find((c) => c.id === id);
-    if (c)
-      setMode(
-        c.rules.mode === "SALARY_CAP"
-          ? "SALARY_CAP"
-          : c.rules.mode === "OPEN"
-            ? "OPEN"
-            : "existing",
-      );
-  }, []);
+    const read = () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("competition");
+      const c = data.competitions.find((c) => c.id === id);
+      if (c)
+        setMode(
+          c.rules.mode === "SALARY_CAP"
+            ? "SALARY_CAP"
+            : c.rules.mode === "OPEN"
+              ? "OPEN"
+              : "existing",
+        );
+      else if (
+        params.get("mode") === "OPEN" ||
+        params.get("mode") === "SALARY_CAP"
+      )
+        setMode(params.get("mode") as "OPEN" | "SALARY_CAP");
+    };
+    read();
+    window.addEventListener("popstate", read);
+    return () => window.removeEventListener("popstate", read);
+  }, [data.competitions]);
   const available = data.competitions.some((c) => c.rules.lineup_version);
   if (!available)
     return <LegacyFantasyPlay data={data} busy={busy} act={act} />;
@@ -66,14 +74,17 @@ export function FantasyPlay({
         <h1>Your lineup</h1>
       </header>
       <span className="competition-label">Competition</span>
-      <nav className="seven-mode-tabs" aria-label="NFL competition mode">
-        {(["SALARY_CAP", "OPEN"] as const).map((m) => (
-          <button key={m} aria-pressed={mode === m} onClick={() => setMode(m)}>
-            {competitionName(m)}
-            <small>{competitionSubtitle(m)}</small>
-          </button>
-        ))}
-      </nav>
+      <CompetitionSwitch
+        className="seven-mode-tabs"
+        mode={mode}
+        onChange={(m) => {
+          setMode(m);
+          const url = new URL(location.href);
+          url.searchParams.set("mode", m);
+          url.searchParams.delete("competition");
+          window.history.pushState(null, "", url);
+        }}
+      />
       {mode === "existing" ? (
         <LegacyFantasyPlay
           data={{
@@ -341,13 +352,9 @@ function LegacyFantasyPlay({
                       ? `${data.members.find((m) => m.id === data.user_id)?.name}’s team`
                       : "Your Docked team")}
                 </h2>
-                {data.nfl_beta && (
+                {data.nfl_beta && !data.team_name && (
                   <details open={!data.team_name}>
-                    <summary>
-                      {data.team_name
-                        ? "Edit team name"
-                        : "Name your first team"}
-                    </summary>
+                    <summary>Name your first team</summary>
                     <form
                       className="app-auth-form"
                       onSubmit={async (e) => {
@@ -366,6 +373,9 @@ function LegacyFantasyPlay({
                           required
                         />
                       </label>
+                      <p className="small-note">
+                        Choose carefully. Your team name is permanent.
+                      </p>
                       <button
                         disabled={busy || teamName.trim() === data.team_name}
                       >

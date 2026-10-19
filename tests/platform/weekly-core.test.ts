@@ -10,7 +10,7 @@ test("weekly policy and server-time countdown: no browser weekday reset or negat
   const now = Date.parse("2026-10-03T02:00:00Z");
   assert.equal(
     weeklyCountdown(new Date(now + 604800000).toISOString(), now),
-    "7d 0h 0m",
+    "7d 0h 0m 0s",
   );
   assert.match(
     weeklyCountdown(new Date(now).toISOString(), now + 1),

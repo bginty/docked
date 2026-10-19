@@ -1,0 +1,254 @@
+.prizes-page {
+  max-width: 1120px;
+  margin: auto;
+  padding: 24px;
+  color: #eaf5ff;
+}
+.prizes-heading,
+.prizes-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.prizes-heading h1 {
+  font-size: clamp(28px, 3vw, 40px);
+  margin: 0;
+}
+.prizes-heading p {
+  color: #a8b8d0;
+  margin: 6px 0 22px;
+}
+.prizes-page > .standings-segments {
+  max-width: 560px;
+}
+.prizes-page .standings-controls {
+  margin: 18px 0 24px;
+}
+.prizes-period {
+  font-size: 17px;
+  margin: 22px 0 14px;
+}
+.prize-podium {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.prize-medal {
+  --metal: #e9ce6e;
+  border: 1px solid var(--metal);
+  border-radius: 13px;
+  min-height: 172px;
+  text-align: center;
+  padding: 18px;
+  background:
+    radial-gradient(
+      ellipse at top,
+      color-mix(in srgb, var(--metal) 13%, transparent),
+      transparent 75%
+    ),
+    #081725;
+  box-shadow:
+    inset 0 1px 0 #ffffff25,
+    0 8px 26px #0002;
+  color: var(--metal);
+}
+.prize-medal-2 {
+  --metal: #becbd6;
+}
+.prize-medal-3 {
+  --metal: #d49c73;
+}
+.prize-medal svg {
+  width: 62px;
+  height: 62px;
+  filter: drop-shadow(0 4px 6px #0005);
+}
+.prize-medal h3 {
+  margin: 5px 0;
+  color: #f4f8ff;
+  font-size: 18px;
+}
+.prize-medal strong {
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+.prize-breakdown {
+  border: 1px solid #455b705c;
+  background: #0a1b2c;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.prize-breakdown h2 {
+  font-size: 20px;
+  margin: 0 0 16px;
+}
+.prize-breakdown table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.prize-breakdown th,
+.prize-breakdown td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #51667a40;
+  overflow-wrap: anywhere;
+}
+.prize-breakdown th {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #aabed0;
+  background: #14273b;
+}
+.prize-breakdown th:first-child {
+  width: 22%;
+}
+.prize-empty {
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+  text-align: center;
+  border: 1px solid #2f526e;
+  border-radius: 18px;
+  background: radial-gradient(ellipse at top, #0e3551, #081522 70%);
+}
+.prize-empty svg {
+  width: 88px;
+  height: 88px;
+  color: #b9cad9;
+  margin-top: 35px;
+}
+.prize-empty h2 {
+  font-size: 22px;
+  margin: 0 0 45px;
+}
+.prizes-actions {
+  margin-top: 24px;
+}
+.prizes-page .play-support {
+  border: 1px solid #278aca;
+  border-radius: 24px;
+  padding: 9px 17px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.release-admin form {
+  display: grid;
+  gap: 14px;
+  max-width: 850px;
+}
+.release-admin label {
+  display: grid;
+  gap: 6px;
+}
+.release-admin fieldset {
+  border: 1px solid #38506a;
+  border-radius: 10px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.release-admin input,
+.release-admin select {
+  max-width: 100%;
+  min-width: 0;
+}
+.release-admin .prize-range {
+  display: grid;
+  grid-template-columns: 80px 80px 1fr 120px 100px;
+  gap: 8px;
+}
+.release-admin section {
+  margin: 24px 0;
+}
+.release-admin table {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .prizes-page {
+    padding: 16px 4px;
+  }
+  .prizes-heading {
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .prizes-heading .play-support {
+    font-size: 12px;
+    padding: 8px 11px;
+  }
+  .prize-podium {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .prize-medal {
+    min-height: 92px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 22px;
+    padding: 12px 24px;
+  }
+  .prize-medal svg {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+  .prize-breakdown {
+    padding: 14px 10px;
+  }
+  .prize-breakdown td,
+  .prize-breakdown th {
+    padding: 10px 6px;
+    font-size: 13px;
+  }
+  .prizes-actions .play-support {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  .release-admin .prize-range {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.prizes-page > .standings-segments {
+  display: flex;
+  width: 100%;
+}
+.prizes-page > .standings-segments button {
+  flex: 1;
+}
+.prizes-page .standings-controls {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(130px, 0.5fr) minmax(
+      130px,
+      0.5fr
+    );
+  align-items: end;
+  gap: 14px;
+}
+.prizes-page .standings-controls select {
+  width: 100%;
+}
+.prizes-page .standings-controls .standings-segments {
+  display: flex;
+}
+.prizes-page .standings-controls .standings-segments button {
+  flex: 1;
+}
+@media (max-width: 600px) {
+  .prizes-page .standings-controls {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .prizes-page .standings-controls > nav {
+    grid-column: 1/-1;
+  }
+  .prizes-period {
+    line-height: 1.4;
+    font-size: 15px;
+  }
+  .prize-empty {
+    min-height: 240px;
+  }
+}

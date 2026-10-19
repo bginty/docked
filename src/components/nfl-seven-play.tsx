@@ -6,6 +6,8 @@ import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { competitionHref } from "@/core/prize-schedules";
 
 import {
   availability,
@@ -87,6 +89,7 @@ export function NflSevenPlay({
     payload?: Record<string, unknown>,
   ) => Promise<Record<string, unknown> | null>;
 }) {
+  const navigationQuery = useSearchParams();
   const [chosen, setChosen] = useState(""),
     [drafts, setDrafts] = useState<Record<string, Draft>>({}),
     [slot, setSlot] = useState<string | null>(null),
@@ -104,7 +107,7 @@ export function NflSevenPlay({
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setChosen(params.get("competition") ?? "");
-  }, []);
+  }, [navigationQuery.toString()]);
   function openSlot(id: string) {
     setSlot(id);
     setSearch("");
@@ -444,14 +447,16 @@ export function NflSevenPlay({
         <div className="lineup-team-name">
           <small>Team name</small>
           <strong>{data.team_name || "Unnamed team"}</strong>
-          <button
-            className="play-support"
-            aria-label="Edit team name"
-            onClick={() => setEditingName(!editingName)}
-          >
-            Edit
-          </button>
-          {editingName && (
+          {!data.team_name && (
+            <button
+              className="play-support"
+              aria-label="Choose team name"
+              onClick={() => setEditingName(!editingName)}
+            >
+              Choose name
+            </button>
+          )}
+          {editingName && !data.team_name && (
             <form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -470,6 +475,9 @@ export function NflSevenPlay({
                   required
                 />
               </label>
+              <p className="small-note">
+                Choose carefully. Your team name is permanent.
+              </p>
               <button disabled={busy || !teamName.trim()}>Save name</button>
             </form>
           )}
@@ -500,6 +508,19 @@ export function NflSevenPlay({
         </select>
       </label>
 
+      <Link
+        className="play-support"
+        href={competitionHref("/fantasy/prizes", {
+          ...Object.fromEntries(navigationQuery.entries()),
+          sport: "nfl",
+          mode,
+          competition: comp.id,
+          season: comp.season,
+          week: String(comp.round),
+        })}
+      >
+        🏆 Prizes
+      </Link>
       <div className="round-timing">
         {" "}
         <strong>
@@ -900,7 +921,15 @@ export function NflSevenPlay({
             <small>Post-game scoring · pending statistics stay pending.</small>
             <Link
               className="play-secondary"
-              href={`/fantasy/results?competition=${comp.id}&mode=${mode}&period=weekly&season=${encodeURIComponent(comp.season)}&week=${comp.round}`}
+              href={competitionHref("/fantasy/results", {
+                ...Object.fromEntries(navigationQuery.entries()),
+                sport: "nfl",
+                mode,
+                competition: comp.id,
+                period: navigationQuery.get("period") ?? "weekly",
+                season: comp.season,
+                week: String(comp.round),
+              })}
             >
               View standings →
             </Link>

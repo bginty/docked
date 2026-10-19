@@ -26,6 +26,9 @@ import "./card-viewer.css";
 import "./player-statistics.css";
 import "./nfl-testing.css";
 import "./standings.css";
+import "./prizes.css";
+import "./startup-loading.css";
+import { StartupBoundary } from "@/components/startup-loading";
 import "./pack-shop.css";
 import "./owner-command.css";
 import { SportProvider } from "@/components/sport-context";
@@ -96,7 +99,9 @@ export default async function Layout({
             <a className="skip-link" href="#main">
               Skip to content
             </a>
-            <main id="main">{children}</main>
+            <main id="main">
+              <StartupBoundary>{children}</StartupBoundary>
+            </main>
           </SportProvider>
         </EnvironmentProvider>
       </body>

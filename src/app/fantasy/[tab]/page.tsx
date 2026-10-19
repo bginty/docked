@@ -1,3 +1,5 @@
+import { FantasyLoadError } from "@/components/fantasy-load-error";
+import { StartupReady } from "@/components/startup-loading";
 import Link from "next/link";
 import { SocialHome } from "@/components/social-home";
 import { z } from "zod";
@@ -15,10 +17,7 @@ import { notFound } from "next/navigation";
 
 import { fantasyTagline } from "@/core/fantasy";
 
-import {
-  fantasyPlatformEnabled as fantasyEnabled,
-  fantasyProductionEnabled,
-} from "@/core/fantasy-production";
+import { fantasyPlatformEnabled as fantasyEnabled } from "@/core/fantasy-production";
 
 import { fantasyRequest } from "@/server/fantasy";
 
@@ -77,6 +76,7 @@ export default async function FantasyPage({
   if (!fantasyEnabled())
     return (
       <div className="fantasy-gate">
+        <StartupReady />
         <h1>Fantasy Cards</h1>
 
         <p>{fantasyTagline}</p>
@@ -107,6 +107,7 @@ export default async function FantasyPage({
     } catch {
       return (
         <main className="fantasy-gate">
+          <StartupReady />
           <h1>Docked Market</h1>
           <p>Sign in with your invited account.</p>
           <Link href="/app/login">Sign in</Link>
@@ -121,6 +122,7 @@ export default async function FantasyPage({
     } catch {
       return (
         <main className="fantasy-gate">
+          <StartupReady />
           <h1>Social</h1>
           <p>Sign in with your invited account to see your feed.</p>
           <Link href="/app/login">Sign in</Link>
@@ -185,44 +187,27 @@ export default async function FantasyPage({
   try {
     data = await boundedRead(fantasyRequest());
   } catch (error) {
+    // This former catch-all conflated timeout/service errors with expired auth.
+    // Do not log request data or claim the historical error had a known cause.
+    console.error("fantasy_screen_unavailable", {
+      kind:
+        error instanceof Error && error.message === "Authentication required"
+          ? "authentication"
+          : error instanceof Error &&
+              error.message === "Privileged MFA required"
+            ? "mfa"
+            : "service",
+      screen: tab,
+    });
     return (
-      <div className="fantasy-gate">
-        <h1>
-          {fantasyProductionEnabled()
-            ? "Fantasy Cards"
-            : "Fantasy Cards Preview"}
-        </h1>
-
-        <p>{fantasyTagline}</p>
-
-        <p>
-          {fantasyProductionEnabled()
-            ? "This screen could not be loaded. Retry to check your saved state, or sign in if your session has expired."
-            : "Sign in with your invited Preview account. Access must be enabled for your account by the Preview operator."}
-        </p>
-
-        <a className="button" href={`/fantasy/${tab}`}>
-          Retry this screen
-        </a>
-        <Link className="button" href="/app/login">
-          Sign in
-        </Link>
-
-        {error instanceof Error &&
-          error.message === "Privileged MFA required" && (
-            <p>
-              <Link href="/mfa" style={{ textDecoration: "underline" }}>
-                Verify your existing authenticator
-              </Link>{" "}
-              to continue owner gameplay. Do not set up a new factor.
-            </p>
-          )}
-
-        <p>
-          If you are already signed in, Preview access may be expired or
-          temporarily unavailable.
-        </p>
-      </div>
+      <FantasyLoadError
+        authRequired={
+          error instanceof Error && error.message === "Authentication required"
+        }
+        mfaRequired={
+          error instanceof Error && error.message === "Privileged MFA required"
+        }
+      />
     );
   }
 
@@ -233,7 +218,14 @@ export default async function FantasyPage({
       const owner = await boundedRead(requireIdentity());
       if (owner.user.id === data.state.user_id) {
         account = privateAccountSummary(owner.user);
-        try { account = {...account,...await boundedRead(ownProfileIdentity())}; } catch { /* Initial fallback remains available. */ }
+        try {
+          account = {
+            ...account,
+            ...(await boundedRead(ownProfileIdentity())),
+          };
+        } catch {
+          /* Initial fallback remains available. */
+        }
       }
     } catch {
       /* Keep unknown status explicit; no guessed verification or email. */

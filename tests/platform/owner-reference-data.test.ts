@@ -162,9 +162,7 @@ test("completed sales and swaps use immutable settlement evidence and do not cou
     result.topCards[0].thumbnail?.max_supply,
     soldInstance.lifetimeCap,
   );
-  assert.ok(
-    result.recent.some((r) => r.href === "/admin/workspace/marketplace"),
-  );
+  assert.ok(result.recent.some((r) => r.href === "/admin/marketplace"));
   assert.ok(result.recent.some((r) => r.href === "/admin/workspace/packs"));
   assert.ok(
     [...result.recent, ...result.health].every(

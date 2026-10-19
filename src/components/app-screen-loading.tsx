@@ -5,7 +5,7 @@ import { appViewer } from "@/server/app-view";
 export async function AppScreenLoading() {
   const { who } = await appViewer();
   return (
-    <AppShell authenticated={!!who}>
+    <AppShell authenticated={!!who} loading>
       <section
         className="app-screen-loading"
         aria-label="Loading Docked"

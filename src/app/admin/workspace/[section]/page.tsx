@@ -98,6 +98,12 @@ export default async function AdminWorkspacePage({
       unreadCount={unreadCount}
       active={item.id}
     >
+      {["competitions", "users", "rewards"].includes(section) &&
+        ["owner", "admin"].includes(who.role) && (
+          <Link className="button" href="/admin/member-release">
+            Prize schedules & team names
+          </Link>
+        )}
       <section className="admin-workspace owner-command-page">
         <p className="eyebrow">DOCKED OPERATIONS · {who.role}</p>
         <h1>{item.label}</h1>

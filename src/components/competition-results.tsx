@@ -1,12 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { CompetitionSwitch } from "./competition-switch";
+import { competitionHref } from "@/core/prize-schedules";
 import type { ReviewRound } from "@/core/competition-review";
 import type { NflStanding, PostgameView } from "@/server/postgame-results";
-import {
-  competitionName,
-  competitionSubtitle,
-} from "@/core/competition-display";
+import { competitionName } from "@/core/competition-display";
 import {
   formatPoints,
   myTeamPage,
@@ -23,6 +22,7 @@ import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 
 type Selection = {
+  sport?: string;
   competition?: string;
   mode?: string;
   period?: string;
@@ -126,9 +126,16 @@ export function CompetitionResults({
       if (value) url.searchParams.set(key, value);
     window.history.pushState(null, "", url);
   }
-  const playUrl = round
-    ? `/fantasy/play?competition=${round.competitionId}`
-    : "/fantasy/play";
+  const context = {
+    ...query,
+    mode,
+    period,
+    season,
+    series,
+    competition: round?.competitionId,
+    week: String(round?.week ?? ""),
+  };
+  const playUrl = competitionHref("/fantasy/play", context);
   return (
     <section className="standings-page" data-ready={ready}>
       <header className="standings-hero">
@@ -136,25 +143,23 @@ export function CompetitionResults({
           ← Back to Lineup
         </Link>
         <h1>Standings</h1>
+        <Link
+          className="play-support"
+          href={competitionHref("/fantasy/prizes", context)}
+        >
+          🏆 Prizes
+        </Link>
         <p>
           See how you stack up{" "}
           {period === "season" ? "this season" : "this week"}.
         </p>
         <span className="competition-label">Competition</span>
-        <nav className="standings-segments" aria-label="Competition">
-          {(["SALARY_CAP", "OPEN"] as const).map((m) => (
-            <button
-              key={m}
-              aria-pressed={mode === m}
-              onClick={() =>
-                change({ mode: m, competition: "", week: "", series: "" })
-              }
-            >
-              {competitionName(m)}
-              <small>{competitionSubtitle(m)}</small>
-            </button>
-          ))}
-        </nav>
+        <CompetitionSwitch
+          mode={mode}
+          onChange={(mode) =>
+            change({ mode, competition: "", week: "", series: "" })
+          }
+        />
       </header>
       <div className="standings-controls">
         <nav className="standings-segments" aria-label="Standings period">

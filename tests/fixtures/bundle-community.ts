@@ -6,6 +6,7 @@ import path from "node:path";
 /** Local-only browser fixtures; no production resolution or authentication override. */
 export async function bundleCommunityFixture(
   entryPoint = "tests/fixtures/community-demo.tsx",
+  sourceOverrides: Record<string, string> = {},
 ) {
   const result = await build({
     absWorkingDir: process.cwd(),
@@ -47,7 +48,8 @@ export async function bundleCommunityFixture(
             return { path: file, namespace: "fixture-source" };
           });
           b.onLoad({ filter: /.*/, namespace: "fixture-source" }, (args) => ({
-            contents: readFileSync(args.path, "utf8"),
+            contents:
+              sourceOverrides[args.path] ?? readFileSync(args.path, "utf8"),
             loader: args.path.endsWith(".tsx")
               ? "tsx"
               : args.path.endsWith(".ts")
