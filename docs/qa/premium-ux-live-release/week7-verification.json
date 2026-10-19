@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-19T12:10:47.743Z",
+  "rounds": [
+    {
+      "id": "d3da95b4-a72a-4b40-87d9-09b562d92277",
+      "name": "NFL Week 7 · All-Star · TEST",
+      "opens_at": "2026-10-19T12:10:25.667Z",
+      "locks_at": "2026-10-23T00:15:00.000Z",
+      "rules": {
+        "mode": "OPEN",
+        "postgame": true,
+        "positions": {
+          "QB": 1,
+          "RB": 2,
+          "TE": 1,
+          "WR": 2,
+          "FLEX": 1
+        },
+        "duplicates": false,
+        "lock_policy": "individual-permanent",
+        "first_year_min": 0,
+        "lineup_version": "nfl-seven-test-v1",
+        "rarity_version": "docked-lifetime-rarity-v1",
+        "inventory_scope": "invited-nfl-test-v2",
+        "scoring_version": "docked-nfl-seven-full-ppr-v2"
+      },
+      "scoring_version": "docked-nfl-seven-full-ppr-v2",
+      "fixture_count": 14,
+      "entries": "0"
+    },
+    {
+      "id": "9286cca8-c7a3-487e-b687-f9614a2b87b5",
+      "name": "NFL Week 7 · Traditional · TEST",
+      "opens_at": "2026-10-19T12:10:24.901Z",
+      "locks_at": "2026-10-23T00:15:00.000Z",
+      "rules": {
+        "mode": "SALARY_CAP",
+        "postgame": true,
+        "positions": {
+          "QB": 1,
+          "RB": 2,
+          "TE": 1,
+          "WR": 2,
+          "FLEX": 1
+        },
+        "duplicates": false,
+        "lock_policy": "individual-permanent",
+        "first_year_min": 0,
+        "lineup_version": "nfl-seven-test-v1",
+        "rarity_version": "docked-lifetime-rarity-v1",
+        "inventory_scope": "invited-nfl-test-v2",
+        "scoring_version": "docked-nfl-seven-full-ppr-v2"
+      },
+      "scoring_version": "docked-nfl-seven-full-ppr-v2",
+      "fixture_count": 14,
+      "entries": "0"
+    }
+  ],
+  "draftMigration": true,
+  "week6Unchanged": true
+}

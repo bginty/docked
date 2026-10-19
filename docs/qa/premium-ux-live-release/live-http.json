@@ -1,0 +1,33 @@
+{
+  "identity": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "e5c93ec1a3c18f346c0ae63bddb3ece9a15e8814",
+    "deploymentId": "dpl_BNjrWEQkRxhVs2HHu9EWdSyUh5zN",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  },
+  "endpoints": [
+    {
+      "path": "/fantasy/cards",
+      "status": 200
+    },
+    {
+      "path": "/api/status",
+      "status": 200
+    },
+    {
+      "path": "/api/nfl/history/status",
+      "status": 405
+    },
+    {
+      "path": "/preview/card-statistics",
+      "status": 404
+    }
+  ],
+  "verifiedAt": "2026-10-19T12:12:51.323Z"
+}
