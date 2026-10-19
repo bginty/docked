@@ -75,7 +75,7 @@ test("probability formatting never turns near-certainty into a guarantee", () =>
   assert.equal(probabilityLabel(0.000001), "<0.001%");
 });
 test("NFL filters and Core identity never imply football positions or limited Core supply", () => {
-  assert.deepEqual(collectionPositions("nfl"), ["QB", "RB", "WR", "TE", "K"]);
+  assert.deepEqual(collectionPositions("nfl"), ["QB", "RB", "WR", "TE"]);
   assert.equal(collectibleOnly("K", "nfl"), true);
   assert.equal(collectibleOnly("RB", "nfl"), false);
   assert.match(

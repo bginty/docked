@@ -10,6 +10,7 @@ import {
   StartupBoundary,
 } from "../../src/components/startup-loading";
 import { MemberReleaseAdmin } from "../../src/components/member-release-admin";
+import { OfficialAnnouncement } from "../../src/components/official-announcement";
 import type {
   PrizeCompetition,
   PrizeSchedule,
@@ -108,6 +109,27 @@ function Fixture() {
                 audit: [],
               }}
             />
+          </AppShell>
+        ) : variant === "announcement" ? (
+          <AppShell authenticated>
+            <h1>The Docked community</h1>
+            <p>Collect. Compete. Connect.</p>
+            <OfficialAnnouncement
+              item={{
+                id: "00000000-0000-4000-8000-000000000099",
+                title: "Weekly competition prizes",
+                body: "Traditional\n1st · 5 × Standard 9 Pack NFL\n2nd · 3 × Standard 9 Pack NFL\n3rd · 1 × Standard 9 Pack NFL\n\nAll-Star\n1st · 5 × Premium 9 Pack NFL\n2nd · 3 × Premium 9 Pack NFL\n3rd · 1 × Premium 9 Pack NFL",
+                published_at: "2026-10-19T00:00:00Z",
+                cta: "/fantasy/prizes",
+                pinned: true,
+              }}
+            />
+            <nav className="community-tabs" aria-label="Social sections">
+              <button>Home</button>
+              <button>For you</button>
+              <button>Following</button>
+            </nav>
+            <p>Isolated visual fixture · no announcement was published.</p>
           </AppShell>
         ) : variant === "loader" ? (
           <LightSweep />

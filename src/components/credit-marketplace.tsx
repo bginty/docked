@@ -360,6 +360,14 @@ export function Marketplace({ member }: { member: string }) {
       {tab === "activity" && data && (
         <section>
           <h2>Market activity</h2>
+          {data.query.sale && (
+            <button
+              className="button ghost"
+              onClick={() => navigate({ sale: "", cursor: "" })}
+            >
+              View all activity
+            </button>
+          )}
           <div className="period-tabs" aria-label="Activity filter">
             {[
               ["all", "All"],

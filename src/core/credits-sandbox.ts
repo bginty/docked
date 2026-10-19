@@ -881,7 +881,7 @@ export function executeCredits(
         ...debit(parts),
         { account: "system:pack-revenue", credits: product.priceCredits },
       ],
-      "Nine-card TEST pack purchase; no deposit bonus",
+      `${product.cards}-card TEST pack purchase; no deposit bonus`,
     );
     s.entitlements[request] = {
       member: actor.id,
@@ -894,7 +894,7 @@ export function executeCredits(
       entitlement: request,
       journal,
       price: product.priceCredits,
-      cards: 9,
+      cards: product.cards,
       configuration: pack.configurationHash,
     };
   } else if (c.kind === "open-pack" && s.economy?.packs[c.entitlement]) {

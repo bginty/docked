@@ -16,6 +16,8 @@ export function FantasyRewards({
   onOpenStarter?: () => void;
   onReplayStarter?: () => void;
 }) {
+  if (rewards.daily_available === false && rewards.starter_entitled === false)
+    return null;
   if (rewards.daily_available === false && rewards.starter_claimed)
     return (
       <details className="starter-history">
@@ -33,8 +35,9 @@ export function FantasyRewards({
         <p>
           Ten free CORE cards: 2 QB, 3 RB, 3 WR and 2 TE. Start seven, including
           one FLEX. Free test cards have no cash value. Core scores at 1.0×.
-          {competitionNames.SALARY_CAP} and {competitionNames.OPEN} apply rarity multipliers; legacy equal-scoring
-          competitions retain their saved rules.
+          {competitionNames.SALARY_CAP} and {competitionNames.OPEN} apply rarity
+          multipliers; legacy equal-scoring competitions retain their saved
+          rules.
         </p>
         {!rewards.starter_claimed ? (
           <button

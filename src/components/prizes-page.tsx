@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useSport } from "./sport-context";
 import { CompetitionSwitch } from "./competition-switch";
 import { competitionName } from "@/core/competition-display";
@@ -37,8 +38,16 @@ export function PrizesPage({
 }) {
   const { sport } = useSport();
   const params = useSearchParams();
-  const router = useRouter();
-  const query = Object.fromEntries(params.entries());
+  const [query, setQuery] = useState<Record<string, string>>(() =>
+    Object.fromEntries(params.entries()),
+  );
+  useEffect(() => {
+    const read = () =>
+      setQuery(Object.fromEntries(new URLSearchParams(location.search)));
+    read();
+    window.addEventListener("popstate", read);
+    return () => window.removeEventListener("popstate", read);
+  }, []);
   const selected = prizeSelection(competitions, query, sport);
   const { mode, season, seasons, weeks, round, period } = selected;
   const context = {
@@ -58,10 +67,13 @@ export function PrizesPage({
       s.scope === period &&
       s.week === (period === "weekly" ? round?.week : 0),
   );
-  const change = (patch: Record<string, string>) =>
-    router.push(competitionHref("/fantasy/prizes", { ...context, ...patch }), {
-      scroll: false,
-    });
+  const change = (patch: Record<string, string>) => {
+    // All authorised schedules are already loaded. Selection is local, like Rankings;
+    // a button press must not wait for an unrelated full server-state request.
+    const url = competitionHref("/fantasy/prizes", { ...context, ...patch });
+    window.history.pushState(null, "", url);
+    setQuery(Object.fromEntries(new URL(url, location.origin).searchParams));
+  };
   const items = schedule?.items.slice().sort((a, b) => a.from - b.from) ?? [];
   return (
     <section className="prizes-page">
@@ -80,12 +92,13 @@ export function PrizesPage({
       <span className="competition-label">Competition</span>
       <CompetitionSwitch
         mode={mode}
-        onChange={(mode) => change({ mode, competition: "", week: "" })}
+        onChange={(mode) => change({ mode, competition: "" })}
       />
       <div className="standings-controls">
         <nav className="standings-segments" aria-label="Prize period">
           {["weekly", "season"].map((p) => (
             <button
+              type="button"
               key={p}
               aria-pressed={period === p}
               onClick={() => change({ period: p })}

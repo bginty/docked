@@ -80,7 +80,9 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
         groups.map((group) => (
           <section key={group}>
             <h2 className="notification-group-title">
-              {group.replaceAll("_", " ")}
+              {group === "market-sales"
+                ? "Card sales"
+                : group.replaceAll("_", " ")}
             </h2>
             <ul className="notification-list">
               {data.items
@@ -139,11 +141,11 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
           ))}
           <label className="check">
             <input type="checkbox" disabled />
-            <span>Email · unavailable in this preview</span>
+            <span>Email notifications are not available</span>
           </label>
           <label className="check">
             <input type="checkbox" disabled />
-            <span>Push · unavailable in this preview</span>
+            <span>Push notifications are not available yet</span>
           </label>
           <p className="form-help">
             Optional categories are separate from essential account/system

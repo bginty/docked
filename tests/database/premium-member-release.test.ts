@@ -37,7 +37,15 @@ test("prize publication, overlap rejection, locked names, admin MFA and immutabl
     for (const file of (await readdir("supabase/migrations"))
       .filter((f) => f.endsWith(".sql"))
       .sort())
-      await pg.exec(await readFile(`supabase/migrations/${file}`, "utf8"));
+      try {
+        await pg.exec(await readFile(`supabase/migrations/${file}`, "utf8"));
+      } catch (error) {
+        console.error(
+          file,
+          error instanceof Error ? error.message : String(error),
+        );
+        throw error;
+      }
     await pg.exec(
       `create or replace function beta_fantasy.production_eligible() returns uuid language sql as $$select auth.uid()$$;create or replace function beta_private.active_member_session() returns boolean language sql as $$select auth.uid() is not null$$;update sports_feed.nfl_control set enabled=true;`,
     );

@@ -19,6 +19,7 @@ export function AdminAnnouncementDraft() {
   const [events, setEvents] = useState<AnnouncementEvent[]>([]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [cta, setCta] = useState<AnnouncementMutation["cta"]>(null);
   const [reason, setReason] = useState("");
   const [preview, setPreview] = useState(false);
   const [page, setPage] = useState(1);
@@ -28,11 +29,15 @@ export function AdminAnnouncementDraft() {
   const submitting = useRef(false);
   const mounted = useRef(false);
   const dirty =
-    title !== (selected?.title ?? "") || body !== (selected?.body ?? "");
+    title !== (selected?.title ?? "") ||
+    body !== (selected?.body ?? "") ||
+    cta !== (selected?.cta ?? null);
   const canEdit = Boolean(
     listing?.canWrite &&
     (!selected || listing.canReview || listing.actor === selected.created_by) &&
-    (!selected || ["draft", "changes_requested"].includes(selected.status)),
+    (!selected ||
+      ["draft", "changes_requested"].includes(selected.status) ||
+      (listing.canReview && selected.status === "published")),
   );
   const canManage = Boolean(
     listing?.canWrite &&
@@ -43,8 +48,9 @@ export function AdminAnnouncementDraft() {
     listing?.canReview &&
     selected &&
     selected.status === "in_review" &&
-    (listing.canApproveOwn || (listing.actor !== selected.created_by &&
-    listing.actor !== selected.last_edited_by)),
+    (listing.canApproveOwn ||
+      (listing.actor !== selected.created_by &&
+        listing.actor !== selected.last_edited_by)),
   );
   const valid =
     title.trim().length > 0 &&
@@ -98,6 +104,7 @@ export function AdminAnnouncementDraft() {
     setSelected(draft);
     setTitle(draft?.title ?? "");
     setBody(draft?.body ?? "");
+    setCta(draft?.cta ?? null);
     setReason("");
     setPreview(false);
     setEvents([]);
@@ -117,6 +124,7 @@ export function AdminAnnouncementDraft() {
       body: body.trim(),
       audience: "admitted",
       reason: reason.trim(),
+      cta,
     };
     submitting.current = true;
     setBusy(true);
@@ -136,11 +144,15 @@ export function AdminAnnouncementDraft() {
       }
       setUncertain(null);
       choose(data);
-      setMessage("Saved securely. No announcement has been sent.");
+      setMessage(
+        action === "publish"
+          ? "Published on Docked. No push notifications sent."
+          : "Announcement saved securely.",
+      );
       await load().catch(() => {
         if (mounted.current)
           setMessage(
-            "Saved securely. Draft list refresh is unavailable; no announcement was sent.",
+            "Saved securely. List refresh is unavailable; reload to check the current publication status.",
           );
       });
     } catch {
@@ -170,8 +182,11 @@ export function AdminAnnouncementDraft() {
         } as CSSProperties
       }
     >
-      <h2>Announcement drafts</h2>
-      <p>Saved drafts and staff review · delivery is not activated</p>
+      <h2>Official announcements</h2>
+      <p>
+        Review and publish on Docked. Publishing does not send push
+        notifications.
+      </p>
       <p role="status">
         {message ||
           (listing
@@ -275,9 +290,7 @@ export function AdminAnnouncementDraft() {
               value="admitted"
               disabled
             >
-              <option value="admitted">
-                Admitted Docked members · proposed audience
-              </option>
+              <option value="admitted">Admitted Docked members</option>
             </select>
           </label>
           <label>
@@ -318,6 +331,24 @@ export function AdminAnnouncementDraft() {
               />
             </label>
           )}
+          <label>
+            Optional button destination
+            <select
+              value={cta ?? ""}
+              disabled={!canEdit}
+              onChange={(e) =>
+                setCta((e.target.value || null) as AnnouncementMutation["cta"])
+              }
+            >
+              <option value="">No button</option>
+              <option value="/fantasy/prizes">Prizes</option>
+              <option value="/fantasy/play">Play</option>
+              <option value="/fantasy/cards">Collection</option>
+              <option value="/fantasy/market">Market</option>
+              <option value="/fantasy/results">Rankings</option>
+              <option value="/fantasy/test-wallet?view=packs">Packs</option>
+            </select>
+          </label>
           <div className="actions">
             <button
               className="button ghost"
@@ -347,6 +378,32 @@ export function AdminAnnouncementDraft() {
             )}
             {selected && canManage && !dirty && (
               <>
+                {listing?.canReview && selected.status === "approved" && (
+                  <button
+                    className="button"
+                    type="button"
+                    disabled={!valid}
+                    onClick={() => void mutate("publish")}
+                  >
+                    Publish on Docked
+                  </button>
+                )}
+                {listing?.canReview &&
+                  selected.published &&
+                  selected.status !== "archived" && (
+                    <button
+                      className="button ghost"
+                      type="button"
+                      disabled={!valid}
+                      onClick={() =>
+                        void mutate(selected.pinned ? "unpin" : "pin")
+                      }
+                    >
+                      {selected.pinned
+                        ? "Unpin announcement"
+                        : "Pin announcement"}
+                    </button>
+                  )}
                 {["draft", "changes_requested"].includes(selected.status) && (
                   <button
                     className="button ghost"
@@ -389,7 +446,7 @@ export function AdminAnnouncementDraft() {
                 >
                   {selected.status === "archived"
                     ? "Restore as draft"
-                    : "Archive draft"}
+                    : "Archive announcement"}
                 </button>
               </>
             )}
@@ -400,16 +457,24 @@ export function AdminAnnouncementDraft() {
         <p>Save or discard your changes before selecting another draft.</p>
       )}
       {selected?.status === "in_review" && !canReview && (
-        <p>An owner or independent authorised administrator can review this draft.</p>
+        <p>
+          An owner or independent authorised administrator can review this
+          draft.
+        </p>
       )}
       {preview && (
         <article
           aria-label="Announcement preview"
           className="admin-announcement-preview"
         >
-          <p>Preview · not sent</p>
+          <p>Preview · unpublished changes</p>
           <h3>{title}</h3>
           <p style={{ whiteSpace: "pre-wrap" }}>{body}</p>
+          {cta && (
+            <span className="button ghost">
+              Button: {cta.split("/").at(-1)?.split("?")[0]}
+            </span>
+          )}
         </article>
       )}
       {selected && (

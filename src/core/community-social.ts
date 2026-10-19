@@ -54,6 +54,7 @@ export type SocialComment = {
 };
 export type SocialPost = {
   cardSnapshots?: AwardedCard[];
+  unavailableCards?: number;
   playerId?: string | null;
   communityId?: string | null;
   discussionFollowed?: boolean;

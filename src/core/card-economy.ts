@@ -1,4 +1,5 @@
 import { randomInt, randomUUID } from "node:crypto";
+import { paidPackOffers, paidPackWeights } from "./paid-pack-catalogue";
 import { digest } from "./scoring-engine";
 import {
   nflCardEligibility,
@@ -33,7 +34,7 @@ export type NinePackProduct = {
   type: "STANDARD" | "PREMIUM";
   name: string;
   priceCredits: number;
-  cards: 9;
+  cards: 1 | 3 | 9;
   sport: "nfl";
   positions: string[];
   eligibleStatuses?: EconomyPlayer["status"][];
@@ -163,6 +164,18 @@ export function initialCardEconomy(
   return economy;
 }
 export function validateProduct(p: NinePackProduct) {
+  const offer = paidPackOffers.find((v) => v.id === p.id || v.id === p.version);
+  if (
+    offer &&
+    (p.id !== offer.id ||
+      p.version !== offer.id ||
+      p.cards !== offer.cards ||
+      p.type !== offer.type ||
+      p.priceCredits !== offer.priceCredits ||
+      digest(p.weights) !== digest(paidPackWeights[offer.type]) ||
+      Object.keys(p.guaranteedSlots).length)
+  )
+    throw Error("Published pack catalogue terms are immutable");
   if (p.id === premiumUltraVersion || p.version === premiumUltraVersion) {
     if (
       p.id !== premiumUltraVersion ||
@@ -176,7 +189,7 @@ export function validateProduct(p: NinePackProduct) {
       );
   }
   if (
-    p.cards !== 9 ||
+    ![1, 3, 9].includes(p.cards) ||
     p.status !== "TEST_ONLY" ||
     p.sport !== "nfl" ||
     !Number.isSafeInteger(p.priceCredits) ||
@@ -207,10 +220,13 @@ export function validateProduct(p: NinePackProduct) {
     p.weights.ICON <= 0 ||
     Object.values(p.weights).reduce((a, b) => a + b, 0) !== 10000 ||
     Object.entries(p.guaranteedSlots).some(
-      ([slot, r]) => !/^[0-8]$/.test(slot) || !limitedRarities.includes(r),
+      ([slot, r]) =>
+        !/^[0-8]$/.test(slot) ||
+        Number(slot) >= p.cards ||
+        !limitedRarities.includes(r),
     )
   )
-    throw Error("Invalid nine-card test product configuration");
+    throw Error("Invalid test pack product configuration");
 }
 export function validateCardEconomy(e: CardEconomy) {
   if (
@@ -269,9 +285,10 @@ export function validateCardEconomy(e: CardEconomy) {
   for (const c of Object.values(allocations))
     if (!e.definitions[c.definition]) throw Error("Missing supply definition");
   for (const p of Object.values(e.packs)) {
+    validateProduct(p.product);
     if (
-      p.cards.length !== 9 ||
-      new Set(p.cards).size !== 9 ||
+      p.cards.length !== p.product.cards ||
+      new Set(p.cards).size !== p.product.cards ||
       p.cards.some((id) => allocations[id]?.source !== p.id) ||
       digest(p.product) !== p.configurationHash
     )
@@ -309,7 +326,7 @@ export function allocateNine(
       throw Error("Invalid secure draw");
     return value;
   };
-  for (let slot = 0; slot < 9; slot++) {
+  for (let slot = 0; slot < p.cards; slot++) {
     const rarity = drawPackRarity(p, slot, pick);
     const pool = Object.values(e.players)
       .filter(
@@ -476,4 +493,50 @@ export function premiumUltraPackUpgrade(original: CardEconomy, now: number) {
   validateCardEconomy(e);
   Object.assign(original, e);
   return next;
+}
+
+/** Operator-only transition; opening a saved pack never invokes this. */
+export function paidPackCatalogueUpgrade(original: CardEconomy, now: number) {
+  const e = structuredClone(original);
+  validateCardEconomy(e);
+  const active = e.activeProductVersions ?? Object.keys(e.products);
+  const expected = paidPackOffers.map((p) => p.id);
+  if (
+    active.length === expected.length &&
+    expected.every((id) => active.includes(id))
+  )
+    return expected.map((id) => e.products[id]);
+  if (expected.some((id) => e.products[id]))
+    throw Error(
+      "Partial or inactive catalogue transition requires operator review",
+    );
+  const bases = {} as Record<"PREMIUM" | "STANDARD", NinePackProduct>;
+  for (const type of ["PREMIUM", "STANDARD"] as const) {
+    const family = active
+      .map((id) => e.products[id])
+      .filter((p) => p?.type === type);
+    if (family.length !== 1)
+      throw Error(`Expected one existing ${type} configuration`);
+    const base = family[0];
+    if (
+      digest(base.weights) !== digest(paidPackWeights[type]) ||
+      Object.keys(base.guaranteedSlots).length
+    )
+      throw Error(
+        `${type} odds differ from the approved policy; review required`,
+      );
+    bases[type] = base;
+  }
+  for (const offer of paidPackOffers) {
+    e.products[offer.id] = {
+      ...structuredClone(bases[offer.type]),
+      ...offer,
+      version: offer.id,
+      effectiveAt: now,
+    };
+  }
+  e.activeProductVersions = expected;
+  validateCardEconomy(e);
+  Object.assign(original, e);
+  return expected.map((id) => e.products[id]);
 }

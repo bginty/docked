@@ -1,5 +1,6 @@
 import "server-only";
 import { snapshotSocialCards } from "./social-card-projection";
+import { socialAttachments } from "@/core/social-attachment";
 import { createHash, randomUUID } from "node:crypto";
 import {
   encodeCommunityImage,
@@ -226,12 +227,15 @@ async function projectPosts(
   const countsById = new Map(counts.map((r) => [String(r.id), r]));
   return rows.map((r) => {
     const count = countsById.get(String(r.id))!;
+    const attachments = socialAttachments(
+      r.moderation_status === "visible" && !r.deleted_at
+        ? r.card_snapshots
+        : [],
+    );
     return {
       id: String(r.id),
-      cardSnapshots:
-        r.moderation_status === "visible" && !r.deleted_at
-          ? ((r.card_snapshots ?? []) as SocialPost["cardSnapshots"])
-          : [],
+      cardSnapshots: attachments.cards,
+      unavailableCards: attachments.unavailable,
       playerId: r.player_id ? String(r.player_id) : null,
       communityId: r.community_id ? String(r.community_id) : null,
       discussionFollowed: count.discussion_followed === true,
@@ -437,10 +441,12 @@ export async function communityNotifications(): Promise<CommunityNotifications> 
     },
     async (c) => {
       if (!c.profileId) return { items: [], unread: 0, preferences: null };
+      if (process.env.DOCKED_BETA_STAGING === "true")
+        await c.tx`select private.deliver_my_sales()`;
       const rows =
-        await c.tx`select n.id,n.type,n.title,n.href,n.created_at,n.read_at,n.group_key from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key in ('redemption','card-offers'))) and n.recipient_id=${c.profileId} and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id)) order by created_at desc,id desc limit 50`;
+        await c.tx`select n.id,n.type,n.title,n.href,n.created_at,n.read_at,n.group_key from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key in ('redemption','card-offers','market-sales'))) and n.recipient_id=${c.profileId} and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id)) order by created_at desc,id desc limit 50`;
       const unread =
-        await c.tx`select count(*)::int as count from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key in ('redemption','card-offers'))) and n.recipient_id=${c.profileId} and n.read_at is null and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id))`;
+        await c.tx`select count(*)::int as count from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key in ('redemption','card-offers','market-sales'))) and n.recipient_id=${c.profileId} and n.read_at is null and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id))`;
       const pref =
         await c.tx`select * from private.social_notification_preferences where profile_id=${c.profileId}`;
       return {

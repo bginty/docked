@@ -11,6 +11,7 @@ select cron.schedule('docked-weekly-core-entitlements','* * * * *','select sport
 select cron.alter_job(job_id := (select jobid from cron.job where jobname='docked-weekly-core-entitlements'),active := false);
 commit;
 -- Separate approved activation transaction:
+--   select pg_advisory_xact_lock(71820342);
 --   update sports_feed.weekly_core_control set enabled=true where id;
 --   select sports_feed.weekly_core_job();
 --   select cron.alter_job(job_id := (...same job...),active := true);

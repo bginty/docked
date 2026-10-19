@@ -147,6 +147,22 @@ async function main() {
       );
       writeFileSync(`${out}/axe-${width}.json`, JSON.stringify(axe, null, 2));
       assert.equal(axe.length, 0, "prize accessibility");
+      await page.goto(origin + "/fantasy/social?fixture=announcement");
+      await expect(
+        page.getByRole("article", { name: "Official Docked announcement" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "View prizes →" }),
+      ).toHaveAttribute("href", "/fantasy/prizes");
+      assert.ok(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      );
+      await page.screenshot({
+        path: `${out}/announcements-${width}.png`,
+        fullPage: true,
+      });
       await page.goto(origin + "/fantasy/play?fixture=loader");
       await expect(page.getByText("Getting Docked ready…")).toBeVisible();
       await page.screenshot({ path: `${out}/loader-${width}.png` });

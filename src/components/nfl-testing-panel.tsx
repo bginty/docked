@@ -75,9 +75,9 @@ export function NflTestingPanel({
       <p className="small-note">
         History points are derived on read under {report.version}; no
         competition scoring run is implied. Import failures are shown in feed
-        health. Finalised competition results and provisional standings remain
-        in <a href="/fantasy/standings">competition standings</a> under their
-        frozen rules.
+        health. Finalised competition results and provisional rankings remain in{" "}
+        <a href="/fantasy/standings">competition rankings</a> under their frozen
+        rules.
       </p>
       <section className="fantasy-panel">
         <h2>Game diagnostics</h2>

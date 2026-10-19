@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-19T05:43:48.842Z",
+  "base": "7ba9b8c4b613627aec94c6b211552b382f9b20a7",
+  "branch": "codex/member-platform-updates",
+  "productionMutations": 0,
+  "hostedScheduledIssuanceVerified": false,
+  "webPushImplemented": false,
+  "checks": {
+    "platform": {
+      "passed": 491,
+      "failed": 0
+    },
+    "database": {
+      "passed": 187,
+      "failed": 0
+    },
+    "cutover": {
+      "passed": 1,
+      "failed": 0
+    },
+    "weeklyPostgres": {
+      "passed": 1,
+      "failed": 0
+    },
+    "build": {
+      "webpack": true,
+      "clientCanaryAssets": 166,
+      "passed": true
+    },
+    "lint": {
+      "passed": true
+    },
+    "typecheck": {
+      "passed": true
+    },
+    "changedFileSecrets": {
+      "status": "PASS",
+      "inspected": 81,
+      "findings": [],
+      "scope": "Tracked and non-ignored source/text files; known private-key, access-token, JWT and credentialed-database-URL patterns. No credentials are printed. This is a heuristic scan, separate from the built browser-canary check."
+    },
+    "browser": {
+      "fixtureOnly": true,
+      "widths": [
+        1536,
+        1440,
+        1024,
+        412,
+        360
+      ],
+      "sixProducts": true,
+      "counts": [
+        9,
+        3,
+        1,
+        9,
+        3,
+        1
+      ],
+      "seriousAccessibilityViolations": 0
+    }
+  },
+  "limitations": [
+    "Full database suite preceded the final persistent cutover safeguard; integrated database and native weekly PostgreSQL checks reran after it.",
+    "Whole-repository heuristic secret scan flagged eight unchanged existing fixture/tool files. Changed-file scan and client canary passed.",
+    "Default Turbopack rejected external dependency junction; supported Webpack build passed.",
+    "Initial platform run had two stale expectations corrected before rerun.",
+    "Browser evidence uses isolated fixtures; no physical device or live two-account acceptance claimed."
+  ]
+}

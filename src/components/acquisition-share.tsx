@@ -10,7 +10,7 @@ export function AcquisitionShare({
 }: {
   member: string;
   reference: string;
-  cards: { id: string; name: string; tier?: string }[];
+  cards: { id: string; name: string; tier?: string; sport?: string }[];
 }) {
   const key = `docked:share-dismissed:v1:${member}:${reference}`;
   const [dismissed, setDismissed] = useState(true),
@@ -69,7 +69,8 @@ export function AcquisitionShare({
         <FantasySheet title="Share your card" onClose={close}>
           <p>Review your post. Nothing is shared until you press Post.</p>
           <SocialComposer
-            initialSport="nfl"
+            key={`${reference}:${card.id}`}
+            initialSport={card.sport ?? "nfl"}
             inline
             initialCardIds={[card.id]}
             onPublished={close}

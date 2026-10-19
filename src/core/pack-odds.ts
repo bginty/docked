@@ -9,7 +9,7 @@ export function packOdds(p: NinePackProduct) {
     floor === "ULTRA_RARE" && Object.keys(p.guaranteedSlots).length === 0;
   return {
     headline: ultraFloor
-      ? `${p.cards} cards · ${rarityRule(floor).label} or better on every card`
+      ? `${p.cards} ${p.cards === 1 ? "card" : "cards"} · ${rarityRule(floor).label} or better on every card`
       : null,
     guarantee: ultraFloor
       ? "Every card is guaranteed Ultra Rare or better. Legendary and Icon cards are not guaranteed."

@@ -8,6 +8,9 @@ export const announcementActions = [
   "request_changes",
   "archive",
   "restore",
+  "publish",
+  "pin",
+  "unpin",
 ] as const;
 export const announcementMutation = z
   .object({
@@ -19,6 +22,17 @@ export const announcementMutation = z
     body: z.string().trim().min(1).max(3000),
     audience: z.literal("admitted"),
     reason: z.string().trim().min(3).max(500),
+    cta: z
+      .enum([
+        "/fantasy/prizes",
+        "/fantasy/play",
+        "/fantasy/cards",
+        "/fantasy/market",
+        "/fantasy/results",
+        "/fantasy/test-wallet?view=packs",
+      ])
+      .nullable()
+      .optional(),
   })
   .strict();
 export type AnnouncementMutation = z.infer<typeof announcementMutation>;
@@ -27,7 +41,17 @@ export type AnnouncementDraft = {
   title: string;
   body: string;
   audience: "admitted";
-  status: "draft" | "in_review" | "approved" | "changes_requested" | "archived";
+  status:
+    | "draft"
+    | "in_review"
+    | "approved"
+    | "changes_requested"
+    | "archived"
+    | "published";
+  cta?: AnnouncementMutation["cta"];
+  pinned?: boolean;
+  published_at?: string | null;
+  published?: { title: string; body: string; cta: string | null } | null;
   version: number;
   created_by: string;
   updated_by: string;

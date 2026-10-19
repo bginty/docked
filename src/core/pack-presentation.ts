@@ -1,7 +1,19 @@
 export type PackTab = "buy" | "mine" | "history";
-export function packTitle(p: {name:string; tier?:string; type?:string|null}) {
+export function packTitle(p: {
+  name: string;
+  tier?: string;
+  type?: string | null;
+  cards?: number;
+  cardCount?: number | null;
+}) {
   const type = p.type ?? p.tier;
-  return type === "PREMIUM" ? "Premium Pack" : type === "STANDARD" ? "Standard Pack" : p.name;
+  const count = p.cards ?? p.cardCount;
+  const size = count ? ` ${count}` : "";
+  return type === "PREMIUM"
+    ? `Premium${size} Pack`
+    : type === "STANDARD"
+      ? `Standard${size} Pack`
+      : p.name;
 }
 export function packTab(search: string, hash = ""): PackTab {
   const value = new URLSearchParams(search).get("packs");

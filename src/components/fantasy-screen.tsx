@@ -1,5 +1,6 @@
 "use client";
 import { competitionLabel } from "@/core/competition-display";
+import { CollectionExport } from "./collection-export";
 import { useSport } from "./sport-context";
 import { boundedFetch } from "@/core/bounded-request";
 import { collectionPositions, sevenEligibility } from "@/core/card-display";
@@ -99,48 +100,65 @@ export function FantasyScreen({
   const pending = useRef<PendingFantasyRequest | null>(null);
   const pendingUnconfirmed = useRef(false);
   const inFlight = useRef(false);
-  const refresh = useCallback(async () => {
-    if (inFlight.current) return;
-    inFlight.current = true;
-    setBusy(true);
-    try {
-      const r = await boundedFetch("/api/fantasy", { cache: "no-store" });
-      if (!r.ok) {
-        if (r.status === 403)
-          setData({ ...initial, cards: [], seven: undefined });
-        throw Error(
-          "Could not refresh. Sign in again if your session has expired.",
-        );
+  const refreshing = useRef(false);
+  const readGeneration = useRef(0);
+  const refresh = useCallback(
+    async (background = false) => {
+      if (inFlight.current || refreshing.current) return;
+      refreshing.current = true;
+      const generation = readGeneration.current;
+      if (!background) setBusy(true);
+      try {
+        const r = await boundedFetch("/api/fantasy", { cache: "no-store" });
+        if (generation !== readGeneration.current) return;
+        if (!r.ok) {
+          if (r.status === 403)
+            setData({ ...initial, cards: [], seven: undefined });
+          throw Error(
+            "Could not refresh. Sign in again if your session has expired.",
+          );
+        }
+        const next = await r.json();
+        if (generation !== readGeneration.current) return;
+        if (next.state.user_id !== initial.user_id) {
+          window.location.reload();
+          return;
+        }
+        setData(next.state);
+        lastState.current = next.state;
+        if (!background) setMessage("Updated from the server.");
+      } catch {
+        if (!background) setMessage("Could not refresh. Please retry.");
+      } finally {
+        refreshing.current = false;
+        if (!background && !inFlight.current) setBusy(false);
       }
-      const next = await r.json();
-      if (next.state.user_id !== initial.user_id) {
-        window.location.reload();
-        return;
-      }
-      setData(next.state);
-      lastState.current = next.state;
-      setMessage("Updated from the server.");
-    } catch {
-      setMessage("Could not refresh. Please retry.");
-    } finally {
-      inFlight.current = false;
-      setBusy(false);
-    }
-  }, [initial]);
+    },
+    [initial],
+  );
   useEffect(() => {
     if (!inFlight.current) setData(initial);
   }, [initial]);
   useEffect(() => {
-    const resume = () => void refresh();
+    const resume = () => {
+      if (document.visibilityState === "visible") void refresh(true);
+    };
+    const timer = window.setInterval(resume, 30000);
+    window.addEventListener("focus", resume);
+    document.addEventListener("visibilitychange", resume);
     window.addEventListener("docked-app-resume", resume);
     window.addEventListener("online", resume);
     return () => {
+      window.clearInterval(timer);
+      window.removeEventListener("focus", resume);
+      document.removeEventListener("visibilitychange", resume);
       window.removeEventListener("docked-app-resume", resume);
       window.removeEventListener("online", resume);
     };
   }, [refresh]);
   async function act(action: string, payload: Record<string, unknown> = {}) {
     if (inFlight.current) return null;
+    readGeneration.current++;
     inFlight.current = true;
     setBusy(true);
     setMessage("");
@@ -309,11 +327,6 @@ export function FantasyScreen({
         </button>
       )}
       {tab === "play" && <FantasyPlay data={data} busy={busy} act={act} />}
-      {tab === "play" && (
-        <button disabled={busy} onClick={() => void refresh()}>
-          Refresh team & points
-        </button>
-      )}
       {tab === "cards" && (
         <div className="collection-heading">
           <div>
@@ -868,6 +881,7 @@ export function FantasyScreen({
           </section>
         </>
       )}
+      {tab === "cards" && <CollectionExport />}
       {tab === "market" && !production && (
         <>
           <section className="fantasy-panel">

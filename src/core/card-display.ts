@@ -2,8 +2,7 @@ import { competitionNames } from "./competition-display";
 import { rarityRule } from "./card-rarity";
 import { nflSeven } from "./nfl-seven";
 import type { FantasyCard, FantasyState } from "./fantasy";
-export const scoringContext =
-  `${competitionNames.SALARY_CAP} and ${competitionNames.OPEN} use rarity multipliers (1.0×–1.5×). Legacy equal-scoring rounds remain 1.0×. Scoring depends on the competition’s saved rules.`;
+export const scoringContext = `${competitionNames.SALARY_CAP} and ${competitionNames.OPEN} use rarity multipliers (1.0×–1.5×). Legacy equal-scoring rounds remain 1.0×. Scoring depends on the competition’s saved rules.`;
 export const sevenPositions = [
   ...new Set(nflSeven.slots.flatMap((s) => s.positions)),
 ];
@@ -22,7 +21,7 @@ export function collectibleOnly(position: string, sport: string) {
 }
 export function collectionPositions(sport: string) {
   return sport === "nfl"
-    ? [...sevenPositions, "K"]
+    ? [...sevenPositions]
     : sport === "afl"
       ? ["DEF", "MID", "RUC", "FWD"]
       : ["GK", "DEF", "MID", "FWD"];

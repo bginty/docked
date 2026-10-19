@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
-import { postgameResults, nflStandings, playStandings } from "@/server/postgame-results";
+import {
+  postgameResults,
+  nflStandings,
+  playStandings,
+} from "@/server/postgame-results";
 import { fantasyRequest } from "@/server/fantasy";
 import { CompetitionResults } from "@/components/competition-results";
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Standings · Traditional & All-Star",
+  title: "Rankings · Traditional & All-Star",
   robots: { index: false, follow: false },
 };
 export default async function Page({

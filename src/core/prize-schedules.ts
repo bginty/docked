@@ -6,6 +6,7 @@ export const prizeItem = z
     description: z.string().trim().min(1).max(240),
     type: z.enum(["credits", "card", "pack", "other"]),
     amount: z.number().int().positive().max(1e9),
+    productVersion: z.string().min(1).max(160).optional(),
   })
   .strict();
 export const prizeItems = z

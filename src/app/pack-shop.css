@@ -170,6 +170,92 @@ a.pack-control {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
+.pack-families {
+  display: grid;
+  gap: 24px;
+}
+.official-announcement {
+  margin-block: 24px;
+  padding: clamp(16px, 3vw, 28px);
+  border: 1px solid #3278b7;
+  border-radius: 18px;
+  background: linear-gradient(130deg, #102b45, #09182b);
+  overflow-wrap: anywhere;
+}
+.official-announcement header,
+.official-announcement footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.official-announcement header {
+  font-size: 0.8rem;
+  color: #9ad9ff;
+}
+.official-announcement b {
+  display: inline-block;
+  margin: 4px 8px;
+  border-radius: 8px;
+  background: #0862c5;
+  color: white;
+  padding: 4px 8px;
+}
+.official-announcement h2 {
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
+}
+.official-announcement h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+.official-announcement footer {
+  color: #a8bbd5;
+  font-size: 0.85rem;
+}
+.test-wallet .pack-family,
+.pack-family {
+  padding: 16px;
+  margin: 0;
+  border: 1px solid #294160;
+  border-radius: 18px;
+  background: #09182b;
+}
+.pack-family > header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-bottom: 16px;
+}
+.pack-family > header h2 {
+  margin: 0;
+  color: #bbdfff;
+}
+.pack-family[data-family="PREMIUM"] > header h2 {
+  color: #f4d68b;
+}
+.pack-family > header p {
+  color: #b5c9e3;
+  margin: 0;
+}
+.pack-family .pack-product-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.pack-family .pack-product {
+  min-width: 0;
+  padding: 14px;
+}
+.pack-family .pack-product h3 {
+  margin: 8px 0;
+  font-size: 1.1rem;
+}
+@media (max-width: 800px) {
+  .pack-family .pack-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .pack-product {
   display: flex;
   flex-direction: column;
@@ -594,5 +680,108 @@ a.pack-control {
   .pack-wrapper {
     transition: none;
     animation: none;
+  }
+}
+
+/* Compact catalogue: official foil artwork, one disclosure per product family. */
+.pack-family > header .pack-disclosures {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.pack-family > header .pack-disclosures details {
+  max-width: 330px;
+  font-size: 0.85rem;
+}
+.pack-family > header .pack-disclosures summary {
+  border-radius: 20px;
+}
+.pack-family .pack-product {
+  display: grid;
+  grid-template-columns: 94px minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto;
+  align-content: center;
+  align-items: center;
+  gap: 8px 12px;
+  text-align: left;
+}
+.pack-family .pack-product > .pack-wrapper {
+  grid-column: 1;
+  grid-row: 1 / 5;
+  width: 94px;
+}
+.pack-family .pack-product > h3,
+.pack-family .pack-product > p,
+.pack-family .pack-product > button {
+  grid-column: 2;
+  margin: 0;
+}
+.pack-family .pack-product h3 {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.pack-family .pack-product-guarantee {
+  min-height: 0;
+  text-align: left;
+}
+.pack-family .pack-price {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.pack-family .pack-price strong {
+  display: block;
+  font-size: 1.15rem;
+}
+.pack-family[data-family="PREMIUM"] .pack-price strong {
+  color: #f4d68b;
+}
+.pack-family .pack-product .pack-control {
+  padding: 8px;
+  font-size: 0.9rem;
+  border-radius: 22px;
+}
+.pack-family .pack-product > .pack-wrapper {
+  align-self: center;
+  height: auto;
+  min-height: 0;
+  padding: 16px 6px;
+  gap: 8px;
+}
+.pack-family .pack-wrapper strong {
+  font-size: 0.65rem;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.pack-family .wrapper-crimp {
+  height: 6px;
+}
+.pack-family > header .pack-disclosures {
+  width: auto;
+}
+.official-announcement footer {
+  background: transparent;
+  margin: 16px 0 0;
+  padding: 0;
+  min-height: 0;
+  border: 0;
+}
+@media (min-width: 801px) and (max-width: 1150px) {
+  .pack-family .pack-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 800px) {
+  .pack-family .pack-product {
+    grid-template-columns: 90px minmax(0, 1fr);
+    padding: 14px;
+  }
+  .pack-family .pack-product > .pack-wrapper {
+    width: 90px;
+  }
+  .pack-family > header .pack-disclosures {
+    margin-left: 0;
+    width: 100%;
+    flex-wrap: wrap;
   }
 }

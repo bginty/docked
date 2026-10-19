@@ -1,4 +1,7 @@
-import { competitionNames, reviewCompetitionLabel } from "@/core/competition-display";
+import {
+  competitionNames,
+  reviewCompetitionLabel,
+} from "@/core/competition-display";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { fantasyRequest } from "@/server/fantasy";
@@ -7,6 +10,7 @@ import { rulesets, nflRarityRules } from "@/core/scoring-v1";
 import { sevenRules, nflSeven, sevenTransferNotice } from "@/core/nfl-seven";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { ScoringRulesTable } from "@/components/scoring-rules-table";
+import { NflScoringReference } from "@/components/nfl-scoring-reference";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "NFL scoring rules",
@@ -54,9 +58,7 @@ export default async function RulesPage({
     <AppShell authenticated>
       <section className="scoring-review">
         <h1>NFL scoring rules</h1>
-        <p>
-          {selected?.name ?? "NFL scoring reference"}
-        </p>
+        <p>{selected?.name ?? "NFL scoring reference"}</p>
         <p>
           {rules.rarityVersion
             ? "Rarity scoring: the locked card multiplier applies."
@@ -66,7 +68,7 @@ export default async function RulesPage({
           <label>
             Competition
             <select name="competition" defaultValue={selected?.id ?? ""}>
-              <option value="">Current seven-player reference</option>
+              <option value="">Player game-log reference</option>
               {rounds.map((r) => (
                 <option value={r.id} key={r.id}>
                   {reviewCompetitionLabel(r)}
@@ -76,14 +78,20 @@ export default async function RulesPage({
           </label>
           <button>View saved rules</button>
         </form>
-        <ScoringRulesTable
-          rules={{
-            ...rules,
-            policy: rules.policy.filter(
-              (p) => !p.includes("live catalogue is not enabled"),
-            ),
-          }}
-        />
+        <NflScoringReference savedWeights={rules.weights} />
+        {selected && (
+          <details>
+            <summary>Complete saved competition rules</summary>
+            <ScoringRulesTable
+              rules={{
+                ...rules,
+                policy: rules.policy.filter(
+                  (p) => !p.includes("live catalogue is not enabled"),
+                ),
+              }}
+            />
+          </details>
+        )}
         <h2>Rarity and calculation order</h2>
         <table className="rules-rarity-table">
           <thead>
@@ -129,9 +137,11 @@ export default async function RulesPage({
         </p>
         {rolling && (
           <p>
-            {competitionNames.SALARY_CAP}: {config.salaryCap.toLocaleString("en-AU")} fantasy
-            dollars; exactly the cap is allowed. {competitionNames.OPEN} has no salary limit. Each mode has its own entry; the
-            same owned card can be used in both.
+            {competitionNames.SALARY_CAP}:{" "}
+            {config.salaryCap.toLocaleString("en-AU")} fantasy dollars; exactly
+            the cap is allowed. {competitionNames.OPEN} has no salary limit.
+            Each mode has its own entry; the same owned card can be used in
+            both.
           </p>
         )}
         <h2>Entries, locks and transfers</h2>
@@ -173,7 +183,7 @@ export default async function RulesPage({
                 : "/fantasy/results"
             }
           >
-            Results & leaderboards
+            Rankings
           </Link>
         </p>
       </section>

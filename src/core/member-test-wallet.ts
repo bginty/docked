@@ -235,7 +235,8 @@ export function memberTestView(
             available:
               now >= p.effectiveAt &&
               (p.expiresAt === null || now < p.expiresAt) &&
-              eligibleCatalogue(s.economy!, p, now).length >= 9,
+              eligibleCatalogue(s.economy!, p, now).length >=
+                (p.duplicatePlayers === "deny" ? p.cards : 1),
             version: p.version,
           }))
       : (s.economy ? [] : s.policy.products).map((p) => ({

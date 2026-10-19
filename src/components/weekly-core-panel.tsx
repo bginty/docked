@@ -48,7 +48,6 @@ export function WeeklyCorePanel({
       if (alive.current && current === generation.current) setState(data.state);
     } catch (e) {
       if (alive.current && current === generation.current) {
-        setState(null);
         setError(e instanceof Error ? e.message : "Weekly packs unavailable");
       }
     } finally {

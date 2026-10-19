@@ -253,7 +253,7 @@ export default async function FantasyPage({
                 }
               >
                 {data.state.nfl_beta
-                  ? "NFL post-game points, breakdowns and standings"
+                  ? "NFL points, breakdowns and rankings"
                   : "Scoring lab: EPL, NFL and AFL · simulated examples and beta rules"}
               </Link>
             </p>

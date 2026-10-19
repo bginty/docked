@@ -15,6 +15,66 @@ import { PackArtwork } from "./pack-artwork";
 import { WeeklyCorePanel } from "./weekly-core-panel";
 import { StarterPackHistory } from "./starter-pack-history";
 type Product = MemberTestView["products"][number];
+function FamilyDisclosures({ p }: { p: Product }) {
+  return (
+    <div className="pack-disclosures">
+      {p.weights && (
+        <details>
+          <summary>Rarity Chances</summary>
+          <table>
+            <caption>Per card · before supply checks</caption>
+            <thead>
+              <tr>
+                <th>Rarity</th>
+                <th>Chance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rarities
+                .filter((r) => p.weights![r] > 0)
+                .map((r) => (
+                  <tr key={r}>
+                    <td>{rarityRule(r).label}</td>
+                    <td>{p.weights![r] / 100}%</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+          {!!p.odds?.excluded.length && (
+            <p>{p.odds.excluded.join(", ")}: not included.</p>
+          )}
+        </details>
+      )}
+      <details>
+        <summary>Pack Details</summary>
+        <p>
+          1, 3 or 9 cards · {p.eligiblePlayers} eligible players
+          {p.positions.length ? ` · ${p.positions.join(", ")}` : ""}.
+        </p>
+        <p>
+          {p.odds?.guarantee ??
+            (Object.keys(p.guaranteedSlots).length
+              ? `Guaranteed slots: ${Object.entries(p.guaranteedSlots)
+                  .map(([slot, r]) => `${Number(slot) + 1}: ${r}`)
+                  .join(", ")}`
+              : "No guaranteed rarity.")}
+        </p>
+        <p>
+          {p.duplicatePlayers === "n/a"
+            ? "Single-card pack."
+            : p.duplicatePlayers === "deny"
+              ? "Different players in each pack."
+              : "Player selection follows the pack’s saved duplicate policy."}
+        </p>
+        <p>
+          Rarity chances apply before supply checks. If the pack cannot be
+          fulfilled, the purchase fails without charge or substitution.
+          Completed-pack frequencies may differ near exhaustion.
+        </p>
+      </details>
+    </div>
+  );
+}
 export function PackShop({
   state: s,
   busy,
@@ -103,114 +163,101 @@ export function PackShop({
         ))}
       </nav>
       {tab === "buy" && (
-        <div className="pack-product-grid">
-          {s.products.map((p) => (
-            <article className="pack-product" key={p.id}>
-              <PackArtwork name={title(p)} premium={p.tier === "PREMIUM"} />
-              <h2>{title(p)}</h2>
-              <p className="pack-product-guarantee">
-                {p.odds?.headline ??
-                  `${p.cards} ${s.economyEnabled ? "NFL player cards" : "card"}`}
-              </p>
-              <p className="pack-price">
-                <strong>{credits(p.price)}</strong> test credits
-              </p>
-              <button
-                className="pack-control primary"
-                disabled={
-                  busy ||
-                  recovery ||
-                  !p.available ||
-                  s.wallet.spendable < p.price
-                }
-                onClick={() => {
-                  setError("");
-                  setReview(p);
-                }}
+        <div className="pack-families">
+          {["PREMIUM", "STANDARD", "OTHER"].map((family) => {
+            const products = s.products
+              .filter((p) =>
+                family === "OTHER"
+                  ? !["PREMIUM", "STANDARD"].includes(p.tier)
+                  : p.tier === family,
+              )
+              .sort((a, b) => b.cards - a.cards);
+            if (!products.length) return null;
+            return (
+              <section
+                className="pack-family"
+                data-family={family}
+                key={family}
               >
-                Buy{" "}
-                {p.tier === "PREMIUM"
-                  ? "Premium"
-                  : p.tier === "STANDARD"
-                    ? "Standard"
-                    : p.name}
-              </button>
-              {!p.available ? (
-                <p className="small-note">Currently unavailable</p>
-              ) : (
-                s.wallet.spendable < p.price && (
-                  <p className="small-note">
-                    Insufficient available test credits
-                  </p>
-                )
-              )}
-              <div className="pack-disclosures">
-                {p.weights && (
-                  <details>
-                    <summary>Rarity Chances</summary>
-                    <table>
-                      <caption>Per card · before supply checks</caption>
-                      <thead>
-                        <tr>
-                          <th>Rarity</th>
-                          <th>Chance</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {rarities
-                          .filter((r) => p.weights![r] > 0)
-                          .map((r) => (
-                            <tr key={r}>
-                              <td>{rarityRule(r).label}</td>
-                              <td>{p.weights![r] / 100}%</td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                    {!!p.odds?.excluded.length && (
-                      <p>{p.odds.excluded.join(", ")}: not included.</p>
-                    )}
-                  </details>
-                )}
-                <details>
-                  <summary>Pack Details</summary>
+                <header>
+                  <h2>
+                    {family === "PREMIUM"
+                      ? "Premium"
+                      : family === "STANDARD"
+                        ? "Standard"
+                        : "Packs"}
+                  </h2>
                   <p>
-                    {p.cards} cards · {p.eligiblePlayers} eligible players
-                    {p.positions.length ? ` · ${p.positions.join(", ")}` : ""}.
+                    {family === "PREMIUM"
+                      ? "Ultra Rare, Legendary or Icon on every card."
+                      : family === "STANDARD"
+                        ? "Rare, Elite, Ultra Rare, Legendary or Icon."
+                        : "Choose your pack."}
                   </p>
-                  <p>
-                    {p.odds?.guarantee ??
-                      (Object.keys(p.guaranteedSlots).length
-                        ? `Guaranteed slots: ${Object.entries(p.guaranteedSlots)
-                            .map(([slot, r]) => `${Number(slot) + 1}: ${r}`)
-                            .join(", ")}`
-                        : "No guaranteed rarity.")}
-                  </p>
-                  <p>
-                    {p.duplicatePlayers === "n/a"
-                      ? "Single-card pack."
-                      : p.duplicatePlayers === "deny"
-                        ? "Different players in each pack."
-                        : "Player selection follows the pack’s saved duplicate policy."}
-                  </p>
-                  <p>
-                    Rarity chances apply before supply checks. If the pack
-                    cannot be fulfilled, the purchase fails without charge or
-                    substitution. Completed-pack frequencies may differ near
-                    exhaustion.
-                  </p>
-                  <small>Configuration: {p.version}</small>
-                </details>
-              </div>
-            </article>
-          ))}
+                  <FamilyDisclosures p={products[0]} />
+                </header>
+                <div className="pack-product-grid">
+                  {products.map((p) => (
+                    <article className="pack-product" key={p.id}>
+                      <PackArtwork
+                        name={title(p)}
+                        premium={p.tier === "PREMIUM"}
+                      />
+                      <h3>{title(p)}</h3>
+                      <p className="pack-product-guarantee">
+                        {p.cards} {p.cards === 1 ? "card" : "cards"}
+                      </p>
+                      <p className="pack-price">
+                        <strong>{credits(p.price)}</strong> test credits
+                      </p>
+                      <button
+                        className="pack-control primary"
+                        aria-label={`Buy ${title(p)}`}
+                        disabled={
+                          busy ||
+                          recovery ||
+                          !p.available ||
+                          s.wallet.spendable < p.price
+                        }
+                        onClick={() => {
+                          setError("");
+                          setReview(p);
+                        }}
+                      >
+                        Buy{" "}
+                        {p.tier === "PREMIUM"
+                          ? "Premium"
+                          : p.tier === "STANDARD"
+                            ? "Standard"
+                            : p.name}
+                      </button>
+                      {!p.available ? (
+                        <p className="small-note">Currently unavailable</p>
+                      ) : (
+                        s.wallet.spendable < p.price && (
+                          <p className="small-note">
+                            Insufficient available test credits
+                          </p>
+                        )
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+          {s.economyEnabled && (
+            <p className="small-note">
+              Core cards are exclusive to weekly starter packs.
+            </p>
+          )}
         </div>
       )}
       {tab !== "buy" && (
         <section id="pack-history" className="pack-library">
           <h2>{tab === "mine" ? "My Packs" : "Pack history"}</h2>
           <WeeklyCorePanel member={s.member} history={tab === "history"} />
-          {tab === "history" && <StarterPackHistory member={s.member}/>}
+          {tab === "history" && <StarterPackHistory member={s.member} />}
           {(tab === "mine" ? unopened : historyPacks).length === 0 && (
             <p>
               {tab === "mine"
@@ -233,7 +280,10 @@ export function PackShop({
                 <h3>{title(p)}</h3>
                 <p>
                   {p.status === "SEALED" ? "Ready to open" : "Opened"} ·{" "}
-                  {p.cardCount ?? p.receipt?.cards.length ?? "—"} cards
+                  {p.cardCount ?? p.receipt?.cards.length ?? "—"}{" "}
+                  {(p.cardCount ?? p.receipt?.cards.length) === 1
+                    ? "card"
+                    : "cards"}
                 </p>
                 <p className="small-note">
                   {p.purchasedAt
@@ -247,12 +297,6 @@ export function PackShop({
                     ? ` · ${credits(p.paidCredits)} test credits`
                     : ""}
                 </p>
-                {p.configuration && (
-                  <details>
-                    <summary>Technical details</summary>
-                    <p>Purchase configuration: {p.configuration}</p>
-                  </details>
-                )}
               </div>
               <button
                 className="pack-control secondary"

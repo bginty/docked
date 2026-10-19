@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "width": 1536,
+      "height": 1024,
+      "selectors": true,
+      "backForward": true,
+      "reducedMotion": true,
+      "startupReady": true,
+      "errorState": true,
+      "axeSerious": 0
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "selectors": true,
+      "backForward": true,
+      "reducedMotion": true,
+      "startupReady": true,
+      "errorState": true,
+      "axeSerious": 0
+    },
+    {
+      "width": 1024,
+      "height": 900,
+      "selectors": true,
+      "backForward": true,
+      "reducedMotion": true,
+      "startupReady": true,
+      "errorState": true,
+      "axeSerious": 0
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "selectors": true,
+      "backForward": true,
+      "reducedMotion": true,
+      "startupReady": true,
+      "errorState": true,
+      "axeSerious": 0
+    },
+    {
+      "width": 360,
+      "height": 740,
+      "selectors": true,
+      "backForward": true,
+      "reducedMotion": true,
+      "startupReady": true,
+      "errorState": true,
+      "axeSerious": 0
+    }
+  ],
+  "scope": "isolated actual components; synthetic prize rewards only; no hosted data mutations"
+}

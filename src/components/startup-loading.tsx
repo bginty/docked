@@ -73,7 +73,9 @@ export function StartupBoundary({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   // Lifetime is the document, not the route. Successful client navigation never
   // resets this state, even when subsequent routes suspend.
-  const [pending, setPending] = useState(() => pathname.startsWith("/fantasy"));
+  const [pending, setPending] = useState(() =>
+    /^\/(fantasy|app|home|feed|following|notifications)(\/|$)/.test(pathname),
+  );
   const [failed, setFailed] = useState(false);
   const ready = useCallback(() => {
     setPending(false);

@@ -15,6 +15,7 @@ export const marketQuery = z.object({
     .enum(["all", "purchase", "sale", "cancellation", "swap"])
     .default("all"),
   listing: z.string().max(100).default(""),
+  sale: z.string().max(100).default(""),
   sell: z.string().max(100).default(""),
   tab: z.enum(["browse", "listings", "activity", "swaps"]).default("browse"),
   q: z.string().max(100).default(""),
@@ -359,6 +360,7 @@ export function marketplaceView(
         : {}),
     }));
   const filteredActivity = activities
+    .filter((a) => !query.sale || a.listing === query.sale)
     .filter(
       (a) => query.activityType === "all" || a.kind === query.activityType,
     )

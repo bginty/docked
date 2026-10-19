@@ -834,19 +834,19 @@ function LegacyFantasyPlay({
             <aside className="play-sidebar">
               {data.nfl_beta ? (
                 <section className="fantasy-panel">
-                  <h2>NFL round standings</h2>
+                  <h2>NFL round rankings</h2>
                   <p>
-                    Post-game totals and shared-rank standings appear after your
+                    Post-game totals and shared-rank rankings appear after your
                     round is locked and results are collected.
                   </p>
-                  <Link href="/fantasy/results">View NFL standings</Link>
+                  <Link href="/fantasy/results">View NFL Rankings</Link>
                 </section>
               ) : (
                 <section className="fantasy-panel">
                   <h2>
                     {data.release_channel === "beta"
-                      ? "Beta championship standings"
-                      : "Championship standings"}
+                      ? "Beta championship rankings"
+                      : "Championship rankings"}
                   </h2>
                   {data.leaderboard?.rows.length ? (
                     data.leaderboard.rows.map((row) => (
@@ -858,7 +858,7 @@ function LegacyFantasyPlay({
                       </div>
                     ))
                   ) : (
-                    <p>No published championship standings yet.</p>
+                    <p>No published championship rankings yet.</p>
                   )}
                   <p className="small-note">
                     Current release only · Up to 100 visible members. Private,

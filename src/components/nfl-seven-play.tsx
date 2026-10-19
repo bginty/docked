@@ -1,5 +1,6 @@
 "use client";
 import { useSportDraftGuard } from "./sport-context";
+import { roundProgress } from "@/core/round-status";
 import { competitionName, competitionLabel } from "@/core/competition-display";
 import { slotPool, filterSlotPool } from "@/core/lineup-picker";
 import { CollectibleFace } from "./collectible-face";
@@ -183,7 +184,10 @@ export function NflSevenPlay({
     if (!comp) return;
 
     setDrafts((old) =>
-      old[comp.id]
+      old[comp.id] &&
+      (old[comp.id].dirty ||
+        (old[comp.id].revision === (saved?.revision ?? 0) &&
+          old[comp.id].entryRevision === (entry?.revision ?? 0)))
         ? old
         : {
             ...old,
@@ -780,7 +784,7 @@ export function NflSevenPlay({
                   });
 
                   setNotice(
-                    "Loaded latest server state. Use Refresh team & points below to check for changes from another device.",
+                    "Loaded the latest saved team. Scores and locks refresh automatically; your unsaved edits stay on this device.",
                   );
                 }
               }}
@@ -904,21 +908,28 @@ export function NflSevenPlay({
                 }}
               >
                 {comp.rules.standings_visible === false
-                  ? "Show standings"
-                  : "Hide standings for review"}
+                  ? "Show Rankings"
+                  : "Hide Rankings for review"}
               </button>
             </details>
           )}
           <section className="round-summary">
             <h3>This round</h3>
             <p>
-              {comp.scored_at
-                ? "Results available"
-                : closed
-                  ? "Awaiting final results"
-                  : "Awaiting game"}
+              {
+                roundProgress({
+                  closesAt: comp.locks_at,
+                  finalised: !!comp.scored_at,
+                  visible: comp.rules.standings_visible !== false,
+                  fixtures,
+                  now,
+                }).label
+              }
             </p>
-            <small>Post-game scoring · pending statistics stay pending.</small>
+            <small>
+              {locks.size} / {entry?.snapshot.length ?? picks.length} selected
+              players locked{!comp.scored_at ? " · Totals provisional" : ""}
+            </small>
             <Link
               className="play-secondary"
               href={competitionHref("/fantasy/results", {
@@ -931,7 +942,7 @@ export function NflSevenPlay({
                 week: String(comp.round),
               })}
             >
-              View standings →
+              View Rankings →
             </Link>
           </section>
           <div className="play-support-actions">

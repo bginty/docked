@@ -6,6 +6,8 @@ import { CommunityDirectory } from "./social-hub";
 import { SocialDiscovery } from "./social-discovery";
 import { socialHub } from "@/server/social-hub";
 import { SocialShowcase, SocialRail } from "./social-showcase";
+import { memberAnnouncements } from "@/server/member-announcements";
+import { OfficialAnnouncement } from "./official-announcement";
 
 export async function SocialHome({
   feed,
@@ -24,7 +26,12 @@ export async function SocialHome({
 }) {
   // Uses the same authorised collection projection as the member's Cards view.
   // A missing hub must not prevent reading the feed or imply an empty inventory.
-  const hub = feed.viewer ? await socialHub().catch(() => null) : null;
+  const [hub, announcements] = await Promise.all([
+    feed.viewer ? socialHub().catch(() => null) : null,
+    feed.viewer ? memberAnnouncements().catch(() => null) : [],
+  ]);
+  const announcement =
+    announcements?.find((a) => a.pinned) ?? announcements?.[0];
   return (
     <section className="premium-social">
       <header className="social-hero">
@@ -47,6 +54,13 @@ export async function SocialHome({
         </div>
         <SocialShowcase cards={hub?.cards.map(({ card }) => card) ?? []} />
       </header>
+      {announcement && <OfficialAnnouncement item={announcement} />}
+      {announcements === null && (
+        <p role="status">
+          Announcements are temporarily unavailable.{" "}
+          <Link href="/fantasy/announcements">Try again</Link>
+        </p>
+      )}
       <nav className="community-tabs" aria-label="Social sections">
         {[
           ["latest", "Home"],

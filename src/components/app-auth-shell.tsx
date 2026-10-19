@@ -1,12 +1,14 @@
 import type { ReactNode } from "react";
 import { config } from "@/server/config";
 import { FantasyLogo } from "./fantasy-brand";
+import { StartupReady } from "./startup-loading";
 
 export function AppAuthShell({ children }: { children: ReactNode }) {
   const settings = config();
   const beta = process.env.DOCKED_RELEASE_CHANNEL === "beta";
   return (
     <section className="app-auth-surface" aria-label="Docked account">
+      <StartupReady />
       <header className="app-auth-brand">
         <FantasyLogo />
         {(beta || !settings.production) && (

@@ -72,7 +72,7 @@ export function ScoringReview({ data }: { data: ScoringDemo }) {
         <p>
           {view.period} ·{" "}
           {stage === "pending"
-            ? "Pending data — standings withheld"
+            ? "Awaiting player statistics — rankings withheld"
             : stage === "final"
               ? "Final · synthetic scenario"
               : "Provisional · synthetic scenario"}

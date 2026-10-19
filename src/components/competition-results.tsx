@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { playerScoreStatus, roundProgress } from "@/core/round-status";
 import Link from "next/link";
 import { CompetitionSwitch } from "./competition-switch";
 import { competitionHref } from "@/core/prize-schedules";
@@ -142,7 +143,7 @@ export function CompetitionResults({
         <Link className="play-support" href={playUrl}>
           ← Back to Lineup
         </Link>
-        <h1>Standings</h1>
+        <h1>Rankings</h1>
         <Link
           className="play-support"
           href={competitionHref("/fantasy/prizes", context)}
@@ -162,7 +163,7 @@ export function CompetitionResults({
         />
       </header>
       <div className="standings-controls">
-        <nav className="standings-segments" aria-label="Standings period">
+        <nav className="standings-segments" aria-label="Rankings period">
           {["weekly", "season"].map((p) => (
             <button
               key={p}
@@ -281,13 +282,24 @@ export function CompetitionResults({
             <strong>
               {!round
                 ? "Unavailable"
-                : !round.visible
-                  ? "Under review"
-                  : round.finalised
-                    ? "Final"
-                    : round.rows.some((r) => r.centipoints !== null)
-                      ? "Provisional"
-                      : "Pending"}
+                : round.closesAt && round.fixtures
+                  ? roundProgress({
+                      closesAt: round.closesAt,
+                      fixtures: round.fixtures,
+                      visible: round.visible,
+                      finalised: round.finalised,
+                      completeScores:
+                        round.rows.length > 0 &&
+                        round.rows.every((r) => r.centipoints !== null),
+                      now: round.serverTime ?? Date.now(),
+                    }).label
+                  : !round.visible
+                    ? "Under review"
+                    : round.finalised
+                      ? "Final"
+                      : round.rows.some((r) => r.centipoints !== null)
+                        ? "Provisional"
+                        : "Pending"}
             </strong>
           </div>
         )}
@@ -326,7 +338,7 @@ export function CompetitionResults({
         <div className="standings-table-wrap">
           <table className="standings-table" data-period={period}>
             <caption className="sr-only">
-              {competitionName(mode)} {period} standings · {season}
+              {competitionName(mode)} {period} rankings · {season}
             </caption>
             <thead>
               <tr>
@@ -405,7 +417,7 @@ export function CompetitionResults({
           )}
         </div>
       )}
-      <nav className="standings-pagination" aria-label="Standings pages">
+      <nav className="standings-pagination" aria-label="Rankings pages">
         <button
           className="play-support"
           disabled={paged.page === 1}
@@ -508,7 +520,7 @@ export function CompetitionResults({
                     <dt>Adjusted points</dt>
                     <dd>{formatPoints(p.centipoints)}</dd>
                   </dl>
-                  <small>{p.status}</small>
+                  <small>{playerScoreStatus(p.status)}</small>
                   {p.parts.length > 0 && (
                     <details>
                       <summary>Scoring breakdown</summary>

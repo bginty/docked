@@ -46,7 +46,7 @@ export function LegacyCompetitionResults({
       : scoredRows;
   return (
     <section className="scoring-review">
-      <h1>NFL results & leaderboards</h1>
+      <h1>NFL Rankings</h1>
       <p>Post-game scoring · free test competitions · no cash prizes</p>
       <label>
         Competition mode
@@ -114,7 +114,7 @@ export function LegacyCompetitionResults({
           </Link>{" "}
           · <Link href={`/fantasy/play?competition=${r.id}`}>View team</Link>
           {!r.visible ? (
-            <p>Standings are under operator review.</p>
+            <p>Rankings are under review.</p>
           ) : rows.length ? (
             <table className="competition-standings-table">
               <thead>

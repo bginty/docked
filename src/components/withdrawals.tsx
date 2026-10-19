@@ -255,6 +255,60 @@ export function Withdrawals({ admin = false }: { admin?: boolean }) {
       ...(reference ? { reference } : {}),
       confirmed: true,
     });
+  if (!admin && (!data || !data.enabled || data.fixtureOnly))
+    return (
+      <main className="withdrawals">
+        <header className="withdrawal-header">
+          <div>
+            <Link href="/fantasy/profile">← Profile</Link>
+            <h1>Credit redemption</h1>
+          </div>
+        </header>
+        <section className="redemption-panel">
+          <h2>Credit redemption is not available during beta</h2>
+          <p>Test Docked Credits have no cash value and are not redeemable.</p>
+          {data && (
+            <dl className="redemption-stats">
+              <div>
+                <dt>Eligible balance</dt>
+                <dd>{count(data.balance.available)} credits</dd>
+              </div>
+              <div>
+                <dt>Pending redemption</dt>
+                <dd>{count(data.balance.pending)} credits</dd>
+              </div>
+              <div>
+                <dt>Non-redeemable credits</dt>
+                <dd>{count(data.balance.other)} credits</dd>
+              </div>
+            </dl>
+          )}
+          {error ? (
+            <p role="alert">
+              Your balances could not be loaded.{" "}
+              <button className="button ghost" onClick={() => void load()}>
+                Retry
+              </button>
+            </p>
+          ) : (
+            !data && <p role="status">Loading balances…</p>
+          )}
+        </section>
+        {!!data?.requests.length && (
+          <section className="redemption-panel">
+            <h2>Request history</h2>
+            <ul>
+              {data.requests.map((r) => (
+                <li key={r.id}>
+                  {stamp(r.requestedAt)} · {count(r.credits)} credits ·{" "}
+                  {labels[r.status]}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </main>
+    );
   return (
     <main className="withdrawals">
       <header className="withdrawal-header">

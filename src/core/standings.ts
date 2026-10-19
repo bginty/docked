@@ -24,6 +24,9 @@ export type StandingRow = {
   lineup: StandingPlayer[] | null;
 };
 export type StandingRound = {
+  closesAt?: string;
+  fixtures?: { scheduledAt: string; status?: string }[];
+  serverTime?: number;
   competitionId: string;
   label: string;
   season: string;

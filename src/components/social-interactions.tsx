@@ -381,6 +381,9 @@ export function SocialCard({
           ? "COMMENTARY REMOVED BY MODERATION"
           : post.body}
       </p>
+      {!!post.unavailableCards && post.moderationStatus === "visible" && (
+        <p className="small-note">Card attachment unavailable.</p>
+      )}
       {!!post.cardSnapshots?.length && post.moderationStatus === "visible" && (
         <div className="social-shared-cards">
           {post.cardSnapshots.map((card) => (

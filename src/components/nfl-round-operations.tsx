@@ -64,9 +64,9 @@ export async function NflRoundOperations() {
               <p>
                 Last journal update: {r.updatedAt ?? "Unavailable"}. Finalised:{" "}
                 {r.finalAt ?? "No"}.{" "}
-                {r.visible ? "Standings published." : "Standings under review."}
+                {r.visible ? "Rankings published." : "Rankings under review."}
               </p>
-              <a href="/fantasy/standings">View standings</a>
+              <a href="/fantasy/standings">View Rankings</a>
             </details>
           );
         })}

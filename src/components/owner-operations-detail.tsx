@@ -381,7 +381,7 @@ export function OwnerOperationsDetail({ data }: { data: Operations | null }) {
               <h2>Competitions & deadlines</h2>
             </div>
             <Link className="button ghost" href="/fantasy/standings">
-              Standings
+              Rankings
             </Link>
           </div>
           {!data.competitions.length ? (

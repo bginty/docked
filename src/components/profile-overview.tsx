@@ -123,7 +123,7 @@ export function ProfileOverview({
             className="pack-control secondary"
             href={`/fantasy/results?sport=${sport}`}
           >
-            View Standings
+            View Rankings
           </Link>
         </div>
       </section>
