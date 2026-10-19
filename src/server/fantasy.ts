@@ -17,6 +17,7 @@ import {
 } from "@/core/fantasy-production";
 import productionManifest from "../../config/hosted-production.json";
 import { packExperienceEnabled } from "@/core/pack-experience";
+import { playerJerseysQuery } from "./player-jerseys-query";
 export async function fantasyRequest(
   input?: unknown,
 ): Promise<{ state: FantasyState; result: Record<string, unknown> }> {
@@ -74,7 +75,7 @@ export async function fantasyRequest(
         ),
       ];
       const observations = ownedPlayers.length
-        ? await tx`select id,team,verified_jersey_number from credits_sandbox.current_player_jerseys where id=any(${ownedPlayers}::uuid[])`
+        ? await tx.unsafe(playerJerseysQuery, [ownedPlayers])
         : [];
       const numbers = new Map(observations.map((r) => [r.id, r]));
       // View metadata only; locked snapshots and saved receipts are not rewritten.
