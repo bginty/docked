@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-19T06:14:01.996Z",
+  "checks": [
+    {
+      "path": "/fantasy/test-wallet?view=packs",
+      "status": 200,
+      "genericFailure": false,
+      "scope": "unauthenticated"
+    },
+    {
+      "path": "/fantasy/prizes",
+      "status": 200,
+      "genericFailure": false,
+      "scope": "unauthenticated"
+    },
+    {
+      "path": "/fantasy/announcements",
+      "status": 200,
+      "genericFailure": false,
+      "scope": "unauthenticated"
+    },
+    {
+      "path": "/api/fantasy/collection-export",
+      "status": 403,
+      "genericFailure": false,
+      "scope": "unauthenticated"
+    }
+  ]
+}

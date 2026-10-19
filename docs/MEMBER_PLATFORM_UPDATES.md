@@ -1,5 +1,7 @@
 # Member platform release — 19 October 2026
 
+**Deployment update:** released to docked.com.au on 19 October at commit `f3d9d1b6`. Weekly packs, six-product catalogue, weekly prize templates and both Cron jobs are now active. See [the live release receipt](MEMBER_PLATFORM_LIVE_RELEASE.md) for verified counts and remaining limits. The implementation-stage status below is retained as historical evidence.
+
 ## Delivery status
 
 Implemented on `codex/member-platform-updates`, based on deployed marketplace commit `7ba9b8c4b613627aec94c6b211552b382f9b20a7`. The original working directory and its unrelated uncommitted changes are preserved. This release has **not been applied to Production**. All mutation tests used isolated fixtures. No real member credits, ownership, statistics, competition results, announcements or push deliveries were changed.

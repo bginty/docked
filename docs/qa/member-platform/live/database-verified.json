@@ -1,0 +1,76 @@
+{
+  "at": "2026-10-19T06:11:27.444Z",
+  "weekly": [
+    {
+      "enabled": true,
+      "legacy_closed_at": "2026-10-19T06:07:34.401Z"
+    }
+  ],
+  "entitlements": [
+    {
+      "total": 3,
+      "unopened": 3
+    }
+  ],
+  "jobs": [
+    {
+      "jobname": "docked-weekly-core-entitlements",
+      "active": true,
+      "status": "succeeded",
+      "start_time": "2026-10-19T06:11:00.153Z",
+      "end_time": "2026-10-19T06:11:00.184Z",
+      "return_message": "1 row"
+    },
+    {
+      "jobname": "docked-sale-receipts",
+      "active": true,
+      "status": "succeeded",
+      "start_time": "2026-10-19T06:11:00.165Z",
+      "end_time": "2026-10-19T06:11:00.171Z",
+      "return_message": "1 row"
+    }
+  ],
+  "notifications": [
+    {
+      "queued": 0,
+      "delivered": 0
+    }
+  ],
+  "announcements": [
+    {
+      "published": 0
+    }
+  ],
+  "weeklyRuns": [
+    {
+      "result": {
+        "id": "ff08a646-47e6-4195-be3e-2ca6aa134978",
+        "issued": 0,
+        "status": "complete",
+        "failures": 0,
+        "started_at": "2026-10-19T06:07:34.542804+00:00",
+        "finished_at": "2026-10-19T06:07:34.545094+00:00"
+      }
+    },
+    {
+      "result": {
+        "id": "f9d0f636-58c8-4b50-8ade-7db98fad2033",
+        "issued": 0,
+        "status": "complete",
+        "failures": 0,
+        "started_at": "2026-10-19T06:08:00.150375+00:00",
+        "finished_at": "2026-10-19T06:08:00.172892+00:00"
+      }
+    },
+    {
+      "result": {
+        "id": "e645e114-ab7f-4f6e-a670-c126e36411c7",
+        "issued": 0,
+        "status": "complete",
+        "failures": 0,
+        "started_at": "2026-10-19T06:09:00.088876+00:00",
+        "finished_at": "2026-10-19T06:09:00.114646+00:00"
+      }
+    }
+  ]
+}

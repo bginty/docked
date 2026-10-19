@@ -1,0 +1,114 @@
+{
+  "at": "2026-10-19T06:11:21.859Z",
+  "catalogue": {
+    "changed": false,
+    "revision": 153,
+    "products": [
+      {
+        "id": "premium-9-nfl-paid-sizes-v4",
+        "cards": 9,
+        "price": 5000
+      },
+      {
+        "id": "premium-3-nfl-paid-sizes-v4",
+        "cards": 3,
+        "price": 1900
+      },
+      {
+        "id": "premium-1-nfl-paid-sizes-v4",
+        "cards": 1,
+        "price": 700
+      },
+      {
+        "id": "standard-9-nfl-paid-sizes-v4",
+        "cards": 9,
+        "price": 700
+      },
+      {
+        "id": "standard-3-nfl-paid-sizes-v4",
+        "cards": 3,
+        "price": 300
+      },
+      {
+        "id": "standard-1-nfl-paid-sizes-v4",
+        "cards": 1,
+        "price": 100
+      }
+    ],
+    "protectedStateUnchanged": true
+  },
+  "prizes": {
+    "firstSeason": 2026,
+    "firstWeek": 6,
+    "awardsIssued": 0,
+    "seasonPrizesChanged": false
+  },
+  "schedules": [
+    {
+      "sport": "nfl",
+      "mode": "OPEN",
+      "season": "2026",
+      "scope": "weekly",
+      "week": 6,
+      "published": [
+        {
+          "to": 1,
+          "from": 1,
+          "type": "pack",
+          "amount": 5,
+          "description": "5 × Premium 9 Pack NFL",
+          "productVersion": "premium-9-nfl-paid-sizes-v4"
+        },
+        {
+          "to": 2,
+          "from": 2,
+          "type": "pack",
+          "amount": 3,
+          "description": "3 × Premium 9 Pack NFL",
+          "productVersion": "premium-9-nfl-paid-sizes-v4"
+        },
+        {
+          "to": 3,
+          "from": 3,
+          "type": "pack",
+          "amount": 1,
+          "description": "1 × Premium 9 Pack NFL",
+          "productVersion": "premium-9-nfl-paid-sizes-v4"
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "mode": "SALARY_CAP",
+      "season": "2026",
+      "scope": "weekly",
+      "week": 6,
+      "published": [
+        {
+          "to": 1,
+          "from": 1,
+          "type": "pack",
+          "amount": 5,
+          "description": "5 × Standard 9 Pack NFL",
+          "productVersion": "standard-9-nfl-paid-sizes-v4"
+        },
+        {
+          "to": 2,
+          "from": 2,
+          "type": "pack",
+          "amount": 3,
+          "description": "3 × Standard 9 Pack NFL",
+          "productVersion": "standard-9-nfl-paid-sizes-v4"
+        },
+        {
+          "to": 3,
+          "from": 3,
+          "type": "pack",
+          "amount": 1,
+          "description": "1 × Standard 9 Pack NFL",
+          "productVersion": "standard-9-nfl-paid-sizes-v4"
+        }
+      ]
+    }
+  ]
+}
