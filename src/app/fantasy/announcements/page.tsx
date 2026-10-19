@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { OfficialAnnouncement } from "@/components/official-announcement";
 import { memberAnnouncements } from "@/server/member-announcements";
+import { FantasyLoadError } from "@/components/fantasy-load-error";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Docked announcements",
@@ -14,7 +15,18 @@ export default async function Announcements({
 }) {
   const q = await searchParams,
     page = Math.max(1, Math.min(1000, Number(q.page) || 1));
-  const items = await memberAnnouncements(page);
+  let items;
+  try {
+    items = await memberAnnouncements(page);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    return (
+      <FantasyLoadError
+        authRequired={message === "Authentication required"}
+        mfaRequired={message === "Privileged MFA required"}
+      />
+    );
+  }
   return (
     <AppShell authenticated>
       <h1>Docked announcements</h1>

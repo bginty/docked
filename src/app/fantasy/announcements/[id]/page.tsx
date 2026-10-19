@@ -4,6 +4,7 @@ import { z } from "zod";
 import { AppShell } from "@/components/app-shell";
 import { OfficialAnnouncement } from "@/components/official-announcement";
 import { memberAnnouncements } from "@/server/member-announcements";
+import { FantasyLoadError } from "@/components/fantasy-load-error";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Docked announcement",
@@ -16,7 +17,19 @@ export default async function Announcement({
 }) {
   const { id } = await params;
   if (!z.uuid().safeParse(id).success) notFound();
-  const [item] = await memberAnnouncements(1, id);
+  let items;
+  try {
+    items = await memberAnnouncements(1, id);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    return (
+      <FantasyLoadError
+        authRequired={message === "Authentication required"}
+        mfaRequired={message === "Privileged MFA required"}
+      />
+    );
+  }
+  const [item] = items;
   if (!item) notFound();
   return (
     <AppShell authenticated>

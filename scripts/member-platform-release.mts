@@ -1,6 +1,7 @@
 // Explicit, reviewed configuration transition. Does not activate weekly packs,
 // publish announcements, deliver push, pay prizes or purchase member cards.
 import assert from "node:assert/strict";
+import type postgres from "postgres";
 import { ownerDatabase, projectRef } from "./owner-gameplay-db.mjs";
 import { applyPaidPackTransition } from "../src/server/paid-pack-transition";
 import { applyWeeklyPrizeTemplates } from "../src/server/weekly-prize-transition";
@@ -62,7 +63,7 @@ try {
         rows: await tx.unsafe(
           s,
           values.map((v) =>
-            v !== null && typeof v === "object" ? JSON.stringify(v) : v,
+            v !== null && typeof v === "object" ? tx.json(v as postgres.JSONValue) : v,
           ),
         ),
       });
