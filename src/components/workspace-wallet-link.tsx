@@ -24,7 +24,11 @@ export function WorkspaceWalletLink() {
       {wallet.value ? (
         <>
           <strong>{wallet.value.balance.toLocaleString("en-AU")}</strong>
-          <span>test Docked Credits</span>
+          <span>
+            {wallet.status
+              ? `Last checked · ${wallet.status}`
+              : "test Docked Credits"}
+          </span>
         </>
       ) : (
         <span>{wallet.status || "Balance unavailable"} · Wallet</span>

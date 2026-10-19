@@ -44,6 +44,7 @@ import { CompetitionWeekSelector } from "./competition-week-selector";
 import { WeeklyLineupResult } from "./weekly-lineup-result";
 import type { autoSelect } from "@/core/lineup-auto-select";
 import { boundedFetch } from "@/core/bounded-request";
+import { hasEstablishedTeam } from "@/core/team-continuity";
 
 function FantasyAmount({ value }: { value: number }) {
   const exact = value.toLocaleString("en-AU");
@@ -177,6 +178,10 @@ export function NflSevenPlay({
   const publishedConfig =
     data.seven?.configurations[String(comp?.rules.lineup_version)];
   const cfg = publishedConfig ?? nflSeven;
+  const established = hasEstablishedTeam(data, comp?.sport ?? "nfl", mode);
+  const rollover = data.seven?.rollovers?.find(
+    (r) => r.competition_id === comp?.id,
+  );
 
   const entry = data.seven?.entries.find((e) => e.competition_id === comp?.id),
     saved = data.seven?.drafts.find((d) => d.competition_id === comp?.id);
@@ -201,33 +206,42 @@ export function NflSevenPlay({
     if (!comp) return;
 
     setDrafts((old) =>
-      old[comp.id] &&
-      (old[comp.id].dirty ||
-        (old[comp.id].revision === (saved?.revision ?? 0) &&
-          old[comp.id].entryRevision === (entry?.revision ?? 0)))
-        ? old
-        : {
-            ...old,
+      // A new automatic draft may appear while this tab holds an unsaved plan.
+      // Rebase only the untouched rollover's first revision, never another saved edit.
+      old[comp.id]?.dirty &&
+      old[comp.id].revision === 0 &&
+      rollover &&
+      !entry &&
+      saved?.revision === 1 &&
+      JSON.stringify(saved.selections) === JSON.stringify(rollover.selections)
+        ? { ...old, [comp.id]: { ...old[comp.id], revision: 1 } }
+        : old[comp.id] &&
+            (old[comp.id].dirty ||
+              (old[comp.id].revision === (saved?.revision ?? 0) &&
+                old[comp.id].entryRevision === (entry?.revision ?? 0)))
+          ? old
+          : {
+              ...old,
 
-            [comp.id]: {
-              picks:
-                entry?.snapshot.map((c) => ({
-                  slot: c.slot,
+              [comp.id]: {
+                picks:
+                  entry?.snapshot.map((c) => ({
+                    slot: c.slot,
 
-                  card: c.card_id,
-                })) ??
-                saved?.selections ??
-                [],
+                    card: c.card_id,
+                  })) ??
+                  saved?.selections ??
+                  [],
 
-              revision: saved?.revision ?? 0,
+                revision: saved?.revision ?? 0,
 
-              entryRevision: entry?.revision ?? 0,
+                entryRevision: entry?.revision ?? 0,
 
-              dirty: false,
+                dirty: false,
+              },
             },
-          },
     );
-  }, [comp, saved, entry]);
+  }, [comp, saved, entry, rollover]);
 
   const update = (next: Draft) => {
     if (!comp) return;
@@ -366,7 +380,7 @@ export function NflSevenPlay({
     window.history.pushState(null, "", url);
   }
   async function recommend() {
-    if (!comp || !editable || autoBusy) return;
+    if (!comp || !editable || autoBusy || established) return;
     setAutoBusy(true);
     setNotice("");
     try {
@@ -635,16 +649,49 @@ export function NflSevenPlay({
           )}
         </p>
       </div>
-      <div className="lineup-auto-actions">
-        <button
-          className="play-support"
-          disabled={busy || autoBusy || !editable}
-          onClick={() => void recommend()}
-        >
-          {autoBusy ? "Finding your lineup…" : "Auto Select"}
-        </button>
-        <small>Review a recommendation from your eligible cards.</small>
-      </div>
+      {rollover && (
+        <div className="lineup-continuity" role="status">
+          <p>
+            Your team was carried forward from{" "}
+            {data.competitions.find(
+              (c) => c.id === rollover.source_competition_id,
+            )?.name ?? "the previous week"}{" "}
+            as a draft. Review and enter this week separately.
+          </p>
+          {!!rollover.omitted.length && (
+            <details>
+              <summary>Positions needing review when carried forward</summary>
+              <ul>
+                {rollover.omitted.map((o) => (
+                  <li key={o.slot}>
+                    {o.slot}: {o.reason}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </div>
+      )}
+      {!established ? (
+        <div className="lineup-auto-actions">
+          <button
+            className="play-support"
+            disabled={busy || autoBusy || !editable}
+            onClick={() => void recommend()}
+          >
+            {autoBusy ? "Finding your lineup…" : "Auto Select"}
+          </button>
+          <small>
+            Build your first team from eligible owned cards. After your first
+            confirmed entry, make changes manually.
+          </small>
+        </div>
+      ) : (
+        <p className="small-note">
+          Your team is established. Select an unlocked position to replace one
+          player. New cards are never added automatically.
+        </p>
+      )}
       <div className="lineup-workspace">
         <div className="lineup-pitch">
           {" "}
@@ -1085,7 +1132,7 @@ export function NflSevenPlay({
           </details>
         </aside>
       </div>
-      {recommendation?.competition === comp.id && (
+      {!established && recommendation?.competition === comp.id && (
         <FantasySheet
           title="Review Auto Select"
           onClose={() => setRecommendation(null)}

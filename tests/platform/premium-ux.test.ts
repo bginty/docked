@@ -259,6 +259,19 @@ test("Server recommendation only considers owned eligible cards and leaves entri
   assert.equal(result.picks.length, 7);
   assert.ok(result.picks.every((p) => p.card !== outsider.id));
   assert.equal(JSON.stringify(data), before);
+  data.seven!.established = { "nfl:OPEN": true };
+  assert.equal(
+    recommendOwnedLineup(data, "week7", ranks, now).picks.length,
+    7,
+    "All-Star setup must not consume Traditional setup",
+  );
+  data.seven!.established["nfl:SALARY_CAP"] = true;
+  assert.throws(
+    () => recommendOwnedLineup(data, "week7", ranks, now),
+    /established/,
+    "Server rejects repeat Auto Select, even after withdrawal",
+  );
+  data.seven!.established = {};
   data.seven!.fixtures.week7[0].scheduledAt = new Date(
     now - 1000,
   ).toISOString();

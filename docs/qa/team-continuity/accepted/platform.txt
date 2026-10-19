@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: intermediate email change selects instructions only, never code or error responses
+ok 1 - intermediate email change selects instructions only, never code or error responses
+  ---
+  duration_ms: 3.1513
+  ...
+# Subtest: authentication callbacks retain only reviewed app and legacy destinations
+ok 2 - authentication callbacks retain only reviewed app and legacy destinations
+  ---
+  duration_ms: 0.6001
+  ...
+# Subtest: recovery link scanners cannot consume tokens; only explicit POST reaches provider
+ok 3 - recovery link scanners cannot consume tokens; only explicit POST reaches provider
+  ---
+  duration_ms: 64.3734
+  ...
+# Subtest: recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+ok 4 - recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+  ---
+  duration_ms: 7.4469
+  ...
+# Subtest: missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+ok 5 - missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+  ---
+  duration_ms: 3.7185
+  ...
+# Subtest: recovery verifier presence is bound to the dedicated project and supports SSR chunks
+ok 6 - recovery verifier presence is bound to the dedicated project and supports SSR chunks
+  ---
+  duration_ms: 0.581
+  ...
+# Subtest: approved whole-credit rounding, no minimum and cap
+ok 7 - approved whole-credit rounding, no minimum and cap
+  ---
+  duration_ms: 4.4548
+  ...
+# Subtest: two members: shared feed, in-place versioned price, cancel/relist, sale journal, ownership, snapshots and replay
+ok 8 - two members: shared feed, in-place versioned price, cancel/relist, sale journal, ownership, snapshots and replay
+  ---
+  duration_ms: 215.6679
+  ...
+# Subtest: lifetime inventory stays out of free rounds; mapped rarity round accepts old artwork seasons and rejects byes/listed cards
+ok 9 - lifetime inventory stays out of free rounds; mapped rarity round accepts old artwork seasons and rejects byes/listed cards
+  ---
+  duration_ms: 3.9052
+  ...
+# Subtest: NFL fixed positions and each permitted FLEX consume seven distinct owned players
+ok 10 - NFL fixed positions and each permitted FLEX consume seven distinct owned players
+  ---
+  duration_ms: 6.9394
+  ...
+# Subtest: reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+ok 11 - reopened or unsent drafts cannot replace or hide the submitted card after kickoff
+  ---
+  duration_ms: 3.9263
+  ...
+# Subtest: mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+ok 12 - mandatory seven slots, no kicker or DST; drafts incomplete but entries complete
+  ---
+  duration_ms: 2.9724
+  ...
+# Subtest: salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+ok 13 - salaries, exact cap, overcap, outgoing salary subtraction, Open ignores salary
+  ---
+  duration_ms: 45.2367
+  ...
+# Subtest: duplicate permanent identity, owner inventory and slot eligibility
+ok 14 - duplicate permanent identity, owner inventory and slot eligibility
+  ---
+  duration_ms: 0.5293
+  ...
+# Subtest: all six multipliers include negative scores and half-away rounding
+ok 15 - all six multipliers include negative scores and half-away rounding
+  ---
+  duration_ms: 0.5506
+  ...
+# Subtest: API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+ok 16 - API accepts only slot/card/version; cannot forge salary, owner, kickoff, rarity or multiplier
+  ---
+  duration_ms: 32.2772
+  ...
+# Subtest: design Preview flag never activates on production or by a client flag
+ok 17 - design Preview flag never activates on production or by a client flag
+  ---
+  duration_ms: 2.1941
+  ...
+# Subtest: reveal progress is bounded and separated by user, receipt and awarded card order
+ok 18 - reveal progress is bounded and separated by user, receipt and awarded card order
+  ---
+  duration_ms: 0.6435
+  ...
+# Subtest: Auto Select optimises cap and slots deterministically rather than greedily choosing rarity
+ok 19 - Auto Select optimises cap and slots deterministically rather than greedily choosing rarity
+  ---
+  duration_ms: 164.0767
+  ...
+# Subtest: Auto Select preserves locks, excludes listed/ineligible players, prevents duplicate player variants and exposes unknowns
+ok 20 - Auto Select preserves locks, excludes listed/ineligible players, prevents duplicate player variants and exposes unknowns
+  ---
+  duration_ms: 5.1181
+  ...
+# Subtest: Auto Select value matches exhaustive search including negative scores and flexible slots
+ok 21 - Auto Select value matches exhaustive search including negative scores and flexible slots
+  ---
+  duration_ms: 29.7216
+  ...
+# Subtest: Historical ranks never include future/live/missing/DNP observations or pretend unknown is zero
+ok 22 - Historical ranks never include future/live/missing/DNP observations or pretend unknown is zero
+  ---
+  duration_ms: 1.6216
+  ...
+# Subtest: Celebration requires matching completed receipt, never a review or pending request
+ok 23 - Celebration requires matching completed receipt, never a review or pending request
+  ---
+  duration_ms: 1.7051
+  ...
+# Subtest: Server recommendation only considers owned eligible cards and leaves entries/data unchanged
+ok 24 - Server recommendation only considers owned eligible cards and leaves entries/data unchanged
+  ---
+  duration_ms: 57.4483
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7719.6381

@@ -4,6 +4,7 @@ import { publishedLineupRanks } from "@/server/nfl-player-history";
 import { memberAccessFailure } from "@/core/member-access-recovery";
 import { rateLimit } from "@/server/db";
 import { recommendOwnedLineup } from "@/core/owned-lineup-recommendation";
+import { hasEstablishedTeam } from "@/core/team-continuity";
 export const runtime = "nodejs";
 export async function GET(request: Request) {
   const headers = { "Cache-Control": "private, no-store" };
@@ -25,6 +26,16 @@ export async function GET(request: Request) {
     )
       return NextResponse.json(
         { error: "This competition is unavailable for Auto Select." },
+        { status: 409, headers },
+      );
+    if (
+      hasEstablishedTeam(state, round.sport ?? "nfl", String(round.rules.mode))
+    )
+      return NextResponse.json(
+        {
+          error:
+            "Your team is established. Replace individual players manually.",
+        },
         { status: 409, headers },
       );
     const players = state.seven.inventory

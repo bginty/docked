@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  type ReactNode,
+} from "react";
 import { AppIcon, type AppIconName } from "./app-icon";
 import { SportSelector, SportScope } from "./sport-context";
 import { PwaStatus } from "./pwa-status";
@@ -17,6 +23,15 @@ const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/fantasy/social", label: "Social", icon: "community" },
   { href: "/fantasy/profile", label: "Profile", icon: "profile" },
 ];
+const ShellContext = createContext(false);
+/** Shared fantasy layout retains navigation and the wallet provider between routes. */
+export function PersistentAppShell({ children }: { children: ReactNode }) {
+  return (
+    <AppShell authenticated loading>
+      <ShellContext.Provider value={true}>{children}</ShellContext.Provider>
+    </AppShell>
+  );
+}
 export function appDestination(path: string) {
   if (/^\/fantasy\/test-wallet(\/|$)/.test(path)) return "/fantasy/cards";
   if (/^\/fantasy\/(play|cards|market|social|profile)(\/|$)/.test(path))
@@ -101,6 +116,14 @@ export function AppShell({
   const activeNav = nav;
   const destination = appDestination(path);
   const shell = useEditingViewport(authenticated);
+  const inherited = useContext(ShellContext);
+  if (inherited)
+    return (
+      <>
+        {!loading && <StartupReady />}
+        {children}
+      </>
+    );
   if (!authenticated)
     return (
       <div className="community-public">

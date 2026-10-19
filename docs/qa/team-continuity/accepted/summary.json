@@ -1,0 +1,31 @@
+{
+  "baseline": "bd12aa95e69cea0f82de3b4021202ab78a429d71",
+  "scope": "Local isolated browser transports and PGlite; no hosted/member mutations",
+  "performance": [
+    {
+      "before": true,
+      "routeMedianMs": 218,
+      "balanceBlankMedianMs": 418,
+      "walletRequests": 2
+    },
+    {
+      "before": false,
+      "routeMedianMs": 199,
+      "balanceBlankMedianMs": 0,
+      "walletRequests": 1
+    }
+  ],
+  "platformTests": 24,
+  "databaseRegressionTests": 11,
+  "extendedContinuityTest": 1,
+  "retries": [
+    "Database fixture used unsupported empty prize label; corrected to No cash prize.",
+    "Browser fixture used QB instead of QB1; corrected selector.",
+    "Unimplemented fixture APIs incorrectly returned HTTP 200 error objects, crashing the player-history fixture; corrected to HTTP 503 and verified recovery.",
+    "Navigation measurement callback required the tsx function-name shim; corrected test adapter.",
+    "Navigation screenshot fixture omitted shared header CSS; included the existing stylesheet and reran five trials.",
+    "Lint found unused test argument; removed and reran."
+  ],
+  "hostedDeployment": false,
+  "productionDataMutation": false
+}

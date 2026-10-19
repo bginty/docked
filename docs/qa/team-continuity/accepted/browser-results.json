@@ -1,0 +1,120 @@
+{
+  "scope": "Real components with local simulated identity/persistence; timings are fixture render loads, not authenticated hosted navigation",
+  "evidence": [
+    {
+      "width": 1536,
+      "before": true,
+      "localFixtureLoadMs": 634
+    },
+    {
+      "width": 1536,
+      "before": true,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 1536,
+      "before": false,
+      "localFixtureLoadMs": 369
+    },
+    {
+      "width": 1536,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 1440,
+      "before": true,
+      "localFixtureLoadMs": 201
+    },
+    {
+      "width": 1440,
+      "before": true,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 1440,
+      "before": false,
+      "localFixtureLoadMs": 210
+    },
+    {
+      "width": 1440,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 1024,
+      "before": true,
+      "localFixtureLoadMs": 193
+    },
+    {
+      "width": 1024,
+      "before": true,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 1024,
+      "before": false,
+      "localFixtureLoadMs": 204
+    },
+    {
+      "width": 1024,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 412,
+      "before": true,
+      "localFixtureLoadMs": 211
+    },
+    {
+      "width": 412,
+      "before": true,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 412,
+      "before": false,
+      "localFixtureLoadMs": 252
+    },
+    {
+      "width": 412,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 360,
+      "before": true,
+      "localFixtureLoadMs": 234
+    },
+    {
+      "width": 360,
+      "before": true,
+      "cardCenterOffsetPx": 0
+    },
+    {
+      "width": 360,
+      "before": false,
+      "localFixtureLoadMs": 237
+    },
+    {
+      "width": 360,
+      "before": false,
+      "cardCenterOffsetPx": 0
+    }
+  ],
+  "checks": [
+    "Week 7 draft independent of Week 6",
+    "manual QB substitution leaves six other slots unchanged",
+    "first confirmed entry disables Auto Select independently per mode",
+    "saved draft still allows first-time Auto Select before confirmation",
+    "historical sold cards restored from entry snapshot",
+    "cap-aware Auto Select preview/apply/cancel",
+    "all rarity reveal centering",
+    "five viewports",
+    "Back-safe sheets",
+    "reload saved draft",
+    "serious/critical accessibility checks",
+    "animated Next/Skip and immediate Escape dismissal; short-screen controls reachable"
+  ],
+  "errors": []
+}

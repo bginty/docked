@@ -1,0 +1,98 @@
+{
+  "scope": "Real components; local transport with 250ms wallet and 80ms route responses. Baseline uses bd12aa95 wallet and route-bound shell; after uses persistent shell. Not hosted latency.",
+  "results": [
+    {
+      "trial": 1,
+      "before": true,
+      "routeReadyMs": 222,
+      "walletRequests": 2,
+      "sameShell": false,
+      "blankFrames": 7,
+      "balanceBlankMs": 459
+    },
+    {
+      "trial": 1,
+      "before": false,
+      "routeReadyMs": 198,
+      "walletRequests": 1,
+      "sameShell": true,
+      "blankFrames": 0,
+      "balanceBlankMs": 0
+    },
+    {
+      "trial": 2,
+      "before": true,
+      "routeReadyMs": 214,
+      "walletRequests": 2,
+      "sameShell": false,
+      "blankFrames": 22,
+      "balanceBlankMs": 413
+    },
+    {
+      "trial": 2,
+      "before": false,
+      "routeReadyMs": 199,
+      "walletRequests": 1,
+      "sameShell": true,
+      "blankFrames": 0,
+      "balanceBlankMs": 0
+    },
+    {
+      "trial": 3,
+      "before": true,
+      "routeReadyMs": 218,
+      "walletRequests": 2,
+      "sameShell": false,
+      "blankFrames": 23,
+      "balanceBlankMs": 418
+    },
+    {
+      "trial": 3,
+      "before": false,
+      "routeReadyMs": 380,
+      "walletRequests": 1,
+      "sameShell": true,
+      "blankFrames": 0,
+      "balanceBlankMs": 0
+    },
+    {
+      "trial": 4,
+      "before": true,
+      "routeReadyMs": 281,
+      "walletRequests": 2,
+      "sameShell": false,
+      "blankFrames": 23,
+      "balanceBlankMs": 475
+    },
+    {
+      "trial": 4,
+      "before": false,
+      "routeReadyMs": 222,
+      "walletRequests": 1,
+      "sameShell": true,
+      "blankFrames": 0,
+      "balanceBlankMs": 0
+    },
+    {
+      "trial": 5,
+      "before": true,
+      "routeReadyMs": 185,
+      "walletRequests": 2,
+      "sameShell": false,
+      "blankFrames": 22,
+      "balanceBlankMs": 398
+    },
+    {
+      "trial": 5,
+      "before": false,
+      "routeReadyMs": 175,
+      "walletRequests": 1,
+      "sameShell": true,
+      "blankFrames": 0,
+      "balanceBlankMs": 0
+    }
+  ],
+  "networkFailureRetention": true,
+  "unauthenticatedBalanceCleared": true,
+  "recovery": true
+}

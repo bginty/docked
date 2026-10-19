@@ -41,14 +41,17 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
       current?.abort();
       const controller = new AbortController();
       current = controller;
-      setValue(null);
-      setStatus("Loading balance…");
+      setStatus("Updating balance…");
       try {
         const response = await boundedFetch("/api/test-wallet", {
           cache: "no-store",
           signal: controller.signal,
         });
-        if (!response.ok) throw Error();
+        if (!response.ok) {
+          if (response.status === 401 || response.status === 403)
+            setValue(null);
+          throw Error();
+        }
         const { state } = await response.json();
         if (
           typeof state.member !== "string" ||
@@ -79,8 +82,7 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
         }
       } catch {
         if (!disposed && !controller.signal.aborted) {
-          setValue(null);
-          setStatus("Balance unavailable");
+          setStatus("Balance refresh unavailable");
         }
       }
     };

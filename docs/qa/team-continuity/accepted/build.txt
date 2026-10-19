@@ -1,0 +1,130 @@
+▲ Next.js 16.3.8 (webpack)
+✓ Running next.config.ts took 102ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 44s
+  Running TypeScript ...
+  Finished TypeScript in 31.7s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/43) ...
+  Generating static pages using 7 workers (10/43)
+  Generating static pages using 7 workers (21/43)
+  Generating static pages using 7 workers (32/43)
+✓ Generating static pages using 7 workers (43/43) in 5.3s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[section]
+├ ○ /account-deletion
+├ ƒ /admin
+├ ƒ /admin/analytics
+├ ƒ /admin/community
+├ ƒ /admin/community/[section]
+├ ƒ /admin/marketplace
+├ ƒ /admin/member-release
+├ ƒ /admin/nfl-history
+├ ƒ /admin/nfl-testing
+├ ƒ /admin/operations
+├ ƒ /admin/preview-testers
+├ ƒ /admin/redemptions
+├ ƒ /admin/workspace/[section]
+├ ƒ /api/admin/announcements
+├ ƒ /api/admin/community-analytics
+├ ƒ /api/admin/credit-requests
+├ ƒ /api/admin/health
+├ ƒ /api/admin/marketplace
+├ ƒ /api/admin/member-release
+├ ƒ /api/admin/moderation-cases
+├ ƒ /api/admin/moderation-retention
+├ ƒ /api/admin/operations
+├ ƒ /api/admin/preview-testers
+├ ƒ /api/admin/record
+├ ƒ /api/admin/search
+├ ƒ /api/analytics
+├ ƒ /api/app-session
+├ ƒ /api/auth
+├ ƒ /api/auth/customer-invitation
+├ ƒ /api/auth/customer-signup
+├ ƒ /api/auth/invitation-setup
+├ ƒ /api/beta-release
+├ ƒ /api/beta/invitations
+├ ƒ /api/community
+├ ƒ /api/fantasy
+├ ƒ /api/fantasy/auto-select
+├ ƒ /api/fantasy/card-history
+├ ƒ /api/fantasy/collection-export
+├ ƒ /api/fantasy/lineup-history
+├ ƒ /api/fantasy/market-proposal
+├ ƒ /api/fantasy/results
+├ ƒ /api/fantasy/swaps
+├ ƒ /api/marketplace
+├ ƒ /api/member
+├ ƒ /api/nfl/history/import
+├ ƒ /api/nfl/history/status
+├ ƒ /api/notifications
+├ ƒ /api/redemptions
+├ ƒ /api/status
+├ ƒ /api/test-wallet
+├ ƒ /api/testing/nfl/import
+├ ƒ /api/unsubscribe
+├ ƒ /api/webhooks/email
+├ ƒ /api/weekly-core
+├ ƒ /app
+├ ƒ /app/check-email
+├ ƒ /app/email-change-pending
+├ ƒ /app/forgot-password
+├ ƒ /app/invitation-setup
+├ ƒ /app/link-expired
+├ ƒ /app/login
+├ ƒ /app/onboarding
+├ ƒ /app/owner-setup
+├ ƒ /app/password-updated
+├ ƒ /app/preview-owner
+├ ƒ /app/reset-password
+├ ƒ /app/signup
+├ ƒ /app/verified
+├ ○ /apple-icon.png
+├ ƒ /auth/callback
+├ ƒ /auth/invite
+├ ƒ /auth/recovery
+├ ƒ /auth/verify
+├ ƒ /beta-policies
+├ ○ /community
+├ ƒ /community/[post]
+├ ƒ /community/posts/[id]
+├ ○ /competitions
+├ ƒ /compose
+├ ƒ /dashboard
+├ ƒ /fantasy/[tab]
+├ ƒ /fantasy/announcements
+├ ƒ /fantasy/announcements/[id]
+├ ƒ /fantasy/prizes
+├ ƒ /fantasy/results
+├ ƒ /fantasy/scoring
+├ ƒ /fantasy/scoring/how-it-works
+├ ƒ /fantasy/test-wallet
+├ ƒ /feed
+├ ƒ /following
+├ ○ /home
+├ ○ /manifest.webmanifest
+├ ƒ /notifications
+├ ○ /opengraph-image
+├ ƒ /preview/card-statistics
+├ ƒ /preview/pack-opening
+├ ƒ /profile
+├ ƒ /profile/[handle]
+├ ƒ /profile/withdrawals
+├ ○ /robots.txt
+├ ƒ /search
+├ ○ /sitemap.xml
+├ ○ /sports
+└ ƒ /sports/[sport]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

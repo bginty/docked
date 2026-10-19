@@ -2,6 +2,7 @@ import type { FantasyState } from "./fantasy";
 import { autoSelect, type PlayerRank } from "./lineup-auto-select";
 import { sevenEligibility } from "./card-display";
 import { rarityRule } from "./card-rarity";
+import { hasEstablishedTeam } from "./team-continuity";
 /** Runs on the authenticated server snapshot, never on another account's pool. */
 export function recommendOwnedLineup(
   data: FantasyState,
@@ -20,6 +21,10 @@ export function recommendOwnedLineup(
     !["OPEN", "SALARY_CAP"].includes(String(comp.rules.mode))
   )
     throw Error("Competition unavailable");
+  if (hasEstablishedTeam(data, comp.sport ?? "nfl", String(comp.rules.mode)))
+    throw Error(
+      "Your team is established. Replace individual players manually.",
+    );
   const entry = data.seven.entries.find((e) => e.competition_id === id);
   if (Date.parse(comp.locks_at) <= now && !entry)
     throw Error("New entries closed");

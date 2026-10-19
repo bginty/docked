@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: bilateral consent, exact per-trade fees, idempotent receipt, immutable history
+ok 1 - bilateral consent, exact per-trade fees, idempotent receipt, immutable history
+  ---
+  duration_ms: 4914.3579
+  ...
+# Subtest: fee-window boundary demands fresh quote and fresh bilateral consent
+ok 2 - fee-window boundary demands fresh quote and fresh bilateral consent
+  ---
+  duration_ms: 70.5725
+  ...
+# Subtest: insufficient mock balance and payment failure roll back fees, transfers and second consent
+ok 3 - insufficient mock balance and payment failure roll back fees, transfers and second consent
+  ---
+  duration_ms: 85.7297
+  ...
+# Subtest: stale ownership, locked lineups, foreign accounts and policy changes fail closed
+ok 4 - stale ownership, locked lineups, foreign accounts and policy changes fail closed
+  ---
+  duration_ms: 63.2453
+  ...
+# Subtest: bundle charged once, sale transfers price atomically, cancellation is free
+ok 5 - bundle charged once, sale transfers price atomically, cancellation is free
+  ---
+  duration_ms: 68.0286
+  ...
+# Subtest: cancellation and rejection never charge; cancelled quotes cannot commit
+ok 6 - cancellation and rejection never charge; cancelled quotes cannot commit
+  ---
+  duration_ms: 47.5593
+  ...
+# Subtest: unconfigured live schedule blocks, policy revision invalidates consent
+ok 7 - unconfigured live schedule blocks, policy revision invalidates consent
+  ---
+  duration_ms: 53.1998
+  ...
+# Subtest: offer edits cannot substitute terms after consent; sale and decline rules
+ok 8 - offer edits cannot substitute terms after consent; sale and decline rules
+  ---
+  duration_ms: 70.0208
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 9 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 14303.6308
+  ...
+# Subtest: prize publication, overlap rejection, locked names, admin MFA and immutable audits
+ok 10 - prize publication, overlap rejection, locked names, admin MFA and immutable audits
+  ---
+  duration_ms: 10032.0769
+  ...
+# Subtest: team continuity: first confirmation, private idempotent rollover, manual edits and mode separation
+ok 11 - team continuity: first confirmation, private idempotent rollover, manual edits and mode separation
+  ---
+  duration_ms: 8167.1159
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 26659.1699

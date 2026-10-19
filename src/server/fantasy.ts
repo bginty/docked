@@ -66,8 +66,16 @@ export async function fantasyRequest(
         });
       }
       view.cards = [...collection.values()];
-      const observations =
-        await tx`select id,team,verified_jersey_number from credits_sandbox.current_player_jerseys`;
+      const ownedPlayers = [
+        ...new Set(
+          [...view.cards, ...(view.seven?.inventory ?? [])].map(
+            (c) => c.canonical_player_id ?? c.player_id,
+          ),
+        ),
+      ];
+      const observations = ownedPlayers.length
+        ? await tx`select id,team,verified_jersey_number from credits_sandbox.current_player_jerseys where id=any(${ownedPlayers}::uuid[])`
+        : [];
       const numbers = new Map(observations.map((r) => [r.id, r]));
       // View metadata only; locked snapshots and saved receipts are not rewritten.
       for (const card of [...view.cards, ...(view.seven?.inventory ?? [])]) {

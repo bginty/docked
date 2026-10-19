@@ -135,7 +135,7 @@ async function main() {
         locks_at: lock,
         scored_at: week === 1 ? lock : null,
         opens_at:
-          week === 7
+          week === 7 && mode === "SALARY_CAP"
             ? new Date(now + 86400000).toISOString()
             : new Date(now - 7 * 86400000).toISOString(),
         sport: "nfl",
@@ -150,7 +150,7 @@ async function main() {
         ).toISOString(),
         status: "scheduled",
       }));
-      if (closed)
+      if (closed && mode === "SALARY_CAP")
         data.seven!.entries.push({
           competition_id: id,
           revision: 1,
@@ -166,6 +166,24 @@ async function main() {
           })),
         });
     }
+  data.seven!.established = { "nfl:SALARY_CAP": true };
+  const rolled = {
+    competition_id: "SALARY_CAP-7",
+    revision: 1,
+    updated_at: new Date(now).toISOString(),
+    selections: cards
+      .slice(0, 7)
+      .map((c, i) => ({ slot: nflSeven.slots[i].id, card: c.id })),
+  };
+  data.seven!.drafts.push(rolled);
+  data.seven!.rollovers = [
+    {
+      ...rolled,
+      source_competition_id: "SALARY_CAP-6",
+      omitted: [],
+      created_at: new Date(now).toISOString(),
+    },
+  ];
   const server = createServer(async (req, res) => {
     const u = new URL(req.url!, "http://local");
     const json = (v: unknown) => {
@@ -177,6 +195,27 @@ async function main() {
       const chunks = [];
       for await (const c of req) chunks.push(c);
       const { action, payload } = JSON.parse(Buffer.concat(chunks).toString());
+      if (action === "seven_enter") {
+        const round = data.competitions.find(
+          (c) => c.id === payload.competition_id,
+        )!;
+        data.seven!.entries.push({
+          competition_id: round.id,
+          revision: 1,
+          updated_at: new Date().toISOString(),
+          snapshot: payload.selections.map(
+            (p: { slot: string; card: string }) => ({
+              ...cards.find((c) => c.id === p.card)!,
+              slot: p.slot,
+              card_id: p.card,
+              salary: 500000,
+              kickoff: data.seven!.fixtures[round.id][0].scheduledAt,
+            }),
+          ),
+        });
+        data.seven!.established!["nfl:" + round.rules.mode] = true;
+        return json({ state: data, result: { revision: 1, entered: true } });
+      }
       assert.equal(action, "seven_draft");
       const old = data.seven!.drafts.find(
         (d) => d.competition_id === payload.competition_id,
@@ -276,8 +315,10 @@ async function main() {
         return res.end();
       }
     }
-    if (u.pathname.startsWith("/api/"))
+    if (u.pathname.startsWith("/api/")) {
+      res.statusCode = 503;
       return json({ error: "Isolated fixture" });
+    }
     res.setHeader("Content-Type", "text/html");
     const suffix = u.searchParams.has("before") ? "?before=1" : "";
     res.end(
@@ -307,7 +348,7 @@ async function main() {
         await expect(
           page
             .getByRole("status")
-            .filter({ hasText: before ? "Loading Docked" : "Getting Docked" })
+            .filter({ hasText: "Getting Docked" })
             .first(),
         ).toBeVisible();
         evidence.push({
@@ -348,10 +389,33 @@ async function main() {
       });
       const box = await page.locator(".purchase-card").boundingBox();
       assert.ok(box && Math.abs(box.x + box.width / 2 - width / 2) < 3);
+      await expect(
+        page.getByRole("link", { name: "View in My Cards" }),
+      ).toHaveAttribute("href", /\/fantasy\/cards\?sport=nfl&card=qa-card-12$/);
       await page.getByRole("button", { name: "Continue Browsing" }).click();
       assert.equal(await page.evaluate(() => document.body.style.overflow), "");
     }
     await page.setViewportSize({ width: 412, height: 915 });
+    await page.evaluate(
+      ({ key, picks }) =>
+        sessionStorage.setItem(
+          key,
+          JSON.stringify({
+            "SALARY_CAP-7": {
+              picks,
+              revision: 0,
+              entryRevision: 0,
+              dirty: true,
+            },
+          }),
+        ),
+      {
+        key: "docked-seven:" + member,
+        picks: rolled.selections.map((p, i) =>
+          i === 0 ? { ...p, card: "qa-card-14" } : p,
+        ),
+      },
+    );
     await page.goto(`${origin}/fantasy/play?competition=SALARY_CAP-6`);
     await expect(page.locator(".competition-weeks")).toContainText("Week 6");
     const current = JSON.stringify(
@@ -362,12 +426,26 @@ async function main() {
     await expect(
       page.getByRole("button", { name: "Enter Competition", exact: true }),
     ).toBeDisabled();
+    await expect(
+      page.getByRole("button", { name: "Auto Select", exact: true }),
+    ).toHaveCount(0);
+    await expect(page.locator(".selection-count")).toContainText("7/7");
+    await expect(page.locator('[data-slot="QB1"] .field-player')).toContainText(
+      "14",
+    );
+    await page.locator('[data-slot="QB1"] .field-player').click();
+    await expect(page.getByRole("dialog")).toBeVisible();
     await page
-      .getByRole("button", { name: "Auto Select", exact: true })
+      .getByRole("button", { name: "Replace player", exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: /Local Player 7/ })
+      .first()
+      .click();
+    await page
+      .getByRole("button", { name: "Use this player", exact: true })
       .click();
     const dialog = page.getByRole("dialog", { name: "Review Auto Select" });
-    await expect(dialog).toBeVisible();
-    await dialog.getByRole("button", { name: "Apply lineup" }).click();
     await page.getByRole("button", { name: "Save Draft", exact: true }).click();
     await expect(
       page.getByText("Draft saved. Your competition entry has not changed."),
@@ -377,12 +455,21 @@ async function main() {
         .selections.length,
       7,
     );
+    const updatedPicks = data.seven!.drafts.find(
+      (d) => d.competition_id === "SALARY_CAP-7",
+    )!.selections;
+    for (const pick of rolled.selections)
+      assert.equal(
+        updatedPicks.find((p) => p.slot === pick.slot)?.card,
+        pick.slot === "QB1" ? "qa-card-7" : pick.card,
+      );
     assert.equal(
       JSON.stringify(
         data.seven!.entries.find((e) => e.competition_id === "SALARY_CAP-6"),
       ),
       current,
     );
+    await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({
       path: `${dir}/future-draft-412.png`,
       fullPage: true,
@@ -400,7 +487,7 @@ async function main() {
     await expect(page.locator(".weekly-lineup-result")).toContainText("88.20");
     await expect(
       page.getByRole("button", { name: "Auto Select", exact: true }),
-    ).toBeDisabled();
+    ).toHaveCount(0);
     await page.screenshot({
       path: `${dir}/historical-412.png`,
       fullPage: true,
@@ -419,6 +506,24 @@ async function main() {
       .click();
     await expect(dialog).toBeVisible();
     await dialog.getByRole("button", { name: "Cancel", exact: true }).click();
+    await page
+      .getByRole("button", { name: "Auto Select", exact: true })
+      .click();
+    await dialog.getByRole("button", { name: "Apply lineup" }).click();
+    await page.getByRole("button", { name: "Save Draft", exact: true }).click();
+    await expect(
+      page.getByRole("button", { name: "Auto Select", exact: true }),
+    ).toBeVisible();
+    await page
+      .getByRole("button", { name: "Enter Competition", exact: true })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Auto Select", exact: true }),
+    ).toHaveCount(0);
+    await page.screenshot({
+      path: dir + "/first-team-confirmed-412.png",
+      fullPage: true,
+    });
     const violations = (
       await new AxeBuilder({ page }).disableRules(["color-contrast"]).analyze()
     ).violations.filter((v) =>
@@ -481,6 +586,9 @@ async function main() {
           evidence,
           checks: [
             "Week 7 draft independent of Week 6",
+            "manual QB substitution leaves six other slots unchanged",
+            "first confirmed entry disables Auto Select independently per mode",
+            "saved draft still allows first-time Auto Select before confirmation",
             "historical sold cards restored from entry snapshot",
             "cap-aware Auto Select preview/apply/cancel",
             "all rarity reveal centering",

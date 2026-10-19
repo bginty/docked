@@ -292,6 +292,14 @@ export type FantasyState = {
   seven?: {
     inventory: FantasyCard[];
     configurations: Record<string, typeof import("./nfl-seven").nflSeven>;
+    established?: Record<string, boolean>;
+    rollovers?: {
+      competition_id: string;
+      source_competition_id: string;
+      selections: import("./nfl-seven").SlotSelection[];
+      omitted: { slot: string; reason: string }[];
+      created_at: string;
+    }[];
     drafts: {
       competition_id: string;
       revision: number;
