@@ -24,6 +24,8 @@ export function AdminAnnouncementDraft() {
   const [preview, setPreview] = useState(false);
   const [page, setPage] = useState(1);
   const [message, setMessage] = useState("");
+  const [loadError, setLoadError] = useState("");
+  const [reloading, setReloading] = useState(false);
   const [busy, setBusy] = useState(false);
   const [uncertain, setUncertain] = useState<AnnouncementMutation | null>(null);
   const submitting = useRef(false);
@@ -64,22 +66,44 @@ export function AdminAnnouncementDraft() {
       });
       const data = await response.json();
       if (!response.ok) throw Error(data.error ?? "Drafts unavailable");
-      if (mounted.current && !signal?.aborted) setListing(data);
+      if (mounted.current && !signal?.aborted) {
+        setListing(data);
+        setLoadError("");
+      }
     },
     [page],
   );
   useEffect(() => {
     mounted.current = true;
     const controller = new AbortController();
-    void load(controller.signal).catch(() => {
+    void load(controller.signal).catch((error: unknown) => {
       if (!controller.signal.aborted)
-        setMessage("Saved drafts are unavailable. Reload to try again.");
+        setLoadError(
+          error instanceof Error
+            ? error.message
+            : "Saved drafts are unavailable.",
+        );
     });
     return () => {
       mounted.current = false;
       controller.abort();
     };
   }, [load]);
+  async function retryLoad() {
+    setReloading(true);
+    try {
+      await load();
+    } catch (error) {
+      if (mounted.current)
+        setLoadError(
+          error instanceof Error
+            ? error.message
+            : "Saved drafts are unavailable.",
+        );
+    } finally {
+      if (mounted.current) setReloading(false);
+    }
+  }
   useEffect(() => {
     if (!selected) return;
     const controller = new AbortController();
@@ -147,7 +171,11 @@ export function AdminAnnouncementDraft() {
       setMessage(
         action === "publish"
           ? "Published on Docked. No push notifications sent."
-          : "Announcement saved securely.",
+          : action === "submit"
+            ? "Submitted for review. Add a review reason, then approve the draft."
+            : action === "approve"
+              ? "Approved. Add a publication reason, then choose Publish on Docked."
+              : "Announcement saved securely.",
       );
       await load().catch(() => {
         if (mounted.current)
@@ -191,8 +219,23 @@ export function AdminAnnouncementDraft() {
         {message ||
           (listing
             ? "Only authorised staff can view these drafts."
-            : "Loading saved drafts…")}
+            : loadError
+              ? "Publishing controls are unavailable until staff access is confirmed."
+              : "Loading saved drafts…")}
       </p>
+      {loadError && (
+        <div role="alert">
+          <p>{loadError}</p>
+          <button
+            className="button"
+            type="button"
+            disabled={reloading || busy}
+            onClick={() => void retryLoad()}
+          >
+            {reloading ? "Checking access…" : "Retry staff access"}
+          </button>
+        </div>
+      )}
       {uncertain && (
         <button
           className="button"
@@ -223,6 +266,30 @@ export function AdminAnnouncementDraft() {
             ))}
           </ul>
           {!listing.drafts.length && <p>No saved drafts on this page.</p>}
+          {listing.canWrite && (
+            <p>
+              {!selected
+                ? "Select a saved draft above to continue, or write and save a new draft below. Preview does not save or publish."
+                : dirty
+                  ? "Save your changes before continuing to review."
+                  : selected.status === "draft" ||
+                      selected.status === "changes_requested"
+                    ? "Next: enter a reason below and submit this draft for review."
+                    : selected.status === "in_review" && canReview
+                      ? "Next: enter your review reason and approve this draft for publication."
+                      : selected.status === "approved" && listing.canReview
+                        ? "Next: enter a publication reason and choose Publish on Docked."
+                        : selected.status === "published"
+                          ? "This announcement is published on Docked."
+                          : "Select an available action below."}
+            </p>
+          )}
+          {!listing.canWrite && (
+            <p>
+              Your staff role can view drafts but cannot save, approve or
+              publish them.
+            </p>
+          )}
           <div className="actions">
             <button
               className="button ghost"
@@ -324,11 +391,16 @@ export function AdminAnnouncementDraft() {
             <label>
               Reason for this change
               <input
+                aria-describedby="announcement-reason-help"
                 maxLength={500}
                 minLength={3}
                 value={reason}
                 onChange={(event) => setReason(event.target.value)}
               />
+              <small id="announcement-reason-help">
+                Required for each save, review or publication (at least 3
+                characters).
+              </small>
             </label>
           )}
           <label>
@@ -422,7 +494,7 @@ export function AdminAnnouncementDraft() {
                       disabled={!valid}
                       onClick={() => void mutate("approve")}
                     >
-                      Approve draft only
+                      Approve for publication
                     </button>
                     <button
                       className="button ghost"

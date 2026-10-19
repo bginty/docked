@@ -1,0 +1,33 @@
+{
+  "synthetic": true,
+  "hosted": false,
+  "checks": [
+    {
+      "width": 412,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "seriousCriticalAxe": 0
+    }
+  ],
+  "requests": 6,
+  "uniqueReceipts": 5,
+  "drafts": 1,
+  "errors": [],
+  "journeys": [
+    "preview without write",
+    "failed permissions load is explicit and retry recovers controls",
+    "uncertain save exact retry",
+    "reload persistence",
+    "discard unsaved edit",
+    "submit staff review",
+    "owner approval requires reason",
+    "approval alone does not publish",
+    "explicit publication persists one snapshot",
+    "archive",
+    "responsive accessibility"
+  ]
+}

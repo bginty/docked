@@ -25,10 +25,21 @@ async function run() {
   const receipts = new Map<string, AnnouncementDraft>();
   let requests = 0;
   let failAfterSave = true;
+  let failList = true;
   const server = createServer(async (request, response) => {
     if (request.url?.startsWith("/api/admin/announcements")) {
       response.setHeader("Content-Type", "application/json");
       if (request.method === "GET") {
+        if (failList) {
+          failList = false;
+          response.statusCode = 503;
+          response.end(
+            JSON.stringify({
+              error: "Saved drafts are temporarily unavailable.",
+            }),
+          );
+          return;
+        }
         response.end(
           JSON.stringify(
             request.url.includes("?id=")
@@ -64,12 +75,21 @@ async function run() {
           last_edited_by: actor,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
+          cta: input.cta ?? null,
+          published:
+            input.action === "publish"
+              ? { title: input.title, body: input.body, cta: input.cta ?? null }
+              : (drafts[index]?.published ?? null),
           status:
             input.action === "archive"
               ? "archived"
               : input.action === "submit"
                 ? "in_review"
-                : "draft",
+                : input.action === "approve"
+                  ? "approved"
+                  : input.action === "publish"
+                    ? "published"
+                    : "draft",
         };
         if (index < 0) drafts.push(result);
         else drafts[index] = result;
@@ -97,7 +117,7 @@ async function run() {
   const address = server.address();
   if (!address || typeof address === "string") throw Error("No local server");
   const browser = await chromium.launch({ channel: "msedge", headless: true });
-  const out = "docs/qa/admin-announcements";
+  const out = `docs/qa/announcement-publishing-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const checks: unknown[] = [];
   try {
@@ -108,6 +128,13 @@ async function run() {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(`http://127.0.0.1:${address.port}`);
+    await expect(page.getByRole("alert")).toContainText(
+      "Saved drafts are temporarily unavailable.",
+    );
+    await expect(
+      page.getByRole("button", { name: "Save draft", exact: true }),
+    ).toHaveCount(0);
+    await page.getByRole("button", { name: "Retry staff access" }).click();
     await expect(page.getByText("No saved drafts on this page.")).toBeVisible();
     await page
       .getByRole("textbox", { name: "Title", exact: true })
@@ -130,9 +157,7 @@ async function run() {
       page.getByRole("textbox", { name: "Title", exact: true }),
     ).toBeDisabled();
     await page.getByRole("button", { name: "Retry same save request" }).click();
-    await expect(
-      page.getByText("Saved securely. No announcement has been sent."),
-    ).toBeVisible();
+    await expect(page.getByText("Announcement saved securely.")).toBeVisible();
     assert.equal(drafts.length, 1);
     assert.equal(receipts.size, 1);
     assert.equal(requests, 2);
@@ -158,14 +183,42 @@ async function run() {
       .fill("Ready for independent review");
     await page.getByRole("button", { name: "Submit for review" }).click();
     await expect(
-      page.getByRole("button", { name: "Approve draft only" }),
+      page.getByRole("button", { name: "Approve for publication" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "Approve draft only" }),
+      page.getByRole("button", { name: "Approve for publication" }),
     ).toBeDisabled();
+    await page
+      .getByLabel("Reason for this change")
+      .fill("Reviewed for publication");
+    await page.getByRole("button", { name: "Approve for publication" }).click();
+    await expect(
+      page.getByRole("button", { name: "Publish on Docked" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Publish on Docked" }),
+    ).toBeDisabled();
+    assert.equal(drafts[0].published, null, "approval alone does not publish");
+    await page
+      .getByLabel("Reason for this change")
+      .fill("Publish approved isolated fixture");
+    await page.getByRole("button", { name: "Publish on Docked" }).click();
+    await expect(
+      page.getByText("Published on Docked. No push notifications sent."),
+    ).toBeVisible();
+    assert.equal(drafts[0].status, "published");
+    assert.deepEqual(drafts[0].published, {
+      title: "Synthetic beta announcement",
+      body: "An isolated fixture. No members receive this draft.",
+      cta: null,
+    });
+    assert.equal(
+      [...receipts.values()].filter((r) => r.status === "published").length,
+      1,
+    );
     await page.getByLabel("Reason for this change").fill("Archive test draft");
     await page
-      .getByRole("button", { name: "Archive draft", exact: true })
+      .getByRole("button", { name: "Archive announcement", exact: true })
       .click();
     await expect(
       page.getByRole("button", { name: "Restore as draft", exact: true }),
@@ -204,11 +257,14 @@ async function run() {
           errors,
           journeys: [
             "preview without write",
+            "failed permissions load is explicit and retry recovers controls",
             "uncertain save exact retry",
             "reload persistence",
             "discard unsaved edit",
             "submit staff review",
             "owner approval requires reason",
+            "approval alone does not publish",
+            "explicit publication persists one snapshot",
             "archive",
             "responsive accessibility",
           ],
