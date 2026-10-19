@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-19T07:20:23.469Z",
+  "release": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "3e530a75d8d2b5c6197bd6c5a64cea2dad583d70",
+    "deploymentId": "dpl_2b8acxWRhttZuXnLGvyZJZcAkEFE",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  },
+  "scope": "Fresh anonymous browser contexts; no real account authentication or mutations",
+  "checks": [
+    {
+      "width": 1440,
+      "publicPageStatus": 200,
+      "anonymousSignIn": true,
+      "returnDestinationPreserved": true,
+      "loginForm": true,
+      "overflow": false,
+      "clientErrors": []
+    },
+    {
+      "width": 412,
+      "publicPageStatus": 200,
+      "anonymousSignIn": true,
+      "returnDestinationPreserved": true,
+      "loginForm": true,
+      "overflow": false,
+      "clientErrors": []
+    }
+  ]
+}
