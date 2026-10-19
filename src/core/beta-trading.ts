@@ -25,7 +25,7 @@ export function tradingCommandMode(command: {
   price?: number;
   offeredCards?: unknown[];
 }): TradingMode | "listing" | null {
-  if (["list", "replace-listing"].includes(command.kind))
+  if (["list", "replace-listing", "reprice-listing"].includes(command.kind))
     return command.preference === "both"
       ? "listing"
       : command.preference === "swap"

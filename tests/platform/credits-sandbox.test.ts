@@ -121,7 +121,7 @@ test("inventory exhaustion, late capture and cancellation never silently substit
 test("seller commission uses exact integer half-up and sales preserve provenance/restricted resale", () => {
   assert.deepEqual(
     [1, 6, 7, 20, 100, 4900, 9900].map((p) => sellerQuote(p).fee),
-    [0, 0, 1, 2, 8, 368, 743],
+    [0, 0, 0, 1, 5, 245, 495],
   );
   const h = harness();
   const a = h.deposit();
@@ -144,9 +144,9 @@ test("seller commission uses exact integer half-up and sales preserve provenance
     confirmed: true,
     policy: creditsPolicy.version,
   });
-  assert.equal(wallet(h.state, alice.id).available, 4992);
+  assert.equal(wallet(h.state, alice.id).available, 4995);
   assert.equal(wallet(h.state, alice.id).withdrawable, 4900);
-  assert.equal(financialReport(h.state).commission, 8);
+  assert.equal(financialReport(h.state).commission, 5);
   assert.equal(h.state.commerce.cards[card].owner, bob.id);
   assert.throws(() =>
     h.run(bob, {
@@ -183,10 +183,7 @@ test("swaps reject/cancel free, accept debits 50 each exactly once; stale owners
   assert.equal(wallet(h.state, alice.id).available, 4850);
   assert.equal(wallet(h.state, bob.id).available, 4850);
   assert.equal(financialReport(h.state).swapFees, 100);
-  assert.throws(
-    () => h.run(bob, { kind: "accept", swap: "swap4" }),
-    /closed/,
-  );
+  assert.throws(() => h.run(bob, { kind: "accept", swap: "swap4" }), /closed/);
   h.state.cards[cb].locked = true;
   assert.throws(
     () => h.run(alice, { ...offer, give: [cb], take: [ca] }),
@@ -590,6 +587,6 @@ test("Restricted card value cannot become redeemable through an intermediate pur
     policy: creditsPolicy.version,
     confirmed: true,
   });
-  assert.equal(wallet(h.state, alice.id).available, 4942);
+  assert.equal(wallet(h.state, alice.id).available, 4945);
   assert.equal(wallet(h.state, alice.id).withdrawable, 4850);
 });

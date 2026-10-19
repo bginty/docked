@@ -144,7 +144,7 @@ export function FantasyAdmin({
     {
       action: "admin_fee",
       title: "Configure future listing fee",
-      value: { fee_bps: 750 },
+      value: { fee_bps: 500 },
     },
   ];
   return (

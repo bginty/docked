@@ -5,7 +5,7 @@ export const creditsPolicy = {
   currency: "AUD",
   creditsPerDollar: 100,
   liveEnabled: false,
-  commissionBps: 750,
+  commissionBps: 500,
   rounding: "half-up-whole-credit",
   swapFeeEach: 50,
   // Examples, not owner-approved eligibility, limits or withdrawal conditions.
@@ -24,11 +24,12 @@ export const creditsPolicy = {
     supplyApproved: false,
   })),
 } as const;
+export const saleFeePolicy = "credit-sale-5pct-cap2000-v2";
 export function sellerQuote(price: number) {
   if (!Number.isSafeInteger(price) || price < 1 || price > 1_000_000_000)
     throw Error("Invalid integer credit price");
-  const fee = Number((BigInt(price) * 750n + 5000n) / 10000n);
-  return { price, fee, net: price - fee, policy: creditsPolicy.version };
+  const fee = Math.min(2000, Number((BigInt(price) * 5n + 50n) / 100n));
+  return { price, fee, net: price - fee, policy: saleFeePolicy };
 }
 
 /** Owner-approved 16 Oct 2026: combined offers charge the higher of the

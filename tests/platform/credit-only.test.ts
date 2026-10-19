@@ -158,15 +158,15 @@ test("confirmed funding, not redirects; merchant/amount/reference, exact cents, 
   assert.equal(wallet(h.s, alice.id).available, 1000);
   assert.equal(Object.keys(h.s.entitlements).length, 0);
 });
-test("FIFO transfer provenance survives multiple resales; 1000 = 925 seller + 75 fee; no new issuance", () => {
+test("FIFO transfer provenance survives multiple resales; 1000 = 950 seller + 50 fee; no new issuance", () => {
   const h = harness();
   const funding = h.deposit(bob, 1000);
   h.card(alice, "card1");
   h.card(bob, "card2");
   h.sell(alice, bob, "card1", 1000);
-  assert.equal(wallet(h.s, alice.id).available, 925);
+  assert.equal(wallet(h.s, alice.id).available, 950);
   assert.equal(wallet(h.s, bob.id).available, 0);
-  assert.equal(financialReport(h.s).commission, 75);
+  assert.equal(financialReport(h.s).commission, 50);
   assert.equal(financialReport(h.s).confirmedGrossPayments, 1000);
   h.sell(bob, alice, "card2", 900);
   const roots = Object.values(h.s.lots).filter((l) => l.category === "sale");
@@ -207,14 +207,14 @@ test("withdrawal reserves once, unknown stays reserved, paid extinguishes once; 
   });
   const cmd = {
     kind: "withdraw",
-    amount: 925,
+    amount: 950,
     beneficiary: alice.id,
     confirmed: true,
     policy: h.s.policy.version,
   };
   h.run(alice, cmd, "W");
   h.run(alice, cmd, "W");
-  assert.equal(wallet(h.s, alice.id).reserved, 925);
+  assert.equal(wallet(h.s, alice.id).reserved, 950);
   assert.equal(wallet(h.s, alice.id).spendable, 0);
   h.run(owner, {
     kind: "withdraw-review",
@@ -262,8 +262,8 @@ test("withdrawal reserves once, unknown stays reserved, paid extinguishes once; 
     verified: true,
   });
   assert.equal(wallet(h.s, alice.id).total, 0);
-  assert.equal(financialReport(h.s).completedWithdrawals, 925);
-  assert.equal(financialReport(h.s).simulatedProviderCash, 75);
+  assert.equal(financialReport(h.s).completedWithdrawals, 950);
+  assert.equal(financialReport(h.s).simulatedProviderCash, 50);
   validateCredits(h.s);
   const g = harness();
   const x = g.deposit(bob);
@@ -289,7 +289,7 @@ test("withdrawal reserves once, unknown stays reserved, paid extinguishes once; 
       }),
     /Funding review/,
   );
-  assert.equal(wallet(g.s, alice.id).reserved, 925);
+  assert.equal(wallet(g.s, alice.id).reserved, 950);
 });
 test("free window zero-balance atomic swap; expiry cannot increase fee without fresh consent", () => {
   const h = harness();
@@ -328,7 +328,7 @@ test("whole-credit half-up conserves value; mismatches and unbacked grants are v
     const q = sellerQuote(p);
     assert.equal(q.net + q.fee, p);
   }
-  assert.equal(sellerQuote(20).fee, 2);
+  assert.equal(sellerQuote(20).fee, 1);
   assert.equal(sellerQuote(1).fee, 0);
   const h = harness();
   h.deposit(alice);

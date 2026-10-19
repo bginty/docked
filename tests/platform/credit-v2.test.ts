@@ -102,13 +102,13 @@ test("dated reconciliation reconstructs sale/resale, opening and closing; no dou
       reconciliationRange("2026-10-13", "2026-10-13"),
     );
   assert.equal(v.opening, 1000);
-  assert.equal(v.closing, 857);
+  assert.equal(v.closing, 905);
   assert.equal(v.rows.length, 2);
   assert.deepEqual(
     v.rows.map((r) => [r.grossDebit, r.sellerProceeds, r.commission]),
     [
-      [1000, 925, 75],
-      [900, 832, 68],
+      [1000, 950, 50],
+      [900, 855, 45],
     ],
   );
   assert.ok(
@@ -118,7 +118,7 @@ test("dated reconciliation reconstructs sale/resale, opening and closing; no dou
         r.providerReferences[0].includes("CAPTURE"),
     ),
   );
-  assert.equal(wallet(h.s, bob.id).available, 832);
+  assert.equal(wallet(h.s, bob.id).available, 855);
   assert.equal(report.circulation.difference, 0);
   assert.match(reconciliationCsv(report), /Opening customer liability/);
   const empty = reconciliationRows(
@@ -126,8 +126,8 @@ test("dated reconciliation reconstructs sale/resale, opening and closing; no dou
     reconciliationRange("2026-10-14", "2026-10-14"),
   );
   assert.equal(empty.rows.length, 0);
-  assert.equal(empty.opening, 857);
-  assert.equal(empty.closing, 857);
+  assert.equal(empty.opening, 905);
+  assert.equal(empty.closing, 905);
   h.run(
     provider,
     {

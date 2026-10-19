@@ -1,3 +1,4 @@
+import { testCard } from "./member-test-wallet";
 import {
   allocateNine,
   validateCardEconomy,
@@ -15,6 +16,7 @@ import {
 import {
   creditsPolicy,
   sellerQuote,
+  saleFeePolicy,
   combinedOfferQuote,
 } from "./credits-policy";
 import { generatePrizes, type PrizeRegister } from "./prize-register";
@@ -148,6 +150,9 @@ export type CreditsState = {
       card: string;
       version: number;
       price: number;
+      revision?: number;
+      feePolicy?: string;
+      snapshot?: import("./pack-opening").AwardedCard;
       preference?: "sell" | "swap" | "both";
       privateOffer?: string;
       status: "OPEN" | "SOLD" | "CANCELLED";
@@ -156,6 +161,8 @@ export type CreditsState = {
       cancelledAt?: number;
       receipt?: {
         reference: string;
+        feePolicy?: string;
+        cardSnapshot?: import("./pack-opening").AwardedCard;
         at: number;
         price: number;
         fee: number;
@@ -275,7 +282,17 @@ export const creditsCommand = z.discriminatedUnion("kind", [
     price: z.number().int().min(0).max(1000000000),
     preference: z.enum(["sell", "swap", "both"]),
   }),
-  base({ kind: z.literal("cancel-listing"), listing: id }),
+  base({
+    kind: z.literal("reprice-listing"),
+    listing: id,
+    price: amount,
+    expectedRevision: z.number().int().nonnegative(),
+  }),
+  base({
+    kind: z.literal("cancel-listing"),
+    listing: id,
+    expectedRevision: z.number().int().nonnegative().optional(),
+  }),
   base({ kind: z.literal("review-buy"), listing: id }),
   base({
     kind: z.literal("buy"),
@@ -1171,6 +1188,9 @@ export function executeCredits(
       price: c.price,
       ...(c.preference ? { preference: c.preference } : {}),
       status: "OPEN",
+      revision: 1,
+      feePolicy: saleFeePolicy,
+      snapshot: testCard(s, c.card),
       createdAt: now,
     };
     result = {
@@ -1178,10 +1198,34 @@ export function executeCredits(
       status: "OPEN",
       ...(c.price ? sellerQuote(c.price) : { price: 0, fee: 0, net: 0 }),
     };
+  } else if (c.kind === "reprice-listing") {
+    member();
+    const l = s.listings[c.listing];
+    if (!l) throw Error("Listing unavailable");
+    own(l.member);
+    if (l.status !== "OPEN")
+      throw Error("Listing already sold or removed. Refresh My Listings.");
+    if ((l.revision ?? 0) !== c.expectedRevision)
+      throw Error("Listing changed. Review the latest price.");
+    canTrade(l.card, l.member, l.version);
+    l.price = c.price;
+    l.revision = (l.revision ?? 0) + 1;
+    l.feePolicy = saleFeePolicy;
+    result = {
+      listing: c.listing,
+      status: l.status,
+      revision: l.revision,
+      ...sellerQuote(l.price),
+    };
   } else if (c.kind === "cancel-listing") {
     const l = s.listings[c.listing];
     if (!l) throw Error("Unknown listing");
     own(l.member);
+    if (
+      c.expectedRevision !== undefined &&
+      (l.revision ?? 0) !== c.expectedRevision
+    )
+      throw Error("Listing changed. Refresh My Listings.");
     if (l.status === "SOLD")
       throw Error("Listing already sold; view the receipt");
     if (l.status === "OPEN") l.cancelledAt = now;
@@ -1203,6 +1247,8 @@ export function executeCredits(
       version: l.version,
       seller: l.member,
       ...sellerQuote(l.price),
+      revision: l.revision ?? 0,
+      feePolicy: saleFeePolicy,
       policy: s.policy.version,
       expires: now + 300000,
     };
@@ -1231,6 +1277,8 @@ export function executeCredits(
             price?: number;
             policy?: string;
             expires?: number;
+            revision?: number;
+            feePolicy?: string;
           }
         | undefined;
       if (
@@ -1239,6 +1287,8 @@ export function executeCredits(
         q.card !== l.card ||
         q.version !== l.version ||
         q.price !== l.price ||
+        q.revision !== (l.revision ?? 0) ||
+        q.feePolicy !== saleFeePolicy ||
         q.policy !== s.policy.version ||
         !q.expires ||
         q.expires <= now
@@ -1268,7 +1318,7 @@ export function executeCredits(
       }
     }
     lines.push({ account: "system:commission", credits: quote.fee });
-    post("sale", lines, `Sale ${c.listing}: 7.5% seller commission`);
+    post("sale", lines, `Sale ${c.listing}: 5% seller commission (cap 2000)`);
     meta.restricted ||= parts.some((p) => !s.lots[p.lot].redeemable);
     transfer(l.card, actor.id, c.listing);
     l.status = "SOLD";
@@ -1276,6 +1326,8 @@ export function executeCredits(
     l.buyer = actor.id;
     l.receipt = {
       reference: `${request}_sale`,
+      feePolicy: saleFeePolicy,
+      cardSnapshot: l.snapshot ?? testCard(s, l.card),
       at: now,
       price: l.price,
       fee: quote.fee,

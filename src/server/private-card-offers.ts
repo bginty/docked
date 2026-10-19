@@ -63,6 +63,10 @@ export async function privateOffers(
           .object({ request: z.string().uuid(), command: privateOfferCommand })
           .strict()
           .parse(input);
+  if (body && ["private-offer", "private-accept"].includes(body.command.kind))
+    throw new CreditsRejected(
+      "Only fixed-price marketplace sales are supported.",
+    );
   let permission: OfferPermission = { allowed: false, minimum: null };
   const sql = db();
   if (body && !(await rateLimit(`private-trade:${who.user.id}`, 40, 60)))

@@ -41,7 +41,9 @@ export function portfolioValuation(
     const transfer = s.cards[l.card]?.history.find(
       (h) => h.reference === id && h.from === l.member && h.to === l.buyer,
     );
-    const journal = journals.get(`Sale ${id}: 7.5% seller commission`);
+    const journal = l.receipt
+      ? s.journal.find((j) => j.id === l.receipt!.reference)
+      : journals.get(`Sale ${id}: 7.5% seller commission`);
     if (
       !transfer ||
       !journal ||

@@ -1,5 +1,6 @@
 import "server-only";
 import { memberTestSource } from "./member-test-wallet";
+import { setCommunityClaims } from "./community-social";
 import {
   marketQuery,
   marketplaceView,
@@ -10,10 +11,14 @@ export async function memberMarketplace(
   input?: unknown,
 ) {
   const query = marketQuery.parse(Object.fromEntries(params));
-  const { s, hidden, trading, member, result, sql } =
+  const { s, hidden, trading, member, result, sql, who } =
     await memberTestSource(input);
-  const [row] =
-    await sql`select credits_sandbox.market_context(${member}::uuid) context`;
+  const row = await sql.begin(async (tx) => {
+    await setCommunityClaims(tx, who);
+    const [value] =
+      await tx`select credits_sandbox.market_context(${member}::uuid) context`;
+    return value;
+  });
   const context = row.context as MarketContext & {
     labels: { id: string; label: string }[];
   };

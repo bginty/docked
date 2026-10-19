@@ -77,6 +77,14 @@ export async function memberTestSource(input?: unknown) {
       !privateOfferEnabled(process.env)
     )
       throw new CreditsRejected("Swap listings are temporarily unavailable");
+    if (
+      command &&
+      (["offer", "accept", "replace-listing"].includes(command.kind) ||
+        ("preference" in command &&
+          command.preference &&
+          command.preference !== "sell"))
+    )
+      throw new CreditsRejected("Only fixed-price credit sales are supported.");
     if (mode)
       await assertBetaTrade(tx, mode, [
         who.user.id,
@@ -92,12 +100,13 @@ export async function memberTestSource(input?: unknown) {
         throw Error("Counterparty no longer admitted");
     }
     if (command?.kind === "buy" || command?.kind === "review-buy") {
-      const l = state.listings[command.listing];
-      if (l) {
-        const [v] =
-          await tx`select private.social_collection_cards(${l.member}::uuid,${tx.json([{ id: l.card }])}) cards`;
-        if (!v?.cards?.length) throw new CreditsRejected("Listing unavailable");
-      }
+      const hidden = await hiddenMarketCards(
+        tx as unknown as TransactionSql,
+        state,
+        who.user.id,
+      );
+      if (hidden.includes(state.listings[command.listing]?.card))
+        throw new CreditsRejected("Listing unavailable");
     }
     const swap = command?.kind === "accept" ? state.swaps[command.swap] : null;
     const otherCards =
@@ -127,6 +136,13 @@ export async function memberTestSource(input?: unknown) {
       if (!isOwner || who.aal !== "aal2") throw Error("Owner MFA required");
       command = parsed;
     } else command = memberTestCommand(body.command);
+    if (
+      command.kind === "cancel-listing" &&
+      command.expectedRevision === undefined
+    )
+      throw new CreditsRejected(
+        "Refresh My Listings before removing this listing.",
+      );
     const other = command.kind === "offer" ? command.other : null;
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");

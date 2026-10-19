@@ -22,6 +22,7 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
     );
     for (const f of (await readdir("supabase/migrations"))
       .filter((f) => f.endsWith(".sql"))
+      .filter((f) => f !== "20261019020939_fixed_price_marketplace.sql")
       .sort())
       await pg.exec(await readFile("supabase/migrations/" + f, "utf8"));
     const s = marketplaceFixture(),
@@ -102,7 +103,164 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
       });
     const list = randomUUID(),
       card = own(0)[0];
+    // Upgrade an existing unsettled listing; never touch ownership or journals.
+    const legacyId = randomUUID();
+    const legacy = executeCredits(
+      await read(),
+      marketActors[2],
+      legacyId,
+      { kind: "list", card: own(2)[0], price: 1000 },
+      Date.now(),
+    ).state;
+    delete legacy.listings[legacyId].revision;
+    delete legacy.listings[legacyId].feePolicy;
+    await pg.query("update credits_sandbox.state set document=$1", [legacy]);
+    const migration = await readFile(
+      "supabase/migrations/20261019020939_fixed_price_marketplace.sql",
+      "utf8",
+    );
+    await pg.exec(migration);
+    const upgraded = await read();
+    assert.equal(upgraded.listings[legacyId].revision, 1);
+    assert.equal(
+      upgraded.listings[legacyId].feePolicy,
+      "credit-sale-5pct-cap2000-v2",
+    );
+    assert.deepEqual(upgraded.commerce, legacy.commerce);
+    assert.deepEqual(upgraded.journal, legacy.journal);
+    const audit = (
+      await pg.query("select * from credits_sandbox.listing_terms_audit")
+    ).rows;
+    assert.equal(audit.length, 1);
+    await pg.exec(migration);
+    assert.deepEqual(await read(), upgraded);
+    assert.deepEqual(
+      (await pg.query("select * from credits_sandbox.listing_terms_audit"))
+        .rows,
+      audit,
+    );
     await run(0, { kind: "list", card, price: 1000 }, list);
+    // Actual session/admission helpers, with local Auth table fixtures only.
+    const versions = {
+      terms: "qa",
+      privacy: "qa",
+      beta: "qa",
+      community: "qa",
+      fantasy: "qa",
+      competition: "qa",
+      responsible_gambling: "qa",
+    };
+    await pg.query(
+      "update beta_private.admission_control set enabled=true,testers_enabled=true,policy_digest=repeat('a',64),policy_versions=$1,approved_by='local database QA',approved_at=now()",
+      [versions],
+    );
+    const sessions = marketActors.map(() => randomUUID());
+    for (const [i, a] of marketActors.entries()) {
+      await pg.query(
+        "update auth.users set email_confirmed_at=now() where id=$1",
+        [a.id],
+      );
+      await pg.query("insert into auth.sessions(id,user_id) values($1,$2)", [
+        sessions[i],
+        a.id,
+      ]);
+      await pg.query(
+        "insert into beta_private.admissions(email,user_id,token_digest,request_id,expires_at) values($1,$2,$3,$4,now()+interval '1 day')",
+        [`qa${i}@example.test`, a.id, String(i + 1).repeat(64), randomUUID()],
+      );
+      await pg.query(
+        "update beta_private.admissions set status='accepted',accepted_at=now(),country='AU',state='NSW',age_attested=true,policy_digest=repeat('a',64),policy_versions=$2 where user_id=$1",
+        [a.id, versions],
+      );
+      await pg.query(
+        "insert into beta_public.profiles(id,country,state,age_attested,accepted_version) values($1,'AU','NSW',true,'qa')",
+        [a.id],
+      );
+      await pg.query(
+        "insert into credits_sandbox.access(user_id,kind,label,enabled,authority_note) values($1,'tester','Private label',true,'LOCAL QA')",
+        [a.id],
+      );
+      await pg.query(
+        "insert into beta_fantasy.team_names(user_id,name) values($1,$2)",
+        [a.id, `QA Team ${i}`],
+      );
+      await pg.query(
+        "insert into beta_private.social_profiles(user_id,handle,display_name,visibility) values($1,$2,'Private display','private')",
+        [a.id, `qatest${i}`],
+      );
+    }
+    await pg.query(
+      "select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false)",
+      [
+        marketActors[1].id,
+        JSON.stringify({ session_id: sessions[1], aal: "aal1" }),
+      ],
+    );
+    await pg.exec("set role docked_beta_app");
+    const visible = async () =>
+      (
+        await pg.query<{ v: boolean }>(
+          "select credits_sandbox.market_card_visible($1,$2) v",
+          [marketActors[0].id, card],
+        )
+      ).rows[0].v;
+    assert.equal(
+      await visible(),
+      true,
+      "private/unset collection still publishes its explicit credit listing",
+    );
+    assert.equal(
+      (
+        await pg.query<{ v: boolean }>(
+          "select credits_sandbox.market_card_visible($1,$2) v",
+          [marketActors[0].id, own(0)[1]],
+        )
+      ).rows[0].v,
+      false,
+      "unlisted collection stays private",
+    );
+    const publicContext = (
+      await pg.query<{ v: { labels: { id: string; label: string }[] } }>(
+        "select credits_sandbox.market_context($1) v",
+        [marketActors[1].id],
+      )
+    ).rows[0].v;
+    assert.equal(
+      publicContext.labels.find((x) => x.id === marketActors[0].id)?.label,
+      "QA Team 0",
+    );
+    assert.ok(
+      publicContext.labels.every(
+        (p) => Object.keys(p).sort().join() === "id,label",
+      ),
+      "seller projection contains no private profile fields",
+    );
+    await pg.exec("reset role;set role authenticated");
+    await assert.rejects(() => visible(), /permission/);
+    await pg.exec("reset role");
+    await pg.query(
+      "insert into beta_private.social_blocks(actor_id,target_id) select a.id,b.id from beta_private.social_profiles a,beta_private.social_profiles b where a.user_id=$1 and b.user_id=$2",
+      [marketActors[0].id, marketActors[1].id],
+    );
+    assert.equal(await visible(), false, "bilateral block still enforced");
+    await pg.exec("delete from beta_private.social_blocks");
+    await pg.query(
+      "update beta_public.profiles set disabled_at=now() where id=$1",
+      [marketActors[0].id],
+    );
+    assert.equal(await visible(), false, "disabled seller hidden");
+    await pg.query(
+      "update beta_public.profiles set disabled_at=null where id=$1",
+      [marketActors[0].id],
+    );
+    await pg.query(
+      "update auth.sessions set not_after=now()-interval '1 minute' where id=$1",
+      [sessions[1]],
+    );
+    assert.equal(await visible(), false, "expired viewer session denied");
+    await pg.exec(
+      "select set_config('request.jwt.claim.sub','',false),set_config('request.jwt.claims','{}',false)",
+    );
     const q1 = randomUUID(),
       q2 = randomUUID();
     await run(1, { kind: "review-buy", listing: list }, q1);
@@ -124,7 +282,7 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
     ]);
     assert.equal(outcomes.filter((x) => x.status === "fulfilled").length, 1);
     const sold = await read();
-    assert.equal(sold.listings[list].receipt?.net, 925);
+    assert.equal(sold.listings[list].receipt?.net, 950);
     const bad = structuredClone(sold);
     bad.listings[list].receipt!.net = 1000;
     await assert.rejects(
@@ -186,24 +344,23 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
       swap = randomUUID();
     await run(0, { kind: "list", card: own(0)[8], price: 1000 }, swapListing);
     await run(2, { kind: "review-buy", listing: swapListing }, swapQuote);
-    await run(
-      0,
-      {
-        kind: "offer",
-        other: marketActors[1].id,
-        give: [own(0)[8]],
-        take: [own(1)[8]],
-        feeEach: 50,
-      },
-      swap,
+    await assert.rejects(
+      () =>
+        run(
+          0,
+          {
+            kind: "offer",
+            other: marketActors[1].id,
+            give: [own(0)[8]],
+            take: [own(1)[8]],
+            feeEach: 50,
+          },
+          swap,
+        ),
+      /disabled/,
     );
-    const swapRace = await Promise.allSettled([
-      run(1, { kind: "accept", swap, feeEach: 50 }),
-      run(2, { ...cmd(swapQuote), listing: swapListing }),
-    ]);
-    assert.equal(swapRace[0].status, "fulfilled");
-    assert.equal(swapRace[1].status, "rejected");
-    assert.equal((await read()).listings[swapListing].status, "CANCELLED");
+    await run(2, { ...cmd(swapQuote), listing: swapListing });
+    assert.equal((await read()).listings[swapListing].status, "SOLD");
     // Dedicated, future test entries; no retrospective member competition or grants.
     await pg.query(
       "insert into beta_fantasy.lineup_configurations values($1,$2)",
@@ -276,7 +433,7 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
       qaInventory,
     ]);
     await pg.query(
-      "insert into credits_sandbox.access(user_id,kind,label,enabled,authority_note)values($1,'tester','LOCAL QA',true,'Local integration fixture')",
+      "insert into credits_sandbox.access(user_id,kind,label,enabled,authority_note)values($1,'tester','LOCAL QA',true,'Local integration fixture') on conflict(user_id) do nothing",
       [marketActors[0].id],
     );
     await pg.query("select set_config('request.jwt.claim.sub',$1,false)", [
@@ -394,14 +551,6 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
       "Supply unchanged",
     );
 
-    // Read-only auth/projection fixture adapters; actual cleanup, constraints,
-    // acceptance expiry check and audit INSERT remain the application SQL.
-    await pg.exec(
-      `create or replace function beta_fantasy.swap_actor() returns uuid language sql as $$select auth.uid()$$;create or replace function beta_fantasy.swap_read_state_before_marketplace() returns jsonb language sql as $$select '{}'::jsonb$$;`,
-    );
-    await pg.query("select set_config('request.jwt.claim.sub',$1,false)", [
-      marketActors[0].id,
-    ]);
     const fp = randomUUID(),
       fe = randomUUID(),
       fa = randomUUID(),
@@ -426,29 +575,13 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
       "insert into beta_fantasy.cards(id,edition_id,serial,owner_id,tradeable)values($1,$2,2,$3,true)",
       [fb, fe, marketActors[1].id],
     );
-    await pg.query(
-      "insert into beta_fantasy.swaps(id,sender,recipient,give_card,take_card,give_revision,take_revision,fee_cents,policy_revision,expires_at)values($1,$2,$3,$4,$5,0,0,0,1,clock_timestamp()-interval '2 days')",
-      [expired, marketActors[0].id, marketActors[1].id, fa, fb],
-    );
-    await pg.query("select beta_fantasy.swap_read_state()");
-    await pg.query("select beta_fantasy.swap_read_state()");
-    assert.equal(
-      (
-        await pg.query<{ state: string }>(
-          "select state from beta_fantasy.swaps where id=$1",
-          [expired],
-        )
-      ).rows[0].state,
-      "expired",
-    );
-    assert.equal(
-      (
-        await pg.query<{ n: number }>(
-          "select count(*)::int n from beta_private.audit_events where action='swap_expired' and subject=$1",
-          [expired],
-        )
-      ).rows[0].n,
-      1,
+    await assert.rejects(
+      () =>
+        pg.query(
+          "insert into beta_fantasy.swaps(id,sender,recipient,give_card,take_card,give_revision,take_revision,fee_cents,policy_revision,expires_at)values($1,$2,$3,$4,$5,0,0,0,1,clock_timestamp()-interval '2 days')",
+          [expired, marketActors[0].id, marketActors[1].id, fa, fb],
+        ),
+      /disabled/,
     );
     assert.equal(
       (
@@ -486,6 +619,17 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
         )
       ).rows[0].reserved,
       false,
+    );
+    const finalState = await read();
+    await pg.exec(migration);
+    assert.deepEqual(
+      await read(),
+      finalState,
+      "repeat migration preserves completed receipts, balances and ownership",
+    );
+    await assert.rejects(
+      () => pg.exec("delete from credits_sandbox.listing_terms_audit"),
+      /Append-only/,
     );
   } finally {
     await pg.close();

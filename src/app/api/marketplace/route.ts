@@ -53,7 +53,7 @@ export async function POST(req: Request) {
           .object({
             kind: z.enum([
               "list",
-              "replace-listing",
+              "reprice-listing",
               "cancel-listing",
               "review-buy",
               "buy",
@@ -73,7 +73,9 @@ export async function POST(req: Request) {
         error:
           e instanceof CreditsRejected
             ? e.message
-            : "Unable to confirm. Retry the original request to check its receipt.",
+            : e instanceof z.ZodError
+              ? "Invalid listing details. Use a whole-credit price and refresh the listing."
+              : "Unable to confirm. Retry the original request to check its receipt.",
         outcome:
           e instanceof CreditsRejected || e instanceof z.ZodError
             ? "rejected"

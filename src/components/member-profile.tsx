@@ -20,7 +20,6 @@ import { appViewer } from "@/server/app-view";
 import { NativeShare } from "./native-share";
 import { MemberAvatar } from "./member-avatar";
 import { ProfileCollection } from "./social-hub";
-import { PrivateOffersInbox } from "./private-card-offers";
 export async function MemberProfile({
   handle,
   query,
@@ -137,7 +136,6 @@ export async function MemberProfile({
                   Saved community posts
                 </Link>
                 <Link href="/notifications">Notifications</Link>
-                <Link href={`${base}?tab=offers`}>Private offers</Link>
                 <Link href="/profile/withdrawals">Withdrawals</Link>
                 <Link href="/dashboard">Privacy & settings</Link>
               </>
@@ -156,7 +154,11 @@ export async function MemberProfile({
               </p>
               {teams.map((team) => (
                 <article key={team.competition} className="app-panel">
-                  <h3>{["SALARY_CAP", "OPEN"].includes(team.mode) ? competitionName(team.mode) : team.name}</h3>
+                  <h3>
+                    {["SALARY_CAP", "OPEN"].includes(team.mode)
+                      ? competitionName(team.mode)
+                      : team.name}
+                  </h3>
                   <p>
                     {team.sport.toUpperCase()} · {team.season} · Round{" "}
                     {team.round} · Locked lineup
@@ -184,9 +186,6 @@ export async function MemberProfile({
               <p>{p.bio || "No bio yet."}</p>
               {p.isOwn && <ProfileEditor profile={p} />}
             </section>
-          )}
-          {query.tab === "offers" && p.isOwn && (
-            <PrivateOffersInbox member={who.user.id} />
           )}
           {graph && (
             <section id="connections">

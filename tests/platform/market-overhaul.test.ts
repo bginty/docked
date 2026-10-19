@@ -110,7 +110,7 @@ test("credit, card and combined offers settle exact assets once using existing w
     );
     assert.equal(
       wallet(accepted.state, f.seller.id).spendable,
-      beforeSeller + (price ? 925 : 0) - feeEach,
+      beforeSeller + (price ? 950 : 0) - feeEach,
     );
     assert.deepEqual(accepted.state.economy!.instances, snapshot);
     const retry = executePrivateOffer(
@@ -344,13 +344,13 @@ test("hidden listings absent from browse and alternate wallet projections; owner
 });
 
 import { combinedOfferQuote } from "../../src/core/credits-policy";
-test("combined fee is exactly higher of 7.5 percent credits and current swap floor", () => {
+test("combined fee is exactly higher of current seller fee and current swap floor", () => {
   assert.deepEqual(
     [50, 100, 666, 667, 1000].map((p) => combinedOfferQuote(p, 50).fee),
-    [50, 50, 50, 50, 75],
+    [50, 50, 50, 50, 50],
   );
   assert.equal(combinedOfferQuote(100, 50).net, 50);
-  assert.equal(combinedOfferQuote(100, 0).fee, 8);
+  assert.equal(combinedOfferQuote(100, 0).fee, 5);
   assert.throws(() => combinedOfferQuote(49, 50), /at least 50/);
   assert.throws(() => combinedOfferQuote(1, -1));
 });

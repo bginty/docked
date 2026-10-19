@@ -52,7 +52,7 @@ function harness() {
     },
   };
 }
-test("listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and private history", () => {
+test("listing, fresh consent, exact 1000/950/50 receipt, ownership, replay and private history", () => {
   const h = harness(),
     card = h.own(0)[0],
     before = wallet(h.s, marketActors[0].id).spendable;
@@ -69,17 +69,17 @@ test("listing, fresh consent, exact 1000/925/75 receipt, ownership, replay and p
   const r = h.run(1, cmd, "BUY");
   assert.deepEqual(h.run(1, cmd, "BUY", now + 999999), r);
   assert.equal(r.receipt.price, 1000);
-  assert.equal(r.receipt.fee, 75);
-  assert.equal(r.receipt.net, 925);
-  assert.equal(wallet(h.s, marketActors[0].id).spendable, before + 925);
-  assert.equal(financialReport(h.s).commission, 75);
+  assert.equal(r.receipt.fee, 50);
+  assert.equal(r.receipt.net, 950);
+  assert.equal(wallet(h.s, marketActors[0].id).spendable, before + 950);
+  assert.equal(financialReport(h.s).commission, 50);
   assert.equal(h.s.commerce.cards[card].owner, marketActors[1].id);
   assert.equal(wallet(h.s, marketActors[0].id).withdrawable, 0);
   const q = marketQuery.parse({ tab: "activity" });
   assert.equal(
     marketplaceView(h.s, marketActors[0].id, marketLabels, q, undefined, now)
       .rows[0].receipt?.net,
-    925,
+    950,
   );
   assert.equal(
     marketplaceView(h.s, marketActors[2].id, marketLabels, q, undefined, now)
@@ -266,7 +266,7 @@ test("stable cursor pages, filters, own listings and private projections", () =>
 test("commission half-up, Core restriction and economy isolation", () => {
   assert.deepEqual(
     [6, 7, 20, 100, 1000].map((p) => sellerQuote(p).fee),
-    [0, 1, 2, 8, 75],
+    [0, 0, 1, 5, 50],
   );
   const h = harness(),
     card = h.own(0)[0];
@@ -324,27 +324,31 @@ test("owner-only reservation details, versioned salary, unavailable context and 
       context,
       now,
     );
-  const owner = view(0),
+  const owner = view(0, { tab: "listings" }),
     buyer = view(1);
   assert.equal(owner.rows[0].card.ownerReservations[0].slot, "QB1");
-  assert.deepEqual(buyer.rows[0].card.ownerReservations, []);
-  assert.ok(!JSON.stringify(buyer).includes("private-round"));
   assert.equal(
-    buyer.rows[0].card.transferReason,
-    "Transfer restricted. This listing cannot currently be purchased.",
+    buyer.rows.length,
+    0,
+    "Reserved listings are excluded from Browse",
   );
+  assert.ok(!JSON.stringify(buyer).includes("private-round"));
   assert.ok(owner.rows[0].card.salary! >= 600000);
-  assert.equal(view(0, { round: "unknown" }).inventory[0].salary, null);
+  assert.equal(
+    view(0, { round: "unknown", sell: card }).inventory[0].salary,
+    null,
+  );
   const journals = h.s.journal.length;
   h.run(0, { kind: "cancel-listing", listing: "L" }, "C");
   const cancellation = view(0, {
     tab: "activity",
     activityType: "cancellation",
   }).activity[0];
-  assert.equal(cancellation.at, now);
-  assert.equal(cancellation.kind, "cancellation");
-  assert.equal(cancellation.price, undefined);
-  assert.equal(cancellation.fee, undefined);
+  assert.equal(
+    cancellation,
+    undefined,
+    "Cancellations retained in audit, excluded from sale Activity",
+  );
   assert.equal(h.s.journal.length, journals);
   assert.equal(view(1, { tab: "activity" }).activity.length, 0);
   h.run(
@@ -360,15 +364,15 @@ test("owner-only reservation details, versioned salary, unavailable context and 
   );
   h.run(1, { kind: "reject", swap: "S" }, "R");
   assert.equal(
-    view(0, { tab: "activity", activityType: "swap" }).activity[0].status,
-    "REJECTED",
+    view(0, { tab: "activity", activityType: "swap" }).activity.length,
+    0,
   );
   assert.equal(view(2, { tab: "activity" }).activity.length, 0);
   assert.equal(h.s.journal.length, journals);
   assert.deepEqual(sellerQuote(100), {
     price: 100,
-    fee: 8,
-    net: 92,
+    fee: 5,
+    net: 95,
     policy: sellerQuote(100).policy,
   });
 });

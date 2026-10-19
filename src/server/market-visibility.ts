@@ -18,10 +18,11 @@ export async function hiddenMarketCards(
     const cards = listings
       .filter((l) => l.member === owner)
       .map((l) => ({ id: l.card }));
-    const [v] =
-      await tx`select private.social_collection_cards(${owner}::uuid,${tx.json(cards)}) cards`;
-    const visible = new Set((v?.cards ?? []).map((c: { id: string }) => c.id));
-    hidden.push(...cards.filter((c) => !visible.has(c.id)).map((c) => c.id));
+    for (const card of cards) {
+      const [v] =
+        await tx`select credits_sandbox.market_card_visible(${owner}::uuid,${card.id}) allowed`;
+      if (!v?.allowed) hidden.push(card.id);
+    }
   }
   return hidden;
 }

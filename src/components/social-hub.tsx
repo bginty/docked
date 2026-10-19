@@ -6,7 +6,6 @@ import type { SocialHub } from "@/server/social-hub";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { communityAction } from "./social-interactions";
 import { useRouter } from "next/navigation";
-import { MakeCardOffer } from "./private-card-offers";
 import type { AwardedCard } from "@/core/pack-opening";
 import { boundedFetch } from "@/core/bounded-request";
 
@@ -53,8 +52,7 @@ export function ProfileCollection({ handle }: { handle?: string }) {
 }
 function Collection({ data }: { data: SocialHub }) {
   const [inspected, setInspected] = useState<AwardedCard | null>(null),
-    [sort, setSort] = useState("name"),
-    [offerOnly, setOfferOnly] = useState(false);
+    [sort, setSort] = useState("name");
   const [search, setSearch] = useState(""),
     [rarity, setRarity] = useState(""),
     [team, setTeam] = useState(""),
@@ -68,8 +66,7 @@ function Collection({ data }: { data: SocialHub }) {
   const savedCards = useRef(data.settings?.cards ?? {});
   const filtered = data.cards
     .filter(
-      ({ card: c, offers }) =>
-        (!offerOnly || offers) &&
+      ({ card: c }) =>
         (!search || c.name.toLowerCase().includes(search.toLowerCase())) &&
         (!rarity || c.tier === rarity) &&
         (!team || c.team === team) &&
@@ -111,26 +108,6 @@ function Collection({ data }: { data: SocialHub }) {
       setBusy(false);
     }
   }
-  function bulk(enabled: boolean) {
-    if (!settings) return;
-    setSettings({
-      ...settings,
-      cards: {
-        ...settings.cards,
-        ...Object.fromEntries(
-          selected.map((id) => [
-            id,
-            {
-              ...settings.cards[id],
-              enabled,
-              minimum: settings.cards[id]?.minimum ?? null,
-              asking: settings.cards[id]?.asking ?? null,
-            },
-          ]),
-        ),
-      },
-    });
-  }
   return (
     <>
       <div className="section-row">
@@ -145,7 +122,7 @@ function Collection({ data }: { data: SocialHub }) {
       </div>
       {data.own && settings && (
         <details className="social-settings">
-          <summary>Collection privacy & offers</summary>
+          <summary>Collection privacy</summary>
           <form className="app-form" onSubmit={save}>
             <div className="form-split">
               <label>
@@ -161,19 +138,6 @@ function Collection({ data }: { data: SocialHub }) {
                   <option value="members">Admitted members</option>
                 </select>
               </label>
-              <label>
-                Who can make offers
-                <select
-                  value={settings.offers}
-                  onChange={(e) =>
-                    setSettings({ ...settings, offers: e.target.value })
-                  }
-                >
-                  <option value="nobody">Nobody</option>
-                  <option value="followers">My followers</option>
-                  <option value="everyone">Admitted members</option>
-                </select>
-              </label>
             </div>
             {data.visibility === "private" &&
               settings.visibility !== "private" && (
@@ -187,48 +151,13 @@ function Collection({ data }: { data: SocialHub }) {
                   Hidden cards remain hidden.
                 </label>
               )}
-            <label className="check">
-              <input
-                type="checkbox"
-                checked={settings.muteOffers}
-                onChange={(e) =>
-                  setSettings({ ...settings, muteOffers: e.target.checked })
-                }
-              />
-              Mute offer notifications
-            </label>
             <p className="form-help">
-              Hidden cards won’t appear in collections or listings. Existing
-              posts keep their shared card image and original audience.
-            </p>
-            <label>
-              Private minimum offer (whole test credits)
-              <input
-                type="number"
-                min={1}
-                max={1000000000}
-                value={settings.minimum ?? ""}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    minimum: e.target.value ? Number(e.target.value) : null,
-                  })
-                }
-              />
-            </label>
-            <p className="form-help">
-              Visibility does not enable trading. Private-offer settlement is
-              not activated. Minimum amounts are visible only to you.
+              Collection privacy does not hide cards you explicitly list for
+              sale. Existing posts keep their original audience.
             </p>
             {!!selected.length && (
               <div className="actions">
                 <span>{selected.length} selected</span>
-                <button type="button" onClick={() => bulk(true)}>
-                  Accept offers for selected
-                </button>
-                <button type="button" onClick={() => bulk(false)}>
-                  Disable selected
-                </button>
                 {[true, false].map((hidden) => (
                   <button
                     type="button"
@@ -287,9 +216,7 @@ function Collection({ data }: { data: SocialHub }) {
           <details className="social-advanced-filters">
             <summary>
               Filters & sort
-              {sport || team || position || rarity || offerOnly
-                ? " · active"
-                : ""}
+              {sport || team || position || rarity ? " · active" : ""}
             </summary>
             <div className="social-filter-fields">
               {[
@@ -345,14 +272,6 @@ function Collection({ data }: { data: SocialHub }) {
                   <option value="serial">Serial number</option>
                 </select>
               </label>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={offerOnly}
-                  onChange={(e) => setOfferOnly(e.target.checked)}
-                />
-                Available for offers
-              </label>
             </div>
             <button
               type="button"
@@ -361,7 +280,6 @@ function Collection({ data }: { data: SocialHub }) {
                 setTeam("");
                 setPosition("");
                 setRarity("");
-                setOfferOnly(false);
                 setSort("name");
                 setPage(0);
               }}
@@ -379,7 +297,7 @@ function Collection({ data }: { data: SocialHub }) {
           <div className="social-card-grid">
             {filtered
               .slice(safePage * 12, safePage * 12 + 12)
-              .map(({ card, asking, offers }) => (
+              .map(({ card }) => (
                 <article key={card.id}>
                   <FantasyCardArtwork
                     card={card}
@@ -396,21 +314,9 @@ function Collection({ data }: { data: SocialHub }) {
                       View card →
                     </button>
                   </div>
-                  {offers && asking !== null && (
-                    <small>
-                      Asking {Number(asking).toLocaleString()} test credits
-                    </small>
-                  )}
-                  {!data.own && offers && (
-                    <MakeCardOffer
-                      card={card.id}
-                      member={data.viewer}
-                      enabled={data.offersLive}
-                    />
-                  )}
                   {data.own && settings && (
                     <details>
-                      <summary>Visibility & offers</summary>
+                      <summary>Card visibility</summary>
                       <label className="check">
                         <input
                           type="checkbox"
@@ -434,31 +340,6 @@ function Collection({ data }: { data: SocialHub }) {
                         />
                         Visible to other members
                       </label>
-                      {card.tier !== "CORE" && (
-                        <label className="check">
-                          <input
-                            type="checkbox"
-                            checked={settings.cards[card.id]?.swaps === true}
-                            onChange={(e) =>
-                              setSettings({
-                                ...settings,
-                                cards: {
-                                  ...settings.cards,
-                                  [card.id]: {
-                                    ...(settings.cards[card.id] ?? {
-                                      enabled: false,
-                                      minimum: null,
-                                      asking: null,
-                                    }),
-                                    swaps: e.target.checked,
-                                  },
-                                },
-                              })
-                            }
-                          />
-                          Open to card swaps
-                        </label>
-                      )}
                       <label className="check">
                         <input
                           type="checkbox"
@@ -473,60 +354,6 @@ function Collection({ data }: { data: SocialHub }) {
                         />
                         Select for bulk settings
                       </label>
-                      <label className="check">
-                        <input
-                          type="checkbox"
-                          checked={settings.cards[card.id]?.enabled ?? false}
-                          onChange={(e) =>
-                            setSettings({
-                              ...settings,
-                              cards: {
-                                ...settings.cards,
-                                [card.id]: {
-                                  ...(settings.cards[card.id] ?? {
-                                    minimum: null,
-                                    asking: null,
-                                    enabled: false,
-                                  }),
-                                  enabled: e.target.checked,
-                                },
-                              },
-                            })
-                          }
-                        />
-                        Accept offers
-                      </label>
-                      {(["minimum", "asking"] as const).map((key) => (
-                        <label key={key}>
-                          {key === "minimum"
-                            ? "Private minimum"
-                            : "Public asking price"}
-                          <input
-                            type="number"
-                            min={1}
-                            max={1000000000}
-                            value={settings.cards[card.id]?.[key] ?? ""}
-                            onChange={(e) =>
-                              setSettings({
-                                ...settings,
-                                cards: {
-                                  ...settings.cards,
-                                  [card.id]: {
-                                    ...(settings.cards[card.id] ?? {
-                                      enabled: false,
-                                      minimum: null,
-                                      asking: null,
-                                    }),
-                                    [key]: e.target.value
-                                      ? Number(e.target.value)
-                                      : null,
-                                  },
-                                },
-                              })
-                            }
-                          />
-                        </label>
-                      ))}
                     </details>
                   )}
                 </article>

@@ -54,6 +54,7 @@ const memberKinds = new Set([
   "open-pack",
   "list",
   "replace-listing",
+  "reprice-listing",
   "cancel-listing",
   "buy",
   "review-buy",

@@ -61,7 +61,7 @@ test("private offer activation cannot reach hosting, production, or non-loopback
   ])
     assert.equal(privateOfferEnabled({ ...env, ...extra }), false);
 });
-test("acceptance uses existing ledger, retained 7.5% commission, permanent identity and one replayed settlement", () => {
+test("acceptance uses existing ledger, current fee calculation (legacy core only; HTTP acceptance disabled), permanent identity and one replayed settlement", () => {
   for (const price of [100, 1000]) {
     const initial = fixture();
     let s = initial.s;
@@ -111,7 +111,7 @@ test("acceptance uses existing ledger, retained 7.5% commission, permanent ident
     assert.equal(wallet(s, buyer.id).spendable, beforeBuyer - price);
     assert.equal(
       wallet(s, seller.id).spendable,
-      beforeSeller + price - (price === 100 ? 8 : 75),
+      beforeSeller + price - (price === 100 ? 5 : 50),
     );
     assert.equal(s.commerce.cards[card].owner, buyer.id);
     assert.deepEqual(s.economy!.instances[card], serial);

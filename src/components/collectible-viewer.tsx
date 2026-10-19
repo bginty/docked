@@ -1,6 +1,6 @@
 "use client";
+import { MarketListingDialog } from "./market-listing-dialog";
 import { useEffect, useId, useRef, useState } from "react";
-import Link from "next/link";
 import type { AwardedCard } from "@/core/pack-opening";
 import { rarityStyle, rarityPresentation } from "@/core/rarity-theme";
 import { collectiblePresentation } from "@/core/card-presentation";
@@ -222,6 +222,8 @@ export function FlippableCard({
   );
 }
 export function CardSellAction({ card }: { card: ViewerCard }) {
+  const [selling, setSelling] = useState(false);
+  const [refresh, setRefresh] = useState(0);
   const [eligibility, setEligibility] = useState<{
       allowed: boolean;
       reason: string;
@@ -263,16 +265,20 @@ export function CardSellAction({ card }: { card: ViewerCard }) {
           });
       });
     return () => controller.abort();
-  }, [card.id, card.tier]);
+  }, [card.id, card.tier, refresh]);
   return (
     <div className="collectible-sell-action">
+      {selling && (
+        <MarketListingDialog
+          card={card}
+          onClose={() => setSelling(false)}
+          onSaved={() => setRefresh((v) => v + 1)}
+        />
+      )}
       {eligibility?.allowed ? (
-        <Link
-          className="button"
-          href={`/fantasy/market?tab=listings&sell=${encodeURIComponent(card.id)}`}
-        >
+        <button className="button" onClick={() => setSelling(true)}>
           Sell card
-        </Link>
+        </button>
       ) : (
         <>
           <button className="button" disabled aria-describedby={id}>

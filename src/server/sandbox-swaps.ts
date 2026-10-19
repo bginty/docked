@@ -13,6 +13,8 @@ export async function sandboxSwaps(input?: unknown) {
     throw Error("Two-person sandbox unavailable");
   const who = await requireIdentity();
   const command = input === undefined ? null : sandboxSwapAction.parse(input);
+  if (command && ["offer", "accept"].includes(command.action))
+    throw Error("Only fixed-price marketplace sales are supported.");
   if (command && !(await rateLimit(`sandbox-swap:${who.user.id}`, 30, 60)))
     throw Error("Rate limit");
   return db().begin(async (tx) => {

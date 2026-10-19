@@ -6,7 +6,6 @@ import {
   reviewedBetaTrading,
   type TradingMode,
 } from "../core/beta-trading";
-import { privateOfferEnabled } from "../core/private-card-offers";
 import { CreditsRejected } from "./credits-sandbox-store";
 import { setCommunityClaims } from "./community-social";
 
@@ -33,17 +32,21 @@ export async function betaTradingAccess(
     if (process.env.DOCKED_TEST_MARKET_READ_ONLY !== "false") return disabled;
     const [row] =
       await sql`select credits_sandbox.trading_access(${member}::uuid,${betaTradingPolicy}) value`;
-    return row.value as TradingAccess;
+    return {
+      ...row.value,
+      offers: false,
+      swap: false,
+      combined: false,
+    } as TradingAccess;
   }
   if (localTrading(process.env))
     return {
       enabled: true,
       sale: true,
-      // The original loopback wallet supports direct swaps independently of
-      // the newer private-offer UI. Hosted trading never takes this branch.
-      swap: true,
-      combined: privateOfferEnabled(process.env),
-      offers: privateOfferEnabled(process.env),
+      // Retired modes remain disabled in local acceptance too.
+      swap: false,
+      combined: false,
+      offers: false,
     };
   return disabled;
 }
@@ -53,12 +56,11 @@ export async function assertBetaTrade(
   mode: TradingMode | "listing",
   members: string[],
 ) {
+  if (mode !== "sale")
+    throw new CreditsRejected("Only fixed-price credit sales are supported.");
   for (const member of new Set(members)) {
     const access = await betaTradingAccess(sql, member);
-    if (
-      !access.enabled ||
-      (mode === "listing" ? !(access.sale && access.swap) : !access[mode])
-    )
+    if (!access.enabled || !access.sale)
       throw new CreditsRejected(
         "Trading is temporarily unavailable. You can still cancel listings and offers.",
       );

@@ -1,4 +1,5 @@
 "use client";
+import { sellerQuote } from "@/core/credits-policy";
 import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useRef, useState } from "react";
 import PackOpening from "./pack-opening";
@@ -215,15 +216,16 @@ export function CreditsSandboxReview() {
       <section>
         <h2>Sandbox marketplace</h2>
         <p>
-          Seller commission is 7.5%, rounded half-up to whole credits. Mixed
-          card-plus-credit offers are disabled. {sevenTransferNotice}
+          Seller commission is 5%, rounded half-up, with no minimum and a
+          2,000-credit cap. Mixed card-plus-credit offers are disabled.{" "}
+          {sevenTransferNotice}
         </p>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             const f = new FormData(e.currentTarget);
             const price = Number(f.get("price")),
-              fee = Math.floor((price * 750 + 5000) / 10000);
+              fee = sellerQuote(price).fee;
             if (
               window.confirm(
                 `List for ${price} Docked Credits? Seller fee ${fee}; net ${price - fee}.`,

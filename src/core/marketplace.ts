@@ -10,6 +10,7 @@ import { wallet, type CreditsState } from "./credits-sandbox";
 import { nflSeven, salary } from "./nfl-seven";
 import { sellerQuote } from "./credits-policy";
 export const marketQuery = z.object({
+  sport: z.enum(["nfl", "football", "afl", "basketball"]).default("nfl"),
   activityType: z
     .enum(["all", "purchase", "sale", "cancellation", "swap"])
     .default("all"),
@@ -18,7 +19,7 @@ export const marketQuery = z.object({
   tab: z.enum(["browse", "listings", "activity", "swaps"]).default("browse"),
   q: z.string().max(100).default(""),
   team: z.string().max(100).default(""),
-  position: z.enum(["", "QB", "RB", "WR", "TE", "K", "DEF", "DST"]).default(""),
+  position: z.string().max(24).default(""),
   rarity: z
     .string()
     .refine((v) => !v || rarities.includes(v as (typeof rarities)[number]))
@@ -172,11 +173,9 @@ export function marketplaceView(
     )
     .filter(([id, l]) =>
       query.tab === "activity"
-        ? (l.status === "SOLD" &&
-            (l.member === member || l.buyer === member)) ||
-          (l.status === "CANCELLED" && l.member === member)
+        ? l.status === "SOLD" && (l.member === member || l.buyer === member)
         : query.tab === "listings"
-          ? l.member === member && l.status === query.status
+          ? l.member === member && l.status === "OPEN"
           : query.listing
             ? id === query.listing
             : l.status === "OPEN",
@@ -191,8 +190,10 @@ export function marketplaceView(
       const saleEvent = s.cards[l.card]?.history.find(
         (h) => h.reference === id && h.from === l.member && h.to === l.buyer,
       );
-      const journal = s.journal.find(
-        (j) => j.reason === `Sale ${id}: 7.5% seller commission`,
+      const journal = s.journal.find((j) =>
+        l.receipt
+          ? j.id === l.receipt.reference
+          : j.reason === `Sale ${id}: 7.5% seller commission`,
       );
       const gross = journal
         ? -journal.lines
@@ -219,7 +220,11 @@ export function marketplaceView(
           : null);
       return {
         id,
-        card: card(l.card),
+        card:
+          l.status === "SOLD" && (l.receipt?.cardSnapshot || l.snapshot)
+            ? { ...card(l.card), ...(l.receipt?.cardSnapshot || l.snapshot) }
+            : card(l.card),
+        revision: l.revision ?? 0,
         own: l.member === member,
         seller: labels.find((p) => p.id === l.member)?.label ?? "Docked member",
         price: l.price,
@@ -244,19 +249,31 @@ export function marketplaceView(
     })
     .filter(
       (l) =>
-        query.tab === "activity" ||
-        ((!query.q ||
-          l.card.name.toLowerCase().includes(query.q.toLowerCase())) &&
-          (!query.team || l.card.team === query.team) &&
-          (!query.position || l.card.position === query.position) &&
-          (!query.rarity || l.card.tier === query.rarity) &&
-          l.price >= query.min &&
-          l.price <= query.max &&
-          (!query.playable || sevenPositions.includes(l.card.position)) &&
-          (!query.round || l.card.eligible) &&
-          (!query.available || (l.card.fresh && l.card.status === "active")) &&
-          (query.own === "include" || l.own === (query.own === "only"))),
+        l.card.sport === query.sport &&
+        (query.tab === "activity" ||
+          ((!query.q ||
+            l.card.name.toLowerCase().includes(query.q.toLowerCase())) &&
+            (!query.team || l.card.team === query.team) &&
+            (!query.position || l.card.position === query.position) &&
+            (!query.rarity || l.card.tier === query.rarity) &&
+            l.price >= query.min &&
+            l.price <= query.max &&
+            (!query.playable || sevenPositions.includes(l.card.position)) &&
+            (!query.round || l.card.eligible) &&
+            (!query.available ||
+              (l.card.fresh && l.card.status === "active")) &&
+            (query.tab === "listings" ||
+              query.own === "include" ||
+              l.own === (query.own === "only")))),
     );
+  const visibleRows = rows.filter(
+    (l) =>
+      query.tab === "activity" ||
+      (l.price > 0 &&
+        (query.tab === "listings" ||
+          (!l.card.transferReason && l.status === "OPEN"))),
+  );
+  rows.splice(0, rows.length, ...visibleRows);
   const value = (l: (typeof rows)[number]) =>
     query.sort === "price-asc"
       ? l.price
@@ -324,13 +341,14 @@ export function marketplaceView(
     fee?: number;
     net?: number;
     listing?: string;
+    card: ReturnType<typeof card>;
   }[] = rows
     .filter((l) => l.own || l.receipt)
-    .filter((l) => l.status !== "OPEN")
+    .filter((l) => l.status === "SOLD" && !!l.receipt)
     .map((l) => ({
       id: `listing:${l.id}`,
-      kind:
-        l.status === "CANCELLED" ? "cancellation" : l.own ? "sale" : "purchase",
+      card: l.card,
+      kind: l.own ? "sale" : "purchase",
       status: l.status,
       at: l.receipt?.at ?? l.cancelledAt,
       description: `${l.card.name} · ${l.card.tier} · ${cardIdentity(l.card)}`,
@@ -340,37 +358,6 @@ export function marketplaceView(
         ? { price: l.receipt.price, fee: l.receipt.fee, net: l.receipt.net }
         : {}),
     }));
-  for (const [id, offer] of Object.entries(s.swaps)) {
-    if (![offer.member, offer.other].includes(member)) continue;
-    const status =
-      offer.status === "OPEN" && offer.expires <= now
-        ? "EXPIRED"
-        : offer.status;
-    if (status === "OPEN") continue;
-    const event = [...s.events]
-      .reverse()
-      .find((e) => (e.command as { swap?: string }).swap === id);
-    activities.push({
-      id: `swap:${id}`,
-      kind: "swap",
-      status,
-      at: status === "EXPIRED" ? offer.expires : (event?.at ?? null),
-      description: `Test-credit card swap · ${offer.give.length} for ${offer.take.length} cards`,
-      reference: id,
-      ...(status === "ACCEPTED" && offer.completedFeeEach !== undefined
-        ? { fee: offer.completedFeeEach }
-        : {}),
-    });
-  }
-  for (const offer of context.freeSwaps ?? [])
-    activities.push({
-      id: `free:${offer.id}`,
-      kind: "swap",
-      status: offer.status.toUpperCase(),
-      at: offer.at,
-      description: "Free beta card swap",
-      reference: offer.id,
-    });
   const filteredActivity = activities
     .filter(
       (a) => query.activityType === "all" || a.kind === query.activityType,
@@ -414,9 +401,9 @@ export function marketplaceView(
             JSON.stringify({ signature, value: value(last), id: last.id }),
           ).toString("base64url")
         : null,
-    inventoryTotal: inventory.length,
+    inventoryTotal: query.sell ? 1 : 0,
     inventory: inventory
-      .slice(inventoryPage * 40, (inventoryPage + 1) * 40)
+      .filter((c) => c.id === query.sell)
       .map((c) => ({
         ...c,
         listingId:
@@ -429,19 +416,18 @@ export function marketplaceView(
       })),
     positions: [
       ...new Set([
-        "QB",
-        "RB",
-        "WR",
-        "TE",
-        "K",
+        ...(query.sport === "nfl" ? ["QB", "RB", "WR", "TE", "K"] : []),
         ...Object.values(s.economy?.players ?? {})
+          .filter((p) => p.sport === query.sport)
           .map((p) => p.position)
-          .filter((p) => p === "DEF" || p === "DST"),
+          .filter(Boolean),
       ]),
     ],
     teams: [
       ...new Set(
-        Object.values(s.economy?.players ?? {}).map((p) => p.currentTeam),
+        Object.values(s.economy?.players ?? {})
+          .filter((p) => p.sport === query.sport)
+          .map((p) => p.currentTeam),
       ),
     ].sort(),
     rounds: context.rounds.map((r) => ({ id: r.id, name: r.name })),
