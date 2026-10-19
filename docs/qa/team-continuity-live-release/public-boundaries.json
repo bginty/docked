@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-19T23:10:49.464Z",
+  "rows": [
+    {
+      "path": "/api/fantasy",
+      "status": 401,
+      "authenticationRequired": true,
+      "privateNoStore": true
+    },
+    {
+      "path": "/api/fantasy/auto-select?competition=9286cca8-c7a3-487e-b687-f9614a2b87b5",
+      "status": 401,
+      "authenticationRequired": true,
+      "privateNoStore": true
+    },
+    {
+      "path": "/api/fantasy/lineup-history?competition=d3da95b4-a72a-4b40-87d9-09b562d92277",
+      "status": 401,
+      "authenticationRequired": true,
+      "privateNoStore": true
+    },
+    {
+      "domain": "docked.com.au",
+      "commit": "8ed1687b6cb5454b4a486932d36379deab07a158",
+      "deployment": "dpl_FJpWaQrYuhojGA4iCQiGiKqJEYyk"
+    },
+    {
+      "domain": "www.docked.com.au",
+      "commit": "8ed1687b6cb5454b4a486932d36379deab07a158",
+      "deployment": "dpl_FJpWaQrYuhojGA4iCQiGiKqJEYyk"
+    }
+  ]
+}
