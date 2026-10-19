@@ -131,6 +131,18 @@ async function main() {
       await expect(page.locator(".prizes-period")).toContainText("2025");
       await page.goto(origin + "/fantasy/prizes?sport=nfl&fixture=published");
       await expect(page.locator(".prize-medal")).toHaveCount(3);
+      await expect(page.getByRole("columnheader")).toHaveText([
+        "Finish",
+        "Reward",
+      ]);
+      await expect(
+        page.locator(".prizes-page table tbody tr").first(),
+      ).toContainText("5 × Standard 9 Pack NFL");
+      await page.getByRole("button", { name: /All-Star/ }).click();
+      await expect(
+        page.locator(".prizes-page table tbody tr").first(),
+      ).toContainText("5 × Premium 9 Pack NFL");
+      await page.getByRole("button", { name: /Traditional/ }).click();
       await page.screenshot({
         path: `${out}/prizes-published-${width}.png`,
         fullPage: true,

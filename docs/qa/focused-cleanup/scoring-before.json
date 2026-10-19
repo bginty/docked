@@ -1,0 +1,828 @@
+{
+  "at": "2026-10-19T06:59:34.241Z",
+  "rounds": [
+    {
+      "id": "b828817d-0ba9-4edd-87a3-fe6dd23ad7a0",
+      "name": "NFL Week 6 · post-game beta",
+      "season": "2026",
+      "round": 6,
+      "locks_at": "2026-10-16T00:15:00.000Z",
+      "scored_at": null,
+      "rules": {
+        "postgame": true,
+        "positions": {
+          "QB": 1,
+          "RB": 2,
+          "TE": 1,
+          "WR": 2,
+          "FLEX": 1
+        },
+        "duplicates": false,
+        "first_year_min": 0
+      },
+      "version": "docked-nfl-half-ppr-beta-v1",
+      "scoring_rules": {
+        "beta": true,
+        "slots": [
+          {
+            "id": "QB1",
+            "positions": [
+              "QB"
+            ]
+          },
+          {
+            "id": "RB1",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "RB2",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "WR1",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "WR2",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "TE1",
+            "positions": [
+              "TE"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "RB",
+              "WR",
+              "TE"
+            ]
+          }
+        ],
+        "sport": "nfl",
+        "title": "Docked NFL Scoring v1 · half-PPR",
+        "policy": [
+          "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+          "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+          "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+          "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings."
+        ],
+        "version": "docked-nfl-half-ppr-beta-v1",
+        "weights": {
+          "receptions": 50,
+          "fumbles_lost": -200,
+          "passing_yards": 4,
+          "rushing_yards": 10,
+          "receiving_yards": 10,
+          "passing_touchdowns": 400,
+          "rushing_touchdowns": 600,
+          "interceptions_thrown": -200,
+          "receiving_touchdowns": 600,
+          "punt_return_touchdowns": 600,
+          "kickoff_return_touchdowns": 600,
+          "passing_two_point_conversions": 200,
+          "rushing_two_point_conversions": 200,
+          "receiving_two_point_conversions": 200,
+          "offensiveFumbleRecoveryTouchdowns": 600
+        },
+        "positions": [
+          "QB",
+          "RB",
+          "WR",
+          "TE"
+        ],
+        "periodName": "week",
+        "correctionHours": 96
+      },
+      "stream_id": "beta-real:nfl:2026:6",
+      "locked_at": "2026-10-16T00:15:00.095Z",
+      "entries": 2,
+      "slot_locks": 0,
+      "journal": {
+        "rules": {
+          "beta": true,
+          "slots": [
+            {
+              "id": "QB1",
+              "positions": [
+                "QB"
+              ]
+            },
+            {
+              "id": "RB1",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "RB2",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "WR1",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "WR2",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "TE1",
+              "positions": [
+                "TE"
+              ]
+            },
+            {
+              "id": "FLEX1",
+              "positions": [
+                "RB",
+                "WR",
+                "TE"
+              ]
+            }
+          ],
+          "sport": "nfl",
+          "title": "Docked NFL Scoring v1 · half-PPR",
+          "policy": [
+            "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+            "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+            "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+            "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings."
+          ],
+          "version": "docked-nfl-half-ppr-beta-v1",
+          "weights": {
+            "receptions": 50,
+            "fumbles_lost": -200,
+            "passing_yards": 4,
+            "rushing_yards": 10,
+            "receiving_yards": 10,
+            "passing_touchdowns": 400,
+            "rushing_touchdowns": 600,
+            "interceptions_thrown": -200,
+            "receiving_touchdowns": 600,
+            "punt_return_touchdowns": 600,
+            "kickoff_return_touchdowns": 600,
+            "passing_two_point_conversions": 200,
+            "rushing_two_point_conversions": 200,
+            "receiving_two_point_conversions": 200,
+            "offensiveFumbleRecoveryTouchdowns": 600
+          },
+          "positions": [
+            "QB",
+            "RB",
+            "WR",
+            "TE"
+          ],
+          "periodName": "week",
+          "correctionHours": 96
+        },
+        "sources": 0,
+        "revision": 2,
+        "finalisedAt": null,
+        "firstKickoff": "2026-10-16T00:15:00.000Z",
+        "lineupsLockedAt": "2026-10-16T00:15:00.095Z"
+      }
+    },
+    {
+      "id": "8841bf7d-5952-47c4-b926-40b04fdc5cba",
+      "name": "NFL Week 6 · RARITY TEST · no prizes",
+      "season": "2026",
+      "round": 6,
+      "locks_at": "2026-10-16T00:15:00.000Z",
+      "scored_at": null,
+      "rules": {
+        "postgame": true,
+        "positions": {
+          "QB": 1,
+          "RB": 2,
+          "TE": 1,
+          "WR": 2,
+          "FLEX": 1
+        },
+        "duplicates": false,
+        "first_year_min": 0,
+        "rarity_version": "docked-lifetime-rarity-v1",
+        "inventory_scope": "invited-nfl-test-v2",
+        "scoring_version": "docked-nfl-rarity-test-v1"
+      },
+      "version": "docked-nfl-rarity-test-v1",
+      "scoring_rules": {
+        "beta": true,
+        "slots": [
+          {
+            "id": "QB1",
+            "positions": [
+              "QB"
+            ]
+          },
+          {
+            "id": "RB1",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "RB2",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "WR1",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "WR2",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "TE1",
+            "positions": [
+              "TE"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "RB",
+              "WR",
+              "TE"
+            ]
+          }
+        ],
+        "sport": "nfl",
+        "title": "Docked NFL · lifetime rarity scoring (TEST)",
+        "policy": [
+          "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+          "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+          "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+          "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings.",
+          "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions."
+        ],
+        "version": "docked-nfl-rarity-test-v1",
+        "weights": {
+          "receptions": 50,
+          "fumbles_lost": -200,
+          "passing_yards": 4,
+          "rushing_yards": 10,
+          "receiving_yards": 10,
+          "passing_touchdowns": 400,
+          "rushing_touchdowns": 600,
+          "interceptions_thrown": -200,
+          "receiving_touchdowns": 600,
+          "punt_return_touchdowns": 600,
+          "kickoff_return_touchdowns": 600,
+          "passing_two_point_conversions": 200,
+          "rushing_two_point_conversions": 200,
+          "receiving_two_point_conversions": 200,
+          "offensiveFumbleRecoveryTouchdowns": 600
+        },
+        "positions": [
+          "QB",
+          "RB",
+          "WR",
+          "TE"
+        ],
+        "periodName": "week",
+        "rarityVersion": "docked-lifetime-rarity-v1",
+        "correctionHours": 96
+      },
+      "stream_id": "beta-real:nfl:rarity-test:2026:6",
+      "locked_at": "2026-10-16T00:15:00.100Z",
+      "entries": 0,
+      "slot_locks": 0,
+      "journal": {
+        "rules": {
+          "beta": true,
+          "slots": [
+            {
+              "id": "QB1",
+              "positions": [
+                "QB"
+              ]
+            },
+            {
+              "id": "RB1",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "RB2",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "WR1",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "WR2",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "TE1",
+              "positions": [
+                "TE"
+              ]
+            },
+            {
+              "id": "FLEX1",
+              "positions": [
+                "RB",
+                "WR",
+                "TE"
+              ]
+            }
+          ],
+          "sport": "nfl",
+          "title": "Docked NFL · lifetime rarity scoring (TEST)",
+          "policy": [
+            "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+            "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+            "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+            "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings.",
+            "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions."
+          ],
+          "version": "docked-nfl-rarity-test-v1",
+          "weights": {
+            "receptions": 50,
+            "fumbles_lost": -200,
+            "passing_yards": 4,
+            "rushing_yards": 10,
+            "receiving_yards": 10,
+            "passing_touchdowns": 400,
+            "rushing_touchdowns": 600,
+            "interceptions_thrown": -200,
+            "receiving_touchdowns": 600,
+            "punt_return_touchdowns": 600,
+            "kickoff_return_touchdowns": 600,
+            "passing_two_point_conversions": 200,
+            "rushing_two_point_conversions": 200,
+            "receiving_two_point_conversions": 200,
+            "offensiveFumbleRecoveryTouchdowns": 600
+          },
+          "positions": [
+            "QB",
+            "RB",
+            "WR",
+            "TE"
+          ],
+          "periodName": "week",
+          "rarityVersion": "docked-lifetime-rarity-v1",
+          "correctionHours": 96
+        },
+        "sources": 0,
+        "revision": 2,
+        "finalisedAt": null,
+        "firstKickoff": "2026-10-16T00:15:00.000Z",
+        "lineupsLockedAt": "2026-10-16T00:15:00.100Z"
+      }
+    },
+    {
+      "id": "70de1f8e-b789-4331-99aa-6afb0c31a8a2",
+      "name": "NFL Week 6 · Salary Cap · TEST",
+      "season": "2026",
+      "round": 6,
+      "locks_at": "2026-10-16T00:15:00.000Z",
+      "scored_at": null,
+      "rules": {
+        "mode": "SALARY_CAP",
+        "postgame": true,
+        "positions": {
+          "QB": 1,
+          "RB": 2,
+          "TE": 1,
+          "WR": 2,
+          "FLEX": 1
+        },
+        "duplicates": false,
+        "lock_policy": "individual-permanent",
+        "first_year_min": 0,
+        "lineup_version": "nfl-seven-test-v1",
+        "rarity_version": "docked-lifetime-rarity-v1",
+        "inventory_scope": "invited-nfl-test-v2",
+        "scoring_version": "docked-nfl-seven-rolling-test-v1"
+      },
+      "version": "docked-nfl-seven-rolling-test-v1",
+      "scoring_rules": {
+        "beta": true,
+        "slots": [
+          {
+            "id": "QB1",
+            "positions": [
+              "QB"
+            ]
+          },
+          {
+            "id": "RB1",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "RB2",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "WR1",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "WR2",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "TE1",
+            "positions": [
+              "TE"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "RB",
+              "WR",
+              "TE"
+            ]
+          }
+        ],
+        "sport": "nfl",
+        "title": "Docked NFL · lifetime rarity scoring (TEST)",
+        "policy": [
+          "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+          "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+          "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+          "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings.",
+          "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions.",
+          "New entries close at the first included kickoff. Each selected slot locks permanently at its player's kickoff; later transfers preserve that scoring entitlement."
+        ],
+        "version": "docked-nfl-seven-rolling-test-v1",
+        "weights": {
+          "receptions": 50,
+          "fumbles_lost": -200,
+          "passing_yards": 4,
+          "rushing_yards": 10,
+          "receiving_yards": 10,
+          "passing_touchdowns": 400,
+          "rushing_touchdowns": 600,
+          "interceptions_thrown": -200,
+          "receiving_touchdowns": 600,
+          "punt_return_touchdowns": 600,
+          "kickoff_return_touchdowns": 600,
+          "passing_two_point_conversions": 200,
+          "rushing_two_point_conversions": 200,
+          "receiving_two_point_conversions": 200,
+          "offensiveFumbleRecoveryTouchdowns": 600
+        },
+        "positions": [
+          "QB",
+          "RB",
+          "WR",
+          "TE"
+        ],
+        "periodName": "week",
+        "rarityVersion": "docked-lifetime-rarity-v1",
+        "correctionHours": 96
+      },
+      "stream_id": "beta-real:nfl:seven:salary_cap:2026:6",
+      "locked_at": "2026-10-16T00:15:00.000Z",
+      "entries": 2,
+      "slot_locks": 12,
+      "journal": {
+        "rules": {
+          "beta": true,
+          "slots": [
+            {
+              "id": "QB1",
+              "positions": [
+                "QB"
+              ]
+            },
+            {
+              "id": "RB1",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "RB2",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "WR1",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "WR2",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "TE1",
+              "positions": [
+                "TE"
+              ]
+            },
+            {
+              "id": "FLEX1",
+              "positions": [
+                "RB",
+                "WR",
+                "TE"
+              ]
+            }
+          ],
+          "sport": "nfl",
+          "title": "Docked NFL · lifetime rarity scoring (TEST)",
+          "policy": [
+            "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+            "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+            "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+            "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings.",
+            "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions.",
+            "New entries close at the first included kickoff. Each selected slot locks permanently at its player's kickoff; later transfers preserve that scoring entitlement."
+          ],
+          "version": "docked-nfl-seven-rolling-test-v1",
+          "weights": {
+            "receptions": 50,
+            "fumbles_lost": -200,
+            "passing_yards": 4,
+            "rushing_yards": 10,
+            "receiving_yards": 10,
+            "passing_touchdowns": 400,
+            "rushing_touchdowns": 600,
+            "interceptions_thrown": -200,
+            "receiving_touchdowns": 600,
+            "punt_return_touchdowns": 600,
+            "kickoff_return_touchdowns": 600,
+            "passing_two_point_conversions": 200,
+            "rushing_two_point_conversions": 200,
+            "receiving_two_point_conversions": 200,
+            "offensiveFumbleRecoveryTouchdowns": 600
+          },
+          "positions": [
+            "QB",
+            "RB",
+            "WR",
+            "TE"
+          ],
+          "periodName": "week",
+          "rarityVersion": "docked-lifetime-rarity-v1",
+          "correctionHours": 96
+        },
+        "sources": 0,
+        "revision": 5,
+        "finalisedAt": null,
+        "firstKickoff": "2026-10-16T00:15:00.000Z",
+        "lineupsLockedAt": "2026-10-16T00:15:00.000Z"
+      }
+    },
+    {
+      "id": "315280d3-7413-4c2d-8a63-fef6d7e37003",
+      "name": "NFL Week 6 · Open · TEST",
+      "season": "2026",
+      "round": 6,
+      "locks_at": "2026-10-16T00:15:00.000Z",
+      "scored_at": null,
+      "rules": {
+        "mode": "OPEN",
+        "postgame": true,
+        "positions": {
+          "QB": 1,
+          "RB": 2,
+          "TE": 1,
+          "WR": 2,
+          "FLEX": 1
+        },
+        "duplicates": false,
+        "lock_policy": "individual-permanent",
+        "first_year_min": 0,
+        "lineup_version": "nfl-seven-test-v1",
+        "rarity_version": "docked-lifetime-rarity-v1",
+        "inventory_scope": "invited-nfl-test-v2",
+        "scoring_version": "docked-nfl-seven-rolling-test-v1"
+      },
+      "version": "docked-nfl-seven-rolling-test-v1",
+      "scoring_rules": {
+        "beta": true,
+        "slots": [
+          {
+            "id": "QB1",
+            "positions": [
+              "QB"
+            ]
+          },
+          {
+            "id": "RB1",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "RB2",
+            "positions": [
+              "RB"
+            ]
+          },
+          {
+            "id": "WR1",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "WR2",
+            "positions": [
+              "WR"
+            ]
+          },
+          {
+            "id": "TE1",
+            "positions": [
+              "TE"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "RB",
+              "WR",
+              "TE"
+            ]
+          }
+        ],
+        "sport": "nfl",
+        "title": "Docked NFL · lifetime rarity scoring (TEST)",
+        "policy": [
+          "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+          "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+          "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+          "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings.",
+          "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions.",
+          "New entries close at the first included kickoff. Each selected slot locks permanently at its player's kickoff; later transfers preserve that scoring entitlement."
+        ],
+        "version": "docked-nfl-seven-rolling-test-v1",
+        "weights": {
+          "receptions": 50,
+          "fumbles_lost": -200,
+          "passing_yards": 4,
+          "rushing_yards": 10,
+          "receiving_yards": 10,
+          "passing_touchdowns": 400,
+          "rushing_touchdowns": 600,
+          "interceptions_thrown": -200,
+          "receiving_touchdowns": 600,
+          "punt_return_touchdowns": 600,
+          "kickoff_return_touchdowns": 600,
+          "passing_two_point_conversions": 200,
+          "rushing_two_point_conversions": 200,
+          "receiving_two_point_conversions": 200,
+          "offensiveFumbleRecoveryTouchdowns": 600
+        },
+        "positions": [
+          "QB",
+          "RB",
+          "WR",
+          "TE"
+        ],
+        "periodName": "week",
+        "rarityVersion": "docked-lifetime-rarity-v1",
+        "correctionHours": 96
+      },
+      "stream_id": "beta-real:nfl:seven:open:2026:6",
+      "locked_at": "2026-10-16T00:15:00.000Z",
+      "entries": 1,
+      "slot_locks": 6,
+      "journal": {
+        "rules": {
+          "beta": true,
+          "slots": [
+            {
+              "id": "QB1",
+              "positions": [
+                "QB"
+              ]
+            },
+            {
+              "id": "RB1",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "RB2",
+              "positions": [
+                "RB"
+              ]
+            },
+            {
+              "id": "WR1",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "WR2",
+              "positions": [
+                "WR"
+              ]
+            },
+            {
+              "id": "TE1",
+              "positions": [
+                "TE"
+              ]
+            },
+            {
+              "id": "FLEX1",
+              "positions": [
+                "RB",
+                "WR",
+                "TE"
+              ]
+            }
+          ],
+          "sport": "nfl",
+          "title": "Docked NFL · lifetime rarity scoring (TEST)",
+          "policy": [
+            "Half-PPR: reception 0.5. Passing yards 0.04 each; passing TD 4; interception thrown -2. Rushing/receiving yards 0.1 each and TDs 6. Negative yards subtract proportionally; no yardage thresholds or bonuses.",
+            "Fumble lost -2 (all phases, once). Passing, rushing or receiving two-point conversion 2 to the credited player. Kickoff/punt return TD and offensive fumble-recovery TD 6, only to the individual credited. No return-yard points; no double categorisation of the same TD.",
+            "Seven active individual cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. No kicker, team defence, IDP, bench substitution or captain multiplier in v1. Existing NFL scaffolding supports offensive individual cards only; live catalogue is not enabled.",
+            "All overtime statistics count. Bye/confirmed did-not-play is an explicit confirmed zero, never a missing-feed zero. Week and fixture membership are frozen at lock. No cross-sport standings.",
+            "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions.",
+            "New entries close at the first included kickoff. Each selected slot locks permanently at its player's kickoff; later transfers preserve that scoring entitlement."
+          ],
+          "version": "docked-nfl-seven-rolling-test-v1",
+          "weights": {
+            "receptions": 50,
+            "fumbles_lost": -200,
+            "passing_yards": 4,
+            "rushing_yards": 10,
+            "receiving_yards": 10,
+            "passing_touchdowns": 400,
+            "rushing_touchdowns": 600,
+            "interceptions_thrown": -200,
+            "receiving_touchdowns": 600,
+            "punt_return_touchdowns": 600,
+            "kickoff_return_touchdowns": 600,
+            "passing_two_point_conversions": 200,
+            "rushing_two_point_conversions": 200,
+            "receiving_two_point_conversions": 200,
+            "offensiveFumbleRecoveryTouchdowns": 600
+          },
+          "positions": [
+            "QB",
+            "RB",
+            "WR",
+            "TE"
+          ],
+          "periodName": "week",
+          "rarityVersion": "docked-lifetime-rarity-v1",
+          "correctionHours": 96
+        },
+        "sources": 0,
+        "revision": 4,
+        "finalisedAt": null,
+        "firstKickoff": "2026-10-16T00:15:00.000Z",
+        "lineupsLockedAt": "2026-10-16T00:15:00.000Z"
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { digest, type Period, type ScoringState } from "./scoring-engine";
 import { currentRulesets } from "./scoring-release";
-import { nflRarityRules } from "./scoring-v1";
+import { nflFutureRarityRules } from "./scoring-v1";
 import { nflSeven, sevenRules } from "./nfl-seven";
 
 /** Internal operator configuration, never a client POST. A complete mapped round
@@ -38,7 +38,7 @@ export function createFreeBetaPeriod(
             !p.id.startsWith("beta-real:nfl:seven:") ||
             digest(p.rules) !== digest(sevenRules())
           : !p.id.startsWith("beta-real:nfl:rarity-test:") ||
-            digest(p.rules) !== digest(nflRarityRules()))
+            digest(p.rules) !== digest(nflFutureRarityRules()))
       : !!p.rules.rarityVersion ||
         digest(p.rules) !== digest(currentRulesets[p.sport])) ||
     !p.fixtures.length

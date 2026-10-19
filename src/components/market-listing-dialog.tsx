@@ -4,6 +4,7 @@ import Link from "next/link";
 import { boundedFetch } from "@/core/bounded-request";
 import { sellerQuote } from "@/core/credits-policy";
 import { cardIdentity } from "@/core/card-display";
+import { rarityLabel } from "@/core/card-rarity";
 import type { MarketplaceView } from "@/core/marketplace";
 import { FantasySheet } from "./fantasy-sheet";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
@@ -272,7 +273,7 @@ function ListingForm({
         <div>
           <strong>{card.name}</strong>
           <p>
-            {card.tier} · {cardIdentity(card)}
+            {rarityLabel(card.tier)} · {cardIdentity(card)}
           </p>
         </div>
       </div>

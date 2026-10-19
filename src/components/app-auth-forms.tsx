@@ -43,9 +43,11 @@ function Consent({
 export function AppAuthForm({
   mode,
   customerSetup = false,
+  next,
 }: {
   mode: "login" | "signup" | "recover" | "reset" | "resend" | "complete";
   customerSetup?: boolean;
+  next?: string;
 }) {
   const router = useRouter();
   const environment = useEnvironmentPresentation();
@@ -80,6 +82,7 @@ export function AppAuthForm({
       ...Object.fromEntries(data),
       action: mode,
       app: true,
+      ...(mode === "login" && next ? { next } : {}),
     };
     for (const field of form.querySelectorAll<HTMLInputElement>(
       "input[type=checkbox]",

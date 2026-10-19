@@ -1,4 +1,5 @@
 import { FantasyLoadError } from "@/components/fantasy-load-error";
+import { memberAccessFailure } from "@/core/member-access-recovery";
 import { StartupReady } from "@/components/startup-loading";
 import Link from "next/link";
 import { SocialHome } from "@/components/social-home";
@@ -104,14 +105,14 @@ export default async function FantasyPage({
           <Marketplace key={who.user.id} member={who.user.id} />
         </AppShell>
       );
-    } catch {
+    } catch (error) {
+      const kind = memberAccessFailure(error);
       return (
-        <main className="fantasy-gate">
-          <StartupReady />
-          <h1>Docked Market</h1>
-          <p>Sign in with your invited account.</p>
-          <Link href="/app/login">Sign in</Link>
-        </main>
+        <FantasyLoadError
+          authRequired={kind === "authentication"}
+          mfaRequired={kind === "mfa"}
+          permissionDenied={kind === "permission"}
+        />
       );
     }
   }
@@ -187,26 +188,18 @@ export default async function FantasyPage({
   try {
     data = await boundedRead(fantasyRequest());
   } catch (error) {
+    const kind = memberAccessFailure(error);
     // This former catch-all conflated timeout/service errors with expired auth.
     // Do not log request data or claim the historical error had a known cause.
     console.error("fantasy_screen_unavailable", {
-      kind:
-        error instanceof Error && error.message === "Authentication required"
-          ? "authentication"
-          : error instanceof Error &&
-              error.message === "Privileged MFA required"
-            ? "mfa"
-            : "service",
+      kind,
       screen: tab,
     });
     return (
       <FantasyLoadError
-        authRequired={
-          error instanceof Error && error.message === "Authentication required"
-        }
-        mfaRequired={
-          error instanceof Error && error.message === "Privileged MFA required"
-        }
+        authRequired={kind === "authentication"}
+        mfaRequired={kind === "mfa"}
+        permissionDenied={kind === "permission"}
       />
     );
   }
@@ -278,7 +271,7 @@ export default async function FantasyPage({
               {data.state.nfl_beta
                 ? "Protected NFL beta · real roster cards and post-game scoring. External admission remains closed; EPL unavailable. No payments or prizes."
                 : process.env.DOCKED_TWO_PERSON_BETA === "true"
-                  ? "Two-person private beta · fictional cards, simulated scoring and sandbox swaps. No real money or live sports results."
+                  ? "Private beta · fictional cards and simulated scoring. No real money or live sports results."
                   : "Owner-only QA · fictional football cards and simulated scoring. No real money, live sports results or external members."}
             </p>
           )}

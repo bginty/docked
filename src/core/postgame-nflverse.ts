@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { nflStats } from "./scoring-v1";
+import { isNflAlignedVersion, nflPostgameStats } from "./nfl-postgame-policy";
 import type { AuthorisedScoringSnapshot } from "./authorised-scoring-feed";
 
 export const nflverseFields = {
@@ -196,8 +197,32 @@ export function nflverseReturnTouchdowns(
 export function nflversePlayerStatistics(
   row: Record<string, string>,
   plays?: Record<string, string>[],
-) {
+): { stats: z.infer<typeof nflStats> | null; issue: string | null };
+export function nflversePlayerStatistics(
+  row: Record<string, string>,
+  plays: Record<string, string>[] | undefined,
+  scoringVersion: string | undefined,
+): {
+  stats: z.infer<typeof nflStats> | z.infer<typeof nflPostgameStats> | null;
+  issue: string | null;
+};
+export function nflversePlayerStatistics(
+  row: Record<string, string>,
+  plays?: Record<string, string>[],
+  scoringVersion?: string,
+): {
+  stats: z.infer<typeof nflStats> | z.infer<typeof nflPostgameStats> | null;
+  issue: string | null;
+} {
   try {
+    const base = Object.fromEntries(
+      Object.entries(nflverseFields).map(([dest, source]) => [
+        dest,
+        integer(row, source, dest.endsWith("_yards")),
+      ]),
+    );
+    if (isNflAlignedVersion(scoringVersion))
+      return { stats: nflPostgameStats.parse(base), issue: null };
     // The published calculation includes all TDs in each aggregate. An explicit
     // zero proves every subset is zero. A nonzero aggregate cannot identify which
     // return/recovery happened: NEVER allocate it arbitrarily or ignore it.
@@ -210,12 +235,7 @@ export function nflversePlayerStatistics(
         "Touchdown category evidence required (return type/offensive recovery)",
       );
     const stats = nflStats.parse({
-      ...Object.fromEntries(
-        Object.entries(nflverseFields).map(([dest, source]) => [
-          dest,
-          integer(row, source, dest.endsWith("_yards")),
-        ]),
-      ),
+      ...base,
       ...(plays
         ? nflverseReturnTouchdowns(row, plays)
         : { kickoff_return_touchdowns: 0, punt_return_touchdowns: 0 }),
@@ -348,6 +368,7 @@ export function nflversePostgame(
   revision: number,
   observedAt: string,
   plays?: Record<string, string>[],
+  scoringVersion?: string,
 ) {
   const mapping = mappingSchema.parse(input);
   z.iso.datetime().parse(observedAt);
@@ -393,7 +414,7 @@ export function nflversePostgame(
     const row = index.get(p.gsisId);
     const result =
       row && row.team === p.team && row.position === p.position
-        ? nflversePlayerStatistics(row, plays)
+        ? nflversePlayerStatistics(row, plays, scoringVersion)
         : {
             stats: null,
             issue: "Missing or unmapped player; not confirmed DNP",

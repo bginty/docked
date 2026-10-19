@@ -284,6 +284,7 @@ test("Real-source engine uses the shared rules, frozen lineups, corrections and 
   const f = syntheticScenario("nfl");
   const period = {
     ...f.state.period,
+    rules: currentRulesets.nfl,
     id: "beta-real:nfl:contract",
     fixtures: f.state.period.fixtures.map((x) => ({
       ...x,
@@ -318,6 +319,17 @@ test("Real-source engine uses the shared rules, frozen lineups, corrections and 
   };
   const source = {
     ...f.source,
+    players: f.source.players.map((player) => ({
+      ...player,
+      stats: player.stats
+        ? Object.fromEntries(
+            Object.keys(currentRulesets.nfl.weights).map((key) => [
+              key,
+              (player.stats as Record<string, number>)[key],
+            ]),
+          )
+        : null,
+    })),
     provider: "contract-test",
     simulated: false,
     competition: "NFL",

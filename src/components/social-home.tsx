@@ -42,7 +42,7 @@ export async function SocialHome({
             <br />
             <span>A bigger game.</span>
           </h1>
-          <p>Collect. Trade. Compete. Connect.</p>
+          <p>Collect. Compete. Connect.</p>
           <div className="actions">
             <a className="button" href="#social-compose">
               Start a conversation

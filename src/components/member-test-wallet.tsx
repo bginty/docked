@@ -148,10 +148,7 @@ export function MemberTestWallet({
           <header>
             <p className="eyebrow">PRIVATE BETA</p>
             <h1>Test wallet</h1>
-            <p>
-              Test Docked Credits · no cash value or withdrawals. Your normal
-              cards and free swaps stay separate.
-            </p>
+            <p>Test Docked Credits · no cash value or withdrawals.</p>
             <Link href="/fantasy/cards">Back to your main collection</Link>
           </header>
           <section>

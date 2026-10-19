@@ -80,9 +80,6 @@ export function FantasyScreen({
   const [detail, setDetail] = useState<string | null>(null),
     [reveal, setReveal] = useState<string[]>([]),
     [revealIndex, setRevealIndex] = useState(0);
-  const [recipient, setRecipient] = useState(""),
-    [give, setGive] = useState<string[]>([]),
-    [receive, setReceive] = useState<string[]>([]);
   useEffect(() => {
     const id = new URLSearchParams(location.search).get("card");
     if (id && initial.cards.some((c) => c.id === id)) setDetail(id);
@@ -259,8 +256,6 @@ export function FantasyScreen({
   );
   const visibleCards = filtered.slice(pageIndex * 10, pageIndex * 10 + 10);
   const sportCards = data.cards.filter((c) => c.sport === sport);
-  const toggle = (id: string, list: string[], setter: (v: string[]) => void) =>
-    setter(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
   const title: Record<string, string> = {
     play: "Your next match starts here.",
     cards: "Cards",
@@ -1006,124 +1001,6 @@ export function FantasyScreen({
                 No listings yet. Open a tradeable pack to start the market.
               </p>
             )}
-          </section>
-          <section className="fantasy-panel">
-            <h2>Make a card trade</h2>
-            <p>
-              Select your cards and the recipient’s listed cards. Both sides
-              must still own every card when the trade is accepted.
-            </p>
-            <label>
-              Recipient
-              <select
-                value={recipient}
-                onChange={(e) => {
-                  setRecipient(e.target.value);
-                  setReceive([]);
-                }}
-              >
-                <option value="">Choose member</option>
-                {data.members
-                  .filter((m) => m.id !== data.user_id)
-                  .map((m) => (
-                    <option value={m.id} key={m.id}>
-                      {m.name}
-                    </option>
-                  ))}
-              </select>
-            </label>
-            <div className="trade-columns">
-              <fieldset>
-                <legend>You give</legend>
-                {data.cards
-                  .filter((c) => c.tradeable)
-                  .map((c) => (
-                    <label key={c.id}>
-                      <input
-                        type="checkbox"
-                        checked={give.includes(c.id)}
-                        onChange={() => toggle(c.id, give, setGive)}
-                      />
-                      {c.name} #{c.serial}
-                    </label>
-                  ))}
-              </fieldset>
-              <fieldset>
-                <legend>You receive</legend>
-                {data.market
-                  .filter((l) => l.seller === recipient)
-                  .map((l) => (
-                    <label key={l.card_id}>
-                      <input
-                        type="checkbox"
-                        checked={receive.includes(l.card_id)}
-                        onChange={() => toggle(l.card_id, receive, setReceive)}
-                      />
-                      {l.name} #{l.serial}
-                    </label>
-                  ))}
-              </fieldset>
-            </div>
-            <button
-              disabled={busy || !give.length || !receive.length || !recipient}
-              onClick={() => act("offer_trade", { recipient, give, receive })}
-            >
-              Send trade offer
-            </button>
-          </section>
-          <section className="fantasy-panel">
-            <h2>Trade offers</h2>
-            {data.trades.map((t) => (
-              <div key={t.id} className="trade-offer">
-                <p>
-                  {name(t.sender)} → {name(t.recipient)} ·{" "}
-                  {new Date(t.expires_at).getTime() <= Date.now() &&
-                  t.state === "pending"
-                    ? "expired"
-                    : t.state}
-                </p>
-                <p>
-                  {t.items
-                    .map(
-                      (i) =>
-                        `${i.from_user === t.sender ? "Gives" : "Requests"} ${data.cards.find((c) => c.id === i.card_id)?.name ?? data.market.find((c) => c.card_id === i.card_id)?.name ?? i.card_id}`,
-                    )
-                    .join(" · ")}
-                </p>
-                {t.state === "pending" && (
-                  <div className="actions">
-                    {t.recipient === data.user_id ? (
-                      <>
-                        <button
-                          disabled={busy}
-                          onClick={() =>
-                            act("accept_trade", { trade_id: t.id })
-                          }
-                        >
-                          Accept
-                        </button>
-                        <button
-                          disabled={busy}
-                          onClick={() =>
-                            act("decline_trade", { trade_id: t.id })
-                          }
-                        >
-                          Decline
-                        </button>
-                      </>
-                    ) : (
-                      <button
-                        disabled={busy}
-                        onClick={() => act("cancel_trade", { trade_id: t.id })}
-                      >
-                        Cancel offer
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
-            {!data.trades.length && <p>No offers yet.</p>}
           </section>
         </>
       )}

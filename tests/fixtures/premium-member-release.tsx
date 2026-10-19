@@ -11,6 +11,7 @@ import {
 } from "../../src/components/startup-loading";
 import { MemberReleaseAdmin } from "../../src/components/member-release-admin";
 import { OfficialAnnouncement } from "../../src/components/official-announcement";
+import { prizePackProduct } from "../../src/core/paid-pack-catalogue";
 import type {
   PrizeCompetition,
   PrizeSchedule,
@@ -55,29 +56,14 @@ function Fixture() {
           season: c.season,
           scope: "weekly",
           week: c.week,
-          items: [
-            {
-              from: 1,
-              to: 1,
-              description: "Local gold reward",
-              type: "credits",
-              amount: 100,
-            },
-            {
-              from: 2,
-              to: 2,
-              description: "Local silver reward",
-              type: "pack",
-              amount: 2,
-            },
-            {
-              from: 3,
-              to: 3,
-              description: "Local bronze reward",
-              type: "card",
-              amount: 1,
-            },
-          ],
+          items: [5, 3, 1].map((amount, i) => ({
+            from: i + 1,
+            to: i + 1,
+            description: "Isolated structured reward",
+            type: "pack" as const,
+            amount,
+            productVersion: prizePackProduct(c.mode as "SALARY_CAP" | "OPEN"),
+          })),
         }))
       : [];
   return (

@@ -7,8 +7,7 @@ import {
   parseStatisticsCsv,
   postgameMappingFromRound,
 } from "../../src/core/postgame-nflverse";
-import { scorePlayer } from "../../src/core/scoring-v1";
-import { currentRulesets } from "../../src/core/scoring-release";
+import { scorePlayer, rulesets } from "../../src/core/scoring-v1";
 import {
   fetchNflverseCsv,
   postgameChecks,
@@ -72,8 +71,7 @@ test("Downloaded completed-match statistics reconcile Docked half-PPR, not provi
     const normalized = nflversePlayerStatistics(r);
     assert.equal(normalized.issue, null);
     assert.equal(
-      scorePlayer(currentRulesets.nfl, r.position, normalized.stats)
-        .centipoints,
+      scorePlayer(rulesets.nfl, r.position, normalized.stats).centipoints,
       cp,
     );
   }
@@ -113,10 +111,7 @@ test("Real companion match plays resolve Myles Price punt return without guessin
   const result = nflversePlayerStatistics(row, plays);
   assert.equal(result.stats?.punt_return_touchdowns, 1);
   assert.equal(result.stats?.kickoff_return_touchdowns, 0);
-  assert.equal(
-    scorePlayer(currentRulesets.nfl, "WR", result.stats).centipoints,
-    600,
-  );
+  assert.equal(scorePlayer(rulesets.nfl, "WR", result.stats).centipoints, 600);
   assert.equal(nflversePlayerStatistics(row, [...plays, plays[0]]).stats, null);
   assert.equal(
     nflversePlayerStatistics(

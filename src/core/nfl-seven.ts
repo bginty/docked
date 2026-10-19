@@ -1,10 +1,10 @@
 import { competitionNames } from "./competition-display";
 import configuration from "../../config/nfl-seven-v1.json";
 import { rarityRule, type Rarity } from "./card-rarity";
-import { nflRarityRules } from "./scoring-v1";
+import { nflFutureRarityRules } from "./scoring-v1";
+import { nflFutureVersions } from "./nfl-postgame-policy";
 export const nflSeven = configuration;
-export const sevenTransferNotice =
-  `${competitionNames.SALARY_CAP} and ${competitionNames.OPEN} reserve cards in submitted, unlocked slots: replace the card in each team, or withdraw before entries close, before transferring. After kickoff, a transfer preserves the original team's locked points; the buyer cannot add that started player to the same round. Drafts do not reserve cards. Older competitions keep their original transfer restrictions.`;
+export const sevenTransferNotice = `${competitionNames.SALARY_CAP} and ${competitionNames.OPEN} reserve cards in submitted, unlocked slots: replace the card in each team, or withdraw before entries close, before transferring. After kickoff, a transfer preserves the original team's locked points; the buyer cannot add that started player to the same round. Drafts do not reserve cards. Older competitions keep their original transfer restrictions.`;
 export type NflMode = "SALARY_CAP" | "OPEN";
 export type SlotSelection = { slot: string; card: string };
 /** An unsent draft cannot disguise which submitted card actually locked. */
@@ -26,10 +26,10 @@ export type SevenCard = {
   availability_reason?: string;
 };
 export function sevenRules() {
-  const rules = nflRarityRules();
+  const rules = nflFutureRarityRules();
   return {
     ...rules,
-    version: "docked-nfl-seven-rolling-test-v1",
+    version: nflFutureVersions.seven,
     slots: structuredClone(nflSeven.slots),
     policy: [
       ...rules.policy,

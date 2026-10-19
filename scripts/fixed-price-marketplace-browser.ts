@@ -19,7 +19,7 @@ import {
 import { testCard } from "../src/core/member-test-wallet";
 import { marketQuery, marketplaceView } from "../src/core/marketplace";
 async function main() {
-  const dir = "docs/qa/fixed-price-marketplace/browser";
+  const dir = `docs/qa/fixed-price-marketplace/browser-${Date.now()}`;
   mkdirSync(dir, { recursive: true });
   let state = marketplaceFixture(),
     dropBuy = false,

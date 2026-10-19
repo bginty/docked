@@ -17,10 +17,16 @@ export function LightSweep({
   failed = false,
   onRetry,
   authRequired = false,
+  failureMessage,
+  recoveryHref,
+  recoveryLabel,
 }: {
   failed?: boolean;
   onRetry?: () => void;
   authRequired?: boolean;
+  failureMessage?: string;
+  recoveryHref?: string;
+  recoveryLabel?: string;
 }) {
   const [late, setLate] = useState(false);
   useEffect(() => {
@@ -45,19 +51,24 @@ export function LightSweep({
       </div>
       <p className="loading-message" role={failed ? "alert" : "status"}>
         {failed
-          ? "Docked couldn’t load."
+          ? (failureMessage ??
+            (authRequired
+              ? "Please sign in again."
+              : "Docked couldn’t load. Please try again."))
           : late
             ? "Taking longer than usual…"
             : "Getting Docked ready…"}
       </p>
       {failed ? (
         <div className="loading-recovery">
-          <button className="button" onClick={onRetry}>
-            Retry
-          </button>
-          {authRequired && (
-            <a className="button" href="/app/login">
-              Sign in
+          {onRetry && (
+            <button className="button" onClick={onRetry}>
+              Retry
+            </button>
+          )}
+          {(authRequired || recoveryHref) && (
+            <a className="button" href={recoveryHref ?? "/app/login"}>
+              {recoveryLabel ?? "Sign in"}
             </a>
           )}
         </div>

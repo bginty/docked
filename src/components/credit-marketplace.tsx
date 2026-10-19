@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { MarketplaceView } from "@/core/marketplace";
 import { boundedFetch } from "@/core/bounded-request";
-import { rarities } from "@/core/card-rarity";
+import { rarities, rarityLabel } from "@/core/card-rarity";
 import { cardIdentity } from "@/core/card-display";
 import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
@@ -46,6 +46,13 @@ export function Marketplace({ member }: { member: string }) {
   const query = new URLSearchParams(params);
   query.set("tab", tab);
   query.set("sport", sport);
+  if (
+    sport === "nfl" &&
+    ["K", "KICKER"].includes((query.get("position") ?? "").toUpperCase())
+  ) {
+    query.delete("position");
+    query.delete("cursor");
+  }
   const queryString = query.toString();
   const {
     busy,
@@ -245,13 +252,15 @@ export function Marketplace({ member }: { member: string }) {
             <select name="rarity" defaultValue={params.get("rarity") ?? ""}>
               <option value="">All rarities</option>
               {rarities.map((r) => (
-                <option key={r}>{r}</option>
+                <option key={r} value={r}>
+                  {rarityLabel(r)}
+                </option>
               ))}
             </select>
           </label>
           <label>
             Position
-            <select name="position" defaultValue={params.get("position") ?? ""}>
+            <select name="position" defaultValue={query.get("position") ?? ""}>
               <option value="">All positions</option>
               {(data?.positions ?? ["QB", "RB", "WR", "TE"]).map((p) => (
                 <option key={p}>{p}</option>
@@ -306,7 +315,7 @@ export function Marketplace({ member }: { member: string }) {
                 <div className="market-listing-footer">
                   <h3>{l.card.name}</h3>
                   <span>
-                    {l.card.tier} · {cardIdentity(l.card)}
+                    {rarityLabel(l.card.tier)} · {cardIdentity(l.card)}
                   </span>
                   <strong className="market-price">
                     {l.price.toLocaleString()} credits
@@ -397,7 +406,7 @@ export function Marketplace({ member }: { member: string }) {
                 <div className="market-activity-name">
                   <h3>{a.card.name}</h3>
                   <p>
-                    {a.card.tier} · {cardIdentity(a.card)}
+                    {rarityLabel(a.card.tier)} · {cardIdentity(a.card)}
                   </p>
                   <time>
                     {a.at
@@ -463,7 +472,7 @@ export function Marketplace({ member }: { member: string }) {
             />
           </div>
           <p>
-            {selected.card.tier} · {cardIdentity(selected.card)}
+            {rarityLabel(selected.card.tier)} · {cardIdentity(selected.card)}
           </p>
           <p>Seller: {selected.seller}</p>
           <strong className="market-price">

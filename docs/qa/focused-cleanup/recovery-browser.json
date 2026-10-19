@@ -1,0 +1,35 @@
+{
+  "scope": "Local UI and controlled transport; not real account login",
+  "checks": [
+    {
+      "width": 1440,
+      "expiredSession": true,
+      "mfa": true,
+      "permission": true,
+      "networkRetry": true,
+      "safeReturn": true,
+      "draftRetained": true,
+      "seriousAccessibilityViolations": 0
+    },
+    {
+      "width": 412,
+      "expiredSession": true,
+      "mfa": true,
+      "permission": true,
+      "networkRetry": true,
+      "safeReturn": true,
+      "draftRetained": true,
+      "seriousAccessibilityViolations": 0
+    },
+    {
+      "width": 360,
+      "expiredSession": true,
+      "mfa": true,
+      "permission": true,
+      "networkRetry": true,
+      "safeReturn": true,
+      "draftRetained": true,
+      "seriousAccessibilityViolations": 0
+    }
+  ]
+}

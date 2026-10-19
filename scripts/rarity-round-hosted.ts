@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { randomUUID, randomBytes, createHash } from "node:crypto";
 import { ownerDatabase, projectRef } from "./owner-gameplay-db.mjs";
 import { digest, results, importStatistics } from "../src/core/scoring-engine";
-import { nflRarityRules } from "../src/core/scoring-v1";
+import { nflFutureRarityRules as nflRarityRules } from "../src/core/scoring-v1";
 import { rarityPoints } from "../src/core/card-rarity";
 import { connectLockedNflEntries } from "../src/server/nfl-member-rounds";
 import { SportsFeedStore } from "../src/server/sports-feed-store";

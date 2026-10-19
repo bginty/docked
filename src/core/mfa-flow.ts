@@ -1,3 +1,4 @@
+import { memberReturnPath } from "./member-access-recovery";
 export type TotpFactor = {
   id: string;
   factor_type: string;
@@ -26,7 +27,9 @@ export function resolveTotpFactor(factors: TotpFactor[]) {
 }
 
 export function mfaDestination(value?: string) {
-  return value === "/app/reset-password" ? value : "/app";
+  return value === "/app/reset-password"
+    ? value
+    : (memberReturnPath(value) ?? "/app");
 }
 /** Presentation only; admission and MFA remain enforced by the server/DB. */
 export function consentRenewalDestination(

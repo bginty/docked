@@ -16,8 +16,8 @@ export default function BetaPolicies() {
         <p>
           Version {policies.version}. Free NFL friends beta: invitation-only for
           up to ten Australian adults. Scores are post-game; EPL is unavailable.
-          Free card swaps are supported. Payments, prizes and withdrawals are
-          disabled.
+          The marketplace supports fixed-price sales for test Docked Credits.
+          Cash payments and withdrawals are disabled.
         </p>
       ) : (
         <p>

@@ -36,11 +36,6 @@ export function ProfileOverview({
       )
       .map((e) => e.competition_id),
   );
-  const trades = data.trades.filter(
-    (t) =>
-      t.state === "accepted" &&
-      (t.sender === data.user_id || t.recipient === data.user_id),
-  );
   return (
     <div className="profile-overview">
       <header className="profile-overview-header">
@@ -101,15 +96,6 @@ export function ProfileOverview({
             <span>Packs opened</span>
             <small>Account-wide</small>
           </Link>
-          <div>
-            <strong>
-              {wallet.value
-                ? wallet.value.completedTrades + trades.length
-                : "—"}
-            </strong>
-            <span>Completed swaps</span>
-            <small>Account-wide</small>
-          </div>
         </div>
         <RarityCounts cards={cards} sport={sport} />
         <div className="actions">

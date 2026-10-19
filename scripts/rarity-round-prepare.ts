@@ -2,7 +2,7 @@ import { writeFileSync, mkdirSync } from "node:fs";
 import { DateTime } from "luxon";
 import { ownerDatabase } from "./owner-gameplay-db.mjs";
 import { registerNflRound } from "../src/server/nfl-member-rounds";
-import { nflRarityRules } from "../src/core/scoring-v1";
+import { nflFutureRarityRules as nflRarityRules } from "../src/core/scoring-v1";
 import { parseStatisticsCsv } from "../src/core/postgame-nflverse";
 
 async function main() {

@@ -1,0 +1,130 @@
+{
+  "at": "2026-10-19T06:59:34.241Z",
+  "rounds": [
+    {
+      "id": "b828817d-0ba9-4edd-87a3-fe6dd23ad7a0",
+      "name": "NFL Week 6 · post-game beta",
+      "season": "2026",
+      "week": 6,
+      "locksAt": "2026-10-16T00:15:00.000Z",
+      "entries": 2,
+      "slotLocks": 0,
+      "version": "docked-nfl-half-ppr-beta-v1",
+      "weights": {
+        "receptions": 50,
+        "fumbles_lost": -200,
+        "passing_yards": 4,
+        "rushing_yards": 10,
+        "receiving_yards": 10,
+        "passing_touchdowns": 400,
+        "rushing_touchdowns": 600,
+        "interceptions_thrown": -200,
+        "receiving_touchdowns": 600,
+        "punt_return_touchdowns": 600,
+        "kickoff_return_touchdowns": 600,
+        "passing_two_point_conversions": 200,
+        "rushing_two_point_conversions": 200,
+        "receiving_two_point_conversions": 200,
+        "offensiveFumbleRecoveryTouchdowns": 600
+      },
+      "journal": {
+        "finalisedAt": null,
+        "version": "docked-nfl-half-ppr-beta-v1"
+      }
+    },
+    {
+      "id": "8841bf7d-5952-47c4-b926-40b04fdc5cba",
+      "name": "NFL Week 6 · RARITY TEST · no prizes",
+      "season": "2026",
+      "week": 6,
+      "locksAt": "2026-10-16T00:15:00.000Z",
+      "entries": 0,
+      "slotLocks": 0,
+      "version": "docked-nfl-rarity-test-v1",
+      "weights": {
+        "receptions": 50,
+        "fumbles_lost": -200,
+        "passing_yards": 4,
+        "rushing_yards": 10,
+        "receiving_yards": 10,
+        "passing_touchdowns": 400,
+        "rushing_touchdowns": 600,
+        "interceptions_thrown": -200,
+        "receiving_touchdowns": 600,
+        "punt_return_touchdowns": 600,
+        "kickoff_return_touchdowns": 600,
+        "passing_two_point_conversions": 200,
+        "rushing_two_point_conversions": 200,
+        "receiving_two_point_conversions": 200,
+        "offensiveFumbleRecoveryTouchdowns": 600
+      },
+      "journal": {
+        "finalisedAt": null,
+        "version": "docked-nfl-rarity-test-v1"
+      }
+    },
+    {
+      "id": "70de1f8e-b789-4331-99aa-6afb0c31a8a2",
+      "name": "NFL Week 6 · Salary Cap · TEST",
+      "season": "2026",
+      "week": 6,
+      "locksAt": "2026-10-16T00:15:00.000Z",
+      "entries": 2,
+      "slotLocks": 12,
+      "version": "docked-nfl-seven-rolling-test-v1",
+      "weights": {
+        "receptions": 50,
+        "fumbles_lost": -200,
+        "passing_yards": 4,
+        "rushing_yards": 10,
+        "receiving_yards": 10,
+        "passing_touchdowns": 400,
+        "rushing_touchdowns": 600,
+        "interceptions_thrown": -200,
+        "receiving_touchdowns": 600,
+        "punt_return_touchdowns": 600,
+        "kickoff_return_touchdowns": 600,
+        "passing_two_point_conversions": 200,
+        "rushing_two_point_conversions": 200,
+        "receiving_two_point_conversions": 200,
+        "offensiveFumbleRecoveryTouchdowns": 600
+      },
+      "journal": {
+        "finalisedAt": null,
+        "version": "docked-nfl-seven-rolling-test-v1"
+      }
+    },
+    {
+      "id": "315280d3-7413-4c2d-8a63-fef6d7e37003",
+      "name": "NFL Week 6 · Open · TEST",
+      "season": "2026",
+      "week": 6,
+      "locksAt": "2026-10-16T00:15:00.000Z",
+      "entries": 1,
+      "slotLocks": 6,
+      "version": "docked-nfl-seven-rolling-test-v1",
+      "weights": {
+        "receptions": 50,
+        "fumbles_lost": -200,
+        "passing_yards": 4,
+        "rushing_yards": 10,
+        "receiving_yards": 10,
+        "passing_touchdowns": 400,
+        "rushing_touchdowns": 600,
+        "interceptions_thrown": -200,
+        "receiving_touchdowns": 600,
+        "punt_return_touchdowns": 600,
+        "kickoff_return_touchdowns": 600,
+        "passing_two_point_conversions": 200,
+        "rushing_two_point_conversions": 200,
+        "receiving_two_point_conversions": 200,
+        "offensiveFumbleRecoveryTouchdowns": 600
+      },
+      "journal": {
+        "finalisedAt": null,
+        "version": "docked-nfl-seven-rolling-test-v1"
+      }
+    }
+  ],
+  "mutation": "none"
+}

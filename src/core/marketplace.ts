@@ -9,36 +9,50 @@ import { testCard, assertMemberTestEconomy } from "./member-test-wallet";
 import { wallet, type CreditsState } from "./credits-sandbox";
 import { nflSeven, salary } from "./nfl-seven";
 import { sellerQuote } from "./credits-policy";
-export const marketQuery = z.object({
-  sport: z.enum(["nfl", "football", "afl", "basketball"]).default("nfl"),
-  activityType: z
-    .enum(["all", "purchase", "sale", "cancellation", "swap"])
-    .default("all"),
-  listing: z.string().max(100).default(""),
-  sale: z.string().max(100).default(""),
-  sell: z.string().max(100).default(""),
-  tab: z.enum(["browse", "listings", "activity", "swaps"]).default("browse"),
-  q: z.string().max(100).default(""),
-  team: z.string().max(100).default(""),
-  position: z.string().max(24).default(""),
-  rarity: z
-    .string()
-    .refine((v) => !v || rarities.includes(v as (typeof rarities)[number]))
-    .default(""),
-  min: z.coerce.number().int().min(0).max(1000000000).default(0),
-  max: z.coerce.number().int().min(0).max(1000000000).default(1000000000),
-  playable: z.enum(["", "yes"]).default(""),
-  available: z.enum(["", "yes"]).default(""),
-  own: z.enum(["include", "exclude", "only"]).default("include"),
-  status: z.enum(["OPEN", "SOLD", "CANCELLED"]).default("OPEN"),
-  round: z.string().max(80).default(""),
-  sort: z
-    .enum(["newest", "price-asc", "price-desc", "rarity"])
-    .default("newest"),
-  cursor: z.string().max(2048).default(""),
-  inventoryPage: z.coerce.number().int().min(0).max(100000).default(0),
-  limit: z.coerce.number().int().min(1).max(40).default(12),
-});
+export const marketQuery = z
+  .object({
+    sport: z.enum(["nfl", "football", "afl", "basketball"]).default("nfl"),
+    activityType: z
+      .enum(["all", "purchase", "sale", "cancellation", "swap"])
+      .default("all"),
+    listing: z.string().max(100).default(""),
+    sale: z.string().max(100).default(""),
+    sell: z.string().max(100).default(""),
+    tab: z.enum(["browse", "listings", "activity", "swaps"]).default("browse"),
+    q: z.string().max(100).default(""),
+    team: z.string().max(100).default(""),
+    position: z.string().max(24).default(""),
+    rarity: z
+      .string()
+      .refine((v) => !v || rarities.includes(v as (typeof rarities)[number]))
+      .default(""),
+    min: z.coerce.number().int().min(0).max(1000000000).default(0),
+    max: z.coerce.number().int().min(0).max(1000000000).default(1000000000),
+    playable: z.enum(["", "yes"]).default(""),
+    available: z.enum(["", "yes"]).default(""),
+    own: z.enum(["include", "exclude", "only"]).default("include"),
+    status: z.enum(["OPEN", "SOLD", "CANCELLED"]).default("OPEN"),
+    round: z.string().max(80).default(""),
+    sort: z
+      .enum(["newest", "price-asc", "price-desc", "rarity"])
+      .default("newest"),
+    cursor: z.string().max(2048).default(""),
+    inventoryPage: z.coerce.number().int().min(0).max(100000).default(0),
+    limit: z.coerce.number().int().min(1).max(40).default(12),
+  })
+  .transform((query) => ({
+    ...query,
+    position:
+      query.sport === "nfl" &&
+      ["K", "KICKER"].includes(query.position.toUpperCase())
+        ? ""
+        : query.position,
+    cursor:
+      query.sport === "nfl" &&
+      ["K", "KICKER"].includes(query.position.toUpperCase())
+        ? ""
+        : query.cursor,
+  }));
 export type MarketQuery = z.infer<typeof marketQuery>;
 export type MarketContext = {
   reserved: string[];
@@ -416,15 +430,17 @@ export function marketplaceView(
           (l) => l.card === c.id && l.status === "OPEN",
         ),
       })),
-    positions: [
-      ...new Set([
-        ...(query.sport === "nfl" ? ["QB", "RB", "WR", "TE", "K"] : []),
-        ...Object.values(s.economy?.players ?? {})
-          .filter((p) => p.sport === query.sport)
-          .map((p) => p.position)
-          .filter(Boolean),
-      ]),
-    ],
+    positions:
+      query.sport === "nfl"
+        ? [...sevenPositions]
+        : [
+            ...new Set([
+              ...Object.values(s.economy?.players ?? {})
+                .filter((p) => p.sport === query.sport)
+                .map((p) => p.position)
+                .filter(Boolean),
+            ]),
+          ],
     teams: [
       ...new Set(
         Object.values(s.economy?.players ?? {})

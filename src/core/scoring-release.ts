@@ -1,8 +1,9 @@
-import { rulesets, points, type Rules } from "./scoring-v1";
+import { rulesets, points, nflAlignedRules, type Rules } from "./scoring-v1";
 
 // Old frozen rules and saved competitions keep v1. Only NEW periods use this catalogue.
 export const currentRulesets = {
   ...rulesets,
+  nfl: nflAlignedRules(),
   afl: {
     ...structuredClone(rulesets.afl),
     version: "docked-afl-events-beta-v2",

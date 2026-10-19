@@ -4,7 +4,10 @@ import {
   syntheticScenario,
   scenarioTimes as t,
 } from "../../src/core/scoring-synthetic";
-import { nflRarityRules } from "../../src/core/scoring-v1";
+import {
+  nflRarityRules,
+  nflFutureRarityRules,
+} from "../../src/core/scoring-v1";
 import {
   createPeriod,
   saveTeam,
@@ -18,7 +21,7 @@ test("rarity rules require a separate explicitly scoped future competition", () 
   const p = {
     ...f.state.period,
     id: "beta-real:nfl:rarity-test:contract",
-    rules: nflRarityRules(),
+    rules: nflFutureRarityRules(),
     inventoryScope: "invited-nfl-test-v2" as const,
   };
   const evidence = {
@@ -30,7 +33,7 @@ test("rarity rules require a separate explicitly scoped future competition", () 
   };
   assert.equal(
     createFreeBetaPeriod(p, t.save, evidence).period.rules.version,
-    "docked-nfl-rarity-test-v1",
+    "docked-nfl-rarity-full-ppr-v2",
   );
   assert.throws(
     () =>

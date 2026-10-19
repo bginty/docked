@@ -130,15 +130,6 @@ export function SocialRail({
           <p>Explore available communities and join the conversation.</p>
         )}
       </section>
-      <section className="app-panel">
-        <h2>Trading & offers</h2>
-        <p>
-          {hub?.offersLive
-            ? "View your private card offers."
-            : "Preview only · card settlement is disabled."}
-        </p>
-        <Link href="/profile?tab=offers">View offers →</Link>
-      </section>
     </>
   );
 }

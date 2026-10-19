@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { eplStats, nflStats, aflStats, type Sport } from "./scoring-v1";
-import { nflPostgameStats, nflPostgameVersion } from "./nfl-postgame-policy";
+import {
+  nflPostgameStats,
+  nflPostgameVersion,
+  isNflAlignedVersion,
+} from "./nfl-postgame-policy";
 
 const identifier = z.string().regex(/^[A-Za-z0-9:._-]{1,120}$/);
 export const sourceSnapshot = z
@@ -69,7 +73,8 @@ export const syntheticProvider: ScoringProvider = {
         (sport === "epl"
           ? eplStats
           : sport === "nfl"
-            ? scoringVersion === nflPostgameVersion
+            ? scoringVersion === nflPostgameVersion ||
+              isNflAlignedVersion(scoringVersion)
               ? nflPostgameStats
               : nflStats
             : aflStats

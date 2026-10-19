@@ -1,4 +1,5 @@
 import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
+import { memberReturnPath } from "@/core/member-access-recovery";
 import { signOutBetaSession } from "@/core/beta-signout";
 import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
@@ -67,7 +68,7 @@ const schema = z.object({
   education: z.boolean().optional(),
   analytics: z.boolean().optional(),
   edgeAlerts: z.literal(false).optional(),
-  next: z.string().max(80).optional(),
+  next: z.string().max(1500).optional(),
   code: z
     .string()
     .regex(/^\d{6}$/)
@@ -338,7 +339,10 @@ export async function POST(request: Request) {
         ? { error: "Sign-in failed. Check credentials and email verification." }
         : {
             ok: true,
-            redirect: await destinationAfterAuth(data.user, "/app"),
+            redirect: await destinationAfterAuth(
+              data.user,
+              memberReturnPath(v.next) ?? "/app",
+            ),
           },
     );
   }

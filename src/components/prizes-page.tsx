@@ -8,6 +8,8 @@ import { competitionName } from "@/core/competition-display";
 import {
   competitionHref,
   prizeSelection,
+  prizeRewardLabel,
+  finishingPosition,
   type PrizeSchedule,
   type PrizeCompetition,
 } from "@/core/prize-schedules";
@@ -172,7 +174,7 @@ export function PrizesPage({
                       {position === 1 ? "1st" : position === 2 ? "2nd" : "3rd"}{" "}
                       place
                     </h3>
-                    <strong>{item.description}</strong>
+                    <strong>{prizeRewardLabel(item)}</strong>
                   </div>
                 </article>
               ) : null;
@@ -185,17 +187,17 @@ export function PrizesPage({
                 <tr>
                   <th>Finish</th>
                   <th>Reward</th>
-                  <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
                 {items.map((i) => (
                   <tr key={i.from}>
-                    <td>{i.from === i.to ? i.from : `${i.from}–${i.to}`}</td>
-                    <td>{i.description}</td>
                     <td>
-                      {i.amount.toLocaleString("en-AU")} {i.type}
+                      {i.from === i.to
+                        ? finishingPosition(i.from)
+                        : `${finishingPosition(i.from)}–${finishingPosition(i.to)}`}
                     </td>
+                    <td>{prizeRewardLabel(i)}</td>
                   </tr>
                 ))}
               </tbody>

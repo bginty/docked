@@ -66,7 +66,7 @@ export async function reconcileNflBundle(
     nflverseRequiredColumns.join(","),
     ...weekly.body.rows.map((r: Record<string, string>) =>
       nflverseRequiredColumns
-        .map((k) => `"${r[k].replaceAll('"', '""')}"`)
+        .map((k) => `"${(r[k] ?? "").replaceAll('"', '""')}"`)
         .join(","),
     ),
   ].join("\n");
@@ -97,6 +97,7 @@ export async function reconcileNflBundle(
         (old?.revision ?? 0) + 1,
         now,
         plays,
+        s.period.rules.version,
       );
       issues = parsed.issues;
       if (

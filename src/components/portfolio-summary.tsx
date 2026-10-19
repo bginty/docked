@@ -39,8 +39,8 @@ export function PortfolioSummary({
           of each card counts.
         </p>
         <p>
-          Unvalued cards are excluded, not worth zero. Asking prices, private
-          offers and swaps are excluded. Estimates are before selling fees and
+          Unvalued cards are excluded, not worth zero. Asking prices and
+          non-sale transfers are excluded. Estimates are before selling fees and
           are not guaranteed sale prices. Test Docked Credits have no cash
           value.
         </p>

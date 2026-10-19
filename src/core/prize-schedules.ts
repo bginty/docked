@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { paidPackOffers } from "./paid-pack-catalogue";
 export const prizeItem = z
   .object({
     from: z.number().int().min(1).max(100000),
@@ -36,6 +37,16 @@ export const prizeCommand = z
   })
   .strict();
 export type PrizeItem = z.infer<typeof prizeItem>;
+export function prizeRewardLabel(item: PrizeItem) {
+  const product =
+    item.type === "pack" &&
+    paidPackOffers.find((p) => p.id === item.productVersion);
+  return product ? `${item.amount} × ${product.name} NFL` : item.description;
+}
+export function finishingPosition(position: number) {
+  const ending = position % 100;
+  return `${position}${ending >= 11 && ending <= 13 ? "th" : (({ 1: "st", 2: "nd", 3: "rd" } as Record<number, string>)[position % 10] ?? "th")}`;
+}
 export type PrizeSchedule = {
   id: string;
   sport: string;

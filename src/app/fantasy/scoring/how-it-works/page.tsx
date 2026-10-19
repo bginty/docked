@@ -6,7 +6,12 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { fantasyRequest } from "@/server/fantasy";
 import { AppShell } from "@/components/app-shell";
-import { rulesets, nflRarityRules } from "@/core/scoring-v1";
+import {
+  rulesets,
+  nflRarityRules,
+  nflAlignedRules,
+  nflFutureRarityRules,
+} from "@/core/scoring-v1";
 import { sevenRules, nflSeven, sevenTransferNotice } from "@/core/nfl-seven";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { ScoringRulesTable } from "@/components/scoring-rules-table";
@@ -34,7 +39,13 @@ export default async function RulesPage({
   }
   const rounds = state.review?.rounds ?? [];
   const selected = rounds.find((r) => r.id === query.competition);
-  const versions = [sevenRules(), nflRarityRules(), rulesets.nfl];
+  const versions = [
+    sevenRules(),
+    nflAlignedRules(),
+    nflFutureRarityRules(),
+    nflRarityRules(),
+    rulesets.nfl,
+  ];
   const rules =
     selected?.rules ??
     (query.version

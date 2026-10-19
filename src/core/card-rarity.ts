@@ -8,6 +8,9 @@ export function rarityRule(rarity: string) {
     throw Error("Unknown rarity");
   return configuration.rarities[rarity as Rarity];
 }
+export function rarityLabel(rarity: string) {
+  return rarityRule(rarity).label;
+}
 /** Integer arithmetic, ties away from zero. Round once after the complete base total. */
 export function rarityPoints(
   baseCentipoints: number,

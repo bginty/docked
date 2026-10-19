@@ -5,6 +5,8 @@ import {
   nflPostgameStats,
   nflPostgameVersion,
   nflPostgameWeights,
+  nflFutureVersions,
+  isNflAlignedVersion,
 } from "./nfl-postgame-policy";
 
 export const sports = ["epl", "nfl", "afl"] as const;
@@ -238,7 +240,10 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
       ["GK", "DEF"].includes(position) ? Math.floor(s.concededOnPitch / 2) : 0,
       w.concededPerTwo,
     );
-  } else if (rules.sport === "nfl" && rules.version === nflPostgameVersion) {
+  } else if (
+    rules.sport === "nfl" &&
+    (rules.version === nflPostgameVersion || isNflAlignedVersion(rules.version))
+  ) {
     if (
       JSON.stringify(Object.entries(rules.weights).sort()) !==
       JSON.stringify(Object.entries(nflPostgameWeights).sort())
@@ -303,6 +308,27 @@ export function nflRarityRules(): Rules {
       "For this version only: complete player base points × locked card multiplier, including negative totals. Round once per player/round to 0.01 points, half-up (ties away from zero). No change to earlier competitions.",
     ],
   };
+}
+/** New periods only: saved v1 objects and historical calculations are never rewritten. */
+export function nflAlignedRules(base: Rules = rulesets.nfl): Rules {
+  return {
+    ...structuredClone(base),
+    version: base.rarityVersion
+      ? nflFutureVersions.rarity
+      : nflFutureVersions.base,
+    title: "Docked NFL · Full PPR",
+    weights: { ...nflPostgameWeights },
+    policy: [
+      "Base player points follow the Full-PPR game-log scoring configuration. Each reception earns 1 point. See the scoring table for every category.",
+      "Return touchdowns and offensive fumble-recovery touchdowns are outside this scoring configuration. Missing required statistics remain unavailable, never a guessed zero.",
+      "Seven active cards: QB, 2 RB, 2 WR, TE and RB/WR/TE FLEX. Existing salary, eligibility and lock rules apply.",
+      rulesets.nfl.policy[3],
+      ...(base.rarityVersion ? [nflRarityRules().policy.at(-1)!] : []),
+    ],
+  };
+}
+export function nflFutureRarityRules() {
+  return nflAlignedRules(nflRarityRules());
 }
 export function lockRarity(rules: Rules, card: LockedCard) {
   if (!rules.rarityVersion) return {};

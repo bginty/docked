@@ -1405,7 +1405,7 @@
 }
 .profile-record-stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin: 16px 0;
 }
@@ -1471,7 +1471,7 @@
     grid-template-columns: 1fr;
   }
   .profile-record-stats {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .profile-record-stats > * {
     padding: 12px;
