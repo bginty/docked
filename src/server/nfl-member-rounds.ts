@@ -176,13 +176,17 @@ export async function connectLockedNflEntries(sql: Sql, streamId: string) {
     next.audits.push({
       sequence: next.audits.length + 1,
       actor: "nfl-round-worker",
-      action: rolling
-        ? "rolling-lineups-synchronised"
-        : "member-lineups-locked",
+      action: roundWide
+        ? "round-wide-lineups-locked"
+        : rolling
+          ? "rolling-lineups-synchronised"
+          : "member-lineups-locked",
       at: rolling ? new Date().toISOString() : next.lineupsLockedAt,
-      reason: rolling
-        ? "Pre-deadline entries; immutable individual locks; eligible unlocked revisions retained"
-        : "Persisted pre-deadline member entries; owned cards remain transfer-locked",
+      reason: roundWide
+        ? "Owner-approved round-wide deadline; all submitted selections immutable"
+        : rolling
+          ? "Pre-deadline entries; immutable individual locks; eligible unlocked revisions retained"
+          : "Persisted pre-deadline member entries; owned cards remain transfer-locked",
       payloadHash: digest(next.entries),
     });
     return next;

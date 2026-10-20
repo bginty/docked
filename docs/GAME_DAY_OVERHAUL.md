@@ -126,7 +126,10 @@ scheduler handoff and end-to-end production score recovery remain unverified.
 ## Verification
 
 - Platform suite: 511 passed.
-- Isolated PostgreSQL/database suite: 189 passed.
+- Isolated PostgreSQL/database suite: 189 passed before the approved lock-policy
+  addition. The final full rerun passed 188; the weekly-pack test process exited
+  with Windows native error `3221225477`. That test passed when rerun alone.
+  The new round-wide privacy/write tests passed in both targeted and full runs.
 - New read-model tests cover full scores, explicit DNP zero, unresolved players,
   completed counts, owner diagnostic denial and existing lock/privacy controls.
 - Existing scoring tests cover repeat imports, corrections, late changes and

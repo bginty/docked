@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-20",
+  "platform": { "passed": 511, "failed": 0 },
+  "database": {
+    "initialFullRunPassed": 189,
+    "finalFullRunPassed": 188,
+    "finalFullRunProcessCrashes": 1,
+    "crashedTest": "weekly-core.test.ts",
+    "windowsExitCode": 3221225477,
+    "isolatedRerunPassed": true,
+    "roundWideLockAndPrivacyPassed": true
+  },
+  "browser": {
+    "widths": [360, 412, 1024, 1440],
+    "isolatedFixtures": true,
+    "scoreRefreshAndFailedRefreshRetention": true,
+    "backDismissal": true,
+    "newRoundWideLock": true,
+    "physicalSamsungTest": false
+  },
+  "credentialCanaryBuild": { "passed": true, "browserAssetsScanned": 69 },
+  "hostedMigrations": [
+    { "name": "game_day_read_models", "version": "20261020042019" },
+    { "name": "future_round_wide_locking", "version": "20261020043345" }
+  ],
+  "liveWeek6And7RulesAndEntriesUnchanged": true,
+  "productionCollectorReplacementActivated": false,
+  "hostedSourceToScoreRecoveryVerified": false,
+  "existingRoundPublicationPoliciesAdded": false,
+  "productionWebPromotionPerformed": false
+}
