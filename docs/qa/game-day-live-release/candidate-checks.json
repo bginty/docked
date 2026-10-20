@@ -1,0 +1,41 @@
+{
+  "deployment": "dpl_8fWZYoaC7yWgKEtT6hmtkbxudx99",
+  "commit": "64a3a194cce524afb1a555292ad729cef865e500",
+  "checkedAt": "2026-10-20T05:45:14.251Z",
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "method": "GET",
+      "status": 200,
+      "body": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "64a3a194cce524afb1a555292ad729cef865e500",
+        "deploymentId": "dpl_8fWZYoaC7yWgKEtT6hmtkbxudx99",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "method": "GET",
+      "status": 401,
+      "body": {
+        "error": "Please sign in again."
+      },
+      "passed": true
+    },
+    {
+      "path": "/api/scoring/collect?task=reconcile",
+      "method": "POST",
+      "status": 403,
+      "body": "Denied",
+      "passed": true
+    }
+  ]
+}

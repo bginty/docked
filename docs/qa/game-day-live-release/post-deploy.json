@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-20T05:47:00.492Z",
+  "www": {
+    "status": 200,
+    "finalUrl": "https://docked.com.au/api/beta-release",
+    "deploymentId": "dpl_8fWZYoaC7yWgKEtT6hmtkbxudx99"
+  },
+  "runtimeScan": {
+    "window": "2026-10-20T05:36:36.946Z to 2026-10-20T05:46:36.946Z",
+    "errors": 1,
+    "finding": "Unauthenticated verification request to /fantasy/play logged fantasy_screen_unavailable { kind: 'authentication', screen: 'play' }. No other error/fatal records were returned."
+  },
+  "limitations": [
+    "Signed-in hosted gameplay and physical Android were not verified during this deployment.",
+    "Node scoring collector remains disabled; missing-score recovery has not been activated."
+  ]
+}
