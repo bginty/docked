@@ -4,6 +4,7 @@ import {
   downloadNflDataset,
   nflResource,
   retainedNflSource,
+  observeNflCompletions,
 } from "./nflverse-bundle";
 import { connectLockedNflEntries } from "./nfl-member-rounds";
 import { reconcileNflBundle } from "./nfl-postgame-reconcile";
@@ -16,7 +17,7 @@ export async function runNflCollection(
   season = 2026,
 ) {
   const [run] =
-    await sql`insert into sports_feed.nfl_worker_runs default values returning id`;
+    await sql`insert into sports_feed.nfl_worker_runs(detail) values(${sql.json({ task, season, stage: "started" })}) returning id`;
   try {
     let detail: Record<string, unknown>;
     if (task !== "reconcile") {
@@ -49,17 +50,17 @@ export async function runNflCollection(
             await sql`select raw_id from sports_feed.postgame_cache where resource=${nflResource("pbp", season)}`;
           if (!weekly?.raw_id || !pbp?.raw_id)
             throw Error("Source not available");
+          // Recovery after a collector died between raw persistence and completion
+          // observation. Observations are unique by game/raw revision, so retries
+          // preserve first_observed_at and cannot manufacture earlier completion.
+          await observeNflCompletions(sql, Number(pbp.raw_id));
           for (const fixture of round.fixtures as Record<string, unknown>[]) {
             const mapping = postgameMappingFromRound(fixture);
             const [complete] =
               await sql`select first_observed_at from sports_feed.completions where game_id=${mapping.gameId}`;
-            if (
-              !complete ||
-              Date.now() <
-                new Date(complete.first_observed_at).getTime() + 6 * 3600000
-            ) {
+            if (!complete) {
               issues.push(
-                `${mapping.gameId}: awaiting completion or six-hour collection delay`,
+                `${mapping.gameId}: awaiting verified completion evidence`,
               );
               continue;
             }
@@ -85,7 +86,7 @@ export async function runNflCollection(
             "Collection unavailable; retained provisional results unchanged",
           );
         }
-        await sql`update sports_feed.nfl_rounds set last_checked=clock_timestamp(),next_check=clock_timestamp()+interval '6 hours',lease_until=null,issues=${sql.json(issues)} where competition_id=${round.competition_id}`;
+        await sql`update sports_feed.nfl_rounds set last_checked=clock_timestamp(),next_check=clock_timestamp()+interval '15 minutes',lease_until=null,issues=${sql.json(issues)} where competition_id=${round.competition_id}`;
         detail = {
           status: issues.length ? "pending-review" : "reconciled",
           competition: round.competition_id,

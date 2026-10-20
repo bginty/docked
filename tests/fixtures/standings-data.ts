@@ -21,6 +21,7 @@ const players: StandingPlayer[] = [
   max_supply: 5000,
   multiplier: i === 0 ? 1 : 1.1,
   locked: true,
+  completed: true,
   baseCentipoints: 1000,
   centipoints: i === 0 ? 1000 : 1100,
   status: "final",
@@ -36,6 +37,8 @@ export const standingsFixture: StandingRound[] = ["SALARY_CAP", "OPEN"].flatMap(
       mode,
       series: "fixture-scoring-v1",
       visible: true,
+      feedMode: "postgame" as const,
+      updatedAt: "2026-10-20T04:00:00Z",
       finalised: week < 3,
       rows: sharedRanks(
         Array.from({ length: 25 }, (_, i) => ({
@@ -43,6 +46,8 @@ export const standingsFixture: StandingRound[] = ["SALARY_CAP", "OPEN"].flatMap(
           name: i === 22 ? "Local Test Team" : `Fixture Team ${i + 1}`,
           isMe: i === 22,
           rank: null,
+          completedPlayers: week < 3 ? 7 : 0,
+          totalPlayers: 7,
           centipoints: week === 3 ? null : 20000 - i * 120 + week * 4,
           status: week === 3 ? "pending-data" : "final",
           lineup: i === 22 || week < 3 ? players : null,

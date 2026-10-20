@@ -45,13 +45,10 @@ export async function reconcileNflBundle(
     throw Error("Completion observation/stream missing");
   const now = new Date(completion.at).toISOString(),
     first = new Date(completion.first_observed_at).toISOString();
-  // Historical acceptance never represents an entered member round. It may
-  // replay already-completed games immediately, with the distinction in SQL/UI.
-  if (
-    stream.purpose !== "historical-acceptance" &&
-    Date.parse(now) < Date.parse(first) + 6 * 3600000
-  )
-    throw Error("Six hours from first observed completion not elapsed");
+  // Publish verified postgame data when available. The scoring engine still
+  // enforces its frozen correction/finalisation window independently.
+  if (Date.parse(first) > Date.parse(now))
+    throw Error("Completion observation is in the future");
   if (
     stream.purpose === "historical-acceptance" &&
     !streamId.startsWith("beta-real:qa:")

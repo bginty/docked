@@ -59,18 +59,11 @@ export function parseStatisticsCsv(
     throw Error("CSV exceeds limit or contains NUL");
   const rows: Record<string, string>[] = [];
   let headers: string[] | undefined;
+  let selected: number[] = [];
+  let selectedColumns: boolean[] = [];
   let row: string[] = [],
-    cell = "",
-    quoted = false,
-    closed = false;
-  const field = () => {
-    row.push(cell);
-    cell = "";
-    closed = false;
-    if (row.length > limits.maxColumns) throw Error("Too many CSV columns");
-  };
+    width = 0;
   const line = () => {
-    field();
     if (!headers) {
       headers = row;
       if (
@@ -80,46 +73,67 @@ export function parseStatisticsCsv(
         profile?.columns.some((c) => !headers!.includes(c))
       )
         throw Error("Invalid/duplicate/missing CSV header");
-    } else {
-      if (row.length !== headers.length) throw Error("CSV row width changed");
-      rows.push(
-        Object.fromEntries(
-          headers.flatMap((h, i) =>
-            !profile ||
-            profile.columns.includes(h) ||
-            profile.optionalColumns?.includes(h)
-              ? [[h, row[i]]]
-              : [],
-          ),
-        ),
+      const wanted = profile
+        ? new Set([...profile.columns, ...(profile.optionalColumns ?? [])])
+        : null;
+      selected = headers.flatMap((h, i) =>
+        !wanted || wanted.has(h) ? [i] : [],
       );
+      selectedColumns = headers.map((h) => !wanted || wanted.has(h));
+    } else {
+      if (width !== headers.length) throw Error("CSV row width changed");
+      const record: Record<string, string> = {};
+      for (const i of selected) record[headers[i]] = row[i];
+      rows.push(record);
     }
     row = [];
+    width = 0;
     if (rows.length > limits.maxRows) throw Error("Too many CSV rows");
   };
   text = text.replace(/^\uFEFF/, "");
-  for (let i = 0; i < text.length; i++) {
-    const c = text[i];
-    if (quoted) {
-      if (c === '"' && text[i + 1] === '"') {
-        cell += '"';
-        i++;
-      } else if (c === '"') {
-        quoted = false;
-        closed = true;
-      } else cell += c;
-    } else if (c === ",") field();
-    else if (c === "\n" || c === "\r") {
-      if (c === "\r" && text[i + 1] === "\n") i++;
+  // Scan field boundaries in native code rather than concatenating every
+  // character of a season-wide 450-column file. Project columns once, not per
+  // field per row. Strict quoting/width validation still includes unused fields.
+  const delimiter = /[,"\r\n]/g;
+  let i = 0;
+  while (i < text.length) {
+    const start = i;
+    const keep = !headers || selectedColumns[width];
+    let value: string;
+    if (text[i] === '"') {
+      let end = i;
+      do {
+        end = text.indexOf('"', end + 1);
+        if (end < 0) throw Error("Unterminated CSV quote");
+        if (text[end + 1] !== '"') break;
+        end++;
+      } while (true);
+      value = keep ? text.slice(start + 1, end).replaceAll('""', '"') : "";
+      i = end + 1;
+      if (i < text.length && ![",", "\r", "\n"].includes(text[i]))
+        throw Error("Malformed CSV quote");
+    } else {
+      delimiter.lastIndex = i;
+      const next = delimiter.exec(text);
+      i = next?.index ?? text.length;
+      if (text[i] === '"') throw Error("Malformed CSV quote");
+      value = keep ? text.slice(start, i) : "";
+    }
+    if (keep) row[width] = value;
+    width++;
+    if (width > limits.maxColumns) throw Error("Too many CSV columns");
+    if (text[i] === ",") {
+      i++;
+      if (i === text.length) {
+        row[width++] = "";
+        line();
+      }
+    } else {
+      if (text[i] === "\r" && text[i + 1] === "\n") i++;
+      i++;
       line();
-    } else if (c === '"' && cell === "" && !closed) quoted = true;
-    else {
-      if (closed || c === '"') throw Error("Malformed CSV quote");
-      cell += c;
     }
   }
-  if (quoted) throw Error("Unterminated CSV quote");
-  if (cell || row.length || closed) line();
   if (
     !headers?.length ||
     headers.some((h) => !/^[A-Za-z][A-Za-z0-9_]*$/.test(h)) ||

@@ -1,4 +1,5 @@
 export type StandingPlayer = {
+  completed?: boolean;
   fixtures?: { scheduledAt: string; status?: string }[];
   serial?: number;
   max_supply?: number;
@@ -15,6 +16,11 @@ export type StandingPlayer = {
   parts: { statistic: string; quantity: number; centipoints: number }[];
 };
 export type StandingRow = {
+  knownCentipoints?: number | null;
+  currentCentipoints?: number | null;
+  currentRank?: number | null;
+  completedPlayers?: number | null;
+  totalPlayers?: number;
   key: string;
   name: string;
   isMe: boolean;
@@ -25,6 +31,10 @@ export type StandingRow = {
   lineup: StandingPlayer[] | null;
 };
 export type StandingRound = {
+  updatedAt?: string;
+  lastCheckedAt?: string;
+  dataDelayed?: boolean;
+  feedMode?: "postgame" | "live";
   closesAt?: string;
   fixtures?: { scheduledAt: string; status?: string }[];
   serverTime?: number;

@@ -1,6 +1,7 @@
 // Local visual fixtures only. No application authentication, provider or database.
 import { CompetitionResults } from "../../src/components/competition-results";
 import { standingsFixture } from "./standings-data";
+import { gameDayStandings } from "../../src/server/game-day";
 import { RarityGallery } from "./rarity-gallery";
 import { createRoot } from "react-dom/client";
 import { useEffect, useState } from "react";
@@ -191,7 +192,7 @@ if (scenario === "all-rarities") {
     max_supply: rarityRule(all[i % 6]).lifetimeCap ?? 0,
   }));
 }
-if (["entered", "partial"].includes(scenario ?? "")) {
+if (["entered", "partial", "gameday"].includes(scenario ?? "")) {
   state.seven!.entries = rounds.map((round) => ({
     competition_id: round.id,
     revision: 1,
@@ -208,6 +209,25 @@ if (["entered", "partial"].includes(scenario ?? "")) {
       multiplier: rarityRule(cards[i].tier).multiplierTenths / 10,
     })),
   }));
+}
+if (scenario === "gameday") {
+  const past = new Date(Date.now() - 86400000).toISOString();
+  for (const round of rounds) {
+    round.locks_at = past;
+    state.seven!.fixtures[round.id][0].scheduledAt = past;
+  }
+  for (const entry of state.seven!.entries) {
+    entry.snapshot.forEach((card) => {
+      card.kickoff = past;
+      state.seven!.locks.push({
+        competition_id: entry.competition_id,
+        slot: card.slot,
+        card_id: card.card_id,
+        locked_at: past,
+        snapshot: card,
+      });
+    });
+  }
 }
 if (scenario === "packs")
   state.packs = [
@@ -228,6 +248,89 @@ window.fetch = async (input, init) => {
         : input.url,
     location.origin,
   );
+  if (
+    url.origin === location.origin &&
+    url.pathname === "/api/fantasy/standings"
+  ) {
+    const control = (
+      window as unknown as { gameDayTest?: { points?: number; fail?: boolean } }
+    ).gameDayTest;
+    if (control?.fail)
+      return Response.json(
+        { error: "Scores could not refresh. Your last result is still shown." },
+        { status: 503 },
+      );
+    const data = structuredClone(standingsFixture);
+    for (const round of data)
+      for (const row of round.rows)
+        if (row.isMe && control?.points !== undefined)
+          row.centipoints = control.points;
+    for (const round of rounds) {
+      const entry = state.seven?.entries.find(
+        (e) => e.competition_id === round.id,
+      );
+      data.push({
+        competitionId: round.id,
+        label: round.name,
+        season: "2026",
+        week: 7,
+        mode: round.rules.mode,
+        series: "fixture",
+        visible: true,
+        finalised: false,
+        feedMode: "postgame",
+        serverTime: Date.now(),
+        updatedAt: now,
+        fixtures: state.seven!.fixtures[round.id],
+        rows: entry
+          ? [
+              {
+                key: "local",
+                name: "Local Test Team",
+                isMe: true,
+                rank: null,
+                centipoints: null,
+                knownCentipoints: scenario === "gameday" ? 2500 : null,
+                totalPlayers: 7,
+                completedPlayers: scenario === "gameday" ? 3 : 0,
+                status: "pending-data",
+                lineup: entry.snapshot.map((c, i) => ({
+                  slot: c.slot,
+                  name: c.name,
+                  position: c.position,
+                  tier: c.tier,
+                  team: c.team,
+                  multiplier: c.multiplier,
+                  serial: c.serial,
+                  max_supply: c.max_supply,
+                  locked: scenario === "gameday",
+                  completed: scenario === "gameday" && i < 3,
+                  centipoints:
+                    scenario === "gameday" && i < 3
+                      ? i === 0
+                        ? 0
+                        : 1250
+                      : null,
+                  baseCentipoints: null,
+                  status:
+                    scenario === "gameday" && i === 0 ? "dnp" : "pending-data",
+                  parts: [],
+                  fixtures: [
+                    {
+                      scheduledAt:
+                        scenario === "gameday" && i < 3
+                          ? round.locks_at
+                          : future,
+                    },
+                  ],
+                })),
+              },
+            ]
+          : [],
+      });
+    }
+    return Response.json({ rounds: gameDayStandings(data) });
+  }
   if (
     url.origin === location.origin &&
     url.pathname === "/api/test-wallet" &&

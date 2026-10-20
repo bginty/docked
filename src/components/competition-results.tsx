@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { playerScoreStatus, roundProgress } from "@/core/round-status";
+import { currentPoints, currentRank, gameDayPoints } from "@/core/game-day";
+import { useGameDay } from "./use-game-day";
+import { GameDaySummary } from "./game-day-summary";
+import { GameDayPlayerScore } from "./game-day-player-score";
 import Link from "next/link";
 import { CompetitionSwitch } from "./competition-switch";
 import { competitionHref } from "@/core/prize-schedules";
@@ -18,7 +21,6 @@ import {
 } from "@/core/standings";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { LegacyCompetitionResults } from "./legacy-competition-results";
-import { displayCity } from "@/core/card-presentation";
 import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
 
@@ -38,7 +40,7 @@ export function CompetitionResults({
   standings,
   records,
   initial,
-  weekly = [],
+  weekly: initialWeekly = [],
   selection = {},
 }: {
   rounds: ReviewRound[];
@@ -48,6 +50,8 @@ export function CompetitionResults({
   weekly?: StandingRound[];
   selection?: Selection;
 }) {
+  const live = useGameDay(initialWeekly);
+  const weekly = live.rounds;
   const [ready, setReady] = useState(false);
   const [query, setQuery] = useState<Selection>({
     ...selection,
@@ -58,6 +62,16 @@ export function CompetitionResults({
     round: StandingRound;
   } | null>(null);
   const [weeks, setWeeks] = useState<SeasonRow | null>(null);
+  useEffect(() => {
+    setDetail((previous) => {
+      if (!previous) return null;
+      const round = weekly.find(
+        (r) => r.competitionId === previous.round.competitionId,
+      );
+      const row = round?.rows.find((r) => r.key === previous.row.key);
+      return round && row ? { round, row } : null;
+    });
+  }, [weekly]);
   useEffect(() => {
     const read = () =>
       setQuery(Object.fromEntries(new URLSearchParams(window.location.search)));
@@ -157,9 +171,7 @@ export function CompetitionResults({
         <span className="competition-label">Competition</span>
         <CompetitionSwitch
           mode={mode}
-          onChange={(mode) =>
-            change({ mode, competition: "", week: "", series: "" })
-          }
+          onChange={(mode) => change({ mode, competition: "", series: "" })}
         />
       </header>
       <div className="standings-controls">
@@ -253,57 +265,34 @@ export function CompetitionResults({
             ` · ${summary.excluded} pending or under-review weeks excluded`}
         </p>
       )}
-      <div className="standings-metrics">
-        <div>
-          <span>Your {period === "season" ? "season " : ""}rank</span>
-          <strong>{mine ? (mine.rank ?? "Pending") : "Not entered"}</strong>
-        </div>
-        <div>
-          <span>{period === "season" ? "Season points" : "Your points"}</span>
-          <strong>
-            {mine ? formatPoints(mine.centipoints) : "Not entered"}
-          </strong>
-        </div>
-        <div>
-          <span>
-            {period === "season" ? "Weeks entered / included" : "Entries"}
-          </span>
-          <strong>
-            {period === "season"
-              ? mine && "weeksEntered" in mine
-                ? `${mine.weeksEntered} / ${mine.weeksIncluded}`
-                : "Not entered"
-              : (round?.rows.length ?? 0)}
-          </strong>
-        </div>
-        {period === "weekly" && (
-          <div>
-            <span>Results status</span>
-            <strong>
-              {!round
-                ? "Unavailable"
-                : round.closesAt && round.fixtures
-                  ? roundProgress({
-                      closesAt: round.closesAt,
-                      fixtures: round.fixtures,
-                      visible: round.visible,
-                      finalised: round.finalised,
-                      completeScores:
-                        round.rows.length > 0 &&
-                        round.rows.every((r) => r.centipoints !== null),
-                      now: round.serverTime ?? Date.now(),
-                    }).label
-                  : !round.visible
-                    ? "Under review"
-                    : round.finalised
-                      ? "Final"
-                      : round.rows.some((r) => r.centipoints !== null)
-                        ? "Provisional"
-                        : "Pending"}
-            </strong>
+      {live.error && (
+        <p role="status">
+          {live.error}{" "}
+          <button className="play-support" onClick={live.retry}>
+            Retry scores
+          </button>
+        </p>
+      )}
+      {period === "weekly" && round ? (
+        <GameDaySummary round={round} entry={mine} title="Your standing" />
+      ) : (
+        <div className="game-day-summary">
+          <div className="game-day-numbers">
+            <div>
+              <span>Your rank</span>
+              <strong>{mine?.rank ?? "—"}</strong>
+            </div>
+            <div>
+              <span>Season points</span>
+              <strong>{gameDayPoints(mine?.centipoints)}</strong>
+            </div>
+            <div>
+              <span>Weeks included</span>
+              <strong>{summary.included}</strong>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       <div className="standings-search">
         <label>
           Search teams
@@ -353,9 +342,9 @@ export function CompetitionResults({
                   </th>
                 )}
                 <th scope="col">
-                  {period === "season" ? "Total points" : "Adjusted points"}
+                  {period === "season" ? "Total points" : "Points"}
                 </th>
-                {period === "weekly" && <th scope="col">Status</th>}
+                {period === "weekly" && <th scope="col">Played</th>}
                 <th scope="col">
                   <span className="sr-only">View entry</span>
                 </th>
@@ -364,7 +353,9 @@ export function CompetitionResults({
             <tbody>
               {paged.rows.map((r) => (
                 <tr key={r.key} className={r.isMe ? "current-member" : ""}>
-                  <td>{r.rank ?? "—"}</td>
+                  <td>
+                    {(period === "weekly" ? currentRank(r) : r.rank) ?? "—"}
+                  </td>
                   <th scope="row">
                     {r.name}
                     {r.isMe && <small> · You</small>}
@@ -374,16 +365,15 @@ export function CompetitionResults({
                       {r.weeksEntered} / {r.weeksIncluded}
                     </td>
                   )}
-                  <td>{formatPoints(r.centipoints)}</td>
+                  <td>
+                    {period === "weekly"
+                      ? gameDayPoints(currentPoints(r))
+                      : formatPoints(r.centipoints)}
+                  </td>
                   {period === "weekly" && (
                     <td>
-                      {r.status === "under-review"
-                        ? "Results under review"
-                        : playerScoreStatus(
-                            r.status,
-                            round?.fixtures,
-                            round?.serverTime ?? Date.now(),
-                          )}
+                      {r.completedPlayers ?? "—"}/
+                      {r.totalPlayers ?? r.lineup?.length ?? "—"} played
                     </td>
                   )}
                   <td>
@@ -399,7 +389,7 @@ export function CompetitionResults({
                         className="play-support"
                         onClick={() => round && setDetail({ row: r, round })}
                       >
-                        View Lineup
+                        View Team
                       </button>
                     )}
                   </td>
@@ -417,44 +407,37 @@ export function CompetitionResults({
           )}
         </div>
       )}
-      <nav className="standings-pagination" aria-label="Rankings pages">
-        <button
-          className="play-support"
-          disabled={paged.page === 1}
-          onClick={() => change({ page: String(paged.page - 1) })}
-        >
-          Previous
-        </button>
-        <span>
-          Page {paged.page} of {paged.pages} · {paged.total} teams
-        </span>
-        <button
-          className="play-support"
-          disabled={paged.page === paged.pages}
-          onClick={() => change({ page: String(paged.page + 1) })}
-        >
-          Next
-        </button>
-      </nav>
-      <div className="play-support-actions">
-        <Link className="play-secondary" href={playUrl}>
-          Back to Lineup
-        </Link>
-        <Link
-          className="play-support"
-          href={`/fantasy/scoring/how-it-works${round ? `?competition=${round.competitionId}` : ""}`}
-        >
-          Scoring Rules
-        </Link>
-      </div>
+      {paged.pages > 1 && (
+        <nav className="standings-pagination" aria-label="Rankings pages">
+          <button
+            className="play-support"
+            disabled={paged.page === 1}
+            onClick={() => change({ page: String(paged.page - 1) })}
+          >
+            Previous
+          </button>
+          <span>
+            Page {paged.page} of {paged.pages} · {paged.total} teams
+          </span>
+          <button
+            className="play-support"
+            disabled={paged.page === paged.pages}
+            onClick={() => change({ page: String(paged.page + 1) })}
+          >
+            Next
+          </button>
+        </nav>
+      )}
       <details className="standings-explanation">
         <summary>How rankings work</summary>
         <p>
           Shared ranks use 1, 1, 3 for a tie. Order within a tied group does not
           break the tie. Weekly rankings wait for every entry’s required
-          statistics. Season totals include finalised weeks in this competition
-          and scoring series only; corrections and reopened reviews update the
-          totals. Weeks entered includes pending weeks.
+          statistics for final results. Current rankings compare available
+          authoritative points and remain provisional. Season totals include
+          finalised weeks in this competition and scoring series only;
+          corrections and reopened reviews update the totals. Weeks entered
+          includes pending weeks.
         </p>
         <p>
           Opposing lineups stay private until every player has locked and the
@@ -472,80 +455,82 @@ export function CompetitionResults({
       </details>
       {detail && (
         <FantasySheet
+          historyEntry
           title={`${detail.row.name} · Week ${detail.round.week}`}
           onClose={() => setDetail(null)}
         >
-          <p>
-            {competitionName(detail.round.mode)} · {detail.round.season} ·{" "}
-            {formatPoints(detail.row.centipoints)} points
-          </p>
+          <button className="play-support" onClick={() => setDetail(null)}>
+            ← Back to Rankings
+          </button>
+          <GameDaySummary
+            round={detail.round}
+            entry={detail.row}
+            title={detail.row.name}
+          />
           {detail.row.lineup === null ? (
             <p>
-              This lineup is private. Opposing selections are shown only after
-              all player locks and permission under the competition’s
-              publication policy.
+              This lineup is private until its selections lock and viewing is
+              authorised.
             </p>
           ) : (
-            <div className="standings-lineup">
-              {detail.row.lineup.map((p) => (
-                <article key={p.slot}>
-                  <div
-                    className={`standings-player-card ${rarityFrame(p.tier)}`}
-                    style={rarityStyle(p.tier)}
-                  >
-                    <CollectibleFace
-                      variant="lineup"
-                      showNumber
-                      card={{
-                        ...p,
-                        name: p.name || "Player name unavailable",
-                        sport: "nfl",
-                      }}
-                      appliedMultiplier={p.multiplier ?? undefined}
-                    />
+            <div className="lineup-pitch community-team-field">
+              <div
+                className="fantasy-field seven-field"
+                aria-label="Locked team lineup"
+              >
+                {detail.row.lineup.map((p) => (
+                  <div className="seven-slot" data-slot={p.slot} key={p.slot}>
+                    <article
+                      className={`field-player ${rarityFrame(p.tier)}`}
+                      style={rarityStyle(p.tier)}
+                    >
+                      <CollectibleFace
+                        variant="lineup"
+                        showNumber
+                        card={{
+                          ...p,
+                          name: p.name || "Player name unavailable",
+                          sport: "nfl",
+                        }}
+                        appliedMultiplier={p.multiplier ?? undefined}
+                      />
+                      <GameDayPlayerScore
+                        player={p}
+                        now={detail.round.serverTime ?? Date.now()}
+                      />
+                    </article>
                   </div>
-                  <p>
-                    {p.slot} · {p.locked ? "Locked" : "Not locked"} ·{" "}
-                    {displayCity({ sport: "nfl", team: p.team })}
-                  </p>
-                  <dl>
-                    <dt>Base points</dt>
-                    <dd>{formatPoints(p.baseCentipoints)}</dd>
-                    <dt>Applied multiplier</dt>
-                    <dd>
-                      {p.multiplier === null
-                        ? "Unavailable"
-                        : `${p.multiplier.toFixed(1)}×`}
-                    </dd>
-                    <dt>Adjusted points</dt>
-                    <dd>{formatPoints(p.centipoints)}</dd>
-                  </dl>
-                  <small>
-                    {playerScoreStatus(
-                      p.status,
-                      p.fixtures,
-                      detail.round.serverTime ?? Date.now(),
-                    )}
-                  </small>
-                  {p.parts.length > 0 && (
-                    <details>
-                      <summary>Scoring breakdown</summary>
-                      {p.parts.map((part, i) => (
-                        <p key={i}>
-                          {part.statistic}: {part.quantity} ·{" "}
-                          {formatPoints(part.centipoints)}
-                        </p>
-                      ))}
-                    </details>
-                  )}
-                </article>
-              ))}
+                ))}
+              </div>
+              <details className="standings-explanation">
+                <summary>Scoring breakdown</summary>
+                {detail.row.lineup.map((p) => (
+                  <div key={p.slot}>
+                    <strong>
+                      {p.name} · {gameDayPoints(p.centipoints)} PTS
+                    </strong>
+                    <p>
+                      Base: {gameDayPoints(p.baseCentipoints)} · Multiplier:{" "}
+                      {p.multiplier == null
+                        ? "—"
+                        : p.multiplier.toFixed(1) + "×"}
+                    </p>
+                    {p.parts.map((part, i) => (
+                      <p key={i}>
+                        {part.statistic}: {part.quantity} ·{" "}
+                        {gameDayPoints(part.centipoints)}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </details>
             </div>
           )}
         </FantasySheet>
       )}
       {weeks && (
         <FantasySheet
+          historyEntry
           title={`${weeks.name} · ${season}`}
           onClose={() => setWeeks(null)}
         >

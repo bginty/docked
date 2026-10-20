@@ -186,7 +186,7 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       [u],
     );
     const standings = async () =>
-      (await q(`select sports_feed.play_standings() rows`))[0].rows;
+      (await q(`select sports_feed.game_day_standings() rows`))[0].rows;
     const ownStandings = await standings();
     const ownRound = ownStandings.find(
       (r: any) => r.competitionId === rounds[0],
@@ -217,7 +217,7 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
     );
     await pg.exec("set role authenticated");
     await assert.rejects(
-      () => q(`select sports_feed.play_standings()`),
+      () => q(`select sports_feed.game_day_standings()`),
       /permission denied/,
     );
     await pg.exec("reset role");
@@ -453,7 +453,10 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
           centipoints: 1500,
           matches: [
             {
+              sourceStatus: "completed",
+              availability: "complete",
               score: {
+                centipoints: 1000,
                 parts: [
                   { statistic: "fixture", quantity: 1, centipoints: 1000 },
                 ],
@@ -484,6 +487,8 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
     );
     assert.equal(publishedStandings.finalised, true);
     assert.equal(publishedStandings.rows[0].centipoints, 12345);
+    assert.equal(publishedStandings.rows[0].completedPlayers, 7);
+    assert.equal(publishedStandings.rows[0].totalPlayers, 7);
     assert.equal(publishedStandings.rows[0].lineup[0].baseCentipoints, 1000);
     assert.equal(
       publishedStandings.rows[0].lineup[0].parts[0].statistic,
@@ -527,6 +532,68 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       "Latest review overrides previously finalised week",
     );
     assert.equal(publishedStandings.rows[0].centipoints, 12001);
+    // Game-day read projection keeps unresolved scores null, while exposing
+    // the existing engine's known total. Verified DNP counts as completed.
+    const partialPlayers = scoringRows[0].players.map((p: any, i: number) => ({
+      ...p,
+      centipoints: i === 0 ? 0 : null,
+      matches: [
+        {
+          sourceStatus: i === 0 ? "completed" : "missing",
+          availability: i === 0 ? "confirmed-dnp" : "pending",
+          score:
+            i === 0
+              ? {
+                  centipoints: 0,
+                  parts: [
+                    { statistic: "confirmed-dnp", quantity: 1, centipoints: 0 },
+                  ],
+                }
+              : null,
+        },
+      ],
+    }));
+    await q(
+      `insert into sports_feed.journal(stream_id,revision,previous_hash,state_hash,body,calculated) values($1,3,'fixture-reopened','fixture-partial',$2,$3)`,
+      [
+        publicStream,
+        JSON.stringify({
+          scope: "authorised-free-beta",
+          period: { rules: rule },
+          finalisedAt: null,
+        }),
+        JSON.stringify({
+          rows: [
+            {
+              ...scoringRows[0],
+              centipoints: null,
+              knownCentipoints: 0,
+              rank: null,
+              status: "pending-data",
+              players: partialPlayers,
+            },
+          ],
+        }),
+      ],
+    );
+    const partial = (await standings()).find(
+      (r: any) => r.competitionId === publicRound,
+    );
+    assert.equal(partial.rows[0].centipoints, null);
+    assert.equal(partial.rows[0].knownCentipoints, 0);
+    assert.equal(partial.rows[0].completedPlayers, 1);
+    assert.equal(
+      partial.rows[0].lineup.filter((p: any) => p.status === "dnp").length,
+      1,
+    );
+    assert.equal(
+      partial.rows[0].lineup.filter((p: any) => p.centipoints === null).length,
+      6,
+    );
+    await assert.rejects(
+      () => q(`select sports_feed.owner_scoring_diagnostics()`),
+      /Owner MFA required/,
+    );
 
     assert.equal(JSON.stringify(visible).includes("card_id"), false);
     assert.equal(JSON.stringify(visible).includes("selections"), false);

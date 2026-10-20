@@ -1,17 +1,26 @@
 import { createServer } from "node:http";
-import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync, mkdirSync, writeFileSync, copyFileSync } from "node:fs";
 import { resolve, sep } from "node:path";
 import assert from "node:assert/strict";
 import { chromium, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 async function main() {
-  const out = process.argv.includes("--futuristic")
-    ? `docs/qa/futuristic-cards/play-regression-${Date.now()}`
-    : process.argv.includes("--packs-regression")
-      ? "docs/qa/pack-shopping/play"
-      : "docs/qa/play-standings";
+  const out = process.argv.includes("--game-day")
+    ? "docs/qa/game-day"
+    : process.argv.includes("--futuristic")
+      ? `docs/qa/futuristic-cards/play-regression-${Date.now()}`
+      : process.argv.includes("--packs-regression")
+        ? "docs/qa/pack-shopping/play"
+        : "docs/qa/play-standings";
   mkdirSync(out, { recursive: true });
+  if (process.argv.includes("--game-day"))
+    for (const name of ["play", "weekly"])
+      for (const width of [412, 1440])
+        copyFileSync(
+          `docs/qa/play-standings/${name}-${width}.png`,
+          `${out}/before-${name}-${width}.png`,
+        );
   const script = await bundleCommunityFixture(
     "tests/fixtures/play-standings-visual.tsx",
   );
@@ -109,7 +118,7 @@ async function main() {
         await page.evaluate(() => window.scrollTo(0, 0));
         await page.screenshot({
           path: `${out}/${name}-${width}.png`,
-          fullPage: !name.includes("picker"),
+          fullPage: !name.includes("picker") && !name.includes("community"),
         });
         assert.ok(
           await page.evaluate(
@@ -260,9 +269,34 @@ async function main() {
       );
       await page
         .locator(".current-member")
-        .getByRole("button", { name: "View Lineup" })
+        .getByRole("button", { name: "View Team" })
         .click();
       await expect(page.getByRole("dialog")).toContainText("Fixture Player 1");
+      if (process.argv.includes("--game-day")) {
+        await shot("community-team");
+        await expect(
+          page.getByRole("dialog").locator(".game-day-player-score"),
+        ).toHaveCount(7);
+        await page.evaluate(() => {
+          Object.assign(window, { gameDayTest: { points: 25000 } });
+          window.dispatchEvent(new Event("focus"));
+        });
+        await expect(
+          page.getByRole("dialog").locator(".game-day-summary"),
+        ).toContainText("250.0");
+        await page.goBack();
+        await expect(page.getByRole("dialog")).toHaveCount(0);
+        await expect(
+          page.getByRole("heading", { name: "Rankings", exact: true }),
+        ).toBeVisible();
+        await page.evaluate(() => {
+          Object.assign(window, { gameDayTest: { fail: true } });
+          window.dispatchEvent(new Event("focus"));
+        });
+        await expect(
+          page.locator(".standings-page > .game-day-summary"),
+        ).toContainText("250.0");
+      }
       await page.keyboard.press("Escape");
       await page.getByRole("button", { name: "Season", exact: true }).click();
       await expect(page.getByText(/Through Week 2/)).toBeVisible();
@@ -275,6 +309,18 @@ async function main() {
       await expect(
         page.getByRole("button", { name: /All-Star/ }),
       ).toHaveAttribute("aria-pressed", "true");
+      if (process.argv.includes("--game-day")) {
+        await page.goto(origin + "/fantasy/play?scenario=gameday");
+        await expect(page.locator(".game-day-summary")).toContainText("25.0");
+        await expect(page.locator(".game-day-summary")).toContainText(
+          "3/7 played",
+        );
+        await expect(page.locator(".game-day-player-score")).toHaveCount(7);
+        await expect(
+          page.locator(".game-day-player-score").first(),
+        ).toContainText("DNP");
+        await shot("game-day-play");
+      }
       const axe = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
         .analyze();

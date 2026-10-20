@@ -6,6 +6,105 @@
   color: #abc0da;
   margin: 10px 0 7px;
 }
+.game-day-summary {
+  padding: 16px;
+  margin: 12px 0;
+  border: 1px solid #24496c;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at top right, #123867, transparent 65%), #081724;
+}
+.game-day-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.game-day-title h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+.game-day-title > span {
+  font-size: 0.75rem;
+  color: #a5d9ff;
+}
+.game-day-numbers {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px 0 2px;
+}
+.game-day-numbers > div > span {
+  display: block;
+  font-size: 0.7rem;
+  color: #a8bfd8;
+}
+.game-day-numbers strong {
+  display: block;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-variant-numeric: tabular-nums;
+}
+.game-day-numbers small {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #b6d5ef;
+}
+.game-day-freshness {
+  margin: 8px 0 0;
+  font-size: 0.7rem;
+  color: #a8bfd8;
+}
+.game-day-player-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  padding: 5px;
+  border-top: 1px solid #466881;
+  background: #061321;
+  color: #ecf8ff;
+  border-radius: 0 0 7px 7px;
+}
+.game-day-player-score strong {
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+.game-day-player-score small,
+.game-day-player-score > span {
+  font-size: 0.6rem;
+}
+.community-team-field {
+  min-width: 0;
+}
+.community-team-field article.field-player {
+  margin: 0;
+}
+.play-game-day {
+  margin: 10px 0;
+}
+.round-timing > summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 8px 0;
+  color: #a8bfd8;
+}
+@media (max-width: 600px) {
+  .game-day-summary {
+    padding: 12px;
+  }
+  .game-day-numbers {
+    gap: 6px;
+  }
+  .game-day-numbers > div > span {
+    font-size: 0.65rem;
+  }
+  .game-day-title h2 {
+    font-size: 0.9rem;
+  }
+  .game-day-player-score {
+    flex-direction: column;
+  }
+}
 .seven-mode-tabs button small,
 .standings-segments button small {
   display: block;
@@ -86,20 +185,36 @@
   min-width: 0;
 }
 .standings-hero {
-  padding: 24px;
-  border: 1px solid #23405c;
-  border-radius: 18px;
-  background:
-    radial-gradient(ellipse at 95% 0%, #11305a 0, transparent 65%), #081322;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 0;
 }
 .standings-hero h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  grid-column: 1;
+  grid-row: 1;
+  font-size: clamp(1.4rem, 4vw, 2rem);
   letter-spacing: -0.04em;
-  margin: 16px 0 3px;
+  margin: 0;
+}
+.standings-hero > a:first-child {
+  grid-column: 2;
+  grid-row: 1;
+}
+.standings-hero > a:nth-of-type(2) {
+  grid-column: 3;
+  grid-row: 1;
+}
+.standings-hero .competition-label,
+.standings-hero .seven-mode-tabs {
+  grid-column: 1/-1;
 }
 .standings-hero p {
-  color: #adc1dc;
-  margin: 0 0 20px;
+  display: none;
+}
+.seven-mode-tabs button[aria-pressed="true"] small {
+  color: #fff;
 }
 .standings-segments {
   display: flex;
@@ -311,7 +426,7 @@
     padding: 12px 8px;
   }
   .standings-hero {
-    padding: 17px;
+    padding: 0;
   }
   .standings-metrics {
     grid-template-columns: 1fr 1fr;

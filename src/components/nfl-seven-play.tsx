@@ -1,6 +1,5 @@
 "use client";
 import { useSportDraftGuard } from "./sport-context";
-import { roundProgress } from "@/core/round-status";
 import { competitionName, competitionLabel } from "@/core/competition-display";
 import { slotPool, filterSlotPool } from "@/core/lineup-picker";
 import { CollectibleFace } from "./collectible-face";
@@ -41,7 +40,9 @@ import { teamFilter } from "@/core/card-presentation";
 
 import { LocalDateTime } from "./local-date-time";
 import { CompetitionWeekSelector } from "./competition-week-selector";
-import { WeeklyLineupResult } from "./weekly-lineup-result";
+import { useGameDay } from "./use-game-day";
+import { GameDaySummary } from "./game-day-summary";
+import { GameDayPlayerScore } from "./game-day-player-score";
 import type { autoSelect } from "@/core/lineup-auto-select";
 import { boundedFetch } from "@/core/bounded-request";
 import { hasEstablishedTeam } from "@/core/team-continuity";
@@ -96,6 +97,7 @@ export function NflSevenPlay({
   ) => Promise<Record<string, unknown> | null>;
 }) {
   const navigationQuery = useSearchParams();
+  const gameDay = useGameDay();
   const [autoBusy, setAutoBusy] = useState(false);
   const [recommendation, setRecommendation] = useState<null | {
     competition: string;
@@ -595,23 +597,50 @@ export function NflSevenPlay({
         selected={comp.id}
         onSelect={selectWeek}
       />
-      {rounds.length === 1 && (
-        <p className="small-note">
-          Only this competition week is published so far. Future weeks appear
-          when their fixtures and rules are verified.
-        </p>
-      )}
       {closed && !entry && (
         <p role="status">
           No submitted lineup is recorded for this week. A saved draft is not a
           historical entry.
         </p>
       )}
-      {historical && (
-        <p role="status">
-          Saved competition entry · read-only. Selections and locked card
-          details are preserved independently of current ownership.
-        </p>
+      {entry && (
+        <div className="play-game-day">
+          {gameDay.rounds.find((r) => r.competitionId === comp.id)
+            ? (() => {
+                const round = gameDay.rounds.find(
+                  (r) => r.competitionId === comp.id,
+                )!;
+                return (
+                  <GameDaySummary
+                    round={round}
+                    entry={round.rows.find((r) => r.isMe)}
+                  />
+                );
+              })()
+            : !gameDay.error && <p role="status">Loading scores…</p>}
+          {gameDay.error && (
+            <p role="status">
+              {gameDay.error}{" "}
+              <button className="play-support" onClick={gameDay.retry}>
+                Retry scores
+              </button>
+            </p>
+          )}
+          <Link
+            className="play-support"
+            href={competitionHref("/fantasy/results", {
+              ...Object.fromEntries(navigationQuery.entries()),
+              sport: "nfl",
+              mode,
+              competition: comp.id,
+              period: "weekly",
+              season: comp.season,
+              week: String(comp.round),
+            })}
+          >
+            View Rankings →
+          </Link>
+        </div>
       )}
 
       <Link
@@ -627,7 +656,8 @@ export function NflSevenPlay({
       >
         🏆 Prizes
       </Link>
-      <div className="round-timing">
+      <details className="round-timing">
+        <summary>Entry & lock times</summary>
         {entryOpensLater && (
           <p>
             Draft planning is available. Entries open{" "}
@@ -648,7 +678,7 @@ export function NflSevenPlay({
             "Each submitted player locks at their own kickoff."
           )}
         </p>
-      </div>
+      </details>
       {rollover && (
         <div className="lineup-continuity" role="status">
           <p>
@@ -690,12 +720,7 @@ export function NflSevenPlay({
             confirmed entry, make changes manually.
           </small>
         </div>
-      ) : (
-        <p className="small-note">
-          Your team is established. Select an unlocked position to replace one
-          player. New cards are never added automatically.
-        </p>
-      )}
+      ) : null}
       <div className="lineup-workspace">
         <div className="lineup-pitch">
           {" "}
@@ -772,6 +797,18 @@ export function NflSevenPlay({
                         </span>
                       )}
                     </span>
+                    {entry &&
+                      (() => {
+                        const round = gameDay.rounds.find(
+                          (r) => r.competitionId === comp.id,
+                        );
+                        const player = round?.rows
+                          .find((r) => r.isMe)
+                          ?.lineup?.find((p) => p.slot === s.id);
+                        return player && locked ? (
+                          <GameDayPlayerScore player={player} now={now} />
+                        ) : null;
+                      })()}
                     {locked && <small className="entry-badge">Locked</small>}
                     {!!issue && (
                       <small className="entry-badge">Needs attention</small>
@@ -1067,43 +1104,6 @@ export function NflSevenPlay({
               </button>
             </details>
           )}
-          <section className="round-summary">
-            <h3>This round</h3>
-            {entry && <WeeklyLineupResult competition={comp.id} />}
-            <p>
-              {entryOpensLater
-                ? "Draft planning · Entries not open"
-                : roundProgress({
-                    closesAt: comp.locks_at,
-                    finalised: !!comp.scored_at,
-                    visible: comp.rules.standings_visible !== false,
-                    fixtures,
-                    now,
-                  }).label}
-            </p>
-            <small>
-              {locks.size} / {entry?.snapshot.length ?? picks.length} selected
-              players locked
-              {!comp.scored_at &&
-              fixtures.some((f) => Date.parse(f.scheduledAt) <= now)
-                ? " · Results not final"
-                : ""}
-            </small>
-            <Link
-              className="play-secondary"
-              href={competitionHref("/fantasy/results", {
-                ...Object.fromEntries(navigationQuery.entries()),
-                sport: "nfl",
-                mode,
-                competition: comp.id,
-                period: navigationQuery.get("period") ?? "weekly",
-                season: comp.season,
-                week: String(comp.round),
-              })}
-            >
-              View Rankings →
-            </Link>
-          </section>
           <div className="play-support-actions">
             <Link
               className="play-support"
