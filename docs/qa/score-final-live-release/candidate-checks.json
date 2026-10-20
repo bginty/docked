@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-20T06:32:57.072Z",
+  "deployment": "dpl_GN5g1UW7Lbg1gKAQaUGujAjD9Jcp",
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "method": "GET",
+      "authorized": false,
+      "status": 200,
+      "durationMs": 6605
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "method": "GET",
+      "authorized": false,
+      "status": 401,
+      "durationMs": 6581
+    },
+    {
+      "path": "/api/scoring/collect?task=reconcile",
+      "method": "POST",
+      "authorized": false,
+      "status": 403,
+      "durationMs": 6544
+    },
+    {
+      "path": "/api/scoring/collect?task=invalid",
+      "method": "POST",
+      "authorized": true,
+      "status": 400,
+      "durationMs": 6325
+    },
+    {
+      "path": "/api/scoring/collect?task=reconcile",
+      "method": "POST",
+      "authorized": true,
+      "status": 200,
+      "durationMs": 10049,
+      "outcome": "pending-review",
+      "issues": 2
+    }
+  ],
+  "replayUnchanged": true,
+  "revision": 35
+}

@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-20T06:34:11.711Z",
+  "deployment": "dpl_GN5g1UW7Lbg1gKAQaUGujAjD9Jcp",
+  "jobs": [
+    {
+      "jobname": "docked-nfl-pbp",
+      "schedule": "10 0,12 * * *",
+      "active": true,
+      "node_endpoint": true
+    },
+    {
+      "jobname": "docked-nfl-reconcile",
+      "schedule": "*/15 * * * *",
+      "active": true,
+      "node_endpoint": true
+    },
+    {
+      "jobname": "docked-nfl-rosters",
+      "schedule": "15 0,12 * * *",
+      "active": true,
+      "node_endpoint": true
+    },
+    {
+      "jobname": "docked-nfl-weekly",
+      "schedule": "5 0,12 * * *",
+      "active": true,
+      "node_endpoint": true
+    }
+  ],
+  "oldEdgeJobsReplaced": true,
+  "sourceCadencePreserved": true
+}

@@ -12,8 +12,8 @@ download (raw revision 38) restored explicit completed-game observations.
 Thirteen fixture snapshots were imported for each seven-player Week 6 mode.
 
 Allen's Core card now contributes 12.20 under Week 6's frozen half-PPR rules;
-his Full-PPR game log remains 16.20. The owner's Traditional team has 17.60
-known points. Switching Week 6 to Full PPR is not included.
+his Full-PPR game log remains 16.20. The owner's Traditional team has 17.80
+points with seven resolved players after recovering the fullback's actual 0.20. Switching Week 6 to Full PPR is not included.
 
 The remaining opening-game failure was diagnosed as an unidentified weekly
 source row (empty player ID in SEA–DEN), not a correction-window failure.
@@ -63,3 +63,5 @@ is claimed.
 Production activation receipts and final verification are stored separately in
 `docs/qa/score-final-live-release/`. Scheduler activation must be verified there;
 this document alone does not establish that scheduled delivery occurred.
+
+Production commit `475691a6b28a03c5ff5bb599d8b4cd15e4016043` is promoted. All four existing ingestion/reconciliation cron jobs now target the authenticated Node endpoint, retaining their previous schedules. The installed cron command was manually dispatched through pg_net and its Vault credential; the transport receipt records the actual response. A naturally scheduled tick was not claimed as observed. The malformed SEA–DEN fixture remains pending review for affected entries; no finalisation was performed.

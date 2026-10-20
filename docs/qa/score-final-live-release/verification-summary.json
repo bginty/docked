@@ -1,0 +1,24 @@
+{
+  "commit": "475691a6b28a03c5ff5bb599d8b4cd15e4016043",
+  "focusedPlatformTests": 33,
+  "isolatedDatabaseTests": 2,
+  "typecheck": "passed",
+  "targetedLint": "passed",
+  "frozenRulesEntriesAndFinalisation": "verified unchanged by recovery helper",
+  "traditional": {
+    "journalRevision": 35,
+    "teamPoints": 17.8,
+    "resolvedPlayers": 7,
+    "allenPoints": 12.2
+  },
+  "allStar": {
+    "journalRevision": 34,
+    "teamPoints": 36.83,
+    "resolvedPlayers": 6
+  },
+  "remainingBlocker": "SEA–DEN source row with empty player ID prevents fixture validation; one player remains pending in the other Traditional entry and the All-Star entry.",
+  "browserAcceptance": "Connected webview timed out. No physical-device or browser visual acceptance claimed.",
+  "provisionalZero": "Verified completed NFL games; absent player records; explicit policy journaled; later verified stats may replace through normal correction controls. Not a verified DNP.",
+  "historicalScoring": "Week 6 half-PPR preserved; Allen game log Full-PPR remains 16.20.",
+  "schedulerVerification": "See scheduler-transport.json; manual execution of installed scheduler command, not observation of a natural cron tick."
+}
