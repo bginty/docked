@@ -194,7 +194,6 @@ export function PackShop({
                         ? "Rare, Elite, Ultra Rare, Legendary or Icon."
                         : "Choose your pack."}
                   </p>
-                  <FamilyDisclosures p={products[0]} />
                 </header>
                 <div className="pack-product-grid">
                   {products.map((p) => (
@@ -243,6 +242,7 @@ export function PackShop({
                     </article>
                   ))}
                 </div>
+                <FamilyDisclosures p={products[0]} />
               </section>
             );
           })}

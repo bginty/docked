@@ -464,6 +464,35 @@
   gap: 12px;
   margin: 18px 0;
 }
+.compact-collectible-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+.compact-collectible-inner {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 300px;
+  height: 450px;
+  transform-origin: top left;
+}
+.fantasy-mode .compact-collectible-inner > .fantasy-card {
+  width: 300px;
+  max-width: none;
+  margin: 0;
+  border: 0;
+}
+.market-list-loading {
+  display: grid;
+  gap: 12px;
+  padding-block: 20px;
+}
+.market-row-skeleton {
+  height: 120px;
+  border-radius: 16px;
+  border: 1px solid #294160;
+  background: linear-gradient(110deg, #101f30, #172c42, #101f30);
+}
 .market-activity > article {
   display: grid;
   grid-template-columns: 80px minmax(0, 1fr) minmax(125px, auto);

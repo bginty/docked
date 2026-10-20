@@ -1,0 +1,27 @@
+{
+  "platform": {
+    "tests": 506,
+    "passed": 506,
+    "failed": 0
+  },
+  "database": {
+    "tests": 189,
+    "passed": 189,
+    "failed": 0
+  },
+  "lint": "passed",
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "clientBoundary": "existing scanner passed; this local build did not inject credential canaries",
+  "pushDelivery": "not configured or device-verified",
+  "liveReadOnlyFixtureMatch": {
+    "week": 7,
+    "allStar": 7,
+    "traditional": 14
+  },
+  "retries": [
+    "visual runner explicit browser context for axe",
+    "pack browser outdated accessible labels and missing profile slot fixture",
+    "weekly history fixture adapted to dedicated read-only endpoint"
+  ]
+}

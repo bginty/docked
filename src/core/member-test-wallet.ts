@@ -304,14 +304,47 @@ export function memberTestView(
           return s.lots[lid]?.member === member;
         }),
       )
-      .map((j) => ({
-        id: j.id,
-        at: j.at,
-        reason: j.reason,
-        change: j.lines
-          .filter((l) => s.lots[l.account.split(":")[1]]?.member === member)
-          .reduce((n, l) => n + l.credits, 0),
-      })),
+      .map((j) => {
+        const sale = Object.values(s.listings).find(
+          (l) =>
+            l.receipt?.reference === j.id &&
+            (l.member === member || l.buyer === member),
+        );
+        const entitlement = Object.entries(s.entitlements).find(
+          ([, e]) => e.member === member && e.source === j.id,
+        );
+        const product = entitlement
+          ? s.economy?.packs[entitlement[0]]?.product
+          : null;
+        const legacyProduct = entitlement
+          ? s.policy.products.find(
+              (p) => p.id === s.commerce.orders[entitlement[1].order]?.product,
+            )
+          : null;
+        return {
+          label: sale
+            ? `${sale.member === member ? "Card sold" : "Card purchased"} · ${sale.receipt?.cardSnapshot?.name ?? "Collectible card"}`
+            : (product?.name ??
+              legacyProduct?.name ??
+              (/revers/i.test(j.reason)
+                ? "Credit reversal"
+                : "Credit adjustment")),
+          sale:
+            sale?.member === member && sale.receipt
+              ? {
+                  price: sale.receipt.price,
+                  fee: sale.receipt.fee,
+                  net: sale.receipt.net,
+                }
+              : null,
+          id: j.id,
+          at: j.at,
+          reason: j.reason,
+          change: j.lines
+            .filter((l) => s.lots[l.account.split(":")[1]]?.member === member)
+            .reduce((n, l) => n + l.credits, 0),
+        };
+      }),
     supply: supplyRows.filter(
       (row) =>
         visible.size &&

@@ -9,6 +9,8 @@ import type {
 import { communityAction } from "./social-interactions";
 import { CommunityEmpty } from "./community-basics";
 import { LocalTimestamp } from "./local-timestamp";
+import { WebPushSettings } from "./web-push-settings";
+import { saleNotice } from "@/core/sale-notice";
 const preferences: [keyof NotificationPreferences, string][] = [
   ["followedMembers", "Followed member posts"],
   ["social", "Comments, replies, reactions and followers"],
@@ -52,7 +54,7 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
     try {
       await communityAction(body, "/api/notifications");
       setMessage(
-        "In-app preferences saved. No external email or push is enabled.",
+        "In-app preferences saved. Device push settings are managed separately.",
       );
       router.refresh();
     } catch (e) {
@@ -76,7 +78,14 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
           </button>
         )}
       </div>
-      {data.items.length ? (
+      {data.status !== "ready" ? (
+        <div role="alert">
+          <p>{data.message || "Notifications couldn’t load."}</p>
+          <button className="button ghost" onClick={() => router.refresh()}>
+            Retry notifications
+          </button>
+        </div>
+      ) : data.items.length ? (
         groups.map((group) => (
           <section key={group}>
             <h2 className="notification-group-title">
@@ -94,12 +103,17 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
                     data-unread={!n.readAt}
                   >
                     <h2>
-                      <Link href={n.href}>{n.title}</Link>
+                      <Link href={n.href}>
+                        {n.sale ? "Card sold" : n.title}
+                      </Link>
                     </h2>
-                    <p className="small-note">
-                      {n.type.replaceAll("_", " ")} ·{" "}
-                      {n.readAt ? "Read" : "Unread"}
-                    </p>
+                    {n.sale && (
+                      <>
+                        <p>{saleNotice(n.sale).body}</p>
+                        <p>{saleNotice(n.sale).detail}</p>
+                      </>
+                    )}
+                    <p className="small-note">{n.readAt ? "Read" : "Unread"}</p>
                     <LocalTimestamp value={n.createdAt} />
                     {!n.readAt && (
                       <div>
@@ -143,10 +157,6 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
             <input type="checkbox" disabled />
             <span>Email notifications are not available</span>
           </label>
-          <label className="check">
-            <input type="checkbox" disabled />
-            <span>Push notifications are not available yet</span>
-          </label>
           <p className="form-help">
             Optional categories are separate from essential account/system
             notices. Existing consent, quiet hours and caps still apply.
@@ -160,6 +170,7 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
           </button>
         </form>
       </section>
+      <WebPushSettings />
     </>
   );
 }

@@ -28,6 +28,9 @@ function Fixture() {
     >
       <SportProvider>
         <AppShell authenticated>
+          {location.pathname === "/fantasy/profile" && (
+            <div id="profile-install-slot" />
+          )}
           {state ? (
             <MemberTestWallet initial={state} surface="packs" />
           ) : (

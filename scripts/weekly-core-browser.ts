@@ -158,6 +158,8 @@ async function main() {
     };
     if (url.pathname === "/fixture-state")
       return json({ fantasy, wallet: wallet() });
+    if (url.pathname === "/api/fantasy/starter-history" && req.method === "GET")
+      return json({member:packMember.id,receipt:{id:"original-starter",name:"Starter Pack",opened_at:new Date(now-86400000*30).toISOString(),cards:cards.slice(0,7)}});
     if (url.pathname === "/api/fantasy" && req.method === "GET")
       return json({
         state: {
@@ -462,7 +464,7 @@ async function main() {
     failBalance = true;
     await page.goto(origin + "/fantasy/profile");
     await expect(page.locator(".workspace-balance")).toContainText(
-      "Balance unavailable",
+      "Balance refresh unavailable",
     );
     assert.ok(
       !(await page.locator(".workspace-balance").textContent())!.includes(

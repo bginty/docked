@@ -15,6 +15,7 @@ import {
   type CompletedAcquisition,
 } from "@/core/purchase-celebration";
 import { PurchaseCelebration } from "./purchase-celebration";
+import { CompactCollectible } from "./compact-collectible";
 type Row = MarketplaceView["rows"][number];
 type Review = {
   review: string;
@@ -36,8 +37,13 @@ export function Marketplace({ member }: { member: string }) {
   );
   const { sport } = useSport();
   const [params, setParams] = useState(new URLSearchParams()),
-    [data, setData] = useState<MarketplaceView | null>(null),
-    [error, setError] = useState(""),
+    [response, setResponse] = useState<{
+      key: string;
+      state: MarketplaceView;
+    } | null>(null),
+    [failure, setFailure] = useState<{ key: string; message: string } | null>(
+      null,
+    ),
     [loading, setLoading] = useState(true);
   const [card, setCard] = useState<ViewerCard | null>(null),
     [manage, setManage] = useState<Row | null>(null),
@@ -62,6 +68,8 @@ export function Marketplace({ member }: { member: string }) {
     query.delete("cursor");
   }
   const queryString = query.toString();
+  const data = response?.key === queryString ? response.state : null;
+  const error = failure?.key === queryString ? failure.message : "";
   const {
     busy,
     error: commandError,
@@ -94,12 +102,16 @@ export function Marketplace({ member }: { member: string }) {
         if (d.state.member !== member)
           throw Error("Account changed. Sign in again.");
         if (token === generation.current) {
-          setData(d.state);
-          setError("");
+          setResponse({ key: queryString, state: d.state });
+          setFailure(null);
         }
       } catch (e) {
         if (token === generation.current)
-          setError(e instanceof Error ? e.message : "Marketplace unavailable.");
+          setFailure({
+            key: queryString,
+            message:
+              e instanceof Error ? e.message : "Marketplace unavailable.",
+          });
       } finally {
         if (token === generation.current) setLoading(false);
       }
@@ -311,7 +323,24 @@ export function Marketplace({ member }: { member: string }) {
           </button>
         </form>
       )}
-      {loading && !data && <p role="status">Loading marketplace…</p>}
+      {!data && !error && (
+        <div
+          className="market-list-loading"
+          role="status"
+          aria-label="Loading marketplace"
+          aria-busy="true"
+        >
+          <span>Loading {tab === "activity" ? "activity" : "listings"}…</span>
+          {[0, 1, 2].map((n) => (
+            <div key={n} className="market-row-skeleton" aria-hidden="true" />
+          ))}
+        </div>
+      )}
+      {loading && data && (
+        <p className="small-note" role="status">
+          Updating marketplace…
+        </p>
+      )}
       {tab !== "activity" && data && (
         <section
           aria-label={tab === "listings" ? "My Listings" : "Browse listings"}
@@ -413,9 +442,8 @@ export function Marketplace({ member }: { member: string }) {
             {data.activity.map((a) => (
               <article key={a.id}>
                 <div className="market-thumbnail">
-                  <FantasyCardArtwork
+                  <CompactCollectible
                     card={a.card}
-                    faceOnly
                     onInspect={() => setCard(a.card)}
                   />
                 </div>

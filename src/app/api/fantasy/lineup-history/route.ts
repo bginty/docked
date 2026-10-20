@@ -11,6 +11,8 @@ export async function GET(request: Request) {
       {
         competition: id,
         finalised: round?.finalised ?? false,
+        fixtures: round?.fixtures ?? [],
+        serverTime: round?.serverTime ?? Date.now(),
         entry: round?.rows.find((r) => r.isMe) ?? null,
       },
       { headers },

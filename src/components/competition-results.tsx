@@ -520,7 +520,13 @@ export function CompetitionResults({
                     <dt>Adjusted points</dt>
                     <dd>{formatPoints(p.centipoints)}</dd>
                   </dl>
-                  <small>{playerScoreStatus(p.status)}</small>
+                  <small>
+                    {playerScoreStatus(
+                      p.status,
+                      p.fixtures,
+                      detail.round.serverTime ?? Date.now(),
+                    )}
+                  </small>
                   {p.parts.length > 0 && (
                     <details>
                       <summary>Scoring breakdown</summary>

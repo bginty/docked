@@ -1,0 +1,126 @@
+{
+  "results": [
+    {
+      "view": "activity",
+      "width": 360,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "activity",
+      "width": 360,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 360,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 360,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "wallet",
+      "width": 360,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "activity",
+      "width": 412,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "activity",
+      "width": 412,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 412,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 412,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "wallet",
+      "width": 412,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "activity",
+      "width": 1024,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "activity",
+      "width": 1024,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 1024,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 1024,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "wallet",
+      "width": 1024,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "activity",
+      "width": 1440,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "activity",
+      "width": 1440,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 1440,
+      "before": true,
+      "pass": true
+    },
+    {
+      "view": "packs",
+      "width": 1440,
+      "before": false,
+      "pass": true
+    },
+    {
+      "view": "wallet",
+      "width": 1440,
+      "before": false,
+      "pass": true
+    }
+  ],
+  "starterEmptyErrorRetry": true,
+  "mutations": "isolated fixtures only"
+}

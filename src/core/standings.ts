@@ -1,4 +1,5 @@
 export type StandingPlayer = {
+  fixtures?: { scheduledAt: string; status?: string }[];
   serial?: number;
   max_supply?: number;
   slot: string;

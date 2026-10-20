@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   createContext,
+  Suspense,
   useContext,
   useEffect,
   useRef,
@@ -15,6 +16,7 @@ import { WorkspaceWalletProvider } from "./use-workspace-wallet";
 import { WorkspaceWalletLink } from "./workspace-wallet-link";
 import { FantasyLogo } from "./fantasy-brand";
 import { StartupReady } from "./startup-loading";
+import { WorkspacePageTitle } from "./workspace-page-title";
 import { useEnvironmentPresentation } from "./environment-context";
 const nav: { href: string; label: string; icon: AppIconName }[] = [
   { href: "/fantasy/play", label: "Play", icon: "trophy" },
@@ -198,13 +200,23 @@ export function AppShell({
               )}
             </div>
             <strong className="workspace-location">
-              {path.startsWith("/admin/operations")
-                ? "Owner operations"
-                : path.startsWith("/admin")
-                  ? "Staff operations"
-                  : path.startsWith("/fantasy/prizes")
-                    ? "Prizes"
-                    : nav.find((n) => n.href === destination)?.label}
+              {path.startsWith("/admin/operations") ? (
+                "Owner operations"
+              ) : path.startsWith("/admin") ? (
+                "Staff operations"
+              ) : path.startsWith("/fantasy/prizes") ? (
+                "Prizes"
+              ) : (
+                <Suspense
+                  fallback={nav.find((n) => n.href === destination)?.label}
+                >
+                  <WorkspacePageTitle
+                    fallback={
+                      nav.find((n) => n.href === destination)?.label ?? "Docked"
+                    }
+                  />
+                </Suspense>
+              )}
             </strong>
             <nav aria-label="App utilities">
               <span id="workspace-wallet-slot">

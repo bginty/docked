@@ -449,6 +449,14 @@ export async function communityNotifications(): Promise<CommunityNotifications> 
         await c.tx`select count(*)::int as count from private.social_notifications n where (n.type in ('comment','reply','reaction','follower','followed_post') or (n.type='account' and n.group_key in ('redemption','card-offers','market-sales'))) and n.recipient_id=${c.profileId} and n.read_at is null and n.expires_at>now() and (n.type<>'leaderboard' or private.community_feature_allowed(${c.who.user.id},'leaderboards')) and (n.actor_id is null or private.social_profile_visible(${c.profileId},n.actor_id,false)) and (n.post_id is null or private.social_post_visible(${c.profileId},n.post_id))`;
       const pref =
         await c.tx`select * from private.social_notification_preferences where profile_id=${c.profileId}`;
+      const saleReceipts =
+        process.env.DOCKED_BETA_STAGING === "true"
+          ? ((await c.tx`select credits_sandbox.my_sale_receipts() receipts`)[0]
+              .receipts as Record<
+              string,
+              import("@/core/sale-notice").SaleNotice
+            >)
+          : {};
       return {
         items: rows.map((r) => ({
           id: String(r.id),
@@ -458,6 +466,16 @@ export async function communityNotifications(): Promise<CommunityNotifications> 
           createdAt: iso(r.created_at),
           readAt: r.read_at ? iso(r.read_at) : null,
           groupKey: String(r.group_key),
+          ...(String(r.group_key) === "market-sales"
+            ? {
+                sale: saleReceipts[
+                  new URL(
+                    String(r.href),
+                    "https://docked.invalid",
+                  ).searchParams.get("sale") ?? ""
+                ],
+              }
+            : {}),
         })),
         unread: Number(unread[0].count),
         preferences: pref[0] ? preferences(pref[0]) : null,

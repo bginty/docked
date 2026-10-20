@@ -162,6 +162,14 @@ test("integrated catalogue, future prize templates, authorised export and durabl
         .length,
       0,
     );
+    await q("select set_config('request.jwt.claim.sub',$1,false)", [
+      marketActors[0].id,
+    ]);
+    const endpoint = "https://fcm.googleapis.com/fcm/send/isolated-test";
+    await q("select credits_sandbox.manage_web_push($1,$2,true)", [
+      endpoint,
+      { p256dh: "A".repeat(87), auth: "B".repeat(22) },
+    ]);
     const buy = {
       kind: "buy",
       listing: "listing-local",
@@ -179,6 +187,74 @@ test("integrated catalogue, future prize templates, authorised export and durabl
     await q("update credits_sandbox.state set document=$1", [s]);
     run(1, "buy-local", buy);
     await q("update credits_sandbox.state set document=$1", [s]);
+    assert.equal(
+      (
+        await q(
+          "select count(*)::int n from credits_sandbox.sale_push_deliveries",
+        )
+      )[0].n,
+      1,
+      "one push per sale and opted-in subscription",
+    );
+    const jobs = (await q("select credits_sandbox.claim_sale_push() jobs"))[0]
+      .jobs;
+    assert.equal(jobs.length, 1);
+    assert.deepEqual(
+      (await q("select credits_sandbox.claim_sale_push() jobs"))[0].jobs,
+      [],
+      "overlapping worker cannot claim lease twice",
+    );
+    await q("select credits_sandbox.finish_sale_push($1,$2,$3,'retry')", [
+      jobs[0].listing,
+      jobs[0].subscription,
+      jobs[0].lease,
+    ]);
+    await q(
+      "update credits_sandbox.sale_push_deliveries set available_at=now()-interval '1 second'",
+    );
+    const retry = (await q("select credits_sandbox.claim_sale_push() jobs"))[0]
+      .jobs[0];
+    await q("select credits_sandbox.finish_sale_push($1,$2,$3,'sent')", [
+      retry.listing,
+      retry.subscription,
+      jobs[0].lease,
+    ]);
+    assert.equal(
+      (await q("select status from credits_sandbox.sale_push_deliveries"))[0]
+        .status,
+      "sending",
+      "stale worker cannot acknowledge new lease",
+    );
+    await q("select credits_sandbox.finish_sale_push($1,$2,$3,'sent')", [
+      retry.listing,
+      retry.subscription,
+      retry.lease,
+    ]);
+    assert.deepEqual(
+      (await q("select credits_sandbox.claim_sale_push() jobs"))[0].jobs,
+      [],
+    );
+    assert.equal(
+      (await q("select credits_sandbox.my_sale_receipts() receipts"))[0]
+        .receipts["listing-local"].net,
+      950,
+    );
+    await q("select set_config('request.jwt.claim.sub',$1,false)", [
+      marketActors[1].id,
+    ]);
+    assert.deepEqual(
+      (await q("select credits_sandbox.my_sale_receipts() receipts"))[0]
+        .receipts,
+      {},
+    );
+    await assert.rejects(
+      () =>
+        q("select credits_sandbox.manage_web_push($1,$2,true)", [
+          endpoint,
+          { p256dh: "A".repeat(87), auth: "B".repeat(22) },
+        ]),
+      /another account/,
+    );
     assert.equal(
       (await q("select * from credits_sandbox.sale_notification_outbox"))
         .length,
@@ -236,6 +312,14 @@ test("integrated catalogue, future prize templates, authorised export and durabl
       [],
     );
     await pg.exec("set role authenticated");
+    await assert.rejects(
+      () => q("select * from credits_sandbox.web_push_subscriptions"),
+      /permission/,
+    );
+    await assert.rejects(
+      () => q("select credits_sandbox.claim_sale_push()"),
+      /permission/,
+    );
     await assert.rejects(
       () => q("select * from credits_sandbox.sale_notification_outbox"),
       /permission/,

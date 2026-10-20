@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { boundedFetch } from "@/core/bounded-request";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import PackOpening from "./pack-opening";
@@ -11,32 +10,43 @@ export function StarterPackHistory({ member }: { member: string }) {
     [status, setStatus] = useState("Loading Starter Pack…"),
     [open, setOpen] = useState(false),
     [card, setCard] = useState<AwardedCard | null>(null);
+  const [attempt, retry] = useState(0);
+  const [failed, setFailed] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
     setReceipt(null);
     setOpen(false);
-    void boundedFetch("/api/fantasy", {
+    setStatus("Loading Starter Pack…");
+    setFailed(false);
+    void boundedFetch("/api/fantasy/starter-history", {
       cache: "no-store",
       signal: controller.signal,
     })
       .then(async (r) => {
         const data = await r.json();
-        if (!r.ok || data.state?.user_id !== member) throw Error();
+        if (!r.ok || data.member !== member)
+          throw Error(data.error || "Starter history could not load.");
         if (!controller.signal.aborted) {
-          setReceipt(data.state.starter_receipt ?? null);
+          setReceipt(data.receipt ?? null);
           setStatus(
-            data.state.starter_receipt
+            data.receipt
               ? "Your original cards · replay anytime"
-              : "Find your Starter Pack in Cards.",
+              : "No original Starter Pack receipt is available for this account. Your existing collection is unchanged.",
           );
         }
       })
-      .catch(() => {
-        if (!controller.signal.aborted)
-          setStatus("Pack history couldn’t load. Try again later.");
+      .catch((error) => {
+        if (!controller.signal.aborted) {
+          setFailed(true);
+          setStatus(
+            error instanceof Error
+              ? error.message
+              : "Pack history couldn’t load.",
+          );
+        }
       });
     return () => controller.abort();
-  }, [member]);
+  }, [member, attempt]);
   return (
     <section className="fantasy-panel">
       <h3>Original Starter Pack</h3>
@@ -48,14 +58,14 @@ export function StarterPackHistory({ member }: { member: string }) {
         >
           Replay Starter Pack
         </button>
-      ) : (
-        <Link
+      ) : failed ? (
+        <button
           className="pack-control secondary"
-          href="/fantasy/cards#starter-pack"
+          onClick={() => retry((n) => n + 1)}
         >
-          View Starter Pack
-        </Link>
-      )}
+          Retry starter history
+        </button>
+      ) : null}
       {open && receipt && (
         <PackOpening
           userId={member}

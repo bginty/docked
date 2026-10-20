@@ -202,7 +202,7 @@ async function main() {
         fullPage: true,
       });
       const buy = page.getByRole("button", {
-        name: "Buy Premium",
+        name: "Buy Premium 9 Pack",
         exact: true,
       });
       await buy.click();
@@ -268,7 +268,7 @@ async function main() {
       await expect(page.locator(".pack-history-row")).toHaveCount(1);
       await page.reload();
       await expect(
-        page.getByRole("heading", { name: "Purchase history" }),
+        page.getByRole("heading", { name: "Pack history" }),
       ).toBeVisible();
       await page.getByRole("button", { name: "Replay", exact: true }).click();
       await expect(page.getByText("REPLAY · NO NEW AWARDS")).toBeVisible();
@@ -308,7 +308,7 @@ async function main() {
     await page.goto(origin + "/fantasy/test-wallet?view=packs");
     rejectPurchase = true;
     await page
-      .getByRole("button", { name: "Buy Premium", exact: true })
+      .getByRole("button", { name: "Buy Premium 9 Pack", exact: true })
       .click();
     await page
       .getByRole("button", { name: "Confirm Purchase", exact: true })
@@ -320,7 +320,7 @@ async function main() {
     await page.getByRole("button", { name: "Cancel", exact: true }).click();
     loseResponse = true;
     await page
-      .getByRole("button", { name: "Buy Premium", exact: true })
+      .getByRole("button", { name: "Buy Premium 9 Pack", exact: true })
       .click();
     await page
       .getByRole("button", { name: "Confirm Purchase", exact: true })
@@ -346,39 +346,69 @@ async function main() {
       page.getByRole("heading", { name: "EPL · Coming soon" }),
     ).toBeVisible();
     await expect(
-      page.getByRole("button", { name: "Buy Premium", exact: true }),
+      page.getByRole("button", { name: "Buy Premium 9 Pack", exact: true }),
     ).toHaveCount(0);
-    await page.getByRole("combobox", {name:"Active sport",exact:true}).selectOption("nfl");
-    await expect(page.getByRole("heading", {name:"NFL Packs"})).toBeVisible();
-    assert.equal(await page.evaluate(()=>localStorage.getItem("docked:active-sport")),"nfl");
-    await page.goto(origin+"/fantasy/cards");
-    await expect(page.getByRole("combobox",{name:"Active sport",exact:true})).toHaveValue("nfl");
-    await page.goto(origin+"/fantasy/profile");
-    await expect(page.getByRole("button",{name:"Install Docked web app"})).toHaveCount(0);
-    const offerInstall = () => page.evaluate(`(() => {
+    await page
+      .getByRole("combobox", { name: "Active sport", exact: true })
+      .selectOption("nfl");
+    await expect(
+      page.getByRole("heading", { name: "NFL Packs" }),
+    ).toBeVisible();
+    assert.equal(
+      await page.evaluate(() => localStorage.getItem("docked:active-sport")),
+      "nfl",
+    );
+    await page.goto(origin + "/fantasy/cards");
+    await expect(
+      page.getByRole("combobox", { name: "Active sport", exact: true }),
+    ).toHaveValue("nfl");
+    await page.goto(origin + "/fantasy/profile");
+    await expect(
+      page.getByRole("button", { name: "Install Docked", exact: true }),
+    ).toHaveCount(0);
+    const offerInstall = () =>
+      page.evaluate(`(() => {
       const event = new Event("beforeinstallprompt",{cancelable:true});
       Object.assign(event,{prompt:async()=>{Object.assign(window,{installRequested:true});},userChoice:Promise.resolve({outcome:"accepted"})});
       window.dispatchEvent(event);
     })()`);
     await offerInstall();
-    await expect(page.getByRole("button",{name:"Install Docked web app"})).toBeVisible();
-    assert.equal(await page.evaluate(()=>"installRequested" in window),false);
-    await page.getByRole("button",{name:"Install Docked web app"}).click();
-    await expect(page.getByRole("button",{name:"Install Docked web app"})).toHaveCount(0);
-    await offerInstall();await page.evaluate(()=>window.dispatchEvent(new Event("appinstalled")));
-    await expect(page.getByRole("button",{name:"Install Docked web app"})).toHaveCount(0);
-    await page.goto(origin+"/fantasy/test-wallet?view=packs");await offerInstall();
-    await expect(page.getByRole("button",{name:"Install Docked web app"})).toHaveCount(0);
+    await expect(
+      page.getByRole("button", { name: "Install Docked", exact: true }),
+    ).toBeVisible();
+    assert.equal(
+      await page.evaluate(() => "installRequested" in window),
+      false,
+    );
+    await page
+      .getByRole("button", { name: "Install Docked", exact: true })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Install Docked", exact: true }),
+    ).toHaveCount(0);
+    await offerInstall();
+    await page.evaluate(() => window.dispatchEvent(new Event("appinstalled")));
+    await expect(
+      page.getByRole("button", { name: "Install Docked", exact: true }),
+    ).toHaveCount(0);
+    await page.goto(origin + "/fantasy/test-wallet?view=packs");
+    await offerInstall();
+    await expect(
+      page.getByRole("button", { name: "Install Docked", exact: true }),
+    ).toHaveCount(0);
     results.push({
       errorsAndLostResponse: true,
       motionToggle: true,
       unsupportedSport: true,
-      sportPersistence:true,
-      installGating:true,
+      sportPersistence: true,
+      installGating: true,
     });
     writeFileSync(`${out}/browser.json`, JSON.stringify({ results }, null, 2));
-    writeFileSync("docs/qa/pack-shopping/latest-browser.json",JSON.stringify({out,results},null,2));
-    console.log(JSON.stringify({out,results}));
+    writeFileSync(
+      "docs/qa/pack-shopping/latest-browser.json",
+      JSON.stringify({ out, results }, null, 2),
+    );
+    console.log(JSON.stringify({ out, results }));
   } catch (error) {
     console.error(error);
     if (lastPage && !lastPage.isClosed()) {

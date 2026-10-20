@@ -2,11 +2,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 import type { StandingRow } from "@/core/standings";
+import { playerScoreStatus } from "@/core/round-status";
+import { useServerClock } from "./use-server-clock";
 export function WeeklyLineupResult({ competition }: { competition: string }) {
   const [data, setData] = useState<{
       competition: string;
       finalised: boolean;
       entry: StandingRow | null;
+      fixtures: { scheduledAt: string; status?: string }[];
+      serverTime: number;
     } | null>(null),
     [error, setError] = useState("");
   const generation = useRef(0);
@@ -46,6 +50,13 @@ export function WeeklyLineupResult({ competition }: { competition: string }) {
     };
   }, [read]);
   const current = data?.competition === competition ? data : null;
+  const initialClock = useRef(Date.now());
+  const now = useServerClock(current?.serverTime ?? initialClock.current);
+  const pendingLabel = playerScoreStatus(
+    "pending-data",
+    current?.fixtures,
+    now,
+  );
   return (
     <div className="weekly-lineup-result" aria-busy={!current && !error}>
       {error && (
@@ -68,7 +79,7 @@ export function WeeklyLineupResult({ competition }: { competition: string }) {
               Team total:{" "}
               <strong>
                 {current.entry.centipoints === null
-                  ? "Awaiting player statistics"
+                  ? pendingLabel
                   : (current.entry.centipoints / 100).toLocaleString("en-AU", {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
@@ -79,14 +90,16 @@ export function WeeklyLineupResult({ competition }: { competition: string }) {
               current.entry.centipoints !== null &&
               current.entry.status === "final"
                 ? "Final"
-                : "Provisional"}
+                : pendingLabel === "Game not started"
+                  ? "Upcoming"
+                  : "Results not final"}
             </p>
             <ul className="historical-lineup-scores">
               {current.entry.lineup?.map((p) => (
                 <li key={p.slot}>
                   {p.slot} · {p.name}:{" "}
                   {p.centipoints === null
-                    ? "Awaiting player statistics"
+                    ? playerScoreStatus(p.status, p.fixtures, now)
                     : (p.centipoints / 100).toFixed(2)}
                 </li>
               ))}

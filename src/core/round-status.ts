@@ -1,12 +1,35 @@
-export function playerScoreStatus(status: string) {
+export function playerScoreStatus(
+  status: string,
+  fixtures: { scheduledAt: string; status?: string }[] = [],
+  now = Date.now(),
+) {
+  if (status === "dnp") return "Did not play";
+  if (status === "bye") return "Bye";
+  if (
+    fixtures.some((f) =>
+      ["postponed", "cancelled", "under-review"].includes(f.status ?? ""),
+    )
+  )
+    return "Results under review";
+  if (
+    fixtures.length &&
+    fixtures.every(
+      (f) =>
+        Date.parse(f.scheduledAt) > now &&
+        !["live", "in_progress", "final", "completed"].includes(f.status ?? ""),
+    )
+  )
+    return "Game not started";
+  if (fixtures.some((f) => ["live", "in_progress"].includes(f.status ?? "")))
+    return "Game in progress · scores available after the game";
   return (
     (
       {
         "pending-data": "Awaiting player statistics",
         pending: "Awaiting player statistics",
-        provisional: "Provisional",
+        provisional: "Results under review",
         final: "Final",
-        "under-review": "Under review",
+        "under-review": "Results under review",
         bye: "Bye",
         dnp: "Did not play",
       } as Record<string, string>
@@ -58,6 +81,6 @@ export function roundProgress(input: {
     label,
     started,
     total: input.fixtures.length,
-    provisional: label !== "Final results",
+    provisional: started > 0 && label !== "Final results",
   };
 }

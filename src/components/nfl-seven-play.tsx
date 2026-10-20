@@ -656,7 +656,11 @@ export function NflSevenPlay({
             {data.competitions.find(
               (c) => c.id === rollover.source_competition_id,
             )?.name ?? "the previous week"}{" "}
-            as a draft. Review and enter this week separately.
+            {entry
+              ? draft?.dirty
+                ? "and entered. Your latest edits are unsaved; the confirmed entry remains in place."
+                : "and entered for this week."
+              : "as a draft. Review and enter this week separately."}
           </p>
           {!!rollover.omitted.length && (
             <details>
@@ -1079,7 +1083,11 @@ export function NflSevenPlay({
             </p>
             <small>
               {locks.size} / {entry?.snapshot.length ?? picks.length} selected
-              players locked{!comp.scored_at ? " · Totals provisional" : ""}
+              players locked
+              {!comp.scored_at &&
+              fixtures.some((f) => Date.parse(f.scheduledAt) <= now)
+                ? " · Results not final"
+                : ""}
             </small>
             <Link
               className="play-secondary"

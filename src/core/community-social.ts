@@ -82,6 +82,7 @@ export type SocialPost = {
   comments: SocialComment[];
 };
 export type SocialNotification = {
+  sale?: import("./sale-notice").SaleNotice;
   id: string;
   type: string;
   title: string;
