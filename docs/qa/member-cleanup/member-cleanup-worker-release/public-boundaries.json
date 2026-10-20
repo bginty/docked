@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-20T00:49:18.048Z",
+  "rows": [
+    {
+      "path": "/api/fantasy",
+      "status": 401,
+      "privateNoStore": true
+    },
+    {
+      "path": "/api/fantasy/starter-history",
+      "status": 401,
+      "privateNoStore": true
+    },
+    {
+      "path": "/api/notifications/push",
+      "status": 401,
+      "privateNoStore": true
+    },
+    {
+      "path": "/api/notifications/sale-push-worker",
+      "status": 401,
+      "privateNoStore": true
+    },
+    {
+      "path": "/api/fantasy/lineup-history?competition=d3da95b4-a72a-4b40-87d9-09b562d92277",
+      "status": 401,
+      "privateNoStore": true
+    },
+    {
+      "domain": "docked.com.au",
+      "commit": "6729488633562e2efcebae233c8b63c11c91f562",
+      "deployment": "dpl_4iS6sRGWUs4y51yAkHUxzFnvKGWq"
+    },
+    {
+      "domain": "www.docked.com.au",
+      "commit": "6729488633562e2efcebae233c8b63c11c91f562",
+      "deployment": "dpl_4iS6sRGWUs4y51yAkHUxzFnvKGWq"
+    }
+  ]
+}

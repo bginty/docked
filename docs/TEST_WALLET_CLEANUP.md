@@ -51,3 +51,18 @@ Screenshots in `docs/qa/member-cleanup/`: wallet collapsed/expanded at each widt
 Rollback the web deployment to `dpl_5D5ixunTWgMxS9qpNU2DNWX38rtJ` (source `5444866442f674195860d5334a1e3266238136da`) if required. Added tables may remain safely disabled; do not drop receipts, subscriptions or delivery history. Remove/disable any future push scheduler separately if delivery is activated later. Deployment receipts and final build/check results are recorded alongside QA evidence.
 
 Hosted boundary verification caught the new push worker under the permanently retired `/api/internal` namespace (HTTP 410). The worker moved to `/api/notifications/sale-push-worker`, retaining its bearer-secret guard. Retired APIs remain disabled. This was corrected before any push activation.
+
+## Live delivery
+
+Deployed source: `ce655244f5dc0b1dcde0b333e9750c1e69a360de`.
+Deployment: `dpl_3VbmjgymveXk8Hrvptu4vgm8sdqa`, Sydney region.
+Live URL: https://docked.com.au/fantasy/test-wallet.
+Protected candidate: https://docked-production-rfpmp0rc5-briant-s-projects.vercel.app.
+
+Both live domains were checked against the expected source/deployment identity. Unauthenticated fantasy, starter-history, notification subscription, push-worker and lineup-history routes return HTTP 401 with private/no-store caching. An initial check ran during alias propagation and saw the prior deployment; checks passed after promotion completed. The candidate fetch connector interpreted application HTTP 401 responses as protection errors, so final auth-boundary checks used the live domains directly.
+
+Read-only authenticated browser checks confirmed the compact wallet, initially collapsed history, six shortcut destinations, global/local balance agreement and recorded historical sale fees. Week 7 Traditional is Entered with no draft-entry instruction; all seven selected players and the final Rankings rows say Game not started. Entry details use the same wording. Original Starter Pack history resolves to its saved replay action. Activity progresses from loading to populated records. In-app sale notices show readable rarity/serial and actual amounts; push explicitly reports awaiting configuration. No real purchases, listing changes, account settings or test notifications were performed.
+
+The source migration is recorded on the hosted database as `20261020003948_member_cleanup_read_models`. Wallet-state and entry hashes were identical before and after migration; the new subscription/delivery tables were empty and browser access to worker claims was denied. Scoring, owned assets and transaction settlement were not changed.
+
+Remaining delivery work is only the documented push configuration/scheduler/device verification. Physical Samsung/iOS acceptance is still not claimed. The new UI can be loaded by refreshing, or using Update app after saving any draft.

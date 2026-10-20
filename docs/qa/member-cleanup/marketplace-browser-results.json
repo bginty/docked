@@ -1,0 +1,13 @@
+{
+  "kind": "Component HTTP test; simulated identity and in-memory persistence, NOT Auth/Postgres E2E",
+  "checks": [
+    "Exact-card dialog; cancel creates nothing",
+    "Listing persists once; active-only My Listings; already-open other browser updates by polling",
+    "Versioned repricing and removal update both browsers without logout",
+    "Browser Back closes sheet; stale version clears consent even after price returns to original amount",
+    "Lost purchase response recovers once; gross 1000 / fee 50 / seller 950; ownership and journal reconcile",
+    "Activity filters, snapshot identity, 1440/1024/412/360 no overflow, critical/serious axe checks",
+    "Read failure is distinct from empty feed; retry recovers"
+  ],
+  "errors": []
+}
