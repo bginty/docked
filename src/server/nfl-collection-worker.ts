@@ -7,7 +7,7 @@ import {
   observeNflCompletions,
 } from "./nflverse-bundle";
 import { connectLockedNflEntries } from "./nfl-member-rounds";
-import { reconcileNflBundle } from "./nfl-postgame-reconcile";
+import { prepareNflBundleReconciliation } from "./nfl-postgame-reconcile";
 import permit from "../../config/nfl-postgame-permit.json";
 import { postgameMappingFromRound } from "../core/postgame-nflverse";
 
@@ -37,7 +37,7 @@ export async function runNflCollection(
     } else {
       await sql`select sports_feed.nfl_lock_due()`;
       const [round] =
-        await sql`update sports_feed.nfl_rounds set lease_until=clock_timestamp()+interval '3 minutes'
+        await sql`update sports_feed.nfl_rounds set lease_until=clock_timestamp()+interval '6 minutes'
         where competition_id=(select competition_id from sports_feed.nfl_rounds where purpose='member' and locked_at is not null and next_check<=clock_timestamp() and (lease_until is null or lease_until<clock_timestamp()) order by next_check for update skip locked limit 1) returning *`;
       if (!round) detail = { status: "idle" };
       else {
@@ -54,6 +54,12 @@ export async function runNflCollection(
           // observation. Observations are unique by game/raw revision, so retries
           // preserve first_observed_at and cannot manufacture earlier completion.
           await observeNflCompletions(sql, Number(pbp.raw_id));
+          const reconcile = await prepareNflBundleReconciliation(
+            sql,
+            Number(weekly.raw_id),
+            Number(pbp.raw_id),
+            season,
+          );
           for (const fixture of round.fixtures as Record<string, unknown>[]) {
             const mapping = postgameMappingFromRound(fixture);
             const [complete] =
@@ -65,15 +71,10 @@ export async function runNflCollection(
               continue;
             }
             try {
-              const out = await reconcileNflBundle(
-                sql,
-                round.stream_id,
-                Number(weekly.raw_id),
-                Number(pbp.raw_id),
-                mapping,
-                permit,
-                { id: "scheduled-nfl-postgame", role: "importer" },
-              );
+              const out = await reconcile(round.stream_id, mapping, permit, {
+                id: "scheduled-nfl-postgame",
+                role: "importer",
+              });
               issues.push(...out.issues.map((s) => `${mapping.gameId}: ${s}`));
             } catch {
               issues.push(
