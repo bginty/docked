@@ -248,7 +248,7 @@ async function main() {
           "/fantasy/results?mode=SALARY_CAP&period=weekly&season=2026&week=2",
       );
       await expect(
-        page.getByRole("heading", { name: "Standings", exact: true }),
+        page.getByRole("heading", { name: "Rankings", exact: true }),
       ).toBeVisible();
       await shot("weekly");
       await page.getByRole("button", { name: "Find My Team" }).click();

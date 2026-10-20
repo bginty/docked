@@ -377,13 +377,13 @@ export function CompetitionResults({
                   <td>{formatPoints(r.centipoints)}</td>
                   {period === "weekly" && (
                     <td>
-                      {r.status === "final"
-                        ? "Final"
-                        : r.status === "provisional"
-                          ? "Provisional"
-                          : r.status === "under-review"
-                            ? "Under review"
-                            : "Pending"}
+                      {r.status === "under-review"
+                        ? "Results under review"
+                        : playerScoreStatus(
+                            r.status,
+                            round?.fixtures,
+                            round?.serverTime ?? Date.now(),
+                          )}
                     </td>
                   )}
                   <td>

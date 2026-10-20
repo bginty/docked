@@ -40,6 +40,7 @@ Web Push follows the [web-push library API](https://github.com/web-push-libs/web
 - Final typecheck, lint, production build and existing client-boundary scan passed. No credential canaries were injected into this local build. A final database integration rerun also passed after making the subscription upsert ownership-conditional under concurrent requests.
 - One initial wallet visual runner failed because axe requires an explicit browser context; corrected and rerun. Visual review also found and corrected legacy balance-font and mobile pack-font collisions before final captures.
 - Physical Android/iOS devices and real push delivery were not exercised. Browser layouts and installed-app-related safe-area/shared navigation styles were checked through isolated fixtures; do not equate this with a physical device push test.
+- Final Rankings row status now reuses fixture-based wording too. The Play/picker/Rankings browser journey passed at four viewports after correcting its obsolete “Standings” heading expectation. Shared status tests, lint and a fresh production build passed after this final display change.
 
 Screenshots in `docs/qa/member-cleanup/`: wallet collapsed/expanded at each width, Activity before/after and pack-history before/after. Before images use the prior committed renderer/CSS (`fddd6ff5`), with identical isolated records. No real member balances are used in these captures.
 
