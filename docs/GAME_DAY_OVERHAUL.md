@@ -131,7 +131,8 @@ scheduler handoff and end-to-end production score recovery remain unverified.
   with Windows native error `3221225477`. That test passed when rerun alone.
   The new round-wide privacy/write tests passed in both targeted and full runs.
 - New read-model tests cover full scores, explicit DNP zero, unresolved players,
-  completed counts, owner diagnostic denial and existing lock/privacy controls.
+  completed counts, owner diagnostic denial and authorized owner output, and
+  existing lock/privacy controls.
 - Existing scoring tests cover repeat imports, corrections, late changes and
   finalized-result protection.
 - Typecheck, lint and production build passed.
@@ -148,6 +149,28 @@ Evidence is in `docs/qa/game-day/`. `before-*` images are actual renders from th
 prior isolated UI fixture, not screenshots of another member's private account.
 `game-day-play-*`, `weekly-*`, and `community-team-*` show the revised UI.
 `browser.json` and `parser-performance.json` record automated results.
+
+| Mobile evidence | Before | After |
+| --- | --- | --- |
+| Play | [Previous Play](qa/game-day/before-play-412.png) | [Game Day](qa/game-day/game-day-play-412.png) |
+| Rankings | [Previous Rankings](qa/game-day/before-weekly-412.png) | [Rankings](qa/game-day/weekly-412.png) |
+| Community team | — | [View Team](qa/game-day/community-team-412.png) |
+| New round-wide policy | — | [Locked before later games](qa/game-day/round-wide-play-412.png) |
+
+## Protected Preview
+
+[Open the protected Preview](https://docked-production-eg3uy0p09-briant-s-projects.vercel.app/fantasy/play).
+Vercel reports READY for source commit
+`6e0ed4da1b1764f3d6d1b07e92317b3aa4856616`, deployment
+`dpl_3HiZ2WXMctk3Jc4k5RzYnG4TTKn2`. This is a Preview target, with no aliases
+or custom-domain promotion. Existing Vercel protection and Docked authentication
+remain enabled. The production collector flag is explicitly false here.
+Deployment receipts are in `docs/qa/game-day-preview/`.
+Authenticated Vercel transport checks reached Docked: an unsigned standings GET
+returned `401` with “Please sign in again.”; an unsigned collector POST returned
+`403 Denied`. Page routes responded successfully. No member login/MFA was bypassed
+and no collector job was started. The public live release still reported commit
+`ce655244f5dc0b1dcde0b333e9750c1e69a360de`.
 
 ## Remaining acceptance gates
 

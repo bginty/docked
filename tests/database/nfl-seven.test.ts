@@ -738,6 +738,22 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       true,
       "noncompetitor cannot inspect round-wide teams",
     );
+    await q(
+      `select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims','{"aal":"aal2"}',false)`,
+      [u],
+    );
+    await q(`insert into beta_private.roles(user_id,role) values($1,'owner')`, [
+      u,
+    ]);
+    await pg.exec(
+      `create or replace function beta_private.owner_gameplay_identity(p_user uuid) returns boolean language sql as $$select true$$`,
+    );
+    const diagnostics = (
+      await q(`select sports_feed.owner_scoring_diagnostics() data`)
+    )[0].data;
+    assert.ok(Array.isArray(diagnostics.runs));
+    assert.ok(Array.isArray(diagnostics.sources));
+    assert.ok(diagnostics.rounds.some((r: any) => r.competition === wide));
   } finally {
     await pg.close();
   }

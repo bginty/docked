@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-20T04:48:51.367Z",
+  "host": "https://docked-production-eg3uy0p09-briant-s-projects.vercel.app",
+  "checks": [
+    {
+      "path": "/api/fantasy/standings",
+      "method": "GET",
+      "status": 401,
+      "expected": 401,
+      "passed": true,
+      "body": {
+        "error": "Please sign in again."
+      }
+    },
+    {
+      "path": "/api/scoring/collect?task=reconcile",
+      "method": "POST",
+      "status": 403,
+      "expected": 403,
+      "passed": true,
+      "body": "Denied"
+    }
+  ]
+}
