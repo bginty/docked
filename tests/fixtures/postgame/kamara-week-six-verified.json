@@ -1,0 +1,224 @@
+{
+  "capturedOnUtc": "2026-10-20",
+  "source": "Read-only published history and competition journal audit; no member identifiers",
+  "history": {
+    "payload": {
+      "week": 6,
+      "stats": {
+        "receptions": 2,
+        "fumbles_lost": 0,
+        "passing_yards": 0,
+        "rushing_yards": 34,
+        "total_fumbles": 0,
+        "receiving_yards": 35,
+        "passing_attempts": 0,
+        "rushing_attempts": 7,
+        "receiving_targets": 4,
+        "passing_touchdowns": 0,
+        "rushing_touchdowns": 0,
+        "passing_completions": 0,
+        "interceptions_thrown": 0,
+        "receiving_touchdowns": 1,
+        "passing_two_point_conversions": 0,
+        "rushing_two_point_conversions": 0,
+        "receiving_two_point_conversions": 0
+      },
+      "fields": {
+        "receptions": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "fumbles_lost": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "passing_yards": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "rushing_yards": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "total_fumbles": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "receiving_yards": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "passing_attempts": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "rushing_attempts": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "receiving_targets": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "passing_touchdowns": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "rushing_touchdowns": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "passing_completions": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "interceptions_thrown": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "receiving_touchdowns": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "passing_two_point_conversions": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "rushing_two_point_conversions": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        },
+        "receiving_two_point_conversions": {
+          "current": true,
+          "observed_at": 1792359919.30222,
+          "availability": "confirmed",
+          "source_updated_at": 1792357522
+        }
+      },
+      "season": 2026,
+      "source": "nflverse",
+      "game_id": "g_3f77f5cb30c84aa5bc3590f1b9e09d32",
+      "removed": false,
+      "team_id": "t_64d9178677874f4fb0257d7667c61d87",
+      "complete": true,
+      "revision": 1,
+      "corrected": false,
+      "player_id": "p_1b8a6bf0ecaa474ca16628e4adbeb756",
+      "synthetic": false,
+      "fetched_at": 1792359919.30222,
+      "source_url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.csv",
+      "game_status": "final",
+      "ingested_at": 1792360014.1771433,
+      "provisional": false,
+      "season_type": "REG",
+      "game_complete": true,
+      "participation": "stat_recorded",
+      "schema_version": "1.0",
+      "source_updated_at": 1792357522,
+      "fumbles_lost_scope": "all plays credited to player; no duplicated category totals"
+    },
+    "game_payload": {
+      "id": "g_3f77f5cb30c84aa5bc3590f1b9e09d32",
+      "week": 6,
+      "season": 2026,
+      "status": "final",
+      "usable": true,
+      "away_id": "t_64d9178677874f4fb0257d7667c61d87",
+      "home_id": "t_1c425b73eeec4f9aa10d47b6856cbc14",
+      "kickoff": 1792342800,
+      "complete": 1,
+      "away_name": "NO",
+      "freshness": {
+        "stale": false,
+        "last_attempt": 1792532740.373739,
+        "retrieved_at": 1792532740.373739,
+        "source_updated_at": 1792506052,
+        "dataset_checked_at": 1792532740.373739,
+        "source_update_scope": "season dataset publication, not game event time",
+        "upstream_freshness_guaranteed": false,
+        "latest_checked_source_updated_at": 1792506052
+      },
+      "home_name": "NYG",
+      "final_seen": 1792359915.2807822,
+      "last_error": null,
+      "last_fetch": 1792532740.373739,
+      "observed_at": 1792532740.373739,
+      "season_type": "REG",
+      "stats_state": "available",
+      "last_success": 1792532740.373739,
+      "record_count": 71,
+      "game_revision": 11685,
+      "last_schedule": 1792532740.373739,
+      "source_updated": 1792506052,
+      "status_evidence": "published schedule result",
+      "publication_note": null,
+      "stats_changed_at": 1792360014.1771433,
+      "stats_checked_at": 1792532740.373739,
+      "stats_source_updated": 1792506052
+    },
+    "position": "RB",
+    "generation": "4bad67fc-dcfe-4531-a859-d591eef115b3",
+    "last_success": "2026-10-20 21:50:15.053297+00"
+  },
+  "competition": {
+    "version": "docked-nfl-seven-rolling-test-v1",
+    "baseCentipoints": 1390,
+    "multiplierTenths": 14,
+    "centipoints": 1946,
+    "slot": "FLEX1",
+    "statistics": {
+      "receptions": 2,
+      "fumbles_lost": 0,
+      "passing_yards": 0,
+      "rushing_yards": 34,
+      "total_fumbles": 0,
+      "receiving_yards": 35,
+      "passing_attempts": 0,
+      "rushing_attempts": 7,
+      "receiving_targets": 4,
+      "passing_touchdowns": 0,
+      "rushing_touchdowns": 0,
+      "passing_completions": 0,
+      "interceptions_thrown": 0,
+      "receiving_touchdowns": 1,
+      "passing_two_point_conversions": 0,
+      "rushing_two_point_conversions": 0,
+      "receiving_two_point_conversions": 0,
+      "kickoff_return_touchdowns": 0,
+      "punt_return_touchdowns": 0,
+      "offensiveFumbleRecoveryTouchdowns": 0
+    }
+  }
+}

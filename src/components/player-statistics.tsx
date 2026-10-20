@@ -6,6 +6,7 @@ import type {
 } from "@/core/player-card-history";
 import { formatBasePoints } from "@/core/card-score-display";
 import { nflPostgameWeights } from "@/core/nfl-postgame-policy";
+import { historyScoringLabel } from "@/core/scoring-context";
 import {
   compactColumns,
   historyGameRows,
@@ -19,11 +20,11 @@ export function HistorySummary({ history }: { history: PlayerHistory }) {
   return (
     <dl className="statistics-summary">
       <div>
-        <dt>Total FPTS</dt>
+        <dt>Total base</dt>
         <dd>{formatBasePoints(historyTotal(history))}</dd>
       </div>
       <div>
-        <dt>Avg FPTS</dt>
+        <dt>Avg base</dt>
         <dd>{formatBasePoints(history.averageBase)}</dd>
       </div>
       <div>
@@ -113,7 +114,9 @@ function GameTable({
               <abbr title="Opponent">OPP</abbr>
             </th>
             <th scope="col" className="statistics-fpts">
-              <abbr title="Fantasy points">FPTS</abbr>
+              <abbr title="Base fantasy points before card multipliers">
+                BASE
+              </abbr>
             </th>
             {columns.map((c) => (
               <th scope="col" key={c.key}>
@@ -241,6 +244,9 @@ export function PlayerStatistics({
         </label>
       </div>
       <HistorySummary history={history} />
+      <p className="statistics-context">
+        {historyScoringLabel(history.scoringVersion ?? history.feed?.version)}
+      </p>
       {(partial || coverageIncomplete || history.feed?.stale) && (
         <p className="statistics-context" role="status">
           {partial || coverageIncomplete

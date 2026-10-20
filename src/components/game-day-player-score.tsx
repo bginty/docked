@@ -12,6 +12,19 @@ export function GameDayPlayerScore({
       <strong>
         {gameDayPoints(player.centipoints)} <small>PTS</small>
       </strong>
+      {player.baseCentipoints != null && player.multiplier != null && (
+        <span
+          className="game-day-score-basis"
+          title={
+            player.scoreUpdatedAt
+              ? `Statistics updated ${player.scoreUpdatedAt}`
+              : undefined
+          }
+        >
+          Base {gameDayPoints(player.baseCentipoints)} ×{" "}
+          {player.multiplier.toFixed(1)}
+        </span>
+      )}
       <span>{gameDayPlayerStatus(player, now)}</span>
     </span>
   );

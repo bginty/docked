@@ -1,4 +1,7 @@
 export type StandingPlayer = {
+  cardId?: string;
+  playerId?: string;
+  scoreUpdatedAt?: string | null;
   completed?: boolean;
   fixtures?: { scheduledAt: string; status?: string }[];
   serial?: number;
@@ -31,6 +34,9 @@ export type StandingRow = {
   lineup: StandingPlayer[] | null;
 };
 export type StandingRound = {
+  scoringVersion?: string;
+  receptionCentipoints?: number;
+  rarityVersion?: string | null;
   updatedAt?: string;
   lastCheckedAt?: string;
   dataDelayed?: boolean;

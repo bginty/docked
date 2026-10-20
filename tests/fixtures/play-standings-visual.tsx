@@ -18,6 +18,9 @@ import { FantasySheet } from "../../src/components/fantasy-player-sheet";
 import type { FantasyState } from "../../src/core/fantasy";
 import { nflSeven, sevenIssues, salary } from "../../src/core/nfl-seven";
 import { rarityRule } from "../../src/core/card-rarity";
+import { PlayerStatistics } from "../../src/components/player-statistics";
+import { nflPlayerHistory } from "../../src/core/nfl-player-history";
+import verifiedKamara from "./postgame/kamara-week-six-verified.json";
 const now = new Date().toISOString(),
   future = new Date(Date.now() + 86400000 * 7).toISOString();
 const tiers = [
@@ -156,6 +159,17 @@ try {
 } catch {}
 // Explicit local-only visual states. No server, account or catalogue mutation.
 const scenario = new URLSearchParams(location.search).get("scenario");
+const integrity = new URLSearchParams(location.search).has("integrity");
+if (integrity) {
+  Object.assign(cards[6], {
+    name: "Alvin Kamara",
+    tier: "LEGENDARY",
+    team: "NO",
+    serial: 1,
+    max_supply: 50,
+    verifiedJerseyNumber: null,
+  });
+}
 if (scenario === "picker-cases") {
   const extra = Array.from({ length: 24 }, (_, i) => ({
     ...cards[0],
@@ -301,6 +315,8 @@ window.fetch = async (input, init) => {
                 completedPlayers: scenario === "gameday" ? 3 : 0,
                 status: "pending-data",
                 lineup: entry.snapshot.map((c, i) => ({
+                  cardId: c.card_id,
+                  playerId: c.player_id,
                   slot: c.slot,
                   name: c.name,
                   position: c.position,
@@ -334,6 +350,35 @@ window.fetch = async (input, init) => {
             ]
           : [],
       });
+    }
+    if (integrity) {
+      data.splice(0, standingsFixture.length);
+      for (const round of data) {
+        Object.assign(round, {
+          scoringVersion: "docked-nfl-seven-rolling-test-v1",
+          receptionCentipoints: 50,
+          rarityVersion: "docked-lifetime-rarity-v1",
+        });
+        for (const row of round.rows) {
+          row.knownCentipoints = 1946;
+          row.completedPlayers = 7;
+          for (const player of row.lineup ?? []) {
+            Object.assign(player, {
+              centipoints: player.slot === "FLEX1" ? 1946 : 0,
+              baseCentipoints: player.slot === "FLEX1" ? 1390 : 0,
+              status: "ready",
+              completed: true,
+            });
+          }
+          row.lineup?.sort((a, b) => a.slot.localeCompare(b.slot));
+        }
+        round.rows.push({
+          ...structuredClone(round.rows[0]),
+          key: "comparison",
+          name: "Comparison fixture",
+          isMe: false,
+        });
+      }
     }
     return Response.json({ rounds: gameDayStandings(data) });
   }
@@ -472,7 +517,24 @@ function Fixture({ member }: { member: string }) {
     >
       <SportProvider>
         <AppShell authenticated>
-          {tab === "results" ? (
+          {tab === "game-log" ? (
+            <>
+              <h1>Alvin Kamara · Week 6</h1>
+              <PlayerStatistics
+                history={nflPlayerHistory(
+                  [verifiedKamara.history],
+                  "2026",
+                  verifiedKamara.history.last_success,
+                )}
+                name="Alvin Kamara"
+                position="RB"
+                sport="nfl"
+                category="rushing"
+                categoryChange={() => {}}
+                seasonChange={() => {}}
+              />
+            </>
+          ) : tab === "results" ? (
             <CompetitionResults
               rounds={[]}
               records={[]}

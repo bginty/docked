@@ -1,4 +1,5 @@
 "use client";
+import { SevenField } from "./seven-field";
 import { useSportDraftGuard } from "./sport-context";
 import { competitionName, competitionLabel } from "@/core/competition-display";
 import { slotPool, filterSlotPool } from "@/core/lineup-picker";
@@ -740,12 +741,8 @@ export function NflSevenPlay({
               replacements for those slots were not entered.
             </p>
           )}
-          <div
-            className={list ? "seven-list" : "fantasy-field seven-field"}
-
-            aria-label="Seven-player lineup"
-          >
-            {cfg.slots.map((s) => {
+          <SevenField slots={cfg.slots} list={list} label="Seven-player lineup">
+            {(s) => {
               const selected = picks.find((p) => p.slot === s.id),
                 card = inventory.find((c) => c.id === selected?.card),
                 locked = locks.has(s.id);
@@ -753,75 +750,74 @@ export function NflSevenPlay({
               const issue =
                 card && !locked ? sevenEligibility(card, data, comp.id) : "";
               return (
-                <div className="seven-slot" key={s.id} data-slot={s.id}>
-                  <button
-                    disabled={!card && (!editable || locked || busy)}
-                    className={`field-player ${card ? rarityFrame(card.tier) : ""}`}
-                    style={card ? rarityStyle(card.tier) : undefined}
-                    onClick={() => {
-                      if (card)
-                        setProfile({
-                          card: card.id,
-                          slot: s.id,
-                          candidate: false,
-                        });
-                      else {
-                        openSlot(s.id);
+                <button
+                  data-card-id={card?.id}
+                  disabled={!card && (!editable || locked || busy)}
+                  className={`field-player ${card ? rarityFrame(card.tier) : ""}`}
+                  style={card ? rarityStyle(card.tier) : undefined}
+                  onClick={() => {
+                    if (card)
+                      setProfile({
+                        card: card.id,
+                        slot: s.id,
+                        candidate: false,
+                      });
+                    else {
+                      openSlot(s.id);
+                    }
+                  }}
+                  aria-label={`${s.id}: ${card?.name ?? "Choose owned card"}${card ? ", " + card.tier + ", " + cardIdentity(card) : ""}${locked ? ", locked" : ""}`}
+                >
+                  {card ? (
+                    <CollectibleFace
+                      variant="lineup"
+                      showNumber
+                      card={card}
+                      appliedMultiplier={
+                        card.multiplier ??
+                        rarityRule(card.tier).multiplierTenths / 10
                       }
-                    }}
-                    aria-label={`${s.id}: ${card?.name ?? "Choose owned card"}${card ? ", " + card.tier + ", " + cardIdentity(card) : ""}${locked ? ", locked" : ""}`}
-                  >
-                    {card ? (
-                      <CollectibleFace
-                        variant="lineup"
-                        showNumber
-                        card={card}
-                        appliedMultiplier={
-                          card.multiplier ??
-                          rarityRule(card.tier).multiplierTenths / 10
-                        }
-                      />
-                    ) : (
-                      <>
-                        <PlayerShirt />
-                        <span className="slot-position">
-                          {s.id.replace(/[0-9]/g, "")}
-                        </span>
-                        <strong>Choose player</strong>
-                      </>
+                    />
+                  ) : (
+                    <>
+                      <PlayerShirt />
+                      <span className="slot-position">
+                        {s.id.replace(/[0-9]/g, "")}
+                      </span>
+                      <strong>Choose player</strong>
+                    </>
+                  )}
+                  <span className="collectible-context">
+                    <span>{s.id}</span>
+                    {card && mode === "SALARY_CAP" && (
+                      <span
+                        className="lineup-salary"
+                        aria-label="Fantasy salary"
+                      >
+                        <FantasyAmount value={salary(card.tier, cfg)} />
+                      </span>
                     )}
-                    <span className="collectible-context">
-                      <span>{s.id}</span>
-                      {card && mode === "SALARY_CAP" && (
-                        <span
-                          className="lineup-salary"
-                          aria-label="Fantasy salary"
-                        >
-                          <FantasyAmount value={salary(card.tier, cfg)} />
-                        </span>
-                      )}
-                    </span>
-                    {entry &&
-                      (() => {
-                        const round = gameDay.rounds.find(
-                          (r) => r.competitionId === comp.id,
-                        );
-                        const player = round?.rows
-                          .find((r) => r.isMe)
-                          ?.lineup?.find((p) => p.slot === s.id);
-                        return player && locked ? (
-                          <GameDayPlayerScore player={player} now={now} />
-                        ) : null;
-                      })()}
-                    {locked && <small className="entry-badge">Locked</small>}
-                    {!!issue && (
-                      <small className="entry-badge">Needs attention</small>
-                    )}
-                  </button>
-                </div>
+                  </span>
+                  {entry &&
+                    (() => {
+                      const round = gameDay.rounds.find(
+                        (r) => r.competitionId === comp.id,
+                      );
+                      const player = round?.rows
+                        .find((r) => r.isMe)
+                        ?.lineup?.find((p) => p.slot === s.id);
+                      return player && locked ? (
+                        <GameDayPlayerScore player={player} now={now} />
+                      ) : null;
+                    })()}
+                  {locked && <small className="entry-badge">Locked</small>}
+                  {!!issue && (
+                    <small className="entry-badge">Needs attention</small>
+                  )}
+                </button>
               );
-            })}
-          </div>
+            }}
+          </SevenField>
         </div>
         <aside className="lineup-summary" aria-label="Team summary">
           {" "}

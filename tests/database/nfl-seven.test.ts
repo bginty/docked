@@ -186,7 +186,7 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       [u],
     );
     const standings = async () =>
-      (await q(`select sports_feed.game_day_standings() rows`))[0].rows;
+      (await q(`select sports_feed.game_day_standings_scoring() rows`))[0].rows;
     const ownStandings = await standings();
     const ownRound = ownStandings.find(
       (r: any) => r.competitionId === rounds[0],
@@ -196,6 +196,17 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
     assert.equal(ownRound.rows[0].rank, null);
     assert.equal(ownRound.finalised, false);
     assert.equal(ownRound.rows[0].lineup.length, 7);
+    assert.equal(ownRound.scoringVersion, sevenRules().version);
+    assert.equal(ownRound.receptionCentipoints, 100);
+    assert.ok(
+      ownRound.rows[0].lineup.every((p: any) => p.cardId && p.playerId),
+    );
+    assert.deepEqual(
+      Object.fromEntries(
+        ownRound.rows[0].lineup.map((p: any) => [p.slot, p.cardId]),
+      ),
+      Object.fromEntries(picks.map((p) => [p.slot, p.card])),
+    );
     assert.equal(
       JSON.stringify(ownStandings).includes(u),
       false,
@@ -217,7 +228,7 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
     );
     await pg.exec("set role authenticated");
     await assert.rejects(
-      () => q(`select sports_feed.game_day_standings()`),
+      () => q(`select sports_feed.game_day_standings_scoring()`),
       /permission denied/,
     );
     await pg.exec("reset role");
@@ -689,6 +700,15 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       (await wideStanding()).rows.find((r: any) => !r.isMe).lineup.length,
       7,
       "immutable round-wide team visible immediately without waiting for worker",
+    );
+    assert.deepEqual(
+      Object.fromEntries(
+        (await wideStanding()).rows
+          .find((r: any) => !r.isMe)
+          .lineup.map((p: any) => [p.slot, p.cardId]),
+      ),
+      Object.fromEntries(picks.map((p) => [p.slot, p.card])),
+      "Published opponent preserves every original card-to-slot mapping",
     );
     await assert.rejects(
       () => command("seven_enter", wide, otherPicks, 1),

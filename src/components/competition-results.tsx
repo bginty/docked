@@ -4,6 +4,7 @@ import { currentPoints, currentRank, gameDayPoints } from "@/core/game-day";
 import { useGameDay } from "./use-game-day";
 import { GameDaySummary } from "./game-day-summary";
 import { GameDayPlayerScore } from "./game-day-player-score";
+import { SevenField } from "./seven-field";
 import Link from "next/link";
 import { CompetitionSwitch } from "./competition-switch";
 import { competitionHref } from "@/core/prize-schedules";
@@ -455,6 +456,7 @@ export function CompetitionResults({
       </details>
       {detail && (
         <FantasySheet
+          className="community-team-sheet"
           historyEntry
           title={`${detail.row.name} · Week ${detail.round.week}`}
           onClose={() => setDetail(null)}
@@ -474,13 +476,15 @@ export function CompetitionResults({
             </p>
           ) : (
             <div className="lineup-pitch community-team-field">
-              <div
-                className="fantasy-field seven-field"
-                aria-label="Locked team lineup"
-              >
-                {detail.row.lineup.map((p) => (
-                  <div className="seven-slot" data-slot={p.slot} key={p.slot}>
+              <SevenField label="Locked team lineup">
+                {(slot) => {
+                  const p = detail.row.lineup?.find(
+                    (player) => player.slot === slot.id,
+                  );
+                  if (!p) return <span>{slot.id} · Selection unavailable</span>;
+                  return (
                     <article
+                      data-card-id={p.cardId}
                       className={`field-player ${rarityFrame(p.tier)}`}
                       style={rarityStyle(p.tier)}
                     >
@@ -494,14 +498,17 @@ export function CompetitionResults({
                         }}
                         appliedMultiplier={p.multiplier ?? undefined}
                       />
+                      <span className="collectible-context">
+                        <span>{p.slot}</span>
+                      </span>
                       <GameDayPlayerScore
                         player={p}
                         now={detail.round.serverTime ?? Date.now()}
                       />
                     </article>
-                  </div>
-                ))}
-              </div>
+                  );
+                }}
+              </SevenField>
               <details className="standings-explanation">
                 <summary>Scoring breakdown</summary>
                 {detail.row.lineup.map((p) => (

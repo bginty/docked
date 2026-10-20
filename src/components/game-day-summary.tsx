@@ -6,6 +6,7 @@ import {
   gameDayStatus,
 } from "@/core/game-day";
 import { LocalDateTime } from "./local-date-time";
+import { competitionScoringLabel } from "@/core/scoring-context";
 
 export function GameDaySummary({
   round,
@@ -60,6 +61,9 @@ export function GameDaySummary({
             · Updated <LocalDateTime value={round.updatedAt} />
           </>
         )}
+      </p>
+      <p className="game-day-freshness" title={round.scoringVersion}>
+        {competitionScoringLabel(round)}
       </p>
     </section>
   );

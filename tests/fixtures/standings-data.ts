@@ -50,7 +50,10 @@ export const standingsFixture: StandingRound[] = ["SALARY_CAP", "OPEN"].flatMap(
           totalPlayers: 7,
           centipoints: week === 3 ? null : 20000 - i * 120 + week * 4,
           status: week === 3 ? "pending-data" : "final",
-          lineup: i === 22 || week < 3 ? players : null,
+          lineup:
+            i === 22 || week < 3
+              ? [...players].sort((a, b) => a.slot.localeCompare(b.slot))
+              : null,
         })),
       ),
     })),

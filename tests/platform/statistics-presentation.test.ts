@@ -12,15 +12,25 @@ test("member statistics omit internal metadata while keeping closed rules and at
   history.scoringVersion = "PRIVATE_RULE_ID";
   if (history.feed) history.feed.lastSuccess = "2099-01-01T00:00:00Z";
   const original = JSON.stringify(history);
-  const html = renderToStaticMarkup(createElement(PlayerStatistics, {
-    history, name: example.name, sport: example.sport, position: example.position,
-    category: "passing", categoryChange: () => {}, seasonChange: () => {},
-  }));
+  const html = renderToStaticMarkup(
+    createElement(PlayerStatistics, {
+      history,
+      name: example.name,
+      sport: example.sport,
+      position: example.position,
+      category: "passing",
+      categoryChange: () => {},
+      seasonChange: () => {},
+    }),
+  );
   assert.ok(!html.includes("PRIVATE_RULE_ID"));
   assert.ok(!html.includes("2099-01-01"));
   assert.ok(!html.includes("docked-nfl-postgame-full-ppr-test-v1"));
   assert.match(html, /<details class="statistics-info"><summary>Rules/);
-  assert.match(html, /<details class="statistics-info"><summary>About Statistics/);
+  assert.match(
+    html,
+    /<details class="statistics-info"><summary>About Statistics/,
+  );
   assert.ok(!html.includes("<details open"));
   assert.match(html, /https:\/\/creativecommons.org\/licenses\/by\/4.0\//);
   assert.match(html, /https:\/\/github.com\/nflverse\/nflverse-data/);
@@ -35,14 +45,23 @@ test("compact presentation keeps missing scores distinct from verified zero with
   game.scoringStatus = "Missing data";
   game.values.passing_yards = 0;
   delete game.values.passing_touchdowns;
-  const html = renderToStaticMarkup(createElement(PlayerStatistics, {
-    history, name: example.name, sport: example.sport, position: "QB", compact: true,
-    category: "passing", categoryChange: () => {}, seasonChange: () => {},
-  }));
+  const html = renderToStaticMarkup(
+    createElement(PlayerStatistics, {
+      history,
+      name: example.name,
+      sport: example.sport,
+      position: "QB",
+      compact: true,
+      category: "passing",
+      categoryChange: () => {},
+      seasonChange: () => {},
+    }),
+  );
   assert.match(html, /<strong>—<\/strong>/);
   assert.match(html, /<td>0<\/td><td>—<\/td>/);
   assert.match(html, /Unavailable/);
   assert.match(html, /View Full Game Log/);
-  assert.ok(!html.includes("Full-PPR"));
+  assert.match(html, /Base points · Full-PPR · No card multiplier/);
+  assert.match(html, /Base fantasy points before card multipliers/);
   assert.ok(!html.includes("statistics-disclosure"));
 });
