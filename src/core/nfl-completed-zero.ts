@@ -19,7 +19,7 @@ export function completedNflMissingZero(
     marker.home !== mapping.home ||
     marker.away !== mapping.away ||
     parsed.snapshot.status !== "completed" ||
-    !gameRows.length
+    !weeklyRows.length
   )
     return parsed;
   const present = new Set(gameRows.map((r) => r.player_id));

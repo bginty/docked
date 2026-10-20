@@ -107,6 +107,57 @@ test("wrong team, malformed statistics and mapping errors cannot become assumed 
     "pending",
   );
 });
+test("completed game absent from a valid season dataset receives provisional zeros", () => {
+  const otherGameRows = rows.map((row) => ({
+    ...row,
+    game_id: "2026_02_ATL_PIT",
+  }));
+  const parsed = nflversePostgame(csv, map, 1, "2026-10-11T00:00:00Z");
+  assert.equal(
+    completedNflMissingZero(parsed, map, otherGameRows, plays).snapshot
+      .players[0].availability,
+    "assumed-zero",
+  );
+});
+test("existing fullback eligibility maps actual source statistics to running backs", () => {
+  const columns = Object.keys(rows[0]);
+  const source: Record<string, string> = { ...rows[0], position: "FB" };
+  const changedCsv = [
+    columns.join(","),
+    columns.map((key) => source[key]).join(","),
+  ].join("\n");
+  const mapped = {
+    ...map,
+    players: [
+      {
+        playerId: "qa:fullback",
+        gsisId: source.player_id,
+        team: source.team,
+        position: "RB" as const,
+      },
+    ],
+  };
+  const parsed = nflversePostgame(
+    changedCsv,
+    mapped,
+    1,
+    "2026-10-11T00:00:00Z",
+  );
+  assert.equal(parsed.snapshot.players[0].availability, "complete");
+  assert.ok(parsed.snapshot.players[0].stats);
+  assert.equal(
+    nflversePostgame(
+      changedCsv,
+      {
+        ...mapped,
+        players: [{ ...mapped.players[0], position: "WR" }],
+      },
+      1,
+      "2026-10-11T00:00:00Z",
+    ).snapshot.players[0].availability,
+    "pending",
+  );
+});
 test("provisional zeros enter authoritative totals and can be corrected without changing frozen rules", () => {
   const f = syntheticScenario("nfl");
   let state = saveTeam(

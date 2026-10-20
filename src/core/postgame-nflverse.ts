@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { nflStats } from "./scoring-v1";
+import { officialPositionMatches } from "./nfl-card-eligibility";
 import { isNflAlignedVersion, nflPostgameStats } from "./nfl-postgame-policy";
 import type { AuthorisedScoringSnapshot } from "./authorised-scoring-feed";
 
@@ -427,7 +428,9 @@ export function nflversePostgame(
   const players = mapping.players.map((p) => {
     const row = index.get(p.gsisId);
     const result =
-      row && row.team === p.team && row.position === p.position
+      row &&
+      row.team === p.team &&
+      officialPositionMatches(row.position, p.position)
         ? nflversePlayerStatistics(row, plays, scoringVersion)
         : {
             stats: null,
