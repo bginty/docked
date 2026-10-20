@@ -157,9 +157,11 @@ export default async function RulesPage({
         )}
         <h2>Entries, locks and transfers</h2>
         <p>
-          {rolling
-            ? "New entries close at the first included kickoff. Already-entered teams may edit unlocked slots; each selected player locks permanently at their own kickoff. A started player cannot be added or moved."
-            : "This legacy round uses its saved whole-lineup deadline. No changes are permitted after that deadline."}
+          {rules.version === sevenRules().version
+            ? "All selections lock together at the round deadline. Submitted teams become visible to eligible competitors after that deadline. No replacements, new entries or withdrawals are permitted afterward."
+            : rolling
+              ? "New entries close at the first included kickoff. Already-entered teams may edit unlocked slots; each selected player locks permanently at their own kickoff. A started player cannot be added or moved."
+              : "This legacy round uses its saved whole-lineup deadline. No changes are permitted after that deadline."}
         </p>
         <p>
           {rolling

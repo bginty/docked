@@ -83,7 +83,7 @@ export async function registerNflRound(
       await tx`select id,rules from beta_fantasy.scoring_rules where version=${period.rules.version}`;
     if (digest(rules.rules) !== digest(period.rules))
       throw Error("Registered scoring version differs");
-    await tx`insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,awards,prize) values(${competition},${period.label},'nfl',${period.id.split(":").at(-2)!},${Number(period.id.split(":").at(-1))},${period.locksAt},${tx.json({ positions: { QB: 1, RB: 2, WR: 2, TE: 1, FLEX: 1 }, duplicates: false, first_year_min: 0, postgame: true, ...(period.lineupVersion ? { lineup_version: period.lineupVersion, mode: period.competitionMode, lock_policy: "individual-permanent" } : {}), ...(period.inventoryScope ? { inventory_scope: period.inventoryScope, rarity_version: period.rules.rarityVersion, scoring_version: period.rules.version } : {}) })},${rules.id},'[]','No cash prize')`;
+    await tx`insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,awards,prize) values(${competition},${period.label},'nfl',${period.id.split(":").at(-2)!},${Number(period.id.split(":").at(-1))},${period.locksAt},${tx.json({ positions: { QB: 1, RB: 2, WR: 2, TE: 1, FLEX: 1 }, duplicates: false, first_year_min: 0, postgame: true, ...(period.lineupVersion ? { lineup_version: period.lineupVersion, mode: period.competitionMode, lock_policy: "round-wide-v1" } : {}), ...(period.inventoryScope ? { inventory_scope: period.inventoryScope, rarity_version: period.rules.rarityVersion, scoring_version: period.rules.version } : {}) })},${rules.id},'[]','No cash prize')`;
     await tx`insert into beta_fantasy.production_rounds values(${competition})`;
     await tx`insert into sports_feed.streams(id) values(${period.id})`;
     await tx`insert into sports_feed.journal(stream_id,revision,previous_hash,state_hash,body,calculated) values(${period.id},1,'',${digest(state)},${tx.json(state as never)},${tx.json(results(state) as never)})`;
@@ -109,6 +109,7 @@ export async function connectLockedNflEntries(sql: Sql, streamId: string) {
   const [competition] =
     await sql`select rules from beta_fantasy.competitions where id=${round.competition_id}`;
   const rolling = !!competition.rules.lineup_version;
+  const roundWide = competition.rules.lock_policy === "round-wide-v1";
   const current = rolling
     ? await sql`select e.user_id,e.snapshot,coalesce((select jsonb_object_agg(l.slot,l.locked_at) from beta_fantasy.slot_locks l where l.competition_id=e.competition_id and l.user_id=e.user_id),'{}') locks from beta_fantasy.entries e where competition_id=${round.competition_id} order by e.user_id`
     : round.locked_snapshot;

@@ -192,7 +192,7 @@ if (scenario === "all-rarities") {
     max_supply: rarityRule(all[i % 6]).lifetimeCap ?? 0,
   }));
 }
-if (["entered", "partial", "gameday"].includes(scenario ?? "")) {
+if (["entered", "partial", "gameday", "roundwide"].includes(scenario ?? "")) {
   state.seven!.entries = rounds.map((round) => ({
     competition_id: round.id,
     revision: 1,
@@ -209,6 +209,12 @@ if (["entered", "partial", "gameday"].includes(scenario ?? "")) {
       multiplier: rarityRule(cards[i].tier).multiplierTenths / 10,
     })),
   }));
+}
+if (scenario === "roundwide") {
+  for (const round of rounds) {
+    round.locks_at = new Date(Date.now() - 60000).toISOString();
+    round.rules.lock_policy = "round-wide-v1";
+  }
 }
 if (scenario === "gameday") {
   const past = new Date(Date.now() - 86400000).toISOString();

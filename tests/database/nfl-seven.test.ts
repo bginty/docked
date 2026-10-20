@@ -637,6 +637,107 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       /permission denied/,
     );
     await pg.exec("reset role");
+    // Approved new-round policy: both teams freeze at the round deadline even
+    // though every player's fixture is later. Existing rolling rounds above
+    // exercised their unchanged behavior through these same migrations.
+    const wide = randomUUID(),
+      wideStream = "beta-real:qa:" + wide;
+    await q(
+      `insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize)
+      select $1,'LOCAL ROUND WIDE',sport,season,1002,clock_timestamp()+interval '6 seconds',
+      rules||'{"lock_policy":"round-wide-v1"}'::jsonb,scoring_id,prize
+      from beta_fantasy.competitions where id=$2`,
+      [wide, rounds[1]],
+    );
+    await q(`insert into sports_feed.streams(id) values($1)`, [wideStream]);
+    await q(
+      `insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures)
+      select $1,$2,'member',fixtures from sports_feed.nfl_rounds where competition_id=$3`,
+      [wide, wideStream, rounds[1]],
+    );
+    assert.equal(
+      (
+        await q(
+          `select enabled from beta_fantasy.lineup_publication_policy where competition_id=$1`,
+          [wide],
+        )
+      )[0].enabled,
+      true,
+    );
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [u]);
+    await command("seven_enter", wide, picks, 0);
+    const otherCards = cards.map((c) => ({ ...c, id: randomUUID() }));
+    const otherPicks = nflSeven.slots.map((s, i) => ({
+      slot: s.id,
+      card: otherCards[i].id,
+    }));
+    await q(`insert into public.qa_inventory values($1,$2)`, [
+      other,
+      JSON.stringify(otherCards),
+    ]);
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [other]);
+    await command("seven_enter", wide, otherPicks, 0);
+    const wideStanding = async () =>
+      (await standings()).find((r: any) => r.competitionId === wide);
+    assert.equal(
+      (await wideStanding()).rows.find((r: any) => !r.isMe).lineup,
+      null,
+      "other submitted team private before deadline",
+    );
+    await q(`select pg_sleep(6.1)`);
+    assert.equal(
+      (await wideStanding()).rows.find((r: any) => !r.isMe).lineup.length,
+      7,
+      "immutable round-wide team visible immediately without waiting for worker",
+    );
+    await assert.rejects(
+      () => command("seven_enter", wide, otherPicks, 1),
+      /closed|locked/i,
+    );
+    await assert.rejects(
+      () => command("seven_draft", wide, otherPicks, 0),
+      /closed|locked/i,
+    );
+    await assert.rejects(
+      () =>
+        q(
+          `update beta_fantasy.entries set updated_at=clock_timestamp() where competition_id=$1`,
+          [wide],
+        ),
+      /Round locked/,
+    );
+    await q(`select sports_feed.seven_lock_due()`);
+    assert.equal(
+      Number(
+        (
+          await q(
+            `select count(*) n from beta_fantasy.slot_locks l join beta_fantasy.competitions c on c.id=l.competition_id where c.id=$1 and l.locked_at=c.locks_at`,
+            [wide],
+          )
+        )[0].n,
+      ),
+      14,
+    );
+    assert.equal(
+      (await wideStanding()).rows.every((r: any) =>
+        r.lineup.every((p: any) => p.locked),
+      ),
+      true,
+    );
+    assert.equal(
+      (await standings()).find((r: any) => r.competitionId === future).rows
+        .length,
+      0,
+      "future private draft is not published",
+    );
+    await q(`select set_config('request.jwt.claim.sub',$1,false)`, [
+      randomUUID(),
+    ]);
+    assert.equal(
+      (await wideStanding()).rows.every((r: any) => r.lineup === null),
+      true,
+      "noncompetitor cannot inspect round-wide teams",
+    );
   } finally {
     await pg.close();
   }

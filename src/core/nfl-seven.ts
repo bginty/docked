@@ -29,11 +29,11 @@ export function sevenRules() {
   const rules = nflFutureRarityRules();
   return {
     ...rules,
-    version: nflFutureVersions.seven,
+    version: nflFutureVersions.sevenRoundWide,
     slots: structuredClone(nflSeven.slots),
     policy: [
       ...rules.policy,
-      "New entries close at the first included kickoff. Each selected slot locks permanently at its player's kickoff; later transfers preserve that scoring entitlement.",
+      "All selections lock together at the round deadline before the first included game. Submitted lineups become visible to eligible competitors after that deadline. Later transfers preserve locked scoring entitlement. Existing rounds retain their saved lock policy.",
     ],
   };
 }

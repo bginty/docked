@@ -5,6 +5,7 @@ export const nflFutureVersions = {
   base: "docked-nfl-full-ppr-beta-v2",
   rarity: "docked-nfl-rarity-full-ppr-v2",
   seven: "docked-nfl-seven-full-ppr-v2",
+  sevenRoundWide: "docked-nfl-seven-full-ppr-round-wide-v3",
 } as const;
 export function isNflAlignedVersion(version?: string) {
   return Object.values(nflFutureVersions).some((v) => v === version);

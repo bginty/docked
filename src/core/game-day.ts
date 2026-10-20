@@ -20,6 +20,7 @@ export function gameDayStatus(
 ) {
   if (!round.visible) return "Under review";
   if (round.finalised) return "Final";
+  if (!round.fixtures?.length) return "Awaiting schedule";
   return round.fixtures?.length &&
     round.fixtures.every(
       (f) => Date.parse(f.scheduledAt) > (round.serverTime ?? Date.now()),

@@ -277,6 +277,8 @@ export function NflSevenPlay({
       .filter(
         (c) =>
           !!comp?.scored_at ||
+          (comp?.rules.lock_policy === "round-wide-v1" &&
+            Date.parse(comp.locks_at) <= now) ||
           Date.parse(c.kickoff) <= now ||
           data.seven?.locks.some(
             (l) => l.competition_id === comp?.id && l.slot === c.slot,
@@ -669,7 +671,9 @@ export function NflSevenPlay({
           <LocalDateTime value={comp.locks_at} />
         </strong>
         <p>
-          {nextLock ? (
+          {comp.rules.lock_policy === "round-wide-v1" ? (
+            "All selections lock together at the entry deadline."
+          ) : nextLock ? (
             <>
               {entry ? "Next player lock" : "Next selected kickoff"}:{" "}
               <LocalDateTime value={nextLock} />

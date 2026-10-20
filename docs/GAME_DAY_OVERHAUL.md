@@ -43,19 +43,22 @@ Neither missing source records nor missing totals have been replaced with zeros.
 
 ## Integrity and visibility
 
-Current competitions use rolling player locks. New entries close at first
-kickoff, but player replacements can remain editable afterward. The requested
-first-kickoff full-lineup reveal therefore needs a rule decision. Owner approval
-has been requested for new, unentered future rounds; no response was available
-when this implementation was prepared.
+The owner approved round-wide locking for **new, unentered future rounds** during
+this task. The registration path now uses `round-wide-v1` and a new saved rules
+version with identical scoring weights, rounding, salaries and multipliers.
+Every submitted selection freezes at the round deadline, including players in
+later games. Both command validation and final database-write guards enforce it.
+An approved publication policy is registered atomically with each new round.
+Admitted competitors with submitted entries can then view each other's frozen
+teams, subject to existing privacy/block controls. Reads do not need to wait for
+the worker to materialize lock records. Future drafts and noncompetitors remain
+excluded.
 
-No lock model or publication approval was changed. Opponent lineups remain
-subject to the existing publication approval, admission, privacy and complete
-slot-lock checks. Production currently has zero lineup-publication policy
-records. Consequently, this Preview does **not** enable opponent viewing in
-production simply by passing the first kickoff. Isolated tests cover visibility
-with an approved policy after every selection locks and privacy beforehand.
-Future drafts are not exposed.
+Existing Week 6 and Week 7 retain `individual-permanent` locks and all original
+entries. No existing round or publication-policy row was changed. Production
+still has zero publication-policy rows because no new round was created by this
+task. Existing rounds continue to require their original explicit publication
+approval and complete player locks. The isolated tests exercise both policies.
 
 Week 6's frozen scoring differs from Week 7's newer scoring configuration.
 This task preserves both, along with multipliers, salaries, historical entries
@@ -68,6 +71,12 @@ does not replace the live `play_standings()` function. Grants were checked:
 only the existing restricted application role can execute them, and the
 functions independently enforce session/member or owner/MFA authorization.
 Security advisor findings were unchanged.
+
+The subsequent `20261020042940_future_round_wide_locking.sql` migration has hosted
+receipt `20261020043345`. It installs opt-in registration/deadline enforcement and
+read-model support. Read-only verification confirmed all four existing Week 6/7
+Traditional/All-Star rounds retained their policy and entry counts (2 Traditional
+and 1 All-Star per week).
 
 ## Feed limitations and DNP
 
@@ -139,6 +148,6 @@ prior isolated UI fixture, not screenshots of another member's private account.
 
 ## Remaining acceptance gates
 
-Owner lock/publication decision; production collector activation and measured
-successful source-to-score recovery; authenticated protected Preview acceptance;
+Production collector activation and measured successful source-to-score recovery;
+authenticated protected Preview acceptance;
 physical Android/device testing. No live promotion is included in this task.

@@ -320,6 +320,18 @@ async function main() {
           page.locator(".game-day-player-score").first(),
         ).toContainText("DNP");
         await shot("game-day-play");
+        await page.goto(origin + "/fantasy/play?scenario=roundwide");
+        await expect(page.locator(".entry-badge").first()).toContainText(
+          "Fully locked",
+        );
+        await expect(
+          page.getByRole("button", { name: "Update Team", exact: true }),
+        ).toBeDisabled();
+        await page.getByText("Entry & lock times", { exact: true }).click();
+        await expect(page.locator(".round-timing")).toContainText(
+          "All selections lock together",
+        );
+        await shot("round-wide-play");
       }
       const axe = await new AxeBuilder({ page })
         .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
