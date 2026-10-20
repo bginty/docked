@@ -13,6 +13,12 @@ import {
 } from "../fixtures/marketplace-state";
 import { executeCredits } from "../../src/core/credits-sandbox";
 import { memberTestView } from "../../src/core/member-test-wallet";
+import { retiredProductPath } from "../../src/core/retired-product";
+test("sale push worker is reachable without restoring retired internal APIs", () => {
+  assert.equal(retiredProductPath("/api/notifications/sale-push-worker"), false);
+  assert.equal(retiredProductPath("/api/internal/sale-push"), true);
+  assert.equal(retiredProductPath("/api/internal/scanner"), true);
+});
 test("fixture status separates future games, missing results, review and verified outcomes", () => {
   const now = Date.now(),
     future = [{ scheduledAt: new Date(now + 3600000).toISOString() }],

@@ -7,7 +7,7 @@ begin
  if not exists(select 1 from vault.decrypted_secrets where name='docked_sale_push_cron') then raise exception 'Missing Vault cron credential'; end if;
  perform cron.schedule('docked-sale-push','* * * * *', $job$
   select net.http_get(
-   url := 'https://docked.com.au/api/internal/sale-push',
+    url := 'https://docked.com.au/api/notifications/sale-push-worker',
    headers := jsonb_build_object('Authorization','Bearer '||(select decrypted_secret from vault.decrypted_secrets where name='docked_sale_push_cron')),
    timeout_milliseconds := 50000
   );
