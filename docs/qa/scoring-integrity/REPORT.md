@@ -49,7 +49,7 @@ An existing malformed SEA–DEN source row with an empty player identity still p
 - Four isolated database tests passed, including all migrations, immutable snapshots, private future drafts, before-lock privacy, after-lock eligibility, revoked access, direct-role denial, exact original card-to-slot publication and historical scoring protections.
 - Typecheck and targeted lint passed.
 - Clean production build passed. Canary credential markers were absent from the newly built browser assets.
-- Browser checks passed at 412×915 and 1440×915. Play, own Rankings view and opponent view matched all seven card IDs, slot IDs and displayed contributions exactly, including FLEX. Escape/close worked. These are desktop Edge mobile-size tests, not a physical Samsung or iOS certification.
+- Browser checks passed at 412×915 and 1440×915. Play, own Rankings view and opponent view matched all seven card IDs, slot IDs and displayed contributions exactly, including FLEX. A controlled 30-second polling cycle updated provisional points; a subsequent failed refresh retained them. Escape/close worked. These are desktop Edge mobile-size tests, not a physical Samsung or iOS certification.
 - Browser screenshots use isolated teams. The Kamara statistics fixture contains the actual audited published statistics; other players and scores are explicitly illustrative. No real entries, purchases or wallet mutations were used for tests.
 
 ## Evidence
@@ -68,3 +68,11 @@ An existing malformed SEA–DEN source row with an empty player identity still p
 Migration `20261020231532_scoring_context_read_model` was applied as additive read-only function DDL. The prior function's hash remained unchanged (`9d9321cd21a64e9d8db48623a18e0fff`). Only the existing application role can execute the new function; authenticated/anonymous direct access remains denied. No scoring backfill, entry changes, finalisation, awards, wallet or ownership writes were performed.
 
 Week 6 intentionally remains on its saved half-PPR rules. Full numerical alignment with today's Full-PPR Game Log would require a separate owner decision, a complete old-versus-new score/rank/prize dry run and the approved historical correction process. This task does not request or assume that approval. Protected Preview release evidence is recorded separately; authenticated hosted acceptance remains a distinct check from the isolated browser/database tests.
+
+## Protected Preview
+
+Web commit: `5f9093df0893b68798d944fe1806d1dd018d2697`.
+
+Deployment: `dpl_9P8StsiTYZwFcijmffWnBY7yBPxy`, **READY**, Preview target, Sydney runtime, no custom-domain aliases. Vercel deployment protection remains `all_except_custom_domains`. [Open protected Preview](https://docked-production-jc76k3gwh-briant-s-projects.vercel.app).
+
+The protected fetch verified the actual Docked login page (200, Welcome back, email/password fields). The public production release-identity endpoint deliberately returns 404 on this owner Preview; the commit was verified against Vercel deployment metadata instead. Hosted member scoring acceptance still requires signing into the Preview. The existing live deployment remains `dpl_GN5g1UW7Lbg1gKAQaUGujAjD9Jcp` / `475691a6b28a03c5ff5bb599d8b4cd15e4016043`.

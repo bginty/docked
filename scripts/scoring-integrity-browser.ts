@@ -156,6 +156,37 @@ async function main() {
         fullPage: true,
       });
       await page.keyboard.press("Escape");
+      if (!process.argv.includes("--before")) {
+        await page.clock.install();
+        await page.goto(
+          origin + "/fantasy/results?mode=SALARY_CAP&season=2026&week=3",
+        );
+        await expect(
+          page.getByRole("combobox", { name: "Week", exact: true }),
+        ).toHaveValue("fixture-SALARY_CAP-3");
+        await page.evaluate(() => {
+          Object.assign(window, { gameDayTest: { points: 54321 } });
+          window.dispatchEvent(new Event("focus"));
+        });
+        await page.clock.runFor(30001);
+        await expect(
+          page.getByRole("region", { name: "Game day summary" }),
+        ).toContainText("543.21");
+        await page.getByRole("button", { name: "Find My Team" }).click();
+        await expect(page.locator(".current-member")).toContainText("543.21");
+        await page.evaluate(() => {
+          Object.assign(window, { gameDayTest: { fail: true } });
+          window.dispatchEvent(new Event("focus"));
+        });
+        await page.clock.runFor(30001);
+        await expect(
+          page.getByText(
+            "Scores could not refresh. Your last result is still shown.",
+          ),
+        ).toBeVisible();
+        await expect(page.locator(".current-member")).toContainText("543.21");
+        await page.clock.resume();
+      }
       await page.goto(origin + "/fantasy/play?scenario=gameday");
       await expect(page.locator(".seven-slot")).toHaveCount(7);
       await page.screenshot({
@@ -170,20 +201,17 @@ async function main() {
           page.locator('.seven-slot[data-slot="FLEX1"]'),
         ).toContainText("19.46");
         const mapping = async () =>
-          page
-            .locator(".seven-slot")
-            .evaluateAll((nodes) =>
-              nodes
-                .map((el) => ({
-                  slot: el.getAttribute("data-slot"),
-                  card: el
-                    .querySelector("[data-card-id]")
-                    ?.getAttribute("data-card-id"),
-                  score: el.querySelector(".game-day-player-score")
-                    ?.textContent,
-                }))
-                .sort((a, b) => a.slot!.localeCompare(b.slot!)),
-            );
+          page.locator(".seven-slot").evaluateAll((nodes) =>
+            nodes
+              .map((el) => ({
+                slot: el.getAttribute("data-slot"),
+                card: el
+                  .querySelector("[data-card-id]")
+                  ?.getAttribute("data-card-id"),
+                score: el.querySelector(".game-day-player-score")?.textContent,
+              }))
+              .sort((a, b) => a.slot!.localeCompare(b.slot!)),
+          );
         const play = await mapping();
         await page.screenshot({
           path: out + "/same-lineup-play-" + width + ".png",

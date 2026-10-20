@@ -1,0 +1,17 @@
+{
+  "commit": "5f9093df0893b68798d944fe1806d1dd018d2697",
+  "deployment": "dpl_9P8StsiTYZwFcijmffWnBY7yBPxy",
+  "url": "https://docked-production-jc76k3gwh-briant-s-projects.vercel.app",
+  "state": "READY",
+  "target": "preview",
+  "runtimeRegion": "syd1",
+  "protection": "all_except_custom_domains",
+  "liveUnchanged": true,
+  "anonymousHttp": {"/fantasy/play":302,"/fantasy/results":302,"/api/fantasy/standings":302},
+  "protectedLoginHttp": 200,
+  "protectedLoginHeading": "Welcome back",
+  "authenticatedMemberAcceptance": "Not performed; requires member sign-in on the Preview",
+  "databaseMigration": "20261020231532_scoring_context_read_model",
+  "databaseChange": "Additive restricted read projection; no scoring or financial data backfill",
+  "checks": {"platformTests":53,"databaseTests":4,"browserWidths":[412,1440],"exactSlotCardScoreParity":true,"automaticRefreshAndFailureRetention":true,"typecheck":true,"targetedLint":true,"cleanBuild":true,"clientSecretBoundary":true}
+}
