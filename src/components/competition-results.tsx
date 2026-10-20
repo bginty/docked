@@ -517,8 +517,10 @@ export function CompetitionResults({
                     </p>
                     {p.parts.map((part, i) => (
                       <p key={i}>
-                        {part.statistic}: {part.quantity} ·{" "}
-                        {gameDayPoints(part.centipoints)}
+                        {part.statistic === "assumed-zero"
+                          ? "No stats recorded (provisional)"
+                          : part.statistic}
+                        : {part.quantity} · {gameDayPoints(part.centipoints)}
                       </p>
                     ))}
                   </div>

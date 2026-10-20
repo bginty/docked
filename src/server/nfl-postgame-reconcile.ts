@@ -13,6 +13,7 @@ import { completedNflGame } from "../core/nflverse-evidence";
 import { retainedNflSource } from "./nflverse-bundle";
 import { requirePostgamePermit } from "./postgame-download";
 import { SportsFeedStore } from "./sports-feed-store";
+import { completedNflMissingZero } from "../core/nfl-completed-zero";
 
 export async function reconcileNflBundle(
   sql: Sql,
@@ -127,7 +128,7 @@ export async function prepareNflBundleReconciliation(
         const old = s.sources
           .filter((x) => x.fixtureId === mapping.fixtureId)
           .at(-1);
-        const parsed = nflversePostgame(
+        const rawParsed = nflversePostgame(
           csv,
           normalizedMap,
           (old?.revision ?? 0) + 1,
@@ -135,6 +136,14 @@ export async function prepareNflBundleReconciliation(
           plays,
           s.period.rules.version,
         );
+        const parsed = s.finalisedAt
+          ? rawParsed
+          : completedNflMissingZero(
+              rawParsed,
+              normalizedMap,
+              weekly.body.rows,
+              plays,
+            );
         issues = parsed.issues;
         if (
           old &&

@@ -32,6 +32,8 @@ export function gameDayPlayerStatus(player: StandingPlayer, now: number) {
   if (player.status === "under-review") return "Under review";
   if (player.status === "dnp") return "DNP";
   if (player.status === "bye") return "Bye";
+  if (player.parts?.some((part) => part.statistic === "assumed-zero"))
+    return "Provisional zero";
   if (player.completed || player.status === "final") return "Final";
   if (
     player.fixtures?.some((f) =>

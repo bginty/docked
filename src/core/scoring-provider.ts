@@ -26,6 +26,7 @@ export const sourceSnapshot = z
     ]),
     endedAt: z.iso.datetime().nullable(),
     completionObservedAt: z.iso.datetime().optional(),
+    missingPlayerPolicy: z.literal("nfl-completed-missing-zero-v1").optional(),
     players: z
       .array(
         z
@@ -35,6 +36,7 @@ export const sourceSnapshot = z
               "complete",
               "pending",
               "confirmed-dnp",
+              "assumed-zero",
               "bye",
             ]),
             stats: z.unknown(),
@@ -81,6 +83,13 @@ export const syntheticProvider: ScoringProvider = {
         ).parse(row.stats);
       else if (row.stats !== null)
         throw Error("Unavailable player must not carry guessed statistics");
+      if (
+        row.availability === "assumed-zero" &&
+        (sport !== "nfl" ||
+          data.status !== "completed" ||
+          data.missingPlayerPolicy !== "nfl-completed-missing-zero-v1")
+      )
+        throw Error("Provisional zero requires the completed NFL policy");
     }
     if (
       data.status === "completed" &&
