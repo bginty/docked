@@ -1,0 +1,204 @@
+{
+  "testedAt": "2026-10-21T12:56:00.722Z",
+  "scope": "isolated fictional QA only",
+  "productionChanged": false,
+  "hostedPreview": "blocked: isolated Supabase connector access denied",
+  "tests": {
+    "platform": {
+      "tests": 539,
+      "passed": 539,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 230060.6435
+    },
+    "database": {
+      "tests": 194,
+      "passed": 194,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 299049.1249
+    },
+    "journal": {
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 33763.2017
+    },
+    "final-scoring": {
+      "tests": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 2344.711
+    }
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "clean source-copy build passed",
+  "clientBoundary": "server credential canaries absent",
+  "browsers": {
+    "afl": {
+      "results": [
+        {
+          "width": 412,
+          "slots": 22,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 360,
+          "slots": 22,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1024,
+          "slots": 22,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1440,
+          "slots": 22,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1536,
+          "slots": 22,
+          "overflow": false,
+          "errors": []
+        }
+      ],
+      "lockedAndCommunitySlots": 22,
+      "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+    },
+    "nrl": {
+      "results": [
+        {
+          "width": 412,
+          "slots": 13,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 360,
+          "slots": 13,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1024,
+          "slots": 13,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1440,
+          "slots": 13,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1536,
+          "slots": 13,
+          "overflow": false,
+          "errors": []
+        }
+      ],
+      "lockedAndCommunitySlots": 13,
+      "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+    },
+    "basketball": {
+      "results": [
+        {
+          "width": 412,
+          "slots": 8,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 360,
+          "slots": 8,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1024,
+          "slots": 8,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1440,
+          "slots": 8,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1536,
+          "slots": 8,
+          "overflow": false,
+          "errors": []
+        }
+      ],
+      "lockedAndCommunitySlots": 8,
+      "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+    },
+    "football": {
+      "results": [
+        {
+          "width": 412,
+          "slots": 11,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 360,
+          "slots": 11,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1024,
+          "slots": 11,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1440,
+          "slots": 11,
+          "overflow": false,
+          "errors": []
+        },
+        {
+          "width": 1536,
+          "slots": 11,
+          "overflow": false,
+          "errors": []
+        }
+      ],
+      "lockedAndCommunitySlots": 11,
+      "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+    }
+  },
+  "rarityGalleries": {
+    "sports": 4,
+    "rarities": 6,
+    "widths": [
+      360,
+      412,
+      1440
+    ]
+  },
+  "sourceSha256Lf": {
+    "src/core/scoring-engine.ts": "fad170e037d3cad4779fd0347d68d4f4e3973ded18c7eadfc67c69e5be8e50f3",
+    "src/core/scoring-v1.ts": "e7209e18b1af7ec782601053745585f75214776a528da6e1465a3963cab58f40",
+    "src/core/sport-configuration.ts": "d191acb7e31beecf6c8719fe64990ca767f93b6a823b042ec38dde5d09ed8e65",
+    "src/core/sport-sandbox.ts": "7a0fd6c7de40b7c0259d1dbb739a9b2303b1d7d65f36f0b48f4a6e497408134f",
+    "src/components/sport-sandbox.tsx": "6476144699fa3a1f2c150e609a986632b46f339293cf810f2208e086c0cdb08d",
+    "supabase/migrations/20261021120641_multi_sport_lineup_adapters.sql": "dedee1f56e43f093a5a1f5dd5f540424840973f0562b29f8e2815ff28a792093",
+    "supabase/migrations/20261021122246_additional_sport_sandbox_formats.sql": "55bb2819fc03a08e2d4d91aaef09caeba26a1a9bd56a0f5b60e53e889e6f5ef6"
+  }
+}

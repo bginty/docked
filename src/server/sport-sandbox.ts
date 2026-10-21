@@ -10,7 +10,8 @@ import {
 export async function sportSandbox(sport: string, input?: unknown) {
   assertSportSandbox();
   const who = await requireRole(["owner", "admin"]);
-  if (!["afl"].includes(sport)) throw Error("Unsupported sandbox sport");
+  if (!["afl", "nrl", "basketball", "football"].includes(sport))
+    throw Error("Unsupported sandbox sport");
   if (!(await rateLimit(`sport-sandbox:${who.user.id}`, 40, 60)))
     throw Error("Please wait before retrying");
   const cmd = input === undefined ? null : sandboxCommand.parse(input);

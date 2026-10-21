@@ -5,6 +5,42 @@
   padding: clamp(12px, 2vw, 24px);
   background: radial-gradient(ellipse at center, #154432, #071b20);
 }
+.sport-sandbox nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0;
+}
+.sport-sandbox nav a {
+  padding: 10px 14px;
+  border: 1px solid #41667d;
+  border-radius: 24px;
+}
+.sport-sandbox nav a[aria-current="page"] {
+  background: #085ab0;
+}
+.sport-lineup-pitch .sport-field-overview {
+  border-radius: 12px;
+  background: repeating-linear-gradient(
+    0deg,
+    #fff1 0 3px,
+    transparent 3px 54px
+  );
+}
+.sport-lineup-court {
+  background: linear-gradient(90deg, #4a3525, #6e5135, #4a3525);
+}
+.sport-lineup-court .sport-field-overview {
+  border-radius: 10px;
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 0 35px,
+      #fff5 36px 38px,
+      transparent 39px
+    ),
+    linear-gradient(0deg, transparent 49%, #fff5 49% 51%, transparent 51%);
+}
 .sport-field-overview {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

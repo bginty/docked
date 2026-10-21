@@ -40,7 +40,8 @@ export function createFreeBetaPeriod(
           : !p.id.startsWith("beta-real:nfl:rarity-test:") ||
             digest(p.rules) !== digest(nflFutureRarityRules()))
       : !!p.rules.rarityVersion ||
-        digest(p.rules) !== digest(currentRulesets[p.sport])) ||
+        digest(p.rules) !==
+          digest(currentRulesets[p.sport as keyof typeof currentRulesets])) ||
     !p.fixtures.length
   )
     throw Error("Verified free-beta round configuration required");

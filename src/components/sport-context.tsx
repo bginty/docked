@@ -11,7 +11,8 @@ const sports = {
   nfl: "NFL",
   football: "EPL",
   afl: "AFL",
-  basketball: "Basketball",
+  nrl: "NRL",
+  basketball: "NBA",
 } as const;
 type Sport = keyof typeof sports;
 const valid = (value: string | null): value is Sport =>

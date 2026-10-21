@@ -21,19 +21,27 @@ export function SevenField({
   const [group, setGroup] = useState("");
   const config = sportConfigurations[sport];
   if (config && sport !== "nfl") {
-    const selected =
-      config.groups.find((g) => g.id === group) ?? config.groups[0];
+    // A later format must never hide historical slot IDs it no longer defines.
+    const known = new Set(config.groups.flatMap((g) => g.slots));
+    const unmatched = slots.filter((s) => !known.has(s.id)).map((s) => s.id);
+    const groups = [
+      ...config.groups.filter((g) => slots.some((s) => g.slots.includes(s.id))),
+      ...(unmatched.length
+        ? [{ id: "saved", label: "Saved positions", slots: unmatched }]
+        : []),
+    ];
+    const selected = groups.find((g) => g.id === group) ?? groups[0];
     return (
       <section
         className={`sport-lineup sport-lineup-${config.field}`}
         aria-label={label}
       >
-        {!list && (
+        {!list && selected && (
           <div
             className="sport-field-overview"
             aria-label={`${config.label} position groups`}
           >
-            {config.groups.map((g) => (
+            {groups.map((g) => (
               <button
                 type="button"
                 key={g.id}
@@ -46,7 +54,7 @@ export function SevenField({
             ))}
           </div>
         )}
-        {(list ? config.groups : [selected]).map((g) => (
+        {(list ? groups : selected ? [selected] : []).map((g) => (
           <section key={g.id} aria-label={g.label}>
             <h3>
               {g.label} · {g.slots.length}

@@ -5,7 +5,7 @@ import {
   lockRarity,
   type Rules,
   type LockedCard,
-  type Sport,
+  type ScoringSport,
 } from "./scoring-v1";
 import { rarityPoints } from "./card-rarity";
 import { syntheticProvider, type SourceSnapshot } from "./scoring-provider";
@@ -32,7 +32,7 @@ export const digest = (value: unknown): string => {
 };
 export type CatalogCard = LockedCard & {
   owner: string;
-  sport: Sport;
+  sport: ScoringSport;
   eligible: boolean;
 };
 export type Period = {
@@ -40,7 +40,11 @@ export type Period = {
   lineupVersion?: string;
   inventoryScope?: "invited-nfl-test-v2";
   id: string;
-  sport: Sport;
+  sport: ScoringSport;
+  /** Explicit UTC instants: start inclusive, end exclusive. No implicit NFL week. */
+  window?: { start: string; end: string; timezone: string };
+  /** Confirmed official blank-gameweek membership, never inferred from absent rows. */
+  blankPlayerIds?: string[];
   label: string;
   locksAt: string;
   rules: Rules;
@@ -104,10 +108,50 @@ export function createPeriod(p: Period, at: string): ScoringState {
     throw Error("Only isolated simulated beta periods are enabled");
   if (
     time(at) >= time(p.locksAt) ||
-    p.fixtures.length === 0 ||
+    (p.fixtures.length === 0 && !p.blankPlayerIds?.length) ||
     new Set(p.fixtures.map((f) => f.id)).size !== p.fixtures.length
   )
     throw Error("Invalid period or lock");
+  if (p.sport === "basketball" && !p.window)
+    throw Error("NBA requires an explicit weekly scoring window");
+  if (p.window) {
+    if (
+      ![p.window.start, p.window.end].every((v) =>
+        /(?:Z|[+-]\d{2}:\d{2})$/.test(v),
+      ) ||
+      typeof p.window.timezone !== "string" ||
+      !p.window.timezone.trim()
+    )
+      throw Error("Explicit scoring instants and timezone required");
+    if (
+      time(p.window.start) >= time(p.window.end) ||
+      time(p.locksAt) > time(p.window.start)
+    )
+      throw Error("Invalid scoring window");
+    try {
+      new Intl.DateTimeFormat("en", { timeZone: p.window.timezone }).format();
+    } catch {
+      throw Error("Invalid scoring timezone");
+    }
+    if (
+      p.fixtures.some(
+        (f) =>
+          time(f.scheduledAt) < time(p.window!.start) ||
+          time(f.scheduledAt) >= time(p.window!.end),
+      )
+    )
+      throw Error("Fixture outside frozen scoring window");
+  }
+  if (
+    p.blankPlayerIds &&
+    (p.sport !== "epl" ||
+      !p.window ||
+      new Set(p.blankPlayerIds).size !== p.blankPlayerIds.length ||
+      p.blankPlayerIds.some((id) =>
+        p.fixtures.some((f) => f.playerIds.includes(id)),
+      ))
+  )
+    throw Error("Invalid confirmed blank-gameweek mapping");
   for (const f of p.fixtures) {
     if (
       !f.id.startsWith(`sim:${p.sport}:`) ||
@@ -159,7 +203,8 @@ export function saveTeam(
       c.owner !== member ||
       !c.eligible ||
       c.sport !== state.period.sport ||
-      !state.period.fixtures.some((f) => f.playerIds.includes(c.playerId))
+      (!state.period.fixtures.some((f) => f.playerIds.includes(c.playerId)) &&
+        !state.period.blankPlayerIds?.includes(c.playerId))
     )
       throw Error("Card ownership or eligibility denied");
     return {
@@ -360,7 +405,10 @@ export function results(state: ScoringState) {
       const base =
         matches.length > 0 && matches.every((m) => m.score !== null)
           ? matches.reduce((n, m) => n + m.score!.centipoints, 0)
-          : null;
+          : matches.length === 0 &&
+              state.period.blankPlayerIds?.includes(card.playerId)
+            ? 0
+            : null;
       return {
         ...card,
         matches,
@@ -424,6 +472,15 @@ export function results(state: ScoringState) {
     rows,
   };
 }
+/** Read projection only: preserve the historical stored result/journal shape. */
+export function scoringCompletion(
+  row: ReturnType<typeof results>["rows"][number],
+) {
+  return {
+    completedPlayers: row.players.filter((p) => p.centipoints !== null).length,
+    totalPlayers: row.players.length,
+  };
+}
 export function finalise(
   state: ScoringState,
   operator: Operator,
@@ -431,6 +488,12 @@ export function finalise(
 ): ScoringState {
   if (operator.role !== "reviewer") throw Error("Reviewer required");
   if (state.finalisedAt) return structuredClone(state);
+  if (
+    !state.lineupsLockedAt ||
+    time(at) < time(state.period.locksAt) ||
+    (state.period.window && time(at) < time(state.period.window.end))
+  )
+    throw Error("Scoring period remains open");
   if (
     !state.entries.length ||
     results(state).rows.some((r) => r.centipoints === null)

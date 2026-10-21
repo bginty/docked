@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { sourceSnapshot, syntheticProvider } from "./scoring-provider";
-import type { Sport } from "./scoring-v1";
+import type { ScoringSport } from "./scoring-v1";
 const rightsBase = z
   .object({
     provider: z.string().min(1),
-    competition: z.enum(["EPL", "NFL", "AFL"]),
+    competition: z.enum(["EPL", "NFL", "AFL", "NRL", "NBA"]),
     storage: z.literal(true),
     evidence: z.string().url(),
     reviewExpires: z.iso.datetime(),
@@ -27,7 +27,7 @@ const envelope = sourceSnapshot
   .extend({
     provider: z.string().min(1),
     simulated: z.literal(false),
-    competition: z.enum(["EPL", "NFL", "AFL"]),
+    competition: z.enum(["EPL", "NFL", "AFL", "NRL", "NBA"]),
   })
   .strict();
 export type AuthorisedScoringSnapshot = z.infer<typeof envelope>;
@@ -37,7 +37,7 @@ export function validateAuthorisedScoring(
   raw: unknown,
   approval: unknown,
   mapping: {
-    sport: Sport;
+    sport: ScoringSport;
     fixtureId: string;
     playerIds: string[];
     scoringVersion?: string;
@@ -53,7 +53,15 @@ export function validateAuthorisedScoring(
     data.provider !== permit.provider ||
     data.competition !== permit.competition ||
     data.competition !==
-      ({ epl: "EPL", nfl: "NFL", afl: "AFL" } as const)[mapping.sport]
+      (
+        {
+          epl: "EPL",
+          nfl: "NFL",
+          afl: "AFL",
+          nrl: "NRL",
+          basketball: "NBA",
+        } as const
+      )[mapping.sport]
   )
     throw Error("Provider/competition mismatch");
   const age = n - Date.parse(data.observedAt);

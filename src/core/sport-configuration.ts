@@ -47,6 +47,77 @@ export const aflConfiguration: SportConfiguration = {
   salaryCap: null,
   issuanceApproved: false,
 };
+function proposedSport(
+  id: string,
+  label: string,
+  field: SportConfiguration["field"],
+  period: SportConfiguration["period"],
+  groups: PositionGroup[],
+  positions: Record<string, string[]>,
+): SportConfiguration {
+  return {
+    id,
+    label,
+    field,
+    period,
+    groups,
+    slots: groups.flatMap((g) =>
+      g.slots.map((id) => ({ id, positions: positions[g.id] ?? [g.id] })),
+    ),
+    formatVersion: `docked-${id}-${groups.reduce((n, g) => n + g.slots.length, 0)}-v1`,
+    formatStatus: "proposal",
+    publicEnabled: false,
+    scoringVersion: null,
+    salaryCap: null,
+    issuanceApproved: false,
+  };
+}
+export const nrlConfiguration = proposedSport(
+  "nrl",
+  "NRL",
+  "pitch",
+  "round",
+  [
+    group("WFB", "Fullbacks / Wings", 2),
+    group("CTR", "Centres", 2),
+    group("HLF", "Halves", 2),
+    group("EDG", "Edge forwards", 3),
+    group("MID", "Middle forwards", 3),
+    group("FLEX", "Flex", 1),
+  ],
+  { FLEX: ["WFB", "CTR", "HLF", "EDG", "MID"] },
+);
+export const nbaConfiguration = proposedSport(
+  "basketball",
+  "NBA",
+  "court",
+  "weekly-window",
+  [
+    group("PG", "Point guard", 1),
+    group("SG", "Shooting guard", 1),
+    group("SF", "Small forward", 1),
+    group("PF", "Power forward", 1),
+    group("C", "Centre", 1),
+    group("FLEX", "Flex", 3),
+  ],
+  { FLEX: ["PG", "SG", "SF", "PF", "C"] },
+);
+export const eplConfiguration: SportConfiguration = {
+  ...proposedSport(
+    "football",
+    "EPL",
+    "pitch",
+    "gameweek",
+    [
+      group("GK", "Goalkeeper", 1),
+      group("DEF", "Defenders", 4),
+      group("MID", "Midfielders", 4),
+      group("FWD", "Forwards", 2),
+    ],
+    {},
+  ),
+  formatStatus: "existing",
+};
 export const sportConfigurations: Record<string, SportConfiguration> = {
   nfl: {
     id: "nfl",
@@ -64,6 +135,9 @@ export const sportConfigurations: Record<string, SportConfiguration> = {
     issuanceApproved: true,
   },
   afl: aflConfiguration,
+  nrl: nrlConfiguration,
+  basketball: nbaConfiguration,
+  football: eplConfiguration,
 };
 
 export function sportActivationBlockers(config: SportConfiguration) {

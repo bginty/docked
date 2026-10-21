@@ -31,12 +31,14 @@ export type SandboxState = {
   drafts: {
     competition_id: string;
     revision: number;
+    updated_at: string;
     selections: SlotSelection[];
   }[];
   entries: {
     competition_id: string;
     user_id: string;
     revision: number;
+    updated_at: string;
     snapshot: (SandboxCard & { slot: string; card_id: string })[];
   }[];
   continuity: {
@@ -49,7 +51,7 @@ export type SandboxState = {
 };
 export const sandboxCommand = z
   .object({
-    sport: z.enum(["afl"]),
+    sport: z.enum(["afl", "nrl", "basketball", "football"]),
     action: z.enum(["seven_draft", "seven_enter", "auto_select"]),
     competition_id: z.uuid(),
     revision: z.number().int().min(0),

@@ -6,8 +6,16 @@ import { chromium, expect } from "@playwright/test";
 import { multiSportDatabase } from "../tests/fixtures/multi-sport-db";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import { sandboxRecommendation } from "../src/core/sport-sandbox";
+import { sportConfigurations } from "../src/core/sport-configuration";
 async function main() {
-  const db = await multiSportDatabase();
+  const sport = sportConfigurations[process.argv[2] ?? "afl"];
+  assert.ok(
+    sport && !sport.publicEnabled,
+    "Only isolated sport formats can be tested",
+  );
+  const count = sport.slots.length,
+    firstSlot = sport.slots[0].id;
+  const db = await multiSportDatabase(sport);
   const js = await bundleCommunityFixture(
     "tests/fixtures/sport-sandbox-ui.tsx",
   );
@@ -32,6 +40,11 @@ async function main() {
         return;
       }
       if (path === "/api/admin/sports-sandbox") {
+        if (req.method === "GET") {
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify({ state: await db.state() }));
+          return;
+        }
         let body = "";
         for await (const chunk of req) body += chunk;
         const input = JSON.parse(body);
@@ -86,7 +99,7 @@ async function main() {
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   const port = (server.address() as { port: number }).port;
   const browser = await chromium.launch();
-  const out = "docs/qa/multi-sport/afl";
+  const out = `docs/qa/multi-sport/${sport.id}`;
   mkdirSync(out, { recursive: true });
   const results = [];
   try {
@@ -99,7 +112,7 @@ async function main() {
       page.on("pageerror", (e) => errors.push(e.message));
       await page.goto(`http://127.0.0.1:${port}`);
       await expect(
-        page.getByRole("heading", { name: "AFL · Team laboratory" }),
+        page.getByRole("heading", { name: `${sport.label} · Team laboratory` }),
       ).toBeVisible();
       if (width === 412) {
         await page
@@ -126,20 +139,22 @@ async function main() {
           .getByLabel("Round", { exact: true })
           .selectOption(db.rounds.OPEN2);
         await expect(
-          page.getByText("22/22 selected", { exact: false }),
+          page.getByText(`${count}/${count} selected`, { exact: false }),
         ).toBeVisible();
-        await page.getByRole("button", { name: /Select BACK1:/ }).click();
+        await page
+          .getByRole("button", { name: new RegExp(`Select ${firstSlot}:`) })
+          .click();
         await expect(
-          page.getByRole("dialog", { name: "Select BACK1" }),
+          page.getByRole("dialog", { name: `Select ${firstSlot}` }),
         ).toBeVisible();
         const entry = (await db.state()).entries.find(
           (e: any) =>
             e.competition_id === db.rounds.OPEN1 && e.user_id === db.user,
         );
-        const original = entry.snapshot.find((s: any) => s.slot === "BACK1");
+        const original = entry.snapshot.find((s: any) => s.slot === firstSlot);
         const unused = db.inventories[db.user].find(
           (c) =>
-            c.position === "DEF" &&
+            c.position === sport.slots[0].positions[0] &&
             !entry.snapshot.some((s: any) => s.card_id === c.id),
         )!;
         await page
@@ -155,25 +170,65 @@ async function main() {
           .selectOption(db.rounds.OPEN1);
         await expect(
           page.getByRole("button", {
-            name: `Select BACK1: ${original.name}`,
+            name: `Select ${firstSlot}: ${original.name}`,
             exact: true,
           }),
         ).toBeVisible();
+        // Save edits after entry, reload: private draft remains visible; entry does not change.
+        await db.q("select set_config('qa.now','2099-01-01T00:00:01Z',false)");
+        await page
+          .getByRole("button", { name: new RegExp(`Select ${firstSlot}:`) })
+          .click();
+        await page
+          .getByRole("dialog")
+          .getByRole("button", { name: `Select ${unused.name}`, exact: true })
+          .click();
+        await page
+          .getByRole("button", { name: "Save draft", exact: true })
+          .click();
+        await expect(page.getByRole("status")).toContainText("Draft saved");
+        await page.reload();
+        await expect(
+          page.getByRole("button", {
+            name: `Select ${firstSlot}: ${unused.name}`,
+            exact: true,
+          }),
+        ).toBeVisible();
+        assert.equal(
+          (await db.state()).entries
+            .find((e: any) => e.competition_id === db.rounds.OPEN1)
+            .snapshot.find((s: any) => s.slot === firstSlot).card_id,
+          original.card_id,
+        );
+        await expect(
+          page.getByText("Entered · Draft changes saved", { exact: true }),
+        ).toBeVisible();
+        // Explicitly confirm the replacement; historical verification below uses this snapshot.
+        await db.q("select set_config('qa.now','2099-01-01T00:00:02Z',false)");
+        await page
+          .getByRole("button", { name: "Confirm sandbox entry", exact: true })
+          .click();
+        await expect(page.getByRole("status")).toContainText("entry confirmed");
       }
       await page.screenshot({
         path: `${out}/field-${width}.png`,
         fullPage: true,
       });
-      for (const group of ["Midfielders", "Forwards", "Rucks"]) {
-        await page.getByRole("button", { name: new RegExp(group) }).click();
+      for (const group of sport.groups.slice(1)) {
+        await page
+          .getByRole("button", {
+            name: `${group.label} ${group.slots.length}`,
+            exact: true,
+          })
+          .click();
         await expect(page.locator(".sport-slot")).toHaveCount(
-          group === "Midfielders" ? 8 : group === "Rucks" ? 2 : 6,
+          group.slots.length,
         );
       }
       await page
         .getByRole("button", { name: "List view", exact: true })
         .click();
-      await expect(page.locator("[data-slot]")).toHaveCount(22);
+      await expect(page.locator("[data-slot]")).toHaveCount(count);
       await page.screenshot({
         path: `${out}/list-${width}.png`,
         fullPage: true,
@@ -185,7 +240,7 @@ async function main() {
         false,
       );
       assert.deepEqual(errors, []);
-      results.push({ width, slots: 22, overflow: false, errors });
+      results.push({ width, slots: count, overflow: false, errors });
       await page.close();
     }
     await db.asUser(db.other);
@@ -205,7 +260,7 @@ async function main() {
     });
     await page.goto(`http://127.0.0.1:${port}`);
     await page.getByRole("button", { name: "List view", exact: true }).click();
-    await expect(page.locator("[data-slot]")).toHaveCount(22);
+    await expect(page.locator("[data-slot]")).toHaveCount(count);
     const own = (await db.state()).entries.find(
       (e: any) => e.competition_id === db.rounds.OPEN1 && e.user_id === db.user,
     );
@@ -220,19 +275,51 @@ async function main() {
     await page
       .getByRole("button", { name: "View locked team", exact: true })
       .click();
-    await expect(page.locator("[data-slot]")).toHaveCount(22);
-    for (let i = 0; i < 22; i++)
+    await expect(page.locator("[data-slot]")).toHaveCount(count);
+    for (let i = 0; i < count; i++)
       await expect(
         page.locator(`[data-slot="${db.config.slots[i].id}"] [data-card]`),
       ).toHaveAttribute("data-card", db.inventories[db.other][i].id);
     await page.screenshot({ path: `${out}/community-412.png`, fullPage: true });
     await page.close();
+    for (const width of [360, 412, 1440]) {
+      const gallery = await browser.newPage({
+        viewport: { width, height: 900 },
+      });
+      await gallery.goto(`http://127.0.0.1:${port}/?gallery=1`);
+      await expect(
+        gallery.locator('[data-card-design="futuristic-v1"]'),
+      ).toHaveCount(6);
+      const uniform = {
+        afl: "guernsey",
+        nrl: "rugby-jersey",
+        basketball: "basketball-singlet",
+        football: "football-shirt",
+      }[sport.id];
+      await expect(gallery.locator(`[data-uniform="${uniform}"]`)).toHaveCount(
+        6,
+      );
+      await expect(
+        gallery.locator('[data-number-source="unavailable"] .jersey-number'),
+      ).toHaveCount(0);
+      assert.equal(
+        await gallery.evaluate(
+          () => document.documentElement.scrollWidth > innerWidth,
+        ),
+        false,
+      );
+      await gallery.screenshot({
+        path: `${out}/rarities-${width}.png`,
+        fullPage: true,
+      });
+      await gallery.close();
+    }
     writeFileSync(
       `${out}/browser.json`,
       JSON.stringify(
         {
           results,
-          lockedAndCommunitySlots: 22,
+          lockedAndCommunitySlots: count,
           journey:
             "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history",
         },

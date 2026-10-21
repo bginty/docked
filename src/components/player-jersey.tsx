@@ -24,17 +24,33 @@ export function PlayerJersey({
     rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114 > 175
       ? "#152338"
       : "#f4f0e6";
-  const sleeveless = card?.sport === "afl";
+  const sleeveless = card?.sport === "afl" || card?.sport === "basketball";
   const shape = sleeveless
-    ? "M59 13L70 16Q90 39 110 16L121 13L134 25Q121 56 140 69L140 158Q90 170 40 158L40 69Q59 56 46 25Z"
-    : "M57 13Q42 16 29 24Q17 29 11 36L3 63Q17 74 30 78L43 65Q45 113 40 158Q90 170 140 158Q135 113 137 65L150 78Q163 74 177 63L169 36Q163 29 151 24Q138 16 123 13L111 19Q90 27 69 19Z";
+    ? card?.sport === "basketball"
+      ? "M54 13L70 15Q90 51 110 15L126 13L132 24Q118 55 139 74L145 164Q90 173 35 164L41 74Q62 55 48 24Z"
+      : "M59 13L70 16Q90 39 110 16L121 13L134 25Q121 56 140 69L140 158Q90 170 40 158L40 69Q59 56 46 25Z"
+    : card?.sport === "football"
+      ? "M58 14L35 25L12 55L31 68L45 49L42 158Q90 166 138 158L135 49L149 68L168 55L145 25L122 14Q90 35 58 14Z"
+      : card?.sport === "nrl"
+        ? "M57 16L29 27L5 61L29 77L43 58L40 155Q90 169 140 155L137 58L151 77L175 61L151 27L123 16L90 29Z"
+        : "M57 13Q42 16 29 24Q17 29 11 36L3 63Q17 74 30 78L43 65Q45 113 40 158Q90 170 140 158Q135 113 137 65L150 78Q163 74 177 63L169 36Q163 29 151 24Q138 16 123 13L111 19Q90 27 69 19Z";
   return (
     <svg
       className={`player-jersey ${className}`}
       viewBox="0 0 180 176"
       aria-hidden="true"
       focusable="false"
-      data-uniform={sleeveless ? "guernsey" : "football-jersey"}
+      data-uniform={
+        card?.sport === "afl"
+          ? "guernsey"
+          : card?.sport === "basketball"
+            ? "basketball-singlet"
+            : card?.sport === "nrl"
+              ? "rugby-jersey"
+              : card?.sport === "football"
+                ? "football-shirt"
+                : "football-jersey"
+      }
       data-number-source={
         showNumber && p.number !== "—" ? "verified-metadata" : "unavailable"
       }

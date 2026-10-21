@@ -110,6 +110,11 @@ export const adminWorkspaces: Record<
         roles: owner,
       },
       { label: "Scoring rules", href: "/fantasy/scoring" },
+      {
+        label: "Multi-sport readiness & sandbox",
+        href: "/admin/sports",
+        roles: ["owner", "admin"],
+      },
     ],
     restrictions: [
       "Scoring imports, finalisation and corrections retain their existing server-controlled policies. No ad-hoc statistics or result overrides are enabled here.",

@@ -9,6 +9,7 @@ import {
   sportActivationBlockers,
 } from "@/core/sport-configuration";
 import type { SandboxState, SandboxCard } from "@/core/sport-sandbox";
+import { sandboxSelections } from "@/core/sport-lineup-view";
 import { boundedFetch } from "@/core/bounded-request";
 import type { autoSelect } from "@/core/lineup-auto-select";
 
@@ -28,6 +29,18 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
     > | null>(null),
     [viewUser, setViewUser] = useState("");
   const inFlight = useRef(false);
+  const request = useRef<{ payload: string; id: string } | null>(null);
+  const [serverNow, setServerNow] = useState(Date.parse(initial.server_time));
+  useEffect(() => {
+    const at = performance.now(),
+      server = Date.parse(state.server_time);
+    setServerNow(server);
+    const timer = setInterval(
+      () => setServerNow(server + performance.now() - at),
+      1000,
+    );
+    return () => clearInterval(timer);
+  }, [state.server_time]);
   const sport = sportConfigurations[state.sport];
   const rounds = state.competitions
     .filter((c) => c.rules.mode === mode)
@@ -39,25 +52,25 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
   );
   const saved = state.drafts.find((d) => d.competition_id === comp?.id);
   const established = state.continuity.established[`${state.sport}:${mode}`];
-  const locked =
-    !!comp && Date.parse(comp.locks_at) <= Date.parse(state.server_time);
+  const locked = !!comp && Date.parse(comp.locks_at) <= serverNow;
+  const savedChanges =
+    !locked &&
+    !!entry &&
+    !!saved &&
+    Date.parse(saved.updated_at) > Date.parse(entry.updated_at);
   const viewing = state.entries.find(
     (e) => e.competition_id === comp?.id && e.user_id === viewUser,
   );
   const readOnly = locked || !!viewing;
   const selected = slot && cfg?.slots.find((s) => s.id === slot);
   useEffect(() => {
-    setPicks(
-      entry?.snapshot.map((c) => ({ slot: c.slot, card: c.card_id })) ??
-        saved?.selections ??
-        [],
-    );
+    setPicks(sandboxSelections(entry, saved, locked));
     setDirty(false);
     setProposal(null);
     setSlot(null);
     setViewUser("");
     setError("");
-  }, [comp?.id, entry, saved]);
+  }, [comp?.id, entry, saved, locked]);
   useEffect(() => setNotice(""), [comp?.id]);
   useEffect(() => {
     const close = () => {
@@ -81,6 +94,18 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
     setError("");
     setNotice("");
     try {
+      const payload = JSON.stringify({
+        sport: state.sport,
+        action,
+        competition_id: comp.id,
+        revision:
+          action === "seven_draft"
+            ? (saved?.revision ?? 0)
+            : (entry?.revision ?? 0),
+        selections: picks,
+      });
+      if (request.current?.payload !== payload)
+        request.current = { payload, id: crypto.randomUUID() };
       const r = await boundedFetch("/api/admin/sports-sandbox", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -93,11 +118,12 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
               ? (saved?.revision ?? 0)
               : (entry?.revision ?? 0),
           selections: picks,
-          request_id: crypto.randomUUID(),
+          request_id: request.current.id,
         }),
       });
       const body = await r.json();
       if (!r.ok) throw Error(body.error ?? "Unable to save");
+      request.current = null;
       if (action === "auto_select") setProposal(body.recommendation);
       else {
         setState(body.state);
@@ -111,6 +137,31 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
     } finally {
       setBusy(false);
       inFlight.current = false;
+    }
+  }
+  async function refresh() {
+    if (
+      inFlight.current ||
+      (dirty && !window.confirm("Discard unsaved lineup changes?"))
+    )
+      return;
+    inFlight.current = true;
+    setBusy(true);
+    setError("");
+    try {
+      const r = await boundedFetch(
+        `/api/admin/sports-sandbox?sport=${state.sport}`,
+        { cache: "no-store" },
+      );
+      if (!r.ok)
+        throw Error("Unable to refresh. Check sandbox access and retry.");
+      setState((await r.json()).state);
+      setNotice("");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Unable to refresh");
+    } finally {
+      inFlight.current = false;
+      setBusy(false);
     }
   }
   function switchRound(value: string) {
@@ -149,8 +200,29 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
     );
   }
   return (
-    <main className="sport-sandbox">
+    <section className="sport-sandbox">
       <h1>{sport?.label ?? state.sport} · Team laboratory</h1>
+      <nav aria-label="Sandbox sport">
+        {Object.values(sportConfigurations)
+          .filter((c) => !c.publicEnabled)
+          .map((c) => (
+            <a
+              key={c.id}
+              href={`/admin/sports?sport=${c.id}`}
+              aria-current={state.sport === c.id ? "page" : undefined}
+              onClick={(e) => {
+                if (
+                  busy ||
+                  (dirty && !window.confirm("Discard unsaved lineup changes?"))
+                )
+                  e.preventDefault();
+              }}
+            >
+              {c.label}
+              {c.formatStatus === "proposal" ? " · Proposed" : ""}
+            </a>
+          ))}
+      </nav>
       <p className="sport-sandbox-notice">
         Isolated sandbox · Fictional QA cards · No member assets, credits or
         prizes. Salary units are test fixtures; scoring and live issuance are
@@ -162,6 +234,7 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
           <select
             aria-label="Competition"
             value={mode}
+            disabled={busy}
             onChange={(e) => {
               if (dirty && !window.confirm("Discard unsaved lineup changes?"))
                 return;
@@ -178,6 +251,7 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
           <select
             aria-label="Round"
             value={comp?.id ?? ""}
+            disabled={busy}
             onChange={(e) => switchRound(e.target.value)}
           >
             {rounds.map((c) => (
@@ -190,6 +264,9 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
         <button type="button" onClick={() => setList(!list)}>
           {list ? "Field view" : "List view"}
         </button>
+        <button disabled={busy} onClick={() => void refresh()}>
+          Refresh
+        </button>
         <strong>
           {viewing
             ? "Community team"
@@ -198,7 +275,9 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
               : entry
                 ? dirty
                   ? "Entered · Unsaved changes"
-                  : "Entered"
+                  : savedChanges
+                    ? "Entered · Draft changes saved"
+                    : "Entered"
                 : dirty
                   ? "Unsaved draft"
                   : "Draft"}
@@ -235,7 +314,9 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
               </button>
               <button
                 disabled={
-                  busy || !!validate?.errors.length || (!dirty && !!entry)
+                  busy ||
+                  !!validate?.errors.length ||
+                  (!dirty && !savedChanges && !!entry)
                 }
                 onClick={() => void command("seven_enter")}
               >
@@ -373,6 +454,6 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
           </ul>
         </details>
       )}
-    </main>
+    </section>
   );
 }

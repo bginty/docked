@@ -81,7 +81,7 @@ end$$;
 create function sports_feed.sport_sandbox_state(sport_id text) returns jsonb language plpgsql security definer set search_path='' as $$
 declare u uuid;continuity jsonb;begin
  u:=beta_fantasy.production_eligible();
- if current_setting('docked.multi_sport',true) is distinct from 'isolated-preview' or not beta_private.active_member_session()
+ if auth.jwt()->>'aal' is distinct from 'aal2' or current_setting('docked.multi_sport',true) is distinct from 'isolated-preview' or not beta_private.active_member_session()
  or not exists(select 1 from sports_feed.sport_sandbox_access where user_id=u) then raise exception 'Isolated sport access required';end if;
  continuity:=sports_feed.seven_continue_teams();
  perform sports_feed.seven_lock_due();
@@ -90,7 +90,7 @@ declare u uuid;continuity jsonb;begin
  'configurations',coalesce((select jsonb_object_agg(version,configuration) from beta_fantasy.lineup_configurations where configuration->>'sport'=sport_id),'{}'),
  'competitions',coalesce((select jsonb_agg(to_jsonb(c)) from beta_fantasy.competitions c join sports_feed.sport_rounds r on r.competition_id=c.id where c.sport=sport_id and sports_feed.lineup_scope_allowed(c.id)),'[]'),
  'drafts',coalesce((select jsonb_agg(to_jsonb(d)-'user_id') from beta_fantasy.round_drafts d join sports_feed.sport_rounds r on r.competition_id=d.competition_id where d.user_id=u and r.sport=sport_id),'[]'),
- 'entries',coalesce((select jsonb_agg(jsonb_build_object('competition_id',e.competition_id,'user_id',e.user_id,'snapshot',e.snapshot,'revision',e.lineup_revision)) from beta_fantasy.entries e join beta_fantasy.competitions c on c.id=e.competition_id join sports_feed.sport_rounds r on r.competition_id=c.id
+ 'entries',coalesce((select jsonb_agg(jsonb_build_object('competition_id',e.competition_id,'user_id',e.user_id,'snapshot',e.snapshot,'revision',e.lineup_revision,'updated_at',e.updated_at)) from beta_fantasy.entries e join beta_fantasy.competitions c on c.id=e.competition_id join sports_feed.sport_rounds r on r.competition_id=c.id
  where r.sport=sport_id and (e.user_id=u or (c.locks_at<=clock_timestamp() and exists(select 1 from beta_fantasy.entries own where own.competition_id=c.id and own.user_id=u)))),'[]'));
 end$$;
 revoke all on function sports_feed.lineup_scope_allowed(uuid),sports_feed.lineup_inventory(uuid,uuid),sports_feed.lineup_fixtures(uuid),sports_feed.lineup_position_eligible(jsonb,jsonb),sports_feed.sport_sandbox_state(text) from public,anon,authenticated,service_role,docked_beta_app;

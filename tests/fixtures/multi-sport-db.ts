@@ -137,8 +137,8 @@ export async function multiSportDatabase(
     }
   async function asUser(u: string) {
     await q(
-      "select set_config('request.jwt.claim.sub',$1,false),set_config('docked.multi_sport','isolated-preview',false),set_config('docked.fantasy_channel','beta',false)",
-      [u],
+      "select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false),set_config('docked.multi_sport','isolated-preview',false),set_config('docked.fantasy_channel','beta',false)",
+      [u, JSON.stringify({ sub: u, aal: "aal2" })],
     );
   }
   await asUser(user);

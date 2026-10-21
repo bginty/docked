@@ -21,8 +21,24 @@ test("AFL 22: authoritative positions, independent modes/weeks, rollover, histor
       card: inventories[user][i].id,
     }));
     const cid = rounds.SALARY_CAP1;
-    await assert.rejects(q("select sports_feed.sport_sandbox_command('seven_draft',$1,$2)",[JSON.stringify({competition_id:cid,revision:0,selections:[]}),randomUUID()]),/MFA/);
-    assert.equal((await q("select has_function_privilege('docked_beta_app','sports_feed.sport_sandbox_command(text,jsonb,uuid)','EXECUTE') ok"))[0].ok,true);
+    await q("select set_config('request.jwt.claims','{}',false)");
+    await assert.rejects(state(), /Isolated sport access/);
+    await assert.rejects(
+      q("select sports_feed.sport_sandbox_command('seven_draft',$1,$2)", [
+        JSON.stringify({ competition_id: cid, revision: 0, selections: [] }),
+        randomUUID(),
+      ]),
+      /MFA/,
+    );
+    await asUser(user);
+    assert.equal(
+      (
+        await q(
+          "select has_function_privilege('docked_beta_app','sports_feed.sport_sandbox_command(text,jsonb,uuid)','EXECUTE') ok",
+        )
+      )[0].ok,
+      true,
+    );
     const originalCards = structuredClone(inventories[user]);
     await q(
       "update sports_feed.sport_sandbox_inventory set cards=$1 where user_id=$2",
@@ -84,10 +100,31 @@ test("AFL 22: authoritative positions, independent modes/weeks, rollover, histor
       /eligible card/,
     );
     const req = randomUUID();
-    assert.equal(
-      (await command("seven_enter", cid, picks, 0, req)).salary,
-      2200,
-    );
+    // The real restricted web DB role can invoke the MFA/scope-bound wrapper.
+    await q("set role docked_beta_app");
+    try {
+      const result = (
+        await q(
+          "select sports_feed.sport_sandbox_command('seven_enter',$1,$2) result",
+          [
+            JSON.stringify({
+              competition_id: cid,
+              revision: 0,
+              selections: picks,
+            }),
+            req,
+          ],
+        )
+      )[0].result;
+      assert.equal(result.salary, 2200);
+      assert.equal((await state()).entries[0].snapshot.length, 22);
+      await assert.rejects(
+        q("select * from sports_feed.sport_sandbox_inventory"),
+        /permission denied/,
+      );
+    } finally {
+      await q("reset role");
+    }
     await command("seven_enter", cid, picks, 0, req);
     assert.equal(
       (await q("select count(*)::int n from beta_fantasy.entry_revisions"))[0]

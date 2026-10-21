@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { nrlStats, nbaStats } from "./additional-sport-statistics";
 import { nflOffensiveStats, scoreNflOffense } from "./fantasy-nfl";
 import { rarityConfiguration, rarityRule, type Rarity } from "./card-rarity";
 import {
@@ -11,6 +12,7 @@ import {
 
 export const sports = ["epl", "nfl", "afl"] as const;
 export type Sport = (typeof sports)[number];
+export type ScoringSport = Sport | "nrl" | "basketball";
 const count = z.number().int().min(0).max(1000);
 export const eplStats = z
   .object({
@@ -65,7 +67,7 @@ export const nflStats = nflOffensiveStats
 export type Part = { statistic: string; quantity: number; centipoints: number };
 export type Rules = {
   rarityVersion?: string;
-  sport: Sport;
+  sport: ScoringSport;
   version: string;
   title: string;
   beta: true;
@@ -265,6 +267,17 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
       offensiveFumbleRecoveryTouchdowns,
       rate,
     );
+  } else if (rules.sport === "nrl" || rules.sport === "basketball") {
+    const stats = (rules.sport === "nrl" ? nrlStats : nbaStats).parse(raw);
+    if (
+      Object.keys(rules.weights).length !== Object.keys(stats).length ||
+      Object.keys(stats).some((k) => !Object.hasOwn(rules.weights, k))
+    )
+      throw Error(
+        "Explicit versioned scoring coefficients required; no default sport scoring",
+      );
+    for (const [key, value] of Object.entries(stats))
+      add(key, value, rules.weights[key]);
   } else {
     for (const [key, value] of Object.entries(aflStats.parse(raw)))
       add(key, value, rules.weights[key]);

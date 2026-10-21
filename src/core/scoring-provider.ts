@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { eplStats, nflStats, aflStats, type Sport } from "./scoring-v1";
+import { eplStats, nflStats, aflStats, type ScoringSport } from "./scoring-v1";
+import { nrlStats, nbaStats } from "./additional-sport-statistics";
 import {
   nflPostgameStats,
   nflPostgameVersion,
@@ -11,7 +12,7 @@ export const sourceSnapshot = z
   .object({
     provider: z.literal("docked-synthetic-v1"),
     simulated: z.literal(true),
-    sport: z.enum(["epl", "nfl", "afl"]),
+    sport: z.enum(["epl", "nfl", "afl", "nrl", "basketball"]),
     fixtureId: identifier,
     revision: z.number().int().positive(),
     observedAt: z.iso.datetime(),
@@ -52,7 +53,7 @@ export interface ScoringProvider {
   liveReady: boolean;
   normalize(
     raw: unknown,
-    sport: Sport,
+    sport: ScoringSport,
     fixtureId: string,
     playerIds: string[],
     scoringVersion?: string,
@@ -79,7 +80,11 @@ export const syntheticProvider: ScoringProvider = {
               isNflAlignedVersion(scoringVersion)
               ? nflPostgameStats
               : nflStats
-            : aflStats
+            : sport === "nrl"
+              ? nrlStats
+              : sport === "basketball"
+                ? nbaStats
+                : aflStats
         ).parse(row.stats);
       else if (row.stats !== null)
         throw Error("Unavailable player must not carry guessed statistics");
