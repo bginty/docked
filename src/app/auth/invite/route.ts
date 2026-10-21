@@ -8,7 +8,7 @@ import { config } from "@/server/config";
 import { rateLimit } from "@/server/db";
 import { hash } from "@/core/canonical-hash";
 import { assertPrivatePreview } from "@/core/private-preview.mjs";
-import { previewOwnerMatches } from "@/core/preview-owner";
+import { previewParticipantMatches } from "@/core/preview-owner";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,7 +42,7 @@ async function handle(request: Request) {
         !isEmailOwnershipVerified(data.user)
       )
         return "unavailable";
-      if (ownerSetup && !previewOwnerMatches(data.user, process.env)) {
+      if (ownerSetup && !previewParticipantMatches(data.user, process.env)) {
         await client.auth.signOut({ scope: "local" });
         return "invalid";
       }

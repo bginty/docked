@@ -13,7 +13,13 @@ import { sandboxSelections } from "@/core/sport-lineup-view";
 import { boundedFetch } from "@/core/bounded-request";
 import type { autoSelect } from "@/core/lineup-auto-select";
 
-export function SportSandbox({ initial }: { initial: SandboxState }) {
+export function SportSandbox({
+  initial,
+  navigationPath = "/admin/sports",
+}: {
+  initial: SandboxState;
+  navigationPath?: string;
+}) {
   const [state, setState] = useState(initial),
     [mode, setMode] = useState<"OPEN" | "SALARY_CAP">("OPEN");
   const [round, setRound] = useState(""),
@@ -208,7 +214,7 @@ export function SportSandbox({ initial }: { initial: SandboxState }) {
           .map((c) => (
             <a
               key={c.id}
-              href={`/admin/sports?sport=${c.id}`}
+              href={`${navigationPath}?sport=${c.id}`}
               aria-current={state.sport === c.id ? "page" : undefined}
               onClick={(e) => {
                 if (

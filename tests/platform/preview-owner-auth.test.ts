@@ -2,7 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { previewOwnerAuth } from "../../src/core/preview-owner-auth";
-import { previewOwnerMatches } from "../../src/core/preview-owner";
+import {
+  previewOwnerMatches,
+  previewParticipantMatches,
+} from "../../src/core/preview-owner";
 const env = {
   DOCKED_PREVIEW_OWNER_ID: "local-fixture-owner",
   DOCKED_PREVIEW_OWNER_EMAIL: "support@docked.com.au",
@@ -147,5 +150,63 @@ test("owner MFA confirmation returns only to setup or permitted password page, n
       )
     ).redirect,
     "/app/reset-password",
+  );
+});
+
+test("explicit laboratory tester authenticates only into MFA and the sandbox", async () => {
+  const tester = {
+    ...owner,
+    id: "fixture-tester",
+    email: "tester@example.test",
+  };
+  const configured = {
+    ...env,
+    DOCKED_PRIVATE_PREVIEW: "true",
+    DOCKED_MULTI_SPORT_SANDBOX: "true",
+    DOCKED_PREVIEW_TESTER_ID: tester.id,
+    DOCKED_PREVIEW_TESTER_EMAIL: tester.email,
+  };
+  assert.equal(previewOwnerMatches(tester, configured), false);
+  assert.equal(previewParticipantMatches(tester, configured), true);
+  for (const user of [
+    { ...tester, id: "other" },
+    { ...tester, email_confirmed_at: "" },
+    { ...tester, is_anonymous: true },
+  ])
+    assert.equal(previewParticipantMatches(user, configured), false);
+  assert.equal(
+    previewParticipantMatches(tester, {
+      ...configured,
+      DOCKED_MULTI_SPORT_SANDBOX: "false",
+    }),
+    false,
+  );
+  const f = fixture(tester, "aal2", "aal2");
+  assert.equal(
+    (
+      await previewOwnerAuth(
+        f.auth,
+        {
+          action: "login",
+          email: tester.email,
+          password: "local-fixture-only",
+        },
+        configured,
+      )
+    ).redirect,
+    "/mfa",
+  );
+  assert.equal(
+    (
+      await previewOwnerAuth(
+        f.auth,
+        { action: "mfa_status", next: "/admin/operations" },
+        configured,
+      )
+    ).redirect,
+    "/app/sports-preview",
+  );
+  assert.ok(
+    (await previewOwnerAuth(f.auth, { action: "signup" }, configured)).error,
   );
 });

@@ -1,5 +1,8 @@
 import "server-only";
-import { requireRole } from "./auth";
+import { authClient, requireRole } from "./auth";
+import { assertPrivatePreview } from "@/core/private-preview.mjs";
+import { previewParticipantMatches } from "@/core/preview-owner";
+import { verifiedSessionClaims } from "@/core/auth-policy";
 import { db, rateLimit } from "./db";
 import {
   assertSportSandbox,
@@ -9,7 +12,7 @@ import {
 } from "@/core/sport-sandbox";
 export async function sportSandbox(sport: string, input?: unknown) {
   assertSportSandbox();
-  const who = await requireRole(["owner", "admin"]);
+  const who = await sandboxIdentity();
   if (!["afl", "nrl", "basketball", "football"].includes(sport))
     throw Error("Unsupported sandbox sport");
   if (!(await rateLimit(`sport-sandbox:${who.user.id}`, 40, 60)))
@@ -33,4 +36,28 @@ export async function sportSandbox(sport: string, input?: unknown) {
       await tx`select sports_feed.sport_sandbox_command(${cmd.action},${tx.json({ competition_id: cmd.competition_id, revision: cmd.revision, selections: cmd.selections })}::jsonb,${cmd.request_id}::uuid)`;
     return { state: cmd ? await read() : before };
   });
+}
+
+async function sandboxIdentity() {
+  if (!assertPrivatePreview(process.env))
+    return requireRole(["owner", "admin"]);
+  const client = await authClient();
+  if (!client) throw Error("Authentication required");
+  const session = await client.auth.getSession();
+  const token = session.data.session?.access_token;
+  if (session.error || !token) throw Error("Authentication required");
+  const verified = await client.auth.getUser(token);
+  if (
+    verified.error ||
+    !previewParticipantMatches(verified.data.user, process.env)
+  )
+    throw Error("Authentication required");
+  const claims = verifiedSessionClaims(token, verified.data.user!.id);
+  if (!claims || claims.aal !== "aal2") throw Error("Privileged MFA required");
+  // SQL independently validates the active session, MFA, ban status and allowlist.
+  return {
+    user: verified.data.user!,
+    sessionId: claims.sessionId,
+    aal: claims.aal,
+  };
 }

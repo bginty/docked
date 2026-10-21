@@ -58,8 +58,16 @@ export async function multiSportDatabase(
     "insert into beta_fantasy.scoring_rules(version,rules)values('isolated-no-scoring-v1','{}')",
   );
   const inventories: Record<string, any[]> = {};
+  const sessions: Record<string, string> = {};
   for (const u of [user, other]) {
-    await q("insert into auth.users(id)values($1)", [u]);
+    await q("insert into auth.users(id,email_confirmed_at)values($1,now())", [
+      u,
+    ]);
+    sessions[u] = randomUUID();
+    await q("insert into auth.sessions(id,user_id)values($1,$2)", [
+      sessions[u],
+      u,
+    ]);
     await q(
       "insert into beta_fantasy.members(user_id,expires_at)values($1,'infinity')",
       [u],
@@ -138,7 +146,7 @@ export async function multiSportDatabase(
   async function asUser(u: string) {
     await q(
       "select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false),set_config('docked.multi_sport','isolated-preview',false),set_config('docked.fantasy_channel','beta',false)",
-      [u, JSON.stringify({ sub: u, aal: "aal2" })],
+      [u, JSON.stringify({ sub: u, aal: "aal2", session_id: sessions[u] })],
     );
   }
   await asUser(user);
@@ -168,6 +176,7 @@ export async function multiSportDatabase(
     rounds,
     config,
     asUser,
+    sessions,
     command,
     state,
   };

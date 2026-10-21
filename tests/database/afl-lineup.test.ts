@@ -22,7 +22,7 @@ test("AFL 22: authoritative positions, independent modes/weeks, rollover, histor
     }));
     const cid = rounds.SALARY_CAP1;
     await q("select set_config('request.jwt.claims','{}',false)");
-    await assert.rejects(state(), /Isolated sport access/);
+    await assert.rejects(state(), /isolated tester session/);
     await assert.rejects(
       q("select sports_feed.sport_sandbox_command('seven_draft',$1,$2)", [
         JSON.stringify({ competition_id: cid, revision: 0, selections: [] }),
@@ -31,6 +31,35 @@ test("AFL 22: authoritative positions, independent modes/weeks, rollover, histor
       /MFA/,
     );
     await asUser(user);
+    // Laboratory access is independent of staff/member admission, but still
+    // requires a real, active, verified session and the explicit allowlist.
+    assert.equal(
+      (await q("select count(*)::int n from beta_private.roles"))[0].n,
+      0,
+    );
+    for (const claims of [
+      { sub: user, aal: "aal1", session_id: db.sessions[user] },
+      { sub: user, aal: "aal2", session_id: db.sessions[other] },
+      { sub: user, aal: "aal2", session_id: randomUUID() },
+    ]) {
+      await q("select set_config('request.jwt.claims',$1,false)", [
+        JSON.stringify(claims),
+      ]);
+      await assert.rejects(state(), /isolated tester session/);
+    }
+    await asUser(user);
+    await q("update auth.users set banned_until='2100-01-01' where id=$1", [
+      user,
+    ]);
+    await assert.rejects(state(), /isolated tester session/);
+    await q(
+      "update auth.users set banned_until=null,email_confirmed_at=null where id=$1",
+      [user],
+    );
+    await assert.rejects(state(), /isolated tester session/);
+    await q("update auth.users set email_confirmed_at=now() where id=$1", [
+      user,
+    ]);
     assert.equal(
       (
         await q(
@@ -202,7 +231,7 @@ test("AFL 22: authoritative positions, independent modes/weeks, rollover, histor
       false,
     );
     await q("select set_config('docked.multi_sport','',false)");
-    await assert.rejects(state(), /Isolated sport access/);
+    await assert.rejects(state(), /isolated tester session/);
   } finally {
     await db.pg.close();
   }

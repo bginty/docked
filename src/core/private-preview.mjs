@@ -40,6 +40,21 @@ export function assertPrivatePreview(env) {
     env.DOCKED_MULTI_SPORT_SANDBOX === "true"
       ? "codex/member-platform-updates"
       : "pivot/fantasy-cards-preview-v1";
+  if (env.DOCKED_PREVIEW_TESTER_ID || env.DOCKED_PREVIEW_TESTER_EMAIL) {
+    if (
+      env.DOCKED_MULTI_SPORT_SANDBOX !== "true" ||
+      !/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(
+        env.DOCKED_PREVIEW_TESTER_ID ?? "",
+      ) ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        env.DOCKED_PREVIEW_TESTER_EMAIL ?? "",
+      ) ||
+      env.DOCKED_PREVIEW_TESTER_EMAIL !==
+        env.DOCKED_PREVIEW_TESTER_EMAIL.toLowerCase() ||
+      env.DOCKED_PREVIEW_TESTER_ID === env.DOCKED_PREVIEW_OWNER_ID
+    )
+      fail();
+  }
   if (
     env.DOCKED_PRIVATE_PREVIEW !== "true" ||
     env.DOCKED_BETA_STAGING !== "true" ||
@@ -48,8 +63,7 @@ export function assertPrivatePreview(env) {
     (env.VERCEL_TARGET_ENV && env.VERCEL_TARGET_ENV !== "preview") ||
     env.VERCEL_PROJECT_ID !== target.projectId ||
     env.VERCEL_ORG_ID !== target.teamId ||
-    env.VERCEL_GIT_COMMIT_REF !==
-      (nfl ? "nfl-hosted-testing" : sourceBranch) ||
+    env.VERCEL_GIT_COMMIT_REF !== (nfl ? "nfl-hosted-testing" : sourceBranch) ||
     !/^[a-f0-9]{40}$/.test(env.VERCEL_GIT_COMMIT_SHA ?? "") ||
     !/^docked-preview-[a-z0-9-]+\.vercel\.app$/.test(env.VERCEL_URL ?? "") ||
     env.SITE_URL !== target.origin ||

@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { previewOwnerMatches } from "./preview-owner";
+import { previewParticipantMatches } from "./preview-owner";
 import { mfaFlow } from "./mfa-service";
 import { passwordResetFailure } from "./auth-policy";
 
@@ -24,7 +24,7 @@ export async function previewOwnerAuth(
   setupKey?: string;
 }> {
   const denied = {
-    error: "Private Preview owner setup is unavailable for this account.",
+    error: "Private Preview setup is unavailable for this account.",
   };
   if (
     ![
@@ -46,7 +46,14 @@ export async function previewOwnerAuth(
   if (input.action === "login") {
     if (
       !input.email ||
-      input.email.toLowerCase() !== "support@docked.com.au" ||
+      ![
+        "support@docked.com.au",
+        ...(env.DOCKED_MULTI_SPORT_SANDBOX === "true" &&
+        env.DOCKED_PREVIEW_TESTER_ID &&
+        env.DOCKED_PREVIEW_TESTER_EMAIL
+          ? [env.DOCKED_PREVIEW_TESTER_EMAIL]
+          : []),
+      ].includes(input.email.toLowerCase()) ||
       !input.password ||
       env.DOCKED_PREVIEW_OWNER_EMAIL !== "support@docked.com.au"
     )
@@ -55,7 +62,7 @@ export async function previewOwnerAuth(
       email: input.email,
       password: input.password,
     });
-    if (error || !previewOwnerMatches(data.user, env)) {
+    if (error || !previewParticipantMatches(data.user, env)) {
       await auth.signOut({ scope: "local" });
       return {
         error: "Sign-in failed. Check credentials and email verification.",
@@ -64,7 +71,7 @@ export async function previewOwnerAuth(
     return { ok: true, redirect: "/mfa" };
   }
   const { data, error } = await auth.getUser();
-  if (error || !previewOwnerMatches(data.user, env)) return denied;
+  if (error || !previewParticipantMatches(data.user, env)) return denied;
   if (input.action === "reset") {
     if (!input.password) return { error: "Password required" };
     // Existing owners with an enrolled factor must satisfy MFA before changing
@@ -88,7 +95,10 @@ export async function previewOwnerAuth(
         redirect:
           input.next === "/app/reset-password"
             ? input.next
-            : "/app/preview-owner",
+            : env.DOCKED_MULTI_SPORT_SANDBOX === "true" &&
+                data.user.id === env.DOCKED_PREVIEW_TESTER_ID
+              ? "/app/sports-preview"
+              : "/app/preview-owner",
       }
     : result;
 }
