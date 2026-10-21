@@ -36,7 +36,7 @@ async function main() {
  create function sports_feed.owner_scoring_diagnostics() returns jsonb language sql as $$select '{}'::jsonb$$;`);
     await sql.unsafe(
       readFileSync(
-        "supabase/migrations/20261021104437_member_community_pack_integrity.sql",
+        "supabase/migrations/20261021111945_member_community_pack_integrity.sql",
         "utf8",
       ),
     );

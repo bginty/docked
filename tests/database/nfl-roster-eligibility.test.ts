@@ -24,7 +24,18 @@ test("official roster gates direct admin and pack mint paths; private evidence a
       ),
     );
     await db.exec("update nfl_roster.control set enabled=true");
-    await db.exec(readFileSync("supabase/migrations/20261021104951_official_roster_refresh.sql","utf8"));
+    await db.exec(
+      readFileSync(
+        "supabase/migrations/20261021111949_official_roster_refresh.sql",
+        "utf8",
+      ),
+    );
+    await db.exec(
+      readFileSync(
+        "supabase/migrations/20261021112618_official_roster_refresh_scope.sql",
+        "utf8",
+      ),
+    );
     await assert.rejects(
       () => db.exec("insert into beta_fantasy.cards values('x','d')"),
       /eligibility/,
@@ -103,12 +114,54 @@ test("official roster gates direct admin and pack mint paths; private evidence a
       () => db.exec("update nfl_roster.control set enabled=false"),
       /permission/,
     );
-    await assert.rejects(()=>db.exec("select nfl_roster.record_refresh('[]')"),/permission/);
+    await assert.rejects(
+      () => db.exec("select nfl_roster.record_refresh('[]')"),
+      /permission/,
+    );
     await db.exec("reset role;set role docked_nfl_worker");
-    const refresh=[{playerId:"p",providerId:"gsis",team:"MIN",position:"QB",status:"active",identityVerified:true,sourceUrl:"https://www.vikings.com/",sourceHash:"e".repeat(64),checkedAt:new Date().toISOString()}];
-    await db.query("select nfl_roster.record_refresh($1::jsonb)",[JSON.stringify(refresh)]);
-    await db.query("select nfl_roster.record_refresh($1::jsonb)",[JSON.stringify(refresh)]);
-    await assert.rejects(()=>db.query("select nfl_roster.record_refresh($1::jsonb)",[JSON.stringify([{...refresh[0],playerId:"unreviewed"}])]),/verified identity/);
+    const refresh = [
+      {
+        playerId: "p",
+        providerId: "gsis",
+        team: "MIN",
+        position: "QB",
+        status: "active",
+        identityVerified: true,
+        sourceUrl: "https://www.vikings.com/",
+        sourceHash: "e".repeat(64),
+        checkedAt: new Date().toISOString(),
+      },
+    ];
+    await db.query("select nfl_roster.record_refresh($1::jsonb)", [
+      JSON.stringify(refresh),
+    ]);
+    await db.query("select nfl_roster.record_refresh($1::jsonb)", [
+      JSON.stringify(refresh),
+    ]);
+    await assert.rejects(
+      () =>
+        db.query("select nfl_roster.record_refresh($1::jsonb)", [
+          JSON.stringify([{ ...refresh[0], playerId: "unreviewed" }]),
+        ]),
+      /verified identity/,
+    );
+    await db.exec("reset role");
+    await db.exec(
+      "insert into nfl_roster.observations values('p','gsis','MIN','QB','active',true,'https://www.vikings.com/team/players-roster/',repeat('f',64),clock_timestamp(),'{}')",
+    );
+    assert.equal(
+      (await db.query("select * from nfl_roster.refresh_candidates()")).rows
+        .length,
+      1,
+    );
+    await db.exec(
+      "insert into nfl_roster.observations values('p','gsis','MIN','QB','released',true,'https://www.vikings.com/team/transactions/',repeat('f',64),clock_timestamp(),'{}')",
+    );
+    assert.equal(
+      (await db.query("select * from nfl_roster.refresh_candidates()")).rows
+        .length,
+      0,
+    );
   } finally {
     await db.close();
   }

@@ -1,0 +1,227 @@
+{
+  "responses": [
+    {
+      "id": 1069,
+      "body": {
+        "task": "reconcile",
+        "issues": [
+          "2026_06_SEA_DEN: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required"
+        ],
+        "season": 2026,
+        "status": "pending-review",
+        "competition": "70de1f8e-b789-4331-99aa-6afb0c31a8a2"
+      },
+      "status": 200,
+      "timedOut": false
+    },
+    {
+      "id": 1068,
+      "body": {
+        "task": "rosters",
+        "rawId": null,
+        "season": 2026,
+        "status": "cooldown",
+        "officialRoster": {
+          "teams": [
+            {
+              "team": "PHI",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 6
+            },
+            {
+              "team": "DEN",
+              "status": "checked",
+              "refreshed": 24,
+              "unresolved": 2
+            },
+            {
+              "team": "MIA",
+              "status": "unavailable; previous evidence retained",
+              "refreshed": 0,
+              "unresolved": 25
+            },
+            {
+              "team": "JAX",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 3
+            },
+            {
+              "team": "KC",
+              "status": "checked",
+              "refreshed": 23,
+              "unresolved": 3
+            },
+            {
+              "team": "MIN",
+              "status": "checked",
+              "refreshed": 21,
+              "unresolved": 2
+            },
+            {
+              "team": "TB",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 2
+            },
+            {
+              "team": "NE",
+              "status": "checked",
+              "refreshed": 24,
+              "unresolved": 3
+            },
+            {
+              "team": "LAR",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 3
+            },
+            {
+              "team": "PIT",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 3
+            },
+            {
+              "team": "IND",
+              "status": "checked",
+              "refreshed": 21,
+              "unresolved": 4
+            },
+            {
+              "team": "CAR",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 3
+            },
+            {
+              "team": "NO",
+              "status": "checked",
+              "refreshed": 25,
+              "unresolved": 3
+            },
+            {
+              "team": "TEN",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 2
+            },
+            {
+              "team": "BUF",
+              "status": "checked",
+              "refreshed": 19,
+              "unresolved": 4
+            },
+            {
+              "team": "ARI",
+              "status": "unavailable; previous evidence retained",
+              "refreshed": 0,
+              "unresolved": 27
+            },
+            {
+              "team": "DAL",
+              "status": "unavailable; previous evidence retained",
+              "refreshed": 0,
+              "unresolved": 24
+            },
+            {
+              "team": "CLE",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 4
+            },
+            {
+              "team": "HOU",
+              "status": "checked",
+              "refreshed": 26,
+              "unresolved": 2
+            },
+            {
+              "team": "CIN",
+              "status": "checked",
+              "refreshed": 19,
+              "unresolved": 5
+            },
+            {
+              "team": "SF",
+              "status": "checked",
+              "refreshed": 27,
+              "unresolved": 3
+            },
+            {
+              "team": "WAS",
+              "status": "unavailable; previous evidence retained",
+              "refreshed": 0,
+              "unresolved": 26
+            },
+            {
+              "team": "BAL",
+              "status": "checked",
+              "refreshed": 20,
+              "unresolved": 4
+            },
+            {
+              "team": "LV",
+              "status": "checked",
+              "refreshed": 23,
+              "unresolved": 7
+            },
+            {
+              "team": "NYG",
+              "status": "checked",
+              "refreshed": 24,
+              "unresolved": 2
+            },
+            {
+              "team": "NYJ",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 1
+            },
+            {
+              "team": "GB",
+              "status": "checked",
+              "refreshed": 23,
+              "unresolved": 4
+            },
+            {
+              "team": "CHI",
+              "status": "checked",
+              "refreshed": 23,
+              "unresolved": 3
+            },
+            {
+              "team": "ATL",
+              "status": "checked",
+              "refreshed": 20,
+              "unresolved": 4
+            },
+            {
+              "team": "DET",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 2
+            },
+            {
+              "team": "LAC",
+              "status": "checked",
+              "refreshed": 22,
+              "unresolved": 4
+            },
+            {
+              "team": "SEA",
+              "status": "checked",
+              "refreshed": 25,
+              "unresolved": 3
+            }
+          ],
+          "status": "partial"
+        }
+      },
+      "status": 200,
+      "timedOut": false
+    }
+  ],
+  "freshActive": 402
+}

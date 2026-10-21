@@ -29,7 +29,7 @@ test("publication is private until approved, authorised, immutable on replay and
     );
     await pg.exec(release.split("-- END ANNOUNCEMENTS")[0]);
     const cleanup = await readFile(
-      "supabase/migrations/20261021104437_member_community_pack_integrity.sql",
+      "supabase/migrations/20261021111945_member_community_pack_integrity.sql",
       "utf8",
     );
     await pg.exec(

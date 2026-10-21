@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "at": "2026-10-21T11:37:36.225Z",
+  "version": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "pids": [
+    16832,
+    43500,
+    43492
+  ],
+  "contention": [
+    {
+      "scenario": "distinct-buyers",
+      "waitingConnections": 2
+    },
+    {
+      "scenario": "cancel-purchase",
+      "waitingConnections": 2
+    }
+  ],
+  "checks": [
+    "Three distinct PostgreSQL backend PIDs using actual CreditsSandboxStore and docked_beta_app role; synthetic actors, not HTTP authentication",
+    "Two DISTINCT buyers on separate connections: exactly one succeeds",
+    "Separate-connection purchase/cancellation: one winner",
+    "Injected AFTER UPDATE failure rolls back balance, ownership, receipt and journal writes",
+    "Retired swap creation rejected; fixed-price purchase remains available",
+    "Real seven_command and purchase on separate connections: listed/lost-ownership card cannot enter; both-mode pre-lock reservations enforced",
+    "Permanent identities, supply and locked snapshots unchanged after transfers",
+    "Lost-response/same-ID replay: identical original receipt, one settlement; 100/5/95; no negative wallets or new issuance",
+    "Both modes: entered edit/purchase races preserve original seven; same card in both modes blocks pre-lock transfer; actual server deadline materialises 14 immutable locks; later transfer preserves locked scoring inputs",
+    "Ordinary SQL roles denied private aggregate and market context; no HTTP auth claim"
+  ],
+  "authentication": "Synthetic actor + SQL auth fixtures; actual HTTP/Supabase Auth NOT tested by this runner"
+}

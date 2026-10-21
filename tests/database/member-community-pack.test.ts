@@ -27,7 +27,7 @@ test("database coupon guards, QA privacy and idempotent unfinished-round retry",
  insert into beta_fantasy.competitions values('${competition}',null);insert into sports_feed.nfl_rounds values('${competition}','member',clock_timestamp()+interval '1 hour');`);
     await db.exec(
       readFileSync(
-        "supabase/migrations/20261021104437_member_community_pack_integrity.sql",
+        "supabase/migrations/20261021111945_member_community_pack_integrity.sql",
         "utf8",
       ),
     );

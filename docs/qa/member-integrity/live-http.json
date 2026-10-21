@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-21T11:42:05.544Z",
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "body": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "449d7e65a37a9c93ed58c152efc8af0a32b3ce0e",
+        "deploymentId": "dpl_6FKegNuvSH46cPCgEJ6ZgMWgbtXC",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      }
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "body": {
+        "product": "fantasy-cards",
+        "registration": "closed"
+      }
+    },
+    {
+      "path": "/api/admin/pack-coupons",
+      "status": 403,
+      "body": {
+        "error": "Verified staff access required."
+      }
+    }
+  ]
+}

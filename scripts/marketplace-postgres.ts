@@ -178,7 +178,8 @@ async function main() {
       "Two DISTINCT buyers on separate connections: exactly one succeeds",
     );
     const sold = await read();
-    assert.equal(sold.listings[list].receipt?.net, 925);
+    // Current approved seller fee is 5%, half up, capped at 2,000.
+    assert.equal(sold.listings[list].receipt?.net, 950);
     const bad = structuredClone(sold);
     bad.listings[list].receipt!.net = 1000;
     await assert.rejects(
@@ -262,32 +263,31 @@ async function main() {
     checks.push(
       "Injected AFTER UPDATE failure rolls back balance, ownership, receipt and journal writes",
     );
-    // An existing offer may supersede a listing. Accept/buy serialize against the same lock.
+    // Retired swaps cannot reserve a card or prevent its fixed-price purchase.
     const swapListing = randomUUID(),
       swapQuote = randomUUID(),
       swap = randomUUID();
     await run(0, { kind: "list", card: own(0)[8], price: 1000 }, swapListing);
     await run(2, { kind: "review-buy", listing: swapListing }, swapQuote);
-    await run(
-      0,
-      {
-        kind: "offer",
-        other: marketActors[1].id,
-        give: [own(0)[8]],
-        take: [own(1)[8]],
-        feeEach: 50,
-      },
-      swap,
+    await assert.rejects(
+      () =>
+        run(
+          0,
+          {
+            kind: "offer",
+            other: marketActors[1].id,
+            give: [own(0)[8]],
+            take: [own(1)[8]],
+            feeEach: 50,
+          },
+          swap,
+        ),
+      /disabled/,
     );
-    const swapRace = await contended("swap-purchase", [
-      () => run(1, { kind: "accept", swap, feeEach: 50 }),
-      () => run(2, { ...cmd(swapQuote), listing: swapListing }),
-    ]);
-    assert.equal(swapRace[0].status, "fulfilled");
-    assert.equal(swapRace[1].status, "rejected");
-    assert.equal((await read()).listings[swapListing].status, "CANCELLED");
+    await run(2, { ...cmd(swapQuote), listing: swapListing });
+    assert.equal((await read()).listings[swapListing].status, "SOLD");
     checks.push(
-      "Separate-connection swap acceptance/purchase: reserved card transfers once",
+      "Retired swap creation rejected; fixed-price purchase remains available",
     );
     // Dedicated, future test entries; no retrospective member competition or grants.
     await pg.query(
@@ -511,8 +511,8 @@ async function main() {
     );
     for (const result of results) assert.deepEqual(result, original);
     assert.deepEqual(await read(), stable);
-    assert.equal(original.receipt.fee, 8);
-    assert.equal(original.receipt.net, 92);
+    assert.equal(original.receipt.fee, 5);
+    assert.equal(original.receipt.net, 95);
     const final = await read();
     validateCredits(final);
     assert.ok(marketActors.every((a) => wallet(final, a.id).available >= 0));
@@ -538,7 +538,7 @@ async function main() {
     );
     assert.equal(issued(final), issued(s));
     checks.push(
-      "Lost-response/same-ID replay: identical original receipt, one settlement; 100/8/92; no negative wallets or new issuance",
+      "Lost-response/same-ID replay: identical original receipt, one settlement; 100/5/95; no negative wallets or new issuance",
     );
     // Both modes: actual SQL entry/edit and transfer serialize on the shared lock.
     // This is deliberately still a fixture identity/inventory mapping, not Auth.
@@ -717,8 +717,7 @@ async function main() {
     checks.push(
       "Both modes: entered edit/purchase races preserve original seven; same card in both modes blocks pre-lock transfer; actual server deadline materialises 14 immutable locks; later transfer preserves locked scoring inputs",
     );
-    // Read-only auth/projection fixture adapters; actual cleanup, constraints,
-    // acceptance expiry check and audit INSERT remain the application SQL.
+    // The retired swap path must also reject direct creation in PostgreSQL.
     await pg.exec(
       `create or replace function beta_fantasy.swap_actor() returns uuid language sql as $$select auth.uid()$$;create or replace function beta_fantasy.swap_read_state_before_marketplace() returns jsonb language sql as $$select '{}'::jsonb$$;`,
     );
@@ -749,20 +748,13 @@ async function main() {
       "insert into beta_fantasy.cards(id,edition_id,serial,owner_id,tradeable)values($1,$2,2,$3,true)",
       [fb, fe, marketActors[1].id],
     );
-    await pg.query(
-      "insert into beta_fantasy.swaps(id,sender,recipient,give_card,take_card,give_revision,take_revision,fee_cents,policy_revision,expires_at)values($1,$2,$3,$4,$5,0,0,0,1,clock_timestamp()-interval '2 days')",
-      [expired, marketActors[0].id, marketActors[1].id, fa, fb],
-    );
-    await pg.query("select beta_fantasy.swap_read_state()");
-    await pg.query("select beta_fantasy.swap_read_state()");
-    assert.equal(
-      (
-        await pg.query<{ state: string }>(
-          "select state from beta_fantasy.swaps where id=$1",
-          [expired],
-        )
-      ).rows[0].state,
-      "expired",
+    await assert.rejects(
+      () =>
+        pg.query(
+          "insert into beta_fantasy.swaps(id,sender,recipient,give_card,take_card,give_revision,take_revision,fee_cents,policy_revision,expires_at)values($1,$2,$3,$4,$5,0,0,0,1,clock_timestamp()-interval '2 days')",
+          [expired, marketActors[0].id, marketActors[1].id, fa, fb],
+        ),
+      /disabled/,
     );
     assert.equal(
       (
@@ -771,7 +763,7 @@ async function main() {
           [expired],
         )
       ).rows[0].n,
-      1,
+      0,
     );
     assert.equal(
       (
