@@ -4,10 +4,14 @@ import { fitsSlot, type SlotSelection, type SevenCard } from "./nfl-seven";
 import type { LineupConfiguration } from "./sport-configuration";
 import type { CollectibleIdentity } from "../components/collectible-face";
 import { assertFantasyEnvironment } from "./fantasy";
+import { assertPrivatePreview } from "./private-preview.mjs";
 export function assertSportSandbox(
   env: Record<string, string | undefined> = process.env,
 ) {
-  assertFantasyEnvironment(env);
+  // Hosted Preview already binds the exact project, restricted application role
+  // and disabled capabilities. The legacy local harness uses a postgres binding
+  // and must not force the hosted application to adopt that privileged role.
+  if (!assertPrivatePreview(env)) assertFantasyEnvironment(env);
   if (env.DOCKED_MULTI_SPORT_SANDBOX !== "true")
     throw Error("Sport sandbox is disabled");
 }

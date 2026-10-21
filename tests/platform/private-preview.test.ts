@@ -6,6 +6,7 @@ import {
   privatePreviewDisabledFlags,
 } from "../../src/core/private-preview.mjs";
 import { assertHostedBeta, betaOrigin } from "../../src/core/hosted-beta.mjs";
+import { assertSportSandbox } from "../../src/core/sport-sandbox";
 const valid = () => ({
   DOCKED_PREVIEW_OWNER_ID: "00000000-0000-4000-8000-000000000001",
   DOCKED_PREVIEW_OWNER_EMAIL: "support@docked.com.au",
@@ -45,6 +46,22 @@ test("closed Preview binds the isolated project and restricted database role", (
   assert.equal(betaOrigin(env), env.SITE_URL);
   assert.equal(privatePreviewOrigin(env), env.SITE_URL);
   assert.equal(assertPrivatePreview({}), false);
+});
+
+test("sport sandbox accepts the restricted closed Preview without enabling admission", () => {
+  const env = { ...valid(), DOCKED_MULTI_SPORT_SANDBOX: "true" };
+  assert.doesNotThrow(() => assertSportSandbox(env));
+  for (const [key, value] of Object.entries({
+    VERCEL_ENV: "production",
+    DOCKED_MULTI_SPORT_SANDBOX: "false",
+    DATABASE_URL: env.DATABASE_URL.replace("docked_beta_app", "postgres"),
+    NEXT_PUBLIC_SUPABASE_URL: "https://pojoymtniryarxxunyvz.supabase.co",
+    BETA_ACCESS_ENABLED: "true",
+    AUTH_EMAIL_ENABLED: "true",
+    FANTASY_CARDS_PREVIEW: "true",
+  })) {
+    assert.throws(() => assertSportSandbox({ ...env, [key]: value }), key);
+  }
 });
 test("Preview refuses Production, privileged roles, capture mode and unsupported activation", () => {
   assert.throws(
