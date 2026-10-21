@@ -20,6 +20,15 @@ export const rosterCandidate = z
     name: z.string().trim().min(2).max(160),
     teamId: identifier,
     teamName: identifier,
+    presentation: z
+      .object({
+        city: z.string().trim().min(1).max(80),
+        primary: z.string().regex(/^#[0-9a-f]{6}$/i),
+        accent: z.string().regex(/^#[0-9a-f]{6}$/i),
+        evidence: source,
+      })
+      .strict()
+      .optional(),
     identityVerified: z.boolean(),
     registration: z.enum([
       "active",
@@ -131,6 +140,11 @@ export function reviewRosterBatch(
     const age = at - Date.parse(c.evidence.observedAt);
     if (age < 0 || age > policy.maxAgeHours * 3600000)
       reasons.push("Roster evidence stale or future-dated");
+    if (c.presentation) {
+      const age = at - Date.parse(c.presentation.evidence.observedAt);
+      if (age < 0 || age > policy.maxAgeHours * 3600000)
+        reasons.push("City/colour evidence stale or future-dated");
+    }
     // Unknown numbers stay blank. Injury/suspension alone does not retire a player.
     if (c.jerseyNumber !== null && !c.jerseyVerified)
       reasons.push("Jersey number unverified");
@@ -142,6 +156,22 @@ export function reviewRosterBatch(
       candidate: c,
     };
   });
+}
+
+/** Review preview metadata only; this is not a collectible or issuance command. */
+export function reviewedRosterPresentation(review: RosterReview) {
+  const c = review.candidate;
+  if (review.status !== "ready-for-review" || !c?.presentation)
+    throw Error("Reviewed city and colours required");
+  return {
+    sport: c.sport,
+    name: c.name,
+    team: c.teamId,
+    city: c.presentation.city,
+    colour: c.presentation.primary,
+    accentColour: c.presentation.accent,
+    verifiedJerseyNumber: c.jerseyVerified ? c.jerseyNumber : null,
+  };
 }
 
 /** Review output deliberately grants no eligibility/issuance or live activation. */

@@ -41,6 +41,8 @@ export type JerseyMetadata = {
   sport?: string;
   team?: string;
   colour?: string;
+  accentColour?: string;
+  city?: string;
   shirt?: number;
   verifiedJerseyNumber?: number | null;
 };
@@ -63,7 +65,9 @@ export function jerseyPresentation(card?: JerseyMetadata) {
   }
   return {
     primary: card?.colour ?? "#17294b",
-    accent: "#9fc7e2",
+    accent: /^#[0-9a-f]{6}$/i.test(card?.accentColour ?? "")
+      ? card!.accentColour!
+      : "#9fc7e2",
     number:
       Number.isInteger(card?.verifiedJerseyNumber) &&
       card!.verifiedJerseyNumber! >= 0 &&
@@ -163,7 +167,9 @@ const nflCities: Readonly<Record<string, string>> = {
   SD: "San Diego",
   STL: "St. Louis",
 };
-export function displayCity(card: Pick<JerseyMetadata, "sport" | "team">) {
+export function displayCity(
+  card: Pick<JerseyMetadata, "sport" | "team" | "city">,
+) {
   const team = card.team?.trim() ?? "";
   if (card.sport === "nfl") {
     const code = nflTeamNames[team.toUpperCase()]
@@ -173,8 +179,9 @@ export function displayCity(card: Pick<JerseyMetadata, "sport" | "team">) {
         ) ?? team.toUpperCase());
     return nflCities[code] ?? "Location unavailable";
   }
-  // Existing non-NFL team strings do not constitute verified city metadata.
-  return "Location unavailable";
+  // Explicit snapshot metadata only; never infer a city from club names/codes.
+  const city = card.city?.trim();
+  return city && city.length <= 80 ? city : "Location unavailable";
 }
 
 export function collectibleSerial(card: {

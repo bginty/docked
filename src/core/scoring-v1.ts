@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { nrlStats, nbaStats } from "./additional-sport-statistics";
+import {
+  nrlStatisticsForVersion,
+  nrlEventVersion,
+  nbaStats,
+} from "./additional-sport-statistics";
 import { nflOffensiveStats, scoreNflOffense } from "./fantasy-nfl";
 import { rarityConfiguration, rarityRule, type Rarity } from "./card-rarity";
 import {
@@ -74,6 +78,8 @@ export type Rules = {
   positions: string[];
   slots: { id: string; positions: string[] }[];
   weights: Record<string, number>;
+  /** Complete units per fixture (e.g. 10 run metres), never rounded across games. */
+  statisticGroups?: Record<string, number>;
   goal?: Record<string, number>;
   clean?: Record<string, number>;
   correctionHours: number;
@@ -268,7 +274,18 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
       rate,
     );
   } else if (rules.sport === "nrl" || rules.sport === "basketball") {
-    const stats = (rules.sport === "nrl" ? nrlStats : nbaStats).parse(raw);
+    const stats = (
+      rules.sport === "nrl" ? nrlStatisticsForVersion(rules.version) : nbaStats
+    ).parse(raw);
+    if (
+      rules.version === nrlEventVersion &&
+      (rules.statisticGroups?.runMetres !== 10 ||
+        rules.statisticGroups?.kickMetres !== 30 ||
+        Object.keys(rules.statisticGroups).length !== 2)
+    )
+      throw Error("NRL event scoring requires frozen 10/30 metre groups");
+    if (rules.statisticGroups && rules.version !== nrlEventVersion)
+      throw Error("Unsupported grouped scoring version");
     if (
       Object.keys(rules.weights).length !== Object.keys(stats).length ||
       Object.keys(stats).some((k) => !Object.hasOwn(rules.weights, k))
@@ -276,8 +293,14 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
       throw Error(
         "Explicit versioned scoring coefficients required; no default sport scoring",
       );
-    for (const [key, value] of Object.entries(stats))
-      add(key, value, rules.weights[key]);
+    for (const [key, value] of Object.entries(stats)) {
+      const group = rules.statisticGroups?.[key];
+      add(
+        group ? `${key} (complete groups of ${group})` : key,
+        group ? Math.floor(value / group) : value,
+        rules.weights[key],
+      );
+    }
   } else {
     for (const [key, value] of Object.entries(aflStats.parse(raw)))
       add(key, value, rules.weights[key]);

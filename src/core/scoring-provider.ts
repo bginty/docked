@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { eplStats, nflStats, aflStats, type ScoringSport } from "./scoring-v1";
-import { nrlStats, nbaStats } from "./additional-sport-statistics";
+import {
+  nrlStatisticsForVersion,
+  nbaStats,
+} from "./additional-sport-statistics";
 import {
   nflPostgameStats,
   nflPostgameVersion,
@@ -81,7 +84,7 @@ export const syntheticProvider: ScoringProvider = {
               ? nflPostgameStats
               : nflStats
             : sport === "nrl"
-              ? nrlStats
+              ? nrlStatisticsForVersion(scoringVersion)
               : sport === "basketball"
                 ? nbaStats
                 : aflStats

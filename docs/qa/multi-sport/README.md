@@ -1,5 +1,10 @@
 # Multi-sport expansion — continuation and evidence
 
+Later checkpoints: [protected deployment](deployment-2026-10-22.md) and
+[owner-managed feed/scoring implementation](owner-feed-2026-10-22.md).
+The historical status below predates those checkpoints. A paid provider is not
+required; the owner's scraper can supply the documented event contract.
+
 Production remains unchanged. No new live competitions, cards, packs, balances,
 provider subscriptions or pricing have been created. Work is in the existing
 `fixed-market-live/Docked.com.au` worktree, branch `codex/member-platform-updates`.

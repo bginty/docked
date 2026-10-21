@@ -22,7 +22,9 @@ export function scoringRows(
 ): { action: string; points: string }[] {
   if (rules.sport !== "epl")
     return Object.entries(rules.weights).map(([key, rate]) => ({
-      action: `${label(key)} · per ${key.includes("yards") ? "yard" : "event"}`,
+      action: rules.statisticGroups?.[key]
+        ? `${label(key)} · each complete ${rules.statisticGroups[key]} metres per game`
+        : `${label(key)} · per ${key.includes("yards") ? "yard" : "event"}`,
       points: points(rate),
     }));
   const w = rules.weights;

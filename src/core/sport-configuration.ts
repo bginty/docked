@@ -43,7 +43,7 @@ export const aflConfiguration: SportConfiguration = {
     })),
   ),
   publicEnabled: false,
-  scoringVersion: null,
+  scoringVersion: "docked-afl-22-events-v1",
   salaryCap: null,
   issuanceApproved: false,
 };
@@ -67,7 +67,12 @@ function proposedSport(
     formatVersion: `docked-${id}-${groups.reduce((n, g) => n + g.slots.length, 0)}-v1`,
     formatStatus: "proposal",
     publicEnabled: false,
-    scoringVersion: null,
+    scoringVersion:
+      id === "nrl"
+        ? "docked-nrl-events-v1"
+        : id === "basketball"
+          ? "docked-nba-events-v1"
+          : "docked-epl-beta-v1",
     salaryCap: null,
     issuanceApproved: false,
   };
@@ -150,7 +155,7 @@ export function sportActivationBlockers(config: SportConfiguration) {
     ...(!config.issuanceApproved
       ? ["Scarcity, pack prices and issuance approval"]
       : []),
-    "Licensed provider and verified active-player catalogue",
+    "Configured statistics source and verified active-player catalogue",
     "Public activation approval",
   ];
 }

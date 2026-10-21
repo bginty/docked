@@ -4,6 +4,7 @@ import {
   reviewRosterBatch,
   rosterReviewReport,
   type RosterCandidate,
+  reviewedRosterPresentation,
 } from "../../src/core/sport-roster-review";
 const now = "2099-01-02T00:00:00Z";
 const policy = {
@@ -40,6 +41,49 @@ const candidate: RosterCandidate = {
     observedAt: "2099-01-01T23:00:00Z",
   },
 };
+test("reviewed city and colour metadata feeds the canonical jersey without logos or guessed city/number", () => {
+  const decorated = {
+    ...candidate,
+    presentation: {
+      city: "Melbourne",
+      primary: "#112233",
+      accent: "#aabbcc",
+      evidence: candidate.evidence,
+    },
+  };
+  const row = reviewRosterBatch([decorated], policy, now, ["qa:t"])[0];
+  assert.deepEqual(reviewedRosterPresentation(row), {
+    sport: "afl",
+    name: "Fictional QA",
+    team: "qa:t",
+    city: "Melbourne",
+    colour: "#112233",
+    accentColour: "#aabbcc",
+    verifiedJerseyNumber: null,
+  });
+  assert.throws(() =>
+    reviewedRosterPresentation(
+      reviewRosterBatch([candidate], policy, now, ["qa:t"])[0],
+    ),
+  );
+  for (const presentation of [
+    { ...decorated.presentation, logo: "https://example.invalid/logo.svg" },
+    {
+      ...decorated.presentation,
+      primary: "url(https://example.invalid/image.svg)",
+    },
+    {
+      ...decorated.presentation,
+      evidence: { ...candidate.evidence, observedAt: "2098-01-01T00:00:00Z" },
+    },
+  ])
+    assert.equal(
+      reviewRosterBatch([{ ...candidate, presentation }], policy, now, [
+        "qa:t",
+      ])[0].status,
+      "quarantined",
+    );
+});
 test("roster review preserves injured/suspended registrations and verified dual positions; unknown numbers stay blank", () => {
   for (const availability of ["injured", "suspended"] as const) {
     const r = rosterReviewReport(

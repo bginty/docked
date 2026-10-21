@@ -11,6 +11,11 @@ import {
   sportConfigurations,
   sportActivationBlockers,
 } from "@/core/sport-configuration";
+import {
+  sportEventRules,
+  sportScoringReferences,
+} from "@/core/sport-event-rules";
+import { scoringRows } from "@/core/scoring-release";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Multi-sport readiness · Docked",
@@ -96,6 +101,54 @@ export default async function SportsPage({
                       ? "Proposed format — approval required"
                       : "Existing or approved lineup format"}
                   </p>
+                  <details>
+                    <summary>Scoring and scraper fields</summary>
+                    <p>
+                      Base points from raw statistics. Saved rounds retain their
+                      own rules.
+                    </p>
+                    <p>{s.scoringVersion}</p>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th scope="col">Action</th>
+                          <th scope="col">Points</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {scoringRows(
+                          sportEventRules(
+                            s.id === "football"
+                              ? "epl"
+                              : (s.id as "afl" | "nrl" | "basketball"),
+                          ),
+                        ).map((r) => (
+                          <tr key={r.action}>
+                            <td>{r.action}</td>
+                            <td>{r.points}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <p>
+                      Owner-managed feeds are supported. A source must supply
+                      verified player mappings, fixtures and every required
+                      statistic before scoring can run.
+                    </p>
+                    <a
+                      href={
+                        sportScoringReferences[
+                          s.id === "football"
+                            ? "epl"
+                            : (s.id as "afl" | "nrl" | "basketball")
+                        ]
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Scoring reference
+                    </a>
+                  </details>
                   <details>
                     <summary>Required before activation</summary>
                     <ul>

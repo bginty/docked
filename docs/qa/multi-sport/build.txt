@@ -1,16 +1,16 @@
 ▲ Next.js 16.3.8 (Turbopack)
-✓ Running next.config.ts took 86ms
+✓ Running next.config.ts took 315ms
 
   Creating an optimized production build ...
-✓ Compiled successfully in 24.1s
+✓ Compiled successfully in 43s
   Running TypeScript ...
-  Finished TypeScript in 30.2s ...
+  Finished TypeScript in 38.5s ...
   Collecting page data using 7 workers ...
   Generating static pages using 7 workers (0/49) ...
   Generating static pages using 7 workers (12/49)
   Generating static pages using 7 workers (24/49)
   Generating static pages using 7 workers (36/49)
-✓ Generating static pages using 7 workers (49/49) in 1252ms
+✓ Generating static pages using 7 workers (49/49) in 1389ms
   Finalizing page optimization ...
 
 Route (app)
@@ -95,6 +95,7 @@ Route (app)
 ├ ƒ /app/preview-owner
 ├ ƒ /app/reset-password
 ├ ƒ /app/signup
+├ ƒ /app/sports-preview
 ├ ƒ /app/verified
 ├ ○ /apple-icon.png
 ├ ƒ /auth/callback
