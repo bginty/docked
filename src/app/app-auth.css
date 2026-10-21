@@ -45,6 +45,10 @@ body:has(.app-auth-surface) > main {
   max-width: 440px;
   margin-inline: auto;
 }
+.app-auth-content:has(.sport-sandbox),
+.app-auth-surface:has(.sport-sandbox) .app-auth-brand {
+  max-width: 1200px;
+}
 .app-auth-content h1 {
   color: var(--app-text);
   font-size: clamp(24px, 6.5vw, 32px);
