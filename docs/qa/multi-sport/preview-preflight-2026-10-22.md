@@ -1,5 +1,7 @@
 # Protected Preview preflight — 22 October 2026
 
+Historical preflight snapshot. Superseded by [completed deployment handover](deployment-2026-10-22.md); the statements below describe the state before deployment.
+
 Deployment requested for Barry. No Production deployment or new live sport
 activation is included. Browser access was explicitly requested by the owner.
 

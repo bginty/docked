@@ -1,0 +1,68 @@
+{
+  "verified": true,
+  "at": "2026-10-21T22:49:30.558Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "latestMigration": "20261021230000",
+  "existingTablesPreserved": 478,
+  "expectedControlChange": [
+    "sports_feed.weekly_core_control"
+  ],
+  "newRowCounts": [
+    {
+      "table": "auth.identities",
+      "before": 8,
+      "after": 9
+    },
+    {
+      "table": "auth.one_time_tokens",
+      "before": 1,
+      "after": 2
+    },
+    {
+      "table": "auth.users",
+      "before": 8,
+      "after": 9
+    },
+    {
+      "table": "beta_fantasy.competitions",
+      "before": 3,
+      "after": 27
+    },
+    {
+      "table": "beta_fantasy.lineup_configurations",
+      "before": 0,
+      "after": 4
+    },
+    {
+      "table": "beta_fantasy.members",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "table": "beta_fantasy.scoring_rules",
+      "before": 1,
+      "after": 2
+    },
+    {
+      "table": "beta_fantasy.sports",
+      "before": 2,
+      "after": 5
+    },
+    {
+      "table": "beta_private.audit_events",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "table": "supabase_migrations.schema_migrations",
+      "before": 84,
+      "after": 99
+    }
+  ],
+  "admission": {
+    "enabled": false,
+    "testers_enabled": false
+  },
+  "productionChanged": false,
+  "note": "Initial 14-migration run was applied, not rolled back: migration 20261019113000 contains explicit COMMIT. Persisted rows reconciled against the pre-run private snapshot. Subsequent tester migration/fixture provisioning used one checked transaction without embedded transaction control."
+}

@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "at": "2026-10-21T22:38:21.190Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "migrations": [
+    {
+      "file": "20261019020939_fixed_price_marketplace.sql",
+      "sha256": "fdddfd3ccf1ac178987d93d03755e3e6eea8fb4599c34070bc2dbda1f25e4219"
+    },
+    {
+      "file": "20261019050004_member_platform_updates.sql",
+      "sha256": "a63c5cbf90282a7fceb122e2bd5988e3907b610f3bc6641eedd73f1ee79766f9"
+    },
+    {
+      "file": "20261019050005_weekly_core_legacy_cutover.sql",
+      "sha256": "e1777f386177aece1d8c0028fd825a0d4e3a26f022b4ef24e8614ac545b9645b"
+    },
+    {
+      "file": "20261019113000_future_week_private_drafts.sql",
+      "sha256": "08931a440869856f6474901b3da41c4e95748f70269f08928956cc0e5fd8107f"
+    },
+    {
+      "file": "20261019213437_weekly_team_continuity.sql",
+      "sha256": "f8a455e8162da240c3316cdcb07d39309f70c34d8f6ec16f8909934a2f83ac1d"
+    },
+    {
+      "file": "20261020001039_member_cleanup_read_models.sql",
+      "sha256": "5f95ba2480d13d540d00cf5f1ed694c4300d11f40edbc8ebf0ef16d603819de1"
+    },
+    {
+      "file": "20261020040346_game_day_read_models.sql",
+      "sha256": "f06cee1a33bf4e58681473e5a3a3f7447f4bf1fb9f3cb51d66b871a7500f49be"
+    },
+    {
+      "file": "20261020042940_future_round_wide_locking.sql",
+      "sha256": "3a16110f74d5c29e9e4498645214cf5a0e367eda8aacf37f97bb049a753c7f17"
+    },
+    {
+      "file": "20261020231532_scoring_context_read_model.sql",
+      "sha256": "91809ce931aba919c2e18051be34ef614ce67836f4748e80fb765072ad6ae460"
+    },
+    {
+      "file": "20261021111945_member_community_pack_integrity.sql",
+      "sha256": "00f73b3f1800d945af8e6a0eccf4e17453e71cc9ac84277b439c5e2a1d244ce8"
+    },
+    {
+      "file": "20261021111949_official_roster_refresh.sql",
+      "sha256": "28c6d6aa1fc7e0002ecd182213560d16ec7ade977a7132b5863e375a7fd86f03"
+    },
+    {
+      "file": "20261021112618_official_roster_refresh_scope.sql",
+      "sha256": "a0a0418cf68fa796890db6892bcafd2de224e4e87a5c7b92f19768056d3bb64a"
+    },
+    {
+      "file": "20261021120641_multi_sport_lineup_adapters.sql",
+      "sha256": "dedee1f56e43f093a5a1f5dd5f540424840973f0562b29f8e2815ff28a792093"
+    },
+    {
+      "file": "20261021122246_additional_sport_sandbox_formats.sql",
+      "sha256": "55bb2819fc03a08e2d4d91aaef09caeba26a1a9bd56a0f5b60e53e889e6f5ef6"
+    }
+  ],
+  "changedExistingTables": [
+    "beta_fantasy.sports",
+    "sports_feed.weekly_core_control"
+  ],
+  "comparedTables": 479,
+  "admission": "closed",
+  "mode": "applied-during-intended-dry-run",
+  "rollbackVerified": false,
+  "correction": "Initial 14-migration run was applied, not rolled back: migration 20261019113000 contains explicit COMMIT. Persisted rows reconciled against the pre-run private snapshot. Subsequent tester migration/fixture provisioning used one checked transaction without embedded transaction control."
+}
