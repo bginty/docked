@@ -1,6 +1,7 @@
 import {
   nflSeven,
   salary,
+  fitsSlot,
   type NflMode,
   type SevenCard,
   type SlotSelection,
@@ -76,6 +77,11 @@ export function autoSelect(
   fixed: SlotSelection[] = [],
   config = nflSeven,
 ) {
+  if (config.slots.length > 30) throw Error("Unsupported lineup size");
+  // Equivalent unfilled positions are symmetric. Explore only the first open
+  // slot in each eligibility group (6/8/6/2 AFL), not all 2^22 permutations.
+  // Locked positions remain fixed and FLEX has its own eligibility signature.
+  const signatures = config.slots.map((s) => [...s.positions].sort().join("|"));
   const fixedPlayers = new Set<string>();
   const seed: Option = {
     picks: [...fixed],
@@ -90,6 +96,7 @@ export function autoSelect(
     if (
       !c ||
       index < 0 ||
+      !fitsSlot(c, config.slots[index].positions) ||
       seed.mask & (1 << index) ||
       fixedPlayers.has(c.canonical_player_id ?? c.player_id)
     )
@@ -104,7 +111,13 @@ export function autoSelect(
   const groups = new Map<string, RankedCard[]>();
   for (const c of [...cards].sort((a, b) => a.id.localeCompare(b.id))) {
     const id = c.canonical_player_id ?? c.player_id;
-    if (fixedPlayers.has(id) || c.listed || c.status !== "active") continue;
+    if (
+      fixedPlayers.has(id) ||
+      c.listed ||
+      c.status !== "active" ||
+      (c.sport && c.sport !== config.sport)
+    )
+      continue;
     // Multiple instances of the same player/tier cannot both enter. Keep the
     // stable first ID when position, cost and evidence are identical.
     if (
@@ -114,6 +127,8 @@ export function autoSelect(
           (v) =>
             v.tier === c.tier &&
             v.position === c.position &&
+            JSON.stringify(v.eligible_positions) ===
+              JSON.stringify(c.eligible_positions) &&
             v.value === c.value,
         )
     )
@@ -130,7 +145,13 @@ export function autoSelect(
         for (let i = 0; i < config.slots.length; i++) {
           if (
             prev.mask & (1 << i) ||
-            !config.slots[i].positions.includes(c.position)
+            !fitsSlot(c, config.slots[i].positions) ||
+            signatures.some(
+              (signature, earlier) =>
+                earlier < i &&
+                signature === signatures[i] &&
+                !(prev.mask & (1 << earlier)),
+            )
           )
             continue;
           const cost = prev.cost + salary(c.tier, config);

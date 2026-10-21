@@ -24,14 +24,17 @@ export function PlayerJersey({
     rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114 > 175
       ? "#152338"
       : "#f4f0e6";
-  const shape =
-    "M57 13Q42 16 29 24Q17 29 11 36L3 63Q17 74 30 78L43 65Q45 113 40 158Q90 170 140 158Q135 113 137 65L150 78Q163 74 177 63L169 36Q163 29 151 24Q138 16 123 13L111 19Q90 27 69 19Z";
+  const sleeveless = card?.sport === "afl";
+  const shape = sleeveless
+    ? "M59 13L70 16Q90 39 110 16L121 13L134 25Q121 56 140 69L140 158Q90 170 40 158L40 69Q59 56 46 25Z"
+    : "M57 13Q42 16 29 24Q17 29 11 36L3 63Q17 74 30 78L43 65Q45 113 40 158Q90 170 140 158Q135 113 137 65L150 78Q163 74 177 63L169 36Q163 29 151 24Q138 16 123 13L111 19Q90 27 69 19Z";
   return (
     <svg
       className={`player-jersey ${className}`}
       viewBox="0 0 180 176"
       aria-hidden="true"
       focusable="false"
+      data-uniform={sleeveless ? "guernsey" : "football-jersey"}
       data-number-source={
         showNumber && p.number !== "—" ? "verified-metadata" : "unavailable"
       }

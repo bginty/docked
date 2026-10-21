@@ -24,7 +24,14 @@ export type SevenCard = {
   status: string;
   listed: boolean;
   availability_reason?: string;
+  sport?: string;
+  eligible_positions?: string[];
 };
+export function fitsSlot(card: SevenCard, positions: string[]) {
+  return (card.eligible_positions ?? [card.position]).some((p) =>
+    positions.includes(p),
+  );
+}
 export function sevenRules() {
   const rules = nflFutureRarityRules();
   return {
@@ -62,7 +69,9 @@ export function sevenIssues(
       errors.push("A selected card is no longer in your collection.");
       continue;
     }
-    if (!slot?.positions.includes(card.position))
+    if (card.sport && card.sport !== config.sport)
+      errors.push("Selected card belongs to another sport.");
+    if (!slot || !fitsSlot(card, slot.positions))
       errors.push(
         `${pick.slot} requires ${slot?.positions.join(" / ") ?? "an eligible position"}.`,
       );
@@ -80,7 +89,9 @@ export function sevenIssues(
     total += salary(card.tier, config);
   }
   if (complete && picks.length !== config.slots.length)
-    errors.push("Fill all seven positions before entering.");
+    errors.push(
+      `Fill all ${config.slots.length === 7 ? "seven" : config.slots.length} positions before entering.`,
+    );
   if (mode === "SALARY_CAP" && total > config.salaryCap)
     errors.push(
       `Salary ${total.toLocaleString("en-AU")} exceeds the ${config.salaryCap.toLocaleString("en-AU")} cap.`,

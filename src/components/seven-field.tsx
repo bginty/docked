@@ -1,5 +1,7 @@
-import type { ReactNode } from "react";
+"use client";
+import { useState, type ReactNode } from "react";
 import { nflSeven } from "@/core/nfl-seven";
+import { sportConfigurations } from "@/core/sport-configuration";
 
 /** One canonical slot layout. Input order, rarity and player position cannot
  * move a saved selection; FLEX remains its assigned slot. */
@@ -8,12 +10,62 @@ export function SevenField({
   list = false,
   label,
   children,
+  sport = "nfl",
 }: {
   slots?: { id: string }[];
   list?: boolean;
   label: string;
   children: (slot: { id: string }) => ReactNode;
+  sport?: string;
 }) {
+  const [group, setGroup] = useState("");
+  const config = sportConfigurations[sport];
+  if (config && sport !== "nfl") {
+    const selected =
+      config.groups.find((g) => g.id === group) ?? config.groups[0];
+    return (
+      <section
+        className={`sport-lineup sport-lineup-${config.field}`}
+        aria-label={label}
+      >
+        {!list && (
+          <div
+            className="sport-field-overview"
+            aria-label={`${config.label} position groups`}
+          >
+            {config.groups.map((g) => (
+              <button
+                type="button"
+                key={g.id}
+                aria-pressed={selected.id === g.id}
+                onClick={() => setGroup(g.id)}
+              >
+                {g.label}
+                <strong>{g.slots.length}</strong>
+              </button>
+            ))}
+          </div>
+        )}
+        {(list ? config.groups : [selected]).map((g) => (
+          <section key={g.id} aria-label={g.label}>
+            <h3>
+              {g.label} · {g.slots.length}
+            </h3>
+            <div className={list ? "sport-slot-list" : "sport-slot-grid"}>
+              {slots
+                .filter((s) => g.slots.includes(s.id))
+                .map((s) => (
+                  <div key={s.id} data-slot={s.id} className="sport-slot">
+                    <span className="sport-slot-label">{s.id}</span>
+                    {children(s)}
+                  </div>
+                ))}
+            </div>
+          </section>
+        ))}
+      </section>
+    );
+  }
   return (
     <div
       className={list ? "seven-list" : "fantasy-field seven-field"}

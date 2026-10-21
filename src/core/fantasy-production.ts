@@ -71,7 +71,7 @@ export const fantasyProductionAction = z.union([
                 .object({ slot: z.string().min(1).max(20), card: z.uuid() })
                 .strict(),
             )
-            .max(7),
+            .max(30),
         })
         .strict(),
       request_id: z.uuid(),

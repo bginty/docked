@@ -1,0 +1,23 @@
+import {test} from "node:test";
+import assert from "node:assert/strict";
+import {aflTwentyTwoRules} from "../../src/core/afl-twenty-two";
+import {currentRulesets} from "../../src/core/scoring-release";
+import {rulesets} from "../../src/core/scoring-v1";
+import {createPeriod,saveTeam,lockTeams,importStatistics,results,finalise,type CatalogCard} from "../../src/core/scoring-engine";
+test("22-player AFL reuses frozen event scoring; missing, zero, DNP, corrections and finalisation remain distinct",()=>{
+ const rules=aflTwentyTwoRules();assert.deepEqual(rules.weights,currentRulesets.afl.weights);assert.equal(rulesets.afl.slots.length,8);
+ const cards:CatalogCard[]=rules.slots.map((s,i)=>({cardId:`qa:card:${i}`,playerId:`qa:player:${i}`,position:s.positions[0],sport:'afl',owner:'qa:owner',eligible:true}));
+ const before='2099-01-01T00:00:00Z',lock='2099-01-02T00:00:00Z',ended='2099-01-02T03:00:00Z';
+ let s=createPeriod({id:'sim:afl:22',sport:'afl',label:'Isolated 22',locksAt:lock,rules,fixtures:[{id:'sim:afl:fixture',scheduledAt:lock,playerIds:cards.map(c=>c.playerId)}]},before);
+ s=saveTeam(s,'qa:owner','QA only',cards.map(c=>c.cardId),cards,before);s=lockTeams(s,cards,lock);
+ const stats={kicks:1,handballs:1,marks:0,tackles:0,goals:0,behinds:0,hitouts:0,freesFor:0,freesAgainst:0};
+ const source={provider:'docked-synthetic-v1',simulated:true,sport:'afl',fixtureId:'sim:afl:fixture',revision:1,observedAt:ended,status:'completed',endedAt:ended,players:cards.map((c,i)=>({playerId:c.playerId,availability:i===21?'pending':i===20?'confirmed-dnp':'complete',stats:i>=20?null:stats}))};
+ const op={id:'qa:operator',role:'reviewer' as const};s=importStatistics(s,source,op,ended);
+ assert.equal(results(s).rows[0].centipoints,null);assert.equal(results(s).rows[0].knownCentipoints,6000);assert.equal(results(s).rows[0].players[20].centipoints,0);assert.equal(results(s).rows[0].players[21].centipoints,null);
+ assert.throws(()=>finalise(s,op,'2099-01-10T00:00:00Z'),/Pending data/);
+ const corrected=structuredClone(source);corrected.revision=2;corrected.players[21]={playerId:cards[21].playerId,availability:'complete',stats:{...stats,kicks:0,handballs:0}};
+ s=importStatistics(s,corrected,op,ended);const audits=s.audits.length;s=importStatistics(s,corrected,op,ended);assert.equal(s.audits.length,audits);
+ assert.equal(results(s).rows[0].centipoints,6000);assert.equal(results(s).rows[0].rank,1);
+ s=finalise(s,op,'2099-01-10T00:00:00Z');assert.equal(results(s).rows[0].status,'final');
+ assert.throws(()=>importStatistics(s,{...corrected,revision:3},op,'2099-01-10T00:00:00Z'),/late correction/);
+});

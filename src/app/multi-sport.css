@@ -1,0 +1,116 @@
+.sport-lineup {
+  min-width: 0;
+  border: 1px solid #38546b;
+  border-radius: 24px;
+  padding: clamp(12px, 2vw, 24px);
+  background: radial-gradient(ellipse at center, #154432, #071b20);
+}
+.sport-field-overview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 24px;
+  border: 2px solid #99c7ba66;
+  border-radius: 50%;
+  max-width: 540px;
+  margin: 0 auto 20px;
+  background: repeating-linear-gradient(
+    0deg,
+    #ffffff03 0 40px,
+    #ffffff09 40px 80px
+  );
+}
+.sport-field-overview button {
+  min-height: 64px;
+  border-radius: 24px;
+  border: 1px solid #7cabb6;
+  color: #eefaff;
+  background: #071a2de8;
+}
+.sport-field-overview button[aria-pressed="true"] {
+  background: #0759a8;
+  box-shadow: 0 0 0 2px #62dbef;
+}
+.sport-field-overview strong {
+  display: block;
+  font-size: 1.3rem;
+}
+.sport-slot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.sport-slot {
+  min-width: 0;
+  text-align: center;
+}
+.sport-slot-label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  color: #bfd6e6;
+}
+.sport-slot .collectible-face {
+  width: 100%;
+  max-width: 240px;
+  margin: auto;
+}
+.sport-slot button {
+  max-width: 100%;
+}
+.sport-slot-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.sport-sandbox {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px;
+  color: var(--text, #edf4fc);
+}
+.sport-sandbox-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 16px 0;
+}
+.sport-sandbox-notice {
+  padding: 12px;
+  border: 1px solid #48748b;
+  border-radius: 16px;
+  background: #10243b;
+}
+.sport-sandbox .sport-card-button {
+  display: block;
+  padding: 0;
+  width: 100%;
+  border: 0;
+  background: transparent;
+}
+.sport-review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .sport-slot-grid,
+  .sport-slot-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .sport-sandbox {
+    padding: 10px;
+  }
+  .sport-field-overview {
+    padding: 20px 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sport-lineup * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
