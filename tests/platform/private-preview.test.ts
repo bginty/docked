@@ -49,7 +49,11 @@ test("closed Preview binds the isolated project and restricted database role", (
 });
 
 test("sport sandbox accepts the restricted closed Preview without enabling admission", () => {
-  const env = { ...valid(), DOCKED_MULTI_SPORT_SANDBOX: "true" };
+  const env = {
+    ...valid(),
+    DOCKED_MULTI_SPORT_SANDBOX: "true",
+    VERCEL_GIT_COMMIT_REF: "codex/member-platform-updates",
+  };
   assert.doesNotThrow(() => assertSportSandbox(env));
   for (const [key, value] of Object.entries({
     VERCEL_ENV: "production",
@@ -59,6 +63,7 @@ test("sport sandbox accepts the restricted closed Preview without enabling admis
     BETA_ACCESS_ENABLED: "true",
     AUTH_EMAIL_ENABLED: "true",
     FANTASY_CARDS_PREVIEW: "true",
+    VERCEL_GIT_COMMIT_REF: "unreviewed-branch",
   })) {
     assert.throws(() => assertSportSandbox({ ...env, [key]: value }), key);
   }
