@@ -1,6 +1,7 @@
 import { db } from "@/server/db";
 import { requireRole } from "@/server/auth";
 import type { ReviewContext } from "@/core/competition-review";
+import { ScoringRetry } from "./scoring-retry";
 
 /** Existing permission-scoped read RPCs only; never run reconciliation from a GET. */
 export async function NflRoundOperations() {
@@ -150,6 +151,7 @@ export async function NflRoundOperations() {
                 </>
               )}
               <a href="/fantasy/standings">View Rankings</a>
+              {!r.finalAt && <ScoringRetry competition={r.id}/>}
             </details>
           );
         })}

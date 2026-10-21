@@ -9,7 +9,9 @@ export async function hiddenMarketCards(
   state: CreditsState,
   member: string,
 ) {
-  const hidden: string[] = [];
+  // Legacy synthetic inventory has no canonical player/card instance. Keep its
+  // receipts and balances, but never offer it as a public collectible.
+  const hidden: string[] = state.economy ? Object.keys(state.commerce.cards).filter((id)=>!state.economy!.instances[id]) : [];
   const listings = Object.values(state.listings)
     .map((l) => ({ card: l.card, member: state.commerce.cards[l.card]?.owner }))
     .filter((l) => l.member && l.member !== member);

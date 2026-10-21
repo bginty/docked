@@ -37,6 +37,7 @@ export default async function Admin() {
         <h1>Staff portal</h1>
         <p>Signed in with the {who.role} role · Verified MFA</p>
         <nav className="command-workspaces" aria-label="Operations">
+          {["owner","admin"].includes(who.role) && <Link href="/admin/coupons"><strong>Pack coupons</strong><span>Draft, review and manage pack discounts</span></Link>}
           {who.role === "owner" && (
             <Link href="/admin/operations">
               <strong>Owner Command Centre</strong>

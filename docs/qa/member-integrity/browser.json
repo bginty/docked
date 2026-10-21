@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "width": 412,
+      "socialComposer": true,
+      "noOverflow": true,
+      "couponPurchaseOnce": true
+    },
+    {
+      "width": 360,
+      "socialComposer": true,
+      "noOverflow": true,
+      "couponPurchaseOnce": true
+    },
+    {
+      "width": 1440,
+      "socialComposer": true,
+      "noOverflow": true,
+      "couponPurchaseOnce": true
+    }
+  ],
+  "boundary": "Actual React components, local HTTP adapters and production transaction core. Hosted auth separately verified; no customer mutations."
+}

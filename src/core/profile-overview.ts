@@ -3,6 +3,7 @@ export type PrivateAccountSummary = {
   emailVerified: boolean | null;
   avatarUrl?: string | null;
   displayName?: string;
+  staffRole?: string;
 };
 /** Only call with the authenticated owner's server-verified identity, never a public profile. */
 export function privateAccountSummary(user: {

@@ -2,6 +2,10 @@
 export function memberReturnPath(value?: string | null): string | null {
   if (!value || value.length > 1500 || /[\\\x00-\x20]/.test(value)) return null;
   try {
+    if (
+      /(?:^|\/)\.\.?(?:\/|$)/.test(decodeURIComponent(value.split(/[?#]/)[0]))
+    )
+      return null;
     const url = new URL(value, "https://docked.invalid");
     if (
       !value.startsWith("/") ||
@@ -10,7 +14,7 @@ export function memberReturnPath(value?: string | null): string | null {
     )
       return null;
     if (
-      !/^\/fantasy\/(play|cards|market|social|profile|results|prizes|test-wallet)\/?$/.test(
+      !/^\/(?:fantasy\/(play|cards|market|social|profile|results|prizes|test-wallet)|admin(?:\/(?:operations|nfl-history|marketplace|coupons|community(?:\/[a-z-]+)?|workspace\/[a-z-]+))?)\/?$/.test(
         url.pathname,
       )
     )

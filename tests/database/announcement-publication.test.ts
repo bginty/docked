@@ -28,6 +28,20 @@ test("publication is private until approved, authorised, immutable on replay and
       "utf8",
     );
     await pg.exec(release.split("-- END ANNOUNCEMENTS")[0]);
+    const cleanup = await readFile(
+      "supabase/migrations/20261021104437_member_community_pack_integrity.sql",
+      "utf8",
+    );
+    await pg.exec(
+      cleanup.slice(
+        cleanup.indexOf(
+          "create or replace function beta_private.member_announcements",
+        ),
+        cleanup.indexOf(
+          "revoke all on function credits_sandbox.guard_pack_coupons",
+        ),
+      ),
+    );
     await pg.exec("set role docked_beta_app");
     const actor = async (id: string, aal = "aal2", active = "true") =>
       pg.query(
@@ -109,6 +123,8 @@ test("publication is private until approved, authorised, immutable on replay and
     };
     d = await mutate();
     assert.equal((await read())[0].body, published[0].body);
+    assert.equal((await read())[0].published_at, published[0].published_at);
+    assert.equal((await read())[0].edited_at, published[0].edited_at);
     await assert.rejects(
       mutate({
         ...p,

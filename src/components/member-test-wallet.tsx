@@ -153,12 +153,13 @@ export function MemberTestWallet({
             state={s}
             busy={busy}
             recovery={recovery}
-            purchase={(product) =>
+            purchase={(product,coupon) =>
               send({
                 kind: "buy-pack",
                 product: product.id,
                 ...(s.economyEnabled ? { configuration: product.version } : {}),
-                expectedPrice: product.price,
+                expectedPrice: coupon?.charge ?? product.price,
+                ...(coupon ? {coupon:coupon.code,couponQuote:coupon.fingerprint}:{}),
                 confirmed: true,
                 policy: s.policy,
               })

@@ -151,9 +151,9 @@ export function ProfileOverview({
               Social Profile
             </Link>
             <span id="profile-install-slot" />
-            {data.admin && (
-              <Link className="pack-control secondary" href="/admin/operations">
-                Owner dashboard
+            {account?.staffRole && (
+              <Link className="pack-control secondary" href={account.staffRole === "owner" ? "/admin/operations" : "/admin"}>
+                {account.staffRole === "owner" ? "Owner dashboard" : "Staff dashboard"}
               </Link>
             )}
           </nav>

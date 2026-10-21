@@ -26,6 +26,10 @@ export function collectionDiagnostic(error: unknown): string {
     "304 without retained evidence": "SOURCE_304_WITHOUT_EVIDENCE",
     "Lost source lease": "SOURCE_LEASE_LOST",
     "Retained source unavailable": "RETAINED_SOURCE_UNAVAILABLE",
+    "Duplicate/mismatched player or fixture row": "INVALID_PLAYER_OR_FIXTURE_ROW",
+    "Frozen mapping changed": "FROZEN_MAPPING_REVIEW_REQUIRED",
+    "Frozen fixture mismatch": "FROZEN_FIXTURE_REVIEW_REQUIRED",
+    "Retained NFL source expired during reconciliation": "RETAINED_SOURCE_EXPIRED",
     "Buffer is not defined": "RUNTIME_BUFFER_UNAVAILABLE",
   };
   return known[error.message] ?? "UNCLASSIFIED";

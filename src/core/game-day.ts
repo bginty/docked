@@ -35,12 +35,8 @@ export function gameDayPlayerStatus(player: StandingPlayer, now: number) {
   if (player.parts?.some((part) => part.statistic === "assumed-zero"))
     return "Provisional zero";
   if (player.completed || player.status === "final") return "Final";
-  if (
-    player.fixtures?.some((f) =>
-      ["postponed", "cancelled"].includes(f.status ?? ""),
-    )
-  )
-    return "Delayed";
+  if (player.fixtures?.some((f)=>f.status==="cancelled")) return "Cancelled";
+  if (player.fixtures?.some((f)=>f.status==="postponed")) return "Postponed";
   if (
     player.fixtures?.length &&
     player.fixtures.every((f) => Date.parse(f.scheduledAt) > now)
@@ -53,4 +49,19 @@ export function gameDayPlayerStatus(player: StandingPlayer, now: number) {
   )
     return "Playing";
   return player.centipoints == null ? "Awaiting stats" : "Provisional";
+}
+
+/** Journal timestamps are not evidence of a successful statistics download. */
+export function gameDayFreshness(
+  round: StandingRound,
+  entry?: StandingRow | null,
+) {
+  if (round.finalised) return "Final results";
+  const status = gameDayStatus(round);
+  if (status === "Upcoming")
+    return "Games have not started. Scores will appear when verified statistics arrive.";
+  if (status === "Awaiting schedule") return "Waiting for the game schedule.";
+  const source =
+    round.feedMode === "live" ? "Live source" : "Postgame statistics";
+  return `${source}${currentPoints(entry) !== null ? " · Provisional" : " · Awaiting stats"}${round.dataDelayed ? " · Data delayed" : ""}`;
 }

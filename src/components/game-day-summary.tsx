@@ -4,6 +4,7 @@ import {
   currentRank,
   gameDayPoints,
   gameDayStatus,
+  gameDayFreshness,
 } from "@/core/game-day";
 import { LocalDateTime } from "./local-date-time";
 import { competitionScoringLabel } from "@/core/scoring-context";
@@ -48,21 +49,22 @@ export function GameDaySummary({
         </div>
       </div>
       <p className="game-day-freshness">
-        {round.finalised
-          ? "Final results"
-          : round.feedMode === "live"
-            ? "Live source"
-            : "Postgame scoring"}
-        {!round.finalised && currentPoints(entry) !== null && " · Provisional"}
-        {round.dataDelayed && !round.finalised && " · Awaiting source data"}
-        {round.updatedAt && (
-          <>
-            {" "}
-            · Updated <LocalDateTime value={round.updatedAt} />
-          </>
-        )}
+        {gameDayFreshness(round, entry)}
+        {round.updatedAt &&
+          !["Upcoming", "Awaiting schedule"].includes(gameDayStatus(round)) && (
+            <>
+              {" "}
+              · Score record updated <LocalDateTime value={round.updatedAt} />
+            </>
+          )}
       </p>
       <p className="game-day-freshness" title={round.scoringVersion}>
+        {round.lastSuccessfulSyncAt && (
+          <>
+            Last successful statistics sync:{" "}
+            <LocalDateTime value={round.lastSuccessfulSyncAt} /> ·{" "}
+          </>
+        )}
         {competitionScoringLabel(round)}
       </p>
     </section>

@@ -1,7 +1,7 @@
 "use client";
 import type { SocialProfile } from "@/core/community-social";
 import { MemberAvatar } from "./member-avatar";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { communityAction } from "./social-interactions";
 import { NativeImagePicker } from "./native-image-picker";
@@ -40,6 +40,7 @@ export function SocialComposer({
   );
   const [picker, setPicker] = useState(false);
   const [search, setSearch] = useState("");
+  const [imageUpload, setImageUpload] = useState(false);
   const [preview, setPreview] = useState(false);
   const postForm = useRef<HTMLFormElement>(null);
   const [body, setBody] = useState(initialBody),
@@ -50,6 +51,15 @@ export function SocialComposer({
   const sending = useRef(false);
   const router = useRouter();
   const ready = useClientReady();
+  useEffect(() => {
+    const focus = () => {
+      if (ready && inline && location.hash === "#social-compose")
+        postForm.current?.querySelector("textarea")?.focus();
+    };
+    focus();
+    window.addEventListener("hashchange", focus);
+    return () => window.removeEventListener("hashchange", focus);
+  }, [inline, ready]);
   async function upload(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!ready || busy || sending.current) return;
@@ -144,8 +154,8 @@ export function SocialComposer({
               maxLength={4000}
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              placeholder="What’s happening?"
-              rows={3}
+              placeholder="What’s happening in your squad?"
+              rows={2}
             />
           </label>
           <details className="composer-options">
@@ -193,7 +203,14 @@ export function SocialComposer({
             className="composer-card-picker"
             onClick={() => setPicker(true)}
           >
-            Attach your cards {cardIds.length ? `(${cardIds.length}/4)` : ""}
+            Attach cards {cardIds.length ? `(${cardIds.length}/4)` : ""}
+          </button>
+          <button
+            type="button"
+            className="composer-image-picker"
+            onClick={() => setImageUpload(true)}
+          >
+            Add image
           </button>
           {cardIds.length > 0 && (
             <div
@@ -269,8 +286,15 @@ export function SocialComposer({
           )}
           <div className="composer-submit actions">
             <button
-              type="button"
+              type="submit"
               className="button"
+              disabled={busy || !body.trim()}
+            >
+              {busy ? "Posting…" : "Post"}
+            </button>
+            <button
+              type="button"
+              className="button composer-preview-button"
               disabled={busy || !body.trim()}
               onClick={() => {
                 setMessage("");
@@ -300,35 +324,36 @@ export function SocialComposer({
             )}
           </div>
         </form>
-        <details>
-          <summary>Attach an image (social use only)</summary>
-          <form className="app-form" method="post" onSubmit={upload}>
-            <NativeImagePicker />
-            <label>
-              Image
-              <input
-                type="file"
-                name="file"
-                accept="image/jpeg,image/png,image/webp"
-                required
-              />
-            </label>
-            <label>
-              Image description
-              <input name="alt" required minLength={5} maxLength={240} />
-            </label>
-            <p className="form-help">
-              Uploads are reviewed before display. Remove personal information
-              before uploading.
-            </p>
-            <button
-              className="button ghost"
-              disabled={busy || mediaIds.length >= 4}
-            >
-              Upload for review
-            </button>
-          </form>
-        </details>
+        {imageUpload && (
+          <FantasySheet title="Add image" onClose={() => setImageUpload(false)}>
+            <form className="app-form" method="post" onSubmit={upload}>
+              <NativeImagePicker />
+              <label>
+                Image
+                <input
+                  type="file"
+                  name="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  required
+                />
+              </label>
+              <label>
+                Image description
+                <input name="alt" required minLength={5} maxLength={240} />
+              </label>
+              <p className="form-help">
+                Uploads are reviewed before display. Remove personal information
+                before uploading.
+              </p>
+              <button
+                className="button ghost"
+                disabled={busy || mediaIds.length >= 4}
+              >
+                Upload for review
+              </button>
+            </form>
+          </FantasySheet>
+        )}
         <p role="status" className="form-message">
           {message}
         </p>

@@ -384,6 +384,7 @@ export function nflversePostgame(
   observedAt: string,
   plays?: Record<string, string>[],
   scoringVersion?: string,
+  verifiedDualPositions: Readonly<Record<string,string>> = {},
 ) {
   const mapping = mappingSchema.parse(input);
   z.iso.datetime().parse(observedAt);
@@ -430,7 +431,9 @@ export function nflversePostgame(
     const result =
       row &&
       row.team === p.team &&
-      officialPositionMatches(row.position, p.position)
+      (officialPositionMatches(row.position, p.position) ||
+        (officialPositionMatches(verifiedDualPositions[p.gsisId]??"",p.position) &&
+         (verifiedDualPositions[p.gsisId]??"").split("/").includes(row.position)))
         ? nflversePlayerStatistics(row, plays, scoringVersion)
         : {
             stats: null,

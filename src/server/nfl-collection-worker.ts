@@ -1,4 +1,5 @@
-import { collectionFailureDetail } from "./nfl-collection-diagnostics";
+import { collectionFailureDetail,collectionDiagnostic } from "./nfl-collection-diagnostics";
+import { refreshOfficialRosters } from "./official-roster-refresh";
 import type { Sql } from "postgres";
 import {
   downloadNflDataset,
@@ -33,6 +34,7 @@ export async function runNflCollection(
         );
         // No issuance from scheduled jobs. Only refresh known player eligibility.
         await sql`select sports_feed.nfl_refresh_status(${sql.json(raw.body.rows)},${Number(raw.id)},${raw.checked_at})`;
+        detail.officialRoster=await refreshOfficialRosters(sql);
       }
     } else {
       await sql`select sports_feed.nfl_lock_due()`;
@@ -76,9 +78,9 @@ export async function runNflCollection(
                 role: "importer",
               });
               issues.push(...out.issues.map((s) => `${mapping.gameId}: ${s}`));
-            } catch {
+            } catch (error) {
               issues.push(
-                `${mapping.gameId}: source conflict, stale data or reviewer correction required`,
+                `${mapping.gameId}: ${collectionDiagnostic(error)}; source or reviewer correction required`,
               );
             }
           }

@@ -885,3 +885,158 @@
   max-width: 140px;
   margin: 10px auto;
 }
+.compact-social .social-page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.compact-social .social-page-heading h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+}
+.compact-social .social-page-heading p {
+  margin: 0.25rem 0;
+  color: var(--muted);
+}
+.compact-social .community-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1rem 0;
+}
+.compact-social .community-tabs a {
+  min-width: 0;
+  text-align: center;
+  padding: 0.7rem 0.3rem;
+}
+.compact-social .social-home-grid {
+  align-items: start;
+}
+.compact-social .social-home-grid > * {
+  min-width: 0;
+}
+.compact-social .social-secondary-links {
+  display: grid;
+  gap: 1rem;
+}
+.compact-announcement {
+  padding: 0.8rem 1rem;
+}
+.compact-announcement h2 {
+  font-size: 1rem;
+  margin: 0.4rem 0;
+}
+.compact-announcement footer {
+  font-size: 0.75rem;
+}
+.compact-social #social-compose {
+  scroll-margin-top: 6rem;
+}
+.compact-social .inline-composer fieldset {
+  padding: 1rem;
+}
+.compact-social .composer-submit {
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .compact-social .social-page-heading {
+    gap: 0.5rem;
+  }
+  .compact-social .social-page-heading .pack-control {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  .compact-social .community-tabs {
+    font-size: 0.85rem;
+  }
+  .compact-announcement header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .compact-social .social-home-grid > aside {
+    display: none;
+  }
+}
+.compact-social .inline-composer > fieldset {
+  padding: 16px;
+}
+.compact-social .inline-composer .app-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 10px;
+}
+.compact-social .inline-composer .app-form > label,
+.compact-social .inline-composer .composer-options,
+.compact-social .inline-composer .social-attachment-preview {
+  grid-column: 1/-1;
+}
+.compact-social .inline-composer .composer-options {
+  order: 5;
+  font-size: 0.8rem;
+}
+.compact-social .inline-composer .composer-submit {
+  display: flex;
+  grid-column: auto;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.community-shell .premium-social.compact-social .inline-composer form:first-of-type { grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto; }
+.compact-social .inline-composer .composer-preview-button {
+  display: none;
+}
+.compact-social .inline-composer button {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+.compact-social .inline-composer .form-message:empty {
+  display: none;
+}
+.compact-social .inline-composer textarea {
+  min-height: 64px;
+}
+.compact-social .official-announcement.compact-announcement {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin: 12px 0;
+  min-height: 0;
+}
+.compact-social .compact-announcement > div {
+  flex: 1;
+  min-width: 0;
+}
+.compact-social .official-announcement.compact-announcement h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.compact-social .compact-announcement small {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.compact-social .compact-announcement .official-badge {
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+.compact-social .compact-announcement .pack-control {
+  font-size: 0.75rem;
+  padding: 8px;
+}
+@media (max-width: 450px) {
+  .compact-social .inline-composer > fieldset > .member-photo {
+    display: none;
+  }
+  .compact-social .inline-composer > fieldset {
+    display: block;
+  }
+  .compact-social .inline-composer .app-form {
+    width: 100%;
+    min-width: 0;
+  }
+  .compact-social .inline-composer .composer-submit button {
+    padding: 8px 10px;
+  }
+}

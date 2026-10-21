@@ -43,6 +43,8 @@ export async function memberTestSource(input?: unknown) {
     await setCommunityClaims(tx as unknown as TransactionSql, who);
     assertMemberTestEconomy(state);
     await refreshEconomyCatalogue(tx, state);
+    if (command && ["list","replace-listing"].includes(command.kind) && "card" in command && state.economy && !state.economy.instances[command.card])
+      throw new CreditsRejected("This legacy demonstration card is not eligible for the public marketplace.");
     const rows =
       await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled`;
     if (!rows.length || (rows[0].kind === "owner" && who.aal !== "aal2"))

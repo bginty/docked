@@ -14,6 +14,9 @@ import { FantasySheet } from "./fantasy-player-sheet";
 import { PackArtwork } from "./pack-artwork";
 import { WeeklyCorePanel } from "./weekly-core-panel";
 import { StarterPackHistory } from "./starter-pack-history";
+import { boundedFetch } from "@/core/bounded-request";
+import type { CouponQuote } from "@/core/pack-coupons";
+import type { memberCoupon } from "@/server/pack-coupons";
 type Product = MemberTestView["products"][number];
 function FamilyDisclosures({ p }: { p: Product }) {
   return (
@@ -86,7 +89,7 @@ export function PackShop({
   state: MemberTestView;
   busy: boolean;
   recovery: boolean;
-  purchase: (product: Product) => Promise<unknown>;
+  purchase: (product: Product, coupon?: CouponQuote) => Promise<unknown>;
   refresh: () => Promise<void>;
   open: (id: string, replay: boolean) => void;
 }) {
@@ -95,6 +98,45 @@ export function PackShop({
   const [error, setError] = useState(""),
     [submitting, setSubmitting] = useState(false);
   const flight = useRef(false);
+  const [code, setCode] = useState(""),
+    [coupon, setCoupon] = useState<Awaited<
+      ReturnType<typeof memberCoupon>
+    > | null>(null),
+    [couponBusy, setCouponBusy] = useState(false),
+    [couponError, setCouponError] = useState("");
+  const [reviewCoupon, setReviewCoupon] = useState<CouponQuote | undefined>();
+  const couponFlight = useRef(false);
+  const quoteFor = (p: Product) =>
+    coupon?.quotes.find((q) => q.product === p.id)?.quote ?? undefined;
+  const priceFor = (p: Product) => quoteFor(p)?.charge ?? p.price;
+  async function applyCoupon() {
+    if (couponFlight.current) return;
+    couponFlight.current = true;
+    setCouponBusy(true);
+    setCouponError("");
+    setCoupon(null);
+    try {
+      const r = await boundedFetch("/api/pack-coupons", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+      const v = await r.json();
+      if (!r.ok)
+        throw Error(v.error ?? "Coupon validation failed. Please retry.");
+      setCoupon(v);
+      setCode(v.code);
+    } catch (e) {
+      setCouponError(
+        e instanceof Error
+          ? e.message
+          : "Coupon validation failed. Please retry.",
+      );
+    } finally {
+      couponFlight.current = false;
+      setCouponBusy(false);
+    }
+  }
   useEffect(() => {
     const read = () => setTab(packTab(location.search, location.hash));
     read();
@@ -118,9 +160,22 @@ export function PackShop({
     setSubmitting(true);
     setError("");
     try {
-      await purchase(review);
+      await purchase(review, reviewCoupon);
+      setCoupon(null);
       setReview(null);
     } catch (e) {
+      if (
+        e instanceof Error &&
+        /coupon|offer changed/i.test(e.message) &&
+        !recovery
+      ) {
+        setCoupon(null);
+        setReviewCoupon(undefined);
+        setReview(null);
+        setCouponError(
+          `${e.message} Apply the code again and review the updated price.`,
+        );
+      }
       setError(
         e instanceof Error ? e.message : "Purchase could not be confirmed.",
       );
@@ -164,6 +219,66 @@ export function PackShop({
       </nav>
       {tab === "buy" && (
         <div className="pack-families">
+          <form
+            className="pack-coupon-panel"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void applyCoupon();
+            }}
+          >
+            <label>
+              Have a coupon?
+              <input
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+                maxLength={32}
+                autoCapitalize="characters"
+                autoComplete="off"
+                disabled={couponBusy || !!coupon}
+              />
+            </label>
+            <div className="actions">
+              <button
+                className="pack-control primary"
+                disabled={couponBusy || !code.trim() || !!coupon}
+              >
+                {couponBusy ? "Checking…" : "Apply"}
+              </button>
+              {coupon && (
+                <button
+                  type="button"
+                  className="pack-control secondary"
+                  onClick={() => {
+                    setCoupon(null);
+                    setCode("");
+                    setCouponError("");
+                  }}
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+            {couponError && <p role="alert">{couponError}</p>}
+            {coupon && (
+              <p role="status">
+                <strong>{coupon.code} applied</strong> ·{" "}
+                {coupon.terms.type === "percent"
+                  ? `${coupon.terms.value}%`
+                  : `${coupon.terms.value.toLocaleString("en-AU")} credits`}{" "}
+                off eligible packs, up to{" "}
+                {coupon.terms.maximumDiscount.toLocaleString("en-AU")} credits ·{" "}
+                {coupon.terms.accountLimit} use(s) per account
+                {coupon.terms.firstPurchaseOnly
+                  ? " · First pack purchase only"
+                  : ""}
+                . Expires{" "}
+                {new Date(coupon.terms.expiresAt).toLocaleString("en-AU", {
+                  timeZone: "Australia/Sydney",
+                })}{" "}
+                Sydney. Used only when purchase succeeds.
+              </p>
+            )}
+          </form>
           {["PREMIUM", "STANDARD", "OTHER"].map((family) => {
             const products = s.products
               .filter((p) =>
@@ -207,20 +322,34 @@ export function PackShop({
                         {p.cards} {p.cards === 1 ? "card" : "cards"}
                       </p>
                       <p className="pack-price">
-                        <strong>{credits(p.price)}</strong> test credits
+                        {quoteFor(p) && (
+                          <>
+                            <s>{credits(p.price)}</s>{" "}
+                          </>
+                        )}
+                        <strong>{credits(priceFor(p))}</strong> test credits
                       </p>
+                      {coupon && (
+                        <p className="small-note">
+                          {quoteFor(p)
+                            ? `${coupon.code} · Save ${credits(quoteFor(p)!.saving)} credits`
+                            : "Coupon not eligible · regular price"}
+                        </p>
+                      )}
                       <button
                         className="pack-control primary"
                         aria-label={`Buy ${title(p)}`}
                         disabled={
                           busy ||
                           recovery ||
+                          couponBusy ||
                           !p.available ||
-                          s.wallet.spendable < p.price
+                          s.wallet.spendable < priceFor(p)
                         }
                         onClick={() => {
                           setError("");
                           setReview(p);
+                          setReviewCoupon(quoteFor(p));
                         }}
                       >
                         Buy{" "}
@@ -231,9 +360,12 @@ export function PackShop({
                             : p.name}
                       </button>
                       {!p.available ? (
-                        <p className="small-note">Currently unavailable</p>
+                        <p className="small-note">
+                          {p.availabilityReason ??
+                            "This pack is currently unavailable."}
+                        </p>
                       ) : (
-                        s.wallet.spendable < p.price && (
+                        s.wallet.spendable < priceFor(p) && (
                           <p className="small-note">
                             Insufficient available test credits
                           </p>
@@ -251,6 +383,28 @@ export function PackShop({
               Core cards are exclusive to weekly starter packs.
             </p>
           )}
+          {s.products.some((p) => p.availabilityRetryable) && (
+            <button
+              className="pack-control secondary"
+              disabled={busy || submitting}
+              onClick={async () => {
+                setSubmitting(true);
+                setError("");
+                try {
+                  await refresh();
+                } catch {
+                  setError(
+                    "Pack availability could not be refreshed. Please retry.",
+                  );
+                } finally {
+                  setSubmitting(false);
+                }
+              }}
+            >
+              Retry availability
+            </button>
+          )}
+          {!review && error && <p role="alert">{error}</p>}
         </div>
       )}
       {tab !== "buy" && (
@@ -297,6 +451,12 @@ export function PackShop({
                     ? ` · ${credits(p.paidCredits)} test credits`
                     : ""}
                 </p>
+                {p.coupon && (
+                  <p className="small-note">
+                    {p.coupon.code} · Original {credits(p.coupon.original)} ·
+                    Saved {credits(p.coupon.saving)} credits
+                  </p>
+                )}
               </div>
               <button
                 className="pack-control secondary"
@@ -334,8 +494,20 @@ export function PackShop({
             <p>{review.odds?.headline ?? `${review.cards} cards`}</p>
             <dl>
               <div>
-                <dt>Cost</dt>
+                <dt>Pack price</dt>
                 <dd>{credits(review.price)} test credits</dd>
+              </div>
+              {reviewCoupon && (
+                <div>
+                  <dt>{reviewCoupon.code} saving</dt>
+                  <dd>−{credits(reviewCoupon.saving)} credits</dd>
+                </div>
+              )}
+              <div>
+                <dt>You pay</dt>
+                <dd>
+                  {credits(reviewCoupon?.charge ?? review.price)} test credits
+                </dd>
               </div>
               <div>
                 <dt>Available</dt>
@@ -344,8 +516,13 @@ export function PackShop({
               <div>
                 <dt>After purchase</dt>
                 <dd>
-                  {credits(packBalance(s.wallet.spendable, review.price))} test
-                  credits
+                  {credits(
+                    packBalance(
+                      s.wallet.spendable,
+                      reviewCoupon?.charge ?? review.price,
+                    ),
+                  )}{" "}
+                  test credits
                 </dd>
               </div>
             </dl>
@@ -391,7 +568,10 @@ export function PackShop({
                   submitting ||
                   recovery ||
                   !!error ||
-                  packBalance(s.wallet.spendable, review.price) < 0
+                  packBalance(
+                    s.wallet.spendable,
+                    reviewCoupon?.charge ?? review.price,
+                  ) < 0
                 }
                 onClick={() => void confirm()}
               >

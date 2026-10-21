@@ -7,7 +7,7 @@ import { z } from "zod";
 import { boundedRead } from "@/core/bounded-request";
 
 import { Marketplace } from "@/components/marketplace";
-import { requireIdentity } from "@/server/auth";
+import { requireIdentity, requireRole } from "@/server/auth";
 import {
   privateAccountSummary,
   type PrivateAccountSummary,
@@ -133,7 +133,7 @@ export default async function FantasyPage({
     }
     const query = await searchParams;
     const feedTab =
-      query.tab === "following" || query.tab === "for_you"
+      query.tab === "following"
         ? query.tab
         : "latest";
     let feed;
@@ -168,7 +168,7 @@ export default async function FantasyPage({
           feed={feed}
           tab={feedTab}
           view={
-            query.tab === "communities" || query.tab === "discover"
+            query.tab === "communities" || query.tab === "discover" || query.tab === "announcements"
               ? query.tab
               : undefined
           }
@@ -211,6 +211,11 @@ export default async function FantasyPage({
       const owner = await boundedRead(requireIdentity());
       if (owner.user.id === data.state.user_id) {
         account = privateAccountSummary(owner.user);
+        if (data.state.admin) {
+          try {
+            account.staffRole = (await requireRole(["owner", "admin", "editor", "analyst", "auditor"])).role;
+          } catch { /* Show no privileged shortcut without verified role and MFA. */ }
+        }
         try {
           account = {
             ...account,

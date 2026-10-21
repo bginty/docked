@@ -7,6 +7,7 @@ export type PublishedAnnouncement = {
   body: string;
   cta: string | null;
   published_at: string;
+  edited_at?: string | null;
   pinned: boolean;
 };
 export async function memberAnnouncements(

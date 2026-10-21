@@ -11,13 +11,37 @@ const labels: Record<string, string> = {
 export function OfficialAnnouncement({
   item,
   archive = false,
+  compact = false,
 }: {
   item: PublishedAnnouncement;
   archive?: boolean;
+  compact?: boolean;
 }) {
+  if (compact)
+    return (
+      <article
+        className="official-announcement compact-announcement"
+        aria-label="Official Docked announcement"
+      >
+        <span className="official-badge">✓ Official</span>
+        <div>
+          <h2>
+            <Link href={`/fantasy/announcements/${item.id}`}>{item.title}</Link>
+          </h2>
+          <small>Latest from Docked</small>
+        </div>
+        <Link
+          className="pack-control secondary"
+          href="/fantasy/announcements"
+          aria-label="View all announcements"
+        >
+          All updates →
+        </Link>
+      </article>
+    );
   return (
     <article
-      className="official-announcement"
+      className={`official-announcement${compact ? " compact-announcement" : ""}`}
       aria-label="Official Docked announcement"
     >
       <header>
@@ -36,11 +60,12 @@ export function OfficialAnnouncement({
       <h2>
         <Link href={`/fantasy/announcements/${item.id}`}>{item.title}</Link>
       </h2>
-      <p className="social-body">{item.body}</p>
+      {!compact && <p className="social-body">{item.body}</p>}
       <footer>
         <span>
           Posted by Docked ·{" "}
           <time dateTime={item.published_at}>
+            Published{" "}
             {new Intl.DateTimeFormat("en-AU", {
               day: "numeric",
               month: "short",
@@ -48,8 +73,18 @@ export function OfficialAnnouncement({
               timeZone: "Australia/Sydney",
             }).format(new Date(item.published_at))}
           </time>
+          {item.edited_at && (
+            <time dateTime={item.edited_at}>
+              {" "}
+              · Updated{" "}
+              {new Intl.DateTimeFormat("en-AU", {
+                timeZone: "Australia/Sydney",
+                dateStyle: "medium",
+              }).format(new Date(item.edited_at))}
+            </time>
+          )}
         </span>
-        {item.cta && labels[item.cta] && (
+        {!compact && item.cta && labels[item.cta] && (
           <Link className="pack-control primary" href={item.cta}>
             {labels[item.cta]} →
           </Link>

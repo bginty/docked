@@ -1,4 +1,5 @@
 import { portfolioValuation } from "./portfolio-valuation";
+import { packAvailability } from "./pack-availability";
 import { rarityRule } from "./card-rarity";
 import { swapFeeQuote } from "./credit-only";
 import { economySupply, eligibleCatalogue } from "./card-economy";
@@ -232,11 +233,7 @@ export function memberTestView(
             guaranteedSlots: p.guaranteedSlots,
             duplicatePlayers: p.duplicatePlayers,
             eligiblePlayers: eligibleCatalogue(s.economy!, p, now).length,
-            available:
-              now >= p.effectiveAt &&
-              (p.expiresAt === null || now < p.expiresAt) &&
-              eligibleCatalogue(s.economy!, p, now).length >=
-                (p.duplicatePlayers === "deny" ? p.cards : 1),
+            ...packAvailability(s.economy!,p,now),
             version: p.version,
           }))
       : (s.economy ? [] : s.policy.products).map((p) => ({
@@ -253,6 +250,8 @@ export function memberTestView(
           eligiblePlayers: 20,
           version: p.id,
           available: true,
+          availabilityReason: null,
+          availabilityRetryable: false,
         })),
     packs: Object.entries(s.entitlements)
       .filter(([, e]) => e.member === member)
@@ -261,7 +260,8 @@ export function memberTestView(
         status: e.status,
         type: s.economy?.packs[id]?.product.type ?? null,
         purchasedAt: s.economy?.packs[id]?.createdAt ?? null,
-        paidCredits: s.economy?.packs[id]?.product.priceCredits ?? null,
+        paidCredits: s.economy?.packs[id]?.pricing?.charge ?? s.economy?.packs[id]?.product.priceCredits ?? null,
+        coupon: s.economy?.packs[id]?.pricing ? {code:s.economy.packs[id].pricing!.coupon.code,original:s.economy.packs[id].pricing!.original,saving:s.economy.packs[id].pricing!.saving}:null,
         cardCount:
           s.economy?.packs[id]?.cards.filter(
             (card) => !s.economy?.retiredTestInstances?.[card],

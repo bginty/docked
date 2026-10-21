@@ -1,7 +1,10 @@
 import type { AwardedCard } from "./pack-opening";
 import { rarities } from "./card-rarity";
 /** Historical attachments are self-contained. Never resolve them by caption/name/index. */
-export function socialAttachments(raw: unknown): {
+export function socialAttachments(
+  raw: unknown,
+  context?: { sport?: string | null; playerId?: string | null },
+): {
   cards: AwardedCard[];
   unavailable: number;
 } {
@@ -29,7 +32,9 @@ export function socialAttachments(raw: unknown): {
           !!(c as Record<string, unknown>)[k],
       ) ||
       !rarities.includes(c.tier as (typeof rarities)[number]) ||
-      seen.has(c.id)
+      seen.has(c.id) ||
+      (!!context?.sport && c.sport !== context.sport) ||
+      (!!context?.playerId && c.player_id !== context.playerId)
     ) {
       unavailable++;
       continue;

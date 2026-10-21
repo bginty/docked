@@ -39,6 +39,7 @@ export type StandingRound = {
   rarityVersion?: string | null;
   updatedAt?: string;
   lastCheckedAt?: string;
+  lastSuccessfulSyncAt?: string;
   dataDelayed?: boolean;
   feedMode?: "postgame" | "live";
   closesAt?: string;

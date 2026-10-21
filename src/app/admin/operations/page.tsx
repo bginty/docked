@@ -5,7 +5,8 @@ import { OwnerDashboard } from "@/components/owner-dashboard";
 import { ownerReportPeriod } from "@/core/owner-report-period";
 import { adminDisplayName } from "@/server/admin-display-name";
 import { adminUnreadNotifications } from "@/server/admin-unread-notifications";
-import { notFound } from "next/navigation";
+import { FantasyLoadError } from "@/components/fantasy-load-error";
+import { memberAccessFailure } from "@/core/member-access-recovery";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Owner dashboard",
@@ -19,8 +20,9 @@ export default async function OperationsPage({
   let who;
   try {
     who = await requireRole(["owner"]);
-  } catch {
-    notFound();
+  } catch (error) {
+    const kind = memberAccessFailure(error);
+    return <FantasyLoadError authRequired={kind === "authentication"} mfaRequired={kind === "mfa"} permissionDenied={kind === "permission"} />;
   }
   const [displayName, unreadCount] = await Promise.all([
     adminDisplayName(who),
@@ -63,6 +65,7 @@ export default async function OperationsPage({
         <a className="admin-control" href="/admin/marketplace">
           Marketplace controls
         </a>
+        <a className="admin-control" href="/admin/coupons">Pack coupons</a>
         <details className="owner-reference-detail">
           <summary>Advanced reporting filters & export</summary>
           <a className="button secondary" href="/admin/nfl-testing">

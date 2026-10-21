@@ -44,7 +44,7 @@ import {
   marketLabels,
 } from "../fixtures/marketplace-state";
 
-test("access failures stay distinct and return paths cannot escape to external/auth/admin routes", () => {
+test("access failures stay distinct; explicit staff destinations still require route authorization", () => {
   assert.equal(
     memberAccessFailure(Error("Authentication required")),
     "authentication",
@@ -67,12 +67,13 @@ test("access failures stay distinct and return paths cannot escape to external/a
     "/\\evil.test",
     "/app/login",
     "/mfa",
-    "/admin",
     "/fantasy/../admin",
     "/%2f%2fevil.test",
     "/fantasy/play\n",
   ])
     assert.equal(memberReturnPath(path), null);
+  assert.equal(memberReturnPath("/admin/operations"),"/admin/operations");
+  assert.equal(memberReturnPath("/admin/unrecognised"),null);
 });
 test("market labels and legacy kicker URLs preserve enums and supported positions", () => {
   assert.deepEqual(rarities.map(rarityLabel), [

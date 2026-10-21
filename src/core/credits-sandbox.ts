@@ -1,4 +1,5 @@
 import { testCard } from "./member-test-wallet";
+import { couponManagement, manageCoupon, quoteCoupon, validateCouponBook, type CouponBook } from "./pack-coupons";
 import {
   allocateNine,
   validateCardEconomy,
@@ -87,6 +88,7 @@ type Withdrawal = {
   provider?: string;
 };
 export type CreditsState = {
+  packCoupons?: CouponBook;
   privateCardOffers?: Record<
     string,
     import("./private-card-offers").PrivateCardOffer
@@ -227,6 +229,7 @@ const amount = z.number().int().positive().max(1_000_000_000);
 const reason = z.string().trim().min(12).max(600);
 const base = <T extends z.ZodRawShape>(shape: T) => z.object(shape).strict();
 export const creditsCommand = z.discriminatedUnion("kind", [
+  base({kind:z.literal("manage-coupon"), mutation:couponManagement}),
   redemptionCommand,
   base({ kind: z.literal("credit-only-policy"), reason }),
   base({
@@ -262,6 +265,8 @@ export const creditsCommand = z.discriminatedUnion("kind", [
   base({ kind: z.literal("expire-deposits") }),
   base({
     kind: z.literal("buy-pack"),
+    coupon: z.string().trim().min(3).max(32).optional(),
+    couponQuote: z.string().regex(/^[a-f0-9]{64}$/).optional(),
     product: id,
     configuration: id.optional(),
     expectedPrice: z.number().int().min(0).max(1000000000).optional(),
@@ -488,6 +493,7 @@ export function wallet(s: CreditsState, member: string) {
   };
 }
 export function validateCredits(s: CreditsState) {
+  validateCouponBook(s);
   if (s.economy) validateCardEconomy(s.economy);
   if (
     s.mode !== "financial-sandbox-only" ||
@@ -765,7 +771,10 @@ export function executeCredits(
       throw Error("Verified current KYC required");
   };
   let result: unknown = { ok: true };
-  if (c.kind === "redemption") {
+  if (c.kind === "manage-coupon") {
+    admin();
+    result = manageCoupon(s, actor.id, c.mutation, now);
+  } else if (c.kind === "redemption") {
     result = applyRedemption(s, actor, request, c, now, post);
   } else if (c.kind === "credit-only-policy") {
     admin();
@@ -853,12 +862,16 @@ export function executeCredits(
       throw Error(
         "Pack configuration changed. Refresh and review before confirming.",
       );
+    const coupon = c.coupon ? quoteCoupon(s,actor.id,c.coupon,product,now) : null;
+    if ((coupon && c.couponQuote !== coupon.fingerprint) || (!coupon && c.couponQuote))
+      throw Error("Coupon offer changed. Apply it again and review before confirming.");
+    const charge = coupon?.charge ?? product.priceCredits;
     if (
       c.expectedPrice !== undefined &&
-      c.expectedPrice !== product.priceCredits
+      c.expectedPrice !== charge
     )
       throw Error("Pack price changed. Refresh and review before confirming.");
-    const parts = select(actor.id, product.priceCredits);
+    const parts = select(actor.id, charge);
     const pack = allocateNine(s.economy, c.product, actor.id, request, now);
     for (const cardId of pack.cards) {
       const card = s.economy.instances[cardId];
@@ -879,7 +892,7 @@ export function executeCredits(
       "pack",
       [
         ...debit(parts),
-        { account: "system:pack-revenue", credits: product.priceCredits },
+        { account: "system:pack-revenue", credits: charge },
       ],
       `${product.cards}-card TEST pack purchase; no deposit bonus`,
     );
@@ -890,10 +903,17 @@ export function executeCredits(
       status: "SEALED",
       restricted: true,
     };
+    if(coupon) {
+      const redemption={purchase:request,member:actor.id,product:product.id,at:now,original:product.priceCredits,saving:coupon.saving,charge,coupon:structuredClone(s.packCoupons!.campaigns[coupon.code])};
+      s.packCoupons!.redemptions[request]=redemption;
+      pack.pricing=redemption;
+    }
     result = {
       entitlement: request,
       journal,
-      price: product.priceCredits,
+      price: charge,
+      originalPrice: product.priceCredits,
+      saving: coupon?.saving ?? 0,
       cards: product.cards,
       configuration: pack.configurationHash,
     };
@@ -925,6 +945,7 @@ export function executeCredits(
       cards: pack.cards.filter((id) => !s.economy?.retiredTestInstances?.[id]),
     };
   } else if (c.kind === "deposit" || c.kind === "buy-pack") {
+    if(c.kind === "buy-pack" && (c.coupon || c.couponQuote)) throw Error("Coupons require a current eligible pack product.");
     member();
     const p = s.policy.products.find((p) => p.id === c.product);
     if (!p) throw Error("Unknown product");

@@ -231,6 +231,7 @@ async function projectPosts(
       r.moderation_status === "visible" && !r.deleted_at
         ? r.card_snapshots
         : [],
+      { sport: r.sport ? String(r.sport) : null, playerId: r.player_id ? String(r.player_id) : null },
     );
     return {
       id: String(r.id),
@@ -974,6 +975,10 @@ export async function mutateCommunity(input: unknown) {
           actor.user.id,
           action.cardIds,
         );
+        if (snapshots.some((card) =>
+          (action.sport && card.sport !== action.sport) ||
+          (action.playerId && card.player_id !== action.playerId)
+        )) throw Error("Attached cards must match the selected sport and player.");
         if (
           action.playerId &&
           !(

@@ -61,6 +61,7 @@ export type EconomyInstance = {
   rarityVersion: string;
 };
 export type EconomyPack = {
+  pricing?: import("./pack-coupons").CouponRedemption;
   id: string;
   member: string;
   product: NinePackProduct;

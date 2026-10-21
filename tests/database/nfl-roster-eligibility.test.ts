@@ -5,7 +5,7 @@ import { PGlite } from "@electric-sql/pglite";
 test("official roster gates direct admin and pack mint paths; private evidence and append-only audit", async () => {
   const db = new PGlite();
   try {
-    await db.exec(`create role anon;create role authenticated;create role service_role;create role docked_beta_app;
+    await db.exec(`create role anon;create role authenticated;create role service_role;create role docked_beta_app;create role docked_app;create role docked_nfl_worker;
    create schema credits_sandbox;create schema beta_fantasy;
    create table credits_sandbox.permanent_players(id text primary key,identity jsonb,sport text);
    create table credits_sandbox.card_definitions(id text primary key,player_id text references credits_sandbox.permanent_players);
@@ -24,6 +24,7 @@ test("official roster gates direct admin and pack mint paths; private evidence a
       ),
     );
     await db.exec("update nfl_roster.control set enabled=true");
+    await db.exec(readFileSync("supabase/migrations/20261021104951_official_roster_refresh.sql","utf8"));
     await assert.rejects(
       () => db.exec("insert into beta_fantasy.cards values('x','d')"),
       /eligibility/,
@@ -102,6 +103,12 @@ test("official roster gates direct admin and pack mint paths; private evidence a
       () => db.exec("update nfl_roster.control set enabled=false"),
       /permission/,
     );
+    await assert.rejects(()=>db.exec("select nfl_roster.record_refresh('[]')"),/permission/);
+    await db.exec("reset role;set role docked_nfl_worker");
+    const refresh=[{playerId:"p",providerId:"gsis",team:"MIN",position:"QB",status:"active",identityVerified:true,sourceUrl:"https://www.vikings.com/",sourceHash:"e".repeat(64),checkedAt:new Date().toISOString()}];
+    await db.query("select nfl_roster.record_refresh($1::jsonb)",[JSON.stringify(refresh)]);
+    await db.query("select nfl_roster.record_refresh($1::jsonb)",[JSON.stringify(refresh)]);
+    await assert.rejects(()=>db.query("select nfl_roster.record_refresh($1::jsonb)",[JSON.stringify([{...refresh[0],playerId:"unreviewed"}])]),/verified identity/);
   } finally {
     await db.close();
   }
