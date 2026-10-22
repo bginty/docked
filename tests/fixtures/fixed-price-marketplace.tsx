@@ -7,6 +7,7 @@ import {
   type ViewerCard,
 } from "../../src/components/collectible-viewer";
 import { SportProvider } from "../../src/components/sport-context";
+import { PrivateOffersInbox } from "../../src/components/private-card-offers";
 function Fixture({ member, cards }: { member: string; cards: ViewerCard[] }) {
   const [card, setCard] = useState<ViewerCard | null>(null);
   return (
@@ -30,7 +31,17 @@ function Fixture({ member, cards }: { member: string; cards: ViewerCard[] }) {
             ))}
           </main>
         ) : (
-          <Marketplace member={member} />
+          <>
+            <Marketplace member={member} />
+            {cards.some((c) =>
+              ["basketball", "afl", "nrl"].includes(c.sport),
+            ) && (
+              <details>
+                <summary>Offers and swaps</summary>
+                <PrivateOffersInbox member={member} sport={cards[0]?.sport} />
+              </details>
+            )}
+          </>
         )}
         {card && (
           <CollectibleViewer card={card} onClose={() => setCard(null)} />

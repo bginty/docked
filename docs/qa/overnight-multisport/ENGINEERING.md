@@ -1,4 +1,4 @@
-# Private multi-sport implementation checkpoint
+# Private multi-sport implementation and verification
 
 This checkpoint integrates NBA, AFL and NRL into the existing application, account admission, wallet, marketplace and Social services. NBL is excluded. The intended release is invitation-only fictional testing, not a real-player launch.
 
@@ -15,9 +15,9 @@ This checkpoint integrates NBA, AFL and NRL into the existing application, accou
 
 ## Verification at this checkpoint
 
-587 platform tests passed. The database run passed 203 tests; three extended fixture lifecycle tests initially had fixture/assertion mistakes, then all three passed in a focused rerun. A frozen full-suite rerun is underway; its final receipt must be checked before release.
+587 platform tests and the frozen 206-test database suite passed. Four final focused database tests also passed, covering the three isolated sport economy lifecycles and owner operations permissions/reporting. Earlier harness failures were corrected before release; they were not ignored.
 
-Local browser journeys passed for NBA/AFL/NRL lineup and collection screens at 412 and 1440 px. Pack shopping/reveal/history passed at 360/412/1024/1440 px. Marketplace listing, repricing, removal, purchase, stale-consent protection, lost-response recovery, recorded fee, ownership and activity passed at mobile and desktop sizes. Serious/critical accessibility checks passed in the tested flows. These use real components and isolated local data/transport, **not authenticated hosted acceptance**.
+Local browser journeys passed for NBA/AFL/NRL lineup and collection screens at 412 and 1440 px. Pack shopping/reveal/history passed at 360/412/1024/1440 px. Marketplace listing, repricing, removal, purchase, stale-consent protection, lost-response recovery, recorded fee, ownership and activity passed at mobile and desktop sizes. Card-plus-credit offer creation and acceptance also passed for each sport, including lost-response recovery for both commands, no debit before acceptance, and one ownership exchange. The 1,000-credit sale component records a 50-credit fee and 950-credit proceeds. Serious/critical accessibility checks passed in the tested flows. These use real components and isolated local data/transport, **not authenticated hosted acceptance**.
 
 Statistics-service regression: 109 tests passed in the separate repository at `4251632` (implementation checkpoint `0330912`). No new commercial feed was enabled.
 
@@ -25,12 +25,12 @@ Build, typecheck, lint and browser-secret-boundary checks passed. The repository
 
 ## Release boundaries
 
-Five additive migrations have passed a transaction-and-rollback rehearsal against the exact beta database. Existing record fingerprints were unchanged. A private application-data/function recovery snapshot was read back and hashed. It is not a full Auth/Storage backup or a tested disaster-recovery restore.
+Six additive migrations passed transaction-and-rollback rehearsal and were applied to the exact beta database, including the read-only owner operations report. Existing record fingerprints were preserved. The final operations verification compared ten record groups with no differences. A private application-data/function recovery snapshot was read back and hashed. It is not a full Auth/Storage backup or a tested disaster-recovery restore.
 
-Deployment has not occurred at this checkpoint. `release/` receipts distinguish rehearsal, application and live HTTP checks. Promotion requires the exact reviewed commit and verified isolated-economy preparation. Prior deployment plus disabled private sport/commerce flags is the reversible application recovery path; retain audit records and additive registries.
+The private fixture implementation was deployed at `a9066d1719759ee57ab6571171f5ca8e7db331f7`; 17 live HTTP checks passed, including closed registration and unauthenticated API denial. A follow-up corrects stale offer-fee wording, scopes the inbox to the selected sport, preserves offers during refresh failures, and adds browser acceptance for combined offers. `release/` receipts identify the latest exact deployed commit; the final handover records its status. Promotion requires the reviewed commit and verified isolated-economy preparation. Promoting the previous application deployment is reversible; disable affected private sport/commerce flags if suspension is needed, and retain audit records and additive registries.
 
 ## Genuine remaining dependencies
 
 No newly verified real NBA, AFL or NRL catalogue was loaded: **0 for each sport**. Existing official-source/provider investigations do not establish complete current-contract rosters and commercial usage permission. Fictional player counts must never be reported as verified real players. Real roster provenance, eligible positions, data rights/credentials and permanent issuance approval remain required. Commercial statistics and permanent issuance stay disabled.
 
-Browser inventory has no authenticated Docked tab, and opening the in-app browser times out while attaching. No hosted sign-in, purchase or trade has been claimed. Do not bypass confirmation/MFA or manufacture a member session. The owner's final signed-in acceptance remains necessary until a usable authenticated session is available.
+The in-app browser is now usable. The live home page and login form were opened; the login form has no authenticated member session. No hosted sign-in, purchase or trade has been claimed. Do not bypass confirmation/MFA or manufacture a member session. Owner, Barry and Luke have confirmed/admitted database identities; Brenton is allowlisted but still requires email confirmation. These database facts are not proof of a successful member login.

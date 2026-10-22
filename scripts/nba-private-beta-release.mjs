@@ -17,6 +17,14 @@ const git = (...args) =>
 const sha = git("rev-parse", "HEAD"),
   parent = path.join(root, "private-data", "nba-production", sha),
   source = path.join(parent, "source");
+const baselineCommit =
+  process.argv
+    .find((v) => v.startsWith("--baseline="))
+    ?.slice("--baseline=".length) ?? "2d03855d9bf3d4ece13b3d2b19d672d5eb3519c0";
+assert(
+  /^[a-f0-9]{40}$/.test(baselineCommit),
+  "An exact reviewed baseline commit is required",
+);
 await fs.mkdir(parent, { recursive: true });
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
@@ -118,7 +126,7 @@ if (process.argv[2] === "prepare") {
   const baseline = await liveDeployment();
   assert.equal(
     baseline.meta.githubCommitSha,
-    "2d03855d9bf3d4ece13b3d2b19d672d5eb3519c0",
+    baselineCommit,
     "Review a changed Production baseline before release",
   );
   await fs.writeFile(
@@ -142,7 +150,7 @@ if (process.argv[2] === "prepare") {
           "20261022211500",
         ],
         recovery:
-          "Promote the previous deployment and disable private_beta_sports. Retain additive fixture registries and audit records. The previous app does not enable the new commerce connection setting.",
+          "Promote the previous deployment. If isolation requires suspension, disable the affected private sport and test-commerce application gates. Retain additive fixture registries, ownership history and audit records.",
       },
       null,
       2,
@@ -192,10 +200,7 @@ if (process.argv[2] === "prepare") {
     base.id,
     "Production changed during preparation",
   );
-  assert.equal(
-    base.meta.githubCommitSha,
-    "2d03855d9bf3d4ece13b3d2b19d672d5eb3519c0",
-  );
+  assert.equal(base.meta.githubCommitSha, baselineCommit);
   const recipe = git(
     "show",
     "31f0ecc99c40aedcd4f4f64695a3de030715da0e:scripts/deploy-beta-staging.mjs",

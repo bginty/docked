@@ -19,6 +19,12 @@ import {
 import { testCard } from "../src/core/member-test-wallet";
 import { marketQuery, marketplaceView } from "../src/core/marketplace";
 import { isFixtureSport } from "../src/core/fixture-sports";
+import {
+  executePrivateOffer,
+  effectiveOfferStatus,
+  privateOfferQuote,
+} from "../src/core/private-card-offers";
+import { randomUUID } from "node:crypto";
 async function main() {
   const selected = process.argv[2] ?? "nfl";
   assert(selected === "nfl" || isFixtureSport(selected));
@@ -29,7 +35,8 @@ async function main() {
   mkdirSync(dir, { recursive: true });
   let state = marketplaceFixture(Date.now(), marketActors, false, selected),
     dropBuy = false,
-    failRead = false;
+    failRead = false,
+    dropOffer = false;
   const own = (i: number) =>
     Object.keys(state.cards).filter(
       (id) => state.commerce.cards[id].owner === marketActors[i].id,
@@ -87,6 +94,62 @@ async function main() {
             testCard(state, id),
           ),
         });
+      if (url.pathname === "/api/community" && isFixtureSport(selected)) {
+        if (req.method === "POST") {
+          let raw = "";
+          for await (const b of req) raw += b;
+          const input = JSON.parse(raw);
+          assert.equal(input.action, "card_offer");
+          state = executePrivateOffer(
+            state,
+            actor,
+            input.request,
+            input.command,
+            Date.now(),
+            {
+              allowed: true,
+              minimum: null,
+              swaps: true,
+              combinedPolicy: "credit-commission-floor-v1",
+            },
+          ).state;
+          if (dropOffer) {
+            dropOffer = false;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end("{");
+            return;
+          }
+        }
+        const inventory = own(actor.id === marketActors[0].id ? 0 : 1).map(
+          (id) => testCard(state, id),
+        );
+        return json({
+          enabled: true,
+          member: actor.id,
+          inventory,
+          inventoryTotal: inventory.length,
+          inventoryPage: 0,
+          combinedEnabled: true,
+          swapFee: state.policy.swapFeeEach,
+          offers: Object.values(state.privateCardOffers ?? {})
+            .filter((o) => [o.buyer, o.seller].includes(actor.id))
+            .map((o) => ({
+              id: o.id,
+              counterparty: "Isolated beta peer",
+              card: testCard(state, o.card),
+              offeredCards: (o.offeredCards ?? []).map((c) =>
+                testCard(state, c.id),
+              ),
+              side: o.seller === actor.id ? "received" : "sent",
+              status: effectiveOfferStatus(o, Date.now()),
+              created: o.created,
+              expires: o.expires,
+              ...privateOfferQuote(o.price, o.feeEach, o.creditFeeMinimum),
+              receipt: o.receipt,
+              listing: o.listing,
+            })),
+        });
+      }
       if (url.pathname === "/api/marketplace") {
         let result: unknown = null;
         if (req.method === "POST") {
@@ -116,7 +179,12 @@ async function main() {
             actor.id,
             marketLabels,
             marketQuery.parse(Object.fromEntries(url.searchParams)),
-            { reserved: [], rounds: [], tradingEnabled: true },
+            {
+              reserved: [],
+              rounds: [],
+              tradingEnabled: true,
+              offersEnabled: isFixtureSport(selected),
+            },
           ),
           result,
         });
@@ -421,6 +489,91 @@ async function main() {
       pb.getByRole("heading", { name: "No listings found" }),
     ).toBeVisible();
     checks.push("Read failure is distinct from empty feed; retry recovers");
+    if (isFixtureSport(selected)) {
+      const wanted = own(0)[0],
+        offeredCard = own(1)[0];
+      const before = marketActors.map((a) => wallet(state, a.id).spendable);
+      state = executeCredits(
+        state,
+        marketActors[0],
+        randomUUID(),
+        {
+          kind: "list",
+          card: wanted,
+          price: 1000,
+          preference: "both",
+        },
+        Date.now(),
+      ).state;
+      await pb.goto(origin + "/fantasy/market");
+      await pb.getByRole("button", { name: "Make offer", exact: true }).click();
+      await pb.getByLabel("Your offered card").selectOption(offeredCard);
+      await pb.getByLabel("Credits offered", { exact: true }).fill("1000");
+      await expect(pb.getByText(/7\.5%/)).toHaveCount(0);
+      await pb
+        .getByRole("button", { name: "Review offer", exact: true })
+        .click();
+      dropOffer = true;
+      await pb
+        .getByRole("button", { name: "Submit offer", exact: true })
+        .click();
+      await pb
+        .getByRole("button", { name: "Recover original offer", exact: true })
+        .click();
+      await expect(
+        pb.getByRole("heading", { name: "Make an offer", exact: true }),
+      ).toHaveCount(0);
+      assert.equal(Object.keys(state.privateCardOffers ?? {}).length, 1);
+      assert.deepEqual(
+        marketActors.map((a) => wallet(state, a.id).spendable),
+        before,
+      );
+      await pa.goto(origin + "/fantasy/market");
+      await pa.getByText("Offers and swaps", { exact: true }).click();
+      await pa
+        .getByRole("button", { name: "Review acceptance", exact: true })
+        .click();
+      for (const width of [412, 1440]) {
+        await pa.setViewportSize({ width, height: width < 600 ? 915 : 900 });
+        await pa.screenshot({
+          path: `${dir}/offer-review-${width}.png`,
+          fullPage: true,
+        });
+        assert(
+          await pa.evaluate(
+            () => document.documentElement.scrollWidth <= innerWidth,
+          ),
+        );
+      }
+      dropOffer = true;
+      await pa.getByRole("button", { name: "Confirm", exact: true }).click();
+      await pa
+        .getByRole("button", { name: "Recover original request", exact: true })
+        .click();
+      await expect(
+        pa.getByText(/Completed · accepted and settled/),
+      ).toBeVisible();
+      assert.equal(state.commerce.cards[wanted].owner, marketActors[1].id);
+      assert.equal(state.commerce.cards[offeredCard].owner, marketActors[0].id);
+      assert.equal(
+        wallet(state, marketActors[0].id).spendable,
+        before[0] + 950,
+      );
+      assert.equal(
+        wallet(state, marketActors[1].id).spendable,
+        before[1] - 1000,
+      );
+      assert.equal(
+        Object.values(state.privateCardOffers ?? {}).filter(
+          (o) => o.status === "ACCEPTED",
+        ).length,
+        1,
+      );
+      validateCredits(state);
+      checks.push(
+        "Card-plus-credit offer review and acceptance, lost-response recovery on both commands, no debit before acceptance, one ownership exchange, approved 50-credit commission on 1000 credits, mobile/desktop",
+      );
+    }
     assert.deepEqual(errors, []);
     writeFileSync(
       `${dir}/results.json`,

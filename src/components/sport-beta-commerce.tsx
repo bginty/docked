@@ -75,7 +75,7 @@ export function SportBetaCommerce({
           <Marketplace member={state.member} />
           <details>
             <summary>Offers and swaps</summary>
-            <PrivateOffersInbox member={state.member} />
+            <PrivateOffersInbox member={state.member} sport={sport} />
           </details>
         </>
       )}

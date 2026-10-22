@@ -174,7 +174,7 @@ export function MakeCardOffer({
               Seller fee {quote.fee.toLocaleString()} credits · Seller receives{" "}
               {quote.net.toLocaleString()} credits
               {offered
-                ? " plus your card. Combined fee is the greater of 7.5% or the applicable swap fee."
+                ? " plus your card. Combined fees use the current sale commission with the applicable swap-fee minimum."
                 : "."}
             </p>
           )}
@@ -335,7 +335,13 @@ export function MakeCardOffer({
     </>
   );
 }
-export function PrivateOffersInbox({ member }: { member: string }) {
+export function PrivateOffersInbox({
+  member,
+  sport,
+}: {
+  member: string;
+  sport?: string;
+}) {
   const [data, setData] = useState<Awaited<
       ReturnType<typeof privateOffers>
     > | null>(null),
@@ -346,6 +352,7 @@ export function PrivateOffersInbox({ member }: { member: string }) {
   const { send, pending, busy, message } = useOfferMutation(member);
   useEffect(() => {
     let controller = new AbortController();
+    setData(null);
     async function load() {
       controller.abort();
       controller = new AbortController();
@@ -363,7 +370,6 @@ export function PrivateOffersInbox({ member }: { member: string }) {
         }
       } catch (e) {
         if (!current.signal.aborted) {
-          setData(null);
           setError(e instanceof Error ? e.message : "Unavailable");
         }
       }
@@ -375,6 +381,8 @@ export function PrivateOffersInbox({ member }: { member: string }) {
       window.removeEventListener("docked:offers-updated", load);
     };
   }, [member]);
+  const offers =
+    data?.offers.filter((o) => !sport || o.card.sport === sport) ?? [];
   return (
     <section className="social-offers">
       <h2>Offers received & sent</h2>
@@ -386,13 +394,13 @@ export function PrivateOffersInbox({ member }: { member: string }) {
           existing offers.
         </p>
       )}
-      {data?.enabled && data.offers.length === 0 && <p>No offers yet.</p>}
+      {data?.enabled && offers.length === 0 && <p>No offers yet.</p>}
       {pending && (
         <button disabled={busy} onClick={() => send(pending.command)}>
           Recover original request
         </button>
       )}
-      {data?.offers.map((o) => (
+      {offers.map((o) => (
         <article key={o.id} className="app-panel">
           <div className="market-offer-cards">
             <div className="social-offer-card">
@@ -436,7 +444,7 @@ export function PrivateOffersInbox({ member }: { member: string }) {
                   key={kind}
                   className="button ghost"
                   disabled={
-                    busy || (kind === "private-accept" && !data.enabled)
+                    busy || (kind === "private-accept" && !data?.enabled)
                   }
                   onClick={() => setReview({ offer: o.id, kind })}
                 >
@@ -460,7 +468,7 @@ export function PrivateOffersInbox({ member }: { member: string }) {
                 <button
                   className="button"
                   disabled={
-                    busy || (review.kind === "private-accept" && !data.enabled)
+                    busy || (review.kind === "private-accept" && !data?.enabled)
                   }
                   onClick={() =>
                     send({ kind: review.kind, offer: o.id }).then((ok) => {
