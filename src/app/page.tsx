@@ -39,7 +39,7 @@ export default function Home() {
           <p>
             {production
               ? "Collect limited fictional player cards. Open your free Starter pack, build your football team and earn daily gameplay rewards."
-              : "Collect limited fictional player cards. Build teams and compete. Football is the first playable sport; other sports are not yet available."}
+              : "Collect cards, build teams and follow competition scores in Docked’s invitation-only beta. Available sports depend on your approved testing access."}
           </p>
           <p>One collection, on your phone and in your browser.</p>
           <div className="actions">
@@ -55,7 +55,7 @@ export default function Home() {
           <p className="small-note">
             {production
               ? "Free gameplay. Fictional players. No paid packs, cash value or cash prizes. Marketplace transfers are not open yet."
-              : "Protected Preview. Public registration is closed. Gameplay access requires separate approval. Fictional players; no cash value."}
+              : "Private beta. Public registration is closed. Test credits have no cash value. Fictional test inventory is clearly labelled."}
           </p>
         </div>
       </section>
@@ -63,15 +63,16 @@ export default function Home() {
         <div>
           <h2>Collect</h2>
           <p>
-            Every card has a permanent identity, serial and ownership history.
+            Your collection stays with your account. Fictional test inventory
+            remains separate from permanent collectible cards.
           </p>
         </div>
         <div>
           <h2>Build</h2>
           <p>
-            Build your seven-player NFL team from cards you own. {competitionNames.SALARY_CAP} and
-            {competitionNames.OPEN} apply their published rarity multipliers; legacy rounds keep
-            their saved rules.
+            Build your team in {competitionNames.SALARY_CAP} or{" "}
+            {competitionNames.OPEN}. Each sport uses its own formation and
+            scoring rules; historical rounds keep their saved rules.
           </p>
         </div>
         <div>

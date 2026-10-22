@@ -557,9 +557,9 @@ export function AppOnboardingForm({
       {step === 1 && (
         <>
           <p className="app-auth-hint">
-            Personalise your fantasy sports interests. Football gameplay is
-            available only in approved test environments; other sports are
-            discussion preferences.
+            Personalise your fantasy sports interests. Gameplay access is
+            managed separately for each sport; choosing an interest does not
+            enable testing access.
           </p>
           <div className="app-sport-options">
             {appSports.map(([value, label]) => (

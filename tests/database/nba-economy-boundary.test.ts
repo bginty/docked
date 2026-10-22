@@ -677,6 +677,63 @@ for (const config of [
       );
       assert.deepEqual(replay.state, accepted.state);
       assert.deepEqual(replay.result, accepted.result);
+      // Operational totals use the same committed records and disclose no identities.
+      await assert.rejects(
+        db.q("select beta_private.sport_private_beta_report()"),
+        /Owner MFA/,
+      );
+      await db.q(
+        "insert into beta_private.roles(user_id,role) values($1,'owner')",
+        [db.other],
+      );
+      await db.q(
+        "create or replace function beta_private.owner_gameplay_identity(p_user uuid) returns boolean language sql as $$select true$$",
+      );
+      await db.pg.exec("set role docked_beta_app");
+      const rows = (
+        await db.q("select beta_private.sport_private_beta_report() r")
+      )[0].r;
+      const row = rows.find((r: any) => r.sport === sport);
+      assert.equal(row.databaseEnabled, true);
+      assert.equal(row.allocationEnabled, true);
+      assert.equal(row.fictionalPlayers, players.length);
+      assert.equal(row.packsPurchased, 1);
+      assert.equal(row.packsOpened, 1);
+      assert.equal(row.issuedTestCards, 9);
+      assert.equal(row.competitions, 6);
+      assert.equal(row.entries, 1);
+      assert.equal(
+        row.freeInventoryCards,
+        db.inventories[db.user].length + db.inventories[db.other].length,
+      );
+      const sales = Object.values(accepted.state.listings).filter(
+        (l) => l.status === "SOLD",
+      );
+      assert.equal(row.settledSales, sales.length);
+      assert.equal(
+        row.recordedFees,
+        sales.reduce((n, l) => n + (l.receipt?.fee ?? 0), 0),
+      );
+      assert(
+        rows
+          .filter((r: any) => r.sport !== sport)
+          .every(
+            (r: any) => r.fictionalPlayers === 0 && r.packsPurchased === 0,
+          ),
+      );
+      assert(!JSON.stringify(rows).includes(db.user));
+      await db.q("select set_config('request.jwt.claims',$1,false)", [
+        JSON.stringify({
+          sub: db.other,
+          session_id: db.sessions[db.other],
+          aal: "aal1",
+        }),
+      ]);
+      await assert.rejects(
+        db.q("select beta_private.sport_private_beta_report()"),
+        /Owner MFA/,
+      );
+      await db.pg.exec("reset role");
       assert.deepEqual(
         await db.q("select * from credits_sandbox.card_instances order by id"),
         nflBefore,
@@ -700,6 +757,15 @@ for (const config of [
           (
             await db.q(
               "select has_table_privilege($1,'credits_sandbox.nba_fixture_instances','INSERT') ok",
+              [role],
+            )
+          )[0].ok,
+          role === "docked_beta_app",
+        );
+        assert.equal(
+          (
+            await db.q(
+              "select has_function_privilege($1,'beta_private.sport_private_beta_report()','EXECUTE') ok",
               [role],
             )
           )[0].ok,

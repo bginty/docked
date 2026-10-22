@@ -22,6 +22,25 @@ export async function sportReadiness(input?: unknown) {
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
     const [r] = await tx`select private.sport_readiness_report() value`;
     const report = r.value as SportReadinessReport;
+    const [testing] =
+      await tx`select private.sport_private_beta_report() value`;
+    const privateTesting = (
+      testing.value as NonNullable<SportReadinessReport["privateTesting"]>
+    ).map((row) => {
+      const gameplayEnabled =
+        row.databaseEnabled &&
+        process.env.DOCKED_NBA_PRIVATE_BETA === "true" &&
+        (row.sport === "basketball" ||
+          process.env.DOCKED_SPORTS_PRIVATE_BETA === "true");
+      return {
+        ...row,
+        gameplayEnabled,
+        commerceEnabled:
+          gameplayEnabled &&
+          row.allocationEnabled &&
+          process.env.DOCKED_SPORTS_TEST_COMMERCE === "true",
+      };
+    });
     if (input) {
       const d = decision.parse(input),
         p = report.packages.find((p) => p.hash === d.packageHash);
@@ -34,8 +53,8 @@ export async function sportReadiness(input?: unknown) {
         throw Error("Required evidence is missing, expired or superseded");
       await tx`select private.sport_readiness_decide(${d.packageHash},${d.action},${d.reason},${d.requestId}::uuid)`;
       const [updated] = await tx`select private.sport_readiness_report() value`;
-      return updated.value as SportReadinessReport;
+      return { ...(updated.value as SportReadinessReport), privateTesting };
     }
-    return report;
+    return { ...report, privateTesting };
   });
 }

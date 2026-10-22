@@ -88,6 +88,66 @@ export function SportReadinessPanel() {
               .slice(0, 19)}{" "}
             UTC. Catalogue rows are not proof of current eligibility.
           </p>
+          {report.privateTesting && (
+            <section aria-label="Private beta activity">
+              <h3>Private beta activity</h3>
+              <p>
+                Fictional test inventory only. Real-player catalogues, permanent
+                issuance and data feeds require separate approval.
+              </p>
+              <div className="admin-records">
+                {report.privateTesting.map((s) => (
+                  <article key={s.sport} className="admin-workspace-panel">
+                    <h4>{sportConfigurations[s.sport].label}</h4>
+                    <p>
+                      Gameplay:{" "}
+                      {s.gameplayEnabled
+                        ? "Enabled for admitted testers"
+                        : "Disabled"}
+                    </p>
+                    <p>
+                      Test packs and trading:{" "}
+                      {s.commerceEnabled
+                        ? "Enabled for admitted testers"
+                        : "Disabled"}
+                    </p>
+                    <p>
+                      {s.fictionalPlayers.toLocaleString()} fictional players ·{" "}
+                      {s.products} active test products
+                    </p>
+                    <p>
+                      {s.freeInventoryCards.toLocaleString()} free fixture cards
+                      · {s.issuedTestCards.toLocaleString()} cards allocated by
+                      test packs
+                    </p>
+                    <p>
+                      {s.packsOpened.toLocaleString()}/
+                      {s.packsPurchased.toLocaleString()} purchased packs opened
+                      · {s.entries.toLocaleString()} entries across{" "}
+                      {s.competitions.toLocaleString()} test competitions
+                    </p>
+                    <p>
+                      {s.openListings.toLocaleString()} open listings ·{" "}
+                      {s.settledSales.toLocaleString()} settled sales ·{" "}
+                      {s.recordedFees.toLocaleString()} credits in recorded sale
+                      fees
+                    </p>
+                    <details>
+                      <summary>Gate details</summary>
+                      <p>
+                        Database gameplay:{" "}
+                        {s.databaseEnabled ? "Enabled" : "Disabled"} · Test
+                        allocation:{" "}
+                        {s.allocationEnabled ? "Enabled" : "Disabled"}.
+                        Application flags, confirmation, admission and required
+                        MFA must also pass.
+                      </p>
+                    </details>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
           <div className="admin-records">
             {Object.values(sportConfigurations).map((s) => {
               const rows = report.rosters.filter((r) => r.sport === s.id),

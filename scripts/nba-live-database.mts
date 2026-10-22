@@ -8,32 +8,39 @@ const source =
   "C:/Users/61412/.codex/worktrees/fixed-market-live/Docked.com.au";
 process.chdir("C:/Users/61412/Documents/ChatGPT/Docked.com.au");
 const multiSport = process.argv.includes("--multisport");
+const operations = process.argv.includes("--operations");
 const evidence =
   source +
-  (multiSport
-    ? "/docs/qa/overnight-multisport/release"
-    : "/docs/qa/nba-private-beta-live");
-const privateDir = multiSport
-  ? "private-data/multisport-private-beta-live"
-  : "private-data/nba-private-beta-live";
-const files = multiSport
-  ? [
-      "20261022115817_nba_isolated_economy_boundary.sql",
-      "20261022122441_multi_sport_private_beta_access.sql",
-      "20261022123136_multi_sport_fixture_economy.sql",
-      "20261022124750_fixture_inventory_projection.sql",
-      "20261022203038_fixture_social_audience.sql",
-    ]
-  : [
-      "20261010092154_scoring_v1_isolated_journal.sql",
-      "20261021120641_multi_sport_lineup_adapters.sql",
-      "20261021122246_additional_sport_sandbox_formats.sql",
-      "20261021230000_isolated_sport_tester_access.sql",
-      "20261022010531_multi_sport_readiness_registry.sql",
-      "20261022023942_multi_sport_delivery_checkpoint.sql",
-      "20261022053636_nba_proposal_isolated_score_read.sql",
-      "20261022101445_nba_private_beta_access.sql",
-    ];
+  (operations
+    ? "/docs/qa/overnight-multisport/release/operations-migration"
+    : multiSport
+      ? "/docs/qa/overnight-multisport/release"
+      : "/docs/qa/nba-private-beta-live");
+const privateDir = operations
+  ? "private-data/multisport-private-beta-operations"
+  : multiSport
+    ? "private-data/multisport-private-beta-live"
+    : "private-data/nba-private-beta-live";
+const files = operations
+  ? ["20261022211500_private_beta_operations_report.sql"]
+  : multiSport
+    ? [
+        "20261022115817_nba_isolated_economy_boundary.sql",
+        "20261022122441_multi_sport_private_beta_access.sql",
+        "20261022123136_multi_sport_fixture_economy.sql",
+        "20261022124750_fixture_inventory_projection.sql",
+        "20261022203038_fixture_social_audience.sql",
+      ]
+    : [
+        "20261010092154_scoring_v1_isolated_journal.sql",
+        "20261021120641_multi_sport_lineup_adapters.sql",
+        "20261021122246_additional_sport_sandbox_formats.sql",
+        "20261021230000_isolated_sport_tester_access.sql",
+        "20261022010531_multi_sport_readiness_registry.sql",
+        "20261022023942_multi_sport_delivery_checkpoint.sql",
+        "20261022053636_nba_proposal_isolated_score_read.sql",
+        "20261022101445_nba_private_beta_access.sql",
+      ];
 const mode = process.argv[2];
 assert(["inspect", "rehearse", "apply", "verify"].includes(mode));
 assert.equal(projectRef, "pojoymtniryarxxunyvz");

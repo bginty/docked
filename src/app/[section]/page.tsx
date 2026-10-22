@@ -59,19 +59,19 @@ export default async function Page({
   if (!["about", "contact", "legacy-support"].includes(section)) notFound();
   return (
     <AppAuthShell>
-      <h1>
-        {section === "about" ? brand.tagline : "Docked support"}
-      </h1>
+      <h1>{section === "about" ? brand.tagline : "Docked support"}</h1>
       <p>
         Docked is a fantasy sports card platform. Collect limited cards, build
-        seven-player NFL teams and compete in {competitionNames.SALARY_CAP} or {competitionNames.OPEN}. EPL and
-        other sports are not available yet.
+        teams and compete in {competitionNames.SALARY_CAP} or{" "}
+        {competitionNames.OPEN}. Available sports depend on your approved
+        testing access.
       </p>
       <p>
         The invited friends beta uses real NFL roster cards and post-game
-        scoring. Test credits and cards have no cash value. Scoring depends on
-        the competition’s saved rules. Public registration is closed; real
-        payments, cash prizes and withdrawals are disabled.
+        scoring. Authorised testers can also use clearly labelled fictional NBA,
+        AFL and NRL inventory. Test credits and cards have no cash value.
+        Scoring depends on the competition’s saved rules. Public registration is
+        closed; real payments, cash prizes and withdrawals are disabled.
       </p>
       {section === "legacy-support" && (
         <p>

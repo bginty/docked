@@ -41,4 +41,22 @@ export type SportReadinessReport = {
   }[];
   issueLimit: number;
   activatedByThisSystem: false;
+  privateTesting?: {
+    sport: "basketball" | "afl" | "nrl";
+    databaseEnabled: boolean;
+    allocationEnabled: boolean;
+    gameplayEnabled: boolean;
+    commerceEnabled: boolean;
+    fictionalPlayers: number;
+    freeInventoryCards: number;
+    issuedTestCards: number;
+    products: number;
+    packsPurchased: number;
+    packsOpened: number;
+    openListings: number;
+    settledSales: number;
+    recordedFees: number;
+    competitions: number;
+    entries: number;
+  }[];
 };

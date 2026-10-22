@@ -139,6 +139,7 @@ if (process.argv[2] === "prepare") {
           "20261022123136",
           "20261022124750",
           "20261022203038",
+          "20261022211500",
         ],
         recovery:
           "Promote the previous deployment and disable private_beta_sports. Retain additive fixture registries and audit records. The previous app does not enable the new commerce connection setting.",

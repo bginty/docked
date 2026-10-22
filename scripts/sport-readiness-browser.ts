@@ -22,6 +22,24 @@ async function main() {
     jobs: [],
     issueLimit: 100,
     activatedByThisSystem: false,
+    privateTesting: (["basketball", "afl", "nrl"] as const).map((sport) => ({
+      sport,
+      databaseEnabled: true,
+      allocationEnabled: true,
+      gameplayEnabled: true,
+      commerceEnabled: sport !== "nrl",
+      fictionalPlayers: sport === "afl" ? 44 : sport === "nrl" ? 26 : 24,
+      freeInventoryCards: 96,
+      issuedTestCards: 9,
+      products: 2,
+      packsPurchased: 1,
+      packsOpened: 1,
+      openListings: 0,
+      settledSales: 1,
+      recordedFees: 50,
+      competitions: 10,
+      entries: 2,
+    })),
     packages: [{ hash: digest(p), body: p, decision: null }],
   };
   const js = await bundleCommunityFixture(
@@ -84,7 +102,7 @@ async function main() {
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   const browser = await chromium.launch(),
     port = (server.address() as { port: number }).port,
-    out = "docs/qa/multi-sport/activation";
+    out = "docs/qa/overnight-multisport/operations";
   mkdirSync(out, { recursive: true });
   const checks = [];
   try {
@@ -95,6 +113,18 @@ async function main() {
       await page.goto(`http://127.0.0.1:${port}`);
       await expect(
         page.getByText("Release packages", { exact: true }),
+      ).toBeVisible();
+      const testing = page.getByRole("region", {
+        name: "Private beta activity",
+      });
+      await expect(testing).toBeVisible();
+      await expect(
+        testing.getByText("Test packs and trading: Disabled", { exact: true }),
+      ).toBeVisible();
+      await expect(
+        testing.getByText("44 fictional players · 2 active test products", {
+          exact: true,
+        }),
       ).toBeVisible();
       await expect(
         page.getByRole("button", {
