@@ -1,0 +1,194 @@
+DOCKED MULTI-SPORT ACTIVATION — 22 OCTOBER 2026
+
+Release status
+Production remains 31f0ecc99c40aedcd4f4f64695a3de030715da0e, deployment
+dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3, confirmed READY at docked.com.au.
+This programme adds source readiness and integration code; it has NOT activated
+new member competitions or issued cards. No production migration was applied.
+Implementation checkpoint: 43ca7e1488344c7dcc4d686fab64025a45989945.
+
+Verification results
+- Full platform suite: 557 passed, 0 failed, 0 skipped.
+- Full database suite: 196 passed, 0 failed, 0 skipped.
+- Final targeted database rerun: 2 passed after period-preparation validation.
+- Disposable native PostgreSQL: canonical importer passed, including eight
+  concurrent retries with one committed import and no duplicate delivery.
+- Typecheck, lint, clean production build and client-secret canary scan passed.
+  The canary scan inspected 74 browser assets.
+- Four sports exercised at 360, 412, 1024, 1440 and 1536 CSS pixels; expected
+  slot counts 22/11/8/13, no horizontal overflow or browser page errors.
+- Owner approval/suspension UI passed at 360, 412 and 1440 CSS pixels using
+  isolated responses, with all six requests restricted to the local fixture.
+- Test counts overlap across reruns; they are not a summed scenario count.
+
+Readiness matrix
+Sport | Implemented/local acceptance | Hosted/member status | Main blockers
+NFL | Existing 7-slot game preserved; regression suite | Existing invited beta live | Latest observed worker run pending-review; not silently altered
+AFL | Approved 22 slots: 6 BACK, 8 MID, 6 FWD, 2 RUCK; field/list, exact persisted slots, first Auto Select, rollover, history, private/locked viewing tested | Foundation deployed, member activation disabled | Current catalogue, player-stat source, scoring/cap/supply approvals, hosted acceptance
+EPL | Existing 1 GK/4 DEF/4 MID/2 FWD preserved; saved slots, double/blank gameweeks and scoring tests | Existing fixture records retained; no verified current-season member activation established | Real current roster, source rights, feed and hosted reconciliation
+NBA | Proposed PG/SG/SF/PF/C + 3 FLEX; multi-game windows, missing/DNP, correction and replay tests | Foundation deployed but disabled | Format approval, roster/positions, scoring/cap/supply, source, hosted acceptance
+NRL | Proposed 13 preserved in sandbox; persisted slots, substitution/rollover/history and privacy tests | Foundation deployed but disabled | Format decision (no dedicated HOK in v1), catalogue, source, scoring/cap/supply, hosted acceptance
+
+Verified counts versus database rows
+Read-only production inspection found:
+- NFL: 498 source-linked catalogue records: QB 87, RB 117, TE 117, WR 177.
+  The catalogue's active flag alone is not a new contract verification. Source
+  status records include reserve/development/inactive/released classifications.
+  This task did not rewrite NFL eligibility or its member assets.
+- EPL: 36 legacy catalogue rows: GK 4, DEF 12, MID 12, FWD 8. No evidence in the
+  inspected schema establishes these as a verified active 2026/27 catalogue.
+- AFL / NRL / NBA: zero production catalogue records.
+- Newly verified and approved-for-issuance real players in this programme:
+  AFL 0, EPL 0, NBA 0, NRL 0. Synthetic QA cards are excluded from these counts.
+- Existing EPL competition records include QA-2026 and 2027 labels; they are
+  preserved, not relabelled as a current-season release.
+
+Completed engineering
+1. Stable sport/provider/player identity registry. Transfers retain canonical IDs.
+   Conflicting provider IDs quarantine observations instead of overwriting IDs.
+   Injured/suspended contracted candidates remain reviewable. Loan, reserve,
+   temporary, two-way and development registrations require an explicit policy;
+   released/retired/free-agent/unknown registrations cannot become newly eligible.
+2. Durable roster observations with source evidence, time/expiry, quarantine
+   reasons and no automatic mutation of the live player catalogue or ownership.
+3. Versioned canonical roster, fixture, raw-statistics, mapping, rights-permit and
+   release-package JSON schemas. Provider-specific raw fields stay outside the
+   member application. Fixture completion never implies player zero/DNP.
+4. Canonical owner-service reconciler reuses SportsFeedStore and the authoritative
+   scoring engine. Frozen mappings, source revisions, strict full-stat schemas,
+   permission expiry, postgame/live permission, raw retention, transactionality,
+   correction audit and finalised-result reviewer controls remain enforced.
+   Eight concurrent retries were exercised against disposable native PostgreSQL.
+   An import cannot issue cards, pay prizes, change ownership or spend credits.
+5. Readiness has eleven distinct gates. Evidence binds the release, catalogue,
+   rules and issuance hashes, season and competition mode. Expired/superseded
+   evidence fails closed. A configured scoring-version string is no longer
+   presented as scoring approval.
+6. Owner/MFA-only readiness report and approve/suspend journal. Normal web roles
+   cannot write evidence tables. Owner decisions are idempotent and append-only.
+   Approval does not toggle feature flags or issue inventory. A period can only
+   be prepared after all gates and a matching owner decision; it remains
+   unpublished with zero issued cards. Traditional requires an explicit cap;
+   All-Star remains uncapped. NFL's $4.4m cap is unchanged.
+7. Owner-reviewable issuance preview checks existing six rarity lifetime caps,
+   duplicates and pack-pool restrictions. It never allocates serials or mints.
+   Input alreadyIssuedLifetime counts must be reconciled against the hosted
+   supply ledger before any real issuance approval; the offline preview does
+   not certify those input counts. Standard excludes Core; Premium allows only
+   Ultra Rare/Legendary/Icon; weekly Core remains separate.
+8. Admin UI shows actual catalogue/review rows, unresolved mappings, expiry,
+   missing numbers, job state and release gates. No evidence is shown as unknown,
+   not as successful verification. Existing content remains during retries.
+
+Data research and historical testing
+- Squiggle's documented AFL API expressly permits commercial use under its
+  access requirements: https://api.squiggle.com.au/#requirements
+  A single server-side request for Round 1, 2019 was cached with source hash and
+  retrieval timestamp. Nine actual fixtures test stable game IDs and UTC time
+  conversion. It does not contain player box scores or current contracts.
+- NBA.com restricts fantasy-game reuse; a separate authorised source is needed:
+  https://www.nba.com/termsofuse
+- Premier League's website terms do not grant database/commercial reuse:
+  https://www.premierleague.com/en/terms-and-conditions
+- NRL website terms limit general reuse to personal/non-commercial use:
+  https://www.nrl.com/terms-of-use
+- AFL official source permissions remain unverified for this application's
+  roster/statistics use: https://www.afl.com.au/policies
+- An AFL historical dataset advertises CC BY 4.0, but its upstream provenance
+  needs review before approval. It was not imported or treated as authorised:
+  https://huggingface.co/datasets/edushinka/afl-player-games-2000-2023
+- A scraper implementation is not itself evidence of upstream usage permission.
+  No restricted-site scraping, undocumented endpoints or paid service purchases
+  were used. The application does not claim a live play-by-play feed.
+
+Statistics service handoff
+The accessible Scraper Stats project at
+C:\Users\61412\Documents\ChatGPT\Scraper Stats has no committed source and no
+other Git worktree. Only four untracked inspection scripts were present. No
+deployable service contract, configured new-sport feed, credentials or approved
+source catalogue was discoverable there. No unrelated task was messaged.
+
+Deliverables for that service:
+- docs/qa/multi-sport/activation-service-contract.json
+- src/core/owner-sport-feed.ts and src/core/sport-fixture-contract.ts
+- src/server/owner-sport-reconcile.ts: reconcileOwnerSportFeed(...)
+- src/server/sport-readiness-store.ts: stageRoster, stagePackage,
+  prepareApprovedPeriod (operator-only; requires all current gates)
+- scripts/consume-sport-feed.ts exercises the same importer in a disposable
+  local PostgreSQL database. It intentionally refuses hosted credentials.
+- scripts/review-sport-activation.ts roster|issuance|release input.json report.json
+  is offline, writes a new report only and never infers approval.
+
+Delivery/retry ownership: the separate service owns scheduling, transport retries,
+and failed-job alerting. The canonical reconciler is atomic/idempotent and returns
+missing-player IDs. Existing NFL cron jobs remain untouched. The new importer is
+not deployed as an unauthenticated HTTP endpoint and no new scheduler was enabled.
+Hosted transport authentication, scoped credentials, retention limits and service
+deployment must be reviewed once the actual service repository is available.
+
+Scoring and owner decisions
+- AFL: approve the exact frozen rules hash. Existing Docked template uses 2 points
+  per kick and 1 per handball, unlike the referenced AFL Fantasy 3/2 values. This
+  programme does not change either value or claim SuperCoach's proprietary model.
+- EPL: retain existing Docked rules and historical versions; explicitly approve
+  any future-season differences rather than replacing them with current FPL.
+- NBA: proposed template is points 1, rebounds 1, assists 2, steals/blocks 3,
+  turnovers 0, extra three-point bonus 0. Every eligible game in the frozen weekly
+  window contributes; no best-game selection. Approve this exact version.
+- NRL: event template remains provisional, including per-game floor grouping for
+  run/kick metres. The v1 13-player proposal lacks HOK. Recommended v2 for owner
+  consideration: WFB 3, CTR 2, HLF 2, HOK 1, EDG 2, MID 3 = 13. No change to v1
+  or existing teams was made; dedicated HOK prevents eligibility being forced.
+- NBA multi-position assignments, EPL loans, AFL rookie/reserve lists and NRL
+  development contracts require a reviewed source-to-fantasy position policy.
+- Suggested starting budget proposals ONLY: AFL 10m, NRL 10m, NBA 100m, EPL 100m
+  fantasy salary units. These are not implemented or approved. Before activation,
+  calibrate a salary distribution using verified per-player historical points,
+  games/minutes and position pools, then evaluate valid-lineup coverage. Do not
+  fabricate individual salaries for missing-history players. Keep test-only
+  sandbox salary units labelled as fictional.
+- Approve supply/pack issuance per sport and season after reviewing the exact
+  eligible catalogue and existing lifetime scarcity ledger. No issuance has
+  occurred. Prices/probabilities and all existing NFL/member assets are unchanged.
+
+Migration and hosted acceptance
+Required migration: 20261022010531_multi_sport_readiness_registry.sql.
+It creates private evidence tables/functions only, enables RLS, revokes public
+and member writes, and grants only guarded reporting/decision functions to the
+restricted beta app role. Existing records are not deleted or rewritten.
+Migration executed locally through the full database harness and native test
+database. Hosted installation has NOT occurred.
+
+The connector denied even read-only preflight access to isolated Supabase project
+bckkllmndoxzpzdqrevb: "You do not have permission to perform this action".
+This was not reported as a passing hosted test and no alternative permission
+bypass was attempted. Production remains unchanged. Required next action: restore
+the intended Preview project connection/access, or explicitly designate an
+authorised isolated replacement. Do not use real member mutations for acceptance.
+
+Production activation sequence (one sport/mode at a time)
+1. Restore isolated hosted access, review/apply additive registry migration.
+2. Deploy the committed candidate with protection and existing auth/MFA controls.
+3. Run authenticated owner/member/unauthorised RLS journeys in that environment.
+4. Connect the real statistics service with reviewed source permission and scoped
+   credentials; import complete rosters, fixtures and historical player statistics.
+5. Reconcile source -> base score -> card contribution -> team total -> leaderboard.
+   Exercise missing data, confirmed DNP, corrections, exceptional fixtures and
+   retry/finalisation behaviour. Do not reuse local QA as live evidence.
+6. Stage the exact roster/rules/supply/release package. Obtain the format, scoring,
+   salary, supply and source decisions above. Record the owner's exact-package
+   decision only after the other ten gates pass.
+7. Prepare unpublished period(s), review supply preview and deployment rollback.
+8. Obtain the specific live activation and first-issuance approvals. Enable only
+   that approved sport/mode; preserve all unrelated economy and security controls.
+
+Evidence and limitations
+See docs/qa/multi-sport/activation/verification.json for final test totals, files
+and commit evidence. Field/list/history/community screenshots are under
+docs/qa/multi-sport/{afl,football,basketball,nrl}/. Owner evidence screenshots are
+under docs/qa/multi-sport/activation/owner-{360,412,1440}.png.
+Browser runs use actual shared components and isolated SQL fixtures. They are
+not physical Samsung/iPhone tests, licensed live-feed tests or signed-in hosted
+member acceptance. Real historical player-score reconciliation remains blocked
+by an authorised player-statistics dataset. New-sport catalogue approval counts
+remain zero. This is a tested implementation checkpoint, not full activation.

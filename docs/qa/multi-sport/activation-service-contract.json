@@ -1,0 +1,1740 @@
+{
+  "schemaVersion": 1,
+  "transport": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "schemaVersion": {
+        "type": "number",
+        "const": 1
+      },
+      "sport": {
+        "type": "string",
+        "enum": [
+          "afl",
+          "nrl",
+          "basketball",
+          "epl"
+        ]
+      },
+      "season": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "provider": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "providerFixtureId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "revision": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991
+      },
+      "observedAt": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "scheduled",
+          "live",
+          "completed",
+          "postponed",
+          "abandoned",
+          "rescheduled",
+          "cancelled"
+        ]
+      },
+      "endedAt": {
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "completionObservedAt": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      },
+      "evidence": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "url",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "players": {
+        "maxItems": 200,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "providerPlayerId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+            },
+            "availability": {
+              "type": "string",
+              "enum": [
+                "complete",
+                "pending",
+                "confirmed-dnp"
+              ]
+            },
+            "stats": {}
+          },
+          "required": [
+            "providerPlayerId",
+            "availability",
+            "stats"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "schemaVersion",
+      "sport",
+      "season",
+      "provider",
+      "providerFixtureId",
+      "revision",
+      "observedAt",
+      "status",
+      "endedAt",
+      "evidence",
+      "players"
+    ],
+    "additionalProperties": false
+  },
+  "mapping": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "sport": {
+        "type": "string",
+        "enum": [
+          "afl",
+          "nrl",
+          "basketball",
+          "epl"
+        ]
+      },
+      "season": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "provider": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "providerFixtureId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "fixtureId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "scoringVersion": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+      },
+      "maxAgeSeconds": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 86400
+      },
+      "players": {
+        "minItems": 1,
+        "maxItems": 200,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "providerPlayerId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+            },
+            "playerId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+            },
+            "position": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{1,120}$"
+            }
+          },
+          "required": [
+            "providerPlayerId",
+            "playerId",
+            "position"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "sport",
+      "season",
+      "provider",
+      "providerFixtureId",
+      "fixtureId",
+      "scoringVersion",
+      "maxAgeSeconds",
+      "players"
+    ],
+    "additionalProperties": false
+  },
+  "roster": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "sport": {
+        "type": "string",
+        "enum": [
+          "afl",
+          "nrl",
+          "basketball",
+          "football"
+        ]
+      },
+      "season": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "playerId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "provider": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "providerPlayerId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "name": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 160
+      },
+      "teamId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "teamName": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "presentation": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "primary": {
+            "type": "string",
+            "pattern": "^#[0-9a-f]{6}$"
+          },
+          "accent": {
+            "type": "string",
+            "pattern": "^#[0-9a-f]{6}$"
+          },
+          "evidence": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "observedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+              }
+            },
+            "required": [
+              "url",
+              "sha256",
+              "observedAt"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "city",
+          "primary",
+          "accent",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "identityVerified": {
+        "type": "boolean"
+      },
+      "registration": {
+        "type": "string",
+        "enum": [
+          "active",
+          "reserve",
+          "loan",
+          "temporary",
+          "two-way",
+          "development",
+          "free-agent",
+          "released",
+          "retired",
+          "unknown"
+        ]
+      },
+      "availability": {
+        "type": "string",
+        "enum": [
+          "available",
+          "injured",
+          "suspended",
+          "unknown"
+        ]
+      },
+      "positions": {
+        "minItems": 1,
+        "maxItems": 6,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "positionsVerified": {
+        "type": "boolean"
+      },
+      "jerseyNumber": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 999
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "jerseyVerified": {
+        "type": "boolean"
+      },
+      "evidence": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          }
+        },
+        "required": [
+          "url",
+          "sha256",
+          "observedAt"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "sport",
+      "season",
+      "playerId",
+      "provider",
+      "providerPlayerId",
+      "name",
+      "teamId",
+      "teamName",
+      "identityVerified",
+      "registration",
+      "availability",
+      "positions",
+      "positionsVerified",
+      "jerseyNumber",
+      "jerseyVerified",
+      "evidence"
+    ],
+    "additionalProperties": false
+  },
+  "rosterPolicy": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "sport": {
+        "type": "string",
+        "enum": [
+          "afl",
+          "nrl",
+          "basketball",
+          "football"
+        ]
+      },
+      "season": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "provider": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "rightsEvidence": {
+        "type": "string",
+        "format": "uri"
+      },
+      "rightsExpiresAt": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      },
+      "rosterUse": {
+        "type": "boolean",
+        "const": true
+      },
+      "storage": {
+        "type": "boolean",
+        "const": true
+      },
+      "fantasyUse": {
+        "type": "boolean",
+        "const": true
+      },
+      "maxAgeHours": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 168
+      },
+      "permittedRegistrations": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "active",
+            "reserve",
+            "loan",
+            "temporary",
+            "two-way",
+            "development",
+            "free-agent",
+            "released",
+            "retired",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "required": [
+      "sport",
+      "season",
+      "provider",
+      "rightsEvidence",
+      "rightsExpiresAt",
+      "rosterUse",
+      "storage",
+      "fantasyUse",
+      "maxAgeHours",
+      "permittedRegistrations"
+    ],
+    "additionalProperties": false
+  },
+  "feedPermit": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "provider": {
+        "type": "string",
+        "minLength": 1
+      },
+      "competition": {
+        "type": "string",
+        "enum": [
+          "AFL",
+          "NRL",
+          "NBA",
+          "EPL"
+        ]
+      },
+      "intendedUse": {
+        "type": "string",
+        "const": "isolated-free-beta"
+      },
+      "fantasyUse": {
+        "type": "boolean",
+        "const": true
+      },
+      "storage": {
+        "type": "boolean",
+        "const": true
+      },
+      "evidence": {
+        "type": "string",
+        "format": "uri"
+      },
+      "reviewExpires": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      },
+      "maxAgeSeconds": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 86400
+      },
+      "rawRetentionDays": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 365
+      },
+      "liveUse": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "provider",
+      "competition",
+      "intendedUse",
+      "fantasyUse",
+      "storage",
+      "evidence",
+      "reviewExpires",
+      "maxAgeSeconds",
+      "rawRetentionDays",
+      "liveUse"
+    ],
+    "additionalProperties": false
+  },
+  "releasePackage": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "schemaVersion": {
+        "type": "number",
+        "const": 1
+      },
+      "sport": {
+        "type": "string",
+        "enum": [
+          "afl",
+          "football",
+          "basketball",
+          "nrl"
+        ]
+      },
+      "season": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "OPEN",
+          "SALARY_CAP"
+        ]
+      },
+      "formatVersion": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "scoringVersion": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "releaseHash": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "catalogueHash": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "rulesHash": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "issuanceHash": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "salaryCap": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "provider": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "evidence": {
+        "maxItems": 10,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "gate": {
+              "type": "string",
+              "enum": [
+                "roster-format",
+                "scoring-rules",
+                "eligible-catalogue",
+                "source-rights",
+                "operational-ingestion",
+                "score-reconciliation",
+                "supply-issuance",
+                "lockout-privacy",
+                "wallet-ownership",
+                "hosted-acceptance"
+              ]
+            },
+            "releaseHash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "catalogueHash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "rulesHash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "issuanceHash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "reference": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "verifiedAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "expiresAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "passed",
+                "blocked"
+              ]
+            }
+          },
+          "required": [
+            "gate",
+            "releaseHash",
+            "catalogueHash",
+            "rulesHash",
+            "issuanceHash",
+            "reference",
+            "sha256",
+            "verifiedAt",
+            "expiresAt",
+            "outcome"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "schemaVersion",
+      "sport",
+      "season",
+      "mode",
+      "formatVersion",
+      "scoringVersion",
+      "releaseHash",
+      "catalogueHash",
+      "rulesHash",
+      "issuanceHash",
+      "salaryCap",
+      "provider",
+      "evidence"
+    ],
+    "additionalProperties": false
+  },
+  "fixtures": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "schemaVersion": {
+        "type": "number",
+        "const": 1
+      },
+      "sport": {
+        "type": "string",
+        "enum": [
+          "afl",
+          "nrl",
+          "basketball",
+          "epl"
+        ]
+      },
+      "season": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,160}$"
+      },
+      "provider": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9:._-]{1,160}$"
+      },
+      "revision": {
+        "type": "integer",
+        "exclusiveMinimum": 0,
+        "maximum": 9007199254740991
+      },
+      "observedAt": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+      },
+      "sourceUpdatedAt": {
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "source": {
+        "type": "string",
+        "format": "uri"
+      },
+      "sourceHash": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "completePeriod": {
+        "type": "boolean"
+      },
+      "fixtures": {
+        "maxItems": 1000,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "providerFixtureId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{1,160}$"
+            },
+            "homeTeamId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{1,160}$"
+            },
+            "awayTeamId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9:._-]{1,160}$"
+            },
+            "scheduledAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "scheduled",
+                "live",
+                "completed",
+                "postponed",
+                "abandoned",
+                "rescheduled",
+                "cancelled"
+              ]
+            },
+            "playerStatistics": {
+              "type": "string",
+              "enum": [
+                "unavailable",
+                "partial",
+                "complete"
+              ]
+            }
+          },
+          "required": [
+            "providerFixtureId",
+            "homeTeamId",
+            "awayTeamId",
+            "scheduledAt",
+            "status",
+            "playerStatistics"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "schemaVersion",
+      "sport",
+      "season",
+      "provider",
+      "revision",
+      "observedAt",
+      "sourceUpdatedAt",
+      "source",
+      "sourceHash",
+      "completePeriod",
+      "fixtures"
+    ],
+    "additionalProperties": false
+  },
+  "sports": [
+    {
+      "sport": "afl",
+      "rules": {
+        "sport": "afl",
+        "version": "docked-afl-22-events-v1",
+        "title": "Docked AFL · 22 players",
+        "beta": true,
+        "positions": [
+          "DEF",
+          "MID",
+          "RUC",
+          "FWD"
+        ],
+        "slots": [
+          {
+            "id": "BACK1",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK2",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK3",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK4",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK5",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK6",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "MID1",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID2",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID3",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID4",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID5",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID6",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID7",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID8",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "FWD1",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD2",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD3",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD4",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD5",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD6",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "RUCK1",
+            "positions": [
+              "RUC"
+            ]
+          },
+          {
+            "id": "RUCK2",
+            "positions": [
+              "RUC"
+            ]
+          }
+        ],
+        "weights": {
+          "kicks": 200,
+          "handballs": 100,
+          "marks": 300,
+          "tackles": 400,
+          "goals": 600,
+          "behinds": 100,
+          "hitouts": 100,
+          "freesFor": 100,
+          "freesAgainst": -300
+        },
+        "correctionHours": 72,
+        "periodName": "round",
+        "policy": [
+          "Owner-approved update: kick 2, handball 1, goal 6. Other event weights are retained from v1. A mark, kick and goal now scores 11. Applies to new periods only.",
+          "22 active cards: six backs, eight midfielders, six forwards, two rucks. Raw events, no match-wide scaling or proprietary ratings. Source connection and competition activation are separate.",
+          "Substitutes and partial appearances earn their actual events with no appearance/minimum-time bonus. Confirmed unused substitute/DNP/bye is zero. Missing statistics remain pending. Time-on-ground does not multiply scores."
+        ]
+      },
+      "statistics": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "kicks": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "handballs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "marks": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "tackles": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "goals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "behinds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "hitouts": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "freesFor": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "freesAgainst": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          }
+        },
+        "required": [
+          "kicks",
+          "handballs",
+          "marks",
+          "tackles",
+          "goals",
+          "behinds",
+          "hitouts",
+          "freesFor",
+          "freesAgainst"
+        ],
+        "additionalProperties": false
+      },
+      "reference": "https://www.afl.com.au/news/1464392/afl-fantasy-for-dummies-how-to-play-scoring-system-more/amp"
+    },
+    {
+      "sport": "nrl",
+      "rules": {
+        "sport": "nrl",
+        "beta": true,
+        "positions": [
+          "WFB",
+          "CTR",
+          "HLF",
+          "EDG",
+          "MID"
+        ],
+        "slots": [
+          {
+            "id": "WFB1",
+            "positions": [
+              "WFB"
+            ]
+          },
+          {
+            "id": "WFB2",
+            "positions": [
+              "WFB"
+            ]
+          },
+          {
+            "id": "CTR1",
+            "positions": [
+              "CTR"
+            ]
+          },
+          {
+            "id": "CTR2",
+            "positions": [
+              "CTR"
+            ]
+          },
+          {
+            "id": "HLF1",
+            "positions": [
+              "HLF"
+            ]
+          },
+          {
+            "id": "HLF2",
+            "positions": [
+              "HLF"
+            ]
+          },
+          {
+            "id": "EDG1",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "EDG2",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "EDG3",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "MID1",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID2",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID3",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "WFB",
+              "CTR",
+              "HLF",
+              "EDG",
+              "MID"
+            ]
+          }
+        ],
+        "correctionHours": 72,
+        "periodName": "round",
+        "version": "docked-nrl-events-v1",
+        "title": "Docked NRL · event scoring",
+        "weights": {
+          "tries": 800,
+          "goals": 200,
+          "fieldGoals": 500,
+          "tryAssists": 500,
+          "lineBreaks": 400,
+          "lineBreakAssists": 200,
+          "tackles": 100,
+          "tackleBreaks": 200,
+          "missedTackles": -200,
+          "offloadsToHand": 400,
+          "offloadsToGround": 200,
+          "errors": -200,
+          "fortyTwenties": 400,
+          "twentyForties": 400,
+          "runMetres": 100,
+          "kickMetres": 100,
+          "penaltiesConceded": -200,
+          "sixAgainInfringements": -100,
+          "sinBins": -500,
+          "sendOffs": -1000,
+          "trySaves": 500,
+          "kicksDefused": 100,
+          "forcedDropouts": 200,
+          "turnovers": 400,
+          "escapesInGoal": 200
+        },
+        "statisticGroups": {
+          "runMetres": 10,
+          "kickMetres": 30
+        },
+        "policy": [
+          "Event values reference NRL Fantasy 2026 guidelines, reviewed 22 October 2026. Docked retains its own lineup and lock rules; no captain, emergency or bench scoring is added.",
+          "Run and kick metres earn points only for complete groups of 10 and 30 respectively, calculated separately per match. Offloads to hand and ground are separate required statistics. One- and two-point field goals each earn 5 fantasy points.",
+          "Use source-defined turnover events once: do not add an intercept and a strip again when they are already in the turnover total. Missing event fields are unavailable, never automatically zero. Explicit confirmed DNP/bye remains distinct."
+        ]
+      },
+      "statistics": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "tries": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "goals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "fieldGoals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "tryAssists": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "lineBreaks": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "lineBreakAssists": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "tackles": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "tackleBreaks": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "missedTackles": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "offloadsToHand": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "offloadsToGround": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "errors": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "fortyTwenties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "twentyForties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "runMetres": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "kickMetres": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "penaltiesConceded": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "sixAgainInfringements": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "sinBins": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "sendOffs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "trySaves": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "kicksDefused": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "forcedDropouts": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "turnovers": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "escapesInGoal": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          }
+        },
+        "required": [
+          "tries",
+          "goals",
+          "fieldGoals",
+          "tryAssists",
+          "lineBreaks",
+          "lineBreakAssists",
+          "tackles",
+          "tackleBreaks",
+          "missedTackles",
+          "offloadsToHand",
+          "offloadsToGround",
+          "errors",
+          "fortyTwenties",
+          "twentyForties",
+          "runMetres",
+          "kickMetres",
+          "penaltiesConceded",
+          "sixAgainInfringements",
+          "sinBins",
+          "sendOffs",
+          "trySaves",
+          "kicksDefused",
+          "forcedDropouts",
+          "turnovers",
+          "escapesInGoal"
+        ],
+        "additionalProperties": false
+      },
+      "reference": "https://fantasy.nrl.com/help/guidelines"
+    },
+    {
+      "sport": "basketball",
+      "rules": {
+        "sport": "basketball",
+        "beta": true,
+        "positions": [
+          "PG",
+          "SG",
+          "SF",
+          "PF",
+          "C"
+        ],
+        "slots": [
+          {
+            "id": "PG1",
+            "positions": [
+              "PG"
+            ]
+          },
+          {
+            "id": "SG1",
+            "positions": [
+              "SG"
+            ]
+          },
+          {
+            "id": "SF1",
+            "positions": [
+              "SF"
+            ]
+          },
+          {
+            "id": "PF1",
+            "positions": [
+              "PF"
+            ]
+          },
+          {
+            "id": "C1",
+            "positions": [
+              "C"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "PG",
+              "SG",
+              "SF",
+              "PF",
+              "C"
+            ]
+          },
+          {
+            "id": "FLEX2",
+            "positions": [
+              "PG",
+              "SG",
+              "SF",
+              "PF",
+              "C"
+            ]
+          },
+          {
+            "id": "FLEX3",
+            "positions": [
+              "PG",
+              "SG",
+              "SF",
+              "PF",
+              "C"
+            ]
+          }
+        ],
+        "correctionHours": 72,
+        "periodName": "weekly-window",
+        "version": "docked-nba-events-v1",
+        "title": "Docked NBA · event scoring",
+        "weights": {
+          "points": 100,
+          "rebounds": 100,
+          "assists": 200,
+          "steals": 300,
+          "blocks": 300,
+          "turnovers": 0,
+          "threePointers": 0
+        },
+        "policy": [
+          "Event values reference NBA Fantasy Salary Cap scoring, reviewed 22 October 2026: points 1, rebound 1, assist 2, steal/block 3, no turnover penalty. Made threes are already in points and earn no extra bonus.",
+          "Docked sums every frozen eligible match in the explicit weekly window; it does not select only a player's best game. Include overtime. No double/triple-double or captain bonus.",
+          "Raw box-score fields are required. A verified all-zero performance is zero; missing data remains pending. Finalisation retains Docked's correction window and reviewer controls."
+        ]
+      },
+      "statistics": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "points": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "rebounds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "assists": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "steals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "blocks": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "turnovers": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "threePointers": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          }
+        },
+        "required": [
+          "points",
+          "rebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "threePointers"
+        ],
+        "additionalProperties": false
+      },
+      "reference": "https://en.nbafantasy.nba.com/help/updates"
+    },
+    {
+      "sport": "epl",
+      "rules": {
+        "sport": "epl",
+        "version": "docked-epl-beta-v1",
+        "title": "Docked EPL Scoring v1",
+        "beta": true,
+        "positions": [
+          "GK",
+          "DEF",
+          "MID",
+          "FWD"
+        ],
+        "slots": [
+          {
+            "id": "GK1",
+            "positions": [
+              "GK"
+            ]
+          },
+          {
+            "id": "DEF1",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "DEF2",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "DEF3",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "DEF4",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "MID1",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID2",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID3",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID4",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "FWD1",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD2",
+            "positions": [
+              "FWD"
+            ]
+          }
+        ],
+        "weights": {
+          "shortAppearance": 100,
+          "fullAppearance": 200,
+          "assists": 300,
+          "savesPerThree": 100,
+          "penaltySaves": 500,
+          "penaltiesMissed": -200,
+          "yellowCards": -100,
+          "dismissal": -300,
+          "ownGoals": -200,
+          "concededPerTwo": -100
+        },
+        "goal": {
+          "GK": 600,
+          "DEF": 600,
+          "MID": 500,
+          "FWD": 400
+        },
+        "clean": {
+          "GK": 400,
+          "DEF": 400,
+          "MID": 100,
+          "FWD": 0
+        },
+        "correctionHours": 72,
+        "periodName": "gameweek",
+        "policy": [
+          "Appearance: more than 0 and under 60 regulation minutes = 1; 60+ = 2 total. Added time does not count toward 60; goals and disciplinary events in added time count.",
+          "Goals: GK/DEF 6, MID 5, FWD 4. Assists 3. Synthetic assists mean the final deliberate teammate touch directly creating a goal, excluding own-goal, rebound and materially deflected assists. A live adapter must document its provider definition before activation.",
+          "Clean sheet: 60+ regulation minutes, no concession during verified on-pitch intervals, and no dismissal: GK/DEF 4, MID 1, FWD 0. Substituted players retain this if a goal is conceded after they leave. Dismissed players receive no clean-sheet points.",
+          "GK saves: 1 per complete 3 (penalty saves included), plus 5 per penalty save. Penalty missed -2, own goal -2. GK/DEF lose 1 per complete 2 goals conceded while on pitch, including own goals. No post-dismissal concessions counted.",
+          "Yellow -1; straight red -3 in addition to an earlier single yellow. A second-yellow dismissal replaces BOTH yellow penalties with one -3 dismissal penalty. This is a Docked choice, not exact FPL compatibility.",
+          "On-pitch event order and substitution/dismissal boundaries must be verified; equal-minute unordered events are insufficient. No events or minutes are guessed from full-match team scores. No bonus ratings or tackle/interception points."
+        ]
+      },
+      "statistics": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "regulationSeconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5400
+          },
+          "playedSeconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 8000
+          },
+          "goals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "assists": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "saves": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "penaltySaves": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "penaltiesMissed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "yellowCards": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "dismissal": {
+            "type": "string",
+            "enum": [
+              "none",
+              "straight-red",
+              "second-yellow"
+            ]
+          },
+          "ownGoals": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "concededOnPitch": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "onPitchEvidence": {
+            "type": "string",
+            "const": "ordered-events-verified"
+          }
+        },
+        "required": [
+          "regulationSeconds",
+          "playedSeconds",
+          "goals",
+          "assists",
+          "saves",
+          "penaltySaves",
+          "penaltiesMissed",
+          "yellowCards",
+          "dismissal",
+          "ownGoals",
+          "concededOnPitch",
+          "onPitchEvidence"
+        ],
+        "additionalProperties": false
+      },
+      "reference": "https://www.premierleague.com/en/news/2174909"
+    }
+  ],
+  "notes": [
+    "No fetching, database writes, competition activation or card issuance.",
+    "JSON Schema covers structure; the review command also enforces time order, identities and cross-field validation.",
+    "Missing statistics must not be replaced by zero. All fields in a complete statistics row are required.",
+    "Names, cities and original colour treatments use the separate reviewed roster contract; never derive identities from display names."
+  ]
+}

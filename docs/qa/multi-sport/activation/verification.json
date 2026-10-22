@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-22T01:41:42.203Z",
+  "implementationCommit": "43ca7e1488344c7dcc4d686fab64025a45989945",
+  "production": {
+    "commit": "31f0ecc99c40aedcd4f4f64695a3de030715da0e",
+    "deployment": "dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3",
+    "state": "READY",
+    "url": "https://docked.com.au",
+    "readOnlyInspection": true,
+    "mutationsPerformed": false
+  },
+  "catalogueAudit": {
+    "nfl": {
+      "rows": 498,
+      "positions": {
+        "QB": 87,
+        "RB": 117,
+        "TE": 117,
+        "WR": 177
+      },
+      "newContractVerification": false
+    },
+    "football": {
+      "rows": 36,
+      "positions": {
+        "GK": 4,
+        "DEF": 12,
+        "MID": 12,
+        "FWD": 8
+      },
+      "verifiedCurrentSeason": false,
+      "provenance": "legacy seed catalogue"
+    },
+    "afl": {
+      "rows": 0
+    },
+    "basketball": {
+      "rows": 0
+    },
+    "nrl": {
+      "rows": 0
+    },
+    "newlyVerifiedForIssuance": {
+      "afl": 0,
+      "football": 0,
+      "basketball": 0,
+      "nrl": 0
+    }
+  },
+  "tests": {
+    "platform-final": {
+      "tests": 557,
+      "pass": 557,
+      "fail": 0,
+      "skipped": 0,
+      "duration_ms": 173697.9874,
+      "logSha256": "afe0eefeb4a0f7ef54824097ac2b11f3eed40f85cffe7429876a7a9f3fb7cb02"
+    },
+    "database": {
+      "tests": 196,
+      "pass": 196,
+      "fail": 0,
+      "skipped": 0,
+      "duration_ms": 227267.3535,
+      "logSha256": "0572ba1d9a609bd3c6b7f4d34f09180fa1708a32ad13e33e5e26c6b574fe99b1"
+    },
+    "database-final": {
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0,
+      "duration_ms": 16202.625,
+      "logSha256": "88a34dd1899ceb8377f10b2612fe98bfaadcc7d475dc75a329d333fe1cd55d0a"
+    },
+    "native-postgres": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0,
+      "duration_ms": 956.3949,
+      "logSha256": "96f31b48079f13420652a19e347dfd860444819cef22dcb2d3f29e1e6dd6d6a3"
+    },
+    "final-gates": {
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0,
+      "duration_ms": 8294.8591,
+      "logSha256": "2d7f6ce5874f5b062e77bb8df50e2203e15503a84c1f06f5d68451599e894f24"
+    }
+  },
+  "testScope": "Platform full suite and database full suite; final targeted database rerun after period preparation validation. Native PostgreSQL importer run also exercises eight concurrent replays. Counts overlap and must not be summed as unique scenarios.",
+  "staticChecks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "cleanBuild": "passed",
+    "clientSecretCanary": "passed: 74 browser assets",
+    "buildReceipt": "docs/qa/multi-sport/build.txt",
+    "secretBoundaryReceipt": "docs/qa/multi-sport/client-boundary.txt"
+  },
+  "browser": {
+    "scope": "Local actual components and isolated SQL fixtures; not physical devices or authenticated hosted acceptance",
+    "sports": {
+      "afl": {
+        "results": [
+          {
+            "width": 412,
+            "slots": 22,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 360,
+            "slots": 22,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1024,
+            "slots": 22,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1440,
+            "slots": 22,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1536,
+            "slots": 22,
+            "overflow": false,
+            "errors": []
+          }
+        ],
+        "lockedAndCommunitySlots": 22,
+        "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+      },
+      "football": {
+        "results": [
+          {
+            "width": 412,
+            "slots": 11,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 360,
+            "slots": 11,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1024,
+            "slots": 11,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1440,
+            "slots": 11,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1536,
+            "slots": 11,
+            "overflow": false,
+            "errors": []
+          }
+        ],
+        "lockedAndCommunitySlots": 11,
+        "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+      },
+      "basketball": {
+        "results": [
+          {
+            "width": 412,
+            "slots": 8,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 360,
+            "slots": 8,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1024,
+            "slots": 8,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1440,
+            "slots": 8,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1536,
+            "slots": 8,
+            "overflow": false,
+            "errors": []
+          }
+        ],
+        "lockedAndCommunitySlots": 8,
+        "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+      },
+      "nrl": {
+        "results": [
+          {
+            "width": 412,
+            "slots": 13,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 360,
+            "slots": 13,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1024,
+            "slots": 13,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1440,
+            "slots": 13,
+            "overflow": false,
+            "errors": []
+          },
+          {
+            "width": 1536,
+            "slots": 13,
+            "overflow": false,
+            "errors": []
+          }
+        ],
+        "lockedAndCommunitySlots": 13,
+        "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+      }
+    },
+    "owner": {
+      "isolated": true,
+      "checks": [
+        {
+          "width": 360,
+          "overflow": false,
+          "errors": [],
+          "approveAndSuspend": true
+        },
+        {
+          "width": 412,
+          "overflow": false,
+          "errors": [],
+          "approveAndSuspend": true
+        },
+        {
+          "width": 1440,
+          "overflow": false,
+          "errors": [],
+          "approveAndSuspend": true
+        }
+      ],
+      "posts": 6
+    },
+    "visualReview": [
+      "AFL mobile field",
+      "NBA mobile field",
+      "EPL historical lineup",
+      "Owner mobile and desktop"
+    ]
+  },
+  "historicalData": {
+    "source": "https://api.squiggle.com.au/?q=games;year=2019;round=1",
+    "permissionReference": "https://api.squiggle.com.au/#requirements",
+    "fixtures": 9,
+    "realPlayerStatistics": 0,
+    "fixtureReceipt": "docs/qa/multi-sport/afl-historical-fixtures.json",
+    "syntheticScoringFixturesKeptSeparate": true
+  },
+  "migration": {
+    "file": "supabase/migrations/20261022010531_multi_sport_readiness_registry.sql",
+    "localApplied": true,
+    "hostedApplied": false
+  },
+  "hostedAcceptance": {
+    "status": "blocked",
+    "project": "bckkllmndoxzpzdqrevb",
+    "operation": "read-only SQL preflight",
+    "reason": "Connected Supabase tool: You do not have permission to perform this action",
+    "permissionBypassAttempted": false
+  },
+  "statisticsService": {
+    "sourceProject": "Scraper Stats",
+    "committedFiles": 0,
+    "untrackedInspectionScripts": 4,
+    "liveIntegrationVerified": false,
+    "contract": "docs/qa/multi-sport/activation-service-contract.json"
+  },
+  "activation": {
+    "newSportsActivated": false,
+    "cardsIssued": 0,
+    "memberAssetsMutated": false,
+    "ownerDecisionsOutstanding": [
+      "Source rights and authorised player/fixture/statistics feed per sport",
+      "NRL roster including dedicated hooker decision; NBA format",
+      "Exact versioned scoring and non-NFL salary policies",
+      "Special contract and fantasy position eligibility",
+      "Exact catalogue and lifetime-supply issuance approval",
+      "Hosted acceptance followed by specific live activation approval"
+    ]
+  }
+}
