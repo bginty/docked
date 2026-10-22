@@ -5,7 +5,7 @@ export function NbaProposalSummary() {
     lineup = nbaWeeklyLineup();
   return (
     <details className="admin-workspace-panel">
-      <summary>NBA weekly proposal · Approval required</summary>
+      <summary>NBA weekly · Approved for protected testing</summary>
       <p>
         Eight players: PG, SG, SF, PF, C, Guard, Forward and Utility. One card
         per player. $5.2m Salary Cap or uncapped Open. No rarity scoring
@@ -17,7 +17,9 @@ export function NbaProposalSummary() {
         unchanged.
       </p>
       <table>
-        <caption>PROPOSED points per game</caption>
+        <caption>
+          Owner-approved testing points per game · Not a live release
+        </caption>
         <thead>
           <tr>
             <th>Event</th>
@@ -49,13 +51,14 @@ export function NbaProposalSummary() {
       </p>
       <p>
         Same player, same points at every rarity. More scheduled games can
-        produce a substantial weekly advantage. These trade-offs require owner
-        acceptance.
+        produce a substantial weekly advantage. These rules are approved for
+        protected testing only.
       </p>
       <p>
-        Activation remains blocked pending gameplay approval, contracted
-        provider rights, verified roster/positions, issuance approval and hosted
-        acceptance. This review does not enable any gate.
+        Real-user activation remains blocked pending commercial gameplay
+        approval, contracted provider rights, verified roster/positions,
+        issuance approval and hosted acceptance. This review does not enable any
+        gate.
       </p>
     </details>
   );

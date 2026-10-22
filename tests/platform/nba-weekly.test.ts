@@ -1,4 +1,5 @@
 import { test } from "node:test";
+import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import {
   nbaWeek,
@@ -39,6 +40,27 @@ const zero = {
   turnovers: 0,
   threePointers: 0,
 };
+test("NBA protected owner approval binds the tested contract without authorising live gates", () => {
+  const approval = JSON.parse(
+    readFileSync("config/nba-protected-approval.json", "utf8"),
+  );
+  assert.equal(approval.status, "approved-for-protected-testing-only");
+  assert.equal(approval.scoringVersion, rules.version);
+  assert.equal(approval.lineupVersion, nbaWeeklyLineup().version);
+  assert.deepEqual(approval.weightsCentipoints, rules.weights);
+  assert.deepEqual(approval.bonusesCentipoints, rules.bonuses);
+  assert.deepEqual(approval.salaries, nbaWeeklyLineup().salaries);
+  assert.equal(approval.salaryCap, nbaWeeklyLineup().salaryCap);
+  for (const key of [
+    "productionApproval",
+    "memberActivationApproval",
+    "providerLicenceApproval",
+    "paidServicesApproval",
+    "permanentIssuanceApproval",
+    "realDataSchedulesApproval",
+  ])
+    assert.equal(approval[key], false);
+});
 test("NBA proposal: exact example, negatives, thresholds, stacking and old-version isolation", () => {
   const example = {
     ...zero,

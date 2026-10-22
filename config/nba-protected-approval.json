@@ -1,0 +1,41 @@
+{
+  "id": "nba-owner-protected-testing-2026-10-22",
+  "source": "Owner instruction in this task: NBA OWNER APPROVAL & PROTECTED ACCEPTANCE",
+  "status": "approved-for-protected-testing-only",
+  "scoringVersion": "docked-nba-weekly-proposal-v1",
+  "lineupVersion": "docked-nba-weekly-lineup-proposal-v1",
+  "formation": ["PG", "SG", "SF", "PF", "C", "G", "F", "UTIL"],
+  "salaryCap": 5200000,
+  "salaries": {
+    "CORE": 500000,
+    "RARE": 600000,
+    "ELITE": 650000,
+    "ULTRA_RARE": 700000,
+    "LEGENDARY": 800000,
+    "ICON": 800000
+  },
+  "weightsCentipoints": {
+    "points": 100,
+    "rebounds": 120,
+    "assists": 150,
+    "steals": 300,
+    "blocks": 300,
+    "turnovers": -100,
+    "threePointers": 0
+  },
+  "bonusesCentipoints": { "doubleDouble": 150, "tripleDouble": 300 },
+  "tripleDoubleStacks": true,
+  "timezone": "America/New_York",
+  "week": "Monday 00:00 inclusive to next Monday 00:00 exclusive",
+  "lock": "round-wide at first eligible scheduled start; edits strictly before lock",
+  "aggregation": "all eligible weekly games",
+  "dnp": "zero only with verified participation evidence",
+  "rarityMultiplier": false,
+  "preservePermanentSupplyAndOwnership": true,
+  "productionApproval": false,
+  "memberActivationApproval": false,
+  "providerLicenceApproval": false,
+  "paidServicesApproval": false,
+  "permanentIssuanceApproval": false,
+  "realDataSchedulesApproval": false
+}

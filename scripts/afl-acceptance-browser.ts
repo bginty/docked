@@ -218,6 +218,38 @@ async function main() {
           .click();
         await expect(page.getByRole("status")).toContainText("entry confirmed");
       }
+      if (proposal && width === 412) {
+        await page
+          .getByLabel("Competition", { exact: true })
+          .selectOption("SALARY_CAP");
+        await page
+          .getByRole("button", { name: "Auto Select", exact: true })
+          .click();
+        await page
+          .getByRole("button", { name: "Apply lineup", exact: true })
+          .click();
+        await expect(
+          page.getByText(/\$4,000,000 \/ \$5,200,000/),
+        ).toBeVisible();
+        await page
+          .getByRole("button", { name: "Confirm sandbox entry", exact: true })
+          .click();
+        await expect(page.getByRole("status")).toContainText("entry confirmed");
+        const independent = (await db.state()).entries.filter(
+          (e: any) => e.user_id === db.user,
+        );
+        assert(
+          independent.some((e: any) => e.competition_id === db.rounds.OPEN1),
+        );
+        assert(
+          independent.some(
+            (e: any) => e.competition_id === db.rounds.SALARY_CAP1,
+          ),
+        );
+        await page
+          .getByLabel("Competition", { exact: true })
+          .selectOption("OPEN");
+      }
       await page.screenshot({
         path: `${out}/field-${width}.png`,
         fullPage: true,

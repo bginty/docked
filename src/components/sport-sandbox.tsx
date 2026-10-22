@@ -51,7 +51,15 @@ export function SportSandbox({
   let sport = sportConfigurations[state.sport];
   const rounds = state.competitions
     .filter((c) => c.rules.mode === mode)
-    .sort((a, b) => a.round - b.round);
+    .sort(
+      (a, b) =>
+        Number(
+          b.rules.lineup_version === nbaWeeklyConfiguration.formatVersion,
+        ) -
+          Number(
+            a.rules.lineup_version === nbaWeeklyConfiguration.formatVersion,
+          ) || a.round - b.round,
+    );
   const comp = rounds.find((c) => c.id === round) ?? rounds[0];
   const cfg = state.configurations[comp?.rules.lineup_version];
   const nbaProposal = cfg?.version === nbaWeeklyConfiguration.formatVersion;
@@ -373,6 +381,12 @@ export function SportSandbox({
             {rounds.map((c) => (
               <option key={c.id} value={c.id}>
                 Round {c.round}
+                {state.sport === "basketball"
+                  ? c.rules.lineup_version ===
+                    nbaWeeklyConfiguration.formatVersion
+                    ? " · Eight-position testing"
+                    : " · Legacy format"
+                  : ""}
               </option>
             ))}
           </select>

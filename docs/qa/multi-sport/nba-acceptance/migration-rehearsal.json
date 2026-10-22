@@ -1,0 +1,21 @@
+{
+  "project": "bckkllmndoxzpzdqrevb",
+  "production": false,
+  "file": "20261022053636_nba_proposal_isolated_score_read.sql",
+  "hash": "306965312054c6562a6a8dae9276fafe0a62c05ea4c9fb48eb1407cab0b89938",
+  "mode": "rolled-back rehearsal",
+  "passed": true,
+  "grants": {
+    "app": true,
+    "anon": false,
+    "member": false,
+    "service": false
+  },
+  "existingRecordsUnchanged": [
+    "beta_fantasy.cards",
+    "beta_fantasy.entries",
+    "credits_sandbox.state",
+    "scoring_beta.journal"
+  ],
+  "at": "2026-10-22T09:16:45.853Z"
+}

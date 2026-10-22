@@ -31,7 +31,7 @@ const uniform = tiers.map((tier) => ({
   filledOpen: autoSelect(simple(tier), "OPEN", [], cfg).picks.length,
 }));
 const trials = [];
-for (let trial = 0; trial < 50; trial++) {
+for (let trial = 0; trial < 1000; trial++) {
   const cards = Array.from({ length: 25 }, (_, i) => {
     const games = 1 + integer(4),
       stats = {
@@ -59,6 +59,15 @@ for (let trial = 0; trial < 50; trial++) {
   });
   const capped = autoSelect(cards, "SALARY_CAP", [], cfg),
     open = autoSelect(cards, "OPEN", [], cfg);
+  const coreCards = cards.map((c) => ({ ...c, tier: "CORE" }));
+  const core = autoSelect(coreCards, "SALARY_CAP", [], cfg);
+  // An identified injury is not DNP evidence. Zero here is an explicitly
+  // synthetic forecast scenario, never an imported participation classification.
+  const injuryCards = cards.map((c, i) => ({
+    ...c,
+    value: i % 6 === 0 ? 0 : c.value,
+  }));
+  const injury = autoSelect(injuryCards, "SALARY_CAP", [], cfg);
   assert.equal(capped.picks.length, 8);
   assert.deepEqual(
     sevenIssues("SALARY_CAP", capped.picks, cards, true, cfg).errors,
@@ -67,6 +76,7 @@ for (let trial = 0; trial < 50; trial++) {
   const total = (p: typeof capped) =>
     p.picks.reduce((n, s) => n + cards.find((c) => c.id === s.card)!.value, 0);
   assert.ok(total(capped) <= total(open));
+  assert.equal(total(core), total(open));
   assert.deepEqual(
     autoSelect([...cards].reverse(), "SALARY_CAP", [], cfg).picks,
     capped.picks,
@@ -77,7 +87,18 @@ for (let trial = 0; trial < 50; trial++) {
     capCentipoints: total(capped),
     openCentipoints: total(open),
     changedByCap: total(capped) < total(open),
+    coreCounterfactualCentipoints: total(core),
+    injuryOptimisedCentipoints: injury.picks.reduce(
+      (n, p) => n + injuryCards.find((c) => c.id === p.card)!.value,
+      0,
+    ),
+    lockedInjuryCentipoints: capped.picks.reduce(
+      (n, p) => n + injuryCards.find((c) => c.id === p.card)!.value,
+      0,
+    ),
   });
+  if ((trial + 1) % 200 === 0)
+    console.log(`Simulated ${trial + 1}/1000 collections`);
 }
 const example = {
   points: 28,
@@ -134,6 +155,73 @@ const mixed = simple("CORE").map((c, i) => ({
   tier: i < 4 ? "ICON" : "CORE",
 }));
 assert.equal(autoSelect(mixed, "SALARY_CAP", [], cfg).cost, 5_200_000);
+const rareIcon = ["RARE", "ICON"].map((tier) => {
+  const base = simple("CORE");
+  const expensive = {
+    ...base[0],
+    id: `qa:exclusive-${tier}`,
+    player_id: "qa:exclusive-player",
+    tier,
+    value: 20000,
+  };
+  const exclusive = autoSelect([...base, expensive], "SALARY_CAP", [], cfg);
+  const cheaperCopy = { ...expensive, id: `qa:cheaper-${tier}`, tier: "CORE" };
+  const copies = autoSelect(
+    [...base, expensive, cheaperCopy],
+    "SALARY_CAP",
+    [],
+    cfg,
+  );
+  assert(exclusive.picks.some((p) => p.card === expensive.id));
+  assert(copies.picks.some((p) => p.card === cheaperCopy.id));
+  return {
+    tier,
+    usefulWhenOnlyOwnedCopy: true,
+    cheaperSamePlayerWins: true,
+    exclusiveCost: exclusive.cost,
+    samePlayerPoints: expensive.value,
+  };
+});
+const unavailable = simple("CORE").map((c, i) =>
+  i === 0 ? { ...c, status: "unverified" } : c,
+);
+assert.equal(autoSelect(unavailable, "OPEN", [], cfg).picks.length, 7);
+const bonusEffects = [
+  {
+    label: "no bonus",
+    stats: { ...example, points: 9, rebounds: 9, assists: 9 },
+  },
+  {
+    label: "double-double",
+    stats: { ...example, points: 10, rebounds: 10, assists: 9 },
+  },
+  {
+    label: "triple-double",
+    stats: { ...example, points: 10, rebounds: 10, assists: 10 },
+  },
+].map(({ label, stats }) => ({
+  label,
+  centipoints: scorePlayer(rules, "PG", stats).centipoints,
+  bonusCentipoints:
+    ([
+      stats.points,
+      stats.rebounds,
+      stats.assists,
+      stats.steals,
+      stats.blocks,
+    ].filter((n) => n >= 10).length >= 2
+      ? 150
+      : 0) +
+    ([
+      stats.points,
+      stats.rebounds,
+      stats.assists,
+      stats.steals,
+      stats.blocks,
+    ].filter((n) => n >= 10).length >= 3
+      ? 300
+      : 0),
+}));
 const report = {
   proposal: true,
   synthetic: true,
@@ -141,12 +229,33 @@ const report = {
   simulation: "No real players, provider observations or assets",
   uniform,
   schedules,
+  rareIcon,
+  bonusEffects,
+  unavailableExcluded: true,
+  protectedTestingApproved: true,
   mixedFourIconFourCoreCost: 5_200_000,
   outlierCentipoints: scorePlayer(rules, "C", outlier).centipoints,
   trials,
   summary: {
     collections: trials.length,
     capChangesOptimum: trials.filter((t) => t.changedByCap).length,
+    allCoreMatchesOpen: trials.filter(
+      (t) => t.coreCounterfactualCentipoints === t.openCentipoints,
+    ).length,
+    meanLockedInjuryLoss:
+      trials.reduce(
+        (n, t) => n + t.capCentipoints - t.lockedInjuryCentipoints,
+        0,
+      ) /
+      trials.length /
+      100,
+    meanPreLockInjuryOptimisationGain:
+      trials.reduce(
+        (n, t) => n + t.injuryOptimisedCentipoints - t.lockedInjuryCentipoints,
+        0,
+      ) /
+      trials.length /
+      100,
     meanCapScore:
       trials.reduce((n, t) => n + t.capCentipoints, 0) / trials.length / 100,
     meanOpenScore:
@@ -157,7 +266,8 @@ const report = {
   findings: [
     "All-Core costs $4m; all-Elite exactly $5.2m; all-Ultra Rare and above cannot fill eight capped slots.",
     "A cheaper copy of the same player weakly dominates a dearer one for fantasy points. Rarity does not create a scoring advantage in this proposal.",
-    "Four equal performances earn four times one performance. Schedule volume is a deliberate strategic factor requiring owner acceptance; no normalisation implemented.",
+    "Four equal performances earn four times one performance. Approved for protected testing; no normalisation implemented.",
+    "The same round-wide deadline applies to all eight slots. Players starting later expose owners to more post-lock injury information risk; no replacement or compensation was added. Exact deadline/privacy enforcement is tested in the NBA test suite.",
     "Salary scarcity can change the optimum when available higher-performing players are owned only at higher rarities. Synthetic distributions are not forecasts of member collections.",
     "Shared leaderboard ranks remain ties; ID ordering is presentation only and does not authorise prize tie-breaking.",
   ],

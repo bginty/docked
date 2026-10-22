@@ -1,0 +1,106 @@
+TO: SportsDataIO commercial sales (use the official contact/requirements form)
+SUBJECT: Commercial NBA postgame data licence and written quote — Docked Australia
+DRAFT FOR OWNER TO SEND — not sent; no terms accepted
+
+Hello SportsDataIO Sales,
+
+I operate Docked (docked.com.au), an Australian fantasy sports platform. We are
+preparing an NBA weekly fantasy-card competition for our website and Android app.
+The implementation is currently restricted to protected synthetic testing. We
+have not activated NBA for members and need written commercial permission and
+a quote before using your real data.
+
+Members will select eight player cards, accumulate fantasy points from all
+eligible games in a New York calendar week, view player game logs, historical
+team totals and rankings, and compare locked teams. Our proposed product also
+includes collectible card ownership, limited serials and a card marketplace.
+Please assess that commercial use explicitly, even though the current beta uses
+test credits with no cash value. We do not intend to use team/league logos,
+player photographs or sponsor marks under this request. Please identify any
+separate player-name/likeness, league or other rights your licence does not cover.
+
+We need postgame data and corrections, not a live play-by-play subscription.
+Please quote the minimum NBA Scores/Players/Teams/Schedules and final player
+box-score statistics products, plus historical access and stable identity mapping.
+Please confirm the actual product/SKU names and entitlements for these routes:
+
+ /v3/nba/scores/json/CurrentSeason
+ /v3/nba/scores/json/teams
+ /v3/nba/scores/json/Games/{season}
+ /v3/nba/scores/json/Players
+ /v3/nba/stats/json/BoxScoreFinal/{gameid}
+
+Please also advise whether BoxScoresFinal/{date} or Player Game Logs are preferable
+for efficient correction/backfill checks, and quote any extra entitlement. We
+would like current-season data and at least two complete prior NBA seasons for
+reconciliation. Please specify regular season, playoffs and preseason coverage,
+season naming, historical endpoint host/route differences and archive charges.
+
+Required identities and roster fields:
+Stable PlayerID, GameID and TeamID; player name, team/city; verified PG/SG/SF/PF/C
+and multi-position eligibility; current roster status; transfers and historical
+team membership; contracted/two-way/development status where supported. Please
+explain which statuses are verified contractual evidence versus roster metadata.
+We must preserve a player's identity through trades and across seasons.
+
+Required fixture/control fields:
+Season, SeasonType, DateTimeUTC, HomeTeamID, AwayTeamID, Status, Updated and
+IsClosed; postponement, cancellation, suspension and rescheduling semantics;
+timezone/UTC definitions and stable IDs across corrections or reschedules.
+
+Required PlayerGame fields in our existing canonical contract:
+PlayerID, GameID, TeamID, Name, Position, Games, Updated, IsClosed,
+Minutes, Seconds, Points, Rebounds, OffensiveRebounds, DefensiveRebounds,
+Assists, Steals, BlockedShots, Turnovers, FieldGoalsMade, FieldGoalsAttempted,
+ThreePointersMade, ThreePointersAttempted, FreeThrowsMade, FreeThrowsAttempted
+and PersonalFouls. Please confirm completeness, nullable values, zero semantics
+and historical consistency. Our points use Points, Rebounds, Assists, Steals,
+BlockedShots and Turnovers; double/triple-double bonuses are derived per game
+from points/rebounds/assists/steals/blocks. We do not need your fantasy projections
+or calculated FantasyPoints unless your commercial packaging requires them.
+
+Participation is a launch requirement: what documented endpoint/fields reliably
+distinguish played zero, confirmed DNP/inactive/coach decision and a missing row?
+Do you include every rostered non-participant in final box scores? Is Games=0
+alone guaranteed final non-participation? Please supply representative authorised
+samples and correction rules. We currently treat ambiguous cases as unresolved.
+
+Please provide written terms covering:
+1. Commercial fantasy-score calculation and display, including the card and
+   marketplace model described above; website and Android distribution in
+   Australia, and any territory/platform restrictions (quote optional iOS too).
+2. Player-name/statistics display, stable identity mapping and roster storage.
+3. Server-side storage of raw historical records, revisions and audit evidence;
+   backups and caching; derived weekly scores, user results and rankings.
+4. Retention rights during and after termination: can we retain/display previously
+   calculated scores and historical competition results permanently? Which raw
+   records must be removed, on what timeline, and how are compliance backups handled?
+5. Attribution wording, links, logo requirements, caching/redistribution restrictions,
+   permitted sharing of a user's team/card/statistics screen and API exposure limits.
+6. Postgame publication latency, correction windows, service availability/support,
+   authentication, rate/concurrency limits, retry guidance and outage recovery.
+7. An unscrambled evaluation dataset or replay access explicitly permitted for
+   our protected business testing, including difficult DNP and correction cases.
+
+Please provide monthly and annual written quotes (AUD if available, otherwise
+state currency), setup/history/overage fees, GST/tax treatment, minimum term,
+renewal increases and cancellation terms. Show the cost/rights at 100, 1,000,
+10,000 and 50,000 users, defining whether thresholds use registered users,
+monthly active users, revenue or another measure. Our ingestion is centralised
+per game, not a provider API call per user; please confirm any usage restrictions.
+
+We understand publicly accessible documentation and non-commercial Discovery Lab
+access do not grant Docked a commercial licence. Please send a written scope,
+sample agreement and quote for owner review; this enquiry authorises no purchase.
+
+Thank you,
+Docked owner
+docked.com.au
+
+Preparation references, checked 22 October 2026:
+https://sportsdata.io/help/data-rights-and-licensing-questions
+https://sportsdata.io/developers/api-documentation/nba
+https://sportsdata.io/developers/workflow-guide/nba
+https://sportsdata.io/help/historical-data-integration-guide
+No commercial AUD quote or entitlement has been verified. API documentation
+lists the final box-score route and warns that final statistics can be corrected.
