@@ -1,0 +1,112 @@
+test_documented_fields_and_missing (test_afl.AFLTests.test_documented_fields_and_missing) ... ok
+test_no_wrong_competition_or_empty (test_afl.AFLTests.test_no_wrong_competition_or_empty) ... ok
+test_atomic_checkpoint_and_duplicate_delivery (test_consumer.ConsumerTest.test_atomic_checkpoint_and_duplicate_delivery) ... ok
+test_consumer_rejects_credential_leaking_or_non_https_urls (test_consumer.ConsumerTest.test_consumer_rejects_credential_leaking_or_non_https_urls) ... ok
+test_game_freshness_refresh_is_independent_of_stat_cursor (test_consumer.ConsumerTest.test_game_freshness_refresh_is_independent_of_stat_cursor) ... ok
+test_confirmed_dnp_without_fabricated_fields (test_docked_integration.DockedIntegration.test_confirmed_dnp_without_fabricated_fields) ... ok
+test_docked_identity_cannot_be_duplicated (test_docked_integration.DockedIntegration.test_docked_identity_cannot_be_duplicated) ... ok
+test_optional_epl_evidence_survives_revisions (test_docked_integration.DockedIntegration.test_optional_epl_evidence_survives_revisions) ... ok
+test_positions_and_issuance_remain_independent (test_docked_integration.DockedIntegration.test_positions_and_issuance_remain_independent) ... ok
+test_retry_is_audited_once_and_running_jobs_rejected (test_docked_integration.DockedIntegration.test_retry_is_audited_once_and_running_jobs_rejected) ... ok
+test_fields_missing_and_clean (test_epl.EPLTests.test_fields_missing_and_clean) ... ok
+test_final_not_inferred (test_epl.EPLTests.test_final_not_inferred) ... ok
+test_fixture_status_and_double_gameweek (test_epl.EPLTests.test_fixture_status_and_double_gameweek) ... ok
+test_timezones_dst (test_epl.EPLTests.test_timezones_dst) ... ok
+test_corrections_decrease_and_missing (test_multi.MultiTest.test_corrections_decrease_and_missing) ... ok
+test_cross_sport_mapping_rejected (test_multi.MultiTest.test_cross_sport_mapping_rejected) ... ok
+test_empty_and_omitted_player (test_multi.MultiTest.test_empty_and_omitted_player) ... ok
+test_every_field_and_idempotency (test_multi.MultiTest.test_every_field_and_idempotency) ... ok
+test_explicit_removal_and_stale_response (test_multi.MultiTest.test_explicit_removal_and_stale_response) ... ok
+test_missing_identity_no_guess (test_multi.MultiTest.test_missing_identity_no_guess) ... ok
+test_quarantine_and_last_good (test_multi.MultiTest.test_quarantine_and_last_good) ... ok
+test_roster_not_inferred_and_injury_separate (test_multi.MultiTest.test_roster_not_inferred_and_injury_separate) ... ok
+test_team_change_preserves_history (test_multi.MultiTest.test_team_change_preserves_history) ... ok
+test_delivery_requires_matching_receipt_and_preserves_success (test_multi_consumer.ConsumerTests.test_delivery_requires_matching_receipt_and_preserves_success) ... ok
+test_signatures_bind_audience_and_bytes (test_multi_consumer.ConsumerTests.test_signatures_bind_audience_and_bytes) ... ok
+test_synthetic_never_production (test_multi_consumer.ConsumerTests.test_synthetic_never_production) ... ok
+test_transaction_duplicates_and_later_correction (test_multi_consumer.ConsumerTests.test_transaction_duplicates_and_later_correction) ... ok
+test_expired_permission_and_unmapped_players (test_multi_monitor.MonitorTests.test_expired_permission_and_unmapped_players) ... ok
+test_other_sport_failure_is_isolated (test_multi_monitor.MonitorTests.test_other_sport_failure_is_isolated) ... ok
+test_stalled_worker_and_overdue_jobs (test_multi_monitor.MonitorTests.test_stalled_worker_and_overdue_jobs) ... ok
+test_unconfigured_or_failed_is_not_healthy (test_multi_monitor.MonitorTests.test_unconfigured_or_failed_is_not_healthy) ... ok
+test_upcoming_no_statistics_is_not_an_alert (test_multi_monitor.MonitorTests.test_upcoming_no_statistics_is_not_an_alert) ... ok
+test_admin_retry_audit_and_separate_queue (test_multi_runtime.RuntimeTests.test_admin_retry_audit_and_separate_queue) ... ok
+test_api_auth_pages_sport_cursor (test_multi_runtime.RuntimeTests.test_api_auth_pages_sport_cursor) ... ok
+test_concurrent_claim (test_multi_runtime.RuntimeTests.test_concurrent_claim) ... ok
+test_diagnostics_coverage_corrections_and_admin_auth (test_multi_runtime.RuntimeTests.test_diagnostics_coverage_corrections_and_admin_auth) ... ok
+test_disabled_provider_cannot_fetch (test_multi_runtime.RuntimeTests.test_disabled_provider_cannot_fetch) ... ok
+test_failure_preserves_last_success (test_multi_runtime.RuntimeTests.test_failure_preserves_last_success) ... ok
+test_lock_recovery_and_stale_owner (test_multi_runtime.RuntimeTests.test_lock_recovery_and_stale_owner) ... ok
+test_removed_provider_does_not_stall_other_sports (test_multi_runtime.RuntimeTests.test_removed_provider_does_not_stall_other_sports) ... ok
+test_restart_backfill_idempotent (test_multi_runtime.RuntimeTests.test_restart_backfill_idempotent) ... ok
+test_same_season_restart_preserves_retry_backoff (test_multi_runtime.RuntimeTests.test_same_season_restart_preserves_retry_backoff) ... ok
+test_schedule_correction_and_totals (test_multi_runtime.RuntimeTests.test_schedule_correction_and_totals) ... ok
+test_season_rollover_is_atomic_with_running_job (test_multi_runtime.RuntimeTests.test_season_rollover_is_atomic_with_running_job) ... ok
+test_season_rollover_updates_recurring_jobs_only (test_multi_runtime.RuntimeTests.test_season_rollover_updates_recurring_jobs_only) ... ok
+test_budget_persists_after_failure_and_restart (test_multi_transport.TransportTests.test_budget_persists_after_failure_and_restart) ... ok
+test_cached_pages_preserve_retrieval_time (test_multi_transport.TransportTests.test_cached_pages_preserve_retrieval_time) ... ok
+test_retry_after_and_no_redirect (test_multi_transport.TransportTests.test_retry_after_and_no_redirect) ... ok
+test_all_fields_overtime (test_nba.NBATests.test_all_fields_overtime) ... ok
+test_partial_and_mismatch (test_nba.NBATests.test_partial_and_mismatch) ... ok
+test_season_not_calendar_year_and_no_invented_week (test_nba.NBATests.test_season_not_calendar_year_and_no_invented_week) ... ok
+test_unknown_not_dnp (test_nba.NBATests.test_unknown_not_dnp) ... ok
+test_full_synthetic_nrl_inputs (test_nrl.NRLTests.test_full_synthetic_nrl_inputs) ... ok
+test_no_team_totals_masquerade_as_players (test_nrl.NRLTests.test_no_team_totals_masquerade_as_players) ... ok
+test_conditional_cache_and_retry_after (test_service.ProviderCase.test_conditional_cache_and_retry_after) ... ok
+test_integer_parser_rejects_nan_and_decimal_counts (test_service.ProviderCase.test_integer_parser_rejects_nan_and_decimal_counts) ... ok
+test_new_schema_direct_total_no_category_double_count (test_service.ProviderCase.test_new_schema_direct_total_no_category_double_count) ... ok
+test_provider_caches_schedule_and_projects_stats (test_service.ProviderCase.test_provider_caches_schedule_and_projects_stats) ... ok
+test_publication_boundary_refreshes_cache_once (test_service.ProviderCase.test_publication_boundary_refreshes_cache_once) ... ok
+test_safe_upstream_urls (test_service.ProviderCase.test_safe_upstream_urls) ... ok
+test_schedule_dst_utc_and_unknown_status (test_service.ProviderCase.test_schedule_dst_utc_and_unknown_status) ... ok
+test_api_rate_limit_shared_database (test_service.ServiceCase.test_api_rate_limit_shared_database) ... ok
+test_auth_and_admin_separation (test_service.ServiceCase.test_auth_and_admin_separation) ... ok
+test_backup_restore_changes_preserved (test_service.ServiceCase.test_backup_restore_changes_preserved) ... ok
+test_bounded_queries (test_service.ServiceCase.test_bounded_queries) ... ok
+test_concurrent_duplicate_publication (test_service.ServiceCase.test_concurrent_duplicate_publication) ... ok
+test_concurrent_workers_and_lease_recovery (test_service.ServiceCase.test_concurrent_workers_and_lease_recovery) ... ok
+test_conflicting_manual_alias_mapping_cannot_overwrite_player (test_service.ServiceCase.test_conflicting_manual_alias_mapping_cannot_overwrite_player) ... ok
+test_consumer_history_week_season_and_correction (test_service.ServiceCase.test_consumer_history_week_season_and_correction) ... ok
+test_duplicate_identical_snapshot_no_revision (test_service.ServiceCase.test_duplicate_identical_snapshot_no_revision) ... ok
+test_elapsed_time_never_final (test_service.ServiceCase.test_elapsed_time_never_final) ... ok
+test_empty_complete_quarantined (test_service.ServiceCase.test_empty_complete_quarantined) ... ok
+test_empty_partial_retains_rows_and_marks_omission (test_service.ServiceCase.test_empty_partial_retains_rows_and_marks_omission) ... ok
+test_every_field_and_two_point_separation (test_service.ServiceCase.test_every_field_and_two_point_separation) ... ok
+test_fixture_real_database_isolation (test_service.ServiceCase.test_fixture_real_database_isolation) ... ok
+test_history_weekly_season_all_fields_after_multiple_corrections (test_service.ServiceCase.test_history_weekly_season_all_fields_after_multiple_corrections) ... ok
+test_incomplete_and_unpublished_retains_valid_records (test_service.ServiceCase.test_incomplete_and_unpublished_retains_valid_records) ... ok
+test_increasing_and_decreasing_corrections (test_service.ServiceCase.test_increasing_and_decreasing_corrections) ... ok
+test_initial_missing_is_null (test_service.ServiceCase.test_initial_missing_is_null) ... ok
+test_lost_fumble_once_and_nonlost (test_service.ServiceCase.test_lost_fumble_once_and_nonlost) ... ok
+test_migration_preserves_cursor_and_ids (test_service.ServiceCase.test_migration_preserves_cursor_and_ids) ... ok
+test_missing_identity_flagged (test_service.ServiceCase.test_missing_identity_flagged) ... ok
+test_missing_versus_zero_and_retention (test_service.ServiceCase.test_missing_versus_zero_and_retention) ... ok
+test_no_manufactured_byes_or_dnp (test_service.ServiceCase.test_no_manufactured_byes_or_dnp) ... ok
+test_omitted_player_not_removed (test_service.ServiceCase.test_omitted_player_not_removed) ... ok
+test_openapi_generated_and_served (test_service.ServiceCase.test_openapi_generated_and_served) ... ok
+test_pagination_cursors_and_later_correction (test_service.ServiceCase.test_pagination_cursors_and_later_correction) ... ok
+test_player_duplicate_name_review_not_merge (test_service.ServiceCase.test_player_duplicate_name_review_not_merge) ... ok
+test_postgame_never_polls_live_or_unfinished_games (test_service.ServiceCase.test_postgame_never_polls_live_or_unfinished_games) ... ok
+test_publication_windows_utc_and_dst (test_service.ServiceCase.test_publication_windows_utc_and_dst) ... ok
+test_removed_explicit_tombstone (test_service.ServiceCase.test_removed_explicit_tombstone) ... ok
+test_restart_interrupted_backfill (test_service.ServiceCase.test_restart_interrupted_backfill) ... {"at":1792108981,"event":"job_completed","job":"backfill:2026:g_3ae17b8e0d8342d5baca371b9b3cda74"}
+ok
+test_retry_backoff_and_downtime (test_service.ServiceCase.test_retry_backoff_and_downtime) ... {"at":1792108800,"error_type":"SourceUnavailable","event":"job_failed","job":"backfill:2026:g_37c20da5bf45465fa74e31fb96bc7619"}
+ok
+test_stale_on_failure_keeps_timestamp (test_service.ServiceCase.test_stale_on_failure_keeps_timestamp) ... ok
+test_superseded_response_cannot_overwrite (test_service.ServiceCase.test_superseded_response_cannot_overwrite) ... ok
+test_trade_keeps_game_team_association (test_service.ServiceCase.test_trade_keeps_game_team_association) ... ok
+test_unpublished_retry_then_available_without_false_failure (test_service.ServiceCase.test_unpublished_retry_then_available_without_false_failure) ... {"at":1792108800,"error_type":"StatsNotPublished","event":"job_failed","job":"postgame:g_ea25d4f5049346ffb78eff6d39abca34"}
+{"at":1792128995.859275,"event":"job_completed","job":"postgame:g_ea25d4f5049346ffb78eff6d39abca34"}
+ok
+test_upgrade_retires_old_jobs_and_fences_old_lease (test_service.ServiceCase.test_upgrade_retires_old_jobs_and_fences_old_lease) ... ok
+test_worker_final_transition_and_reconciliation (test_service.ServiceCase.test_worker_final_transition_and_reconciliation) ... {"at":1792108800,"event":"job_completed","job":"postgame:g_7ea5b6a0a7b348919d4bef58cbdad555"}
+{"at":1792130400,"event":"job_completed","job":"postgame:g_7ea5b6a0a7b348919d4bef58cbdad555"}
+{"at":1792130400,"event":"job_completed","job":"postgame:g_7ccc4068ec6141fb920cc640c5a66868"}
+ok
+test_wsgi_auth_request_and_json (test_service.ServiceCase.test_wsgi_auth_request_and_json) ... ok
+
+----------------------------------------------------------------------
+Ran 100 tests in 10.509s
+
+OK

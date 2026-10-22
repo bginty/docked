@@ -78,6 +78,42 @@ async function main() {
         fullPage: true,
       });
       await page
+        .getByText("Historical coverage and reconciliation", { exact: true })
+        .click();
+      await expect(
+        page.getByText("Recent source corrections (8)", { exact: true }),
+      ).toBeVisible();
+      await expect(
+        page.getByText("Diagnostics unavailable. Retry status to reconnect."),
+      ).toHaveCount(0);
+      assert.equal(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth > innerWidth,
+        ),
+        false,
+      );
+      await page.screenshot({
+        path: `${out}/diagnostics-${width}.png`,
+        fullPage: true,
+      });
+      await page
+        .getByText("Recent source corrections (8)", { exact: true })
+        .click();
+      await expect(
+        page.getByText("Source revisions require Docked reconciliation.", {
+          exact: false,
+        }),
+      ).toBeVisible();
+      await page
+        .getByText("Recent operational audit", { exact: false })
+        .click();
+      assert.equal(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth > innerWidth,
+        ),
+        false,
+      );
+      await page
         .getByText("Scheduled jobs and failures", { exact: true })
         .click();
       const retry = page

@@ -29,6 +29,7 @@ export const ingestionStatus = z.object({
   players_total: count.optional(),
   complete_player_records: count.optional(),
   corrections: count.optional(),
+  overdue_jobs: count.optional(),
 });
 export const ingestionHealth = z
   .object({
@@ -61,3 +62,81 @@ export type IngestionHealth =
   | { state: "unavailable" }
   | ({ state: "connected" } & z.infer<typeof ingestionHealth>);
 export type IngestionJobs = z.infer<typeof ingestionJobs>["data"];
+const diagnosticId = z.string().max(500);
+export const ingestionDiagnostics = z.object({
+  schema_version: z.literal("1.1"),
+  synthetic: z.boolean(),
+  dataset_id: z.uuid(),
+  data: z.object({
+    coverage: z
+      .array(
+        z.object({
+          sport: feedSport,
+          season: z.string(),
+          fixtures: count,
+          imported: count,
+          complete: count,
+          first_kickoff: time,
+          last_kickoff: time,
+          last_success: time,
+        }),
+      )
+      .max(50),
+    reviews: z
+      .array(
+        z.object({
+          id: count,
+          sport: feedSport,
+          provider: diagnosticId,
+          external_id: diagnosticId,
+          reason: diagnosticId,
+          created_at: time,
+        }),
+      )
+      .max(50),
+    failures: z
+      .array(
+        z.object({
+          id: count,
+          sport: feedSport,
+          provider: diagnosticId,
+          fixture: diagnosticId.nullable(),
+          reason: diagnosticId,
+          created_at: time,
+        }),
+      )
+      .max(50),
+    corrections: z
+      .array(
+        z.object({
+          seq: count,
+          sport: feedSport,
+          entity: diagnosticId,
+          kind: z.enum(["player_game", "removal"]),
+          revision: count,
+        }),
+      )
+      .max(50),
+    audit: z
+      .array(
+        z.object({
+          id: count,
+          at: time,
+          actor: diagnosticId,
+          action: z.enum([
+            "multisport.retry",
+            "multisport.mapping",
+            "multisport.backfill",
+            "multisport.season_changed",
+          ]),
+        }),
+      )
+      .max(50),
+    truncated: z
+      .array(
+        z.enum(["coverage", "reviews", "failures", "corrections", "audit"]),
+      )
+      .max(5),
+  }),
+});
+export type IngestionDiagnostics = z.infer<typeof ingestionDiagnostics>;

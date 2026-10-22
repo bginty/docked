@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-22T03:52:59.904Z",
+  "project": "bckkllmndoxzpzdqrevb",
+  "readOnly": true,
+  "identity": [
+    {
+      "current_user": "postgres",
+      "read_only": "on"
+    }
+  ],
+  "migrations": [
+    {
+      "version": "20261022010531"
+    },
+    {
+      "version": "20261022023942"
+    }
+  ],
+  "roles": [],
+  "tables": [
+    {
+      "relname": "delivery_checkpoints",
+      "relrowsecurity": true
+    },
+    {
+      "relname": "delivery_recalculations",
+      "relrowsecurity": true
+    },
+    {
+      "relname": "delivery_receipts",
+      "relrowsecurity": true
+    },
+    {
+      "relname": "delivery_records",
+      "relrowsecurity": true
+    }
+  ],
+  "receipts": [
+    {
+      "count": 0
+    }
+  ]
+}

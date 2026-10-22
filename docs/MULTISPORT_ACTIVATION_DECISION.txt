@@ -1,0 +1,316 @@
+DOCKED — FIRST ADDITIONAL SPORT ACTIVATION DECISION
+Evidence reviewed 22 October 2026. No purchase, subscription, new sport activation,
+permanent issuance, production migration or schedule is authorised by this report.
+
+A. EXECUTIVE DECISION
+
+Recommend NBA first, conditionally using the existing SportsDataIO adapter.
+It has the shortest implemented scoring path. Obtain a full commercial quote and
+an entitled, unscrambled historical sample before selecting a supplier finally.
+Compare MySportsFeeds STATS + DETAILS pricing if the quote is unsustainable.
+EPL is the next candidate; its ordered on-pitch/regulation-time requirements still
+exceed the current basic box-score adapter. A cheap subscription alone solves
+neither sport's permissions, contract eligibility or scoring approval gates.
+
+App checkpoint 09071b0d and service c59a51e were verified as their respective HEADs
+before this pass; neither had subsequent commits. Production remains Vercel
+dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3 / 31f0ecc99c40aedcd4f4f64695a3de030715da0e,
+READY. No new release has been pushed or deployed by this pass.
+
+New engineering: recurring schedule/roster jobs now atomically change season
+instead of retaining an old payload; same-season restart preserves backoff and
+blocked states; an in-flight season change fails without a partial update.
+Historical game correction jobs remain untouched.
+Removed-provider jobs now block safely instead of crashing the shared multi-sport
+worker; another sport's jobs continue. This was reproduced in an isolated test.
+New bounded diagnostics expose
+recorded historical coverage, unresolved identity reviews, quarantine, source
+corrections and operational audit. The owner UI validates this cross-repository
+contract, rejects a different dataset, retains server-only credentials and shows
+details in accessible disclosures. A health-check command detects stalled workers,
+expired leases/overdue jobs, unavailable permissions and unresolved mappings. It
+produces a nonzero exit status for an existing host alert collector; it does not
+send messages or enable a schedule. No new database migration is needed.
+
+B. WEIGHTED COMPARISON
+
+Scores are engineering judgement on a 0–5 scale, not measurements or legal
+approval. Unverified account access caps completeness at 4; unknown commercial
+quotes receive cost 2. Licensing 3 means a plausible contract route, not a licence.
+Weighted result = sum(score / 5 * weight). An unmet gate overrides the score.
+
+Criterion                         Weight   NBA       EPL
+Complete scoring inputs             30      4         2
+Commercial licensing suitability    25      3         3
+Implementation readiness            20      4         3
+Operating cost                      15      2         4
+Reliability/scalability              10      4         4
+Total / 100                                 69        59
+
+NBA's seven scorer inputs map to the existing 17-field raw contract. EPL needs
+additional event semantics. Both still require entitled samples. EPL's cost score
+reflects Sportmonks' published entry pricing, conditional on coverage/rights.
+If NBA cost is unacceptable, or EPL event evidence is supplied first, rerun this
+comparison; the ten-point lead is not a reason to buy an unsuitable licence.
+
+Provider evidence and indicative AUD costs
+Conversion basis: RBA 21 October 2026, 1 AUD = USD0.7010 / EUR0.6246 / CAD0.9859.
+These are budgeting conversions, not settlement rates; exclude tax, bank fees and
+contract add-ons. https://www.rba.gov.au/statistics/frequency/exchange-rates.html
+
+SportsDataIO — NBA / EPL: commercial League API is quote-only; no verified monthly
+or annual AUD price. Commercial scope can cover storage, display and derived
+analytics; exact league, fantasy use, retention after termination, territories and
+attribution must be written into Docked's agreement. Its self-serve Discovery Lab
+is noncommercial and trials can be scrambled: neither proves launch readiness.
+Commercial access advertises unlimited calls, but confirm account limits and SLA.
+https://sportsdata.io/developers
+https://sportsdata.io/help/data-rights-and-licensing-questions
+NBA documentation exposes stable PlayerID/GameID, rosters, season schedules and
+final box scores. Postgame statistics typically arrive 5–10 minutes after games;
+corrections can follow. This is provider documentation, not observed account SLA.
+https://sportsdata.io/developers/api-documentation/nba
+https://sportsdata.io/developers/workflow-guide/nba
+
+MySportsFeeds — NBA alternate: commercial CORE non-live starts CAD29/month,
+approximately AUD29.41/month or AUD352.98 for twelve monthly payments. CORE is
+schedule/score access; STATS (game logs) and DETAILS (box scores/lineups) cost extra.
+Do not present that floor as a complete Docked feed price. Two recent seasons are
+included; older season/add-on purchases are CAD19–69 (AUD19.27–69.99). Exact fantasy
+display, derived retention, correction coverage, quotas and SLA require written
+confirmation. Website-use terms are not a Docked data subscription contract.
+No MySportsFeeds adapter or authenticated sample was added speculatively.
+https://www.mysportsfeeds.com/feed-pricing/
+https://www.mysportsfeeds.com/terms-use/
+
+Sportmonks — EPL alternate: Starter EUR29/month (AUD46.43), or EUR288/year
+(AUD461.10; AUD38.42 monthly equivalent); twelve monthly payments ~AUD557.16.
+Five leagues, 2,000 calls per entity/hour. Older-than-three-season history is an
+add-on from EUR29 (~AUD46.43). Confirm EPL field coverage for selected seasons.
+Published terms allow data storage/distribution but prohibit reselling the product
+without consent; logos/photos have separate rights. Obtain written clarification
+for Docked cards, derived scores, ongoing historical retention and attribution.
+Paid trial requires a card and automatically bills; none was started.
+https://www.sportmonks.com/football-api/plans-pricing/
+https://www.sportmonks.com/terms-of-service/
+
+Sportradar — NBA / EPL / AFL candidate: quote-only monthly/annual AUD costs and
+account quotas. NBA v8 documents full player statistics, roster profiles, transfers
+and a daily change log; authenticated access required. Soccer Extended has player
+statistics and coverage flags, but minute-level participation alone does not prove
+Docked EPL regulation-second/ordered-concession semantics. Existing AFL projection
+lacks frees-for/frees-against and other required raw fields. Contract rights and
+retention need review; no account entitlement is inferred from documentation.
+https://developer.sportradar.com/basketball/reference/nba-overview
+https://developer.sportradar.com/soccer/reference/soccer-extended-faq
+https://developer.sportradar.com/soccer/reference/soccer-extended-overview
+
+API-Sports — low-price comparison rejected as a ready licensing route. Its terms
+explicitly do not grant a licence to publish supplied data and place additional
+fantasy/competition rights on the user. An API plan is not sufficient permission.
+No subscription was selected or activated.
+https://api-sports.io/terms
+
+AFL: Champion Data's official support states its AFL API/warehouse is not publicly
+accessible. Request an authorised quote and complete event/contract sample; price,
+retention, rate limits and fantasy rights remain unknown.
+https://championdata.atlassian.net/servicedesk/customer/portal/8/group/31
+NRL: Stats Perform/Opta advertises fantasy products. Its rugby-league schema lists
+many relevant player events, but current NRL entitlement, exact 25-field semantics,
+quota, retention and price need confirmation. This is a candidate, not a verified
+replacement for the current team-only adapter.
+https://www.statsperform.com/faqs/stats-perform-faqs-fantasy/
+https://rugbyleague-api.stats.com/
+
+For EVERY provider request: written rights for player names and statistics on
+collectible cards, public game logs, derived fantasy points/rankings and historical
+display; raw/derived storage and post-termination retention; corrections; Australia
+and other intended territories; beta versus commercial use; free/paid contests;
+attribution; subprocessor/cloud caching; user-count thresholds; redistribution
+restrictions; current and historical season entitlements; rate/burst limits; outage
+SLA; price in contract currency, tax, annual commitment and renewal changes.
+No permission to scrape restricted endpoints or use logos is implied.
+
+C. NBA SCORING SPECIFICATION — IMPLEMENTED TEMPLATE, NOT APPROVED RELEASE
+
+Version docked-nba-events-v1. Provider field -> canonical -> base points:
+Points              -> points         -> +1 each
+Rebounds            -> rebounds       -> +1 each
+Assists             -> assists        -> +2 each
+Steals              -> steals         -> +3 each
+BlockedShots        -> blocks         -> +3 each
+Turnovers           -> turnovers      ->  0 (no proposed penalty)
+ThreePointersMade   -> threePointers  ->  0 extra (already included in Points)
+
+All seven mappings are implemented and synthetic-tested, not verified against a
+licensed account. The raw contract additionally requires minutes/seconds, both
+rebound splits, field-goal/three/free-throw makes and attempts, and fouls. A missing
+raw field currently keeps the raw record incomplete; do not silently relax it.
+The NBA template has no rarityVersion: no NFL rarity multiplier applies. Approving
+new-sport rarity scoring would require a separate version/implementation and tests.
+No new penalty, bonus, captain or best-game rule was introduced.
+
+PG, SG, SF, PF, C and three FLEX = eight distinct players/cards. Multi-position
+eligibility is explicitly reviewed, never inferred from stats. Open is uncapped;
+Traditional needs an approved cap/salary distribution, not NFL's $4.4m by default.
+Every eligible game in an explicitly frozen period contributes, including overtime.
+Integer centipoints are authoritative; sum eligible event contributions once.
+These weights produce exact whole base points; display two decimals. Existing
+versioned scorer and snapshot policies remain authoritative for historical rounds.
+
+Confirmed DNP follows the existing zero treatment. The current SportsDataIO adapter
+marks played only when Games=1; Games=0, absence or zero minutes are NOT affirmative
+DNP evidence. Obtain documented DNP status/appearance evidence and test it before
+launch. This is a real provider-level completion blocker, not just wording.
+Postponed/delayed/suspended/cancelled/abandoned states are explicit; unresolved
+fixtures do not become final zero scores. Period membership and exceptional-game
+resolution must follow the approved frozen-period/reviewer workflow.
+Transfers retain stable identity and historical game/team mapping. Unknown contract
+and jersey fields remain unknown. Two-way/development/reserve eligibility requires
+an explicit policy; injured contracted players are not automatically excluded.
+
+Correction pipeline: source revision -> immutable raw changes -> atomic delivery
+receipt/checkpoint + recalculation request -> authorised existing scoring journal
+-> authoritative team aggregation/ranks. Missing/stale fields remain pending.
+The 72-hour template correction window and final-result review protect finalised
+history; no mass backfill or prize recalculation was performed. Approve period
+timezone/boundaries, round lock, roster, weights, salary and supply before release.
+
+D. HISTORICAL INGESTION AND HOSTING
+
+Reused existing authenticated adapters, explicit canonical aliases, durable SQLite
+jobs/checkpoints, idempotent backfill identity, leases, bounded retry/backoff,
+revision/tombstone log and Postgres pull consumer. No second ingestion engine.
+Historical backfill accepts a season and UTC range; dry-run lists eligible final
+games without importing. Source access itself still needs permission. No licensed
+historical sample was available in the configured repositories. Synthetic tests
+are labelled and rejected by production scoring/issuance bridges. Zero new real
+players verified, zero real cards issued; no synthetic statistics represented as
+historical results. Real multi-round reconciliation remains outstanding.
+
+Preview bckkllmndoxzpzdqrevb: verified TLS/read-only database query succeeds. Existing
+migrations 20261022010531 / 20261022023942 are installed; four raw delivery tables
+have RLS. Zero receipts and no persistent docked_multi_delivery role exist.
+Connector lists only Production: this is a management-account/project permission
+gap, not a demonstrated RLS/network defect. Existing operator postgres connection
+must not become the service credential. Prior isolated role rehearsal is recorded
+in MULTISPORT_INTEGRATION_HANDOVER.txt; no DDL executed this pass.
+Vercel Preview prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR has SSO protection on all deployments.
+No authenticated hosted owner session or new hosted scheduler was exercised.
+
+Use an existing approved persistent disk host if available. Prepared service
+deployment/compose.multisport.yaml or deployment/supervise.py reuses the current
+Python/SQLite service. A Vercel/Edge ephemeral filesystem cannot hold this database.
+One disk-backed supervised container is the simplest fallback, subject to budget
+approval; do not provision four sport-specific services. Require HTTPS, separate
+read/admin keys, volume backup/restore, restart policy and private config.
+Prepared app consumer uses a restricted Preview-bound NO-BYPASSRLS role and exact
+dataset. Server variables and role template are in the prior integration handover.
+Do not point the Preview consumer at Production or reuse operator credentials.
+
+Scheduling remains postgame: schedule hourly near fixtures / six-hourly otherwise;
+rosters daily; correction checks after final observation at 30m, 6h, 1d, 3d, 7d,
+then weekly. Missed runs resume durable due jobs. Existing per-provider request
+budgets and bounded backoff prevent busy retry loops. Weekly checks grow with
+retained history; obtain a quota and approve archival/correction policy before
+multiple-season scale. No new recurring hosted job was enabled.
+Monitoring: python -m nflfeed.multi --config APPROVED_CONFIG check-health
+returns exit 1 on operational alerts, without emitting credentials. Wire it to an
+approved host's alert collector after permission. Test actual hosted outage,
+restart, concurrent jobs, catch-up, source correction and backup restore; record
+source success AND Docked receipt/scoring outcome. A heartbeat alone is not proof.
+
+E. OPERATING COST MODEL AND SCALE
+
+Published floors: Vercel Pro USD20/month (~AUD28.53), Supabase Pro from USD25
+(~AUD35.66), additional Supabase projects from USD10 (~AUD14.27). Existing account
+plan/remaining credits were not inferred from these prices. Source Q is an unknown
+licensed NBA monthly quote; annual data cost is the quoted commitment, not assumed
+12Q if a contract discount/minimum applies.
+https://vercel.com/pricing
+https://supabase.com/pricing
+Container planning allowance from the prior official Render example: USD7 compute
++ 5GB at USD0.25 = USD8.25 (~AUD11.77/month), unconfirmed current account quote.
+Dynamic pricing page did not expose a complete static quote. Verify before purchase.
+https://render.com/pricing
+
+Illustrative combined floor ~AUD76/month + Q (~AUD912/year + annual data quote),
+excluding Preview, tax, overages, backup upgrades and monitoring. Incremental cost
+may be lower if existing approved capacity is reused. The following are capacity
+planning allowances, NOT vendor quotes, measured load capacity or promises:
+Members   Hosting allowance AUD/month   AUD/year       Data
+100       76–120                        912–1,440      Q / quoted annual
+1,000     76–180                        912–2,160      Q / quoted annual
+10,000    180–600                       2,160–7,200    Q, confirm user tier
+50,000    600–2,500                     7,200–30,000   Q, confirm user tier
+
+Sizing assumptions: 25% daily active, 30 minutes/day, one 15KB response every30s
+means 450 requests/member/month: 45k / 450k / 4.5m / 22.5m requests and roughly
+0.675 / 6.75 / 67.5 / 337.5 GB response traffic, excluding cards/assets. At 50k,
+12.5k simultaneous viewers imply ~417 requests/sec. Benchmark before admitting
+that load. Cache shared period leaderboard projections; keep private lineups
+authorised per user. Frontend polls must never cause provider calls.
+Two eight-card entries/week at 1KB/slot imply ~832KB/member/year: 83MB, 832MB,
+8.32GB, 41.6GB of snapshots respectively, before indexes/audit. Source requests
+scale with games/revisions, not users. An illustrative 1,230-game season, 30 player
+rows/game, 4KB/row and six revisions is ~0.9GB raw revision data before indexes.
+These are modelling assumptions, not an imported season count. Monitor real
+query latency, DB growth, egress, job lag and quota utilisation before scaling.
+
+F. OWNER ACCEPTANCE ACTIONS (NO AUTOMATIC APPROVAL)
+
+1. Choose a commercially authorised NBA sample/quote; confirm intended-use rights
+   listed above. Supply credentials through the host secret manager, never chat.
+   Required source inputs: current and historical season IDs, roster/contract and
+   multi-position evidence, complete final boxes, explicit DNP, corrections.
+2. Approve NBA roster, weights/no rarity bonus, period/timezone, round lock policy,
+   exceptional-game handling, cap/salaries, contract categories and supply preview.
+3. Approve an existing persistent host or exact quoted fallback budget. Provision
+   isolated source and consumer credentials plus dedicated delivery role from the
+   reviewable template. Keep every new live release gate closed.
+4. Approve protected Preview deployment of the committed application/service and
+   required runtime configuration. Run entitled historical imports over multiple
+   periods; compare every player base score and authoritative team/rank result.
+5. Observe actual hosted scheduled run/correction/outage recovery, owner MFA and
+   two-user lock/privacy journey. Require no duplicate scoring/reward effects.
+6. Review exact catalogue/issuance hashes, exclusions and all eleven activation
+   gates; approve production release, first issuance and schedule separately.
+
+Rollback: pause only new sport worker/consumer, revoke its runtime login/read key,
+restore previous tested app/service commit. Retain raw revisions, receipts, cursor,
+audit and immutable member assets. Do not drop tables or restore an old database
+over newer transactions. Dataset replacement requires reviewed resynchronisation.
+Never touch NFL cron, balances, ownership or historical results for rollback.
+
+G. GO / NO-GO
+
+Engineering: GO for protected owner acceptance after current checks pass; NOT a
+claim that every provider edge case has been observed.
+Data accuracy: NO-GO for real activation; no entitled real NBA multi-round sample,
+contract catalogue or documented DNP mapping has passed acceptance.
+Commercial licensing: NO-GO; unsigned scope and unknown complete quote.
+Security: local guards/contracts regression-tested and Preview RLS inspected;
+hosted role, TLS/API auth and owner MFA end-to-end acceptance still required.
+Hosting: NO-GO for claiming automatic operation; persistent host/runtime role and
+genuine scheduled receipt absent. Prepared configuration is not hosted execution.
+User activation: NO-GO until approvals, verified roster, supply and hosted gates.
+NFL: code/scoring/jobs untouched by this pass; regression evidence is local, not
+an exhaustive audit of every live account or a new provider-licensing opinion.
+
+H. NEXT SPORT ROADMAP
+
+Effort estimates are engineering planning ranges after entitled samples and owner
+decisions; vendor negotiations and review waiting time are excluded.
+NBA: 3–7 working days for real mapping, DNP semantics, historical reconciliation
+and hosted acceptance if the current documented adapter matches supplied data.
+EPL: 5–10 days for ordered events/assist agreement, legacy identity reconciliation
+and hosted gameweek tests; Sportmonks floor above is conditional, alternatives quote.
+AFL: 5–10 days after complete authorised event/roster data; retain approved22
+BACK6/MID8/FWD6/RUCK2. Provider/free-kick coverage and scoring approvals remain.
+NRL: 7–15 days for a licensed player-event adapter and reconciliation; retain13
+sandbox until roster/scoring approval. Pricing currently quote-only.
+Do not create speculative new adapters before documented coverage/permissions
+identify the actual supplier. No newsport is active merely because navigation works.
+
+Test results, screenshot paths and final commits are recorded in
+docs/qa/multi-sport/activation/checks.json and the final handover.

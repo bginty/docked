@@ -8,7 +8,11 @@ import { multiSportDatabase } from "../tests/fixtures/multi-sport-db";
 import { pgliteSql } from "../tests/fixtures/pglite-sql";
 import { pullSportPage } from "../src/server/multisport-refresh";
 import { feedRequest } from "../src/server/multisport-feed-http";
-import { ingestionHealth } from "../src/core/multisport-health";
+import {
+  ingestionHealth,
+  ingestionDiagnostics,
+  ingestionJobs,
+} from "../src/core/multisport-health";
 async function main() {
   assert.equal(
     process.env.NODE_ENV,
@@ -75,13 +79,43 @@ async function main() {
     );
     assert.equal(rows.length, 4);
     assert(rows.every((r) => r.n === 2 && r.revision === 2));
+    await assert.rejects(
+      feedRequest(config, "/admin/multisport/diagnostics"),
+      /Feed HTTP/,
+    );
+    const admin = { ...config, key: "a".repeat(24) };
+    const diagnostics = ingestionDiagnostics.parse(
+      await feedRequest(admin, "/admin/multisport/diagnostics"),
+    );
+    assert.equal(diagnostics.dataset_id, health.dataset_id);
+    assert.equal(diagnostics.data.coverage.length, 4);
+    assert(
+      diagnostics.data.coverage.every(
+        (c) => c.fixtures === 2 && c.imported === 2,
+      ),
+    );
+    assert.equal(diagnostics.data.corrections.length, 8);
+    const jobs = ingestionJobs.parse(
+      await feedRequest(admin, "/admin/multisport/jobs"),
+    ).data;
+    writeFileSync(
+      "tmp/ingestion-browser-fixture.json",
+      JSON.stringify({
+        health: ingestionHealth.parse(
+          await feedRequest(admin, "/admin/multisport/status"),
+        ),
+        jobs,
+        diagnostics,
+      }),
+    );
     const report = {
       at: new Date().toISOString(),
       transport: "actual loopback HTTP",
       hosted: false,
       synthetic: true,
       sports: rows,
-      authenticationNegativeChecks: 2,
+      authenticationNegativeChecks: 3,
+      diagnosticsContract: true,
       emptyPollReplay: true,
       correction: true,
     };

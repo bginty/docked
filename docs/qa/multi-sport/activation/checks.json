@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-22T04:03:10.719Z",
+  "startingApplication": "09071b0d214bf3d35c61a41d91c6f814d954206a",
+  "startingService": "c59a51e9e1c7c2ce1a64230d1deb39edf526a6ee",
+  "serviceCommit": "7cc672db73d1d7bc8b2f35bd951dfd9f3abb8f3a",
+  "checks": {
+    "platform": {
+      "passed": 563,
+      "failed": 0
+    },
+    "database": {
+      "passed": 196,
+      "failed": 0
+    },
+    "service": {
+      "passed": 100,
+      "failed": 0
+    },
+    "typecheck": {
+      "result": "passed",
+      "sha256": "0bdf03727bf54c5f8d580b4aa728255c4a28dcd46a1bf2c9ba9985bd8c8043a1"
+    },
+    "lint": {
+      "result": "passed",
+      "sha256": "f8068cfd2acc0ca944a887886e0fc061570e54d2f1d32b241f72abd18cfb14f8"
+    },
+    "build": {
+      "result": "passed",
+      "sha256": "06524253c52ea5b76109cc95b94284e0d4854f9992f1dfd681042bb2c1fe2402"
+    },
+    "http": {
+      "result": "passed",
+      "sha256": "9394c167c3cb6db630b344136848b47de4e4fe1d7412aab77c68a4b190affc8a"
+    },
+    "contract": {
+      "result": "passed",
+      "sha256": "d0a3a0226b6ab49cc26d4f9e1225159df41f0e7976d10f40aec88dd30e0b773c"
+    },
+    "browser": {
+      "result": "passed",
+      "sha256": "aa06cea5b2eac356f704ba31ce8615728d6aa74fda208a0abdca07b59006b776"
+    },
+    "nbaBrowser": {
+      "result": "passed",
+      "sha256": "78ffbbe69c88e7ec8dad207ac9aa9e7c441f0d0bd1b9610ae2755fb6b5feb509"
+    },
+    "aflBrowser": {
+      "result": "passed",
+      "sha256": "245ab3f070e2529b8af13e4e65a231545b4001ed6e01b4622a56b8106355363b"
+    }
+  },
+  "sourceData": "isolated synthetic fixtures only",
+  "hosted": {
+    "previewDatabaseReadOnly": true,
+    "scheduledProviderImport": false,
+    "authenticatedOwnerBrowser": false,
+    "realProviderReconciliation": false
+  },
+  "production": {
+    "deployedCommit": "31f0ecc99c40aedcd4f4f64695a3de030715da0e",
+    "changed": false
+  },
+  "newMigrations": [],
+  "newRealCards": 0,
+  "newVerifiedRealPlayers": 0
+}

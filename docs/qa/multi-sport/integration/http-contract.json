@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-22T03:14:53.848Z",
+  "at": "2026-10-22T04:01:55.537Z",
   "transport": "actual loopback HTTP",
   "hosted": false,
   "synthetic": true,
@@ -25,7 +25,8 @@
       "revision": 2
     }
   ],
-  "authenticationNegativeChecks": 2,
+  "authenticationNegativeChecks": 3,
+  "diagnosticsContract": true,
   "emptyPollReplay": true,
   "correction": true
 }

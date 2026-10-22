@@ -1,4 +1,8 @@
-import type { IngestionHealth, IngestionJobs } from "../core/multisport-health";
+import type {
+  IngestionHealth,
+  IngestionJobs,
+  IngestionDiagnostics,
+} from "../core/multisport-health";
 const date = (n: number | null | undefined) =>
   n == null
     ? "Not observed"
@@ -20,12 +24,14 @@ const label = (value: string) => names[value] ?? value.replaceAll("_", " ");
 export function IngestionOperationsView({
   health,
   jobs,
+  diagnostics,
   retry,
   requestId,
   notice,
 }: {
   health: IngestionHealth;
   jobs: IngestionJobs | null;
+  diagnostics?: IngestionDiagnostics | null;
   retry?: (form: FormData) => Promise<void>;
   requestId: string;
   notice?: string;
@@ -83,6 +89,8 @@ export function IngestionOperationsView({
                   <dd>{date(s.next_sync)}</dd>
                   <dt>Worker heartbeat</dt>
                   <dd>{date(s.worker_heartbeat)}</dd>
+                  <dt>Overdue or expired-lease jobs</dt>
+                  <dd>{s.overdue_jobs ?? "Not reported"}</dd>
                   <dt>Docked-mapped players</dt>
                   <dd>{ratio(s.mapped_players, s.players_total)}</dd>
                   <dt>Complete fixture snapshots</dt>
@@ -108,6 +116,114 @@ export function IngestionOperationsView({
           </div>
         </>
       )}
+      <details>
+        <summary>Historical coverage and reconciliation</summary>
+        {!diagnostics ? (
+          <p>Diagnostics unavailable. Retry status to reconnect.</p>
+        ) : (
+          <>
+            <p>
+              Recorded fixtures only; this does not establish complete provider
+              season coverage or Docked scoring reconciliation.
+            </p>
+            {diagnostics.data.coverage.length ? (
+              diagnostics.data.coverage.map((c) => (
+                <article
+                  key={`${c.sport}:${c.season}`}
+                  className="admin-workspace-panel"
+                >
+                  <h3>
+                    {c.sport.toUpperCase()} · {c.season}
+                  </h3>
+                  <p>
+                    {c.imported}/{c.fixtures} fixtures imported · {c.complete}{" "}
+                    complete source snapshots
+                  </p>
+                  <p>
+                    {date(c.first_kickoff)} – {date(c.last_kickoff)}
+                  </p>
+                  <p>Last successful check: {date(c.last_success)}</p>
+                </article>
+              ))
+            ) : (
+              <p>No historical fixtures imported.</p>
+            )}
+            <details>
+              <summary>
+                Unmatched player identities ({diagnostics.data.reviews.length})
+              </summary>
+              {diagnostics.data.reviews.length ? (
+                diagnostics.data.reviews.map((r) => (
+                  <p key={r.id}>
+                    {r.sport.toUpperCase()} · {r.provider} · {r.external_id} ·{" "}
+                    {label(r.reason)} · {date(r.created_at)}
+                  </p>
+                ))
+              ) : (
+                <p>No unresolved mapping reviews reported.</p>
+              )}
+            </details>
+            <details>
+              <summary>
+                Quarantined imports ({diagnostics.data.failures.length})
+              </summary>
+              {diagnostics.data.failures.length ? (
+                diagnostics.data.failures.map((r) => (
+                  <p key={r.id}>
+                    {r.sport.toUpperCase()} ·{" "}
+                    {r.fixture ?? "No fixture assigned"} · {label(r.reason)} ·{" "}
+                    {date(r.created_at)}
+                  </p>
+                ))
+              ) : (
+                <p>No quarantined imports reported.</p>
+              )}
+            </details>
+            <details>
+              <summary>
+                Recent source corrections ({diagnostics.data.corrections.length}
+                )
+              </summary>
+              <p>
+                Source revisions require Docked reconciliation. These are not
+                confirmations of changed competition results.
+              </p>
+              {diagnostics.data.corrections.length ? (
+                diagnostics.data.corrections.map((r) => (
+                  <p key={r.seq}>
+                    {r.sport.toUpperCase()} · {r.entity} · Revision {r.revision}{" "}
+                    · {label(r.kind)}
+                  </p>
+                ))
+              ) : (
+                <p>No source corrections reported.</p>
+              )}
+            </details>
+            <details>
+              <summary>
+                Recent operational audit ({diagnostics.data.audit.length})
+              </summary>
+              {diagnostics.data.audit.length ? (
+                diagnostics.data.audit.map((r) => (
+                  <p key={r.id}>
+                    {date(r.at)} · {label(r.action.replace("multisport.", ""))}{" "}
+                    · {r.actor}
+                  </p>
+                ))
+              ) : (
+                <p>No operational audit events reported.</p>
+              )}
+            </details>
+            {!!diagnostics.data.truncated.length && (
+              <p>
+                Latest 50 records shown for:{" "}
+                {diagnostics.data.truncated.join(", ")}. Full records remain in
+                the service audit store.
+              </p>
+            )}
+          </>
+        )}
+      </details>
       <details>
         <summary>Scheduled jobs and failures</summary>
         {jobs === null ? (

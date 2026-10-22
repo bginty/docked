@@ -1,6 +1,6 @@
 import "server-only";
 import { z } from "zod";
-import { ingestionJobs } from "../core/multisport-health";
+import { ingestionJobs, ingestionDiagnostics } from "../core/multisport-health";
 import { feedRequest } from "./multisport-feed-http";
 import { requireRole } from "./auth";
 import { rateLimit } from "./db";
@@ -11,10 +11,21 @@ function config() {
   };
 }
 export async function multisportFeedJobs() {
+  await requireRole(["owner"]);
   try {
     return ingestionJobs.parse(
       await feedRequest(config(), "/admin/multisport/jobs"),
     ).data;
+  } catch {
+    return null;
+  }
+}
+export async function multisportFeedDiagnostics() {
+  await requireRole(["owner"]);
+  try {
+    return ingestionDiagnostics.parse(
+      await feedRequest(config(), "/admin/multisport/diagnostics"),
+    );
   } catch {
     return null;
   }

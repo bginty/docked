@@ -3,6 +3,7 @@ import { requireRole } from "@/server/auth";
 import { multisportFeedHealth } from "@/server/multisport-feed-health";
 import {
   multisportFeedJobs,
+  multisportFeedDiagnostics,
   retryMultisportFeedJob,
 } from "@/server/multisport-feed-jobs";
 import { revalidatePath } from "next/cache";
@@ -24,7 +25,10 @@ export default async function IngestionOperations({
     notFound();
   }
   const health = await multisportFeedHealth();
-  const jobs = health.state === "connected" ? await multisportFeedJobs() : null;
+  const [jobs, diagnostics] =
+    health.state === "connected"
+      ? await Promise.all([multisportFeedJobs(), multisportFeedDiagnostics()])
+      : [null, null];
   async function retry(form: FormData) {
     "use server";
     let ok = false;
@@ -51,6 +55,12 @@ export default async function IngestionOperations({
       <IngestionOperationsView
         health={health}
         jobs={jobs}
+        diagnostics={
+          diagnostics?.dataset_id ===
+          (health.state === "connected" ? health.dataset_id : null)
+            ? diagnostics
+            : null
+        }
         retry={retry}
         requestId={randomUUID()}
         notice={

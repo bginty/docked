@@ -4,6 +4,7 @@ import { IngestionOperationsView } from "../../src/components/ingestion-operatio
 import {
   ingestionHealth,
   ingestionJobs,
+  ingestionDiagnostics,
   type IngestionHealth,
 } from "../../src/core/multisport-health";
 async function start() {
@@ -18,6 +19,11 @@ async function start() {
       <IngestionOperationsView
         health={health}
         jobs={ingestionJobs.parse({ data: data.jobs }).data}
+        diagnostics={
+          state === "disabled" || state === "unavailable"
+            ? null
+            : ingestionDiagnostics.parse(data.diagnostics)
+        }
         requestId="isolated-browser"
         retry={async () => {
           document

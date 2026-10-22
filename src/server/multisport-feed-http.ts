@@ -17,7 +17,7 @@ export async function feedRequest(
     u.hash ||
     u.pathname !== "/" ||
     config.key.length < 24 ||
-    !/^\/(admin\/multisport\/(status|jobs|retry)|v1\/sports\/(epl|nba|afl|nrl)\/stat-changes(?:\?[^#]*)?)$/.test(
+    !/^\/(admin\/multisport\/(status|jobs|retry|diagnostics)|v1\/sports\/(epl|nba|afl|nrl)\/stat-changes(?:\?[^#]*)?)$/.test(
       path,
     )
   )
