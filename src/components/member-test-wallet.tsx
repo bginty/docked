@@ -35,6 +35,8 @@ export function MemberTestWallet({
   const [autoPack, setAutoPack] = useState<string | null>(null);
   const [replayPack, setReplayPack] = useState<string | null>(null);
   const storageKey = `docked:test-wallet:pending:${initial.member}`;
+  const endpoint =
+    surface === "packs" ? "/api/test-wallet?view=packs" : "/api/test-wallet";
   useEffect(() => {
     try {
       const raw = localStorage.getItem(storageKey);
@@ -66,7 +68,7 @@ export function MemberTestWallet({
     setBusy(true);
     setError("");
     try {
-      const r = await boundedFetch("/api/test-wallet", {
+      const r = await boundedFetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ request, command }),
@@ -171,7 +173,7 @@ export function MemberTestWallet({
               })
             }
             refresh={async () => {
-              const r = await boundedFetch("/api/test-wallet", {
+              const r = await boundedFetch(endpoint, {
                 cache: "no-store",
               });
               if (!r.ok) throw Error("Could not refresh packs");

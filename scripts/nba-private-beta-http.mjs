@@ -27,6 +27,8 @@ for (const path of [
   "/api/sports-beta?view=state&sport=afl",
   "/api/sports-beta?view=state&sport=nrl",
   "/api/test-wallet",
+  "/api/test-wallet?view=summary",
+  "/api/test-wallet?view=packs",
   "/api/marketplace?sport=afl",
   "/api/marketplace?sport=nrl",
   "/api/community?view=hub",

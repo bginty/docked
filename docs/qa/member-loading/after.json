@@ -1,0 +1,110 @@
+{
+  "at": "2026-10-22T23:38:32.853Z",
+  "authenticatedBrowserTesting": false,
+  "readStateMs": 1526,
+  "validateMs": 61,
+  "players": 2479,
+  "realRosterBefore": 1399,
+  "refreshMs": 1204,
+  "realRosterAfter": 1399,
+  "projectionPreservesLedgers": true,
+  "ownerProjectionMs": 203,
+  "responseBytes": 2409125,
+  "products": [
+    {
+      "id": "premium-1-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "available": true,
+      "eligiblePlayers": 402,
+      "reason": null
+    },
+    {
+      "id": "premium-3-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "available": true,
+      "eligiblePlayers": 402,
+      "reason": null
+    },
+    {
+      "id": "premium-9-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "available": true,
+      "eligiblePlayers": 402,
+      "reason": null
+    },
+    {
+      "id": "standard-1-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "available": true,
+      "eligiblePlayers": 402,
+      "reason": null
+    },
+    {
+      "id": "standard-3-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "available": true,
+      "eligiblePlayers": 402,
+      "reason": null
+    },
+    {
+      "id": "standard-9-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "available": true,
+      "eligiblePlayers": 402,
+      "reason": null
+    },
+    {
+      "id": "premium-9-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "available": true,
+      "eligiblePlayers": 545,
+      "reason": null
+    },
+    {
+      "id": "premium-9-nba-real-roster-beta-v1",
+      "sport": "basketball",
+      "available": true,
+      "eligiblePlayers": 517,
+      "reason": null
+    },
+    {
+      "id": "premium-9-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "available": true,
+      "eligiblePlayers": 337,
+      "reason": null
+    },
+    {
+      "id": "standard-9-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "available": true,
+      "eligiblePlayers": 545,
+      "reason": null
+    },
+    {
+      "id": "standard-9-nba-real-roster-beta-v1",
+      "sport": "basketball",
+      "available": true,
+      "eligiblePlayers": 517,
+      "reason": null
+    },
+    {
+      "id": "standard-9-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "available": true,
+      "eligiblePlayers": 337,
+      "reason": null
+    }
+  ],
+  "packsProjectionMs": 143,
+  "packsBytes": 314090,
+  "summaryProjectionMs": 1,
+  "summaryBytes": 10151,
+  "runtimeReadSnapshot": {
+    "isolation": "repeatable read",
+    "readonly": "on",
+    "stateReadable": true,
+    "unauthenticatedCapability": false
+  },
+  "passed": true
+}

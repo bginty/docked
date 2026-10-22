@@ -19,6 +19,8 @@ import { rarityConfiguration } from "../../src/core/card-rarity";
 import { executePrivateOffer } from "../../src/core/private-card-offers";
 import { randomUUID } from "node:crypto";
 import catalogue from "../../public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json";
+import { refreshEconomyCatalogue } from "../../src/server/economy-catalogue";
+import type { Sql } from "postgres";
 
 for (const realRoster of [false, true])
   for (const config of [
@@ -283,6 +285,22 @@ for (const realRoster of [false, true])
         );
         assert.equal(nflBefore.length, 9);
         const before = structuredClone(state);
+        // Request-time refresh must preserve the immutable registered beta
+        // identities before the SQL issuance trigger validates the purchase.
+        await refreshEconomyCatalogue(
+          (async () =>
+            nflPlayers.map((p) => ({
+              id: p.id,
+              team: p.currentTeam,
+              position: p.position,
+              status: "ACT",
+              checked_at: new Date(now),
+              raw_id: p.sourceRevision,
+            }))) as unknown as Sql,
+          state,
+        );
+        for (const p of players)
+          assert.deepEqual(state.economy!.players[p.id], p);
         const product = products.find((p) => p.type === "STANDARD")!;
         const command = {
           kind: "buy-pack",

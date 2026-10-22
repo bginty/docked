@@ -1,6 +1,7 @@
 import type { Sql, TransactionSql } from "postgres";
 import type { CreditsState } from "../core/credits-sandbox";
 import { isFixtureSport } from "../core/fixture-sports";
+import { isRosterBetaPlayer } from "../core/roster-beta";
 /** Current season/team/status are observations, never new permanent identities. */
 export async function refreshEconomyCatalogue(
   sql: Sql | TransactionSql,
@@ -17,9 +18,14 @@ export async function refreshEconomyCatalogue(
     : [];
   const roster = new Map(official.map((r) => [String(r.player_id), r]));
   for (const player of Object.values(state.economy.players)) {
-    // Fixtures are explicitly reviewed synthetic observations, never NFL feed rows.
-    // Do not silently renew their freshness or change their registered identity.
-    if (player.synthetic && isFixtureSport(player.sport)) continue;
+    // These registered, isolated catalogues have their own provenance. The NFL
+    // observations cannot invalidate them or rewrite their immutable identity.
+    // Invalid roster evidence still fails closed below; a sport alone is no bypass.
+    if (
+      (player.synthetic && isFixtureSport(player.sport)) ||
+      isRosterBetaPlayer(player)
+    )
+      continue;
     if (state.economy.rosterPolicy && player.sport === "nfl") {
       const o = roster.get(player.id);
       player.roster = o

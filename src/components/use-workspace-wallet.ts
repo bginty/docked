@@ -43,7 +43,7 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
       current = controller;
       setStatus("Updating balance…");
       try {
-        const response = await boundedFetch("/api/test-wallet", {
+        const response = await boundedFetch("/api/test-wallet?view=summary", {
           cache: "no-store",
           signal: controller.signal,
         });

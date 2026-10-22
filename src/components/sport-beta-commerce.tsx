@@ -19,9 +19,13 @@ export function SportBetaCommerce({
     [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let disposed = false;
+    const controller = new AbortController();
     setState(null);
     setError("");
-    void boundedFetch("/api/test-wallet", { cache: "no-store" })
+    void boundedFetch("/api/test-wallet?view=packs", {
+      cache: "no-store",
+      signal: controller.signal,
+    })
       .then(async (r) => {
         const d = await r.json();
         if (!r.ok) throw Error(d.error || "Test economy unavailable");
@@ -33,6 +37,7 @@ export function SportBetaCommerce({
       });
     return () => {
       disposed = true;
+      controller.abort();
     };
   }, [sport, attempt]);
   const label = fixtureSports[sport].label;

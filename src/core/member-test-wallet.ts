@@ -176,6 +176,7 @@ export function memberTestView(
   owner = false,
   now = Date.now(),
   hiddenCards: string[] = [],
+  options: { catalogue?: boolean } = {},
 ) {
   assertMemberTestEconomy(s);
   const supplyRows = s.economy ? economySupply(s.economy) : [];
@@ -406,17 +407,38 @@ export function memberTestView(
       category: string;
       recordedAt: string;
     }[],
-    pool: s.economy
-      ? Object.values(s.economy.players).map((p) => ({
-          id: p.id,
-          name: p.name,
-          position: p.position,
-          team: p.currentTeam,
-          status: p.status,
-          fresh: p.observedAt <= now && now - p.observedAt <= 72 * 3600000,
-          supply: supplyRows.filter((r) => r.playerId === p.id),
-        }))
-      : [],
+    pool:
+      s.economy && options.catalogue !== false
+        ? Object.values(s.economy.players).map((p) => ({
+            id: p.id,
+            name: p.name,
+            position: p.position,
+            team: p.currentTeam,
+            status: p.status,
+            fresh: p.observedAt <= now && now - p.observedAt <= 72 * 3600000,
+            supply: supplyRows.filter((r) => r.playerId === p.id),
+          }))
+        : [],
+  };
+}
+/** The shared header/profile needs balances and counts, not catalogue or audit data. */
+export function memberTestSummary(
+  s: CreditsState,
+  member: string,
+  now = Date.now(),
+  hiddenCards: string[] = [],
+) {
+  assertMemberTestEconomy(s);
+  return {
+    member,
+    wallet: wallet(s, member),
+    portfolio: portfolioValuation(s, member, now, hiddenCards),
+    packs: Object.values(s.entitlements)
+      .filter((p) => p.member === member)
+      .map((p) => ({ status: p.status })),
+    swaps: Object.values(s.swaps)
+      .filter((s) => s.member === member || s.other === member)
+      .map((s) => ({ status: s.status })),
   };
 }
 export type MemberTestView = Omit<

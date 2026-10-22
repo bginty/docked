@@ -11,7 +11,13 @@ import {
   packNow as sourcePackNow,
 } from "../tests/fixtures/pack-economy";
 import { executeCredits } from "../src/core/credits-sandbox";
-import { memberTestView, testReceipt } from "../src/core/member-test-wallet";
+import {
+  memberTestView,
+  memberTestSummary,
+  testReceipt,
+} from "../src/core/member-test-wallet";
+import { refreshEconomyCatalogue } from "../src/server/economy-catalogue";
+import type { Sql } from "postgres";
 import { prepareRosterBetaCatalogue } from "../src/core/roster-beta-prepare";
 async function main() {
   const nba = process.argv.includes("--nba");
@@ -99,6 +105,23 @@ async function main() {
     if (url.pathname === "/api/test-wallet") {
       res.setHeader("Content-Type", "application/json");
       try {
+        // Exercise the same observation refresh as the hosted read/purchase path.
+        // All transport and observations remain isolated local fixtures.
+        const observations = Object.values(state.economy!.players)
+          .filter((p) => p.sport === "nfl")
+          .map((p) => ({
+            id: p.id,
+            team: p.currentTeam,
+            position: p.position,
+            status: "ACT",
+            checked_at: new Date(packNow),
+            raw_id: p.sourceRevision,
+            verified_jersey_number: p.verifiedJerseyNumber ?? null,
+          }));
+        await refreshEconomyCatalogue(
+          (async () => observations) as unknown as Sql,
+          state,
+        );
         let result: unknown = {};
         if (req.method === "POST") {
           let raw = "";
@@ -132,13 +155,18 @@ async function main() {
         }
         return res.end(
           JSON.stringify({
-            state: memberTestView(
-              state,
-              packMember.id,
-              [],
-              false,
-              packNow + calls,
-            ),
+            state:
+              url.searchParams.get("view") === "summary"
+                ? memberTestSummary(state, packMember.id, packNow + calls)
+                : memberTestView(
+                    state,
+                    packMember.id,
+                    [],
+                    false,
+                    packNow + calls,
+                    [],
+                    { catalogue: false },
+                  ),
             result,
           }),
         );

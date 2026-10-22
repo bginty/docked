@@ -23,10 +23,14 @@ import { isFixtureSport } from "@/core/fixture-sports";
 import {
   memberTestCommand,
   memberTestView,
+  memberTestSummary,
   assertMemberTestEconomy,
   testReceipt,
 } from "@/core/member-test-wallet";
-export async function memberTestSource(input?: unknown) {
+export async function memberTestSource(
+  input?: unknown,
+  refreshCatalogue = true,
+) {
   if (
     process.env.DOCKED_FRIENDS_BETA !== "true" ||
     process.env.DOCKED_BETA_STAGING !== "true"
@@ -191,30 +195,36 @@ export async function memberTestSource(input?: unknown) {
       throw error;
     }
   }
-  const { s, hidden, trading, fixtureSports } = await sql.begin(async (tx) => {
-    await setCommunityClaims(tx, who);
-    await tx`select pg_advisory_xact_lock(71820342)`;
-    const [access] =
-      await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
-    if (!access || (access.kind === "owner" && who.aal !== "aal2"))
-      throw Error("Admission revoked");
-    const s = await new CreditsSandboxStore(tx as unknown as typeof sql).read();
-    await refreshEconomyCatalogue(tx, s);
-    assertMemberTestEconomy(s);
-    const fixtures = await fixtureCommerceVisibility(tx, s);
-    return {
-      s,
-      hidden: [
-        ...(await hiddenMarketCards(tx, s, who.user.id)),
-        ...fixtures.hidden,
-      ],
-      fixtureSports: fixtures.allowed,
-      trading: await betaTradingAccess(
+  // MVCC provides a consistent read without queueing every page load behind the
+  // global settlement lock. Mutations still use the store's exclusive lock.
+  const { s, hidden, trading, fixtureSports } = await sql.begin(
+    "isolation level repeatable read read only",
+    async (tx) => {
+      await setCommunityClaims(tx, who);
+      const [access] =
+        await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
+      if (!access || (access.kind === "owner" && who.aal !== "aal2"))
+        throw Error("Admission revoked");
+      const s = await new CreditsSandboxStore(
         tx as unknown as typeof sql,
-        who.user.id,
-      ),
-    };
-  });
+      ).read();
+      if (refreshCatalogue) await refreshEconomyCatalogue(tx, s);
+      assertMemberTestEconomy(s);
+      const fixtures = await fixtureCommerceVisibility(tx, s);
+      return {
+        s,
+        hidden: [
+          ...(await hiddenMarketCards(tx, s, who.user.id)),
+          ...fixtures.hidden,
+        ],
+        fixtureSports: fixtures.allowed,
+        trading: await betaTradingAccess(
+          tx as unknown as typeof sql,
+          who.user.id,
+        ),
+      };
+    },
+  );
   if (command?.kind === "open-pack")
     result = testReceipt(s, command.entitlement, who.user.id);
   return {
@@ -230,14 +240,26 @@ export async function memberTestSource(input?: unknown) {
     who,
   };
 }
-export async function memberTestWallet(input?: unknown) {
+export async function memberTestWallet(
+  input?: unknown,
+  projection: "wallet" | "packs" = "wallet",
+) {
   const { s, hidden, member, peers, isOwner, result, sql, fixtureSports } =
     await memberTestSource(input);
-  const view = memberTestView(s, member, peers, isOwner, Date.now(), hidden);
+  const ownerDetails = isOwner && projection === "wallet";
+  const view = memberTestView(
+    s,
+    member,
+    peers,
+    ownerDetails,
+    Date.now(),
+    hidden,
+    { catalogue: false },
+  );
   const products = view.products.filter(
     (p) => !isFixtureSport(p.sport) || fixtureSports.includes(p.sport),
   );
-  if (isOwner)
+  if (ownerDetails)
     view.failures = (
       await sql`select request,product,category,recorded_at from credits_sandbox.pack_failures order by recorded_at desc limit 100`
     ).map((r) => ({
@@ -247,4 +269,8 @@ export async function memberTestWallet(input?: unknown) {
       recordedAt: new Date(r.recorded_at).toISOString(),
     }));
   return { state: { ...view, products }, result };
+}
+export async function workspaceWalletSummary() {
+  const { s, hidden, member } = await memberTestSource(undefined, false);
+  return { state: memberTestSummary(s, member, Date.now(), hidden) };
 }

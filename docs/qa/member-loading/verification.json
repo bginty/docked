@@ -1,0 +1,153 @@
+{
+  "at": "2026-10-22T23:39:47.485Z",
+  "tests": {
+    "platform": {
+      "passed": 594,
+      "failed": 0
+    },
+    "database": {
+      "passed": 209,
+      "failed": 0
+    }
+  },
+  "browsers": [
+    {
+      "sport": "nfl",
+      "out": "docs/qa/pack-shopping/browser-1792711991125",
+      "results": [
+        {
+          "width": 1440,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 1024,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 412,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 360,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "errorsAndLostResponse": true,
+          "motionToggle": true,
+          "unsupportedSport": true,
+          "sportPersistence": true,
+          "installGating": true
+        }
+      ]
+    },
+    {
+      "sport": "nba",
+      "out": "docs/qa/real-rosters/basketball/packs/browser-1792711728481",
+      "results": [
+        {
+          "width": 1440,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 1024,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 412,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 360,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "errorsAndLostResponse": true,
+          "motionToggle": true,
+          "unsupportedSport": true,
+          "sportPersistence": true,
+          "installGating": true
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "out": "docs/qa/real-rosters/afl/packs/browser-1792711821159",
+      "results": [
+        {
+          "width": 1440,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 1024,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 412,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 360,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "errorsAndLostResponse": true,
+          "motionToggle": true,
+          "unsupportedSport": true,
+          "sportPersistence": true,
+          "installGating": true
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "out": "docs/qa/real-rosters/nrl/packs/browser-1792711907888",
+      "results": [
+        {
+          "width": 1440,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 1024,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 412,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "width": 360,
+          "passed": true,
+          "axeSerious": 0
+        },
+        {
+          "errorsAndLostResponse": true,
+          "motionToggle": true,
+          "unsupportedSport": true,
+          "sportPersistence": true,
+          "installGating": true
+        }
+      ]
+    }
+  ],
+  "typecheck": true,
+  "lint": true,
+  "cleanBuild": true,
+  "clientCanaryScan": true,
+  "authenticatedHostedBrowser": false,
+  "mutatedHostedMemberData": false
+}

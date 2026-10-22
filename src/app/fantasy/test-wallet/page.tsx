@@ -9,14 +9,27 @@ export const metadata = {
   title: "Docked · Packs & test wallet",
   robots: { index: false, follow: false },
 };
-export default async function TestWalletPage({searchParams}:{searchParams:Promise<{view?:string}>}) {
-  const {view}=await searchParams;
+export default async function TestWalletPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string }>;
+}) {
+  const { view } = await searchParams;
   let data;
   try {
-    data = await memberTestWallet();
+    data = await memberTestWallet(
+      undefined,
+      view === "packs" ? "packs" : "wallet",
+    );
   } catch (error) {
-    const kind=memberAccessFailure(error);
-    if(kind !== "permission") return <FantasyLoadError authRequired={kind === "authentication"} mfaRequired={kind === "mfa"} />;
+    const kind = memberAccessFailure(error);
+    if (kind !== "permission")
+      return (
+        <FantasyLoadError
+          authRequired={kind === "authentication"}
+          mfaRequired={kind === "mfa"}
+        />
+      );
     return (
       <main className="fantasy-gate">
         <h1>Private test wallet</h1>
@@ -30,7 +43,10 @@ export default async function TestWalletPage({searchParams}:{searchParams:Promis
   }
   return (
     <AppShell authenticated>
-      <MemberTestWallet initial={data.state} surface={view==="packs"?"packs":"wallet"}/>
+      <MemberTestWallet
+        initial={data.state}
+        surface={view === "packs" ? "packs" : "wallet"}
+      />
     </AppShell>
   );
 }
