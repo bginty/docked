@@ -258,12 +258,6 @@ if (process.argv[2] === "prepare") {
   const overrides = {
     VERCEL_GIT_COMMIT_SHA: sha,
     VERCEL_GIT_COMMIT_REF: target.branch,
-    DOCKED_NBA_PRIVATE_BETA: "true",
-    DOCKED_SPORTS_PRIVATE_BETA: "true",
-    DOCKED_SPORTS_TEST_COMMERCE: "false",
-    DOCKED_MULTI_SPORT_SANDBOX: "false",
-    DOCKED_PREVIEW_TESTER_ID: "",
-    DOCKED_PREVIEW_TESTER_EMAIL: "",
   };
   assert.equal(
     assertHostedBeta({
@@ -313,6 +307,7 @@ if (process.argv[2] === "prepare") {
     domainAssigned: false,
     projectId: target.projectId,
     privateNba: true,
+    fixtureCommerce,
     at: new Date().toISOString(),
   };
   await fs.writeFile(receiptPath, JSON.stringify(receipt, null, 2));

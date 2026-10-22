@@ -24,7 +24,7 @@ async function main() {
   const fixture = () => packFixture(sport);
   const packPath =
     "/fantasy/test-wallet?view=packs" +
-    (sport !== "nfl" ? `&fixtureSport=${sport}` : "");
+    (sport !== "nfl" ? `&fixtureSport=${sport}&sport=${sport}` : "");
   const out = `docs/qa/${sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
@@ -68,7 +68,13 @@ async function main() {
     res.setHeader("Cache-Control", "no-store");
     if (url.pathname === "/api/nba-beta") {
       res.setHeader("Content-Type", "application/json");
-      return res.end(JSON.stringify({ allowed: false }));
+      return res.end(JSON.stringify({ allowed: sport === "basketball" }));
+    }
+    if (url.pathname === "/api/sports-beta") {
+      res.setHeader("Content-Type", "application/json");
+      return res.end(
+        JSON.stringify({ allowed: sport === "nfl" ? [] : [sport] }),
+      );
     }
     if (url.pathname === "/api/test-wallet") {
       res.setHeader("Content-Type", "application/json");
@@ -199,6 +205,12 @@ async function main() {
         throw Error("Native dialog is forbidden");
       });
       await page.goto(origin + packPath);
+      await expect(
+        page.getByRole("combobox", {
+          name: width < 900 ? "Active sport" : "Active sport desktop",
+          exact: true,
+        }),
+      ).toHaveValue(sport);
       await expect(
         page.getByRole("heading", {
           name: `${sport === "basketball" ? "NBA" : sport.toUpperCase()} Packs`,
