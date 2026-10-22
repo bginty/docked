@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-22",
+  "scope": "Original two-colour jersey treatments in the shared canonical collectible renderer. No logos or copied uniform artwork.",
+  "coverage": { "afl": 18, "nrl": 17, "basketball": 30, "football": 23 },
+  "footballRetention": "20 current club identities and Burnley, West Ham United, Wolverhampton Wanderers retained for existing cards. This catalogue does not determine competition eligibility.",
+  "palettePolicy": "Docked colour interpretations, not certified official hex specifications or season-specific kit replicas. Existing explicit colour snapshots take precedence; NFL palettes unchanged.",
+  "mapping": "Match exact sport-scoped canonical ID (e.g. afl:ade), code (ADE), team name or documented alias. Numeric provider IDs must first be mapped. No fuzzy city matching. Unknown clubs remain neutral. City and jersey number still require explicit metadata.",
+  "integration": "jerseyPresentation is used by PlayerJersey inside the shared CollectibleFace. The catalogue supplies defaults only when an explicit saved primary colour is absent. Existing historical colours are not rewritten. Scraper/roster mapping can reuse exported teamColourCatalogue primary/accent values in reviewed presentation metadata; no roster import is performed by this change.",
+  "sources": [
+    "https://www.afl.com.au/teams",
+    "https://www.afl.com.au/news/1498330/every-clubs-2026-anzac-round-guernsey-revealed",
+    "https://www.nrl.com/clubs/",
+    "https://www.nba.com/teams",
+    "https://lockervision.nba.com/edition/",
+    "https://www.premierleague.com/en/clubs",
+    "https://www.premierleague.com/en/news/4658330/premier-league-club-kits-for-202627-season"
+  ],
+  "checks": {
+    "focusedTests": { "passed": 9, "failed": 0 },
+    "typecheck": "passed",
+    "changedFileLint": "passed, zero warnings",
+    "browser": "12 sport/viewport combinations, all 88 palettes checked at 360, 412 and 1440 pixels; fill, trim, number, overflow and page errors checked",
+    "visualInspection": "AFL complete desktop gallery and mobile screenshots for all four sports inspected",
+    "fixtureIsolation": "Local browser fixture only, fictional player names, no database or member mutations",
+    "limitations": "No physical device or hosted acceptance run. No clean build or full platform suite rerun for this presentation-only change. Production unchanged. New sport live rosters and feed mapping remain separate release requirements."
+  }
+}
