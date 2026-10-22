@@ -98,3 +98,31 @@ ownership, public registration, commercial feeds or permanent card issuance.
 Rollback is promotion of the captured prior deployment. No database rollback.
 Evidence and actual deployment receipts: docs/qa/nba-parity/.
 Further parity work is still required; do not describe this checkpoint as final.
+
+Actual checkpoint delivery
+Application 2d03855d9bf3d4ece13b3d2b19d672d5eb3519c0 deployed and promoted to
+https://docked.com.au on 22 October 2026. Vercel READY deployment:
+dpl_3jSe2Z5e4yfvzGD8Ty4SJGnNLhkz
+https://docked-production-9twf17w1w-briant-s-projects.vercel.app
+Statistics implementation 0330912, documentation HEAD 4251632, committed locally.
+The statistics repository has no origin remote; no service deployment occurred.
+
+578 platform, 199 database and 109 statistics tests passed. Cross-repository
+synthetic contract/replay/correction checks passed. Typecheck, lint, build and
+client-boundary checks passed. NBA collection/Play: 412/1440 widths. NBA pack
+components and NFL pack regressions: 360/412/1024/1440, including purchase failure,
+duplicate clicks, lost-response recovery and saved receipt replay. No serious
+accessibility findings in tested purchase dialogs. See scope in verification.json.
+
+Candidate and live HTTP checks passed for source commit, closed registration,
+anonymous NBA/admin denial, NFL standings authentication and login/Play rendering.
+The two error-level runtime messages were expected unsigned Play authentication
+denials at our candidate/live probe times, not authenticated gameplay evidence.
+No signed-in Production flow was tested: browser attachment timed out.
+Owner, Barry and Luke are allowlisted with confirmed email; Brenton is allowlisted
+but email confirmation remains incomplete. No authentication controls were changed.
+
+Pre/post deployment wallet+inventory fingerprint identical:
+83d643a7e4d012d24097507843fa998f; revision 173; 428 permanent cards;
+zero NBA permanent players; four NBA allowlist rows. No migration, grant,
+issuance, trade, schedule change or feature activation was executed.
