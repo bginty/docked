@@ -4,8 +4,11 @@ import { boundedFetch } from "@/core/bounded-request";
 import type { SandboxState } from "@/core/sport-sandbox";
 import { SportSandbox } from "./sport-sandbox";
 import { CollectibleFace } from "./collectible-face";
+import { fitsSlot } from "@/core/nfl-seven";
 export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
   const [state, setState] = useState<SandboxState | null>(null);
+  const [query, setQuery] = useState("");
+  const [position, setPosition] = useState("");
   const [error, setError] = useState(false),
     [attempt, setAttempt] = useState(0);
   useEffect(() => {
@@ -38,6 +41,13 @@ export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
   if (!state) return <p role="status">Loading NBA testing…</p>;
   if (!cards)
     return <SportSandbox initial={state} privateBeta apiPath="/api/nba-beta" />;
+  const visible = state.cards.filter(
+    (card) =>
+      (!position || fitsSlot(card, [position])) &&
+      `${card.name} ${card.team ?? ""}`
+        .toLocaleLowerCase()
+        .includes(query.trim().toLocaleLowerCase()),
+  );
   return (
     <section>
       <h1>NBA test cards</h1>
@@ -45,9 +55,55 @@ export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
         Fictional testing fixtures only. These are not permanent collectibles
         and cannot be sold, transferred or purchased.
       </p>
-      <div className="sport-review-grid">
-        {state.cards.map((c) => (
-          <div key={c.id}>
+      <div className="nba-collection-filters">
+        <label>
+          Search your NBA cards
+          <input
+            type="search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Player or city"
+          />
+        </label>
+        <label>
+          Position
+          <select
+            aria-label="Position"
+            value={position}
+            onChange={(event) => setPosition(event.target.value)}
+          >
+            <option value="">All positions</option>
+            {["PG", "SG", "SF", "PF", "C"].map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <p role="status">
+        {visible.length} of {state.cards.length} cards
+      </p>
+      {!visible.length && (
+        <p>
+          No cards match these filters.{" "}
+          <button
+            onClick={() => {
+              setQuery("");
+              setPosition("");
+            }}
+          >
+            Clear filters
+          </button>
+        </p>
+      )}
+      <div
+        className="sport-review-grid"
+        role="list"
+        aria-label="NBA test collection"
+      >
+        {visible.map((c) => (
+          <div key={c.id} role="listitem">
             <CollectibleFace card={c} appliedMultiplier={1} variant="compact" />
             <p>
               {c.name} · {c.position}

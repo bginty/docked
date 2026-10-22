@@ -14,7 +14,9 @@ import {
 
 export type EconomyPlayer = {
   id: string;
-  sport: "nfl" | "afl";
+  sport: "nfl" | "afl" | "basketball";
+  /** Only isolated NBA fixture allocations are supported until issuance approval. */
+  synthetic?: boolean;
   assetKind: "player" | "team-defence";
   provider: string;
   providerId: string;
@@ -35,7 +37,7 @@ export type NinePackProduct = {
   name: string;
   priceCredits: number;
   cards: 1 | 3 | 9;
-  sport: "nfl";
+  sport: "nfl" | "basketball";
   positions: string[];
   eligibleStatuses?: EconomyPlayer["status"][];
   weights: Record<string, number>;
@@ -72,6 +74,8 @@ export type EconomyPack = {
   draws: { rarity: Rarity; eligiblePlayers: number; poolHash: string }[];
 };
 export type CardEconomy = {
+  /** Operator-owned configuration. Missing/disabled fails closed; never client input. */
+  nbaTestAllocation?: { enabled: boolean; scope: "isolated-fixtures-v1" };
   rosterPolicy?: "official-nfl-roster-v1";
   activeProductVersions?: string[];
   id: "invited-nfl-test-v2";
@@ -165,10 +169,29 @@ export function initialCardEconomy(
   return economy;
 }
 export function validateProduct(p: NinePackProduct) {
+  if (p.sport === "basketball") {
+    const offer = paidPackOffers.find(
+      (x) => x.cards === 9 && x.type === p.type,
+    );
+    const id = `${p.type.toLowerCase()}-9-nba-isolated-v1`;
+    if (
+      !offer ||
+      p.id !== id ||
+      p.version !== id ||
+      p.cards !== 9 ||
+      p.priceCredits !== offer.priceCredits ||
+      digest(p.weights) !== digest(paidPackWeights[offer.type]) ||
+      p.duplicatePlayers !== "deny" ||
+      p.eligibleStatuses !== undefined ||
+      Object.keys(p.guaranteedSlots).length
+    )
+      throw Error("NBA test pack terms are immutable");
+  }
   const offer = paidPackOffers.find((v) => v.id === p.id || v.id === p.version);
   if (
     offer &&
-    (p.id !== offer.id ||
+    (p.sport !== "nfl" ||
+      p.id !== offer.id ||
       p.version !== offer.id ||
       p.cards !== offer.cards ||
       p.type !== offer.type ||
@@ -192,7 +215,7 @@ export function validateProduct(p: NinePackProduct) {
   if (
     ![1, 3, 9].includes(p.cards) ||
     p.status !== "TEST_ONLY" ||
-    p.sport !== "nfl" ||
+    !["nfl", "basketball"].includes(p.sport) ||
     !Number.isSafeInteger(p.priceCredits) ||
     p.priceCredits < 1 ||
     p.exhaustion !== "FAIL_ENTIRE_PACK" ||
@@ -206,7 +229,14 @@ export function validateProduct(p: NinePackProduct) {
     (p.expiresAt !== null &&
       (!Number.isFinite(p.expiresAt) || p.expiresAt <= p.effectiveAt)) ||
     !p.positions.length ||
-    p.positions.some((x) => !["QB", "RB", "WR", "TE", "K"].includes(x)) ||
+    p.positions.some(
+      (x) =>
+        !(
+          p.sport === "basketball"
+            ? ["PG", "SG", "SF", "PF", "C"]
+            : ["QB", "RB", "WR", "TE", "K"]
+        ).includes(x),
+    ) ||
     (p.eligibleStatuses !== undefined &&
       (!p.eligibleStatuses.length ||
         p.eligibleStatuses.some(
@@ -310,6 +340,7 @@ export function allocateNine(
   const p = e.products[productId];
   if (
     !e.enabled ||
+    (p?.sport === "basketball" && !nbaTestAllocationEnabled(e)) ||
     (e.activeProductVersions !== undefined &&
       !e.activeProductVersions.includes(productId)) ||
     !p ||
@@ -333,6 +364,7 @@ export function allocateNine(
       .filter(
         (player) =>
           player.sport === p.sport &&
+          (player.sport !== "basketball" || isNbaFixture(player)) &&
           player.assetKind === "player" &&
           (player.sport !== "nfl" ||
             nflCardEligibility(
@@ -423,6 +455,8 @@ export function eligibleCatalogue(
   return Object.values(e.players).filter(
     (x) =>
       x.sport === p.sport &&
+      (x.sport !== "basketball" ||
+        (nbaTestAllocationEnabled(e) && isNbaFixture(x))) &&
       x.assetKind === "player" &&
       (x.sport !== "nfl" ||
         nflCardEligibility(x, now, e.rosterPolicy === "official-nfl-roster-v1")
@@ -432,6 +466,64 @@ export function eligibleCatalogue(
       x.observedAt <= now &&
       now - x.observedAt <= p.freshnessHours * 3600000,
   );
+}
+
+export function nbaTestAllocationEnabled(e: CardEconomy) {
+  return (
+    e.nbaTestAllocation?.enabled === true &&
+    e.nbaTestAllocation.scope === "isolated-fixtures-v1"
+  );
+}
+function isNbaFixture(p: EconomyPlayer) {
+  return (
+    p.synthetic === true &&
+    p.provider === "fixture" &&
+    p.id.startsWith("nba-fixture-") &&
+    p.providerId.startsWith("nba-fixture-")
+  );
+}
+
+/** Adds disabled NBA products using the existing approved nine-card terms.
+ * No grant, mint, roster insertion, activation or NFL configuration changes. */
+export function prepareNbaTestProducts(original: CardEconomy, now: number) {
+  const e = structuredClone(original);
+  validateCardEconomy(e);
+  const products = paidPackOffers
+    .filter((offer) => offer.cards === 9)
+    .map((offer) => {
+      const id = `${offer.type.toLowerCase()}-9-nba-isolated-v1`;
+      const product: NinePackProduct = {
+        id,
+        version: id,
+        type: offer.type,
+        name: `NBA ${offer.name} · Test`,
+        priceCredits: offer.priceCredits,
+        cards: 9,
+        sport: "basketball",
+        positions: ["PG", "SG", "SF", "PF", "C"],
+        weights: { ...paidPackWeights[offer.type] },
+        guaranteedSlots: {},
+        duplicatePlayers: "deny",
+        status: "TEST_ONLY",
+        effectiveAt: now,
+        expiresAt: null,
+        freshnessHours: 72,
+        exhaustion: "FAIL_ENTIRE_PACK",
+      };
+      const saved = e.products[id];
+      if (saved && digest({ ...saved, effectiveAt: now }) !== digest(product))
+        throw Error(
+          "NBA test product terms conflict; explicit review required",
+        );
+      e.products[id] ??= product;
+      return e.products[id];
+    });
+  // Do not accidentally expose the new offers when older states omit this list.
+  e.activeProductVersions ??= Object.keys(original.products);
+  e.nbaTestAllocation ??= { enabled: false, scope: "isolated-fixtures-v1" };
+  validateCardEconomy(e);
+  Object.assign(original, e);
+  return products;
 }
 
 /** New offers only; saved pack/product snapshots and allocations are not rewritten. */

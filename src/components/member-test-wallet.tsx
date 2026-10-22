@@ -15,9 +15,11 @@ import { TestWalletOverview } from "./test-wallet-overview";
 export function MemberTestWallet({
   initial,
   surface = "wallet",
+  sport = "nfl",
 }: {
   initial: MemberTestView;
   surface?: "wallet" | "swaps" | "packs";
+  sport?: "nfl" | "basketball";
 }) {
   const [s, setS] = useState(initial),
     [busy, setBusy] = useState(false),
@@ -150,16 +152,20 @@ export function MemberTestWallet({
       {surface === "packs" && (
         <>
           <PackShop
+            key={sport}
+            sport={sport}
             state={s}
             busy={busy}
             recovery={recovery}
-            purchase={(product,coupon) =>
+            purchase={(product, coupon) =>
               send({
                 kind: "buy-pack",
                 product: product.id,
                 ...(s.economyEnabled ? { configuration: product.version } : {}),
                 expectedPrice: coupon?.charge ?? product.price,
-                ...(coupon ? {coupon:coupon.code,couponQuote:coupon.fingerprint}:{}),
+                ...(coupon
+                  ? { coupon: coupon.code, couponQuote: coupon.fingerprint }
+                  : {}),
                 confirmed: true,
                 policy: s.policy,
               })

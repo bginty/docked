@@ -45,7 +45,7 @@ export type State = {
       cents: number;
       pool: string[];
       method: "named" | "random";
-      sport: "epl" | "nfl" | "afl";
+    sport: "epl" | "nfl" | "afl" | "basketball";
     }
   >;
   cards: Record<

@@ -43,7 +43,27 @@ async function run(args) {
     throw Error("CLI failed; private diagnostic retained");
   }
 }
-const receiptPath = "docs/qa/nba-private-beta-live/deployment-submitted.json";
+const evidence =
+  process.env.NBA_RELEASE_EVIDENCE ?? "docs/qa/nba-private-beta-live";
+assert(evidence.startsWith("docs/qa/") && !evidence.includes(".."));
+await fs.mkdir(evidence, { recursive: true });
+const receiptPath = evidence + "/deployment-submitted.json";
+async function liveDeployment() {
+  const auth = JSON.parse(
+    await fs.readFile(main + "/private-data/vercel-cli/auth.json", "utf8"),
+  );
+  const response = await fetch(
+    `https://api.vercel.com/v13/deployments/docked.com.au?teamId=${target.teamId}`,
+    {
+      headers: { Authorization: `Bearer ${auth.token}` },
+      signal: AbortSignal.timeout(30000),
+    },
+  );
+  assert(response.ok, "Live deployment inspection failed");
+  const value = await response.json();
+  assert.equal(value.projectId ?? value.project?.id, target.projectId);
+  return value;
+}
 if (process.argv[2] === "prepare") {
   const explicit = new Set([
     "package.json",
@@ -95,6 +115,32 @@ if (process.argv[2] === "prepare") {
     source,
   ]);
   assert((inspect.stdout + inspect.stderr).includes(target.projectId));
+  const baseline = await liveDeployment();
+  assert.equal(
+    baseline.meta.githubCommitSha,
+    "b354c0a5c494b502d7c98c5de3afa6149cfd4391",
+    "Review a changed Production baseline before release",
+  );
+  await fs.writeFile(
+    path.join(parent, "baseline.private.json"),
+    JSON.stringify(baseline),
+    { mode: 0o600 },
+  );
+  await fs.writeFile(
+    evidence + "/rollback.json",
+    JSON.stringify(
+      {
+        deployment: baseline.id,
+        url: baseline.url,
+        commit: baseline.meta.githubCommitSha,
+        databaseMigrations: [],
+        recovery:
+          "Promote the previous deployment; no database rollback is required.",
+      },
+      null,
+      2,
+    ),
+  );
   await fs.writeFile(
     path.join(parent, "manifest.json"),
     JSON.stringify({ sha, files }),
@@ -120,22 +166,20 @@ if (process.argv[2] === "prepare") {
   // The established release uses deployment-scoped values. Reconstruct the
   // exact live recipe, retaining its private worker/history credentials.
   const base = JSON.parse(
-    await fs.readFile(
-      path.join(
-        root,
-        "private-data/nba-production/current-deployment.private.json",
-      ),
-      "utf8",
-    ),
+    await fs.readFile(path.join(parent, "baseline.private.json"), "utf8"),
   );
-  assert.equal(base.id, "dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3");
+  assert.equal(
+    (await liveDeployment()).id,
+    base.id,
+    "Production changed during preparation",
+  );
   assert.equal(
     base.meta.githubCommitSha,
-    "31f0ecc99c40aedcd4f4f64695a3de030715da0e",
+    "b354c0a5c494b502d7c98c5de3afa6149cfd4391",
   );
   const recipe = git(
     "show",
-    base.meta.githubCommitSha + ":scripts/deploy-beta-staging.mjs",
+    "31f0ecc99c40aedcd4f4f64695a3de030715da0e:scripts/deploy-beta-staging.mjs",
   );
   const context = {
     readFileSync: (f, ...a) => readFileSync(path.resolve(main, f), ...a),
@@ -173,6 +217,10 @@ if (process.argv[2] === "prepare") {
     DOCKED_BETA_TRADING: "private-beta-trading-v1",
     DOCKED_TEST_MARKET_READ_ONLY: "false",
     DOCKED_WEEKLY_CORE_ENABLED: "true",
+    DOCKED_NBA_PRIVATE_BETA: "true",
+    DOCKED_MULTI_SPORT_SANDBOX: "false",
+    DOCKED_PREVIEW_TESTER_ID: "",
+    DOCKED_PREVIEW_TESTER_EMAIL: "",
     ...JSON.parse(
       await fs.readFile(
         main + "/private-data/member-integrity-live/worker-env.json",
@@ -251,11 +299,19 @@ if (process.argv[2] === "prepare") {
   const receipt = JSON.parse(await fs.readFile(receiptPath, "utf8"));
   assert.equal(receipt.commit, sha);
   assert.equal(receipt.projectId, target.projectId);
+  const baseline = JSON.parse(
+    await fs.readFile(path.join(parent, "baseline.private.json"), "utf8"),
+  );
+  assert.equal(
+    (await liveDeployment()).id,
+    baseline.id,
+    "Production changed before promotion",
+  );
   const check = await run(["inspect", receipt.url, "--cwd", source]);
   assert(/Ready/i.test(check.stdout + check.stderr));
   await run(["promote", receipt.url, "--cwd", source, "--yes"]);
   await fs.writeFile(
-    "docs/qa/nba-private-beta-live/deployment-promoted.json",
+    evidence + "/deployment-promoted.json",
     JSON.stringify(
       {
         ...receipt,

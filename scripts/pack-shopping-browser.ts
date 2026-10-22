@@ -13,7 +13,11 @@ import {
 import { executeCredits } from "../src/core/credits-sandbox";
 import { memberTestView, testReceipt } from "../src/core/member-test-wallet";
 async function main() {
-  const out = `docs/qa/${process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
+  const nba = process.argv.includes("--nba");
+  const fixture = () => packFixture(nba ? "basketball" : "nfl");
+  const packPath =
+    "/fantasy/test-wallet?view=packs" + (nba ? "&fixtureSport=basketball" : "");
+  const out = `docs/qa/${nba ? "nba-parity/packs" : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/pack-shopping.tsx",
@@ -46,7 +50,7 @@ async function main() {
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");
-  let state = packFixture(),
+  let state = fixture(),
     calls = 0,
     loseResponse = false,
     rejectPurchase = false;
@@ -54,6 +58,10 @@ async function main() {
   const server = createServer(async (req, res) => {
     const url = new URL(req.url!, "http://localhost");
     res.setHeader("Cache-Control", "no-store");
+    if (url.pathname === "/api/nba-beta") {
+      res.setHeader("Content-Type", "application/json");
+      return res.end(JSON.stringify({ allowed: false }));
+    }
     if (url.pathname === "/api/test-wallet") {
       res.setHeader("Content-Type", "application/json");
       try {
@@ -167,7 +175,7 @@ async function main() {
   let lastPage: import("@playwright/test").Page | null = null;
   try {
     for (const width of [1440, 1024, 412, 360]) {
-      state = packFixture();
+      state = fixture();
       calls = 0;
       const context = await browser.newContext({
         viewport: { width, height: 915 },
@@ -182,9 +190,9 @@ async function main() {
       page.on("dialog", () => {
         throw Error("Native dialog is forbidden");
       });
-      await page.goto(origin + "/fantasy/test-wallet?view=packs");
+      await page.goto(origin + packPath);
       await expect(
-        page.getByRole("heading", { name: "NFL Packs" }),
+        page.getByRole("heading", { name: nba ? "NBA Packs" : "NFL Packs" }),
       ).toBeVisible();
       await expect(
         page.getByText("Install Docked", { exact: true }),
@@ -210,7 +218,7 @@ async function main() {
       await expect(
         dialog.getByRole("heading", { name: "Confirm purchase" }),
       ).toBeVisible();
-      await expect(dialog).toContainText("23,200");
+      await expect(dialog).toContainText(nba ? "20,000" : "23,200");
       assert.equal(calls, 0);
       await page.screenshot({
         path: `${out}/review-${width}.png`,
@@ -274,30 +282,32 @@ async function main() {
       await expect(page.getByText("REPLAY · NO NEW AWARDS")).toBeVisible();
       assert.equal(calls, 2);
       await page.getByRole("button", { name: "Close panel" }).click();
-      await page.goto(origin + "/fantasy/cards");
-      await expect(
-        page.getByRole("heading", { name: "My collection" }),
-      ).toBeVisible();
-      for (const name of [
-        "Estimated Portfolio Value",
-        "Eligibility & Collection Options",
-        "Scoring Rules",
-      ])
-        await expect(page.getByText(name, { exact: true })).toHaveCount(0);
-      await page.screenshot({
-        path: `${out}/cards-${width}.png`,
-        fullPage: true,
-      });
-      assert.ok(
-        await page.evaluate(
-          () => document.documentElement.scrollWidth <= innerWidth,
-        ),
-      );
+      if (!nba) {
+        await page.goto(origin + "/fantasy/cards");
+        await expect(
+          page.getByRole("heading", { name: "My collection" }),
+        ).toBeVisible();
+        for (const name of [
+          "Estimated Portfolio Value",
+          "Eligibility & Collection Options",
+          "Scoring Rules",
+        ])
+          await expect(page.getByText(name, { exact: true })).toHaveCount(0);
+        await page.screenshot({
+          path: `${out}/cards-${width}.png`,
+          fullPage: true,
+        });
+        assert.ok(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth <= innerWidth,
+          ),
+        );
+      }
       assert.deepEqual(errors, []);
       results.push({ width, passed: true, axeSerious: 0 });
       await context.close();
     }
-    state = packFixture();
+    state = fixture();
     calls = 0;
     requests.length = 0;
     const page = await browser.newPage({
@@ -305,7 +315,7 @@ async function main() {
       reducedMotion: "no-preference",
     });
     lastPage = page;
-    await page.goto(origin + "/fantasy/test-wallet?view=packs");
+    await page.goto(origin + packPath);
     rejectPurchase = true;
     await page
       .getByRole("button", { name: "Buy Premium 9 Pack", exact: true })
@@ -403,9 +413,23 @@ async function main() {
       sportPersistence: true,
       installGating: true,
     });
-    writeFileSync(`${out}/browser.json`, JSON.stringify({ results }, null, 2));
     writeFileSync(
-      "docs/qa/pack-shopping/latest-browser.json",
+      `${out}/browser.json`,
+      JSON.stringify(
+        {
+          results,
+          sport: nba ? "basketball" : "nfl",
+          isolatedComponents: true,
+          authenticatedHosted: false,
+        },
+        null,
+        2,
+      ),
+    );
+    writeFileSync(
+      nba
+        ? "docs/qa/nba-parity/packs/latest-browser.json"
+        : "docs/qa/pack-shopping/latest-browser.json",
       JSON.stringify({ out, results }, null, 2),
     );
     console.log(JSON.stringify({ out, results }));

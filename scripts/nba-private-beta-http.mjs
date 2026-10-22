@@ -5,11 +5,11 @@ import { promisify } from "node:util";
 import assert from "node:assert/strict";
 const main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au",
   root = process.cwd();
+const evidence =
+  process.env.NBA_RELEASE_EVIDENCE ?? "docs/qa/nba-private-beta-live";
+assert(evidence.startsWith("docs/qa/") && !evidence.includes(".."));
 const receipt = JSON.parse(
-  readFileSync(
-    "docs/qa/nba-private-beta-live/deployment-submitted.json",
-    "utf8",
-  ),
+  readFileSync(evidence + "/deployment-submitted.json", "utf8"),
 );
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
@@ -93,9 +93,7 @@ const report = {
   authenticatedMemberTesting: false,
 };
 writeFileSync(
-  "docs/qa/nba-private-beta-live/" +
-    (live ? "live-http" : "candidate-http") +
-    ".json",
+  evidence + "/" + (live ? "live-http" : "candidate-http") + ".json",
   JSON.stringify(report, null, 2),
 );
 console.log(JSON.stringify(report));

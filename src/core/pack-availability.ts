@@ -1,5 +1,6 @@
 import {
   eligibleCatalogue,
+  nbaTestAllocationEnabled,
   definitionId,
   type CardEconomy,
   type NinePackProduct,
@@ -16,6 +17,8 @@ export function packAvailability(
     availabilityRetryable: retryable,
   });
   if (!e.enabled) return unavailable("Pack purchases are paused.");
+  if (p.sport === "basketball" && !nbaTestAllocationEnabled(e))
+    return unavailable("NBA test packs have not been enabled.");
   if (now < p.effectiveAt) return unavailable("This pack is not on sale yet.");
   if (
     (p.expiresAt !== null && now >= p.expiresAt) ||

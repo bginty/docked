@@ -51,7 +51,8 @@ function FamilyDisclosures({ p }: { p: Product }) {
       <details>
         <summary>Pack Details</summary>
         <p>
-          1, 3 or 9 cards · {p.eligiblePlayers} eligible players
+          {p.sport === "basketball" ? "9 cards" : "1, 3 or 9 cards"} ·{" "}
+          {p.eligiblePlayers} eligible players
           {p.positions.length ? ` · ${p.positions.join(", ")}` : ""}.
         </p>
         <p>
@@ -79,6 +80,7 @@ function FamilyDisclosures({ p }: { p: Product }) {
   );
 }
 export function PackShop({
+  sport = "nfl",
   state: s,
   busy,
   recovery,
@@ -87,6 +89,7 @@ export function PackShop({
   open,
 }: {
   state: MemberTestView;
+  sport?: "nfl" | "basketball";
   busy: boolean;
   recovery: boolean;
   purchase: (product: Product, coupon?: CouponQuote) => Promise<unknown>;
@@ -184,7 +187,10 @@ export function PackShop({
       setSubmitting(false);
     }
   }
-  const historyPacks = newestPacks(s.packs);
+  const sportProducts = s.products.filter((p) => (p.sport ?? "nfl") === sport);
+  const historyPacks = newestPacks(
+    s.packs.filter((p) => (p.sport ?? "nfl") === sport),
+  );
   const unopened = historyPacks.filter((p) => p.status === "SEALED");
   const credits = (n: number) => n.toLocaleString("en-AU");
   return (
@@ -192,7 +198,11 @@ export function PackShop({
       <header className="pack-shop-heading">
         <div>
           <p className="eyebrow">CARDS / PACKS</p>
-          <h1>{s.economyEnabled ? "NFL Packs" : "Your packs"}</h1>
+          <h1>
+            {s.economyEnabled
+              ? `${sport === "basketball" ? "NBA" : "NFL"} Packs`
+              : "Your packs"}
+          </h1>
         </div>
         <p className="pack-shop-balance">
           <strong>{credits(s.wallet.spendable)}</strong>
@@ -219,68 +229,70 @@ export function PackShop({
       </nav>
       {tab === "buy" && (
         <div className="pack-families">
-          <form
-            className="pack-coupon-panel"
-            onSubmit={(e) => {
-              e.preventDefault();
-              void applyCoupon();
-            }}
-          >
-            <label>
-              Have a coupon?
-              <input
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                maxLength={32}
-                autoCapitalize="characters"
-                autoComplete="off"
-                disabled={couponBusy || !!coupon}
-              />
-            </label>
-            <div className="actions">
-              <button
-                className="pack-control primary"
-                disabled={couponBusy || !code.trim() || !!coupon}
-              >
-                {couponBusy ? "Checking…" : "Apply"}
-              </button>
-              {coupon && (
+          {sport === "nfl" && (
+            <form
+              className="pack-coupon-panel"
+              onSubmit={(e) => {
+                e.preventDefault();
+                void applyCoupon();
+              }}
+            >
+              <label>
+                Have a coupon?
+                <input
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  maxLength={32}
+                  autoCapitalize="characters"
+                  autoComplete="off"
+                  disabled={couponBusy || !!coupon}
+                />
+              </label>
+              <div className="actions">
                 <button
-                  type="button"
-                  className="pack-control secondary"
-                  onClick={() => {
-                    setCoupon(null);
-                    setCode("");
-                    setCouponError("");
-                  }}
+                  className="pack-control primary"
+                  disabled={couponBusy || !code.trim() || !!coupon}
                 >
-                  Remove
+                  {couponBusy ? "Checking…" : "Apply"}
                 </button>
+                {coupon && (
+                  <button
+                    type="button"
+                    className="pack-control secondary"
+                    onClick={() => {
+                      setCoupon(null);
+                      setCode("");
+                      setCouponError("");
+                    }}
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+              {couponError && <p role="alert">{couponError}</p>}
+              {coupon && (
+                <p role="status">
+                  <strong>{coupon.code} applied</strong> ·{" "}
+                  {coupon.terms.type === "percent"
+                    ? `${coupon.terms.value}%`
+                    : `${coupon.terms.value.toLocaleString("en-AU")} credits`}{" "}
+                  off eligible packs, up to{" "}
+                  {coupon.terms.maximumDiscount.toLocaleString("en-AU")} credits
+                  · {coupon.terms.accountLimit} use(s) per account
+                  {coupon.terms.firstPurchaseOnly
+                    ? " · First pack purchase only"
+                    : ""}
+                  . Expires{" "}
+                  {new Date(coupon.terms.expiresAt).toLocaleString("en-AU", {
+                    timeZone: "Australia/Sydney",
+                  })}{" "}
+                  Sydney. Used only when purchase succeeds.
+                </p>
               )}
-            </div>
-            {couponError && <p role="alert">{couponError}</p>}
-            {coupon && (
-              <p role="status">
-                <strong>{coupon.code} applied</strong> ·{" "}
-                {coupon.terms.type === "percent"
-                  ? `${coupon.terms.value}%`
-                  : `${coupon.terms.value.toLocaleString("en-AU")} credits`}{" "}
-                off eligible packs, up to{" "}
-                {coupon.terms.maximumDiscount.toLocaleString("en-AU")} credits ·{" "}
-                {coupon.terms.accountLimit} use(s) per account
-                {coupon.terms.firstPurchaseOnly
-                  ? " · First pack purchase only"
-                  : ""}
-                . Expires{" "}
-                {new Date(coupon.terms.expiresAt).toLocaleString("en-AU", {
-                  timeZone: "Australia/Sydney",
-                })}{" "}
-                Sydney. Used only when purchase succeeds.
-              </p>
-            )}
-          </form>
+            </form>
+          )}
           {["PREMIUM", "STANDARD", "OTHER"].map((family) => {
-            const products = s.products
+            const products = sportProducts
               .filter((p) =>
                 family === "OTHER"
                   ? !["PREMIUM", "STANDARD"].includes(p.tier)
@@ -380,10 +392,12 @@ export function PackShop({
           })}
           {s.economyEnabled && (
             <p className="small-note">
-              Core cards are exclusive to weekly starter packs.
+              {sport === "nfl"
+                ? "Core cards are exclusive to weekly starter packs."
+                : "Core cards are free and are never included in paid packs."}
             </p>
           )}
-          {s.products.some((p) => p.availabilityRetryable) && (
+          {sportProducts.some((p) => p.availabilityRetryable) && (
             <button
               className="pack-control secondary"
               disabled={busy || submitting}
@@ -410,12 +424,18 @@ export function PackShop({
       {tab !== "buy" && (
         <section id="pack-history" className="pack-library">
           <h2>{tab === "mine" ? "My Packs" : "Pack history"}</h2>
-          <WeeklyCorePanel member={s.member} history={tab === "history"} />
-          {tab === "history" && <StarterPackHistory member={s.member} />}
+          {sport === "nfl" && (
+            <WeeklyCorePanel member={s.member} history={tab === "history"} />
+          )}
+          {sport === "nfl" && tab === "history" && (
+            <StarterPackHistory member={s.member} />
+          )}
           {(tab === "mine" ? unopened : historyPacks).length === 0 && (
             <p>
               {tab === "mine"
-                ? "No unopened purchased packs. Weekly rewards are shown above."
+                ? sport === "nfl"
+                  ? "No unopened purchased packs. Weekly rewards are shown above."
+                  : "No unopened NBA test packs."
                 : "Your purchased pack history will appear here."}
             </p>
           )}

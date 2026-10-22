@@ -87,7 +87,8 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
       name: player.name,
       position: player.position,
       tier: instance.rarity,
-      season: "LIFETIME TEST",
+      season:
+        player.sport === "basketball" ? "SYNTHETIC NBA TEST" : "LIFETIME TEST",
       kind: "regular",
       max_supply: instance.lifetimeCap,
       serial: instance.serial,
@@ -100,7 +101,10 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
       sport: player.sport,
       tradeable: true,
       rarity_version: instance.rarityVersion,
-      multiplier: rarityRule(instance.rarity).multiplierTenths / 10,
+      multiplier:
+        player.sport === "basketball"
+          ? 1
+          : rarityRule(instance.rarity).multiplierTenths / 10,
       presentation: instance.presentation,
     };
   }
@@ -227,13 +231,14 @@ export function memberTestView(
             price: p.priceCredits,
             tier: p.type,
             cards: p.cards,
+            sport: p.sport,
             weights: p.weights,
             odds: packOdds(p),
             positions: p.positions,
             guaranteedSlots: p.guaranteedSlots,
             duplicatePlayers: p.duplicatePlayers,
             eligiblePlayers: eligibleCatalogue(s.economy!, p, now).length,
-            ...packAvailability(s.economy!,p,now),
+            ...packAvailability(s.economy!, p, now),
             version: p.version,
           }))
       : (s.economy ? [] : s.policy.products).map((p) => ({
@@ -242,6 +247,7 @@ export function memberTestView(
           price: p.priceCredits,
           tier: p.inventoryTier,
           cards: 1,
+          sport: "nfl" as const,
           weights: null,
           odds: null,
           positions: [],
@@ -259,9 +265,19 @@ export function memberTestView(
         id,
         status: e.status,
         type: s.economy?.packs[id]?.product.type ?? null,
+        sport: s.economy?.packs[id]?.product.sport ?? "nfl",
         purchasedAt: s.economy?.packs[id]?.createdAt ?? null,
-        paidCredits: s.economy?.packs[id]?.pricing?.charge ?? s.economy?.packs[id]?.product.priceCredits ?? null,
-        coupon: s.economy?.packs[id]?.pricing ? {code:s.economy.packs[id].pricing!.coupon.code,original:s.economy.packs[id].pricing!.original,saving:s.economy.packs[id].pricing!.saving}:null,
+        paidCredits:
+          s.economy?.packs[id]?.pricing?.charge ??
+          s.economy?.packs[id]?.product.priceCredits ??
+          null,
+        coupon: s.economy?.packs[id]?.pricing
+          ? {
+              code: s.economy.packs[id].pricing!.coupon.code,
+              original: s.economy.packs[id].pricing!.original,
+              saving: s.economy.packs[id].pricing!.saving,
+            }
+          : null,
         cardCount:
           s.economy?.packs[id]?.cards.filter(
             (card) => !s.economy?.retiredTestInstances?.[card],

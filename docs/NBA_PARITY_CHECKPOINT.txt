@@ -1,0 +1,100 @@
+NBA parity engineering checkpoint — 22 October 2026
+
+This is NOT a full-parity or live-commerce acceptance report.
+The current Production baseline is b354c0a5 (evidence checkpoint 1d623ad0).
+NBA remains the existing allowlisted fictional gameplay beta. NBL is out of scope.
+
+Implemented in this checkpoint
+- Existing card-economy allocator accepts explicit isolated NBA products using
+  the existing Standard/Premium nine-card prices (700/5,000) and approved weights.
+- Preparation is additive, idempotent and disabled. It does not add players,
+  grant credits, allocate cards, activate products or modify NFL records.
+- NBA allocation only accepts marked synthetic fixture identities. Real NBA
+  issuance has no enabled path in this change. Premium excludes Core/Rare/Elite.
+- NBA receipts and cards retain sport, rarity, serial and immutable purchase
+  terms. Competition multiplier presentation is 1.0 for NBA.
+- Shared PackShop can filter products/history by sport and uses the existing
+  purchase confirmation, idempotency, reveal, replay and wallet components.
+- NBA collection adds player/city search and verified-position filtering.
+- A roster-only review command uses the existing ingestion bridge and reviewed
+  identities, requires 30 distinct teams, reports eligibility/position coverage,
+  and grants neither issuance nor activation.
+- Statistics service now rejects duplicate identities, incomplete team coverage,
+  unknown teams/positions and malformed roster batches before scheduler import.
+  Membership does not automatically become verified contractual eligibility.
+
+Feature comparison (implemented is distinct from hosted activation)
+Feature                         NFL baseline              NBA checkpoint
+Shared account/wallet/navigation Existing                 Existing; shared
+Verified real-player catalogue  Existing                  0 loaded; source access needed
+Roster review/identity mapping  Existing                  Implemented; isolated tests
+Player statistics/history       Existing postgame         Existing adapter; feed disabled
+Six rarity card rendering       Existing                  Existing basketball artwork
+Permanent card issuance         Existing protected        Disabled; approval/roster needed
+Standard/Premium purchases      Existing                  Shared engine/UI tested locally
+Pack reveals/replay             Existing                  Shared components tested locally
+Collection                     Existing                  Live fictional collection/search
+Fixed-price market settlement   Existing                  NBA core tests; hosted disabled
+Private offers/swaps            Hosted disabled           Core reuse; hosted disabled
+Swap credit top-ups             Hosted disabled           Not claimed as hosted accepted
+Weekly fantasy                 Existing                  Existing approved isolated beta
+Lockout/history/rankings        Existing                  Existing SQL/scoring tests
+Social card sharing             Existing                 Permanent NBA attachment not accepted
+Owner readiness/ingestion       Existing                  Existing gated multi-sport controls
+Automated NBA ingestion         N/A                       Disabled
+
+Confirmed blockers and remaining engineering
+1. Verified NBA player count is ZERO. No roster subscription/API credential or
+   reviewed commercial source permit was activated. Current fixtures are not real
+   players. Do not rename them to real players without identity/source evidence.
+2. SportsDataIO existing route: /v3/nba/scores/json/teams and /Players for rosters;
+   existing /BoxScoreFinal/{game} for postgame statistics. Configure the existing
+   SPORTSDATAIO_NBA_KEY server secret and reviewed permit only after approval.
+3. BALLDONTLIE offers an alternative documented API. Its active-player endpoint
+   requires ALL-STAR ($9.99 USD/month as checked 22 October 2026). G/F taxonomies
+   still need specific approved PG/SG/SF/PF eligibility evidence. Its terms permit
+   commercial use but explicitly do not clear third-party rights. No subscription
+   was purchased or terms accepted on the owner's behalf.
+4. NBA.com restricts fantasy-product reuse. It is not an authorised ingestion
+   source for this release. No restricted endpoints were scraped.
+5. Hosted commerce is NOT ready: the permanent-player database registry currently
+   accepts NFL/AFL only. No widening migration or permanent NBA inventory was
+   applied. A reviewed isolated-fixture persistence boundary, admission checks,
+   marketplace visibility and bridge into the existing NBA lineup inventory must
+   be completed and database-tested before enabling hosted NBA pack/trade actions.
+   This is remaining ENGINEERING, not a claim that licensing blocks all testing.
+6. Current hosted NFL only permits fixed-price credit sales. Private offers/swaps
+   are intentionally disabled in member-test-wallet. Their core test success is
+   not permission or evidence of hosted availability.
+7. Fee discrepancy: current approved implementation is 5% half-up, capped at 2,000
+   credits. The request said 7.5%, which also appears in legacy receipt matching.
+   No current or historical fees were changed. Owner clarification remains open.
+8. No authenticated Production browser session was available in the inspected
+   browser inventory. Do not count local identity fixtures as hosted acceptance.
+
+Review commands (no issuance)
+Statistics service:
+  python -m nflfeed.multi --config <approved-config> --db <isolated-db>
+    roster-preview --sport nba --season <verified-provider-season>
+This uses the existing permit-gated HTTP transport and returns candidate rows.
+Existing `map` and `roster-review` workflows require reviewed canonical identities,
+contract evidence and position evidence; the preview does not supply those.
+Docked application:
+  npx tsx scripts/nba-catalogue-review.ts reviewed-input.json new-report.json
+Input contains published service rows, explicit stable bindings, existing roster
+policy and all 30 complete Docked team IDs. Output creation refuses overwrite.
+
+Sources checked (official documentation; permission is not inferred from access)
+https://sportsdata.io/help/data-rights-and-licensing-questions
+https://sportsdata.io/developers/api-documentation/nba
+https://docs.balldontlie.io/
+https://www.balldontlie.io/terms.html
+https://www.nba.com/termsofuse
+
+Release boundary
+Application-only staged Production deployment is authorised. This checkpoint
+does not change environment activation flags, databases, schedules, wallets,
+ownership, public registration, commercial feeds or permanent card issuance.
+Rollback is promotion of the captured prior deployment. No database rollback.
+Evidence and actual deployment receipts: docs/qa/nba-parity/.
+Further parity work is still required; do not describe this checkpoint as final.

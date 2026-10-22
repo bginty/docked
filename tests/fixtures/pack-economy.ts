@@ -2,13 +2,14 @@ import {
   initialCardEconomy,
   sevenPlayerPackUpgrade,
   premiumUltraPackUpgrade,
+  prepareNbaTestProducts,
 } from "../../src/core/card-economy";
 import { initialMemberTestCredits } from "../../src/core/member-test-wallet";
 import { executeCredits } from "../../src/core/credits-sandbox";
 export const packMember = { id: "pack-local-qa", role: "member" } as const;
 export const packNow = 1792100000000;
 /** In-memory only. Never connects to a database or changes member assets. */
-export function packFixture() {
+export function packFixture(sport: "nfl" | "basketball" = "nfl") {
   let state = initialMemberTestCredits();
   state.economy = initialCardEconomy(
     Array.from({ length: 24 }, (_, i) => ({
@@ -29,6 +30,31 @@ export function packFixture() {
   );
   sevenPlayerPackUpgrade(state.economy, packNow);
   premiumUltraPackUpgrade(state.economy, packNow);
+  if (sport === "basketball") {
+    state.economy.players = Object.fromEntries(
+      Object.values(state.economy.players).map((p, i) => {
+        const id = `nba-fixture-${i}`;
+        return [
+          id,
+          {
+            ...p,
+            id,
+            provider: "fixture",
+            providerId: id,
+            synthetic: true,
+            sport: "basketball" as const,
+            name: `Synthetic NBA Player ${i + 1}`,
+            position: ["PG", "SG", "SF", "PF", "C"][i % 5],
+            currentTeam: "Synthetic City",
+            presentation: "docked-basketball-v1",
+          },
+        ];
+      }),
+    );
+    const products = prepareNbaTestProducts(state.economy, packNow);
+    state.economy.nbaTestAllocation!.enabled = true;
+    state.economy.activeProductVersions = products.map((p) => p.id);
+  }
   state = executeCredits(
     state,
     { id: "local-operator", role: "reviewer", aal: "aal2" },

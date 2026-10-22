@@ -32,7 +32,16 @@ function Fixture() {
             <div id="profile-install-slot" />
           )}
           {state ? (
-            <MemberTestWallet initial={state} surface="packs" />
+            <MemberTestWallet
+              initial={state}
+              surface="packs"
+              sport={
+                new URLSearchParams(location.search).get("fixtureSport") ===
+                "basketball"
+                  ? "basketball"
+                  : "nfl"
+              }
+            />
           ) : (
             <p>Loading isolated packs…</p>
           )}

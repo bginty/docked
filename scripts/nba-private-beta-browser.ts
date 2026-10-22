@@ -24,7 +24,11 @@ async function main() {
   const js = await bundleCommunityFixture(
     "tests/fixtures/nba-private-beta-ui.tsx",
   );
-  const css = [...readFileSync('src/app/layout.tsx','utf8').matchAll(/import "\.\/(.+\.css)"/g)]
+  const css = [
+    ...readFileSync("src/app/layout.tsx", "utf8").matchAll(
+      /import "\.\/(.+\.css)"/g,
+    ),
+  ]
     .map((m) => readFileSync(`src/app/${m[1]}`, "utf8"))
     .join("\n");
   let allowed = true;
@@ -109,7 +113,7 @@ async function main() {
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   const origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`,
     browser = await chromium.launch();
-  const out = "docs/qa/nba-private-beta-live";
+  const out = process.env.NBA_ACCEPTANCE_OUT ?? "docs/qa/nba-private-beta-live";
   mkdirSync(out, { recursive: true });
   const checks = [];
   try {
@@ -139,7 +143,8 @@ async function main() {
         await selector.selectOption("nfl");
         await expect(selector).toHaveValue("basketball");
         await expect(
-          page.locator('.shell-sport-mobile')
+          page
+            .locator(".shell-sport-mobile")
             .getByText(
               "Save or discard your lineup changes before changing sport.",
             )
@@ -191,6 +196,19 @@ async function main() {
       await expect(
         page.getByRole("heading", { name: "NBA test cards" }),
       ).toBeVisible();
+      const collection = page.getByRole("list", {
+        name: "NBA test collection",
+      });
+      const total = await collection.getByRole("listitem").count();
+      assert(total > 8);
+      await page.getByLabel("Search your NBA cards").fill("not-a-player-xyz");
+      await expect(collection.getByRole("listitem")).toHaveCount(0);
+      await page.getByRole("button", { name: "Clear filters" }).click();
+      await expect(collection.getByRole("listitem")).toHaveCount(total);
+      await page.getByLabel("Position", { exact: true }).selectOption("PG");
+      const filtered = await collection.getByRole("listitem").count();
+      assert(filtered > 0 && filtered < total);
+      await page.getByLabel("Position", { exact: true }).selectOption("");
       assert.equal(
         await page.evaluate(
           () => document.documentElement.scrollWidth > innerWidth,
