@@ -5,6 +5,7 @@ import type { LineupConfiguration } from "./sport-configuration";
 import type { CollectibleIdentity } from "../components/collectible-face";
 import { assertFantasyEnvironment } from "./fantasy";
 import { assertPrivatePreview } from "./private-preview.mjs";
+import type { SandboxScores } from "./sandbox-score-view";
 export function assertSportSandbox(
   env: Record<string, string | undefined> = process.env,
 ) {
@@ -18,6 +19,9 @@ export function assertSportSandbox(
 export type SandboxCard = SevenCard &
   CollectibleIdentity & { sport: string; owner_id: string; player_id: string };
 export type SandboxState = {
+  scores?: SandboxScores;
+  /** Server-derived averages of up to five completed, prior-period games. */
+  recommendationRanks?: Record<string, Record<string, number>>;
   user_id: string;
   sport: string;
   server_time: string;
@@ -43,7 +47,11 @@ export type SandboxState = {
     user_id: string;
     revision: number;
     updated_at: string;
-    snapshot: (SandboxCard & { slot: string; card_id: string })[];
+    snapshot: (SandboxCard & {
+      slot: string;
+      card_id: string;
+      fixture_ids?: string[];
+    })[];
   }[];
   continuity: {
     established: Record<string, boolean>;
@@ -72,6 +80,10 @@ export function sandboxRecommendation(state: SandboxState, id: string) {
     throw Error("Round unavailable or locked");
   if (state.continuity.established[`${c.sport}:${c.rules.mode}`])
     throw Error("Team established; replace players manually");
+  if (
+    state.drafts.some((d) => d.competition_id === id && d.selections.length > 0)
+  )
+    throw Error("Draft already saved; replace players manually");
   const cfg = state.configurations[c.rules.lineup_version];
   if (!cfg) throw Error("Lineup configuration unavailable");
   const cards = state.cards.filter(
@@ -82,9 +94,15 @@ export function sandboxRecommendation(state: SandboxState, id: string) {
       !card.listed &&
       cfg.slots.some((s) => fitsSlot(card, s.positions)),
   );
-  // No licensed historic feed has been configured: unknown performance is not zero.
+  // Only server-projected prior games can rank a card. Unknown performance is not zero.
   return autoSelect(
-    cards.map((c) => ({ ...c, value: null })),
+    cards.map((card) => ({
+      ...card,
+      value:
+        state.recommendationRanks?.[id]?.[
+          card.canonical_player_id ?? card.player_id
+        ] ?? null,
+    })),
     c.rules.mode,
     [],
     cfg,

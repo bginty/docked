@@ -1,0 +1,90 @@
+DOCKED NBA — OWNER APPROVAL SHEET
+22 October 2026. All new gameplay choices below are PROPOSED.
+No production change, NBA release, paid subscription, card issuance or schedule is authorised by this document.
+
+A. TEAM FORMAT — PROPOSED
+Eight unique players: PG, SG, SF, PF, C, Guard (PG/SG), Forward (SF/PF), Utility (any of those five positions).
+Only reviewed roster positions count. Different serials or rarities cannot duplicate a player. Ownership and period eligibility remain mandatory.
+Salary Cap and Open have separate teams. Existing first-team Auto Select, manual substitutions, saved drafts, rollover and historical snapshots are reused. Rollover copies selections into the next draft; it does not silently submit an entry.
+Auto Select uses the existing exact optimiser: fill the valid formation, favour known rankings, maximise their sum, then prefer lower salary and stable IDs. In the isolated NBA laboratory, rankings use up to five prior scored games, excluding DNP and the current week. No history means explicitly unranked, not an invented projection. A saved draft or established team cannot be overwritten by Auto Select.
+The existing fixed-name rule is retained. The simulation engine also rejects renaming an established NBA proposal entry.
+
+B. SCORING — PROPOSED
+One authoritative scorer, integer hundredths of a fantasy point:
+Point scored        +1.00   SportsDataIO Points -> points
+Rebound             +1.20   Rebounds -> rebounds
+Assist              +1.50   Assists -> assists
+Steal               +3.00   Steals -> steals
+Block               +3.00   BlockedShots -> blocks
+Turnover            -1.00   Turnovers -> turnovers
+Double-double       +1.50   Derived from the five positive categories above
+Triple-double       +3.00   Additional to the double-double bonus
+
+Ten or more in at least two qualifying categories earns the first bonus; at least three earns both. Bonuses are assessed per game, never from combined weekly statistics. No extra reward for a fourth qualifying category is introduced. Made threes are already included in Points; the existing transport retains ThreePointersMade with zero additional weight. Overtime counts.
+Example: 28 points, 9 rebounds, 7 assists, 2 steals, 1 block, 3 turnovers = 55.30.
+Example: 10 points, 10 rebounds, 10 assists = 10 + 12 + 15 + 1.5 + 3 = 41.50.
+Negative scores are allowed. Confirmed zero performance displays 0.00. Missing data remains unresolved.
+Version: docked-nba-weekly-proposal-v1. Earlier docked-nba-events-v1 and all saved NFL/EPL/AFL/NRL rules are unchanged. New weights are not a correction to old results.
+NBA's category definitions: https://jr.nba.com/double-double-and-triple-double/
+The scoring weights and stacking policy are Docked's owner proposal, not NBA or provider endorsement.
+
+C. SALARY CAP — PROPOSED
+Cap $5,200,000. Core $500,000; Rare $600,000; Elite $650,000; Ultra Rare $700,000; Legendary $800,000; Icon $800,000. Open has no cap.
+These values are copied into an isolated NBA configuration, not the global economy.
+Reproducible simulation: npx tsx scripts/simulate-nba-weekly.ts
+All-Core: $4m. All-Rare: $4.8m. All-Elite: exactly $5.2m. All-Ultra Rare: $5.6m, invalid under the cap. All-Legendary/Icon: $6.4m, invalid. Four Core plus four Icon: exactly $5.2m.
+In 50 clearly synthetic 25-card collections, the cap changed the optimum in 28. Mean capped score 1,408.18 versus 1,454.00 Open. These are arithmetic stress scenarios, not forecasts of real player performance or member collections.
+Critical trade-off: two cards of the same player score identically. The Core copy costs less salary, so it is at least as useful for fantasy selection. Rarity value comes from scarcity, collectibility, ownership and trading, not extra NBA points.
+Recommendation: retain the proposal for an isolated owner playtest, but explicitly accept this trade-off before launch. Do not promise a fantasy advantage for buying rarity. A performance-based salary model would be a separate business-rule change; none was implemented.
+
+D. WEEKLY COMPETITIONS — PROPOSED
+Monday 00:00 to the following Monday 00:00 EXCLUSIVE in America/New_York (equivalent to all of Sunday, including its last fractional second). This avoids a one-minute gap from interpreting 23:59 literally.
+Calendar arithmetic handles 167-hour spring and 169-hour autumn weeks. Explicit UTC/offset timestamps are required; ambiguous local timestamps are rejected.
+Assign by scheduled start, not finish. A Sunday game finishing Monday stays in its starting week. Each stable fixture belongs to one frozen week; repeated imports do not add another game.
+All eight slots lock at the first eligible game's scheduled start; edits at or after that instant are rejected. Times display in the viewer's local timezone. No rolling player locks.
+Every completed eligible game contributes. Example 44.5 + 38.0 + 51.2 = 133.7. No best-game selection or per-game normalisation.
+Four equal performances earn four times one performance. This creates a strong schedule-volume strategy; owner acceptance is required. No unapproved balancing adjustment was added.
+Provisional rankings use known postgame points, with shared ranks for ties. Stable member-ID ordering only stabilises display and is NOT a prize tie-break rule. Approve any prize tie-break separately before awards are enabled.
+
+E. DNP, EXCEPTIONS AND CORRECTIONS
+Confirmed non-participation is zero for that game; it counts toward week completion, but not “played”. Injury, inactivity labels, missing rows, zero minutes or Games=0 alone do not establish DNP in the SportsDataIO adapter.
+The existing canonical feed can carry confirmed DNP evidence. SportsDataIO's current adapter deliberately leaves unconfirmed participation unresolved. A documented provider participation/roster evidence route must be accepted and verified with real samples before activation.
+Played and week-complete are different counters: a player can have played one game while awaiting three more. Scores remain provisional until required games and the correction window are resolved.
+Postponed, cancelled, suspended, abandoned or rescheduled games require explicit reconciliation. They do not become fabricated DNP/zero games. No injury compensation or replacement points.
+A trade never creates a new player ID. Games across both teams can aggregate once within the frozen window. If a trade or reschedule changes already-frozen player/fixture membership, the current system blocks silent remapping and requires reviewed reconciliation. The exact post-lock exceptional membership policy remains an activation decision; the laboratory does not silently rewrite snapshots.
+Corrections replace the same game revision and recalculate scores/ranks, retaining audit history. Replays are idempotent. Existing 72-hour reviewer finalisation and protected historical-correction controls remain in force. No prize or wallet effects are added.
+
+F. CARD ECONOMY
+Six existing rarities only. Core remains free/unlimited; paid packs still exclude Core. No supply, serial, wallet, marketplace fee or ownership changes.
+NBA artwork uses original basketball silhouettes and existing city/team colours, without jersey numbers, league/club logos or sponsor marks. NBA's default displayed multiplier is 1.0; the proposed scorer never uses rarity multipliers.
+NBA catalogue, verified multiposition roster, two-way/development-contract eligibility, starter-card distribution, limited-supply allocations and first issuance still require reviewed packages and explicit approval. No cards were issued by this work.
+
+G. DATA PROVIDER
+Existing SportsDataIO adapter, postgame only. Publicly documented endpoints:
+ /v3/nba/scores/json/CurrentSeason
+ /v3/nba/scores/json/teams
+ /v3/nba/scores/json/Games/{season}
+ /v3/nba/scores/json/Players
+ /v3/nba/stats/json/BoxScoreFinal/{gameid}
+https://sportsdata.io/developers/api-documentation/nba
+The workflow guide describes final player statistics typically arriving 5–10 minutes after a game and warns that final box scores can change. Docked does not infer a live licence or claim live scoring.
+https://sportsdata.io/developers/workflow-guide/nba
+Historical access and the seasons/endpoints included must be confirmed for Docked's subscription; public documentation is not entitlement.
+https://sportsdata.io/help/historical-data-integration-guide
+Commercial pricing is individually quoted; no reliable public monthly/annual AUD price for Docked was found. Discovery Lab is personal/non-commercial and is not a substitute for a Docked commercial agreement.
+Obtain written coverage for commercial fantasy scoring, player-name/statistics display, web/iOS/Android distribution, identity mapping, raw historical storage, derived-score retention (including after termination), attribution and any redistribution restrictions. The provider's general FAQ does not establish that Docked holds these rights.
+https://sportsdata.io/help/data-rights-and-licensing-questions
+Credentials remain server-side: SPORTSDATAIO_NBA_KEY in the ingestion service's secret store. No key belongs in NEXT_PUBLIC variables, browser/mobile bundles or committed configuration. No subscription purchased; no authenticated NBA provider call or real historical sample was verified.
+
+H. EXACT APPROVALS / ACTIVATION REQUIREMENTS
+1. Approve or revise A–D: formation, weights/stacking, cap/salaries, no rarity bonus, New York week, first-game lock, total-games aggregation, rollover draft semantics and recommendation method.
+2. Approve exceptional post-lock fixture/transfer reconciliation and a prize tie policy if prizes will be offered. Until then, block ambiguous outcomes rather than invent results.
+3. Approve provider terms and budget; supply scoped credentials securely and confirm permitted historical seasons plus participation evidence.
+4. Review verified contracted roster, stable mappings, multiposition eligibility, two-way/development eligibility and issuance preview. Approve limited issuance separately.
+5. Approve an isolated hosted Preview release and the narrowly scoped read migration after review. Verify real provider samples, retries, corrections, MFA/RLS and two-member journeys there.
+6. Approve persistent service hosting, secret/backup/monitoring configuration and a witnessed hosted schedule/recovery run. Existing NBA provider, publishing and worker gates remain disabled.
+7. Record production approval against a NEW approved rules/release version and the existing independent readiness gates. The version with “proposal” in its ID deliberately refuses authorised real-data period creation.
+8. Only then approve public NBA competitions, schedules and issuance separately. NFL and other sports do not inherit any approval.
+
+GO: isolated proposal review and local synthetic acceptance.
+NO-GO: commercial NBA launch, real-data accuracy sign-off, permanent issuance and hosted automation claims.

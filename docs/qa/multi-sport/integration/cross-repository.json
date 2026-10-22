@@ -1,6 +1,6 @@
 {
-  "at": "2026-10-22T03:55:14.695Z",
-  "serviceCommit": "c59a51e9e1c7c2ce1a64230d1deb39edf526a6ee",
+  "at": "2026-10-22T05:48:28.488Z",
+  "serviceCommit": "7cc672db73d1d7bc8b2f35bd951dfd9f3abb8f3a",
   "isolated": true,
   "checks": [
     {
@@ -11,6 +11,12 @@
       "conflictRollback": true,
       "scoring": "pending",
       "baseCentipoints": null
+    },
+    {
+      "sport": "nba-weekly-proposal",
+      "synthetic": true,
+      "baseCentipoints": 100,
+      "sharedProviderContract": true
     },
     {
       "sport": "nba",

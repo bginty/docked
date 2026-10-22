@@ -7,6 +7,7 @@ import { fitsSlot, sevenIssues, type SlotSelection } from "@/core/nfl-seven";
 import {
   sportConfigurations,
   sportActivationBlockers,
+  nbaWeeklyConfiguration,
 } from "@/core/sport-configuration";
 import type { SandboxState, SandboxCard } from "@/core/sport-sandbox";
 import { sandboxSelections } from "@/core/sport-lineup-view";
@@ -47,12 +48,14 @@ export function SportSandbox({
     );
     return () => clearInterval(timer);
   }, [state.server_time]);
-  const sport = sportConfigurations[state.sport];
+  let sport = sportConfigurations[state.sport];
   const rounds = state.competitions
     .filter((c) => c.rules.mode === mode)
     .sort((a, b) => a.round - b.round);
   const comp = rounds.find((c) => c.id === round) ?? rounds[0];
   const cfg = state.configurations[comp?.rules.lineup_version];
+  const nbaProposal = cfg?.version === nbaWeeklyConfiguration.formatVersion;
+  if (nbaProposal) sport = nbaWeeklyConfiguration;
   const entry = state.entries.find(
     (e) => e.competition_id === comp?.id && e.user_id === state.user_id,
   );
@@ -68,6 +71,73 @@ export function SportSandbox({
     (e) => e.competition_id === comp?.id && e.user_id === viewUser,
   );
   const readOnly = locked || !!viewing;
+  const score = state.scores?.[comp?.id];
+  const teamScore = score?.rows.find(
+    (r) => r.user_id === (viewing?.user_id ?? state.user_id),
+  );
+  const [scoreError, setScoreError] = useState("");
+  useEffect(() => {
+    if (!nbaProposal || !locked) return;
+    let disposed = false,
+      pending = false;
+    const poll = async () => {
+      if (pending || inFlight.current || document.visibilityState !== "visible")
+        return;
+      pending = true;
+      try {
+        const r = await boundedFetch(
+          `/api/admin/sports-sandbox?sport=${state.sport}`,
+          { cache: "no-store" },
+        );
+        if (!r.ok)
+          throw Error(
+            "Scores could not refresh. Last received scores are shown.",
+          );
+        const body = await r.json();
+        if (!disposed) {
+          const received = body.state as SandboxState;
+          setState((previous) => ({
+            ...previous,
+            scores: received.scores,
+            // Refresh authorised snapshots as the round locks, retaining stable
+            // references so polling never resets the selected community team.
+            entries: [
+              ...previous.entries.filter((e) => e.competition_id !== comp?.id),
+              ...received.entries
+                .filter((e) => e.competition_id === comp?.id)
+                .map((e) => {
+                  const old = previous.entries.find(
+                    (p) =>
+                      p.competition_id === e.competition_id &&
+                      p.user_id === e.user_id,
+                  );
+                  return old && JSON.stringify(old) === JSON.stringify(e)
+                    ? old
+                    : e;
+                }),
+            ],
+          }));
+          setScoreError("");
+        }
+      } catch {
+        if (!disposed)
+          setScoreError(
+            "Scores could not refresh. Last received scores are shown.",
+          );
+      } finally {
+        pending = false;
+      }
+    };
+    void poll();
+    const timer = setInterval(() => void poll(), 30_000);
+    const visible = () => void poll();
+    document.addEventListener("visibilitychange", visible);
+    return () => {
+      disposed = true;
+      clearInterval(timer);
+      document.removeEventListener("visibilitychange", visible);
+    };
+  }, [nbaProposal, locked, comp?.id, state.sport]);
   const selected = slot && cfg?.slots.find((s) => s.id === slot);
   useEffect(() => {
     setPicks(sandboxSelections(entry, saved, locked));
@@ -181,6 +251,9 @@ export function SportSandbox({
       state.cards.find(
         (c) => c.id === picks.find((p) => p.slot === s.id)?.card,
       );
+    const playerScore = teamScore?.players.find(
+      (p) => p.slot === s.id && p.card_id === (snap?.card_id ?? card?.id),
+    );
     return (
       <>
         <button
@@ -202,11 +275,44 @@ export function SportSandbox({
           )}
         </button>
         <p>{card?.name ?? "Empty position"}</p>
+        {nbaProposal && card && (
+          <p className="nba-player-score">
+            <strong>
+              {playerScore?.points == null
+                ? "—"
+                : (playerScore.points / 100).toFixed(2)}{" "}
+              PTS
+            </strong>
+            <span>
+              {playerScore?.status ??
+                (locked ? "Awaiting postgame data" : "Not started")}
+            </span>
+          </p>
+        )}
+        {playerScore?.games.length ? (
+          <details className="nba-game-breakdown">
+            <summary>Games this week</summary>
+            <ul>
+              {playerScore.games.map((game, i) => (
+                <li key={`${game.scheduledAt}:${i}`}>
+                  <time dateTime={game.scheduledAt}>
+                    {new Date(game.scheduledAt).toLocaleString()}
+                  </time>
+                  <br />
+                  {game.points == null
+                    ? "—"
+                    : (game.points / 100).toFixed(2)}{" "}
+                  PTS · {game.status}
+                </li>
+              ))}
+            </ul>
+          </details>
+        ) : null}
       </>
     );
   }
   return (
-    <section className="sport-sandbox">
+    <section className={`sport-sandbox${nbaProposal ? " nba-sandbox" : ""}`}>
       <h1>{sport?.label ?? state.sport} · Team laboratory</h1>
       <nav aria-label="Sandbox sport">
         {Object.values(sportConfigurations)
@@ -230,9 +336,9 @@ export function SportSandbox({
           ))}
       </nav>
       <p className="sport-sandbox-notice">
-        Isolated sandbox · Fictional QA cards · No member assets, credits or
-        prizes. Salary units are test fixtures; scoring and live issuance are
-        disabled.
+        {nbaProposal
+          ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
+          : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
       </p>
       <div className="sport-sandbox-controls">
         <label>
@@ -248,8 +354,12 @@ export function SportSandbox({
               setRound("");
             }}
           >
-            <option value="SALARY_CAP">Traditional · QA salary units</option>
-            <option value="OPEN">All-Star</option>
+            <option value="SALARY_CAP">
+              {nbaProposal
+                ? "Salary Cap · Proposed $5.2m"
+                : "Traditional · QA salary units"}
+            </option>
+            <option value="OPEN">{nbaProposal ? "Open" : "All-Star"}</option>
           </select>
         </label>
         <label>
@@ -267,9 +377,6 @@ export function SportSandbox({
             ))}
           </select>
         </label>
-        <button type="button" onClick={() => setList(!list)}>
-          {list ? "Field view" : "List view"}
-        </button>
         <button disabled={busy} onClick={() => void refresh()}>
           Refresh
         </button>
@@ -299,19 +406,13 @@ export function SportSandbox({
           <p>
             {picks.length}/{cfg.slots.length} selected
             {mode === "SALARY_CAP"
-              ? ` · ${validate?.total ?? 0}/${cfg.salaryCap} QA salary units`
+              ? nbaProposal
+                ? ` · $${(validate?.total ?? 0).toLocaleString("en-AU")} / $${cfg.salaryCap.toLocaleString("en-AU")}`
+                : ` · ${validate?.total ?? 0}/${cfg.salaryCap} QA salary units`
               : ""}
           </p>
-          {!readOnly && (
+          {!readOnly && (!entry || dirty || savedChanges) && (
             <div className="sport-sandbox-controls">
-              {!established && (
-                <button
-                  disabled={busy}
-                  onClick={() => void command("auto_select")}
-                >
-                  Auto Select
-                </button>
-              )}
               <button
                 disabled={busy || !dirty}
                 onClick={() => void command("seven_draft")}
@@ -339,6 +440,67 @@ export function SportSandbox({
             ))}
           {notice && <p role="status">{notice}</p>}
           {error && <p role="alert">{error}</p>}
+          {nbaProposal && (
+            <section className="nba-week-summary" aria-label="NBA weekly score">
+              <h2>
+                {viewing
+                  ? (teamScore?.name ?? "Community team")
+                  : `Week ${comp.round}`}{" "}
+                · {locked ? (score?.final ? "Final" : "Game Day") : "Upcoming"}
+              </h2>
+              <strong className="nba-total">
+                {teamScore?.points == null
+                  ? "—"
+                  : (teamScore.points / 100).toFixed(2)}{" "}
+                PTS
+              </strong>
+              <p>
+                {teamScore?.played ?? 0}/8 played · {teamScore?.completed ?? 0}
+                /8 week complete · Rank{" "}
+                {teamScore?.rank == null ? "—" : `#${teamScore.rank}`}
+              </p>
+              <p>
+                {!locked
+                  ? "Games have not started"
+                  : score?.final
+                    ? "Final results"
+                    : "Postgame scoring · Provisional"}
+                {score?.updatedAt
+                  ? ` · Statistics updated ${new Date(score.updatedAt).toLocaleString()}`
+                  : ""}
+              </p>
+              <p>
+                All selections lock:{" "}
+                <time dateTime={comp.locks_at}>
+                  {new Date(comp.locks_at).toLocaleString()}
+                </time>
+              </p>
+              <a className="button ghost" href="#nba-rankings">
+                View Rankings
+              </a>
+              {scoreError && <p role="status">{scoreError}</p>}
+            </section>
+          )}
+          <div className="nba-field-actions">
+            {!readOnly &&
+              !established &&
+              !saved?.selections.length &&
+              !dirty && (
+                <button
+                  disabled={busy}
+                  onClick={() => void command("auto_select")}
+                >
+                  Auto Select
+                </button>
+              )}
+            <button
+              className="nba-view-toggle"
+              type="button"
+              onClick={() => setList(!list)}
+            >
+              {list ? "Field view" : "List view"}
+            </button>
+          </div>
           <SevenField
             sport={state.sport}
             label={`${sport?.label} ${viewing ? "community" : "own"} lineup`}
@@ -369,6 +531,63 @@ export function SportSandbox({
               <button onClick={() => setViewUser("")}>Back to my team</button>
             )}
           </section>
+          {nbaProposal && (
+            <section
+              id="nba-rankings"
+              className="nba-rankings"
+              aria-label="Weekly rankings"
+            >
+              <h2>Weekly Rankings</h2>
+              {!score?.rows.length ? (
+                <p>
+                  {locked
+                    ? "Waiting for the first postgame results."
+                    : "Rankings open after the weekly lockout."}
+                </p>
+              ) : (
+                <ul>
+                  {score.rows.map((r) => (
+                    <li
+                      key={r.user_id}
+                      data-current={r.user_id === state.user_id}
+                    >
+                      <button
+                        onClick={() => {
+                          setViewUser(
+                            r.user_id === state.user_id ? "" : r.user_id,
+                          );
+                          setList(true);
+                        }}
+                        aria-label={`View ${r.name} team`}
+                      >
+                        <span>
+                          {r.rank == null ? "—" : `#${r.rank}`} · {r.name}
+                          {r.user_id === state.user_id ? " · You" : ""}
+                        </span>
+                        <strong>
+                          {r.points == null ? "—" : (r.points / 100).toFixed(2)}{" "}
+                          PTS
+                        </strong>
+                        <span>
+                          {r.played}/8 played · {r.completed}/8 week complete
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {viewing && (
+                <button
+                  onClick={() => {
+                    setViewUser("");
+                    document.getElementById("nba-rankings")?.scrollIntoView();
+                  }}
+                >
+                  Back to Rankings
+                </button>
+              )}
+            </section>
+          )}
         </>
       )}
       {slot && selected && (
@@ -424,9 +643,10 @@ export function SportSandbox({
           historyEntry
         >
           <p>
-            {proposal.picks.length} positions filled. No verified performance
-            feed is connected; unranked cards use deterministic eligibility and
-            salary ordering.
+            {proposal.picks.length} positions filled.{" "}
+            {proposal.unranked.length
+              ? "Some cards have no prior performance evidence; unranked cards use deterministic eligibility and salary ordering."
+              : "Ranked by the latest five scored games before this week, within the salary and position rules."}
           </p>
           {proposal.missing.length > 0 && (
             <p>Missing: {proposal.missing.join(", ")}</p>

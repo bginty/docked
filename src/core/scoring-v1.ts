@@ -3,6 +3,9 @@ import {
   nrlStatisticsForVersion,
   nrlEventVersion,
   nbaStats,
+  nbaWeeklyVersion,
+  nbaWeeklyWeights,
+  nbaWeeklyBonuses,
 } from "./additional-sport-statistics";
 import { nflOffensiveStats, scoreNflOffense } from "./fantasy-nfl";
 import { rarityConfiguration, rarityRule, type Rarity } from "./card-rarity";
@@ -80,6 +83,8 @@ export type Rules = {
   weights: Record<string, number>;
   /** Complete units per fixture (e.g. 10 run metres), never rounded across games. */
   statisticGroups?: Record<string, number>;
+  /** Derived per-game events; supported only by their explicit version. */
+  bonuses?: { doubleDouble: number; tripleDouble: number };
   goal?: Record<string, number>;
   clean?: Record<string, number>;
   correctionHours: number;
@@ -201,8 +206,12 @@ export const rulesets: Record<Sport, Rules> = {
   },
 };
 export function scorePlayer(rules: Rules, position: string, raw: unknown) {
+  if (rules.version === nbaWeeklyVersion && rules.sport !== "basketball")
+    throw Error("NBA scoring version belongs to basketball only");
   if (!rules.positions.includes(position))
     throw Error("Invalid sport position");
+  if (rules.bonuses && rules.version !== nbaWeeklyVersion)
+    throw Error("Unsupported bonus scoring version");
   let parts: Part[] = [];
   const add = (statistic: string, quantity: number, rate: number) =>
     parts.push({ statistic, quantity, centipoints: quantity * rate });
@@ -301,13 +310,44 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
         rules.weights[key],
       );
     }
+    if (rules.version === nbaWeeklyVersion) {
+      if (
+        rules.sport !== "basketball" ||
+        rules.rarityVersion ||
+        JSON.stringify(Object.entries(rules.weights).sort()) !==
+          JSON.stringify(Object.entries(nbaWeeklyWeights).sort()) ||
+        JSON.stringify(Object.entries(rules.bonuses ?? {}).sort()) !==
+          JSON.stringify(Object.entries(nbaWeeklyBonuses).sort())
+      )
+        throw Error("Frozen NBA weekly proposal changed");
+      const s = nbaStats.parse(stats);
+      const qualifying = [
+        s.points,
+        s.rebounds,
+        s.assists,
+        s.steals,
+        s.blocks,
+      ].filter((n) => n >= 10).length;
+      add(
+        "Double-double",
+        qualifying >= 2 ? 1 : 0,
+        nbaWeeklyBonuses.doubleDouble,
+      );
+      add(
+        "Triple-double (additional)",
+        qualifying >= 3 ? 1 : 0,
+        nbaWeeklyBonuses.tripleDouble,
+      );
+    }
   } else {
     for (const [key, value] of Object.entries(aflStats.parse(raw)))
       add(key, value, rules.weights[key]);
   }
   if (parts.some((p) => !Number.isSafeInteger(p.centipoints)))
     throw Error("Invalid scoring coefficients");
-  return { centipoints: parts.reduce((n, p) => n + p.centipoints, 0), parts };
+  const centipoints = parts.reduce((n, p) => n + p.centipoints, 0);
+  if (!Number.isSafeInteger(centipoints)) throw Error("Unsafe scoring total");
+  return { centipoints, parts };
 }
 export const points = (cp: number) =>
   (cp / 100).toFixed(2).replace(/\.00$/, "");
@@ -329,6 +369,8 @@ export type LockedCard = {
   cardId: string;
   playerId: string;
   position: string;
+  /** Trusted, reviewed roster eligibility frozen at lock; never inferred from a name. */
+  eligiblePositions?: string[];
   rarity?: Rarity;
   multiplierTenths?: number;
   rarityVersion?: string;
@@ -382,6 +424,18 @@ export function lockRarity(rules: Rules, card: LockedCard) {
   };
 }
 export function validateLineup(rules: Rules, cards: LockedCard[]) {
+  if (
+    rules.version === nbaWeeklyVersion &&
+    cards.some(
+      (c) =>
+        c.eligiblePositions &&
+        (!c.eligiblePositions.length ||
+          !c.eligiblePositions.includes(c.position) ||
+          c.eligiblePositions.some((p) => !rules.positions.includes(p)) ||
+          new Set(c.eligiblePositions).size !== c.eligiblePositions.length),
+    )
+  )
+    throw Error("Invalid verified NBA eligibility");
   if (rules.rarityVersion)
     for (const card of cards) {
       const expected = lockRarity(rules, card);
@@ -402,7 +456,11 @@ export function validateLineup(rules: Rules, cards: LockedCard[]) {
     for (let slot = 0; slot < rules.slots.length; slot++) {
       if (
         visited.has(slot) ||
-        !rules.slots[slot].positions.includes(cards[card].position)
+        !(
+          rules.version === nbaWeeklyVersion
+            ? (cards[card].eligiblePositions ?? [cards[card].position])
+            : [cards[card].position]
+        ).some((p) => rules.slots[slot].positions.includes(p))
       )
         continue;
       visited.add(slot);

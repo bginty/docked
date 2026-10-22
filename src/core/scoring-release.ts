@@ -21,12 +21,18 @@ export function scoringRows(
   rules: Rules,
 ): { action: string; points: string }[] {
   if (rules.sport !== "epl")
-    return Object.entries(rules.weights).map(([key, rate]) => ({
-      action: rules.statisticGroups?.[key]
-        ? `${label(key)} · each complete ${rules.statisticGroups[key]} metres per game`
-        : `${label(key)} · per ${key.includes("yards") ? "yard" : "event"}`,
-      points: points(rate),
-    }));
+    return [
+      ...Object.entries(rules.weights).map(([key, rate]) => ({
+        action: rules.statisticGroups?.[key]
+          ? `${label(key)} · each complete ${rules.statisticGroups[key]} metres per game`
+          : `${label(key)} · per ${key.includes("yards") ? "yard" : "event"}`,
+        points: points(rate),
+      })),
+      ...Object.entries(rules.bonuses ?? {}).map(([key, rate]) => ({
+        action: `${label(key)} · per game${key === "tripleDouble" ? " (additional)" : ""}`,
+        points: points(rate),
+      })),
+    ];
   const w = rules.weights;
   const row = (action: string, rate: number) => ({
     action,

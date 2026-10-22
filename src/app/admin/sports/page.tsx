@@ -17,6 +17,7 @@ import {
 } from "@/core/sport-event-rules";
 import { scoringRows } from "@/core/scoring-release";
 import { SportReadinessPanel } from "@/components/sport-readiness-panel";
+import { NbaProposalSummary } from "@/components/nba-proposal-summary";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Multi-sport readiness · Docked",
@@ -64,6 +65,7 @@ export default async function SportsPage({
       active="competitions"
     >
       {who.role === "owner" && <SportReadinessPanel />}
+      <NbaProposalSummary />
       {state ? (
         <SportSandbox initial={state} />
       ) : (

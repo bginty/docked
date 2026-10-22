@@ -1,0 +1,133 @@
+DOCKED NBA WEEKLY PROPOSAL — ENGINEERING HANDOVER
+22 October 2026
+
+Scope and release state
+Started from app c55254521d7568dae35c42c22e69f4336a5673aa and ingestion
+7cc672db73d1d7bc8b2f35bd951dfd9f3abb8f3a; neither had subsequent commits at inspection.
+Production was not changed or re-verified during this task. Its last previously
+reported deployment is 31f0ecc9. No hosted migration, provider subscription,
+schedule, public NBA flag, member card, balance or competition was changed.
+The final commit in each repository contains this handover or its service companion.
+
+Implemented
+- Separate docked-nba-weekly-proposal-v1 scoring and
+  docked-nba-weekly-lineup-proposal-v1 formation; old NBA 3-FLEX format and
+  docked-nba-events-v1 rules remain intact. Public defaults remain disabled.
+- Eight positions PG/SG/SF/PF/C/G/F/UTIL, verified multiposition eligibility,
+  canonical duplicate-player checks, isolated salary map and $5.2m cap.
+- Exact integer scoring, derived per-game stacked bonuses, no rarity weight,
+  version validation, negative/zero/missing distinctions and safe integer checks.
+- New York calendar weeks, DST transitions, exact first-game round lock,
+  frozen fixture identities, postgame aggregation and protected corrections.
+- Shared existing optimiser, first-team-only Auto Select, prior-game rankings,
+  stable names, manual edits, draft carry-forward and original locked snapshots.
+- Existing court/card renderer extended with compact eight-card field/list views;
+  NBA jersey numbers suppressed and default NBA badge multiplier is 1.0.
+- Read-only server projection from the existing scoring journal: exact snapshot
+  reconciliation, partial totals/ranks, played versus week-complete counts,
+  game breakdowns, historical access and community comparison.
+- Thirty-second visible-page polling; post-lock snapshots load automatically,
+  corrections update rankings, stable teams remain selected, and refresh errors
+  preserve the last result. The browser never calculates competition totals.
+- Owner proposal summary in the existing /admin/sports portal. Existing
+  /admin/ingestion, audited retry controls, MFA and activation gates are reused.
+- Statistics service fixes boolean Games=true being mistaken for numeric Games=1.
+  No fantasy calculation or second scheduler was introduced in that service.
+
+New migration, NOT hosted-applied
+supabase/migrations/20261022053636_nba_proposal_isolated_score_read.sql
+Created with the Supabase migration CLI. The narrow definer read function has
+an empty search_path, validates the existing MFA/allowlist identity, restricts
+reads to entered post-lock isolated proposal rounds, and grants execution only
+to docked_beta_app. No member/service-role raw journal access is added.
+The second change scopes canonical duplicate-player validation to this proposal
+alone. It checks the original SQL definition before replacing the two expressions.
+No configuration registration, issuance, competition or job is seeded.
+
+Verification and evidence
+Full platform suite: 567 passed, 0 failed.
+Full PostgreSQL/PGlite database suite: 198 passed, 0 failed.
+Final focused NBA platform/database suite: 5 passed after historical-ranking work.
+Statistics service: 105 Python tests passed, including five new NBA tests.
+Actual cross-repository Python-export -> app import contract: passed with
+synthetic records, replay, corrections and conflict rollback; old sport outputs
+preserved. New NBA score independently reconciles to the same raw contract.
+TypeScript, lint, clean-environment production build and canary client-secret
+boundary scan passed. See adjacent QA receipt and build evidence.
+SQL-backed NBA browser journeys passed at widths 360, 412, 1024, 1440 and 1536:
+Auto Select/review/save/enter, draft protection, rollover, manual replacement,
+history, exact eight community slots, pre-lock privacy through the lock transition,
+postgame correction polling, all six rarity artworks and no horizontal overflow.
+NFL scoring-integrity browser passed at 412 and 1440: seven-slot geometry,
+Play/Rankings snapshot parity, score refresh and error retention.
+Reviewed actual mobile and desktop screenshots in docs/qa/multi-sport/nba-weekly.
+The browser harness renders production components against isolated SQL; this
+is not hosted authentication, real-device iOS or a licensed-data acceptance test.
+Supabase local security advisor attempted; connection refused on 127.0.0.1:54322
+because the local Supabase server is stopped. PGlite grants/MFA/privacy assertions
+passed, but this does not substitute for hosted Supabase advisor acceptance.
+
+Simulation and review
+Reproduce with npx tsx scripts/simulate-nba-weekly.ts.
+Fifty seeded synthetic collections; cap changed optimum in 28. Mean capped
+points 1408.18 versus Open 1454.00. Includes all rarity costs, positional
+optimisation, repeated ordering, one-to-four games, DNP/injury, outliers and
+1,000 independently checked arithmetic samples. See simulation.json.
+Core dominates a higher-rarity copy of the same player on salary efficiency;
+four games produce four times equal one-game output. These are documented
+business trade-offs, not defects silently 'balanced' by new rules.
+
+Provider and operational readiness
+The existing SportsDataIO NBA adapter supplies canonical raw records. Secure
+SPORTSDATAIO_NBA_KEY configuration remains server-only and disabled by default.
+No authenticated real NBA data or commercial rights were available/verified.
+The current provider adapter cannot confirm DNP from Games=0, absent rows or
+injury labels. A reviewed documented participation evidence route is required.
+The generic evidence-backed DNP pipeline is implemented and tested synthetically.
+Existing durable worker, per-sport leases/checkpoints, retry/backoff, correction
+checks and health/audit records are reused. NBA provider, publish and scheduling
+gates remain off. No new paid host or witnessed hosted schedule is claimed.
+
+Concrete protected Preview acceptance sequence (requires approval)
+1. Choose the approved isolated Preview database and persistent service host.
+   Resolve the recorded Preview connection/access and runtime-role gaps before
+   any command; do not use Production as a substitute.
+2. Review/apply the single migration to isolated Preview. Run Supabase advisors,
+   least-privilege connection tests, MFA tests and pre/post-lock two-user checks.
+3. Export the reviewed proposal using scripts/export-sport-feed-contract.ts.
+   Register only isolated sandbox configuration/rounds with synthetic inventory
+   and test identities, following tests/fixtures/multi-sport-db.ts. This migration
+   deliberately does not silently install or expose those test fixtures.
+4. Deploy the app to protected Preview using the existing release procedure.
+   Confirm /admin/sports owner summary, isolated eight-slot teams and journal
+   read projection; ordinary members must remain blocked.
+5. Once licensed credentials and historical entitlement are approved, use the
+   existing ingestion service dry run and review-owner-sport-feed.ts with an
+   explicit scoringVersion. The proposal version accepts simulated periods only;
+   a NEW approved release version and signed gates are required for real periods.
+6. Independently reconcile real multi-game history, verified roster/multiposition,
+   transfers, DNP evidence, corrections, lockouts, retries and finalisation.
+   Record app/service versions, source IDs/revisions and expected totals.
+7. Witness scheduled execution, concurrent leases, restart recovery, correction
+   checks and alerts on the approved persistent host with NBA publishing off
+   until target/evidence review passes. Preserve NFL configuration.
+8. Review issuance preview and obtain separate owner approvals for scoring,
+   roster/salaries, licensing/budget, hosted jobs, public competitions and issuance.
+
+Rollback preparation
+Keep a pre-release backup and existing deployed app reference. Stop NBA worker
+and publisher flags first, retain checkpoints/audit records, and restore the
+previous app deployment if necessary. Do not delete journal or ledger records.
+The new read function can have execution revoked on isolated Preview; older
+app code does not call it. Reverting the SQL duplicate guard requires the
+reviewed previous function definition from the backup/migration chain, not a
+destructive schema reset. No production rollback is needed for this task.
+
+Remaining decisions / Go-No-Go
+See NBA_GAMEPLAY_APPROVAL.txt for complete weights, examples, cap findings,
+provider links and eight exact owner actions. Approval is still needed for
+the proposed gameplay, post-lock transfer/reschedule membership, commercial
+licence, participation evidence, roster eligibility/issuance, hosting and launch.
+GO: local isolated proposal and owner review.
+NO-GO: real-data accuracy, hosted operation, commercial licence and member launch.
+Existing NFL and member assets have not been rewritten by this work.

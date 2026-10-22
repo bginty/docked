@@ -6,8 +6,11 @@ import {
   type SportConfiguration,
 } from "../../src/core/sport-configuration";
 import { nflSeven } from "../../src/core/nfl-seven";
+import { nbaWeeklyLineup } from "../../src/core/nba-weekly";
 /** Explicit artificial units, identities and schedule. Never a published salary proposal. */
 export function sandboxConfig(sport = aflConfiguration) {
+  if (sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1")
+    return nbaWeeklyLineup();
   return {
     ...nflSeven,
     version: `${sport.formatVersion}-qa`,
@@ -110,7 +113,7 @@ export async function multiSportDatabase(
       rounds[mode + week] = id;
       await q(
         `insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize)
-    values($1,$2,$3,'2099',$4,'2099-02-01',$5,(select id from beta_fantasy.scoring_rules where version='isolated-no-scoring-v1'),'No cash prize')`,
+    values($1,$2,$3,'2099',$4,'2099-02-01T00:00:00Z',$5,(select id from beta_fantasy.scoring_rules where version='isolated-no-scoring-v1'),'No cash prize')`,
         [
           id,
           `Sandbox ${sport.label} ${mode} ${week}`,
@@ -132,8 +135,14 @@ export async function multiSportDatabase(
           sport.id,
           JSON.stringify([
             {
-              fixtureId: `qa:${id}`,
-              scheduledAt: "2099-02-02T00:00:00Z",
+              fixtureId:
+                sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1"
+                  ? `sim:basketball:qa:${id}`
+                  : `qa:${id}`,
+              scheduledAt:
+                sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1"
+                  ? "2099-02-01T00:00:00Z"
+                  : "2099-02-02T00:00:00Z",
               status: "scheduled",
               playerIds: Object.values(inventories)
                 .flat()

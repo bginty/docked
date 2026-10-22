@@ -1,7 +1,10 @@
 "use client";
 import { useState, type ReactNode } from "react";
 import { nflSeven } from "@/core/nfl-seven";
-import { sportConfigurations } from "@/core/sport-configuration";
+import {
+  sportConfigurations,
+  nbaWeeklyConfiguration,
+} from "@/core/sport-configuration";
 
 /** One canonical slot layout. Input order, rarity and player position cannot
  * move a saved selection; FLEX remains its assigned slot. */
@@ -19,7 +22,29 @@ export function SevenField({
   sport?: string;
 }) {
   const [group, setGroup] = useState("");
-  const config = sportConfigurations[sport];
+  const config =
+    sport === "basketball" && slots.some((s) => s.id === "UTIL1")
+      ? nbaWeeklyConfiguration
+      : sportConfigurations[sport];
+  if (config === nbaWeeklyConfiguration)
+    return (
+      <section
+        className={`sport-lineup sport-lineup-court nba-court ${list ? "nba-lineup-list" : "nba-lineup-field"}`}
+        aria-label={label}
+      >
+        <div className="nba-eight-slots">
+          {slots.map((slot) => (
+            <div className="sport-slot" data-slot={slot.id} key={slot.id}>
+              <span className="sport-slot-label">
+                {config.groups.find((g) => g.slots.includes(slot.id))?.label ??
+                  slot.id}
+              </span>
+              {children(slot)}
+            </div>
+          ))}
+        </div>
+      </section>
+    );
   if (config && sport !== "nfl") {
     // A later format must never hide historical slot IDs it no longer defines.
     const known = new Set(config.groups.flatMap((g) => g.slots));

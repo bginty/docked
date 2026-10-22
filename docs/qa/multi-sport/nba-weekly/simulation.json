@@ -1,0 +1,433 @@
+{
+  "proposal": true,
+  "synthetic": true,
+  "seed": 20261022,
+  "simulation": "No real players, provider observations or assets",
+  "uniform": [
+    {
+      "tier": "CORE",
+      "cost": 4000000,
+      "filledSalaryCap": 8,
+      "filledOpen": 8
+    },
+    {
+      "tier": "RARE",
+      "cost": 4800000,
+      "filledSalaryCap": 8,
+      "filledOpen": 8
+    },
+    {
+      "tier": "ELITE",
+      "cost": 5200000,
+      "filledSalaryCap": 8,
+      "filledOpen": 8
+    },
+    {
+      "tier": "ULTRA_RARE",
+      "cost": 5600000,
+      "filledSalaryCap": 7,
+      "filledOpen": 8
+    },
+    {
+      "tier": "LEGENDARY",
+      "cost": 6400000,
+      "filledSalaryCap": 6,
+      "filledOpen": 8
+    },
+    {
+      "tier": "ICON",
+      "cost": 6400000,
+      "filledSalaryCap": 6,
+      "filledOpen": 8
+    }
+  ],
+  "schedules": [
+    {
+      "games": 1,
+      "centipoints": 5530,
+      "oneConfirmedDnpCentipoints": 0
+    },
+    {
+      "games": 2,
+      "centipoints": 11060,
+      "oneConfirmedDnpCentipoints": 5530
+    },
+    {
+      "games": 3,
+      "centipoints": 16590,
+      "oneConfirmedDnpCentipoints": 11060
+    },
+    {
+      "games": 4,
+      "centipoints": 22120,
+      "oneConfirmedDnpCentipoints": 16590
+    }
+  ],
+  "mixedFourIconFourCoreCost": 5200000,
+  "outlierCentipoints": 13500,
+  "trials": [
+    {
+      "trial": 0,
+      "capCost": 5150000,
+      "capCentipoints": 142870,
+      "openCentipoints": 161010,
+      "changedByCap": true
+    },
+    {
+      "trial": 1,
+      "capCost": 5150000,
+      "capCentipoints": 142070,
+      "openCentipoints": 169280,
+      "changedByCap": true
+    },
+    {
+      "trial": 2,
+      "capCost": 5150000,
+      "capCentipoints": 134820,
+      "openCentipoints": 134880,
+      "changedByCap": true
+    },
+    {
+      "trial": 3,
+      "capCost": 5150000,
+      "capCentipoints": 113580,
+      "openCentipoints": 117390,
+      "changedByCap": true
+    },
+    {
+      "trial": 4,
+      "capCost": 5000000,
+      "capCentipoints": 108520,
+      "openCentipoints": 109020,
+      "changedByCap": true
+    },
+    {
+      "trial": 5,
+      "capCost": 5200000,
+      "capCentipoints": 138280,
+      "openCentipoints": 158020,
+      "changedByCap": true
+    },
+    {
+      "trial": 6,
+      "capCost": 5100000,
+      "capCentipoints": 134220,
+      "openCentipoints": 134220,
+      "changedByCap": false
+    },
+    {
+      "trial": 7,
+      "capCost": 4700000,
+      "capCentipoints": 142590,
+      "openCentipoints": 142590,
+      "changedByCap": false
+    },
+    {
+      "trial": 8,
+      "capCost": 5050000,
+      "capCentipoints": 144780,
+      "openCentipoints": 148070,
+      "changedByCap": true
+    },
+    {
+      "trial": 9,
+      "capCost": 5200000,
+      "capCentipoints": 116200,
+      "openCentipoints": 120340,
+      "changedByCap": true
+    },
+    {
+      "trial": 10,
+      "capCost": 4650000,
+      "capCentipoints": 118660,
+      "openCentipoints": 118660,
+      "changedByCap": false
+    },
+    {
+      "trial": 11,
+      "capCost": 5150000,
+      "capCentipoints": 139770,
+      "openCentipoints": 155410,
+      "changedByCap": true
+    },
+    {
+      "trial": 12,
+      "capCost": 5200000,
+      "capCentipoints": 158490,
+      "openCentipoints": 160440,
+      "changedByCap": true
+    },
+    {
+      "trial": 13,
+      "capCost": 5150000,
+      "capCentipoints": 143870,
+      "openCentipoints": 155830,
+      "changedByCap": true
+    },
+    {
+      "trial": 14,
+      "capCost": 5200000,
+      "capCentipoints": 113340,
+      "openCentipoints": 113340,
+      "changedByCap": false
+    },
+    {
+      "trial": 15,
+      "capCost": 5100000,
+      "capCentipoints": 140200,
+      "openCentipoints": 140200,
+      "changedByCap": false
+    },
+    {
+      "trial": 16,
+      "capCost": 5200000,
+      "capCentipoints": 156090,
+      "openCentipoints": 156090,
+      "changedByCap": false
+    },
+    {
+      "trial": 17,
+      "capCost": 5200000,
+      "capCentipoints": 171820,
+      "openCentipoints": 176870,
+      "changedByCap": true
+    },
+    {
+      "trial": 18,
+      "capCost": 5150000,
+      "capCentipoints": 150880,
+      "openCentipoints": 150880,
+      "changedByCap": false
+    },
+    {
+      "trial": 19,
+      "capCost": 5200000,
+      "capCentipoints": 149700,
+      "openCentipoints": 157180,
+      "changedByCap": true
+    },
+    {
+      "trial": 20,
+      "capCost": 5200000,
+      "capCentipoints": 167520,
+      "openCentipoints": 184160,
+      "changedByCap": true
+    },
+    {
+      "trial": 21,
+      "capCost": 5200000,
+      "capCentipoints": 105800,
+      "openCentipoints": 115070,
+      "changedByCap": true
+    },
+    {
+      "trial": 22,
+      "capCost": 5150000,
+      "capCentipoints": 172830,
+      "openCentipoints": 176550,
+      "changedByCap": true
+    },
+    {
+      "trial": 23,
+      "capCost": 5200000,
+      "capCentipoints": 112960,
+      "openCentipoints": 137110,
+      "changedByCap": true
+    },
+    {
+      "trial": 24,
+      "capCost": 4950000,
+      "capCentipoints": 143830,
+      "openCentipoints": 143830,
+      "changedByCap": false
+    },
+    {
+      "trial": 25,
+      "capCost": 5050000,
+      "capCentipoints": 140510,
+      "openCentipoints": 140510,
+      "changedByCap": false
+    },
+    {
+      "trial": 26,
+      "capCost": 5050000,
+      "capCentipoints": 171530,
+      "openCentipoints": 171530,
+      "changedByCap": false
+    },
+    {
+      "trial": 27,
+      "capCost": 5050000,
+      "capCentipoints": 125730,
+      "openCentipoints": 125730,
+      "changedByCap": false
+    },
+    {
+      "trial": 28,
+      "capCost": 5200000,
+      "capCentipoints": 120590,
+      "openCentipoints": 123860,
+      "changedByCap": true
+    },
+    {
+      "trial": 29,
+      "capCost": 5100000,
+      "capCentipoints": 155830,
+      "openCentipoints": 155830,
+      "changedByCap": false
+    },
+    {
+      "trial": 30,
+      "capCost": 4900000,
+      "capCentipoints": 147070,
+      "openCentipoints": 147070,
+      "changedByCap": false
+    },
+    {
+      "trial": 31,
+      "capCost": 5050000,
+      "capCentipoints": 150420,
+      "openCentipoints": 150420,
+      "changedByCap": false
+    },
+    {
+      "trial": 32,
+      "capCost": 5100000,
+      "capCentipoints": 146720,
+      "openCentipoints": 151680,
+      "changedByCap": true
+    },
+    {
+      "trial": 33,
+      "capCost": 5150000,
+      "capCentipoints": 126630,
+      "openCentipoints": 132110,
+      "changedByCap": true
+    },
+    {
+      "trial": 34,
+      "capCost": 5200000,
+      "capCentipoints": 134820,
+      "openCentipoints": 135180,
+      "changedByCap": true
+    },
+    {
+      "trial": 35,
+      "capCost": 5050000,
+      "capCentipoints": 143260,
+      "openCentipoints": 148660,
+      "changedByCap": true
+    },
+    {
+      "trial": 36,
+      "capCost": 5150000,
+      "capCentipoints": 138440,
+      "openCentipoints": 138440,
+      "changedByCap": false
+    },
+    {
+      "trial": 37,
+      "capCost": 5200000,
+      "capCentipoints": 133180,
+      "openCentipoints": 137040,
+      "changedByCap": true
+    },
+    {
+      "trial": 38,
+      "capCost": 5200000,
+      "capCentipoints": 115390,
+      "openCentipoints": 132940,
+      "changedByCap": true
+    },
+    {
+      "trial": 39,
+      "capCost": 4900000,
+      "capCentipoints": 143270,
+      "openCentipoints": 143270,
+      "changedByCap": false
+    },
+    {
+      "trial": 40,
+      "capCost": 5150000,
+      "capCentipoints": 128430,
+      "openCentipoints": 130610,
+      "changedByCap": true
+    },
+    {
+      "trial": 41,
+      "capCost": 4700000,
+      "capCentipoints": 136120,
+      "openCentipoints": 136120,
+      "changedByCap": false
+    },
+    {
+      "trial": 42,
+      "capCost": 5150000,
+      "capCentipoints": 163160,
+      "openCentipoints": 167700,
+      "changedByCap": true
+    },
+    {
+      "trial": 43,
+      "capCost": 4950000,
+      "capCentipoints": 175540,
+      "openCentipoints": 175540,
+      "changedByCap": false
+    },
+    {
+      "trial": 44,
+      "capCost": 4800000,
+      "capCentipoints": 152510,
+      "openCentipoints": 152510,
+      "changedByCap": false
+    },
+    {
+      "trial": 45,
+      "capCost": 4850000,
+      "capCentipoints": 149100,
+      "openCentipoints": 149100,
+      "changedByCap": false
+    },
+    {
+      "trial": 46,
+      "capCost": 4750000,
+      "capCentipoints": 148930,
+      "openCentipoints": 148930,
+      "changedByCap": false
+    },
+    {
+      "trial": 47,
+      "capCost": 5200000,
+      "capCentipoints": 166040,
+      "openCentipoints": 174140,
+      "changedByCap": true
+    },
+    {
+      "trial": 48,
+      "capCost": 5150000,
+      "capCentipoints": 142520,
+      "openCentipoints": 143180,
+      "changedByCap": true
+    },
+    {
+      "trial": 49,
+      "capCost": 4750000,
+      "capCentipoints": 121470,
+      "openCentipoints": 121470,
+      "changedByCap": false
+    }
+  ],
+  "summary": {
+    "collections": 50,
+    "capChangesOptimum": 28,
+    "meanCapScore": 1408.18,
+    "meanOpenScore": 1454
+  },
+  "findings": [
+    "All-Core costs $4m; all-Elite exactly $5.2m; all-Ultra Rare and above cannot fill eight capped slots.",
+    "A cheaper copy of the same player weakly dominates a dearer one for fantasy points. Rarity does not create a scoring advantage in this proposal.",
+    "Four equal performances earn four times one performance. Schedule volume is a deliberate strategic factor requiring owner acceptance; no normalisation implemented.",
+    "Salary scarcity can change the optimum when available higher-performing players are owned only at higher rarities. Synthetic distributions are not forecasts of member collections.",
+    "Shared leaderboard ranks remain ties; ID ordering is presentation only and does not authorise prize tie-breaking."
+  ]
+}

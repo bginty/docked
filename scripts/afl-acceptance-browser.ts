@@ -6,9 +6,16 @@ import { chromium, expect } from "@playwright/test";
 import { multiSportDatabase } from "../tests/fixtures/multi-sport-db";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import { sandboxRecommendation } from "../src/core/sport-sandbox";
-import { sportConfigurations } from "../src/core/sport-configuration";
+import {
+  sportConfigurations,
+  nbaWeeklyConfiguration,
+} from "../src/core/sport-configuration";
+import { seedNbaJournal } from "../tests/fixtures/nba-weekly-journal";
 async function main() {
-  const sport = sportConfigurations[process.argv[2] ?? "afl"];
+  const proposal = process.argv[2] === "nba-weekly";
+  const sport = proposal
+    ? nbaWeeklyConfiguration
+    : sportConfigurations[process.argv[2] ?? "afl"];
   assert.ok(
     sport && !sport.publicEnabled,
     "Only isolated sport formats can be tested",
@@ -16,6 +23,7 @@ async function main() {
   const count = sport.slots.length,
     firstSlot = sport.slots[0].id;
   const db = await multiSportDatabase(sport);
+  let readState = () => db.state();
   const js = await bundleCommunityFixture(
     "tests/fixtures/sport-sandbox-ui.tsx",
   );
@@ -36,13 +44,13 @@ async function main() {
       const path = new URL(req.url!, "http://localhost").pathname;
       if (path === "/state") {
         res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify(await db.state()));
+        res.end(JSON.stringify(await readState()));
         return;
       }
       if (path === "/api/admin/sports-sandbox") {
         if (req.method === "GET") {
           res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify({ state: await db.state() }));
+          res.end(JSON.stringify({ state: await readState() }));
           return;
         }
         let body = "";
@@ -99,7 +107,7 @@ async function main() {
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   const port = (server.address() as { port: number }).port;
   const browser = await chromium.launch();
-  const out = `docs/qa/multi-sport/${sport.id}`;
+  const out = `docs/qa/multi-sport/${proposal ? "nba-weekly" : sport.id}`;
   mkdirSync(out, { recursive: true });
   const results = [];
   try {
@@ -214,7 +222,7 @@ async function main() {
         path: `${out}/field-${width}.png`,
         fullPage: true,
       });
-      for (const group of sport.groups.slice(1)) {
+      for (const group of proposal ? [] : sport.groups.slice(1)) {
         await page
           .getByRole("button", {
             name: `${group.label} ${group.slots.length}`,
@@ -254,11 +262,47 @@ async function main() {
       0,
     );
     await db.asUser(db.user);
+    const crossing = proposal
+      ? await browser.newPage({ viewport: { width: 412, height: 900 } })
+      : null;
+    if (crossing) {
+      await db.q("select set_config('qa.now','2099-01-31T23:59:59Z',false)");
+      await crossing.clock.install();
+      await crossing.goto(`http://127.0.0.1:${port}`);
+      await expect(
+        crossing.getByRole("button", { name: "View locked team", exact: true }),
+      ).toHaveCount(0);
+    }
     await db.q("select set_config('qa.now','2099-02-01T00:00:01Z',false)");
+    const journal = proposal ? await seedNbaJournal(db) : null;
+    if (journal) {
+      await journal.importGame();
+      readState = journal.read;
+      await db.q("select set_config('qa.now','2099-02-01T04:00:00Z',false)");
+    }
+    if (crossing) {
+      await crossing.clock.fastForward(32_000);
+      await expect(
+        crossing.getByRole("button", { name: "View locked team", exact: true }),
+      ).toHaveCount(1);
+      await expect(crossing.locator(".nba-total")).not.toContainText("—");
+      await crossing.close();
+    }
     const page = await browser.newPage({
       viewport: { width: 412, height: 900 },
     });
+    if (proposal) await page.clock.install();
     await page.goto(`http://127.0.0.1:${port}`);
+    if (journal) {
+      await expect(page.locator(".nba-total")).not.toContainText("—");
+      const previous = await page.locator(".nba-total").textContent();
+      await journal.importGame(2);
+      await page.clock.fastForward(31_000);
+      await expect(page.locator(".nba-total")).not.toHaveText(previous!);
+      await expect(
+        page.getByRole("region", { name: "Weekly rankings" }).locator("li"),
+      ).toHaveCount(2);
+    }
     await page.getByRole("button", { name: "List view", exact: true }).click();
     await expect(page.locator("[data-slot]")).toHaveCount(count);
     const own = (await db.state()).entries.find(
@@ -302,6 +346,8 @@ async function main() {
       await expect(
         gallery.locator('[data-number-source="unavailable"] .jersey-number'),
       ).toHaveCount(0);
+      if (sport.id === "basketball")
+        await expect(gallery.locator(".jersey-number")).toHaveCount(0);
       assert.equal(
         await gallery.evaluate(
           () => document.documentElement.scrollWidth > innerWidth,

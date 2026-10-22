@@ -5,6 +5,7 @@ import {
   previewOwnerSportFeed,
 } from "../src/core/owner-sport-feed";
 import { sportEventRules } from "../src/core/sport-event-rules";
+import { nbaWeeklyRules } from "../src/core/nba-weekly";
 
 async function readJson(file: string) {
   if ((await stat(file)).size > 2 * 1024 * 1024)
@@ -27,7 +28,10 @@ async function main() {
   const report = previewOwnerSportFeed(
     await readJson(feedFile),
     mapping,
-    sportEventRules(mapping.sport),
+    mapping.sport === "basketball" &&
+      mapping.scoringVersion === "docked-nba-weekly-proposal-v1"
+      ? nbaWeeklyRules()
+      : sportEventRules(mapping.sport),
     new Date().toISOString(),
   );
   await writeFile(reportFile, JSON.stringify(report, null, 2) + "\n", {

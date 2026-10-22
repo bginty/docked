@@ -42,7 +42,9 @@ export function CollectibleFace({
         <span className="collectible-position">{card.position || "—"}</span>
         <RarityBadge
           tier={card.tier}
-          appliedMultiplier={appliedMultiplier}
+          appliedMultiplier={
+            appliedMultiplier ?? (card.sport === "basketball" ? 1 : undefined)
+          }
           compact
         />
       </span>

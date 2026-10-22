@@ -20,6 +20,7 @@ import {
   sportEventRules,
   sportScoringReferences,
 } from "../src/core/sport-event-rules";
+import { nbaWeeklyRules, nbaWeeklyLineup } from "../src/core/nba-weekly";
 
 async function main() {
   const output = process.argv[2];
@@ -29,6 +30,15 @@ async function main() {
     );
   const contract = {
     schemaVersion: 1,
+    proposals: [
+      {
+        sport: "basketball",
+        activationAllowed: false,
+        rules: nbaWeeklyRules(),
+        lineup: nbaWeeklyLineup(),
+        statistics: z.toJSONSchema(nbaStats),
+      },
+    ],
     transport: z.toJSONSchema(ownerSportFeed),
     mapping: z.toJSONSchema(ownerSportMapping),
     roster: z.toJSONSchema(rosterCandidate),

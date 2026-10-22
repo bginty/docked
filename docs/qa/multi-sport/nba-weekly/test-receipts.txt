@@ -1,0 +1,96 @@
+LOCAL TEST RECEIPTS — final log excerpts, not complete transcripts
+
+platform
+ok 566 - weekly policy and server-time countdown: no browser weekday reset or negative timer
+  ---
+  duration_ms: 8.3798
+  ...
+# Subtest: account summary masks address and does not invent verification
+ok 567 - account summary masks address and does not invent verification
+  ---
+  duration_ms: 1.0575
+  ...
+1..567
+# tests 567
+# suites 0
+# pass 567
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 180887.2433
+
+database
+ok 197 - single-connection action consumes durable quota before transaction and retains rejected attempts
+  ---
+  duration_ms: 3717.4453
+  ...
+# Subtest: weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+ok 198 - weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+  ---
+  duration_ms: 6755.0846
+  ...
+1..198
+# tests 198
+# suites 0
+# pass 198
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 281351.998
+
+final-targeted
+ok 4 - NBA eight-slot optimisation respects G/F/UTIL, canonical duplicates, eligibility and salary
+  ---
+  duration_ms: 78.567
+  ...
+# Subtest: NBA weekly scoring: partial standings, DNP, missing, corrections, stable ties and final protection
+ok 5 - NBA weekly scoring: partial standings, DNP, missing, corrections, stable ties and final protection
+  ---
+  duration_ms: 67.5097
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15598.7103
+
+contract
+[{"sport":"epl","records":2,"replays":true,"correction":true,"conflictRollback":true,"scoring":"pending","baseCentipoints":null},{"sport":"nba-weekly-proposal","synthetic":true,"baseCentipoints":100,"sharedProviderContract":true},{"sport":"nba","records":2,"replays":true,"correction":true,"conflictRollback":true,"scoring":"complete","baseCentipoints":100},{"sport":"afl","records":2,"replays":true,"correction":true,"conflictRollback":true,"scoring":"complete","baseCentipoints":600},{"sport":"nrl","records":2,"replays":true,"correction":true,"conflictRollback":true,"scoring":"complete","baseCentipoints":800}]
+
+browser
+[{"width":412,"slots":8,"overflow":false,"errors":[]},{"width":360,"slots":8,"overflow":false,"errors":[]},{"width":1024,"slots":8,"overflow":false,"errors":[]},{"width":1440,"slots":8,"overflow":false,"errors":[]},{"width":1536,"slots":8,"overflow":false,"errors":[]}]
+
+nfl-browser
+{"out":"docs/qa/scoring-integrity/after","viewports":2,"passed":true}
+
+typecheck
+> docked-value-platform@1.0.0 typecheck
+> tsc --noEmit
+
+lint
+> docked-value-platform@1.0.0 lint
+> eslint src scripts tests --max-warnings=0
+
+build
+PASS: clean-environment production build and canary client-boundary scan
+
+advisors
+Connecting to local database...
+{"_tag":"Error","error":{"code":"DbConnectError","message":"failed to connect to postgres: failed to connect to `host=127.0.0.1 user=postgres database=postgres`: dial error (connect ECONNREFUSED 127.0.0.1:54322)","suggestion":"Make sure Docker is running, then run: supabase start"}}
+
+simulation
+{"collections":50,"capChangesOptimum":28,"meanCapScore":1408.18,"meanOpenScore":1454}
+
+Python service
+{"at":1792130400,"event":"job_completed","job":"postgame:g_fce70e22a15d4fa28ac1d2a886fab0be"}
+..
+----------------------------------------------------------------------
+Ran 105 tests in 17.249s
+
+OK

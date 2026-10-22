@@ -17,6 +17,8 @@ export function PlayerJersey({
 }) {
   const id = useId().replace(/[^a-zA-Z0-9_-]/g, ""),
     p = jerseyPresentation(card);
+  // NBA artwork intentionally omits numbers, including verified roster numbers.
+  const displayNumber = showNumber && card?.sport !== "basketball";
   const rgb = /^#[0-9a-f]{6}$/i.test(p.primary)
     ? [1, 3, 5].map((i) => parseInt(p.primary.slice(i, i + 2), 16))
     : [0, 0, 0];
@@ -52,7 +54,7 @@ export function PlayerJersey({
                 : "football-jersey"
       }
       data-number-source={
-        showNumber && p.number !== "—" ? "verified-metadata" : "unavailable"
+        displayNumber && p.number !== "—" ? "verified-metadata" : "unavailable"
       }
     >
       <defs>
@@ -205,7 +207,7 @@ export function PlayerJersey({
           d="M40 154Q90 166 140 154L140 159Q90 171 40 159Z"
           fill={`url(#${id}-hem)`}
         />
-        {showNumber && p.number !== "—" && (
+        {displayNumber && p.number !== "—" && (
           <text
             className="jersey-number"
             x="90"

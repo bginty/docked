@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { nbaWeek, nbaWeeklyRules } from "./nba-weekly";
 import {
   scorePlayer,
   validateLineup,
@@ -134,7 +135,8 @@ export function validatePeriodDefinition(
       throw Error("Explicit scoring instants and timezone required");
     if (
       time(p.window.start) >= time(p.window.end) ||
-      time(p.locksAt) > time(p.window.start)
+      (p.rules.version !== "docked-nba-weekly-proposal-v1" &&
+        time(p.locksAt) > time(p.window.start))
     )
       throw Error("Invalid scoring window");
     try {
@@ -150,6 +152,30 @@ export function validatePeriodDefinition(
       )
     )
       throw Error("Fixture outside frozen scoring window");
+  }
+  if (p.rules.version === "docked-nba-weekly-proposal-v1") {
+    if (scope !== "simulated")
+      throw Error(
+        "NBA proposal is isolated-only; owner scoring approval required",
+      );
+    if (
+      !p.window ||
+      p.sport !== "basketball" ||
+      digest(p.rules) !== digest(nbaWeeklyRules())
+    )
+      throw Error("Frozen NBA proposal contract changed");
+    const expected = nbaWeek(p.window.start);
+    if (
+      p.sport !== "basketball" ||
+      p.window!.timezone !== expected.timezone ||
+      time(p.window!.start) !== time(expected.start) ||
+      time(p.window!.end) !== time(expected.end) ||
+      time(p.locksAt) !==
+        Math.min(...p.fixtures.map((f) => time(f.scheduledAt)))
+    )
+      throw Error(
+        "NBA proposal requires a New York calendar week and first-game lock",
+      );
   }
   if (
     p.blankPlayerIds &&
@@ -225,10 +251,19 @@ export function saveTeam(
       cardId: c.cardId,
       playerId: c.playerId,
       position: c.position,
+      ...(state.period.rules.version === "docked-nba-weekly-proposal-v1" &&
+      c.eligiblePositions
+        ? { eligiblePositions: [...c.eligiblePositions] }
+        : {}),
       ...lockRarity(state.period.rules, c),
     };
   });
   validateLineup(state.period.rules, cards);
+  if (
+    state.period.rules.version === "docked-nba-weekly-proposal-v1" &&
+    state.entries.some((e) => e.member === member && e.name !== name)
+  )
+    throw Error("Team name is fixed after initial setup");
   const next = structuredClone(state);
   next.entries = next.entries.filter((e) => e.member !== member);
   next.entries.push({
@@ -266,6 +301,9 @@ export function lockTeams(
         owned.sport !== state.period.sport ||
         owned.playerId !== c.playerId ||
         owned.position !== c.position ||
+        (state.period.rules.version === "docked-nba-weekly-proposal-v1" &&
+          digest(owned.eligiblePositions ?? [owned.position]) !==
+            digest(c.eligiblePositions ?? [c.position])) ||
         (state.period.rules.rarityVersion &&
           JSON.stringify(lockRarity(state.period.rules, owned)) !==
             JSON.stringify(lockRarity(state.period.rules, c)))
@@ -464,16 +502,21 @@ export function results(state: ScoringState) {
       rank: null as number | null,
     };
   });
-  // No ranking while any entrant is missing required statistics; partial totals shown separately.
-  rows.sort(
-    (a, b) =>
-      (b.centipoints ?? -Infinity) - (a.centipoints ?? -Infinity) ||
-      a.member.localeCompare(b.member),
+  // New NBA proposal alone ranks earned postgame points during the week. Missing
+  // games remain unresolved; known points never become a final total implicitly.
+  const weekly = state.period.rules.version === "docked-nba-weekly-proposal-v1";
+  const hasScoredGame = rows.some((r) =>
+    r.players.some((p) => p.matches.some((m) => m.score !== null)),
   );
-  if (rows.every((r) => r.centipoints !== null))
+  const rankPoints = (r: (typeof rows)[number]) =>
+    weekly ? r.knownCentipoints : (r.centipoints ?? -Infinity);
+  rows.sort(
+    (a, b) => rankPoints(b) - rankPoints(a) || a.member.localeCompare(b.member),
+  );
+  if (weekly ? hasScoredGame : rows.every((r) => r.centipoints !== null))
     rows.forEach((r, i) => {
       r.rank =
-        i && r.centipoints === rows[i - 1].centipoints
+        i && rankPoints(r) === rankPoints(rows[i - 1])
           ? rows[i - 1].rank
           : i + 1;
     });

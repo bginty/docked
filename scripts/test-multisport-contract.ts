@@ -11,6 +11,7 @@ import { serviceScoringPreview } from "../src/core/multisport-scoring-bridge";
 import { sportEventRules } from "../src/core/sport-event-rules";
 import { previewOwnerSportFeed } from "../src/core/owner-sport-feed";
 import { serviceRosterCandidate } from "../src/core/multisport-roster-bridge";
+import { nbaWeeklyRules } from "../src/core/nba-weekly";
 async function main() {
   const [repo, python] = process.argv.slice(2);
   if (!repo || !python)
@@ -149,6 +150,39 @@ async function main() {
         records: records.map((r) => ({ ...r.payload, synthetic: false })),
       });
       const preview = previewOwnerSportFeed(normal.feed, map, rules, input.now);
+      if (sport === "nba") {
+        const proposal = nbaWeeklyRules();
+        const checked = previewOwnerSportFeed(
+          normal.feed,
+          { ...map, scoringVersion: proposal.version },
+          proposal,
+          input.now,
+        );
+        const row = normal.feed.players[0].stats as Record<string, number>;
+        const categories = [
+          row.points,
+          row.rebounds,
+          row.assists,
+          row.steals,
+          row.blocks,
+        ].filter((n) => n >= 10).length;
+        const expected =
+          row.points * 100 +
+          row.rebounds * 120 +
+          row.assists * 150 +
+          row.steals * 300 +
+          row.blocks * 300 -
+          row.turnovers * 100 +
+          (categories >= 2 ? 150 : 0) +
+          (categories >= 3 ? 300 : 0);
+        assert.equal(checked.players[0].baseCentipoints, expected);
+        checks.push({
+          sport: "nba-weekly-proposal",
+          synthetic: true,
+          baseCentipoints: expected,
+          sharedProviderContract: true,
+        });
+      }
       assert.equal(
         preview.players[0].availability,
         sport === "epl" ? "pending" : "complete",

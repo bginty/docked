@@ -150,3 +150,122 @@
     animation: none !important;
   }
 }
+.nba-week-summary {
+  padding: 1rem;
+  margin-block: 1rem;
+  border: 1px solid #365a77;
+  border-radius: 1rem;
+  background: linear-gradient(120deg, #071626, #10345c);
+}
+.nba-week-summary h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+}
+.nba-total {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+}
+.nba-field-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-block: 0.75rem;
+}
+.nba-player-score {
+  display: grid;
+  gap: 0.25rem;
+}
+.nba-player-score span {
+  font-size: 0.85rem;
+  color: #b3c5db;
+}
+.nba-rankings ul {
+  list-style: none;
+  padding: 0;
+}
+.nba-rankings li button {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.8rem;
+  margin-block: 0.4rem;
+}
+.nba-rankings li[data-current="true"] button {
+  border-color: #168cff;
+  background: #102f55;
+}
+.nba-sandbox h1 {
+  font-size: 1.55rem;
+}
+.nba-sandbox .sport-sandbox-notice {
+  font-size: 0.85rem;
+}
+.nba-field-actions .nba-view-toggle {
+  margin-left: auto;
+}
+.nba-court .nba-eight-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+.nba-court .sport-slot {
+  min-width: 0;
+}
+.nba-court .sport-card-button {
+  width: min(100%, 190px);
+}
+.nba-lineup-list .nba-eight-slots {
+  grid-template-columns: 1fr;
+}
+.nba-lineup-list .sport-slot {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 0.3rem 0.8rem;
+  text-align: left;
+  padding: 0.65rem;
+  border-radius: 0.75rem;
+  background: #071626ed;
+}
+.nba-lineup-list .sport-card-button {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  width: 76px;
+  align-self: center;
+}
+.nba-lineup-list .sport-slot-label,
+.nba-lineup-list .sport-slot p {
+  grid-column: 2;
+  margin: 0;
+}
+.nba-lineup-list .sport-slot-label {
+  grid-row: 1;
+}
+.nba-lineup-list .sport-slot p:not(.nba-player-score) {
+  grid-row: 2;
+}
+.nba-lineup-list .nba-player-score {
+  grid-row: 3;
+}
+@media (min-width: 900px) {
+  .nba-lineup-field .nba-eight-slots {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .nba-lineup-list .nba-eight-slots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.nba-game-breakdown {
+  font-size: 0.85rem;
+  text-align: left;
+}
+.nba-game-breakdown summary {
+  min-height: 44px;
+  padding-block: 0.5rem;
+  cursor: pointer;
+}
+.nba-game-breakdown li {
+  margin-bottom: 0.7rem;
+}
+.nba-lineup-list .nba-game-breakdown {
+  grid-column: 2;
+  grid-row: 4;
+}

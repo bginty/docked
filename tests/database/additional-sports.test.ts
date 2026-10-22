@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   nrlConfiguration,
   nbaConfiguration,
+  nbaWeeklyConfiguration,
   eplConfiguration,
 } from "../../src/core/sport-configuration";
 import { multiSportDatabase } from "../fixtures/multi-sport-db";
@@ -10,7 +11,12 @@ import { sandboxRecommendation } from "../../src/core/sport-sandbox";
 import { createPeriod, digest, results } from "../../src/core/scoring-engine";
 import { nrlStats, nbaStats } from "../../src/core/additional-sport-statistics";
 import type { Rules } from "../../src/core/scoring-v1";
-for (const sport of [nrlConfiguration, nbaConfiguration, eplConfiguration])
+for (const sport of [
+  nrlConfiguration,
+  nbaConfiguration,
+  nbaWeeklyConfiguration,
+  eplConfiguration,
+])
   test(`${sport.label}: persisted slots, modes, rollover and historical privacy use the shared command`, async () => {
     const db = await multiSportDatabase(sport);
     try {

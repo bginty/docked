@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-22",
+  "scope": "Local isolated synthetic acceptance; no hosted or licensed-data claim",
+  "appBaseline": "c55254521d7568dae35c42c22e69f4336a5673aa",
+  "serviceCommit": "a2f93e6",
+  "productionModified": false,
+  "nbaEnabled": false,
+  "platform": {
+    "passed": 567,
+    "failed": 0
+  },
+  "database": {
+    "passed": 198,
+    "failed": 0,
+    "runtime": "PGlite PostgreSQL"
+  },
+  "finalFocusedNba": {
+    "passed": 5,
+    "failed": 0
+  },
+  "ingestionPython": {
+    "passed": 105,
+    "failed": 0
+  },
+  "crossRepository": "passed: service Python exporter into app import/database and proposal scorer",
+  "nbaBrowser": {
+    "widths": [
+      360,
+      412,
+      1024,
+      1440,
+      1536
+    ],
+    "passed": true,
+    "postLockAutomaticVisibility": true,
+    "correctionPolling": true
+  },
+  "nflBrowser": {
+    "widths": [
+      412,
+      1440
+    ],
+    "passed": true,
+    "exactPlayRankingsSlots": true
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "cleanProductionBuild": "passed",
+  "clientSecretBoundary": "passed",
+  "supabaseSecurityAdvisor": "not completed: local server refused connection at 127.0.0.1:54322",
+  "hostedAcceptance": "not run",
+  "authenticatedProvider": "not run",
+  "historicalRealData": "not run",
+  "licence": "unapproved",
+  "migration": "local test only; not applied hosted"
+}

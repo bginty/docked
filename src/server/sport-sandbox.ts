@@ -5,6 +5,10 @@ import { previewParticipantMatches } from "@/core/preview-owner";
 import { verifiedSessionClaims } from "@/core/auth-policy";
 import { db, rateLimit } from "./db";
 import {
+  sandboxScoreView,
+  sandboxHistoricalRanks,
+} from "@/core/sandbox-score-view";
+import {
   assertSportSandbox,
   sandboxCommand,
   sandboxRecommendation,
@@ -21,9 +25,25 @@ export async function sportSandbox(sport: string, input?: unknown) {
   if (cmd && cmd.sport !== sport) throw Error("Sport context changed");
   return await db().begin(async (tx) => {
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true),set_config('docked.multi_sport','isolated-preview',true)`;
-    const read = async () =>
-      (await tx`select sports_feed.sport_sandbox_state(${sport}) state`)[0]
-        .state as SandboxState;
+    const read = async () => {
+      const state = (
+        await tx`select sports_feed.sport_sandbox_state(${sport}) state`
+      )[0].state as SandboxState;
+      if (
+        sport === "basketball" &&
+        state.competitions.some(
+          (c) =>
+            c.rules.lineup_version === "docked-nba-weekly-lineup-proposal-v1",
+        )
+      ) {
+        const journals = (
+          await tx`select sports_feed.sandbox_nba_journals() journals`
+        )[0].journals;
+        state.scores = sandboxScoreView(state, journals);
+        state.recommendationRanks = sandboxHistoricalRanks(state, journals);
+      }
+      return state;
+    };
     const before = await read();
     if (cmd && !before.competitions.some((c) => c.id === cmd.competition_id))
       throw Error("Competition context changed");

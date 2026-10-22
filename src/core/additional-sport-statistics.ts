@@ -31,6 +31,21 @@ export const nbaStats = z
 // per-metre coefficients as the new published event model.
 export const nrlEventVersion = "docked-nrl-events-v1";
 export const nbaEventVersion = "docked-nba-events-v1";
+/** PROPOSED, isolated only. Never reinterpret an earlier NBA rules snapshot. */
+export const nbaWeeklyVersion = "docked-nba-weekly-proposal-v1";
+export const nbaWeeklyWeights = Object.freeze({
+  points: 100,
+  rebounds: 120,
+  assists: 150,
+  steals: 300,
+  blocks: 300,
+  turnovers: -100,
+  threePointers: 0,
+});
+export const nbaWeeklyBonuses = Object.freeze({
+  doubleDouble: 150,
+  tripleDouble: 300,
+});
 export const nrlEventStats = z
   .object({
     tries: count,

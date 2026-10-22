@@ -123,6 +123,32 @@ export const eplConfiguration: SportConfiguration = {
   ),
   formatStatus: "existing",
 };
+/** New owner proposal; old NBA FLEX snapshots and the default catalogue stay intact. */
+export const nbaWeeklyConfiguration: SportConfiguration = {
+  ...nbaConfiguration,
+  formatVersion: "docked-nba-weekly-lineup-proposal-v1",
+  scoringVersion: "docked-nba-weekly-proposal-v1",
+  salaryCap: 5_200_000,
+  groups: [
+    group("PG", "Point guard", 1),
+    group("SG", "Shooting guard", 1),
+    group("SF", "Small forward", 1),
+    group("PF", "Power forward", 1),
+    group("C", "Centre", 1),
+    group("G", "Guard", 1),
+    group("F", "Forward", 1),
+    group("UTIL", "Utility", 1),
+  ],
+  slots: [
+    ...["PG", "SG", "SF", "PF", "C"].map((p) => ({
+      id: `${p}1`,
+      positions: [p],
+    })),
+    { id: "G1", positions: ["PG", "SG"] },
+    { id: "F1", positions: ["SF", "PF"] },
+    { id: "UTIL1", positions: ["PG", "SG", "SF", "PF", "C"] },
+  ],
+};
 export const sportConfigurations: Record<string, SportConfiguration> = {
   nfl: {
     id: "nfl",
@@ -148,10 +174,10 @@ export const sportConfigurations: Record<string, SportConfiguration> = {
 export function sportActivationBlockers(config: SportConfiguration) {
   return [
     ...(config.formatStatus === "proposal" ? ["Lineup format approval"] : []),
-    ...(!config.publicEnabled
-      ? ["Versioned scoring rules approval"]
+    ...(!config.publicEnabled ? ["Versioned scoring rules approval"] : []),
+    ...(config.salaryCap === null || config.formatStatus === "proposal"
+      ? ["Traditional salary model approval"]
       : []),
-    ...(config.salaryCap === null ? ["Traditional salary model approval"] : []),
     ...(!config.issuanceApproved
       ? ["Scarcity, pack prices and issuance approval"]
       : []),
