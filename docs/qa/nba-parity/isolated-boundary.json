@@ -1,0 +1,13 @@
+{
+  "scope": "Local synthetic database acceptance only; no hosted migration or activation",
+  "ownerFeeDecision": { "sellerPercent": 5, "capCredits": 2000, "rounding": "half-up", "historicalRecordsChanged": false },
+  "migration": "20261022115817_nba_isolated_economy_boundary.sql",
+  "databaseSuite": { "passed": 200, "failed": 0 },
+  "extendedBoundaryTest": { "passed": 1, "failed": 0, "permanentNflCardsPreserved": 9, "isolatedNbaAllocations": 9 },
+  "typecheck": "passed",
+  "targetedEslint": "passed",
+  "productionChanged": false,
+  "hostedAuthenticatedAcceptance": "not performed",
+  "runtimeFixtureWrites": "disabled; no INSERT grants",
+  "remainingEngineering": ["API admission and projection filtering", "atomic lineup inventory bridge", "shared-store concurrent transaction acceptance", "authenticated hosted acceptance"]
+}

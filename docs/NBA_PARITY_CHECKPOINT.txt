@@ -66,9 +66,10 @@ Confirmed blockers and remaining engineering
 6. Current hosted NFL only permits fixed-price credit sales. Private offers/swaps
    are intentionally disabled in member-test-wallet. Their core test success is
    not permission or evidence of hosted availability.
-7. Fee discrepancy: current approved implementation is 5% half-up, capped at 2,000
-   credits. The request said 7.5%, which also appears in legacy receipt matching.
-   No current or historical fees were changed. Owner clarification remains open.
+7. Owner decision received 22 October 2026: use the current 5% seller commission,
+   rounded half up to whole credits and capped at 2,000 credits, for NBA as well
+   as NFL. This supersedes the request's 7.5% wording. No current fee code or
+   historical settlement values need to change.
 8. No authenticated Production browser session was available in the inspected
    browser inventory. Do not count local identity fixtures as hosted acceptance.
 
@@ -126,3 +127,46 @@ Pre/post deployment wallet+inventory fingerprint identical:
 83d643a7e4d012d24097507843fa998f; revision 173; 428 permanent cards;
 zero NBA permanent players; four NBA allowlist rows. No migration, grant,
 issuance, trade, schedule change or feature activation was executed.
+
+Next engineering checkpoint — isolated NBA database boundary
+Owner confirmed the existing 5% policy; no fee implementation was changed.
+Migration 20261022115817_nba_isolated_economy_boundary.sql is committed for
+review but NOT APPLIED to hosted infrastructure. It adds immutable, RLS-protected
+fixture-player/definition/instance tables. NBA fixtures use the existing shared
+wallet aggregate and pack receipts but never enter permanent player or card
+tables. It preserves the existing permanent-player sport constraint and NFL
+retirement/history guards. No records, products or activation rows are seeded.
+Runtime fixture INSERT grants are deliberately absent: this checkpoint alone
+cannot activate NBA purchases, even if the aggregate flag is changed by an
+operator. Runtime cannot change the aggregate NBA allocation flag.
+
+Local acceptance: 200/200 database tests passed, including the full migration
+chain, NBA admission/confirmation denial, synthetic identity enforcement,
+permanent-inventory exclusion, purchase replay, immutable serials and revoked
+access. The extended boundary test also bought an NFL fixture pack first and
+verified all nine permanent NFL allocation rows remained exactly identical
+after the NBA fixture purchase. Typecheck and targeted ESLint passed.
+The fixture uses isolated transport adapters; this is not hosted authentication,
+real roster validation or real customer transaction acceptance.
+
+Remaining implementation before hosted fixture-economy activation:
+- Complete command-level NBA admission and counterparty checks on every shared
+  wallet, private-offer and swap endpoint; prevent cross-sport privilege leaks.
+- Filter fixture products/cards/listings on server-side projections for accounts
+  without current NBA beta access.
+- Bridge owned/opened fixtures into the existing NBA sandbox lineup inventory
+  atomically; preserve previous weekly snapshots and all existing free fixtures.
+- Verify full shared-store transactions, competing purchases, locked selections,
+  market visibility and social attachment privacy before granting runtime INSERT.
+- Complete authenticated hosted acceptance; do not infer it from local tests.
+
+Migration compatibility/recovery requirements:
+Before applying, capture current guard_economy_state definition, schema grants,
+wallet revision/hash and permanent table counts. Verify no later migration has
+replaced that guard. Apply in one transaction; do not initialise inventory or
+enable flags as part of schema deployment. Verify NFL state write/read against
+isolated acceptance first. A failed transaction rolls back the DDL. Before any
+fixture allocation, rollback can restore the captured guard and leave the empty,
+inaccessible fixture tables. After allocations exist, never drop those tables or
+restore the old guard over mixed inventory: disable fixture actions and retain
+wallet/receipt/ownership history while deploying a forward correction.
