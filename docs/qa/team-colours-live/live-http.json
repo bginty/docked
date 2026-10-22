@@ -1,0 +1,33 @@
+{
+  "identity": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "31f0ecc99c40aedcd4f4f64695a3de030715da0e",
+    "deploymentId": "dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  },
+  "endpoints": [
+    {
+      "path": "/fantasy/play",
+      "status": 200
+    },
+    {
+      "path": "/fantasy/results",
+      "status": 200
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "status": 401
+    },
+    {
+      "path": "/api/status",
+      "status": 200
+    }
+  ],
+  "verifiedAt": "2026-10-22T00:15:41.959Z"
+}

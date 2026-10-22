@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-22",
+  "ownerAuthority": "looks good can we deploy now",
+  "origin": "https://docked.com.au",
+  "target": "production",
+  "state": "READY",
+  "applicationCommit": "31f0ecc99c40aedcd4f4f64695a3de030715da0e",
+  "deploymentId": "dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3",
+  "previousDeploymentId": "dpl_6FKegNuvSH46cPCgEJ6ZgMWgbtXC",
+  "framework": "Next.js 16.3.8",
+  "hostedBuildSeconds": 76.274,
+  "releaseMethod": "Committed web-only export, preserving the preceding release's environment construction and worker configuration. Production candidate staged without custom-domain assignment, verified via authenticated Vercel CLI curl, then promoted through Vercel connector.",
+  "sourcePush": "Exact application commit fast-forwarded to origin/codex/vercel-beta-review; automatic deployment is disabled for this release branch.",
+  "checks": {
+    "platformTests": { "passed": 553, "failed": 0, "skipped": 0 },
+    "typecheck": "passed before commit; clean build typecheck passed again",
+    "lint": "full src/scripts/tests pass with zero warnings",
+    "cleanBuild": "passed",
+    "clientSecretCanaryScan": "passed",
+    "paletteBrowserChecks": "88 palettes in canonical renderer, each at 360/412/1440 widths; prior committed evidence",
+    "candidate": "Release identity 200, closed-registration status 200, standings 401, sports sandbox 403, login 200",
+    "live": "Public release identity equals deployed SHA and deployment ID; Play/Results/status return 200; unauthenticated standings 401",
+    "liveBrowser": "Login hydrated and usable at 412/1440; zero horizontal overflow and page errors; mobile screenshot inspected",
+    "runtimeErrors": "No error/fatal groups returned for this deployment in initial 15-minute window",
+    "logDrains": 0
+  },
+  "changesNotPerformed": [
+    "No database migrations or business-data mutations",
+    "No sport activation, player import, live card issuance, entry submission or scoring backfill",
+    "No wallet, marketplace, financial, email or push configuration changes",
+    "No deployment protection or authentication relaxation"
+  ],
+  "verificationLimits": [
+    "No signed-in Barry journey or physical-device run performed",
+    "Existing colour metadata remains authoritative; palette defaults require a matching sport/team identity",
+    "New sports remain gated pending real roster/feed setup and remaining format/release requirements",
+    "Runtime observation was a point-in-time check, not ongoing monitoring"
+  ],
+  "rollback": "Application-only promotion of the previous recorded production deployment; no database rollback required. Recheck current release identity first.",
+  "accessRecovery": "Connector protected fetch returned deployment_authentication_required. Existing CLI authentication succeeded without changing protection. CLI curl required VERCEL_TOKEN through its environment because global CLI flags were incorrectly forwarded to curl. No credential values were printed or committed."
+}
