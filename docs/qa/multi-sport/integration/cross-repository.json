@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-22T03:17:05.757Z",
+  "serviceCommit": "c59a51e9e1c7c2ce1a64230d1deb39edf526a6ee",
+  "isolated": true,
+  "checks": [
+    {
+      "sport": "epl",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "pending",
+      "baseCentipoints": null
+    },
+    {
+      "sport": "nba",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "complete",
+      "baseCentipoints": 100
+    },
+    {
+      "sport": "afl",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "complete",
+      "baseCentipoints": 600
+    },
+    {
+      "sport": "nrl",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "complete",
+      "baseCentipoints": 800
+    }
+  ],
+  "authenticationNegativeChecks": 2,
+  "hosted": false
+}

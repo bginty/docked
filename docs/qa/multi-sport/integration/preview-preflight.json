@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-22T02:39:40.660Z",
+  "project": "bckkllmndoxzpzdqrevb",
+  "connector": "Project absent from accessible project list; get_project denied before database connection",
+  "checks": [
+    {
+      "savedConnection": true,
+      "root": "C:/Users/61412/Documents/ChatGPT/Docked.com.au",
+      "host": "aws-0-ap-southeast-2.pooler.supabase.com",
+      "port": "5432",
+      "configuredRole": "postgres",
+      "dns": [
+        {
+          "family": 4
+        },
+        {
+          "family": 4
+        },
+        {
+          "family": 4
+        }
+      ],
+      "connection": "passed",
+      "database": {
+        "role": "postgres",
+        "database": "postgres",
+        "bypassrls": true,
+        "registry_installed": false
+      }
+    },
+    {
+      "savedConnection": false,
+      "root": "C:/Users/61412/.codex/worktrees/fixed-market-live/Docked.com.au"
+    }
+  ]
+}

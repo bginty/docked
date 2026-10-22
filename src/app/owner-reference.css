@@ -1513,3 +1513,13 @@
 .admin-reference .sport-readiness li {
   margin: 7px 0;
 }
+.ingestion-operations .ingestion-warning {
+  color: #ffdf9e;
+  background: #282215;
+  border-left: 3px solid #dba54f;
+  padding: 1rem;
+}
+.ingestion-operations dl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .6rem 1rem; }
+.ingestion-operations dd { margin: 0; overflow-wrap: anywhere; }
+.ingestion-operations dt { color: #a8bdd0; }
+.ingestion-operations textarea { display: block; width: 100%; min-height: 5rem; }

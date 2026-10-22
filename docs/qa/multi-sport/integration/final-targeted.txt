@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: canonical service handoff: NBA multiple games, DNP, missing stats, corrections, replay and atomic rollback
+ok 1 - canonical service handoff: NBA multiple games, DNP, missing stats, corrections, replay and atomic rollback
+  ---
+  duration_ms: 4855.6502
+  ...
+# Subtest: EPL existing rules require ordered events, not rounded minutes
+ok 2 - EPL existing rules require ordered events, not rounded minutes
+  ---
+  duration_ms: 18.1092
+  ...
+# Subtest: confirmed DNP distinct from unknown, removed and missing fields
+ok 3 - confirmed DNP distinct from unknown, removed and missing fields
+  ---
+  duration_ms: 0.5888
+  ...
+# Subtest: legacy EPL mapping uses explicit identity and never authorises reissuance
+ok 4 - legacy EPL mapping uses explicit identity and never authorises reissuance
+  ---
+  duration_ms: 1.9907
+  ...
+# Subtest: multi-sport translation obeys actual Docked AFL schema without scoring
+ok 5 - multi-sport translation obeys actual Docked AFL schema without scoring
+  ---
+  duration_ms: 7.2027
+  ...
+# Subtest: EPL evidence gaps and unapproved NBA/NRL contracts remain pending
+ok 6 - EPL evidence gaps and unapproved NBA/NRL contracts remain pending
+  ---
+  duration_ms: 0.9124
+  ...
+# Subtest: synthetic, incomplete and unmapped records cannot reach scoring
+ok 7 - synthetic, incomplete and unmapped records cannot reach scoring
+  ---
+  duration_ms: 0.4178
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6987.3402

@@ -1,0 +1,220 @@
+DOCKED MULTI-SPORT FINAL INTEGRATION — 22 October 2026
+
+Scope and checkpoints
+Main app: 43ca7e14 implementation, 518e7593 evidence. Integration e2d95ac2
+was inspected in the main checkout and cherry-picked as 26a208ca into the
+existing codex/member-platform-updates worktree. The separate service is
+C:/Users/61412/Documents/ChatGPT/docked-nfl-ingestion, starting at 31542f1.
+It is not the empty directory named Scraper Stats. No new sport, permanent
+issuance, real-money feature or Production setting was activated by this work.
+
+Compatibility and confirmed repairs
+- Service transport remains schema_version 1.1; app scoring remains the existing
+  schemaVersion 1 contract. Translation joins them without another scoring engine.
+- Service epl/nba map explicitly to app football/basketball and scorer
+  epl/basketball. AFL and NRL identifiers remain unchanged.
+- Provider IDs remain strings; canonical player/fixture/team IDs remain stable.
+  A reviewed binding supplies existing Docked IDs. Names and array order are never
+  identity keys. Duplicate Docked identity bindings now fail in the service.
+- Raw roster updates now carry the requested season. Approved AFL positions use
+  BACK/MID/FWD/RUCK; NBA supports reviewed multiple positions. The application
+  translates source rosters into its existing review workflow. Unknown jerseys
+  remain null; injuries do not retire contracted players. Synthetic rosters are
+  rejected by the authorised bridge. Roster readiness never authorises issuance.
+- A dangerous source-facing eligible_for_new_issuance flag was removed as an
+  automatic consequence of roster completeness. It now remains false; separate
+  roster_review_ready describes evidence readiness. Docked release gates decide
+  issuance. Existing player assets are untouched.
+- NBA and NRL raw inputs were previously always pending in Docked's integration
+  mapper. They now map to the existing versioned scorers. NRL's raw field registry
+  now includes all 25 required scoring events (27 total raw fields). This does not
+  invent a provider implementation or approve those proposed competition rules.
+- EPL accepts optional versioned ordered-event evidence, using the existing
+  regulation-time/on-pitch validator and approved assist definition. Basic box
+  scores alone remain pending. No minutes-to-seconds or outfield-concession guess.
+- Confirmed DNP can carry null raw fields and resolves through the existing zero
+  treatment. Missing rows, unknown participation, partial/current=false fields,
+  withdrawn records and contradictory nonzero DNP evidence remain pending.
+- First authoritative final observation is retained as completion_observed_at.
+  elapsed time, zero minutes and a new gameweek do not establish completion.
+- Raw receipts, current projections, recalculation requests and cursor advancement
+  are transactional. Dataset changes require reviewed resync; stale/overlapping
+  pages, conflicting equal revisions and wrong sport/entity provenance fail.
+  Exact retries are idempotent. No browser-accessible raw write endpoint exists.
+- A separate trusted refresh bridge uses the existing frozen mapping, permit,
+  scoring journal, centipoints, aggregation and late-correction controls. Raw
+  delivery cannot approve a ruleset, create a competition or mint cards.
+
+Preview access root cause and hosted evidence
+Intended isolated Supabase: bckkllmndoxzpzdqrevb.
+The connected Supabase management account listed Production only and denied
+Preview project access. This denial occurred before SQL/RLS. The existing saved
+project-bound Preview database connection resolved DNS, verified TLS and connected
+successfully. It uses the postgres operator role; it is NOT the runtime role.
+No network allowlist, Production grants or RLS protections were loosened.
+
+On isolated Preview, installed:
+  20261022010531_multi_sport_readiness_registry.sql
+  20261022023942_multi_sport_delivery_checkpoint.sql
+The first acceptance attempt applied both migrations before the role test failed:
+Supabase postgres needed explicit temporary membership to SET ROLE. The next
+attempt confirmed the restricted role could not even resolve private schemas.
+The final test used owner-side privilege inspection plus restricted-role writes.
+All test rows, the NOLOGIN test role and temporary membership were rolled back.
+Hosted receipt: docs/qa/multi-sport/integration/hosted-database.json.
+It confirms raw-table read/write and no card/wallet/approval/scoring write grants.
+No persistent runtime credential was created. No member mutation occurred.
+
+Owner action if management connector access is desired: give the connector's
+signed-in Supabase account access to this exact Preview project/organisation,
+then reconnect it. Do not change Production RLS or share the postgres credential
+with the feed. Database integration itself does not depend on that connector.
+
+Hosted integration and scheduler
+Implemented: HTTPS server-side origin binding, separate read/admin tokens,
+10-second request timeout, 8 MiB response cap, no redirects, validated envelopes,
+durable cursor replay, bounded 20-page catch-up invocation and failure exit status.
+The read consumer uses a dedicated NO-BYPASSRLS role and is hard-bound to Preview.
+Prepared files: deployment/multisport/consumer.example.json, preview-role.sql,
+scripts/multisport-pull.ts. The role template is NOT applied automatically.
+Required private runtime values:
+  DOCKED_MULTI_CONSUMER_CONFIG (reviewed file, exact source/dataset binding)
+  DOCKED_MULTI_DELIVERY_DATABASE_URL (docked_multi_delivery, Preview pooler)
+  DOCKED_MULTI_DATABASE_CA (verified CA file)
+  DOCKED_MULTI_FEED_READ_KEY
+Owner UI additionally needs DOCKED_MULTI_FEED_ORIGIN and
+DOCKED_MULTI_FEED_ADMIN_KEY, on the server only. Do not reuse read/admin keys.
+
+Run the pull command from an approved host scheduler at a cadence within provider
+quotas. Retrying after failure resumes the committed cursor; a bounded catch-up
+can continue next invocation. A separate reviewed scoring worker calls
+refreshServiceFixture with existing authorised stream IDs, frozen mappings and
+current permits. No new sport stream is auto-created. The HMAC push outbox remains
+disabled: the tested integration is authenticated pull, not an invented receiver.
+
+Service persistent SQLite leases, missed-run catch-up, bounded retries, crash
+recovery, corrections and concurrency are locally tested. Real loopback HTTP was
+exercised between the actual Python API and TypeScript/Postgres consumer.
+No approved persistent service host was established; local Docker engine was
+unavailable. HOSTED SCHEDULING IS NOT VERIFIED LIVE. Existing NFL cron is unchanged.
+Reuse an existing approved persistent Python/container host if available. Otherwise
+owner approval is required for a host/budget; do not put SQLite in an ephemeral
+function or buy hosting automatically. Service deployment/supervise.py and
+compose.multisport.yaml remain the prepared supervisor/container configuration.
+
+Observe on the chosen host before acceptance: real scheduled execution, missed
+run recovery, concurrent claim fencing, retry after a controlled outage, duplicate
+delivery, correction propagation and backup restoration. Record both source
+last_success and Docked checkpoint, not merely a cron HTTP success.
+
+Rollback: stop only the new consumer/worker schedule; revoke its runtime role
+login and rotate its read token. Retain receipts, cursor, raw revisions and audit
+history. Restore the previous app/service commits if needed. Do not drop delivery
+tables, reset the dataset, clear NFL state, edit final scores or delete assets.
+Replaying resumes from the same reviewed dataset. A replacement dataset requires
+an explicit remapping/resynchronisation review.
+
+Readiness by sport
+NFL: existing implementation preserved; regression tests pass. This work did not
+re-audit every live account or change its source, rules, cards or scheduled jobs.
+EPL: existing 11-player rules and scoring retained; raw/roster/fixture adapters,
+identity bridge, ordered-event bridge, gameweek aggregation and gates implemented.
+Local contracts pass. No new authorised active-player catalogue was imported.
+NBA: eight-player PG/SG/SF/PF/C + three FLEX proposal retained; multi-position
+validation and multiple games in a frozen period tested. No provider-authenticated
+acceptance or new authorised catalogue. Scoring template still needs approval.
+AFL: approved 22-player 6 BACK/8 MID/6 FWD/2 RUCK structure unchanged. Local
+roster/scoring/history tests pass; real complete historical data remains pending.
+NRL: 13-player sandbox retained. Required event vocabulary now crosses the
+interface, but current public Rugby League adapter has no player-stat capability.
+Roster structure, scoring and provider access remain unapproved for live use.
+
+Zero newly verified real players or newly issued real cards resulted from these
+tests. Synthetic coverage figures in screenshots are isolated fixtures, not
+production catalogue counts. Existing EPL legacy identities must be reconciled
+explicitly before any issuance preview. No new identity is created from a name.
+
+EPL activation checklist (first candidate)
+1. Obtain authorised EPL current-season + historical sample access and written
+   storage, derived fantasy, public display/redistribution, retention and correction
+   rights. Existing SportsDataIO v4 adapter is disabled until permit/key exist.
+2. Verify competition/season IDs, fixture IDs/status/closure, teams and membership.
+   Supply separate active-contract, position and jersey evidence. Loans/reserves
+   require a reviewed registration policy; membership alone is insufficient.
+3. Required scoring inputs: current goals, assists, saves, penalty saves/misses,
+   yellow cards, own goals; authoritative dismissal classification; regulation
+   seconds and played seconds within ordered on-pitch intervals; ordered conceded
+   goal events; agreed docked-epl-assist-v1 semantics. Basic rounded Minutes and
+   GoalkeeperGoalsAgainst do not cover these requirements for all positions.
+   The service's broader raw completeness gate also requires its documented 18
+   raw fields; missing optional-to-scoring fields remain a visible coverage gap,
+   not inferred zero. Review source capability against this gate before activation.
+4. Reconcile canonical/provider IDs with existing Docked football IDs. Stage the
+   reviewed candidates using the existing roster-review/store workflow. Generate
+   an issuance preview from that reviewed catalogue, preserving existing supply.
+5. Import an authorised historical gameweek including DNP, substitution, dismissal,
+   correction and exceptional-game cases. Reconcile logs, contributions and totals.
+6. Hosted scoring/privacy/ownership acceptance, current release evidence, salary
+   distribution/cap if applicable, supply/pack plan and owner activation approval.
+
+NBA activation checklist (second candidate)
+1. Authorised SportsDataIO NBA current-season/ApiSeason, rosters, fixtures and final
+   box-score samples; rights and quota review. Trials may be scrambled and must
+   remain isolated. No gameweek inferred from a calendar year or fixture index.
+2. Stable player/team mapping, reviewed multi-position eligibility, current contract
+   proof and explicit policy for two-way/development/reserve contracts. Keep injury,
+   game availability, contract status and issuance readiness separate.
+3. Scorer requires points, rebounds, assists, steals, blocks, turnovers and made
+   threes; source transport additionally retains minutes/seconds, offensive and
+   defensive rebounds, shooting attempts/makes and fouls. All fields stay current
+   and typed; DNP needs affirmative source evidence, not absent or zero-minute rows.
+4. Owner decision: approve or replace proposed eight-player roster and versioned
+   weights (point 1, rebound 1, assist 2, steal/block 3, turnover 0, three bonus 0).
+   Confirm weekly window/timezone, include every frozen eligible match + overtime,
+   duplicate restrictions, card multipliers, salary cap/distribution, lockout and
+   correction policy. No new weights or approval were invented in this task.
+5. Two-game historical period reconciliation, correction/DNP/missing-data cases,
+   hosted acceptance, verified roster/supply preview and explicit activation.
+
+AFL and NRL external requirements
+AFL scoring needs kicks, handballs, marks, tackles, goals, behinds, hitouts,
+frees_for and frees_against. Existing Sportradar basic projection lacks the last
+two, plus raw coverage fields clearances/inside50s/rebound50s/contested possessions.
+Request authorised complete historical data and position/contract evidence from
+Champion Data or another approved source. No ruck position inferred from stats.
+NRL needs a documented licensed player-event feed covering the 25 names in
+src/core/multisport-ingestion.ts, including offloads-to-hand vs ground, 40/20 and
+20/40, six-again, discipline, try saves, kicks defused, forced dropouts, turnovers
+and escapes in goal. Generic team totals are insufficient. Stats Perform/Opta is
+an enquiry candidate, NOT verified complete player coverage. Do not claim a
+working NRL player feed until documentation and entitled samples establish it.
+
+Owner dashboard
+/admin/ingestion now uses the existing owner/MFA guard and shared admin shell.
+It displays provider/licence configuration, source success, delivery, next job,
+worker heartbeat, mapping/fixture/stat coverage, errors/corrections and scoring
+publication. It includes the existing activation evidence panel. Owner retry is
+rate-limited, requires a reason, carries a server-derived actor and UUID, and is
+audited/idempotent in the service; running jobs cannot be reset. No provider gate
+is enabled by retry. Connected/disabled/error states and 360/412/1440 layouts were
+checked with actual isolated service response data and production components.
+These screenshots are local acceptance, not an authenticated hosted owner session.
+
+Evidence and verification
+docs/qa/multi-sport/integration contains cross-repository.json, http-contract.json,
+preview-preflight.json, hosted-database.json, browser.json, ingestion-*.png,
+build.txt and client-boundary.txt. The build uses a clean copied source tree with
+canary credentials; raw/admin/read credentials must never appear in browser assets.
+Full app platform and database runs include NFL, privacy/RLS, wallet/marketplace,
+lineup and sport regression tests. Later targeted tests cover the updated bridge.
+The final checks receipt and commits are recorded separately beside this handover.
+
+Remaining external decisions (do not infer approval)
+- Authorised source credentials, entitled seasons and written intended-use rights.
+- Complete EPL event semantics and NBA/AFL/NRL missing provider evidence.
+- NBA scoring/roster/period approval, NRL roster/scoring approval, and each sport's
+  salary/supply/issuance package and contract eligibility policy where absent.
+- Approved persistent host and scoped runtime secrets; actual hosted scheduler run.
+- Protected hosted owner-browser acceptance and authenticated provider import.
+- Individual release/issuance/activation approvals after all evidence gates pass.
+No Production deployment or new sport activation is claimed by this handover.

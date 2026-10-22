@@ -77,6 +77,12 @@ export function AdminShell({
                 )}
               </Link>
             ))}
+          {role === "owner" && (
+            <Link href="/admin/ingestion" onClick={() => setMenu(false)}>
+              <AdminIcon name="chart" />
+              <span>Statistics ingestion</span>
+            </Link>
+          )}
         </nav>
         <div className="admin-sidebar-art">
           <img src="/brand/docked/admin/sidebar-football.webp" alt="" />

@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-22T02:56:44.941Z",
+  "project": "bckkllmndoxzpzdqrevb",
+  "production": false,
+  "migrations": [
+    {
+      "file": "20261022010531_multi_sport_readiness_registry.sql",
+      "alreadyApplied": true
+    },
+    {
+      "file": "20261022023942_multi_sport_delivery_checkpoint.sql",
+      "alreadyApplied": true
+    }
+  ],
+  "restrictedRole": {
+    "rawDeliveryReadWrite": true,
+    "card_write": false,
+    "wallet_write": false,
+    "approval_write": false,
+    "scoring_write": false,
+    "rolledBack": true
+  },
+  "memberMutations": 0,
+  "result": "passed"
+}

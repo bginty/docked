@@ -7,6 +7,7 @@ import { pgliteSql } from "../fixtures/pglite-sql";
 import { reconcileOwnerSportFeed } from "../../src/server/owner-sport-reconcile";
 import { SportReadinessStore } from "../../src/server/sport-readiness-store";
 import { sportEventRules } from "../../src/core/sport-event-rules";
+import { refreshServiceFixture } from "../../src/server/multisport-refresh";
 import {
   digest,
   results,
@@ -38,6 +39,12 @@ test("canonical service handoff: NBA multiple games, DNP, missing stats, correct
     );
     const now = "2099-01-04T00:00:00Z",
       rules = sportEventRules("basketball");
+    await exec(
+      await readFile(
+        "supabase/migrations/20261022023942_multi_sport_delivery_checkpoint.sql",
+        "utf8",
+      ),
+    );
     const players = rules.slots.map((s, i) => ({
       playerId: `qa:p${i}`,
       providerPlayerId: `source${i}`,
@@ -192,6 +199,81 @@ test("canonical service handoff: NBA multiple games, DNP, missing stats, correct
     const run = (f = feed, m = mapping, p = permit) =>
       reconcileOwnerSportFeed(sql, state.period.id, f, m, p, op, now);
     const first = await run();
+    // Exercise the new raw-projection -> existing journal bridge separately,
+    // using only this disposable database and explicit fictional identities.
+    const bridgeState = {
+      ...state,
+      period: { ...state.period, id: state.period.id + "-bridge" },
+    };
+    await sql`insert into sports_feed.streams(id) values(${bridgeState.period.id})`;
+    await sql`insert into sports_feed.journal(stream_id,revision,previous_hash,state_hash,body,calculated) values(${bridgeState.period.id},1,'',${digest(bridgeState)},${sql.json(JSON.parse(JSON.stringify(bridgeState)))},${sql.json(JSON.parse(JSON.stringify(results(bridgeState))))})`;
+    const epoch = Date.parse(now) / 1000;
+    const rawFixture = {
+      id: "service:fixture1",
+      sport: "nba",
+      season: "2099",
+      provider: policy.provider,
+      provider_id: "game1",
+      synthetic: false,
+      status: "final",
+      complete: true,
+      last_success: epoch,
+      last_error: null,
+      completion_observed_at: epoch,
+    };
+    await sql`insert into sports_feed.delivery_records values('qa-bridge','nba','fixture',${rawFixture.id},1,${sql.json(rawFixture)},${digest(rawFixture)})`;
+    for (const player of players) {
+      const rawStats = {
+        points: 10,
+        rebounds: 2,
+        assists: 3,
+        steals: 1,
+        blocks: 0,
+        turnovers: 2,
+        three_pointers_made: 1,
+      };
+      const raw = {
+        sport: "nba",
+        fixture_id: rawFixture.id,
+        player_id: player.playerId,
+        provider_player_id: player.providerPlayerId,
+        provider: policy.provider,
+        season: "2099",
+        revision: 1,
+        synthetic: false,
+        participation: "played",
+        removed: false,
+        complete: true,
+        stats: rawStats,
+        current_fields: Object.fromEntries(
+          Object.keys(rawStats).map((k) => [k, true]),
+        ),
+      };
+      await sql`insert into sports_feed.delivery_records values('qa-bridge','nba','player_game',${rawFixture.id + ":" + player.playerId},1,${sql.json(raw)},${digest(raw)})`;
+    }
+    const bridgeBinding = {
+      source: "qa-bridge",
+      sport: "nba" as const,
+      fixtureId: rawFixture.id,
+      streamId: bridgeState.period.id,
+      mapping,
+      permit,
+      sourceEvidence: "https://example.invalid/isolated-bridge",
+    };
+    assert.equal(
+      (await refreshServiceFixture(sql, bridgeBinding, now)).replay,
+      false,
+    );
+    assert.equal(
+      (await refreshServiceFixture(sql, bridgeBinding, now)).replay,
+      true,
+    );
+    const [bridged] =
+      await sql`select calculated from sports_feed.journal where stream_id=${bridgeState.period.id} order by revision desc limit 1`;
+    assert.equal(
+      bridged.calculated.rows[0].knownCentipoints,
+      results(first.state).rows[0].knownCentipoints,
+    );
     assert.equal(
       results(first.state).rows[0].knownCentipoints,
       21 * 100 * players.length,

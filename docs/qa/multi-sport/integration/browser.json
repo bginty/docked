@@ -1,0 +1,39 @@
+{
+  "checks": [
+    {
+      "width": 360,
+      "overflow": false,
+      "errors": [],
+      "states": [
+        "connected",
+        "disabled",
+        "unavailable"
+      ],
+      "isolated": true
+    },
+    {
+      "width": 412,
+      "overflow": false,
+      "errors": [],
+      "states": [
+        "connected",
+        "disabled",
+        "unavailable"
+      ],
+      "isolated": true
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "states": [
+        "connected",
+        "disabled",
+        "unavailable"
+      ],
+      "isolated": true
+    }
+  ],
+  "hosted": false,
+  "source": "Actual isolated Python API response; shared production components"
+}

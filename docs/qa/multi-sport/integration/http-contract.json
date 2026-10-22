@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-22T03:14:53.848Z",
+  "transport": "actual loopback HTTP",
+  "hosted": false,
+  "synthetic": true,
+  "sports": [
+    {
+      "sport": "afl",
+      "n": 2,
+      "revision": 2
+    },
+    {
+      "sport": "epl",
+      "n": 2,
+      "revision": 2
+    },
+    {
+      "sport": "nba",
+      "n": 2,
+      "revision": 2
+    },
+    {
+      "sport": "nrl",
+      "n": 2,
+      "revision": 2
+    }
+  ],
+  "authenticationNegativeChecks": 2,
+  "emptyPollReplay": true,
+  "correction": true
+}

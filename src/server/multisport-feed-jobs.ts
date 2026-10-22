@@ -1,54 +1,38 @@
 import "server-only";
 import { z } from "zod";
-const jobSchema = z.object({
-  id: z.string().max(200),
-  kind: z.string(),
-  state: z.string(),
-  due: z.number(),
-  attempts: z.number(),
-  last_error: z.string().nullable(),
-});
-async function request(path: string, body?: { job_id: string }) {
-  const origin = new URL(
-    process.env.DOCKED_MULTI_FEED_ORIGIN ?? "https://disabled.invalid",
-  );
-  const key = process.env.DOCKED_MULTI_FEED_ADMIN_KEY;
-  if (
-    !key ||
-    origin.protocol !== "https:" ||
-    origin.username ||
-    origin.password ||
-    origin.search ||
-    origin.hash ||
-    origin.pathname !== "/"
-  )
-    throw Error("Feed not configured");
-  const response = await fetch(new URL(path, origin), {
-    method: body ? "POST" : "GET",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
-    body: body ? JSON.stringify(body) : undefined,
-    redirect: "error",
-    cache: "no-store",
-    signal: AbortSignal.timeout(10000),
-  });
-  if (!response.ok) throw Error("Feed operation unavailable");
-  const text = await response.text();
-  if (text.length > 262144) throw Error("Oversize");
-  return JSON.parse(text) as unknown;
+import { ingestionJobs } from "../core/multisport-health";
+import { feedRequest } from "./multisport-feed-http";
+import { requireRole } from "./auth";
+import { rateLimit } from "./db";
+function config() {
+  return {
+    origin: process.env.DOCKED_MULTI_FEED_ORIGIN ?? "https://disabled.invalid",
+    key: process.env.DOCKED_MULTI_FEED_ADMIN_KEY ?? "",
+  };
 }
 export async function multisportFeedJobs() {
   try {
-    return z
-      .object({ data: z.array(jobSchema).max(500) })
-      .parse(await request("/admin/multisport/jobs")).data;
+    return ingestionJobs.parse(
+      await feedRequest(config(), "/admin/multisport/jobs"),
+    ).data;
   } catch {
     return null;
   }
 }
-export async function retryMultisportFeedJob(id: string) {
-  if (!id || id.length > 200) throw Error("Invalid job");
-  await request("/admin/multisport/retry", { job_id: id });
+export async function retryMultisportFeedJob(input: unknown) {
+  const who = await requireRole(["owner"]);
+  const d = z
+    .object({
+      job_id: z.string().min(1).max(200),
+      request_id: z.uuid(),
+      reason: z.string().trim().min(10).max(1000),
+    })
+    .strict()
+    .parse(input);
+  if (!(await rateLimit(`multi-feed-retry:${who.user.id}`, 6, 60)))
+    throw Error("Wait before retrying");
+  return feedRequest(config(), "/admin/multisport/retry", {
+    ...d,
+    actor: who.user.id,
+  });
 }
