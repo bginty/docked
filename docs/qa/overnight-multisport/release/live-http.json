@@ -1,0 +1,94 @@
+{
+  "at": "2026-10-22T21:42:50.809Z",
+  "commit": "fe5a6b24070cb2e358322c8945ca8885b134750e",
+  "environment": "live-domain",
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta?view=state",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=afl",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=nrl",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/community?view=hub",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/sports-sandbox?sport=basketball",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/app/login",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=basketball",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=nrl",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "authenticatedMemberTesting": false
+}

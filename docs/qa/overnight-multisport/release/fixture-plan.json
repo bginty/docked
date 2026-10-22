@@ -1,0 +1,1186 @@
+{
+  "authority": "Owner overnight multi-sport instruction: isolated fictional AFL/NRL private testing, provisional QA salary/scoring; no permanent issuance, cash prizes, licensed feeds or real-money activation.",
+  "testers": [
+    "623d1e69-d0f3-493f-9713-108e8c21469a",
+    "ef641248-67be-4c32-9b12-9205bfcee15b",
+    "9fa5cdbb-aa2e-4ebe-9f2c-de9885233cd3",
+    "d6ab4838-7108-4c50-8ab8-c5947ab55bd8"
+  ],
+  "sports": [
+    {
+      "sport": "afl",
+      "label": "AFL",
+      "config": {
+        "version": "docked-afl-22-v1-qa",
+        "sport": "afl",
+        "inventoryScope": "isolated-multi-sport-v1",
+        "salaryCap": 2640,
+        "salaries": {
+          "CORE": 100,
+          "RARE": 110,
+          "ELITE": 120,
+          "ULTRA_RARE": 130,
+          "LEGENDARY": 140,
+          "ICON": 150
+        },
+        "slots": [
+          {
+            "id": "BACK1",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK2",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK3",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK4",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK5",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK6",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "MID1",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID2",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID3",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID4",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID5",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID6",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID7",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID8",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "FWD1",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD2",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD3",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD4",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD5",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD6",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "RUCK1",
+            "positions": [
+              "RUC"
+            ]
+          },
+          {
+            "id": "RUCK2",
+            "positions": [
+              "RUC"
+            ]
+          }
+        ],
+        "entryPolicy": "before-first-kickoff",
+        "lockPolicy": "round-wide-v1",
+        "commerciallyApproved": false
+      },
+      "rules": {
+        "sport": "afl",
+        "version": "docked-afl-22-events-v1",
+        "title": "Docked AFL · 22 players",
+        "beta": true,
+        "positions": [
+          "DEF",
+          "MID",
+          "RUC",
+          "FWD"
+        ],
+        "slots": [
+          {
+            "id": "BACK1",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK2",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK3",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK4",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK5",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "BACK6",
+            "positions": [
+              "DEF"
+            ]
+          },
+          {
+            "id": "MID1",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID2",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID3",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID4",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID5",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID6",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID7",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID8",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "FWD1",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD2",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD3",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD4",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD5",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "FWD6",
+            "positions": [
+              "FWD"
+            ]
+          },
+          {
+            "id": "RUCK1",
+            "positions": [
+              "RUC"
+            ]
+          },
+          {
+            "id": "RUCK2",
+            "positions": [
+              "RUC"
+            ]
+          }
+        ],
+        "weights": {
+          "kicks": 200,
+          "handballs": 100,
+          "marks": 300,
+          "tackles": 400,
+          "goals": 600,
+          "behinds": 100,
+          "hitouts": 100,
+          "freesFor": 100,
+          "freesAgainst": -300
+        },
+        "correctionHours": 72,
+        "periodName": "round",
+        "policy": [
+          "Owner-approved update: kick 2, handball 1, goal 6. Other event weights are retained from v1. A mark, kick and goal now scores 11. Applies to new periods only.",
+          "22 active cards: six backs, eight midfielders, six forwards, two rucks. Raw events, no match-wide scaling or proprietary ratings. Source connection and competition activation are separate.",
+          "Substitutes and partial appearances earn their actual events with no appearance/minimum-time bonus. Confirmed unused substitute/DNP/bye is zero. Missing statistics remain pending. Time-on-ground does not multiply scores."
+        ]
+      },
+      "players": [
+        {
+          "id": "edeb2c9c-e97b-4ccb-af37-cc5f1d983db7",
+          "name": "Test AFL Player 01",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "0de0743c-9c69-42a8-a762-0d4fa169e9bf",
+          "name": "Test AFL Player 02",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "b4c5494f-d419-4a76-aa7f-95dcf14dd336",
+          "name": "Test AFL Player 03",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "47e759a8-a64b-4d3b-acf6-d3ceb0fdd4bf",
+          "name": "Test AFL Player 04",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "ed83fedd-0477-4eca-a57c-e3082beed5d5",
+          "name": "Test AFL Player 05",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "86b2cdbe-9b52-438c-a48a-85a1153e26c8",
+          "name": "Test AFL Player 06",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "bdc7d857-0c15-488c-aba8-31d121f5abad",
+          "name": "Test AFL Player 07",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "ce331a06-43b3-4de9-aafe-8d0c675b9883",
+          "name": "Test AFL Player 08",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "408c8a84-8f55-4971-ae0c-a8f8be801a4f",
+          "name": "Test AFL Player 09",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "08a5cadc-2c2e-4ece-adc5-9fb15bd02903",
+          "name": "Test AFL Player 10",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "3e039d16-af6e-4fcb-acbe-20787ba1690e",
+          "name": "Test AFL Player 11",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "b540d645-7736-434b-ac06-9866e7c23580",
+          "name": "Test AFL Player 12",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "0b9c67ce-56d4-4286-ad44-d3adae8754fe",
+          "name": "Test AFL Player 13",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "6402d25c-62f4-4017-a5dc-5fb85bd6bd2b",
+          "name": "Test AFL Player 14",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "5906b944-9077-4a3e-a36c-22b3e62411a0",
+          "name": "Test AFL Player 15",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "78784ac2-4c3f-4b81-a720-fbdd35632e5e",
+          "name": "Test AFL Player 16",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "524bd1ac-073e-45de-acb3-d14580d19721",
+          "name": "Test AFL Player 17",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "fc01db50-472c-4842-ac27-1318e7b1f6d3",
+          "name": "Test AFL Player 18",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "3cfdec63-2d88-4727-aa4f-9ee54c8dd552",
+          "name": "Test AFL Player 19",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "0d896a01-8304-4202-a5ab-3d8c21161ee2",
+          "name": "Test AFL Player 20",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "39a7d00c-8922-4963-aba5-04b69a50dfdd",
+          "name": "Test AFL Player 21",
+          "position": "RUC",
+          "eligible_positions": [
+            "RUC"
+          ]
+        },
+        {
+          "id": "d3ce6e7b-f1b0-409c-a979-047367bbffec",
+          "name": "Test AFL Player 22",
+          "position": "RUC",
+          "eligible_positions": [
+            "RUC"
+          ]
+        },
+        {
+          "id": "a2b6b344-4dc8-4866-a1bd-7ace567d6939",
+          "name": "Test AFL Player 23",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "5873c376-7397-446d-ac03-359d71e19f7a",
+          "name": "Test AFL Player 24",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "8fd6037a-b517-4a72-ac7f-861b0e3dfecb",
+          "name": "Test AFL Player 25",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "3beda50a-fc4c-4e65-a9f8-3290999eba00",
+          "name": "Test AFL Player 26",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "ace7e7be-fd93-4276-a639-1322b3466a88",
+          "name": "Test AFL Player 27",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "d066fe13-bd36-4bbd-a5fe-f7f0b1f679fa",
+          "name": "Test AFL Player 28",
+          "position": "DEF",
+          "eligible_positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "93e3ab78-4bc3-488f-afd2-09e01724bb65",
+          "name": "Test AFL Player 29",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "8dcf6788-d283-4304-a102-f834cd3ea8c3",
+          "name": "Test AFL Player 30",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "f258f38f-a25f-4f46-a957-11b43fdc65c8",
+          "name": "Test AFL Player 31",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "b0df5bf9-aa43-4770-ab3b-980b02489ff0",
+          "name": "Test AFL Player 32",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "115226e1-51a7-4b40-afc9-c261df75b3ab",
+          "name": "Test AFL Player 33",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "edb29eba-2038-449e-a63b-c9b6b475dd6a",
+          "name": "Test AFL Player 34",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "7d660e6d-4f8d-4361-a352-3cfc8062764b",
+          "name": "Test AFL Player 35",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "00f67cb5-5f34-4584-afd1-df65e0786c00",
+          "name": "Test AFL Player 36",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "e80581eb-9980-490b-a3f8-e9c629621188",
+          "name": "Test AFL Player 37",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "87a57812-051d-4e92-a985-a8532c82c070",
+          "name": "Test AFL Player 38",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "b528bb2c-afbd-4e90-add1-b1e867a19b30",
+          "name": "Test AFL Player 39",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "54882fa4-1e55-492a-a977-dc26bc9501a8",
+          "name": "Test AFL Player 40",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "168a949a-20e5-4521-a61b-650a360c60fe",
+          "name": "Test AFL Player 41",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "5b95e088-9979-438d-a62b-2a38771a4938",
+          "name": "Test AFL Player 42",
+          "position": "FWD",
+          "eligible_positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "dc609af4-3d9d-4851-add7-dc8a7de44873",
+          "name": "Test AFL Player 43",
+          "position": "RUC",
+          "eligible_positions": [
+            "RUC"
+          ]
+        },
+        {
+          "id": "e48276fc-ebb0-44f3-adc6-553dc1b75eca",
+          "name": "Test AFL Player 44",
+          "position": "RUC",
+          "eligible_positions": [
+            "RUC"
+          ]
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "scheduledAt": "2026-10-24T08:00:00.000Z"
+        },
+        {
+          "round": 2,
+          "scheduledAt": "2026-10-31T08:00:00.000Z"
+        },
+        {
+          "round": 3,
+          "scheduledAt": "2026-11-07T08:00:00.000Z"
+        },
+        {
+          "round": 4,
+          "scheduledAt": "2026-11-14T08:00:00.000Z"
+        },
+        {
+          "round": 5,
+          "scheduledAt": "2026-11-21T08:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "label": "NRL",
+      "config": {
+        "version": "docked-nrl-13-v1-qa",
+        "sport": "nrl",
+        "inventoryScope": "isolated-multi-sport-v1",
+        "salaryCap": 1560,
+        "salaries": {
+          "CORE": 100,
+          "RARE": 110,
+          "ELITE": 120,
+          "ULTRA_RARE": 130,
+          "LEGENDARY": 140,
+          "ICON": 150
+        },
+        "slots": [
+          {
+            "id": "WFB1",
+            "positions": [
+              "WFB"
+            ]
+          },
+          {
+            "id": "WFB2",
+            "positions": [
+              "WFB"
+            ]
+          },
+          {
+            "id": "CTR1",
+            "positions": [
+              "CTR"
+            ]
+          },
+          {
+            "id": "CTR2",
+            "positions": [
+              "CTR"
+            ]
+          },
+          {
+            "id": "HLF1",
+            "positions": [
+              "HLF"
+            ]
+          },
+          {
+            "id": "HLF2",
+            "positions": [
+              "HLF"
+            ]
+          },
+          {
+            "id": "EDG1",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "EDG2",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "EDG3",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "MID1",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID2",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID3",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "WFB",
+              "CTR",
+              "HLF",
+              "EDG",
+              "MID"
+            ]
+          }
+        ],
+        "entryPolicy": "before-first-kickoff",
+        "lockPolicy": "round-wide-v1",
+        "commerciallyApproved": false
+      },
+      "rules": {
+        "sport": "nrl",
+        "beta": true,
+        "positions": [
+          "WFB",
+          "CTR",
+          "HLF",
+          "EDG",
+          "MID"
+        ],
+        "slots": [
+          {
+            "id": "WFB1",
+            "positions": [
+              "WFB"
+            ]
+          },
+          {
+            "id": "WFB2",
+            "positions": [
+              "WFB"
+            ]
+          },
+          {
+            "id": "CTR1",
+            "positions": [
+              "CTR"
+            ]
+          },
+          {
+            "id": "CTR2",
+            "positions": [
+              "CTR"
+            ]
+          },
+          {
+            "id": "HLF1",
+            "positions": [
+              "HLF"
+            ]
+          },
+          {
+            "id": "HLF2",
+            "positions": [
+              "HLF"
+            ]
+          },
+          {
+            "id": "EDG1",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "EDG2",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "EDG3",
+            "positions": [
+              "EDG"
+            ]
+          },
+          {
+            "id": "MID1",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID2",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "MID3",
+            "positions": [
+              "MID"
+            ]
+          },
+          {
+            "id": "FLEX1",
+            "positions": [
+              "WFB",
+              "CTR",
+              "HLF",
+              "EDG",
+              "MID"
+            ]
+          }
+        ],
+        "correctionHours": 72,
+        "periodName": "round",
+        "version": "docked-nrl-events-v1",
+        "title": "Docked NRL · event scoring",
+        "weights": {
+          "tries": 800,
+          "goals": 200,
+          "fieldGoals": 500,
+          "tryAssists": 500,
+          "lineBreaks": 400,
+          "lineBreakAssists": 200,
+          "tackles": 100,
+          "tackleBreaks": 200,
+          "missedTackles": -200,
+          "offloadsToHand": 400,
+          "offloadsToGround": 200,
+          "errors": -200,
+          "fortyTwenties": 400,
+          "twentyForties": 400,
+          "runMetres": 100,
+          "kickMetres": 100,
+          "penaltiesConceded": -200,
+          "sixAgainInfringements": -100,
+          "sinBins": -500,
+          "sendOffs": -1000,
+          "trySaves": 500,
+          "kicksDefused": 100,
+          "forcedDropouts": 200,
+          "turnovers": 400,
+          "escapesInGoal": 200
+        },
+        "statisticGroups": {
+          "runMetres": 10,
+          "kickMetres": 30
+        },
+        "policy": [
+          "Event values reference NRL Fantasy 2026 guidelines, reviewed 22 October 2026. Docked retains its own lineup and lock rules; no captain, emergency or bench scoring is added.",
+          "Run and kick metres earn points only for complete groups of 10 and 30 respectively, calculated separately per match. Offloads to hand and ground are separate required statistics. One- and two-point field goals each earn 5 fantasy points.",
+          "Use source-defined turnover events once: do not add an intercept and a strip again when they are already in the turnover total. Missing event fields are unavailable, never automatically zero. Explicit confirmed DNP/bye remains distinct."
+        ]
+      },
+      "players": [
+        {
+          "id": "15b9557f-3c21-4860-a97f-fdc44053d8ca",
+          "name": "Test NRL Player 01",
+          "position": "WFB",
+          "eligible_positions": [
+            "WFB"
+          ]
+        },
+        {
+          "id": "e76de61c-8459-480d-a683-891b31baa011",
+          "name": "Test NRL Player 02",
+          "position": "WFB",
+          "eligible_positions": [
+            "WFB"
+          ]
+        },
+        {
+          "id": "285f36fa-2b96-44ee-ab3f-9787bfaf2c64",
+          "name": "Test NRL Player 03",
+          "position": "CTR",
+          "eligible_positions": [
+            "CTR"
+          ]
+        },
+        {
+          "id": "7a1bed26-e931-4040-a241-54190a31aeb5",
+          "name": "Test NRL Player 04",
+          "position": "CTR",
+          "eligible_positions": [
+            "CTR"
+          ]
+        },
+        {
+          "id": "3491b713-0552-48aa-af76-3ad9e5a3503f",
+          "name": "Test NRL Player 05",
+          "position": "HLF",
+          "eligible_positions": [
+            "HLF"
+          ]
+        },
+        {
+          "id": "8edc4a4d-18f4-42ba-a587-e556461d168d",
+          "name": "Test NRL Player 06",
+          "position": "HLF",
+          "eligible_positions": [
+            "HLF"
+          ]
+        },
+        {
+          "id": "e4d9711c-c918-422b-a246-7627c5a2841c",
+          "name": "Test NRL Player 07",
+          "position": "EDG",
+          "eligible_positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "69fce572-ee7e-4e60-a276-2172a3f663dc",
+          "name": "Test NRL Player 08",
+          "position": "EDG",
+          "eligible_positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "7a86c166-cba8-4dec-a75a-13708ac0b894",
+          "name": "Test NRL Player 09",
+          "position": "EDG",
+          "eligible_positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "ee0e6dba-a296-49c6-a470-b219ec2ca689",
+          "name": "Test NRL Player 10",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "0b41203e-21ab-4821-a9da-367cf4f4dc45",
+          "name": "Test NRL Player 11",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "de4b3e90-db7a-40b3-a718-c2aba2463963",
+          "name": "Test NRL Player 12",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "8c820a29-bab8-4df0-a7c0-db99f7aa20ba",
+          "name": "Test NRL Player 13",
+          "position": "WFB",
+          "eligible_positions": [
+            "WFB",
+            "CTR",
+            "HLF",
+            "EDG",
+            "MID"
+          ]
+        },
+        {
+          "id": "8048e346-8f1e-447d-a3bf-1e2c0dd8b4e4",
+          "name": "Test NRL Player 14",
+          "position": "WFB",
+          "eligible_positions": [
+            "WFB"
+          ]
+        },
+        {
+          "id": "7c9065a5-58d4-4663-ac46-f2fb7d567f6e",
+          "name": "Test NRL Player 15",
+          "position": "WFB",
+          "eligible_positions": [
+            "WFB"
+          ]
+        },
+        {
+          "id": "104bcc54-54ff-43bc-a3ae-9f45d089e7b4",
+          "name": "Test NRL Player 16",
+          "position": "CTR",
+          "eligible_positions": [
+            "CTR"
+          ]
+        },
+        {
+          "id": "30fa5c8d-0013-4bba-aefa-20d68a498ee1",
+          "name": "Test NRL Player 17",
+          "position": "CTR",
+          "eligible_positions": [
+            "CTR"
+          ]
+        },
+        {
+          "id": "5057dcbe-616f-43b4-ab1a-466acf5558cc",
+          "name": "Test NRL Player 18",
+          "position": "HLF",
+          "eligible_positions": [
+            "HLF"
+          ]
+        },
+        {
+          "id": "59cc5256-2341-44bb-a387-525fad4e743e",
+          "name": "Test NRL Player 19",
+          "position": "HLF",
+          "eligible_positions": [
+            "HLF"
+          ]
+        },
+        {
+          "id": "ddfc67a4-9d50-42a7-a984-e45a57d64138",
+          "name": "Test NRL Player 20",
+          "position": "EDG",
+          "eligible_positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "94d74d94-b83e-42f9-ac71-65c54369b304",
+          "name": "Test NRL Player 21",
+          "position": "EDG",
+          "eligible_positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "801b910d-4878-46f1-a286-6703da80e095",
+          "name": "Test NRL Player 22",
+          "position": "EDG",
+          "eligible_positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "c55da707-0fb3-44a7-a45f-e2219b9c3f26",
+          "name": "Test NRL Player 23",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "dc16d6f9-84e2-4cd2-ad3a-ad9b3d55424c",
+          "name": "Test NRL Player 24",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "c4d87841-5261-4b67-a302-84766c629eee",
+          "name": "Test NRL Player 25",
+          "position": "MID",
+          "eligible_positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "72dae426-a092-4c41-a231-5283a4e972b1",
+          "name": "Test NRL Player 26",
+          "position": "WFB",
+          "eligible_positions": [
+            "WFB",
+            "CTR",
+            "HLF",
+            "EDG",
+            "MID"
+          ]
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "scheduledAt": "2026-10-24T08:00:00.000Z"
+        },
+        {
+          "round": 2,
+          "scheduledAt": "2026-10-31T08:00:00.000Z"
+        },
+        {
+          "round": 3,
+          "scheduledAt": "2026-11-07T08:00:00.000Z"
+        },
+        {
+          "round": 4,
+          "scheduledAt": "2026-11-14T08:00:00.000Z"
+        },
+        {
+          "round": 5,
+          "scheduledAt": "2026-11-21T08:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "deployment": "dpl_2ghyNJsCsiRgxitaZfaN6B4gRBkg",
+  "commit": "fe5a6b24070cb2e358322c8945ca8885b134750e",
+  "windowStart": "2026-10-22T21:16:37.689Z",
+  "windowEnd": "2026-10-22T21:46:37.689Z",
+  "errorEntries": 6,
+  "fatalEntries": 0,
+  "classification": "All six entries were fantasy_screen_unavailable with kind authentication on GET /fantasy/play. They match the three anonymous candidate probes and three anonymous live-domain probes.",
+  "otherErrorEntriesObserved": 0,
+  "authenticatedMemberJourneyObserved": false,
+  "limitation": "A short post-release log sample does not verify authenticated functionality or long-running scheduling."
+}

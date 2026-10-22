@@ -1,0 +1,38 @@
+{
+  "mode": "apply",
+  "planHash": "9cd870fd2156e86efe19e069e55961d1f9746e8ada7201caef84a8fd580a6466",
+  "created": 20,
+  "accounts": [
+    {
+      "id": "623d1e69-d0f3-493f-9713-108e8c21469a",
+      "confirmed": true,
+      "valid": true,
+      "admitted": true,
+      "mfa_required": true
+    },
+    {
+      "id": "ef641248-67be-4c32-9b12-9205bfcee15b",
+      "confirmed": true,
+      "valid": true,
+      "admitted": true,
+      "mfa_required": true
+    },
+    {
+      "id": "9fa5cdbb-aa2e-4ebe-9f2c-de9885233cd3",
+      "confirmed": true,
+      "valid": true,
+      "admitted": true,
+      "mfa_required": false
+    },
+    {
+      "id": "d6ab4838-7108-4c50-8ab8-c5947ab55bd8",
+      "confirmed": false,
+      "valid": true,
+      "admitted": false,
+      "mfa_required": false
+    }
+  ],
+  "existingRecordsUnchanged": true,
+  "permanentCards": 0,
+  "realData": false
+}

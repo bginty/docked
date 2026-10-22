@@ -1,0 +1,77 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "mode": "apply",
+  "passed": true,
+  "missing": [
+    "20261022115817_nba_isolated_economy_boundary.sql",
+    "20261022122441_multi_sport_private_beta_access.sql",
+    "20261022123136_multi_sport_fixture_economy.sql",
+    "20261022124750_fixture_inventory_projection.sql",
+    "20261022203038_fixture_social_audience.sql"
+  ],
+  "hashes": [
+    {
+      "file": "20261022115817_nba_isolated_economy_boundary.sql",
+      "hash": "ed6d6e0d618cd6895a6ac9372fa181bd7736b036d99a49f5d2a4d756c60f3c79"
+    },
+    {
+      "file": "20261022122441_multi_sport_private_beta_access.sql",
+      "hash": "c7c94875541f08016b3dfe625b249ad920f202aad37f4bcce5b615f0f72992c5"
+    },
+    {
+      "file": "20261022123136_multi_sport_fixture_economy.sql",
+      "hash": "1e07cd2744dbd7fda2f1caae58fe4ff2220a8bbd6780eb6711cdb267e0a7d3e0"
+    },
+    {
+      "file": "20261022124750_fixture_inventory_projection.sql",
+      "hash": "bc8a7713c89498817c591944210dc9e694fa87d67ca952053995d76b5817571c"
+    },
+    {
+      "file": "20261022203038_fixture_social_audience.sql",
+      "hash": "08aca1837b8fe505fc2e830936c2e9c50b9245878be9ec4caa3f80e396435ebb"
+    }
+  ],
+  "before": {
+    "beta_fantasy.cards": {
+      "count": "59",
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.entries": {
+      "count": "12",
+      "hash": "e621449adae4aab5fbf4d747afaffd5c"
+    },
+    "beta_fantasy.results": {
+      "count": "1",
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.ownership_events": {
+      "count": "59",
+      "hash": "704a314a527c2d8d2aa625dc1546ca60"
+    },
+    "beta_fantasy.sales": {
+      "count": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.state": {
+      "count": "1",
+      "hash": "79914930c2face72ab98a7f01f07b311"
+    },
+    "sports_feed.nfl_rounds": {
+      "count": "6",
+      "hash": "8b29bad897bc212b8cdedf005a552b48"
+    },
+    "sports_feed.nfl_control": {
+      "count": "1",
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    },
+    "beta_fantasy.players": {
+      "count": "534",
+      "hash": "3a20c778089688b8a82a2fe4e4796074"
+    },
+    "sports_feed.sport_sandbox_inventory": {
+      "count": "4",
+      "hash": "db470534ebeb59153a0e5afdb079b7ef"
+    }
+  },
+  "existingRecordsUnchanged": true
+}

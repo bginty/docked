@@ -1,0 +1,100 @@
+{
+  "at": "2026-10-22 21:26:32 UTC",
+  "commit": "a9066d1719759ee57ab6571171f5ca8e7db331f7",
+  "environment": "protected-production-candidate",
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta?view=state",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=afl",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=nrl",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=basketball",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/community?view=hub",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/sports-readiness",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/admin/ingestion",
+      "status": 404,
+      "passed": true,
+      "note": "Owner route intentionally returns not found for unauthenticated requests."
+    },
+    {
+      "path": "/app/login",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=basketball",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=nrl",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "authenticatedMemberTesting": false,
+  "excludedProbe": {
+    "path": "/api/admin/ingestion",
+    "status": 404,
+    "reason": "No such API is defined. /admin/ingestion uses authenticated server rendering and server actions."
+  }
+}

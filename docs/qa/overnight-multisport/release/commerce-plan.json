@@ -1,0 +1,2111 @@
+{
+  "authority": "Owner overnight instruction: isolated NBA/AFL/NRL packs and trading with existing nonwithdrawable beta credits; no permanent issuance, real players, real money or public access.",
+  "createdAt": "2026-10-22T20:58:56.348Z",
+  "sports": [
+    {
+      "sport": "basketball",
+      "players": [
+        {
+          "id": "nba-fixture-04101250-de7a-4386-a9ea-a47124421f3b",
+          "provider": "fixture",
+          "providerId": "nba-fixture-04101250-de7a-4386-a9ea-a47124421f3b",
+          "fixturePlayerId": "04101250-de7a-4386-a9ea-a47124421f3b",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 07",
+          "position": "SF",
+          "eligiblePositions": [
+            "SF",
+            "PF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-0885ad34-3bd2-47a4-a1dd-d57630f761da",
+          "provider": "fixture",
+          "providerId": "nba-fixture-0885ad34-3bd2-47a4-a1dd-d57630f761da",
+          "fixturePlayerId": "0885ad34-3bd2-47a4-a1dd-d57630f761da",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 20",
+          "position": "PF",
+          "eligiblePositions": [
+            "PF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-3a6aee10-8d19-472e-a82f-ebe46caba3cb",
+          "provider": "fixture",
+          "providerId": "nba-fixture-3a6aee10-8d19-472e-a82f-ebe46caba3cb",
+          "fixturePlayerId": "3a6aee10-8d19-472e-a82f-ebe46caba3cb",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 13",
+          "position": "C",
+          "eligiblePositions": [
+            "C"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-3cbc7169-c44e-481c-a723-4f17def95460",
+          "provider": "fixture",
+          "providerId": "nba-fixture-3cbc7169-c44e-481c-a723-4f17def95460",
+          "fixturePlayerId": "3cbc7169-c44e-481c-a723-4f17def95460",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 23",
+          "position": "SF",
+          "eligiblePositions": [
+            "SF",
+            "PF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-3f1586e1-bc27-453b-a294-25de5a12a820",
+          "provider": "fixture",
+          "providerId": "nba-fixture-3f1586e1-bc27-453b-a294-25de5a12a820",
+          "fixturePlayerId": "3f1586e1-bc27-453b-a294-25de5a12a820",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 04",
+          "position": "PF",
+          "eligiblePositions": [
+            "PF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-50505e06-2068-4833-aa45-42bcf9afbcf3",
+          "provider": "fixture",
+          "providerId": "nba-fixture-50505e06-2068-4833-aa45-42bcf9afbcf3",
+          "fixturePlayerId": "50505e06-2068-4833-aa45-42bcf9afbcf3",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 19",
+          "position": "SF",
+          "eligiblePositions": [
+            "SF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-61d44752-c19e-4cd8-addd-84844217813a",
+          "provider": "fixture",
+          "providerId": "nba-fixture-61d44752-c19e-4cd8-addd-84844217813a",
+          "fixturePlayerId": "61d44752-c19e-4cd8-addd-84844217813a",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 03",
+          "position": "SF",
+          "eligiblePositions": [
+            "SF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-6ce940fe-b4a2-4cce-a0ff-873ddf39e5cf",
+          "provider": "fixture",
+          "providerId": "nba-fixture-6ce940fe-b4a2-4cce-a0ff-873ddf39e5cf",
+          "fixturePlayerId": "6ce940fe-b4a2-4cce-a0ff-873ddf39e5cf",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 01",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-76941a69-1e30-47df-a488-34cc164aa2d9",
+          "provider": "fixture",
+          "providerId": "nba-fixture-76941a69-1e30-47df-a488-34cc164aa2d9",
+          "fixturePlayerId": "76941a69-1e30-47df-a488-34cc164aa2d9",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 15",
+          "position": "SF",
+          "eligiblePositions": [
+            "SF",
+            "PF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-83e8426b-02a2-428a-ad3a-e3356017308c",
+          "provider": "fixture",
+          "providerId": "nba-fixture-83e8426b-02a2-428a-ad3a-e3356017308c",
+          "fixturePlayerId": "83e8426b-02a2-428a-ad3a-e3356017308c",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 11",
+          "position": "SF",
+          "eligiblePositions": [
+            "SF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-99cccd2d-3c03-4734-a3bd-5cb52b6e9611",
+          "provider": "fixture",
+          "providerId": "nba-fixture-99cccd2d-3c03-4734-a3bd-5cb52b6e9611",
+          "fixturePlayerId": "99cccd2d-3c03-4734-a3bd-5cb52b6e9611",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 14",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG",
+            "SG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-9e468693-e61e-4587-aaff-9622d5f87ff5",
+          "provider": "fixture",
+          "providerId": "nba-fixture-9e468693-e61e-4587-aaff-9622d5f87ff5",
+          "fixturePlayerId": "9e468693-e61e-4587-aaff-9622d5f87ff5",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 21",
+          "position": "C",
+          "eligiblePositions": [
+            "C"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-aa22ac91-5d39-49e4-a0bd-dc2f4dbd0c26",
+          "provider": "fixture",
+          "providerId": "nba-fixture-aa22ac91-5d39-49e4-a0bd-dc2f4dbd0c26",
+          "fixturePlayerId": "aa22ac91-5d39-49e4-a0bd-dc2f4dbd0c26",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 17",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-b36f858d-9929-45f1-a7e4-0c0501ef8cfa",
+          "provider": "fixture",
+          "providerId": "nba-fixture-b36f858d-9929-45f1-a7e4-0c0501ef8cfa",
+          "fixturePlayerId": "b36f858d-9929-45f1-a7e4-0c0501ef8cfa",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 12",
+          "position": "PF",
+          "eligiblePositions": [
+            "PF"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-b44494f1-fc8a-4f75-afc0-46962f533df3",
+          "provider": "fixture",
+          "providerId": "nba-fixture-b44494f1-fc8a-4f75-afc0-46962f533df3",
+          "fixturePlayerId": "b44494f1-fc8a-4f75-afc0-46962f533df3",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 24",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG",
+            "SG",
+            "SF",
+            "PF",
+            "C"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-c0004157-9490-4f43-af17-979ce345aad1",
+          "provider": "fixture",
+          "providerId": "nba-fixture-c0004157-9490-4f43-af17-979ce345aad1",
+          "fixturePlayerId": "c0004157-9490-4f43-af17-979ce345aad1",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 05",
+          "position": "C",
+          "eligiblePositions": [
+            "C"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-c5eaab54-608f-49c6-a017-2b0db0aaf570",
+          "provider": "fixture",
+          "providerId": "nba-fixture-c5eaab54-608f-49c6-a017-2b0db0aaf570",
+          "fixturePlayerId": "c5eaab54-608f-49c6-a017-2b0db0aaf570",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 06",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG",
+            "SG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-ce8cf9ee-4636-4276-a926-7ed28a53a441",
+          "provider": "fixture",
+          "providerId": "nba-fixture-ce8cf9ee-4636-4276-a926-7ed28a53a441",
+          "fixturePlayerId": "ce8cf9ee-4636-4276-a926-7ed28a53a441",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 10",
+          "position": "SG",
+          "eligiblePositions": [
+            "SG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-d2b7e39d-fa89-4b89-a3b3-33c05b0a276e",
+          "provider": "fixture",
+          "providerId": "nba-fixture-d2b7e39d-fa89-4b89-a3b3-33c05b0a276e",
+          "fixturePlayerId": "d2b7e39d-fa89-4b89-a3b3-33c05b0a276e",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 18",
+          "position": "SG",
+          "eligiblePositions": [
+            "SG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-dc642584-ce8d-4910-a550-b23bead45ed8",
+          "provider": "fixture",
+          "providerId": "nba-fixture-dc642584-ce8d-4910-a550-b23bead45ed8",
+          "fixturePlayerId": "dc642584-ce8d-4910-a550-b23bead45ed8",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 02",
+          "position": "SG",
+          "eligiblePositions": [
+            "SG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-e4a88771-a2a9-49f4-a216-9989d2f6bff5",
+          "provider": "fixture",
+          "providerId": "nba-fixture-e4a88771-a2a9-49f4-a216-9989d2f6bff5",
+          "fixturePlayerId": "e4a88771-a2a9-49f4-a216-9989d2f6bff5",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 22",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG",
+            "SG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-e880b970-8392-46b1-a328-1a84211c4a48",
+          "provider": "fixture",
+          "providerId": "nba-fixture-e880b970-8392-46b1-a328-1a84211c4a48",
+          "fixturePlayerId": "e880b970-8392-46b1-a328-1a84211c4a48",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 09",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-ec54b983-f79b-429c-a36d-11f3ae2b4774",
+          "provider": "fixture",
+          "providerId": "nba-fixture-ec54b983-f79b-429c-a36d-11f3ae2b4774",
+          "fixturePlayerId": "ec54b983-f79b-429c-a36d-11f3ae2b4774",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 08",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG",
+            "SG",
+            "SF",
+            "PF",
+            "C"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nba-fixture-f2a44c8e-305c-462b-aa4e-21dc5907c974",
+          "provider": "fixture",
+          "providerId": "nba-fixture-f2a44c8e-305c-462b-aa4e-21dc5907c974",
+          "fixturePlayerId": "f2a44c8e-305c-462b-aa4e-21dc5907c974",
+          "synthetic": true,
+          "sport": "basketball",
+          "assetKind": "player",
+          "name": "Test NBA Player 16",
+          "position": "PG",
+          "eligiblePositions": [
+            "PG",
+            "SG",
+            "SF",
+            "PF",
+            "C"
+          ],
+          "currentTeam": "Fictional NBA testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-basketball-v1",
+          "verifiedJerseyNumber": null
+        }
+      ],
+      "products": [
+        {
+          "id": "premium-9-nba-isolated-v1",
+          "version": "premium-9-nba-isolated-v1",
+          "type": "PREMIUM",
+          "name": "NBA Premium 9 Pack · Test",
+          "priceCredits": 5000,
+          "cards": 9,
+          "sport": "basketball",
+          "positions": [
+            "PG",
+            "SG",
+            "SF",
+            "PF",
+            "C"
+          ],
+          "weights": {
+            "RARE": 0,
+            "ELITE": 0,
+            "ULTRA_RARE": 9000,
+            "LEGENDARY": 990,
+            "ICON": 10
+          },
+          "guaranteedSlots": {},
+          "duplicatePlayers": "deny",
+          "status": "TEST_ONLY",
+          "effectiveAt": 1792702736348,
+          "expiresAt": null,
+          "freshnessHours": 72,
+          "exhaustion": "FAIL_ENTIRE_PACK"
+        },
+        {
+          "id": "standard-9-nba-isolated-v1",
+          "version": "standard-9-nba-isolated-v1",
+          "type": "STANDARD",
+          "name": "NBA Standard 9 Pack · Test",
+          "priceCredits": 700,
+          "cards": 9,
+          "sport": "basketball",
+          "positions": [
+            "PG",
+            "SG",
+            "SF",
+            "PF",
+            "C"
+          ],
+          "weights": {
+            "RARE": 8500,
+            "ELITE": 1200,
+            "ULTRA_RARE": 250,
+            "LEGENDARY": 49,
+            "ICON": 1
+          },
+          "guaranteedSlots": {},
+          "duplicatePlayers": "deny",
+          "status": "TEST_ONLY",
+          "effectiveAt": 1792702736348,
+          "expiresAt": null,
+          "freshnessHours": 72,
+          "exhaustion": "FAIL_ENTIRE_PACK"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "players": [
+        {
+          "id": "afl-fixture-00f67cb5-5f34-4584-afd1-df65e0786c00",
+          "provider": "fixture",
+          "providerId": "afl-fixture-00f67cb5-5f34-4584-afd1-df65e0786c00",
+          "fixturePlayerId": "00f67cb5-5f34-4584-afd1-df65e0786c00",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 36",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-08a5cadc-2c2e-4ece-adc5-9fb15bd02903",
+          "provider": "fixture",
+          "providerId": "afl-fixture-08a5cadc-2c2e-4ece-adc5-9fb15bd02903",
+          "fixturePlayerId": "08a5cadc-2c2e-4ece-adc5-9fb15bd02903",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 10",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-0b9c67ce-56d4-4286-ad44-d3adae8754fe",
+          "provider": "fixture",
+          "providerId": "afl-fixture-0b9c67ce-56d4-4286-ad44-d3adae8754fe",
+          "fixturePlayerId": "0b9c67ce-56d4-4286-ad44-d3adae8754fe",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 13",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-0d896a01-8304-4202-a5ab-3d8c21161ee2",
+          "provider": "fixture",
+          "providerId": "afl-fixture-0d896a01-8304-4202-a5ab-3d8c21161ee2",
+          "fixturePlayerId": "0d896a01-8304-4202-a5ab-3d8c21161ee2",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 20",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-0de0743c-9c69-42a8-a762-0d4fa169e9bf",
+          "provider": "fixture",
+          "providerId": "afl-fixture-0de0743c-9c69-42a8-a762-0d4fa169e9bf",
+          "fixturePlayerId": "0de0743c-9c69-42a8-a762-0d4fa169e9bf",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 02",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-115226e1-51a7-4b40-afc9-c261df75b3ab",
+          "provider": "fixture",
+          "providerId": "afl-fixture-115226e1-51a7-4b40-afc9-c261df75b3ab",
+          "fixturePlayerId": "115226e1-51a7-4b40-afc9-c261df75b3ab",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 33",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-168a949a-20e5-4521-a61b-650a360c60fe",
+          "provider": "fixture",
+          "providerId": "afl-fixture-168a949a-20e5-4521-a61b-650a360c60fe",
+          "fixturePlayerId": "168a949a-20e5-4521-a61b-650a360c60fe",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 41",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-39a7d00c-8922-4963-aba5-04b69a50dfdd",
+          "provider": "fixture",
+          "providerId": "afl-fixture-39a7d00c-8922-4963-aba5-04b69a50dfdd",
+          "fixturePlayerId": "39a7d00c-8922-4963-aba5-04b69a50dfdd",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 21",
+          "position": "RUC",
+          "eligiblePositions": [
+            "RUC"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-3beda50a-fc4c-4e65-a9f8-3290999eba00",
+          "provider": "fixture",
+          "providerId": "afl-fixture-3beda50a-fc4c-4e65-a9f8-3290999eba00",
+          "fixturePlayerId": "3beda50a-fc4c-4e65-a9f8-3290999eba00",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 26",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-3cfdec63-2d88-4727-aa4f-9ee54c8dd552",
+          "provider": "fixture",
+          "providerId": "afl-fixture-3cfdec63-2d88-4727-aa4f-9ee54c8dd552",
+          "fixturePlayerId": "3cfdec63-2d88-4727-aa4f-9ee54c8dd552",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 19",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-3e039d16-af6e-4fcb-acbe-20787ba1690e",
+          "provider": "fixture",
+          "providerId": "afl-fixture-3e039d16-af6e-4fcb-acbe-20787ba1690e",
+          "fixturePlayerId": "3e039d16-af6e-4fcb-acbe-20787ba1690e",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 11",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-408c8a84-8f55-4971-ae0c-a8f8be801a4f",
+          "provider": "fixture",
+          "providerId": "afl-fixture-408c8a84-8f55-4971-ae0c-a8f8be801a4f",
+          "fixturePlayerId": "408c8a84-8f55-4971-ae0c-a8f8be801a4f",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 09",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-47e759a8-a64b-4d3b-acf6-d3ceb0fdd4bf",
+          "provider": "fixture",
+          "providerId": "afl-fixture-47e759a8-a64b-4d3b-acf6-d3ceb0fdd4bf",
+          "fixturePlayerId": "47e759a8-a64b-4d3b-acf6-d3ceb0fdd4bf",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 04",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-524bd1ac-073e-45de-acb3-d14580d19721",
+          "provider": "fixture",
+          "providerId": "afl-fixture-524bd1ac-073e-45de-acb3-d14580d19721",
+          "fixturePlayerId": "524bd1ac-073e-45de-acb3-d14580d19721",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 17",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-54882fa4-1e55-492a-a977-dc26bc9501a8",
+          "provider": "fixture",
+          "providerId": "afl-fixture-54882fa4-1e55-492a-a977-dc26bc9501a8",
+          "fixturePlayerId": "54882fa4-1e55-492a-a977-dc26bc9501a8",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 40",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-5873c376-7397-446d-ac03-359d71e19f7a",
+          "provider": "fixture",
+          "providerId": "afl-fixture-5873c376-7397-446d-ac03-359d71e19f7a",
+          "fixturePlayerId": "5873c376-7397-446d-ac03-359d71e19f7a",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 24",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-5906b944-9077-4a3e-a36c-22b3e62411a0",
+          "provider": "fixture",
+          "providerId": "afl-fixture-5906b944-9077-4a3e-a36c-22b3e62411a0",
+          "fixturePlayerId": "5906b944-9077-4a3e-a36c-22b3e62411a0",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 15",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-5b95e088-9979-438d-a62b-2a38771a4938",
+          "provider": "fixture",
+          "providerId": "afl-fixture-5b95e088-9979-438d-a62b-2a38771a4938",
+          "fixturePlayerId": "5b95e088-9979-438d-a62b-2a38771a4938",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 42",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-6402d25c-62f4-4017-a5dc-5fb85bd6bd2b",
+          "provider": "fixture",
+          "providerId": "afl-fixture-6402d25c-62f4-4017-a5dc-5fb85bd6bd2b",
+          "fixturePlayerId": "6402d25c-62f4-4017-a5dc-5fb85bd6bd2b",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 14",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-78784ac2-4c3f-4b81-a720-fbdd35632e5e",
+          "provider": "fixture",
+          "providerId": "afl-fixture-78784ac2-4c3f-4b81-a720-fbdd35632e5e",
+          "fixturePlayerId": "78784ac2-4c3f-4b81-a720-fbdd35632e5e",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 16",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-7d660e6d-4f8d-4361-a352-3cfc8062764b",
+          "provider": "fixture",
+          "providerId": "afl-fixture-7d660e6d-4f8d-4361-a352-3cfc8062764b",
+          "fixturePlayerId": "7d660e6d-4f8d-4361-a352-3cfc8062764b",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 35",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-86b2cdbe-9b52-438c-a48a-85a1153e26c8",
+          "provider": "fixture",
+          "providerId": "afl-fixture-86b2cdbe-9b52-438c-a48a-85a1153e26c8",
+          "fixturePlayerId": "86b2cdbe-9b52-438c-a48a-85a1153e26c8",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 06",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-87a57812-051d-4e92-a985-a8532c82c070",
+          "provider": "fixture",
+          "providerId": "afl-fixture-87a57812-051d-4e92-a985-a8532c82c070",
+          "fixturePlayerId": "87a57812-051d-4e92-a985-a8532c82c070",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 38",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-8dcf6788-d283-4304-a102-f834cd3ea8c3",
+          "provider": "fixture",
+          "providerId": "afl-fixture-8dcf6788-d283-4304-a102-f834cd3ea8c3",
+          "fixturePlayerId": "8dcf6788-d283-4304-a102-f834cd3ea8c3",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 30",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-8fd6037a-b517-4a72-ac7f-861b0e3dfecb",
+          "provider": "fixture",
+          "providerId": "afl-fixture-8fd6037a-b517-4a72-ac7f-861b0e3dfecb",
+          "fixturePlayerId": "8fd6037a-b517-4a72-ac7f-861b0e3dfecb",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 25",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-93e3ab78-4bc3-488f-afd2-09e01724bb65",
+          "provider": "fixture",
+          "providerId": "afl-fixture-93e3ab78-4bc3-488f-afd2-09e01724bb65",
+          "fixturePlayerId": "93e3ab78-4bc3-488f-afd2-09e01724bb65",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 29",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-a2b6b344-4dc8-4866-a1bd-7ace567d6939",
+          "provider": "fixture",
+          "providerId": "afl-fixture-a2b6b344-4dc8-4866-a1bd-7ace567d6939",
+          "fixturePlayerId": "a2b6b344-4dc8-4866-a1bd-7ace567d6939",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 23",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-ace7e7be-fd93-4276-a639-1322b3466a88",
+          "provider": "fixture",
+          "providerId": "afl-fixture-ace7e7be-fd93-4276-a639-1322b3466a88",
+          "fixturePlayerId": "ace7e7be-fd93-4276-a639-1322b3466a88",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 27",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-b0df5bf9-aa43-4770-ab3b-980b02489ff0",
+          "provider": "fixture",
+          "providerId": "afl-fixture-b0df5bf9-aa43-4770-ab3b-980b02489ff0",
+          "fixturePlayerId": "b0df5bf9-aa43-4770-ab3b-980b02489ff0",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 32",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-b4c5494f-d419-4a76-aa7f-95dcf14dd336",
+          "provider": "fixture",
+          "providerId": "afl-fixture-b4c5494f-d419-4a76-aa7f-95dcf14dd336",
+          "fixturePlayerId": "b4c5494f-d419-4a76-aa7f-95dcf14dd336",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 03",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-b528bb2c-afbd-4e90-add1-b1e867a19b30",
+          "provider": "fixture",
+          "providerId": "afl-fixture-b528bb2c-afbd-4e90-add1-b1e867a19b30",
+          "fixturePlayerId": "b528bb2c-afbd-4e90-add1-b1e867a19b30",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 39",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-b540d645-7736-434b-ac06-9866e7c23580",
+          "provider": "fixture",
+          "providerId": "afl-fixture-b540d645-7736-434b-ac06-9866e7c23580",
+          "fixturePlayerId": "b540d645-7736-434b-ac06-9866e7c23580",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 12",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-bdc7d857-0c15-488c-aba8-31d121f5abad",
+          "provider": "fixture",
+          "providerId": "afl-fixture-bdc7d857-0c15-488c-aba8-31d121f5abad",
+          "fixturePlayerId": "bdc7d857-0c15-488c-aba8-31d121f5abad",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 07",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-ce331a06-43b3-4de9-aafe-8d0c675b9883",
+          "provider": "fixture",
+          "providerId": "afl-fixture-ce331a06-43b3-4de9-aafe-8d0c675b9883",
+          "fixturePlayerId": "ce331a06-43b3-4de9-aafe-8d0c675b9883",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 08",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-d066fe13-bd36-4bbd-a5fe-f7f0b1f679fa",
+          "provider": "fixture",
+          "providerId": "afl-fixture-d066fe13-bd36-4bbd-a5fe-f7f0b1f679fa",
+          "fixturePlayerId": "d066fe13-bd36-4bbd-a5fe-f7f0b1f679fa",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 28",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-d3ce6e7b-f1b0-409c-a979-047367bbffec",
+          "provider": "fixture",
+          "providerId": "afl-fixture-d3ce6e7b-f1b0-409c-a979-047367bbffec",
+          "fixturePlayerId": "d3ce6e7b-f1b0-409c-a979-047367bbffec",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 22",
+          "position": "RUC",
+          "eligiblePositions": [
+            "RUC"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-dc609af4-3d9d-4851-add7-dc8a7de44873",
+          "provider": "fixture",
+          "providerId": "afl-fixture-dc609af4-3d9d-4851-add7-dc8a7de44873",
+          "fixturePlayerId": "dc609af4-3d9d-4851-add7-dc8a7de44873",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 43",
+          "position": "RUC",
+          "eligiblePositions": [
+            "RUC"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-e48276fc-ebb0-44f3-adc6-553dc1b75eca",
+          "provider": "fixture",
+          "providerId": "afl-fixture-e48276fc-ebb0-44f3-adc6-553dc1b75eca",
+          "fixturePlayerId": "e48276fc-ebb0-44f3-adc6-553dc1b75eca",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 44",
+          "position": "RUC",
+          "eligiblePositions": [
+            "RUC"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-e80581eb-9980-490b-a3f8-e9c629621188",
+          "provider": "fixture",
+          "providerId": "afl-fixture-e80581eb-9980-490b-a3f8-e9c629621188",
+          "fixturePlayerId": "e80581eb-9980-490b-a3f8-e9c629621188",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 37",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-ed83fedd-0477-4eca-a57c-e3082beed5d5",
+          "provider": "fixture",
+          "providerId": "afl-fixture-ed83fedd-0477-4eca-a57c-e3082beed5d5",
+          "fixturePlayerId": "ed83fedd-0477-4eca-a57c-e3082beed5d5",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 05",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-edb29eba-2038-449e-a63b-c9b6b475dd6a",
+          "provider": "fixture",
+          "providerId": "afl-fixture-edb29eba-2038-449e-a63b-c9b6b475dd6a",
+          "fixturePlayerId": "edb29eba-2038-449e-a63b-c9b6b475dd6a",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 34",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-edeb2c9c-e97b-4ccb-af37-cc5f1d983db7",
+          "provider": "fixture",
+          "providerId": "afl-fixture-edeb2c9c-e97b-4ccb-af37-cc5f1d983db7",
+          "fixturePlayerId": "edeb2c9c-e97b-4ccb-af37-cc5f1d983db7",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 01",
+          "position": "DEF",
+          "eligiblePositions": [
+            "DEF"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-f258f38f-a25f-4f46-a957-11b43fdc65c8",
+          "provider": "fixture",
+          "providerId": "afl-fixture-f258f38f-a25f-4f46-a957-11b43fdc65c8",
+          "fixturePlayerId": "f258f38f-a25f-4f46-a957-11b43fdc65c8",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 31",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "afl-fixture-fc01db50-472c-4842-ac27-1318e7b1f6d3",
+          "provider": "fixture",
+          "providerId": "afl-fixture-fc01db50-472c-4842-ac27-1318e7b1f6d3",
+          "fixturePlayerId": "fc01db50-472c-4842-ac27-1318e7b1f6d3",
+          "synthetic": true,
+          "sport": "afl",
+          "assetKind": "player",
+          "name": "Test AFL Player 18",
+          "position": "FWD",
+          "eligiblePositions": [
+            "FWD"
+          ],
+          "currentTeam": "Fictional AFL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-afl-v1",
+          "verifiedJerseyNumber": null
+        }
+      ],
+      "products": [
+        {
+          "id": "premium-9-afl-isolated-v1",
+          "version": "premium-9-afl-isolated-v1",
+          "type": "PREMIUM",
+          "name": "AFL Premium 9 Pack · Test",
+          "priceCredits": 5000,
+          "cards": 9,
+          "sport": "afl",
+          "positions": [
+            "DEF",
+            "MID",
+            "FWD",
+            "RUC"
+          ],
+          "weights": {
+            "RARE": 0,
+            "ELITE": 0,
+            "ULTRA_RARE": 9000,
+            "LEGENDARY": 990,
+            "ICON": 10
+          },
+          "guaranteedSlots": {},
+          "duplicatePlayers": "deny",
+          "status": "TEST_ONLY",
+          "effectiveAt": 1792702736348,
+          "expiresAt": null,
+          "freshnessHours": 72,
+          "exhaustion": "FAIL_ENTIRE_PACK"
+        },
+        {
+          "id": "standard-9-afl-isolated-v1",
+          "version": "standard-9-afl-isolated-v1",
+          "type": "STANDARD",
+          "name": "AFL Standard 9 Pack · Test",
+          "priceCredits": 700,
+          "cards": 9,
+          "sport": "afl",
+          "positions": [
+            "DEF",
+            "MID",
+            "FWD",
+            "RUC"
+          ],
+          "weights": {
+            "RARE": 8500,
+            "ELITE": 1200,
+            "ULTRA_RARE": 250,
+            "LEGENDARY": 49,
+            "ICON": 1
+          },
+          "guaranteedSlots": {},
+          "duplicatePlayers": "deny",
+          "status": "TEST_ONLY",
+          "effectiveAt": 1792702736348,
+          "expiresAt": null,
+          "freshnessHours": 72,
+          "exhaustion": "FAIL_ENTIRE_PACK"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "players": [
+        {
+          "id": "nrl-fixture-0b41203e-21ab-4821-a9da-367cf4f4dc45",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-0b41203e-21ab-4821-a9da-367cf4f4dc45",
+          "fixturePlayerId": "0b41203e-21ab-4821-a9da-367cf4f4dc45",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 11",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-104bcc54-54ff-43bc-a3ae-9f45d089e7b4",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-104bcc54-54ff-43bc-a3ae-9f45d089e7b4",
+          "fixturePlayerId": "104bcc54-54ff-43bc-a3ae-9f45d089e7b4",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 16",
+          "position": "CTR",
+          "eligiblePositions": [
+            "CTR"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-15b9557f-3c21-4860-a97f-fdc44053d8ca",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-15b9557f-3c21-4860-a97f-fdc44053d8ca",
+          "fixturePlayerId": "15b9557f-3c21-4860-a97f-fdc44053d8ca",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 01",
+          "position": "WFB",
+          "eligiblePositions": [
+            "WFB"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-285f36fa-2b96-44ee-ab3f-9787bfaf2c64",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-285f36fa-2b96-44ee-ab3f-9787bfaf2c64",
+          "fixturePlayerId": "285f36fa-2b96-44ee-ab3f-9787bfaf2c64",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 03",
+          "position": "CTR",
+          "eligiblePositions": [
+            "CTR"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-30fa5c8d-0013-4bba-aefa-20d68a498ee1",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-30fa5c8d-0013-4bba-aefa-20d68a498ee1",
+          "fixturePlayerId": "30fa5c8d-0013-4bba-aefa-20d68a498ee1",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 17",
+          "position": "CTR",
+          "eligiblePositions": [
+            "CTR"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-3491b713-0552-48aa-af76-3ad9e5a3503f",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-3491b713-0552-48aa-af76-3ad9e5a3503f",
+          "fixturePlayerId": "3491b713-0552-48aa-af76-3ad9e5a3503f",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 05",
+          "position": "HLF",
+          "eligiblePositions": [
+            "HLF"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-5057dcbe-616f-43b4-ab1a-466acf5558cc",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-5057dcbe-616f-43b4-ab1a-466acf5558cc",
+          "fixturePlayerId": "5057dcbe-616f-43b4-ab1a-466acf5558cc",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 18",
+          "position": "HLF",
+          "eligiblePositions": [
+            "HLF"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-59cc5256-2341-44bb-a387-525fad4e743e",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-59cc5256-2341-44bb-a387-525fad4e743e",
+          "fixturePlayerId": "59cc5256-2341-44bb-a387-525fad4e743e",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 19",
+          "position": "HLF",
+          "eligiblePositions": [
+            "HLF"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-69fce572-ee7e-4e60-a276-2172a3f663dc",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-69fce572-ee7e-4e60-a276-2172a3f663dc",
+          "fixturePlayerId": "69fce572-ee7e-4e60-a276-2172a3f663dc",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 08",
+          "position": "EDG",
+          "eligiblePositions": [
+            "EDG"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-72dae426-a092-4c41-a231-5283a4e972b1",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-72dae426-a092-4c41-a231-5283a4e972b1",
+          "fixturePlayerId": "72dae426-a092-4c41-a231-5283a4e972b1",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 26",
+          "position": "WFB",
+          "eligiblePositions": [
+            "WFB",
+            "CTR",
+            "HLF",
+            "EDG",
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-7a1bed26-e931-4040-a241-54190a31aeb5",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-7a1bed26-e931-4040-a241-54190a31aeb5",
+          "fixturePlayerId": "7a1bed26-e931-4040-a241-54190a31aeb5",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 04",
+          "position": "CTR",
+          "eligiblePositions": [
+            "CTR"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-7a86c166-cba8-4dec-a75a-13708ac0b894",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-7a86c166-cba8-4dec-a75a-13708ac0b894",
+          "fixturePlayerId": "7a86c166-cba8-4dec-a75a-13708ac0b894",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 09",
+          "position": "EDG",
+          "eligiblePositions": [
+            "EDG"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-7c9065a5-58d4-4663-ac46-f2fb7d567f6e",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-7c9065a5-58d4-4663-ac46-f2fb7d567f6e",
+          "fixturePlayerId": "7c9065a5-58d4-4663-ac46-f2fb7d567f6e",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 15",
+          "position": "WFB",
+          "eligiblePositions": [
+            "WFB"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-801b910d-4878-46f1-a286-6703da80e095",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-801b910d-4878-46f1-a286-6703da80e095",
+          "fixturePlayerId": "801b910d-4878-46f1-a286-6703da80e095",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 22",
+          "position": "EDG",
+          "eligiblePositions": [
+            "EDG"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-8048e346-8f1e-447d-a3bf-1e2c0dd8b4e4",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-8048e346-8f1e-447d-a3bf-1e2c0dd8b4e4",
+          "fixturePlayerId": "8048e346-8f1e-447d-a3bf-1e2c0dd8b4e4",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 14",
+          "position": "WFB",
+          "eligiblePositions": [
+            "WFB"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-8c820a29-bab8-4df0-a7c0-db99f7aa20ba",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-8c820a29-bab8-4df0-a7c0-db99f7aa20ba",
+          "fixturePlayerId": "8c820a29-bab8-4df0-a7c0-db99f7aa20ba",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 13",
+          "position": "WFB",
+          "eligiblePositions": [
+            "WFB",
+            "CTR",
+            "HLF",
+            "EDG",
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-8edc4a4d-18f4-42ba-a587-e556461d168d",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-8edc4a4d-18f4-42ba-a587-e556461d168d",
+          "fixturePlayerId": "8edc4a4d-18f4-42ba-a587-e556461d168d",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 06",
+          "position": "HLF",
+          "eligiblePositions": [
+            "HLF"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-94d74d94-b83e-42f9-ac71-65c54369b304",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-94d74d94-b83e-42f9-ac71-65c54369b304",
+          "fixturePlayerId": "94d74d94-b83e-42f9-ac71-65c54369b304",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 21",
+          "position": "EDG",
+          "eligiblePositions": [
+            "EDG"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-c4d87841-5261-4b67-a302-84766c629eee",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-c4d87841-5261-4b67-a302-84766c629eee",
+          "fixturePlayerId": "c4d87841-5261-4b67-a302-84766c629eee",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 25",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-c55da707-0fb3-44a7-a45f-e2219b9c3f26",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-c55da707-0fb3-44a7-a45f-e2219b9c3f26",
+          "fixturePlayerId": "c55da707-0fb3-44a7-a45f-e2219b9c3f26",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 23",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-dc16d6f9-84e2-4cd2-ad3a-ad9b3d55424c",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-dc16d6f9-84e2-4cd2-ad3a-ad9b3d55424c",
+          "fixturePlayerId": "dc16d6f9-84e2-4cd2-ad3a-ad9b3d55424c",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 24",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-ddfc67a4-9d50-42a7-a984-e45a57d64138",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-ddfc67a4-9d50-42a7-a984-e45a57d64138",
+          "fixturePlayerId": "ddfc67a4-9d50-42a7-a984-e45a57d64138",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 20",
+          "position": "EDG",
+          "eligiblePositions": [
+            "EDG"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-de4b3e90-db7a-40b3-a718-c2aba2463963",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-de4b3e90-db7a-40b3-a718-c2aba2463963",
+          "fixturePlayerId": "de4b3e90-db7a-40b3-a718-c2aba2463963",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 12",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-e4d9711c-c918-422b-a246-7627c5a2841c",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-e4d9711c-c918-422b-a246-7627c5a2841c",
+          "fixturePlayerId": "e4d9711c-c918-422b-a246-7627c5a2841c",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 07",
+          "position": "EDG",
+          "eligiblePositions": [
+            "EDG"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-e76de61c-8459-480d-a683-891b31baa011",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-e76de61c-8459-480d-a683-891b31baa011",
+          "fixturePlayerId": "e76de61c-8459-480d-a683-891b31baa011",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 02",
+          "position": "WFB",
+          "eligiblePositions": [
+            "WFB"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        },
+        {
+          "id": "nrl-fixture-ee0e6dba-a296-49c6-a470-b219ec2ca689",
+          "provider": "fixture",
+          "providerId": "nrl-fixture-ee0e6dba-a296-49c6-a470-b219ec2ca689",
+          "fixturePlayerId": "ee0e6dba-a296-49c6-a470-b219ec2ca689",
+          "synthetic": true,
+          "sport": "nrl",
+          "assetKind": "player",
+          "name": "Test NRL Player 10",
+          "position": "MID",
+          "eligiblePositions": [
+            "MID"
+          ],
+          "currentTeam": "Fictional NRL testing",
+          "status": "active",
+          "observedAt": 1792702736348,
+          "sourceRevision": "private-test-v1",
+          "presentation": "docked-nrl-v1",
+          "verifiedJerseyNumber": null
+        }
+      ],
+      "products": [
+        {
+          "id": "premium-9-nrl-isolated-v1",
+          "version": "premium-9-nrl-isolated-v1",
+          "type": "PREMIUM",
+          "name": "NRL Premium 9 Pack · Test",
+          "priceCredits": 5000,
+          "cards": 9,
+          "sport": "nrl",
+          "positions": [
+            "WFB",
+            "CTR",
+            "HLF",
+            "EDG",
+            "MID"
+          ],
+          "weights": {
+            "RARE": 0,
+            "ELITE": 0,
+            "ULTRA_RARE": 9000,
+            "LEGENDARY": 990,
+            "ICON": 10
+          },
+          "guaranteedSlots": {},
+          "duplicatePlayers": "deny",
+          "status": "TEST_ONLY",
+          "effectiveAt": 1792702736348,
+          "expiresAt": null,
+          "freshnessHours": 72,
+          "exhaustion": "FAIL_ENTIRE_PACK"
+        },
+        {
+          "id": "standard-9-nrl-isolated-v1",
+          "version": "standard-9-nrl-isolated-v1",
+          "type": "STANDARD",
+          "name": "NRL Standard 9 Pack · Test",
+          "priceCredits": 700,
+          "cards": 9,
+          "sport": "nrl",
+          "positions": [
+            "WFB",
+            "CTR",
+            "HLF",
+            "EDG",
+            "MID"
+          ],
+          "weights": {
+            "RARE": 8500,
+            "ELITE": 1200,
+            "ULTRA_RARE": 250,
+            "LEGENDARY": 49,
+            "ICON": 1
+          },
+          "guaranteedSlots": {},
+          "duplicatePlayers": "deny",
+          "status": "TEST_ONLY",
+          "effectiveAt": 1792702736348,
+          "expiresAt": null,
+          "freshnessHours": 72,
+          "exhaustion": "FAIL_ENTIRE_PACK"
+        }
+      ]
+    }
+  ]
+}

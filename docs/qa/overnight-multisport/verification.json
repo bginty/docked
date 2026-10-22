@@ -1,0 +1,39 @@
+{
+  "applicationCommit": "fe5a6b24070cb2e358322c8945ca8885b134750e",
+  "statisticsCommit": "4251632",
+  "suites": [
+    {
+      "name": "platform",
+      "tests": 587,
+      "passed": 587,
+      "failed": 0,
+      "skipped": 0,
+      "sourceLog": "tmp/overnight-final-platform.log"
+    },
+    {
+      "name": "database",
+      "tests": 206,
+      "passed": 206,
+      "failed": 0,
+      "skipped": 0,
+      "sourceLog": "tmp/overnight-frozen-database.log"
+    },
+    {
+      "name": "database-final-focused",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "sourceLog": "tmp/operations-final-database.log"
+    }
+  ],
+  "statisticsLogTail": "{\"at\":1792130400,\"event\":\"job_completed\",\"job\":\"postgame:g_c2a58d81230d446bb1bcb303f53d58dd\"}\n{\"at\":1792130400,\"event\":\"job_completed\",\"job\":\"postgame:g_80aaed7790e1468bb925778302b44eb6\"}\n..\n----------------------------------------------------------------------\nRan 109 tests in 27.390s\n\nOK\n",
+  "finalChecks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "productionBuild": "passed",
+    "clientBoundary": "passed: documented test markers absent from 64 browser assets; full canary-injected build not claimed"
+  },
+  "hostedAuthenticated": false,
+  "realPostgresConcurrency": "blocked: Docker Linux API 500; PGlite is not multi-connection concurrency evidence"
+}

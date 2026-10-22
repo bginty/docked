@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-22T21:38:37.583Z",
+  "baselineAt": "2026-10-22T20:48:40.117Z",
+  "rowCountsUnchanged": true,
+  "protectedRoundFieldsUnchanged": true,
+  "changes": [
+    {
+      "competition": "9286cca8-c7a3-487e-b687-f9614a2b87b5",
+      "changedFields": []
+    },
+    {
+      "competition": "d3da95b4-a72a-4b40-87d9-09b562d92277",
+      "changedFields": []
+    },
+    {
+      "competition": "b828817d-0ba9-4edd-87a3-fe6dd23ad7a0",
+      "changedFields": []
+    },
+    {
+      "competition": "8841bf7d-5952-47c4-b926-40b04fdc5cba",
+      "changedFields": [
+        "next_check",
+        "last_checked"
+      ]
+    },
+    {
+      "competition": "315280d3-7413-4c2d-8a63-fef6d7e37003",
+      "changedFields": [
+        "next_check",
+        "last_checked"
+      ]
+    },
+    {
+      "competition": "70de1f8e-b789-4331-99aa-6afb0c31a8a2",
+      "changedFields": [
+        "next_check",
+        "last_checked"
+      ]
+    }
+  ],
+  "note": "Read-only comparison with the private recovery snapshot; processing timestamps and leases are allowed to progress independently."
+}
