@@ -149,5 +149,11 @@
   "cleanBuild": true,
   "clientCanaryScan": true,
   "authenticatedHostedBrowser": false,
-  "mutatedHostedMemberData": false
+  "mutatedHostedMemberData": false,
+  "screenshots": [
+    "docs/qa/member-loading/nfl-packs-412.png",
+    "docs/qa/member-loading/nba-packs-412.png",
+    "docs/qa/member-loading/afl-packs-412.png",
+    "docs/qa/member-loading/nrl-packs-412.png"
+  ]
 }

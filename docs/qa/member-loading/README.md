@@ -36,4 +36,6 @@ No database migrations, feature activations or financial changes are required. U
 
 Rollback is promotion of the captured compatible real-roster baseline deployment. It needs no database rollback or inventory deletion. See `release/rollback.json` after preparation.
 
+Deployed to **https://docked.com.au** on 23 October 2026 (Sydney), application commit **e6d0b3b5638cbfc2662b0c6a972bc1b45880c236**, deployment `dpl_9ebiWTm7jJ85LDC1pKsdw7oJkGRb`. The candidate and live domain each passed 19 HTTP checks, including exact deployed commit, closed registration and denial of unauthenticated wallet/pack, market, competition and administration access. See `release/candidate-http.json`, `release/live-http.json` and `release/deployment-promoted.json`. This release performed no database migration.
+
 Reproduce the safe operational measurements with `scripts/member-loading-diagnostic.mts`; it uses the existing TLS operator/runtime configuration, read-only transactions, and writes only aggregate counts and timings to the local evidence directory.
