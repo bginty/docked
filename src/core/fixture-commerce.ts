@@ -1,4 +1,5 @@
 import type { CreditsState } from "./credits-sandbox";
+import { isIsolatedSportPlayer } from "./card-economy";
 import { isFixtureSport, type FixtureSport } from "./fixture-sports";
 export function fixtureCardSport(
   state: CreditsState,
@@ -6,7 +7,9 @@ export function fixtureCardSport(
 ): FixtureSport | null {
   const instance = state.economy?.instances[id];
   const p = instance && state.economy?.players[instance.playerId];
-  return p?.synthetic && isFixtureSport(p.sport) ? p.sport : null;
+  return p && isIsolatedSportPlayer(p) && isFixtureSport(p.sport)
+    ? p.sport
+    : null;
 }
 /** Scope is resolved from stored resources, never a browser-supplied sport. */
 export function fixtureCommandScope(

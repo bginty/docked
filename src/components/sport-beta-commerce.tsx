@@ -65,8 +65,15 @@ export function SportBetaCommerce({
   return (
     <>
       <p className="sport-sandbox-notice">
-        Isolated {label} testing · Fictional players and test inventory. Credits
-        have no cash value. No permanent collectibles are issued.
+        {label} private beta · Non-permanent test inventory. Credits have no
+        cash value.{" "}
+        {state.products.some(
+          (p) =>
+            p.sport === sport && p.inventoryScope === "real-roster-beta-v1",
+        )
+          ? "New packs use source-verified real-player rosters. Earlier test packs keep their original contents."
+          : "Packs contain fictional testing players."}{" "}
+        <a href="/roster-sources">Roster sources</a>
       </p>
       {surface === "packs" ? (
         <MemberTestWallet initial={state} surface="packs" sport={sport} />

@@ -92,8 +92,10 @@ export function SportReadinessPanel() {
             <section aria-label="Private beta activity">
               <h3>Private beta activity</h3>
               <p>
-                Fictional test inventory only. Real-player catalogues, permanent
-                issuance and data feeds require separate approval.
+                Non-permanent private beta inventory. Source-verified real
+                rosters and earlier fictional fixtures are counted separately.
+                Permanent issuance and real statistics feeds remain separately
+                gated.
               </p>
               <div className="admin-records">
                 {report.privateTesting.map((s) => (
@@ -110,6 +112,11 @@ export function SportReadinessPanel() {
                       {s.commerceEnabled
                         ? "Enabled for admitted testers"
                         : "Disabled"}
+                    </p>
+                    <p>
+                      {(s.realRosterPlayers ?? 0).toLocaleString()}{" "}
+                      source-verified real players ·{" "}
+                      {s.verifiedRosterTeams ?? 0} teams
                     </p>
                     <p>
                       {s.fictionalPlayers.toLocaleString()} fictional players ·{" "}

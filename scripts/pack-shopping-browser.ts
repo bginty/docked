@@ -8,10 +8,11 @@ import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import {
   packFixture,
   packMember,
-  packNow,
+  packNow as sourcePackNow,
 } from "../tests/fixtures/pack-economy";
 import { executeCredits } from "../src/core/credits-sandbox";
 import { memberTestView, testReceipt } from "../src/core/member-test-wallet";
+import { prepareRosterBetaCatalogue } from "../src/core/roster-beta-prepare";
 async function main() {
   const nba = process.argv.includes("--nba");
   const sport = nba
@@ -21,11 +22,30 @@ async function main() {
       : process.argv.includes("--nrl")
         ? "nrl"
         : "nfl";
-  const fixture = () => packFixture(sport);
+  const realRoster = process.argv.includes("--real-rosters");
+  const packNow = realRoster ? Date.now() : sourcePackNow;
+  const fixture = () => {
+    const state = packFixture(sport);
+    if (realRoster) {
+      assert.notEqual(sport, "nfl");
+      const players = JSON.parse(
+        readFileSync(
+          "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+          "utf8",
+        ),
+      ).players;
+      state.economy = prepareRosterBetaCatalogue(
+        state.economy!,
+        players,
+        packNow,
+      ).economy;
+    }
+    return state;
+  };
   const packPath =
     "/fantasy/test-wallet?view=packs" +
     (sport !== "nfl" ? `&fixtureSport=${sport}&sport=${sport}` : "");
-  const out = `docs/qa/${sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
+  const out = `docs/qa/${realRoster ? `real-rosters/${sport}/packs` : sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/pack-shopping.tsx",

@@ -31,6 +31,8 @@ export function SportSandbox({
   const [round, setRound] = useState(""),
     [list, setList] = useState(false),
     [slot, setSlot] = useState<string | null>(null);
+  const [pickerQuery, setPickerQuery] = useState("");
+  const [pickerLimit, setPickerLimit] = useState(30);
   const [picks, setPicks] = useState<SlotSelection[]>([]),
     [dirty, setDirty] = useState(false);
   const [busy, setBusy] = useState(false),
@@ -40,7 +42,7 @@ export function SportSandbox({
   const readPath =
     apiPath === "/api/nba-beta"
       ? `${apiPath}?view=state`
-      : `${apiPath}?sport=${state.sport}`;
+      : `${apiPath}${apiPath.includes("?") ? "&view=state" : `?sport=${state.sport}`}`;
   const [proposal, setProposal] = useState<ReturnType<
       typeof autoSelect
     > | null>(null),
@@ -154,6 +156,29 @@ export function SportSandbox({
     };
   }, [nbaProposal, locked, comp?.id, state.sport]);
   const selected = slot && cfg?.slots.find((s) => s.id === slot);
+  const hasRealRoster = state.cards.some(
+    (c) => c.inventory_class === "real-roster-beta-v1",
+  );
+  const pickerCards = selected
+    ? state.cards.filter(
+        (c) =>
+          c.owner_id === state.user_id &&
+          c.sport === state.sport &&
+          c.status === "active" &&
+          (!hasRealRoster || c.inventory_class === "real-roster-beta-v1") &&
+          `${c.name} ${c.team ?? ""}`
+            .toLowerCase()
+            .includes(pickerQuery.trim().toLowerCase()) &&
+          !c.listed &&
+          fitsSlot(c, selected.positions) &&
+          !picks.some(
+            (p) =>
+              p.slot !== slot &&
+              state.cards.find((v) => v.id === p.card)?.player_id ===
+                c.player_id,
+          ),
+      )
+    : [];
   useEffect(() => {
     setPicks(sandboxSelections(entry, saved, locked));
     setDirty(false);
@@ -355,7 +380,7 @@ export function SportSandbox({
       )}
       <p className="sport-sandbox-notice">
         {privateBeta
-          ? `${sport?.label ?? state.sport} testing · Fictional players and simulated statistics. ${state.sport === "basketball" ? "" : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
+          ? `${sport?.label ?? state.sport} testing · ${state.cards.some((c) => c.inventory_class === "real-roster-beta-v1") ? "Real-player roster cards; test rounds only. Real game statistics are not connected." : "Fictional players and simulated statistics."} ${state.sport === "basketball" ? "" : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
           : nbaProposal
             ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
             : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
@@ -622,44 +647,47 @@ export function SportSandbox({
           onClose={() => setSlot(null)}
           historyEntry
         >
+          <label>
+            Find a player
+            <input
+              type="search"
+              value={pickerQuery}
+              onChange={(e) => {
+                setPickerQuery(e.target.value);
+                setPickerLimit(30);
+              }}
+              placeholder="Player or team"
+            />
+          </label>
           <div className="sport-review-grid">
-            {state.cards
-              .filter(
-                (c) =>
-                  c.owner_id === state.user_id &&
-                  c.sport === state.sport &&
-                  c.status === "active" &&
-                  !c.listed &&
-                  fitsSlot(c, selected.positions) &&
-                  !picks.some(
-                    (p) =>
-                      p.slot !== slot &&
-                      state.cards.find((v) => v.id === p.card)?.player_id ===
-                        c.player_id,
-                  ),
-              )
-              .map((c) => (
-                <button
-                  key={c.id}
-                  aria-label={`Select ${c.name}`}
-                  onClick={() => {
-                    setPicks([
-                      ...picks.filter((p) => p.slot !== slot),
-                      { slot, card: c.id },
-                    ]);
-                    setDirty(true);
-                    setSlot(null);
-                  }}
-                >
-                  <CollectibleFace
-                    card={c}
-                    appliedMultiplier={1}
-                    variant="compact"
-                  />
-                  <span>{c.name}</span>
-                </button>
-              ))}
+            {pickerCards.slice(0, pickerLimit).map((c) => (
+              <button
+                key={c.id}
+                aria-label={`Select ${c.name}`}
+                onClick={() => {
+                  setPicks([
+                    ...picks.filter((p) => p.slot !== slot),
+                    { slot, card: c.id },
+                  ]);
+                  setDirty(true);
+                  setSlot(null);
+                }}
+              >
+                <CollectibleFace
+                  card={c}
+                  appliedMultiplier={1}
+                  variant="compact"
+                />
+                <span>{c.name}</span>
+              </button>
+            ))}
           </div>
+          {!pickerCards.length && <p>No eligible players match your search.</p>}
+          {pickerLimit < pickerCards.length && (
+            <button onClick={() => setPickerLimit((n) => n + 30)}>
+              Show more players
+            </button>
+          )}
         </FantasySheet>
       )}
       {proposal && (

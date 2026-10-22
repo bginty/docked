@@ -1,0 +1,2491 @@
+{
+  "catalogue": "wikimedia-roster-beta-2026-10-23-v1",
+  "hash": "69688f939890ad1e6f9e99e46e1ac5d8b76fcc0d8975291f69d5ab3699695959",
+  "counts": {
+    "basketball": {
+      "players": 517,
+      "teams": 30,
+      "positions": {
+        "PG": 114,
+        "SG": 176,
+        "SF": 141,
+        "PF": 153,
+        "C": 106
+      }
+    },
+    "afl": {
+      "players": 545,
+      "teams": 18,
+      "positions": {
+        "DEF": 196,
+        "MID": 204,
+        "FWD": 200,
+        "RUC": 45
+      }
+    },
+    "nrl": {
+      "players": 337,
+      "teams": 17,
+      "positions": {
+        "WFB": 82,
+        "CTR": 53,
+        "HLF": 55,
+        "EDG": 66,
+        "MID": 107
+      }
+    }
+  },
+  "excluded": [
+    {
+      "sport": "basketball",
+      "name": "Enrique Freeman",
+      "team": "Minnesota Timberwolves",
+      "reasons": [
+        "Roster/profile team conflict: Free agent"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Daniel Curtin",
+      "team": "Adelaide",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Hugh Bond",
+      "team": "Adelaide",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Finnbar Maley",
+      "team": "Adelaide",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Dayne Zorko",
+      "team": "Brisbane Lions",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Darcy Wilmot",
+      "team": "Brisbane Lions",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Hudson O'Keeffe",
+      "team": "Carlton",
+      "reasons": [
+        "Roster/profile team conflict: Western Bulldogs"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Vigo Visentini",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Lewis Hayes",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Archie May",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Angus Clarke",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Rhys Unwin",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Zak Johnson",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Jayden Nguyen",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Archer Day-Wicks",
+      "team": "Essendon",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Adam Sweid",
+      "team": "Fremantle",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Leon Kickett",
+      "team": "Fremantle",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Charlie Nicholls",
+      "team": "Fremantle",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Toby Whan",
+      "team": "Fremantle",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Jaren Carr",
+      "team": "Fremantle",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Aiden Riddle",
+      "team": "Fremantle",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Mitchell Edwards",
+      "team": "Geelong",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Oisín Mullin",
+      "team": "Geelong",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Mark Blicavs",
+      "team": "Geelong",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Mac Andrew",
+      "team": "Gold Coast",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Nick Holman",
+      "team": "Gold Coast",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Dylan Patterson",
+      "team": "Gold Coast",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Zak Evans",
+      "team": "Gold Coast",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Max Knobel",
+      "team": "Gold Coast",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Jack Ough",
+      "team": "Greater Western Sydney",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Cody Angove",
+      "team": "Greater Western Sydney",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Josh Weddle",
+      "team": "Hawthorn",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Ollie Greeves",
+      "team": "Hawthorn",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Matt Hill",
+      "team": "Hawthorn",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Miles Bergman",
+      "team": "Port Adelaide",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Lachie Jones",
+      "team": "Port Adelaide",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Dante Visentini",
+      "team": "Port Adelaide",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Corey Durdin",
+      "team": "Port Adelaide",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Isaac Keeler",
+      "team": "St Kilda",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Alix Tauru",
+      "team": "St Kilda",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Kobe McDonald",
+      "team": "St Kilda",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Harry Cunningham",
+      "team": "Sydney",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "James Jordon",
+      "team": "Sydney",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Caiden Cleary",
+      "team": "Sydney",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Tom Hanily",
+      "team": "Sydney",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Finlay Macrae",
+      "team": "West Coast",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Jordan Croft",
+      "team": "Western Bulldogs",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "afl",
+      "name": "Laitham Vandermeer",
+      "team": "Western Bulldogs",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Michael Asomua",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HB",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jayden Brailey",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: Wests Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Corey Horsburgh",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Josh Papali'i",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "Retired profile",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Owen Pattie",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Joe Roddy",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Morgan Smithies",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tom Starling",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: Newcastle Knights"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "FE",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Canberra Raiders",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Joshua Curran",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Bailey Hayward",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Lipoi Hopoi",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "Roster/profile team conflict: Canberra Raiders"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Kurt Mann",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "Roster/profile team conflict: Wests Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Marcelo Montoya",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Sean O'Sullivan",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "Roster/profile team conflict: St Helens"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jonathan Sua",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jake Turpin",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HB",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Bronson Xerri",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "Roster/profile team conflict: Melbourne Storm"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Gordon Chan Kum Tong",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Alex Conti",
+      "team": "Canterbury-Bankstown Bulldogs",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jayden Berrell",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Blayke Brailey",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Riley Jones",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Sione Katoa",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "Roster/profile team conflict: North Qld Cowboys"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Cameron McInnes",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "Roster/profile team conflict: York Knights"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Niwhai Puru",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jesse Ramien",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "Roster/profile team conflict: North Queensland Cowboys"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Siosifa Talakai",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Chris Vea'ila",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Cronulla-Sutherland Sharks",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jake Averillo",
+      "team": "Dolphins",
+      "reasons": [
+        "Roster/profile team conflict: Wests Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Kurt Donoghoe",
+      "team": "Dolphins",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jamayne Isaako",
+      "team": "Dolphins",
+      "reasons": [
+        "Roster/profile team conflict: Melbourne Storm"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Oryn Keeley",
+      "team": "Dolphins",
+      "reasons": [
+        "Roster/profile team conflict: Melbourne Storm"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jeremy Marshall-King",
+      "team": "Dolphins",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Kodi Nikorima",
+      "team": "Dolphins",
+      "reasons": [
+        "Roster/profile team conflict: St George Illawarra"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "WG",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Max Plath",
+      "team": "Dolphins",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Ray Stone",
+      "team": "Dolphins",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "WG",
+      "team": "Dolphins",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "WG",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Allan Fitzgibbon",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jaimin Jolliffe",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "Roster/profile team conflict: Huddersfield Giants"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Phillip Sami",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "Roster/profile team conflict: St George Illawarra"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tukimihia Simpkins",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Luke Sommerton",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "WG",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Sam Verrills",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Oliver Pascoe",
+      "team": "Gold Coast Titans",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Nathan Brown",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "Roster/profile team conflict: Catalans Dragons"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Zach Dockar-Clay",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Reuben Garrick",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "Roster/profile team conflict: Sydney Roosters"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Simione Laiafi",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Onitoni Large",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Aaron Schoupp",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jake Simpkin",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Sio Siua Taukeiaho",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "Roster/profile team conflict: New Zealand Warriors"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "WG",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Blake Wilson",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jackson Shereb",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Brandon Wakeham",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Nic Lenaz",
+      "team": "Manly Warringah Sea Eagles",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Shawn Blore",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: Brisbane Broncos"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Joe Chan",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: North Queensland"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Harry Grant",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: → Wests Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Moses Leo",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Alec MacDonald",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Nick Meaney",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Davvy Moale",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: Manly Sea Eagles"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Gabriel Satrick",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Marion Seve",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Will Warbrick",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: New Zealand Warriors"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tyran Wishart",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Keagan Russell-Smith",
+      "team": "Melbourne Storm",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Matt Arthur",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Phoenix Crossland",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Dane Gagai",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "Roster/profile team conflict: Brisbane Broncos"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tyson Gamble",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "Roster/profile team conflict: Catalans Dragons"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Brodie Jones",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Harrison Graham",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HB",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Connor Votano",
+      "team": "Newcastle Knights",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tallyn Da Silva",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Toni Mataele",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: Manly Sea Eagles"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Ryan Matterson",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: → Warrington Wolves"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Joash Papalii",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jonah Pezet",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: Brisbane Broncos"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Sean Russell",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Ryley Smith",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jake Tago",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Kelma Tuilagi",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: Melbourne Storm"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Dylan Walker",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: Leeds Rhinos"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "FE",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "WG",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Apa Twidle",
+      "team": "Parramatta Eels",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jack Cole",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "FB",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Liam Henry",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Mitch Kenny",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Freddy Lussick",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jesse McLean",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Scott Sorensen",
+      "team": "Penrith Panthers",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Bronson Garlick",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HB",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Moala Graham-Taufa",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: Hull KR"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Alex Johnston",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "Roster/profile team conflict: PNG Chiefs"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Keaon Koloamatangi",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "Roster/profile team conflict: St. George Illawarra"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Liam Le Blanc",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Peter Mamouzelos",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Brandon Smith",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HB",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "South Sydney Rabbitohs",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Damien Cook",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: Castleford Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Mat Feagai",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: Castleford Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Emre Guler",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: Wakefield Trinity"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Blake Lawrie",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: York Knights"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Nathan Lawson",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Luciano Leilua",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: Catalans Dragons"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jacob Liddle",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Hame Sele",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: Catalans Dragons"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tyrell Sloan",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: Castleford Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jaydn Su'A",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: Parramatta Eels"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Christian Tuipulotu",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "Roster/profile team conflict: St Helens"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HB",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "FB",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "PR",
+      "team": "St. George Illawarra Dragons",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Daly Cherry-Evans",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: Hull FC"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Angus Crichton",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "FE",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Ben Ioelu",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Spencer Leniu",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: Parramatta Eels"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Mark Nawaqanitawase",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Fetalaiga Pauga",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: Hull FC"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Reece Robson",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Daniel Tupou",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Junior Tupou",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: Wests Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Connor Watson",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "Roster/profile team conflict: St George Illawarra Dragons"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Sydney Roosters",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "CE",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Mavrik Geyer",
+      "team": "Wests Tigers",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tristan Hope",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Apisai Koroisau",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "LK",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Luke Laulili'i",
+      "team": "Wests Tigers",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jarome Luai",
+      "team": "Wests Tigers",
+      "reasons": [
+        "Roster/profile team conflict: Parramatta Eels"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Terrell May",
+      "team": "Wests Tigers",
+      "reasons": [
+        "Retired profile"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jeral Skelton",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No supported verified position",
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Starford To'a",
+      "team": "Wests Tigers",
+      "reasons": [
+        "Roster/profile team conflict: Manly Sea Eagles"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "FE",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "SR",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "WG",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "HK",
+      "team": "Wests Tigers",
+      "reasons": [
+        "No player infobox"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Grant Anderson",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: New Zealand Warriors"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jesse Arthars",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: Catalans Dragons"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jack Gosiewski",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: St. George Illawarra"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Payne Haas",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: South Sydney"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Delouise Hoeter",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: Wests Tigers"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jaiyden Hunt",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: Canberra Raiders"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Blake Mozer",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Cory Paix",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Josh Rogers",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Gehamat Shibasaki",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: Perth Bears"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Aublix Tawha",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Billy Walters",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Cameron Bukowski",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tupou Francis",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jared Horne",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Braithen Scott",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Joshua Coric",
+      "team": "Brisbane Broncos",
+      "reasons": [
+        "Roster/profile team conflict: Hull F.C."
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Wayde Egan ",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Sam Healey",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jye Linnane",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Haizyn Mellars",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jason Salalilo",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jeremiah Lemana",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Bishop Neal",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Joseph Ratcliffe",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Makaia Tafua",
+      "team": "New Zealand Warriors",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "John Bateman",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "Roster/profile team conflict: Bradford Bulls"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Scott Drinkwater",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "Roster/profile team conflict: St. George Illawarra"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Zac Herdegen",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Mason Kira",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Soni Luke",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Reed Mahoney",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Sam McIntyre",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "Roster/profile team conflict: New Zealand Warriors"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Jaxson Paulo",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "Roster/profile team conflict: Manly Sea Eagles"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Murray Taulagi",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Viliami Vailea",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "Roster/profile team conflict: "
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "James Walsh",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Mason Barber",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Xavier Kerrisk",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Ronald Philitoga",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Liam Sutton",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No supported verified position"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Matthew Watts",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Wiremu Greig",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "Roster/profile team conflict: Leeds Rhinos"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Taj Lateo",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Archie Mesritz",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Taylan To'a",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    },
+    {
+      "sport": "nrl",
+      "name": "Tyson Walker",
+      "team": "North Queensland Cowboys",
+      "reasons": [
+        "No profile evidence"
+      ]
+    }
+  ],
+  "duplicateIdentities": [],
+  "permanentIssuance": false,
+  "realStatistics": false
+}

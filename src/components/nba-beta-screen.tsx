@@ -9,6 +9,7 @@ import { sportConfigurations } from "@/core/sport-configuration";
 import type { BetaSport } from "@/core/sports-private-beta";
 import { MarketListingDialog } from "./market-listing-dialog";
 import type { ViewerCard } from "./collectible-viewer";
+import { rarityRule, rarities } from "@/core/card-rarity";
 export function NbaBetaScreen({
   cards = false,
   sport = "basketball",
@@ -25,6 +26,9 @@ export function NbaBetaScreen({
   const [state, setState] = useState<SandboxState | null>(null);
   const [query, setQuery] = useState("");
   const [position, setPosition] = useState("");
+  const [rarity, setRarity] = useState("");
+  const [legacy, setLegacy] = useState(false);
+  const [limit, setLimit] = useState(36);
   const [selling, setSelling] = useState<ViewerCard | null>(null);
   const [error, setError] = useState(false),
     [attempt, setAttempt] = useState(0);
@@ -62,8 +66,15 @@ export function NbaBetaScreen({
   if (!state) return <p role="status">Loading {label} testing…</p>;
   if (!cards)
     return <SportSandbox initial={state} privateBeta apiPath={apiPath} />;
+  const realRoster = state.cards.some(
+    (c) => c.inventory_class === "real-roster-beta-v1",
+  );
   const visible = state.cards.filter(
     (card) =>
+      (!realRoster ||
+        legacy ||
+        card.inventory_class === "real-roster-beta-v1") &&
+      (!rarity || card.tier === rarity) &&
       (!position || fitsSlot(card, [position])) &&
       `${card.name} ${card.team ?? ""}`
         .toLocaleLowerCase()
@@ -71,11 +82,12 @@ export function NbaBetaScreen({
   );
   return (
     <section>
-      <h1>{label} test cards</h1>
+      <h1>{label} cards</h1>
       <p className="sport-sandbox-notice">
-        Fictional testing fixtures only. Free lineup cards stay in this test
-        collection. Cards opened from test packs can be traded when the test
-        economy is enabled.
+        {realRoster
+          ? "Real-player roster cards · Private beta inventory. Free Core cards are ready for team selection; test packs use the existing five limited rarity tiers. These cards are not permanent collectibles."
+          : "Fictional testing fixtures only. Free lineup cards stay in this test collection."}{" "}
+        <a href="/roster-sources">Sources and verification</a>
       </p>
       <nav className="fantasy-actions" aria-label={`${label} collection links`}>
         <a className="button" href={`/fantasy/packs?sport=${sport}`}>
@@ -94,7 +106,10 @@ export function NbaBetaScreen({
           <input
             type="search"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setLimit(36);
+            }}
             placeholder="Player or city"
           />
         </label>
@@ -103,7 +118,10 @@ export function NbaBetaScreen({
           <select
             aria-label="Position"
             value={position}
-            onChange={(event) => setPosition(event.target.value)}
+            onChange={(event) => {
+              setPosition(event.target.value);
+              setLimit(36);
+            }}
           >
             <option value="">All positions</option>
             {[...new Set(config.slots.flatMap((s) => s.positions))].map((p) => (
@@ -113,7 +131,37 @@ export function NbaBetaScreen({
             ))}
           </select>
         </label>
+        <label>
+          Rarity
+          <select
+            value={rarity}
+            onChange={(e) => {
+              setRarity(e.target.value);
+              setLimit(36);
+            }}
+          >
+            <option value="">All rarities</option>
+            {rarities.map((r) => (
+              <option key={r} value={r}>
+                {rarityRule(r).label}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
+      {realRoster && (
+        <label>
+          <input
+            type="checkbox"
+            checked={legacy}
+            onChange={(e) => {
+              setLegacy(e.target.checked);
+              setLimit(36);
+            }}
+          />{" "}
+          Include earlier fictional test cards
+        </label>
+      )}
       <p role="status">
         {visible.length} of {state.cards.length} cards
       </p>
@@ -124,6 +172,7 @@ export function NbaBetaScreen({
             onClick={() => {
               setQuery("");
               setPosition("");
+              setRarity("");
             }}
           >
             Clear filters
@@ -131,16 +180,25 @@ export function NbaBetaScreen({
         </p>
       )}
       <div
-        className="sport-review-grid"
+        className="sport-review-grid roster-beta-collection"
         role="list"
         aria-label={`${label} test collection`}
       >
-        {visible.map((c) => (
+        {visible.slice(0, limit).map((c) => (
           <div key={c.id} role="listitem">
             <CollectibleFace card={c} appliedMultiplier={1} variant="compact" />
             <p>
               {c.name} · {c.position}
             </p>
+            {c.roster_source && (
+              <a
+                href={c.roster_source.profileSource}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Player source
+              </a>
+            )}
             {c.inventory_source === "credits-fixture-v1" &&
               (c.listed ? (
                 <a href={`/fantasy/market?sport=${sport}&tab=listings`}>
@@ -156,7 +214,7 @@ export function NbaBetaScreen({
                       name: c.name,
                       position: c.position,
                       tier: c.tier,
-                      season: "SYNTHETIC TEST",
+                      season: c.season ?? "BETA INVENTORY",
                       kind: "regular",
                       max_supply: c.max_supply ?? 0,
                       serial: c.serial ?? 0,
@@ -177,6 +235,11 @@ export function NbaBetaScreen({
           </div>
         ))}
       </div>
+      {visible.length > limit && (
+        <button onClick={() => setLimit((n) => n + 36)}>
+          Show more cards ({visible.length - limit} remaining)
+        </button>
+      )}
       <a className="button" href={`/fantasy/play?sport=${sport}`}>
         Build {label} team
       </a>

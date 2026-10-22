@@ -1,4 +1,5 @@
 import { randomInt, randomUUID } from "node:crypto";
+import { isRosterBetaPlayer, type RosterBetaEvidence } from "./roster-beta";
 import { paidPackOffers, paidPackWeights } from "./paid-pack-catalogue";
 import {
   fixtureSports,
@@ -22,6 +23,8 @@ export type EconomyPlayer = {
   sport: "nfl" | FixtureSport;
   /** Only isolated NBA fixture allocations are supported until issuance approval. */
   synthetic?: boolean;
+  inventoryClass?: "real-roster-beta-v1";
+  rosterBeta?: RosterBetaEvidence;
   /** Stable identity shared with existing free synthetic lineup fixtures. */
   fixturePlayerId?: string;
   assetKind: "player" | "team-defence";
@@ -47,6 +50,7 @@ export type NinePackProduct = {
   cards: 1 | 3 | 9;
   sport: "nfl" | FixtureSport;
   positions: string[];
+  inventoryScope?: "real-roster-beta-v1";
   eligibleStatuses?: EconomyPlayer["status"][];
   weights: Record<string, number>;
   guaranteedSlots: Record<string, Rarity>;
@@ -184,7 +188,7 @@ export function validateProduct(p: NinePackProduct) {
     const offer = paidPackOffers.find(
       (x) => x.cards === 9 && x.type === p.type,
     );
-    const id = `${p.type.toLowerCase()}-9-${fixtureSports[p.sport].prefix}-isolated-v1`;
+    const id = `${p.type.toLowerCase()}-9-${fixtureSports[p.sport].prefix}-${p.inventoryScope === "real-roster-beta-v1" ? "real-roster-beta-v1" : "isolated-v1"}`;
     if (
       !offer ||
       p.id !== id ||
@@ -226,6 +230,9 @@ export function validateProduct(p: NinePackProduct) {
       );
   }
   if (
+    (p.inventoryScope !== undefined &&
+      (p.inventoryScope !== "real-roster-beta-v1" ||
+        !isFixtureSport(p.sport))) ||
     ![1, 3, 9].includes(p.cards) ||
     p.status !== "TEST_ONLY" ||
     !(p.sport === "nfl" || isFixtureSport(p.sport)) ||
@@ -285,7 +292,9 @@ export function validateCardEconomy(e: CardEconomy) {
     if (id !== p.id || !p.providerId || providerIds.has(key))
       throw Error("Duplicate provider identity");
     providerIds.add(key);
-    if (p.synthetic && isFixtureSport(p.sport) && p.fixturePlayerId) {
+    if (p.inventoryClass && !isRosterBetaPlayer(p))
+      throw Error("Verified real-roster beta identity required");
+    if (isIsolatedSportPlayer(p) && p.fixturePlayerId) {
       const identity = `${p.sport}:${p.fixturePlayerId}`;
       if (fixtureIdentities.has(identity))
         throw Error("Duplicate fixture player identity");
@@ -386,7 +395,7 @@ export function allocateNine(
       .filter(
         (player) =>
           player.sport === p.sport &&
-          (!isFixtureSport(player.sport) || isSportFixture(player)) &&
+          (!isFixtureSport(player.sport) || matchesTestInventory(player, p)) &&
           player.assetKind === "player" &&
           (player.sport !== "nfl" ||
             nflCardEligibility(
@@ -477,7 +486,8 @@ export function eligibleCatalogue(
     (x) =>
       x.sport === p.sport &&
       (!isFixtureSport(x.sport) ||
-        (fixtureTestAllocationEnabled(e, x.sport) && isSportFixture(x))) &&
+        (fixtureTestAllocationEnabled(e, x.sport) &&
+          matchesTestInventory(x, p))) &&
       x.assetKind === "player" &&
       (x.sport !== "nfl" ||
         nflCardEligibility(x, now, e.rosterPolicy === "official-nfl-roster-v1")
@@ -497,6 +507,8 @@ export function catalogueObservationCurrent(
   return (
     player.observedAt <= now &&
     (isSportFixture(player) ||
+      (product.inventoryScope === "real-roster-beta-v1" &&
+        isRosterBetaPlayer(player)) ||
       now - player.observedAt <= product.freshnessHours * 3600000)
   );
 }
@@ -523,6 +535,15 @@ function isSportFixture(p: EconomyPlayer) {
     p.id.startsWith(prefix) &&
     p.providerId.startsWith(prefix)
   );
+}
+
+export function isIsolatedSportPlayer(p: EconomyPlayer) {
+  return isSportFixture(p) || isRosterBetaPlayer(p);
+}
+function matchesTestInventory(p: EconomyPlayer, product: NinePackProduct) {
+  return product.inventoryScope === "real-roster-beta-v1"
+    ? isRosterBetaPlayer(p)
+    : isSportFixture(p);
 }
 
 /** Adds disabled NBA products using the existing approved nine-card terms.

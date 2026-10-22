@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "isolatedSql": true,
+  "authenticatedHosted": false,
+  "checks": [
+    {
+      "width": 412,
+      "switching": true,
+      "cards": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "switching": true,
+      "cards": true,
+      "overflow": false
+    }
+  ],
+  "unauthorisedHidden": true
+}

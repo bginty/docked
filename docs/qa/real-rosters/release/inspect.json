@@ -1,0 +1,15 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "planHash": "80ee0348e57d31d853c896fe1b69c670b929f3fdcb248cc962a88090cb940437",
+  "sourceCounts": {
+    "basketball": 517,
+    "afl": 545,
+    "nrl": 337
+  },
+  "snapshotHash": "fa0cb4bb192e3984ca3e5c4f5e235a3ea2dfd3e4daea0d9888948e57fcad030e",
+  "snapshotBytes": 5357751,
+  "readbackVerified": true,
+  "disasterRecoveryTested": false,
+  "migration": "20261022222531_verified_roster_beta_inventory.sql",
+  "backupScope": "Application records and function definitions; no Auth secrets. Additive migration rollback retains new audit history and disables affected private sport gates."
+}

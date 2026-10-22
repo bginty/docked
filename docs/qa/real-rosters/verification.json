@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-22T22:51:25.459Z",
+  "platform": {
+    "passed": 591,
+    "failed": 0
+  },
+  "database": {
+    "passed": 209,
+    "failed": 0,
+    "engine": "isolated PGlite; includes real Postgres SQL, admission, purchase/replay, pack opening, team selection, ownership, offers and privacy; not a separate hosted concurrency load test"
+  },
+  "realRosterUnit": {
+    "passed": 4,
+    "failed": 0
+  },
+  "browser": {
+    "sports": [
+      "basketball",
+      "afl",
+      "nrl"
+    ],
+    "gameplayWidths": [
+      412,
+      1440
+    ],
+    "packWidths": [
+      360,
+      412,
+      1024,
+      1440
+    ],
+    "authentication": "isolated test transport only",
+    "hostedMemberAcceptance": false
+  },
+  "dataset": {
+    "basketball": 517,
+    "afl": 545,
+    "nrl": 337
+  },
+  "realStatistics": false,
+  "permanentIssuance": false,
+  "build": "passed: clean environment production build with injected server-only canaries",
+  "clientBoundary": "PASS: server credential test markers absent from 64 browser assets. Build must use the documented canary values.",
+  "typecheck": "passed",
+  "lint": "passed",
+  "changedSourceSecretScan": {
+    "files": 30,
+    "findings": 0
+  }
+}

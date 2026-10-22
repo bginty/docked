@@ -83,15 +83,19 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
     return {
       id,
       edition_id: instance.definition,
-      player_id: player.synthetic
-        ? (player.fixturePlayerId ?? player.id)
-        : player.id,
+      player_id:
+        player.synthetic || player.inventoryClass === "real-roster-beta-v1"
+          ? (player.fixturePlayerId ?? player.id)
+          : player.id,
       name: player.name,
       position: player.position,
       tier: instance.rarity,
-      season: player.synthetic
-        ? `SYNTHETIC ${player.sport === "basketball" ? "NBA" : player.sport.toUpperCase()} TEST`
-        : "LIFETIME TEST",
+      season:
+        player.inventoryClass === "real-roster-beta-v1"
+          ? "REAL PLAYER · BETA INVENTORY"
+          : player.synthetic
+            ? `SYNTHETIC ${player.sport === "basketball" ? "NBA" : player.sport.toUpperCase()} TEST`
+            : "LIFETIME TEST",
       kind: "regular",
       max_supply: instance.lifetimeCap,
       serial: instance.serial,
@@ -105,7 +109,8 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
       tradeable: true,
       rarity_version: instance.rarityVersion,
       multiplier:
-        player.sport !== "nfl" && player.synthetic
+        player.sport !== "nfl" &&
+        (player.synthetic || player.inventoryClass === "real-roster-beta-v1")
           ? 1
           : rarityRule(instance.rarity).multiplierTenths / 10,
       presentation: instance.presentation,
@@ -235,6 +240,7 @@ export function memberTestView(
             tier: p.type,
             cards: p.cards,
             sport: p.sport,
+            inventoryScope: p.inventoryScope,
             weights: p.weights,
             odds: packOdds(p),
             positions: p.positions,

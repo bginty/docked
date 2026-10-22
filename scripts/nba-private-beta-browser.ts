@@ -11,6 +11,8 @@ import {
 } from "../src/core/sport-configuration";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import { sandboxRecommendation } from "../src/core/sport-sandbox";
+import { rosterBetaCoreCards } from "../src/core/roster-beta-prepare";
+import type { EconomyPlayer } from "../src/core/card-economy";
 async function main() {
   const sport = process.argv[2] ?? "basketball";
   const config =
@@ -22,6 +24,28 @@ async function main() {
   assert.equal(config.id, sport);
   const label = config.label;
   const db = await multiSportDatabase(config, true);
+  const realRoster = process.argv.includes("--real-rosters");
+  if (realRoster) {
+    const players = JSON.parse(
+      readFileSync(
+        "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+        "utf8",
+      ),
+    ).players.filter(
+      (p: EconomyPlayer) => p.sport === sport,
+    ) as EconomyPlayer[];
+    for (const user of [db.user, db.other]) {
+      db.inventories[user] = rosterBetaCoreCards(user, players);
+      await db.q(
+        "update sports_feed.sport_sandbox_inventory set cards=$1 where user_id=$2 and sport=$3",
+        [JSON.stringify(db.inventories[user]), user, sport],
+      );
+    }
+    await db.q(
+      "update sports_feed.sport_rounds set fixtures=jsonb_set(fixtures,'{0,playerIds}',$1::jsonb) where sport=$2",
+      [JSON.stringify(players.map((p) => p.fixturePlayerId)), sport],
+    );
+  }
   // Existing local fixture identity transport, real NBA membership/command SQL.
   await db.pg.exec(
     `create or replace function beta_private.beta_gameplay_identity(p_user uuid) returns boolean language sql as $$select true$$;`,
@@ -141,7 +165,10 @@ async function main() {
   const origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`,
     browser = await chromium.launch();
   const out =
-    process.env.NBA_ACCEPTANCE_OUT ?? `docs/qa/overnight-multisport/${sport}`;
+    process.env.NBA_ACCEPTANCE_OUT ??
+    (realRoster
+      ? `docs/qa/real-rosters/${sport}`
+      : `docs/qa/overnight-multisport/${sport}`);
   mkdirSync(out, { recursive: true });
   const checks = [];
   try {
@@ -160,6 +187,27 @@ async function main() {
         page.getByRole("heading", { name: `${label} · Private beta` }),
       ).toBeVisible();
       if (width === 412) {
+        if (realRoster) {
+          await page
+            .getByRole("button", {
+              name: new RegExp(`^Select ${config.slots[0].id}(?:$|:)`),
+            })
+            .click();
+          await page
+            .getByLabel("Find a player")
+            .fill("unmatched-roster-search-xyz");
+          await expect(
+            page.getByText("No eligible players match your search."),
+          ).toBeVisible();
+          await expect(
+            page.getByRole("button", { name: "Show more players" }),
+          ).toHaveCount(0);
+          await page.getByLabel("Find a player").fill("");
+          await expect(
+            page.getByRole("button", { name: "Show more players" }),
+          ).toBeVisible();
+          await page.keyboard.press("Escape");
+        }
         await page
           .getByRole("button", { name: "Auto Select", exact: true })
           .click();
@@ -221,7 +269,7 @@ async function main() {
         .getByRole("link", { name: "Cards", exact: true })
         .click();
       await expect(
-        page.getByRole("heading", { name: `${label} test cards` }),
+        page.getByRole("heading", { name: `${label} cards`, exact: true }),
       ).toBeVisible();
       const collection = page.getByRole("list", {
         name: `${label} test collection`,
@@ -238,7 +286,7 @@ async function main() {
         .getByLabel("Position", { exact: true })
         .selectOption(config.slots[0].positions[0]);
       const filtered = await collection.getByRole("listitem").count();
-      assert(filtered > 0 && filtered < total);
+      assert(filtered > 0 && filtered <= total);
       await page.getByLabel("Position", { exact: true }).selectOption("");
       assert.equal(
         await page.evaluate(

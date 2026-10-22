@@ -48,6 +48,8 @@ export type SportReadinessReport = {
     gameplayEnabled: boolean;
     commerceEnabled: boolean;
     fictionalPlayers: number;
+    realRosterPlayers?: number;
+    verifiedRosterTeams?: number;
     freeInventoryCards: number;
     issuedTestCards: number;
     products: number;

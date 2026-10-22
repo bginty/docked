@@ -7,6 +7,7 @@ import { assertFantasyEnvironment } from "./fantasy";
 import { assertPrivatePreview } from "./private-preview.mjs";
 import type { SandboxScores } from "./sandbox-score-view";
 import { nbaPrivateBetaEnabled } from "./nba-private-beta";
+import type { RosterBetaEvidence } from "./roster-beta";
 export function assertSportSandbox(
   env: Record<string, string | undefined> = process.env,
 ) {
@@ -23,7 +24,10 @@ export type SandboxCard = SevenCard &
     sport: string;
     owner_id: string;
     player_id: string;
-    inventory_source?: "credits-fixture-v1";
+    inventory_source?: "credits-fixture-v1" | "roster-beta-core-v1";
+    inventory_class?: "real-roster-beta-v1";
+    roster_source?: RosterBetaEvidence;
+    season?: string;
   };
 export type SandboxState = {
   scores?: SandboxScores;
@@ -97,11 +101,15 @@ export function sandboxRecommendation(state: SandboxState, id: string) {
     throw Error("Draft already saved; replace players manually");
   const cfg = state.configurations[c.rules.lineup_version];
   if (!cfg) throw Error("Lineup configuration unavailable");
+  const realRoster = state.cards.some(
+    (c) => c.inventory_class === "real-roster-beta-v1",
+  );
   const cards = state.cards.filter(
     (card) =>
       card.sport === c.sport &&
       card.owner_id === state.user_id &&
       card.status === "active" &&
+      (!realRoster || card.inventory_class === "real-roster-beta-v1") &&
       !card.listed &&
       cfg.slots.some((s) => fitsSlot(card, s.positions)),
   );

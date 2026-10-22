@@ -1,0 +1,65 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "passed": true,
+  "mode": "rehearse",
+  "planHash": "80ee0348e57d31d853c896fe1b69c670b929f3fdcb248cc962a88090cb940437",
+  "migration": "20261022222531_verified_roster_beta_inventory.sql",
+  "players": 1399,
+  "freeCoreCardsAdded": 5596,
+  "rounds": 30,
+  "permanentRecordsUnchanged": true,
+  "ledgerUnchanged": true,
+  "creditChanges": 0,
+  "permanentIssuance": 0,
+  "before": {
+    "beta_fantasy.cards": {
+      "n": "59",
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.players": {
+      "n": "534",
+      "hash": "3a20c778089688b8a82a2fe4e4796074"
+    },
+    "beta_fantasy.entries": {
+      "n": "12",
+      "hash": "e621449adae4aab5fbf4d747afaffd5c"
+    },
+    "beta_fantasy.results": {
+      "n": "1",
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.ownership_events": {
+      "n": "59",
+      "hash": "704a314a527c2d8d2aa625dc1546ca60"
+    },
+    "beta_fantasy.sales": {
+      "n": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.permanent_players": {
+      "n": "986",
+      "hash": "a9ffd0b2c5d6cae5d4162e2714ac1ecd"
+    },
+    "credits_sandbox.card_definitions": {
+      "n": "358",
+      "hash": "b79d29f6b309ca5e6272ddd9e0bdb635"
+    },
+    "credits_sandbox.card_instances": {
+      "n": "428",
+      "hash": "08f0377a358dd5b33adaf5bdc30486b9"
+    },
+    "credits_sandbox.pack_receipts": {
+      "n": "50",
+      "hash": "6d67d6cb7555b166cf9ac438f2589de9"
+    },
+    "sports_feed.nfl_rounds": {
+      "n": "6",
+      "hash": "a47d8e1b1a799d909ded9211c8e8f044"
+    },
+    "sports_feed.nfl_control": {
+      "n": "1",
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    }
+  },
+  "authenticatedHosted": false
+}
