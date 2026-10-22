@@ -1,0 +1,58 @@
+{
+  "at": "2026-10-22T23:09:33.231Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "actualHostedConfiguration": true,
+  "databaseMode": "read only",
+  "allocationMode": "memory only; no hosted purchase or member session",
+  "products": [
+    {
+      "sport": "basketball",
+      "id": "premium-9-nba-real-roster-beta-v1",
+      "price": 5000,
+      "eligiblePlayers": 517,
+      "available": true,
+      "offlineAllocationCards": 9
+    },
+    {
+      "sport": "basketball",
+      "id": "standard-9-nba-real-roster-beta-v1",
+      "price": 700,
+      "eligiblePlayers": 517,
+      "available": true,
+      "offlineAllocationCards": 9
+    },
+    {
+      "sport": "afl",
+      "id": "premium-9-afl-real-roster-beta-v1",
+      "price": 5000,
+      "eligiblePlayers": 545,
+      "available": true,
+      "offlineAllocationCards": 9
+    },
+    {
+      "sport": "afl",
+      "id": "standard-9-afl-real-roster-beta-v1",
+      "price": 700,
+      "eligiblePlayers": 545,
+      "available": true,
+      "offlineAllocationCards": 9
+    },
+    {
+      "sport": "nrl",
+      "id": "premium-9-nrl-real-roster-beta-v1",
+      "price": 5000,
+      "eligiblePlayers": 337,
+      "available": true,
+      "offlineAllocationCards": 9
+    },
+    {
+      "sport": "nrl",
+      "id": "standard-9-nrl-real-roster-beta-v1",
+      "price": 700,
+      "eligiblePlayers": 337,
+      "available": true,
+      "offlineAllocationCards": 9
+    }
+  ],
+  "passed": true
+}

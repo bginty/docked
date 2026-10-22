@@ -1,5 +1,18 @@
 # Real-player private-beta catalogue release — 23 October 2026
 
+## Actual deployment
+
+- Live: https://docked.com.au — application commit `a917637a0861f06491e76392ded8e6284efd34a3`.
+- Vercel: `dpl_7b9rZLeVzYLrU3Y51aYzjwpG14Wz`, https://docked-production-92tyy3ial-briant-s-projects.vercel.app.
+- Migration `20261022222531` and exact source dataset applied successfully to the existing private-beta Supabase project. Actual counts: NBA 517, AFL 545, NRL 337; 5,596 free non-permanent Core cards across the four existing tester identities. Thirty upcoming simulated test rounds received real-player eligibility; previous entries/results were not rewritten.
+- Actual deployed dataset and attribution page match the reviewed source. All six real-roster pack products are available in the live configuration; a read-only configuration check simulated nine-card allocation in memory only. No Production purchases were performed for verification.
+- Candidate and live endpoint checks: 17/17 passed in each environment, including registration closed and unauthenticated access denied to protected gameplay, wallet, marketplace and owner APIs.
+- Protected-record hashes and wallet ledger comparison passed inside the committed import. No credit adjustment or permanent issuance occurred.
+- Owner, Barry and Luke: enabled, confirmed and admitted in the database; normal MFA still applies where required. Brenton: enabled beta access and inventory prepared, but email unconfirmed and admission correctly blocked.
+- **Authenticated hosted UI acceptance remains unverified.** No signed-in browser tab was available, and creating a live IAB tab failed to attach. No credentials were guessed and no member session was impersonated. The mobile/desktop screenshots in this directory are isolated local acceptance evidence.
+
+To review: refresh Docked, select the sport, open CARDS, then use Buy packs or Build team. Existing fictional teams are retained until the tester deliberately changes them; earlier fictional cards are hidden by default behind an explicit checkbox.
+
 ## Delivered scope
 
 The existing Docked application, shared accounts, wallet and card renderer now support a dated, source-verified real-player beta catalogue: **NBA 517 players / 30 teams; AFL 545 / 18; NRL 337 / 17**. This is an accepted subset, not a claim that every professional player or current contract has been independently verified. Unsupported positions, conflicting teams and unresolved identities are quarantined in `roster-review.json`.

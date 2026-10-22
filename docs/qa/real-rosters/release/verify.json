@@ -1,0 +1,115 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "counts": [
+    {
+      "sport": "afl",
+      "players": 545,
+      "teams": 18
+    },
+    {
+      "sport": "basketball",
+      "players": 517,
+      "teams": 30
+    },
+    {
+      "sport": "nrl",
+      "players": 337,
+      "teams": 17
+    }
+  ],
+  "inventories": [
+    {
+      "user_id": "623d1e69-d0f3-493f-9713-108e8c21469a",
+      "sport": "afl",
+      "real_core_cards": 545
+    },
+    {
+      "user_id": "623d1e69-d0f3-493f-9713-108e8c21469a",
+      "sport": "basketball",
+      "real_core_cards": 517
+    },
+    {
+      "user_id": "623d1e69-d0f3-493f-9713-108e8c21469a",
+      "sport": "nrl",
+      "real_core_cards": 337
+    },
+    {
+      "user_id": "9fa5cdbb-aa2e-4ebe-9f2c-de9885233cd3",
+      "sport": "afl",
+      "real_core_cards": 545
+    },
+    {
+      "user_id": "9fa5cdbb-aa2e-4ebe-9f2c-de9885233cd3",
+      "sport": "basketball",
+      "real_core_cards": 517
+    },
+    {
+      "user_id": "9fa5cdbb-aa2e-4ebe-9f2c-de9885233cd3",
+      "sport": "nrl",
+      "real_core_cards": 337
+    },
+    {
+      "user_id": "d6ab4838-7108-4c50-8ab8-c5947ab55bd8",
+      "sport": "afl",
+      "real_core_cards": 545
+    },
+    {
+      "user_id": "d6ab4838-7108-4c50-8ab8-c5947ab55bd8",
+      "sport": "basketball",
+      "real_core_cards": 517
+    },
+    {
+      "user_id": "d6ab4838-7108-4c50-8ab8-c5947ab55bd8",
+      "sport": "nrl",
+      "real_core_cards": 337
+    },
+    {
+      "user_id": "ef641248-67be-4c32-9b12-9205bfcee15b",
+      "sport": "afl",
+      "real_core_cards": 545
+    },
+    {
+      "user_id": "ef641248-67be-4c32-9b12-9205bfcee15b",
+      "sport": "basketball",
+      "real_core_cards": 517
+    },
+    {
+      "user_id": "ef641248-67be-4c32-9b12-9205bfcee15b",
+      "sport": "nrl",
+      "real_core_cards": 337
+    }
+  ],
+  "accounts": [
+    {
+      "user_id": "623d1e69-d0f3-493f-9713-108e8c21469a",
+      "enabled": true,
+      "confirmed": true,
+      "admitted": true,
+      "mfa_required": true
+    },
+    {
+      "user_id": "ef641248-67be-4c32-9b12-9205bfcee15b",
+      "enabled": true,
+      "confirmed": true,
+      "admitted": true,
+      "mfa_required": true
+    },
+    {
+      "user_id": "9fa5cdbb-aa2e-4ebe-9f2c-de9885233cd3",
+      "enabled": true,
+      "confirmed": true,
+      "admitted": true,
+      "mfa_required": false
+    },
+    {
+      "user_id": "d6ab4838-7108-4c50-8ab8-c5947ab55bd8",
+      "enabled": true,
+      "confirmed": false,
+      "admitted": false,
+      "mfa_required": false
+    }
+  ],
+  "authenticatedHosted": false,
+  "realStatistics": false,
+  "permanentIssuance": false
+}

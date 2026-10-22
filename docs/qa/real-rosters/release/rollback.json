@@ -1,0 +1,15 @@
+{
+  "deployment": "dpl_2ghyNJsCsiRgxitaZfaN6B4gRBkg",
+  "url": "docked-production-jihtuv5qt-briant-s-projects.vercel.app",
+  "commit": "fe5a6b24070cb2e358322c8945ca8885b134750e",
+  "databaseMigrations": [
+    "20261022115817",
+    "20261022122441",
+    "20261022123136",
+    "20261022124750",
+    "20261022203038",
+    "20261022211500",
+    "20261022222531"
+  ],
+  "recovery": "Before the real-roster import, the prior application can be promoted. AFTER import, retain the compatible roster/product parser and additive migration: old deployments cannot parse real-roster product IDs. Suspend affected private-sport/test-commerce gates and roll forward, or prepare a reviewed rollback build retaining parser compatibility. Never delete purchased cards, receipts or audit records to restore an old build."
+}
