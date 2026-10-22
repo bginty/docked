@@ -1,16 +1,16 @@
 ▲ Next.js 16.3.8 (Turbopack)
-✓ Running next.config.ts took 241ms
+✓ Running next.config.ts took 234ms
 
   Creating an optimized production build ...
-✓ Compiled successfully in 49s
+✓ Compiled successfully in 25.9s
   Running TypeScript ...
-  Finished TypeScript in 47s ...
+  Finished TypeScript in 33.4s ...
   Collecting page data using 7 workers ...
   Generating static pages using 7 workers (0/49) ...
   Generating static pages using 7 workers (12/49)
   Generating static pages using 7 workers (24/49)
   Generating static pages using 7 workers (36/49)
-✓ Generating static pages using 7 workers (49/49) in 1215ms
+✓ Generating static pages using 7 workers (49/49) in 1303ms
   Finalizing page optimization ...
 
 Route (app)
@@ -23,6 +23,7 @@ Route (app)
 ├ ƒ /admin/community
 ├ ƒ /admin/community/[section]
 ├ ƒ /admin/coupons
+├ ƒ /admin/ingestion
 ├ ƒ /admin/marketplace
 ├ ƒ /admin/member-release
 ├ ƒ /admin/nfl-history
@@ -69,6 +70,7 @@ Route (app)
 ├ ƒ /api/fantasy/swaps
 ├ ƒ /api/marketplace
 ├ ƒ /api/member
+├ ƒ /api/nba-beta
 ├ ƒ /api/nfl/history/import
 ├ ƒ /api/nfl/history/status
 ├ ƒ /api/notifications

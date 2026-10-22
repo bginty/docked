@@ -32,6 +32,7 @@ export function sandboxConfig(sport = aflConfiguration) {
 }
 export async function multiSportDatabase(
   sport: SportConfiguration = aflConfiguration,
+  privateNbaBeta = false,
 ) {
   const pg = new PGlite();
   const q = async (sql: string, params: unknown[] = []) =>
@@ -120,6 +121,7 @@ export async function multiSportDatabase(
           sport.id,
           week,
           JSON.stringify({
+            ...(privateNbaBeta ? { nba_beta_scope: "private-test-v1" } : {}),
             mode,
             lineup_version: config.version,
             inventory_scope: config.inventoryScope,

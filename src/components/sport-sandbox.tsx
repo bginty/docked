@@ -13,13 +13,18 @@ import type { SandboxState, SandboxCard } from "@/core/sport-sandbox";
 import { sandboxSelections } from "@/core/sport-lineup-view";
 import { boundedFetch } from "@/core/bounded-request";
 import type { autoSelect } from "@/core/lineup-auto-select";
+import { useSportDraftGuard } from "./sport-context";
 
 export function SportSandbox({
   initial,
   navigationPath = "/admin/sports",
+  privateBeta = false,
+  apiPath = "/api/admin/sports-sandbox",
 }: {
   initial: SandboxState;
   navigationPath?: string;
+  privateBeta?: boolean;
+  apiPath?: string;
 }) {
   const [state, setState] = useState(initial),
     [mode, setMode] = useState<"OPEN" | "SALARY_CAP">("OPEN");
@@ -31,6 +36,11 @@ export function SportSandbox({
   const [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
+  useSportDraftGuard(dirty || busy);
+  const readPath =
+    apiPath === "/api/nba-beta"
+      ? `${apiPath}?view=state`
+      : `${apiPath}?sport=${state.sport}`;
   const [proposal, setProposal] = useState<ReturnType<
       typeof autoSelect
     > | null>(null),
@@ -93,10 +103,7 @@ export function SportSandbox({
         return;
       pending = true;
       try {
-        const r = await boundedFetch(
-          `/api/admin/sports-sandbox?sport=${state.sport}`,
-          { cache: "no-store" },
-        );
+        const r = await boundedFetch(readPath, { cache: "no-store" });
         if (!r.ok)
           throw Error(
             "Scores could not refresh. Last received scores are shown.",
@@ -190,7 +197,7 @@ export function SportSandbox({
       });
       if (request.current?.payload !== payload)
         request.current = { payload, id: crypto.randomUUID() };
-      const r = await boundedFetch("/api/admin/sports-sandbox", {
+      const r = await boundedFetch(apiPath, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -233,10 +240,7 @@ export function SportSandbox({
     setBusy(true);
     setError("");
     try {
-      const r = await boundedFetch(
-        `/api/admin/sports-sandbox?sport=${state.sport}`,
-        { cache: "no-store" },
-      );
+      const r = await boundedFetch(readPath, { cache: "no-store" });
       if (!r.ok)
         throw Error("Unable to refresh. Check sandbox access and retry.");
       setState((await r.json()).state);
@@ -321,32 +325,40 @@ export function SportSandbox({
   }
   return (
     <section className={`sport-sandbox${nbaProposal ? " nba-sandbox" : ""}`}>
-      <h1>{sport?.label ?? state.sport} · Team laboratory</h1>
-      <nav aria-label="Sandbox sport">
-        {Object.values(sportConfigurations)
-          .filter((c) => !c.publicEnabled)
-          .map((c) => (
-            <a
-              key={c.id}
-              href={`${navigationPath}?sport=${c.id}`}
-              aria-current={state.sport === c.id ? "page" : undefined}
-              onClick={(e) => {
-                if (
-                  busy ||
-                  (dirty && !window.confirm("Discard unsaved lineup changes?"))
-                )
-                  e.preventDefault();
-              }}
-            >
-              {c.label}
-              {c.formatStatus === "proposal" ? " · Proposed" : ""}
-            </a>
-          ))}
-      </nav>
+      <h1>
+        {sport?.label ?? state.sport} ·{" "}
+        {privateBeta ? "Private beta" : "Team laboratory"}
+      </h1>
+      {!privateBeta && (
+        <nav aria-label="Sandbox sport">
+          {Object.values(sportConfigurations)
+            .filter((c) => !c.publicEnabled)
+            .map((c) => (
+              <a
+                key={c.id}
+                href={`${navigationPath}?sport=${c.id}`}
+                aria-current={state.sport === c.id ? "page" : undefined}
+                onClick={(e) => {
+                  if (
+                    busy ||
+                    (dirty &&
+                      !window.confirm("Discard unsaved lineup changes?"))
+                  )
+                    e.preventDefault();
+                }}
+              >
+                {c.label}
+                {c.formatStatus === "proposal" ? " · Proposed" : ""}
+              </a>
+            ))}
+        </nav>
+      )}
       <p className="sport-sandbox-notice">
-        {nbaProposal
-          ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
-          : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
+        {privateBeta
+          ? "NBA testing · Fictional players and simulated statistics. No permanent cards, paid packs, trading or prizes."
+          : nbaProposal
+            ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
+            : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
       </p>
       <div className="sport-sandbox-controls">
         <label>
@@ -364,7 +376,7 @@ export function SportSandbox({
           >
             <option value="SALARY_CAP">
               {nbaProposal
-                ? "Salary Cap · Proposed $5.2m"
+                ? `Salary Cap · ${privateBeta ? "" : "Proposed "}$5.2m`
                 : "Traditional · QA salary units"}
             </option>
             <option value="OPEN">{nbaProposal ? "Open" : "All-Star"}</option>
@@ -684,7 +696,7 @@ export function SportSandbox({
           <button onClick={() => setProposal(null)}>Cancel</button>
         </FantasySheet>
       )}
-      {sport && (
+      {sport && !privateBeta && (
         <details>
           <summary>Activation requirements</summary>
           <ul>

@@ -1,0 +1,30 @@
+NBA private beta Production release — 22 October 2026
+
+Authority: owner explicitly requested the existing Production platform as a controlled NBA private testing environment. This supersedes Preview-only restrictions only for the isolated gameplay surface and the named existing testers. No commercial data, permanent issuance, packs, trades, prizes or new ingestion schedule is authorised.
+
+Architecture
+NBA uses the existing application, Supabase authentication/session checks, account profiles, global wallet balance and navigation. The NBA API reuses the existing sandbox command, immutable entry snapshots, lineup engine and scoring journal. Competitions, isolated card JSON, drafts, period fixtures and scoring versions remain separate from NFL. A new server gate checks the exact Production private-beta target, disabled public registration, enabled control row, expiring named access, existing beta admission, confirmed email, active session and existing privileged-account MFA requirements. It does not grant roles or change Auth records.
+
+Existing account resolution
+Owner, Barry and Luke were matched to the existing owner/friends admission records and confirmed accounts. Brenton was matched to his existing invited account; his email is not confirmed. His NBA grant is reserved, but authentication remains blocked until he completes the existing confirmation flow. No duplicate account is created. Allowlisting does not constitute successful authenticated browser acceptance.
+
+Review and migration plan
+scripts/nba-live-database.mts inspect/rehearse/apply/verify operates only on pojoymtniryarxxunyvz and the existing operator connection. The rehearsal applies the exact eight missing migrations in a transaction, compares record hashes, then rolls back. Apply requires the same file hashes and missing migration list. These migrations add isolated journal/sport-readiness/sandbox/access structures and extend the existing lineup functions without replacing NFL rules. They do not modify member wallets, cards, sales, players or results. The pre-existing isolated journal prerequisite was absent from Production and is included explicitly.
+
+Release procedure
+1. Pass platform/database/browser/typecheck/lint/clean-build/client-secret checks.
+2. Commit reviewed application, migration, tooling and evidence.
+3. Run npx tsx scripts/nba-live-database.mts apply.
+4. Run npx tsx scripts/nba-live-fixtures.mts --prepare-private-beta. This creates only fictional inventory JSON and five testing weeks in both modes for the four exact existing IDs; no entries are submitted on their behalf.
+5. Run node scripts/nba-private-beta-release.mjs prepare, then stage. It exports committed application files, verifies the existing Vercel project and Production environment, sets the narrow NBA flag and disables the broad sandbox flag. It stages with --prod --skip-domain, leaving docked.com.au on its previous build.
+6. Verify READY, target, source SHA and anonymous denial; then promote the exact staged build. Verify the live domain and NFL/private-NBA boundaries.
+7. Run database verify and retain hosted receipts. Record any authenticated testing gap honestly.
+
+Rollback and recovery
+Immediate stop: set sports_feed.nba_beta_control.enabled=false using the existing authorised operator, with an audit event. This blocks API commands and capability checks without changing NFL or deleting test history. Then use Vercel rollback to the previously verified deployment dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3 (source 31f0ecc99c40aedcd4f4f64695a3de030715da0e), and verify docked.com.au. No migration down/drop is required: leave additive schemas and audit records intact. Private preimage copies of changed shared SQL functions and pre-release record hashes are retained in private-data/nba-private-beta-live on the operator checkout. Restore shared functions only after reviewing subsequent migrations and disabling NBA; do not blindly restore a whole database over legitimate later member activity. Migration failures roll back their transaction automatically.
+
+Testing data and limits
+All players are explicitly named Test NBA Player and fixtures are synthetic. Permanent inventory, pack products, marketplace and wallet ledgers are not used by NBA testing. The current week starts with future Friday/Saturday testing games; later weeks have Monday/Wednesday/Friday fixtures in America/New_York. Before lock, scores are correctly unavailable. No scores are invented for upcoming games. Scoring, multi-game totals, DNP, correction and privacy are exercised by the isolated SQL/browser acceptance fixtures. A hosted test cannot claim real sports data accuracy or member authentication without actual evidence.
+
+Real NBA activation remains separate
+Written commercial rights, provider credentials, approved hosted scheduling and authenticated real-data reconciliation remain required. No SportsDataIO feed or NBA recurring import is activated by this release. Permanent issuance, paid packs, trading and public access require separate owner approval.

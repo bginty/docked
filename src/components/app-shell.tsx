@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { AppIcon, type AppIconName } from "./app-icon";
-import { SportSelector, SportScope } from "./sport-context";
+import { SportSelector, SportScope, useSport } from "./sport-context";
 import { PwaStatus } from "./pwa-status";
 import { WorkspaceWalletProvider } from "./use-workspace-wallet";
 import { WorkspaceWalletLink } from "./workspace-wallet-link";
@@ -114,6 +114,13 @@ export function AppShell({
   loading?: boolean;
 }) {
   const path = usePathname();
+  const { sport, nba } = useSport();
+  const sportHref = (href: string) =>
+    nba &&
+    sport === "basketball" &&
+    ["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(href)
+      ? `${href}?sport=basketball`
+      : href;
   const { production, liveBeta } = useEnvironmentPresentation();
   const activeNav = nav;
   const destination = appDestination(path);
@@ -152,7 +159,7 @@ export function AppShell({
             {activeNav.map((n) => (
               <Link
                 key={n.href}
-                href={n.href}
+                href={sportHref(n.href)}
                 aria-current={destination === n.href ? "page" : undefined}
               >
                 <AppIcon name={n.icon} />
@@ -258,7 +265,7 @@ export function AppShell({
           {activeNav.map((n) => (
             <Link
               key={n.href}
-              href={n.href}
+              href={sportHref(n.href)}
               aria-current={destination === n.href ? "page" : undefined}
             >
               <AppIcon name={n.icon} />

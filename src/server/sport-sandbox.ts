@@ -1,5 +1,6 @@
 import "server-only";
-import { authClient, requireRole } from "./auth";
+import { authClient, requireRole, requireIdentity } from "./auth";
+import { nbaPrivateBetaEnabled } from "@/core/nba-private-beta";
 import { assertPrivatePreview } from "@/core/private-preview.mjs";
 import { previewParticipantMatches } from "@/core/preview-owner";
 import { verifiedSessionClaims } from "@/core/auth-policy";
@@ -16,6 +17,9 @@ import {
 } from "@/core/sport-sandbox";
 export async function sportSandbox(sport: string, input?: unknown) {
   assertSportSandbox();
+  const privateBeta = nbaPrivateBetaEnabled();
+  if (privateBeta && sport !== "basketball")
+    throw Error("NBA beta access required");
   const who = await sandboxIdentity();
   if (!["afl", "nrl", "basketball", "football"].includes(sport))
     throw Error("Unsupported sandbox sport");
@@ -25,6 +29,8 @@ export async function sportSandbox(sport: string, input?: unknown) {
   if (cmd && cmd.sport !== sport) throw Error("Sport context changed");
   return await db().begin(async (tx) => {
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true),set_config('docked.multi_sport','isolated-preview',true)`;
+    if (privateBeta)
+      await tx`select set_config('docked.nba_private_beta','enabled',true)`;
     const read = async () => {
       const state = (
         await tx`select sports_feed.sport_sandbox_state(${sport}) state`
@@ -59,6 +65,7 @@ export async function sportSandbox(sport: string, input?: unknown) {
 }
 
 async function sandboxIdentity() {
+  if (nbaPrivateBetaEnabled()) return requireIdentity();
   if (!assertPrivatePreview(process.env))
     return requireRole(["owner", "admin"]);
   const client = await authClient();

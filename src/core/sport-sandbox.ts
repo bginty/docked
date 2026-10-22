@@ -6,9 +6,11 @@ import type { CollectibleIdentity } from "../components/collectible-face";
 import { assertFantasyEnvironment } from "./fantasy";
 import { assertPrivatePreview } from "./private-preview.mjs";
 import type { SandboxScores } from "./sandbox-score-view";
+import { nbaPrivateBetaEnabled } from "./nba-private-beta";
 export function assertSportSandbox(
   env: Record<string, string | undefined> = process.env,
 ) {
+  if (nbaPrivateBetaEnabled(env)) return;
   // Hosted Preview already binds the exact project, restricted application role
   // and disabled capabilities. The legacy local harness uses a postgres binding
   // and must not force the hosted application to adopt that privileged role.
