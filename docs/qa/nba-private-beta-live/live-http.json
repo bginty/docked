@@ -1,0 +1,49 @@
+{
+  "at": "2026-10-22T10:49:40.609Z",
+  "commit": "b354c0a5c494b502d7c98c5de3afa6149cfd4391",
+  "environment": "live-domain",
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta?view=state",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/sports-sandbox?sport=basketball",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/app/login",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=basketball",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "authenticatedMemberTesting": false
+}

@@ -1,5 +1,12 @@
 NBA private beta Production release — 22 October 2026
 
+LIVE RESULT
+Production: https://docked.com.au — deployment dpl_6n5JZ57cX4mV5wARqwLD5LTUHvRm, application b354c0a5c494b502d7c98c5de3afa6149cfd4391, READY in syd1. Statistics repository remains unchanged at 34b779a (implementation a2f93e6).
+Go to Play, choose NBA · Private beta. Cards shows the separate fictional test inventory. Owner, Barry and Luke have existing confirmed accounts and enabled access. Brenton must complete email confirmation first. Owner/Barry retain required MFA. Access is reserved through 31 January 2027, subject to the central control and existing account admission.
+568 platform tests, 199 database tests, five-size NBA gameplay browser checks, integrated mobile/desktop navigation, typecheck, lint, clean build and client-secret scan passed. Candidate and live-domain HTTP checks passed. Authenticated hosted user journeys were NOT completed: no existing signed-in browser was available and browser attachment timed out. Local fixture authentication is not hosted acceptance. Tester access is confirmed in configuration, not through all four users signing in.
+Cards, entries, results, ownership events, sales, wallet document and player hashes remain unchanged. NFL operational check timestamps continued advancing under the existing successful reconciliation schedule, so the full nfl_rounds hash is not static. No NFL schedule or feed configuration was changed.
+NBA scores/rankings are implemented and locally exercised, but the hosted test week is upcoming. First lock: 23 October 2026 19:00 New York / 24 October 10:00 Sydney. No one was entered automatically and no simulated results have yet been published to hosted journals. This is a lineup-testing beta, not verified NBA data or a completed hosted scoring acceptance.
+
 Authority: owner explicitly requested the existing Production platform as a controlled NBA private testing environment. This supersedes Preview-only restrictions only for the isolated gameplay surface and the named existing testers. No commercial data, permanent issuance, packs, trades, prizes or new ingestion schedule is authorised.
 
 Architecture

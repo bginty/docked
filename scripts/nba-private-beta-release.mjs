@@ -1,7 +1,9 @@
 // Stages a Production build without moving the live domain; promotion is separate.
 import fs from "node:fs/promises";
+import { readFileSync } from "node:fs";
+import vm from "node:vm";
 import { execFileSync, execFile } from "node:child_process";
-import { promisify, parseEnv } from "node:util";
+import { promisify } from "node:util";
 import path from "node:path";
 import assert from "node:assert/strict";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
@@ -115,7 +117,76 @@ if (process.argv[2] === "prepare") {
     source,
     "--yes",
   ]);
-  const env = parseEnv(await fs.readFile(envFile, "utf8"));
+  // The established release uses deployment-scoped values. Reconstruct the
+  // exact live recipe, retaining its private worker/history credentials.
+  const base = JSON.parse(
+    await fs.readFile(
+      path.join(
+        root,
+        "private-data/nba-production/current-deployment.private.json",
+      ),
+      "utf8",
+    ),
+  );
+  assert.equal(base.id, "dpl_8GHoFUNqXGtzJTJVfKqEJQrhC9L3");
+  assert.equal(
+    base.meta.githubCommitSha,
+    "31f0ecc99c40aedcd4f4f64695a3de030715da0e",
+  );
+  const recipe = git(
+    "show",
+    base.meta.githubCommitSha + ":scripts/deploy-beta-staging.mjs",
+  );
+  const context = {
+    readFileSync: (f, ...a) => readFileSync(path.resolve(main, f), ...a),
+    assert,
+    resolve: path.resolve,
+    packPreview: false,
+    friends: true,
+    ownerGameplay: true,
+    ownerAuth: true,
+    target: "production",
+    team: target.teamId,
+    project: target.projectId,
+    branch: target.branch,
+    sha,
+    assertHostedBeta,
+  };
+  vm.runInNewContext(
+    recipe.slice(
+      recipe.indexOf("  const c = JSON.parse("),
+      recipe.indexOf("  const source = resolve("),
+    ) + "\nresult=env;",
+    context,
+  );
+  const env = {
+    ...context.result,
+    ...JSON.parse(
+      await fs.readFile(
+        main + "/private-data/nfl-live-release/history-env.json",
+        "utf8",
+      ),
+    ),
+    SUPABASE_SECRET_KEY: "",
+    SUPABASE_SERVICE_ROLE_KEY: "",
+    DOCKED_PRIVATE_PREVIEW: "",
+    DOCKED_BETA_TRADING: "private-beta-trading-v1",
+    DOCKED_TEST_MARKET_READ_ONLY: "false",
+    DOCKED_WEEKLY_CORE_ENABLED: "true",
+    ...JSON.parse(
+      await fs.readFile(
+        main + "/private-data/member-integrity-live/worker-env.json",
+        "utf8",
+      ),
+    ),
+  };
+  assert.equal(
+    base.env.filter(
+      (k) => /^(DOCKED_|NFL_|BETA_|FANTASY_|PROVIDER_)/.test(k) && !(k in env),
+    ).length,
+    0,
+    "Preserve all existing custom runtime flags",
+  );
   const overrides = {
     VERCEL_GIT_COMMIT_SHA: sha,
     VERCEL_GIT_COMMIT_REF: target.branch,
@@ -124,14 +195,17 @@ if (process.argv[2] === "prepare") {
     DOCKED_PREVIEW_TESTER_ID: "",
     DOCKED_PREVIEW_TESTER_EMAIL: "",
   };
-  assertHostedBeta({
-    ...env,
-    ...overrides,
-    VERCEL: "1",
-    VERCEL_ENV: "production",
-    VERCEL_TARGET_ENV: "production",
-    VERCEL_URL: "docked-production-candidate.vercel.app",
-  });
+  assert.equal(
+    assertHostedBeta({
+      ...env,
+      ...overrides,
+      VERCEL: "1",
+      VERCEL_ENV: "production",
+      VERCEL_TARGET_ENV: "production",
+      VERCEL_URL: "docked-production-candidate.vercel.app",
+    }),
+    true,
+  );
   assert.equal(env.REGISTRATION_ENABLED, "false");
   const args = [
     "deploy",
@@ -143,8 +217,12 @@ if (process.argv[2] === "prepare") {
     "--no-wait",
     "--meta",
     `dockedSourceCommit=${sha}`,
+    "--meta",
+    `githubCommitSha=${sha}`,
+    "--meta",
+    `githubCommitRef=${target.branch}`,
   ];
-  for (const [k, v] of Object.entries(overrides))
+  for (const [k, v] of Object.entries({ ...env, ...overrides }))
     args.push("--env", `${k}=${v}`, "--build-env", `${k}=${v}`);
   const result = await run(args);
   await fs.writeFile(

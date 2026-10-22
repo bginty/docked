@@ -1,0 +1,88 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "mode": "apply",
+  "passed": true,
+  "missing": [
+    "20261010092154_scoring_v1_isolated_journal.sql",
+    "20261021120641_multi_sport_lineup_adapters.sql",
+    "20261021122246_additional_sport_sandbox_formats.sql",
+    "20261021230000_isolated_sport_tester_access.sql",
+    "20261022010531_multi_sport_readiness_registry.sql",
+    "20261022023942_multi_sport_delivery_checkpoint.sql",
+    "20261022053636_nba_proposal_isolated_score_read.sql",
+    "20261022101445_nba_private_beta_access.sql"
+  ],
+  "hashes": [
+    {
+      "file": "20261010092154_scoring_v1_isolated_journal.sql",
+      "hash": "aa53b4e4f71d3bd301d2408f03f0305d9907d0d988ae6925ad07a5618babfdd7"
+    },
+    {
+      "file": "20261021120641_multi_sport_lineup_adapters.sql",
+      "hash": "dedee1f56e43f093a5a1f5dd5f540424840973f0562b29f8e2815ff28a792093"
+    },
+    {
+      "file": "20261021122246_additional_sport_sandbox_formats.sql",
+      "hash": "55bb2819fc03a08e2d4d91aaef09caeba26a1a9bd56a0f5b60e53e889e6f5ef6"
+    },
+    {
+      "file": "20261021230000_isolated_sport_tester_access.sql",
+      "hash": "e2c12ef55bfda0199ea556490f97b193f1cf4fc5b1ecc68e0c50bd969967ea9c"
+    },
+    {
+      "file": "20261022010531_multi_sport_readiness_registry.sql",
+      "hash": "73581cdf5fbc6b28bcc66eeee6e7e2d09ec2feeb9e138f07d0c7e7a7a1ebb6d2"
+    },
+    {
+      "file": "20261022023942_multi_sport_delivery_checkpoint.sql",
+      "hash": "df3d41129ebc2b61d34439d4f7bcd4cfcc0f634d922379c8ff52b358cd10fe61"
+    },
+    {
+      "file": "20261022053636_nba_proposal_isolated_score_read.sql",
+      "hash": "306965312054c6562a6a8dae9276fafe0a62c05ea4c9fb48eb1407cab0b89938"
+    },
+    {
+      "file": "20261022101445_nba_private_beta_access.sql",
+      "hash": "285ebf9f1409d24cd09b45fc1ca6f0358fb74fd0fe3c471d54f50b64d36b5537"
+    }
+  ],
+  "before": {
+    "beta_fantasy.cards": {
+      "count": "59",
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.entries": {
+      "count": "12",
+      "hash": "e621449adae4aab5fbf4d747afaffd5c"
+    },
+    "beta_fantasy.results": {
+      "count": "1",
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.ownership_events": {
+      "count": "59",
+      "hash": "704a314a527c2d8d2aa625dc1546ca60"
+    },
+    "beta_fantasy.sales": {
+      "count": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.state": {
+      "count": "1",
+      "hash": "79914930c2face72ab98a7f01f07b311"
+    },
+    "sports_feed.nfl_rounds": {
+      "count": "6",
+      "hash": "aaff91d859bc7fd7c0fc443150e6ee6e"
+    },
+    "sports_feed.nfl_control": {
+      "count": "1",
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    },
+    "beta_fantasy.players": {
+      "count": "534",
+      "hash": "3a20c778089688b8a82a2fe4e4796074"
+    }
+  },
+  "existingRecordsUnchanged": true
+}

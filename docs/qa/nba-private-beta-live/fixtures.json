@@ -1,0 +1,43 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "testers": [
+    {
+      "label": "Owner",
+      "id": "623d1e69-d0f3-493f-9713-108e8c21469a",
+      "emailConfirmed": true,
+      "mfaRequired": true,
+      "allowlisted": true,
+      "canAuthenticate": true
+    },
+    {
+      "label": "Barry",
+      "id": "ef641248-67be-4c32-9b12-9205bfcee15b",
+      "emailConfirmed": true,
+      "mfaRequired": true,
+      "allowlisted": true,
+      "canAuthenticate": true
+    },
+    {
+      "label": "Luke",
+      "id": "9fa5cdbb-aa2e-4ebe-9f2c-de9885233cd3",
+      "emailConfirmed": true,
+      "mfaRequired": false,
+      "allowlisted": true,
+      "canAuthenticate": true
+    },
+    {
+      "label": "Brenton",
+      "id": "d6ab4838-7108-4c50-8ab8-c5947ab55bd8",
+      "emailConfirmed": false,
+      "mfaRequired": false,
+      "allowlisted": true,
+      "canAuthenticate": false
+    }
+  ],
+  "roundsCreated": 10,
+  "inventoryPerTester": 24,
+  "permanentCardsIssued": 0,
+  "entriesSubmitted": 0,
+  "walletUnchanged": true,
+  "realData": false
+}
