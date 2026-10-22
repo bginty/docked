@@ -51,7 +51,7 @@ function FamilyDisclosures({ p }: { p: Product }) {
       <details>
         <summary>Pack Details</summary>
         <p>
-          {p.sport === "basketball" ? "9 cards" : "1, 3 or 9 cards"} ·{" "}
+          {p.sport !== "nfl" ? "9 cards" : "1, 3 or 9 cards"} ·{" "}
           {p.eligiblePlayers} eligible players
           {p.positions.length ? ` · ${p.positions.join(", ")}` : ""}.
         </p>
@@ -89,7 +89,7 @@ export function PackShop({
   open,
 }: {
   state: MemberTestView;
-  sport?: "nfl" | "basketball";
+  sport?: "nfl" | "basketball" | "afl" | "nrl";
   busy: boolean;
   recovery: boolean;
   purchase: (product: Product, coupon?: CouponQuote) => Promise<unknown>;
@@ -200,7 +200,7 @@ export function PackShop({
           <p className="eyebrow">CARDS / PACKS</p>
           <h1>
             {s.economyEnabled
-              ? `${sport === "basketball" ? "NBA" : "NFL"} Packs`
+              ? `${sport === "basketball" ? "NBA" : sport.toUpperCase()} Packs`
               : "Your packs"}
           </h1>
         </div>

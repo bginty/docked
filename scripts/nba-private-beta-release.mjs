@@ -118,7 +118,7 @@ if (process.argv[2] === "prepare") {
   const baseline = await liveDeployment();
   assert.equal(
     baseline.meta.githubCommitSha,
-    "b354c0a5c494b502d7c98c5de3afa6149cfd4391",
+    "2d03855d9bf3d4ece13b3d2b19d672d5eb3519c0",
     "Review a changed Production baseline before release",
   );
   await fs.writeFile(
@@ -133,9 +133,15 @@ if (process.argv[2] === "prepare") {
         deployment: baseline.id,
         url: baseline.url,
         commit: baseline.meta.githubCommitSha,
-        databaseMigrations: [],
+        databaseMigrations: [
+          "20261022115817",
+          "20261022122441",
+          "20261022123136",
+          "20261022124750",
+          "20261022203038",
+        ],
         recovery:
-          "Promote the previous deployment; no database rollback is required.",
+          "Promote the previous deployment and disable private_beta_sports. Retain additive fixture registries and audit records. The previous app does not enable the new commerce connection setting.",
       },
       null,
       2,
@@ -147,6 +153,18 @@ if (process.argv[2] === "prepare") {
   );
   console.log(JSON.stringify({ prepared: true, sha, fileCount: files.length }));
 } else if (process.argv[2] === "stage") {
+  const fixtureCommerce = process.argv.includes("--fixture-commerce");
+  if (fixtureCommerce) {
+    const approval = JSON.parse(
+      await fs.readFile(evidence + "/commerce-apply.json", "utf8"),
+    );
+    assert(
+      approval.passed === true &&
+        approval.permanentRecordsUnchanged === true &&
+        approval.creditChanges === 0,
+      "Verified isolated-commerce preparation required",
+    );
+  }
   assert.equal(
     JSON.parse(await fs.readFile(path.join(parent, "manifest.json"), "utf8"))
       .sha,
@@ -175,7 +193,7 @@ if (process.argv[2] === "prepare") {
   );
   assert.equal(
     base.meta.githubCommitSha,
-    "b354c0a5c494b502d7c98c5de3afa6149cfd4391",
+    "2d03855d9bf3d4ece13b3d2b19d672d5eb3519c0",
   );
   const recipe = git(
     "show",
@@ -218,6 +236,8 @@ if (process.argv[2] === "prepare") {
     DOCKED_TEST_MARKET_READ_ONLY: "false",
     DOCKED_WEEKLY_CORE_ENABLED: "true",
     DOCKED_NBA_PRIVATE_BETA: "true",
+    DOCKED_SPORTS_PRIVATE_BETA: "true",
+    DOCKED_SPORTS_TEST_COMMERCE: fixtureCommerce ? "true" : "false",
     DOCKED_MULTI_SPORT_SANDBOX: "false",
     DOCKED_PREVIEW_TESTER_ID: "",
     DOCKED_PREVIEW_TESTER_EMAIL: "",
@@ -239,6 +259,8 @@ if (process.argv[2] === "prepare") {
     VERCEL_GIT_COMMIT_SHA: sha,
     VERCEL_GIT_COMMIT_REF: target.branch,
     DOCKED_NBA_PRIVATE_BETA: "true",
+    DOCKED_SPORTS_PRIVATE_BETA: "true",
+    DOCKED_SPORTS_TEST_COMMERCE: "false",
     DOCKED_MULTI_SPORT_SANDBOX: "false",
     DOCKED_PREVIEW_TESTER_ID: "",
     DOCKED_PREVIEW_TESTER_EMAIL: "",

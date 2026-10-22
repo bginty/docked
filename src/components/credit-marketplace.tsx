@@ -16,6 +16,7 @@ import {
 } from "@/core/purchase-celebration";
 import { PurchaseCelebration } from "./purchase-celebration";
 import { CompactCollectible } from "./compact-collectible";
+import { MakeCardOffer } from "./private-card-offers";
 type Row = MarketplaceView["rows"][number];
 type Review = {
   review: string;
@@ -383,6 +384,15 @@ export function Marketplace({ member }: { member: string }) {
                     >
                       {l.own ? "View listing" : "Buy card"}
                     </button>
+                  )}
+                  {!l.own && data.offersEnabled && (
+                    <MakeCardOffer
+                      card={l.card.id}
+                      member={member}
+                      enabled
+                      listing={l.id}
+                      preference={l.preference}
+                    />
                   )}
                 </div>
               </article>

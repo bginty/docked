@@ -83,12 +83,15 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
     return {
       id,
       edition_id: instance.definition,
-      player_id: player.id,
+      player_id: player.synthetic
+        ? (player.fixturePlayerId ?? player.id)
+        : player.id,
       name: player.name,
       position: player.position,
       tier: instance.rarity,
-      season:
-        player.sport === "basketball" ? "SYNTHETIC NBA TEST" : "LIFETIME TEST",
+      season: player.synthetic
+        ? `SYNTHETIC ${player.sport === "basketball" ? "NBA" : player.sport.toUpperCase()} TEST`
+        : "LIFETIME TEST",
       kind: "regular",
       max_supply: instance.lifetimeCap,
       serial: instance.serial,
@@ -102,7 +105,7 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
       tradeable: true,
       rarity_version: instance.rarityVersion,
       multiplier:
-        player.sport === "basketball"
+        player.sport !== "nfl" && player.synthetic
           ? 1
           : rarityRule(instance.rarity).multiplierTenths / 10,
       presentation: instance.presentation,
@@ -410,4 +413,9 @@ export function memberTestView(
       : [],
   };
 }
-export type MemberTestView = ReturnType<typeof memberTestView>;
+export type MemberTestView = Omit<
+  ReturnType<typeof memberTestView>,
+  "products"
+> & {
+  products: ReturnType<typeof memberTestView>["products"][number][];
+};

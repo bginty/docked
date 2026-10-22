@@ -2,7 +2,12 @@ import { initialMemberTestCredits } from "../../src/core/member-test-wallet";
 import {
   initialCardEconomy,
   sevenPlayerPackUpgrade,
+  prepareSportTestProducts,
 } from "../../src/core/card-economy";
+import {
+  fixtureSports,
+  type FixtureSport,
+} from "../../src/core/fixture-sports";
 import { executeCredits } from "../../src/core/credits-sandbox";
 export const marketActors = [1, 2, 3].map((n) => ({
   id: `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`,
@@ -17,6 +22,7 @@ export function marketplaceFixture(
   now = Date.now(),
   actors = marketActors,
   canonicalNfl = false,
+  sport: "nfl" | FixtureSport = "nfl",
 ) {
   let s = initialMemberTestCredits();
   s.economy = initialCardEconomy(
@@ -47,6 +53,35 @@ export function marketplaceFixture(
     now,
   );
   sevenPlayerPackUpgrade(s.economy, now);
+  let product = "standard-nine-seven-test-v2";
+  if (sport !== "nfl") {
+    const definition = fixtureSports[sport];
+    s.economy.players = Object.fromEntries(
+      Object.values(s.economy.players).map((p, i) => {
+        const id = `${definition.prefix}-fixture-${i}`;
+        return [
+          id,
+          {
+            ...p,
+            id,
+            provider: "fixture",
+            providerId: id,
+            synthetic: true,
+            sport,
+            name: `Synthetic ${definition.label} Player ${i + 1}`,
+            position: definition.positions[i % definition.positions.length],
+            currentTeam: "Synthetic City",
+            presentation: `docked-${sport}-v1`,
+          },
+        ];
+      }),
+    );
+    const products = prepareSportTestProducts(s.economy, sport, now);
+    if (sport === "basketball") s.economy.nbaTestAllocation!.enabled = true;
+    else s.economy.fixtureTestAllocation![sport]!.enabled = true;
+    s.economy.activeProductVersions = products.map((p) => p.id);
+    product = products.find((p) => p.type === "STANDARD")!.id;
+  }
   for (const a of actors) {
     s = executeCredits(
       s,
@@ -69,8 +104,8 @@ export function marketplaceFixture(
       `pack-${a.id}`,
       {
         kind: "buy-pack",
-        product: "standard-nine-seven-test-v2",
-        configuration: "standard-nine-seven-test-v2",
+        product,
+        configuration: product,
         policy: s.policy.version,
         confirmed: true,
       },

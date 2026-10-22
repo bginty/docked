@@ -2,14 +2,18 @@ import {
   initialCardEconomy,
   sevenPlayerPackUpgrade,
   premiumUltraPackUpgrade,
-  prepareNbaTestProducts,
+  prepareSportTestProducts,
 } from "../../src/core/card-economy";
+import {
+  fixtureSports,
+  type FixtureSport,
+} from "../../src/core/fixture-sports";
 import { initialMemberTestCredits } from "../../src/core/member-test-wallet";
 import { executeCredits } from "../../src/core/credits-sandbox";
 export const packMember = { id: "pack-local-qa", role: "member" } as const;
 export const packNow = 1792100000000;
 /** In-memory only. Never connects to a database or changes member assets. */
-export function packFixture(sport: "nfl" | "basketball" = "nfl") {
+export function packFixture(sport: "nfl" | FixtureSport = "nfl") {
   let state = initialMemberTestCredits();
   state.economy = initialCardEconomy(
     Array.from({ length: 24 }, (_, i) => ({
@@ -30,10 +34,11 @@ export function packFixture(sport: "nfl" | "basketball" = "nfl") {
   );
   sevenPlayerPackUpgrade(state.economy, packNow);
   premiumUltraPackUpgrade(state.economy, packNow);
-  if (sport === "basketball") {
+  if (sport !== "nfl") {
+    const definition = fixtureSports[sport];
     state.economy.players = Object.fromEntries(
       Object.values(state.economy.players).map((p, i) => {
-        const id = `nba-fixture-${i}`;
+        const id = `${definition.prefix}-fixture-${i}`;
         return [
           id,
           {
@@ -42,17 +47,18 @@ export function packFixture(sport: "nfl" | "basketball" = "nfl") {
             provider: "fixture",
             providerId: id,
             synthetic: true,
-            sport: "basketball" as const,
-            name: `Synthetic NBA Player ${i + 1}`,
-            position: ["PG", "SG", "SF", "PF", "C"][i % 5],
+            sport,
+            name: `Synthetic ${definition.label} Player ${i + 1}`,
+            position: definition.positions[i % definition.positions.length],
             currentTeam: "Synthetic City",
-            presentation: "docked-basketball-v1",
+            presentation: `docked-${sport}-v1`,
           },
         ];
       }),
     );
-    const products = prepareNbaTestProducts(state.economy, packNow);
-    state.economy.nbaTestAllocation!.enabled = true;
+    const products = prepareSportTestProducts(state.economy, sport, packNow);
+    if (sport === "basketball") state.economy.nbaTestAllocation!.enabled = true;
+    else state.economy.fixtureTestAllocation![sport]!.enabled = true;
     state.economy.activeProductVersions = products.map((p) => p.id);
   }
   state = executeCredits(

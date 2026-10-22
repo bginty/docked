@@ -18,10 +18,16 @@ import {
 } from "../src/core/credits-sandbox";
 import { testCard } from "../src/core/member-test-wallet";
 import { marketQuery, marketplaceView } from "../src/core/marketplace";
+import { isFixtureSport } from "../src/core/fixture-sports";
 async function main() {
-  const dir = `docs/qa/fixed-price-marketplace/browser-${Date.now()}`;
+  const selected = process.argv[2] ?? "nfl";
+  assert(selected === "nfl" || isFixtureSport(selected));
+  const dir =
+    selected === "nfl"
+      ? `docs/qa/fixed-price-marketplace/browser-${Date.now()}`
+      : `docs/qa/overnight-multisport/${selected}/market/browser-${Date.now()}`;
   mkdirSync(dir, { recursive: true });
-  let state = marketplaceFixture(),
+  let state = marketplaceFixture(Date.now(), marketActors, false, selected),
     dropBuy = false,
     failRead = false;
   const own = (i: number) =>
@@ -70,6 +76,10 @@ async function main() {
       res.end(JSON.stringify(v));
     };
     try {
+      if (url.pathname === "/api/nba-beta")
+        return json({ allowed: selected === "basketball" });
+      if (url.pathname === "/api/sports-beta")
+        return json({ allowed: selected === "nfl" ? [] : [selected] });
       if (url.pathname === "/local-identity")
         return json({
           member: actor.id,
@@ -166,6 +176,11 @@ async function main() {
       hasTouch: true,
       reducedMotion: "reduce",
     });
+    for (const context of [a, b])
+      await context.addInitScript(
+        (sport) => localStorage.setItem("docked:active-sport", sport),
+        selected,
+      );
     await b.addCookies([{ name: "qa", value: "b", url: origin }]);
     const pa = await a.newPage(),
       pb = await b.newPage();
@@ -412,6 +427,7 @@ async function main() {
       JSON.stringify(
         {
           kind: "Component HTTP test; simulated identity and in-memory persistence, NOT Auth/Postgres E2E",
+          sport: selected,
           checks,
           errors,
         },

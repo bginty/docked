@@ -355,7 +355,7 @@ export function SportSandbox({
       )}
       <p className="sport-sandbox-notice">
         {privateBeta
-          ? "NBA testing · Fictional players and simulated statistics. No permanent cards, paid packs, trading or prizes."
+          ? `${sport?.label ?? state.sport} testing · Fictional players and simulated statistics. ${state.sport === "basketball" ? "" : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
           : nbaProposal
             ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
             : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
@@ -377,7 +377,7 @@ export function SportSandbox({
             <option value="SALARY_CAP">
               {nbaProposal
                 ? `Salary Cap · ${privateBeta ? "" : "Proposed "}$5.2m`
-                : "Traditional · QA salary units"}
+                : "Salary Cap · QA units"}
             </option>
             <option value="OPEN">{nbaProposal ? "Open" : "All-Star"}</option>
           </select>

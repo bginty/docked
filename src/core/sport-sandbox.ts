@@ -19,7 +19,12 @@ export function assertSportSandbox(
     throw Error("Sport sandbox is disabled");
 }
 export type SandboxCard = SevenCard &
-  CollectibleIdentity & { sport: string; owner_id: string; player_id: string };
+  CollectibleIdentity & {
+    sport: string;
+    owner_id: string;
+    player_id: string;
+    inventory_source?: "credits-fixture-v1";
+  };
 export type SandboxState = {
   scores?: SandboxScores;
   /** Server-derived averages of up to five completed, prior-period games. */
@@ -36,7 +41,11 @@ export type SandboxState = {
     season: string;
     round: number;
     locks_at: string;
-    rules: { mode: "SALARY_CAP" | "OPEN"; lineup_version: string };
+    rules: {
+      mode: "SALARY_CAP" | "OPEN";
+      lineup_version: string;
+      scoring_version?: string;
+    };
   }[];
   drafts: {
     competition_id: string;

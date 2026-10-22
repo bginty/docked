@@ -9,6 +9,8 @@ import {
 import { usePathname } from "next/navigation";
 import { boundedFetch } from "@/core/bounded-request";
 import { NbaBetaScreen } from "./nba-beta-screen";
+import { SportBetaCommerce } from "./sport-beta-commerce";
+import { isBetaSport, type BetaSport } from "@/core/sports-private-beta";
 const sports = {
   nfl: "NFL",
   football: "EPL",
@@ -25,6 +27,7 @@ const SportContext = createContext({
   notice: "",
   ready: true,
   nba: false,
+  beta: [] as BetaSport[],
 });
 export function SportProvider({ children }: { children: ReactNode }) {
   const path = usePathname();
@@ -32,6 +35,12 @@ export function SportProvider({ children }: { children: ReactNode }) {
     [notice, setNotice] = useState("");
   const [ready, setReady] = useState(false);
   const [nba, setNba] = useState(false);
+  const [beta, setBeta] = useState<BetaSport[]>([]);
+  useEffect(() => {
+    const clear = () => setNotice("");
+    window.addEventListener("docked:sport-draft-clean", clear);
+    return () => window.removeEventListener("docked:sport-draft-clean", clear);
+  }, []);
   useEffect(() => {
     let disposed = false;
     void boundedFetch("/api/nba-beta", { cache: "no-store" })
@@ -41,6 +50,22 @@ export function SportProvider({ children }: { children: ReactNode }) {
       })
       .catch(() => {
         if (!disposed) setNba(false);
+      });
+    void boundedFetch("/api/sports-beta", { cache: "no-store" })
+      .then(async (r) => {
+        const allowed = r.ok ? (await r.json()).allowed : [];
+        if (!disposed)
+          setBeta(
+            Array.isArray(allowed)
+              ? allowed.filter(
+                  (x): x is BetaSport =>
+                    typeof x === "string" && isBetaSport(x),
+                )
+              : [],
+          );
+      })
+      .catch(() => {
+        if (!disposed) setBeta([]);
       });
     return () => {
       disposed = true;
@@ -57,7 +82,9 @@ export function SportProvider({ children }: { children: ReactNode }) {
       setSport(
         valid(requested)
           ? requested
-          : saved === "nfl" || (nba && saved === "basketball")
+          : saved === "nfl" ||
+              (nba && saved === "basketball") ||
+              (saved !== null && isBetaSport(saved) && beta.includes(saved))
             ? saved
             : "nfl",
       );
@@ -66,9 +93,14 @@ export function SportProvider({ children }: { children: ReactNode }) {
     read();
     window.addEventListener("popstate", read);
     return () => window.removeEventListener("popstate", read);
-  }, [path, nba]);
+  }, [path, nba, beta]);
   function change(next: Sport) {
-    if ((next !== "nfl" && !(next === "basketball" && nba)) || next === sport)
+    if (
+      (next !== "nfl" &&
+        !(next === "basketball" && nba) &&
+        !(isBetaSport(next) && beta.includes(next))) ||
+      next === sport
+    )
       return;
     if (
       !window.dispatchEvent(
@@ -101,14 +133,14 @@ export function SportProvider({ children }: { children: ReactNode }) {
     window.dispatchEvent(new Event("docked:sport-changed"));
   }
   return (
-    <SportContext.Provider value={{ sport, change, notice, ready, nba }}>
+    <SportContext.Provider value={{ sport, change, notice, ready, nba, beta }}>
       {children}
     </SportContext.Provider>
   );
 }
 export const useSport = () => useContext(SportContext);
 export function SportSelector({ mobile = false }: { mobile?: boolean }) {
-  const { sport, change, notice, nba } = useSport();
+  const { sport, change, notice, nba, beta } = useSport();
   return (
     <label
       className={`shell-sport ${mobile ? "shell-sport-mobile" : "shell-sport-desktop"}`}
@@ -123,10 +155,15 @@ export function SportSelector({ mobile = false }: { mobile?: boolean }) {
           <option
             key={id}
             value={id}
-            disabled={id !== "nfl" && !(id === "basketball" && nba)}
+            disabled={
+              id !== "nfl" &&
+              !(id === "basketball" && nba) &&
+              !(isBetaSport(id) && beta.includes(id))
+            }
           >
             {label}
-            {id === "basketball" && nba
+            {(id === "basketball" && nba) ||
+            (isBetaSport(id) && beta.includes(id))
               ? " · Private beta"
               : id !== "nfl"
                 ? " · Coming soon"
@@ -139,10 +176,13 @@ export function SportSelector({ mobile = false }: { mobile?: boolean }) {
   );
 }
 export function SportScope({ children }: { children: ReactNode }) {
-  const { sport, ready, nba } = useSport();
+  const { sport, ready, nba, beta } = useSport();
   const path = usePathname();
   if (!ready) return <p role="status">Loading your sport…</p>;
-  if (sport === "basketball" && nba) {
+  if (
+    isBetaSport(sport) &&
+    ((sport === "basketball" && nba) || beta.includes(sport))
+  ) {
     // The wallet is shared; the pack catalogue remains explicitly sport gated.
     if (
       path === "/fantasy/test-wallet" &&
@@ -152,15 +192,38 @@ export function SportScope({ children }: { children: ReactNode }) {
     )
       return children;
     if (path === "/fantasy/play" || path === "/fantasy/cards")
-      return <NbaBetaScreen key={path} cards={path === "/fantasy/cards"} />;
+      return (
+        <NbaBetaScreen
+          key={`${path}:${sport}`}
+          sport={sport}
+          cards={path === "/fantasy/cards"}
+        />
+      );
+    if (path === "/fantasy/test-wallet" || path === "/fantasy/packs")
+      return (
+        <SportBetaCommerce
+          key={`${path}:${sport}`}
+          sport={sport}
+          surface="packs"
+        />
+      );
+    if (path === "/fantasy/market")
+      return (
+        <SportBetaCommerce
+          key={`${path}:${sport}`}
+          sport={sport}
+          surface="market"
+        />
+      );
+    if (path === "/fantasy/social") return children;
     return (
       <section className="fantasy-panel">
-        <h1>NBA private beta</h1>
+        <h1>{sports[sport]} private beta</h1>
         <p>
-          NBA packs and marketplace trading are not enabled. Test cards are
-          available in Cards and Play.
+          Open Play for your team and rankings, Cards for your test collection,
+          or Packs and Market for the separately controlled test economy.
         </p>
-        <a href="/fantasy/play?sport=basketball">Open NBA Play</a>
+        <a href={`/fantasy/play?sport=${sport}`}>Open {sports[sport]} Play</a>
       </section>
     );
   }
@@ -178,6 +241,7 @@ export function SportScope({ children }: { children: ReactNode }) {
 }
 export function useSportDraftGuard(dirty: boolean) {
   useEffect(() => {
+    if (!dirty) window.dispatchEvent(new Event("docked:sport-draft-clean"));
     const guard = (event: Event) => {
       if (dirty) event.preventDefault();
     };

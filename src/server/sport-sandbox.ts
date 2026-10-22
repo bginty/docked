@@ -1,6 +1,11 @@
 import "server-only";
 import { authClient, requireRole, requireIdentity } from "./auth";
 import { nbaPrivateBetaEnabled } from "@/core/nba-private-beta";
+import {
+  isBetaSport,
+  sportPrivateBetaEnabled,
+} from "@/core/sports-private-beta";
+import { setSportBetaContext } from "./sports-private-beta";
 import { assertPrivatePreview } from "@/core/private-preview.mjs";
 import { previewParticipantMatches } from "@/core/preview-owner";
 import { verifiedSessionClaims } from "@/core/auth-policy";
@@ -18,8 +23,8 @@ import {
 export async function sportSandbox(sport: string, input?: unknown) {
   assertSportSandbox();
   const privateBeta = nbaPrivateBetaEnabled();
-  if (privateBeta && sport !== "basketball")
-    throw Error("NBA beta access required");
+  if (privateBeta && !sportPrivateBetaEnabled(sport))
+    throw Error("Sport beta access required");
   const who = await sandboxIdentity();
   if (!["afl", "nrl", "basketball", "football"].includes(sport))
     throw Error("Unsupported sandbox sport");
@@ -29,21 +34,21 @@ export async function sportSandbox(sport: string, input?: unknown) {
   if (cmd && cmd.sport !== sport) throw Error("Sport context changed");
   return await db().begin(async (tx) => {
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true),set_config('docked.multi_sport','isolated-preview',true)`;
-    if (privateBeta)
-      await tx`select set_config('docked.nba_private_beta','enabled',true)`;
+    if (privateBeta && isBetaSport(sport)) await setSportBetaContext(tx, sport);
     const read = async () => {
       const state = (
         await tx`select sports_feed.sport_sandbox_state(${sport}) state`
       )[0].state as SandboxState;
       if (
-        sport === "basketball" &&
-        state.competitions.some(
-          (c) =>
-            c.rules.lineup_version === "docked-nba-weekly-lineup-proposal-v1",
-        )
+        ["afl", "nrl"].includes(sport) ||
+        (sport === "basketball" &&
+          state.competitions.some(
+            (c) =>
+              c.rules.lineup_version === "docked-nba-weekly-lineup-proposal-v1",
+          ))
       ) {
         const journals = (
-          await tx`select sports_feed.sandbox_nba_journals() journals`
+          await tx`select sports_feed.sandbox_sport_journals(${sport}) journals`
         )[0].journals;
         state.scores = sandboxScoreView(state, journals);
         state.recommendationRanks = sandboxHistoricalRanks(state, journals);

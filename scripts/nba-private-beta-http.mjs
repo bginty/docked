@@ -23,10 +23,19 @@ for (const path of [
   "/api/status",
   "/api/nba-beta",
   "/api/nba-beta?view=state",
+  "/api/sports-beta",
+  "/api/sports-beta?view=state&sport=afl",
+  "/api/sports-beta?view=state&sport=nrl",
+  "/api/test-wallet",
+  "/api/marketplace?sport=afl",
+  "/api/marketplace?sport=nrl",
+  "/api/community?view=hub",
   "/api/fantasy/standings",
   "/api/admin/sports-sandbox?sport=basketball",
   "/app/login",
   "/fantasy/play?sport=basketball",
+  "/fantasy/play?sport=afl",
+  "/fantasy/play?sport=nrl",
 ]) {
   let status, body;
   if (live) {

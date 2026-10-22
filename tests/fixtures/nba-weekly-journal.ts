@@ -9,6 +9,8 @@ import {
 } from "../../src/core/scoring-engine";
 import { nbaWeek, nbaWeeklyRules } from "../../src/core/nba-weekly";
 import { sandboxScoreView } from "../../src/core/sandbox-score-view";
+import { sportEventRules } from "../../src/core/sport-event-rules";
+import type { SandboxState } from "../../src/core/sport-sandbox";
 import type { multiSportDatabase } from "./multi-sport-db";
 
 /** Isolated synthetic evidence. Builds the real journal from exact SQL entry snapshots. */
@@ -18,6 +20,9 @@ export async function seedNbaJournal(
   const base = await db.state(),
     id = db.rounds.OPEN1;
   const comp = base.competitions.find((c: any) => c.id === id);
+  const sport = comp.sport as "basketball" | "afl" | "nrl";
+  const scoringRules =
+    sport === "basketball" ? nbaWeeklyRules() : sportEventRules(sport);
   const entries = base.entries.filter((e: any) => e.competition_id === id);
   const fixtures = (
     await db.q(
@@ -28,12 +33,14 @@ export async function seedNbaJournal(
   const w = nbaWeek(comp.locks_at);
   let state = createPeriod(
     {
-      id: `sim:basketball:${id}`,
-      sport: "basketball",
-      label: "Synthetic NBA week",
+      id: `sim:${sport}:${id}`,
+      sport,
+      label: `Synthetic ${sport} period`,
       locksAt: comp.locks_at,
-      rules: nbaWeeklyRules(),
-      window: { start: w.start, end: w.end, timezone: w.timezone },
+      rules: scoringRules,
+      ...(sport === "basketball"
+        ? { window: { start: w.start, end: w.end, timezone: w.timezone } }
+        : {}),
       fixtures: fixtures.map((f: any) => ({
         id: f.fixtureId,
         scheduledAt: f.scheduledAt,
@@ -48,7 +55,7 @@ export async function seedNbaJournal(
       playerId: c.player_id,
       position: c.position,
       eligiblePositions: c.eligible_positions,
-      sport: "basketball",
+      sport,
       owner: e.user_id,
       eligible: true,
     })),
@@ -78,7 +85,7 @@ export async function seedNbaJournal(
   ]);
   await db.q(
     "insert into scoring_beta.streams(id,sport,rules_version) values($1,$2,$3)",
-    [state.period.id, "basketball", rules.version],
+    [state.period.id, sport, rules.version],
   );
   let revision = 0,
     previous = "";
@@ -99,45 +106,64 @@ export async function seedNbaJournal(
   };
   await append();
   const importGame = async (sourceRevision = 1) => {
+    const dnpPlayer =
+      sport === "basketball"
+        ? fixtures[0].playerIds[0]
+        : entries[0].snapshot[0].player_id;
     state = importStatistics(
       state,
       {
         provider: "docked-synthetic-v1",
         simulated: true,
-        sport: "basketball",
+        sport,
         fixtureId: fixtures[0].fixtureId,
         revision: sourceRevision,
-        observedAt: "2099-02-01T04:00:00Z",
+        observedAt:
+          sport === "basketball"
+            ? "2099-02-01T04:00:00Z"
+            : "2099-02-02T04:00:00Z",
         status: "completed",
-        endedAt: "2099-02-01T03:00:00Z",
-        players: fixtures[0].playerIds.map((playerId: string, i: number) => ({
+        endedAt:
+          sport === "basketball"
+            ? "2099-02-01T03:00:00Z"
+            : "2099-02-02T03:00:00Z",
+        players: fixtures[0].playerIds.map((playerId: string) => ({
           playerId,
-          availability: i === 0 ? "confirmed-dnp" : "complete",
+          availability: playerId === dnpPlayer ? "confirmed-dnp" : "complete",
           stats:
-            i === 0
+            playerId === dnpPlayer
               ? null
-              : {
-                  points: sourceRevision === 1 ? 28 : 30,
-                  rebounds: 9,
-                  assists: 7,
-                  steals: 2,
-                  blocks: 1,
-                  turnovers: 3,
-                  threePointers: 3,
-                },
+              : sport !== "basketball"
+                ? Object.fromEntries(
+                    Object.keys(scoringRules.weights).map((k) => [
+                      k,
+                      k === "tackles" ? sourceRevision : 0,
+                    ]),
+                  )
+                : {
+                    points: sourceRevision === 1 ? 28 : 30,
+                    rebounds: 9,
+                    assists: 7,
+                    steals: 2,
+                    blocks: 1,
+                    turnovers: 3,
+                    threePointers: 3,
+                  },
         })),
       },
       { id: "isolated-reviewer", role: "reviewer" },
-      "2099-02-01T04:00:00Z",
+      sport === "basketball" ? "2099-02-01T04:00:00Z" : "2099-02-02T04:00:00Z",
     );
     await append();
   };
   return {
     importGame,
     read: async () => {
-      const s = await db.state();
+      const s = (await db.state()) as SandboxState;
       const journals = (
-        await db.q("select sports_feed.sandbox_nba_journals() journals")
+        await db.q("select sports_feed.sandbox_sport_journals($1) journals", [
+          sport,
+        ])
       )[0].journals;
       return { ...s, scores: sandboxScoreView(s, journals) };
     },

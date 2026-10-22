@@ -19,7 +19,7 @@ export function MemberTestWallet({
 }: {
   initial: MemberTestView;
   surface?: "wallet" | "swaps" | "packs";
-  sport?: "nfl" | "basketball";
+  sport?: "nfl" | "basketball" | "afl" | "nrl";
 }) {
   const [s, setS] = useState(initial),
     [busy, setBusy] = useState(false),

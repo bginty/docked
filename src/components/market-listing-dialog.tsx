@@ -173,6 +173,7 @@ export function MarketListingDialog({
           listing={listing}
           own={state.inventory.find((c) => c.id === card.id)}
           trading={state.tradingEnabled}
+          offers={state.offersEnabled}
           price={price}
           setPrice={setPrice}
           remove={remove}
@@ -192,6 +193,7 @@ function ListingForm({
   listing,
   own,
   trading,
+  offers,
   price,
   setPrice,
   remove,
@@ -206,6 +208,7 @@ function ListingForm({
   listing?: MarketplaceView["rows"][number];
   own: MarketplaceView["inventory"][number] | undefined;
   trading: boolean;
+  offers: boolean;
   price: string;
   setPrice: (s: string) => void;
   remove: boolean;
@@ -215,6 +218,7 @@ function ListingForm({
   onSaved?: () => void;
   onClose: () => void;
 }) {
+  const [acceptSwaps, setAcceptSwaps] = useState(false);
   const { busy, error, pending, send } = useMarketCommand(member, (r, c) => {
     setReceipt({
       ...r,
@@ -293,7 +297,7 @@ function ListingForm({
                     kind: "list",
                     card: card.id,
                     price: value,
-                    preference: "sell",
+                    preference: offers && acceptSwaps ? "both" : "sell",
                   },
             );
         }}
@@ -319,6 +323,17 @@ function ListingForm({
           </p>
         )}
         <FeeBreakdown price={value} />
+        {offers && !listing && (
+          <label>
+            <input
+              type="checkbox"
+              checked={acceptSwaps}
+              onChange={(e) => setAcceptSwaps(e.target.checked)}
+              disabled={busy || !!pending}
+            />{" "}
+            Also accept offers with cards from this test sport
+          </label>
+        )}
         {restriction && <p role="alert">{restriction}</p>}
         {error && <p role="alert">{error}</p>}
         {pending && !busy ? (

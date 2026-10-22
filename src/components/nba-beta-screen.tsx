@@ -5,16 +5,37 @@ import type { SandboxState } from "@/core/sport-sandbox";
 import { SportSandbox } from "./sport-sandbox";
 import { CollectibleFace } from "./collectible-face";
 import { fitsSlot } from "@/core/nfl-seven";
-export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
+import { sportConfigurations } from "@/core/sport-configuration";
+import type { BetaSport } from "@/core/sports-private-beta";
+import { MarketListingDialog } from "./market-listing-dialog";
+import type { ViewerCard } from "./collectible-viewer";
+export function NbaBetaScreen({
+  cards = false,
+  sport = "basketball",
+}: {
+  cards?: boolean;
+  sport?: BetaSport;
+}) {
+  const config = sportConfigurations[sport],
+    label = config.label;
+  const apiPath =
+    sport === "basketball"
+      ? "/api/nba-beta"
+      : `/api/sports-beta?sport=${sport}`;
   const [state, setState] = useState<SandboxState | null>(null);
   const [query, setQuery] = useState("");
   const [position, setPosition] = useState("");
+  const [selling, setSelling] = useState<ViewerCard | null>(null);
   const [error, setError] = useState(false),
     [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let disposed = false;
     setError(false);
-    void boundedFetch("/api/nba-beta?view=state", { cache: "no-store" })
+    setState(null);
+    void boundedFetch(
+      `${apiPath}${apiPath.includes("?") ? "&" : "?"}view=state`,
+      { cache: "no-store" },
+    )
       .then(async (r) => {
         if (!r.ok) throw Error("Unavailable");
         const data = await r.json();
@@ -26,21 +47,21 @@ export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
     return () => {
       disposed = true;
     };
-  }, [attempt]);
+  }, [attempt, apiPath]);
   if (error)
     return (
       <section className="fantasy-panel">
-        <h1>NBA private beta</h1>
+        <h1>{label} private beta</h1>
         <p role="alert">
-          NBA testing is unavailable. Check your beta access and required
+          {label} testing is unavailable. Check your beta access and required
           account verification, then retry.
         </p>
         <button onClick={() => setAttempt((n) => n + 1)}>Retry</button>
       </section>
     );
-  if (!state) return <p role="status">Loading NBA testing…</p>;
+  if (!state) return <p role="status">Loading {label} testing…</p>;
   if (!cards)
-    return <SportSandbox initial={state} privateBeta apiPath="/api/nba-beta" />;
+    return <SportSandbox initial={state} privateBeta apiPath={apiPath} />;
   const visible = state.cards.filter(
     (card) =>
       (!position || fitsSlot(card, [position])) &&
@@ -50,14 +71,26 @@ export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
   );
   return (
     <section>
-      <h1>NBA test cards</h1>
+      <h1>{label} test cards</h1>
       <p className="sport-sandbox-notice">
-        Fictional testing fixtures only. These are not permanent collectibles
-        and cannot be sold, transferred or purchased.
+        Fictional testing fixtures only. Free lineup cards stay in this test
+        collection. Cards opened from test packs can be traded when the test
+        economy is enabled.
       </p>
+      <nav className="fantasy-actions" aria-label={`${label} collection links`}>
+        <a className="button" href={`/fantasy/packs?sport=${sport}`}>
+          Buy packs
+        </a>
+        <a className="button" href={`/fantasy/packs?sport=${sport}&tab=mine`}>
+          My packs
+        </a>
+        <a className="button" href={`/fantasy/market?sport=${sport}`}>
+          Browse market
+        </a>
+      </nav>
       <div className="nba-collection-filters">
         <label>
-          Search your NBA cards
+          Search your {label} cards
           <input
             type="search"
             value={query}
@@ -73,7 +106,7 @@ export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
             onChange={(event) => setPosition(event.target.value)}
           >
             <option value="">All positions</option>
-            {["PG", "SG", "SF", "PF", "C"].map((p) => (
+            {[...new Set(config.slots.flatMap((s) => s.positions))].map((p) => (
               <option key={p} value={p}>
                 {p}
               </option>
@@ -100,7 +133,7 @@ export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
       <div
         className="sport-review-grid"
         role="list"
-        aria-label="NBA test collection"
+        aria-label={`${label} test collection`}
       >
         {visible.map((c) => (
           <div key={c.id} role="listitem">
@@ -108,12 +141,55 @@ export function NbaBetaScreen({ cards = false }: { cards?: boolean }) {
             <p>
               {c.name} · {c.position}
             </p>
+            {c.inventory_source === "credits-fixture-v1" &&
+              (c.listed ? (
+                <a href={`/fantasy/market?sport=${sport}&tab=listings`}>
+                  Manage listing
+                </a>
+              ) : (
+                <button
+                  onClick={() =>
+                    setSelling({
+                      id: c.id,
+                      edition_id: `fixture:${c.player_id}:${c.tier}`,
+                      player_id: c.player_id,
+                      name: c.name,
+                      position: c.position,
+                      tier: c.tier,
+                      season: "SYNTHETIC TEST",
+                      kind: "regular",
+                      max_supply: c.max_supply ?? 0,
+                      serial: c.serial ?? 0,
+                      team: c.team ?? "Fictional testing",
+                      colour: c.colour ?? "#1759a3",
+                      shirt: 0,
+                      status: c.status,
+                      sport,
+                      tradeable: true,
+                      multiplier: 1,
+                      verifiedJerseyNumber: null,
+                    })
+                  }
+                >
+                  Sell test card
+                </button>
+              ))}
           </div>
         ))}
       </div>
-      <a className="button" href="/fantasy/play?sport=basketball">
-        Build NBA team
+      <a className="button" href={`/fantasy/play?sport=${sport}`}>
+        Build {label} team
       </a>
+      {selling && (
+        <MarketListingDialog
+          card={selling}
+          onClose={() => setSelling(null)}
+          onSaved={() => {
+            setSelling(null);
+            setAttempt((n) => n + 1);
+          }}
+        />
+      )}
     </section>
   );
 }

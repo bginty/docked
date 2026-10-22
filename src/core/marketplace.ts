@@ -11,7 +11,9 @@ import { nflSeven, salary } from "./nfl-seven";
 import { sellerQuote } from "./credits-policy";
 export const marketQuery = z
   .object({
-    sport: z.enum(["nfl", "football", "afl", "basketball"]).default("nfl"),
+    sport: z
+      .enum(["nfl", "football", "afl", "basketball", "nrl"])
+      .default("nfl"),
     activityType: z
       .enum(["all", "purchase", "sale", "cancellation", "swap"])
       .default("all"),

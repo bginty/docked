@@ -1,11 +1,13 @@
 import {
   eligibleCatalogue,
-  nbaTestAllocationEnabled,
+  fixtureTestAllocationEnabled,
   definitionId,
+  catalogueObservationCurrent,
   type CardEconomy,
   type NinePackProduct,
 } from "./card-economy";
 import { rarityRule, type Rarity } from "./card-rarity";
+import { fixtureSports, isFixtureSport } from "./fixture-sports";
 export function packAvailability(
   e: CardEconomy,
   p: NinePackProduct,
@@ -17,8 +19,10 @@ export function packAvailability(
     availabilityRetryable: retryable,
   });
   if (!e.enabled) return unavailable("Pack purchases are paused.");
-  if (p.sport === "basketball" && !nbaTestAllocationEnabled(e))
-    return unavailable("NBA test packs have not been enabled.");
+  if (isFixtureSport(p.sport) && !fixtureTestAllocationEnabled(e, p.sport))
+    return unavailable(
+      `${fixtureSports[p.sport].label} test packs have not been enabled.`,
+    );
   if (now < p.effectiveAt) return unavailable("This pack is not on sale yet.");
   if (
     (p.expiresAt !== null && now >= p.expiresAt) ||
@@ -33,8 +37,9 @@ export function packAvailability(
     );
     const stale = candidates.some(
       (x) =>
-        now - x.observedAt > p.freshnessHours * 3600000 ||
-        (e.rosterPolicy &&
+        !catalogueObservationCurrent(x, p, now) ||
+        (x.sport === "nfl" &&
+          e.rosterPolicy &&
           (!x.roster || now - x.roster.checkedAt > 72 * 3600000)),
     );
     return unavailable(

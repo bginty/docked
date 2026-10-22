@@ -7,18 +7,33 @@ import { ownerDatabase, projectRef } from "./owner-gameplay-db.mjs";
 const source =
   "C:/Users/61412/.codex/worktrees/fixed-market-live/Docked.com.au";
 process.chdir("C:/Users/61412/Documents/ChatGPT/Docked.com.au");
-const evidence = source + "/docs/qa/nba-private-beta-live";
-const privateDir = "private-data/nba-private-beta-live";
-const files = [
-  "20261010092154_scoring_v1_isolated_journal.sql",
-  "20261021120641_multi_sport_lineup_adapters.sql",
-  "20261021122246_additional_sport_sandbox_formats.sql",
-  "20261021230000_isolated_sport_tester_access.sql",
-  "20261022010531_multi_sport_readiness_registry.sql",
-  "20261022023942_multi_sport_delivery_checkpoint.sql",
-  "20261022053636_nba_proposal_isolated_score_read.sql",
-  "20261022101445_nba_private_beta_access.sql",
-];
+const multiSport = process.argv.includes("--multisport");
+const evidence =
+  source +
+  (multiSport
+    ? "/docs/qa/overnight-multisport/release"
+    : "/docs/qa/nba-private-beta-live");
+const privateDir = multiSport
+  ? "private-data/multisport-private-beta-live"
+  : "private-data/nba-private-beta-live";
+const files = multiSport
+  ? [
+      "20261022115817_nba_isolated_economy_boundary.sql",
+      "20261022122441_multi_sport_private_beta_access.sql",
+      "20261022123136_multi_sport_fixture_economy.sql",
+      "20261022124750_fixture_inventory_projection.sql",
+      "20261022203038_fixture_social_audience.sql",
+    ]
+  : [
+      "20261010092154_scoring_v1_isolated_journal.sql",
+      "20261021120641_multi_sport_lineup_adapters.sql",
+      "20261021122246_additional_sport_sandbox_formats.sql",
+      "20261021230000_isolated_sport_tester_access.sql",
+      "20261022010531_multi_sport_readiness_registry.sql",
+      "20261022023942_multi_sport_delivery_checkpoint.sql",
+      "20261022053636_nba_proposal_isolated_score_read.sql",
+      "20261022101445_nba_private_beta_access.sql",
+    ];
 const mode = process.argv[2];
 assert(["inspect", "rehearse", "apply", "verify"].includes(mode));
 assert.equal(projectRef, "pojoymtniryarxxunyvz");
@@ -45,6 +60,7 @@ const snapshot = async (tx: Pick<Sql, "unsafe">) => {
     "sports_feed.nfl_rounds",
     "sports_feed.nfl_control",
     "beta_fantasy.players",
+    "sports_feed.sport_sandbox_inventory",
   ]) {
     answer[table] = (
       await tx.unsafe(
@@ -63,7 +79,7 @@ try {
   const before = await snapshot(sql);
   if (mode === "inspect") {
     const functions =
-      await sql`select n.nspname,p.proname,pg_get_function_identity_arguments(p.oid) args,pg_get_functiondef(p.oid) definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('sports_feed','beta_private') and p.proname in ('seven_command','seven_continue_teams','round_wide_registration_guard','seven_lock_due')`;
+      await sql`select n.nspname,p.proname,pg_get_function_identity_arguments(p.oid) args,pg_get_functiondef(p.oid) definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('sports_feed','beta_private','credits_sandbox') and p.prokind='f'`;
     if (
       !(await readFile(privateDir + "/preimage.private.json").then(
         () => true,

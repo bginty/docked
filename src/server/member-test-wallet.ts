@@ -16,6 +16,11 @@ import { tradingCommandMode, reviewedBetaTrading } from "../core/beta-trading";
 import { privateOfferEnabled } from "../core/private-card-offers";
 import { hiddenMarketCards } from "./market-visibility";
 import {
+  authorizeFixtureCommand,
+  fixtureCommerceVisibility,
+} from "./fixture-commerce";
+import { isFixtureSport } from "@/core/fixture-sports";
+import {
   memberTestCommand,
   memberTestView,
   assertMemberTestEconomy,
@@ -43,8 +48,19 @@ export async function memberTestSource(input?: unknown) {
     await setCommunityClaims(tx as unknown as TransactionSql, who);
     assertMemberTestEconomy(state);
     await refreshEconomyCatalogue(tx, state);
-    if (command && ["list","replace-listing"].includes(command.kind) && "card" in command && state.economy && !state.economy.instances[command.card])
-      throw new CreditsRejected("This legacy demonstration card is not eligible for the public marketplace.");
+    const fixtureSport = command
+      ? await authorizeFixtureCommand(tx, state, command)
+      : null;
+    if (
+      command &&
+      ["list", "replace-listing"].includes(command.kind) &&
+      "card" in command &&
+      state.economy &&
+      !state.economy.instances[command.card]
+    )
+      throw new CreditsRejected(
+        "This legacy demonstration card is not eligible for the public marketplace.",
+      );
     const rows =
       await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled`;
     if (!rows.length || (rows[0].kind === "owner" && who.aal !== "aal2"))
@@ -75,19 +91,21 @@ export async function memberTestSource(input?: unknown) {
       "preference" in command &&
       command.preference &&
       command.preference !== "sell" &&
+      !fixtureSport &&
       !reviewedBetaTrading(process.env) &&
       !privateOfferEnabled(process.env)
     )
       throw new CreditsRejected("Swap listings are temporarily unavailable");
     if (
       command &&
+      !fixtureSport &&
       (["offer", "accept", "replace-listing"].includes(command.kind) ||
         ("preference" in command &&
           command.preference &&
           command.preference !== "sell"))
     )
       throw new CreditsRejected("Only fixed-price credit sales are supported.");
-    if (mode)
+    if (mode && !fixtureSport)
       await assertBetaTrade(tx, mode, [
         who.user.id,
         ...counterparties.filter((id): id is string => !!id),
@@ -173,7 +191,7 @@ export async function memberTestSource(input?: unknown) {
       throw error;
     }
   }
-  const { s, hidden, trading } = await sql.begin(async (tx) => {
+  const { s, hidden, trading, fixtureSports } = await sql.begin(async (tx) => {
     await setCommunityClaims(tx, who);
     await tx`select pg_advisory_xact_lock(71820342)`;
     const [access] =
@@ -183,9 +201,14 @@ export async function memberTestSource(input?: unknown) {
     const s = await new CreditsSandboxStore(tx as unknown as typeof sql).read();
     await refreshEconomyCatalogue(tx, s);
     assertMemberTestEconomy(s);
+    const fixtures = await fixtureCommerceVisibility(tx, s);
     return {
       s,
-      hidden: await hiddenMarketCards(tx, s, who.user.id),
+      hidden: [
+        ...(await hiddenMarketCards(tx, s, who.user.id)),
+        ...fixtures.hidden,
+      ],
+      fixtureSports: fixtures.allowed,
       trading: await betaTradingAccess(
         tx as unknown as typeof sql,
         who.user.id,
@@ -198,6 +221,7 @@ export async function memberTestSource(input?: unknown) {
     s,
     hidden,
     trading,
+    fixtureSports,
     member: who.user.id,
     peers: peers.map((p) => ({ id: String(p.id), label: String(p.label) })),
     isOwner,
@@ -207,9 +231,12 @@ export async function memberTestSource(input?: unknown) {
   };
 }
 export async function memberTestWallet(input?: unknown) {
-  const { s, hidden, member, peers, isOwner, result, sql } =
+  const { s, hidden, member, peers, isOwner, result, sql, fixtureSports } =
     await memberTestSource(input);
   const view = memberTestView(s, member, peers, isOwner, Date.now(), hidden);
+  const products = view.products.filter(
+    (p) => !isFixtureSport(p.sport) || fixtureSports.includes(p.sport),
+  );
   if (isOwner)
     view.failures = (
       await sql`select request,product,category,recorded_at from credits_sandbox.pack_failures order by recorded_at desc limit 100`
@@ -219,5 +246,5 @@ export async function memberTestWallet(input?: unknown) {
       category: String(r.category),
       recordedAt: new Date(r.recorded_at).toISOString(),
     }));
-  return { state: view, result };
+  return { state: { ...view, products }, result };
 }

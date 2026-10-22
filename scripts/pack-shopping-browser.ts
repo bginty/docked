@@ -14,10 +14,18 @@ import { executeCredits } from "../src/core/credits-sandbox";
 import { memberTestView, testReceipt } from "../src/core/member-test-wallet";
 async function main() {
   const nba = process.argv.includes("--nba");
-  const fixture = () => packFixture(nba ? "basketball" : "nfl");
+  const sport = nba
+    ? "basketball"
+    : process.argv.includes("--afl")
+      ? "afl"
+      : process.argv.includes("--nrl")
+        ? "nrl"
+        : "nfl";
+  const fixture = () => packFixture(sport);
   const packPath =
-    "/fantasy/test-wallet?view=packs" + (nba ? "&fixtureSport=basketball" : "");
-  const out = `docs/qa/${nba ? "nba-parity/packs" : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
+    "/fantasy/test-wallet?view=packs" +
+    (sport !== "nfl" ? `&fixtureSport=${sport}` : "");
+  const out = `docs/qa/${sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/pack-shopping.tsx",
@@ -192,7 +200,9 @@ async function main() {
       });
       await page.goto(origin + packPath);
       await expect(
-        page.getByRole("heading", { name: nba ? "NBA Packs" : "NFL Packs" }),
+        page.getByRole("heading", {
+          name: `${sport === "basketball" ? "NBA" : sport.toUpperCase()} Packs`,
+        }),
       ).toBeVisible();
       await expect(
         page.getByText("Install Docked", { exact: true }),
@@ -218,7 +228,7 @@ async function main() {
       await expect(
         dialog.getByRole("heading", { name: "Confirm purchase" }),
       ).toBeVisible();
-      await expect(dialog).toContainText(nba ? "20,000" : "23,200");
+      await expect(dialog).toContainText(sport !== "nfl" ? "20,000" : "23,200");
       assert.equal(calls, 0);
       await page.screenshot({
         path: `${out}/review-${width}.png`,
@@ -282,7 +292,7 @@ async function main() {
       await expect(page.getByText("REPLAY · NO NEW AWARDS")).toBeVisible();
       assert.equal(calls, 2);
       await page.getByRole("button", { name: "Close panel" }).click();
-      if (!nba) {
+      if (sport === "nfl") {
         await page.goto(origin + "/fantasy/cards");
         await expect(
           page.getByRole("heading", { name: "My collection" }),
@@ -418,7 +428,7 @@ async function main() {
       JSON.stringify(
         {
           results,
-          sport: nba ? "basketball" : "nfl",
+          sport,
           isolatedComponents: true,
           authenticatedHosted: false,
         },
@@ -427,8 +437,8 @@ async function main() {
       ),
     );
     writeFileSync(
-      nba
-        ? "docs/qa/nba-parity/packs/latest-browser.json"
+      sport !== "nfl"
+        ? `docs/qa/overnight-multisport/${sport}/packs/latest-browser.json`
         : "docs/qa/pack-shopping/latest-browser.json",
       JSON.stringify({ out, results }, null, 2),
     );

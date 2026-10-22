@@ -3,6 +3,7 @@ import type { CreditsState } from "../core/credits-sandbox";
 import { testCard } from "../core/member-test-wallet";
 import { refreshEconomyCatalogue } from "./economy-catalogue";
 import type { AwardedCard } from "../core/pack-opening";
+import { fixtureCommerceVisibility } from "./fixture-commerce";
 
 /** A projection of existing inventory, never a new collection or issuance path. */
 export async function socialInventory(tx: TransactionSql, member: string) {
@@ -17,6 +18,7 @@ export async function socialInventory(tx: TransactionSql, member: string) {
   );
   if (!row) return [...cards.values()];
   const state = row.document as CreditsState;
+  const { hidden } = await fixtureCommerceVisibility(tx, state);
   await refreshEconomyCatalogue(tx, state);
   const [context] =
     await tx`select credits_sandbox.market_context(${member}::uuid) context`;
@@ -26,6 +28,7 @@ export async function socialInventory(tx: TransactionSql, member: string) {
     const instance = state.economy?.instances[id];
     return (
       state.commerce.cards[id].owner === member &&
+      !hidden.includes(id) &&
       state.cards[id] &&
       (!instance || !!state.economy?.packs[instance.source]?.openedAt)
     );

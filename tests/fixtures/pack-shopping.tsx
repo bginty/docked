@@ -5,6 +5,10 @@ import { SportProvider } from "../../src/components/sport-context";
 import { EnvironmentProvider } from "../../src/components/environment-context";
 import { MemberTestWallet } from "../../src/components/member-test-wallet";
 import type { MemberTestView } from "../../src/core/member-test-wallet";
+import {
+  fixtureSports,
+  type FixtureSport,
+} from "../../src/core/fixture-sports";
 Object.assign(window, { demoPath: location.pathname });
 function Fixture() {
   const [state, setState] = useState<MemberTestView | null>(null);
@@ -36,9 +40,14 @@ function Fixture() {
               initial={state}
               surface="packs"
               sport={
-                new URLSearchParams(location.search).get("fixtureSport") ===
-                "basketball"
-                  ? "basketball"
+                Object.hasOwn(
+                  fixtureSports,
+                  new URLSearchParams(location.search).get("fixtureSport") ??
+                    "",
+                )
+                  ? (new URLSearchParams(location.search).get(
+                      "fixtureSport",
+                    ) as FixtureSport)
                   : "nfl"
               }
             />

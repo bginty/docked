@@ -24,19 +24,34 @@ import {
 } from "../core/private-card-offers";
 import { assertMemberTestEconomy, testCard } from "../core/member-test-wallet";
 import { refreshEconomyCatalogue } from "./economy-catalogue";
+import {
+  authorizeFixtureCommand,
+  fixtureCommerceVisibility,
+} from "./fixture-commerce";
+import { fixtureCommandScope, fixtureCardSport } from "@/core/fixture-commerce";
 import type { TransactionSql } from "postgres";
 import { swapFeeQuote } from "../core/credit-only";
 import { marketplaceView, marketQuery } from "../core/marketplace";
 
 export async function privateOffers(
   input?: unknown,
-  inventoryQuery: { q?: string; inventoryPage?: string } = {},
+  inventoryQuery: {
+    q?: string;
+    inventoryPage?: string;
+    targetCard?: string;
+  } = {},
 ) {
-  const query = marketQuery.parse({ tab: "listings", ...inventoryQuery });
+  const query = marketQuery.parse({
+    tab: "listings",
+    q: inventoryQuery.q,
+    inventoryPage: inventoryQuery.inventoryPage,
+  });
   const who = await requireIdentity();
   await requireCommunityAccess("community_social");
   const enabled =
-    privateOfferEnabled(process.env) || reviewedBetaTrading(process.env);
+    privateOfferEnabled(process.env) ||
+    reviewedBetaTrading(process.env) ||
+    process.env.DOCKED_SPORTS_TEST_COMMERCE === "true";
   if (!enabled) {
     if (input)
       throw new CreditsRejected("Private offers await beta trading approval");
@@ -63,10 +78,6 @@ export async function privateOffers(
           .object({ request: z.string().uuid(), command: privateOfferCommand })
           .strict()
           .parse(input);
-  if (body && ["private-offer", "private-accept"].includes(body.command.kind))
-    throw new CreditsRejected(
-      "Only fixed-price marketplace sales are supported.",
-    );
   let permission: OfferPermission = { allowed: false, minimum: null };
   const sql = db();
   if (body && !(await rateLimit(`private-trade:${who.user.id}`, 40, 60)))
@@ -83,6 +94,17 @@ export async function privateOffers(
       assertMemberTestEconomy(state);
       await refreshEconomyCatalogue(tx, state);
       const cmd = body?.command;
+      const fixtureSport = cmd
+        ? await authorizeFixtureCommand(tx, state, cmd)
+        : null;
+      if (
+        cmd &&
+        !fixtureSport &&
+        ["private-offer", "private-accept"].includes(cmd.kind)
+      )
+        throw new CreditsRejected(
+          "Only fixed-price marketplace sales are supported.",
+        );
       const offer =
         cmd && cmd.kind !== "private-offer"
           ? state.privateCardOffers?.[cmd.offer]
@@ -101,7 +123,7 @@ export async function privateOffers(
               offeredCards: offer.offeredCards,
             })
           : cmd && tradingCommandMode(cmd);
-      if (mode)
+      if (mode && !fixtureSport)
         await assertBetaTrade(tx, mode, [
           who.user.id,
           ...[seller, buyer].filter((id): id is string => !!id),
@@ -205,10 +227,18 @@ export async function privateOffers(
     }
   }
   const state = await store.read();
+  const fixtureVisibility = await sql.begin(async (tx) => {
+    await setCommunityClaims(tx, who);
+    return fixtureCommerceVisibility(tx, state);
+  });
   const profiles =
     await sql`select p.user_id,p.display_name from private.social_profiles p where p.user_id in (select user_id from credits_sandbox.access where enabled)`;
   const offers = Object.values(state.privateCardOffers ?? {})
     .filter((o) => [o.buyer, o.seller].includes(who.user.id))
+    .filter((o) => {
+      const scope = fixtureCommandScope(state, { offer: o.id });
+      return !scope || fixtureVisibility.allowed.includes(scope);
+    })
     .sort((a, b) => b.created - a.created)
     .slice(0, 100)
     .map((o) => ({
@@ -234,7 +264,13 @@ export async function privateOffers(
     state,
     who.user.id,
     [],
-    query,
+    {
+      ...query,
+      sport:
+        (inventoryQuery.targetCard &&
+          fixtureCardSport(state, inventoryQuery.targetCard)) ||
+        query.sport,
+    },
     context.context,
   );
   const trading = await sql.begin(async (tx) => {
@@ -242,14 +278,16 @@ export async function privateOffers(
     return betaTradingAccess(tx as unknown as typeof sql, who.user.id);
   });
   return {
-    enabled: trading.offers,
+    enabled: trading.offers || fixtureVisibility.allowed.length > 0,
     offers,
     result,
-    inventory: inventoryView.inventory,
+    inventory: inventoryView.inventory.filter(
+      (c) => !fixtureVisibility.hidden.includes(c.id),
+    ),
     inventoryTotal: inventoryView.inventoryTotal,
     inventoryPage: inventoryView.query.inventoryPage,
     member: who.user.id,
-    combinedEnabled: trading.combined,
+    combinedEnabled: trading.combined || fixtureVisibility.allowed.length > 0,
     swapFee: swapFeeQuote(
       state.creditOnly,
       state.policy.swapFeeEach,

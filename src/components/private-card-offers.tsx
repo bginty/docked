@@ -103,7 +103,7 @@ export function MakeCardOffer({
     const timer = setTimeout(
       () =>
         boundedFetch(
-          `/api/community?view=offers&q=${encodeURIComponent(cardQuery)}&inventoryPage=${cardPage}`,
+          `/api/community?view=offers&q=${encodeURIComponent(cardQuery)}&inventoryPage=${cardPage}&targetCard=${encodeURIComponent(card)}`,
           {
             cache: "no-store",
             signal: controller.signal,
@@ -126,7 +126,7 @@ export function MakeCardOffer({
       clearTimeout(timer);
       controller.abort();
     };
-  }, [open, enabled, cardQuery, cardPage]);
+  }, [open, enabled, cardQuery, cardPage, card]);
   const price = Number(amount || 0),
     combinedBlocked = !!offered && price > 0 && !data?.combinedEnabled;
   let feeError = "";

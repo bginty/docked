@@ -63,7 +63,7 @@ test("NBA isolated journal: real SQL lock/privacy, exact snapshots, corrections 
     for (const row of view.scores[id].rows) {
       const snapshot = view.entries.find(
         (e: any) => e.competition_id === id && e.user_id === row.user_id,
-      ).snapshot;
+      )!.snapshot;
       assert.equal(
         row.points,
         row.players.reduce((n: number, p: any) => n + (p.points ?? 0), 0),
@@ -86,7 +86,7 @@ test("NBA isolated journal: real SQL lock/privacy, exact snapshots, corrections 
     );
     const j = (await db.q("select sports_feed.sandbox_nba_journals() j"))[0].j;
     const future = {
-      ...view.competitions.find((c: any) => c.id === id),
+      ...view.competitions.find((c: any) => c.id === id)!,
       id: "future-qa",
       locks_at: "2099-02-08T00:00:00Z",
     };

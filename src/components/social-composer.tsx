@@ -10,6 +10,7 @@ import { useSocialHub } from "./social-hub";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { boundedFetch as communityRequest } from "@/core/bounded-request";
+import { useSport } from "./sport-context";
 export function SocialComposer({
   initialSport,
   inline = false,
@@ -35,6 +36,8 @@ export function SocialComposer({
   onCancel?: () => void;
 }) {
   const { data: hub, error: hubError, reload: reloadCards } = useSocialHub();
+  const { sport: activeSport } = useSport();
+  const [selectedSport, setSelectedSport] = useState(initialSport ?? "");
   const [cardIds, setCards] = useState<string[]>(() =>
     initialCardIds.slice(0, 4),
   );
@@ -51,6 +54,19 @@ export function SocialComposer({
   const sending = useRef(false);
   const router = useRouter();
   const ready = useClientReady();
+  const attachmentSports = [
+    ...new Set(
+      hub?.cards
+        .filter(({ card }) => cardIds.includes(card.id))
+        .map(({ card }) => card.sport) ?? [],
+    ),
+  ];
+  const attachmentSport =
+    attachmentSports.length === 1 ? attachmentSports[0] : undefined;
+  useEffect(() => {
+    if (attachmentSport) setSelectedSport(attachmentSport);
+    else if (inline && !cardIds.length) setSelectedSport(activeSport);
+  }, [attachmentSport, activeSport, inline, cardIds.length]);
   useEffect(() => {
     const focus = () => {
       if (ready && inline && location.hash === "#social-compose")
@@ -172,7 +188,11 @@ export function SocialComposer({
               </label>
               <label>
                 Sport (optional)
-                <select name="sport" defaultValue={initialSport ?? ""}>
+                <select
+                  name="sport"
+                  value={selectedSport}
+                  onChange={(e) => setSelectedSport(e.target.value)}
+                >
                   <option value="">All sports</option>
                   {[
                     "football",
@@ -185,6 +205,7 @@ export function SocialComposer({
                     "ice-hockey",
                     "motorsport",
                     "afl",
+                    "nrl",
                   ].map((s) => (
                     <option key={s}>{s}</option>
                   ))}

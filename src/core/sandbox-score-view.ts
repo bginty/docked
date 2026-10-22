@@ -1,6 +1,7 @@
 import { digest, results, type ScoringState } from "./scoring-engine";
 import { nbaWeeklyRules, nbaWeek } from "./nba-weekly";
 import type { SandboxState } from "./sport-sandbox";
+import { sportEventRules } from "./sport-event-rules";
 
 export type SandboxScores = Record<
   string,
@@ -44,11 +45,20 @@ export function sandboxScoreView(
       (c) => c.id === journal.competition_id,
     );
     const body = journal.body;
+    const expectedRules =
+      comp?.sport === "basketball"
+        ? nbaWeeklyRules()
+        : comp?.sport === "afl" || comp?.sport === "nrl"
+          ? sportEventRules(comp.sport)
+          : null;
     const visible = state.entries.filter((e) => e.competition_id === comp?.id);
     if (
       !comp ||
-      comp.sport !== "basketball" ||
-      comp.rules.lineup_version !== "docked-nba-weekly-lineup-proposal-v1" ||
+      !expectedRules ||
+      (comp.sport === "basketball" &&
+        comp.rules.lineup_version !== "docked-nba-weekly-lineup-proposal-v1") ||
+      (comp.sport !== "basketball" &&
+        comp.rules.scoring_version !== expectedRules.version) ||
       Date.parse(comp.locks_at) > Date.parse(state.server_time) ||
       !visible.some((e) => e.user_id === state.user_id)
     )
@@ -56,13 +66,15 @@ export function sandboxScoreView(
     if (
       digest(body) !== journal.state_hash ||
       body.scope !== "simulated-beta" ||
-      body.period.id !== `sim:basketball:${comp.id}` ||
-      body.period.sport !== "basketball" ||
-      digest(body.period.rules) !== digest(nbaWeeklyRules()) ||
+      body.period.id !== `sim:${comp.sport}:${comp.id}` ||
+      body.period.sport !== comp.sport ||
+      digest(body.period.rules) !== digest(expectedRules) ||
       Date.parse(body.period.locksAt) !== Date.parse(comp.locks_at) ||
       !body.lineupsLockedAt
     )
-      throw Error("NBA scoring journal requires reconciliation");
+      throw Error(
+        `${comp.sport === "basketball" ? "NBA" : comp.sport.toUpperCase()} scoring journal requires reconciliation`,
+      );
     if (
       body.entries.length !== visible.length ||
       body.entries.some((e) => {
@@ -90,7 +102,9 @@ export function sandboxScoreView(
         );
       })
     )
-      throw Error("NBA saved lineup and scoring snapshot disagree");
+      throw Error(
+        `${comp.sport === "basketball" ? "NBA" : comp.sport.toUpperCase()} saved lineup and scoring snapshot disagree`,
+      );
     const scored = results(body);
     output[comp.id] = {
       updatedAt: body.sources.length
@@ -146,7 +160,9 @@ export function sandboxScoreView(
                   ? "DNP"
                   : body.finalisedAt
                     ? "Final"
-                    : "Week scored"
+                    : comp.sport === "basketball"
+                      ? "Week scored"
+                      : "Round scored"
                 : p.matches.some((m) =>
                       [
                         "postponed",

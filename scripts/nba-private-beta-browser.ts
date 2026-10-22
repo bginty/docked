@@ -4,11 +4,24 @@ import { resolve, sep } from "node:path";
 import assert from "node:assert/strict";
 import { chromium, expect } from "@playwright/test";
 import { multiSportDatabase } from "../tests/fixtures/multi-sport-db";
-import { nbaWeeklyConfiguration } from "../src/core/sport-configuration";
+import {
+  nbaWeeklyConfiguration,
+  aflConfiguration,
+  nrlConfiguration,
+} from "../src/core/sport-configuration";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import { sandboxRecommendation } from "../src/core/sport-sandbox";
 async function main() {
-  const db = await multiSportDatabase(nbaWeeklyConfiguration, true);
+  const sport = process.argv[2] ?? "basketball";
+  const config =
+    sport === "afl"
+      ? aflConfiguration
+      : sport === "nrl"
+        ? nrlConfiguration
+        : nbaWeeklyConfiguration;
+  assert.equal(config.id, sport);
+  const label = config.label;
+  const db = await multiSportDatabase(config, true);
   // Existing local fixture identity transport, real NBA membership/command SQL.
   await db.pg.exec(
     `create or replace function beta_private.beta_gameplay_identity(p_user uuid) returns boolean language sql as $$select true$$;`,
@@ -21,6 +34,15 @@ async function main() {
     [db.user],
   );
   await db.q("select set_config('docked.nba_private_beta','enabled',false)");
+  await db.q(
+    "select set_config('docked.private_beta_sport',$1,false),set_config('docked.sports_private_beta','enabled',false)",
+    [sport],
+  );
+  if (sport !== "basketball")
+    await db.q(
+      "update sports_feed.private_beta_sports set enabled=true where sport=$1",
+      [sport],
+    );
   const js = await bundleCommunityFixture(
     "tests/fixtures/nba-private-beta-ui.tsx",
   );
@@ -35,20 +57,25 @@ async function main() {
   const server = createServer(async (req, res) => {
     try {
       const u = new URL(req.url!, "http://localhost");
-      if (u.pathname === "/api/nba-beta") {
+      if (u.pathname === "/api/nba-beta" || u.pathname === "/api/sports-beta") {
         res.setHeader("Content-Type", "application/json");
         if (!allowed) {
           res.statusCode = 403;
           res.end(JSON.stringify({ allowed: false }));
           return;
         }
-        await db.q("select sports_feed.nba_beta_capability()");
+        await db.q("select sports_feed.private_beta_sport_capability()");
         if (req.method === "GET") {
           res.end(
             JSON.stringify(
               u.searchParams.get("view") === "state"
                 ? { state: await db.state() }
-                : { allowed: true },
+                : {
+                    allowed:
+                      u.pathname === "/api/sports-beta"
+                        ? [sport]
+                        : sport === "basketball",
+                  },
             ),
           );
           return;
@@ -113,7 +140,8 @@ async function main() {
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   const origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`,
     browser = await chromium.launch();
-  const out = process.env.NBA_ACCEPTANCE_OUT ?? "docs/qa/nba-private-beta-live";
+  const out =
+    process.env.NBA_ACCEPTANCE_OUT ?? `docs/qa/overnight-multisport/${sport}`;
   mkdirSync(out, { recursive: true });
   const checks = [];
   try {
@@ -126,12 +154,10 @@ async function main() {
         width < 900 ? "Active sport" : "Active sport desktop",
         { exact: true },
       );
+      await expect(selector.locator(`option[value="${sport}"]`)).toBeEnabled();
+      await selector.selectOption(sport);
       await expect(
-        selector.locator('option[value="basketball"]'),
-      ).toBeEnabled();
-      await selector.selectOption("basketball");
-      await expect(
-        page.getByRole("heading", { name: "NBA · Private beta" }),
+        page.getByRole("heading", { name: `${label} · Private beta` }),
       ).toBeVisible();
       if (width === 412) {
         await page
@@ -141,7 +167,7 @@ async function main() {
           .getByRole("button", { name: "Apply lineup", exact: true })
           .click();
         await selector.selectOption("nfl");
-        await expect(selector).toHaveValue("basketball");
+        await expect(selector).toHaveValue(sport);
         await expect(
           page
             .locator(".shell-sport-mobile")
@@ -171,9 +197,10 @@ async function main() {
         await page
           .getByRole("button", { name: "Apply lineup", exact: true })
           .click();
-        await expect(
-          page.getByText(/\$4,000,000 \/ \$5,200,000/),
-        ).toBeVisible();
+        if (sport === "basketball")
+          await expect(
+            page.getByText(/\$4,000,000 \/ \$5,200,000/),
+          ).toBeVisible();
         await page
           .getByRole("button", { name: "Confirm sandbox entry", exact: true })
           .click();
@@ -194,18 +221,22 @@ async function main() {
         .getByRole("link", { name: "Cards", exact: true })
         .click();
       await expect(
-        page.getByRole("heading", { name: "NBA test cards" }),
+        page.getByRole("heading", { name: `${label} test cards` }),
       ).toBeVisible();
       const collection = page.getByRole("list", {
-        name: "NBA test collection",
+        name: `${label} test collection`,
       });
       const total = await collection.getByRole("listitem").count();
       assert(total > 8);
-      await page.getByLabel("Search your NBA cards").fill("not-a-player-xyz");
+      await page
+        .getByLabel(`Search your ${label} cards`)
+        .fill("not-a-player-xyz");
       await expect(collection.getByRole("listitem")).toHaveCount(0);
       await page.getByRole("button", { name: "Clear filters" }).click();
       await expect(collection.getByRole("listitem")).toHaveCount(total);
-      await page.getByLabel("Position", { exact: true }).selectOption("PG");
+      await page
+        .getByLabel("Position", { exact: true })
+        .selectOption(config.slots[0].positions[0]);
       const filtered = await collection.getByRole("listitem").count();
       assert(filtered > 0 && filtered < total);
       await page.getByLabel("Position", { exact: true }).selectOption("");
@@ -233,12 +264,12 @@ async function main() {
     }
     allowed = false;
     const page = await browser.newPage();
-    await page.goto(origin + "/fantasy/play?sport=basketball");
+    await page.goto(origin + `/fantasy/play?sport=${sport}`);
     await expect(
-      page.getByRole("heading", { name: "NBA · Coming soon" }),
+      page.getByRole("heading", { name: `${label} · Coming soon` }),
     ).toBeVisible();
     await expect(
-      page.locator('option[value="basketball"]').first(),
+      page.locator(`option[value="${sport}"]`).first(),
     ).toHaveAttribute("disabled", "");
     await page.close();
     writeFileSync(

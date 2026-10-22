@@ -5,34 +5,19 @@ import {
   aflConfiguration,
   type SportConfiguration,
 } from "../../src/core/sport-configuration";
-import { nflSeven } from "../../src/core/nfl-seven";
-import { nbaWeeklyLineup } from "../../src/core/nba-weekly";
+import { nbaWeeklyRules } from "../../src/core/nba-weekly";
+import { sandboxLineupConfiguration } from "../../src/core/sport-sandbox-configuration";
 /** Explicit artificial units, identities and schedule. Never a published salary proposal. */
 export function sandboxConfig(sport = aflConfiguration) {
-  if (sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1")
-    return nbaWeeklyLineup();
-  return {
-    ...nflSeven,
-    version: `${sport.formatVersion}-qa`,
-    sport: sport.id,
-    inventoryScope: "isolated-multi-sport-v1",
-    slots: sport.slots,
-    salaryCap: sport.slots.length * 120,
-    salaries: {
-      CORE: 100,
-      RARE: 110,
-      ELITE: 120,
-      ULTRA_RARE: 130,
-      LEGENDARY: 140,
-      ICON: 150,
-    },
-    lockPolicy: "round-wide-v1",
-    commerciallyApproved: false,
-  };
+  return sandboxLineupConfiguration(sport);
 }
 export async function multiSportDatabase(
   sport: SportConfiguration = aflConfiguration,
   privateNbaBeta = false,
+  scoringVersion = sport.formatVersion ===
+  "docked-nba-weekly-lineup-proposal-v1"
+    ? nbaWeeklyRules().version
+    : "isolated-no-scoring-v1",
 ) {
   const pg = new PGlite();
   const q = async (sql: string, params: unknown[] = []) =>
@@ -121,12 +106,16 @@ export async function multiSportDatabase(
           sport.id,
           week,
           JSON.stringify({
-            ...(privateNbaBeta ? { nba_beta_scope: "private-test-v1" } : {}),
+            ...(privateNbaBeta
+              ? sport.id === "basketball"
+                ? { nba_beta_scope: "private-test-v1" }
+                : { sport_beta_scope: "private-test-v1" }
+              : {}),
             mode,
             lineup_version: config.version,
             inventory_scope: config.inventoryScope,
             lock_policy: "round-wide-v1",
-            scoring_version: "isolated-no-scoring-v1",
+            scoring_version: scoringVersion,
           }),
         ],
       );
@@ -137,10 +126,7 @@ export async function multiSportDatabase(
           sport.id,
           JSON.stringify([
             {
-              fixtureId:
-                sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1"
-                  ? `sim:basketball:qa:${id}`
-                  : `qa:${id}`,
+              fixtureId: `sim:${sport.id}:qa:${id}`,
               scheduledAt:
                 sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1"
                   ? "2099-02-01T00:00:00Z"
