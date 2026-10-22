@@ -1,0 +1,194 @@
+DOCKED NBA — PROTECTED ACCEPTANCE HANDOVER
+22 October 2026
+
+OUTCOME
+The approved NBA testing contract is recorded, the 1,000-collection simulation
+and local SQL/browser journeys pass, and an isolated protected Preview is READY.
+Production was not deployed or modified. NBA is not activated for real members.
+Hosted signed-in owner acceptance is NOT complete: the configured Preview owner
+account is unconfirmed and has no enrolled MFA factor. No confirmation, session,
+password, MFA enrolment or production permission was fabricated to bypass this.
+
+COMMITS AND DEPLOYMENT
+App baseline inspected: 1a5df34b. Engineering/release: 2c850ada4852c221130aa95e420b02f0d29261e4.
+Statistics baseline inspected: a2f93e6. Hosting handover: 34b779a.
+The following evidence-only commit is identified by git history for this file;
+it does not change the deployed application or production.
+Protected URL: https://docked-preview-15g40jsfd-briant-s-projects.vercel.app
+Vercel deployment: dpl_8nMDAMtiUHxp68YENN8SE98VnWGw, READY.
+Project: docked-preview / prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR.
+Deployment source metadata matches the full engineering commit above.
+Existing Vercel authentication protection remains enabled for all deployments.
+No production target, production alias or shared Preview alias was changed.
+Member-facing activation and financial flags remain false. The sandbox gate is
+enabled only in this isolated candidate; the previous extra tester override is
+empty, so the candidate admits only its configured owner after authentication.
+
+APPROVAL AND ENGINEERING
+config/nba-protected-approval.json records the exact owner decision for testing.
+PG/SG/SF/PF/C/G/F/UTIL; $5.2m cap; Core500k/Rare600k/Elite650k/Ultra700k/
+Legendary800k/Icon800k; PTS1/REB1.2/AST1.5/STL3/BLK3/TO-1; DD1.5 plus
+TD3; no rarity multipliers; Monday weeks in America/New_York; first-game lock;
+all eligible weekly games; evidence-backed DNP zero. Frozen version identifiers
+are retained rather than rewriting legacy contracts. Production, provider,
+paid-service, permanent-issuance and real-schedule approvals remain false.
+The existing scoring/lineup architecture is reused. No separate NBA wallet,
+marketplace or ownership system was introduced. New eight-position testing
+rounds are clearly distinguished from retained legacy three-FLEX sandbox rounds.
+The NBA browser journey now verifies Salary Cap entry and Open independence.
+
+PREVIEW DATABASE — ACCESS ROOT CAUSE AND CHANGES
+The Supabase connector cannot access isolated project bckkllmndoxzpzdqrevb.
+Its project/read-query calls are denied, while the existing authorised operator
+connection works over verified TLS. This is a connector/project-access mismatch,
+not evidence of an inaccessible database or a reason to weaken RLS.
+Existing prerequisite migrations were already present through 20261022023942.
+Only reviewed migration 20261022053636_nba_proposal_isolated_score_read.sql
+was applied, after a successful rollback rehearsal and matching SHA256:
+306965312054c6562a6a8dae9276fafe0a62c05ea4c9fb48eb1407cab0b89938.
+It restricts isolated score reads to docked_beta_app behind the existing MFA,
+session and allowlist checks; anon/authenticated/service_role cannot execute it.
+It checks underlying player identity for duplicate NBA proposal selections.
+Before/after hashes of beta_fantasy.cards, beta_fantasy.entries,
+credits_sandbox.state and scoring_beta.journal were unchanged by the migration.
+The previous function definition is saved privately for reviewed rollback.
+
+The exact existing owner was granted sport_sandbox_access. Six clearly isolated
+NBA rounds (three weeks, Open and Salary Cap) and 16 fictional inventory JSON
+records were prepared. No permanent card, serial, balance or real player was
+issued. No entry was submitted on the owner's behalf. No global admission or
+new staff-role grant was made. MFA is still required. The first test week begins
+26 October 2026; this fixture set is intentionally time-bound. If acceptance is
+delayed beyond lockout, prepare a new explicitly isolated future test period;
+do not edit locked entries or move historical lock times.
+
+VERIFICATION — LOCAL VERSUS HOSTED
+Local app platform suite: 568 passed, 0 failed.
+Local database suite: 198 passed, 0 failed.
+Statistics-service Python suite: 105 passed, 0 failed.
+Cross-repository exporter/importer tests: EPL/NBA/AFL/NRL replay, corrections,
+conflict rollback and NBA weekly-proposal contract passed. Synthetic fixtures
+are explicitly isolated; these are not licensed real-provider accuracy tests.
+TypeScript, ESLint, clean-environment build and canary client-secret scan passed.
+Local NBA SQL-backed browser journey: 360, 412, 1024, 1440 and 1536px, eight
+slots, no horizontal overflow or browser errors. Covers auto preview/apply,
+save/confirm, Salary Cap versus Open independence, carry-forward draft, manual
+replacement, history, locked community slots and postgame correction refresh.
+Database/scoring tests additionally cover duplicates, eligibility, cap, DNP
+versus missing data, multi-game aggregation, DST, lock/privacy and reconciliation.
+NFL scoring-integrity browser regression: 412 and 1440px passed. Full platform
+and database suites include NFL, wallet/marketplace idempotency and access tests.
+These checks use isolated data; production assets were not used as test fixtures.
+
+Hosted restricted-role checks passed: no superuser/bypassRLS/createDB/createRole;
+raw auth.users and scoring journal reads denied; unauthenticated sandbox/score
+reads denied; admission writes denied. Supabase MCP advisors remain inaccessible,
+so no hosted advisor scan is claimed.
+Hosted browser checks: Vercel anonymous request redirects (302); application
+sandbox/readiness/retry requests without a Docked session return 403. At 412 and
+1440px the login hydrates without overflow, and NBA/ingestion pages deny anonymous
+access. The ingestion denial is the existing access-unavailable page, not proof
+that its authenticated dashboard was exercised. Origin-scoped short-lived OIDC
+was used only for Vercel protection; Docked auth/MFA was not bypassed.
+
+NOT VERIFIED HOSTED: authenticated owner gameplay, enrolled-owner MFA session,
+authenticated ingestion controls, a second eligible competitor, real NBA data,
+or persistent scheduled execution. Local browser authentication uses isolated
+test infrastructure and must not be presented as hosted account acceptance.
+
+COMPETITIVE BALANCE — 1,000 SYNTHETIC COLLECTIONS
+Command: npx tsx scripts/simulate-nba-weekly.ts
+Seed 20261022; 25 cards per collection; reproducible report at
+docs/qa/multi-sport/nba-weekly/simulation.json. No real player forecasts.
+Cap changes optimum: 694/1000. Mean capped score: 1405.5906; Open: 1460.56.
+All-Core counterfactual with identical underlying player access matches Open in
+1000/1000 cases. This does NOT assert equal real member access to all players.
+All-Core salary4m; all-Rare4.8m; all-Elite5.2m; all-Ultra5.6m invalid;
+all-Icon6.4m invalid; four Core/four Icon5.2m valid.
+Rare/Icon are useful where they are the only owned copy of a stronger player.
+For the same player, Core scores identically and costs less salary. Rarity's
+scarcity/collectibility/trading value must not be sold as extra NBA points.
+Equal 55.3 performances: one game55.3, four games221.2, a fourfold advantage.
+Independent arithmetic checks include 1,000 stat samples, DD+1.5 and stacked
+TD+4.5 total bonus. Bonuses are per game, not on combined weekly categories.
+In the forecast-zero injury stress case (every sixth synthetic player), mean
+loss is280.9095 and pre-lock re-optimisation recovers182.7691. This is a synthetic
+selection scenario, never a rule for assigning zero to missing provider data.
+All slots share the same lock. Later-week players have greater post-lock injury
+information exposure; there are no unapproved replacements or compensation.
+Shared ranks remain; stable display order is not an approved prize tie-break.
+Recommendation: retain the approved testing rules. Make scheduled-game counts
+and rarity economics clear during owner testing. Schedule normalisation,
+performance-based salaries and injury replacements would require a separate
+gameplay decision; none was implemented.
+
+PROVIDER REQUEST AND HOSTING
+Ready-to-send email: docs/SPORTSDATAIO_NBA_LICENSING_EMAIL.txt (NOT SENT).
+Requests NBA Scores/Stats products and CurrentSeason, teams, Players, Games,
+BoxScoreFinal, historical access and reliable participation evidence; all raw
+field requirements, storage/retention, derived scores, commercial fantasy/card
+marketplace use, Australian web/Android distribution, attribution, SLA and
+quotes for100/1,000/10,000/50,000 users are specified. No licence is assumed.
+Commercial price is quote-only for Docked; no subscription was purchased.
+
+Service repository docs/NBA_PROTECTED_HOSTING.txt describes the smallest host:
+reuse approved Linux capacity with the existing worker/API, or one small Docker
+VM with a persistent private NBA checkpoint volume separate from NFL, bounded
+retries, leases, health checks, alerts, secret mounts and reversible gates.
+Official DigitalOcean published baseline: US$6/month 1GiB plus30% daily backup
+=US$7.80/month, or US$12/month 2GiB plusbackup=US$15.60/month. At an explicit
+planning assumption US$1=A$1.55: A$12.09 or A$24.18/month (A$145.08/290.16 yearly).
+This is not an exchange-rate quote or existing approved host. Tax, FX, external
+backups/monitoring and SportsDataIO licence are additional. Prefer existing
+approved capacity; size using observed memory before any paid purchase.
+https://www.digitalocean.com/pricing/droplets
+https://sportsdata.io/help/data-rights-and-licensing-questions
+No new hosted schedule is running. Missed runs, concurrency, replay, correction
+and recovery have local test evidence only. Runtime licence/credential/hosting
+gates must pass before a witnessed hosted run or real-data schedule activation.
+
+EXACT NEXT OWNER ACTIONS
+1. Complete the existing isolated Preview owner setup for support@docked.com.au:
+   email confirmation/password setup, then normal MFA enrolment. If the prior
+   invitation is expired, request a scoped replacement for this existing account;
+   do not create a duplicate or programmatically mark its email/MFA verified.
+   Vercel project access is also required to open this protected candidate.
+2. Sign into the candidate and open /app/sports-preview?sport=basketball, then
+   /admin/ingestion. Complete the same eight-position owner journey with a real
+   MFA session. A second explicitly authorised Preview tester is required for
+   hosted two-member acceptance; no unrelated real user may be substituted.
+3. Send the prepared licensing email, obtain written terms/quote and participation
+   evidence coverage, then provide scoped server-side credentials securely.
+4. Approve reuse of an existing persistent host or the quoted hosting budget and
+   monitoring recipient. Verify authenticated historical samples and a hosted
+   scheduled/recovery run before any real-data schedule is enabled.
+5. Review real roster/multiposition and two-way eligibility, exceptional post-lock
+   transfer/reschedule handling and any prize tie-break. Approve real-data rules,
+   supply/issuance and public activation separately after acceptance.
+
+ROLLBACK / CONTINUATION
+No alias was promoted, so the prior Preview remains available. To abandon this
+candidate, stop using its immutable URL; do not promote it to production.
+The additive read function can be restored from its private preimage only after
+review against intervening migrations. Never reset a schema or ledger to undo
+this work. Synthetic rounds/inventory have audit provenance; disable the scoped
+sandbox admission if needed, preserving entries/audit rather than bulk deletion.
+All real NBA worker/publishing gates remain off; any future host rollback must
+stop NBA only, retain its checkpoint volume and leave NFL processing untouched.
+Operator scripts are guarded to the exact Preview project. Re-run preflight and
+security before further migration/deployment; do not point them at Production.
+
+DECISIONS
+Engineering: GO for protected owner testing; local implementation verified.
+Hosted owner acceptance: PENDING account confirmation/MFA and signed-in tests.
+Commercial/data: NO-GO until written licence, verified roster and real samples.
+Hosting/automation: NO-GO for live schedules until host approval and witnessed run.
+Production/member activation/issuance: NO-GO; explicitly outside this release.
+
+EVIDENCE
+docs/qa/multi-sport/nba-acceptance/: preflight, migration rehearsal/application,
+owner-fixtures, hosted security, deployment submission/status, hosted browser,
+login and access-denial screenshots, and consolidated checks.
+docs/qa/multi-sport/nba-weekly/: local field/list/community/history screenshots,
+browser receipts and all 1,000 synthetic collections. These are clearly local
+test screenshots, not authenticated hosted owner screenshots.

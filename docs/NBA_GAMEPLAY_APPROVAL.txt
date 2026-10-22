@@ -5,18 +5,18 @@ round-wide lock and evidence-backed DNP for PROTECTED TESTING ONLY.
 See config/nba-protected-approval.json for the exact record. Live activation,
 licensing, paid services and permanent issuance remain unapproved. The original
 proposal/version IDs below are retained to preserve frozen contract hashes.
-The initial 50-collection simulation below is superseded by the 1,000-collection
-results in NBA_PROTECTED_ACCEPTANCE.txt and the reproducible simulation.json.
+The simulation now includes 1,000 collections. Detailed acceptance evidence is
+in NBA_PROTECTED_ACCEPTANCE.txt and the reproducible simulation.json.
 No production change, NBA release, paid subscription, card issuance or schedule is authorised by this document.
 
-A. TEAM FORMAT — PROPOSED
+A. TEAM FORMAT — APPROVED FOR PROTECTED TESTING; PROPOSED FOR LIVE USE
 Eight unique players: PG, SG, SF, PF, C, Guard (PG/SG), Forward (SF/PF), Utility (any of those five positions).
 Only reviewed roster positions count. Different serials or rarities cannot duplicate a player. Ownership and period eligibility remain mandatory.
 Salary Cap and Open have separate teams. Existing first-team Auto Select, manual substitutions, saved drafts, rollover and historical snapshots are reused. Rollover copies selections into the next draft; it does not silently submit an entry.
 Auto Select uses the existing exact optimiser: fill the valid formation, favour known rankings, maximise their sum, then prefer lower salary and stable IDs. In the isolated NBA laboratory, rankings use up to five prior scored games, excluding DNP and the current week. No history means explicitly unranked, not an invented projection. A saved draft or established team cannot be overwritten by Auto Select.
 The existing fixed-name rule is retained. The simulation engine also rejects renaming an established NBA proposal entry.
 
-B. SCORING — PROPOSED
+B. SCORING — APPROVED FOR PROTECTED TESTING; PROPOSED FOR LIVE USE
 One authoritative scorer, integer hundredths of a fantasy point:
 Point scored        +1.00   SportsDataIO Points -> points
 Rebound             +1.20   Rebounds -> rebounds
@@ -35,16 +35,16 @@ Version: docked-nba-weekly-proposal-v1. Earlier docked-nba-events-v1 and all sav
 NBA's category definitions: https://jr.nba.com/double-double-and-triple-double/
 The scoring weights and stacking policy are Docked's owner proposal, not NBA or provider endorsement.
 
-C. SALARY CAP — PROPOSED
+C. SALARY CAP — APPROVED FOR PROTECTED TESTING; PROPOSED FOR LIVE USE
 Cap $5,200,000. Core $500,000; Rare $600,000; Elite $650,000; Ultra Rare $700,000; Legendary $800,000; Icon $800,000. Open has no cap.
 These values are copied into an isolated NBA configuration, not the global economy.
 Reproducible simulation: npx tsx scripts/simulate-nba-weekly.ts
 All-Core: $4m. All-Rare: $4.8m. All-Elite: exactly $5.2m. All-Ultra Rare: $5.6m, invalid under the cap. All-Legendary/Icon: $6.4m, invalid. Four Core plus four Icon: exactly $5.2m.
-In 50 clearly synthetic 25-card collections, the cap changed the optimum in 28. Mean capped score 1,408.18 versus 1,454.00 Open. These are arithmetic stress scenarios, not forecasts of real player performance or member collections.
+In 1,000 clearly synthetic 25-card collections, the cap changed the optimum in 694. Mean capped score 1,405.5906 versus 1,460.56 Open. These are arithmetic stress scenarios, not forecasts of real player performance or member collections.
 Critical trade-off: two cards of the same player score identically. The Core copy costs less salary, so it is at least as useful for fantasy selection. Rarity value comes from scarcity, collectibility, ownership and trading, not extra NBA points.
 Recommendation: retain the proposal for an isolated owner playtest, but explicitly accept this trade-off before launch. Do not promise a fantasy advantage for buying rarity. A performance-based salary model would be a separate business-rule change; none was implemented.
 
-D. WEEKLY COMPETITIONS — PROPOSED
+D. WEEKLY COMPETITIONS — APPROVED FOR PROTECTED TESTING; PROPOSED FOR LIVE USE
 Monday 00:00 to the following Monday 00:00 EXCLUSIVE in America/New_York (equivalent to all of Sunday, including its last fractional second). This avoids a one-minute gap from interpreting 23:59 literally.
 Calendar arithmetic handles 167-hour spring and 169-hour autumn weeks. Explicit UTC/offset timestamps are required; ambiguous local timestamps are rejected.
 Assign by scheduled start, not finish. A Sunday game finishing Monday stays in its starting week. Each stable fixture belongs to one frozen week; repeated imports do not add another game.
@@ -84,14 +84,15 @@ https://sportsdata.io/help/data-rights-and-licensing-questions
 Credentials remain server-side: SPORTSDATAIO_NBA_KEY in the ingestion service's secret store. No key belongs in NEXT_PUBLIC variables, browser/mobile bundles or committed configuration. No subscription purchased; no authenticated NBA provider call or real historical sample was verified.
 
 H. EXACT APPROVALS / ACTIVATION REQUIREMENTS
-1. Approve or revise A–D: formation, weights/stacking, cap/salaries, no rarity bonus, New York week, first-game lock, total-games aggregation, rollover draft semantics and recommendation method.
+1. A–D have protected-testing approval. Complete the protected owner playtest, then separately approve or revise the live gameplay contract. No repeat approval is needed for the current isolated tests.
 2. Approve exceptional post-lock fixture/transfer reconciliation and a prize tie policy if prizes will be offered. Until then, block ambiguous outcomes rather than invent results.
 3. Approve provider terms and budget; supply scoped credentials securely and confirm permitted historical seasons plus participation evidence.
 4. Review verified contracted roster, stable mappings, multiposition eligibility, two-way/development eligibility and issuance preview. Approve limited issuance separately.
-5. Approve an isolated hosted Preview release and the narrowly scoped read migration after review. Verify real provider samples, retries, corrections, MFA/RLS and two-member journeys there.
+5. The isolated hosted Preview release and scoped read migration were authorised and completed on 22 October 2026. Confirm the existing Preview owner email and enrol MFA, then complete signed-in hosted acceptance. Real provider samples and two-member hosted gameplay remain outstanding; see NBA_PROTECTED_ACCEPTANCE.txt.
 6. Approve persistent service hosting, secret/backup/monitoring configuration and a witnessed hosted schedule/recovery run. Existing NBA provider, publishing and worker gates remain disabled.
 7. Record production approval against a NEW approved rules/release version and the existing independent readiness gates. The version with “proposal” in its ID deliberately refuses authorised real-data period creation.
 8. Only then approve public NBA competitions, schedules and issuance separately. NFL and other sports do not inherit any approval.
 
-GO: isolated proposal review and local synthetic acceptance.
+GO: protected testing and local synthetic acceptance; protected deployment is READY.
+PENDING: signed-in hosted owner acceptance, requiring the owner's account setup and MFA.
 NO-GO: commercial NBA launch, real-data accuracy sign-off, permanent issuance and hosted automation claims.

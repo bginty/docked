@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-22T09:43:51.034Z",
+  "appSourceCommit": "2c850ada4852c221130aa95e420b02f0d29261e4",
+  "serviceCommit": "34b779a",
+  "productionModified": false,
+  "platform": {
+    "passed": 568,
+    "failed": 0
+  },
+  "database": {
+    "passed": 198,
+    "failed": 0
+  },
+  "ingestion": {
+    "passed": 105,
+    "failed": 0
+  },
+  "crossRepository": [
+    {
+      "sport": "epl",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "pending",
+      "baseCentipoints": null
+    },
+    {
+      "sport": "nba-weekly-proposal",
+      "synthetic": true,
+      "baseCentipoints": 100,
+      "sharedProviderContract": true
+    },
+    {
+      "sport": "nba",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "complete",
+      "baseCentipoints": 100
+    },
+    {
+      "sport": "afl",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "complete",
+      "baseCentipoints": 600
+    },
+    {
+      "sport": "nrl",
+      "records": 2,
+      "replays": true,
+      "correction": true,
+      "conflictRollback": true,
+      "scoring": "complete",
+      "baseCentipoints": 800
+    }
+  ],
+  "typecheck": {
+    "passed": true
+  },
+  "lint": {
+    "passed": true
+  },
+  "cleanBuildAndCanarySecretScan": {
+    "passed": true
+  },
+  "nbaLocalSqlBrowser": {
+    "results": [
+      {
+        "width": 412,
+        "slots": 8,
+        "overflow": false,
+        "errors": []
+      },
+      {
+        "width": 360,
+        "slots": 8,
+        "overflow": false,
+        "errors": []
+      },
+      {
+        "width": 1024,
+        "slots": 8,
+        "overflow": false,
+        "errors": []
+      },
+      {
+        "width": 1440,
+        "slots": 8,
+        "overflow": false,
+        "errors": []
+      },
+      {
+        "width": 1536,
+        "slots": 8,
+        "overflow": false,
+        "errors": []
+      }
+    ],
+    "lockedAndCommunitySlots": 8,
+    "journey": "SQL-backed auto preview/apply/save/confirm/rollover/manual replacement/history"
+  },
+  "nflLocalBrowser": {
+    "out": "docs/qa/scoring-integrity/after",
+    "viewports": 2,
+    "passed": true
+  },
+  "hostedSecurity": {
+    "project": "bckkllmndoxzpzdqrevb",
+    "production": false,
+    "role": "docked_beta_app",
+    "passed": true,
+    "denials": [
+      "raw auth records",
+      "raw scoring journal",
+      "unverified sandbox access",
+      "unverified NBA scores",
+      "admission mutation"
+    ],
+    "authenticatedJourney": false
+  },
+  "hostedAnonymousBrowser": {
+    "origin": "https://docked-preview-15g40jsfd-briant-s-projects.vercel.app",
+    "commit": "2c850ada4852c221130aa95e420b02f0d29261e4",
+    "passed": true,
+    "checks": [
+      {
+        "name": "Vercel anonymous protection",
+        "status": 302
+      },
+      {
+        "name": "/api/admin/sports-sandbox?sport=basketball",
+        "status": 403
+      },
+      {
+        "name": "/api/admin/sports-readiness?sport=basketball",
+        "status": 403
+      },
+      {
+        "name": "/api/admin/scoring-retry",
+        "status": 403
+      },
+      {
+        "name": "browser",
+        "width": 412,
+        "loginHydrated": true,
+        "overflow": false,
+        "anonymousNbaAndIngestionDenied": true
+      },
+      {
+        "name": "browser",
+        "width": 1440,
+        "loginHydrated": true,
+        "overflow": false,
+        "anonymousNbaAndIngestionDenied": true
+      }
+    ],
+    "signedInOwnerJourney": false,
+    "reason": "Preview owner account unconfirmed and MFA not enrolled",
+    "production": false
+  },
+  "hostedSignedInAcceptance": false,
+  "realProviderAccuracy": false,
+  "hostedScheduler": false,
+  "explanation": "Signed-in hosted acceptance awaits owner email confirmation and MFA; no production or licensed real-provider tests claimed."
+}

@@ -1,0 +1,40 @@
+{
+  "origin": "https://docked-preview-15g40jsfd-briant-s-projects.vercel.app",
+  "commit": "2c850ada4852c221130aa95e420b02f0d29261e4",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Vercel anonymous protection",
+      "status": 302
+    },
+    {
+      "name": "/api/admin/sports-sandbox?sport=basketball",
+      "status": 403
+    },
+    {
+      "name": "/api/admin/sports-readiness?sport=basketball",
+      "status": 403
+    },
+    {
+      "name": "/api/admin/scoring-retry",
+      "status": 403
+    },
+    {
+      "name": "browser",
+      "width": 412,
+      "loginHydrated": true,
+      "overflow": false,
+      "anonymousNbaAndIngestionDenied": true
+    },
+    {
+      "name": "browser",
+      "width": 1440,
+      "loginHydrated": true,
+      "overflow": false,
+      "anonymousNbaAndIngestionDenied": true
+    }
+  ],
+  "signedInOwnerJourney": false,
+  "reason": "Preview owner account unconfirmed and MFA not enrolled",
+  "production": false
+}
