@@ -148,7 +148,7 @@ export const sportConfigurations: Record<string, SportConfiguration> = {
 export function sportActivationBlockers(config: SportConfiguration) {
   return [
     ...(config.formatStatus === "proposal" ? ["Lineup format approval"] : []),
-    ...(config.scoringVersion === null
+    ...(!config.publicEnabled
       ? ["Versioned scoring rules approval"]
       : []),
     ...(config.salaryCap === null ? ["Traditional salary model approval"] : []),

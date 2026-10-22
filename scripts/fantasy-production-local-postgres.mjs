@@ -60,43 +60,45 @@ try {
       : [
           "--import",
           "tsx",
-          process.argv.includes("--premium-member")
-            ? "tests/database/premium-member-release.test.ts"
-            : process.argv.includes("--weekly-core")
-              ? "tests/database/weekly-core.test.ts"
-              : process.argv.includes("--redemption")
-                ? "scripts/redemption-postgres.ts"
-                : process.argv.includes("--marketplace-phase-one")
-                  ? "scripts/marketplace-postgres.ts"
-                  : process.argv.includes("--credit-v2")
-                    ? "scripts/credit-v2-concurrency.ts"
-                    : process.argv.includes("--credit-only")
-                      ? "scripts/credit-only-concurrency.ts"
-                      : process.argv.includes("--card-economy")
-                        ? "scripts/card-economy-concurrency.ts"
-                        : process.argv.includes("--member-credits")
-                          ? "scripts/member-test-wallet-concurrency.ts"
-                          : process.argv.includes("--credits")
-                            ? "scripts/credits-concurrency.ts"
-                            : process.argv.includes("--sports-feed")
-                              ? "scripts/sports-feed-concurrency.ts"
-                              : process.argv.includes("--commerce")
-                                ? "scripts/commerce-concurrency.ts"
-                                : process.argv.includes("--friends")
-                                  ? "scripts/two-person-beta-concurrency.ts"
-                                  : process.argv.includes("--scoring-v1")
-                                    ? "scripts/scoring-v1-concurrency.ts"
-                                    : process.argv.includes("--two-person")
-                                      ? "scripts/two-person-beta-concurrency.ts"
-                                      : process.argv.includes(
-                                            "--market-sandbox",
-                                          )
-                                        ? "scripts/fantasy-market-concurrency.ts"
+          process.argv.includes("--sport-activation")
+            ? "tests/database/owner-sport-reconcile.test.ts"
+            : process.argv.includes("--premium-member")
+              ? "tests/database/premium-member-release.test.ts"
+              : process.argv.includes("--weekly-core")
+                ? "tests/database/weekly-core.test.ts"
+                : process.argv.includes("--redemption")
+                  ? "scripts/redemption-postgres.ts"
+                  : process.argv.includes("--marketplace-phase-one")
+                    ? "scripts/marketplace-postgres.ts"
+                    : process.argv.includes("--credit-v2")
+                      ? "scripts/credit-v2-concurrency.ts"
+                      : process.argv.includes("--credit-only")
+                        ? "scripts/credit-only-concurrency.ts"
+                        : process.argv.includes("--card-economy")
+                          ? "scripts/card-economy-concurrency.ts"
+                          : process.argv.includes("--member-credits")
+                            ? "scripts/member-test-wallet-concurrency.ts"
+                            : process.argv.includes("--credits")
+                              ? "scripts/credits-concurrency.ts"
+                              : process.argv.includes("--sports-feed")
+                                ? "scripts/sports-feed-concurrency.ts"
+                                : process.argv.includes("--commerce")
+                                  ? "scripts/commerce-concurrency.ts"
+                                  : process.argv.includes("--friends")
+                                    ? "scripts/two-person-beta-concurrency.ts"
+                                    : process.argv.includes("--scoring-v1")
+                                      ? "scripts/scoring-v1-concurrency.ts"
+                                      : process.argv.includes("--two-person")
+                                        ? "scripts/two-person-beta-concurrency.ts"
                                         : process.argv.includes(
-                                              "--beta-isolation",
+                                              "--market-sandbox",
                                             )
-                                          ? "scripts/beta-isolation-concurrency.ts"
-                                          : "scripts/fantasy-production-concurrency.ts",
+                                          ? "scripts/fantasy-market-concurrency.ts"
+                                          : process.argv.includes(
+                                                "--beta-isolation",
+                                              )
+                                            ? "scripts/beta-isolation-concurrency.ts"
+                                            : "scripts/fantasy-production-concurrency.ts",
           ...(process.argv.includes("--friends") ? ["--friends"] : []),
         ],
     {
@@ -131,7 +133,8 @@ try {
   if (
     started &&
     process.platform === "win32" &&
-    process.argv.includes("--weekly-core")
+    (process.argv.includes("--weekly-core") ||
+      process.argv.includes("--sport-activation"))
   ) {
     // The pinned runtime uses taskkill and can hang when Windows denies it.
     // Shut down only this runner's fresh local cluster through PostgreSQL itself.

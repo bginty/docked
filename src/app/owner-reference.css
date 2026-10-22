@@ -1460,3 +1460,56 @@
 .admin-reference .admin-workspace textarea {
   max-width: 100%;
 }
+.admin-reference .sport-readiness {
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.admin-reference .sport-readiness > h2 {
+  font-size: 22px;
+}
+.admin-reference .sport-readiness .admin-records {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 285px), 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.admin-reference .sport-readiness .admin-workspace-panel {
+  min-width: 0;
+  padding: 16px;
+  margin: 12px 0;
+  border: 1px solid var(--ar-border);
+  border-radius: 12px;
+  background: var(--ar-panel);
+}
+.admin-reference .sport-readiness h3,
+.admin-reference .sport-readiness h4 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+.admin-reference .sport-readiness p {
+  margin: 8px 0;
+}
+.admin-reference .sport-readiness summary {
+  cursor: pointer;
+  padding: 10px 0;
+}
+.admin-reference .sport-readiness label {
+  display: grid;
+  gap: 8px;
+}
+.admin-reference .sport-readiness textarea {
+  width: 100%;
+  min-height: 90px;
+  font: inherit;
+}
+.admin-reference .sport-readiness .button {
+  min-height: 44px;
+  margin: 6px 8px 6px 0;
+}
+.admin-reference .sport-readiness .button.ghost {
+  color: var(--ar-muted);
+}
+.admin-reference .sport-readiness li {
+  margin: 7px 0;
+}

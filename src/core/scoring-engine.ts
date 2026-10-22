@@ -36,6 +36,7 @@ export type CatalogCard = LockedCard & {
   eligible: boolean;
 };
 export type Period = {
+  season?: string;
   competitionMode?: "SALARY_CAP" | "OPEN";
   lineupVersion?: string;
   inventoryScope?: "invited-nfl-test-v2";
@@ -103,9 +104,17 @@ function audit(
     payloadHash: digest(payload),
   });
 }
-export function createPeriod(p: Period, at: string): ScoringState {
-  if (p.sport !== p.rules.sport || !p.rules.beta || !p.id.startsWith("sim:"))
-    throw Error("Only isolated simulated beta periods are enabled");
+export function validatePeriodDefinition(
+  p: Period,
+  at: string,
+  scope: "simulated" | "authorised" = "simulated",
+) {
+  if (
+    p.sport !== p.rules.sport ||
+    !p.rules.beta ||
+    !p.id.startsWith(scope === "simulated" ? "sim:" : "beta-real:")
+  )
+    throw Error("Only isolated or authorised beta periods are enabled");
   if (
     time(at) >= time(p.locksAt) ||
     (p.fixtures.length === 0 && !p.blankPlayerIds?.length) ||
@@ -154,7 +163,9 @@ export function createPeriod(p: Period, at: string): ScoringState {
     throw Error("Invalid confirmed blank-gameweek mapping");
   for (const f of p.fixtures) {
     if (
-      !f.id.startsWith(`sim:${p.sport}:`) ||
+      (scope === "simulated"
+        ? !f.id.startsWith(`sim:${p.sport}:`)
+        : !/^[A-Za-z0-9:._-]{1,160}$/.test(f.id)) ||
       time(f.scheduledAt) < time(p.locksAt) ||
       new Set(f.playerIds).size !== f.playerIds.length
     )
@@ -162,6 +173,9 @@ export function createPeriod(p: Period, at: string): ScoringState {
   }
   if (!Number.isInteger(p.rules.correctionHours) || p.rules.correctionHours < 1)
     throw Error("Invalid correction window");
+}
+export function createPeriod(p: Period, at: string): ScoringState {
+  validatePeriodDefinition(p, at);
   const state: ScoringState = {
     schemaVersion: 1,
     scope: "simulated-beta",

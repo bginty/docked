@@ -35,6 +35,9 @@ export const rosterCandidate = z
       "reserve",
       "loan",
       "temporary",
+      "two-way",
+      "development",
+      "free-agent",
       "released",
       "retired",
       "unknown",
@@ -66,7 +69,7 @@ export const rosterReviewPolicy = z
   .refine(
     (p) =>
       !p.permittedRegistrations.some((s) =>
-        ["unknown", "retired", "released"].includes(s),
+        ["unknown", "retired", "released", "free-agent"].includes(s),
       ),
     "Inactive or unknown registrations cannot be approved",
   );

@@ -1,6 +1,13 @@
 import { writeFile } from "node:fs/promises";
 import { z } from "zod";
 import {
+  rosterCandidate,
+  rosterReviewPolicy,
+} from "../src/core/sport-roster-review";
+import { readinessPackage } from "../src/core/sport-readiness";
+import { ownerFeedPermit } from "../src/server/owner-sport-reconcile";
+import { canonicalFixtureBatch } from "../src/core/sport-fixture-contract";
+import {
   ownerSportFeed,
   ownerSportMapping,
 } from "../src/core/owner-sport-feed";
@@ -24,6 +31,11 @@ async function main() {
     schemaVersion: 1,
     transport: z.toJSONSchema(ownerSportFeed),
     mapping: z.toJSONSchema(ownerSportMapping),
+    roster: z.toJSONSchema(rosterCandidate),
+    rosterPolicy: z.toJSONSchema(rosterReviewPolicy),
+    feedPermit: z.toJSONSchema(ownerFeedPermit),
+    releasePackage: z.toJSONSchema(readinessPackage),
+    fixtures: z.toJSONSchema(canonicalFixtureBatch),
     sports: Object.entries({
       afl: aflStats,
       nrl: nrlEventStats,
