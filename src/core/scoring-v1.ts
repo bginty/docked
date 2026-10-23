@@ -3,7 +3,8 @@ import {
   nrlStatisticsForVersion,
   nrlEventVersion,
   nbaStats,
-  nbaWeeklyVersion,
+  isNbaWeeklyVersion,
+  nbaRarityWeeklyVersion,
   nbaWeeklyWeights,
   nbaWeeklyBonuses,
 } from "./additional-sport-statistics";
@@ -206,11 +207,11 @@ export const rulesets: Record<Sport, Rules> = {
   },
 };
 export function scorePlayer(rules: Rules, position: string, raw: unknown) {
-  if (rules.version === nbaWeeklyVersion && rules.sport !== "basketball")
+  if (isNbaWeeklyVersion(rules.version) && rules.sport !== "basketball")
     throw Error("NBA scoring version belongs to basketball only");
   if (!rules.positions.includes(position))
     throw Error("Invalid sport position");
-  if (rules.bonuses && rules.version !== nbaWeeklyVersion)
+  if (rules.bonuses && !isNbaWeeklyVersion(rules.version))
     throw Error("Unsupported bonus scoring version");
   let parts: Part[] = [];
   const add = (statistic: string, quantity: number, rate: number) =>
@@ -310,10 +311,12 @@ export function scorePlayer(rules: Rules, position: string, raw: unknown) {
         rules.weights[key],
       );
     }
-    if (rules.version === nbaWeeklyVersion) {
+    if (isNbaWeeklyVersion(rules.version)) {
       if (
         rules.sport !== "basketball" ||
-        rules.rarityVersion ||
+        (rules.version === nbaRarityWeeklyVersion
+          ? rules.rarityVersion !== rarityConfiguration.version
+          : !!rules.rarityVersion) ||
         JSON.stringify(Object.entries(rules.weights).sort()) !==
           JSON.stringify(Object.entries(nbaWeeklyWeights).sort()) ||
         JSON.stringify(Object.entries(rules.bonuses ?? {}).sort()) !==
@@ -412,7 +415,10 @@ export function lockRarity(rules: Rules, card: LockedCard) {
   if (!rules.rarityVersion) return {};
   if (
     rules.rarityVersion !== rarityConfiguration.version ||
-    rules.sport !== "nfl" ||
+    (rules.sport !== "nfl" &&
+      !(
+        rules.sport === "basketball" && rules.version === nbaRarityWeeklyVersion
+      )) ||
     !card.rarity
   )
     throw Error("Unsupported rarity scoring rules");
@@ -425,7 +431,7 @@ export function lockRarity(rules: Rules, card: LockedCard) {
 }
 export function validateLineup(rules: Rules, cards: LockedCard[]) {
   if (
-    rules.version === nbaWeeklyVersion &&
+    isNbaWeeklyVersion(rules.version) &&
     cards.some(
       (c) =>
         c.eligiblePositions &&
@@ -457,7 +463,7 @@ export function validateLineup(rules: Rules, cards: LockedCard[]) {
       if (
         visited.has(slot) ||
         !(
-          rules.version === nbaWeeklyVersion
+          isNbaWeeklyVersion(rules.version)
             ? (cards[card].eligiblePositions ?? [cards[card].position])
             : [cards[card].position]
         ).some((p) => rules.slots[slot].positions.includes(p))

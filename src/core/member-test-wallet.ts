@@ -74,6 +74,8 @@ export function memberTestCommand(input: unknown) {
     throw Error("Review the listing before confirming purchase");
   return c;
 }
+import { teamColours } from "./sport-team-colours";
+import { rosterCardMetadata } from "./roster-card-metadata";
 export function testCard(s: CreditsState, id: string): AwardedCard {
   const c = s.commerce.cards[id];
   if (!c || !s.cards[id]) throw Error("Card not opened");
@@ -101,15 +103,22 @@ export function testCard(s: CreditsState, id: string): AwardedCard {
       serial: instance.serial,
       team: player.currentTeam,
       edition_team: instance.printedTeam,
-      colour: "#1A2AFF",
+      colour:
+        teamColours(player.sport, player.currentTeam)?.primary ?? "#1A2AFF",
+      accentColour: teamColours(player.sport, player.currentTeam)?.accent,
       shirt: 0,
       verifiedJerseyNumber: player.verifiedJerseyNumber,
+      ...rosterCardMetadata(
+        player.fixturePlayerId ?? player.id,
+        player.sport,
+        player.currentTeam,
+      ),
       status: player.status,
       sport: player.sport,
       tradeable: true,
       rarity_version: instance.rarityVersion,
       multiplier:
-        player.sport !== "nfl" &&
+        !["nfl", "basketball"].includes(player.sport) &&
         (player.synthetic || player.inventoryClass === "real-roster-beta-v1")
           ? 1
           : rarityRule(instance.rarity).multiplierTenths / 10,

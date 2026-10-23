@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { nbaRarityWeeklyVersion } from "./additional-sport-statistics";
+import { rarityPoints, rarityRule } from "./card-rarity";
 import { autoSelect } from "./lineup-auto-select";
 import { fitsSlot, type SlotSelection, type SevenCard } from "./nfl-seven";
 import type { LineupConfiguration } from "./sport-configuration";
@@ -49,6 +51,7 @@ export type SandboxState = {
       mode: "SALARY_CAP" | "OPEN";
       lineup_version: string;
       scoring_version?: string;
+      replaces_competition?: string;
     };
   }[];
   drafts: {
@@ -115,13 +118,21 @@ export function sandboxRecommendation(state: SandboxState, id: string) {
   );
   // Only server-projected prior games can rank a card. Unknown performance is not zero.
   return autoSelect(
-    cards.map((card) => ({
-      ...card,
-      value:
+    cards.map((card) => {
+      const base =
         state.recommendationRanks?.[id]?.[
           card.canonical_player_id ?? card.player_id
-        ] ?? null,
-    })),
+        ] ?? null;
+      return {
+        ...card,
+        value:
+          base === null
+            ? null
+            : c.rules.scoring_version === nbaRarityWeeklyVersion
+              ? rarityPoints(base, rarityRule(card.tier).multiplierTenths)
+              : base,
+      };
+    }),
     c.rules.mode,
     [],
     cfg,

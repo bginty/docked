@@ -1,6 +1,8 @@
+import { rarityConfiguration } from "./card-rarity";
 import { DateTime } from "luxon";
 import {
   nbaWeeklyVersion,
+  nbaRarityWeeklyVersion,
   nbaWeeklyWeights,
   nbaWeeklyBonuses,
 } from "./additional-sport-statistics";
@@ -50,6 +52,28 @@ export function nbaWeeklyRules(): Rules {
       "Existing reviewer correction and finalisation controls apply, including the 72-hour correction window. Finalised results require the approved correction process. No live activation or issuance is authorised.",
     ],
   };
+}
+
+/** Owner-approved private-beta correction, 23 October 2026. V1 remains immutable. */
+export function nbaRarityWeeklyRules(): Rules {
+  const previous = nbaWeeklyRules();
+  return {
+    ...previous,
+    version: nbaRarityWeeklyVersion,
+    title: "NBA weekly · Private beta",
+    rarityVersion: rarityConfiguration.version,
+    policy: [
+      "Eight unique players: PG, SG, SF, PF, C, G, F, UTIL. No injury compensation.",
+      ...previous.policy.slice(1),
+      "Apply the locked card rarity once to the weekly sum of base game scores, including bonuses. Core 1.0, Rare 1.1, Elite 1.2, Ultra Rare 1.3, Legendary 1.4, Icon 1.5. Round to centipoints, half away from zero. Existing finalised rules snapshots remain unchanged.",
+    ],
+  };
+}
+export function nbaRulesForVersion(version: string | undefined): Rules {
+  if (version === nbaRarityWeeklyVersion) return nbaRarityWeeklyRules();
+  if (version === nbaWeeklyVersion || version === undefined)
+    return nbaWeeklyRules();
+  throw Error("Unknown NBA weekly scoring version");
 }
 
 /** Accept explicit instants only; a timezone-less local time could be ambiguous at DST. */

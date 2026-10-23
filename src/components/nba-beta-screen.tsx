@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 import type { SandboxState } from "@/core/sport-sandbox";
 import { SportSandbox } from "./sport-sandbox";
-import { CollectibleFace } from "./collectible-face";
+import { FantasyCardArtwork } from "./fantasy-card-artwork";
+import { sandboxCardView } from "@/core/sandbox-card-view";
 import { fitsSlot } from "@/core/nfl-seven";
 import { sportConfigurations } from "@/core/sport-configuration";
 import type { BetaSport } from "@/core/sports-private-beta";
 import { MarketListingDialog } from "./market-listing-dialog";
-import type { ViewerCard } from "./collectible-viewer";
+import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
 import { rarityRule, rarities } from "@/core/card-rarity";
 import { packShopHref } from "@/core/pack-presentation";
 export function NbaBetaScreen({
@@ -30,6 +31,7 @@ export function NbaBetaScreen({
   const [rarity, setRarity] = useState("");
   const [legacy, setLegacy] = useState(false);
   const [limit, setLimit] = useState(36);
+  const [inspecting, setInspecting] = useState<ViewerCard | null>(null);
   const [selling, setSelling] = useState<ViewerCard | null>(null);
   const [error, setError] = useState(false),
     [attempt, setAttempt] = useState(0);
@@ -84,15 +86,34 @@ export function NbaBetaScreen({
         .includes(query.trim().toLocaleLowerCase()),
   );
   return (
-    <section>
+    <section className="sport-card-collection">
       <h1>{label} cards</h1>
-      <p className="sport-sandbox-notice">
-        {realRoster
-          ? "Real-player roster cards · Private beta inventory. Free Core cards are ready for team selection; test packs use the existing five limited rarity tiers. These cards are not permanent collectibles."
-          : "Fictional testing fixtures only. Free lineup cards stay in this test collection."}{" "}
-        <a href="/roster-sources">Sources and verification</a>
-      </p>
-      <nav className="fantasy-actions" aria-label={`${label} collection links`}>
+      <details className="collection-beta-disclosure">
+        <summary>Private beta · Test inventory</summary>
+        <p>
+          {realRoster
+            ? "Real-player roster cards. Core cards are free; pack cards use test credits. Inventory is not permanent."
+            : "Fictional testing cards."}{" "}
+          <a href="/roster-sources">Sources and verification</a>
+        </p>
+        {realRoster && (
+          <label>
+            <input
+              type="checkbox"
+              checked={legacy}
+              onChange={(e) => {
+                setLegacy(e.target.checked);
+                setLimit(36);
+              }}
+            />{" "}
+            Include earlier fictional test cards
+          </label>
+        )}
+      </details>
+      <nav
+        className="fantasy-actions collection-actions"
+        aria-label={`${label} collection links`}
+      >
         <a className="button" href={packShopHref(sport)}>
           Buy packs
         </a>
@@ -152,19 +173,6 @@ export function NbaBetaScreen({
           </select>
         </label>
       </div>
-      {realRoster && (
-        <label>
-          <input
-            type="checkbox"
-            checked={legacy}
-            onChange={(e) => {
-              setLegacy(e.target.checked);
-              setLimit(36);
-            }}
-          />{" "}
-          Include earlier fictional test cards
-        </label>
-      )}
       <p role="status">
         {visible.length} of {state.cards.length} cards
       </p>
@@ -189,7 +197,12 @@ export function NbaBetaScreen({
       >
         {visible.slice(0, limit).map((c) => (
           <div key={c.id} role="listitem">
-            <CollectibleFace card={c} appliedMultiplier={1} variant="compact" />
+            <FantasyCardArtwork
+              card={sandboxCardView(c)}
+              faceOnly
+              variant="compact"
+              onInspect={() => setInspecting(sandboxCardView(c))}
+            />
             <p>
               {c.name} · {c.position}
             </p>
@@ -208,30 +221,7 @@ export function NbaBetaScreen({
                   Manage listing
                 </a>
               ) : (
-                <button
-                  onClick={() =>
-                    setSelling({
-                      id: c.id,
-                      edition_id: `fixture:${c.player_id}:${c.tier}`,
-                      player_id: c.player_id,
-                      name: c.name,
-                      position: c.position,
-                      tier: c.tier,
-                      season: c.season ?? "BETA INVENTORY",
-                      kind: "regular",
-                      max_supply: c.max_supply ?? 0,
-                      serial: c.serial ?? 0,
-                      team: c.team ?? "Fictional testing",
-                      colour: c.colour ?? "#1759a3",
-                      shirt: 0,
-                      status: c.status,
-                      sport,
-                      tradeable: true,
-                      multiplier: 1,
-                      verifiedJerseyNumber: null,
-                    })
-                  }
-                >
+                <button onClick={() => setSelling(sandboxCardView(c))}>
                   Sell test card
                 </button>
               ))}
@@ -246,6 +236,12 @@ export function NbaBetaScreen({
       <a className="button" href={`/fantasy/play?sport=${sport}`}>
         Build {label} team
       </a>
+      {inspecting && (
+        <CollectibleViewer
+          card={inspecting}
+          onClose={() => setInspecting(null)}
+        />
+      )}
       {selling && (
         <MarketListingDialog
           card={selling}

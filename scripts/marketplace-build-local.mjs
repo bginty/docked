@@ -1,103 +1,129 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--startup-shell") ? "docs/qa/startup-shell"
-  : process.argv.includes("--packs-route") ? "docs/qa/packs-route"
-  : process.argv.includes("--member-loading") ? "docs/qa/member-loading"
-  : process.argv.includes("--real-rosters") ? "docs/qa/real-rosters"
-  : process.argv.includes("--multi-sport-integration")
-  ? "docs/qa/multi-sport/integration"
-  : process.argv.includes("--multi-sport")
-    ? "docs/qa/multi-sport"
-    : process.argv.includes("--scoring-integrity")
-      ? "docs/qa/scoring-integrity"
-      : process.argv.includes("--nfl-roster")
-        ? "docs/qa/nfl-roster-audit"
-        : process.argv.includes("--nfl-testing")
-          ? "docs/qa/nfl-testing"
-          : process.argv.includes("--card-viewer")
-            ? "docs/qa/card-viewer"
-            : process.argv.includes("--admin-completion")
-              ? "docs/qa/admin-completion"
-              : process.argv.includes("--owner-reference")
-                ? "docs/qa/owner-reference"
-                : process.argv.includes("--prelaunch")
-                  ? "docs/qa/prelaunch"
-                  : process.argv.includes("--weekly-core")
-                    ? "docs/qa/weekly-core"
-                    : process.argv.includes("--futuristic")
-                      ? "docs/qa/futuristic-cards"
-                      : process.argv.includes("--pack-shopping")
-                        ? "docs/qa/pack-shopping"
-                        : process.argv.includes("--play-standings")
-                          ? "docs/qa/play-standings"
-                          : process.argv.includes("--market-overhaul")
-                            ? "docs/qa/market-overhaul"
-                            : process.argv.includes("--master-v2")
-                              ? "docs/qa/master-v2"
-                              : process.argv.includes("--private-preview")
-                                ? "docs/qa/private-preview-release"
-                                : process.argv.includes("--social-visual")
-                                  ? "docs/qa/social-visual-preview"
-                                  : process.argv.includes("--social-upgrade")
-                                    ? "docs/qa/social-upgrade"
-                                    : process.argv.includes("--jersey")
-                                      ? "docs/qa/jersey-refinement"
-                                      : process.argv.includes("--redemption")
-                                        ? "docs/qa/redemption"
+const evidence = process.argv.includes("--card-consistency")
+  ? "docs/qa/card-consistency"
+  : process.argv.includes("--startup-shell")
+    ? "docs/qa/startup-shell"
+    : process.argv.includes("--packs-route")
+      ? "docs/qa/packs-route"
+      : process.argv.includes("--member-loading")
+        ? "docs/qa/member-loading"
+        : process.argv.includes("--real-rosters")
+          ? "docs/qa/real-rosters"
+          : process.argv.includes("--multi-sport-integration")
+            ? "docs/qa/multi-sport/integration"
+            : process.argv.includes("--multi-sport")
+              ? "docs/qa/multi-sport"
+              : process.argv.includes("--scoring-integrity")
+                ? "docs/qa/scoring-integrity"
+                : process.argv.includes("--nfl-roster")
+                  ? "docs/qa/nfl-roster-audit"
+                  : process.argv.includes("--nfl-testing")
+                    ? "docs/qa/nfl-testing"
+                    : process.argv.includes("--card-viewer")
+                      ? "docs/qa/card-viewer"
+                      : process.argv.includes("--admin-completion")
+                        ? "docs/qa/admin-completion"
+                        : process.argv.includes("--owner-reference")
+                          ? "docs/qa/owner-reference"
+                          : process.argv.includes("--prelaunch")
+                            ? "docs/qa/prelaunch"
+                            : process.argv.includes("--weekly-core")
+                              ? "docs/qa/weekly-core"
+                              : process.argv.includes("--futuristic")
+                                ? "docs/qa/futuristic-cards"
+                                : process.argv.includes("--pack-shopping")
+                                  ? "docs/qa/pack-shopping"
+                                  : process.argv.includes("--play-standings")
+                                    ? "docs/qa/play-standings"
+                                    : process.argv.includes("--market-overhaul")
+                                      ? "docs/qa/market-overhaul"
+                                      : process.argv.includes("--master-v2")
+                                        ? "docs/qa/master-v2"
                                         : process.argv.includes(
-                                              "--reveal-stability",
+                                              "--private-preview",
                                             )
-                                          ? "docs/qa/reveal-stability"
-                                          : process.argv.includes("--premium")
-                                            ? "docs/qa/premium-v3"
+                                          ? "docs/qa/private-preview-release"
+                                          : process.argv.includes(
+                                                "--social-visual",
+                                              )
+                                            ? "docs/qa/social-visual-preview"
                                             : process.argv.includes(
-                                                  "--play-cards",
+                                                  "--social-upgrade",
                                                 )
-                                              ? "docs/qa/play-cards"
+                                              ? "docs/qa/social-upgrade"
                                               : process.argv.includes(
-                                                    "--rarity",
+                                                    "--jersey",
                                                   )
-                                                ? "docs/qa/rarity-frames"
+                                                ? "docs/qa/jersey-refinement"
                                                 : process.argv.includes(
-                                                      "--visual",
+                                                      "--redemption",
                                                     )
-                                                  ? "docs/qa/mobile-cleanup"
-                                                  : "docs/qa/marketplace-release";
+                                                  ? "docs/qa/redemption"
+                                                  : process.argv.includes(
+                                                        "--reveal-stability",
+                                                      )
+                                                    ? "docs/qa/reveal-stability"
+                                                    : process.argv.includes(
+                                                          "--premium",
+                                                        )
+                                                      ? "docs/qa/premium-v3"
+                                                      : process.argv.includes(
+                                                            "--play-cards",
+                                                          )
+                                                        ? "docs/qa/play-cards"
+                                                        : process.argv.includes(
+                                                              "--rarity",
+                                                            )
+                                                          ? "docs/qa/rarity-frames"
+                                                          : process.argv.includes(
+                                                                "--visual",
+                                                              )
+                                                            ? "docs/qa/mobile-cleanup"
+                                                            : "docs/qa/marketplace-release";
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve(
-    process.argv.includes("--startup-shell") ? `tmp/startup-shell-build-${Date.now()}`
-    : process.argv.includes("--packs-route") ? `tmp/packs-route-build-${Date.now()}`
-    : process.argv.includes("--member-loading") ? `tmp/member-loading-build-${Date.now()}`
-    : process.argv.includes("--real-rosters") ? `tmp/real-roster-build-${Date.now()}`
-    : process.argv.includes("--multi-sport")
-      ? `tmp/multi-sport-build-${Date.now()}`
-      : process.argv.includes("--scoring-integrity")
-        ? `tmp/scoring-integrity-build-${Date.now()}`
-        : process.argv.includes("--nfl-roster")
-          ? `tmp/nfl-roster-build-${Date.now()}`
-          : process.argv.includes("--nfl-testing")
-            ? `tmp/nfl-testing-build-${Date.now()}`
-            : process.argv.includes("--card-viewer")
-              ? `tmp/card-viewer-build-${Date.now()}`
-              : process.argv.includes("--admin-completion")
-                ? "tmp/admin-completion-build"
-                : process.argv.includes("--owner-reference")
-                  ? "tmp/owner-reference-build"
-                  : process.argv.includes("--prelaunch")
-                    ? "tmp/prelaunch-build"
-                    : process.argv.includes("--weekly-core")
-                      ? "tmp/weekly-core-build"
-                      : process.argv.includes("--futuristic")
-                        ? "tmp/futuristic-cards-build"
-                        : process.argv.includes("--pack-shopping")
-                          ? "tmp/pack-shopping-build"
-                          : process.argv.includes("--play-standings")
-                            ? "tmp/play-standings-build"
-                            : process.argv.includes("--market-overhaul")
-                              ? "tmp/market-overhaul-build"
-                              : "tmp/marketplace-release-build",
+    process.argv.includes("--card-consistency")
+      ? `tmp/card-consistency-build-${Date.now()}`
+      : process.argv.includes("--startup-shell")
+        ? `tmp/startup-shell-build-${Date.now()}`
+        : process.argv.includes("--packs-route")
+          ? `tmp/packs-route-build-${Date.now()}`
+          : process.argv.includes("--member-loading")
+            ? `tmp/member-loading-build-${Date.now()}`
+            : process.argv.includes("--real-rosters")
+              ? `tmp/real-roster-build-${Date.now()}`
+              : process.argv.includes("--multi-sport")
+                ? `tmp/multi-sport-build-${Date.now()}`
+                : process.argv.includes("--scoring-integrity")
+                  ? `tmp/scoring-integrity-build-${Date.now()}`
+                  : process.argv.includes("--nfl-roster")
+                    ? `tmp/nfl-roster-build-${Date.now()}`
+                    : process.argv.includes("--nfl-testing")
+                      ? `tmp/nfl-testing-build-${Date.now()}`
+                      : process.argv.includes("--card-viewer")
+                        ? `tmp/card-viewer-build-${Date.now()}`
+                        : process.argv.includes("--admin-completion")
+                          ? "tmp/admin-completion-build"
+                          : process.argv.includes("--owner-reference")
+                            ? "tmp/owner-reference-build"
+                            : process.argv.includes("--prelaunch")
+                              ? "tmp/prelaunch-build"
+                              : process.argv.includes("--weekly-core")
+                                ? "tmp/weekly-core-build"
+                                : process.argv.includes("--futuristic")
+                                  ? "tmp/futuristic-cards-build"
+                                  : process.argv.includes("--pack-shopping")
+                                    ? "tmp/pack-shopping-build"
+                                    : process.argv.includes("--play-standings")
+                                      ? "tmp/play-standings-build"
+                                      : process.argv.includes(
+                                            "--market-overhaul",
+                                          )
+                                        ? "tmp/market-overhaul-build"
+                                        : "tmp/marketplace-release-build",
   );
 await mkdir(dir, { recursive: true });
 for (const p of [

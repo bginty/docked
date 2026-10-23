@@ -5,7 +5,7 @@ import { DateTime } from "luxon";
 import { ownerDatabase, projectRef } from "./owner-gameplay-db.mjs";
 import {
   nbaWeeklyLineup,
-  nbaWeeklyRules,
+  nbaRarityWeeklyRules,
   freezeNbaWeek,
 } from "../src/core/nba-weekly";
 const root = "C:/Users/61412/.codex/worktrees/fixed-market-live/Docked.com.au";
@@ -35,7 +35,7 @@ try {
       )[0].hash;
     const wallet = await untouched();
     const cfg = nbaWeeklyLineup(),
-      rules = nbaWeeklyRules();
+      rules = nbaRarityWeeklyRules();
     await tx`insert into beta_fantasy.lineup_configurations(version,configuration)values(${cfg.version},${tx.json(cfg)}) on conflict do nothing`;
     assert.deepEqual(
       (

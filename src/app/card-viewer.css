@@ -132,3 +132,12 @@
     transition: none;
   }
 }
+
+.collectible-back-team {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
+}

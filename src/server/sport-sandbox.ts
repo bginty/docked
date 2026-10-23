@@ -1,4 +1,5 @@
 import "server-only";
+import { rosterCardMetadata } from "@/core/roster-card-metadata";
 import { authClient, requireRole, requireIdentity } from "./auth";
 import { nbaPrivateBetaEnabled } from "@/core/nba-private-beta";
 import {
@@ -53,6 +54,25 @@ export async function sportSandbox(sport: string, input?: unknown) {
         state.scores = sandboxScoreView(state, journals);
         state.recommendationRanks = sandboxHistoricalRanks(state, journals);
       }
+      state.cards = state.cards.map((c) => ({
+        ...c,
+        ...rosterCardMetadata(
+          c.canonical_player_id ?? c.player_id,
+          sport,
+          c.team ?? "",
+        ),
+      }));
+      state.entries = state.entries.map((e) => ({
+        ...e,
+        snapshot: e.snapshot.map((c) => ({
+          ...c,
+          ...rosterCardMetadata(
+            c.canonical_player_id ?? c.player_id,
+            sport,
+            c.team ?? "",
+          ),
+        })),
+      }));
       return state;
     };
     const before = await read();

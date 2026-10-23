@@ -43,6 +43,14 @@ export default function RosterSources() {
         <li>NRL: 337 players across 17 clubs.</li>
       </ul>
       <p>
+        Jersey numbers are shown only where the roster and player profile agree:
+        517 NBA and 542 AFL players. Unresolved numbers remain blank. NRL has no
+        permanent jersey numbers in this snapshot.{" "}
+        <a href="/data/rosters/jersey-evidence-2026-10-23.json" download>
+          Download jersey-number evidence and attribution
+        </a>
+      </p>
+      <p>
         NRL uses the existing provisional beta positions. Players verified only
         as hookers are excluded because that format has no approved dedicated
         hooker slot. Three NRL clubs use their latest retained 2026 squad

@@ -40,7 +40,7 @@ export function FlippableCard({
     p = collectiblePresentation(card),
     player = card.canonical_player_id ?? card.player_id;
   useEffect(() => {
-    if (historySnapshot) return;
+    if (historySnapshot || !back) return;
     const controller = new AbortController();
     let inFlight = false;
     async function refresh() {
@@ -49,6 +49,7 @@ export function FlippableCard({
       try {
         const query = new URLSearchParams({
           player,
+          sport: card.sport,
           ...(season ? { season } : {}),
         });
         const res = await boundedFetch(`/api/fantasy/card-history?${query}`, {
@@ -82,7 +83,7 @@ export function FlippableCard({
       window.removeEventListener("focus", onFocus);
       window.clearInterval(timer);
     };
-  }, [player, season, retry, historySnapshot]);
+  }, [player, card.sport, season, retry, historySnapshot, back]);
   const changeSeason = (value: string) => {
     const cached = seasonCache.current.get(value);
     setHistory(cached ?? null);
@@ -124,12 +125,16 @@ export function FlippableCard({
               <RarityBadge
                 tier={card.tier}
                 appliedMultiplier={appliedMultiplier}
+                showMultiplier={!["afl", "nrl"].includes(card.sport)}
                 compact
               />
             </span>
             <div className="collectible-back-content">
               <div className="collectible-back-identity">
                 <strong title={card.name}>{card.name}</strong>
+                {card.sport !== "nfl" && p.location && (
+                  <span className="collectible-back-team">{p.location}</span>
+                )}
               </div>
               <div
                 className="collectible-back-history"

@@ -1,15 +1,15 @@
-import { nbaWeeklyRules, nbaWeeklyLineup } from "@/core/nba-weekly";
+import { nbaRarityWeeklyRules, nbaWeeklyLineup } from "@/core/nba-weekly";
 import { scoringRows } from "@/core/scoring-release";
 export function NbaProposalSummary() {
-  const rules = nbaWeeklyRules(),
+  const rules = nbaRarityWeeklyRules(),
     lineup = nbaWeeklyLineup();
   return (
     <details className="admin-workspace-panel">
       <summary>NBA weekly · Approved for protected testing</summary>
       <p>
         Eight players: PG, SG, SF, PF, C, Guard, Forward and Utility. One card
-        per player. $5.2m Salary Cap or uncapped Open. No rarity scoring
-        multiplier.
+        per player. $5.2m Salary Cap or uncapped Open. Core 1.0×, Rare 1.1×,
+        Elite 1.2×, Ultra Rare 1.3×, Legendary 1.4×, Icon 1.5×.
       </p>
       <p>
         Monday–Sunday in New York. All slots lock at the first included game;
@@ -37,7 +37,8 @@ export function NbaProposalSummary() {
       </table>
       <p>
         Example: 28 points + 9 rebounds + 7 assists + 2 steals + 1 block − 3
-        turnovers = 55.30 fantasy points.
+        turnovers = 55.30 base points. A Legendary card contributes 77.42
+        points.
       </p>
       <p>
         Rarity salaries:{" "}
@@ -50,9 +51,9 @@ export function NbaProposalSummary() {
         .
       </p>
       <p>
-        Same player, same points at every rarity. More scheduled games can
-        produce a substantial weekly advantage. These rules are approved for
-        protected testing only.
+        Multiply the weekly base total, including bonuses, once using the locked
+        card rarity. Earlier rounds retain their saved scoring version. More
+        scheduled games can produce a substantial weekly advantage.
       </p>
       <p>
         Real-user activation remains blocked pending commercial gameplay

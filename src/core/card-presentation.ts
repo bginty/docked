@@ -1,4 +1,4 @@
-import { teamColours } from "./sport-team-colours";
+import { teamColours, teamLocation } from "./sport-team-colours";
 
 /** Original generic jersey palette keyed to the catalogue's current NFL team.
  * These are colour treatments, not licensed uniform artwork or team marks.
@@ -47,6 +47,8 @@ export type JerseyMetadata = {
   city?: string;
   shirt?: number;
   verifiedJerseyNumber?: number | null;
+  /** Preserves an evidenced 00 jersey, distinct from 0. */
+  jerseyNumberText?: string;
 };
 export function jerseyPresentation(card?: JerseyMetadata) {
   if (card?.sport === "nfl") {
@@ -71,21 +73,25 @@ export function jerseyPresentation(card?: JerseyMetadata) {
     ? undefined
     : teamColours(card?.sport, card?.team);
   return {
-    primary: card?.colour ?? palette?.primary ?? "#17294b",
+    primary: card?.colour || palette?.primary || "#17294b",
     accent: /^#[0-9a-f]{6}$/i.test(card?.accentColour ?? "")
       ? card!.accentColour!
       : (palette?.accent ?? "#9fc7e2"),
     number:
-      Number.isInteger(card?.verifiedJerseyNumber) &&
-      card!.verifiedJerseyNumber! >= 0 &&
-      card!.verifiedJerseyNumber! <= 99
-        ? String(card!.verifiedJerseyNumber)
-        : card?.sport === "football" &&
-            Number.isInteger(card.shirt) &&
-            card.shirt! >= 0 &&
-            card.shirt! <= 99
-          ? String(card.shirt)
-          : "—",
+      card?.jerseyNumberText === "00" &&
+      card.verifiedJerseyNumber === 0 &&
+      card.sport === "basketball"
+        ? "00"
+        : Number.isInteger(card?.verifiedJerseyNumber) &&
+            card!.verifiedJerseyNumber! >= 0 &&
+            card!.verifiedJerseyNumber! <= 99
+          ? String(card!.verifiedJerseyNumber)
+          : card?.sport === "football" &&
+              Number.isInteger(card.shirt) &&
+              card.shirt! >= 0 &&
+              card.shirt! <= 99
+            ? String(card.shirt)
+            : "—",
   };
 }
 
@@ -187,7 +193,7 @@ export function displayCity(
     return nflCities[code] ?? "Location unavailable";
   }
   // Explicit snapshot metadata only; never infer a city from club names/codes.
-  const city = card.city?.trim();
+  const city = card.city?.trim() || teamLocation(card.sport, card.team);
   return city && city.length <= 80 ? city : "Location unavailable";
 }
 

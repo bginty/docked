@@ -17,6 +17,7 @@ import {
 } from "../../src/core/credits-sandbox";
 import { fixtureCommandScope } from "../../src/core/fixture-commerce";
 import { testCard } from "../../src/core/member-test-wallet";
+import { rarityRule } from "../../src/core/card-rarity";
 import {
   marketplaceFixture,
   marketActors,
@@ -130,7 +131,10 @@ for (const sport of Object.keys(fixtureSports) as FixtureSport[]) {
       for (const id of cards) {
         const c = testCard(state, id);
         assert.equal(c.sport, sport);
-        assert.equal(c.multiplier, 1);
+        assert.equal(
+          c.multiplier,
+          sport === "basketball" ? rarityRule(c.tier).multiplierTenths / 10 : 1,
+        );
         assert.match(c.player_id, /^stable-/);
         assert.notEqual(c.tier, "CORE");
         if (type === "PREMIUM")

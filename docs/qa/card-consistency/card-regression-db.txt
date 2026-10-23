@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: NBA private beta allowlist preserves confirmation, session, member MFA, sport and inventory boundaries
+ok 1 - NBA private beta allowlist preserves confirmation, session, member MFA, sport and inventory boundaries
+  ---
+  duration_ms: 29169.859
+  ...
+# Subtest: NBA V2 SQL snapshots, post-lock visibility and corrected contributions reconcile
+ok 2 - NBA V2 SQL snapshots, post-lock visibility and corrected contributions reconcile
+  ---
+  duration_ms: 28318.4561
+  ...
+# Subtest: NBA isolated journal: real SQL lock/privacy, exact snapshots, corrections and least privilege
+ok 3 - NBA isolated journal: real SQL lock/privacy, exact snapshots, corrections and least privilege
+  ---
+  duration_ms: 27795.8838
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 4 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 37047.4068
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42592.01

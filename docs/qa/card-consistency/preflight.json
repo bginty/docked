@@ -1,0 +1,175 @@
+{
+  "at": "2026-10-23T01:15:20.755Z",
+  "competitions": [
+    {
+      "id": "5d0d0cb2-5f4c-4484-8171-4794a823d87b",
+      "name": "NBA TEST OPEN 2026-10-19",
+      "locks_at": "2026-10-23T23:00:00.000Z",
+      "rules": {
+        "mode": "OPEN",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 1,
+      "journals": 0
+    },
+    {
+      "id": "6cd259a5-db02-412c-9a8a-e20da3dcbdac",
+      "name": "NBA TEST SALARY_CAP 2026-10-19",
+      "locks_at": "2026-10-23T23:00:00.000Z",
+      "rules": {
+        "mode": "SALARY_CAP",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "ea13fc9f-ebb5-4dad-a43b-74e1f2f87075",
+      "name": "NBA TEST OPEN 2026-10-26",
+      "locks_at": "2026-10-26T23:00:00.000Z",
+      "rules": {
+        "mode": "OPEN",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "c86c0c74-6985-41a6-a125-ac453c7b6706",
+      "name": "NBA TEST SALARY_CAP 2026-10-26",
+      "locks_at": "2026-10-26T23:00:00.000Z",
+      "rules": {
+        "mode": "SALARY_CAP",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "be1b9b8a-47bc-41fa-886c-3134ea52c7e7",
+      "name": "NBA TEST OPEN 2026-11-02",
+      "locks_at": "2026-11-03T00:00:00.000Z",
+      "rules": {
+        "mode": "OPEN",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "c8e1c2ca-8c20-4d88-8e0a-17077c64f5e5",
+      "name": "NBA TEST SALARY_CAP 2026-11-02",
+      "locks_at": "2026-11-03T00:00:00.000Z",
+      "rules": {
+        "mode": "SALARY_CAP",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "e8df7710-16d0-47f9-adee-3c72af07046a",
+      "name": "NBA TEST OPEN 2026-11-09",
+      "locks_at": "2026-11-10T00:00:00.000Z",
+      "rules": {
+        "mode": "OPEN",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "199dbaef-b44b-4c2f-b354-30a8b25ee6ed",
+      "name": "NBA TEST SALARY_CAP 2026-11-09",
+      "locks_at": "2026-11-10T00:00:00.000Z",
+      "rules": {
+        "mode": "SALARY_CAP",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "5cff9b61-3bf0-4092-913a-a0898debfffd",
+      "name": "NBA TEST OPEN 2026-11-16",
+      "locks_at": "2026-11-17T00:00:00.000Z",
+      "rules": {
+        "mode": "OPEN",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    },
+    {
+      "id": "d8dcb62f-bce5-46ce-aff8-5dda31d4d032",
+      "name": "NBA TEST SALARY_CAP 2026-11-16",
+      "locks_at": "2026-11-17T00:00:00.000Z",
+      "rules": {
+        "mode": "SALARY_CAP",
+        "authority": "Owner request: Deploy NBA to Production for Private Beta Testing, 22 October 2026; fictional testing only, no permanent issuance, money or provider activation.",
+        "synthetic": true,
+        "lock_policy": "round-wide-v1",
+        "lineup_version": "docked-nba-weekly-lineup-proposal-v1",
+        "nba_beta_scope": "private-test-v1",
+        "inventory_scope": "isolated-multi-sport-v1",
+        "scoring_version": "docked-nba-weekly-proposal-v1"
+      },
+      "entries": 0,
+      "journals": 0
+    }
+  ]
+}

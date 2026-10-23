@@ -1,5 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
+import { sandboxCardView } from "@/core/sandbox-card-view";
+import { nbaRarityWeeklyVersion } from "@/core/additional-sport-statistics";
 import { SevenField } from "./seven-field";
 import { CollectibleFace } from "./collectible-face";
 import { FantasySheet } from "./fantasy-sheet";
@@ -26,6 +29,7 @@ export function SportSandbox({
   privateBeta?: boolean;
   apiPath?: string;
 }) {
+  const [inspecting, setInspecting] = useState<ViewerCard | null>(null);
   const [state, setState] = useState(initial),
     [mode, setMode] = useState<"OPEN" | "SALARY_CAP">("OPEN");
   const [round, setRound] = useState(""),
@@ -63,16 +67,32 @@ export function SportSandbox({
   let sport = sportConfigurations[state.sport];
   const rounds = state.competitions
     .filter((c) => c.rules.mode === mode)
+    .filter(
+      (c) =>
+        !state.competitions.some(
+          (v) => v.rules.replaces_competition === c.id,
+        ) ||
+        state.entries.some((e) => e.competition_id === c.id) ||
+        state.drafts.some((d) => d.competition_id === c.id),
+    )
     .sort(
       (a, b) =>
+        Number(b.rules.scoring_version === nbaRarityWeeklyVersion) -
+          Number(a.rules.scoring_version === nbaRarityWeeklyVersion) ||
         Number(
           b.rules.lineup_version === nbaWeeklyConfiguration.formatVersion,
         ) -
           Number(
             a.rules.lineup_version === nbaWeeklyConfiguration.formatVersion,
-          ) || a.round - b.round,
+          ) ||
+        a.round - b.round,
     );
   const comp = rounds.find((c) => c.id === round) ?? rounds[0];
+  const appliedMultiplier =
+    state.sport === "basketball" &&
+    comp?.rules.scoring_version !== nbaRarityWeeklyVersion
+      ? 1
+      : undefined;
   const cfg = state.configurations[comp?.rules.lineup_version];
   const nbaProposal = cfg?.version === nbaWeeklyConfiguration.formatVersion;
   if (nbaProposal) sport = nbaWeeklyConfiguration;
@@ -297,14 +317,18 @@ export function SportSandbox({
           type="button"
           className="sport-card-button"
           data-card={card?.id ?? snap?.card_id}
-          disabled={readOnly || busy}
-          onClick={() => setSlot(s.id)}
+          disabled={busy || (readOnly && !card)}
+          onClick={() =>
+            readOnly && card
+              ? setInspecting(sandboxCardView(card))
+              : setSlot(s.id)
+          }
           aria-label={`${readOnly ? "View" : "Select"} ${s.id}${card ? `: ${card.name}` : ""}`}
         >
           {card ? (
             <CollectibleFace
               card={card}
-              appliedMultiplier={1}
+              appliedMultiplier={appliedMultiplier}
               variant="lineup"
             />
           ) : (
@@ -339,7 +363,7 @@ export function SportSandbox({
                   {game.points == null
                     ? "—"
                     : (game.points / 100).toFixed(2)}{" "}
-                  PTS · {game.status}
+                  base PTS · {game.status}
                 </li>
               ))}
             </ul>
@@ -421,7 +445,9 @@ export function SportSandbox({
                 {state.sport === "basketball"
                   ? c.rules.lineup_version ===
                     nbaWeeklyConfiguration.formatVersion
-                    ? " · Eight-position testing"
+                    ? c.rules.scoring_version === nbaRarityWeeklyVersion
+                      ? " · Rarity scoring"
+                      : " · Original scoring"
                     : " · Legacy format"
                   : ""}
               </option>
@@ -641,6 +667,13 @@ export function SportSandbox({
           )}
         </>
       )}
+      {inspecting && (
+        <CollectibleViewer
+          card={inspecting}
+          appliedMultiplier={appliedMultiplier}
+          onClose={() => setInspecting(null)}
+        />
+      )}
       {slot && selected && (
         <FantasySheet
           title={`Select ${slot}`}
@@ -675,7 +708,7 @@ export function SportSandbox({
               >
                 <CollectibleFace
                   card={c}
-                  appliedMultiplier={1}
+                  appliedMultiplier={appliedMultiplier}
                   variant="compact"
                 />
                 <span>{c.name}</span>

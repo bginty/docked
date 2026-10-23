@@ -144,7 +144,7 @@ test("NBA prices, odds, sport and Core exclusion cannot be changed through produ
     assert.throws(() => validateCardEconomy(e));
   }
 });
-test("both NBA packs use nine distinct players, preserve supply and render basketball without scoring multipliers", () => {
+test("both NBA packs use nine distinct players, preserve supply and render basketball with approved rarity multipliers", () => {
   for (const type of ["STANDARD", "PREMIUM"]) {
     const { state, products } = enabled(),
       e = state.economy!;
@@ -168,7 +168,7 @@ test("both NBA packs use nine distinct players, preserve supply and render baske
   }
   const { state, card } = purchased();
   assert.equal(testCard(state, card).sport, "basketball");
-  assert.equal(testCard(state, card).multiplier, 1);
+  assert.equal(testCard(state, card).multiplier, 1.1);
   assert.equal(
     testReceipt(state, "nba-purchase", marketActors[0].id).cards.length,
     9,

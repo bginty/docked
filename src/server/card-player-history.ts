@@ -7,10 +7,17 @@ import {
   playerHistory,
   type PlayerHistorySource,
 } from "@/core/player-card-history";
-export async function cardPlayerHistory(player: string, season?: string) {
+export async function cardPlayerHistory(
+  player: string,
+  season?: string,
+  sport?: string,
+) {
   const who = await requireIdentity();
   if (process.env.DOCKED_BETA_STAGING !== "true") throw Error("Unavailable");
-  if (process.env.NFL_HISTORY_READ_ENABLED === "true") {
+  if (
+    (!sport || sport === "nfl") &&
+    process.env.NFL_HISTORY_READ_ENABLED === "true"
+  ) {
     const history = await publishedNflHistory(player, season);
     if (history.seasons.length) return history;
   }
@@ -18,5 +25,10 @@ export async function cardPlayerHistory(player: string, season?: string) {
     await tx`select set_config('docked.fantasy_channel','beta',true),set_config('docked.fantasy_production',${manifest.supabaseProjectRef},true),set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
     return tx`select sports_feed.card_player_history(${player}) records`;
   });
-  return playerHistory(rows[0].records as PlayerHistorySource[], season);
+  return playerHistory(
+    (rows[0].records as PlayerHistorySource[]).filter(
+      (r) => !sport || r.rules.sport === (sport === "football" ? "epl" : sport),
+    ),
+    season,
+  );
 }

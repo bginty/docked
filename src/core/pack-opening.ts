@@ -21,7 +21,13 @@ export type AwardedCard = Pick<
   | "status"
   | "sport"
   | "tradeable"
-> & { rarity_version?: string; multiplier?: number; presentation?: string };
+> & {
+  jerseyNumberText?: string;
+  accentColour?: string;
+  rarity_version?: string;
+  multiplier?: number;
+  presentation?: string;
+};
 export type PackReceipt = {
   id: string;
   name: string;

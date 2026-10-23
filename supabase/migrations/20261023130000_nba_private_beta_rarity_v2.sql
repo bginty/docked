@@ -1,0 +1,31 @@
+-- Owner correction: NBA rarity multipliers, 23 October 2026. No permanent issuance.
+-- Immutable V1 competitions and saved lineups are retained. Only unscored,
+-- unlocked private-beta periods receive a new successor. No financial effects.
+insert into beta_fantasy.scoring_rules(version,rules)
+values ('docked-nba-weekly-rarity-v2', $rules${"sport":"basketball","version":"docked-nba-weekly-rarity-v2","title":"NBA weekly · Private beta","beta":true,"positions":["PG","SG","SF","PF","C"],"slots":[{"id":"PG1","positions":["PG"]},{"id":"SG1","positions":["SG"]},{"id":"SF1","positions":["SF"]},{"id":"PF1","positions":["PF"]},{"id":"C1","positions":["C"]},{"id":"G1","positions":["PG","SG"]},{"id":"F1","positions":["SF","PF"]},{"id":"UTIL1","positions":["PG","SG","SF","PF","C"]}],"weights":{"points":100,"rebounds":120,"assists":150,"steals":300,"blocks":300,"turnovers":-100,"threePointers":0},"bonuses":{"doubleDouble":150,"tripleDouble":300},"correctionHours":72,"periodName":"weekly-window","policy":["Eight unique players: PG, SG, SF, PF, C, G, F, UTIL. No injury compensation.","Points 1, rebounds 1.2, assists 1.5, steals/blocks 3, turnovers -1. A per-game double-double adds 1.5; a triple-double adds a further 3. Qualifying categories are points, rebounds, assists, steals and blocks. Made threes are already in points. Include overtime.","Sum all frozen eligible games starting Monday 00:00 through the next Monday 00:00 exclusive in America/New_York. Lock all slots at the first scheduled game. A later finish stays in the starting week. Exceptional or rescheduled fixtures require review; never silently move locked membership.","Confirmed DNP is zero; missing participation is unresolved. Show known postgame points and provisional rankings while remaining games await data. Shared ranks for tied totals; member ID only stabilises display order, not a prize tie-break.","Existing reviewer correction and finalisation controls apply, including the 72-hour correction window. Finalised results require the approved correction process. No live activation or issuance is authorised.","Apply the locked card rarity once to the weekly sum of base game scores, including bonuses. Core 1.0, Rare 1.1, Elite 1.2, Ultra Rare 1.3, Legendary 1.4, Icon 1.5. Round to centipoints, half away from zero. Existing finalised rules snapshots remain unchanged."],"rarityVersion":"docked-lifetime-rarity-v1"}$rules$::jsonb) on conflict do nothing;
+do $migration$
+declare c record; new_id uuid; successor uuid;
+begin
+ select id into strict new_id from beta_fantasy.scoring_rules where version='docked-nba-weekly-rarity-v2'
+ and rules=$rules${"sport":"basketball","version":"docked-nba-weekly-rarity-v2","title":"NBA weekly · Private beta","beta":true,"positions":["PG","SG","SF","PF","C"],"slots":[{"id":"PG1","positions":["PG"]},{"id":"SG1","positions":["SG"]},{"id":"SF1","positions":["SF"]},{"id":"PF1","positions":["PF"]},{"id":"C1","positions":["C"]},{"id":"G1","positions":["PG","SG"]},{"id":"F1","positions":["SF","PF"]},{"id":"UTIL1","positions":["PG","SG","SF","PF","C"]}],"weights":{"points":100,"rebounds":120,"assists":150,"steals":300,"blocks":300,"turnovers":-100,"threePointers":0},"bonuses":{"doubleDouble":150,"tripleDouble":300},"correctionHours":72,"periodName":"weekly-window","policy":["Eight unique players: PG, SG, SF, PF, C, G, F, UTIL. No injury compensation.","Points 1, rebounds 1.2, assists 1.5, steals/blocks 3, turnovers -1. A per-game double-double adds 1.5; a triple-double adds a further 3. Qualifying categories are points, rebounds, assists, steals and blocks. Made threes are already in points. Include overtime.","Sum all frozen eligible games starting Monday 00:00 through the next Monday 00:00 exclusive in America/New_York. Lock all slots at the first scheduled game. A later finish stays in the starting week. Exceptional or rescheduled fixtures require review; never silently move locked membership.","Confirmed DNP is zero; missing participation is unresolved. Show known postgame points and provisional rankings while remaining games await data. Shared ranks for tied totals; member ID only stabilises display order, not a prize tie-break.","Existing reviewer correction and finalisation controls apply, including the 72-hour correction window. Finalised results require the approved correction process. No live activation or issuance is authorised.","Apply the locked card rarity once to the weekly sum of base game scores, including bonuses. Core 1.0, Rare 1.1, Elite 1.2, Ultra Rare 1.3, Legendary 1.4, Icon 1.5. Round to centipoints, half away from zero. Existing finalised rules snapshots remain unchanged."],"rarityVersion":"docked-lifetime-rarity-v1"}$rules$::jsonb;
+ for c in select * from beta_fantasy.competitions where sport='basketball'
+  and rules->>'nba_beta_scope'='private-test-v1'
+  and rules->>'inventory_scope'='isolated-multi-sport-v1'
+  and rules->>'scoring_version'='docked-nba-weekly-proposal-v1'
+  and locks_at>clock_timestamp()
+  and not exists(select 1 from scoring_beta.journal j where j.stream_id='sim:basketball:'||competitions.id::text)
+  and not exists(select 1 from beta_fantasy.results r where r.competition_id=competitions.id)
+  and not exists(select 1 from beta_fantasy.competitions v where v.rules->>'replaces_competition'=competitions.id::text)
+  for update
+ loop
+  successor:=gen_random_uuid();
+  insert into beta_fantasy.competitions(id,name,sport,season,round,opens_at,locks_at,rules,scoring_id,awards,prize)
+  values(successor,c.name||' · Rarity V2',c.sport,c.season||'-RARITY-V2',c.round,c.opens_at,c.locks_at,
+   jsonb_set(c.rules,'{scoring_version}','"docked-nba-weekly-rarity-v2"') || jsonb_build_object('replaces_competition',c.id,'rarity_authority','Owner NBA rarity correction, 23 October 2026'),new_id,c.awards,c.prize);
+  insert into sports_feed.sport_rounds(competition_id,sport,fixtures)
+   select successor,sport,fixtures from sports_feed.sport_rounds where competition_id=c.id;
+  insert into beta_private.audit_events(actor,action,subject,details)
+   values('owner-authorised-nba-rarity','nba_rarity_successor_created',successor::text,
+    jsonb_build_object('predecessor',c.id,'version','docked-nba-weekly-rarity-v2','existingCompetitionUnchanged',true,'entrySnapshotsUnchanged',true,'resultsRecalculated',false));
+ end loop;
+end $migration$;

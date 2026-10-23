@@ -33,6 +33,9 @@ export const nrlEventVersion = "docked-nrl-events-v1";
 export const nbaEventVersion = "docked-nba-events-v1";
 /** PROPOSED, isolated only. Never reinterpret an earlier NBA rules snapshot. */
 export const nbaWeeklyVersion = "docked-nba-weekly-proposal-v1";
+export const nbaRarityWeeklyVersion = "docked-nba-weekly-rarity-v2";
+export const isNbaWeeklyVersion = (version: string) =>
+  version === nbaWeeklyVersion || version === nbaRarityWeeklyVersion;
 export const nbaWeeklyWeights = Object.freeze({
   points: 100,
   rebounds: 120,

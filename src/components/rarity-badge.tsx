@@ -4,10 +4,12 @@ export function RarityBadge({
   tier,
   appliedMultiplier,
   compact = false,
+  showMultiplier = true,
 }: {
   tier: string;
   appliedMultiplier?: number;
   compact?: boolean;
+  showMultiplier?: boolean;
 }) {
   const rule = rarityRule(tier),
     value = appliedMultiplier ?? rule.multiplierTenths / 10;
@@ -18,8 +20,12 @@ export function RarityBadge({
   return (
     <span
       className={"rarity-badge" + (compact ? " rarity-badge-compact" : "")}
-      title={context}
-      aria-label={rule.label + ", " + value.toFixed(1) + " times. " + context}
+      title={showMultiplier ? context : rule.label}
+      aria-label={
+        showMultiplier
+          ? rule.label + ", " + value.toFixed(1) + " times. " + context
+          : rule.label
+      }
     >
       <span className="rarity-badge-name">
         {rarityPresentation(tier).emblem === "crown" && (
@@ -35,7 +41,9 @@ export function RarityBadge({
         )}
         {rule.label.toUpperCase()}
       </span>
-      <span className="rarity-badge-value">{value.toFixed(1)}×</span>
+      {showMultiplier && (
+        <span className="rarity-badge-value">{value.toFixed(1)}×</span>
+      )}
     </span>
   );
 }

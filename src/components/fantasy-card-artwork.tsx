@@ -84,7 +84,9 @@ export function FantasyCardArtwork({
               <span>/ {card.max_supply.toLocaleString()}</span>
             </div>
           )}
-          <p>{multiplierLabel(card.tier)}</p>
+          {!["afl", "nrl"].includes(card.sport) && (
+            <p>{multiplierLabel(card.tier)}</p>
+          )}
           <p className="small-note">
             {collectibleOnly(card.position, card.sport)
               ? "Collectible only in current seven-player competitions"

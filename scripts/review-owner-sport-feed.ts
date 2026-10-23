@@ -5,7 +5,7 @@ import {
   previewOwnerSportFeed,
 } from "../src/core/owner-sport-feed";
 import { sportEventRules } from "../src/core/sport-event-rules";
-import { nbaWeeklyRules } from "../src/core/nba-weekly";
+import { nbaRulesForVersion } from "../src/core/nba-weekly";
 
 async function readJson(file: string) {
   if ((await stat(file)).size > 2 * 1024 * 1024)
@@ -29,8 +29,10 @@ async function main() {
     await readJson(feedFile),
     mapping,
     mapping.sport === "basketball" &&
-      mapping.scoringVersion === "docked-nba-weekly-proposal-v1"
-      ? nbaWeeklyRules()
+      ["docked-nba-weekly-proposal-v1", "docked-nba-weekly-rarity-v2"].includes(
+        mapping.scoringVersion,
+      )
+      ? nbaRulesForVersion(mapping.scoringVersion)
       : sportEventRules(mapping.sport),
     new Date().toISOString(),
   );

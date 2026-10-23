@@ -1,5 +1,6 @@
+import { rarityPoints, rarityRule } from "./card-rarity";
 import { digest, results, type ScoringState } from "./scoring-engine";
-import { nbaWeeklyRules, nbaWeek } from "./nba-weekly";
+import { nbaRulesForVersion, nbaWeek } from "./nba-weekly";
 import type { SandboxState } from "./sport-sandbox";
 import { sportEventRules } from "./sport-event-rules";
 
@@ -47,7 +48,7 @@ export function sandboxScoreView(
     const body = journal.body;
     const expectedRules =
       comp?.sport === "basketball"
-        ? nbaWeeklyRules()
+        ? nbaRulesForVersion(comp.rules.scoring_version)
         : comp?.sport === "afl" || comp?.sport === "nrl"
           ? sportEventRules(comp.sport)
           : null;
@@ -89,6 +90,10 @@ export function sandboxScoreView(
                   s.card_id === c.cardId &&
                   s.player_id === c.playerId &&
                   s.slot === c.slot &&
+                  (!expectedRules.rarityVersion ||
+                    (c.rarity === s.tier &&
+                      c.multiplierTenths ===
+                        rarityRule(s.tier).multiplierTenths)) &&
                   // Every locked game must agree, even after transfers or fixture revisions.
                   digest([...(s.fixture_ids ?? [])].sort()) ===
                     digest(
@@ -152,7 +157,13 @@ export function sandboxScoreView(
               revision: m.revision,
             })),
             points: known.length
-              ? known.reduce((n, m) => n + m.score!.centipoints, 0)
+              ? (p.centipoints ??
+                (body.period.rules.rarityVersion
+                  ? rarityPoints(
+                      known.reduce((n, m) => n + m.score!.centipoints, 0),
+                      p.multiplierTenths!,
+                    )
+                  : known.reduce((n, m) => n + m.score!.centipoints, 0)))
               : null,
             status:
               p.centipoints !== null

@@ -7,7 +7,7 @@ import {
   results,
   type CatalogCard,
 } from "../../src/core/scoring-engine";
-import { nbaWeek, nbaWeeklyRules } from "../../src/core/nba-weekly";
+import { nbaWeek, nbaRulesForVersion } from "../../src/core/nba-weekly";
 import { sandboxScoreView } from "../../src/core/sandbox-score-view";
 import { sportEventRules } from "../../src/core/sport-event-rules";
 import type { SandboxState } from "../../src/core/sport-sandbox";
@@ -22,7 +22,9 @@ export async function seedNbaJournal(
   const comp = base.competitions.find((c: any) => c.id === id);
   const sport = comp.sport as "basketball" | "afl" | "nrl";
   const scoringRules =
-    sport === "basketball" ? nbaWeeklyRules() : sportEventRules(sport);
+    sport === "basketball"
+      ? nbaRulesForVersion(comp.rules.scoring_version)
+      : sportEventRules(sport);
   const entries = base.entries.filter((e: any) => e.competition_id === id);
   const fixtures = (
     await db.q(
@@ -56,6 +58,7 @@ export async function seedNbaJournal(
       position: c.position,
       eligiblePositions: c.eligible_positions,
       sport,
+      rarity: c.tier,
       owner: e.user_id,
       eligible: true,
     })),

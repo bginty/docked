@@ -1,5 +1,6 @@
+import { isNbaWeeklyVersion } from "./additional-sport-statistics";
 import { createHash } from "node:crypto";
-import { nbaWeek, nbaWeeklyRules } from "./nba-weekly";
+import { nbaWeek, nbaRulesForVersion } from "./nba-weekly";
 import {
   scorePlayer,
   validateLineup,
@@ -135,7 +136,7 @@ export function validatePeriodDefinition(
       throw Error("Explicit scoring instants and timezone required");
     if (
       time(p.window.start) >= time(p.window.end) ||
-      (p.rules.version !== "docked-nba-weekly-proposal-v1" &&
+      (!isNbaWeeklyVersion(p.rules.version) &&
         time(p.locksAt) > time(p.window.start))
     )
       throw Error("Invalid scoring window");
@@ -153,7 +154,7 @@ export function validatePeriodDefinition(
     )
       throw Error("Fixture outside frozen scoring window");
   }
-  if (p.rules.version === "docked-nba-weekly-proposal-v1") {
+  if (isNbaWeeklyVersion(p.rules.version)) {
     if (scope !== "simulated")
       throw Error(
         "NBA proposal is isolated-only; owner scoring approval required",
@@ -161,7 +162,7 @@ export function validatePeriodDefinition(
     if (
       !p.window ||
       p.sport !== "basketball" ||
-      digest(p.rules) !== digest(nbaWeeklyRules())
+      digest(p.rules) !== digest(nbaRulesForVersion(p.rules.version))
     )
       throw Error("Frozen NBA proposal contract changed");
     const expected = nbaWeek(p.window.start);
@@ -251,8 +252,7 @@ export function saveTeam(
       cardId: c.cardId,
       playerId: c.playerId,
       position: c.position,
-      ...(state.period.rules.version === "docked-nba-weekly-proposal-v1" &&
-      c.eligiblePositions
+      ...(isNbaWeeklyVersion(state.period.rules.version) && c.eligiblePositions
         ? { eligiblePositions: [...c.eligiblePositions] }
         : {}),
       ...lockRarity(state.period.rules, c),
@@ -260,7 +260,7 @@ export function saveTeam(
   });
   validateLineup(state.period.rules, cards);
   if (
-    state.period.rules.version === "docked-nba-weekly-proposal-v1" &&
+    isNbaWeeklyVersion(state.period.rules.version) &&
     state.entries.some((e) => e.member === member && e.name !== name)
   )
     throw Error("Team name is fixed after initial setup");
@@ -301,7 +301,7 @@ export function lockTeams(
         owned.sport !== state.period.sport ||
         owned.playerId !== c.playerId ||
         owned.position !== c.position ||
-        (state.period.rules.version === "docked-nba-weekly-proposal-v1" &&
+        (isNbaWeeklyVersion(state.period.rules.version) &&
           digest(owned.eligiblePositions ?? [owned.position]) !==
             digest(c.eligiblePositions ?? [c.position])) ||
         (state.period.rules.rarityVersion &&
@@ -504,7 +504,7 @@ export function results(state: ScoringState) {
   });
   // New NBA proposal alone ranks earned postgame points during the week. Missing
   // games remain unresolved; known points never become a final total implicitly.
-  const weekly = state.period.rules.version === "docked-nba-weekly-proposal-v1";
+  const weekly = isNbaWeeklyVersion(state.period.rules.version);
   const hasScoredGame = rows.some((r) =>
     r.players.some((p) => p.matches.some((m) => m.score !== null)),
   );
