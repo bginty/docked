@@ -1,0 +1,9 @@
+{
+  "deployment": "dpl_4PfrYPL69pabvqvLpzjk6y458ELU",
+  "url": "docked-production-owhfymib9-briant-s-projects.vercel.app",
+  "commit": "ef4bd150eede212bc3555b6ed10da6b497634160",
+  "databaseMigrations": [
+    "20261023052447_play_owned_inventory.sql"
+  ],
+  "recovery": "Promote captured prior application. Restore original function definitions saved under private-data/play-owned if database rollback is needed. No member data, historical results, schedules or feature gates are modified."
+}

@@ -2,7 +2,9 @@
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 import { chromium, expect } from "@playwright/test";
-const out = "docs/qa/global-sport/release";
+const out =
+  process.env.DOCKED_HOSTED_BROWSER_EVIDENCE ?? "docs/qa/global-sport/release";
+assert(out.startsWith("docs/qa/") && !out.includes(".."));
 const release = JSON.parse(
   await fs.readFile(out + "/deployment-promoted.json", "utf8"),
 );
@@ -25,6 +27,13 @@ try {
     page.on("pageerror", (e) => errors.push(e.message));
     for (const path of [
       "/fantasy/play?sport=nfl",
+      ...(out === "docs/qa/play-owned/release"
+        ? [
+            "/fantasy/play?sport=basketball",
+            "/fantasy/play?sport=afl",
+            "/fantasy/play?sport=nrl",
+          ]
+        : []),
       "/fantasy/cards?sport=basketball",
       "/fantasy/market?sport=afl",
       "/fantasy/social?sport=nrl",

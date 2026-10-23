@@ -1,0 +1,70 @@
+{
+  "at": "2026-10-23T05:54:58.047Z",
+  "platform": {
+    "tests": 607,
+    "pass": 607,
+    "fail": 0,
+    "skipped": 0
+  },
+  "databaseInitial": {
+    "tests": 206,
+    "pass": 195,
+    "fail": 11,
+    "skipped": 0
+  },
+  "databaseRetry": {
+    "tests": 20,
+    "pass": 20,
+    "fail": 0,
+    "skipped": 0
+  },
+  "databaseNote": "Initial database failures were process/memory allocation failures. All affected files/cases passed serial retry. 195 initial passing cases plus 20 retry cases.",
+  "targeted": {
+    "tests": 12,
+    "pass": 12,
+    "fail": 0
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "productionBuild": "passed",
+  "clientCanaryAssets": 84,
+  "sourceSecretScan": {
+    "findings": [
+      {
+        "file": "legacy/retired-product/tests/platform/market-data.test.ts",
+        "issue": "potential embedded credential"
+      },
+      {
+        "file": "scripts/fantasy-production-local-postgres.mjs",
+        "issue": "potential embedded credential"
+      },
+      {
+        "file": "scripts/marketplace-auth-infra.mjs",
+        "issue": "potential embedded credential"
+      },
+      {
+        "file": "tests/database/preview-auth-gate.test.ts",
+        "issue": "potential embedded credential"
+      },
+      {
+        "file": "tests/platform/database-tls.test.ts",
+        "issue": "potential embedded credential"
+      },
+      {
+        "file": "tests/platform/hosted-runtime.test.ts",
+        "issue": "potential embedded credential"
+      },
+      {
+        "file": "tests/platform/preview-auth.test.ts",
+        "issue": "potential embedded credential"
+      },
+      {
+        "file": "tests/platform/production-release-tools.test.ts",
+        "issue": "potential embedded credential"
+      }
+    ],
+    "changedImplementationFindings": 0,
+    "note": "Eight unchanged existing test/local-infrastructure heuristic findings; broad scan is not a zero-finding result."
+  },
+  "authenticatedHosted": false
+}

@@ -33,6 +33,16 @@ for (const path of [
   "/api/marketplace?sport=nrl",
   "/api/community?view=hub",
   "/api/fantasy/standings",
+  ...(process.env.NBA_RELEASE_EVIDENCE === "docs/qa/play-owned/release"
+    ? [
+        "/api/fantasy",
+        "/api/fantasy/collection?sport=nfl",
+        "/api/fantasy/collection?sport=basketball",
+        "/api/fantasy/collection?sport=afl",
+        "/api/fantasy/collection?sport=nrl",
+        "/fantasy/play?sport=nfl",
+      ]
+    : []),
   ...(process.env.NBA_RELEASE_EVIDENCE === "docs/qa/global-sport/release"
     ? [
         "/api/fantasy/match-history?sport=afl",

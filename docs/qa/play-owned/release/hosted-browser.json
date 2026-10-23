@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "commit": "e92d70d92b349c86c166a78cfe17ce07a3bdc3af",
+  "at": "2026-10-23T05:56:29.678Z",
+  "authenticatedMemberTesting": false,
+  "scope": "Actual Production signed-out access recovery; not authenticated feed/gameplay performance",
+  "checks": [
+    {
+      "path": "/fantasy/play?sport=nfl",
+      "width": 412,
+      "signedOutRecoveryMs": 1265,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=basketball",
+      "width": 412,
+      "signedOutRecoveryMs": 377,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=afl",
+      "width": 412,
+      "signedOutRecoveryMs": 255,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=nrl",
+      "width": 412,
+      "signedOutRecoveryMs": 263,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/cards?sport=basketball",
+      "width": 412,
+      "signedOutRecoveryMs": 232,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/market?sport=afl",
+      "width": 412,
+      "signedOutRecoveryMs": 246,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/social?sport=nrl",
+      "width": 412,
+      "signedOutRecoveryMs": 273,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=afl",
+      "width": 412,
+      "signedOutRecoveryMs": 859,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=nrl",
+      "width": 412,
+      "signedOutRecoveryMs": 420,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=nfl",
+      "width": 1440,
+      "signedOutRecoveryMs": 866,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=basketball",
+      "width": 1440,
+      "signedOutRecoveryMs": 281,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=afl",
+      "width": 1440,
+      "signedOutRecoveryMs": 221,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=nrl",
+      "width": 1440,
+      "signedOutRecoveryMs": 214,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/cards?sport=basketball",
+      "width": 1440,
+      "signedOutRecoveryMs": 210,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/market?sport=afl",
+      "width": 1440,
+      "signedOutRecoveryMs": 251,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/social?sport=nrl",
+      "width": 1440,
+      "signedOutRecoveryMs": 252,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=afl",
+      "width": 1440,
+      "signedOutRecoveryMs": 266,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=nrl",
+      "width": 1440,
+      "signedOutRecoveryMs": 230,
+      "privateContentVisible": false
+    }
+  ]
+}

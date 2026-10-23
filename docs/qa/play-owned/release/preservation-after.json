@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-23T05:56:30.107Z",
+  "unchanged": true,
+  "protectedTables": [
+    "credits_sandbox.state",
+    "beta_fantasy.cards",
+    "beta_fantasy.ownership_events",
+    "beta_fantasy.entries",
+    "beta_fantasy.results",
+    "beta_fantasy.competitions",
+    "beta_fantasy.round_drafts",
+    "beta_fantasy.slot_locks",
+    "beta_fantasy.sales",
+    "beta_fantasy.packs",
+    "sports_feed.sport_sandbox_inventory",
+    "sports_feed.nfl_control"
+  ],
+  "scope": "Before migration versus after Production promotion; hashes only, no member data written"
+}
