@@ -1,0 +1,63 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "at": "2026-10-23T11:43:35.670Z",
+  "programmes": [
+    {
+      "sport": "afl",
+      "enabled": true,
+      "enabled_at": "2026-10-23T11:43:11.115Z"
+    },
+    {
+      "sport": "nrl",
+      "enabled": true,
+      "enabled_at": "2026-10-23T11:43:11.115Z"
+    }
+  ],
+  "packs": [
+    {
+      "sport": "afl",
+      "issued": 3,
+      "opened": 0
+    },
+    {
+      "sport": "nfl",
+      "issued": 3,
+      "opened": 2
+    },
+    {
+      "sport": "nrl",
+      "issued": 3,
+      "opened": 0
+    }
+  ],
+  "jobs": [
+    {
+      "jobname": "docked-weekly-core-entitlements",
+      "active": true,
+      "schedule": "* * * * *",
+      "status": "succeeded",
+      "start_time": "2026-10-23T11:43:00.152Z",
+      "end_time": "2026-10-23T11:43:11.815Z"
+    }
+  ],
+  "failures": [],
+  "products": [
+    {
+      "sport": "afl",
+      "n": 6
+    },
+    {
+      "sport": "basketball",
+      "n": 2
+    },
+    {
+      "sport": "nfl",
+      "n": 6
+    },
+    {
+      "sport": "nrl",
+      "n": 6
+    }
+  ],
+  "authenticatedHosted": false
+}

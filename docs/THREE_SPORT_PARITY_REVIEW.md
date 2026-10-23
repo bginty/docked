@@ -1,6 +1,6 @@
 # AFL and NRL parity release review
 
-The application changes are implemented locally for review. They have **not been deployed** and the migration has **not been applied to hosted infrastructure**. The latest instruction requires deployment approval. NBA remains hidden; its data and scoring contracts are retained.
+The owner subsequently approved deployment. Application commit `684dd79d56300bf4b68063bd8585de16190565d0` is now live at https://docked.com.au (2026-10-23). The reviewed migration, additional AFL/NRL pack variants and independent weekly programmes are applied. NBA remains hidden; its data and scoring contracts are retained. See the release verification below; signed-in hosted acceptance remains unverified.
 
 ## Implemented experience
 
@@ -40,9 +40,9 @@ Reused AppShell/SportProvider, CompetitionSwitch, SevenField, CollectibleFace/Vi
 - Production build and canary browser-secret scan passed. Typecheck, lint and client-boundary checks passed; exact final results are recorded in `qa/three-sport-parity/validation.json`.
 - Repository-wide credential-pattern scan reported eight existing files, all byte-equivalent to HEAD after line-ending normalisation. No changed file was flagged. This is not a clean repository-wide security result; filenames and baseline comparison are recorded in `secrets-audit.json` for separate review.
 
-All mutations used isolated fixtures and local databases. No signed-in Production acceptance, hosted cron execution, new hosted migration or actual member transaction is claimed. Local screenshots do not establish physical Samsung-device performance or authenticated hosted success.
+The implementation mutation tests used isolated fixtures and local databases. The approved release subsequently applied the migration and configuration, and actual hosted cron execution is now verified. No customer pack-opening, purchase, posting or entry mutation tests were performed. Local screenshots do not establish physical Samsung-device performance or authenticated hosted success.
 
-## Required release actions
+## Original release checklist (execution recorded below)
 
 1. Review `qa/three-sport-parity/release-plan.json` and migration `20261023092404_sport_social_and_pack_entitlements.sql`. Reconfirm target project, current migration history and application role. This migration sorts before the already-existing NBA rarity migration; apply only the reviewed missing migration, not a blind bulk push or replay of historical files.
 2. Capture a protected recovery snapshot of weekly schedules/packs/job history, both Social namespaces and their dependent comment/reaction/audit tables, affected function definitions, credits state/product registry, ownership and competition records. Verify readback and current Supabase recovery availability. No fresh hosted backup was performed during this local task.
@@ -66,6 +66,20 @@ Pause the new AFL/NRL programme rows and new product availability first if neede
 | Prizes | AFL/NRL unconfigured; no awards enabled. NFL unchanged. |
 | Season standings | AFL/NRL aggregation policy unconfigured; no invented season totals. |
 | Statistics | Existing verified/provisional journal projections only. Missing data stays unresolved; no fabricated scores or historical rewrites. |
-| Release | Local implementation/test evidence ready; hosted migration, product registration, programme activation and deployment require review/approval. |
+| Release | Deployed with owner approval; migration, products and weekly programmes verified. Signed-in hosted acceptance remains outstanding. |
 
-Screenshots and machine-readable results are under `docs/qa/three-sport-parity/`. Existing user accounts, wallets, ownership, serials, pack history, NFL scoring and historical results were not mutated by this task.
+Screenshots and machine-readable results are under `docs/qa/three-sport-parity/`. Release configuration preserved existing wallets, assets, serials, purchases, NFL scores and historical results. The intended new AFL/NRL weekly pack entitlements were issued by the scheduled worker.
+
+## Production release verification — 2026-10-23
+
+- Live application: `684dd79d56300bf4b68063bd8585de16190565d0`, deployment `dpl_EuLjBLKuWQKMRWHAHEhh4DPZwJ4K`, https://docked.com.au. Prior rollback application: `fe6dbd1c2c755605029f281c0bf167b51e232af1`.
+- Captured and read back a private 92-table application recovery snapshot plus relevant definitions (17,028,632 bytes). This is not an Auth/Storage backup, a verified managed PITR backup or a tested full disaster recovery. Public hash/receipt: `qa/three-sport-parity/release/recovery.json`; actual data stays outside version control.
+- Rehearsed the exact migration against the hosted schema in a transaction and rolled it back, checking protected data and permissions; then applied only `20261023092404_sport_social_and_pack_entitlements.sql` transactionally. Existing newer migrations were retained. NFL weekly anchors, pack IDs and receipts were unchanged. Two ambiguous beta Social records were retained for review.
+- Added eight AFL/NRL 1/3-card variants, preserving existing nine-card products and terms. Active visible-sport products: NFL6, AFL6, NRL6. No credit balance changes, permanent issuance or existing asset changes occurred in configuration. Hidden NBA products/data remain intact.
+- Enabled AFL/NRL programmes at 11:43:11 UTC. The existing minute worker succeeded at 11:43:11.815 UTC, issuing three initial AFL packs and three NRL packs to eligible accounts; all six remained unopened at verification. Existing NFL counts stayed three issued/two opened. No failed worker runs were reported by the verification query. No second scheduler was created.
+- Both staged and live HTTP suites passed 32 checks each, including release identity, closed registration and unauthenticated access restrictions. The first candidate was rejected before promotion because unauthenticated weekly GET returned 503; the deployed fix returns 401 (MFA denial 403), with a focused passing route test and repeated typecheck/lint/build validation.
+- The actual browser login page loaded successfully. It was signed out; no authenticated member UI acceptance is claimed. No member session was fabricated and no MFA bypass was used.
+- Runtime error inspection found only two expected unauthenticated Play denials from the staged/live probes, with no other error/fatal events returned. New private tables have RLS and no client grants. The pre-existing leaked-password protection warning remains unchanged; no new warning/error security advisories appeared. No Vercel log drain is configured.
+- Recovery: pause the new programmes/products if necessary, retain all entitlements and audits, and restore the prior application deployment. Keep the compatible extended schema; do not delete records or replay old migrations. Exact receipts are in `qa/three-sport-parity/release/`.
+
+Remaining owner configuration decisions: real-dollar AFL/NRL Traditional caps, prize schedules and season standings policy. These were not invented or activated by deployment. Signed-in owner acceptance is still required to validate the actual member journey on the live release.

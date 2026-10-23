@@ -1,0 +1,174 @@
+{
+  "projectRef": "pojoymtniryarxxunyvz",
+  "planHash": "9b14745009062b3ebac00525b6f7236de0b61a37e7ce63d8340730b6311419bb",
+  "at": "2026-10-23T11:27:52.855Z",
+  "bytes": 17028632,
+  "sha256": "b89d40b71216bfc0dde0b126daf1e6ab160957a10731228ee6407ae8c54af03b",
+  "tables": [
+    "beta_fantasy.cards",
+    "beta_fantasy.editions",
+    "beta_fantasy.players",
+    "beta_fantasy.entries",
+    "beta_fantasy.results",
+    "beta_fantasy.ownership_events",
+    "beta_fantasy.sales",
+    "beta_fantasy.packs",
+    "beta_fantasy.pack_items",
+    "beta_fantasy.ledger",
+    "credits_sandbox.permanent_players",
+    "credits_sandbox.card_definitions",
+    "credits_sandbox.card_instances",
+    "credits_sandbox.pack_receipts",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_control",
+    "sports_feed.sport_rounds",
+    "private.community_competitions",
+    "private.community_deals",
+    "private.social_posts",
+    "private.social_profiles",
+    "private.social_media",
+    "private.social_handle_history",
+    "private.social_blocks",
+    "private.social_mutes",
+    "private.social_follows",
+    "private.social_communities",
+    "private.social_community_members",
+    "private.social_discussion_follows",
+    "private.community_quote_evidence",
+    "private.community_edges",
+    "private.community_edge_status",
+    "private.community_result_sources",
+    "private.community_settlements",
+    "private.community_corrections",
+    "beta_private.social_posts",
+    "private.community_edge_personal_notes",
+    "beta_private.social_communities",
+    "beta_private.social_community_members",
+    "beta_private.social_discussion_follows",
+    "private.community_recognition_snapshots",
+    "private.community_verification_rules",
+    "private.social_collection_settings",
+    "beta_private.social_collection_settings",
+    "private.social_notification_jobs",
+    "private.social_comments",
+    "private.social_reports",
+    "private.social_post_media",
+    "private.social_reactions",
+    "private.social_saved",
+    "private.social_moderation_events",
+    "private.social_notifications",
+    "private.social_notification_preferences",
+    "sports_feed.weekly_core_control",
+    "sports_feed.weekly_core_schedules",
+    "sports_feed.weekly_core_packs",
+    "beta_private.announcement_events",
+    "sports_feed.weekly_core_job_runs",
+    "sports_feed.weekly_core_job_failures",
+    "beta_private.announcement_drafts",
+    "beta_private.social_notifications",
+    "beta_private.community_quote_evidence",
+    "beta_private.community_competitions",
+    "beta_private.community_deals",
+    "beta_private.community_verification_rules",
+    "beta_private.community_edges",
+    "beta_private.community_edge_status",
+    "beta_private.community_result_sources",
+    "beta_private.community_settlements",
+    "beta_private.community_corrections",
+    "beta_private.community_recognition_snapshots",
+    "beta_private.social_follows",
+    "beta_private.social_notification_jobs",
+    "beta_private.social_profiles",
+    "beta_private.social_media",
+    "beta_private.social_comments",
+    "beta_private.social_reports",
+    "beta_private.social_handle_history",
+    "beta_private.social_blocks",
+    "beta_private.social_mutes",
+    "beta_private.social_post_media",
+    "beta_private.social_reactions",
+    "beta_private.social_saved",
+    "beta_private.social_moderation_events",
+    "beta_private.community_edge_personal_notes",
+    "beta_private.social_notification_preferences",
+    "credits_sandbox.state",
+    "credits_sandbox.pack_configuration",
+    "sports_feed.private_beta_sports",
+    "sports_feed.nba_beta_control",
+    "sports_feed.sport_sandbox_inventory",
+    "supabase_migrations.schema_migrations"
+  ],
+  "readbackVerified": true,
+  "fullDisasterRecoveryTested": false,
+  "scope": "Application data and prior function/constraint definitions; no Auth secrets or Storage objects",
+  "protected": {
+    "beta_fantasy.cards": {
+      "n": "59",
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.editions": {
+      "n": "678",
+      "hash": "52592bc12a9428593d97002fce74c46e"
+    },
+    "beta_fantasy.players": {
+      "n": "534",
+      "hash": "3a20c778089688b8a82a2fe4e4796074"
+    },
+    "beta_fantasy.entries": {
+      "n": "14",
+      "hash": "ae3a5a52bcd1c0c05e8e60260632f4e8"
+    },
+    "beta_fantasy.results": {
+      "n": "1",
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.ownership_events": {
+      "n": "59",
+      "hash": "704a314a527c2d8d2aa625dc1546ca60"
+    },
+    "beta_fantasy.sales": {
+      "n": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.packs": {
+      "n": "1",
+      "hash": "79a2a7b163723a34efdfdacbaeaff280"
+    },
+    "beta_fantasy.pack_items": {
+      "n": "11",
+      "hash": "3799b85f85c01bf8b37059591335479e"
+    },
+    "beta_fantasy.ledger": {
+      "n": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.permanent_players": {
+      "n": "986",
+      "hash": "a9ffd0b2c5d6cae5d4162e2714ac1ecd"
+    },
+    "credits_sandbox.card_definitions": {
+      "n": "366",
+      "hash": "e5eda66a8348af9a9046d100fd9efb5f"
+    },
+    "credits_sandbox.card_instances": {
+      "n": "437",
+      "hash": "275c6394bfd4f7095d33a4e9a8a529a8"
+    },
+    "credits_sandbox.pack_receipts": {
+      "n": "60",
+      "hash": "3f7c1ada701ecb6838513650e59d5ec6"
+    },
+    "sports_feed.nfl_rounds": {
+      "n": "6",
+      "hash": "334117bfa9c3d7e7f066e90327eef681"
+    },
+    "sports_feed.nfl_control": {
+      "n": "1",
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    },
+    "sports_feed.sport_rounds": {
+      "n": "40",
+      "hash": "118ec2922689fb3e0b77ee8ee5a3b1ba"
+    }
+  }
+}

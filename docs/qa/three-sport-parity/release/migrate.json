@@ -1,0 +1,29 @@
+{
+  "mode": "migrate",
+  "passed": true,
+  "planHash": "9b14745009062b3ebac00525b6f7236de0b61a37e7ce63d8340730b6311419bb",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "at": "2026-10-23T11:29:58.292Z",
+  "protectedRecordsUnchanged": true,
+  "nflEntitlementsUnchanged": true,
+  "creditsUnchanged": true,
+  "programmesEnabled": false,
+  "social": [
+    {
+      "namespace": "private",
+      "review": 0
+    },
+    {
+      "namespace": "beta_private",
+      "review": 2
+    }
+  ],
+  "acl": [
+    {
+      "app_weekly": true,
+      "anon_weekly": false,
+      "worker": true,
+      "bypass": false
+    }
+  ]
+}

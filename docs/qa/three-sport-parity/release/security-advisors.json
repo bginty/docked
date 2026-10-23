@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-10-23T11:30:00Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "before": { "rlsEnabledNoPolicyInfo": 212, "leakedPasswordProtectionWarning": 1 },
+  "afterMigration": { "rlsEnabledNoPolicyInfo": 215, "leakedPasswordProtectionWarning": 1 },
+  "newTables": "Two private Social review tables and the weekly sport programme table use RLS with all client-role privileges revoked. They intentionally have no direct member policies.",
+  "existingWarning": "Supabase leaked-password protection is disabled. No Auth setting was changed by this release.",
+  "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+}

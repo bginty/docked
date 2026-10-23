@@ -1,0 +1,6 @@
+{
+  "deployment": "dpl_4kQTzKEuLXHX7Fm5EvAcvQkHbxMW",
+  "commit": "2eb1739070dbbf7eaf9334491ae3da7e735567e3",
+  "promoted": false,
+  "reason": "Weekly-pack unauthenticated GET returned 503 rather than 401. No data was exposed. Corrected the error classification and added isolated HTTP regression coverage before staging a replacement."
+}
