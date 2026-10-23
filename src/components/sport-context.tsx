@@ -19,7 +19,22 @@ const SportBetaCommerce = lazy(() =>
   })),
 );
 import { isBetaSport, type BetaSport } from "@/core/sports-private-beta";
-import { activeSportCookie, workspaceSport } from "@/core/workspace-sport";
+import {
+  activeSportCookie,
+  isHiddenWorkspaceSport,
+  workspaceSport,
+} from "@/core/workspace-sport";
+const sportQueryKeys = [
+  "competition",
+  "team",
+  "position",
+  "rarity",
+  "page",
+  "search",
+  "week",
+  "season",
+  "mode",
+];
 const sports = {
   nfl: "NFL",
   football: "EPL",
@@ -89,7 +104,9 @@ export function SportProvider({ children }: { children: ReactNode }) {
             Array.isArray(allowed)
               ? allowed.filter(
                   (x): x is BetaSport =>
-                    typeof x === "string" && isBetaSport(x),
+                    typeof x === "string" &&
+                    isBetaSport(x) &&
+                    !isHiddenWorkspaceSport(x),
                 )
               : [],
           );
@@ -142,6 +159,17 @@ export function SportProvider({ children }: { children: ReactNode }) {
         cookie ?? (valid(saved) ? saved : undefined),
       );
       setSport(selected);
+      if (isHiddenWorkspaceSport(requested)) {
+        const url = new URL(location.href);
+        for (const key of sportQueryKeys) url.searchParams.delete(key);
+        url.searchParams.set("sport", selected);
+        history.replaceState(null, "", url);
+      }
+      if (isHiddenWorkspaceSport(saved)) {
+        try {
+          localStorage.setItem("docked:active-sport", selected);
+        } catch {}
+      }
       if (capabilitiesReady)
         document.cookie = `${activeSportCookie}=${selected}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
       setReady(true);
@@ -152,9 +180,8 @@ export function SportProvider({ children }: { children: ReactNode }) {
   }, [path, capabilitiesReady]);
   function change(next: Sport) {
     if (
-      (next !== "nfl" &&
-        !(next === "basketball" && nba) &&
-        !(isBetaSport(next) && beta.includes(next))) ||
+      isHiddenWorkspaceSport(next) ||
+      (next !== "nfl" && !(isBetaSport(next) && beta.includes(next))) ||
       next === sport
     )
       return;
@@ -173,18 +200,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
     } catch {}
     document.cookie = `${activeSportCookie}=${next}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
     const url = new URL(location.href);
-    for (const key of [
-      "competition",
-      "team",
-      "position",
-      "rarity",
-      "page",
-      "search",
-      "week",
-      "season",
-      "mode",
-    ])
-      url.searchParams.delete(key);
+    for (const key of sportQueryKeys) url.searchParams.delete(key);
     url.searchParams.set("sport", next);
     history.replaceState(null, "", url);
     // Private sport routes intentionally do not pre-load NFL. Returning to NFL

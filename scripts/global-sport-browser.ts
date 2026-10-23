@@ -21,7 +21,8 @@ import { memberTestView } from "../src/core/member-test-wallet";
 import { marketplaceView, marketQuery } from "../src/core/marketplace";
 import type { FixtureSport } from "../src/core/fixture-sports";
 async function main() {
-  const out = "docs/qa/global-sport";
+  const out =
+    process.env.DOCKED_SPORT_BROWSER_EVIDENCE ?? "docs/qa/global-sport";
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/global-sport.tsx",
@@ -209,17 +210,50 @@ async function main() {
           await page.context().newCDPSession(page)
         ).send("Emulation.setCPUThrottlingRate", { rate: 4 });
       await page.goto(origin + "/fantasy/cards?sport=nfl");
+      // A remembered NBA selection from before it was hidden must recover
+      // without opening NBA, fetching its collection or changing its records.
+      await page.evaluate(() => {
+        localStorage.setItem("docked:active-sport", "basketball");
+        document.cookie = "docked-active-sport=basketball; Path=/";
+      });
+      await page.goto(
+        origin + "/fantasy/cards?sport=basketball&week=old-nba-week",
+      );
+      await expect(page.locator(".owned-sports button")).toHaveText([
+        "NFL",
+        "AFL",
+        "NRL",
+      ]);
+      await expect(
+        page
+          .locator(".owned-sports")
+          .getByRole("button", { name: "NFL", exact: true }),
+      ).toHaveAttribute("aria-pressed", "true");
+      await expect
+        .poll(() => new URL(page.url()).searchParams.get("sport"))
+        .toBe("nfl");
+      assert.equal(new URL(page.url()).searchParams.has("week"), false);
+      assert.equal(
+        await page.evaluate(() => localStorage.getItem("docked:active-sport")),
+        "nfl",
+      );
+      assert(
+        !requests.some(
+          (r) =>
+            r.url.includes("collection") && r.url.includes("sport=basketball"),
+        ),
+      );
       await expect(
         page.getByRole("navigation", { name: "Sport", exact: true }),
       ).toHaveCount(1);
       await page
         .locator(".owned-sports")
-        .getByRole("button", { name: "NBA", exact: true })
+        .getByRole("button", { name: "AFL", exact: true })
         .click();
       await expect(
         page
           .locator(".owned-sports")
-          .getByRole("button", { name: "NBA", exact: true }),
+          .getByRole("button", { name: "AFL", exact: true }),
       ).toHaveAttribute("aria-pressed", "true");
       const navigation = page.locator(
         width === 412 ? ".app-bottom-nav" : ".app-sidebar",
@@ -229,9 +263,14 @@ async function main() {
         await expect(
           page
             .locator(".owned-sports")
-            .getByRole("button", { name: "NBA", exact: true }),
+            .getByRole("button", { name: "AFL", exact: true }),
         ).toHaveAttribute("aria-pressed", "true");
-        assert(page.url().includes("sport=basketball"));
+        assert(page.url().includes("sport=afl"));
+        await expect(page.locator(".owned-sports button")).toHaveText([
+          "NFL",
+          "AFL",
+          "NRL",
+        ]);
       }
       const documents = await page.evaluate(
         () => performance.getEntriesByType("navigation").length,
@@ -301,7 +340,7 @@ async function main() {
       await expect(
         page
           .locator(".owned-sports")
-          .getByRole("button", { name: "NBA", exact: true }),
+          .getByRole("button", { name: "AFL", exact: true }),
       ).toHaveAttribute("aria-pressed", "true");
       for (const sport of ["afl", "nrl"] as const) {
         const started = Date.now();
@@ -340,6 +379,8 @@ async function main() {
         socialAcrossSports: true,
         lazyInventory: true,
         communityJoinLeave: true,
+        nbaHidden: true,
+        savedNbaPreferenceRecovered: true,
       });
       await page.close();
     }

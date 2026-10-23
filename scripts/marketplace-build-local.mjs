@@ -85,9 +85,11 @@ let evidence = process.argv.includes("--card-consistency")
 if (process.argv.includes("--owned-collection")) evidence = "docs/qa/owned-collection";
 if (process.argv.includes("--global-sport")) evidence = "docs/qa/global-sport";
 if (process.argv.includes("--play-owned")) evidence = "docs/qa/play-owned";
+if (process.argv.includes("--hide-nba")) evidence = "docs/qa/hide-nba";
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve(
+    process.argv.includes("--hide-nba") ? `tmp/hide-nba-build-${Date.now()}` :
     process.argv.includes("--play-owned") ? `tmp/play-owned-build-${Date.now()}` :
     process.argv.includes("--owned-collection") ? `tmp/owned-collection-build-${Date.now()}` :
     process.argv.includes("--card-consistency")

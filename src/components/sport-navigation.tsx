@@ -1,5 +1,6 @@
 "use client";
 import { useSport } from "./sport-context";
+import { isHiddenWorkspaceSport } from "@/core/workspace-sport";
 
 const sports = [
   ["nfl", "NFL"],
@@ -14,21 +15,23 @@ export function SportNavigation() {
   return (
     <div className="workspace-sport-navigation">
       <nav className="owned-sports" aria-label="Sport">
-        {sports.map(([key, label]) => (
-          <button
-            type="button"
-            key={key}
-            disabled={
-              !ready ||
-              !capabilitiesReady ||
-              (key !== "nfl" && !beta.includes(key))
-            }
-            aria-pressed={sport === key}
-            onClick={() => change(key)}
-          >
-            {label}
-          </button>
-        ))}
+        {sports
+          .filter(([key]) => !isHiddenWorkspaceSport(key))
+          .map(([key, label]) => (
+            <button
+              type="button"
+              key={key}
+              disabled={
+                !ready ||
+                !capabilitiesReady ||
+                (key !== "nfl" && !beta.includes(key))
+              }
+              aria-pressed={sport === key}
+              onClick={() => change(key)}
+            >
+              {label}
+            </button>
+          ))}
       </nav>
       {notice && (
         <p role="status" className="form-help">

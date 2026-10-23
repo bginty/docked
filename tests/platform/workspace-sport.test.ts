@@ -6,7 +6,7 @@ import {
 } from "../../src/core/workspace-sport";
 
 test("explicit sport overrides saved preference, including returning to NFL", () => {
-  for (const sport of ["nfl", "basketball", "afl", "nrl", "football"]) {
+  for (const sport of ["nfl", "afl", "nrl", "football"]) {
     assert.equal(workspaceSport(sport, "basketball"), sport);
     assert.equal(workspaceSport(undefined, sport), sport);
   }
@@ -14,6 +14,10 @@ test("explicit sport overrides saved preference, including returning to NFL", ()
   assert.equal(workspaceSport(["afl"], "nrl"), "nrl");
   assert.equal(workspaceSport("invalid", "invalid"), "nfl");
   assert.equal(workspaceSport("__proto__", {}), "nfl");
+  assert.equal(workspaceSport(undefined, "basketball"), "nfl");
+  assert.equal(workspaceSport("basketball", "basketball"), "nfl");
+  assert.equal(workspaceSport("basketball", "afl"), "afl");
+  assert.equal(workspaceSport("basketball", "nrl"), "nrl");
 });
 
 test("only private Play, Cards and Packs use gated client loading; NFL and shared wallet retain server loading", () => {
