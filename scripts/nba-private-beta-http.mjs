@@ -126,6 +126,8 @@ for (const path of [
   else {
     assert([200, 303, 307].includes(status));
     assert(!body.includes("FUNCTION_INVOCATION_FAILED"));
+    if (path.startsWith("/fantasy/history") && status === 200)
+      assert(body.includes(">Sign in<"), `${path}: missing sign-in recovery`);
   }
   checks.push({ path, status, passed: true });
 }

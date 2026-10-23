@@ -6,12 +6,17 @@ const out = "docs/qa/global-sport/release";
 const release = JSON.parse(
   await fs.readFile(out + "/deployment-promoted.json", "utf8"),
 );
+console.log("Checking live release identity");
 const identity = await (
-  await fetch("https://docked.com.au/api/beta-release", { cache: "no-store" })
+  await fetch("https://docked.com.au/api/beta-release", {
+    cache: "no-store",
+    signal: AbortSignal.timeout(30000),
+  })
 ).json();
 assert.equal(identity.commit, release.commit);
 assert.equal(identity.publicRegistration, false);
-const browser = await chromium.launch({ channel: "msedge" }),
+console.log("Launching isolated signed-out browser");
+const browser = await chromium.launch({ channel: "msedge", timeout: 45000 }),
   checks = [];
 try {
   for (const width of [412, 1440]) {
@@ -26,12 +31,17 @@ try {
       "/fantasy/history?sport=afl",
       "/fantasy/history?sport=nrl",
     ]) {
+      console.log(JSON.stringify({ checking: path, width }));
       const start = performance.now();
       await page.goto("https://docked.com.au" + path, {
         waitUntil: "domcontentloaded",
+        timeout: 30000,
       });
       await expect(
-        page.getByRole("link", { name: "Sign in", exact: true }),
+        page
+          .getByRole("link", { name: "Sign in", exact: true })
+          .or(page.getByRole("button", { name: "Sign in", exact: true }))
+          .first(),
       ).toBeVisible({ timeout: 20000 });
       await expect(
         page.locator(".historical-match,.social-timeline,.owned-grid"),
