@@ -38,3 +38,14 @@ Screenshots in this folder are explicitly local visual fixtures. Representative 
 No attached signed-in browser session was available. Authenticated Production gameplay, purchases and tester-specific acceptance are **not claimed**. Release receipts separately record deployment and signed-out hosted health/access checks. Real NBA/AFL/NRL statistics remain disconnected; no synthetic result is described as real. Permanent issuance, wallets, supply, pricing, existing ownership and NFL scoring are unchanged.
 
 Deployment URL, exact commit and final database outcome are recorded in `release/deployment-submitted.json`, `release/deployment-promoted.json` and `release/database-apply.json` when those steps complete.
+
+## Live release result
+
+- **Deployed:** https://docked.com.au, application commit `a2fdd38a703cb50946424812aa4e432b28614489`, Vercel deployment `dpl_Cd4wPZcFJJJNSY85VLuT2aMZYPxi`, READY. Build URL: https://docked-production-lra0s8gmc-briant-s-projects.vercel.app.
+- **Migration applied and verified:** ten V2 successor test rounds added; original NBA competitions and saved selections retained. Protected record hashes were identical immediately before and after the migration. The NFL scheduled feed can continue its ordinary updates independently.
+- **Hosted checks:** 19 health/access checks passed both before promotion and on the live domain. Registration remains closed; anonymous requests cannot read private sport, wallet, marketplace or owner data.
+- **Hosted browser:** 20 signed-out route and recovery checks passed at 412/1440 pixels for NBA/AFL/NRL pack links, history and login return paths. No stuck loading screen or uncaught browser error in these journeys. This does not establish authenticated pack-purchase acceptance.
+- **Published metadata:** live jersey attribution/evidence exactly matches the committed artifact (517 NBA, 542 AFL).
+- **Acceptance gap:** no signed-in Production session was available. Member-specific collection, purchase and gameplay acceptance is not claimed. Local component, scoring and SQL evidence remains separately labelled.
+
+Open the **Rarity scoring** NBA rounds to test the new multipliers. An existing saved team under **Original scoring** remains governed by its original immutable contract; no historical conversion or prize recalculation occurred.
