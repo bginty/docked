@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-23T20:44:18.611Z",
+  "liveCommit": "f04a5ab92e766b1c12760586473d4694540d2b29",
+  "liveUrl": "https://docked.com.au",
+  "stagedHttpChecksPassed": 19,
+  "liveHttpChecksPassed": 19,
+  "runtimeLogWindowMinutes": 10,
+  "errorFatalEventsReturned": 2,
+  "runtimeAssessment": "Both returned events were expected authentication denials from signed-out Play probes. No sport_beta_read_failed event or other error was returned in this window.",
+  "logDrains": 0,
+  "authenticatedHostedAcceptance": false,
+  "databaseMutationOrMigration": false,
+  "activationChanges": false,
+  "rollbackCommit": "684dd79d56300bf4b68063bd8585de16190565d0"
+}

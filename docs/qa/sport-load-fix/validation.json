@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-23T20:42:10.969Z",
+  "commit": "f04a5ab92e766b1c12760586473d4694540d2b29",
+  "rootCause": "The new sportSandbox team-name read called beta_fantasy.my_team_name without transaction-local docked.fantasy_channel and docked.fantasy_production. Existing production_eligible guards reject the call; the sports API incorrectly mapped every server error to 403 and the UI described account verification as the cause.",
+  "correction": "Supply the same transaction-local channel/project/preview context used by NFL for the shared name read. Preserve all admission, ownership, consent and MFA guards. Distinguish 401/403/503 and log only stage plus sanitized error code.",
+  "hostedSchemaReadback": {
+    "channel": "beta",
+    "productionRef": "pojoymtniryarxxunyvz",
+    "runtimeTeamNameExecute": true,
+    "aflGate": true,
+    "nrlGate": true
+  },
+  "results": {
+    "platform": {
+      "passed": 612,
+      "failed": 0
+    },
+    "database": {
+      "passed": 5,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "finalUiLint": "passed"
+  },
+  "databaseTestScope": "Disposable PGlite, actual service bundle and all migrations; real production eligibility/channel/project/consent chain restored. Synthetic Auth transport only. Application database role used. Valid per-user owned inventory/name and denial for expired consent/revoked access; context reset between transactions. NFL regression and AFL/NRL isolation passed.",
+  "hostedBuild": {
+    "status": "READY",
+    "deploymentId": "dpl_6wMURF6fSDeaY24VbX3ZmtyzmKzD",
+    "durationMs": 40838
+  },
+  "authenticatedHostedAcceptance": false,
+  "productionDatabaseMutations": 0,
+  "newMigration": false,
+  "featureFlagChanges": false,
+  "originalCoverageGap": "Earlier tests replaced production_eligible and did not invoke the newly added guarded name lookup through the actual sport service. Earlier hosted HTTP checks were unauthenticated.",
+  "knownLimit": "Browser remained logged out; no member credentials or MFA bypass used. Owner sign-in requested for real hosted UI acceptance."
+}
