@@ -40,19 +40,28 @@ export function NbaBetaScreen({
   const [limit, setLimit] = useState(36);
   const [inspecting, setInspecting] = useState<ViewerCard | null>(null);
   const [selling, setSelling] = useState<ViewerCard | null>(null);
-  const [error, setError] = useState(false),
+  const [error, setError] = useState<string | null>(null),
     [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let disposed = false;
+    let failureMessage = "Your lineup could not load. Please retry shortly.";
     const controller = new AbortController();
-    setError(false);
+    setError(null);
     setState(null);
     void boundedFetch(
       `${apiPath}${apiPath.includes("?") ? "&" : "?"}view=${surface === "prizes" ? "prizes" : "state"}`,
       { cache: "no-store", signal: controller.signal },
     )
       .then(async (r) => {
-        if (!r.ok) throw Error("Unavailable");
+        if (!r.ok) {
+          failureMessage =
+            r.status === 401
+              ? "Please sign in again to load your lineup."
+              : r.status === 403
+                ? "Check your beta access and required account verification, then retry."
+                : failureMessage;
+          throw Error("Sport request failed");
+        }
         const data = await r.json();
         if (data.state?.sport !== sport) throw Error("Sport response mismatch");
         if (!disposed) {
@@ -61,7 +70,7 @@ export function NbaBetaScreen({
         }
       })
       .catch(() => {
-        if (!disposed) setError(true);
+        if (!disposed) setError(failureMessage);
       });
     return () => {
       disposed = true;
@@ -71,11 +80,8 @@ export function NbaBetaScreen({
   if (error)
     return (
       <section className="fantasy-panel">
-        <h1>{label} private beta</h1>
-        <p role="alert">
-          {label} testing is unavailable. Check your beta access and required
-          account verification, then retry.
-        </p>
+        <h1>{label} lineup</h1>
+        <p role="alert">{error}</p>
         <button onClick={() => setAttempt((n) => n + 1)}>Retry</button>
       </section>
     );

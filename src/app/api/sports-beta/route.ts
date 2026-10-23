@@ -8,6 +8,7 @@ import { memberPrizes } from "@/server/member-release";
 export const dynamic = "force-dynamic";
 const headers = { "Cache-Control": "private, no-store" };
 export async function GET(req: Request) {
+  let stage = "access";
   try {
     const allowed = await sportsBetaCapabilities();
     const url = new URL(req.url),
@@ -20,6 +21,7 @@ export async function GET(req: Request) {
       return Response.json({ allowed }, { headers });
     if (!sport || !isBetaSport(sport) || !allowed.includes(sport))
       throw Error("Denied");
+    stage = "state";
     const result = await sportSandbox(sport);
     if (url.searchParams.get("view") === "standings")
       return Response.json(
@@ -35,10 +37,35 @@ export async function GET(req: Request) {
         { headers },
       );
     return Response.json(result, { headers });
-  } catch {
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    const status =
+      message === "Authentication required"
+        ? 401
+        : message === "Privileged MFA required" || message === "Denied"
+          ? 403
+          : 503;
+    if (status === 503) {
+      const code = (error as { code?: unknown } | null)?.code;
+      console.error("sport_beta_read_failed", {
+        stage,
+        code:
+          typeof code === "string" && /^[A-Z0-9_]{1,30}$/.test(code)
+            ? code
+            : "UNAVAILABLE",
+      });
+    }
     return Response.json(
-      { allowed: [], error: "Verified private beta access required." },
-      { status: 403, headers },
+      {
+        allowed: [],
+        error:
+          status === 401
+            ? "Please sign in again."
+            : status === 403
+              ? "Verified private beta access required."
+              : "Unable to load this sport right now. Please retry.",
+      },
+      { status, headers },
     );
   }
 }

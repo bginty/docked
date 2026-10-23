@@ -33,6 +33,11 @@ export async function multiSportDatabase(
   await pg.exec(`create schema qa; create function qa.now() returns timestamptz language sql as $$select coalesce(nullif(current_setting('qa.now',true),''),'2099-01-01T00:00:00Z')::timestamptz$$;
   do $$declare r record;begin for r in select p.oid from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('sports_feed','beta_fantasy') and p.prokind='f' and position('clock_timestamp()' in p.prosrc)>0 loop execute replace(pg_get_functiondef(r.oid),'clock_timestamp()','qa.now()');end loop;end$$;`);
   // Transport-only local fixture adapters; all command/locks/privacy/rollover SQL stays real.
+  const productionEligibility = (
+    await q(
+      "select pg_get_functiondef('beta_fantasy.production_eligible()'::regprocedure) definition",
+    )
+  )[0].definition;
   await pg.exec(
     `create or replace function beta_fantasy.production_eligible() returns uuid language sql as $$select auth.uid()$$;create or replace function beta_private.active_member_session() returns boolean language sql as $$select auth.uid() is not null$$;`,
   );
@@ -174,6 +179,7 @@ export async function multiSportDatabase(
     config,
     asUser,
     sessions,
+    restoreProductionEligibility: () => pg.exec(productionEligibility),
     command,
     state,
   };

@@ -11,6 +11,7 @@ import { assertPrivatePreview } from "@/core/private-preview.mjs";
 import { previewParticipantMatches } from "@/core/preview-owner";
 import { verifiedSessionClaims } from "@/core/auth-policy";
 import { db, rateLimit } from "./db";
+import productionManifest from "../../config/hosted-production.json";
 import {
   sandboxScoreView,
   sandboxHistoricalRanks,
@@ -40,9 +41,14 @@ export async function sportSandbox(sport: string, input?: unknown) {
       const state = (
         await tx`select sports_feed.sport_sandbox_state(${sport}) state`
       )[0].state as SandboxState;
-      if (privateBeta)
+      if (privateBeta) {
+        // The shared, immutable team name uses the existing production consent
+        // guard as well as sport admission. Supply its transaction-local context
+        // exactly as the NFL reader does; never bypass that guard for other sports.
+        await tx`select set_config('docked.fantasy_channel',${process.env.DOCKED_RELEASE_CHANNEL ?? "stable"},true),set_config('docked.fantasy_production',${productionManifest.supabaseProjectRef},true),set_config('docked.fantasy_preview','',true)`;
         state.team_name =
           (await tx`select fantasy.my_team_name() name`)[0].name ?? undefined;
+      }
       if (
         ["afl", "nrl"].includes(sport) ||
         (sport === "basketball" &&
