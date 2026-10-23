@@ -9,16 +9,21 @@ import { useRouter } from "next/navigation";
 import type { AwardedCard } from "@/core/pack-opening";
 import { boundedFetch } from "@/core/bounded-request";
 
-export function useSocialHub(handle?: string) {
+export function useSocialHub(
+  handle?: string,
+  enabled = true,
+  includeCards = true,
+) {
   const [data, setData] = useState<SocialHub | null>(null),
     [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
   useEffect(() => {
+    if (!enabled) return;
     const controller = new AbortController();
     setData(null);
     setError("");
     boundedFetch(
-      `/api/community?view=hub${handle ? `&handle=${encodeURIComponent(handle)}` : ""}`,
+      `/api/community?view=hub${handle ? `&handle=${encodeURIComponent(handle)}` : ""}${includeCards ? "" : "&cards=false"}`,
       { cache: "no-store", signal: controller.signal },
     )
       .then(async (r) => {
@@ -31,7 +36,7 @@ export function useSocialHub(handle?: string) {
         if (!controller.signal.aborted) setError(e.message);
       });
     return () => controller.abort();
-  }, [handle, attempt]);
+  }, [handle, attempt, enabled, includeCards]);
   return { data, error, reload: () => setAttempt((value) => value + 1) };
 }
 export function ProfileCollection({ handle }: { handle?: string }) {
@@ -390,7 +395,7 @@ function Collection({ data }: { data: SocialHub }) {
   );
 }
 export function CommunityDirectory() {
-  const { data, error } = useSocialHub();
+  const { data, error, reload } = useSocialHub(undefined, true, false);
   const router = useRouter();
   const [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
@@ -401,7 +406,7 @@ export function CommunityDirectory() {
       await communityAction(body);
       setMessage("Saved. Refreshing communities…");
       router.refresh();
-      location.reload();
+      reload();
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "Not confirmed");
     } finally {
@@ -411,7 +416,11 @@ export function CommunityDirectory() {
   return (
     <section className="social-communities">
       <h2>Communities</h2>
-      {error && <p role="alert">{error}</p>}
+      {error && (
+        <p role="alert">
+          {error} <button onClick={reload}>Retry communities</button>
+        </p>
+      )}
       {!data && !error && <p>Loading communities…</p>}
       {data?.communities.length === 0 && (
         <p>No communities have been created yet.</p>

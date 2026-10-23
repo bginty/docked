@@ -119,7 +119,12 @@ export function SportProvider({ children }: { children: ReactNode }) {
   }, [memberArea, capabilityAttempt]);
   useEffect(() => {
     const read = () => {
-      const requested = new URLSearchParams(location.search).get("sport");
+      // Social is global. Old shared Social URLs must not change a member's
+      // Play/Cards/Market preference or narrow their social network.
+      const requested =
+        /^\/(fantasy\/social|feed|following|community|compose)(\/|$)/.test(path)
+          ? null
+          : new URLSearchParams(location.search).get("sport");
       // Unsupported deep links remain explicit instead of displaying another sport's data.
       let saved: string | null = null;
       try {
@@ -206,42 +211,6 @@ export function SportProvider({ children }: { children: ReactNode }) {
   );
 }
 export const useSport = () => useContext(SportContext);
-export function SportSelector({ mobile = false }: { mobile?: boolean }) {
-  const { sport, change, notice, nba, beta } = useSport();
-  return (
-    <label
-      className={`shell-sport ${mobile ? "shell-sport-mobile" : "shell-sport-desktop"}`}
-    >
-      <span>Sport</span>
-      <select
-        aria-label={mobile ? "Active sport" : "Active sport desktop"}
-        value={sport}
-        onChange={(e) => change(e.target.value as Sport)}
-      >
-        {Object.entries(sports).map(([id, label]) => (
-          <option
-            key={id}
-            value={id}
-            disabled={
-              id !== "nfl" &&
-              !(id === "basketball" && nba) &&
-              !(isBetaSport(id) && beta.includes(id))
-            }
-          >
-            {label}
-            {(id === "basketball" && nba) ||
-            (isBetaSport(id) && beta.includes(id))
-              ? " · Private beta"
-              : id !== "nfl"
-                ? " · Coming soon"
-                : ""}
-          </option>
-        ))}
-      </select>
-      {notice && <small role="status">{notice}</small>}
-    </label>
-  );
-}
 export function SportScope({ children }: { children: ReactNode }) {
   const {
     sport,
@@ -276,7 +245,8 @@ export function SportScope({ children }: { children: ReactNode }) {
       ).get("view") !== "packs"
     )
       return children;
-    if (path === "/fantasy/cards") return children;
+    if (path === "/fantasy/cards" || path === "/fantasy/history")
+      return children;
     if (path === "/fantasy/play")
       return (
         <Suspense fallback={<p role="status">Loading your team…</p>}>

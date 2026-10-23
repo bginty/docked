@@ -1,0 +1,67 @@
+{
+  "platform": 607,
+  "database": 212,
+  "statisticsService": 112,
+  "typecheck": true,
+  "lint": true,
+  "build": true,
+  "clientSecretCanary": true,
+  "browserFixtureChecks": [
+    {
+      "sport": "afl",
+      "width": 412,
+      "usableMs": 1167,
+      "pageSize": 20
+    },
+    {
+      "sport": "nrl",
+      "width": 412,
+      "usableMs": 1101,
+      "pageSize": 20
+    },
+    {
+      "width": 412,
+      "persistentSport": true,
+      "noDocumentReload": true,
+      "socialAcrossSports": true,
+      "lazyInventory": true,
+      "communityJoinLeave": true
+    },
+    {
+      "sport": "afl",
+      "width": 1440,
+      "usableMs": 363,
+      "pageSize": 20
+    },
+    {
+      "sport": "nrl",
+      "width": 1440,
+      "usableMs": 378,
+      "pageSize": 20
+    },
+    {
+      "width": 1440,
+      "persistentSport": true,
+      "noDocumentReload": true,
+      "socialAcrossSports": true,
+      "lazyInventory": true,
+      "communityJoinLeave": true
+    }
+  ],
+  "historyPayloadBytes": [
+    7232,
+    7244,
+    7241,
+    8380,
+    8364,
+    8311,
+    7232,
+    7244,
+    7241,
+    8380,
+    8364,
+    8311
+  ],
+  "migrationCount": 0,
+  "authenticatedHostedAcceptance": false
+}

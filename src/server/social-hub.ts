@@ -5,7 +5,7 @@ import { hubAction, collectionAllowed } from "../core/social-hub";
 import { z } from "zod";
 import { privateOfferEnabled } from "../core/private-card-offers";
 
-export async function socialHub(handle?: string) {
+export async function socialHub(handle?: string, includeCards = true) {
   return withCommunityActor(
     "public_profiles",
     false,
@@ -26,9 +26,10 @@ export async function socialHub(handle?: string) {
         following,
         true,
       );
-      const inventory = visible
-        ? await socialInventory(tx, String(target.user_id))
-        : [];
+      const inventory =
+        visible && includeCards
+          ? await socialInventory(tx, String(target.user_id))
+          : [];
       const communities =
         await tx`select c.id,c.name,c.description,c.rules,c.sport,c.status,
       (select count(*)::int from private.social_community_members m where m.community_id=c.id) members,

@@ -231,7 +231,10 @@ async function projectPosts(
       r.moderation_status === "visible" && !r.deleted_at
         ? r.card_snapshots
         : [],
-      { sport: r.sport ? String(r.sport) : null, playerId: r.player_id ? String(r.player_id) : null },
+      {
+        sport: r.sport ? String(r.sport) : null,
+        playerId: r.player_id ? String(r.player_id) : null,
+      },
     );
     return {
       id: String(r.id),
@@ -327,7 +330,8 @@ export async function communityFeed(
       nextCursor: null as string | null,
     },
     async (c) => {
-      const result = await selectPosts(c, options);
+      // Workspace sport is never a Social audience restriction.
+      const result = await selectPosts(c, { ...options, sport: undefined });
       const found =
         await c.tx`select id from private.social_profiles where private.social_profile_visible(${c.profileId},id,false) and id is distinct from ${c.profileId} order by is_official desc,joined_at desc,id limit 8`;
       return {
@@ -975,10 +979,16 @@ export async function mutateCommunity(input: unknown) {
           actor.user.id,
           action.cardIds,
         );
-        if (snapshots.some((card) =>
-          (action.sport && card.sport !== action.sport) ||
-          (action.playerId && card.player_id !== action.playerId)
-        )) throw Error("Attached cards must match the selected sport and player.");
+        if (
+          snapshots.some(
+            (card) =>
+              (action.sport && card.sport !== action.sport) ||
+              (action.playerId && card.player_id !== action.playerId),
+          )
+        )
+          throw Error(
+            "Attached cards must match the selected sport and player.",
+          );
         if (
           action.playerId &&
           !(

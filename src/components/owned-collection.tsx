@@ -31,7 +31,6 @@ const Viewer = lazy(() =>
 const Packs = lazy(() =>
   import("./collection-packs").then((m) => ({ default: m.CollectionPacks })),
 );
-const labels = { nfl: "NFL", basketball: "NBA", afl: "AFL", nrl: "NRL" };
 // Memory only, scoped to the authenticated member. No persistent private inventory.
 const cache = new Map<string, { page: CollectionPage; at: number }>();
 let cacheMember = "";
@@ -64,7 +63,7 @@ const Tile = memo(function Tile({
 });
 
 export function OwnedCollection({ member }: { member: string }) {
-  const { sport, change, beta } = useSport();
+  const { sport } = useSport();
   const [tab, setTab] = useState<"cards" | "packs">("cards");
   useEffect(() => {
     const read = () =>
@@ -90,18 +89,6 @@ export function OwnedCollection({ member }: { member: string }) {
   return (
     <section className="owned-collection">
       <StartupReady />
-      <nav className="owned-sports" aria-label="Collection sport">
-        {collectionSports.map((s) => (
-          <button
-            key={s}
-            disabled={s !== "nfl" && !beta.includes(s)}
-            aria-pressed={sport === s}
-            onClick={() => change(s)}
-          >
-            {labels[s]}
-          </button>
-        ))}
-      </nav>
       <nav className="owned-tabs" aria-label="Collection navigation">
         <button
           aria-pressed={tab === "cards"}

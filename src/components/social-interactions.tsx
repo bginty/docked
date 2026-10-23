@@ -388,6 +388,17 @@ export function SocialCard({
         <div className="social-shared-cards">
           {post.cardSnapshots.map((card) => (
             <div key={card.id}>
+              <span className="social-card-sport">
+                {(
+                  {
+                    nfl: "NFL",
+                    basketball: "NBA",
+                    afl: "AFL",
+                    nrl: "NRL",
+                    football: "EPL",
+                  } as Record<string, string>
+                )[card.sport] ?? card.sport.toUpperCase()}
+              </span>
               <FantasyCardArtwork
                 card={card}
                 faceOnly

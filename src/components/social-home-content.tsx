@@ -15,7 +15,6 @@ export function SocialHomeContent({
   view,
   communityId,
   playerId,
-  sport,
   announcements,
 }: {
   announcements: PublishedAnnouncement[] | null;
@@ -36,12 +35,20 @@ export function SocialHomeContent({
           <h1>Community</h1>
           <p>Talk cards. Build your squad.</p>
         </div>
-        <Link
-          className="pack-control secondary"
-          href="/fantasy/social?tab=discover"
-        >
-          Find people
-        </Link>
+        <div className="actions">
+          <Link
+            className="pack-control secondary"
+            href="/fantasy/social?tab=communities"
+          >
+            Communities
+          </Link>
+          <Link
+            className="pack-control secondary"
+            href="/fantasy/social?tab=discover"
+          >
+            Find people
+          </Link>
+        </div>
       </header>
       {pinned && selected !== "announcements" && (
         <OfficialAnnouncement item={pinned} compact />
@@ -103,7 +110,6 @@ export function SocialHomeContent({
               <div id="social-compose" tabIndex={-1}>
                 <SocialComposer
                   inline
-                  initialSport={sport ?? "nfl"}
                   memberName={feed.viewer?.displayName}
                   memberProfile={feed.viewer}
                   communityId={communityId}
@@ -114,7 +120,6 @@ export function SocialHomeContent({
                 feed={feed}
                 base="/fantasy/social"
                 tab={tab === "for_you" ? "latest" : tab}
-                sport={sport}
                 communityId={communityId}
                 playerId={playerId}
               />

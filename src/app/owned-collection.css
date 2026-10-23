@@ -4,6 +4,101 @@
   padding: 4px 0 24px;
   min-width: 0;
 }
+.workspace-sport-navigation {
+  max-width: 1180px;
+  margin: 0 auto 12px;
+  min-width: 0;
+}
+.workspace-sport-navigation button:focus-visible {
+  outline: 2px solid #71d5ff;
+  outline-offset: 2px;
+}
+.sport-beta-details {
+  color: #abc0d4;
+  font-size: 0.8rem;
+  margin: 8px 0 16px;
+}
+.sport-beta-details summary {
+  cursor: pointer;
+  min-height: 32px;
+}
+.sport-beta-details p {
+  max-width: 75ch;
+  margin: 8px 0;
+}
+.social-card-sport {
+  display: block;
+  font-size: 0.7rem;
+  color: #8bc5f4;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.historical-matches {
+  max-width: 1000px;
+  margin: auto;
+}
+.historical-matches header h1 {
+  margin-bottom: 6px;
+}
+.historical-matches header p {
+  color: #aebed0;
+  font-size: 0.9rem;
+}
+.historical-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.historical-filters label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.historical-filters select {
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+}
+.historical-match-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.historical-match {
+  background: #0b1a2a;
+  border: 1px solid #253e58;
+  padding: 16px;
+  border-radius: 14px;
+  min-width: 0;
+}
+.historical-match > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 10px 0;
+}
+.historical-match small,
+.historical-match p {
+  color: #aebed0;
+  font-size: 0.75rem;
+}
+.historical-match a {
+  font-size: 0.75rem;
+}
+@media (max-width: 700px) {
+  .historical-match-list {
+    grid-template-columns: 1fr;
+  }
+  .social-page-heading > .actions {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .social-page-heading > .actions > a {
+    font-size: 0.75rem;
+    padding: 8px;
+  }
+}
 .owned-sports,
 .owned-tabs {
   display: flex;
@@ -236,8 +331,4 @@
   .owned-collection * {
     scroll-behavior: auto;
   }
-}
-.community-shell[data-workspace="cards"]:has(.owned-collection)
-  .shell-mobile-sport {
-  display: none;
 }

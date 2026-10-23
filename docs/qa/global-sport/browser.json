@@ -1,0 +1,296 @@
+{
+  "passed": true,
+  "scope": "Isolated React HTTP fixture, real archive data. Not authenticated Production. Mobile CPU 4x; localhost network.",
+  "checks": [
+    {
+      "sport": "afl",
+      "width": 412,
+      "usableMs": 1167,
+      "pageSize": 20
+    },
+    {
+      "sport": "nrl",
+      "width": 412,
+      "usableMs": 1101,
+      "pageSize": 20
+    },
+    {
+      "width": 412,
+      "persistentSport": true,
+      "noDocumentReload": true,
+      "socialAcrossSports": true,
+      "lazyInventory": true,
+      "communityJoinLeave": true
+    },
+    {
+      "sport": "afl",
+      "width": 1440,
+      "usableMs": 363,
+      "pageSize": 20
+    },
+    {
+      "sport": "nrl",
+      "width": 1440,
+      "usableMs": 378,
+      "pageSize": 20
+    },
+    {
+      "width": 1440,
+      "persistentSport": true,
+      "noDocumentReload": true,
+      "socialAcrossSports": true,
+      "lazyInventory": true,
+      "communityJoinLeave": true
+    }
+  ],
+  "requests": [
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19066
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 153
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 160
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20169
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 20131
+    },
+    {
+      "url": "/api/marketplace?tab=browse&sport=basketball",
+      "bytes": 896
+    },
+    {
+      "url": "/api/community?view=offers",
+      "bytes": 55
+    },
+    {
+      "url": "/api/marketplace?sport=basketball&tab=browse",
+      "bytes": 896
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20164
+    },
+    {
+      "url": "/api/nba-beta?view=state",
+      "bytes": 218
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 160
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20095
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19066
+    },
+    {
+      "url": "/api/community?view=feed&tab=latest&cursor=next-fixture-page",
+      "bytes": 403
+    },
+    {
+      "url": "/api/community?view=hub",
+      "bytes": 343
+    },
+    {
+      "url": "/api/community?view=hub&cards=false",
+      "bytes": 343
+    },
+    {
+      "url": "/api/community",
+      "bytes": 11
+    },
+    {
+      "url": "/api/community?view=hub&cards=false",
+      "bytes": 342
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 160
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20133
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19878
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=afl&team=&round=&page=0",
+      "bytes": 7232
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=afl&team=&round=&page=1",
+      "bytes": 7244
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=afl&team=Adelaide&round=&page=0",
+      "bytes": 7241
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19890
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=nrl&team=&round=&page=0",
+      "bytes": 8380
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=nrl&team=&round=&page=1",
+      "bytes": 8364
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=nrl&team=Brisbane+Broncos&round=&page=0",
+      "bytes": 8311
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19075
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 153
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 160
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20160
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 20185
+    },
+    {
+      "url": "/api/marketplace?tab=browse&sport=basketball",
+      "bytes": 896
+    },
+    {
+      "url": "/api/community?view=offers",
+      "bytes": 55
+    },
+    {
+      "url": "/api/marketplace?sport=basketball&tab=browse",
+      "bytes": 896
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20153
+    },
+    {
+      "url": "/api/nba-beta?view=state",
+      "bytes": 218
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 160
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20151
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19057
+    },
+    {
+      "url": "/api/community?view=feed&tab=latest&cursor=next-fixture-page",
+      "bytes": 403
+    },
+    {
+      "url": "/api/community?view=hub",
+      "bytes": 342
+    },
+    {
+      "url": "/api/community?view=hub&cards=false",
+      "bytes": 342
+    },
+    {
+      "url": "/api/community",
+      "bytes": 11
+    },
+    {
+      "url": "/api/community?view=hub&cards=false",
+      "bytes": 343
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 160
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20181
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19875
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=afl&team=&round=&page=0",
+      "bytes": 7232
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=afl&team=&round=&page=1",
+      "bytes": 7244
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=afl&team=Adelaide&round=&page=0",
+      "bytes": 7241
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19853
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=nrl&team=&round=&page=0",
+      "bytes": 8380
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=nrl&team=&round=&page=1",
+      "bytes": 8364
+    },
+    {
+      "url": "/api/fantasy/match-history?sport=nrl&team=Brisbane+Broncos&round=&page=0",
+      "bytes": 8311
+    }
+  ]
+}

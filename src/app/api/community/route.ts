@@ -47,7 +47,10 @@ export async function GET(request: Request) {
             targetCard: params.get("targetCard") ?? undefined,
           })
         : view === "hub"
-          ? await socialHub(params.get("handle") ?? undefined)
+          ? await socialHub(
+              params.get("handle") ?? undefined,
+              params.get("cards") !== "false",
+            )
           : view === "profile"
             ? await communityProfile(params.get("handle") ?? undefined, {
                 cursor: params.get("cursor") ?? undefined,
@@ -63,7 +66,6 @@ export async function GET(request: Request) {
                       tab: z
                         .enum(["for_you", "following", "latest"])
                         .parse(params.get("tab") ?? "latest"),
-                      sport: params.get("sport") ?? undefined,
                       cursor: params.get("cursor") ?? undefined,
                       playerId: params.get("player") ?? undefined,
                       communityId: params.has("community")

@@ -176,7 +176,6 @@ export default async function FantasyPage({
       feed = await boundedRead(
         communityFeed({
           tab: feedTab,
-          sport: query.sport,
           cursor: query.cursor,
           communityId: z.string().uuid().safeParse(query.community).success
             ? query.community
@@ -215,7 +214,6 @@ export default async function FantasyPage({
               : undefined
           }
           playerId={query.player?.slice(0, 150)}
-          sport={query.sport}
         />
       </AppShell>
     );

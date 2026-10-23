@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
 import { sandboxCardView } from "@/core/sandbox-card-view";
 import { nbaRarityWeeklyVersion } from "@/core/additional-sport-statistics";
@@ -402,14 +403,28 @@ export function SportSandbox({
             ))}
         </nav>
       )}
-      <p className="sport-sandbox-notice">
-        {privateBeta
-          ? `${sport?.label ?? state.sport} testing · ${state.cards.some((c) => c.inventory_class === "real-roster-beta-v1") ? "Real-player roster cards; test rounds only. Real game statistics are not connected." : "Fictional players and simulated statistics."} ${state.sport === "basketball" ? "" : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
-          : nbaProposal
-            ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
-            : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
-      </p>
+      <details className="sport-beta-details">
+        <summary>
+          Test rounds · No prizes
+          {state.sport !== "basketball" ? " · Provisional rules" : ""}
+        </summary>
+        <p>
+          {privateBeta
+            ? `${sport?.label ?? state.sport} testing · ${state.cards.some((c) => c.inventory_class === "real-roster-beta-v1") ? "Real-player roster cards; test rounds only. Real game statistics are not connected." : "Fictional players and simulated statistics."} ${state.sport === "basketball" ? "" : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
+            : nbaProposal
+              ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
+              : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
+        </p>
+      </details>
       <div className="sport-sandbox-controls">
+        {privateBeta && ["afl", "nrl"].includes(state.sport) && (
+          <Link
+            className="button ghost"
+            href={`/fantasy/history?sport=${state.sport}`}
+          >
+            2026 match results
+          </Link>
+        )}
         <label>
           Competition{" "}
           <select

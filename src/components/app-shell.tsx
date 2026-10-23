@@ -10,7 +10,8 @@ import {
   type ReactNode,
 } from "react";
 import { AppIcon, type AppIconName } from "./app-icon";
-import { SportSelector, SportScope, useSport } from "./sport-context";
+import { SportScope, useSport } from "./sport-context";
+import { SportNavigation } from "./sport-navigation";
 import { PwaStatus } from "./pwa-status";
 import { WorkspaceWalletProvider } from "./use-workspace-wallet";
 import { WorkspaceWalletLink } from "./workspace-wallet-link";
@@ -157,7 +158,6 @@ export function AppShell({
             <FantasyLogo />
           </Link>
 
-          <SportSelector />
           <nav aria-label="App navigation">
             {activeNav.map((n) => (
               <Link
@@ -247,15 +247,15 @@ export function AppShell({
               </Link>
             </nav>
           </header>
-          <div className="shell-mobile-sport">
-            <SportSelector mobile />
-          </div>
           <PwaStatus allowInstall={destination === "/fantasy/profile"} />
           <div className="app-content">
             {["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(
               destination,
             ) ? (
-              <SportScope>{children}</SportScope>
+              <>
+                <SportNavigation />
+                <SportScope>{children}</SportScope>
+              </>
             ) : (
               children
             )}

@@ -1,5 +1,6 @@
 "use client";
 import { useId, useState } from "react";
+import Link from "next/link";
 import type {
   PlayerHistory,
   PlayerGameHistory,
@@ -244,6 +245,11 @@ export function PlayerStatistics({
         </label>
       </div>
       <HistorySummary history={history} />
+      {["afl", "nrl"].includes(sport) && !history.played && (
+        <p className="statistics-context">
+          Verified player-game statistics are not yet available.
+        </p>
+      )}
       <p className="statistics-context">
         {historyScoringLabel(history.scoringVersion ?? history.feed?.version)}
       </p>
@@ -360,6 +366,11 @@ export function PlayerStatistics({
             </section>
           )}
           <StatisticsInformation history={history} sport={sport} />
+          {["afl", "nrl"].includes(sport) && (
+            <Link href={`/fantasy/history?sport=${sport}`}>
+              2026 league match results
+            </Link>
+          )}
         </>
       )}
     </section>

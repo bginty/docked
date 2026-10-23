@@ -83,6 +83,7 @@ let evidence = process.argv.includes("--card-consistency")
                                                             ? "docs/qa/mobile-cleanup"
                                                             : "docs/qa/marketplace-release";
 if (process.argv.includes("--owned-collection")) evidence = "docs/qa/owned-collection";
+if (process.argv.includes("--global-sport")) evidence = "docs/qa/global-sport";
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve(

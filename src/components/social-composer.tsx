@@ -10,7 +10,6 @@ import { useSocialHub } from "./social-hub";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { boundedFetch as communityRequest } from "@/core/bounded-request";
-import { useSport } from "./sport-context";
 export function SocialComposer({
   initialSport,
   inline = false,
@@ -35,13 +34,15 @@ export function SocialComposer({
   onPublished?: () => void;
   onCancel?: () => void;
 }) {
-  const { data: hub, error: hubError, reload: reloadCards } = useSocialHub();
-  const { sport: activeSport } = useSport();
-  const [selectedSport, setSelectedSport] = useState(initialSport ?? "");
   const [cardIds, setCards] = useState<string[]>(() =>
     initialCardIds.slice(0, 4),
   );
   const [picker, setPicker] = useState(false);
+  const {
+    data: hub,
+    error: hubError,
+    reload: reloadCards,
+  } = useSocialHub(undefined, picker || cardIds.length > 0);
   const [search, setSearch] = useState("");
   const [imageUpload, setImageUpload] = useState(false);
   const [preview, setPreview] = useState(false);
@@ -63,10 +64,6 @@ export function SocialComposer({
   ];
   const attachmentSport =
     attachmentSports.length === 1 ? attachmentSports[0] : undefined;
-  useEffect(() => {
-    if (attachmentSport) setSelectedSport(attachmentSport);
-    else if (inline && !cardIds.length) setSelectedSport(activeSport);
-  }, [attachmentSport, activeSport, inline, cardIds.length]);
   useEffect(() => {
     const focus = () => {
       if (ready && inline && location.hash === "#social-compose")
@@ -112,7 +109,7 @@ export function SocialComposer({
         action: "post",
         kind: d.get("kind"),
         body,
-        sport: d.get("sport") || undefined,
+        sport: cardIds.length ? attachmentSport : initialSport,
         mediaIds,
         cardIds,
         communityId,
@@ -184,31 +181,6 @@ export function SocialComposer({
                   <option value="analysis">Analysis</option>
                   <option value="question">Question</option>
                   <option value="celebration">Celebration</option>
-                </select>
-              </label>
-              <label>
-                Sport (optional)
-                <select
-                  name="sport"
-                  value={selectedSport}
-                  onChange={(e) => setSelectedSport(e.target.value)}
-                >
-                  <option value="">All sports</option>
-                  {[
-                    "football",
-                    "basketball",
-                    "tennis",
-                    "nfl",
-                    "cricket",
-                    "baseball",
-                    "horse-racing",
-                    "ice-hockey",
-                    "motorsport",
-                    "afl",
-                    "nrl",
-                  ].map((s) => (
-                    <option key={s}>{s}</option>
-                  ))}
                 </select>
               </label>
             </div>
