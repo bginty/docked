@@ -65,6 +65,11 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
+.historical-matches h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+}
 .historical-match {
   background: #0b1a2a;
   border: 1px solid #253e58;

@@ -325,6 +325,7 @@ async function main() {
           ),
           false,
         );
+        await page.getByRole("heading", { level: 1 }).scrollIntoViewIfNeeded();
         await page.screenshot({
           path: `${out}/${sport}-history-${width}.png`,
           fullPage: false,

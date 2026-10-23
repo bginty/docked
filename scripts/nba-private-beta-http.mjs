@@ -110,6 +110,17 @@ for (const path of [
   } else if (path === "/api/status") {
     assert.equal(status, 200);
     assert.equal(JSON.parse(body).registration, "closed");
+  } else if (path.startsWith("/api/community?view=feed") && status === 200) {
+    const data = JSON.parse(body);
+    assert(
+      ["sign_in_required", "restricted", "not_configured"].includes(
+        data.status,
+      ),
+    );
+    assert.deepEqual(data.posts, []);
+    assert.deepEqual(data.profiles, []);
+    assert.equal(data.viewer, null);
+    assert.equal(data.nextCursor, null);
   } else if (path.startsWith("/api/"))
     assert([401, 403].includes(status), `${path}: ${status}`);
   else {
