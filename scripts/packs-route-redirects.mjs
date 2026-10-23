@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { promisify } from "node:util";
 import { execFile } from "node:child_process";
 import assert from "node:assert/strict";
-const evidence = "docs/qa/packs-route/release",
+const evidence = process.env.NBA_RELEASE_EVIDENCE ?? "docs/qa/packs-route/release",
   live = process.argv.includes("--live");
 const receipt = JSON.parse(
   readFileSync(`${evidence}/deployment-submitted.json`, "utf8"),

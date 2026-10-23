@@ -5,6 +5,13 @@ import { memberTestWallet } from "@/server/member-test-wallet";
 import { FantasyLoadError } from "@/components/fantasy-load-error";
 import { memberAccessFailure } from "@/core/member-access-recovery";
 import { StartupReady } from "@/components/startup-loading";
+import { cookies } from "next/headers";
+import {
+  activeSportCookie,
+  workspaceSport,
+  privateSportWorkspace,
+} from "@/core/workspace-sport";
+import { PrivateSportPage } from "@/components/private-sport-page";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Docked · Packs & test wallet",
@@ -13,9 +20,16 @@ export const metadata = {
 export default async function TestWalletPage({
   searchParams,
 }: {
-  searchParams: Promise<{ view?: string }>;
+  searchParams: Promise<{ view?: string; sport?: string }>;
 }) {
-  const { view } = await searchParams;
+  const { view, sport: requested } = await searchParams;
+  if (view === "packs" && process.env.DOCKED_FRIENDS_BETA === "true") {
+    const sport = workspaceSport(
+      requested,
+      (await cookies()).get(activeSportCookie)?.value,
+    );
+    if (privateSportWorkspace("packs", sport)) return <PrivateSportPage />;
+  }
   let data;
   try {
     data = await memberTestWallet(

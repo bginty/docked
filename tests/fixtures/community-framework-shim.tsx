@@ -20,7 +20,9 @@ const fixtureRouter = {
       window as unknown as { fixtureNavigate?: (url: string) => void }
     ).fixtureNavigate?.(url);
   },
-  refresh: () => {},
+  refresh: () => {
+    window.dispatchEvent(new Event("fixture:router-refresh"));
+  },
   replace: (url: string) => {
     Object.assign(window, { demoNavigation: url });
   },

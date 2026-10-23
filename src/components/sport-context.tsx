@@ -6,11 +6,12 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { boundedFetch } from "@/core/bounded-request";
 import { NbaBetaScreen } from "./nba-beta-screen";
 import { SportBetaCommerce } from "./sport-beta-commerce";
 import { isBetaSport, type BetaSport } from "@/core/sports-private-beta";
+import { activeSportCookie, workspaceSport } from "@/core/workspace-sport";
 const sports = {
   nfl: "NFL",
   football: "EPL",
@@ -28,14 +29,22 @@ const SportContext = createContext({
   ready: true,
   nba: false,
   beta: [] as BetaSport[],
+  capabilitiesReady: false,
+  capabilitiesError: false,
+  retryCapabilities: () => {},
 });
 export function SportProvider({ children }: { children: ReactNode }) {
   const path = usePathname();
+  const router = useRouter();
   const [sport, setSport] = useState<Sport>("nfl"),
     [notice, setNotice] = useState("");
   const [ready, setReady] = useState(false);
-  const [nba, setNba] = useState(false);
   const [beta, setBeta] = useState<BetaSport[]>([]);
+  const nba = beta.includes("basketball");
+  const [capabilitiesReady, setCapabilitiesReady] = useState(false);
+  const [capabilitiesError, setCapabilitiesError] = useState(false);
+  const [capabilityAttempt, setCapabilityAttempt] = useState(0);
+  const memberArea = /^\/(fantasy|profile|dashboard|admin)(\/|$)/.test(path);
   useEffect(() => {
     const clear = () => setNotice("");
     window.addEventListener("docked:sport-draft-clean", clear);
@@ -43,18 +52,31 @@ export function SportProvider({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => {
     let disposed = false;
-    void boundedFetch("/api/nba-beta", { cache: "no-store" })
-      .then(async (r) => {
-        const enabled = r.ok && (await r.json()).allowed === true;
-        if (!disposed) setNba(enabled);
-      })
-      .catch(() => {
-        if (!disposed) setNba(false);
-      });
-    void boundedFetch("/api/sports-beta", { cache: "no-store" })
-      .then(async (r) => {
+    if (!memberArea) {
+      setBeta([]);
+      setCapabilitiesReady(true);
+      setCapabilitiesError(false);
+      return;
+    }
+    let current: AbortController | undefined;
+    let inFlight = false;
+    setCapabilitiesReady(false);
+    const read = async () => {
+      if (inFlight) return;
+      inFlight = true;
+      const controller = new AbortController();
+      current = controller;
+      try {
+        // This existing endpoint includes NBA as well as AFL/NRL. One request
+        // per workspace lifetime avoids duplicate auth/DB work on every tab.
+        const r = await boundedFetch("/api/sports-beta", {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        if (!r.ok && ![401, 403].includes(r.status))
+          throw Error("Sport access unavailable");
         const allowed = r.ok ? (await r.json()).allowed : [];
-        if (!disposed)
+        if (!disposed) {
           setBeta(
             Array.isArray(allowed)
               ? allowed.filter(
@@ -63,14 +85,30 @@ export function SportProvider({ children }: { children: ReactNode }) {
                 )
               : [],
           );
-      })
-      .catch(() => {
-        if (!disposed) setBeta([]);
-      });
+          setCapabilitiesError(false);
+        }
+      } catch {
+        if (!disposed) setCapabilitiesError(true);
+      } finally {
+        inFlight = false;
+        if (!disposed) setCapabilitiesReady(true);
+      }
+    };
+    const resume = () => {
+      if (document.visibilityState === "visible") void read();
+    };
+    void read();
+    window.addEventListener("online", resume);
+    window.addEventListener("docked-app-resume", resume);
+    document.addEventListener("visibilitychange", resume);
     return () => {
       disposed = true;
+      current?.abort();
+      window.removeEventListener("online", resume);
+      window.removeEventListener("docked-app-resume", resume);
+      document.removeEventListener("visibilitychange", resume);
     };
-  }, [path]);
+  }, [memberArea, capabilityAttempt]);
   useEffect(() => {
     const read = () => {
       const requested = new URLSearchParams(location.search).get("sport");
@@ -79,21 +117,26 @@ export function SportProvider({ children }: { children: ReactNode }) {
       try {
         saved = localStorage.getItem("docked:active-sport");
       } catch {}
-      setSport(
-        valid(requested)
-          ? requested
-          : saved === "nfl" ||
-              (nba && saved === "basketball") ||
-              (saved !== null && isBetaSport(saved) && beta.includes(saved))
-            ? saved
-            : "nfl",
+      let cookie: string | undefined;
+      try {
+        cookie = document.cookie
+          .split("; ")
+          .find((v) => v.startsWith(`${activeSportCookie}=`))
+          ?.split("=")[1];
+      } catch {}
+      const selected = workspaceSport(
+        requested,
+        cookie ?? (valid(saved) ? saved : undefined),
       );
+      setSport(selected);
+      if (capabilitiesReady)
+        document.cookie = `${activeSportCookie}=${selected}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
       setReady(true);
     };
     read();
     window.addEventListener("popstate", read);
     return () => window.removeEventListener("popstate", read);
-  }, [path, nba, beta]);
+  }, [path, capabilitiesReady]);
   function change(next: Sport) {
     if (
       (next !== "nfl" &&
@@ -115,6 +158,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem("docked:active-sport", next);
     } catch {}
+    document.cookie = `${activeSportCookie}=${next}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
     const url = new URL(location.href);
     for (const key of [
       "competition",
@@ -130,10 +174,25 @@ export function SportProvider({ children }: { children: ReactNode }) {
       url.searchParams.delete(key);
     url.searchParams.set("sport", next);
     history.replaceState(null, "", url);
+    // Private sport routes intentionally do not pre-load NFL. Returning to NFL
+    // must request its server page, preserving the authenticated shared shell.
+    if (next === "nfl") router.refresh();
     window.dispatchEvent(new Event("docked:sport-changed"));
   }
   return (
-    <SportContext.Provider value={{ sport, change, notice, ready, nba, beta }}>
+    <SportContext.Provider
+      value={{
+        sport,
+        change,
+        notice,
+        ready,
+        nba,
+        beta,
+        capabilitiesReady,
+        capabilitiesError,
+        retryCapabilities: () => setCapabilityAttempt((n) => n + 1),
+      }}
+    >
       {children}
     </SportContext.Provider>
   );
@@ -176,9 +235,27 @@ export function SportSelector({ mobile = false }: { mobile?: boolean }) {
   );
 }
 export function SportScope({ children }: { children: ReactNode }) {
-  const { sport, ready, nba, beta } = useSport();
+  const {
+    sport,
+    ready,
+    nba,
+    beta,
+    capabilitiesReady,
+    capabilitiesError,
+    retryCapabilities,
+  } = useSport();
   const path = usePathname();
   if (!ready) return <p role="status">Loading your sport…</p>;
+  if (isBetaSport(sport) && !capabilitiesReady)
+    return <p role="status">Checking sport access…</p>;
+  if (isBetaSport(sport) && capabilitiesError && !beta.includes(sport))
+    return (
+      <section className="fantasy-panel">
+        <h1>{sports[sport]}</h1>
+        <p role="alert">Sport access could not be checked. Please retry.</p>
+        <button onClick={retryCapabilities}>Retry</button>
+      </section>
+    );
   if (
     isBetaSport(sport) &&
     ((sport === "basketball" && nba) || beta.includes(sport))

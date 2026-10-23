@@ -35,11 +35,12 @@ export function NbaBetaScreen({
     [attempt, setAttempt] = useState(0);
   useEffect(() => {
     let disposed = false;
+    const controller = new AbortController();
     setError(false);
     setState(null);
     void boundedFetch(
       `${apiPath}${apiPath.includes("?") ? "&" : "?"}view=state`,
-      { cache: "no-store" },
+      { cache: "no-store", signal: controller.signal },
     )
       .then(async (r) => {
         if (!r.ok) throw Error("Unavailable");
@@ -51,6 +52,7 @@ export function NbaBetaScreen({
       });
     return () => {
       disposed = true;
+      controller.abort();
     };
   }, [attempt, apiPath]);
   if (error)

@@ -29,7 +29,7 @@ const ShellContext = createContext(false);
 /** Shared fantasy layout retains navigation and the wallet provider between routes. */
 export function PersistentAppShell({ children }: { children: ReactNode }) {
   return (
-    <AppShell authenticated loading>
+    <AppShell authenticated>
       <ShellContext.Provider value={true}>{children}</ShellContext.Provider>
     </AppShell>
   );
@@ -114,12 +114,11 @@ export function AppShell({
   loading?: boolean;
 }) {
   const path = usePathname();
-  const { sport, nba } = useSport();
+  const { sport, nba, beta } = useSport();
   const sportHref = (href: string) =>
-    nba &&
-    sport === "basketball" &&
+    ((nba && sport === "basketball") || beta.some((s) => s === sport)) &&
     ["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(href)
-      ? `${href}?sport=basketball`
+      ? `${href}?sport=${sport}`
       : href;
   const { production, liveBeta } = useEnvironmentPresentation();
   const activeNav = nav;
@@ -150,7 +149,11 @@ export function AppShell({
         data-workspace={destination.split("/").at(-1)}
       >
         <aside className="app-sidebar">
-          <Link className="brand" href="/fantasy/play" aria-label="Docked home">
+          <Link
+            className="brand"
+            href={sportHref("/fantasy/play")}
+            aria-label="Docked home"
+          >
             <FantasyLogo />
           </Link>
 
@@ -195,7 +198,7 @@ export function AppShell({
             <div className="app-brand-lockup">
               <Link
                 className="brand"
-                href="/fantasy/play"
+                href={sportHref("/fantasy/play")}
                 aria-label="Docked home"
               >
                 <FantasyLogo />

@@ -1,0 +1,296 @@
+{
+  "isolated": true,
+  "authenticatedHostedTesting": false,
+  "checks": [
+    {
+      "width": 412,
+      "sport": "nfl",
+      "surface": "cards",
+      "shellReadyMs": 735,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "nfl",
+      "surface": "play",
+      "shellReadyMs": 311,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "basketball",
+      "surface": "cards",
+      "shellReadyMs": 245,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/nba-beta?view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "basketball",
+      "surface": "play",
+      "shellReadyMs": 240,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/nba-beta?view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "basketball",
+      "surface": "packs",
+      "shellReadyMs": 253,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/test-wallet?view=packs"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "afl",
+      "surface": "cards",
+      "shellReadyMs": 276,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=afl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "afl",
+      "surface": "play",
+      "shellReadyMs": 250,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=afl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "afl",
+      "surface": "packs",
+      "shellReadyMs": 280,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/test-wallet?view=packs"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "nrl",
+      "surface": "cards",
+      "shellReadyMs": 255,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=nrl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "nrl",
+      "surface": "play",
+      "shellReadyMs": 270,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=nrl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "sport": "nrl",
+      "surface": "packs",
+      "shellReadyMs": 264,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/test-wallet?view=packs"
+      ],
+      "passed": true
+    },
+    {
+      "width": 412,
+      "scenario": "Return to NFL refreshes its server page",
+      "passed": true
+    },
+    {
+      "width": 412,
+      "scenario": "fail=true",
+      "passed": true
+    },
+    {
+      "width": 412,
+      "scenario": "denied=true",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "nfl",
+      "surface": "cards",
+      "shellReadyMs": 600,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "nfl",
+      "surface": "play",
+      "shellReadyMs": 298,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "basketball",
+      "surface": "cards",
+      "shellReadyMs": 259,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/nba-beta?view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "basketball",
+      "surface": "play",
+      "shellReadyMs": 267,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/nba-beta?view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "basketball",
+      "surface": "packs",
+      "shellReadyMs": 250,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/test-wallet?view=packs"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "afl",
+      "surface": "cards",
+      "shellReadyMs": 238,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=afl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "afl",
+      "surface": "play",
+      "shellReadyMs": 247,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=afl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "afl",
+      "surface": "packs",
+      "shellReadyMs": 182,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/test-wallet?view=packs"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "nrl",
+      "surface": "cards",
+      "shellReadyMs": 201,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=nrl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "nrl",
+      "surface": "play",
+      "shellReadyMs": 213,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/sports-beta?sport=nrl&view=state"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "sport": "nrl",
+      "surface": "packs",
+      "shellReadyMs": 187,
+      "requests": [
+        "/api/test-wallet?view=summary",
+        "/api/sports-beta",
+        "/api/test-wallet?view=packs"
+      ],
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scenario": "Return to NFL refreshes its server page",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scenario": "fail=true",
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scenario": "denied=true",
+      "passed": true
+    }
+  ]
+}

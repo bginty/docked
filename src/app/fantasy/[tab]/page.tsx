@@ -5,6 +5,13 @@ import Link from "next/link";
 import { SocialHome } from "@/components/social-home";
 import { z } from "zod";
 import { boundedRead } from "@/core/bounded-request";
+import { cookies } from "next/headers";
+import {
+  activeSportCookie,
+  workspaceSport,
+  privateSportWorkspace,
+} from "@/core/workspace-sport";
+import { PrivateSportPage } from "@/components/private-sport-page";
 
 import { Marketplace } from "@/components/marketplace";
 import { requireIdentity, requireRole } from "@/server/auth";
@@ -97,6 +104,17 @@ export default async function FantasyPage({
       </div>
     );
 
+  if (
+    process.env.DOCKED_FRIENDS_BETA === "true" &&
+    ["play", "cards"].includes(tab)
+  ) {
+    const query = await searchParams;
+    const sport = workspaceSport(
+      query.sport,
+      (await cookies()).get(activeSportCookie)?.value,
+    );
+    if (privateSportWorkspace(tab, sport)) return <PrivateSportPage />;
+  }
   if (tab === "market" && process.env.DOCKED_FRIENDS_BETA === "true") {
     try {
       const who = await requireIdentity();
@@ -132,10 +150,7 @@ export default async function FantasyPage({
       );
     }
     const query = await searchParams;
-    const feedTab =
-      query.tab === "following"
-        ? query.tab
-        : "latest";
+    const feedTab = query.tab === "following" ? query.tab : "latest";
     let feed;
     try {
       feed = await boundedRead(
@@ -168,7 +183,9 @@ export default async function FantasyPage({
           feed={feed}
           tab={feedTab}
           view={
-            query.tab === "communities" || query.tab === "discover" || query.tab === "announcements"
+            query.tab === "communities" ||
+            query.tab === "discover" ||
+            query.tab === "announcements"
               ? query.tab
               : undefined
           }
@@ -213,8 +230,18 @@ export default async function FantasyPage({
         account = privateAccountSummary(owner.user);
         if (data.state.admin) {
           try {
-            account.staffRole = (await requireRole(["owner", "admin", "editor", "analyst", "auditor"])).role;
-          } catch { /* Show no privileged shortcut without verified role and MFA. */ }
+            account.staffRole = (
+              await requireRole([
+                "owner",
+                "admin",
+                "editor",
+                "analyst",
+                "auditor",
+              ])
+            ).role;
+          } catch {
+            /* Show no privileged shortcut without verified role and MFA. */
+          }
         }
         try {
           account = {

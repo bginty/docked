@@ -1,0 +1,11 @@
+{
+  "isolated": true,
+  "authenticatedHostedTesting": false,
+  "checks": [
+    {
+      "sport": "basketball",
+      "surface": "cards",
+      "reproduced": "Private cards loaded but startup overlay still blocks navigation"
+    }
+  ]
+}
