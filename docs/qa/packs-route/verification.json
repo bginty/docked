@@ -1,6 +1,16 @@
 {
   "reportedUrl": "https://docked.com.au/fantasy/packs?sport=basketball",
   "baseline": "e6d0b3b5638cbfc2662b0c6a972bc1b45880c236",
+  "deployment": {
+    "codeCommit": "1fac104dd4e823c95ca1760ad8cbaa503d447bfd",
+    "deploymentId": "dpl_8Y8NVACH7VX3E3m4fakVK94fnoyu",
+    "url": "https://docked.com.au",
+    "status": "promoted and live release identity verified",
+    "candidateChecks": "19 release/access checks and six exact Packs redirects passed.",
+    "liveChecks": "Same 25 checks passed. Twenty real-browser checks passed at 412 and 1440 widths, including Buy/My/History and usable not-found recovery.",
+    "browserScope": "Actual Production routing and signed-out authentication recovery, not authenticated checkout.",
+    "runtimeLogs": "New deployment showed expected authentication failures from signed-out Play probes; no authenticated purchase claim is made."
+  },
   "rootCauses": [
     "Private-sport Cards links targeted /fantasy/packs, which had no page and fell through to the generic fantasy-tab notFound branch.",
     "The not-found terminal screen did not signal StartupReady, hiding the 404 behind the startup overlay until its 45-second timeout.",
@@ -14,7 +24,7 @@
     "Wallet projections retain repeatable-read snapshots without READ ONLY, preserving admission row locks and the existing mutation settlement lock. No security functions changed."
   ],
   "checks": {
-    "targetedPlatformAndDatabaseTests": { "passed": 35, "failed": 0 },
+    "targetedPlatformAndDatabaseTests": { "uniqueTests": 33, "passingExecutions": 35, "failed": 0 },
     "unchangedInstalledAdmissionFunctions": "Read-only failure reproduced, supported isolation succeeds, unauthenticated access remains denied.",
     "productionRuntimeRole": "Four real SQL read paths passed; no member impersonation or database writes.",
     "realNextRouting": "20 local browser checks: NBA/AFL/NRL Buy/My/History redirects at 412 and 1440 widths, plus visible not-found recovery.",

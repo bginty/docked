@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-23T00:10:26.617Z",
+  "commit": "1fac104dd4e823c95ca1760ad8cbaa503d447bfd",
+  "environment": "live-domain",
+  "authenticatedMemberTest": false,
+  "checks": [
+    {
+      "path": "/fantasy/packs?sport=basketball",
+      "status": 200,
+      "location": "/fantasy/test-wallet?view=packs&sport=basketball",
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=basketball&tab=mine",
+      "status": 200,
+      "location": "/fantasy/test-wallet?view=packs&sport=basketball&packs=mine",
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=afl",
+      "status": 200,
+      "location": "/fantasy/test-wallet?view=packs&sport=afl",
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=afl&tab=mine",
+      "status": 200,
+      "location": "/fantasy/test-wallet?view=packs&sport=afl&packs=mine",
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=nrl",
+      "status": 200,
+      "location": "/fantasy/test-wallet?view=packs&sport=nrl",
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=nrl&tab=mine",
+      "status": 200,
+      "location": "/fantasy/test-wallet?view=packs&sport=nrl&packs=mine",
+      "passed": true
+    }
+  ]
+}
