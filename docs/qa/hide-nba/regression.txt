@@ -1,0 +1,60 @@
+TAP version 13
+# Subtest: NRL: explicit fixture-only coefficients, multi-game aggregation and frozen period boundaries
+ok 1 - NRL: explicit fixture-only coefficients, multi-game aggregation and frozen period boundaries
+  ---
+  duration_ms: 59.3337
+  ...
+# Subtest: NBA: explicit fixture-only coefficients, multi-game aggregation and frozen period boundaries
+ok 2 - NBA: explicit fixture-only coefficients, multi-game aggregation and frozen period boundaries
+  ---
+  duration_ms: 10.0689
+  ...
+# Subtest: EPL official double and confirmed blank gameweeks preserve existing rules; missing fixtures are never inferred byes
+ok 3 - EPL official double and confirmed blank gameweeks preserve existing rules; missing fixtures are never inferred byes
+  ---
+  duration_ms: 47.8911
+  ...
+# Subtest: AFL: dual eligibility, sport isolation, exact saved slots and historical format fallback
+ok 4 - AFL: dual eligibility, sport isolation, exact saved slots and historical format fallback
+  ---
+  duration_ms: 101.508
+  ...
+# Subtest: NRL: dual eligibility, sport isolation, exact saved slots and historical format fallback
+ok 5 - NRL: dual eligibility, sport isolation, exact saved slots and historical format fallback
+  ---
+  duration_ms: 30.1376
+  ...
+# Subtest: NBA: dual eligibility, sport isolation, exact saved slots and historical format fallback
+ok 6 - NBA: dual eligibility, sport isolation, exact saved slots and historical format fallback
+  ---
+  duration_ms: 7.685
+  ...
+# Subtest: EPL: dual eligibility, sport isolation, exact saved slots and historical format fallback
+ok 7 - EPL: dual eligibility, sport isolation, exact saved slots and historical format fallback
+  ---
+  duration_ms: 6.3879
+  ...
+# Subtest: multi-sport laboratory cannot bind to production even with its feature flag enabled
+ok 8 - multi-sport laboratory cannot bind to production even with its feature flag enabled
+  ---
+  duration_ms: 2.0553
+  ...
+# Subtest: explicit sport overrides saved preference, including returning to NFL
+ok 9 - explicit sport overrides saved preference, including returning to NFL
+  ---
+  duration_ms: 1.6023
+  ...
+# Subtest: only private Play, Cards and Packs use gated client loading; NFL and shared wallet retain server loading
+ok 10 - only private Play, Cards and Packs use gated client loading; NFL and shared wallet retain server loading
+  ---
+  duration_ms: 0.4179
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4979.396

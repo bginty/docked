@@ -1,0 +1,33 @@
+{
+  "scope": "Temporarily hide NBA from the shared member sport navigation and restore old NBA preferences/links to an available sport.",
+  "applicationCommit": "fe6dbd1c2c755605029f281c0bf167b51e232af1",
+  "visibleSports": ["nfl", "afl", "nrl"],
+  "production": {
+    "url": "https://docked.com.au",
+    "deploymentId": "dpl_73FCGUQezBHLEFNLerooxKSRvds2",
+    "verifiedReleaseCommit": "fe6dbd1c2c755605029f281c0bf167b51e232af1",
+    "candidateHttpChecksPassed": 19,
+    "liveHttpChecksPassed": 19,
+    "publicRegistration": "closed",
+    "authenticatedMemberAcceptance": false
+  },
+  "nbaDataRetained": true,
+  "databaseMigrations": [],
+  "ownershipOrWalletMutations": false,
+  "scoringOrScheduleChanges": false,
+  "authorizationChanges": false,
+  "activationFlagChanges": false,
+  "validation": {
+    "platformRegressionTests": { "passed": 10, "failed": 0 },
+    "browser": "Passed isolated UI acceptance at 412px and 1440px: three-sport navigation, old NBA link/preference recovery, persistent AFL selection across Play/Cards/Market, global Social and AFL/NRL match history.",
+    "typecheck": "passed after removing a redundant NBA-specific selection branch",
+    "lint": "passed",
+    "productionBuild": "passed",
+    "clientCredentialCanaryScan": { "passed": true, "browserAssets": 84 }
+  },
+  "limits": [
+    "Browser gameplay verification uses isolated local fixtures, not signed-in Production.",
+    "NBA remains available to authorised administrative/data APIs for preservation and future restoration; this request changes member navigation, not authorization or data retention.",
+    "The shared NBA-named beta infrastructure flags stay enabled because AFL and NRL depend on them."
+  ]
+}
