@@ -1,7 +1,8 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--member-loading") ? "docs/qa/member-loading"
+const evidence = process.argv.includes("--packs-route") ? "docs/qa/packs-route"
+  : process.argv.includes("--member-loading") ? "docs/qa/member-loading"
   : process.argv.includes("--real-rosters") ? "docs/qa/real-rosters"
   : process.argv.includes("--multi-sport-integration")
   ? "docs/qa/multi-sport/integration"
@@ -65,7 +66,8 @@ const evidence = process.argv.includes("--member-loading") ? "docs/qa/member-loa
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve(
-    process.argv.includes("--member-loading") ? `tmp/member-loading-build-${Date.now()}`
+    process.argv.includes("--packs-route") ? `tmp/packs-route-build-${Date.now()}`
+    : process.argv.includes("--member-loading") ? `tmp/member-loading-build-${Date.now()}`
     : process.argv.includes("--real-rosters") ? `tmp/real-roster-build-${Date.now()}`
     : process.argv.includes("--multi-sport")
       ? `tmp/multi-sport-build-${Date.now()}`

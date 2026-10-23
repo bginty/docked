@@ -1,0 +1,22 @@
+[
+  {
+    "stage": "catalogue",
+    "passed": true
+  },
+  {
+    "stage": "trading",
+    "passed": false,
+    "code": "25006",
+    "message": "cannot execute SELECT FOR SHARE in a read-only transaction"
+  },
+  {
+    "stage": "context",
+    "passed": true
+  },
+  {
+    "stage": "access",
+    "passed": false,
+    "code": "25006",
+    "message": "cannot execute SELECT FOR SHARE in a read-only transaction"
+  }
+]

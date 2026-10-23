@@ -1,4 +1,5 @@
 import "server-only";
+import { memberReadIsolation } from "./member-read-isolation";
 import { z } from "zod";
 import { requireIdentity } from "./auth";
 import { db, rateLimit } from "./db";
@@ -198,7 +199,7 @@ export async function memberTestSource(
   // MVCC provides a consistent read without queueing every page load behind the
   // global settlement lock. Mutations still use the store's exclusive lock.
   const { s, hidden, trading, fixtureSports } = await sql.begin(
-    "isolation level repeatable read read only",
+    memberReadIsolation,
     async (tx) => {
       await setCommunityClaims(tx, who);
       const [access] =

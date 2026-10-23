@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/fantasy/packs?sport=basketball",
+    "status": 200,
+    "location": null,
+    "notFound": true,
+    "startup": true,
+    "signIn": false
+  },
+  {
+    "path": "/fantasy/packs?sport=basketball&tab=mine",
+    "status": 200,
+    "location": null,
+    "notFound": true,
+    "startup": true,
+    "signIn": false
+  },
+  {
+    "path": "/fantasy/test-wallet?view=packs&sport=basketball",
+    "status": 200,
+    "location": null,
+    "notFound": true,
+    "startup": true,
+    "signIn": true
+  }
+]

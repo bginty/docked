@@ -10,6 +10,7 @@ import type { BetaSport } from "@/core/sports-private-beta";
 import { MarketListingDialog } from "./market-listing-dialog";
 import type { ViewerCard } from "./collectible-viewer";
 import { rarityRule, rarities } from "@/core/card-rarity";
+import { packShopHref } from "@/core/pack-presentation";
 export function NbaBetaScreen({
   cards = false,
   sport = "basketball",
@@ -90,10 +91,10 @@ export function NbaBetaScreen({
         <a href="/roster-sources">Sources and verification</a>
       </p>
       <nav className="fantasy-actions" aria-label={`${label} collection links`}>
-        <a className="button" href={`/fantasy/packs?sport=${sport}`}>
+        <a className="button" href={packShopHref(sport)}>
           Buy packs
         </a>
-        <a className="button" href={`/fantasy/packs?sport=${sport}&tab=mine`}>
+        <a className="button" href={packShopHref(sport, "mine")}>
           My packs
         </a>
         <a className="button" href={`/fantasy/market?sport=${sport}`}>

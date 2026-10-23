@@ -1,0 +1,26 @@
+{
+  "authenticatedMemberTest": false,
+  "writes": 0,
+  "checks": [
+    {
+      "stage": "catalogue",
+      "passed": true,
+      "milliseconds": 3327
+    },
+    {
+      "stage": "trading",
+      "passed": true,
+      "milliseconds": 136
+    },
+    {
+      "stage": "context",
+      "passed": true,
+      "milliseconds": 104
+    },
+    {
+      "stage": "access",
+      "passed": true,
+      "milliseconds": 111
+    }
+  ]
+}

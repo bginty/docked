@@ -1,0 +1,37 @@
+{
+  "reportedUrl": "https://docked.com.au/fantasy/packs?sport=basketball",
+  "baseline": "e6d0b3b5638cbfc2662b0c6a972bc1b45880c236",
+  "rootCauses": [
+    "Private-sport Cards links targeted /fantasy/packs, which had no page and fell through to the generic fantasy-tab notFound branch.",
+    "The not-found terminal screen did not signal StartupReady, hiding the 404 behind the startup overlay until its 45-second timeout.",
+    "The previous loading update introduced READ ONLY on the wallet projection transaction. Real admission/trading functions acquire FOR SHARE row locks and PostgreSQL rejected them with SQLSTATE 25006. Previous tests stubbed these functions and missed this incompatibility.",
+    "My packs links used tab=mine while the shop only read packs=mine."
+  ],
+  "repairs": [
+    "Explicit server route redirects old Packs URLs to the existing authenticated pack shop, preserving sport and selected tab.",
+    "Cards links use the shared canonical pack-shop URL directly.",
+    "Not-found and pack permission-denied screens release startup loading.",
+    "Wallet projections retain repeatable-read snapshots without READ ONLY, preserving admission row locks and the existing mutation settlement lock. No security functions changed."
+  ],
+  "checks": {
+    "targetedPlatformAndDatabaseTests": { "passed": 35, "failed": 0 },
+    "unchangedInstalledAdmissionFunctions": "Read-only failure reproduced, supported isolation succeeds, unauthenticated access remains denied.",
+    "productionRuntimeRole": "Four real SQL read paths passed; no member impersonation or database writes.",
+    "realNextRouting": "20 local browser checks: NBA/AFL/NRL Buy/My/History redirects at 412 and 1440 widths, plus visible not-found recovery.",
+    "nbaPackBrowser": "Isolated real-roster catalogue, purchase/reveal/history, retries and lost-response protection at 360/412/1024/1440; zero serious axe violations.",
+    "nflPackBrowser": "Same isolated pack suite passed at all four widths; zero serious axe violations.",
+    "typecheck": "passed",
+    "lint": "passed",
+    "cleanProductionBuild": "passed",
+    "clientSecretCanaryScan": "passed",
+    "reactReview": "Existing components reused; no new fetching or hooks; shared URL helper; terminal content becomes accessible after startup completes."
+  },
+  "safety": {
+    "databaseMigrations": [],
+    "productionMutations": 0,
+    "balancesOwnershipScoringAndSupplyChanges": 0,
+    "securityControlChanges": 0,
+    "authenticatedHostedAcceptance": false,
+    "limitation": "No signed-in member browser session is available. Runtime SQL probes and signed-out hosted checks do not constitute authenticated pack-purchase acceptance."
+  }
+}

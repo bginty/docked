@@ -1,4 +1,11 @@
 export type PackTab = "buy" | "mine" | "history";
+/** One pack shop, including bookmarks from the former /fantasy/packs links. */
+export function packShopHref(sport?: string, tab: PackTab = "buy") {
+  const query = new URLSearchParams({ view: "packs" });
+  if (sport) query.set("sport", sport);
+  if (tab !== "buy") query.set("packs", tab);
+  return `/fantasy/test-wallet?${query}`;
+}
 export function packTitle(p: {
   name: string;
   tier?: string;
@@ -16,7 +23,8 @@ export function packTitle(p: {
       : p.name;
 }
 export function packTab(search: string, hash = ""): PackTab {
-  const value = new URLSearchParams(search).get("packs");
+  const query = new URLSearchParams(search);
+  const value = query.get("packs") ?? query.get("tab");
   return value === "mine" || value === "history"
     ? value
     : hash === "#pack-history"
