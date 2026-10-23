@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: documented Squiggle historical AFL fixtures preserve real game IDs and UTC; team results never imply player stats
+ok 1 - documented Squiggle historical AFL fixtures preserve real game IDs and UTC; team results never imply player stats
+  ---
+  duration_ms: 18.3899
+  ...
+# Subtest: access failures stay distinct; explicit staff destinations still require route authorization
+ok 2 - access failures stay distinct; explicit staff destinations still require route authorization
+  ---
+  duration_ms: 2.6306
+  ...
+# Subtest: market labels and legacy kicker URLs preserve enums and supported positions
+ok 3 - market labels and legacy kicker URLs preserve enums and supported positions
+  ---
+  duration_ms: 80.2077
+  ...
+# Subtest: podium and table share structured quantity and product labels; historical text is retained
+ok 4 - podium and table share structured quantity and product labels; historical text is retained
+  ---
+  duration_ms: 0.7384
+  ...
+# Subtest: future base calculation matches game logs across imported passing/rushing/receiving/misc; legacy remains half PPR
+ok 5 - future base calculation matches game logs across imported passing/rushing/receiving/misc; legacy remains half PPR
+  ---
+  duration_ms: 39.5953
+  ...
+# Subtest: new registration rejects legacy rules; imported base -> locked rarity -> total remains exact and replay safe
+ok 6 - new registration rejects legacy rules; imported base -> locked rarity -> total remains exact and replay safe
+  ---
+  duration_ms: 20.0751
+  ...
+# Subtest: real match archives reconcile published season counts without invented player data
+ok 7 - real match archives reconcile published season counts without invented player data
+  ---
+  duration_ms: 59.964
+  ...
+# Subtest: history filters and bounds preserve sport scope
+ok 8 - history filters and bounds preserve sport scope
+  ---
+  duration_ms: 8.997
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2177.5114

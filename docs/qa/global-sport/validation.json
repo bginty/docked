@@ -10,13 +10,13 @@
     {
       "sport": "afl",
       "width": 412,
-      "usableMs": 1167,
+      "usableMs": 1131,
       "pageSize": 20
     },
     {
       "sport": "nrl",
       "width": 412,
-      "usableMs": 1101,
+      "usableMs": 889,
       "pageSize": 20
     },
     {
@@ -30,13 +30,13 @@
     {
       "sport": "afl",
       "width": 1440,
-      "usableMs": 363,
+      "usableMs": 230,
       "pageSize": 20
     },
     {
       "sport": "nrl",
       "width": 1440,
-      "usableMs": 378,
+      "usableMs": 246,
       "pageSize": 20
     },
     {
@@ -63,5 +63,25 @@
     8311
   ],
   "migrationCount": 0,
-  "authenticatedHostedAcceptance": false
+  "authenticatedHostedAcceptance": false,
+  "collectionRegression": {
+    "passed": true,
+    "checks": 11,
+    "scope": "Isolated React + HTTP fixture; not authenticated Production. 180ms simulated collection response delay; mobile 4x CPU throttle; desktop unthrottled."
+  },
+  "production": {
+    "commit": "ef4bd150eede212bc3555b6ed10da6b497634160",
+    "url": "https://docked.com.au",
+    "protectedHttpChecks": 26,
+    "liveHttpChecks": 26,
+    "signedOutBrowserChecks": 12,
+    "protectedRecordsUnchanged": true,
+    "authenticatedMemberTesting": false
+  },
+  "historyAuthFollowup": {
+    "targetedTests": 8,
+    "typecheck": true,
+    "lint": true,
+    "vercelBuild": true
+  }
 }

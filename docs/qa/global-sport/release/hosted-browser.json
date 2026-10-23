@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "commit": "ef4bd150eede212bc3555b6ed10da6b497634160",
+  "at": "2026-10-23T04:42:34.536Z",
+  "authenticatedMemberTesting": false,
+  "scope": "Actual Production signed-out access recovery; not authenticated feed/gameplay performance",
+  "checks": [
+    {
+      "path": "/fantasy/play?sport=nfl",
+      "width": 412,
+      "signedOutRecoveryMs": 1505,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/cards?sport=basketball",
+      "width": 412,
+      "signedOutRecoveryMs": 298,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/market?sport=afl",
+      "width": 412,
+      "signedOutRecoveryMs": 249,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/social?sport=nrl",
+      "width": 412,
+      "signedOutRecoveryMs": 270,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=afl",
+      "width": 412,
+      "signedOutRecoveryMs": 676,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=nrl",
+      "width": 412,
+      "signedOutRecoveryMs": 218,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/play?sport=nfl",
+      "width": 1440,
+      "signedOutRecoveryMs": 698,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/cards?sport=basketball",
+      "width": 1440,
+      "signedOutRecoveryMs": 267,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/market?sport=afl",
+      "width": 1440,
+      "signedOutRecoveryMs": 198,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/social?sport=nrl",
+      "width": 1440,
+      "signedOutRecoveryMs": 228,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=afl",
+      "width": 1440,
+      "signedOutRecoveryMs": 234,
+      "privateContentVisible": false
+    },
+    {
+      "path": "/fantasy/history?sport=nrl",
+      "width": 1440,
+      "signedOutRecoveryMs": 545,
+      "privateContentVisible": false
+    }
+  ]
+}
