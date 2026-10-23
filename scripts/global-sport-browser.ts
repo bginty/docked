@@ -22,7 +22,8 @@ import { marketplaceView, marketQuery } from "../src/core/marketplace";
 import type { FixtureSport } from "../src/core/fixture-sports";
 async function main() {
   const out =
-    process.env.DOCKED_SPORT_BROWSER_EVIDENCE ?? "docs/qa/global-sport";
+    process.env.DOCKED_SPORT_BROWSER_EVIDENCE ??
+    "docs/qa/three-sport-parity/navigation";
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/global-sport.tsx",
@@ -281,8 +282,48 @@ async function main() {
       await navigation
         .getByRole("link", { name: "Social", exact: true })
         .click();
-      await expect(page.locator(".owned-sports")).toHaveCount(0);
-      for (const sport of ["nfl", "basketball", "afl", "nrl"])
+      await expect(page.locator(".owned-sports")).toHaveCount(1);
+      for (const label of ["NRL", "NFL", "AFL"]) {
+        await page
+          .locator(".owned-sports")
+          .getByRole("button", { name: label, exact: true })
+          .click();
+        await expect(
+          page.getByRole("article", { name: "Official Docked announcement" }),
+        ).toHaveCount(1);
+        await expect(
+          page.getByText("Isolated global announcement", { exact: true }),
+        ).toBeVisible();
+        await expect(
+          page.getByText(
+            `Isolated ${label.toLowerCase()} community discussion`,
+            { exact: true },
+          ),
+        ).toBeVisible();
+        for (const other of ["nfl", "afl", "nrl"].filter(
+          (s) => s !== label.toLowerCase(),
+        ))
+          await expect(
+            page.getByText(`Isolated ${other} community discussion`, {
+              exact: true,
+            }),
+          ).toHaveCount(0);
+      }
+      await page.locator("#social-compose textarea").fill("Unsent AFL fixture");
+      await page
+        .locator(".owned-sports")
+        .getByRole("button", { name: "NRL", exact: true })
+        .click();
+      await expect(
+        page
+          .locator(".owned-sports")
+          .getByRole("button", { name: "AFL", exact: true }),
+      ).toHaveAttribute("aria-pressed", "true");
+      await expect(page.locator("#social-compose textarea")).toHaveValue(
+        "Unsent AFL fixture",
+      );
+      await page.locator("#social-compose textarea").fill("");
+      for (const sport of ["afl"])
         await expect(
           page.getByText(`Isolated ${sport} community discussion`, {
             exact: true,
@@ -295,10 +336,10 @@ async function main() {
       );
       await page.getByRole("button", { name: "Load more posts" }).click();
       assert(
-        !requests
+        requests
           .filter((r) => r.url.includes("view=feed"))
           .at(-1)
-          ?.url.includes("sport="),
+          ?.url.includes("sport=afl"),
       );
       await page.getByRole("link", { name: "Following", exact: true }).click();
       await expect(
@@ -376,7 +417,7 @@ async function main() {
         width,
         persistentSport: true,
         noDocumentReload: true,
-        socialAcrossSports: true,
+        socialSportScoped: true,
         lazyInventory: true,
         communityJoinLeave: true,
         nbaHidden: true,

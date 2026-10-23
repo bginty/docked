@@ -12,11 +12,13 @@ import { CollectibleViewer } from "./collectible-viewer";
 
 export function WeeklyCorePanel({
   member,
+  sport = "nfl",
   history = false,
   onOpened,
   onState,
 }: {
   member: string;
+  sport?: "nfl" | "afl" | "nrl";
   history?: boolean;
   onOpened?: () => void;
   onState?: (state: WeeklyCoreView | null) => void;
@@ -39,11 +41,15 @@ export function WeeklyCorePanel({
     setChecking(true);
     setError("");
     try {
-      const response = await boundedFetch("/api/weekly-core", {
+      const response = await boundedFetch(`/api/weekly-core?sport=${sport}`, {
         cache: "no-store",
       });
       const data = await response.json();
-      if (!response.ok || (data.state.enabled && data.state.member !== member))
+      if (
+        !response.ok ||
+        (data.state.sport && data.state.sport !== sport) ||
+        (data.state.enabled && data.state.member !== member)
+      )
         throw Error(data.error || "Your account changed. Sign in again.");
       if (alive.current && current === generation.current) setState(data.state);
     } catch (e) {
@@ -53,7 +59,7 @@ export function WeeklyCorePanel({
     } finally {
       if (alive.current && current === generation.current) setChecking(false);
     }
-  }, [member]);
+  }, [member, sport]);
   useEffect(() => {
     alive.current = true;
     setState(null);
@@ -110,14 +116,15 @@ export function WeeklyCorePanel({
         : crypto.randomUUID();
     pending.current = { pack: selected.id, request };
     try {
-      const response = await boundedFetch("/api/weekly-core", {
+      const response = await boundedFetch(`/api/weekly-core?sport=${sport}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pack: selected.id, request }),
+        body: JSON.stringify({ pack: selected.id, request, sport }),
       });
       const data = await response.json();
       if (
         !response.ok ||
+        (data.state?.sport && data.state.sport !== sport) ||
         data.state?.member !== member ||
         data.receipt?.id !== selected.id
       )
@@ -144,7 +151,7 @@ export function WeeklyCorePanel({
       >
         <PackArtwork name="Starter Pack" core />
         <div className="weekly-core-copy">
-          <h2>Weekly starter pack</h2>
+          <h2>Weekly {sport.toUpperCase()} Starter Pack</h2>
           <p>4 random Core cards</p>
           {checking ? (
             <p role="status">Checking your packs…</p>
@@ -179,7 +186,7 @@ export function WeeklyCorePanel({
             {!history && (
               <Link
                 className="pack-control secondary"
-                href="/fantasy/test-wallet?view=packs&packs=history"
+                href={`/fantasy/packs?sport=${sport}&packs=history`}
               >
                 Pack History
               </Link>
@@ -209,9 +216,13 @@ export function WeeklyCorePanel({
               key={p.id}
               data-pack-id={p.id}
             >
-              <PackArtwork name="Weekly Core Pack" core compact />
+              <PackArtwork
+                name={`Weekly ${sport.toUpperCase()} Starter Pack`}
+                core
+                compact
+              />
               <div>
-                <h3>Weekly Core Pack</h3>
+                <h3>Weekly {sport.toUpperCase()} Starter Pack</h3>
                 <p>Free reward · {p.openedAt ? "Opened" : "Ready to open"}</p>
                 <p className="small-note">
                   Issued {new Date(p.issuedAt).toLocaleString("en-AU")}
@@ -246,7 +257,7 @@ export function WeeklyCorePanel({
             setDetail(c);
           }}
           ownedIds={[]}
-          collectionHref="/fantasy/cards?sport=nfl"
+          collectionHref={`/fantasy/cards?sport=${sport}`}
         />
       )}
       {detail && (

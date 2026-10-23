@@ -18,7 +18,7 @@ test("staff queue query returns current content and bounded audit history withou
   const target = "30000000-0000-4000-8000-000000000088";
   const report = "40000000-0000-4000-8000-000000000088";
   await pg.query(
-    "insert into private.social_posts(id,author_id,kind,body) values($1,$2,'discussion','Synthetic reported content')",
+    "insert into private.social_posts(sport,id,author_id,kind,body) values('nfl',$1,$2,'discussion','Synthetic reported content')",
     [target, otherProfile],
   );
   await pg.query(
@@ -112,7 +112,7 @@ before(async () => {
       throw new Error(`Migration ${file}: ${String(error)}`, { cause: error });
     }
   await pg.exec(
-    `insert into auth.users(id,email_confirmed_at) values('${user}',now()),('${other}',now());insert into auth.sessions values('${session}','${user}',null),('${otherSession}','${other}',null);insert into public.profiles(id,country,state,age_attested,accepted_version) values('${user}','XX','SOCIAL',true,'fixture'),('${other}','XX','SOCIAL',true,'fixture');insert into public.notification_preferences(user_id)values('${user}'),('${other}');insert into private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence)values('XX','SOCIAL','fixture',now()-interval '1 day',now()+interval '1 day',now()+interval '1 day',true,18,array['community_social','public_profiles','community_edges','leaderboards'],'Isolated test only');insert into private.social_profiles(id,user_id,handle,display_name)values('${profile}','${user}','reader_one','Reader One'),('${otherProfile}','${other}','reader_two','Reader Two');insert into private.social_notification_preferences(profile_id)values('${profile}'),('${otherProfile}');insert into private.social_posts(id,author_id,kind,body)values('${post}','${otherProfile}','discussion','A social opinion, never performance.');`,
+    `insert into auth.users(id,email_confirmed_at) values('${user}',now()),('${other}',now());insert into auth.sessions values('${session}','${user}',null),('${otherSession}','${other}',null);insert into public.profiles(id,country,state,age_attested,accepted_version) values('${user}','XX','SOCIAL',true,'fixture'),('${other}','XX','SOCIAL',true,'fixture');insert into public.notification_preferences(user_id)values('${user}'),('${other}');insert into private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence)values('XX','SOCIAL','fixture',now()-interval '1 day',now()+interval '1 day',now()+interval '1 day',true,18,array['community_social','public_profiles','community_edges','leaderboards'],'Isolated test only');insert into private.social_profiles(id,user_id,handle,display_name)values('${profile}','${user}','reader_one','Reader One'),('${otherProfile}','${other}','reader_two','Reader Two');insert into private.social_notification_preferences(profile_id)values('${profile}'),('${otherProfile}');insert into private.social_posts(sport,id,author_id,kind,body)values('nfl','${post}','${otherProfile}','discussion','A social opinion, never performance.');`,
   );
   await claims();
 });
@@ -268,7 +268,7 @@ test("followed player discussion replies create one private in-app notification"
   await rollback(async () => {
     const discussion = "30000000-0000-4000-8000-000000000091";
     await pg.query(
-      "insert into private.social_posts(id,author_id,kind,body,player_id) values($1,$2,'discussion','Local player discussion','fixture-player')",
+      "insert into private.social_posts(sport,id,author_id,kind,body,player_id) values('nfl',$1,$2,'discussion','Local player discussion','fixture-player')",
       [discussion, otherProfile],
     );
     await pg.query(
@@ -507,7 +507,7 @@ test("post fanout jobs are atomic, durable and deduplicated with the originating
   const draft = "30000000-0000-4000-8000-000000000099";
   await rollback(async () => {
     await pg.query(
-      "insert into private.social_posts(id,author_id,kind,body) values($1,$2,'discussion','Transaction must roll back.')",
+      "insert into private.social_posts(sport,id,author_id,kind,body) values('nfl',$1,$2,'discussion','Transaction must roll back.')",
       [draft, profile],
     );
     assert.equal(
@@ -625,7 +625,7 @@ test("thread parent must belong to the same post and depth is bounded", async ()
   await assert.rejects(() => add(third), /maximum depth/);
   const otherPost = (
     await pg.query<{ id: string }>(
-      "insert into private.social_posts(author_id,kind,body)values($1,'discussion','Other test thread')returning id",
+      "insert into private.social_posts(sport,author_id,kind,body)values('nfl',$1,'discussion','Other test thread')returning id",
       [profile],
     )
   ).rows[0].id;

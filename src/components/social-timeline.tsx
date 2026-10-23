@@ -114,6 +114,7 @@ function TimelinePage({
       if (
         page.status !== "ready" ||
         !Array.isArray(page.posts) ||
+        (sport && page.posts.some((post) => post.sport !== sport)) ||
         page.posts.length > pageLimit ||
         (page.viewer?.id ?? null) !== (feed.viewer?.id ?? null)
       ) {

@@ -3,6 +3,8 @@ import { sportSandbox } from "@/server/sport-sandbox";
 import { sameOrigin } from "@/server/auth";
 import { boundedCommunityBody } from "@/core/community-social";
 import { isBetaSport } from "@/core/sports-private-beta";
+import { sportStandingRounds } from "@/core/sport-standings";
+import { memberPrizes } from "@/server/member-release";
 export const dynamic = "force-dynamic";
 const headers = { "Cache-Control": "private, no-store" };
 export async function GET(req: Request) {
@@ -10,11 +12,29 @@ export async function GET(req: Request) {
     const allowed = await sportsBetaCapabilities();
     const url = new URL(req.url),
       sport = url.searchParams.get("sport");
-    if (url.searchParams.get("view") !== "state")
+    if (
+      !["state", "standings", "prizes"].includes(
+        url.searchParams.get("view") ?? "",
+      )
+    )
       return Response.json({ allowed }, { headers });
     if (!sport || !isBetaSport(sport) || !allowed.includes(sport))
       throw Error("Denied");
-    return Response.json(await sportSandbox(sport), { headers });
+    const result = await sportSandbox(sport);
+    if (url.searchParams.get("view") === "standings")
+      return Response.json(
+        { rounds: sportStandingRounds(result.state) },
+        { headers },
+      );
+    if (url.searchParams.get("view") === "prizes")
+      return Response.json(
+        {
+          ...result,
+          prizes: (await memberPrizes()).filter((s) => s.sport === sport),
+        },
+        { headers },
+      );
+    return Response.json(result, { headers });
   } catch {
     return Response.json(
       { allowed: [], error: "Verified private beta access required." },

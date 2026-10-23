@@ -4,6 +4,7 @@ import { readFile, readdir } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
 import postgres from "postgres";
+import roster from "../../public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json";
 
 test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts", async () => {
   const url = process.env.WEEKLY_CORE_TEST_DB;
@@ -376,6 +377,99 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
       )[0].allowed,
       true,
     );
+    // Same real PostgreSQL runner also exercises the new per-sport lock boundary.
+    const nflBefore = await q(
+      "select to_jsonb(p) p from sports_feed.weekly_core_packs p where sport='nfl' order by id",
+    );
+    await pg.exec(
+      "create or replace function sports_feed.private_beta_sport_identity() returns uuid language sql as $$select auth.uid()$$;update sports_feed.weekly_sport_programmes set enabled=true,enabled_at=clock_timestamp(),authority_note='Isolated concurrency test';update sports_feed.private_beta_sports set enabled=true,authority='Isolated concurrency test';insert into sports_feed.nba_beta_control values(true,true,'Isolated concurrency test',clock_timestamp());",
+    );
+    await q("insert into sports_feed.sport_sandbox_access values($1)", [
+      users[0],
+    ]);
+    await q(
+      "insert into sports_feed.nba_beta_access(user_id,enabled,authority,expires_at)values($1,true,'Isolated concurrency test','infinity')",
+      [users[0]],
+    );
+    for (const sport of ["afl", "nrl"]) {
+      for (const player of roster.players
+        .filter((p) => p.sport === sport)
+        .slice(0, 4))
+        await q(
+          "insert into credits_sandbox.nba_fixture_players(id,identity)values($1,$2::text::jsonb)",
+          [player.id, JSON.stringify(player)],
+        );
+      await q(
+        "select set_config('request.jwt.claim.sub',$1,false),set_config('docked.private_beta_sport',$2,false)",
+        [users[0], sport],
+      );
+      const reads = racing
+        ? await Promise.all(
+            Array.from({ length: 6 }, () =>
+              racing.begin(async (tx) => {
+                await tx`set local role docked_beta_app`;
+                await tx`select set_config('request.jwt.claim.sub',${users[0]},true),set_config('docked.private_beta_sport',${sport},true)`;
+                return (
+                  await tx`select sports_feed.my_weekly_core(${sport}) s`
+                )[0].s;
+              }),
+            ),
+          )
+        : [(await q("select sports_feed.my_weekly_core($1) s", [sport]))[0].s];
+      assert(
+        reads.every(
+          (s) => s.packs.length === 1 && s.packs[0].id === reads[0].packs[0].id,
+        ),
+      );
+      const packId = reads[0].packs[0].id;
+      const receipts = racing
+        ? await Promise.all(
+            Array.from({ length: 6 }, () =>
+              racing.begin(async (tx) => {
+                await tx`set local role docked_beta_app`;
+                await tx`select set_config('request.jwt.claim.sub',${users[0]},true),set_config('docked.private_beta_sport',${sport},true)`;
+                return (
+                  await tx`select sports_feed.open_weekly_core(${packId},${randomUUID()},${sport}) r`
+                )[0].r;
+              }),
+            ),
+          )
+        : [
+            (
+              await q("select sports_feed.open_weekly_core($1,$2,$3) r", [
+                packId,
+                randomUUID(),
+                sport,
+              ])
+            )[0].r,
+          ];
+      assert(
+        receipts.every(
+          (r) => JSON.stringify(r) === JSON.stringify(receipts[0]),
+        ),
+      );
+      assert.equal(receipts[0].cards.length, 4);
+      assert(
+        receipts[0].cards.every(
+          (c: any) => c.sport === sport && c.tier === "CORE" && !c.tradeable,
+        ),
+      );
+      assert.equal(
+        (await q("select sports_feed.my_weekly_core($1) s", [sport]))[0].s
+          .nextIssueAt,
+        reads[0].nextIssueAt,
+      );
+    }
+    assert.deepEqual(
+      await q(
+        "select to_jsonb(p) p from sports_feed.weekly_core_packs p where sport='nfl' order by id",
+      ),
+      nflBefore,
+    );
+    if (racing)
+      console.log(
+        "PASS: six concurrent issuance/opening requests per sport; NFL receipts preserved",
+      );
   } finally {
     await pg.close();
   }

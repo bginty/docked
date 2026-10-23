@@ -21,6 +21,7 @@ import { refreshEconomyCatalogue } from "../src/server/economy-catalogue";
 import type { Sql } from "postgres";
 import { prepareRosterBetaCatalogue } from "../src/core/roster-beta-prepare";
 import { jerseyPresentation } from "../src/core/card-presentation";
+import { paidPackCatalogueUpgrade } from "../src/core/card-economy";
 async function main() {
   const nba = process.argv.includes("--nba");
   const sport = nba
@@ -34,6 +35,8 @@ async function main() {
   const packNow = realRoster ? Date.now() : sourcePackNow;
   const fixture = () => {
     const state = packFixture(sport);
+    if (sport === "nfl" && process.argv.includes("--three-sport"))
+      paidPackCatalogueUpgrade(state.economy!, packNow);
     if (realRoster) {
       assert.notEqual(sport, "nfl");
       const players = JSON.parse(
@@ -53,7 +56,9 @@ async function main() {
   const packPath =
     "/fantasy/test-wallet?view=packs" +
     (sport !== "nfl" ? `&fixtureSport=${sport}&sport=${sport}` : "");
-  const out = `docs/qa/${realRoster ? `real-rosters/${sport}/packs` : sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
+  const out = process.argv.includes("--three-sport")
+    ? `docs/qa/three-sport-parity/packs/${sport}`
+    : `docs/qa/${realRoster ? `real-rosters/${sport}/packs` : sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/pack-shopping.tsx",
@@ -83,6 +88,7 @@ async function main() {
     "collectible",
     "standings",
     "pack-shop",
+    "owned-collection",
   ]
     .map((n) => readFileSync(`src/app/${n}.css`, "utf8"))
     .join("\n");
@@ -238,6 +244,91 @@ async function main() {
   const results: unknown[] = [];
   let lastPage: import("@playwright/test").Page | null = null;
   try {
+    if (process.argv.includes("--three-sport")) {
+      for (const width of [412, 1440]) {
+        state = fixture();
+        calls = 0;
+        const page = await browser.newPage({
+          viewport: { width, height: 915 },
+          reducedMotion: "reduce",
+        });
+        const errors: string[] = [];
+        page.on("pageerror", (e) => errors.push(e.message));
+        await page.goto(origin + packPath);
+        await expect(page.locator(".pack-product")).toHaveCount(6);
+        await expect(
+          page.getByRole("heading", {
+            name: `Weekly ${sport.toUpperCase()} Starter Pack`,
+          }),
+        ).toBeVisible();
+        assert.equal(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth > innerWidth,
+          ),
+          false,
+        );
+        for (const [family, price] of [
+          ["Standard", 700],
+          ["Premium", 5000],
+        ] as const) {
+          await page
+            .getByRole("button", { name: `Buy ${family} 9 Pack`, exact: true })
+            .click();
+          await expect(page.getByRole("dialog")).toContainText(
+            price.toLocaleString("en-AU"),
+          );
+          await page
+            .getByRole("button", { name: "Cancel", exact: true })
+            .click();
+        }
+        await page.screenshot({
+          path: `${out}/buy-${width}.png`,
+          fullPage: true,
+        });
+        await page
+          .getByRole("button", { name: "Buy Standard 9 Pack", exact: true })
+          .click();
+        await page
+          .getByRole("button", { name: "Confirm Purchase", exact: true })
+          .dblclick();
+        await expect(
+          page.getByRole("button", { name: "Reveal next card" }),
+        ).toBeVisible({ timeout: 15000 });
+        assert.equal(Object.keys(state.economy!.instances).length, 9);
+        assert.equal(calls, 2);
+        assert(
+          Object.values(state.economy!.instances).every(
+            (c) =>
+              state.economy!.players[c.playerId].sport === sport &&
+              c.rarity !== "CORE",
+          ),
+        );
+        await page
+          .getByRole("button", { name: "Skip remaining reveals" })
+          .click();
+        await expect(page.locator(".pack-summary li")).toHaveCount(9);
+        await page.screenshot({
+          path: `${out}/reveal-${width}.png`,
+          fullPage: true,
+        });
+        assert.deepEqual(errors, []);
+        results.push({
+          width,
+          sport,
+          products: 6,
+          paidCards: 9,
+          duplicateTapProtected: true,
+          productionMutation: false,
+        });
+        await page.close();
+      }
+      writeFileSync(
+        out + "/browser.json",
+        JSON.stringify({ passed: true, isolated: true, results }, null, 2),
+      );
+      console.log(JSON.stringify(results));
+      return;
+    }
     for (const width of [1440, 1024, 412, 360]) {
       state = fixture();
       calls = 0;
@@ -326,9 +417,18 @@ async function main() {
       assert.equal(calls, 2);
       await expect(page.locator(".pack-opening")).toHaveClass(/pack-simple/);
       if (realRoster) {
-        const verified = new Set(Object.keys(state.economy!.instances).map(id => jerseyPresentation(testCard(state,id)).number));
-        for (const number of await page.locator(".jersey-number").allTextContents())
-          assert(verified.has(number), "Revealed number must match a source-verified card in this receipt");
+        const verified = new Set(
+          Object.keys(state.economy!.instances).map(
+            (id) => jerseyPresentation(testCard(state, id)).number,
+          ),
+        );
+        for (const number of await page
+          .locator(".jersey-number")
+          .allTextContents())
+          assert(
+            verified.has(number),
+            "Revealed number must match a source-verified card in this receipt",
+          );
       } else assert.equal(await page.locator(".jersey-number").count(), 0);
       await page.getByLabel("Opening settings").click();
       await expect(

@@ -302,6 +302,7 @@ async function selectPosts(
    and (${options.officialTipId ?? null}::uuid is null or p.official_tip_id=${options.officialTipId ?? null})
    and (${options.communityEdgeId ?? null}::uuid is null or p.community_edge_id=${options.communityEdgeId ?? null})
    and (${options.sport ?? null}::text is null or p.sport=${options.sport ?? null})
+    and (${options.sport ?? null}::text is null or not exists(select 1 from jsonb_array_elements(coalesce(p.card_snapshots,'[]')) card where card->>'sport' is distinct from p.sport))
    and (${search ?? null}::text is null or p.body ilike ${search ? `%${search.replace(/[\\%_]/g, "\\$&")}%` : null})
    and (${!options.saved} or exists(select 1 from private.social_saved s where s.profile_id=${profileId} and s.post_id=p.id))
    and (${tab !== "following"} or a.is_official or exists(select 1 from private.social_follows f where f.actor_id=${profileId} and f.target_id=p.author_id))
@@ -330,8 +331,11 @@ export async function communityFeed(
       nextCursor: null as string | null,
     },
     async (c) => {
-      // Workspace sport is never a Social audience restriction.
-      const result = await selectPosts(c, { ...options, sport: undefined });
+      const selectedSport =
+        options.sport ?? (options.postId || options.author ? undefined : "nfl");
+      if (selectedSport && !["nfl", "afl", "nrl"].includes(selectedSport))
+        throw Error("Sport feed unavailable");
+      const result = await selectPosts(c, { ...options, sport: selectedSport });
       const found =
         await c.tx`select id from private.social_profiles where private.social_profile_visible(${c.profileId},id,false) and id is distinct from ${c.profileId} order by is_official desc,joined_at desc,id limit 8`;
       return {
@@ -929,6 +933,11 @@ export async function mutateCommunity(input: unknown) {
       }
       if (action.action === "post") {
         await tx`select pg_advisory_xact_lock(71820342)`;
+        if (
+          action.kind !== "official" &&
+          !["nfl", "afl", "nrl"].includes(action.sport ?? "")
+        )
+          throw Error("Choose NFL, AFL or NRL before posting.");
         let authorId = profileId;
         if (action.kind === "official") {
           await staffInTransaction(tx, actor);

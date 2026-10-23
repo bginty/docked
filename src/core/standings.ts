@@ -34,6 +34,8 @@ export type StandingRow = {
   lineup: StandingPlayer[] | null;
 };
 export type StandingRound = {
+  sport?: string;
+  slots?: { id: string }[];
   scoringVersion?: string;
   receptionCentipoints?: number;
   rarityVersion?: string | null;

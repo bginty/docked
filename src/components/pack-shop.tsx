@@ -387,9 +387,25 @@ export function PackShop({
                   ))}
                 </div>
                 <FamilyDisclosures p={products[0]} />
+                {family === "STANDARD" &&
+                  ["nfl", "afl", "nrl"].includes(sport) && (
+                    <WeeklyCorePanel
+                      key={sport}
+                      member={s.member}
+                      sport={sport as "nfl" | "afl" | "nrl"}
+                    />
+                  )}
               </section>
             );
           })}
+          {!sportProducts.some((p) => p.tier === "STANDARD") &&
+            ["nfl", "afl", "nrl"].includes(sport) && (
+              <WeeklyCorePanel
+                key={sport}
+                member={s.member}
+                sport={sport as "nfl" | "afl" | "nrl"}
+              />
+            )}
           {s.economyEnabled && (
             <p className="small-note">
               {sport === "nfl"
@@ -424,8 +440,13 @@ export function PackShop({
       {tab !== "buy" && (
         <section id="pack-history" className="pack-library">
           <h2>{tab === "mine" ? "My Packs" : "Pack history"}</h2>
-          {sport === "nfl" && (
-            <WeeklyCorePanel member={s.member} history={tab === "history"} />
+          {["nfl", "afl", "nrl"].includes(sport) && (
+            <WeeklyCorePanel
+              key={sport}
+              member={s.member}
+              sport={sport as "nfl" | "afl" | "nrl"}
+              history={tab === "history"}
+            />
           )}
           {sport === "nfl" && tab === "history" && (
             <StarterPackHistory member={s.member} />
@@ -435,7 +456,7 @@ export function PackShop({
               {tab === "mine"
                 ? sport === "nfl"
                   ? "No unopened purchased packs. Weekly rewards are shown above."
-                  : "No unopened NBA test packs."
+                  : "No unopened purchased packs. Weekly rewards are shown above."
                 : "Your purchased pack history will appear here."}
             </p>
           )}
@@ -496,7 +517,10 @@ export function PackShop({
         </section>
       )}
       <p className="pack-no-cash">Test Docked Credits · No cash value</p>
-      <Link className="pack-control secondary" href="/fantasy/cards">
+      <Link
+        className="pack-control secondary"
+        href={`/fantasy/cards?sport=${sport}`}
+      >
         View Collection
       </Link>
       {review && (

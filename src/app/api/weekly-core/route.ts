@@ -4,9 +4,15 @@ import { weeklyCore } from "@/server/weekly-core";
 import { boundedCommunityBody } from "@/core/community-social";
 const headers = { "Cache-Control": "private, no-store" };
 export const runtime = "nodejs";
-export async function GET() {
+export async function GET(req: Request) {
   try {
-    return NextResponse.json(await weeklyCore(), { headers });
+    return NextResponse.json(
+      await weeklyCore(
+        undefined,
+        new URL(req.url).searchParams.get("sport") ?? "nfl",
+      ),
+      { headers },
+    );
   } catch {
     return NextResponse.json(
       {
@@ -27,7 +33,13 @@ export async function POST(req: Request) {
     const body = JSON.parse(
       new TextDecoder().decode(await boundedCommunityBody(req, 2048)),
     );
-    return NextResponse.json(await weeklyCore(body), { headers });
+    return NextResponse.json(
+      await weeklyCore(
+        body,
+        new URL(req.url).searchParams.get("sport") ?? body.sport ?? "nfl",
+      ),
+      { headers },
+    );
   } catch {
     return NextResponse.json(
       {

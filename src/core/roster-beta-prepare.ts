@@ -55,7 +55,8 @@ export function prepareRosterBetaCatalogue(
       };
       if (
         e.products[id] &&
-        JSON.stringify(e.products[id]) !== JSON.stringify(p)
+        JSON.stringify({ ...e.products[id], effectiveAt: now }) !==
+          JSON.stringify(p)
       )
         throw Error("Existing product version requires reconciliation");
       e.products[id] ??= p;

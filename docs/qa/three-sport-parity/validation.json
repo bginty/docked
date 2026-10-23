@@ -1,0 +1,85 @@
+{
+  "generatedAt": "2026-10-23T10:55:34.092Z",
+  "environment": "Isolated local fixtures, local databases and local browser harnesses; no hosted mutations",
+  "production": {
+    "deployed": false,
+    "migrationApplied": false,
+    "authenticatedAcceptance": false,
+    "existingMemberRecordsMutated": false
+  },
+  "tests": {
+    "platform": {
+      "passed": 610,
+      "failed": 0
+    },
+    "database": {
+      "passed": 217,
+      "failed": 0,
+      "execution": "serial"
+    },
+    "finalTargetedPlatform": {
+      "passed": 3,
+      "failed": 0
+    },
+    "realPostgresConcurrency": {
+      "passed": true,
+      "requestsPerSport": {
+        "issuance": 6,
+        "opening": 6
+      },
+      "sports": [
+        "nfl",
+        "afl",
+        "nrl"
+      ]
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "productionBuild": "PASS",
+    "browserCanary": {
+      "status": "PASS",
+      "assets": 88
+    },
+    "credentialPatternScan": {
+      "status": "BASELINE_FINDINGS",
+      "unchangedFiles": 8,
+      "changedFileFindings": 0
+    }
+  },
+  "browser": {
+    "viewports": [
+      {
+        "width": 412,
+        "height": 915
+      },
+      {
+        "width": 1440,
+        "height": 915
+      }
+    ],
+    "aflSlots": 22,
+    "nrlSlots": 13,
+    "sixRarities": true,
+    "longName": true,
+    "lockedSlots": true,
+    "unresolvedScores": true,
+    "ownedPicker": true,
+    "fieldListPersistence": true,
+    "savedReload": true,
+    "rankingsSnapshot": true,
+    "prizesEmpty": true,
+    "sixPackProductsPerSport": true,
+    "packOpeningNineCards": true,
+    "repeatedTapProtection": true,
+    "navigationSocialChecks": 6,
+    "physicalSamsung": false,
+    "authenticatedProduction": false
+  },
+  "caveats": [
+    "Broad credential-pattern scan is not clean: eight unchanged baseline files require separate review.",
+    "The initial parallel database rerun hit a Windows process-spawn limit; the final serial run passed all 217.",
+    "No hosted backup, migration, cron execution or signed-in Production acceptance was performed.",
+    "AFL/NRL salary caps remain test units; prizes and season aggregation are unconfigured.",
+    "New weekly programmes remain disabled and additional product variants require reviewed registration."
+  ]
+}

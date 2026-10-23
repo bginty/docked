@@ -10,6 +10,7 @@ import { useSocialHub } from "./social-hub";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { FantasySheet } from "./fantasy-player-sheet";
 import { boundedFetch as communityRequest } from "@/core/bounded-request";
+import { useSport, useSportDraftGuard } from "./sport-context";
 export function SocialComposer({
   initialSport,
   inline = false,
@@ -55,6 +56,11 @@ export function SocialComposer({
   const sending = useRef(false);
   const router = useRouter();
   const ready = useClientReady();
+  const { sport: workspaceSport } = useSport();
+  const destination = initialSport ?? workspaceSport;
+  useSportDraftGuard(
+    busy || !!body.trim() || cardIds.length > 0 || mediaIds.length > 0,
+  );
   const attachmentSports = [
     ...new Set(
       hub?.cards
@@ -102,6 +108,15 @@ export function SocialComposer({
     e.preventDefault();
     if (!ready || busy || sending.current) return;
     const d = new FormData(e.currentTarget);
+    if (
+      !["nfl", "afl", "nrl"].includes(destination) ||
+      (cardIds.length && attachmentSport !== destination)
+    ) {
+      setMessage(
+        "Choose owned cards from the destination sport before posting.",
+      );
+      return;
+    }
     sending.current = true;
     setBusy(true);
     try {
@@ -109,7 +124,7 @@ export function SocialComposer({
         action: "post",
         kind: d.get("kind"),
         body,
-        sport: cardIds.length ? attachmentSport : initialSport,
+        sport: destination,
         mediaIds,
         cardIds,
         communityId,
@@ -127,7 +142,7 @@ export function SocialComposer({
       onPublished?.();
       if (inline)
         router.push(
-          `/fantasy/social?tab=latest${communityId ? `&community=${communityId}` : ""}${playerId ? `&player=${encodeURIComponent(playerId)}` : ""}`,
+          `/fantasy/social?sport=${destination}&tab=latest${communityId ? `&community=${communityId}` : ""}${playerId ? `&player=${encodeURIComponent(playerId)}` : ""}`,
         );
       else if (v.post?.id ?? v.id)
         router.push(`/community/posts/${v.post?.id ?? v.id}`);
@@ -161,7 +176,7 @@ export function SocialComposer({
         )}
         <form ref={postForm} className="app-form" method="post" onSubmit={post}>
           <label>
-            Your post
+            Post to {destination.toUpperCase()}
             <textarea
               required
               maxLength={4000}
@@ -240,13 +255,18 @@ export function SocialComposer({
                 </p>
               )}
               {!hub && !hubError && <p>Loading your opened cards…</p>}
-              {hub?.cards.length === 0 && <p>No opened cards available.</p>}
+              {hub &&
+                !hub.cards.some(({ card }) => card.sport === destination) && (
+                  <p>No owned {destination.toUpperCase()} cards available.</p>
+                )}
               <div className="social-attachment-grid">
                 {hub?.cards
-                  .filter(({ card }) =>
-                    card.name
-                      .toLowerCase()
-                      .includes(search.trim().toLowerCase()),
+                  .filter(
+                    ({ card }) =>
+                      card.sport === destination &&
+                      card.name
+                        .toLowerCase()
+                        .includes(search.trim().toLowerCase()),
                   )
                   .map(({ card }) => (
                     <label key={card.id}>

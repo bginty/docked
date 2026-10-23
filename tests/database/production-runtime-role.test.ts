@@ -451,7 +451,7 @@ test("ordinary social writes fan out durably but cannot impersonate official or 
   await asApp();
   postId = (
     await pg.query<{ id: string }>(
-      "insert into private.social_posts(author_id,kind,body) values($1,'discussion','Clearly fictional production-role regression') returning id",
+      "insert into private.social_posts(sport,author_id,kind,body) values('nfl',$1,'discussion','Clearly fictional production-role regression') returning id",
       [profileId],
     )
   ).rows[0].id;
@@ -465,7 +465,7 @@ test("ordinary social writes fan out durably but cannot impersonate official or 
     1,
   );
   await deny(
-    "insert into private.social_posts(author_id,kind,body) values('00000000-0000-4000-8000-000000000001','official','Impersonation denied')",
+    "insert into private.social_posts(sport,author_id,kind,body) values('nfl','00000000-0000-4000-8000-000000000001','official','Impersonation denied')",
   );
   await pg.query(
     "insert into private.social_comments(post_id,author_id,body,idempotency_key) values($1,$2,'A fictional reply',gen_random_uuid())",

@@ -12,12 +12,18 @@ import { MarketListingDialog } from "./market-listing-dialog";
 import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
 import { rarityRule, rarities } from "@/core/card-rarity";
 import { packShopHref } from "@/core/pack-presentation";
+import { CompetitionResults } from "./competition-results";
+import { PrizesPage } from "./prizes-page";
+import { sportStandingRounds } from "@/core/sport-standings";
+import type { PrizeSchedule } from "@/core/prize-schedules";
 export function NbaBetaScreen({
   cards = false,
   sport = "basketball",
+  surface = "play",
 }: {
   cards?: boolean;
   sport?: BetaSport;
+  surface?: "play" | "results" | "prizes";
 }) {
   const config = sportConfigurations[sport],
     label = config.label;
@@ -26,6 +32,7 @@ export function NbaBetaScreen({
       ? "/api/nba-beta"
       : `/api/sports-beta?sport=${sport}`;
   const [state, setState] = useState<SandboxState | null>(null);
+  const [prizes, setPrizes] = useState<PrizeSchedule[]>([]);
   const [query, setQuery] = useState("");
   const [position, setPosition] = useState("");
   const [rarity, setRarity] = useState("");
@@ -41,13 +48,17 @@ export function NbaBetaScreen({
     setError(false);
     setState(null);
     void boundedFetch(
-      `${apiPath}${apiPath.includes("?") ? "&" : "?"}view=state`,
+      `${apiPath}${apiPath.includes("?") ? "&" : "?"}view=${surface === "prizes" ? "prizes" : "state"}`,
       { cache: "no-store", signal: controller.signal },
     )
       .then(async (r) => {
         if (!r.ok) throw Error("Unavailable");
         const data = await r.json();
-        if (!disposed) setState(data.state);
+        if (data.state?.sport !== sport) throw Error("Sport response mismatch");
+        if (!disposed) {
+          setState(data.state);
+          setPrizes(data.prizes ?? []);
+        }
       })
       .catch(() => {
         if (!disposed) setError(true);
@@ -56,7 +67,7 @@ export function NbaBetaScreen({
       disposed = true;
       controller.abort();
     };
-  }, [attempt, apiPath]);
+  }, [attempt, apiPath, surface]);
   if (error)
     return (
       <section className="fantasy-panel">
@@ -68,7 +79,34 @@ export function NbaBetaScreen({
         <button onClick={() => setAttempt((n) => n + 1)}>Retry</button>
       </section>
     );
-  if (!state) return <p role="status">Loading {label} testing…</p>;
+  if (!state || state.sport !== sport)
+    return <p role="status">Loading {label} testing…</p>;
+  if (surface === "results")
+    return (
+      <CompetitionResults
+        key={`${sport}:results`}
+        sport={sport}
+        seasonAggregationEnabled={false}
+        rounds={[]}
+        standings={[]}
+        records={[]}
+        weekly={sportStandingRounds(state)}
+      />
+    );
+  if (surface === "prizes")
+    return (
+      <PrizesPage
+        competitions={state.competitions.map((c) => ({
+          id: c.id,
+          name: c.name,
+          sport: c.sport,
+          mode: c.rules.mode,
+          season: c.season,
+          week: c.round,
+        }))}
+        schedules={prizes}
+      />
+    );
   if (!cards)
     return <SportSandbox initial={state} privateBeta apiPath={apiPath} />;
   const realRoster = state.cards.some(

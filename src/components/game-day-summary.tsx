@@ -21,7 +21,10 @@ export function GameDaySummary({
   return (
     <section className="game-day-summary" aria-label="Game day summary">
       <div className="game-day-title">
-        <h2>{title ?? `Week ${round.week} — Game Day`}</h2>
+        <h2>
+          {title ??
+            `${round.sport === "afl" || round.sport === "nrl" ? "Round" : "Week"} ${round.week} — Game Day`}
+        </h2>
         <span>{gameDayStatus(round)}</span>
       </div>
       <div className="game-day-numbers">

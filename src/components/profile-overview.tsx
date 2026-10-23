@@ -1,26 +1,19 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
 import type { FantasyState } from "@/core/fantasy";
 import type { PrivateAccountSummary } from "@/core/profile-overview";
 import { RarityCounts } from "./rarity-counts";
 import { useSport } from "./sport-context";
-import { WeeklyCorePanel } from "./weekly-core-panel";
-import { useWorkspaceWallet } from "./use-workspace-wallet";
 import { MemberAvatar } from "./member-avatar";
-import type { WeeklyCoreView } from "@/core/weekly-core";
 export function ProfileOverview({
   data,
   account,
-  onRefresh,
 }: {
   data: FantasyState;
   account?: PrivateAccountSummary;
   onRefresh?: () => void;
 }) {
   const { sport } = useSport();
-  const wallet = useWorkspaceWallet(data.user_id, true);
-  const [weekly, setWeekly] = useState<WeeklyCoreView | null>(null);
   const displayName =
     data.team_name ||
     account?.displayName ||
@@ -57,7 +50,7 @@ export function ProfileOverview({
           </Link>
           <Link
             className="pack-control primary"
-            href="/fantasy/test-wallet?view=packs"
+            href={`/fantasy/packs?sport=${sport}`}
           >
             Packs
           </Link>
@@ -66,11 +59,6 @@ export function ProfileOverview({
           </Link>
         </div>
       </header>
-      <WeeklyCorePanel
-        member={data.user_id}
-        onOpened={onRefresh}
-        onState={setWeekly}
-      />
       <section className="fantasy-panel">
         <h2>Collection & record</h2>
         <div className="profile-record-stats">
@@ -82,17 +70,8 @@ export function ProfileOverview({
             <strong>{entries.size}</strong>
             <span>Entries</span>
           </Link>
-          <Link href="/fantasy/test-wallet?view=packs&packs=history">
-            <strong>
-              {wallet.value && weekly
-                ? wallet.value.openedPacks +
-                  weekly.packs.filter((p) => p.openedAt).length +
-                  new Set([
-                    ...data.packs.filter((p) => p.opened_at).map((p) => p.id),
-                    ...(data.starter_receipt ? [data.starter_receipt.id] : []),
-                  ]).size
-                : "—"}
-            </strong>
+          <Link href={`/fantasy/packs?sport=${sport}&packs=history`}>
+            <strong>View history</strong>
             <span>Packs opened</span>
             <small>Account-wide</small>
           </Link>
@@ -152,8 +131,15 @@ export function ProfileOverview({
             </Link>
             <span id="profile-install-slot" />
             {account?.staffRole && (
-              <Link className="pack-control secondary" href={account.staffRole === "owner" ? "/admin/operations" : "/admin"}>
-                {account.staffRole === "owner" ? "Owner dashboard" : "Staff dashboard"}
+              <Link
+                className="pack-control secondary"
+                href={
+                  account.staffRole === "owner" ? "/admin/operations" : "/admin"
+                }
+              >
+                {account.staffRole === "owner"
+                  ? "Owner dashboard"
+                  : "Staff dashboard"}
               </Link>
             )}
           </nav>

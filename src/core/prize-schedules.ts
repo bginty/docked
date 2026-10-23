@@ -38,6 +38,13 @@ export const prizeCommand = z
   .strict();
 export type PrizeItem = z.infer<typeof prizeItem>;
 export function prizeRewardLabel(item: PrizeItem) {
+  const sportProduct =
+    item.type === "pack" &&
+    item.productVersion?.match(
+      /^(standard|premium)-(1|3|9)-(afl|nrl)-real-roster-beta-v1$/,
+    );
+  if (sportProduct)
+    return `${item.amount} × ${sportProduct[1] === "standard" ? "Standard" : "Premium"} ${sportProduct[2]} Pack ${sportProduct[3].toUpperCase()}`;
   const product =
     item.type === "pack" &&
     paidPackOffers.find((p) => p.id === item.productVersion);

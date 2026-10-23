@@ -34,6 +34,11 @@ const sportQueryKeys = [
   "week",
   "season",
   "mode",
+  "series",
+  "round",
+  "period",
+  "cursor",
+  "community",
 ];
 const sports = {
   nfl: "NFL",
@@ -136,12 +141,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
   }, [memberArea, capabilityAttempt]);
   useEffect(() => {
     const read = () => {
-      // Social is global. Old shared Social URLs must not change a member's
-      // Play/Cards/Market preference or narrow their social network.
-      const requested =
-        /^\/(fantasy\/social|feed|following|community|compose)(\/|$)/.test(path)
-          ? null
-          : new URLSearchParams(location.search).get("sport");
+      const requested = new URLSearchParams(location.search).get("sport");
       // Unsupported deep links remain explicit instead of displaying another sport's data.
       let saved: string | null = null;
       try {
@@ -190,7 +190,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
         new Event("docked:sport-changing", { cancelable: true }),
       )
     ) {
-      setNotice("Save or discard your lineup changes before changing sport.");
+      setNotice("Save or discard your unsent changes before changing sport.");
       return;
     }
     setSport(next);
@@ -203,9 +203,15 @@ export function SportProvider({ children }: { children: ReactNode }) {
     for (const key of sportQueryKeys) url.searchParams.delete(key);
     url.searchParams.set("sport", next);
     history.replaceState(null, "", url);
+    if (path === "/fantasy/social") router.refresh();
     // Private sport routes intentionally do not pre-load NFL. Returning to NFL
     // must request its server page, preserving the authenticated shared shell.
-    if (next === "nfl" && path !== "/fantasy/cards") router.refresh();
+    if (
+      next === "nfl" &&
+      path !== "/fantasy/cards" &&
+      path !== "/fantasy/social"
+    )
+      router.refresh();
     window.dispatchEvent(new Event("docked:sport-changed"));
   }
   return (
@@ -263,10 +269,20 @@ export function SportScope({ children }: { children: ReactNode }) {
       return children;
     if (path === "/fantasy/cards" || path === "/fantasy/history")
       return children;
-    if (path === "/fantasy/play")
+    if (["/fantasy/play", "/fantasy/results", "/fantasy/prizes"].includes(path))
       return (
         <Suspense fallback={<p role="status">Loading your team…</p>}>
-          <NbaBetaScreen key={`${path}:${sport}`} sport={sport} />
+          <NbaBetaScreen
+            key={`${path}:${sport}`}
+            sport={sport}
+            surface={
+              path.endsWith("/results")
+                ? "results"
+                : path.endsWith("/prizes")
+                  ? "prizes"
+                  : "play"
+            }
+          />
         </Suspense>
       );
     if (path === "/fantasy/test-wallet" || path === "/fantasy/packs")

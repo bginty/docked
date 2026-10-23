@@ -82,55 +82,65 @@ let evidence = process.argv.includes("--card-consistency")
                                                               )
                                                             ? "docs/qa/mobile-cleanup"
                                                             : "docs/qa/marketplace-release";
-if (process.argv.includes("--owned-collection")) evidence = "docs/qa/owned-collection";
+if (process.argv.includes("--owned-collection"))
+  evidence = "docs/qa/owned-collection";
 if (process.argv.includes("--global-sport")) evidence = "docs/qa/global-sport";
 if (process.argv.includes("--play-owned")) evidence = "docs/qa/play-owned";
 if (process.argv.includes("--hide-nba")) evidence = "docs/qa/hide-nba";
+if (process.argv.includes("--three-sport"))
+  evidence = "docs/qa/three-sport-parity/build";
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve(
-    process.argv.includes("--hide-nba") ? `tmp/hide-nba-build-${Date.now()}` :
-    process.argv.includes("--play-owned") ? `tmp/play-owned-build-${Date.now()}` :
-    process.argv.includes("--owned-collection") ? `tmp/owned-collection-build-${Date.now()}` :
-    process.argv.includes("--card-consistency")
-      ? `tmp/card-consistency-build-${Date.now()}`
-      : process.argv.includes("--startup-shell")
-        ? `tmp/startup-shell-build-${Date.now()}`
-        : process.argv.includes("--packs-route")
-          ? `tmp/packs-route-build-${Date.now()}`
-          : process.argv.includes("--member-loading")
-            ? `tmp/member-loading-build-${Date.now()}`
-            : process.argv.includes("--real-rosters")
-              ? `tmp/real-roster-build-${Date.now()}`
-              : process.argv.includes("--multi-sport")
-                ? `tmp/multi-sport-build-${Date.now()}`
-                : process.argv.includes("--scoring-integrity")
-                  ? `tmp/scoring-integrity-build-${Date.now()}`
-                  : process.argv.includes("--nfl-roster")
-                    ? `tmp/nfl-roster-build-${Date.now()}`
-                    : process.argv.includes("--nfl-testing")
-                      ? `tmp/nfl-testing-build-${Date.now()}`
-                      : process.argv.includes("--card-viewer")
-                        ? `tmp/card-viewer-build-${Date.now()}`
-                        : process.argv.includes("--admin-completion")
-                          ? "tmp/admin-completion-build"
-                          : process.argv.includes("--owner-reference")
-                            ? "tmp/owner-reference-build"
-                            : process.argv.includes("--prelaunch")
-                              ? "tmp/prelaunch-build"
-                              : process.argv.includes("--weekly-core")
-                                ? "tmp/weekly-core-build"
-                                : process.argv.includes("--futuristic")
-                                  ? "tmp/futuristic-cards-build"
-                                  : process.argv.includes("--pack-shopping")
-                                    ? "tmp/pack-shopping-build"
-                                    : process.argv.includes("--play-standings")
-                                      ? "tmp/play-standings-build"
-                                      : process.argv.includes(
-                                            "--market-overhaul",
-                                          )
-                                        ? "tmp/market-overhaul-build"
-                                        : "tmp/marketplace-release-build",
+    process.argv.includes("--hide-nba")
+      ? `tmp/hide-nba-build-${Date.now()}`
+      : process.argv.includes("--play-owned")
+        ? `tmp/play-owned-build-${Date.now()}`
+        : process.argv.includes("--owned-collection")
+          ? `tmp/owned-collection-build-${Date.now()}`
+          : process.argv.includes("--card-consistency")
+            ? `tmp/card-consistency-build-${Date.now()}`
+            : process.argv.includes("--startup-shell")
+              ? `tmp/startup-shell-build-${Date.now()}`
+              : process.argv.includes("--packs-route")
+                ? `tmp/packs-route-build-${Date.now()}`
+                : process.argv.includes("--member-loading")
+                  ? `tmp/member-loading-build-${Date.now()}`
+                  : process.argv.includes("--real-rosters")
+                    ? `tmp/real-roster-build-${Date.now()}`
+                    : process.argv.includes("--multi-sport")
+                      ? `tmp/multi-sport-build-${Date.now()}`
+                      : process.argv.includes("--scoring-integrity")
+                        ? `tmp/scoring-integrity-build-${Date.now()}`
+                        : process.argv.includes("--nfl-roster")
+                          ? `tmp/nfl-roster-build-${Date.now()}`
+                          : process.argv.includes("--nfl-testing")
+                            ? `tmp/nfl-testing-build-${Date.now()}`
+                            : process.argv.includes("--card-viewer")
+                              ? `tmp/card-viewer-build-${Date.now()}`
+                              : process.argv.includes("--admin-completion")
+                                ? "tmp/admin-completion-build"
+                                : process.argv.includes("--owner-reference")
+                                  ? "tmp/owner-reference-build"
+                                  : process.argv.includes("--prelaunch")
+                                    ? "tmp/prelaunch-build"
+                                    : process.argv.includes("--weekly-core")
+                                      ? "tmp/weekly-core-build"
+                                      : process.argv.includes("--futuristic")
+                                        ? "tmp/futuristic-cards-build"
+                                        : process.argv.includes(
+                                              "--pack-shopping",
+                                            )
+                                          ? "tmp/pack-shopping-build"
+                                          : process.argv.includes(
+                                                "--play-standings",
+                                              )
+                                            ? "tmp/play-standings-build"
+                                            : process.argv.includes(
+                                                  "--market-overhaul",
+                                                )
+                                              ? "tmp/market-overhaul-build"
+                                              : "tmp/marketplace-release-build",
   );
 await mkdir(dir, { recursive: true });
 for (const p of [

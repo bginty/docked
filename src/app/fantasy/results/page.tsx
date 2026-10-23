@@ -7,6 +7,13 @@ import {
 } from "@/server/postgame-results";
 import { fantasyRequest } from "@/server/fantasy";
 import { CompetitionResults } from "@/components/competition-results";
+import { cookies } from "next/headers";
+import {
+  workspaceSport,
+  activeSportCookie,
+  privateSportWorkspace,
+} from "@/core/workspace-sport";
+import { PrivateSportPage } from "@/components/private-sport-page";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Rankings · Traditional & All-Star",
@@ -18,6 +25,15 @@ export default async function Page({
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const query = await searchParams;
+  const sport = workspaceSport(
+    query.sport,
+    (await cookies()).get(activeSportCookie)?.value,
+  );
+  if (
+    process.env.DOCKED_FRIENDS_BETA === "true" &&
+    privateSportWorkspace("results", sport)
+  )
+    return <PrivateSportPage />;
   try {
     const [{ state }, records, standings, weekly] = await Promise.all([
       fantasyRequest(),

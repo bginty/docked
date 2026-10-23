@@ -7,10 +7,14 @@ export function CompetitionSwitch({
   mode,
   onChange,
   className = "standings-segments",
+  salaryLabel,
+  disabled = false,
 }: {
   mode: string;
   onChange: (mode: "SALARY_CAP" | "OPEN") => void;
   className?: string;
+  salaryLabel?: string;
+  disabled?: boolean;
 }) {
   return (
     <nav className={className} aria-label="Competition">
@@ -19,10 +23,15 @@ export function CompetitionSwitch({
           type="button"
           key={m}
           aria-pressed={mode === m}
+          disabled={disabled}
           onClick={() => onChange(m)}
         >
           {competitionName(m)}
-          <small>{competitionSubtitle(m)}</small>
+          <small>
+            {m === "SALARY_CAP" && salaryLabel !== undefined
+              ? salaryLabel
+              : competitionSubtitle(m)}
+          </small>
         </button>
       ))}
     </nav>

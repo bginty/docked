@@ -171,10 +171,15 @@ export default async function FantasyPage({
     }
     const query = await searchParams;
     const feedTab = query.tab === "following" ? query.tab : "latest";
+    const socialSport = workspaceSport(
+      query.sport,
+      (await cookies()).get(activeSportCookie)?.value,
+    );
     let feed;
     try {
       feed = await boundedRead(
         communityFeed({
+          sport: socialSport,
           tab: feedTab,
           cursor: query.cursor,
           communityId: z.string().uuid().safeParse(query.community).success
@@ -199,6 +204,7 @@ export default async function FantasyPage({
     return (
       <AppShell authenticated>
         <SocialHome
+          sport={socialSport}
           feed={feed}
           tab={feedTab}
           view={

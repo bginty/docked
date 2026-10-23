@@ -118,7 +118,15 @@ export function AppShell({
   const { sport, nba, beta } = useSport();
   const sportHref = (href: string) =>
     ((nba && sport === "basketball") || beta.some((s) => s === sport)) &&
-    ["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(href)
+    [
+      "/fantasy/play",
+      "/fantasy/cards",
+      "/fantasy/market",
+      "/fantasy/social",
+      "/fantasy/results",
+      "/fantasy/prizes",
+      "/fantasy/packs",
+    ].includes(href)
       ? `${href}?sport=${sport}`
       : href;
   const { production, liveBeta } = useEnvironmentPresentation();
@@ -249,12 +257,22 @@ export function AppShell({
           </header>
           <PwaStatus allowInstall={destination === "/fantasy/profile"} />
           <div className="app-content">
-            {["/fantasy/play", "/fantasy/cards", "/fantasy/market"].includes(
-              destination,
-            ) ? (
+            {[
+              "/fantasy/play",
+              "/fantasy/cards",
+              "/fantasy/market",
+              "/fantasy/social",
+              "/fantasy/results",
+              "/fantasy/prizes",
+              "/fantasy/packs",
+            ].includes(destination) ? (
               <>
                 <SportNavigation />
-                <SportScope>{children}</SportScope>
+                {destination === "/fantasy/social" ? (
+                  children
+                ) : (
+                  <SportScope>{children}</SportScope>
+                )}
               </>
             ) : (
               children

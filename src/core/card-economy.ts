@@ -186,14 +186,14 @@ export function initialCardEconomy(
 export function validateProduct(p: NinePackProduct) {
   if (isFixtureSport(p.sport)) {
     const offer = paidPackOffers.find(
-      (x) => x.cards === 9 && x.type === p.type,
+      (x) => x.cards === p.cards && x.type === p.type,
     );
-    const id = `${p.type.toLowerCase()}-9-${fixtureSports[p.sport].prefix}-${p.inventoryScope === "real-roster-beta-v1" ? "real-roster-beta-v1" : "isolated-v1"}`;
+    const id = `${p.type.toLowerCase()}-${p.cards}-${fixtureSports[p.sport].prefix}-${p.inventoryScope === "real-roster-beta-v1" ? "real-roster-beta-v1" : "isolated-v1"}`;
     if (
       !offer ||
       p.id !== id ||
       p.version !== id ||
-      p.cards !== 9 ||
+      (p.sport === "basketball" && p.cards !== 9) ||
       p.priceCredits !== offer.priceCredits ||
       digest(p.weights) !== digest(paidPackWeights[offer.type]) ||
       p.duplicatePlayers !== "deny" ||
@@ -560,16 +560,16 @@ export function prepareSportTestProducts(
   const e = structuredClone(original);
   validateCardEconomy(e);
   const products = paidPackOffers
-    .filter((offer) => offer.cards === 9)
+    .filter((offer) => sport !== "basketball" || offer.cards === 9)
     .map((offer) => {
-      const id = `${offer.type.toLowerCase()}-9-${spec.prefix}-isolated-v1`;
+      const id = `${offer.type.toLowerCase()}-${offer.cards}-${spec.prefix}-isolated-v1`;
       const product: NinePackProduct = {
         id,
         version: id,
         type: offer.type,
         name: `${spec.label} ${offer.name} · Test`,
         priceCredits: offer.priceCredits,
-        cards: 9,
+        cards: offer.cards,
         sport,
         positions: [...spec.positions],
         weights: { ...paidPackWeights[offer.type] },

@@ -349,7 +349,7 @@ test("canonical records survive social tombstone, private identity and blocking"
     proof = await register(m),
     edge = await submit(m, proof);
   await pg.query(
-    "insert into private.social_posts(author_id,kind,body,community_edge_id) values($1,'edge','Fictional commentary',$2)",
+    "insert into private.social_posts(sport,author_id,kind,body,community_edge_id) values('nfl',$1,'edge','Fictional commentary',$2)",
     [profile, edge.id],
   );
   await pg.query(

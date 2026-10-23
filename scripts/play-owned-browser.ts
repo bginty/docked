@@ -12,6 +12,8 @@ import {
 } from "../src/core/sport-configuration";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import { sandboxRecommendation } from "../src/core/sport-sandbox";
+import { sportStandingRounds } from "../src/core/sport-standings";
+import { rarityRule } from "../src/core/card-rarity";
 
 async function main() {
   const sport = process.argv[2] ?? "basketball";
@@ -23,6 +25,17 @@ async function main() {
   assert(config);
   const db = await multiSportDatabase(config, true);
   const owned = db.inventories[db.user].slice(0, config.slots.length);
+  const tiers = ["CORE", "RARE", "ELITE", "ULTRA_RARE", "LEGENDARY", "ICON"];
+  owned.forEach((card, i) => {
+    card.tier = tiers[i % tiers.length];
+    card.max_supply = rarityRule(card.tier).lifetimeCap ?? 0;
+    if (i === 0)
+      card.name = `QA ${config.label} Alexander Northbridge-Wellington`;
+  });
+  await db.q(
+    "update sports_feed.sport_sandbox_inventory set cards=$1 where user_id=$2 and sport=$3",
+    [JSON.stringify(db.inventories[db.user]), db.user, sport],
+  );
   const unowned = db.inventories[db.user].at(-1)!;
   await grantOwnedPlayFixtures(db, owned);
   await db.pg.exec(
@@ -77,6 +90,14 @@ async function main() {
         }
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify({ state: await db.state(), recommendation }));
+      } else if (
+        u.pathname === "/api/sports-beta" &&
+        u.searchParams.get("view") === "standings"
+      ) {
+        res.setHeader("Content-Type", "application/json");
+        res.end(
+          JSON.stringify({ rounds: sportStandingRounds(await db.state()) }),
+        );
       } else if (u.pathname === "/fixture.js") {
         res.setHeader("Content-Type", "text/javascript");
         res.end(js);
@@ -109,15 +130,41 @@ async function main() {
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   const origin = `http://127.0.0.1:${(server.address() as { port: number }).port}`;
   const browser = await chromium.launch();
-  const out = `docs/qa/play-owned/${sport}`;
+  const out = `docs/qa/three-sport-parity/${sport}`;
   mkdirSync(out, { recursive: true });
   const checks = [];
   try {
+    // Capture desktop empty state before the mobile journey persists its entry.
+    const emptyDesktop = await browser.newPage({
+      viewport: { width: 1440, height: 915 },
+    });
+    await emptyDesktop.goto(origin);
+    await emptyDesktop
+      .getByRole("heading", { name: "Your lineup", exact: true })
+      .waitFor();
+    await expect(
+      emptyDesktop.getByRole("button", {
+        name: new RegExp(`^Select ${config.slots[0].id}$`),
+      }),
+    ).toBeVisible();
+    await emptyDesktop.screenshot({
+      path: `${out}/empty-1440.png`,
+      fullPage: true,
+    });
+    await emptyDesktop.close();
     for (const width of [412, 1440]) {
       const page = await browser.newPage({ viewport: { width, height: 915 } });
       const errors: string[] = [];
       page.on("pageerror", (e) => errors.push(e.message));
       await page.goto(origin);
+      await page
+        .getByRole("heading", { name: "Your lineup", exact: true })
+        .waitFor();
+      if (width === 412)
+        await page.screenshot({
+          path: `${out}/empty-${width}.png`,
+          fullPage: true,
+        });
       await page
         .getByRole("button", {
           name: new RegExp(`^Select ${config.slots[0].id}(?:$|:)`),
@@ -161,7 +208,7 @@ async function main() {
           page.getByRole("status").filter({ hasText: "Draft saved" }),
         ).toBeVisible();
         await page
-          .getByRole("button", { name: "Confirm sandbox entry", exact: true })
+          .getByRole("button", { name: "Enter Team", exact: true })
           .click();
         await expect(
           page.getByRole("status").filter({ hasText: "entry confirmed" }),
@@ -191,6 +238,66 @@ async function main() {
         path: `${out}/owned-lineup-${width}.png`,
         fullPage: true,
       });
+      await page
+        .getByRole("button", { name: "List view", exact: true })
+        .click();
+      assert.equal(
+        (await db.state()).entries.find(
+          (e: any) => e.competition_id === db.rounds.OPEN1,
+        ).snapshot.length,
+        config.slots.length,
+      );
+      await page.screenshot({
+        path: `${out}/list-${width}.png`,
+        fullPage: true,
+      });
+      await page.getByRole("link", { name: "Rankings", exact: true }).click();
+      await expect(
+        page.getByRole("heading", { name: "Rankings", exact: true }),
+      ).toBeVisible();
+      assert(new URL(page.url()).searchParams.get("sport") === sport);
+      await page.screenshot({
+        path: `${out}/rankings-${width}.png`,
+        fullPage: true,
+      });
+      await page
+        .getByRole("button", { name: "View Team", exact: true })
+        .first()
+        .click();
+      await expect(page.getByRole("dialog")).toBeVisible();
+      await page.screenshot({
+        path: `${out}/rankings-team-${width}.png`,
+        fullPage: true,
+      });
+      await page
+        .getByRole("button", { name: "Close panel", exact: true })
+        .click();
+      await page
+        .getByRole("link", { name: /Prizes/ })
+        .first()
+        .click();
+      await expect(
+        page.getByRole("heading", { name: "Prizes", exact: true }),
+      ).toBeVisible();
+      await page.screenshot({
+        path: `${out}/prizes-${width}.png`,
+        fullPage: true,
+      });
+      await db.q("select set_config('qa.now','2099-03-03T00:00:00Z',false)");
+      await page.goto(
+        `${origin}/fantasy/play?sport=${sport}&mode=OPEN&competition=${db.rounds.OPEN1}`,
+      );
+      await expect(
+        page.getByRole("heading", { name: "Your lineup", exact: true }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: /^Select BACK|^Select WFB/ }),
+      ).toHaveCount(0);
+      await page.screenshot({
+        path: `${out}/locked-awaiting-${width}.png`,
+        fullPage: true,
+      });
+      await db.q("select set_config('qa.now','2099-01-01T00:00:00Z',false)");
       assert.deepEqual(errors, []);
       checks.push({
         width,

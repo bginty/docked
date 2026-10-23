@@ -1,5 +1,5 @@
 "use client";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { nflSeven } from "@/core/nfl-seven";
 import {
   sportConfigurations,
@@ -21,7 +21,6 @@ export function SevenField({
   children: (slot: { id: string }) => ReactNode;
   sport?: string;
 }) {
-  const [group, setGroup] = useState("");
   const config =
     sport === "basketball" && slots.some((s) => s.id === "UTIL1")
       ? nbaWeeklyConfiguration
@@ -55,36 +54,54 @@ export function SevenField({
         ? [{ id: "saved", label: "Saved positions", slots: unmatched }]
         : []),
     ];
-    const selected = groups.find((g) => g.id === group) ?? groups[0];
+    if (sport === "afl")
+      groups.sort(
+        (a, b) =>
+          ["BACK", "MID", "RUCK", "FWD"].indexOf(a.id) -
+          ["BACK", "MID", "RUCK", "FWD"].indexOf(b.id),
+      );
     return (
       <section
-        className={`sport-lineup sport-lineup-${config.field}`}
+        className={`sport-lineup sport-lineup-${config.field} compact-sport-field ${list ? "compact-sport-list" : "compact-sport-formation"}`}
+        data-sport={sport}
         aria-label={label}
       >
-        {!list && selected && (
-          <div
-            className="sport-field-overview"
-            aria-label={`${config.label} position groups`}
+        {!list && (
+          <svg
+            className="formation-markings"
+            viewBox="0 0 600 1400"
+            preserveAspectRatio="none"
+            aria-hidden="true"
           >
-            {groups.map((g) => (
-              <button
-                type="button"
-                key={g.id}
-                aria-pressed={selected.id === g.id}
-                onClick={() => setGroup(g.id)}
-              >
-                {g.label}
-                <strong>{g.slots.length}</strong>
-              </button>
-            ))}
-          </div>
+            {sport === "afl" ? (
+              <>
+                <ellipse cx="300" cy="700" rx="292" ry="690" />
+                <ellipse cx="300" cy="700" rx="55" ry="60" />
+                <path d="M8 700H592M260 12V70H340V12M260 1388V1330H340V1388M54 320Q300 500 546 320M54 1080Q300 900 546 1080" />
+              </>
+            ) : (
+              <>
+                <rect x="8" y="12" width="584" height="1376" />
+                <path d="M8 75H592M8 260H592M8 470H592M8 700H592M8 930H592M8 1140H592M8 1325H592M150 12V1388M450 12V1388" />
+              </>
+            )}
+          </svg>
         )}
-        {(list ? groups : selected ? [selected] : []).map((g) => (
-          <section key={g.id} aria-label={g.label}>
+        {groups.map((g) => (
+          <section key={g.id} aria-label={g.label} data-group={g.id}>
             <h3>
               {g.label} · {g.slots.length}
             </h3>
-            <div className={list ? "sport-slot-list" : "sport-slot-grid"}>
+            <div
+              className={list ? "sport-slot-list" : "sport-slot-grid"}
+              style={
+                !list
+                  ? {
+                      gridTemplateColumns: `repeat(${g.slots.length === 8 ? 4 : g.slots.length === 6 || g.slots.length === 3 ? 3 : Math.min(2, g.slots.length)}, minmax(0, 1fr))`,
+                    }
+                  : undefined
+              }
+            >
               {slots
                 .filter((s) => g.slots.includes(s.id))
                 .map((s) => (

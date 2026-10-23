@@ -30,13 +30,16 @@ export function gameDayStatus(
 }
 export function gameDayPlayerStatus(player: StandingPlayer, now: number) {
   if (player.status === "under-review") return "Under review";
+  if (player.status === "upcoming") return "Not started";
   if (player.status === "dnp") return "DNP";
   if (player.status === "bye") return "Bye";
   if (player.parts?.some((part) => part.statistic === "assumed-zero"))
     return "Provisional zero";
   if (player.completed || player.status === "final") return "Final";
-  if (player.fixtures?.some((f)=>f.status==="cancelled")) return "Cancelled";
-  if (player.fixtures?.some((f)=>f.status==="postponed")) return "Postponed";
+  if (player.fixtures?.some((f) => f.status === "cancelled"))
+    return "Cancelled";
+  if (player.fixtures?.some((f) => f.status === "postponed"))
+    return "Postponed";
   if (
     player.fixtures?.length &&
     player.fixtures.every((f) => Date.parse(f.scheduledAt) > now)

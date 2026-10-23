@@ -5,9 +5,30 @@ import { memberPrizes } from "@/server/member-release";
 import { fantasyPlatformEnabled } from "@/core/fantasy-production";
 import { FantasyLoadError } from "@/components/fantasy-load-error";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import {
+  workspaceSport,
+  activeSportCookie,
+  privateSportWorkspace,
+} from "@/core/workspace-sport";
+import { PrivateSportPage } from "@/components/private-sport-page";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Prizes" };
-export default async function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
+  const query = await searchParams;
+  const sport = workspaceSport(
+    query.sport,
+    (await cookies()).get(activeSportCookie)?.value,
+  );
+  if (
+    process.env.DOCKED_FRIENDS_BETA === "true" &&
+    privateSportWorkspace("prizes", sport)
+  )
+    return <PrivateSportPage />;
   if (!fantasyPlatformEnabled())
     return (
       <AppShell>

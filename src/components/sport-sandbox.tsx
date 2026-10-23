@@ -18,6 +18,10 @@ import { sandboxSelections } from "@/core/sport-lineup-view";
 import { boundedFetch } from "@/core/bounded-request";
 import type { autoSelect } from "@/core/lineup-auto-select";
 import { useSportDraftGuard } from "./sport-context";
+import { CompetitionSwitch } from "./competition-switch";
+import { competitionName } from "@/core/competition-display";
+import { competitionHref } from "@/core/prize-schedules";
+import { rarityRule, rarities } from "@/core/card-rarity";
 
 export function SportSandbox({
   initial,
@@ -32,11 +36,37 @@ export function SportSandbox({
 }) {
   const [inspecting, setInspecting] = useState<ViewerCard | null>(null);
   const [state, setState] = useState(initial),
-    [mode, setMode] = useState<"OPEN" | "SALARY_CAP">("OPEN");
-  const [round, setRound] = useState(""),
+    [mode, setMode] = useState<"OPEN" | "SALARY_CAP">(() => {
+      const q = new URLSearchParams(
+        typeof location === "undefined" ? "" : location.search,
+      );
+      const requested = q.get("mode");
+      return requested === "SALARY_CAP" || requested === "OPEN"
+        ? requested
+        : (initial.competitions.find(
+            (c) => c.sport === initial.sport && c.id === q.get("competition"),
+          )?.rules.mode ?? "OPEN");
+    });
+  const [round, setRound] = useState(() => {
+      const q = new URLSearchParams(
+        typeof location === "undefined" ? "" : location.search,
+      );
+      return (
+        initial.competitions.find(
+          (c) =>
+            c.sport === initial.sport &&
+            c.rules.mode === mode &&
+            (c.id === q.get("competition") ||
+              (!q.get("competition") &&
+                c.season === q.get("season") &&
+                c.round === Number(q.get("week")))),
+        )?.id ?? ""
+      );
+    }),
     [list, setList] = useState(false),
     [slot, setSlot] = useState<string | null>(null);
   const [pickerQuery, setPickerQuery] = useState("");
+  const [pickerRarity, setPickerRarity] = useState("");
   const [pickerLimit, setPickerLimit] = useState(30);
   const [picks, setPicks] = useState<SlotSelection[]>([]),
     [dirty, setDirty] = useState(false);
@@ -67,7 +97,7 @@ export function SportSandbox({
   }, [state.server_time]);
   let sport = sportConfigurations[state.sport];
   const rounds = state.competitions
-    .filter((c) => c.rules.mode === mode)
+    .filter((c) => c.sport === state.sport && c.rules.mode === mode)
     .filter(
       (c) =>
         !state.competitions.some(
@@ -89,6 +119,36 @@ export function SportSandbox({
         a.round - b.round,
     );
   const comp = rounds.find((c) => c.id === round) ?? rounds[0];
+  const roundWord = state.sport === "basketball" ? "Week" : "Round";
+  const context = {
+    sport: state.sport,
+    mode,
+    season: comp?.season,
+    competition: comp?.id,
+    week: comp ? String(comp.round) : undefined,
+  };
+  const contextHref = (path: string) => competitionHref(path, context);
+  const roundIndex = rounds.findIndex((c) => c.id === comp?.id);
+  function navigateRound(value: string, nextMode = mode) {
+    if (busy || (dirty && !window.confirm("Discard unsaved lineup changes?")))
+      return;
+    setMode(nextMode);
+    setRound(value);
+    const next = state.competitions.find(
+      (c) => c.id === value && c.rules.mode === nextMode,
+    );
+    history.replaceState(
+      null,
+      "",
+      competitionHref(location.pathname, {
+        sport: state.sport,
+        mode: nextMode,
+        competition: next?.id,
+        season: next?.season,
+        week: next ? String(next.round) : undefined,
+      }),
+    );
+  }
   const appliedMultiplier =
     state.sport === "basketball" &&
     comp?.rules.scoring_version !== nbaRarityWeeklyVersion
@@ -118,7 +178,7 @@ export function SportSandbox({
   );
   const [scoreError, setScoreError] = useState("");
   useEffect(() => {
-    if (!nbaProposal || !locked) return;
+    if (!locked) return;
     let disposed = false,
       pending = false;
     const poll = async () => {
@@ -134,6 +194,11 @@ export function SportSandbox({
         const body = await r.json();
         if (!disposed) {
           const received = body.state as SandboxState;
+          if (
+            received.sport !== state.sport ||
+            received.user_id !== state.user_id
+          )
+            throw Error("Sport context changed");
           setState((previous) => ({
             ...previous,
             scores: received.scores,
@@ -185,18 +250,18 @@ export function SportSandbox({
         (c) =>
           c.owner_id === state.user_id &&
           c.sport === state.sport &&
-          c.status === "active" &&
+          (!pickerRarity || c.tier === pickerRarity) &&
           (!hasRealRoster || c.inventory_class === "real-roster-beta-v1") &&
           `${c.name} ${c.team ?? ""}`
             .toLowerCase()
             .includes(pickerQuery.trim().toLowerCase()) &&
-          !c.listed &&
           fitsSlot(c, selected.positions) &&
           !picks.some(
             (p) =>
               p.slot !== slot &&
-              state.cards.find((v) => v.id === p.card)?.player_id ===
-                c.player_id,
+              (state.cards.find((v) => v.id === p.card)?.canonical_player_id ??
+                state.cards.find((v) => v.id === p.card)?.player_id) ===
+                (c.canonical_player_id ?? c.player_id),
           ),
       )
     : [];
@@ -222,10 +287,17 @@ export function SportSandbox({
   const validate = cfg
     ? sevenIssues(mode, picks, state.cards, true, cfg)
     : null;
+  const capPending =
+    mode === "SALARY_CAP" &&
+    (!cfg ||
+      !Number.isSafeInteger(cfg.salaryCap) ||
+      cfg.salaryCap <
+        cfg.slots.length * Math.min(...Object.values(cfg.salaries)));
   async function command(
     action: "seven_draft" | "seven_enter" | "auto_select",
   ) {
-    if (!comp || inFlight.current) return;
+    if (!comp || inFlight.current || (capPending && action !== "seven_draft"))
+      return;
     inFlight.current = true;
     setBusy(true);
     setError("");
@@ -266,7 +338,7 @@ export function SportSandbox({
         setState(body.state);
         setDirty(false);
         setNotice(
-          action === "seven_enter" ? "Sandbox entry confirmed" : "Draft saved",
+          action === "seven_enter" ? "Team entry confirmed" : "Draft saved",
         );
       }
     } catch (e) {
@@ -297,10 +369,6 @@ export function SportSandbox({
       inFlight.current = false;
       setBusy(false);
     }
-  }
-  function switchRound(value: string) {
-    if (dirty && !window.confirm("Discard unsaved lineup changes?")) return;
-    setRound(value);
   }
   function renderCard(s: { id: string }) {
     const snap = display?.find((c) => c.slot === s.id);
@@ -333,11 +401,15 @@ export function SportSandbox({
               variant="lineup"
             />
           ) : (
-            <span className="sport-empty-slot">Select player</span>
+            <span className="sport-empty-slot">
+              <strong aria-hidden="true">+</strong>
+              <span>{s.id}</span>
+              <small>Select player</small>
+            </span>
           )}
         </button>
-        <p>{card?.name ?? "Empty position"}</p>
-        {nbaProposal && card && (
+        {card && readOnly && <span className="sport-lock-label">Locked</span>}
+        {card && (
           <p className="nba-player-score">
             <strong>
               {playerScore?.points == null
@@ -353,7 +425,7 @@ export function SportSandbox({
         )}
         {playerScore?.games.length ? (
           <details className="nba-game-breakdown">
-            <summary>Games this week</summary>
+            <summary>Games this {roundWord.toLowerCase()}</summary>
             <ul>
               {playerScore.games.map((game, i) => (
                 <li key={`${game.scheduledAt}:${i}`}>
@@ -375,10 +447,7 @@ export function SportSandbox({
   }
   return (
     <section className={`sport-sandbox${nbaProposal ? " nba-sandbox" : ""}`}>
-      <h1>
-        {sport?.label ?? state.sport} ·{" "}
-        {privateBeta ? "Private beta" : "Team laboratory"}
-      </h1>
+      <h1>Your lineup</h1>
       {!privateBeta && (
         <nav aria-label="Sandbox sport">
           {Object.values(sportConfigurations)
@@ -416,113 +485,105 @@ export function SportSandbox({
               : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
         </p>
       </details>
-      <div className="sport-sandbox-controls">
-        {privateBeta && ["afl", "nrl"].includes(state.sport) && (
-          <Link
-            className="button ghost"
-            href={`/fantasy/history?sport=${state.sport}`}
-          >
-            2026 match results
-          </Link>
-        )}
+      <span className="competition-label">Competition</span>
+      <CompetitionSwitch
+        mode={mode}
+        disabled={busy}
+        salaryLabel={
+          nbaProposal
+            ? "$5.2m salary cap"
+            : cfg
+              ? "Provisional test cap"
+              : "Configuration pending"
+        }
+        onChange={(next) => navigateRound("", next)}
+      />
+      <div className="sport-entry-heading">
+        <div>
+          <small>Team name</small>
+          <strong>{state.team_name ?? "Your team"}</strong>
+        </div>
+        <span className="play-status">
+          {locked
+            ? "Locked"
+            : entry
+              ? dirty
+                ? "Entered · Unsaved changes"
+                : savedChanges
+                  ? "Entered · Draft changes saved"
+                  : "Entered"
+              : dirty
+                ? "Unsaved draft"
+                : "Draft"}
+        </span>
+      </div>
+      <div className="sport-round-controls">
+        <button
+          aria-label={"Previous " + roundWord.toLowerCase()}
+          disabled={busy || roundIndex <= 0}
+          onClick={() => navigateRound(rounds[roundIndex - 1].id)}
+        >
+          ‹
+        </button>
         <label>
-          Competition{" "}
-          <select
-            aria-label="Competition"
-            value={mode}
-            disabled={busy}
-            onChange={(e) => {
-              if (dirty && !window.confirm("Discard unsaved lineup changes?"))
-                return;
-              setMode(e.target.value as typeof mode);
-              setRound("");
-            }}
-          >
-            <option value="SALARY_CAP">
-              {nbaProposal
-                ? `Salary Cap · ${privateBeta ? "" : "Proposed "}$5.2m`
-                : "Salary Cap · QA units"}
-            </option>
-            <option value="OPEN">{nbaProposal ? "Open" : "All-Star"}</option>
-          </select>
-        </label>
-        <label>
-          Round{" "}
+          <span className="sr-only">Season and {roundWord.toLowerCase()}</span>
           <select
             aria-label="Round"
             value={comp?.id ?? ""}
-            disabled={busy}
-            onChange={(e) => switchRound(e.target.value)}
+            disabled={busy || !rounds.length}
+            onChange={(e) => navigateRound(e.target.value)}
           >
-            {rounds.map((c) => (
-              <option key={c.id} value={c.id}>
-                Round {c.round}
-                {state.sport === "basketball"
-                  ? c.rules.lineup_version ===
-                    nbaWeeklyConfiguration.formatVersion
-                    ? c.rules.scoring_version === nbaRarityWeeklyVersion
-                      ? " · Rarity scoring"
-                      : " · Original scoring"
-                    : " · Legacy format"
-                  : ""}
-              </option>
-            ))}
+            {rounds.length ? (
+              rounds.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.season} · {roundWord} {c.round}
+                </option>
+              ))
+            ) : (
+              <option value="">No configured rounds</option>
+            )}
           </select>
         </label>
-        <button disabled={busy} onClick={() => void refresh()}>
+        <button
+          aria-label={"Next " + roundWord.toLowerCase()}
+          disabled={busy || roundIndex < 0 || roundIndex >= rounds.length - 1}
+          onClick={() => navigateRound(rounds[roundIndex + 1].id)}
+        >
+          ›
+        </button>
+      </div>
+      <div className="fantasy-actions">
+        <Link className="play-support" href={contextHref("/fantasy/results")}>
+          Rankings
+        </Link>
+        <Link className="play-support" href={contextHref("/fantasy/prizes")}>
+          Prizes
+        </Link>
+        <button
+          className="play-support"
+          disabled={busy}
+          onClick={() => void refresh()}
+        >
           Refresh
         </button>
-        <strong>
-          {viewing
-            ? "Community team"
-            : locked
-              ? "Locked"
-              : entry
-                ? dirty
-                  ? "Entered · Unsaved changes"
-                  : savedChanges
-                    ? "Entered · Draft changes saved"
-                    : "Entered"
-                : dirty
-                  ? "Unsaved draft"
-                  : "Draft"}
-        </strong>
       </div>
+      {comp && (
+        <details className="sport-beta-details">
+          <summary>Entry &amp; lock times</summary>
+          <p>
+            All selections lock{" "}
+            <time dateTime={comp.locks_at}>
+              {new Date(comp.locks_at).toLocaleString()}
+            </time>
+            .
+          </p>
+          <p>Drafts are private. Confirm your team before lockout.</p>
+        </details>
+      )}
       {!comp || !cfg ? (
-        <p>
-          No isolated rounds registered. An authorised operator must install
-          reviewed sandbox fixtures.
-        </p>
+        <p>No rounds are configured for this competition yet.</p>
       ) : (
         <>
-          <p>
-            {picks.length}/{cfg.slots.length} selected
-            {mode === "SALARY_CAP"
-              ? nbaProposal
-                ? ` · $${(validate?.total ?? 0).toLocaleString("en-AU")} / $${cfg.salaryCap.toLocaleString("en-AU")}`
-                : ` · ${validate?.total ?? 0}/${cfg.salaryCap} QA salary units`
-              : ""}
-          </p>
-          {!readOnly && (!entry || dirty || savedChanges) && (
-            <div className="sport-sandbox-controls">
-              <button
-                disabled={busy || !dirty}
-                onClick={() => void command("seven_draft")}
-              >
-                Save draft
-              </button>
-              <button
-                disabled={
-                  busy ||
-                  !!validate?.errors.length ||
-                  (!dirty && !savedChanges && !!entry)
-                }
-                onClick={() => void command("seven_enter")}
-              >
-                Confirm sandbox entry
-              </button>
-            </div>
-          )}
           {state.continuity.rollovers
             .find((r) => r.competition_id === comp.id)
             ?.omitted.map((o) => (
@@ -532,12 +593,12 @@ export function SportSandbox({
             ))}
           {notice && <p role="status">{notice}</p>}
           {error && <p role="alert">{error}</p>}
-          {nbaProposal && (
-            <section className="nba-week-summary" aria-label="NBA weekly score">
+          {(entry || locked) && (
+            <section className="nba-week-summary" aria-label="Round score">
               <h2>
                 {viewing
                   ? (teamScore?.name ?? "Community team")
-                  : `Week ${comp.round}`}{" "}
+                  : `${roundWord} ${comp.round}`}{" "}
                 · {locked ? (score?.final ? "Final" : "Game Day") : "Upcoming"}
               </h2>
               <strong className="nba-total">
@@ -547,8 +608,8 @@ export function SportSandbox({
                 PTS
               </strong>
               <p>
-                {teamScore?.played ?? 0}/8 played · {teamScore?.completed ?? 0}
-                /8 week complete · Rank{" "}
+                {teamScore?.played ?? 0}/{cfg.slots.length} played ·{" "}
+                {teamScore?.completed ?? 0}/{cfg.slots.length} completed · Rank{" "}
                 {teamScore?.rank == null ? "—" : `#${teamScore.rank}`}
               </p>
               <p>
@@ -557,7 +618,7 @@ export function SportSandbox({
                   : score?.final
                     ? "Final results"
                     : "Postgame scoring · Provisional"}
-                {score?.updatedAt
+                {locked && score?.updatedAt
                   ? ` · Statistics updated ${new Date(score.updatedAt).toLocaleString()}`
                   : ""}
               </p>
@@ -567,9 +628,7 @@ export function SportSandbox({
                   {new Date(comp.locks_at).toLocaleString()}
                 </time>
               </p>
-              <a className="button ghost" href="#nba-rankings">
-                View Rankings
-              </a>
+
               {scoreError && <p role="status">{scoreError}</p>}
             </section>
           )}
@@ -600,36 +659,84 @@ export function SportSandbox({
                 them before saving.
               </p>
             )}
-          <SevenField
-            sport={state.sport}
-            label={`${sport?.label} ${viewing ? "community" : "own"} lineup`}
-            slots={cfg.slots}
-            list={list}
-          >
-            {renderCard}
-          </SevenField>
-          <section aria-label="Community teams">
-            <h2>Community teams</h2>
-            {state.entries
-              .filter(
-                (e) =>
-                  e.competition_id === comp.id && e.user_id !== state.user_id,
-              )
-              .map((e) => (
-                <button key={e.user_id} onClick={() => setViewUser(e.user_id)}>
-                  View locked team
-                </button>
-              ))}
-            {!locked && (
-              <p>
-                Other submitted teams become visible to competitors after round
-                lock.
-              </p>
-            )}
-            {viewing && (
-              <button onClick={() => setViewUser("")}>Back to my team</button>
-            )}
-          </section>
+          <div className="sport-lineup-layout">
+            <div>
+              {" "}
+              <SevenField
+                sport={state.sport}
+                label={`${sport?.label} ${viewing ? "community" : "own"} lineup`}
+                slots={cfg.slots}
+                list={list}
+              >
+                {renderCard}
+              </SevenField>
+            </div>
+            <aside className="sport-team-summary fantasy-panel">
+              <h2>Team summary</h2>
+              <strong>
+                {picks.length} / {cfg.slots.length} selected
+              </strong>
+              <dl>
+                {sport.groups.map((g) => (
+                  <div key={g.id}>
+                    <dt>{g.label}</dt>
+                    <dd>
+                      {picks.filter((p) => g.slots.includes(p.slot)).length} /{" "}
+                      {g.slots.length}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <h3>{competitionName(mode)}</h3>
+              {mode === "OPEN" ? (
+                <p>No salary cap</p>
+              ) : capPending ? (
+                <p role="status">
+                  Traditional salary configuration pending. Team entry is
+                  unavailable.
+                </p>
+              ) : (
+                <p>
+                  {nbaProposal ? "$" : ""}
+                  {validate?.total ?? 0} / {cfg.salaryCap}
+                  {nbaProposal ? "" : " test salary units"}
+                </p>
+              )}
+              {mode === "SALARY_CAP" && !nbaProposal && (
+                <small>
+                  Provisional beta configuration. A fantasy-dollar cap is not
+                  approved.
+                </small>
+              )}
+              {!readOnly &&
+                validate?.errors.map((e) => (
+                  <p className="form-help" key={e}>
+                    {e}
+                  </p>
+                ))}
+            </aside>
+          </div>
+          {!readOnly && (
+            <div className="sport-save-actions">
+              <button
+                disabled={busy || !dirty}
+                onClick={() => void command("seven_draft")}
+              >
+                Save draft
+              </button>
+              <button
+                disabled={
+                  busy ||
+                  capPending ||
+                  !!validate?.errors.length ||
+                  (!dirty && !savedChanges && !!entry)
+                }
+                onClick={() => void command("seven_enter")}
+              >
+                {entry ? "Update Team" : "Enter Team"}
+              </button>
+            </div>
+          )}
           {nbaProposal && (
             <section
               id="nba-rankings"
@@ -714,11 +821,35 @@ export function SportSandbox({
               placeholder="Player or team"
             />
           </label>
+          <label>
+            Rarity
+            <select
+              value={pickerRarity}
+              onChange={(e) => {
+                setPickerRarity(e.target.value);
+                setPickerLimit(30);
+              }}
+            >
+              <option value="">All rarities</option>
+              {rarities.map((r) => (
+                <option key={r} value={r}>
+                  {rarityRule(r).label}
+                </option>
+              ))}
+            </select>
+          </label>
+          {mode === "SALARY_CAP" && cfg && (
+            <p>
+              Available: {validate?.remaining}{" "}
+              {nbaProposal ? "salary dollars" : "test salary units"}
+            </p>
+          )}
           <div className="sport-review-grid">
             {pickerCards.slice(0, pickerLimit).map((c) => (
               <button
                 key={c.id}
                 aria-label={`Select ${c.name}`}
+                disabled={c.listed || c.status !== "active"}
                 onClick={() => {
                   setPicks([
                     ...picks.filter((p) => p.slot !== slot),
@@ -734,6 +865,16 @@ export function SportSandbox({
                   variant="compact"
                 />
                 <span>{c.name}</span>
+                <small>
+                  {c.listed
+                    ? "Listed for sale · cancel listing first"
+                    : c.status !== "active"
+                      ? (c.availability_reason ??
+                        "Roster eligibility unavailable")
+                      : mode === "SALARY_CAP" && cfg
+                        ? `${cfg.salaries[c.tier as keyof typeof cfg.salaries]} ${nbaProposal ? "salary dollars" : "test salary units"}`
+                        : "Eligible"}
+                </small>
               </button>
             ))}
           </div>

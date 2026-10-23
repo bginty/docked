@@ -1,3 +1,149 @@
+.sport-lineup-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 620px) minmax(220px, 300px);
+  gap: 20px;
+  align-items: start;
+  justify-content: center;
+}
+.sport-entry-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-block: 18px;
+}
+.sport-entry-heading small,
+.sport-entry-heading strong {
+  display: block;
+}
+.sport-round-controls {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  gap: 10px;
+  margin-block: 18px;
+}
+.sport-round-controls select {
+  width: 100%;
+  text-align: center;
+  min-height: 48px;
+}
+.sport-team-summary {
+  margin: 0;
+}
+.sport-team-summary dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 10px;
+  border-bottom: 1px solid #34516a66;
+}
+.sport-team-summary dd {
+  margin: 0;
+}
+.sport-save-actions {
+  display: flex;
+  gap: 12px;
+  margin-block: 20px;
+}
+.sport-save-actions button {
+  flex: 1;
+  min-height: 48px;
+}
+.sport-empty-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  aspect-ratio: 0.72;
+  border: 1px solid #4c9ae6;
+  border-radius: 10px;
+  background: #07182ce8;
+  gap: 6px;
+}
+.sport-empty-slot strong {
+  font-size: 1.8rem;
+}
+.sport-empty-slot small {
+  color: #b4c7d7;
+  font-size: 0.75rem;
+}
+.sport-lock-label {
+  font-size: 0.75rem;
+  color: #c0d5e6;
+}
+.sport-lineup.compact-sport-field {
+  position: relative;
+  max-width: 620px;
+  margin: auto;
+  padding: 12px;
+  overflow: hidden;
+}
+.compact-sport-field .formation-markings {
+  position: absolute;
+  inset: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  fill: none;
+  stroke: #e7fff2;
+  stroke-width: 2;
+  opacity: 0.28;
+  pointer-events: none;
+}
+.compact-sport-field > section {
+  position: relative;
+  margin: 0 0 12px;
+}
+.compact-sport-field h3 {
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 5px 0 8px;
+  text-transform: uppercase;
+}
+.compact-sport-field .sport-slot-grid {
+  gap: 8px;
+}
+.compact-sport-field .sport-slot-label {
+  font-size: 0.7rem;
+  margin-bottom: 3px;
+}
+.compact-sport-field [data-group="RUCK"],
+.compact-sport-field [data-group="FLEX"] {
+  max-width: 65%;
+  margin-inline: auto;
+}
+.compact-sport-field[data-sport="nrl"] {
+  max-width: 500px;
+}
+.compact-sport-field.compact-sport-list {
+  background: #07182c;
+}
+.compact-sport-list .sport-slot-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.compact-sport-list [data-group] {
+  max-width: none;
+}
+@media (max-width: 900px) {
+  .sport-lineup-layout {
+    grid-template-columns: minmax(0, 620px);
+  }
+}
+@media (max-width: 600px) {
+  .compact-sport-field .sport-slot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .compact-sport-field [data-group="FLEX"] .sport-slot-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .sport-lineup.compact-sport-field {
+    padding: 8px;
+  }
+  .compact-sport-field [data-group="RUCK"] {
+    max-width: none;
+  }
+}
 .sport-lineup {
   min-width: 0;
   border: 1px solid #38546b;
@@ -299,4 +445,20 @@
 .nba-lineup-list .nba-game-breakdown {
   grid-column: 2;
   grid-row: 4;
+}
+.fantasy-mode .compact-sport-field .field-player {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+.standings-table > .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }

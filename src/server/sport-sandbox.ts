@@ -40,6 +40,9 @@ export async function sportSandbox(sport: string, input?: unknown) {
       const state = (
         await tx`select sports_feed.sport_sandbox_state(${sport}) state`
       )[0].state as SandboxState;
+      if (privateBeta)
+        state.team_name =
+          (await tx`select fantasy.my_team_name() name`)[0].name ?? undefined;
       if (
         ["afl", "nrl"].includes(sport) ||
         (sport === "basketball" &&

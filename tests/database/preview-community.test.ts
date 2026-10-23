@@ -114,7 +114,7 @@ test("preview grant allows exact account through the actual app query and SQL ac
   await claims();
   await transaction(async () => {
     await pg.exec(
-      `insert into private.social_posts(author_id,kind,body) select private.community_actor('${user}','community_social',true),'discussion','Preview account discussion fixture';`,
+      `insert into private.social_posts(sport,author_id,kind,body) select 'nfl',private.community_actor('${user}','community_social',true),'discussion','Preview account discussion fixture';`,
     );
     assert.equal(
       (

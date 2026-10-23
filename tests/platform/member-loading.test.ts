@@ -38,7 +38,7 @@ const observations = (now: number) =>
     verified_jersey_number: 12,
   }));
 
-test("request-time NFL refresh preserves all registered real roster identities and leaves all six beta packs purchasable", async () => {
+test("request-time NFL refresh preserves all registered real roster identities and leaves all fourteen beta pack variants purchasable", async () => {
   const { state, now } = fixture();
   const before = structuredClone(state);
   const sql = (async () => observations(now)) as unknown as Sql;
@@ -61,7 +61,7 @@ test("request-time NFL refresh preserves all registered real roster identities a
   const products = view.products.filter(
     (p) => "inventoryScope" in p && p.inventoryScope === "real-roster-beta-v1",
   );
-  assert.equal(products.length, 6);
+  assert.equal(products.length, 14);
   for (const product of products) {
     assert(product.available, product.id);
     assert(product.eligiblePlayers > 300);
@@ -73,11 +73,11 @@ test("request-time NFL refresh preserves all registered real roster identities a
       now,
       () => 0,
     );
-    assert.equal(pack.cards.length, 9);
+    assert.equal(pack.cards.length, product.cards);
     assert.equal(
       new Set(pack.cards.map((id) => state.economy!.instances[id].playerId))
         .size,
-      9,
+      product.cards,
     );
   }
 });

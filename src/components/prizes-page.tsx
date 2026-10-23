@@ -39,6 +39,7 @@ export function PrizesPage({
   schedules: PrizeSchedule[];
 }) {
   const { sport } = useSport();
+  const roundWord = sport === "afl" || sport === "nrl" ? "Round" : "Week";
   const params = useSearchParams();
   const [query, setQuery] = useState<Record<string, string>>(() =>
     Object.fromEntries(params.entries()),
@@ -94,6 +95,7 @@ export function PrizesPage({
       <span className="competition-label">Competition</span>
       <CompetitionSwitch
         mode={mode}
+        salaryLabel={sport !== "nfl" ? "Test cap" : undefined}
         onChange={(mode) => change({ mode, competition: "" })}
       />
       <div className="standings-controls">
@@ -105,7 +107,11 @@ export function PrizesPage({
               aria-pressed={period === p}
               onClick={() => change({ period: p })}
             >
-              {p === "weekly" ? "Weekly" : "Season"}
+              {p === "weekly"
+                ? roundWord === "Week"
+                  ? "Weekly"
+                  : "Round"
+                : "Season"}
             </button>
           ))}
         </nav>
@@ -127,9 +133,9 @@ export function PrizesPage({
         </label>
         {period === "weekly" && (
           <label>
-            Week
+            {roundWord}
             <select
-              aria-label="Week"
+              aria-label={roundWord}
               value={round?.id ?? ""}
               onChange={(e) => {
                 const c = weeks.find((c) => c.id === e.target.value)!;
@@ -139,11 +145,11 @@ export function PrizesPage({
               {weeks.length ? (
                 weeks.map((c) => (
                   <option key={c.id} value={c.id}>
-                    Week {c.week}
+                    {roundWord} {c.week}
                   </option>
                 ))
               ) : (
-                <option value="">No weeks</option>
+                <option value="">No configured rounds</option>
               )}
             </select>
           </label>
@@ -152,7 +158,11 @@ export function PrizesPage({
       <h2 className="prizes-period">
         {competitionName(mode)} ·{" "}
         {period === "weekly"
-          ? `Weekly${round ? ` · Week ${round.week}` : ""}`
+          ? round
+            ? `${roundWord} ${round.week}`
+            : roundWord === "Week"
+              ? "Weekly"
+              : "Round"
           : "Season"}{" "}
         prizes{season ? ` · ${season}` : ""}
       </h2>
@@ -207,7 +217,11 @@ export function PrizesPage({
       ) : (
         <section className="prize-empty">
           <PrizeTrophy />
-          <h2>Prizes to be announced</h2>
+          <h2>
+            {sport !== "nfl" && period === "weekly"
+              ? "No prizes in this test competition"
+              : "Prizes to be announced"}
+          </h2>
         </section>
       )}
       <footer className="prizes-actions">

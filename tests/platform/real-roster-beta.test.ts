@@ -50,9 +50,18 @@ test("source records have unique stable real identities, supported positions and
       teamColours(player.sport, player.currentTeam),
       `Missing original jersey palette: ${player.currentTeam}`,
     );
-  assert.equal(players.find(p => p.name.startsWith("Ben Saraf"))?.name, "Ben Saraf");
-  assert.equal(players.find(p => p.name.startsWith("Danny Wolf"))?.name, "Danny Wolf");
-  assert.equal(players.find(p => p.name.startsWith("Emanuel Sharp"))?.name, "Emanuel Sharp");
+  assert.equal(
+    players.find((p) => p.name.startsWith("Ben Saraf"))?.name,
+    "Ben Saraf",
+  );
+  assert.equal(
+    players.find((p) => p.name.startsWith("Danny Wolf"))?.name,
+    "Danny Wolf",
+  );
+  assert.equal(
+    players.find((p) => p.name.startsWith("Emanuel Sharp"))?.name,
+    "Emanuel Sharp",
+  );
   const altered = structuredClone(players[0]);
   altered.synthetic = true;
   assert(!isRosterBetaPlayer(altered));
@@ -105,12 +114,12 @@ for (const cfg of [nbaWeeklyConfiguration, aflConfiguration, nrlConfiguration])
         now,
         () => 0,
       );
-      assert.equal(pack.cards.length, 9);
+      assert.equal(pack.cards.length, p.cards);
       const ids = pack.cards.map((id) => economy.instances[id].playerId);
-      assert.equal(new Set(ids).size, 9);
+      assert.equal(new Set(ids).size, p.cards);
       assert(ids.every((id) => isRosterBetaPlayer(economy.players[id])));
       assert(pack.cards.every((id) => economy.instances[id].rarity !== "CORE"));
-      assert([700, 5000].includes(p.priceCredits));
+      assert([100, 300, 700, 1900, 5000].includes(p.priceCredits));
     }
     for (const [id, p] of Object.entries(old.products))
       assert.deepEqual(economy.products[id], p);

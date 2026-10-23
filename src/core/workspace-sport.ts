@@ -17,5 +17,8 @@ export function workspaceSport(query: unknown, saved: unknown) {
   return "nfl";
 }
 export function privateSportWorkspace(surface: string, sport: string) {
-  return ["play", "cards", "packs"].includes(surface) && isBetaSport(sport);
+  return (
+    ["play", "cards", "packs", "results", "prizes"].includes(surface) &&
+    isBetaSport(sport)
+  );
 }

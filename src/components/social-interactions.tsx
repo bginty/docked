@@ -420,7 +420,7 @@ export function SocialCard({
       {post.playerId && (
         <div className="actions">
           <Link
-            href={`/fantasy/social?player=${encodeURIComponent(post.playerId)}`}
+            href={`/fantasy/social?sport=${encodeURIComponent(post.sport ?? "nfl")}&player=${encodeURIComponent(post.playerId)}`}
           >
             Player discussion
           </Link>

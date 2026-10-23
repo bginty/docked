@@ -21,7 +21,7 @@ export function SocialShowcase({ cards }: { cards: AwardedCard[] }) {
         selected.map((card) => (
           <Link
             key={card.id}
-            href={`/fantasy/cards?card=${encodeURIComponent(card.id)}`}
+            href={`/fantasy/cards?sport=${encodeURIComponent(card.sport ?? "nfl")}&card=${encodeURIComponent(card.id)}`}
             aria-label={`View ${card.name} in your collection`}
           >
             <FantasyCardArtwork card={card} faceOnly />
@@ -84,7 +84,7 @@ export function SocialRail({
             <div className="social-mini-collection">
               {hub.cards.slice(0, 2).map(({ card }) => (
                 <Link
-                  href={`/fantasy/cards?card=${encodeURIComponent(card.id)}`}
+                  href={`/fantasy/cards?sport=${encodeURIComponent(card.sport ?? "nfl")}&card=${encodeURIComponent(card.id)}`}
                   key={card.id}
                   aria-label={`View ${card.name}`}
                 >

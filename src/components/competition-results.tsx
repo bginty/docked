@@ -43,6 +43,8 @@ export function CompetitionResults({
   initial,
   weekly: initialWeekly = [],
   selection = {},
+  sport = "nfl",
+  seasonAggregationEnabled = true,
 }: {
   rounds: ReviewRound[];
   standings: NflStanding[];
@@ -50,8 +52,16 @@ export function CompetitionResults({
   initial?: string;
   weekly?: StandingRound[];
   selection?: Selection;
+  sport?: string;
+  seasonAggregationEnabled?: boolean;
 }) {
-  const live = useGameDay(initialWeekly);
+  const live = useGameDay(
+    initialWeekly,
+    sport === "nfl"
+      ? "/api/fantasy/standings"
+      : `/api/sports-beta?view=standings&sport=${sport}`,
+  );
+  const roundWord = sport === "afl" || sport === "nrl" ? "Round" : "Week";
   const weekly = live.rounds;
   const [ready, setReady] = useState(false);
   const [query, setQuery] = useState<Selection>({
@@ -112,7 +122,9 @@ export function CompetitionResults({
   const series = seriesOptions.includes(query.series ?? "")
     ? query.series!
     : (round?.series ?? "");
-  const summary = seasonStandings(weekly, mode, season, series);
+  const summary = seasonAggregationEnabled
+    ? seasonStandings(weekly, mode, season, series)
+    : { rows: [], latestWeek: null, included: 0, excluded: 0 };
   const rows: (StandingRow | SeasonRow)[] =
     period === "season" ? summary.rows : (round?.rows ?? []);
   const mine = rows.find((r) => r.isMe);
@@ -124,6 +136,7 @@ export function CompetitionResults({
   function change(patch: Selection) {
     const next = {
       ...query,
+      sport,
       mode,
       period,
       season,
@@ -144,6 +157,7 @@ export function CompetitionResults({
   }
   const context = {
     ...query,
+    sport,
     mode,
     period,
     season,
@@ -172,6 +186,7 @@ export function CompetitionResults({
         <span className="competition-label">Competition</span>
         <CompetitionSwitch
           mode={mode}
+          salaryLabel={sport !== "nfl" ? "Test cap" : undefined}
           onChange={(mode) => change({ mode, competition: "", series: "" })}
         />
       </header>
@@ -183,7 +198,11 @@ export function CompetitionResults({
               aria-pressed={period === p}
               onClick={() => change({ period: p })}
             >
-              {p === "weekly" ? "Weekly" : "Season"}
+              {p === "weekly"
+                ? roundWord === "Week"
+                  ? "Weekly"
+                  : "Round"
+                : "Season"}
             </button>
           ))}
         </nav>
@@ -209,7 +228,7 @@ export function CompetitionResults({
         </label>
         {period === "weekly" && (
           <label>
-            Week
+            {roundWord}
             <select
               value={round?.competitionId ?? ""}
               onChange={(e) => {
@@ -226,11 +245,11 @@ export function CompetitionResults({
               {seasonRounds.length ? (
                 seasonRounds.map((r) => (
                   <option key={r.competitionId} value={r.competitionId}>
-                    Week {r.week}
+                    {roundWord} {r.week}
                   </option>
                 ))
               ) : (
-                <option value="">No weeks</option>
+                <option value="">No configured rounds</option>
               )}
             </select>
           </label>
@@ -258,12 +277,18 @@ export function CompetitionResults({
       </div>
       {period === "season" && (
         <p className="standings-context">
-          {summary.latestWeek === null
-            ? "No weeks have finalised"
-            : `Through Week ${summary.latestWeek}`}{" "}
-          · Finalised weeks only
-          {summary.excluded > 0 &&
-            ` · ${summary.excluded} pending or under-review weeks excluded`}
+          {!seasonAggregationEnabled ? (
+            "Season ranking policy is not configured for this sport."
+          ) : (
+            <>
+              {summary.latestWeek === null
+                ? "No weeks have finalised"
+                : `Through Week ${summary.latestWeek}`}{" "}
+              · Finalised weeks only
+              {summary.excluded > 0 &&
+                ` · ${summary.excluded} pending or under-review weeks excluded`}
+            </>
+          )}
         </p>
       )}
       {live.error && (
@@ -328,7 +353,9 @@ export function CompetitionResults({
         <div className="standings-table-wrap">
           <table className="standings-table" data-period={period}>
             <caption className="sr-only">
-              {competitionName(mode)} {period} rankings · {season}
+              {competitionName(mode)}{" "}
+              {period === "weekly" && sport !== "nfl" ? "round" : period}{" "}
+              rankings · {season}
             </caption>
             <thead>
               <tr>
@@ -431,34 +458,44 @@ export function CompetitionResults({
       )}
       <details className="standings-explanation">
         <summary>How rankings work</summary>
-        <p>
-          Shared ranks use 1, 1, 3 for a tie. Order within a tied group does not
-          break the tie. Weekly rankings wait for every entry’s required
-          statistics for final results. Current rankings compare available
-          authoritative points and remain provisional. Season totals include
-          finalised weeks in this competition and scoring series only;
-          corrections and reopened reviews update the totals. Weeks entered
-          includes pending weeks.
-        </p>
+        {sport === "nfl" ? (
+          <p>
+            Shared ranks use 1, 1, 3 for a tie. Order within a tied group does
+            not break the tie. Weekly rankings wait for every entry’s required
+            statistics for final results. Current rankings compare available
+            authoritative points and remain provisional. Season totals include
+            finalised weeks in this competition and scoring series only;
+            corrections and reopened reviews update the totals. Weeks entered
+            includes pending weeks.
+          </p>
+        ) : (
+          <p>
+            Round rankings show the recorded competition totals. Missing
+            statistics remain pending and results stay provisional until
+            finalisation. Season rankings await an approved aggregation policy.
+          </p>
+        )}
         <p>
           Opposing lineups stay private until every player has locked and the
           competition’s publication policy allows viewing. Scores are processed
           after games.
         </p>
       </details>
-      <details className="standings-explanation">
-        <summary>Archive / Legacy rounds</summary>
-        <LegacyCompetitionResults
-          rounds={rounds.filter((r) => !r.lineup)}
-          standings={standings}
-          records={records}
-        />
-      </details>
+      {sport === "nfl" && (
+        <details className="standings-explanation">
+          <summary>Archive / Legacy rounds</summary>
+          <LegacyCompetitionResults
+            rounds={rounds.filter((r) => !r.lineup)}
+            standings={standings}
+            records={records}
+          />
+        </details>
+      )}
       {detail && (
         <FantasySheet
           className="community-team-sheet"
           historyEntry
-          title={`${detail.row.name} · Week ${detail.round.week}`}
+          title={`${detail.row.name} · ${roundWord} ${detail.round.week}`}
           onClose={() => setDetail(null)}
         >
           <button className="play-support" onClick={() => setDetail(null)}>
@@ -476,7 +513,11 @@ export function CompetitionResults({
             </p>
           ) : (
             <div className="lineup-pitch community-team-field">
-              <SevenField label="Locked team lineup">
+              <SevenField
+                label="Locked team lineup"
+                sport={sport}
+                slots={detail.round.slots}
+              >
                 {(slot) => {
                   const p = detail.row.lineup?.find(
                     (player) => player.slot === slot.id,
@@ -494,7 +535,7 @@ export function CompetitionResults({
                         card={{
                           ...p,
                           name: p.name || "Player name unavailable",
-                          sport: "nfl",
+                          sport,
                         }}
                         appliedMultiplier={p.multiplier ?? undefined}
                       />

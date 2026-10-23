@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { useSport } from "./sport-context";
 import type { CommunityFeed } from "@/core/community-social";
 import { SocialComposer } from "./social-composer";
 import { SocialTimeline } from "./social-timeline";
@@ -16,6 +18,7 @@ export function SocialHomeContent({
   communityId,
   playerId,
   announcements,
+  sport = "nfl",
 }: {
   announcements: PublishedAnnouncement[] | null;
   feed: CommunityFeed;
@@ -25,9 +28,13 @@ export function SocialHomeContent({
   playerId?: string;
   sport?: string;
 }) {
+  const { sport: activeSport } = useSport();
+  const href = (tab: string) => `/fantasy/social?sport=${sport}&tab=${tab}`;
   const pinned = announcements?.find((a) => a.pinned);
   const selected = view ?? (tab === "for_you" ? "latest" : tab);
-  const composeHref = "/fantasy/social?tab=latest#social-compose";
+  const composeHref = `${href("latest")}#social-compose`;
+  if (activeSport !== sport)
+    return <p role="status">Loading {activeSport.toUpperCase()} community…</p>;
   return (
     <section className="premium-social compact-social">
       <header className="social-page-heading">
@@ -36,16 +43,10 @@ export function SocialHomeContent({
           <p>Talk cards. Build your squad.</p>
         </div>
         <div className="actions">
-          <Link
-            className="pack-control secondary"
-            href="/fantasy/social?tab=communities"
-          >
+          <Link className="pack-control secondary" href={href("communities")}>
             Communities
           </Link>
-          <Link
-            className="pack-control secondary"
-            href="/fantasy/social?tab=discover"
-          >
+          <Link className="pack-control secondary" href={href("discover")}>
             Find people
           </Link>
         </div>
@@ -61,7 +62,7 @@ export function SocialHomeContent({
         ].map(([key, label]) => (
           <Link
             key={key}
-            href={`/fantasy/social?tab=${key}`}
+            href={href(key)}
             aria-current={selected === key ? "page" : undefined}
           >
             {label}
@@ -75,7 +76,7 @@ export function SocialHomeContent({
               {announcements === null ? (
                 <p role="alert">
                   Announcements could not be loaded.{" "}
-                  <Link href="/fantasy/social?tab=announcements">Retry</Link>
+                  <Link href={href("announcements")}>Retry</Link>
                 </p>
               ) : announcements.length ? (
                 announcements.map((item) => (
@@ -104,11 +105,13 @@ export function SocialHomeContent({
                   <h2>
                     {communityId ? "Community feed" : "Player discussion"}
                   </h2>
-                  <Link href="/fantasy/social">All posts</Link>
+                  <Link href={href("latest")}>All posts</Link>
                 </div>
               )}
               <div id="social-compose" tabIndex={-1}>
                 <SocialComposer
+                  key={sport}
+                  initialSport={sport}
                   inline
                   memberName={feed.viewer?.displayName}
                   memberProfile={feed.viewer}
@@ -117,6 +120,7 @@ export function SocialHomeContent({
                 />
               </div>
               <SocialTimeline
+                sport={sport}
                 feed={feed}
                 base="/fantasy/social"
                 tab={tab === "for_you" ? "latest" : tab}
@@ -142,7 +146,7 @@ export function SocialHomeContent({
                   <ProfileActions profile={p} />
                 </div>
               ))}
-            <Link href="/fantasy/social?tab=discover">Find people</Link>
+            <Link href={href("discover")}>Find people</Link>
           </section>
           <section className="app-panel social-secondary-links">
             <Link href="/beta-policies">Community guidelines</Link>

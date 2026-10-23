@@ -12,10 +12,23 @@ function Content() {
   if (location.pathname.endsWith("/social"))
     return (
       <SocialHomeContent
-        feed={globalFeed}
+        sport={sport}
+        feed={{
+          ...globalFeed,
+          posts: globalFeed.posts.filter((p) => p.sport === sport),
+        }}
         tab={q.get("tab") === "following" ? "following" : "latest"}
         view={q.get("tab") ?? undefined}
-        announcements={[]}
+        announcements={[
+          {
+            id: "11111111-1111-4111-8111-111111111111",
+            title: "Isolated global announcement",
+            body: "One canonical publication",
+            cta: null,
+            published_at: "2026-10-23T00:00:00Z",
+            pinned: true,
+          },
+        ]}
       />
     );
   if (location.pathname.endsWith("/cards"))

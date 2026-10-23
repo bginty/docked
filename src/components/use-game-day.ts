@@ -3,7 +3,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 import type { StandingRound } from "@/core/standings";
 
-export function useGameDay(initial: StandingRound[] = []) {
+export function useGameDay(
+  initial: StandingRound[] = [],
+  endpoint = "/api/fantasy/standings",
+) {
   const [rounds, setRounds] = useState(initial);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(initial.length > 0);
@@ -16,7 +19,7 @@ export function useGameDay(initial: StandingRound[] = []) {
       if (active || document.hidden) return;
       active = true;
       try {
-        const response = await boundedFetch("/api/fantasy/standings", {
+        const response = await boundedFetch(endpoint, {
           cache: "no-store",
           signal: controller.signal,
         });
@@ -52,7 +55,7 @@ export function useGameDay(initial: StandingRound[] = []) {
       window.removeEventListener("docked-app-resume", resume);
       document.removeEventListener("visibilitychange", resume);
     };
-  }, []);
+  }, [endpoint]);
   return {
     rounds,
     error,

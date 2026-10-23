@@ -1,0 +1,602 @@
+{
+  "status": "REVIEW_ONLY_NOT_DEPLOYED",
+  "migration": "20261023092404_sport_social_and_pack_entitlements.sql",
+  "sha256": "9b14745009062b3ebac00525b6f7236de0b61a37e7ce63d8340730b6311419bb",
+  "customerSports": [
+    "nfl",
+    "afl",
+    "nrl"
+  ],
+  "nba": "hidden; data retained",
+  "products": [
+    {
+      "id": "premium-9-nfl-paid-sizes-v4",
+      "type": "PREMIUM",
+      "cards": 9,
+      "priceCredits": 5000,
+      "name": "Premium 9 Pack",
+      "sport": "nfl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Existing NFL policy unchanged",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "premium-3-nfl-paid-sizes-v4",
+      "type": "PREMIUM",
+      "cards": 3,
+      "priceCredits": 1900,
+      "name": "Premium 3 Pack",
+      "sport": "nfl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Existing NFL policy unchanged",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "premium-1-nfl-paid-sizes-v4",
+      "type": "PREMIUM",
+      "cards": 1,
+      "priceCredits": 700,
+      "name": "Premium 1 Pack",
+      "sport": "nfl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Existing NFL policy unchanged",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "standard-9-nfl-paid-sizes-v4",
+      "type": "STANDARD",
+      "cards": 9,
+      "priceCredits": 700,
+      "name": "Standard 9 Pack",
+      "sport": "nfl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Existing NFL policy unchanged",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "standard-3-nfl-paid-sizes-v4",
+      "type": "STANDARD",
+      "cards": 3,
+      "priceCredits": 300,
+      "name": "Standard 3 Pack",
+      "sport": "nfl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Existing NFL policy unchanged",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "standard-1-nfl-paid-sizes-v4",
+      "type": "STANDARD",
+      "cards": 1,
+      "priceCredits": 100,
+      "name": "Standard 1 Pack",
+      "sport": "nfl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Existing NFL policy unchanged",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "premium-9-afl-real-roster-beta-v1",
+      "type": "PREMIUM",
+      "cards": 9,
+      "priceCredits": 5000,
+      "name": "Premium 9 Pack",
+      "sport": "afl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "premium-3-afl-real-roster-beta-v1",
+      "type": "PREMIUM",
+      "cards": 3,
+      "priceCredits": 1900,
+      "name": "Premium 3 Pack",
+      "sport": "afl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    },
+    {
+      "id": "premium-1-afl-real-roster-beta-v1",
+      "type": "PREMIUM",
+      "cards": 1,
+      "priceCredits": 700,
+      "name": "Premium 1 Pack",
+      "sport": "afl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    },
+    {
+      "id": "standard-9-afl-real-roster-beta-v1",
+      "type": "STANDARD",
+      "cards": 9,
+      "priceCredits": 700,
+      "name": "Standard 9 Pack",
+      "sport": "afl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "standard-3-afl-real-roster-beta-v1",
+      "type": "STANDARD",
+      "cards": 3,
+      "priceCredits": 300,
+      "name": "Standard 3 Pack",
+      "sport": "afl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    },
+    {
+      "id": "standard-1-afl-real-roster-beta-v1",
+      "type": "STANDARD",
+      "cards": 1,
+      "priceCredits": 100,
+      "name": "Standard 1 Pack",
+      "sport": "afl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    },
+    {
+      "id": "premium-9-nrl-real-roster-beta-v1",
+      "type": "PREMIUM",
+      "cards": 9,
+      "priceCredits": 5000,
+      "name": "Premium 9 Pack",
+      "sport": "nrl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "premium-3-nrl-real-roster-beta-v1",
+      "type": "PREMIUM",
+      "cards": 3,
+      "priceCredits": 1900,
+      "name": "Premium 3 Pack",
+      "sport": "nrl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    },
+    {
+      "id": "premium-1-nrl-real-roster-beta-v1",
+      "type": "PREMIUM",
+      "cards": 1,
+      "priceCredits": 700,
+      "name": "Premium 1 Pack",
+      "sport": "nrl",
+      "weightsBasisPoints": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    },
+    {
+      "id": "standard-9-nrl-real-roster-beta-v1",
+      "type": "STANDARD",
+      "cards": 9,
+      "priceCredits": 700,
+      "name": "Standard 9 Pack",
+      "sport": "nrl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Preserve existing immutable product"
+    },
+    {
+      "id": "standard-3-nrl-real-roster-beta-v1",
+      "type": "STANDARD",
+      "cards": 3,
+      "priceCredits": 300,
+      "name": "Standard 3 Pack",
+      "sport": "nrl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    },
+    {
+      "id": "standard-1-nrl-real-roster-beta-v1",
+      "type": "STANDARD",
+      "cards": 1,
+      "priceCredits": 100,
+      "name": "Standard 1 Pack",
+      "sport": "nrl",
+      "weightsBasisPoints": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "coreExcluded": true,
+      "inventory": "Non-permanent authorised beta inventory only",
+      "change": "Register new variant after review"
+    }
+  ],
+  "configurations": [
+    {
+      "sport": "afl",
+      "slots": [
+        {
+          "id": "BACK1",
+          "positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "BACK2",
+          "positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "BACK3",
+          "positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "BACK4",
+          "positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "BACK5",
+          "positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "BACK6",
+          "positions": [
+            "DEF"
+          ]
+        },
+        {
+          "id": "MID1",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID2",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID3",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID4",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID5",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID6",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID7",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID8",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "FWD1",
+          "positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "FWD2",
+          "positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "FWD3",
+          "positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "FWD4",
+          "positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "FWD5",
+          "positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "FWD6",
+          "positions": [
+            "FWD"
+          ]
+        },
+        {
+          "id": "RUCK1",
+          "positions": [
+            "RUC"
+          ]
+        },
+        {
+          "id": "RUCK2",
+          "positions": [
+            "RUC"
+          ]
+        }
+      ],
+      "configuredTestCap": 2640,
+      "unit": "QA units, not fantasy dollars",
+      "minimumAllCoreCost": 2200,
+      "approvedDollarCap": null,
+      "prizes": "Unconfigured; no awards",
+      "seasonAggregation": "Unconfigured; no inferred season table"
+    },
+    {
+      "sport": "nrl",
+      "slots": [
+        {
+          "id": "WFB1",
+          "positions": [
+            "WFB"
+          ]
+        },
+        {
+          "id": "WFB2",
+          "positions": [
+            "WFB"
+          ]
+        },
+        {
+          "id": "CTR1",
+          "positions": [
+            "CTR"
+          ]
+        },
+        {
+          "id": "CTR2",
+          "positions": [
+            "CTR"
+          ]
+        },
+        {
+          "id": "HLF1",
+          "positions": [
+            "HLF"
+          ]
+        },
+        {
+          "id": "HLF2",
+          "positions": [
+            "HLF"
+          ]
+        },
+        {
+          "id": "EDG1",
+          "positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "EDG2",
+          "positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "EDG3",
+          "positions": [
+            "EDG"
+          ]
+        },
+        {
+          "id": "MID1",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID2",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "MID3",
+          "positions": [
+            "MID"
+          ]
+        },
+        {
+          "id": "FLEX1",
+          "positions": [
+            "WFB",
+            "CTR",
+            "HLF",
+            "EDG",
+            "MID"
+          ]
+        }
+      ],
+      "configuredTestCap": 1560,
+      "unit": "QA units, not fantasy dollars",
+      "minimumAllCoreCost": 1300,
+      "approvedDollarCap": null,
+      "prizes": "Unconfigured; no awards",
+      "seasonAggregation": "Unconfigured; no inferred season table"
+    }
+  ],
+  "weekly": {
+    "sports": [
+      "afl",
+      "nrl"
+    ],
+    "enabledByMigration": false,
+    "intervalSeconds": 604800,
+    "cards": 4,
+    "tier": "CORE",
+    "initialAnchor": "First eligible server reconciliation after programme activation",
+    "overdue": "Catch up each earned cycle, at most 500 per reconciliation; resume next worker run",
+    "scheduler": "Reuse sports_feed.weekly_core_job() and existing one-minute cron; inspect before changing",
+    "openingResetsSchedule": false
+  },
+  "approvals": [
+    "Deploy application and reviewed migration after target backup and compatibility rehearsal",
+    "Register additional AFL/NRL 1/3-card beta products without changing existing versions",
+    "Enable AFL/NRL weekly starter programmes with recorded authority; retain current NFL schedule"
+  ],
+  "forbiddenChanges": [
+    "No public registration",
+    "No permanent card issuance",
+    "No commercial feed activation",
+    "No NFL scoring or historical result changes",
+    "No wallet adjustment",
+    "No prize enablement"
+  ]
+}

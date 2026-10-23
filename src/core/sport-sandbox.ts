@@ -33,9 +33,11 @@ export type SandboxCard = SevenCard &
   };
 export type SandboxState = {
   scores?: SandboxScores;
+  fixtures?: Record<string, { scheduledAt: string; status: string }[]>;
   /** Server-derived averages of up to five completed, prior-period games. */
   recommendationRanks?: Record<string, Record<string, number>>;
   user_id: string;
+  team_name?: string;
   sport: string;
   server_time: string;
   cards: SandboxCard[];

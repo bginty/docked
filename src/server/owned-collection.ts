@@ -70,7 +70,7 @@ export async function ownedCollection(input: unknown): Promise<CollectionPage> {
     > & { rows: RawCard[] };
     const cards: CollectionCard[] = rows.map((raw) => {
       const card =
-        raw.inventory === "collectible"
+        raw.card || raw.inventory === "collectible"
           ? raw.card
           : testCard(
               {
