@@ -13,7 +13,17 @@ export async function GET(req: Request) {
       ),
       { headers },
     );
-  } catch {
+  } catch (error) {
+    if (error instanceof Error && error.message === "Authentication required")
+      return NextResponse.json(
+        { error: "Sign in to view your weekly packs." },
+        { status: 401, headers },
+      );
+    if (error instanceof Error && error.message === "Privileged MFA required")
+      return NextResponse.json(
+        { error: "Complete verification to view your weekly packs." },
+        { status: 403, headers },
+      );
     return NextResponse.json(
       {
         error:
@@ -40,7 +50,17 @@ export async function POST(req: Request) {
       ),
       { headers },
     );
-  } catch {
+  } catch (error) {
+    if (error instanceof Error && error.message === "Authentication required")
+      return NextResponse.json(
+        { error: "Sign in to open your weekly pack." },
+        { status: 401, headers },
+      );
+    if (error instanceof Error && error.message === "Privileged MFA required")
+      return NextResponse.json(
+        { error: "Complete verification to open your weekly pack." },
+        { status: 403, headers },
+      );
     return NextResponse.json(
       {
         error:

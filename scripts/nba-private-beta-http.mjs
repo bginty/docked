@@ -18,7 +18,7 @@ const live = process.argv[2] === "live",
 const auth = JSON.parse(
   readFileSync(main + "/private-data/vercel-cli/auth.json", "utf8"),
 );
-for (const path of [
+const paths = [
   "/api/beta-release",
   "/api/status",
   "/api/nba-beta",
@@ -33,6 +33,19 @@ for (const path of [
   "/api/marketplace?sport=nrl",
   "/api/community?view=hub",
   "/api/fantasy/standings",
+  ...(process.env.NBA_RELEASE_EVIDENCE === "docs/qa/three-sport-parity/release"
+    ? ["nfl", "afl", "nrl"].flatMap((sport) => [
+        `/api/weekly-core?sport=${sport}`,
+        `/api/community?view=feed&tab=latest&sport=${sport}`,
+        `/api/fantasy/collection?sport=${sport}`,
+        ...(sport === "nfl"
+          ? []
+          : [
+              `/api/sports-beta?view=standings&sport=${sport}`,
+              `/api/sports-beta?view=prizes&sport=${sport}`,
+            ]),
+      ])
+    : []),
   ...(process.env.NBA_RELEASE_EVIDENCE === "docs/qa/play-owned/release"
     ? [
         "/api/fantasy",
@@ -71,7 +84,8 @@ for (const path of [
   "/fantasy/play?sport=basketball",
   "/fantasy/play?sport=afl",
   "/fantasy/play?sport=nrl",
-]) {
+];
+async function check(path) {
   let status, body;
   if (live) {
     const r = await fetch("https://docked.com.au" + path, {
@@ -141,6 +155,9 @@ for (const path of [
   }
   checks.push({ path, status, passed: true });
 }
+for (let start = 0; start < paths.length; start += 4)
+  await Promise.all(paths.slice(start, start + 4).map(check));
+checks.sort((a, b) => paths.indexOf(a.path) - paths.indexOf(b.path));
 const report = {
   at: new Date().toISOString(),
   commit: receipt.commit,
