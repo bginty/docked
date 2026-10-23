@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "at": "2026-10-23T03:16:09.280Z",
+  "commit": "88094d578aa82bbf0a0945a11f4408bd2ab8ea33",
+  "scope": "Actual Production, signed out. These times measure access recovery, not authenticated collection loading.",
+  "authenticatedMemberTesting": false,
+  "checks": [
+    {
+      "sport": "nfl",
+      "tab": "cards",
+      "width": 412,
+      "signedOutRecoveryMs": 1756,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nfl",
+      "tab": "packs",
+      "width": 412,
+      "signedOutRecoveryMs": 1131,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "basketball",
+      "tab": "cards",
+      "width": 412,
+      "signedOutRecoveryMs": 230,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "basketball",
+      "tab": "packs",
+      "width": 412,
+      "signedOutRecoveryMs": 423,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "cards",
+      "width": 412,
+      "signedOutRecoveryMs": 263,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "packs",
+      "width": 412,
+      "signedOutRecoveryMs": 462,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "cards",
+      "width": 412,
+      "signedOutRecoveryMs": 243,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "packs",
+      "width": 412,
+      "signedOutRecoveryMs": 413,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nfl",
+      "tab": "cards",
+      "width": 1440,
+      "signedOutRecoveryMs": 736,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nfl",
+      "tab": "packs",
+      "width": 1440,
+      "signedOutRecoveryMs": 634,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "basketball",
+      "tab": "cards",
+      "width": 1440,
+      "signedOutRecoveryMs": 231,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "basketball",
+      "tab": "packs",
+      "width": 1440,
+      "signedOutRecoveryMs": 523,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "cards",
+      "width": 1440,
+      "signedOutRecoveryMs": 226,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "packs",
+      "width": 1440,
+      "signedOutRecoveryMs": 425,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "cards",
+      "width": 1440,
+      "signedOutRecoveryMs": 228,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "packs",
+      "width": 1440,
+      "signedOutRecoveryMs": 388,
+      "privateInventoryVisible": false
+    }
+  ]
+}

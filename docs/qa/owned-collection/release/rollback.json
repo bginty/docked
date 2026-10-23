@@ -1,0 +1,9 @@
+{
+  "deployment": "dpl_Cd4wPZcFJJJNSY85VLuT2aMZYPxi",
+  "url": "docked-production-lra0s8gmc-briant-s-projects.vercel.app",
+  "commit": "a2fdd38a703cb50946424812aa4e432b28614489",
+  "databaseMigrations": [
+    "20261023022240_owned_collection_read"
+  ],
+  "recovery": "Promote the captured prior application. The additive collection read function may remain unused. No inventory, ownership, wallet, pricing, rules, feature gate, result or schedule is changed by this migration; no data rollback is required."
+}

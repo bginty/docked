@@ -1,0 +1,47 @@
+{
+  "at": "2026-10-23T03:16:36.329Z",
+  "scope": "Before migration versus after live deployment",
+  "checks": [
+    {
+      "table": "credits_sandbox.state",
+      "unchanged": true
+    },
+    {
+      "table": "beta_fantasy.cards",
+      "unchanged": true
+    },
+    {
+      "table": "beta_fantasy.ownership_events",
+      "unchanged": true
+    },
+    {
+      "table": "beta_fantasy.entries",
+      "unchanged": true
+    },
+    {
+      "table": "beta_fantasy.results",
+      "unchanged": true
+    },
+    {
+      "table": "beta_fantasy.competitions",
+      "unchanged": true
+    },
+    {
+      "table": "beta_fantasy.sales",
+      "unchanged": true
+    },
+    {
+      "table": "beta_fantasy.packs",
+      "unchanged": true
+    },
+    {
+      "table": "sports_feed.sport_sandbox_inventory",
+      "unchanged": true
+    },
+    {
+      "table": "sports_feed.nfl_control",
+      "unchanged": true
+    }
+  ],
+  "passed": true
+}
