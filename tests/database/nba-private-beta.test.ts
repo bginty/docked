@@ -3,9 +3,11 @@ import assert from "node:assert/strict";
 import { multiSportDatabase } from "../fixtures/multi-sport-db";
 import { nbaWeeklyConfiguration } from "../../src/core/sport-configuration";
 import { sandboxRecommendation } from "../../src/core/sport-sandbox";
+import { grantOwnedPlayFixtures } from "../fixtures/owned-play";
 test("NBA private beta allowlist preserves confirmation, session, member MFA, sport and inventory boundaries", async () => {
   const db = await multiSportDatabase(nbaWeeklyConfiguration, true);
   try {
+    await grantOwnedPlayFixtures(db);
     // Transport fixture only: the reviewed NBA SQL verifies each account/session.
     await db.pg
       .exec(`create or replace function beta_private.beta_gameplay_identity(p_user uuid) returns boolean language sql as $$select true$$;

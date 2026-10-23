@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "mode": "apply",
+  "hash": "559ee527dec700b586ba04f0220ccff51837fd0631a506e8e31bf289014d7647",
+  "at": "2026-10-23T05:48:20.135Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "protectedRecords": {
+    "credits_sandbox.state": {
+      "count": "1",
+      "hash": "7f767a88b0c9ea03ab928d9e0d8cb9a6"
+    },
+    "beta_fantasy.cards": {
+      "count": "59",
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.ownership_events": {
+      "count": "59",
+      "hash": "704a314a527c2d8d2aa625dc1546ca60"
+    },
+    "beta_fantasy.entries": {
+      "count": "14",
+      "hash": "ae3a5a52bcd1c0c05e8e60260632f4e8"
+    },
+    "beta_fantasy.results": {
+      "count": "1",
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.competitions": {
+      "count": "53",
+      "hash": "bc4f77d6f8d012d38718cd53739a8b02"
+    },
+    "beta_fantasy.round_drafts": {
+      "count": "20",
+      "hash": "9c3b47736ec0e5698430471d149602c7"
+    },
+    "beta_fantasy.slot_locks": {
+      "count": "23",
+      "hash": "6abd77d17e061850f901105289a3fdcc"
+    },
+    "beta_fantasy.sales": {
+      "count": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.packs": {
+      "count": "1",
+      "hash": "79a2a7b163723a34efdfdacbaeaff280"
+    },
+    "sports_feed.sport_sandbox_inventory": {
+      "count": "12",
+      "hash": "c26fc647e0b6ba778bae2b51a1e1003e"
+    },
+    "sports_feed.nfl_control": {
+      "count": "1",
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    }
+  },
+  "ownershipWrites": 0,
+  "walletWrites": 0,
+  "measurements": [
+    {
+      "account": "Barry",
+      "sport": "basketball",
+      "ownedCards": 0,
+      "readAndValidationMs": 75
+    },
+    {
+      "account": "Barry",
+      "sport": "afl",
+      "ownedCards": 0,
+      "readAndValidationMs": 61
+    },
+    {
+      "account": "Barry",
+      "sport": "nrl",
+      "ownedCards": 0,
+      "readAndValidationMs": 52
+    },
+    {
+      "account": "Luke",
+      "sport": "basketball",
+      "ownedCards": 0,
+      "readAndValidationMs": 51
+    },
+    {
+      "account": "Luke",
+      "sport": "afl",
+      "ownedCards": 0,
+      "readAndValidationMs": 54
+    },
+    {
+      "account": "Luke",
+      "sport": "nrl",
+      "ownedCards": 0,
+      "readAndValidationMs": 53
+    },
+    {
+      "account": "Owner",
+      "sport": "basketball",
+      "ownedCards": 18,
+      "readAndValidationMs": 699
+    },
+    {
+      "account": "Owner",
+      "sport": "afl",
+      "ownedCards": 18,
+      "readAndValidationMs": 673
+    },
+    {
+      "account": "Owner",
+      "sport": "nrl",
+      "ownedCards": 9,
+      "readAndValidationMs": 371
+    }
+  ],
+  "verificationScope": "Owner SQL diagnostics, not authenticated browser acceptance",
+  "rollback": "Restore saved function definitions from private-data/play-owned and promote captured prior application. No data rollback necessary."
+}

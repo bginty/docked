@@ -168,7 +168,19 @@ test("both NBA packs use nine distinct players, preserve supply and render baske
   }
   const { state, card } = purchased();
   assert.equal(testCard(state, card).sport, "basketball");
-  assert.equal(testCard(state, card).multiplier, 1.1);
+  // Purchases use real random allocation; a Standard card is not always Rare.
+  const expected = {
+    CORE: 1,
+    RARE: 1.1,
+    ELITE: 1.2,
+    ULTRA_RARE: 1.3,
+    LEGENDARY: 1.4,
+    ICON: 1.5,
+  };
+  assert.equal(
+    testCard(state, card).multiplier,
+    expected[state.economy!.instances[card].rarity],
+  );
   assert.equal(
     testReceipt(state, "nba-purchase", marketActors[0].id).cards.length,
     9,

@@ -304,11 +304,11 @@ export function SportSandbox({
   }
   function renderCard(s: { id: string }) {
     const snap = display?.find((c) => c.slot === s.id);
+    const selectedId = picks.find((p) => p.slot === s.id)?.card;
     const card: SandboxCard | undefined =
       snap ??
-      state.cards.find(
-        (c) => c.id === picks.find((p) => p.slot === s.id)?.card,
-      );
+      state.cards.find((c) => c.id === selectedId) ??
+      entry?.snapshot.find((c) => c.slot === s.id && c.card_id === selectedId);
     const playerScore = teamScore?.players.find(
       (p) => p.slot === s.id && p.card_id === (snap?.card_id ?? card?.id),
     );
@@ -593,6 +593,13 @@ export function SportSandbox({
               {list ? "Field view" : "List view"}
             </button>
           </div>
+          {!readOnly &&
+            picks.some((p) => !state.cards.some((c) => c.id === p.card)) && (
+              <p role="status">
+                Some saved selections are no longer in your collection. Replace
+                them before saving.
+              </p>
+            )}
           <SevenField
             sport={state.sport}
             label={`${sport?.label} ${viewing ? "community" : "own"} lineup`}
@@ -696,7 +703,7 @@ export function SportSandbox({
           historyEntry
         >
           <label>
-            Find a player
+            Find in My Cards
             <input
               type="search"
               value={pickerQuery}
@@ -730,7 +737,14 @@ export function SportSandbox({
               </button>
             ))}
           </div>
-          {!pickerCards.length && <p>No eligible players match your search.</p>}
+          {!pickerCards.length && (
+            <p>
+              No eligible owned cards match this position and search.{" "}
+              <Link href={`/fantasy/cards?sport=${state.sport}`}>
+                View My Cards
+              </Link>
+            </p>
+          )}
           {pickerLimit < pickerCards.length && (
             <button onClick={() => setPickerLimit((n) => n + 30)}>
               Show more players

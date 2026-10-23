@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-23T05:49:05.905Z",
+  "scope": "Read-only Production SQL; full seven-card inventory query, not authenticated page timings",
+  "rows": [
+    {
+      "account": "Barry",
+      "nflCards": 131,
+      "inventoryMs": [
+        652,
+        820,
+        772
+      ]
+    },
+    {
+      "account": "Luke",
+      "nflCards": 116,
+      "inventoryMs": [
+        751,
+        590,
+        574
+      ]
+    },
+    {
+      "account": "Owner",
+      "nflCards": 171,
+      "inventoryMs": [
+        670,
+        667,
+        803
+      ]
+    }
+  ]
+}

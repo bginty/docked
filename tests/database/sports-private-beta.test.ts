@@ -6,10 +6,12 @@ import {
   nrlConfiguration,
 } from "../../src/core/sport-configuration";
 import { sandboxRecommendation } from "../../src/core/sport-sandbox";
+import { grantOwnedPlayFixtures } from "../fixtures/owned-play";
 for (const config of [aflConfiguration, nrlConfiguration])
   test(`${config.label} private beta requires independent gate and preserves slot/round/privacy isolation`, async () => {
     const db = await multiSportDatabase(config, true);
     try {
+      await grantOwnedPlayFixtures(db);
       await db.pg
         .exec(`create or replace function beta_private.beta_gameplay_identity(p_user uuid) returns boolean language sql as $$select true$$;
    create or replace function beta_private.gameplay_mfa_required(p_user uuid) returns boolean language sql as $$select false$$;`);

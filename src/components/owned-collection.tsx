@@ -459,7 +459,7 @@ function CollectionInventory({
               <p>
                 {page.total
                   ? "Try another player, team or rarity."
-                  : "Open a pack to add cards to your collection. Free Core players are ready in Play."}
+                  : "Open a pack to add cards to your collection and use them in Play."}
               </p>
               {page.total ? (
                 <button onClick={reset}>Reset filters</button>
@@ -468,9 +468,7 @@ function CollectionInventory({
                   <button className="button" onClick={onOpenPacks}>
                     Explore packs
                   </button>
-                  <Link href={`/fantasy/play?sport=${sport}`}>
-                    Play with free Core
-                  </Link>
+                  <Link href={`/fantasy/play?sport=${sport}`}>Go to Play</Link>
                 </div>
               )}
             </div>

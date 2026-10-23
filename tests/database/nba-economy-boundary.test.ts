@@ -154,6 +154,29 @@ for (const realRoster of [false, true])
           delete p.rosterBeta;
         }
         let state = initialMemberTestCredits();
+        // Explicit local grants make the starting fixture lineup genuinely owned.
+        // Roster eligibility alone must never fill slots after the ownership repair.
+        for (const card of db.inventories[db.user]) {
+          state.commerce.cards[card.id] = {
+            owner: db.user,
+            tier: card.tier,
+            sport,
+            reserved: null,
+          };
+          state.cards[card.id] = {
+            version: 0,
+            restricted: false,
+            locked: false,
+            history: [
+              {
+                from: null,
+                to: db.user,
+                reference: "isolated-owned-grant",
+                at: now,
+              },
+            ],
+          };
+        }
         state.economy = initialCardEconomy(nflPlayers, now);
         const products = prepareSportTestProducts(state.economy, sport, now);
         if (realRoster)
