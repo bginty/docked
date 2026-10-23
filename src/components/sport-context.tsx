@@ -4,12 +4,20 @@ import {
   useContext,
   useEffect,
   useState,
+  lazy,
+  Suspense,
   type ReactNode,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { boundedFetch } from "@/core/bounded-request";
-import { NbaBetaScreen } from "./nba-beta-screen";
-import { SportBetaCommerce } from "./sport-beta-commerce";
+const NbaBetaScreen = lazy(() =>
+  import("./nba-beta-screen").then((m) => ({ default: m.NbaBetaScreen })),
+);
+const SportBetaCommerce = lazy(() =>
+  import("./sport-beta-commerce").then((m) => ({
+    default: m.SportBetaCommerce,
+  })),
+);
 import { isBetaSport, type BetaSport } from "@/core/sports-private-beta";
 import { activeSportCookie, workspaceSport } from "@/core/workspace-sport";
 const sports = {
@@ -176,7 +184,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
     history.replaceState(null, "", url);
     // Private sport routes intentionally do not pre-load NFL. Returning to NFL
     // must request its server page, preserving the authenticated shared shell.
-    if (next === "nfl") router.refresh();
+    if (next === "nfl" && path !== "/fantasy/cards") router.refresh();
     window.dispatchEvent(new Event("docked:sport-changed"));
   }
   return (
@@ -268,29 +276,32 @@ export function SportScope({ children }: { children: ReactNode }) {
       ).get("view") !== "packs"
     )
       return children;
-    if (path === "/fantasy/play" || path === "/fantasy/cards")
+    if (path === "/fantasy/cards") return children;
+    if (path === "/fantasy/play")
       return (
-        <NbaBetaScreen
-          key={`${path}:${sport}`}
-          sport={sport}
-          cards={path === "/fantasy/cards"}
-        />
+        <Suspense fallback={<p role="status">Loading your team…</p>}>
+          <NbaBetaScreen key={`${path}:${sport}`} sport={sport} />
+        </Suspense>
       );
     if (path === "/fantasy/test-wallet" || path === "/fantasy/packs")
       return (
-        <SportBetaCommerce
-          key={`${path}:${sport}`}
-          sport={sport}
-          surface="packs"
-        />
+        <Suspense fallback={<p role="status">Loading your packs…</p>}>
+          <SportBetaCommerce
+            key={`${path}:${sport}`}
+            sport={sport}
+            surface="packs"
+          />
+        </Suspense>
       );
     if (path === "/fantasy/market")
       return (
-        <SportBetaCommerce
-          key={`${path}:${sport}`}
-          sport={sport}
-          surface="market"
-        />
+        <Suspense fallback={<p role="status">Loading your market…</p>}>
+          <SportBetaCommerce
+            key={`${path}:${sport}`}
+            sport={sport}
+            surface="market"
+          />
+        </Suspense>
       );
     if (path === "/fantasy/social") return children;
     return (

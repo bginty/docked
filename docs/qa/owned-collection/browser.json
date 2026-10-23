@@ -1,0 +1,762 @@
+{
+  "passed": true,
+  "scope": "Isolated React + HTTP fixture; not authenticated Production. 180ms simulated collection response delay; mobile 4x CPU throttle; desktop unthrottled.",
+  "checks": [
+    {
+      "baselineUsableMs": 4008,
+      "baselineRendered": 36,
+      "baselineData": {
+        "url": "/api/nba-beta?view=state",
+        "bytes": 328845
+      }
+    },
+    {
+      "sport": "nfl",
+      "width": 412,
+      "usableMs": 3357,
+      "renderedCards": 18,
+      "apiBytes": 7010,
+      "boxes": [
+        {
+          "x": 16,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 16,
+          "y": 762.71875,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 762.71875,
+          "width": 186
+        }
+      ]
+    },
+    {
+      "sport": "basketball",
+      "width": 412,
+      "usableMs": 1600,
+      "renderedCards": 18,
+      "apiBytes": 8432,
+      "boxes": [
+        {
+          "x": 16,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 16,
+          "y": 762.71875,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 762.71875,
+          "width": 186
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "width": 412,
+      "usableMs": 1536,
+      "renderedCards": 18,
+      "apiBytes": 8029,
+      "boxes": [
+        {
+          "x": 16,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 16,
+          "y": 762.71875,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 762.71875,
+          "width": 186
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "width": 412,
+      "usableMs": 1505,
+      "renderedCards": 18,
+      "apiBytes": 7413,
+      "boxes": [
+        {
+          "x": 16,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 451.203125,
+          "width": 186
+        },
+        {
+          "x": 16,
+          "y": 762.71875,
+          "width": 186
+        },
+        {
+          "x": 210,
+          "y": 762.71875,
+          "width": 186
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "width": 1440,
+      "usableMs": 617,
+      "renderedCards": 18,
+      "apiBytes": 7010,
+      "boxes": [
+        {
+          "x": 232.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 531.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 830.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 1129.5,
+          "y": 451.734375,
+          "width": 283
+        }
+      ]
+    },
+    {
+      "sport": "basketball",
+      "width": 1440,
+      "usableMs": 451,
+      "renderedCards": 18,
+      "apiBytes": 8432,
+      "boxes": [
+        {
+          "x": 232.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 531.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 830.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 1129.5,
+          "y": 451.734375,
+          "width": 283
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "width": 1440,
+      "usableMs": 425,
+      "renderedCards": 18,
+      "apiBytes": 8029,
+      "boxes": [
+        {
+          "x": 232.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 531.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 830.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 1129.5,
+          "y": 451.734375,
+          "width": 283
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "width": 1440,
+      "usableMs": 458,
+      "renderedCards": 18,
+      "apiBytes": 7413,
+      "boxes": [
+        {
+          "x": 232.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 531.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 830.5,
+          "y": 451.734375,
+          "width": 283
+        },
+        {
+          "x": 1129.5,
+          "y": 451.734375,
+          "width": 283
+        }
+      ]
+    },
+    {
+      "cachedSportVisibleMs": 109,
+      "transferredCardRemoved": true
+    },
+    {
+      "empty": true,
+      "retry": true,
+      "ownershipRevisionReset": true,
+      "revokedAccessClearsCache": true
+    }
+  ],
+  "requests": [
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20151
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/nba-beta?view=state",
+      "bytes": 328845
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 7031
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 4778
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=nfl&sell=local-nfl-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=local-nfl-0&sport=nfl",
+      "bytes": 106
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 234
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20151
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 8440
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 5784
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=basketball&sell=local-basketball-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=12b88759-b272-4be2-a395-b541bd37edfd&sport=basketball",
+      "bytes": 113
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 344
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 20151
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19889
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 8097
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 5524
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=afl&sell=local-afl-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=0058d801-be72-4ba3-ad83-1325b2e8bcfc&sport=afl",
+      "bytes": 106
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 285
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 19889
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19884
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 7561
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 5091
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=nrl&sell=local-nrl-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=5e646af6-4d0a-4537-a57e-53a4846f996e&sport=nrl",
+      "bytes": 106
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 344
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 19884
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 7031
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 4778
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=nfl&sell=local-nfl-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=local-nfl-0&sport=nfl",
+      "bytes": 106
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 234
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 20151
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 8440
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 5784
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=basketball&sell=local-basketball-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=12b88759-b272-4be2-a395-b541bd37edfd&sport=basketball",
+      "bytes": 113
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 344
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 20151
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19889
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 8097
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 5524
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=afl&sell=local-afl-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=0058d801-be72-4ba3-ad83-1325b2e8bcfc&sport=afl",
+      "bytes": 106
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 285
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 19889
+    },
+    {
+      "url": "/api/fantasy/collection?sport=afl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8029
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19884
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A1",
+      "bytes": 7561
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=LEGENDARY&search=&team=&position=&sort=recent",
+      "bytes": 5091
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/marketplace?tab=listings&sport=nrl&sell=local-nrl-0",
+      "bytes": 49
+    },
+    {
+      "url": "/api/fantasy/card-history?player=5e646af6-4d0a-4537-a57e-53a4846f996e&sport=nrl",
+      "bytes": 106
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=unmatched+fictional+search&team=&position=&sort=recent",
+      "bytes": 344
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 19884
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nrl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7413
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 218
+    },
+    {
+      "url": "/api/test-wallet?view=packs",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 62
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 62
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/test-wallet?view=summary",
+      "bytes": 19059
+    },
+    {
+      "url": "/api/sports-beta",
+      "bytes": 38
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/fantasy/collection?sport=nfl&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 7010
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent&cursor=18%3A2",
+      "bytes": 344
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 8432
+    },
+    {
+      "url": "/api/fantasy/collection?sport=basketball&rarity=ALL&search=&team=&position=&sort=recent",
+      "bytes": 65
+    }
+  ]
+}

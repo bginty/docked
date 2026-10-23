@@ -1,0 +1,25 @@
+{
+  "scope": "Local platform, isolated database and browser tests; hosted read-only database diagnostics. This does not claim signed-in Production acceptance.",
+  "platform": {"command": "npm test", "passed": 603, "failed": 0},
+  "newCollectionUnitTests": {"command": "npx tsx --test tests/platform/owned-collection.test.ts", "passed": 2, "failed": 0},
+  "database": {
+    "command": "npx tsx --test --test-concurrency=2 tests/database/owned-collection.test.ts tests/database/nfl-seven.test.ts tests/database/nba-rarity-v2.test.ts tests/database/afl-lineup.test.ts tests/database/sports-private-beta.test.ts tests/database/marketplace.test.ts tests/database/member-platform-updates.test.ts tests/database/weekly-core.test.ts tests/database/production-runtime-role.test.ts",
+    "passed": 22, "failed": 0,
+    "coverage": ["Four-sport ownership exclusion and counts", "99-card pagination per sport", "Unopened pack exclusion", "Account isolation", "Transfer revision invalidation", "Free Core PLAY", "NFL scoring and seven-slot lineups", "NBA multipliers", "AFL 22-slot lineups", "Private sport permissions", "Marketplace settlement", "Weekly Core", "Production runtime-role restrictions"]
+  },
+  "collectionBrowser": {"command": "npx tsx scripts/owned-collection-browser.ts", "evidence": "browser.json", "passed": true, "viewports": [412, 1440], "fixture": true},
+  "packBrowser": {
+    "command": "npx tsx scripts/pack-shopping-browser.ts --nba --real-rosters; repeat with --afl and --nrl; npx tsx scripts/pack-shopping-browser.ts for NFL",
+    "sports": ["nfl", "basketball", "afl", "nrl"],
+    "viewports": [360, 412, 1024, 1440],
+    "passed": true,
+    "coverage": ["Purchase review", "Repeated-click prevention", "Lost-response retry", "Nine cards delivered once", "Reveal", "Verified jersey handling", "Zero serious accessibility findings"],
+    "fixture": true
+  },
+  "typecheck": {"command":"npm run typecheck", "passed": true},
+  "lint": {"command":"npm run lint", "passed": true},
+  "cleanBuild": {"command":"node scripts/marketplace-build-local.mjs --owned-collection", "passed": true, "evidence":"build.txt"},
+  "clientSecretBoundary": {"passed":true, "evidence":"client-boundary.txt"},
+  "migrationRehearsal": {"passed":true,"evidence":"release/database-rehearse.json"},
+  "hostedOwnershipCounts": {"passed":true,"evidence":"release/performance.json","authenticatedMemberSession":false}
+}

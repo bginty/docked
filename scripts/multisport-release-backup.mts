@@ -23,6 +23,9 @@ try {
         "credits_sandbox.pack_receipts",
         "credits_sandbox.journal",
         "beta_fantasy.cards",
+        "beta_fantasy.editions",
+        "beta_fantasy.packs",
+        "beta_fantasy.pack_items",
         "beta_fantasy.players",
         "beta_fantasy.entries",
         "beta_fantasy.results",
@@ -43,7 +46,7 @@ try {
           `select to_jsonb(t) row from ${table} t`,
         );
       const functions =
-        await tx`select n.nspname,p.proname,pg_get_function_identity_arguments(p.oid) args,pg_get_functiondef(p.oid) definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('credits_sandbox','sports_feed','beta_private') and p.prokind='f'`;
+        await tx`select n.nspname,p.proname,pg_get_function_identity_arguments(p.oid) args,pg_get_functiondef(p.oid) definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('credits_sandbox','sports_feed','beta_private','beta_fantasy') and p.prokind='f'`;
       return { at: new Date().toISOString(), projectRef, tables, functions };
     },
   );
@@ -64,7 +67,9 @@ try {
       "Private application rows plus prior function definitions retained. Additive migration recovery uses previous application deployment and disabled sport flags, preserving all new audit records. This is not a full Auth/Storage backup or a tested disaster recovery archive.",
   };
   await writeFile(
-    root + "/docs/qa/overnight-multisport/release/recovery-snapshot.json",
+    root +
+      (process.env.DOCKED_RECOVERY_EVIDENCE ??
+        "/docs/qa/overnight-multisport/release/recovery-snapshot.json"),
     JSON.stringify(report, null, 2),
   );
   console.log(JSON.stringify(report));

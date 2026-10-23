@@ -33,6 +33,18 @@ for (const path of [
   "/api/marketplace?sport=nrl",
   "/api/community?view=hub",
   "/api/fantasy/standings",
+  ...(process.env.NBA_RELEASE_EVIDENCE === "docs/qa/owned-collection/release"
+    ? [
+        "/api/fantasy/collection?sport=nfl",
+        "/api/fantasy/collection?sport=basketball",
+        "/api/fantasy/collection?sport=afl",
+        "/api/fantasy/collection?sport=nrl",
+        "/fantasy/cards?sport=nfl",
+        "/fantasy/cards?sport=basketball",
+        "/fantasy/cards?sport=afl",
+        "/fantasy/cards?sport=nrl",
+      ]
+    : []),
   "/api/admin/sports-sandbox?sport=basketball",
   "/app/login",
   "/fantasy/play?sport=basketball",

@@ -32,6 +32,7 @@ import { StartupBoundary } from "@/components/startup-loading";
 import "./pack-shop.css";
 import "./premium-ux.css";
 import "./multi-sport.css";
+import "./owned-collection.css";
 import "./owner-command.css";
 import { SportProvider } from "@/components/sport-context";
 import { fantasyTagline } from "@/core/fantasy";

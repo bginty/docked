@@ -138,6 +138,18 @@ export function fullTeamName(card: Pick<JerseyMetadata, "sport" | "team">) {
   );
 }
 
+/** Search uses the same canonical city/team labels displayed on cards. */
+export function nflSearchTeams(search: string) {
+  const q = search.trim().toLowerCase();
+  return q
+    ? Object.keys(nflTeamNames).filter((code) =>
+        `${nflTeamNames[code]} ${nflCities[code] ?? ""}`
+          .toLowerCase()
+          .includes(q),
+      )
+    : [];
+}
+
 /** Presentation only. Use the team on the card/snapshot, never a new roster lookup.
  * Regional franchise locations (Arizona, New England, etc.) retain their canonical names.
  * Historical codes remain distinct; no relocation or affiliation is inferred.

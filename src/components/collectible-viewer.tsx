@@ -237,7 +237,7 @@ export function CardSellAction({ card }: { card: ViewerCard }) {
   useEffect(() => {
     const controller = new AbortController();
     void boundedFetch(
-      `/api/marketplace?tab=listings&sell=${encodeURIComponent(card.id)}`,
+      `/api/marketplace?tab=listings&sport=${encodeURIComponent(card.sport)}&sell=${encodeURIComponent(card.id)}`,
       { cache: "no-store", signal: controller.signal },
     )
       .then(async (res) => {
@@ -270,7 +270,7 @@ export function CardSellAction({ card }: { card: ViewerCard }) {
           });
       });
     return () => controller.abort();
-  }, [card.id, card.tier, refresh]);
+  }, [card.id, card.tier, card.sport, refresh]);
   return (
     <div className="collectible-sell-action">
       {selling && (

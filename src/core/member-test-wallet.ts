@@ -76,7 +76,12 @@ export function memberTestCommand(input: unknown) {
 }
 import { teamColours } from "./sport-team-colours";
 import { rosterCardMetadata } from "./roster-card-metadata";
-export function testCard(s: CreditsState, id: string): AwardedCard {
+export type TestCardSource = {
+  commerce: Pick<CreditsState["commerce"], "cards">;
+  cards: Record<string, unknown>;
+  economy?: Pick<NonNullable<CreditsState["economy"]>, "instances" | "players">;
+};
+export function testCard(s: TestCardSource, id: string): AwardedCard {
   const c = s.commerce.cards[id];
   if (!c || !s.cards[id]) throw Error("Card not opened");
   const instance = s.economy?.instances[id];

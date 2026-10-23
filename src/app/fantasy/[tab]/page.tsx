@@ -12,6 +12,7 @@ import {
   privateSportWorkspace,
 } from "@/core/workspace-sport";
 import { PrivateSportPage } from "@/components/private-sport-page";
+import { OwnedCollection } from "@/components/owned-collection";
 
 import { Marketplace } from "@/components/marketplace";
 import { requireIdentity, requireRole } from "@/server/auth";
@@ -104,6 +105,25 @@ export default async function FantasyPage({
       </div>
     );
 
+  if (tab === "cards" && process.env.DOCKED_FRIENDS_BETA === "true") {
+    try {
+      const who = await requireIdentity();
+      return (
+        <AppShell authenticated>
+          <OwnedCollection key={who.user.id} member={who.user.id} />
+        </AppShell>
+      );
+    } catch (error) {
+      const kind = memberAccessFailure(error);
+      return (
+        <FantasyLoadError
+          authRequired={kind === "authentication"}
+          mfaRequired={kind === "mfa"}
+          permissionDenied={kind === "permission"}
+        />
+      );
+    }
+  }
   if (
     process.env.DOCKED_FRIENDS_BETA === "true" &&
     ["play", "cards"].includes(tab)

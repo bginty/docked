@@ -1,7 +1,7 @@
 import { cp, mkdir, symlink, access, writeFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { resolve } from "node:path";
-const evidence = process.argv.includes("--card-consistency")
+let evidence = process.argv.includes("--card-consistency")
   ? "docs/qa/card-consistency"
   : process.argv.includes("--startup-shell")
     ? "docs/qa/startup-shell"
@@ -82,9 +82,11 @@ const evidence = process.argv.includes("--card-consistency")
                                                               )
                                                             ? "docs/qa/mobile-cleanup"
                                                             : "docs/qa/marketplace-release";
+if (process.argv.includes("--owned-collection")) evidence = "docs/qa/owned-collection";
 await mkdir(evidence, { recursive: true });
 const root = process.cwd(),
   dir = resolve(
+    process.argv.includes("--owned-collection") ? `tmp/owned-collection-build-${Date.now()}` :
     process.argv.includes("--card-consistency")
       ? `tmp/card-consistency-build-${Date.now()}`
       : process.argv.includes("--startup-shell")

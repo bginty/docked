@@ -1,0 +1,205 @@
+{
+  "at": "2026-10-23T02:16:58.622Z",
+  "scope": "Read-only owner diagnostics, not authenticated browser acceptance",
+  "rows": [
+    {
+      "label": "Barry",
+      "sport": "afl",
+      "displayed_cards": 589,
+      "cards_bytes": 668389,
+      "free_selection_cards": "545",
+      "settled_beta_cards": "0"
+    },
+    {
+      "label": "Barry",
+      "sport": "basketball",
+      "displayed_cards": 541,
+      "cards_bytes": 640298,
+      "free_selection_cards": "517",
+      "settled_beta_cards": "0"
+    },
+    {
+      "label": "Barry",
+      "sport": "nrl",
+      "displayed_cards": 363,
+      "cards_bytes": 415955,
+      "free_selection_cards": "337",
+      "settled_beta_cards": "0"
+    },
+    {
+      "label": "Luke",
+      "sport": "afl",
+      "displayed_cards": 589,
+      "cards_bytes": 668389,
+      "free_selection_cards": "545",
+      "settled_beta_cards": "0"
+    },
+    {
+      "label": "Luke",
+      "sport": "basketball",
+      "displayed_cards": 541,
+      "cards_bytes": 640298,
+      "free_selection_cards": "517",
+      "settled_beta_cards": "0"
+    },
+    {
+      "label": "Luke",
+      "sport": "nrl",
+      "displayed_cards": 363,
+      "cards_bytes": 415955,
+      "free_selection_cards": "337",
+      "settled_beta_cards": "0"
+    },
+    {
+      "label": "Owner",
+      "sport": "afl",
+      "displayed_cards": 607,
+      "cards_bytes": 689583,
+      "free_selection_cards": "545",
+      "settled_beta_cards": "18"
+    },
+    {
+      "label": "Owner",
+      "sport": "basketball",
+      "displayed_cards": 550,
+      "cards_bytes": 651145,
+      "free_selection_cards": "517",
+      "settled_beta_cards": "9"
+    },
+    {
+      "label": "Owner",
+      "sport": "nrl",
+      "displayed_cards": 372,
+      "cards_bytes": 426622,
+      "free_selection_cards": "337",
+      "settled_beta_cards": "9"
+    }
+  ],
+  "source": [
+    {
+      "document_bytes": 3283624,
+      "jsonb_object_length_placeholder": 0
+    }
+  ],
+  "owned": [
+    {
+      "label": "Barry",
+      "sport": "nfl",
+      "owned": "117"
+    },
+    {
+      "label": "Luke",
+      "sport": "nfl",
+      "owned": "106"
+    },
+    {
+      "label": "Owner",
+      "sport": "afl",
+      "owned": "18"
+    },
+    {
+      "label": "Owner",
+      "sport": "basketball",
+      "owned": "9"
+    },
+    {
+      "label": "Owner",
+      "sport": "nfl",
+      "owned": "149"
+    },
+    {
+      "label": "Owner",
+      "sport": "nrl",
+      "owned": "9"
+    },
+    {
+      "label": "Synthetic QA",
+      "sport": "nfl",
+      "owned": "52"
+    }
+  ],
+  "legacy": [
+    {
+      "label": "Barry",
+      "sport": "nfl",
+      "owned": "14"
+    },
+    {
+      "label": "Luke",
+      "sport": "nfl",
+      "owned": "10"
+    },
+    {
+      "label": "Owner",
+      "sport": "football",
+      "owned": "11"
+    },
+    {
+      "label": "Owner",
+      "sport": "nfl",
+      "owned": "14"
+    },
+    {
+      "label": "Synthetic QA",
+      "sport": "nfl",
+      "owned": "10"
+    }
+  ],
+  "timings": [
+    91.9353000000001,
+    98.2219,
+    78.68870000000015,
+    76.9728,
+    75.0322000000001
+  ],
+  "indexes": [
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "cards",
+      "indexname": "cards_pkey",
+      "indexdef": "CREATE UNIQUE INDEX cards_pkey ON beta_fantasy.cards USING btree (id)"
+    },
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "cards",
+      "indexname": "cards_edition_id_serial_key",
+      "indexdef": "CREATE UNIQUE INDEX cards_edition_id_serial_key ON beta_fantasy.cards USING btree (edition_id, serial)"
+    },
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "cards",
+      "indexname": "cards_owner_id_created_at_idx",
+      "indexdef": "CREATE INDEX cards_owner_id_created_at_idx ON beta_fantasy.cards USING btree (owner_id, created_at)"
+    },
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "ownership_events",
+      "indexname": "ownership_events_pkey",
+      "indexdef": "CREATE UNIQUE INDEX ownership_events_pkey ON beta_fantasy.ownership_events USING btree (id)"
+    },
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "ownership_events",
+      "indexname": "ownership_events_card_id_created_at_idx",
+      "indexdef": "CREATE INDEX ownership_events_card_id_created_at_idx ON beta_fantasy.ownership_events USING btree (card_id, created_at)"
+    },
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "pack_items",
+      "indexname": "pack_items_pkey",
+      "indexdef": "CREATE UNIQUE INDEX pack_items_pkey ON beta_fantasy.pack_items USING btree (pack_id, slot)"
+    },
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "pack_items",
+      "indexname": "pack_items_card_id_key",
+      "indexdef": "CREATE UNIQUE INDEX pack_items_card_id_key ON beta_fantasy.pack_items USING btree (card_id)"
+    },
+    {
+      "schemaname": "beta_fantasy",
+      "tablename": "pack_items",
+      "indexname": "pack_items_pack_id_slot_idx",
+      "indexdef": "CREATE INDEX pack_items_pack_id_slot_idx ON beta_fantasy.pack_items USING btree (pack_id, slot)"
+    }
+  ]
+}

@@ -15,10 +15,12 @@ import {
   memberTestView,
   memberTestSummary,
   testReceipt,
+  testCard,
 } from "../src/core/member-test-wallet";
 import { refreshEconomyCatalogue } from "../src/server/economy-catalogue";
 import type { Sql } from "postgres";
 import { prepareRosterBetaCatalogue } from "../src/core/roster-beta-prepare";
+import { jerseyPresentation } from "../src/core/card-presentation";
 async function main() {
   const nba = process.argv.includes("--nba");
   const sport = nba
@@ -323,7 +325,11 @@ async function main() {
       assert.equal(Object.keys(state.economy!.instances).length, 9);
       assert.equal(calls, 2);
       await expect(page.locator(".pack-opening")).toHaveClass(/pack-simple/);
-      assert.equal(await page.locator(".jersey-number").count(), 0);
+      if (realRoster) {
+        const verified = new Set(Object.keys(state.economy!.instances).map(id => jerseyPresentation(testCard(state,id)).number));
+        for (const number of await page.locator(".jersey-number").allTextContents())
+          assert(verified.has(number), "Revealed number must match a source-verified card in this receipt");
+      } else assert.equal(await page.locator(".jersey-number").count(), 0);
       await page.getByLabel("Opening settings").click();
       await expect(
         page.getByLabel("Reduce motion", { exact: true }),
