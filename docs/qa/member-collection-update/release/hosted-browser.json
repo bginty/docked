@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "at": "2026-10-24T01:07:21.238Z",
+  "commit": "ac7cd92a2d134e0630780e3f9d391e71b691d78e",
+  "scope": "Actual Production, signed out. These times measure access recovery, not authenticated collection loading.",
+  "authenticatedMemberTesting": false,
+  "checks": [
+    {
+      "sport": "nfl",
+      "tab": "cards",
+      "width": 390,
+      "signedOutRecoveryMs": 925,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nfl",
+      "tab": "packs",
+      "width": 390,
+      "signedOutRecoveryMs": 463,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "cards",
+      "width": 390,
+      "signedOutRecoveryMs": 228,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "packs",
+      "width": 390,
+      "signedOutRecoveryMs": 705,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "cards",
+      "width": 390,
+      "signedOutRecoveryMs": 276,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "packs",
+      "width": 390,
+      "signedOutRecoveryMs": 418,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nfl",
+      "tab": "cards",
+      "width": 1440,
+      "signedOutRecoveryMs": 663,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nfl",
+      "tab": "packs",
+      "width": 1440,
+      "signedOutRecoveryMs": 561,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "cards",
+      "width": 1440,
+      "signedOutRecoveryMs": 201,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "afl",
+      "tab": "packs",
+      "width": 1440,
+      "signedOutRecoveryMs": 433,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "cards",
+      "width": 1440,
+      "signedOutRecoveryMs": 195,
+      "privateInventoryVisible": false
+    },
+    {
+      "sport": "nrl",
+      "tab": "packs",
+      "width": 1440,
+      "signedOutRecoveryMs": 424,
+      "privateInventoryVisible": false
+    }
+  ]
+}

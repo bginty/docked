@@ -1,5 +1,21 @@
 # Docked member collection update
 
+## Deployment addendum — 24 October 2026
+
+The owner subsequently authorised deployment with “deploy”. The reviewed application is now live at **https://docked.com.au**, source commit `ac7cd92a2d134e0630780e3f9d391e71b691d78e`, Vercel deployment `dpl_AZdRYXmTYKsdUZHCJH4JZWLnHnir`. This addendum supersedes the pre-deployment status statements retained below.
+
+All three reviewed migrations were installed transactionally. Their source hashes matched the review, runtime permissions passed, and comparisons across **29 protected tables** found no record changes before/after migration and deployment. Wallets, existing inventory, competitions, entries, schedules and controls were preserved. Two salary configurations and four **inactive** prize templates are available; no salary adoption, prize publication, payout, production test purchase or new activation occurred. NBA remains hidden and public registration remains closed.
+
+An application-data/function-definition recovery snapshot was stored privately and verified by reading it back. This is not a full disaster-recovery drill. The prior Vercel deployment is retained in [rollback evidence](qa/member-collection-update/release/rollback.json); additive schema is compatible with application rollback. Historical migrations recorded under different timestamps were identified by their recorded names and excluded, as was the isolated NFL test-consumer migration. No generic database push or historical migration replay occurred.
+
+Verification: production build READY; **43 protected-candidate HTTP checks, 43 live HTTP checks and 12 signed-out browser journeys passed**. Browser journeys cover NFL/AFL/NRL Cards and legacy Packs at 390px and 1440px, canonical redirects retaining sport, sign-in recovery, no private inventory leakage, no page errors and no horizontal overflow. The redirect assertion was corrected to wait for Next.js streamed navigation before checking the destination. The available in-app browser was on the login screen: **authenticated hosted Profile counts, purchases and member gameplay were not tested**. No member session was manufactured or customer account mutated.
+
+Evidence: [release summary](qa/member-collection-update/release/summary.json), [live checks](qa/member-collection-update/release/live-http.json), [browser checks](qa/member-collection-update/release/hosted-browser.json), [mobile access recovery](qa/member-collection-update/release/signed-out-390.png), [desktop access recovery](qa/member-collection-update/release/signed-out-1440.png). These hosted screenshots show signed-out access recovery, not the private collection screen; local feature screenshots below remain the visual evidence for those components.
+
+Remaining separate decisions: handling occupied AFL rounds before salary adoption, an approved tied-place prize policy, and explicit future prize-bearing round/award-runner activation. None was inferred from deployment approval.
+
+## Pre-deployment implementation record
+
 Implemented locally for NFL, AFL and NRL. **Not deployed. No production records, balances, inventory, entries, prizes or activation settings were changed.** NBA remains hidden. This release does not alter scoring, pack pools, rarity probabilities, lifetime supply, deposits, withdrawals, KYC or push services.
 
 Implementation commit: `2c0f23c3` on `codex/member-platform-updates`.

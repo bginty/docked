@@ -1,0 +1,224 @@
+{
+  "passed": true,
+  "projectRef": "pojoymtniryarxxunyvz",
+  "pending": [
+    "20261023234346_member_collection_record.sql",
+    "20261023234740_approved_afl_nrl_future_rules.sql",
+    "20261024000314_australian_prize_preparation.sql"
+  ],
+  "historicalAliasesExcluded": [
+    {
+      "file": "20261010231416_nfl_postgame_isolated_feed.sql",
+      "applied": [
+        {
+          "version": "20261010232625",
+          "name": "nfl_postgame_isolated_feed"
+        }
+      ]
+    },
+    {
+      "file": "20261010233559_nfl_beta_raw_retention.sql",
+      "applied": [
+        {
+          "version": "20261010233616",
+          "name": "nfl_beta_raw_retention"
+        }
+      ]
+    },
+    {
+      "file": "20261017042754_nfl_testing_feed_consumer.sql",
+      "applied": []
+    },
+    {
+      "file": "20261018093956_reviewed_beta_marketplace_controls.sql",
+      "applied": [
+        {
+          "version": "20261018221026",
+          "name": "reviewed_beta_marketplace_controls"
+        }
+      ]
+    },
+    {
+      "file": "20261019113000_future_week_private_drafts.sql",
+      "applied": [
+        {
+          "version": "20261019121014",
+          "name": "future_week_private_drafts"
+        }
+      ]
+    },
+    {
+      "file": "20261019213437_weekly_team_continuity.sql",
+      "applied": [
+        {
+          "version": "20261019230756",
+          "name": "weekly_team_continuity"
+        }
+      ]
+    },
+    {
+      "file": "20261020001039_member_cleanup_read_models.sql",
+      "applied": [
+        {
+          "version": "20261020003948",
+          "name": "member_cleanup_read_models"
+        }
+      ]
+    },
+    {
+      "file": "20261020040346_game_day_read_models.sql",
+      "applied": [
+        {
+          "version": "20261020042019",
+          "name": "game_day_read_models"
+        }
+      ]
+    },
+    {
+      "file": "20261020042940_future_round_wide_locking.sql",
+      "applied": [
+        {
+          "version": "20261020043345",
+          "name": "future_round_wide_locking"
+        }
+      ]
+    }
+  ],
+  "migrationHashes": [
+    {
+      "file": "20261023234346_member_collection_record.sql",
+      "sha256": "0f68094a91b6d3a68db15d5a91fb2aa95be11f45c75d5cbd89240bef8e7ade0b"
+    },
+    {
+      "file": "20261023234740_approved_afl_nrl_future_rules.sql",
+      "sha256": "0562c1e0d1bdbed3c27f0198783dcc0b012a83af253ff401e30e206d8ecdde6b"
+    },
+    {
+      "file": "20261024000314_australian_prize_preparation.sql",
+      "sha256": "8afc156294ac60f22110e72b896dd3ebf047d357dacc555461bf2fb7949bd78e"
+    }
+  ],
+  "backupSha256": "5ec842b5529c277ae4aaadcc060434a5c71ca178f1ec7c8a210668997cae43b4",
+  "backupBytes": 15586408,
+  "readbackVerified": true,
+  "fullDisasterRecoveryTested": false,
+  "protected": {
+    "beta_fantasy.cards": {
+      "n": "59",
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.editions": {
+      "n": "678",
+      "hash": "52592bc12a9428593d97002fce74c46e"
+    },
+    "beta_fantasy.players": {
+      "n": "534",
+      "hash": "3a20c778089688b8a82a2fe4e4796074"
+    },
+    "beta_fantasy.entries": {
+      "n": "14",
+      "hash": "ae3a5a52bcd1c0c05e8e60260632f4e8"
+    },
+    "beta_fantasy.results": {
+      "n": "1",
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.round_drafts": {
+      "n": "20",
+      "hash": "9c3b47736ec0e5698430471d149602c7"
+    },
+    "beta_fantasy.competitions": {
+      "n": "53",
+      "hash": "bc4f77d6f8d012d38718cd53739a8b02"
+    },
+    "beta_fantasy.prize_schedules": {
+      "n": "4",
+      "hash": "27aadb9596e7f59e2e219acac3ae06e7"
+    },
+    "beta_fantasy.ownership_events": {
+      "n": "59",
+      "hash": "704a314a527c2d8d2aa625dc1546ca60"
+    },
+    "beta_fantasy.sales": {
+      "n": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.packs": {
+      "n": "1",
+      "hash": "79a2a7b163723a34efdfdacbaeaff280"
+    },
+    "beta_fantasy.pack_items": {
+      "n": "11",
+      "hash": "3799b85f85c01bf8b37059591335479e"
+    },
+    "beta_fantasy.ledger": {
+      "n": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.state": {
+      "n": "1",
+      "hash": "7cd72103bf230de7bbb957f81a21c9da"
+    },
+    "credits_sandbox.pack_configuration": {
+      "n": "31",
+      "hash": "4ee9c06c9220eece0333a8a1a2737b36"
+    },
+    "credits_sandbox.permanent_players": {
+      "n": "986",
+      "hash": "a9ffd0b2c5d6cae5d4162e2714ac1ecd"
+    },
+    "credits_sandbox.card_definitions": {
+      "n": "366",
+      "hash": "e5eda66a8348af9a9046d100fd9efb5f"
+    },
+    "credits_sandbox.card_instances": {
+      "n": "437",
+      "hash": "275c6394bfd4f7095d33a4e9a8a529a8"
+    },
+    "credits_sandbox.pack_receipts": {
+      "n": "65",
+      "hash": "494e6d0cec53661b36d81a23e7a0e5b4"
+    },
+    "sports_feed.nfl_rounds": {
+      "n": "6",
+      "hash": "b37265a04a2e4e0a61168e3d70c40c72"
+    },
+    "sports_feed.nfl_control": {
+      "n": "1",
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    },
+    "sports_feed.sport_rounds": {
+      "n": "40",
+      "hash": "118ec2922689fb3e0b77ee8ee5a3b1ba"
+    },
+    "sports_feed.private_beta_sports": {
+      "n": "2",
+      "hash": "e40a905060f3b3367e9a251c636fbea4"
+    },
+    "sports_feed.nba_beta_control": {
+      "n": "1",
+      "hash": "2e5f7b0f8500cffe8056f1bd8af1b1aa"
+    },
+    "sports_feed.sport_sandbox_inventory": {
+      "n": "12",
+      "hash": "2a10da0343a0ca07016d2a788d96b29e"
+    },
+    "sports_feed.weekly_core_packs": {
+      "n": "9",
+      "hash": "7dbc136de20c3d3b70ec14eec40e13cb"
+    },
+    "sports_feed.weekly_core_schedules": {
+      "n": "9",
+      "hash": "6369c81dae0a9b9c88faaacda6a5d20b"
+    },
+    "sports_feed.weekly_sport_programmes": {
+      "n": "2",
+      "hash": "9349fc51a66f65d5c312d38f2ee1b48c"
+    },
+    "cron.job": {
+      "n": "9",
+      "hash": "3a28cd5be439194810fa98d7d231671f"
+    }
+  },
+  "at": "2026-10-24T01:02:10.958Z"
+}

@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "projectRef": "pojoymtniryarxxunyvz",
+  "migrations": [
+    {
+      "file": "20261023234346_member_collection_record.sql",
+      "sha256": "0f68094a91b6d3a68db15d5a91fb2aa95be11f45c75d5cbd89240bef8e7ade0b"
+    },
+    {
+      "file": "20261023234740_approved_afl_nrl_future_rules.sql",
+      "sha256": "0562c1e0d1bdbed3c27f0198783dcc0b012a83af253ff401e30e206d8ecdde6b"
+    },
+    {
+      "file": "20261024000314_australian_prize_preparation.sql",
+      "sha256": "8afc156294ac60f22110e72b896dd3ebf047d357dacc555461bf2fb7949bd78e"
+    }
+  ],
+  "permanentRecordsUnchanged": true,
+  "protectedRecordsUnchanged": true,
+  "creditChanges": 0,
+  "activationChanges": false,
+  "salaryAdoptions": 0,
+  "prizeAwards": 0,
+  "acl": {
+    "app": true,
+    "anon": false,
+    "authenticated": false
+  },
+  "at": "2026-10-24T01:02:35.784Z"
+}

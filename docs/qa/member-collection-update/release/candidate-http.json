@@ -1,0 +1,224 @@
+{
+  "at": "2026-10-24T01:06:09.570Z",
+  "commit": "ac7cd92a2d134e0630780e3f9d391e71b691d78e",
+  "environment": "protected-production-candidate",
+  "checks": [
+    {
+      "path": "/api/profile/collection-record?sport=nfl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/collection?sport=nfl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/weekly-core?sport=nfl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&sport=nfl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&packs=mine&sport=nfl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&packs=history&sport=nfl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=nfl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/profile?sport=nfl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/profile/collection-record?sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/collection?sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/weekly-core?sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&packs=mine&sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&packs=history&sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/profile?sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/profile/collection-record?sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/collection?sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/weekly-core?sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&sport=nrl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&packs=mine&sport=nrl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/cards?tab=packs&packs=history&sport=nrl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/packs?sport=nrl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/profile?sport=nrl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta?view=state",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet?view=summary",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet?view=packs",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/community?view=hub",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/sports-sandbox?sport=basketball",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/app/login",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=basketball",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=nrl",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "authenticatedMemberTesting": false
+}
