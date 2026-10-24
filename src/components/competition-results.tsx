@@ -1,11 +1,11 @@
 "use client";
+import { NavigationShortcut } from "./navigation-shortcut";
 import { useEffect, useState } from "react";
 import { currentPoints, currentRank, gameDayPoints } from "@/core/game-day";
 import { useGameDay } from "./use-game-day";
 import { GameDaySummary } from "./game-day-summary";
 import { GameDayPlayerScore } from "./game-day-player-score";
 import { SevenField } from "./seven-field";
-import Link from "next/link";
 import { CompetitionSwitch } from "./competition-switch";
 import { competitionHref } from "@/core/prize-schedules";
 import type { ReviewRound } from "@/core/competition-review";
@@ -169,16 +169,17 @@ export function CompetitionResults({
   return (
     <section className="standings-page" data-ready={ready}>
       <header className="standings-hero">
-        <Link className="play-support" href={playUrl}>
-          ← Back to Lineup
-        </Link>
+        <NavigationShortcut compact icon="trophy" href={playUrl}>
+          Back to Lineup
+        </NavigationShortcut>
         <h1>Rankings</h1>
-        <Link
-          className="play-support"
+        <NavigationShortcut
+          compact
+          icon="trophy"
           href={competitionHref("/fantasy/prizes", context)}
         >
-          🏆 Prizes
-        </Link>
+          Prizes
+        </NavigationShortcut>
         <p>
           See how you stack up{" "}
           {period === "season" ? "this season" : "this week"}.
@@ -186,7 +187,9 @@ export function CompetitionResults({
         <span className="competition-label">Competition</span>
         <CompetitionSwitch
           mode={mode}
-          salaryLabel={sport !== "nfl" ? "Test cap" : undefined}
+          salaryLabel={
+            round?.salaryLabel ?? (sport !== "nfl" ? "Test cap" : undefined)
+          }
           onChange={(mode) => change({ mode, competition: "", series: "" })}
         />
       </header>

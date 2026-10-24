@@ -400,9 +400,19 @@ export function SocialCard({
                 )[card.sport] ?? card.sport.toUpperCase()}
               </span>
               <FantasyCardArtwork
-                card={card}
+                card={{
+                  ...card,
+                  preserveArtwork:
+                    card.artworkVersion !== "afl-owner-2026-10-24-v1",
+                }}
                 faceOnly
-                onInspect={() => setViewCard(card)}
+                onInspect={() =>
+                  setViewCard({
+                    ...card,
+                    preserveArtwork:
+                      card.artworkVersion !== "afl-owner-2026-10-24-v1",
+                  })
+                }
               />
             </div>
           ))}

@@ -225,3 +225,94 @@ test("whole-credit half-up savings, zero policy, first purchase and product rest
     2,
   );
 });
+test("AFL and NRL coupons require explicit product eligibility; failed purchases never redeem", () => {
+  for (const sport of ["afl", "nrl"] as const) {
+    let s = packFixture(sport);
+    const products = Object.values(s.economy!.products).filter(
+      (p) => p.sport === sport,
+    );
+    assert.equal(products.length, 6);
+    const terms: CouponTerms = {
+      code: "SPORT50",
+      type: "percent",
+      value: 50,
+      sport,
+      products: products.map((p) => p.id),
+      startsAt: packNow,
+      expiresAt: packNow + 86400000,
+      totalLimit: 10,
+      accountLimit: 1,
+      maximumDiscount: 2500,
+      firstPurchaseOnly: false,
+      allowZero: false,
+    };
+    s = executeCredits(
+      s,
+      admin,
+      "draft-sport",
+      {
+        kind: "manage-coupon",
+        mutation: { action: "save", terms, expectedRevision: 0 },
+      },
+      packNow,
+    ).state;
+    s = executeCredits(
+      s,
+      admin,
+      "activate-sport",
+      {
+        kind: "manage-coupon",
+        mutation: { action: "activate", code: terms.code, expectedRevision: 1 },
+      },
+      packNow,
+    ).state;
+    for (const p of products) {
+      const q = quoteCoupon(s, packMember.id, terms.code, p, packNow);
+      assert.equal(q.charge, p.priceCredits / 2);
+      assert.throws(
+        () =>
+          quoteCoupon(
+            s,
+            packMember.id,
+            terms.code,
+            { ...p, sport: "nfl" },
+            packNow,
+          ),
+        /eligible/,
+      );
+    }
+    const p = products[0],
+      q = quoteCoupon(s, packMember.id, terms.code, p, packNow),
+      before = structuredClone(s);
+    s.economy!.enabled = false;
+    assert.throws(
+      () =>
+        executeCredits(
+          s,
+          packMember,
+          "failed-sport",
+          {
+            kind: "buy-pack",
+            product: p.id,
+            configuration: p.version,
+            coupon: q.code,
+            couponQuote: q.fingerprint,
+            confirmed: true,
+            policy: s.policy.version,
+          },
+          packNow,
+        ),
+      /paused/,
+    );
+    assert.equal(Object.keys(s.packCoupons!.redemptions).length, 0);
+    assert.equal(
+      wallet(s, packMember.id).spendable,
+      wallet(before, packMember.id).spendable,
+    );
+    const nfl = fixture();
+    assert.throws(
+      () => quoteCoupon(nfl.s, packMember.id, "LOCAL50", p, packNow),
+      /eligible/,
+    );
+  }
+});

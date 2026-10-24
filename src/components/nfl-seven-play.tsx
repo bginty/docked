@@ -1,4 +1,5 @@
 "use client";
+import { NavigationShortcut } from "./navigation-shortcut";
 import { SevenField } from "./seven-field";
 import { useSportDraftGuard } from "./sport-context";
 import { competitionName, competitionLabel } from "@/core/competition-display";
@@ -629,8 +630,9 @@ export function NflSevenPlay({
               </button>
             </p>
           )}
-          <Link
-            className="play-support"
+          <NavigationShortcut
+            compact
+            icon="edge"
             href={competitionHref("/fantasy/results", {
               ...Object.fromEntries(navigationQuery.entries()),
               sport: "nfl",
@@ -641,13 +643,14 @@ export function NflSevenPlay({
               week: String(comp.round),
             })}
           >
-            View Rankings →
-          </Link>
+            View Rankings
+          </NavigationShortcut>
         </div>
       )}
 
-      <Link
-        className="play-support"
+      <NavigationShortcut
+        compact
+        icon="trophy"
         href={competitionHref("/fantasy/prizes", {
           ...Object.fromEntries(navigationQuery.entries()),
           sport: "nfl",
@@ -657,8 +660,8 @@ export function NflSevenPlay({
           week: String(comp.round),
         })}
       >
-        🏆 Prizes
-      </Link>
+        Prizes
+      </NavigationShortcut>
       <details className="round-timing">
         <summary>Entry & lock times</summary>
         {entryOpensLater && (

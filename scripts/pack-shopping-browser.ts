@@ -56,9 +56,11 @@ async function main() {
   const packPath =
     "/fantasy/test-wallet?view=packs" +
     (sport !== "nfl" ? `&fixtureSport=${sport}&sport=${sport}` : "");
-  const out = process.argv.includes("--three-sport")
-    ? `docs/qa/three-sport-parity/packs/${sport}`
-    : `docs/qa/${realRoster ? `real-rosters/${sport}/packs` : sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
+  const out = process.argv.includes("--member-update")
+    ? `docs/qa/member-collection-update/packs/${sport}`
+    : process.argv.includes("--three-sport")
+      ? `docs/qa/three-sport-parity/packs/${sport}`
+      : `docs/qa/${realRoster ? `real-rosters/${sport}/packs` : sport !== "nfl" ? `overnight-multisport/${sport}/packs` : process.argv.includes("--futuristic") ? "futuristic-cards/pack-regression" : "pack-shopping"}/browser-${Date.now()}`;
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/pack-shopping.tsx",
@@ -307,6 +309,107 @@ async function main() {
           .getByRole("button", { name: "Skip remaining reveals" })
           .click();
         await expect(page.locator(".pack-summary li")).toHaveCount(9);
+        if (process.argv.includes("--member-update")) {
+          await expect(
+            page.getByRole("button", { name: "Buy another pack", exact: true }),
+          ).toBeVisible();
+          await page
+            .locator(".pack-completion-actions")
+            .scrollIntoViewIfNeeded();
+          assert.equal(
+            await page
+              .locator(
+                ".pack-completion-actions .navigation-shortcut > span:nth-child(2)",
+              )
+              .evaluateAll((nodes) =>
+                nodes.some((n) => n.getBoundingClientRect().height > 50),
+              ),
+            false,
+            "Completion labels must remain compact and readable",
+          );
+          await page.screenshot({ path: `${out}/completed-${width}.png` });
+          const beforeCalls = calls;
+          await page
+            .getByRole("button", { name: "Buy another pack", exact: true })
+            .click();
+          const review = page.getByRole("dialog").filter({
+            has: page.getByRole("heading", {
+              name: "Confirm purchase",
+              exact: true,
+            }),
+          });
+          await expect(review).toBeVisible();
+          await expect(review).toContainText("Standard 9 Pack");
+          await expect(review).toContainText("700");
+          assert.equal(
+            calls,
+            beforeCalls,
+            "Repeat click must not purchase or reopen",
+          );
+          await page.screenshot({ path: `${out}/repeat-review-${width}.png` });
+          await review
+            .getByRole("button", { name: "Cancel", exact: true })
+            .click();
+          await expect(page.locator(".pack-summary li")).toHaveCount(9);
+          await page
+            .getByRole("button", { name: "Buy another pack", exact: true })
+            .click();
+          await review
+            .getByRole("button", { name: "Confirm Purchase", exact: true })
+            .dblclick();
+          await expect(
+            page.getByRole("button", { name: "Reveal next card" }),
+          ).toBeVisible();
+          assert.equal(Object.keys(state.economy!.instances).length, 18);
+          assert.equal(
+            calls,
+            beforeCalls + 2,
+            "One new purchase and opening only",
+          );
+          assert.equal(
+            new Set(requests).size,
+            requests.length,
+            "New confirmed purchase gets a fresh operation ID",
+          );
+          await page
+            .getByRole("button", { name: "Skip remaining reveals" })
+            .click();
+          // Retiring the exact product must not silently substitute a different pack.
+          state.economy!.activeProductVersions =
+            state.economy!.activeProductVersions!.filter(
+              (id) => id !== Object.values(state.economy!.packs)[0].product.id,
+            );
+          await page
+            .getByRole("button", { name: "Buy another pack", exact: true })
+            .click();
+          await expect(
+            page.locator(".pack-opening [role=alert]"),
+          ).toContainText("unavailable");
+          assert.equal(calls, beforeCalls + 2);
+          await page
+            .getByRole("button", { name: "Close panel", exact: true })
+            .click();
+          await page
+            .getByRole("button", { name: "History", exact: true })
+            .click();
+          await expect(
+            page.getByRole("heading", { name: "Pack history", exact: true }),
+          ).toBeVisible();
+          await page
+            .getByRole("button", { name: "My Packs", exact: true })
+            .click();
+          await expect(
+            page.getByRole("heading", { name: "My Packs", exact: true }),
+          ).toBeVisible();
+          await page.goBack();
+          await expect(
+            page.getByRole("heading", { name: "Pack history", exact: true }),
+          ).toBeVisible();
+          await page.reload();
+          await expect(
+            page.getByRole("heading", { name: "Pack history", exact: true }),
+          ).toBeVisible();
+        }
         await page.screenshot({
           path: `${out}/reveal-${width}.png`,
           fullPage: true,
@@ -316,7 +419,10 @@ async function main() {
           width,
           sport,
           products: 6,
-          paidCards: 9,
+          paidCards: process.argv.includes("--member-update") ? 18 : 9,
+          repeatConfirmation: process.argv.includes("--member-update"),
+          retiredProductBlocked: process.argv.includes("--member-update"),
+          backAndRefresh: process.argv.includes("--member-update"),
           duplicateTapProtected: true,
           productionMutation: false,
         });

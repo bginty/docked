@@ -7,7 +7,13 @@ import { chromium, expect } from "@playwright/test";
 import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import { rarities } from "../src/core/card-rarity";
 async function main() {
-  const out = "docs/qa/card-consistency";
+  const memberUpdate = process.argv.includes("--member-update");
+  const out = memberUpdate
+    ? "docs/qa/member-collection-update/cards"
+    : "docs/qa/card-consistency";
+  const sports = memberUpdate
+    ? ["nfl", "afl", "nrl"]
+    : ["nfl", "basketball", "afl", "nrl"];
   mkdirSync(out, { recursive: true });
   const script = await bundleCommunityFixture(
     "tests/fixtures/card-consistency.tsx",
@@ -108,23 +114,49 @@ async function main() {
   const checks: unknown[] = [];
   try {
     if (process.argv.includes("--edges")) {
-      for (const sport of ["nfl", "basketball", "afl", "nrl"]) {
-        const page = await browser.newPage({ viewport: { width: 360, height: 915 } });
+      for (const sport of sports) {
+        const page = await browser.newPage({
+          viewport: { width: 360, height: 915 },
+        });
         await page.goto(origin + "/?sport=" + sport + "&edge=long-missing");
         await expect(page.locator(".collectible-face")).toHaveCount(6);
         await expect(page.locator(".collectible-face svg text")).toHaveCount(0);
-        const overflow = await page.locator(".collectible-family").evaluateAll(nodes => nodes.some(n => n.scrollWidth > n.clientWidth + 1));
+        const overflow = await page
+          .locator(".collectible-family")
+          .evaluateAll((nodes) =>
+            nodes.some((n) => n.scrollWidth > n.clientWidth + 1),
+          );
         assert.equal(overflow, false, "Long player name clipped");
-        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1), false);
-        await page.screenshot({ path: out + "/" + sport + "-long-missing-360.png", fullPage: true });
+        assert.equal(
+          await page.evaluate(
+            () => document.documentElement.scrollWidth > innerWidth + 1,
+          ),
+          false,
+        );
+        await page.screenshot({
+          path: out + "/" + sport + "-long-missing-360.png",
+          fullPage: true,
+        });
         await page.close();
       }
-      writeFileSync(out + "/browser-edges.json", JSON.stringify({ passed: true, sports: ["nfl", "basketball", "afl", "nrl"], scope: "Local synthetic long names and missing numbers, six rarities at 360px" }, null, 2));
-      console.log("Four long-name/missing-number journeys passed");
+      writeFileSync(
+        out + "/browser-edges.json",
+        JSON.stringify(
+          {
+            passed: true,
+            sports,
+            scope:
+              "Local synthetic long names and missing numbers, six rarities at 360px",
+          },
+          null,
+          2,
+        ),
+      );
+      console.log(`${sports.length} long-name/missing-number journeys passed`);
       return;
     }
     for (const width of [412, 1440, 360])
-      for (const sport of ["nfl", "basketball", "afl", "nrl"]) {
+      for (const sport of sports) {
         const context = await browser.newContext({
           viewport: { width, height: 915 },
           isMobile: width < 600,
@@ -139,9 +171,7 @@ async function main() {
         for (let i = 0; i < 6; i++) {
           const face = page.locator(".collectible-face").nth(i);
           await expect(face.locator(".collectible-city")).not.toBeEmpty();
-          await expect(face.locator(".rarity-badge-value")).toHaveCount(
-            ["afl", "nrl"].includes(sport) ? 0 : 1,
-          );
+          await expect(face.locator(".rarity-badge-value")).toHaveCount(1);
           if (sport === "nrl")
             await expect(face.locator("svg text")).toHaveCount(0);
           else await expect(face.locator("svg text")).toHaveCount(1);
@@ -165,7 +195,7 @@ async function main() {
           );
           await expect(
             dialog.locator(".collectible-back .rarity-badge-value"),
-          ).toHaveCount(["afl", "nrl"].includes(sport) ? 0 : 1);
+          ).toHaveCount(1);
           await expect(dialog.getByText("Loading player scores…")).toHaveCount(
             0,
           );

@@ -67,6 +67,7 @@ const memberKinds = new Set([
 ]);
 export function memberTestCommand(input: unknown) {
   const c = creditsCommand.parse(input);
+  assertCreditSalesOnly(c);
   if (!memberKinds.has(c.kind)) throw Error("Test wallet action denied");
   if (c.kind === "offer" && c.creditTopUp !== undefined)
     throw Error("Combined offers require the reviewed private-offer workflow");
@@ -74,6 +75,7 @@ export function memberTestCommand(input: unknown) {
     throw Error("Review the listing before confirming purchase");
   return c;
 }
+import { assertCreditSalesOnly } from "./credit-sales-only";
 import { teamColours } from "./sport-team-colours";
 import { rosterCardMetadata } from "./roster-card-metadata";
 export type TestCardSource = {
@@ -88,6 +90,7 @@ export function testCard(s: TestCardSource, id: string): AwardedCard {
   if (instance && s.economy) {
     const player = s.economy.players[instance.playerId];
     return {
+      artworkVersion: "afl-owner-2026-10-24-v1",
       id,
       edition_id: instance.definition,
       player_id:
@@ -288,13 +291,18 @@ export function memberTestView(
       .map(([id, e]) => ({
         id,
         status: e.status,
+        product:
+          s.economy?.packs[id]?.product.id ??
+          s.commerce.orders[e.order]?.product ??
+          null,
         type: s.economy?.packs[id]?.product.type ?? null,
         sport: s.economy?.packs[id]?.product.sport ?? "nfl",
         purchasedAt: s.economy?.packs[id]?.createdAt ?? null,
-        paidCredits:
-          s.economy?.packs[id]?.pricing?.charge ??
-          s.economy?.packs[id]?.product.priceCredits ??
-          null,
+        paidCredits: e.source.startsWith("round-reward:")
+          ? 0
+          : (s.economy?.packs[id]?.pricing?.charge ??
+            s.economy?.packs[id]?.product.priceCredits ??
+            null),
         coupon: s.economy?.packs[id]?.pricing
           ? {
               code: s.economy.packs[id].pricing!.coupon.code,

@@ -1,4 +1,5 @@
 "use client";
+import { packShopHref } from "@/core/pack-presentation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -186,7 +187,7 @@ export function WeeklyCorePanel({
             {!history && (
               <Link
                 className="pack-control secondary"
-                href={`/fantasy/packs?sport=${sport}&packs=history`}
+                href={packShopHref(sport, "history")}
               >
                 Pack History
               </Link>

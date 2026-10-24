@@ -14,7 +14,7 @@ export const couponTerms = z
     code,
     type: z.enum(["percent", "fixed"]),
     value: whole,
-    sport: z.enum(["nfl", "football", "afl"]),
+    sport: z.enum(["nfl", "football", "afl", "nrl"]),
     products: z.array(z.string().min(1).max(100)).min(1).max(30),
     startsAt: z.number().int().nonnegative(),
     expiresAt: z.number().int().nonnegative(),

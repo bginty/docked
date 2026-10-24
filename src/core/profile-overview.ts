@@ -5,6 +5,15 @@ export type PrivateAccountSummary = {
   displayName?: string;
   staffRole?: string;
 };
+export type CollectionRecord = {
+  member: string;
+  sport: string;
+  total: number;
+  counts: Partial<Record<import("./card-rarity").Rarity, number>>;
+  entries: number;
+  opened: number;
+  revision: string;
+};
 /** Only call with the authenticated owner's server-verified identity, never a public profile. */
 export function privateAccountSummary(user: {
   email?: string;

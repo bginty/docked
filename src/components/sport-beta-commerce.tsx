@@ -5,7 +5,6 @@ import type { MemberTestView } from "@/core/member-test-wallet";
 import { fixtureSports, type FixtureSport } from "@/core/fixture-sports";
 import { MemberTestWallet } from "./member-test-wallet";
 import { Marketplace } from "./credit-marketplace";
-import { PrivateOffersInbox } from "./private-card-offers";
 
 export function SportBetaCommerce({
   sport,
@@ -86,13 +85,7 @@ export function SportBetaCommerce({
       {surface === "packs" ? (
         <MemberTestWallet initial={state} surface="packs" sport={sport} />
       ) : (
-        <>
-          <Marketplace member={state.member} />
-          <details>
-            <summary>Offers and swaps</summary>
-            <PrivateOffersInbox member={state.member} sport={sport} />
-          </details>
-        </>
+        <Marketplace member={state.member} />
       )}
     </>
   );

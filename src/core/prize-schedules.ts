@@ -15,14 +15,26 @@ export const prizeItems = z
   .min(1)
   .max(100)
   .superRefine((items, ctx) => {
-    let end = 0;
-    for (const item of [...items].sort((a, b) => a.from - b.from)) {
-      if (item.from <= end || item.to < item.from)
+    for (const [index, item] of items.entries()) {
+      if (
+        item.to < item.from ||
+        items
+          .slice(0, index)
+          .some(
+            (other) =>
+              item.from <= other.to &&
+              other.from <= item.to &&
+              !(
+                item.from === other.from &&
+                item.to === other.to &&
+                item.type !== other.type
+              ),
+          )
+      )
         ctx.addIssue({
           code: "custom",
           message: "Finishing ranges must not overlap",
         });
-      end = item.to;
     }
   });
 export const prizeCommand = z
@@ -38,6 +50,8 @@ export const prizeCommand = z
   .strict();
 export type PrizeItem = z.infer<typeof prizeItem>;
 export function prizeRewardLabel(item: PrizeItem) {
+  if (item.type === "credits")
+    return `${item.amount.toLocaleString("en-AU")} Docked Credits`;
   const sportProduct =
     item.type === "pack" &&
     item.productVersion?.match(
@@ -64,6 +78,7 @@ export type PrizeSchedule = {
   items: PrizeItem[];
 };
 export type PrizeCompetition = {
+  salaryLabel?: string;
   id: string;
   name: string;
   sport: string;
@@ -72,6 +87,26 @@ export type PrizeCompetition = {
   week: number;
 };
 export type PrizeAdminView = {
+  templates?: {
+    version: string;
+    sport: string;
+    mode: string;
+    active: boolean;
+    tiePolicy: string | null;
+    items: PrizeItem[];
+  }[];
+  rewardAudit?: {
+    recipient: string;
+    competition: string;
+    round: string;
+    sport: string;
+    place: number;
+    schedule: string;
+    reward: PrizeItem;
+    reference: string;
+    status: string;
+    at: number;
+  }[];
   schedules: (Omit<PrizeSchedule, "items"> & {
     competition_id: string;
     draft: PrizeItem[];

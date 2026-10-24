@@ -239,7 +239,13 @@ export function marketplaceView(
         id,
         card:
           l.status === "SOLD" && (l.receipt?.cardSnapshot || l.snapshot)
-            ? { ...card(l.card), ...(l.receipt?.cardSnapshot || l.snapshot) }
+            ? {
+                ...card(l.card),
+                ...(l.receipt?.cardSnapshot || l.snapshot),
+                preserveArtwork:
+                  (l.receipt?.cardSnapshot || l.snapshot)?.artworkVersion !==
+                  "afl-owner-2026-10-24-v1",
+              }
             : card(l.card),
         revision: l.revision ?? 0,
         own: l.member === member,

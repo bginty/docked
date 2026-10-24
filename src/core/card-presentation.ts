@@ -40,6 +40,8 @@ const nflColours: Record<string, readonly [string, string]> = {
   WAS: ["#5a1414", "#ffb612"],
 };
 export type JerseyMetadata = {
+  /** Explicit historical artwork snapshots keep the original illustration. */
+  preserveArtwork?: boolean;
   sport?: string;
   team?: string;
   colour?: string;

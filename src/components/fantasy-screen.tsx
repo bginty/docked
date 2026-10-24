@@ -1,4 +1,5 @@
 "use client";
+import { packShopHref } from "@/core/pack-presentation";
 import { competitionLabel } from "@/core/competition-display";
 import { CollectionExport } from "./collection-export";
 import { FantasyLoadError } from "./fantasy-load-error";
@@ -371,7 +372,7 @@ export function FantasyScreen({
               className="pack-discovery-tile"
               href={
                 sport === "nfl"
-                  ? "/fantasy/test-wallet?view=packs&packs=mine#packs"
+                  ? packShopHref(sport, "mine")
                   : data.rewards?.starter_entitled &&
                       !data.rewards.starter_claimed
                     ? "#starter-pack"
@@ -382,7 +383,7 @@ export function FantasyScreen({
               Open packs
             </a>
             <Link
-              href="/fantasy/test-wallet?view=packs#packs"
+              href={packShopHref(sport)}
               className="pack-discovery-tile buy-packs"
             >
               Buy packs
@@ -635,9 +636,7 @@ export function FantasyScreen({
             {!data.packs.some((p) => !p.opened_at) && (
               <p>
                 No unopened packs.{" "}
-                <Link href="/fantasy/test-wallet?view=packs#packs">
-                  Browse packs
-                </Link>
+                <Link href={packShopHref(sport)}>Browse packs</Link>
               </p>
             )}
             {data.packs.map((p) => (

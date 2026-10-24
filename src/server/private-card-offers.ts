@@ -1,12 +1,9 @@
 import "server-only";
+import { assertCreditSalesOnly } from "@/core/credit-sales-only";
 import { z } from "zod";
 import { requireIdentity } from "./auth";
 import { db, rateLimit } from "./db";
-import {
-  assertBetaTrade,
-  betaTradingAccess,
-  recordTradingFailure,
-} from "./beta-trading";
+import { assertBetaTrade, recordTradingFailure } from "./beta-trading";
 import { reviewedBetaTrading, tradingCommandMode } from "../core/beta-trading";
 import { requireCommunityAccess } from "./community-policy";
 import {
@@ -78,6 +75,7 @@ export async function privateOffers(
           .object({ request: z.string().uuid(), command: privateOfferCommand })
           .strict()
           .parse(input);
+  if (body) assertCreditSalesOnly(body.command);
   let permission: OfferPermission = { allowed: false, minimum: null };
   const sql = db();
   if (body && !(await rateLimit(`private-trade:${who.user.id}`, 40, 60)))
@@ -97,11 +95,7 @@ export async function privateOffers(
       const fixtureSport = cmd
         ? await authorizeFixtureCommand(tx, state, cmd)
         : null;
-      if (
-        cmd &&
-        !fixtureSport &&
-        ["private-offer", "private-accept"].includes(cmd.kind)
-      )
+      if (cmd && ["private-offer", "private-accept"].includes(cmd.kind))
         throw new CreditsRejected(
           "Only fixed-price marketplace sales are supported.",
         );
@@ -273,12 +267,8 @@ export async function privateOffers(
     },
     context.context,
   );
-  const trading = await sql.begin(async (tx) => {
-    await setCommunityClaims(tx, who);
-    return betaTradingAccess(tx as unknown as typeof sql, who.user.id);
-  });
   return {
-    enabled: trading.offers || fixtureVisibility.allowed.length > 0,
+    enabled: false,
     offers,
     result,
     inventory: inventoryView.inventory.filter(
@@ -287,7 +277,7 @@ export async function privateOffers(
     inventoryTotal: inventoryView.inventoryTotal,
     inventoryPage: inventoryView.query.inventoryPage,
     member: who.user.id,
-    combinedEnabled: trading.combined || fixtureVisibility.allowed.length > 0,
+    combinedEnabled: false,
     swapFee: swapFeeQuote(
       state.creditOnly,
       state.policy.swapFeeEach,

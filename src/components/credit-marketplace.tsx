@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { NavigationShortcut } from "./navigation-shortcut";
 import type { MarketplaceView } from "@/core/marketplace";
 import { boundedFetch } from "@/core/bounded-request";
 import { rarities, rarityLabel } from "@/core/card-rarity";
@@ -16,7 +16,6 @@ import {
 } from "@/core/purchase-celebration";
 import { PurchaseCelebration } from "./purchase-celebration";
 import { CompactCollectible } from "./compact-collectible";
-import { MakeCardOffer } from "./private-card-offers";
 type Row = MarketplaceView["rows"][number];
 type Review = {
   review: string;
@@ -241,9 +240,13 @@ export function Marketplace({ member }: { member: string }) {
           {receipt.price !== undefined && (
             <p>{Number(receipt.price).toLocaleString()} Docked Credits</p>
           )}
-          <Link className="button" href="/fantasy/cards">
+          <NavigationShortcut
+            compact
+            icon="save"
+            href={`/fantasy/cards?sport=${sport}`}
+          >
             View collection
-          </Link>
+          </NavigationShortcut>
           <button
             className="button"
             onClick={() => navigate({ tab: "activity" })}
@@ -385,15 +388,6 @@ export function Marketplace({ member }: { member: string }) {
                       {l.own ? "View listing" : "Buy card"}
                     </button>
                   )}
-                  {!l.own && data.offersEnabled && (
-                    <MakeCardOffer
-                      card={l.card.id}
-                      member={member}
-                      enabled
-                      listing={l.id}
-                      preference={l.preference}
-                    />
-                  )}
                 </div>
               </article>
             ))}
@@ -406,9 +400,13 @@ export function Marketplace({ member }: { member: string }) {
                   : "No listings found"}
               </h3>
               {tab === "listings" ? (
-                <Link className="button" href="/fantasy/cards">
+                <NavigationShortcut
+                  compact
+                  icon="save"
+                  href={`/fantasy/cards?sport=${sport}`}
+                >
                   Go to collection
-                </Link>
+                </NavigationShortcut>
               ) : (
                 <p>Try another filter or check back soon.</p>
               )}

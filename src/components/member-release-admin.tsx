@@ -28,6 +28,9 @@ export function MemberReleaseAdmin({ initial }: { initial: PrizeAdminView }) {
     [nameReason, setNameReason] = useState(""),
     [confirmed, setConfirmed] = useState(false);
   const c = view.competitions.find((c) => c.id === competition);
+  const template = view.templates?.find(
+    (t) => t.sport === c?.sport && t.mode === c?.mode,
+  );
   const current = view.schedules.find(
     (s) =>
       s.sport === c?.sport &&
@@ -138,6 +141,27 @@ export function MemberReleaseAdmin({ initial }: { initial: PrizeAdminView }) {
             >
               Load saved draft
             </button>
+          )}
+          {template && (
+            <aside>
+              <p>
+                Approved reward amounts · not activated.{" "}
+                {template.tiePolicy
+                  ? "Saved tie policy available."
+                  : "Tie policy requires owner approval before publication or awards."}
+              </p>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => {
+                  setItems(structuredClone(template.items));
+                  setPublish(false);
+                  setReviewed(false);
+                }}
+              >
+                Load approved sport template as draft
+              </button>
+            </aside>
           )}
           {items.map((item, i) => (
             <fieldset key={i}>
@@ -352,6 +376,33 @@ export function MemberReleaseAdmin({ initial }: { initial: PrizeAdminView }) {
       </section>
       <section>
         <h2>Audit history</h2>
+        <h3>Round reward status</h3>
+        {!view.rewardAudit?.length && (
+          <p>
+            No rewards have been issued by the versioned round-prize workflow.
+          </p>
+        )}
+        {view.rewardAudit?.map((r) => (
+          <details key={r.reference}>
+            <summary>
+              {r.sport.toUpperCase()} · Place {r.place} · {r.status}
+            </summary>
+            <p>
+              Recipient: {r.recipient} · Competition: {r.competition} · Round:{" "}
+              {r.round}
+            </p>
+            <p>
+              {r.reward.amount.toLocaleString("en-AU")}{" "}
+              {r.reward.type === "credits"
+                ? "Docked Credits"
+                : r.reward.description}{" "}
+              · {new Date(r.at).toLocaleString("en-AU")}
+            </p>
+            <p>
+              Reference: {r.reference} · Rules: {r.schedule}
+            </p>
+          </details>
+        ))}
         {view.audit.map((a, i) => (
           <details key={i}>
             <summary>

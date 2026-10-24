@@ -1,6 +1,7 @@
 import type { SandboxState } from "./sport-sandbox";
 import type { StandingRound } from "./standings";
 import { rarityRule } from "./card-rarity";
+import { australianSalaryLabel } from "./approved-australian-rules";
 /** Adapt authorised snapshots and authoritative scores to the existing Rankings UI.
  * No totals, ranks or season aggregation are calculated in this presentation layer. */
 export function sportStandingRounds(state: SandboxState): StandingRound[] {
@@ -11,6 +12,9 @@ export function sportStandingRounds(state: SandboxState): StandingRound[] {
       const locked = Date.parse(c.locks_at) <= Date.parse(state.server_time);
       return {
         sport: state.sport,
+        salaryLabel: australianSalaryLabel(
+          state.configurations[c.rules.lineup_version],
+        ),
         slots: state.configurations[c.rules.lineup_version]?.slots,
         competitionId: c.id,
         label: c.name,

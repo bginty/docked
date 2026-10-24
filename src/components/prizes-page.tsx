@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSport } from "./sport-context";
 import { CompetitionSwitch } from "./competition-switch";
-import { competitionName } from "@/core/competition-display";
+import { competitionName, seasonLabel } from "@/core/competition-display";
+import { NavigationShortcut } from "./navigation-shortcut";
 import {
   competitionHref,
   prizeSelection,
@@ -85,17 +85,20 @@ export function PrizesPage({
           <h1>Prizes</h1>
           <p>See what&apos;s up for grabs.</p>
         </div>
-        <Link
-          className="play-support"
+        <NavigationShortcut
+          compact
+          icon="edge"
           href={competitionHref("/fantasy/results", context)}
         >
-          View Rankings ↗
-        </Link>
+          View Rankings
+        </NavigationShortcut>
       </header>
       <span className="competition-label">Competition</span>
       <CompetitionSwitch
         mode={mode}
-        salaryLabel={sport !== "nfl" ? "Test cap" : undefined}
+        salaryLabel={
+          round?.salaryLabel ?? (sport !== "nfl" ? "Test cap" : undefined)
+        }
         onChange={(mode) => change({ mode, competition: "" })}
       />
       <div className="standings-controls">
@@ -125,7 +128,11 @@ export function PrizesPage({
             }
           >
             {seasons.length ? (
-              seasons.map((s) => <option key={s}>{s}</option>)
+              seasons.map((s) => (
+                <option key={s} value={s}>
+                  {seasonLabel(s)}
+                </option>
+              ))
             ) : (
               <option value="">No seasons</option>
             )}
@@ -164,16 +171,16 @@ export function PrizesPage({
               ? "Weekly"
               : "Round"
           : "Season"}{" "}
-        prizes{season ? ` · ${season}` : ""}
+        prizes{season ? ` · ${seasonLabel(season)}` : ""}
       </h2>
       {items.length ? (
         <>
           <div className="prize-podium">
             {[1, 2, 3].map((position) => {
-              const item = items.find(
+              const rewards = items.filter(
                 (i) => i.from <= position && i.to >= position,
               );
-              return item ? (
+              return rewards.length ? (
                 <article
                   key={position}
                   className={`prize-medal prize-medal-${position}`}
@@ -184,7 +191,9 @@ export function PrizesPage({
                       {position === 1 ? "1st" : position === 2 ? "2nd" : "3rd"}{" "}
                       place
                     </h3>
-                    <strong>{prizeRewardLabel(item)}</strong>
+                    {rewards.map((item) => (
+                      <strong key={item.type}>{prizeRewardLabel(item)}</strong>
+                    ))}
                   </div>
                 </article>
               ) : null;
@@ -201,7 +210,7 @@ export function PrizesPage({
               </thead>
               <tbody>
                 {items.map((i) => (
-                  <tr key={i.from}>
+                  <tr key={`${i.from}:${i.type}`}>
                     <td>
                       {i.from === i.to
                         ? finishingPosition(i.from)
@@ -225,18 +234,19 @@ export function PrizesPage({
         </section>
       )}
       <footer className="prizes-actions">
-        <Link
-          className="play-support"
+        <NavigationShortcut
+          compact
           href={competitionHref("/fantasy/play", context)}
         >
-          ← Back to Play
-        </Link>
-        <Link
-          className="play-support"
+          Back to Play
+        </NavigationShortcut>
+        <NavigationShortcut
+          compact
+          icon="edge"
           href={competitionHref("/fantasy/results", context)}
         >
-          View Rankings ↗
-        </Link>
+          View Rankings
+        </NavigationShortcut>
       </footer>
     </section>
   );

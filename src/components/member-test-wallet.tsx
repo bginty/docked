@@ -34,6 +34,12 @@ export function MemberTestWallet({
   const [recovery, setRecovery] = useState(false);
   const [autoPack, setAutoPack] = useState<string | null>(null);
   const [replayPack, setReplayPack] = useState<string | null>(null);
+  const [repeatRequest, setRepeatRequest] = useState<{
+    product: string;
+    nonce: number;
+  } | null>(null);
+  const [repeatBusy, setRepeatBusy] = useState(false);
+  const [repeatError, setRepeatError] = useState("");
   const storageKey = `docked:test-wallet:pending:${initial.member}`;
   const endpoint =
     surface === "packs" ? "/api/test-wallet?view=packs" : "/api/test-wallet";
@@ -159,6 +165,11 @@ export function MemberTestWallet({
             state={s}
             busy={busy}
             recovery={recovery}
+            repeatRequest={repeatRequest}
+            repeatStatus={(loading, message) => {
+              setRepeatBusy(loading);
+              setRepeatError(message);
+            }}
             purchase={(product, coupon) =>
               send({
                 kind: "buy-pack",
@@ -182,6 +193,7 @@ export function MemberTestWallet({
                 throw Error("Your account session changed. Sign in again.");
               setS(data.state);
               setError("");
+              return data.state as MemberTestView;
             }}
             open={(id, replay) => {
               setReplayPack(replay ? id : null);
@@ -209,8 +221,44 @@ export function MemberTestWallet({
                 setPack(null);
                 setDetails(c.id);
               }}
-              collectionHref="/fantasy/cards"
-              teamHref={s.economyEnabled ? "/fantasy/play" : null}
+              collectionHref={`/fantasy/cards?sport=${p.sport ?? sport}`}
+              teamHref={
+                s.economyEnabled
+                  ? `/fantasy/play?sport=${p.sport ?? sport}`
+                  : null
+              }
+              onBuyAnother={
+                p.product
+                  ? () => {
+                      if (!repeatBusy && !busy && !recovery)
+                        setRepeatRequest({
+                          product: p.product!,
+                          nonce: (repeatRequest?.nonce ?? 0) + 1,
+                        });
+                    }
+                  : undefined
+              }
+              completionBusy={repeatBusy || busy || recovery}
+              completionError={repeatError}
+              nextPack={(() => {
+                const next = s.packs.find(
+                  (next) =>
+                    next.id !== p.id &&
+                    next.status === "SEALED" &&
+                    next.sport === p.sport,
+                );
+                return next
+                  ? {
+                      name: packTitle(next),
+                      open: () => {
+                        setReplayPack(null);
+                        setAutoPack(null);
+                        setPack(next.id);
+                        setRepeatError("");
+                      },
+                    }
+                  : undefined;
+              })()}
             />
           )}
           {surface !== "packs" && (

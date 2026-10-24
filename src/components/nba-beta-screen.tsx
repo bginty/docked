@@ -1,4 +1,5 @@
 "use client";
+import { australianSalaryLabel } from "@/core/approved-australian-rules";
 import { useEffect, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 import type { SandboxState } from "@/core/sport-sandbox";
@@ -109,6 +110,9 @@ export function NbaBetaScreen({
           mode: c.rules.mode,
           season: c.season,
           week: c.round,
+          salaryLabel: australianSalaryLabel(
+            state.configurations[c.rules.lineup_version],
+          ),
         }))}
         schedules={prizes}
       />

@@ -29,7 +29,7 @@ export async function memberMarketplace(
   const fixtureEnabled =
     isFixtureSport(query.sport) && fixtureSports.includes(query.sport);
   context.tradingEnabled = fixtureEnabled || trading.enabled;
-  context.offersEnabled = fixtureEnabled;
+  context.offersEnabled = false;
   const safeResult =
     result && typeof result === "object"
       ? Object.fromEntries(

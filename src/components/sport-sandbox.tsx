@@ -1,4 +1,5 @@
 "use client";
+import { NavigationShortcut } from "./navigation-shortcut";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
@@ -19,7 +20,8 @@ import { boundedFetch } from "@/core/bounded-request";
 import type { autoSelect } from "@/core/lineup-auto-select";
 import { useSportDraftGuard } from "./sport-context";
 import { CompetitionSwitch } from "./competition-switch";
-import { competitionName } from "@/core/competition-display";
+import { competitionName, seasonLabel } from "@/core/competition-display";
+import { usesApprovedAustralianSalary } from "@/core/approved-australian-rules";
 import { competitionHref } from "@/core/prize-schedules";
 import { rarityRule, rarities } from "@/core/card-rarity";
 
@@ -293,6 +295,7 @@ export function SportSandbox({
       !Number.isSafeInteger(cfg.salaryCap) ||
       cfg.salaryCap <
         cfg.slots.length * Math.min(...Object.values(cfg.salaries)));
+  const salaryDollars = nbaProposal || usesApprovedAustralianSalary(cfg);
   async function command(
     action: "seven_draft" | "seven_enter" | "auto_select",
   ) {
@@ -475,11 +478,11 @@ export function SportSandbox({
       <details className="sport-beta-details">
         <summary>
           Test rounds · No prizes
-          {state.sport !== "basketball" ? " · Provisional rules" : ""}
+          {state.sport !== "basketball" ? " · Provisional scoring" : ""}
         </summary>
         <p>
           {privateBeta
-            ? `${sport?.label ?? state.sport} testing · ${state.cards.some((c) => c.inventory_class === "real-roster-beta-v1") ? "Real-player roster cards; test rounds only. Real game statistics are not connected." : "Fictional players and simulated statistics."} ${state.sport === "basketball" ? "" : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
+            ? `${sport?.label ?? state.sport} testing · ${state.cards.some((c) => c.inventory_class === "real-roster-beta-v1") ? "Real-player roster cards; test rounds only. Real game statistics are not connected." : "Fictional players and simulated statistics."} ${state.sport === "basketball" ? "" : salaryDollars ? "Approved fantasy salaries; provisional scoring. " : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
             : nbaProposal
               ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
               : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
@@ -490,8 +493,8 @@ export function SportSandbox({
         mode={mode}
         disabled={busy}
         salaryLabel={
-          nbaProposal
-            ? "$5.2m salary cap"
+          salaryDollars && cfg
+            ? `$${(cfg.salaryCap / 1_000_000).toLocaleString("en-AU")}m salary cap`
             : cfg
               ? "Provisional test cap"
               : "Configuration pending"
@@ -536,7 +539,7 @@ export function SportSandbox({
             {rounds.length ? (
               rounds.map((c) => (
                 <option key={c.id} value={c.id}>
-                  {c.season} · {roundWord} {c.round}
+                  {seasonLabel(c.season)} · {roundWord} {c.round}
                 </option>
               ))
             ) : (
@@ -553,12 +556,20 @@ export function SportSandbox({
         </button>
       </div>
       <div className="fantasy-actions">
-        <Link className="play-support" href={contextHref("/fantasy/results")}>
+        <NavigationShortcut
+          compact
+          icon="edge"
+          href={contextHref("/fantasy/results")}
+        >
           Rankings
-        </Link>
-        <Link className="play-support" href={contextHref("/fantasy/prizes")}>
+        </NavigationShortcut>
+        <NavigationShortcut
+          compact
+          icon="trophy"
+          href={contextHref("/fantasy/prizes")}
+        >
           Prizes
-        </Link>
+        </NavigationShortcut>
         <button
           className="play-support"
           disabled={busy}
@@ -698,8 +709,11 @@ export function SportSandbox({
               ) : (
                 <p>
                   {nbaProposal ? "$" : ""}
-                  {validate?.total ?? 0} / {cfg.salaryCap}
-                  {nbaProposal ? "" : " test salary units"}
+                  {(validate?.total ?? 0).toLocaleString("en-AU")} /{" "}
+                  {cfg.salaryCap.toLocaleString("en-AU")}
+                  {salaryDollars
+                    ? " fantasy salary dollars"
+                    : " test salary units"}
                 </p>
               )}
               {mode === "SALARY_CAP" && !nbaProposal && (
@@ -841,7 +855,7 @@ export function SportSandbox({
           {mode === "SALARY_CAP" && cfg && (
             <p>
               Available: {validate?.remaining}{" "}
-              {nbaProposal ? "salary dollars" : "test salary units"}
+              {salaryDollars ? "salary dollars" : "test salary units"}
             </p>
           )}
           <div className="sport-review-grid">
@@ -872,7 +886,7 @@ export function SportSandbox({
                       ? (c.availability_reason ??
                         "Roster eligibility unavailable")
                       : mode === "SALARY_CAP" && cfg
-                        ? `${cfg.salaries[c.tier as keyof typeof cfg.salaries]} ${nbaProposal ? "salary dollars" : "test salary units"}`
+                        ? `${cfg.salaries[c.tier as keyof typeof cfg.salaries].toLocaleString("en-AU")} ${salaryDollars ? "salary dollars" : "test salary units"}`
                         : "Eligible"}
                 </small>
               </button>

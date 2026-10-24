@@ -24,6 +24,8 @@ import { packSound } from "./pack-feedback";
 import { AcquisitionShare } from "./acquisition-share";
 import { IconCelebration } from "./icon-celebration";
 import { rarityRule } from "@/core/card-rarity";
+import { NavigationShortcut } from "./navigation-shortcut";
+import { packShopHref } from "@/core/pack-presentation";
 
 export type PackOpeningProps = {
   userId: string;
@@ -39,6 +41,10 @@ export type PackOpeningProps = {
   autoOpen?: boolean;
   collectionHref?: string;
   teamHref?: string | null;
+  onBuyAnother?: () => void;
+  nextPack?: { name: string; open: () => void };
+  completionBusy?: boolean;
+  completionError?: string;
 };
 
 export default function PackOpening(props: PackOpeningProps) {
@@ -561,24 +567,61 @@ export default function PackOpening(props: PackOpeningProps) {
                 )}
               />
             )}
-            <div className="pack-actions">
-              {props.teamHref !== null && (
-                <Link
+            <div className="pack-actions pack-completion-actions">
+              {props.onBuyAnother ? (
+                <button
+                  type="button"
                   className="pack-control primary"
+                  disabled={props.completionBusy}
+                  onClick={props.onBuyAnother}
+                >
+                  {props.completionBusy ? "Checking pack…" : "Buy another pack"}
+                </button>
+              ) : (
+                <NavigationShortcut
+                  compact
+                  href={packShopHref(receipt.cards[0]?.sport)}
+                >
+                  Browse packs
+                </NavigationShortcut>
+              )}
+              {props.nextPack && (
+                <button
+                  type="button"
+                  className="pack-control secondary"
+                  disabled={props.completionBusy}
+                  onClick={props.nextPack.open}
+                >
+                  Open next pack · {props.nextPack.name}
+                </button>
+              )}
+              {props.teamHref !== null && (
+                <NavigationShortcut
+                  compact
+                  icon="trophy"
                   href={props.teamHref ?? "/fantasy/play"}
                   onClick={props.onClose}
                 >
                   Build team
-                </Link>
+                </NavigationShortcut>
               )}
-              <Link
-                className="pack-control"
+              <NavigationShortcut
+                compact
+                icon="save"
                 href={props.collectionHref ?? "/fantasy/cards"}
                 onClick={props.onClose}
               >
                 View Collection
-              </Link>
+              </NavigationShortcut>
             </div>
+            {props.completionError && (
+              <p role="alert">
+                {props.completionError}{" "}
+                <Link href={packShopHref(receipt.cards[0]?.sport)}>
+                  Browse this sport’s packs
+                </Link>
+              </p>
+            )}
             <p className="pack-disclosure">
               Your pack result is saved. Replaying it never awards additional
               cards.

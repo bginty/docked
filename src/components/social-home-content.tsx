@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { NavigationShortcut } from "./navigation-shortcut";
 import { useSport } from "./sport-context";
 import type { CommunityFeed } from "@/core/community-social";
 import { SocialComposer } from "./social-composer";
@@ -85,7 +86,13 @@ export function SocialHomeContent({
               ) : (
                 <p>No official announcements yet.</p>
               )}
-              <Link href="/fantasy/announcements">All announcements</Link>
+              <NavigationShortcut
+                compact
+                icon="bell"
+                href={`/fantasy/announcements?sport=${sport}`}
+              >
+                All announcements
+              </NavigationShortcut>
             </section>
           ) : selected === "discover" || selected === "communities" ? (
             <>
@@ -149,8 +156,12 @@ export function SocialHomeContent({
             <Link href={href("discover")}>Find people</Link>
           </section>
           <section className="app-panel social-secondary-links">
-            <Link href="/beta-policies">Community guidelines</Link>
-            <Link href="/dashboard">Account help</Link>
+            <NavigationShortcut compact icon="shield" href="/beta-policies">
+              Community guidelines
+            </NavigationShortcut>
+            <NavigationShortcut compact icon="profile" href="/dashboard">
+              Account help
+            </NavigationShortcut>
             {feed.viewer && (
               <Link href={`/profile/${feed.viewer.handle}?tab=activity`}>
                 My activity

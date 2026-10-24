@@ -103,7 +103,6 @@ export async function memberTestSource(
       throw new CreditsRejected("Swap listings are temporarily unavailable");
     if (
       command &&
-      !fixtureSport &&
       (["offer", "accept", "replace-listing"].includes(command.kind) ||
         ("preference" in command &&
           command.preference &&

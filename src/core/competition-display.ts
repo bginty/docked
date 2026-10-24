@@ -1,4 +1,8 @@
 import config from "../../config/nfl-seven-v1.json";
+export function seasonLabel(value: string) {
+  const match = /^PRIVATE-TEST-(\d{4})$/.exec(value);
+  return match ? `${match[1]} Test Season` : value;
+}
 /** Presentation only: persisted modes and historical rules remain unchanged. */
 export const competitionNames = {
   SALARY_CAP: "Traditional",

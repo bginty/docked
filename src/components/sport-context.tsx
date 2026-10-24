@@ -8,7 +8,7 @@ import {
   Suspense,
   type ReactNode,
 } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { boundedFetch } from "@/core/bounded-request";
 const NbaBetaScreen = lazy(() =>
   import("./nba-beta-screen").then((m) => ({ default: m.NbaBetaScreen })),
@@ -63,6 +63,7 @@ const SportContext = createContext({
 });
 export function SportProvider({ children }: { children: ReactNode }) {
   const path = usePathname();
+  const [search, setSearch] = useState("");
   const router = useRouter();
   const [sport, setSport] = useState<Sport>("nfl"),
     [notice, setNotice] = useState("");
@@ -177,7 +178,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
     read();
     window.addEventListener("popstate", read);
     return () => window.removeEventListener("popstate", read);
-  }, [path, capabilitiesReady]);
+  }, [path, search, capabilitiesReady]);
   function change(next: Sport) {
     if (
       isHiddenWorkspaceSport(next) ||
@@ -228,9 +229,23 @@ export function SportProvider({ children }: { children: ReactNode }) {
         retryCapabilities: () => setCapabilityAttempt((n) => n + 1),
       }}
     >
+      <Suspense fallback={null}>
+        <SportQueryObserver onChange={setSearch} />
+      </Suspense>
       {children}
     </SportContext.Provider>
   );
+}
+// Query-only navigation must update the selected sport without making the
+// shared provider suspend the entire public page during static rendering.
+function SportQueryObserver({
+  onChange,
+}: {
+  onChange: (search: string) => void;
+}) {
+  const search = useSearchParams().toString();
+  useEffect(() => onChange(search), [search, onChange]);
+  return null;
 }
 export const useSport = () => useContext(SportContext);
 export function SportScope({ children }: { children: ReactNode }) {
@@ -244,6 +259,7 @@ export function SportScope({ children }: { children: ReactNode }) {
     retryCapabilities,
   } = useSport();
   const path = usePathname();
+  const search = useSearchParams();
   if (!ready) return <p role="status">Loading your sport…</p>;
   if (isBetaSport(sport) && !capabilitiesReady)
     return <p role="status">Checking sport access…</p>;
@@ -260,12 +276,7 @@ export function SportScope({ children }: { children: ReactNode }) {
     ((sport === "basketball" && nba) || beta.includes(sport))
   ) {
     // The wallet is shared; the pack catalogue remains explicitly sport gated.
-    if (
-      path === "/fantasy/test-wallet" &&
-      new URLSearchParams(
-        typeof location === "undefined" ? "" : location.search,
-      ).get("view") !== "packs"
-    )
+    if (path === "/fantasy/test-wallet" && search.get("view") !== "packs")
       return children;
     if (path === "/fantasy/cards" || path === "/fantasy/history")
       return children;

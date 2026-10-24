@@ -43,7 +43,6 @@ export function CollectibleFace({
         <RarityBadge
           tier={card.tier}
           appliedMultiplier={appliedMultiplier}
-          showMultiplier={!["afl", "nrl"].includes(card.sport ?? "")}
           compact
         />
       </span>

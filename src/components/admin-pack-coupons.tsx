@@ -133,6 +133,7 @@ export function AdminPackCoupons({ initial }: { initial: Data }) {
             <option value="nfl">NFL</option>
             <option value="football">EPL</option>
             <option value="afl">AFL</option>
+            <option value="nrl">NRL</option>
           </select>
         </label>
         <div className="form-split">

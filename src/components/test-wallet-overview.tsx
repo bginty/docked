@@ -1,19 +1,22 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import { NavigationShortcut } from "./navigation-shortcut";
+import { useSport } from "./sport-context";
+import { packShopHref } from "@/core/pack-presentation";
 import type { MemberTestView } from "@/core/member-test-wallet";
 import { AppIcon, type AppIconName } from "./app-icon";
 
-const shortcuts: [string, string, AppIconName][] = [
-  ["Buy packs", "/fantasy/test-wallet?view=packs&packs=buy", "feed"],
-  ["My packs", "/fantasy/test-wallet?view=packs&packs=mine", "save"],
-  ["Pack history", "/fantasy/test-wallet?view=packs&packs=history", "bell"],
-  ["My collection", "/fantasy/cards", "feed"],
-  ["Browse market", "/fantasy/market?tab=browse", "edge"],
-  ["My listings", "/fantasy/market?tab=listings", "save"],
-];
 const amount = (n: number) => n.toLocaleString("en-AU");
 export function TestWalletOverview({ state: s }: { state: MemberTestView }) {
+  const { sport } = useSport();
+  const shortcuts: [string, string, AppIconName][] = [
+    ["Buy packs", packShopHref(sport), "feed"],
+    ["My packs", packShopHref(sport, "mine"), "save"],
+    ["Pack history", packShopHref(sport, "history"), "feed"],
+    ["My collection", `/fantasy/cards?sport=${sport}`, "feed"],
+    ["Browse market", `/fantasy/market?tab=browse&sport=${sport}`, "edge"],
+    ["My listings", `/fantasy/market?tab=listings&sport=${sport}`, "save"],
+  ];
   const [limit, setLimit] = useState(15);
   const history = [...s.history].sort(
     (a, b) => b.at - a.at || b.id.localeCompare(a.id),
@@ -65,13 +68,9 @@ export function TestWalletOverview({ state: s }: { state: MemberTestView }) {
       <h2>Quick links</h2>
       <nav className="wallet-shortcuts" aria-label="Wallet quick links">
         {shortcuts.map(([label, href, icon]) => (
-          <Link key={label} href={href}>
-            <span className="wallet-shortcut-icon">
-              <AppIcon name={icon} />
-            </span>
-            <span>{label}</span>
-            <span aria-hidden="true">›</span>
-          </Link>
+          <NavigationShortcut key={label} href={href} icon={icon}>
+            {label}
+          </NavigationShortcut>
         ))}
       </nav>
       <details className="wallet-history">

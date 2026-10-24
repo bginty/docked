@@ -88,6 +88,7 @@ type Withdrawal = {
   provider?: string;
 };
 export type CreditsState = {
+  roundRewards?: Record<string, { fingerprint: string; contextHash: string; recipient: string; competition: string; round: string; sport: string; place: number; schedule: string; reward: unknown; reference: string; status: "ISSUED"; at: number }>;
   packCoupons?: CouponBook;
   privateCardOffers?: Record<
     string,
@@ -342,7 +343,7 @@ export const creditsCommand = z.discriminatedUnion("kind", [
     kind: z.literal("award"),
     competition: id,
     round: id,
-    sport: z.enum(["epl", "nfl", "afl"]),
+    sport: z.enum(["epl", "nfl", "afl", "nrl"]),
     member: id,
     amount,
     revision: amount,

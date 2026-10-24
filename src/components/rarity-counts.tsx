@@ -5,11 +5,13 @@ import { rarityStyle } from "@/core/rarity-theme";
 /** One palette and count presentation for collection filters and private profile navigation. */
 export function RarityCounts({
   cards,
+  counts,
   sport,
   selected,
   onSelect,
 }: {
-  cards: readonly { sport: string; tier: string }[];
+  cards?: readonly { sport: string; tier: string }[];
+  counts?: Partial<Record<string, number>>;
   sport: string;
   selected?: string;
   onSelect?: (tier: string) => void;
@@ -17,9 +19,11 @@ export function RarityCounts({
   return (
     <div className="rarity-counts" aria-label="Rarity counts in selected sport">
       {rarities.map((tier) => {
-        const count = cards.filter(
-          (card) => card.sport === sport && card.tier === tier,
-        ).length;
+        const count = counts
+          ? (counts[tier] ?? 0)
+          : (cards ?? []).filter(
+              (card) => card.sport === sport && card.tier === tier,
+            ).length;
         const content = (
           <>
             <span className="rarity-dot" aria-hidden="true" />

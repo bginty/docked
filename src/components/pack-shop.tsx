@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { NavigationShortcut } from "./navigation-shortcut";
+import { useSearchParams } from "next/navigation";
 import type { MemberTestView } from "@/core/member-test-wallet";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import {
@@ -51,8 +52,7 @@ function FamilyDisclosures({ p }: { p: Product }) {
       <details>
         <summary>Pack Details</summary>
         <p>
-          {p.sport !== "nfl" ? "9 cards" : "1, 3 or 9 cards"} ·{" "}
-          {p.eligiblePlayers} eligible players
+          1, 3 or 9 cards · {p.eligiblePlayers} eligible players
           {p.positions.length ? ` · ${p.positions.join(", ")}` : ""}.
         </p>
         <p>
@@ -87,15 +87,20 @@ export function PackShop({
   purchase,
   refresh,
   open,
+  repeatRequest,
+  repeatStatus,
 }: {
   state: MemberTestView;
   sport?: "nfl" | "basketball" | "afl" | "nrl";
   busy: boolean;
   recovery: boolean;
   purchase: (product: Product, coupon?: CouponQuote) => Promise<unknown>;
-  refresh: () => Promise<void>;
+  refresh: () => Promise<MemberTestView>;
   open: (id: string, replay: boolean) => void;
+  repeatRequest?: { product: string; nonce: number } | null;
+  repeatStatus?: (busy: boolean, error: string) => void;
 }) {
+  const search = useSearchParams().toString();
   const [tab, setTab] = useState<PackTab>("buy"),
     [review, setReview] = useState<Product | null>(null);
   const [error, setError] = useState(""),
@@ -109,6 +114,48 @@ export function PackShop({
     [couponError, setCouponError] = useState("");
   const [reviewCoupon, setReviewCoupon] = useState<CouponQuote | undefined>();
   const couponFlight = useRef(false);
+  const repeatSeen = useRef(0);
+  const refreshRef = useRef(refresh);
+  const statusRef = useRef(repeatStatus);
+  refreshRef.current = refresh;
+  statusRef.current = repeatStatus;
+  useEffect(() => {
+    if (!repeatRequest || repeatSeen.current === repeatRequest.nonce) return;
+    repeatSeen.current = repeatRequest.nonce;
+    let stopped = false;
+    statusRef.current?.(true, "");
+    setCoupon(null);
+    setCode("");
+    setReviewCoupon(undefined);
+    setError("");
+    void refreshRef
+      .current()
+      .then((fresh) => {
+        if (stopped) return;
+        const product = fresh.products.find(
+          (p) => p.id === repeatRequest.product && p.sport === sport,
+        );
+        if (!product?.available)
+          throw Error(
+            product?.availabilityReason ||
+              "The original product is unavailable. No replacement has been selected.",
+          );
+        setReview(product);
+        statusRef.current?.(false, "");
+      })
+      .catch((e) => {
+        if (!stopped)
+          statusRef.current?.(
+            false,
+            e instanceof Error
+              ? e.message
+              : "Could not refresh pack availability. Please retry.",
+          );
+      });
+    return () => {
+      stopped = true;
+    };
+  }, [repeatRequest, sport]);
   const quoteFor = (p: Product) =>
     coupon?.quotes.find((q) => q.product === p.id)?.quote ?? undefined;
   const priceFor = (p: Product) => quoteFor(p)?.charge ?? p.price;
@@ -149,7 +196,7 @@ export function PackShop({
       window.removeEventListener("popstate", read);
       window.removeEventListener("hashchange", read);
     };
-  }, []);
+  }, [search]);
   function choose(next: PackTab) {
     setTab(next);
     const url = new URL(location.href);
@@ -229,7 +276,7 @@ export function PackShop({
       </nav>
       {tab === "buy" && (
         <div className="pack-families">
-          {sport === "nfl" && (
+          {["nfl", "afl", "nrl"].includes(sport) && (
             <form
               className="pack-coupon-panel"
               onSubmit={(e) => {
@@ -517,12 +564,13 @@ export function PackShop({
         </section>
       )}
       <p className="pack-no-cash">Test Docked Credits · No cash value</p>
-      <Link
-        className="pack-control secondary"
+      <NavigationShortcut
+        compact
+        icon="save"
         href={`/fantasy/cards?sport=${sport}`}
       >
         View Collection
-      </Link>
+      </NavigationShortcut>
       {review && (
         <FantasySheet
           title="Confirm purchase"

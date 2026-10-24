@@ -27,6 +27,8 @@ export type AwardedCard = Pick<
   rarity_version?: string;
   multiplier?: number;
   presentation?: string;
+  artworkVersion?: string;
+  preserveArtwork?: boolean;
 };
 export type PackReceipt = {
   id: string;

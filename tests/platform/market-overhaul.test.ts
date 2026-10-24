@@ -320,7 +320,7 @@ test("no invented valuation, multiple cards or combined fee default", () => {
         feeEach: 0,
         creditTopUp: 1000,
       }),
-    /reviewed private-offer/,
+    /Only fixed-price marketplace sales are supported/,
   );
 });
 test("hidden listings absent from browse and alternate wallet projections; owner retains access", () => {

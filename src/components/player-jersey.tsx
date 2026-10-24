@@ -1,5 +1,6 @@
 "use client";
 import { useId } from "react";
+import { aflJersey } from "@/core/afl-jerseys";
 import {
   jerseyPresentation,
   type JerseyMetadata,
@@ -18,6 +19,10 @@ export function PlayerJersey({
   const id = useId().replace(/[^a-zA-Z0-9_-]/g, ""),
     p = jerseyPresentation(card);
   const displayNumber = showNumber;
+  const afl =
+    card?.sport === "afl" && !card.preserveArtwork
+      ? aflJersey(card.team)
+      : undefined;
   const rgb = /^#[0-9a-f]{6}$/i.test(p.primary)
     ? [1, 3, 5].map((i) => parseInt(p.primary.slice(i, i + 2), 16))
     : [0, 0, 0];
@@ -55,6 +60,10 @@ export function PlayerJersey({
       data-number-source={
         displayNumber && p.number !== "—" ? "verified-metadata" : "unavailable"
       }
+      data-afl-template={
+        afl ? (afl.wedge ? "angular" : "horizontal") : undefined
+      }
+      data-team-key={afl?.key}
     >
       <defs>
         <clipPath id={`${id}-cut`}>
@@ -121,12 +130,21 @@ export function PlayerJersey({
       </defs>
       <path
         d={shape}
-        fill={card ? p.primary : "#203349"}
+        fill={afl?.upper ?? (card ? p.primary : "#203349")}
         stroke="#99acc2"
         strokeOpacity=".35"
         strokeWidth="1"
       />
       <g clipPath={`url(#${id}-cut)`}>
+        {afl &&
+          (afl.wedge ? (
+            <>
+              <path d="M35 69L90 108L145 68V176H35Z" fill={afl.wedge} />
+              <path d="M35 137L145 70V176H35Z" fill={afl.lower} />
+            </>
+          ) : (
+            <path d="M35 96H145V176H35Z" fill={afl.lower} />
+          ))}
         <path d={shape} fill={`url(#${id}-body)`} />
         <path
           d="M43 40Q90 26 137 40L140 158Q90 170 40 158Z"
@@ -142,10 +160,22 @@ export function PlayerJersey({
         />
         <path
           d="M7 49 34 65M146 65 173 49"
-          stroke={p.accent}
+          stroke={afl?.trim ?? p.accent}
           strokeWidth="10"
         />
-        <path d="M5 58 31 73M149 73 175 58" stroke={p.accent} strokeWidth="2" />
+        <path
+          d="M5 58 31 73M149 73 175 58"
+          stroke={afl?.trim ?? p.accent}
+          strokeWidth="2"
+        />
+        {afl && (
+          <path
+            d="M46 25Q59 56 40 69M134 25Q121 56 140 69"
+            fill="none"
+            stroke={afl.trim}
+            strokeWidth="4"
+          />
+        )}
         <path
           d="M42 47Q49 57 48 80L52 154 40 158 43 65ZM138 47Q131 57 132 80L128 154 140 158 137 65Z"
           fill="#020814"
@@ -173,7 +203,7 @@ export function PlayerJersey({
         <path
           d="M62 18 70 29 90 37 110 29 118 18"
           fill="none"
-          stroke={p.accent}
+          stroke={afl?.trim ?? p.accent}
           strokeWidth="3"
         />
         <path
@@ -210,15 +240,15 @@ export function PlayerJersey({
           <text
             className="jersey-number"
             x="90"
-            y="119"
+            y={afl ? "82" : "119"}
             textAnchor="middle"
-            fill={print}
+            fill={afl?.trim ?? print}
             stroke="#050b15"
             strokeWidth="2"
             strokeLinejoin="round"
             paintOrder="stroke"
             fontFamily="Impact, 'Arial Black', Arial, sans-serif"
-            fontSize="61"
+            fontSize={afl ? "31" : "61"}
             fontWeight="900"
             letterSpacing="-2"
           >

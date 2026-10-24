@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { packShopHref, packTab } from "@/core/pack-presentation";
 import { AppShell } from "@/components/app-shell";
 import { MemberTestWallet } from "@/components/member-test-wallet";
 import { memberTestWallet } from "@/server/member-test-wallet";
@@ -6,12 +8,7 @@ import { FantasyLoadError } from "@/components/fantasy-load-error";
 import { memberAccessFailure } from "@/core/member-access-recovery";
 import { StartupReady } from "@/components/startup-loading";
 import { cookies } from "next/headers";
-import {
-  activeSportCookie,
-  workspaceSport,
-  privateSportWorkspace,
-} from "@/core/workspace-sport";
-import { PrivateSportPage } from "@/components/private-sport-page";
+import { activeSportCookie, workspaceSport } from "@/core/workspace-sport";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Docked · Packs & test wallet",
@@ -20,22 +17,28 @@ export const metadata = {
 export default async function TestWalletPage({
   searchParams,
 }: {
-  searchParams: Promise<{ view?: string; sport?: string }>;
+  searchParams: Promise<{
+    view?: string;
+    sport?: string;
+    packs?: string;
+    tab?: string;
+  }>;
 }) {
-  const { view, sport: requested } = await searchParams;
-  if (view === "packs" && process.env.DOCKED_FRIENDS_BETA === "true") {
-    const sport = workspaceSport(
+  const params = await searchParams;
+  const { view, sport: requested } = params;
+  if (view === "packs") {
+    const selected = workspaceSport(
       requested,
       (await cookies()).get(activeSportCookie)?.value,
     );
-    if (privateSportWorkspace("packs", sport)) return <PrivateSportPage />;
+    const q = new URLSearchParams();
+    if (params.packs) q.set("packs", params.packs);
+    if (params.tab) q.set("tab", params.tab);
+    redirect(packShopHref(selected, packTab(q.toString())));
   }
   let data;
   try {
-    data = await memberTestWallet(
-      undefined,
-      view === "packs" ? "packs" : "wallet",
-    );
+    data = await memberTestWallet(undefined, "wallet");
   } catch (error) {
     const kind = memberAccessFailure(error);
     if (kind !== "permission")
@@ -59,10 +62,7 @@ export default async function TestWalletPage({
   }
   return (
     <AppShell authenticated>
-      <MemberTestWallet
-        initial={data.state}
-        surface={view === "packs" ? "packs" : "wallet"}
-      />
+      <MemberTestWallet initial={data.state} surface="wallet" />
     </AppShell>
   );
 }

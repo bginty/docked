@@ -54,8 +54,20 @@ test("owned collection reads ledgers only, paginates consistently, isolates spor
           sport,
           reserved: null,
         };
+        if (i === 2)
+          s.listings[`listing-${sport}`] = {
+            card: id,
+            seller: owner,
+            price: 100,
+            status: "OPEN",
+            id: `listing-${sport}`,
+          };
         s.cards[id] = { history: [{ to: owner, at: 10000 + i }], owner };
-        s.entitlements[pack] = { status: i === 99 ? "ALLOCATED" : "OPENED" };
+        s.entitlements[pack] = {
+          member: owner,
+          status: i === 99 ? "ALLOCATED" : "OPENED",
+        };
+        s.economy.packs[pack] = { product: { sport } };
         s.economy.players[playerId] = {
           id: playerId,
           name: `Isolated Player ${String(i).padStart(3, "0")}`,
@@ -79,6 +91,32 @@ test("owned collection reads ledgers only, paginates consistently, isolates spor
       assert.equal(first.total, 99);
       assert.equal(first.rows.length, 18);
       assert.deepEqual(first.counts, { CORE: 50, RARE: 49 });
+      if (sport !== "basketball") {
+        const record = (
+          await db.q(
+            "select beta_fantasy.member_collection_record($1) result",
+            [sport],
+          )
+        )[0].result;
+        assert.equal(record.total, first.total);
+        assert.deepEqual(record.counts, first.counts);
+        assert.equal(
+          (await read({ sport, search: "#003" })).rows[0].id,
+          `owned-${sport}-2`,
+          "Listed cards remain owned collectibles",
+        );
+        assert.equal(
+          record.opened,
+          99,
+          "Counts opening events, not cards or sealed packs",
+        );
+        assert.equal(
+          record.entries,
+          0,
+          "Draft/eligible lineup fixtures do not imply entries",
+        );
+        assert.equal(record.member, db.user);
+      }
       const seen = new Set<string>();
       for (let offset = 0; offset < 99; offset += 18) {
         const p = await read({ sport, offset, revision: first.revision });
@@ -152,8 +190,20 @@ test("owned collection reads ledgers only, paginates consistently, isolates spor
       true,
     );
     assert.equal((await read({ sport: "nfl" })).total, 99);
+    assert.equal(
+      (
+        await db.q("select beta_fantasy.member_collection_record('nfl') result")
+      )[0].result.total,
+      99,
+    );
     await db.asUser(db.other);
     assert.equal((await read({ sport: "nfl" })).total, 2);
+    assert.equal(
+      (
+        await db.q("select beta_fantasy.member_collection_record('nfl') result")
+      )[0].result.total,
+      2,
+    );
     for (const role of ["anon", "authenticated", "service_role", "docked_app"])
       assert.equal(
         (
@@ -182,6 +232,10 @@ test("owned collection reads ledgers only, paginates consistently, isolates spor
       "create or replace function beta_private.active_member_session() returns boolean language sql as $$select false$$;",
     );
     await assert.rejects(read({ sport: "nfl" }), /Active admitted session/);
+    await assert.rejects(
+      db.q("select beta_fantasy.member_collection_record('nfl')"),
+      /Active admitted session/,
+    );
   } finally {
     await db.pg.close();
   }

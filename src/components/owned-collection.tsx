@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useSport } from "./sport-context";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { FantasySheet } from "./fantasy-sheet";
@@ -64,6 +65,7 @@ const Tile = memo(function Tile({
 
 export function OwnedCollection({ member }: { member: string }) {
   const { sport } = useSport();
+  const searchParams = useSearchParams().toString();
   const [tab, setTab] = useState<"cards" | "packs">("cards");
   useEffect(() => {
     const read = () =>
@@ -75,7 +77,7 @@ export function OwnedCollection({ member }: { member: string }) {
     read();
     window.addEventListener("popstate", read);
     return () => window.removeEventListener("popstate", read);
-  }, []);
+  }, [searchParams]);
   const selectTab = (value: "cards" | "packs") => {
     setTab(value);
     const url = new URL(location.href);

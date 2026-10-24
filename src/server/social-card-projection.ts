@@ -69,6 +69,6 @@ export async function snapshotSocialCards(
     if (!card) throw Error("Only your opened cards can be attached");
     const { offerEligible, ...snapshot } = card;
     void offerEligible;
-    return snapshot;
+    return { ...snapshot, artworkVersion: "afl-owner-2026-10-24-v1" };
   });
 }
