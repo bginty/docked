@@ -1,0 +1,40 @@
+{
+  "scope": "Heuristic credential-pattern scan, changed source files only; no secret values printed",
+  "changedFiles": 65,
+  "changedFindings": [],
+  "repositoryScan": "Eight existing findings in unchanged development/test files; repository-wide scanner remains non-green",
+  "baseline": [
+    {
+      "file": "legacy/retired-product/tests/platform/market-data.test.ts",
+      "unchangedFromHead": true
+    },
+    {
+      "file": "scripts/fantasy-production-local-postgres.mjs",
+      "unchangedFromHead": true
+    },
+    {
+      "file": "scripts/marketplace-auth-infra.mjs",
+      "unchangedFromHead": true
+    },
+    {
+      "file": "tests/database/preview-auth-gate.test.ts",
+      "unchangedFromHead": true
+    },
+    {
+      "file": "tests/platform/database-tls.test.ts",
+      "unchangedFromHead": true
+    },
+    {
+      "file": "tests/platform/hosted-runtime.test.ts",
+      "unchangedFromHead": true
+    },
+    {
+      "file": "tests/platform/preview-auth.test.ts",
+      "unchangedFromHead": true
+    },
+    {
+      "file": "tests/platform/production-release-tools.test.ts",
+      "unchangedFromHead": true
+    }
+  ]
+}

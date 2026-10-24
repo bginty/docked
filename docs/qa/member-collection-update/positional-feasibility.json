@@ -1,0 +1,283 @@
+[
+  {
+    "sport": "afl",
+    "rosterPlayers": 545,
+    "requiredSlots": 22,
+    "matched": 22,
+    "uniquePlayers": 22,
+    "allRareSalary": 13200000,
+    "exactBoundary": 13800000,
+    "cap": 13800000,
+    "slots": [
+      {
+        "slot": "BACK1",
+        "player": "afl-roster-beta-Q106289186",
+        "eligible": [
+          "DEF"
+        ]
+      },
+      {
+        "slot": "BACK2",
+        "player": "afl-roster-beta-Q16235559",
+        "eligible": [
+          "DEF"
+        ]
+      },
+      {
+        "slot": "BACK3",
+        "player": "afl-roster-beta-Q107414094",
+        "eligible": [
+          "DEF"
+        ]
+      },
+      {
+        "slot": "BACK4",
+        "player": "afl-roster-beta-Q127768912",
+        "eligible": [
+          "DEF"
+        ]
+      },
+      {
+        "slot": "BACK5",
+        "player": "afl-roster-beta-Q117744739",
+        "eligible": [
+          "DEF"
+        ]
+      },
+      {
+        "slot": "BACK6",
+        "player": "afl-roster-beta-Q64010926",
+        "eligible": [
+          "DEF"
+        ]
+      },
+      {
+        "slot": "MID1",
+        "player": "afl-roster-beta-Q124814366",
+        "eligible": [
+          "DEF",
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID2",
+        "player": "afl-roster-beta-Q72532152",
+        "eligible": [
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID3",
+        "player": "afl-roster-beta-Q59180511",
+        "eligible": [
+          "MID",
+          "FWD"
+        ]
+      },
+      {
+        "slot": "MID4",
+        "player": "afl-roster-beta-Q131582584",
+        "eligible": [
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID5",
+        "player": "afl-roster-beta-Q106136619",
+        "eligible": [
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID6",
+        "player": "afl-roster-beta-Q127381215",
+        "eligible": [
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID7",
+        "player": "afl-roster-beta-Q124420066",
+        "eligible": [
+          "DEF",
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID8",
+        "player": "afl-roster-beta-Q29217448",
+        "eligible": [
+          "MID"
+        ]
+      },
+      {
+        "slot": "FWD1",
+        "player": "afl-roster-beta-Q110059482",
+        "eligible": [
+          "MID",
+          "FWD"
+        ]
+      },
+      {
+        "slot": "FWD2",
+        "player": "afl-roster-beta-Q119813062",
+        "eligible": [
+          "MID",
+          "FWD"
+        ]
+      },
+      {
+        "slot": "FWD3",
+        "player": "afl-roster-beta-Q109860402",
+        "eligible": [
+          "FWD"
+        ]
+      },
+      {
+        "slot": "FWD4",
+        "player": "afl-roster-beta-Q106619983",
+        "eligible": [
+          "FWD"
+        ]
+      },
+      {
+        "slot": "FWD5",
+        "player": "afl-roster-beta-Q22003021",
+        "eligible": [
+          "MID",
+          "FWD"
+        ]
+      },
+      {
+        "slot": "FWD6",
+        "player": "afl-roster-beta-Q20675978",
+        "eligible": [
+          "MID",
+          "FWD"
+        ]
+      },
+      {
+        "slot": "RUCK1",
+        "player": "afl-roster-beta-Q124814486",
+        "eligible": [
+          "RUC"
+        ]
+      },
+      {
+        "slot": "RUCK2",
+        "player": "afl-roster-beta-Q138655486",
+        "eligible": [
+          "FWD",
+          "RUC"
+        ]
+      }
+    ],
+    "limitation": "Source-verified catalogue snapshot dated 2026-10-23. This does not establish any member owns the required cards, current roster freshness, or approval to issue them."
+  },
+  {
+    "sport": "nrl",
+    "rosterPlayers": 337,
+    "requiredSlots": 13,
+    "matched": 13,
+    "uniquePlayers": 13,
+    "allRareSalary": 7800000,
+    "exactBoundary": 8200000,
+    "cap": 8200000,
+    "slots": [
+      {
+        "slot": "WFB1",
+        "player": "nrl-roster-beta-Q98152569",
+        "eligible": [
+          "WFB",
+          "HLF"
+        ]
+      },
+      {
+        "slot": "WFB2",
+        "player": "nrl-roster-beta-Q107293617",
+        "eligible": [
+          "WFB"
+        ]
+      },
+      {
+        "slot": "CTR1",
+        "player": "nrl-roster-beta-Q106915751",
+        "eligible": [
+          "CTR"
+        ]
+      },
+      {
+        "slot": "CTR2",
+        "player": "nrl-roster-beta-Q64010082",
+        "eligible": [
+          "CTR"
+        ]
+      },
+      {
+        "slot": "HLF1",
+        "player": "nrl-roster-beta-Q122751608",
+        "eligible": [
+          "HLF"
+        ]
+      },
+      {
+        "slot": "HLF2",
+        "player": "nrl-roster-beta-Q126177786",
+        "eligible": [
+          "HLF"
+        ]
+      },
+      {
+        "slot": "EDG1",
+        "player": "nrl-roster-beta-Q112973172",
+        "eligible": [
+          "EDG"
+        ]
+      },
+      {
+        "slot": "EDG2",
+        "player": "nrl-roster-beta-Q112944289",
+        "eligible": [
+          "EDG"
+        ]
+      },
+      {
+        "slot": "EDG3",
+        "player": "nrl-roster-beta-Q135498625",
+        "eligible": [
+          "EDG"
+        ]
+      },
+      {
+        "slot": "MID1",
+        "player": "nrl-roster-beta-Q135438448",
+        "eligible": [
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID2",
+        "player": "nrl-roster-beta-Q16971835",
+        "eligible": [
+          "MID"
+        ]
+      },
+      {
+        "slot": "MID3",
+        "player": "nrl-roster-beta-Q113487538",
+        "eligible": [
+          "MID",
+          "EDG"
+        ]
+      },
+      {
+        "slot": "FLEX1",
+        "player": "nrl-roster-beta-Q126326896",
+        "eligible": [
+          "WFB"
+        ]
+      }
+    ],
+    "limitation": "Source-verified catalogue snapshot dated 2026-10-23. This does not establish any member owns the required cards, current roster freshness, or approval to issue them."
+  }
+]

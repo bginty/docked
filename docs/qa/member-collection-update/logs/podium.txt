@@ -1,0 +1,25 @@
+TAP version 13
+# Subtest: All AFL/NRL podium rewards use the approved credit amounts, pack quantities and family
+ok 1 - All AFL/NRL podium rewards use the approved credit amounts, pack quantities and family
+  ---
+  duration_ms: 556.8097
+  ...
+# Subtest: Round rewards fail closed without activation/tie approval and final eligible results
+ok 2 - Round rewards fail closed without activation/tie approval and final eligible results
+  ---
+  duration_ms: 6.4282
+  ...
+# Subtest: Credit and pack reward retries preserve prior success and award correct sport without charging
+ok 3 - Credit and pack reward retries preserve prior success and award correct sport without charging
+  ---
+  duration_ms: 192.7109
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3277.3227

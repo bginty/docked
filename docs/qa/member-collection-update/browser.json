@@ -1,0 +1,50 @@
+{
+  "scope": "Local actual React components, synthetic summary/API fixtures. No hosted authentication or production mutations.",
+  "checks": [
+    {
+      "width": 320,
+      "summary": true,
+      "retry": true,
+      "staleResponseBlocked": true,
+      "clipboard": true,
+      "noOverflow": true
+    },
+    {
+      "width": 375,
+      "summary": true,
+      "retry": true,
+      "staleResponseBlocked": true,
+      "clipboard": true,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "summary": true,
+      "retry": true,
+      "staleResponseBlocked": true,
+      "clipboard": true,
+      "noOverflow": true
+    },
+    {
+      "width": 430,
+      "summary": true,
+      "retry": true,
+      "staleResponseBlocked": true,
+      "clipboard": true,
+      "noOverflow": true
+    },
+    {
+      "width": 1440,
+      "summary": true,
+      "retry": true,
+      "staleResponseBlocked": true,
+      "clipboard": true,
+      "noOverflow": true
+    }
+  ],
+  "jerseyMappings": 18,
+  "angular": 6,
+  "horizontal": 12,
+  "rarities": 6,
+  "cardFlip": true
+}

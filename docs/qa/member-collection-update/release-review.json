@@ -1,0 +1,44 @@
+{
+  "implementationCommit": "2c0f23c36829865ec5133703938d36496693f2bf",
+  "deployed": false,
+  "productionMutations": false,
+  "activationChanges": false,
+  "migrations": [
+    {
+      "file": "20261023234346_member_collection_record.sql",
+      "sha256": "0f68094a91b6d3a68db15d5a91fb2aa95be11f45c75d5cbd89240bef8e7ade0b"
+    },
+    {
+      "file": "20261023234740_approved_afl_nrl_future_rules.sql",
+      "sha256": "0562c1e0d1bdbed3c27f0198783dcc0b012a83af253ff401e30e206d8ecdde6b"
+    },
+    {
+      "file": "20261024000314_australian_prize_preparation.sql",
+      "sha256": "8afc156294ac60f22110e72b896dd3ebf047d357dacc555461bf2fb7949bd78e"
+    }
+  ],
+  "readOnlyInspection": {
+    "legacyCreditSwapsOpen": 0,
+    "privateOffersOpen": 0,
+    "legacySwapStates": {
+      "expired": 5,
+      "cancelled": 1
+    },
+    "futureAfl": {
+      "unscoredRounds": 10,
+      "drafts": 5,
+      "entries": 1
+    },
+    "futureNrl": {
+      "unscoredRounds": 10,
+      "drafts": 0,
+      "entries": 0
+    }
+  },
+  "requiredDecisions": [
+    "Deployment and reviewed migrations",
+    "Handling occupied future AFL rounds before salary adoption",
+    "Approved AFL/NRL tied-place prize policy",
+    "Explicit future prize-bearing round activation and trusted award-runner binding"
+  ]
+}
