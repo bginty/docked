@@ -46,11 +46,23 @@ export function GameDaySummary({
         <div>
           <span>{round.finalised ? "Final rank" : "Current rank"}</span>
           <strong>
-            {currentRank(entry) == null ? "—" : `#${currentRank(entry)}`}
-            <small> of {round.rows.length}</small>
+            {currentRank(entry) == null
+              ? round.rows.length
+                ? "Not ranked"
+                : "No entries yet"
+              : `#${currentRank(entry)}`}
+            {currentRank(entry) != null && (
+              <small> of {round.rows.length}</small>
+            )}
           </strong>
         </div>
       </div>
+      {!entry && (
+        <p className="game-day-freshness">
+          Not entered · This round’s entry window and results are shown
+          separately.
+        </p>
+      )}
       <p className="game-day-freshness">
         {gameDayFreshness(round, entry)}
         {round.updatedAt &&

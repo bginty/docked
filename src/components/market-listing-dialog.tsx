@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { boundedFetch } from "@/core/bounded-request";
-import { sellerQuote } from "@/core/credits-policy";
+import type { sellerQuote } from "@/core/credits-policy";
 import { cardIdentity } from "@/core/card-display";
 import { rarityLabel } from "@/core/card-rarity";
 import type { MarketplaceView } from "@/core/marketplace";
@@ -96,19 +96,46 @@ export function useMarketCommand(
   return { busy, error, pending, send };
 }
 export function FeeBreakdown({ price }: { price: number }) {
-  const q =
-    Number.isSafeInteger(price) && price >= 1 && price <= 1_000_000_000
-      ? sellerQuote(price)
-      : null;
+  const [quote, setQuote] = useState<ReturnType<typeof sellerQuote> | null>(
+    null,
+  );
+  const [error, setError] = useState(false),
+    [retry, setRetry] = useState(0);
+  const valid =
+    Number.isSafeInteger(price) && price >= 1 && price <= 1_000_000_000;
+  const q = quote?.price === price ? quote : null;
+  useEffect(() => {
+    const controller = new AbortController();
+    setError(false);
+    if (!valid) return;
+    const timer = setTimeout(() => {
+      void boundedFetch(`/api/marketplace/quote?price=${price}`, {
+        cache: "no-store",
+        signal: controller.signal,
+      })
+        .then(async (r) => {
+          if (!r.ok) throw Error();
+          const next = await r.json();
+          if (!controller.signal.aborted) setQuote(next);
+        })
+        .catch(() => {
+          if (!controller.signal.aborted) setError(true);
+        });
+    }, 200);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [price, valid, retry]);
   return (
     <>
       <dl className="market-fees">
         <div>
-          <dt>Sale price</dt>
+          <dt>Asking price</dt>
           <dd>{q ? `${q.price.toLocaleString()} credits` : "—"}</dd>
         </div>
         <div>
-          <dt>Seller fee · 5%</dt>
+          <dt>Estimated selling fee</dt>
           <dd>{q ? `${q.fee.toLocaleString()} credits` : "—"}</dd>
         </div>
         <div>
@@ -119,6 +146,19 @@ export function FeeBreakdown({ price }: { price: number }) {
       <p className="market-fee-note">
         No minimum fee · capped at 2,000 credits
       </p>
+      {valid && !q && !error && <p role="status">Updating estimate…</p>}
+      {error && (
+        <p role="alert">
+          Fee estimate unavailable.{" "}
+          <button
+            type="button"
+            className="button"
+            onClick={() => setRetry((n) => n + 1)}
+          >
+            Retry estimate
+          </button>
+        </p>
+      )}
     </>
   );
 }
@@ -173,7 +213,6 @@ export function MarketListingDialog({
           listing={listing}
           own={state.inventory.find((c) => c.id === card.id)}
           trading={state.tradingEnabled}
-          offers={state.offersEnabled}
           price={price}
           setPrice={setPrice}
           remove={remove}
@@ -193,7 +232,6 @@ function ListingForm({
   listing,
   own,
   trading,
-  offers,
   price,
   setPrice,
   remove,
@@ -208,7 +246,6 @@ function ListingForm({
   listing?: MarketplaceView["rows"][number];
   own: MarketplaceView["inventory"][number] | undefined;
   trading: boolean;
-  offers: boolean;
   price: string;
   setPrice: (s: string) => void;
   remove: boolean;
@@ -218,7 +255,6 @@ function ListingForm({
   onSaved?: () => void;
   onClose: () => void;
 }) {
-  const [acceptSwaps, setAcceptSwaps] = useState(false);
   const { busy, error, pending, send } = useMarketCommand(member, (r, c) => {
     setReceipt({
       ...r,
@@ -258,7 +294,10 @@ function ListingForm({
               View listing
             </Link>
           )}
-          <Link className="button" href="/fantasy/market?tab=listings">
+          <Link
+            className="button"
+            href={`/fantasy/market?tab=listings&sport=${card.sport ?? "nfl"}`}
+          >
             My Listings
           </Link>
           <button className="button" onClick={onClose}>
@@ -297,7 +336,7 @@ function ListingForm({
                     kind: "list",
                     card: card.id,
                     price: value,
-                    preference: offers && acceptSwaps ? "both" : "sell",
+                    preference: "sell",
                   },
             );
         }}
@@ -323,17 +362,6 @@ function ListingForm({
           </p>
         )}
         <FeeBreakdown price={value} />
-        {offers && !listing && (
-          <label>
-            <input
-              type="checkbox"
-              checked={acceptSwaps}
-              onChange={(e) => setAcceptSwaps(e.target.checked)}
-              disabled={busy || !!pending}
-            />{" "}
-            Also accept offers with cards from this test sport
-          </label>
-        )}
         {restriction && <p role="alert">{restriction}</p>}
         {error && <p role="alert">{error}</p>}
         {pending && !busy ? (

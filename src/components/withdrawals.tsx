@@ -387,6 +387,9 @@ export function Withdrawals({ admin = false }: { admin?: boolean }) {
                 </section>
                 <section className="redemption-panel">
                   <h2>Identity & bank account</h2>
+                  <a className="button" href="/profile/identity-verification">
+                    Identity verification
+                  </a>
                   <ol className="redemption-steps">
                     <li>1 · Identity</li>
                     <li>2 · Bank account</li>

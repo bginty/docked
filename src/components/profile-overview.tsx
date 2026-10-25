@@ -198,6 +198,9 @@ export function ProfileOverview({
         </section>
       </div>
       <section className="fantasy-panel profile-support">
+        <NavigationShortcut compact href="/profile/identity-verification">
+          Identity verification
+        </NavigationShortcut>
         <h2>Support & feedback</h2>
         <p>
           Have a question, spotted an issue or have an idea for Docked? We’d

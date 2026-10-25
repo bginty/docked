@@ -150,7 +150,7 @@ export function WeeklyCorePanel({
         className="fantasy-panel weekly-core-panel"
         aria-label="Weekly starter pack"
       >
-        <PackArtwork name="Starter Pack" core />
+        <PackArtwork name="Starter Pack" core sport={sport} count={4} />
         <div className="weekly-core-copy">
           <h2>Weekly {sport.toUpperCase()} Starter Pack</h2>
           <p>4 random Core cards</p>

@@ -373,6 +373,8 @@ export function PackShop({
                   {products.map((p) => (
                     <article className="pack-product" key={p.id}>
                       <PackArtwork
+                        sport={sport}
+                        count={p.cards}
                         name={title(p)}
                         premium={p.tier === "PREMIUM"}
                       />
@@ -514,6 +516,8 @@ export function PackShop({
               data-pack-id={p.id}
             >
               <PackArtwork
+                sport={sport}
+                count={p.cardCount ?? p.receipt?.cards.length}
                 name={title(p)}
                 premium={p.type === "PREMIUM"}
                 compact
@@ -579,6 +583,8 @@ export function PackShop({
         >
           <div className="pack-purchase-review">
             <PackArtwork
+              sport={sport}
+              count={review.cards}
               name={title(review)}
               premium={review.tier === "PREMIUM"}
             />

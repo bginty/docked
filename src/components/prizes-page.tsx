@@ -5,6 +5,9 @@ import { useSport } from "./sport-context";
 import { CompetitionSwitch } from "./competition-switch";
 import { competitionName, seasonLabel } from "@/core/competition-display";
 import { NavigationShortcut } from "./navigation-shortcut";
+import { approvedAustralianPrizes } from "@/core/approved-australian-rules";
+import { paidPackOffers } from "@/core/paid-pack-catalogue";
+import { PackArtwork } from "./pack-artwork";
 import {
   competitionHref,
   prizeSelection,
@@ -78,6 +81,11 @@ export function PrizesPage({
     setQuery(Object.fromEntries(new URL(url, location.origin).searchParams));
   };
   const items = schedule?.items.slice().sort((a, b) => a.from - b.from) ?? [];
+  const upcoming =
+    !items.length && period === "weekly" && (sport === "afl" || sport === "nrl")
+      ? approvedAustralianPrizes(sport, mode === "OPEN" ? "OPEN" : "SALARY_CAP")
+      : null;
+  const displayedItems = upcoming?.items ?? items;
   return (
     <section className="prizes-page">
       <header className="prizes-heading">
@@ -85,13 +93,21 @@ export function PrizesPage({
           <h1>Prizes</h1>
           <p>See what&apos;s up for grabs.</p>
         </div>
-        <NavigationShortcut
-          compact
-          icon="edge"
-          href={competitionHref("/fantasy/results", context)}
-        >
-          View Rankings
-        </NavigationShortcut>
+        <nav className="competition-page-actions" aria-label="Prize links">
+          <NavigationShortcut
+            compact
+            href={competitionHref("/fantasy/play", context)}
+          >
+            Back to Lineup
+          </NavigationShortcut>
+          <NavigationShortcut
+            compact
+            icon="edge"
+            href={competitionHref("/fantasy/results", context)}
+          >
+            View Rankings
+          </NavigationShortcut>
+        </nav>
       </header>
       <span className="competition-label">Competition</span>
       <CompetitionSwitch
@@ -173,11 +189,34 @@ export function PrizesPage({
           : "Season"}{" "}
         prizes{season ? ` · ${seasonLabel(season)}` : ""}
       </h2>
-      {items.length ? (
+      {upcoming && (
+        <section
+          className="upcoming-prize-notice"
+          aria-label="Upcoming prize schedule"
+        >
+          <h2>Upcoming weekly prizes</h2>
+          <p>
+            Approved {sport.toUpperCase()} {competitionName(mode)} schedule ·
+            Test Docked Credits have no cash value.
+          </p>
+          <p>
+            Preview only. Prize-bearing rounds and a tied-place policy must be
+            approved before awards begin.
+          </p>
+          {round && (
+            <p>
+              {seasonLabel(season)} · {roundWord} {round.week}: No prizes in
+              this test competition. The upcoming schedule does not apply
+              retrospectively.
+            </p>
+          )}
+        </section>
+      )}
+      {displayedItems.length ? (
         <>
           <div className="prize-podium">
             {[1, 2, 3].map((position) => {
-              const rewards = items.filter(
+              const rewards = displayedItems.filter(
                 (i) => i.from <= position && i.to >= position,
               );
               return rewards.length ? (
@@ -191,9 +230,35 @@ export function PrizesPage({
                       {position === 1 ? "1st" : position === 2 ? "2nd" : "3rd"}{" "}
                       place
                     </h3>
-                    {rewards.map((item) => (
-                      <strong key={item.type}>{prizeRewardLabel(item)}</strong>
-                    ))}
+                    {rewards.map((item) => {
+                      const product = paidPackOffers.find(
+                        (p) => p.id === item.productVersion,
+                      );
+                      const upcomingPack =
+                        item.type === "pack" &&
+                        upcoming?.items.some(
+                          (p) => p.productVersion === item.productVersion,
+                        );
+                      return (
+                        <div className="prize-reward-item" key={item.type}>
+                          {item.type === "pack" &&
+                            (product || upcomingPack) && (
+                              <PackArtwork
+                                compact
+                                name={item.description}
+                                sport={sport}
+                                count={product?.cards ?? 9}
+                                premium={
+                                  product
+                                    ? product.type === "PREMIUM"
+                                    : mode === "OPEN"
+                                }
+                              />
+                            )}
+                          <strong>{prizeRewardLabel(item)}</strong>
+                        </div>
+                      );
+                    })}
                   </div>
                 </article>
               ) : null;
@@ -209,7 +274,7 @@ export function PrizesPage({
                 </tr>
               </thead>
               <tbody>
-                {items.map((i) => (
+                {displayedItems.map((i) => (
                   <tr key={`${i.from}:${i.type}`}>
                     <td>
                       {i.from === i.to

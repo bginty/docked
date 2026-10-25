@@ -1,5 +1,10 @@
 import { z } from "zod";
 import { DateTime } from "luxon";
+import {
+  identityCaseCommand,
+  applyIdentityCase,
+  type ManualIdentityState,
+} from "./manual-identity";
 import type { CreditsState } from "./credits-sandbox";
 import { creditBalances, wallet } from "./credits-sandbox";
 import type { Operator } from "./commerce-sandbox";
@@ -60,6 +65,7 @@ export type ManualRedemption = {
   internalNotes?: { at: number; actor: string; text: string }[];
 };
 export type RedemptionProgram = {
+  manualIdentity?: ManualIdentityState;
   scope: "local-fixtures-only";
   version: string;
   issuancePolicies: string[];
@@ -110,6 +116,12 @@ export const redemptionCommand = z
   .object({
     kind: z.literal("redemption"),
     operation: z.discriminatedUnion("action", [
+      z
+        .object({
+          action: z.literal("identity-case"),
+          case: identityCaseCommand,
+        })
+        .strict(),
       z
         .object({
           action: z.literal("submit"),
@@ -277,20 +289,23 @@ export function authorizeRedemption(
   assertRedemptionActor(s, actor);
   const action = c.operation.action,
     p = s.redemption!;
-  const permission = ["identity-review", "evidence-access"].includes(action)
-    ? "identity"
-    : ["review", "approve", "reject"].includes(action)
-      ? "review"
-      : [
-            "claim",
-            "sent",
-            "exception",
-            "release-confirmed-unpaid",
-            "return",
-            "bank-access",
-          ].includes(action)
-        ? "payment"
-        : null;
+  const permission =
+    ["identity-review", "evidence-access"].includes(action) ||
+    (c.operation.action === "identity-case" &&
+      ["review", "access"].includes(c.operation.case.action))
+      ? "identity"
+      : ["review", "approve", "reject"].includes(action)
+        ? "review"
+        : [
+              "claim",
+              "sent",
+              "exception",
+              "release-confirmed-unpaid",
+              "return",
+              "bank-access",
+            ].includes(action)
+          ? "payment"
+          : null;
   if (
     permission &&
     (actor.role !== "reviewer" || !p.staff[actor.id]?.includes(permission))
@@ -407,6 +422,8 @@ export function applyRedemption(
   assertRedemptionActor(s, actor);
   const p = s.redemption!,
     c = input.operation;
+  if (c.action === "identity-case")
+    return applyIdentityCase(p, actor, ref, c.case, now);
   const staff = (permission: "identity" | "review" | "payment") => {
     if (
       actor.role !== "reviewer" ||
@@ -447,6 +464,8 @@ export function applyRedemption(
     policy: p.version,
   });
   if (c.action === "identity-submit") {
+    if (p.manualIdentity?.cases[actor.id])
+      throw Error("Use the versioned identity case workflow");
     if (actor.role !== "member") throw Error("Member action required");
     const i = p.identities[actor.id];
     if (
@@ -465,6 +484,10 @@ export function applyRedemption(
   }
   if (c.action === "identity-review") {
     staff("identity");
+    if (c.member === actor.id)
+      throw Error("You cannot review your own identity");
+    if (p.manualIdentity?.cases[c.member])
+      throw Error("Use the versioned identity case workflow");
     const i = p.identities[c.member];
     if (!i || !i.evidence) throw Error("Evidence submission required");
     if (

@@ -470,15 +470,24 @@ export function Marketplace({ member }: { member: string }) {
                   <span className={`market-badge ${a.kind}`}>
                     {a.kind === "sale" ? "Sold" : "Bought"}
                   </span>
-                  <strong>{a.price?.toLocaleString()} credits</strong>
-                  <span>{a.kind === "sale" ? "Sale price" : "Paid"}</span>
+                  <strong>
+                    {(a.kind === "sale" ? a.net : a.price)?.toLocaleString()}{" "}
+                    credits
+                  </strong>
+                  <span>{a.kind === "sale" ? "You received" : "Paid"}</span>
                   {a.kind === "sale" && (
                     <small>
-                      Fee {a.fee?.toLocaleString()} · Received{" "}
-                      {a.net?.toLocaleString()}
+                      Sale price {a.price?.toLocaleString()} · Fee{" "}
+                      {a.fee?.toLocaleString()}
                     </small>
                   )}
                   {a.status !== "SOLD" && <span>{a.status}</span>}
+                  <button
+                    className="button"
+                    onClick={() => navigate({ sale: a.id, cursor: "" })}
+                  >
+                    Transaction details
+                  </button>
                 </div>
               </article>
             ))}
@@ -496,9 +505,15 @@ export function Marketplace({ member }: { member: string }) {
       <details className="market-help">
         <summary>Fees & selling</summary>
         <p>
-          Seller commission is 5%, rounded half-up to whole credits, with no
-          minimum and a maximum of 2,000 credits. Buyers pay only the asking
-          price. Competition restrictions still apply.
+          A 5% selling fee is deducted when your card sells, capped at 2,000
+          credits per sale. There’s no minimum fee. Buyers pay the listed price.
+        </p>
+        <p>
+          Sell a card for 1,000 credits: the fee is 50 credits and you receive
+          950 credits.
+        </p>
+        <p>
+          Fees are rounded to the nearest whole credit. Half a credit rounds up.
         </p>
       </details>
       {manage && (

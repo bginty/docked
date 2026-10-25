@@ -158,6 +158,11 @@ export const adminWorkspaces: Record<
         href: "/admin/redemptions",
         roles: owner,
       },
+      {
+        label: "Identity verification",
+        href: "/admin/identity-verification",
+        roles: owner,
+      },
     ],
     restrictions: [
       "Real payments, cash redemption and bank settlement remain disabled. Test credits have no cash value. No provider token, bank detail or raw member ledger is exposed in global search.",

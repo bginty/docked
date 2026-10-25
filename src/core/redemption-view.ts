@@ -1,6 +1,7 @@
 import type { CreditsState } from "./credits-sandbox";
 import { redemptionBalance } from "./redemption";
 import type { Operator } from "./commerce-sandbox";
+import { identityCaseView } from "./manual-identity";
 
 export function redemptionView(
   s: CreditsState,
@@ -43,6 +44,10 @@ export function redemptionView(
       .map(([key]) => key.slice(actor.id.length + 1))
       .slice(-200),
     identityPolicy: p?.identityPolicy ?? "Not configured",
+    verification:
+      !admin || permissions.includes("identity")
+        ? identityCaseView(p, actor, admin)
+        : null,
     calendarConfigured: !!p?.calendar.cutoff && !!p?.calendar.dispatchTime,
     limits: { minimum: p?.minimum ?? null, maximum: p?.maximum ?? null },
     destinations: Object.values(p?.destinations ?? {})

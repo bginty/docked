@@ -30,6 +30,8 @@ import { packShopHref } from "@/core/pack-presentation";
 export type PackOpeningProps = {
   userId: string;
   name: string;
+  sport?: string;
+  cardCount?: number;
   packType?: "STANDARD" | "PREMIUM" | "WEEKLY_CORE" | null;
   receipt?: PackReceipt | null;
   openPack: () => Promise<PackReceipt>;
@@ -331,6 +333,14 @@ export default function PackOpening(props: PackOpeningProps) {
                   core={props.packType === "WEEKLY_CORE"}
                   premium={props.packType === "PREMIUM"}
                   name={props.name}
+                  sport={
+                    props.sport ??
+                    new URLSearchParams(
+                      props.collectionHref?.split("?")[1],
+                    ).get("sport") ??
+                    undefined
+                  }
+                  count={props.cardCount ?? receipt?.cards.length}
                 />
               </button>
             </div>
@@ -389,6 +399,14 @@ export default function PackOpening(props: PackOpeningProps) {
                         core={props.packType === "WEEKLY_CORE"}
                         premium={props.packType === "PREMIUM"}
                         name={props.name}
+                        sport={
+                          props.sport ??
+                          new URLSearchParams(
+                            props.collectionHref?.split("?")[1],
+                          ).get("sport") ??
+                          undefined
+                        }
+                        count={props.cardCount ?? receipt.cards.length}
                       />
                     </div>
                   )}

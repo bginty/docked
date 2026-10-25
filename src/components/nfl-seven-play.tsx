@@ -593,7 +593,7 @@ export function NflSevenPlay({
           )}
         </div>
         <span className="entry-badge" role="status">
-          {draftState}
+          {closed && !entry ? "Not entered" : draftState}
         </span>
       </header>
       <CompetitionWeekSelector
@@ -603,8 +603,8 @@ export function NflSevenPlay({
       />
       {closed && !entry && (
         <p role="status">
-          No submitted lineup is recorded for this week. A saved draft is not a
-          historical entry.
+          Entry is closed for this week. No submitted lineup is recorded. A
+          saved draft is not a historical entry.
         </p>
       )}
       {entry && (

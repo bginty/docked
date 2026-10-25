@@ -508,7 +508,9 @@ export function SportSandbox({
         </div>
         <span className="play-status">
           {locked
-            ? "Locked"
+            ? entry
+              ? "Entered · Locked"
+              : "Not entered"
             : entry
               ? dirty
                 ? "Entered · Unsaved changes"
@@ -520,6 +522,7 @@ export function SportSandbox({
                 : "Draft"}
         </span>
       </div>
+      {locked && <p className="small-note">Entry is closed for this round.</p>}
       <div className="sport-round-controls">
         <button
           aria-label={"Previous " + roundWord.toLowerCase()}

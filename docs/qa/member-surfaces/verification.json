@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-25",
+  "scope": "Local release-candidate verification; no hosted acceptance or production mutations",
+  "platform": { "command": "npm test", "passed": 627, "failed": 0 },
+  "database": { "command": "npm run db:test", "passed": 222, "failed": 0, "environment": "isolated test databases" },
+  "browser": {
+    "command": "npx tsx scripts/member-surfaces-browser.ts",
+    "passedRouteWidthChecks": 63,
+    "widths": [320, 360, 375, 390, 430, 768, 1440],
+    "sports": ["nfl", "afl", "nrl"],
+    "routes": ["/fantasy/results", "/fantasy/prizes", "/fantasy/market"],
+    "enlargedTextPercent": 200,
+    "additionalPassedFlows": ["marketplace management", "server fee previews at low, half-credit and capped prices", "purchase review and synthetic settlement", "activity", "both Australian prize modes", "synthetic identity submission and staff review", "21 pack artwork variants"],
+    "authentication": "simulated fixture session",
+    "nativeDeviceAcceptance": false,
+    "hostedAcceptance": false
+  },
+  "lint": { "command": "npm run lint", "exitCode": 0 },
+  "build": { "command": "npm run build", "exitCode": 0, "mode": "local optimized production build" },
+  "typecheck": { "command": "npm run typecheck", "exitCode": 0 },
+  "stagedSourceReview": { "diffCheckPassed": true, "targetedSecretPatternScanPassed": true, "scope": "private key, token prefix and credential URL patterns; not a comprehensive secrets audit" },
+  "security": { "command": "npm audit --omit=dev --json", "vulnerabilities": 0, "next": "16.4.3", "zod": "4.6.7" },
+  "productionDeployed": false,
+  "hostedMigrationsApplied": false,
+  "realIdentityDocumentsCollected": false,
+  "realEmailsSent": false,
+  "livePrizesAwarded": false,
+  "productionAccountsChanged": false,
+  "limits": ["Real document upload/storage/scanning and safe-preview integration remain unconnected", "Production accepted-ID, retention and privacy policies require approval", "Durable email-dispatch adapter, transport and scheduling require integration", "Prize activation requires an approved saved tie policy and separate approval", "Authenticated hosted and installed-app verification remains required"]
+}

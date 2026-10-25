@@ -10,7 +10,7 @@ import { CompetitionSwitch } from "./competition-switch";
 import { competitionHref } from "@/core/prize-schedules";
 import type { ReviewRound } from "@/core/competition-review";
 import type { NflStanding, PostgameView } from "@/server/postgame-results";
-import { competitionName } from "@/core/competition-display";
+import { competitionName, seasonLabel } from "@/core/competition-display";
 import {
   formatPoints,
   myTeamPage,
@@ -169,20 +169,27 @@ export function CompetitionResults({
   return (
     <section className="standings-page" data-ready={ready}>
       <header className="standings-hero">
-        <NavigationShortcut compact icon="trophy" href={playUrl}>
-          Back to Lineup
-        </NavigationShortcut>
         <h1>Rankings</h1>
-        <NavigationShortcut
-          compact
-          icon="trophy"
-          href={competitionHref("/fantasy/prizes", context)}
-        >
-          Prizes
-        </NavigationShortcut>
+        <nav className="competition-page-actions" aria-label="Rankings links">
+          <NavigationShortcut compact icon="trophy" href={playUrl}>
+            Back to Lineup
+          </NavigationShortcut>
+          <NavigationShortcut
+            compact
+            icon="trophy"
+            href={competitionHref("/fantasy/prizes", context)}
+          >
+            Prizes
+          </NavigationShortcut>
+        </nav>
         <p>
           See how you stack up{" "}
-          {period === "season" ? "this season" : "this week"}.
+          {period === "season"
+            ? "this season"
+            : roundWord === "Round"
+              ? "this round"
+              : "this week"}
+          .
         </p>
         <span className="competition-label">Competition</span>
         <CompetitionSwitch
@@ -223,7 +230,11 @@ export function CompetitionResults({
             }
           >
             {seasons.length ? (
-              seasons.map((s) => <option key={s}>{s}</option>)
+              seasons.map((s) => (
+                <option key={s} value={s}>
+                  {seasonLabel(s)}
+                </option>
+              ))
             ) : (
               <option value="">No seasons</option>
             )}
@@ -309,14 +320,14 @@ export function CompetitionResults({
           <div className="game-day-numbers">
             <div>
               <span>Your rank</span>
-              <strong>{mine?.rank ?? "—"}</strong>
+              <strong>{mine?.rank ?? "Not ranked"}</strong>
             </div>
             <div>
               <span>Season points</span>
               <strong>{gameDayPoints(mine?.centipoints)}</strong>
             </div>
             <div>
-              <span>Weeks included</span>
+              <span>{roundWord === "Round" ? "Rounds" : "Weeks"} included</span>
               <strong>{summary.included}</strong>
             </div>
           </div>

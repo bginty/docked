@@ -17,7 +17,7 @@ export function CompetitionSwitch({
   disabled?: boolean;
 }) {
   return (
-    <nav className={className} aria-label="Competition">
+    <nav className={`${className} competition-switch`} aria-label="Competition">
       {(["SALARY_CAP", "OPEN"] as const).map((m) => (
         <button
           type="button"
