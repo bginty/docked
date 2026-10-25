@@ -158,7 +158,7 @@ test("existing fullback eligibility maps actual source statistics to running bac
     "pending",
   );
 });
-test("provisional zeros enter authoritative totals and can be corrected without changing frozen rules", () => {
+test("legacy assumed zeros remain unresolved in open NFL rounds; frozen final results and correction audit survive", () => {
   const f = syntheticScenario("nfl");
   let state = saveTeam(
     f.state,
@@ -186,8 +186,15 @@ test("provisional zeros enter authoritative totals and can be corrected without 
   const player = results(zero).rows[0].players.find(
     (p) => p.playerId === absent.players[0].playerId,
   )!;
-  assert.equal(player.centipoints, 0);
-  assert.notEqual(results(zero).rows[0].centipoints, null);
+  assert.equal(player.centipoints, null);
+  assert.equal(results(zero).rows[0].centipoints, null);
+  assert.equal(
+    results({
+      ...zero,
+      finalisedAt: scenarioTimes.initial,
+    }).rows[0].players.find((p) => p.playerId === player.playerId)!.centipoints,
+    0,
+  );
   assert.deepEqual(
     importStatistics(
       zero,

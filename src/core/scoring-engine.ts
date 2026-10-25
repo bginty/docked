@@ -422,9 +422,17 @@ export function results(state: ScoringState) {
           );
           const resolved =
             (!state.period.lineupVersion || !!card.slotLockedAt) &&
-            source?.status === "completed" &&
+            (source?.status === "completed" ||
+              (state.period.sport === "nfl" &&
+                source?.status === "live" &&
+                player?.availability === "complete")) &&
             player &&
-            player.availability !== "pending";
+            player.availability !== "pending" &&
+            // Preserve frozen final results. Unreconciled historical assumed
+            // zeros in an open NFL round are not evidence of participation.
+            (state.period.sport !== "nfl" ||
+              !!state.finalisedAt ||
+              player.availability !== "assumed-zero");
           const score = resolved
             ? player.availability === "complete"
               ? scorePlayer(state.period.rules, card.position, player.stats)
@@ -502,19 +510,29 @@ export function results(state: ScoringState) {
       rank: null as number | null,
     };
   });
-  // New NBA proposal alone ranks earned postgame points during the week. Missing
+  // NFL and the NBA weekly contract rank available points progressively. Missing
   // games remain unresolved; known points never become a final total implicitly.
   const weekly = isNbaWeeklyVersion(state.period.rules.version);
+  const progressiveNfl = state.period.sport === "nfl" && !state.finalisedAt;
+  const scored = (r: (typeof rows)[number]) =>
+    r.players.some((p) => p.matches.some((m) => m.score !== null));
   const hasScoredGame = rows.some((r) =>
     r.players.some((p) => p.matches.some((m) => m.score !== null)),
   );
   const rankPoints = (r: (typeof rows)[number]) =>
-    weekly ? r.knownCentipoints : (r.centipoints ?? -Infinity);
+    weekly || (progressiveNfl && scored(r))
+      ? r.knownCentipoints
+      : (r.centipoints ?? -Infinity);
   rows.sort(
     (a, b) => rankPoints(b) - rankPoints(a) || a.member.localeCompare(b.member),
   );
-  if (weekly ? hasScoredGame : rows.every((r) => r.centipoints !== null))
+  if (
+    weekly || progressiveNfl
+      ? hasScoredGame
+      : rows.every((r) => r.centipoints !== null)
+  )
     rows.forEach((r, i) => {
+      if (progressiveNfl && !scored(r)) return;
       r.rank =
         i && rankPoints(r) === rankPoints(rows[i - 1])
           ? rows[i - 1].rank
@@ -534,7 +552,17 @@ export function scoringCompletion(
   row: ReturnType<typeof results>["rows"][number],
 ) {
   return {
-    completedPlayers: row.players.filter((p) => p.centipoints !== null).length,
+    completedPlayers: row.players.filter(
+      (p) =>
+        p.centipoints !== null &&
+        ((p.matches.length === 0 && p.centipoints === 0) ||
+          p.matches.every(
+            (m) =>
+              m.sourceStatus === "completed" &&
+              m.score !== null &&
+              m.availability !== "assumed-zero",
+          )),
+    ).length,
     totalPlayers: row.players.length,
   };
 }

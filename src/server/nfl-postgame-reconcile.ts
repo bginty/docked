@@ -13,7 +13,6 @@ import { completedNflGame } from "../core/nflverse-evidence";
 import { retainedNflSource } from "./nflverse-bundle";
 import { requirePostgamePermit } from "./postgame-download";
 import { SportsFeedStore } from "./sports-feed-store";
-import { completedNflMissingZero } from "../core/nfl-completed-zero";
 
 export async function reconcileNflBundle(
   sql: Sql,
@@ -94,8 +93,11 @@ export async function prepareNflBundleReconciliation(
     // A provider may label a verified two-way player by the defensive role.
     // Only pre-completion official evidence may bridge that label; the frozen
     // fantasy slot and player identity are never changed.
-    const evidence=await sql`select * from nfl_roster.scoring_positions(${sql.json(mapping.players)},${first}::timestamptz)`;
-    const verifiedPositions:Record<string,string>=Object.fromEntries(evidence.map((r)=>[String(r.provider_id),String(r.position)]));
+    const evidence =
+      await sql`select * from nfl_roster.scoring_positions(${sql.json(mapping.players)},${first}::timestamptz)`;
+    const verifiedPositions: Record<string, string> = Object.fromEntries(
+      evidence.map((r) => [String(r.provider_id), String(r.position)]),
+    );
     const gameRows = weekly.body.rows.filter(
       (r: Record<string, string>) => r.game_id === mapping.gameId,
     );
@@ -110,7 +112,15 @@ export async function prepareNflBundleReconciliation(
           .join(","),
       ),
     ].join("\n");
-    nflversePostgame(csv, normalizedMap, 1, now, plays,undefined,verifiedPositions);
+    nflversePostgame(
+      csv,
+      normalizedMap,
+      1,
+      now,
+      plays,
+      undefined,
+      verifiedPositions,
+    );
     await sql`insert into sports_feed.postgame_mapping(stream_id,fixture_id,mapping_hash,mapping,actor) values(${streamId},${mapping.fixtureId},${digest(normalizedMap)},${sql.json(normalizedMap)},${actor.id}) on conflict do nothing`;
     const [frozen] =
       await sql`select mapping_hash from sports_feed.postgame_mapping where stream_id=${streamId} and fixture_id=${mapping.fixtureId}`;
@@ -142,14 +152,9 @@ export async function prepareNflBundleReconciliation(
           s.period.rules.version,
           verifiedPositions,
         );
-        const parsed = s.finalisedAt
-          ? rawParsed
-          : completedNflMissingZero(
-              rawParsed,
-              normalizedMap,
-              weekly.body.rows,
-              plays,
-            );
+        // Missing participation is unresolved, even after the game ends. Never
+        // turn absence from the provider into a DNP or an earned zero.
+        const parsed = rawParsed;
         issues = parsed.issues;
         if (
           old &&

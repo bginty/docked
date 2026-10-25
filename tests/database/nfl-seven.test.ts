@@ -3,12 +3,55 @@ import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
+import postgres from "postgres";
 import { nflSeven, sevenRules } from "../../src/core/nfl-seven";
 import { rarityConfiguration, rarityRule } from "../../src/core/card-rarity";
 test("seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration", async () => {
-  const pg = new PGlite();
-  const q = async (s: string, args: unknown[] = []) =>
-    (await pg.query<any>(s, args)).rows;
+  const url = process.env.PROGRESSIVE_NFL_TEST_DB;
+  if (
+    url &&
+    !/^postgres:\/\/[^@]+@127\.0\.0\.1:\d+\/docked_free_play_test_\d+$/.test(
+      url,
+    )
+  )
+    throw Error("Disposable loopback PostgreSQL only");
+  const native = url
+    ? postgres(url, {
+        max: 1,
+        onnotice: () => {},
+        types: {
+          json: {
+            to: 3802,
+            from: [114, 3802],
+            serialize: (v: unknown) =>
+              typeof v === "string" ? v : JSON.stringify(v),
+            parse: JSON.parse,
+          },
+        },
+      })
+    : null;
+  const pg = native
+    ? {
+        exec: (s: string) => native.unsafe(s),
+        query: async (s: string, args: unknown[]) => ({
+          rows: await native.unsafe(
+            s,
+            args.map((a) =>
+              a !== null && typeof a === "object" ? JSON.stringify(a) : a,
+            ) as never[],
+          ),
+        }),
+        close: () => native.end(),
+      }
+    : new PGlite();
+  const q = async (s: string, args: unknown[] = []): Promise<any[]> => {
+    try {
+      return (await pg.query(s, args)).rows;
+    } catch (error) {
+      if (native) console.error("Isolated failing SQL:", s);
+      throw error;
+    }
+  };
   try {
     await pg.exec(
       `create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean default false,banned_until timestamptz);create table auth.sessions(id uuid primary key,user_id uuid references auth.users,not_after timestamptz);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated;`,
@@ -774,6 +817,71 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
     assert.ok(Array.isArray(diagnostics.runs));
     assert.ok(Array.isArray(diagnostics.sources));
     assert.ok(diagnostics.rounds.some((r: any) => r.competition === wide));
+    // Independent player states survive the authoritative SQL read model. This
+    // is isolated fixture evidence, never a rewrite of a production final.
+    const progressivePlayers = snapshot.map((c: any, i: number) => ({
+      cardId: c.card_id,
+      multiplier: 1,
+      centipoints:
+        i === 0 ? 2926 : i === 1 ? 1000 : i === 2 || i === 3 ? 0 : null,
+      baseCentipoints:
+        i === 0 ? 2090 : i === 1 ? 1000 : i === 2 || i === 3 ? 0 : null,
+      matches: [
+        {
+          sourceStatus: i === 1 ? "live" : i < 4 ? "completed" : "missing",
+          availability:
+            i === 2
+              ? "confirmed-dnp"
+              : i === 3
+                ? "assumed-zero"
+                : i < 2
+                  ? "complete"
+                  : "pending",
+          score:
+            i < 4
+              ? { centipoints: i === 0 ? 2090 : i === 1 ? 1000 : 0, parts: [] }
+              : null,
+        },
+      ],
+    }));
+    await q(
+      `insert into sports_feed.journal(stream_id,revision,previous_hash,state_hash,body,calculated)values($1,(select coalesce(max(revision),0)+1 from sports_feed.journal where stream_id=$1),'fixture-reopened','fixture-progressive',$2,$3)`,
+      [
+        publicStream,
+        JSON.stringify({
+          scope: "authorised-free-beta",
+          period: { rules: rule },
+          finalisedAt: null,
+        }),
+        JSON.stringify({
+          rows: [
+            {
+              member: u,
+              centipoints: null,
+              knownCentipoints: 3926,
+              status: "pending-data",
+              rank: 1,
+              players: progressivePlayers,
+            },
+          ],
+        }),
+      ],
+    );
+    const progress = (await standings()).find(
+      (r: any) => r.competitionId === publicRound,
+    );
+    assert.equal(progress.finalised, false);
+    assert.equal(progress.rows[0].knownCentipoints, 3926);
+    assert.equal(progress.rows[0].centipoints, null);
+    assert.equal(progress.rows[0].completedPlayers, 2);
+    assert.equal(
+      progress.rows[0].lineup.filter((p: any) => p.completed).length,
+      2,
+    );
+    assert.equal(
+      progress.rows[0].lineup.filter((p: any) => p.status === "dnp").length,
+      1,
+    );
   } finally {
     await pg.close();
   }

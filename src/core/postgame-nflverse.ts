@@ -384,7 +384,7 @@ export function nflversePostgame(
   observedAt: string,
   plays?: Record<string, string>[],
   scoringVersion?: string,
-  verifiedDualPositions: Readonly<Record<string,string>> = {},
+  verifiedDualPositions: Readonly<Record<string, string>> = {},
 ) {
   const mapping = mappingSchema.parse(input);
   z.iso.datetime().parse(observedAt);
@@ -411,10 +411,12 @@ export function nflversePostgame(
     throw Error("nflverse schema changed");
   const selected = rows.filter((r) => r.game_id === mapping.gameId);
   const index = new Map<string, Record<string, string>>();
+  const issues: string[] = [];
   for (const r of selected) {
+    // nflverse can include unattributed team events. They cannot be assigned to
+    // a player, but must not suppress valid, independently identified players.
+    // Keep fixture validation and all identified-player duplicate checks strict.
     if (
-      !/^\d{2}-\d{7}$/.test(r.player_id) ||
-      index.has(r.player_id) ||
       integer(r, "season") !== mapping.season ||
       r.season_type !== mapping.seasonType ||
       integer(r, "week") !== Number(mapping.gameId.split("_")[1]) ||
@@ -423,17 +425,29 @@ export function nflversePostgame(
         (r.team === mapping.home ? mapping.away : mapping.home)
     )
       throw Error("Duplicate/mismatched player or fixture row");
+    if (!r.player_id && !r.player_display_name && !r.position) {
+      issues.push(
+        "Unattributed source row quarantined; no player score assigned",
+      );
+      continue;
+    }
+    if (!/^\d{2}-\d{7}$/.test(r.player_id) || index.has(r.player_id))
+      throw Error("Duplicate/mismatched player or fixture row");
     index.set(r.player_id, r);
   }
-  const issues: string[] = [];
   const players = mapping.players.map((p) => {
     const row = index.get(p.gsisId);
     const result =
       row &&
       row.team === p.team &&
       (officialPositionMatches(row.position, p.position) ||
-        (officialPositionMatches(verifiedDualPositions[p.gsisId]??"",p.position) &&
-         (verifiedDualPositions[p.gsisId]??"").split("/").includes(row.position)))
+        (officialPositionMatches(
+          verifiedDualPositions[p.gsisId] ?? "",
+          p.position,
+        ) &&
+          (verifiedDualPositions[p.gsisId] ?? "")
+            .split("/")
+            .includes(row.position)))
         ? nflversePlayerStatistics(row, plays, scoringVersion)
         : {
             stats: null,
