@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "at": "2026-10-25T04:00:04.657Z",
+  "rules": {
+    "count": 4,
+    "active": 0
+  },
+  "protected": {
+    "beta_fantasy.cards": {
+      "n": "59",
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.editions": {
+      "n": "678",
+      "hash": "52592bc12a9428593d97002fce74c46e"
+    },
+    "beta_fantasy.players": {
+      "n": "534",
+      "hash": "3a20c778089688b8a82a2fe4e4796074"
+    },
+    "beta_fantasy.entries": {
+      "n": "14",
+      "hash": "ae3a5a52bcd1c0c05e8e60260632f4e8"
+    },
+    "beta_fantasy.results": {
+      "n": "1",
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.round_drafts": {
+      "n": "21",
+      "hash": "d69fa65419acdd7ea0e46843ecd7fa1f"
+    },
+    "beta_fantasy.competitions": {
+      "n": "53",
+      "hash": "bc4f77d6f8d012d38718cd53739a8b02"
+    },
+    "beta_fantasy.prize_schedules": {
+      "n": "4",
+      "hash": "27aadb9596e7f59e2e219acac3ae06e7"
+    },
+    "beta_fantasy.ownership_events": {
+      "n": "59",
+      "hash": "704a314a527c2d8d2aa625dc1546ca60"
+    },
+    "beta_fantasy.sales": {
+      "n": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.packs": {
+      "n": "1",
+      "hash": "79a2a7b163723a34efdfdacbaeaff280"
+    },
+    "beta_fantasy.pack_items": {
+      "n": "11",
+      "hash": "3799b85f85c01bf8b37059591335479e"
+    },
+    "beta_fantasy.ledger": {
+      "n": "0",
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.state": {
+      "n": "1",
+      "hash": "37ef921c53a32111b6b2c2a70683dcac"
+    },
+    "credits_sandbox.pack_configuration": {
+      "n": "31",
+      "hash": "4ee9c06c9220eece0333a8a1a2737b36"
+    },
+    "credits_sandbox.permanent_players": {
+      "n": "986",
+      "hash": "a9ffd0b2c5d6cae5d4162e2714ac1ecd"
+    },
+    "credits_sandbox.card_definitions": {
+      "n": "371",
+      "hash": "72661276d4021ae3ad6dcb707fcdc607"
+    },
+    "credits_sandbox.card_instances": {
+      "n": "447",
+      "hash": "1ba391e5302c1294608811756061f083"
+    },
+    "credits_sandbox.pack_receipts": {
+      "n": "70",
+      "hash": "ac974faceefa763ead17cfaf84465ddc"
+    },
+    "sports_feed.nfl_rounds": {
+      "n": "6",
+      "hash": "85296f3a905cbdd3ae268ccf0925ea69"
+    },
+    "sports_feed.nfl_control": {
+      "n": "1",
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    },
+    "sports_feed.sport_rounds": {
+      "n": "40",
+      "hash": "118ec2922689fb3e0b77ee8ee5a3b1ba"
+    },
+    "sports_feed.private_beta_sports": {
+      "n": "2",
+      "hash": "e40a905060f3b3367e9a251c636fbea4"
+    },
+    "sports_feed.nba_beta_control": {
+      "n": "1",
+      "hash": "2e5f7b0f8500cffe8056f1bd8af1b1aa"
+    },
+    "sports_feed.sport_sandbox_inventory": {
+      "n": "12",
+      "hash": "23e1a0b2f2a437ad8ef8563efa70048d"
+    },
+    "sports_feed.weekly_core_packs": {
+      "n": "9",
+      "hash": "f9c1fe15d6e8bf2b31c5426b535ba22a"
+    },
+    "sports_feed.weekly_core_schedules": {
+      "n": "9",
+      "hash": "6369c81dae0a9b9c88faaacda6a5d20b"
+    },
+    "sports_feed.weekly_sport_programmes": {
+      "n": "2",
+      "hash": "9349fc51a66f65d5c312d38f2ee1b48c"
+    },
+    "cron.job": {
+      "n": "9",
+      "hash": "3a28cd5be439194810fa98d7d231671f"
+    },
+    "sports_feed.australian_prize_rules": {
+      "n": "4",
+      "hash": "cdfa0bdffcde307e516a837d850b7d82"
+    },
+    "beta_fantasy.members": {
+      "n": "4",
+      "hash": "ed97bf197d16757fd8adecc3f841a2eb"
+    },
+    "beta_private.admission_control": {
+      "n": "1",
+      "hash": "53a92d34ed5b09e444123a854b337021"
+    }
+  },
+  "migrations": [
+    {
+      "version": "20261025015440",
+      "name": "upcoming_australian_prize_inheritance"
+    }
+  ],
+  "authenticatedHosted": false
+}

@@ -1,0 +1,10 @@
+{
+  "deployment": "dpl_1zNzJKGBTFN9z6vYsJKUAuwo3ffA",
+  "checkedAt": "2026-10-25T04:00:13Z",
+  "window": "10 minutes",
+  "errorLogRecords": 10,
+  "classification": "All ten records were explicit authentication denials from signed-out acceptance requests to Play, Profile and Prizes.",
+  "unexpectedRuntimeFailuresObserved": 0,
+  "configuredDrains": 0,
+  "limitation": "Bounded post-release observation, not continuous monitoring or authenticated member acceptance."
+}

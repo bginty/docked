@@ -1,5 +1,19 @@
 # Docked member surfaces and identity verification review
 
+## Approved deployment — 25 October 2026
+
+Following the owner's explicit **deploy** instruction, the application is live at **https://docked.com.au**, commit **`b9f390f787abb425e18bdae1fbc9860761053390`**, deployment **`dpl_1zNzJKGBTFN9z6vYsJKUAuwo3ffA`**. This includes implementation `ccc4fbef` and a hosted-check correction for signed-out identity pages. The first candidate was not promoted after its customer identity page returned HTTP 500; the corrected page uses existing sign-in/MFA recovery, and the staff page denies unauthorised access with 404.
+
+The corrected candidate and live domain each passed **57 HTTP checks**. Release identity, closed registration, private API denials and delivery of the new root stylesheets were verified. These were signed-out checks: no authenticated browser session was available, and no signed-in or installed-app acceptance is claimed. The additional authentication regression suite passed **14 tests**; lint and the production build passed again.
+
+Migration `20261025015440` was applied transactionally after its reviewed hash and private recovery snapshot were verified. Existing records were unchanged within that migration. Across the whole release, **31 of 32 protected table fingerprints remained identical**. The remaining table, `sports_feed.nfl_rounds`, changed only `last_checked` and `next_check` for one round through the existing scheduler. Wallets, inventory, transactions, entries, results, cron configuration and activation controls remained unchanged. All four prize templates remain inactive.
+
+The prior live deployment `dpl_AZdRYXmTYKsdUZHCJH4JZWLnHnir` remains the application rollback target. Real KYC intake, payment activation, prize awards and NBA visibility were not enabled. No real documents, emails, purchases or account approvals were used during verification. The recovery snapshot is an application-data/function-definition snapshot with verified readback, not a complete disaster-recovery drill.
+
+Post-release logs contained ten expected authentication-denial messages from the signed-out tests and no unexpected runtime failures in the sampled window. No log drains are configured. Supabase's existing leaked-password-protection warning remains unchanged; see [password protection guidance](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection). Release evidence is in `docs/qa/member-surfaces/release/`.
+
+The implementation and limitations recorded below are retained as the pre-deployment handover. This addendum supersedes only its not-deployed statements.
+
 This release candidate improves NFL, AFL and NRL Rankings, Prizes, Market and pack presentation. It adds a locally executable synthetic identity-verification workflow to the existing withdrawal service. It has not been deployed. No production accounts, balances, inventory, permissions, prizes or email deliveries were changed.
 
 ## Changes and status

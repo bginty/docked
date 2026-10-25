@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-25T04:01:48.709Z",
+  "protectedTables": 32,
+  "changedTables": [
+    "sports_feed.nfl_rounds"
+  ],
+  "unchanged": false,
+  "businessRecordsUnchanged": true,
+  "expectedSchedulerProgress": true,
+  "scope": "Protected snapshots compared across release; only existing NFL scheduler check timestamps advanced; no production mutation tests"
+}
