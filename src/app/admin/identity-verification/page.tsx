@@ -2,10 +2,15 @@ import { AppShell } from "@/components/app-shell";
 import { IdentityVerification } from "@/components/identity-verification";
 import { redemptionSource } from "@/server/redemptions";
 import { requireRole } from "@/server/auth";
+import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 export default async function Page() {
   if (process.env.DOCKED_REDEMPTION_LOCAL !== "true") {
-    await requireRole(["owner"]);
+    try {
+      await requireRole(["owner"]);
+    } catch {
+      notFound();
+    }
     return (
       <AppShell authenticated>
         <section className="identity-page">
