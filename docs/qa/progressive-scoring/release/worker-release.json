@@ -1,0 +1,15 @@
+{
+  "function": "nfl-postgame",
+  "project": "pojoymtniryarxxunyvz",
+  "version": 19,
+  "verifyJwt": true,
+  "bundleSha256": "6e3430bb424d8a9d97849aac24f184af704d0737e84f309720e49f0358d22660",
+  "scheduledRun": {
+    "startedAt": "2026-10-25T04:30:00.770936Z",
+    "finishedAt": "2026-10-25T04:30:04.499656Z",
+    "task": "reconcile",
+    "status": "pending-review",
+    "note": "Scheduler and hosted worker executed; unresolved source/correction issues are not reported as final scores."
+  },
+  "scheduleChanged": false
+}

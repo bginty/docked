@@ -1,0 +1,560 @@
+{
+  "rounds": [
+    {
+      "round": 7,
+      "mode": "SALARY_CAP",
+      "stream_id": "beta-real:nfl:seven:salary_cap:2026:7",
+      "last_checked": "2026-10-25T03:15:03.491Z",
+      "next_check": "2026-10-25T03:30:03.491Z",
+      "issues": [
+        "2026_07_NE_CHI: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required",
+        "2026_07_PIT_NO: awaiting verified completion evidence",
+        "2026_07_SF_ATL: awaiting verified completion evidence",
+        "2026_07_CIN_BAL: awaiting verified completion evidence",
+        "2026_07_TB_CAR: awaiting verified completion evidence",
+        "2026_07_NYG_HOU: awaiting verified completion evidence",
+        "2026_07_IND_MIN: awaiting verified completion evidence",
+        "2026_07_MIA_NYJ: awaiting verified completion evidence",
+        "2026_07_CLE_TEN: awaiting verified completion evidence",
+        "2026_07_DEN_ARI: awaiting verified completion evidence",
+        "2026_07_GB_DET: awaiting verified completion evidence",
+        "2026_07_LA_LV: awaiting verified completion evidence",
+        "2026_07_KC_SEA: awaiting verified completion evidence",
+        "2026_07_DAL_PHI: awaiting verified completion evidence"
+      ],
+      "scored_at": null,
+      "revision": 2,
+      "recorded_at": "2026-10-23T00:15:00.901Z",
+      "finalised": null,
+      "sources": [],
+      "calculated": [
+        {
+          "centipoints": null,
+          "knownCentipoints": 0,
+          "status": "pending-data",
+          "players": [
+            {
+              "playerId": "f5793c45-f163-4218-b7fa-075445d07288",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_DEN_ARI",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "d214e349-cde9-4b5f-9870-8cb9428b4b16",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_IND_MIN",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "916cdcae-9742-4f32-9a72-1bc837c6ae78",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_KC_SEA",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "df6d7e7a-6a3b-4a74-afe2-b38a88971a48",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_LA_LV",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "e8bf5e48-ddb1-4a7e-969b-93f0153526d5",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_GB_DET",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "170c3f18-c9fa-4e81-97d6-6d5723c16549",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_PIT_NO",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "5a87b79e-8dbf-458d-a288-36440b3e3146",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_LA_LV",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "centipoints": null,
+          "knownCentipoints": 0,
+          "status": "pending-data",
+          "players": [
+            {
+              "playerId": "96a8c27c-9f93-4bd2-b849-194507962901",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_CLE_TEN",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "34bd2d55-d3a0-4280-a441-30942ade3661",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_NE_CHI",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "aed04d3b-85dc-4626-b73d-844b8aa68d5b",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_KC_SEA",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "170c3b45-3781-4d5d-9bd4-bfbc657fcb40",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_SF_ATL",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "18947aa2-4cf5-42d1-b4d2-31a317209e4e",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_PIT_NO",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "76ca6d11-064e-4715-a17b-1c6149d737d3",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_KC_SEA",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "0ee69b7e-0d5f-44e8-bd89-a6d2134cadf5",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:salary_cap:2026:7:2026_07_IND_MIN",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": "2",
+      "locks": "1"
+    },
+    {
+      "round": 7,
+      "mode": "OPEN",
+      "stream_id": "beta-real:nfl:seven:open:2026:7",
+      "last_checked": "2026-10-25T03:30:03.559Z",
+      "next_check": "2026-10-25T03:45:03.559Z",
+      "issues": [
+        "2026_07_NE_CHI: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required",
+        "2026_07_PIT_NO: awaiting verified completion evidence",
+        "2026_07_SF_ATL: awaiting verified completion evidence",
+        "2026_07_CIN_BAL: awaiting verified completion evidence",
+        "2026_07_TB_CAR: awaiting verified completion evidence",
+        "2026_07_NYG_HOU: awaiting verified completion evidence",
+        "2026_07_IND_MIN: awaiting verified completion evidence",
+        "2026_07_MIA_NYJ: awaiting verified completion evidence",
+        "2026_07_CLE_TEN: awaiting verified completion evidence",
+        "2026_07_DEN_ARI: awaiting verified completion evidence",
+        "2026_07_GB_DET: awaiting verified completion evidence",
+        "2026_07_LA_LV: awaiting verified completion evidence",
+        "2026_07_KC_SEA: awaiting verified completion evidence",
+        "2026_07_DAL_PHI: awaiting verified completion evidence"
+      ],
+      "scored_at": null,
+      "revision": 2,
+      "recorded_at": "2026-10-23T00:30:00.971Z",
+      "finalised": null,
+      "sources": [],
+      "calculated": [
+        {
+          "centipoints": null,
+          "knownCentipoints": 0,
+          "status": "pending-data",
+          "players": [
+            {
+              "playerId": "f5793c45-f163-4218-b7fa-075445d07288",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_DEN_ARI",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "da4a5003-51d2-42bb-84a8-3e21f1f8a56d",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_CIN_BAL",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "d214e349-cde9-4b5f-9870-8cb9428b4b16",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_IND_MIN",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "e8bf5e48-ddb1-4a7e-969b-93f0153526d5",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_GB_DET",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "3fee3bf1-95c6-4ffe-8cc3-ce0460ae51d0",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_NE_CHI",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "8131bae4-d69d-4fd0-b1dc-41388df671a6",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_NYG_HOU",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "170c3f18-c9fa-4e81-97d6-6d5723c16549",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_PIT_NO",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "centipoints": null,
+          "knownCentipoints": 0,
+          "status": "pending-data",
+          "players": [
+            {
+              "playerId": "d2f9772f-b6bd-4d8e-a6d8-05684185713b",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_DEN_ARI",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "18947aa2-4cf5-42d1-b4d2-31a317209e4e",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_PIT_NO",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "df6d7e7a-6a3b-4a74-afe2-b38a88971a48",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_LA_LV",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "cb77ae9c-5783-4b92-a76e-55fab5242a83",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_LA_LV",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "c53a802a-71f4-4558-a13c-bda50c435db9",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_CIN_BAL",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "daf4d761-48f7-49e9-8185-a9cb30c74ac9",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_DEN_ARI",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            },
+            {
+              "playerId": "c1abf3f3-80aa-4f87-a123-1054026923c8",
+              "centipoints": null,
+              "matches": [
+                {
+                  "fixtureId": "beta-real:nfl:seven:open:2026:7:2026_07_GB_DET",
+                  "status": "missing",
+                  "availability": "pending",
+                  "score": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": "2",
+      "locks": "1"
+    }
+  ],
+  "completions": [
+    {
+      "game_id": "2026_07_NE_CHI",
+      "first_observed_at": "2026-10-24T00:10:05.218Z"
+    }
+  ],
+  "cache": [
+    {
+      "resource": "0867151048bc7e7bb42540d7869184a3f732a6ff5d887686d837f7d25c14432e",
+      "next_attempt": "2026-10-25T00:05:00.503Z",
+      "checked_at": "2026-10-24T12:05:02.418Z",
+      "error_code": null,
+      "raw_id": "53"
+    },
+    {
+      "resource": "2ec2841459fd1e30d65678ab101250bc9d55d27fb157bdec19c411817b3311fe",
+      "next_attempt": "2026-10-25T00:15:03.200Z",
+      "checked_at": "2026-10-24T12:15:03.837Z",
+      "error_code": null,
+      "raw_id": "54"
+    },
+    {
+      "resource": "3eff0487d224684e64aea38e71f5b414e8e075a6e3da0a5d52e81cbb7b4e792a",
+      "next_attempt": "2026-10-25T12:10:00.568Z",
+      "checked_at": "2026-10-25T00:10:05.148Z",
+      "error_code": null,
+      "raw_id": "55"
+    }
+  ],
+  "workers": [
+    {
+      "started_at": "2026-10-25T04:00:00.955Z",
+      "finished_at": "2026-10-25T04:00:04.959Z",
+      "status": "pending-review",
+      "detail": {
+        "task": "reconcile",
+        "issues": [
+          "2026_06_SEA_DEN: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required"
+        ],
+        "season": 2026,
+        "status": "pending-review",
+        "competition": "70de1f8e-b789-4331-99aa-6afb0c31a8a2"
+      }
+    },
+    {
+      "started_at": "2026-10-25T03:45:00.789Z",
+      "finished_at": "2026-10-25T03:45:03.185Z",
+      "status": "pending-review",
+      "detail": {
+        "task": "reconcile",
+        "issues": [
+          "2026_06_SEA_DEN: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required"
+        ],
+        "season": 2026,
+        "status": "pending-review",
+        "competition": "8841bf7d-5952-47c4-b926-40b04fdc5cba"
+      }
+    },
+    {
+      "started_at": "2026-10-25T03:30:00.902Z",
+      "finished_at": "2026-10-25T03:30:03.571Z",
+      "status": "pending-review",
+      "detail": {
+        "task": "reconcile",
+        "issues": [
+          "2026_07_NE_CHI: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required",
+          "2026_07_PIT_NO: awaiting verified completion evidence",
+          "2026_07_SF_ATL: awaiting verified completion evidence",
+          "2026_07_CIN_BAL: awaiting verified completion evidence",
+          "2026_07_TB_CAR: awaiting verified completion evidence",
+          "2026_07_NYG_HOU: awaiting verified completion evidence",
+          "2026_07_IND_MIN: awaiting verified completion evidence",
+          "2026_07_MIA_NYJ: awaiting verified completion evidence",
+          "2026_07_CLE_TEN: awaiting verified completion evidence",
+          "2026_07_DEN_ARI: awaiting verified completion evidence",
+          "2026_07_GB_DET: awaiting verified completion evidence",
+          "2026_07_LA_LV: awaiting verified completion evidence",
+          "2026_07_KC_SEA: awaiting verified completion evidence",
+          "2026_07_DAL_PHI: awaiting verified completion evidence"
+        ],
+        "season": 2026,
+        "status": "pending-review",
+        "competition": "d3da95b4-a72a-4b40-87d9-09b562d92277"
+      }
+    },
+    {
+      "started_at": "2026-10-25T03:15:01.430Z",
+      "finished_at": "2026-10-25T03:15:03.498Z",
+      "status": "pending-review",
+      "detail": {
+        "task": "reconcile",
+        "issues": [
+          "2026_07_NE_CHI: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required",
+          "2026_07_PIT_NO: awaiting verified completion evidence",
+          "2026_07_SF_ATL: awaiting verified completion evidence",
+          "2026_07_CIN_BAL: awaiting verified completion evidence",
+          "2026_07_TB_CAR: awaiting verified completion evidence",
+          "2026_07_NYG_HOU: awaiting verified completion evidence",
+          "2026_07_IND_MIN: awaiting verified completion evidence",
+          "2026_07_MIA_NYJ: awaiting verified completion evidence",
+          "2026_07_CLE_TEN: awaiting verified completion evidence",
+          "2026_07_DEN_ARI: awaiting verified completion evidence",
+          "2026_07_GB_DET: awaiting verified completion evidence",
+          "2026_07_LA_LV: awaiting verified completion evidence",
+          "2026_07_KC_SEA: awaiting verified completion evidence",
+          "2026_07_DAL_PHI: awaiting verified completion evidence"
+        ],
+        "season": 2026,
+        "status": "pending-review",
+        "competition": "9286cca8-c7a3-487e-b687-f9614a2b87b5"
+      }
+    },
+    {
+      "started_at": "2026-10-25T03:00:00.857Z",
+      "finished_at": "2026-10-25T03:00:04.400Z",
+      "status": "pending-review",
+      "detail": {
+        "task": "reconcile",
+        "issues": [
+          "2026_06_SEA_DEN: INVALID_PLAYER_OR_FIXTURE_ROW; source or reviewer correction required"
+        ],
+        "season": 2026,
+        "status": "pending-review",
+        "competition": "315280d3-7413-4c2d-8a63-fef6d7e37003"
+      }
+    }
+  ],
+  "history": []
+}

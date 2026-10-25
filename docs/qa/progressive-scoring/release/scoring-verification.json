@@ -1,0 +1,107 @@
+{
+  "at": "2026-10-25T04:32:37.472Z",
+  "rounds": [
+    {
+      "mode": "SALARY_CAP",
+      "revision": 3,
+      "visible": true,
+      "finalised": false,
+      "teams": [
+        {
+          "knownCentipoints": 286,
+          "displayCentipoints": 286,
+          "rank": 1,
+          "completion": {
+            "completedPlayers": 1,
+            "totalPlayers": 7
+          },
+          "contributions": [
+            {
+              "baseCentipoints": 260,
+              "centipoints": 286
+            }
+          ]
+        },
+        {
+          "knownCentipoints": 0,
+          "displayCentipoints": null,
+          "rank": null,
+          "completion": {
+            "completedPlayers": 0,
+            "totalPlayers": 7
+          },
+          "contributions": []
+        }
+      ]
+    },
+    {
+      "mode": "OPEN",
+      "revision": 3,
+      "visible": true,
+      "finalised": false,
+      "teams": [
+        {
+          "knownCentipoints": 3097,
+          "displayCentipoints": 3097,
+          "rank": 1,
+          "completion": {
+            "completedPlayers": 1,
+            "totalPlayers": 7
+          },
+          "contributions": [
+            {
+              "baseCentipoints": 2212,
+              "centipoints": 3097
+            }
+          ]
+        },
+        {
+          "knownCentipoints": 0,
+          "displayCentipoints": null,
+          "rank": null,
+          "completion": {
+            "completedPlayers": 0,
+            "totalPlayers": 7
+          },
+          "contributions": []
+        }
+      ]
+    }
+  ],
+  "cron": [
+    {
+      "jobid": "1",
+      "schedule": "17 * * * *",
+      "active": true
+    },
+    {
+      "jobid": "6",
+      "schedule": "* * * * *",
+      "active": true
+    },
+    {
+      "jobid": "2",
+      "schedule": "5 0,12 * * *",
+      "active": true
+    },
+    {
+      "jobid": "3",
+      "schedule": "10 0,12 * * *",
+      "active": true
+    },
+    {
+      "jobid": "4",
+      "schedule": "15 0,12 * * *",
+      "active": true
+    },
+    {
+      "jobid": "5",
+      "schedule": "*/15 * * * *",
+      "active": true
+    }
+  ],
+  "historicalJournalsUnchanged": true,
+  "lockedSnapshotsUnchanged": true,
+  "readOnlyProductionDatabaseVerification": true,
+  "authenticatedBrowserAcceptance": false
+}

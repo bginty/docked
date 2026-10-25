@@ -1,0 +1,9 @@
+{
+  "deployment": "dpl_1zNzJKGBTFN9z6vYsJKUAuwo3ffA",
+  "url": "docked-production-ne3s26ql4-briant-s-projects.vercel.app",
+  "commit": "b9f390f787abb425e18bdae1fbc9860761053390",
+  "databaseMigrations": [
+    "20261025040808"
+  ],
+  "recovery": "Promote the saved previous Vercel deployment. Worker version 18 source is backed up privately; redeploy that exact source with JWT verification if the worker must be rolled back. The database migration changes only the read-only completion projection; its prior function definition is in the verified private recovery archive. Prefer keeping its stricter completion predicate. Never delete or rewind scoring journals or overwrite customer tables. Imported valid scores remain auditable; corrections use the existing reviewer process. No schedule, payment, issuance or competition activation flags changed."
+}
