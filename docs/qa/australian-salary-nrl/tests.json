@@ -1,0 +1,43 @@
+{
+  "commit": "60a1a3ee966e9782cae7478b44340a3193fc3253",
+  "platform": {
+    "passed": 630,
+    "failed": 0
+  },
+  "databaseInitial": {
+    "passed": 220,
+    "failed": 3,
+    "total": 223
+  },
+  "databaseCorrectedFile": {
+    "passed": 6,
+    "failed": 0,
+    "reason": "New synthetic NFL inventory inherited stale real catalogue observation timestamps; fixture creation now uses its own current observation. No application policy change."
+  },
+  "nativePostgres": {
+    "nfl": true,
+    "aflAdoption": true,
+    "nrlAdoption": true
+  },
+  "typecheck": true,
+  "lint": true,
+  "productionBuild": true,
+  "clientBoundaryAssets": 90,
+  "playBrowser": [
+    360,
+    412,
+    1440
+  ],
+  "socialBrowser": [
+    412,
+    1440
+  ],
+  "packBrowser": [
+    412,
+    1440
+  ],
+  "routeWidthChecks": 63,
+  "hostedMemberAuthenticated": false,
+  "hostedCandidateHttp": 62,
+  "hostedLiveHttp": 62
+}

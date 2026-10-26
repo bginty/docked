@@ -81,3 +81,16 @@ App rollback uses the recorded prior Vercel deployment. Keep approved salary sna
 Existing security advisor warning: leaked-password protection is disabled. It is unrelated to this release and was not changed. RLS remains enabled; private-schema no-policy findings are fail-closed informational findings.
 
 Deployment, migration application and hosted read-only results are recorded below after execution.
+
+## Deployed outcome
+
+- IMPLEMENTED / TESTED / DEPLOYED: app commit `60a1a3ee966e9782cae7478b44340a3193fc3253`, promoted to https://docked.com.au on26October2026. Vercel deployment `dpl_DsxxqM39Ae7qijs2MhjeTZSzL9Vg`, candidate https://docked-production-900dyz15t-briant-s-projects.vercel.app. Live release endpoint and Vercel identity both match the commit.
+- APPLIED ONCE: migration `20261025234813`, eight Traditional rounds listed above. Read-only Production verification confirms AFL Rounds2–5 at13,800,000 and NRL Rounds2–5 at8,200,000, all in `fantasy-dollars`. Round1 still has2,640/1,560 QA units. Prize text remains No cash prize.
+- PRESERVED:31 protected table fingerprints unchanged after migration and after app promotion. Competition comparisons permitted only the eight planned lineup-version changes. Owner/MFA transition function restored byte-for-byte; scheduled jobs unchanged. No balances, ownership, serials, packs, historical scores, entries, locks or access flags changed.
+- HOSTED CHECKS:62 candidate and62 live-domain HTTP checks passed, including release identity, closed registration, public page responses and denial of unauthenticated inventory, wallet, statistics and admin access. These are not signed-in gameplay acceptance.
+- Additional rendered checks:63 route/width combinations for NFL/AFL/NRL Rankings, Prizes and Market at320/360/375/390/430/768/1440px, enlarged text, plus21 pack artwork variants passed. NRL six-product pack purchase/reveal/repeat-confirmation/Back/Refresh tests passed at412/1440px using isolated test economy and existing real-roster catalogue metadata; no Production transactions.
+- Final typecheck and lint passed after the native test-adapter typing correction. Production build passed locally and on Vercel. Client-boundary scan passed for90 browser assets (not a credential-rotation or exhaustive secret audit).
+- ACTIVATED: corrected approved salary rules on eligible future Traditional rounds; new NRL presentation and global Social feed. No prizes, paid entry, cash features or new data feeds activated.
+- REMAINING: authenticated hosted mobile/desktop gameplay acceptance needs a safe available signed-in browser session. No confirmed-entry salary conflicts remain. Real NRL numbers remain blank where evidence is unavailable. Existing pre-release authentication advisor warning remains as documented. NBA stays hidden, pending explicit reversal of the earlier visibility instruction.
+
+Additional screenshots: [NRL market mobile](surfaces/market-nrl-390.png), [NRL market desktop](surfaces/market-nrl-1440.png), [NRL completed pack opening](packs/nrl/completed-412.png), [Global Social mobile](navigation/social-412.png).

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "cronUnchanged": true,
+  "originalOwnerMfaGuardRestored": true,
+  "migration": {
+    "version": "20261025234813",
+    "name": "australian_future_salary_adoption"
+  },
+  "advisors": {
+    "preexistingWarnings": [
+      "auth_leaked_password_protection"
+    ],
+    "privateRlsNoPolicyInfoCount": 216
+  }
+}
