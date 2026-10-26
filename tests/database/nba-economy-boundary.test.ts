@@ -145,6 +145,11 @@ for (const realRoster of [false, true])
             sport: "nfl",
             position: "QB",
             name: `Synthetic NFL ${i}`,
+            // This is newly constructed synthetic NFL inventory, not an old
+            // observation copied from the real-roster catalogue above.
+            observedAt: now,
+            provider: "fixture",
+            synthetic: true,
             inventoryClass: undefined,
             rosterBeta: undefined,
           }),

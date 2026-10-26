@@ -25,6 +25,40 @@ test("Approved caps allow exact boundaries with legal formations; Open remains u
     const exact = sevenIssues("SALARY_CAP", picks, cards, true, config);
     assert.equal(exact.remaining, 0);
     assert.deepEqual(exact.errors, []);
+    assert.deepEqual(
+      sevenIssues(
+        "SALARY_CAP",
+        picks,
+        cards.map((c) => ({ ...c, tier: "CORE" })),
+        true,
+        config,
+      ).errors,
+      [],
+    );
+    assert.ok(
+      sevenIssues("OPEN", picks.slice(1), cards, true, config).errors.length,
+    );
+    assert.ok(
+      sevenIssues(
+        "OPEN",
+        picks,
+        cards.map((c, i) => ({
+          ...c,
+          player_id: i === 1 ? cards[0].player_id : c.player_id,
+        })),
+        true,
+        config,
+      ).errors.some((e) => e.includes("one card")),
+    );
+    assert.ok(
+      sevenIssues(
+        "OPEN",
+        picks,
+        cards.map((c, i) => ({ ...c, position: i === 0 ? "WR" : c.position })),
+        true,
+        config,
+      ).errors.some((e) => e.includes("requires")),
+    );
     cards[0].tier = "ELITE";
     assert.ok(
       sevenIssues("SALARY_CAP", picks, cards, true, config).errors.some((e) =>

@@ -57,7 +57,6 @@ export function SocialComposer({
   const router = useRouter();
   const ready = useClientReady();
   const { sport: workspaceSport } = useSport();
-  const destination = initialSport ?? workspaceSport;
   useSportDraftGuard(
     busy || !!body.trim() || cardIds.length > 0 || mediaIds.length > 0,
   );
@@ -70,6 +69,7 @@ export function SocialComposer({
   ];
   const attachmentSport =
     attachmentSports.length === 1 ? attachmentSports[0] : undefined;
+  const destination = attachmentSport ?? initialSport ?? workspaceSport;
   useEffect(() => {
     const focus = () => {
       if (ready && inline && location.hash === "#social-compose")
@@ -176,7 +176,7 @@ export function SocialComposer({
         )}
         <form ref={postForm} className="app-form" method="post" onSubmit={post}>
           <label>
-            Post to {destination.toUpperCase()}
+            Post to Docked
             <textarea
               required
               maxLength={4000}
@@ -255,15 +255,12 @@ export function SocialComposer({
                 </p>
               )}
               {!hub && !hubError && <p>Loading your opened cards…</p>}
-              {hub &&
-                !hub.cards.some(({ card }) => card.sport === destination) && (
-                  <p>No owned {destination.toUpperCase()} cards available.</p>
-                )}
+              {hub && !hub.cards.length && <p>No owned cards available.</p>}
               <div className="social-attachment-grid">
                 {hub?.cards
                   .filter(
                     ({ card }) =>
-                      card.sport === destination &&
+                      (!attachmentSport || card.sport === attachmentSport) &&
                       card.name
                         .toLowerCase()
                         .includes(search.trim().toLowerCase()),

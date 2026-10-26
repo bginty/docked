@@ -331,11 +331,9 @@ export async function communityFeed(
       nextCursor: null as string | null,
     },
     async (c) => {
-      const selectedSport =
-        options.sport ?? (options.postId || options.author ? undefined : "nfl");
-      if (selectedSport && !["nfl", "afl", "nrl"].includes(selectedSport))
-        throw Error("Sport feed unavailable");
-      const result = await selectPosts(c, { ...options, sport: selectedSport });
+      // The community network is account-wide. Legacy sport URLs must not
+      // silently filter Latest/Following or change visibility permissions.
+      const result = await selectPosts(c, { ...options, sport: undefined });
       const found =
         await c.tx`select id from private.social_profiles where private.social_profile_visible(${c.profileId},id,false) and id is distinct from ${c.profileId} order by is_official desc,joined_at desc,id limit 8`;
       return {

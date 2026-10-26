@@ -13,10 +13,7 @@ function Content() {
     return (
       <SocialHomeContent
         sport={sport}
-        feed={{
-          ...globalFeed,
-          posts: globalFeed.posts.filter((p) => p.sport === sport),
-        }}
+        feed={globalFeed}
         tab={q.get("tab") === "following" ? "following" : "latest"}
         view={q.get("tab") ?? undefined}
         announcements={[

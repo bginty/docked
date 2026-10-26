@@ -267,7 +267,7 @@ export function AppShell({
               "/fantasy/packs",
             ].includes(destination) ? (
               <>
-                <SportNavigation />
+                {destination !== "/fantasy/social" && <SportNavigation />}
                 {destination === "/fantasy/social" ? (
                   children
                 ) : (

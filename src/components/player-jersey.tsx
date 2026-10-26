@@ -1,6 +1,7 @@
 "use client";
 import { useId } from "react";
 import { aflJersey } from "@/core/afl-jerseys";
+import { nrlJersey } from "@/core/nrl-jerseys";
 import {
   jerseyPresentation,
   type JerseyMetadata,
@@ -19,6 +20,10 @@ export function PlayerJersey({
   const id = useId().replace(/[^a-zA-Z0-9_-]/g, ""),
     p = jerseyPresentation(card);
   const displayNumber = showNumber;
+  const nrl =
+    card?.sport === "nrl" && !card.preserveArtwork
+      ? nrlJersey(card.team)
+      : undefined;
   const afl =
     card?.sport === "afl" && !card.preserveArtwork
       ? aflJersey(card.team)
@@ -30,7 +35,8 @@ export function PlayerJersey({
     rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114 > 175
       ? "#152338"
       : "#f4f0e6";
-  const sleeveless = card?.sport === "afl" || card?.sport === "basketball";
+  const sleeveless =
+    card?.sport === "afl" || card?.sport === "basketball" || !!nrl;
   const shape = sleeveless
     ? card?.sport === "basketball"
       ? "M54 13L70 15Q90 51 110 15L126 13L132 24Q118 55 139 74L145 164Q90 173 35 164L41 74Q62 55 48 24Z"
@@ -63,7 +69,8 @@ export function PlayerJersey({
       data-afl-template={
         afl ? (afl.wedge ? "angular" : "horizontal") : undefined
       }
-      data-team-key={afl?.key}
+      data-team-key={afl?.key ?? nrl?.key}
+      data-nrl-template={nrl?.pattern}
     >
       <defs>
         <clipPath id={`${id}-cut`}>
@@ -130,12 +137,46 @@ export function PlayerJersey({
       </defs>
       <path
         d={shape}
-        fill={afl?.upper ?? (card ? p.primary : "#203349")}
+        fill={afl?.upper ?? nrl?.body ?? (card ? p.primary : "#203349")}
         stroke="#99acc2"
         strokeOpacity=".35"
         strokeWidth="1"
       />
       <g clipPath={`url(#${id}-cut)`}>
+        {nrl && (
+          <g>
+            {nrl.pattern === "band" ? (
+              <>
+                <path d="M35 96H145V116H35Z" fill={nrl.panel} />
+                {nrl.accent && (
+                  <path
+                    d="M35 91H145V94H35ZM35 118H145V121H35Z"
+                    fill={nrl.accent}
+                  />
+                )}
+                {nrl.lower && <path d="M35 123H145V127H35Z" fill={nrl.lower} />}
+              </>
+            ) : nrl.pattern === "split" ? (
+              <>
+                <path d="M35 101H145V176H35Z" fill={nrl.lower} />
+                <path d="M35 94H145V98H35Z" fill={nrl.panel} />
+              </>
+            ) : (
+              <>
+                <path
+                  d="M35 93L90 121L145 93V108L90 136L35 108Z"
+                  fill={nrl.panel}
+                />
+                {nrl.accent && (
+                  <path
+                    d="M35 85L90 113L145 85V89L90 117L35 89Z"
+                    fill={nrl.accent}
+                  />
+                )}
+              </>
+            )}
+          </g>
+        )}
         {afl &&
           (afl.wedge ? (
             <>
@@ -160,19 +201,19 @@ export function PlayerJersey({
         />
         <path
           d="M7 49 34 65M146 65 173 49"
-          stroke={afl?.trim ?? p.accent}
+          stroke={afl?.trim ?? nrl?.trim ?? p.accent}
           strokeWidth="10"
         />
         <path
           d="M5 58 31 73M149 73 175 58"
-          stroke={afl?.trim ?? p.accent}
+          stroke={afl?.trim ?? nrl?.trim ?? p.accent}
           strokeWidth="2"
         />
-        {afl && (
+        {(afl || nrl) && (
           <path
             d="M46 25Q59 56 40 69M134 25Q121 56 140 69"
             fill="none"
-            stroke={afl.trim}
+            stroke={afl?.trim ?? nrl?.trim}
             strokeWidth="4"
           />
         )}
@@ -203,7 +244,7 @@ export function PlayerJersey({
         <path
           d="M62 18 70 29 90 37 110 29 118 18"
           fill="none"
-          stroke={afl?.trim ?? p.accent}
+          stroke={afl?.trim ?? nrl?.trim ?? p.accent}
           strokeWidth="3"
         />
         <path
@@ -240,15 +281,15 @@ export function PlayerJersey({
           <text
             className="jersey-number"
             x="90"
-            y={afl ? "82" : "119"}
+            y={afl || nrl ? "82" : "119"}
             textAnchor="middle"
-            fill={afl?.trim ?? print}
+            fill={afl?.trim ?? (nrl ? (nrl.number ?? "#f4f4ed") : print)}
             stroke="#050b15"
             strokeWidth="2"
             strokeLinejoin="round"
             paintOrder="stroke"
             fontFamily="Impact, 'Arial Black', Arial, sans-serif"
-            fontSize={afl ? "31" : "61"}
+            fontSize={afl || nrl ? "31" : "61"}
             fontWeight="900"
             letterSpacing="-2"
           >

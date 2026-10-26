@@ -67,6 +67,6 @@ export function australianSalaryLabel(config?: {
   salaryCap: number;
 }) {
   return config && usesApprovedAustralianSalary(config)
-    ? `$${(config.salaryCap / 1_000_000).toFixed(1)}m cap`
+    ? `$${(config.salaryCap / 1_000_000).toFixed(1)}m salary cap`
     : undefined;
 }

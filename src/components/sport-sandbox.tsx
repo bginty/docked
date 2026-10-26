@@ -120,7 +120,13 @@ export function SportSandbox({
           ) ||
         a.round - b.round,
     );
-  const comp = rounds.find((c) => c.id === round) ?? rounds[0];
+  const comp =
+    rounds.find((c) => c.id === round) ??
+    (state.sport === "afl" || state.sport === "nrl"
+      ? ([...rounds]
+          .sort((a, b) => Date.parse(a.locks_at) - Date.parse(b.locks_at))
+          .find((c) => Date.parse(c.locks_at) > serverNow) ?? rounds.at(-1))
+      : rounds[0]);
   const roundWord = state.sport === "basketball" ? "Week" : "Round";
   const context = {
     sport: state.sport,
@@ -156,7 +162,9 @@ export function SportSandbox({
     comp?.rules.scoring_version !== nbaRarityWeeklyVersion
       ? 1
       : undefined;
-  const cfg = state.configurations[comp?.rules.lineup_version];
+  const cfg = comp
+    ? state.configurations[comp.rules.lineup_version]
+    : undefined;
   const nbaProposal = cfg?.version === nbaWeeklyConfiguration.formatVersion;
   if (nbaProposal) sport = nbaWeeklyConfiguration;
   const entry = state.entries.find(
@@ -174,7 +182,7 @@ export function SportSandbox({
     (e) => e.competition_id === comp?.id && e.user_id === viewUser,
   );
   const readOnly = locked || !!viewing;
-  const score = state.scores?.[comp?.id];
+  const score = comp ? state.scores?.[comp.id] : undefined;
   const teamScore = score?.rows.find(
     (r) => r.user_id === (viewing?.user_id ?? state.user_id),
   );
@@ -573,6 +581,15 @@ export function SportSandbox({
         >
           Prizes
         </NavigationShortcut>
+        {(state.sport === "afl" || state.sport === "nrl") && (
+          <NavigationShortcut
+            compact
+            icon="feed"
+            href={contextHref("/fantasy/scoring/how-it-works")}
+          >
+            Rules
+          </NavigationShortcut>
+        )}
         <button
           className="play-support"
           disabled={busy}
@@ -711,7 +728,7 @@ export function SportSandbox({
                 </p>
               ) : (
                 <p>
-                  {nbaProposal ? "$" : ""}
+                  {salaryDollars ? "$" : ""}
                   {(validate?.total ?? 0).toLocaleString("en-AU")} /{" "}
                   {cfg.salaryCap.toLocaleString("en-AU")}
                   {salaryDollars
@@ -719,7 +736,24 @@ export function SportSandbox({
                     : " test salary units"}
                 </p>
               )}
-              {mode === "SALARY_CAP" && !nbaProposal && (
+              {mode === "SALARY_CAP" && salaryDollars && !capPending && (
+                <div>
+                  <label>
+                    Salary budget used
+                    <progress
+                      max={cfg.salaryCap}
+                      value={Math.min(validate?.total ?? 0, cfg.salaryCap)}
+                    />
+                  </label>
+                  <p>
+                    {(validate?.remaining ?? cfg.salaryCap).toLocaleString(
+                      "en-AU",
+                    )}{" "}
+                    fantasy salary dollars remaining
+                  </p>
+                </div>
+              )}
+              {mode === "SALARY_CAP" && !salaryDollars && (
                 <small>
                   Provisional beta configuration. A fantasy-dollar cap is not
                   approved.

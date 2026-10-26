@@ -1,6 +1,7 @@
 import { PGlite } from "@electric-sql/pglite";
 import { readFile, readdir } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
+import postgres from "postgres";
 import {
   aflConfiguration,
   type SportConfiguration,
@@ -19,7 +20,64 @@ export async function multiSportDatabase(
     ? nbaWeeklyRules().version
     : "isolated-no-scoring-v1",
 ) {
-  const pg = new PGlite();
+  const nativeUrl = process.env.AUSTRALIAN_SALARY_TEST_DB;
+  if (
+    nativeUrl &&
+    !/^postgres:\/\/[^@]+@127\.0\.0\.1:\d+\/docked_free_play_test_\d+$/.test(
+      nativeUrl,
+    )
+  )
+    throw Error("Disposable loopback database required");
+  let native: ReturnType<typeof postgres> | null = null;
+  if (nativeUrl) {
+    const admin = postgres(nativeUrl, { max: 1, onnotice: () => {} });
+    const database = `australian_${randomUUID().replaceAll("-", "")}`;
+    await admin.unsafe(`create database ${database}`);
+    await admin.end();
+    const url = new URL(nativeUrl);
+    url.pathname = "/" + database;
+    native = postgres(url.href, {
+      max: 1,
+      onnotice: () => {},
+      types: {
+        json: {
+          to: 3802,
+          from: [114, 3802],
+          serialize: (v: unknown) =>
+            typeof v === "string" ? v : JSON.stringify(v),
+          parse: JSON.parse,
+        },
+      },
+    });
+  }
+  const connection = native;
+  // The opt-in native migration runner uses only exec/query/close. Normal
+  // fixtures retain the complete PGlite transaction API; never use this adapter
+  // for tests that require its embedded-only APIs.
+  const pg: PGlite = connection
+    ? ({
+        exec: (s: string) =>
+          connection.unsafe(
+            s.replace(
+              /create role (anon|authenticated|service_role);/g,
+              (_match, role) =>
+                `do $$begin create role ${role};exception when duplicate_object then null;end$$;`,
+            ),
+          ),
+        query: async <T extends Record<string, any>>(
+          s: string,
+          args: unknown[],
+        ) => ({
+          rows: (await connection.unsafe(
+            s,
+            args.map((a) =>
+              a !== null && typeof a === "object" ? JSON.stringify(a) : a,
+            ) as never[],
+          )) as unknown as T[],
+        }),
+        close: () => connection.end(),
+      } as unknown as PGlite)
+    : new PGlite();
   const q = async (sql: string, params: unknown[] = []) =>
     (await pg.query<Record<string, any>>(sql, params)).rows;
   await pg.exec(
@@ -97,6 +155,11 @@ export async function multiSportDatabase(
     );
   }
   const rounds: Record<string, string> = {};
+  // These fixtures deliberately exercise SAVED legacy QA contracts. New-round
+  // inheritance has its own migration tests; restore the real trigger below.
+  await pg.exec(
+    "alter table beta_fantasy.competitions disable trigger australian_future_approved_salary",
+  );
   await q("select set_config('docked.multi_sport','isolated-preview',false)");
   for (const mode of ["SALARY_CAP", "OPEN"])
     for (const week of [1, 2, 3]) {
@@ -145,6 +208,9 @@ export async function multiSportDatabase(
         ],
       );
     }
+  await pg.exec(
+    "alter table beta_fantasy.competitions enable trigger australian_future_approved_salary",
+  );
   async function asUser(u: string) {
     await q(
       "select set_config('request.jwt.claim.sub',$1,false),set_config('request.jwt.claims',$2,false),set_config('docked.multi_sport','isolated-preview',false),set_config('docked.fantasy_channel','beta',false)",

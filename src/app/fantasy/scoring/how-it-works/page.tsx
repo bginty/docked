@@ -16,17 +16,110 @@ import { sevenRules, nflSeven, sevenTransferNotice } from "@/core/nfl-seven";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { ScoringRulesTable } from "@/components/scoring-rules-table";
 import { NflScoringReference } from "@/components/nfl-scoring-reference";
+import { sportSandbox } from "@/server/sport-sandbox";
+import {
+  australianSalaryLabel,
+  usesApprovedAustralianSalary,
+} from "@/core/approved-australian-rules";
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "NFL scoring rules",
+  title: "Competition rules",
   robots: { index: false, follow: false },
 };
 export default async function RulesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ competition?: string; version?: string }>;
+  searchParams: Promise<{
+    competition?: string;
+    version?: string;
+    sport?: string;
+  }>;
 }) {
   const query = await searchParams;
+  if (query.sport === "afl" || query.sport === "nrl") {
+    let data;
+    try {
+      data = (await sportSandbox(query.sport)).state;
+    } catch {
+      return (
+        <AppShell authenticated>
+          <h1>Rules unavailable</h1>
+          <p>Sign in with an authorised beta account and retry from Play.</p>
+          <Link href={`/fantasy/play?sport=${query.sport}`}>Back to Play</Link>
+        </AppShell>
+      );
+    }
+    const rounds = data.competitions
+      .filter((c) => c.rules.mode === "SALARY_CAP")
+      .sort((a, b) => Date.parse(a.locks_at) - Date.parse(b.locks_at));
+    const round = query.competition
+      ? data.competitions.find((c) => c.id === query.competition)
+      : (rounds.find(
+          (c) => Date.parse(c.locks_at) > Date.parse(data.server_time),
+        ) ?? rounds.at(-1));
+    const cfg = round && data.configurations[round.rules.lineup_version];
+    if (!round || !cfg)
+      return (
+        <AppShell authenticated>
+          <h1>Rules unavailable</h1>
+          <p>Select an available competition in Play.</p>
+        </AppShell>
+      );
+    const dollars = usesApprovedAustralianSalary(cfg);
+    return (
+      <AppShell authenticated>
+        <section className="scoring-review">
+          <h1>{query.sport.toUpperCase()} competition rules</h1>
+          <p>
+            {round.name} · Round {round.round}
+          </p>
+          <h2>
+            {round.rules.mode === "OPEN"
+              ? "All-Star · No salary cap"
+              : `Traditional · ${australianSalaryLabel(cfg) ?? `${cfg.salaryCap.toLocaleString()} test salary units`}`}
+          </h2>
+          <p>
+            {dollars
+              ? "Fantasy salary dollars are separate from your Docked Credits."
+              : "Historical test salary units. These saved rules have not been converted to fantasy dollars."}
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Rarity</th>
+                <th>Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rarities.map((tier) => (
+                <tr key={tier}>
+                  <td>{rarityRule(tier).label}</td>
+                  <td>
+                    {dollars ? "$" : ""}
+                    {cfg.salaries[tier].toLocaleString()}
+                    {dollars ? "" : " test units"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p>
+            {cfg.slots.length} players. Each player may appear once; slot
+            eligibility, ownership and round lock rules apply.
+          </p>
+          <p>
+            Scoring and historical results use the selected competition’s saved
+            rules. Private beta statistics and prize restrictions still apply.
+          </p>
+          <Link
+            href={`/fantasy/play?sport=${query.sport}&competition=${round.id}`}
+          >
+            Back to Lineup
+          </Link>
+        </section>
+      </AppShell>
+    );
+  }
   let state;
   try {
     state = (await fantasyRequest()).state;

@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { NavigationShortcut } from "./navigation-shortcut";
-import { useSport } from "./sport-context";
 import type { CommunityFeed } from "@/core/community-social";
 import { SocialComposer } from "./social-composer";
 import { SocialTimeline } from "./social-timeline";
@@ -19,7 +18,6 @@ export function SocialHomeContent({
   communityId,
   playerId,
   announcements,
-  sport = "nfl",
 }: {
   announcements: PublishedAnnouncement[] | null;
   feed: CommunityFeed;
@@ -29,13 +27,10 @@ export function SocialHomeContent({
   playerId?: string;
   sport?: string;
 }) {
-  const { sport: activeSport } = useSport();
-  const href = (tab: string) => `/fantasy/social?sport=${sport}&tab=${tab}`;
+  const href = (tab: string) => `/fantasy/social?tab=${tab}`;
   const pinned = announcements?.find((a) => a.pinned);
   const selected = view ?? (tab === "for_you" ? "latest" : tab);
   const composeHref = `${href("latest")}#social-compose`;
-  if (activeSport !== sport)
-    return <p role="status">Loading {activeSport.toUpperCase()} community…</p>;
   return (
     <section className="premium-social compact-social">
       <header className="social-page-heading">
@@ -89,7 +84,7 @@ export function SocialHomeContent({
               <NavigationShortcut
                 compact
                 icon="bell"
-                href={`/fantasy/announcements?sport=${sport}`}
+                href="/fantasy/announcements"
               >
                 All announcements
               </NavigationShortcut>
@@ -117,8 +112,6 @@ export function SocialHomeContent({
               )}
               <div id="social-compose" tabIndex={-1}>
                 <SocialComposer
-                  key={sport}
-                  initialSport={sport}
                   inline
                   memberName={feed.viewer?.displayName}
                   memberProfile={feed.viewer}
@@ -127,7 +120,6 @@ export function SocialHomeContent({
                 />
               </div>
               <SocialTimeline
-                sport={sport}
                 feed={feed}
                 base="/fantasy/social"
                 tab={tab === "for_you" ? "latest" : tab}
