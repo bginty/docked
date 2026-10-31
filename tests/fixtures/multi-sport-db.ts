@@ -8,6 +8,7 @@ import {
 } from "../../src/core/sport-configuration";
 import { nbaWeeklyRules } from "../../src/core/nba-weekly";
 import { sandboxLineupConfiguration } from "../../src/core/sport-sandbox-configuration";
+import { approvedAustralianLineup } from "../../src/core/approved-australian-rules";
 /** Explicit artificial units, identities and schedule. Never a published salary proposal. */
 export function sandboxConfig(sport = aflConfiguration) {
   return sandboxLineupConfiguration(sport);
@@ -19,6 +20,7 @@ export async function multiSportDatabase(
   "docked-nba-weekly-lineup-proposal-v1"
     ? nbaWeeklyRules().version
     : "isolated-no-scoring-v1",
+  freeCoreRounds = false,
 ) {
   const nativeUrl = process.env.AUSTRALIAN_SALARY_TEST_DB;
   if (
@@ -101,8 +103,8 @@ export async function multiSportDatabase(
   );
   const user = randomUUID(),
     other = randomUUID();
-  const config = sandboxConfig(sport);
-  await q("insert into beta_fantasy.lineup_configurations values($1,$2)", [
+  const config = freeCoreRounds && (sport.id === "afl" || sport.id === "nrl") ? approvedAustralianLineup(sport.id) : sandboxConfig(sport);
+  await q("insert into beta_fantasy.lineup_configurations values($1,$2) on conflict do nothing", [
     config.version,
     JSON.stringify(config),
   ]);
@@ -174,6 +176,9 @@ export async function multiSportDatabase(
           sport.id,
           week,
           JSON.stringify({
+            ...(freeCoreRounds && week < 3
+              ? { free_core_policy: "public-free-core-v1" }
+              : {}),
             ...(privateNbaBeta
               ? sport.id === "basketball"
                 ? { nba_beta_scope: "private-test-v1" }

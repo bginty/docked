@@ -1,4 +1,5 @@
 import "server-only";
+import { collectibleInventory } from "../core/free-core";
 import {
   competitionLabel,
   reviewCompetitionLabel,
@@ -58,7 +59,7 @@ export async function fantasyRequest(
       )[0].context;
       // One collection: retain owned historical/free cards and overlay canonical test instances.
       const collection = new Map(view.cards.map((c) => [c.id, c]));
-      for (const card of view.seven?.inventory ?? []) {
+      for (const card of collectibleInventory(view.seven?.inventory ?? [])) {
         const old = collection.get(card.id);
         collection.set(card.id, {
           ...card,

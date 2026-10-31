@@ -14,7 +14,12 @@ import {
   validateCredits,
   creditBalances,
 } from "../../src/core/credits-sandbox";
-import { testReceipt } from "../../src/core/member-test-wallet";
+import {
+  testReceipt,
+  memberTestView,
+  memberTestCommand,
+  assertMemberTestEconomy,
+} from "../../src/core/member-test-wallet";
 import { paidPackOffers } from "../../src/core/paid-pack-catalogue";
 
 for (const sport of ["nfl", "afl", "nrl"] as const) {
@@ -32,6 +37,18 @@ for (const sport of ["nfl", "afl", "nrl"] as const) {
       assert.ok(p);
       assert.equal(wallet(state, packMember.id).total, 0);
       state = settleFixture(state, receipt);
+      assertMemberTestEconomy(state);
+      const view = memberTestView(
+        state,
+        packMember.id,
+        [],
+        false,
+        packNow,
+        [],
+        { catalogue: false },
+      );
+      assert.equal(view.wallet.spendable, 9900);
+      assert.ok(Object.values(state.lots).every((l) => !l.redeemable));
       assert.equal(wallet(state, packMember.id).spendable, 9900);
       state = buyFixturePack(state, p.id);
       assert.equal(
@@ -81,8 +98,30 @@ for (const sport of ["nfl", "afl", "nrl"] as const) {
       state = settleFixture(state, receipt);
       assert.deepEqual(state, stable);
       validateCredits(state);
+      assertMemberTestEconomy(state);
     });
 }
+
+test("member wallet accepts only verified TEST provenance, never client claims or real deposits", () => {
+  const settled = settleFixture(storePackFixture(), storePackReceipt());
+  const key = Object.keys(settled.deposits)[0];
+  const without = structuredClone(settled);
+  delete without.storeTestDeposits;
+  assert.throws(() => assertMemberTestEconomy(without), /Test-only/);
+  const tampered = structuredClone(settled);
+  tampered.storeTestDeposits![key].credits++;
+  assert.throws(() => assertMemberTestEconomy(tampered), /provenance/);
+  const redeemable = structuredClone(settled);
+  redeemable.lots[redeemable.deposits[key].lot!].redeemable = true;
+  assert.throws(() => assertMemberTestEconomy(redeemable), /provenance/);
+  assert.throws(() =>
+    memberTestCommand({
+      kind: "credit-deposit",
+      cents: 9900,
+      storeTestDeposits: settled.storeTestDeposits,
+    }),
+  );
+});
 
 test("refund after transfer preserves recipient ownership and locked fantasy card metadata", () => {
   const receipt = storePackReceipt();

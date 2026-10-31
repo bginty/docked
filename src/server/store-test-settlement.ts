@@ -5,9 +5,9 @@ import {
   type StoreReceipt,
 } from "./store-purchase-verification";
 
-/** Isolated integration with Docked's existing wallet, not a second store wallet.
- * No public endpoint calls this. Hosting requires reviewed product, provenance,
- * refund policy, encrypted receipt inbox and transactional outbox deployment.
+/** TEST integration with Docked's existing wallet, not a second store wallet.
+ * The member adapter requires explicit expiring admission, TEST verification,
+ * encrypted receipt inbox and transactional outbox deployment.
  * A caller must verify the receipt and lock its existing wallet aggregate first. */
 export function settleStoreTestReceipt(
   before: CreditsState,
@@ -36,6 +36,10 @@ export function settleStoreTestReceipt(
     (existing.member !== member || existing.amount !== receipt.product.credits)
   )
     throw Error("Purchase already bound to another account or product");
+  if (existing && before.storeTestDeposits?.[key] &&
+    (before.storeTestDeposits[key].product !== receipt.product.id ||
+      before.storeTestDeposits[key].productVersion !== receipt.product.version))
+    throw Error("Store product provenance mismatch");
   let state = before;
   const provider = {
     id: "store-test-provider",
@@ -68,6 +72,18 @@ export function settleStoreTestReceipt(
       cents: receipt.product.credits,
     });
     run(provider, "_bind", { kind: "bind", deposit: key, providerOrder: key });
+    // executeCredits returned a new aggregate. This server-authored evidence is
+    // committed atomically with the receipt and prevents TEST lots being redeemable.
+    state.storeTestDeposits ??= {};
+    state.storeTestDeposits[key] = {
+      provider: receipt.provider,
+      environment: "test",
+      member,
+      product: receipt.product.id,
+      productVersion: receipt.product.version,
+      credits: receipt.product.credits,
+      verifiedAt: now,
+    };
   }
   run(provider, "_capture", {
     kind: "capture",

@@ -1,14 +1,14 @@
 param(
   [string]$Apk = 'android/app/build/outputs/apk/debug/app-debug.apk',
   [string]$Report = 'docs/qa/android/apk-audit.json',
-  [ValidateSet('Bundled','Hosted')][string]$Mode = 'Bundled'
+  [ValidateSet('Bundled','Hosted','StoreInternal')][string]$Mode = 'Bundled'
 )
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 . (Join-Path $PSScriptRoot 'android-offline-branding.ps1')
 $canonicalLogo = Get-Content -LiteralPath 'src/brand/canonical-logo.json' -Raw | ConvertFrom-Json
 if ($env:FANTASY_CARDS_PREVIEW -eq 'true') { $canonicalLogo.source = 'public/brand/docked/icons/docked-icon-512.png' }
-$approvedImage = if ($Mode -eq 'Hosted') { 'data:image/png;base64,' + [Convert]::ToBase64String([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $canonicalLogo.source))) } else { '' }
+$approvedImage = if ($Mode -in @('Hosted','StoreInternal')) { 'data:image/png;base64,' + [Convert]::ToBase64String([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $canonicalLogo.source))) } else { '' }
 $secretValues = [System.Collections.Generic.List[string]]::new()
 if (Test-Path -LiteralPath '.env.local') {
   foreach ($line in Get-Content -LiteralPath '.env.local') {
@@ -42,7 +42,7 @@ try {
     foreach ($secretValue in $secretValues) { if ($text.Contains($secretValue)) { $findings++ } }
     if ($entry.FullName -eq 'assets/capacitor.config.json') { $config = $text | ConvertFrom-Json }
     if ($entry.FullName -eq 'assets/public/preview-environment.json') { $packagedEnvironment = $text | ConvertFrom-Json }
-    if ($Mode -eq 'Hosted' -and $entry.FullName -in @('assets/public/index.html','assets/public/offline.html')) {
+    if ($Mode -in @('Hosted','StoreInternal') -and $entry.FullName -in @('assets/public/index.html','assets/public/offline.html')) {
       if (Test-AndroidOfflineBranding -Html $text -ApprovedImage $approvedImage) { $verifiedHostedPages++ }
       else { $hostedPagesSafe = $false }
     }
@@ -52,6 +52,17 @@ $inspectionDisabled = $config.android.webContentsDebuggingEnabled -eq $false
 $noAttachedOrigin = -not $config.server.url
 $approvedHostedOrigin = $false
 $expectedEnvironment = $null
+if ($Mode -eq 'StoreInternal') {
+  $expectedText = & node --input-type=module -e "import {storeInternalTarget} from './scripts/store-internal-target.mjs'; const t=storeInternalTarget(process.env); if(!t) throw Error('Explicit internal-test mode required'); console.log(JSON.stringify(t));"
+  if ($LASTEXITCODE -ne 0) { throw 'Internal artifact audit requires a closed-gate manifest.' }
+  $target = $expectedText | ConvertFrom-Json
+  $expectedEnvironment = $target.manifest
+  $approvedHostedOrigin = $config.appId -eq $expectedEnvironment.applicationId -and
+    $config.server.url -eq $target.entryUrl -and $config.server.cleartext -eq $false -and
+    $config.android.allowMixedContent -eq $false -and $config.loggingBehavior -eq 'none' -and
+    -not $config.server.allowNavigation -and $hostedPagesSafe -and $verifiedHostedPages -eq 2 -and
+    ($packagedEnvironment | ConvertTo-Json -Depth 10 -Compress) -eq ($expectedEnvironment | ConvertTo-Json -Depth 10 -Compress)
+}
 if ($Mode -eq 'Hosted') {
   $expectedText = & node --input-type=module -e "import {resolveAndroidTarget} from './scripts/android-preview-config.mjs'; const live=process.env.CAPACITOR_LIVE_BETA==='true'; console.log(JSON.stringify(resolveAndroidTarget(live?{CAPACITOR_LIVE_BETA:'true',CAPACITOR_PREVIEW_MODE:'bundled'}:{CAPACITOR_PREVIEW_MODE:'hosted',CAPACITOR_OWNER_QA:process.env.CAPACITOR_OWNER_QA}).manifest));"
   if ($LASTEXITCODE -ne 0) { throw 'APK audit requires a current verified preview manifest.' }
@@ -77,7 +88,7 @@ $result = [ordered]@{
   approvedEmbeddedBrandingPages = $verifiedHostedPages
   previewOrigin = $expectedEnvironment.origin
   supabaseProjectRef = $expectedEnvironment.supabaseProjectRef
-  status = $(if ($findings -eq 0 -and $inspectionDisabled -and (($Mode -eq 'Bundled' -and $noAttachedOrigin) -or ($Mode -eq 'Hosted' -and $approvedHostedOrigin))) { 'PASS' } else { 'FAIL' })
+  status = $(if ($findings -eq 0 -and $inspectionDisabled -and (($Mode -eq 'Bundled' -and $noAttachedOrigin) -or ($Mode -in @('Hosted','StoreInternal') -and $approvedHostedOrigin))) { 'PASS' } else { 'FAIL' })
   scope = 'Every ZIP entry inspected; generic credential patterns and exact configured local server-secret values checked in memory. No secret values recorded.'
 }
 $result | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $Report -Encoding utf8

@@ -16,6 +16,9 @@ export function restoreLockedSelections(
   return [...picks.filter((p) => !fixed.has(p.slot)), ...fixed.values()];
 }
 export type SevenCard = {
+  inventory_source?: string;
+  collectible_owned?: boolean;
+  eligible_competition_ids?: string[];
   id: string;
   player_id: string;
   canonical_player_id?: string;

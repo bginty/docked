@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { eligibleInRound, isFreeCore } from "./free-core";
 import { nbaRarityWeeklyVersion } from "./additional-sport-statistics";
 import { rarityPoints, rarityRule } from "./card-rarity";
 import { autoSelect } from "./lineup-auto-select";
@@ -26,7 +27,8 @@ export type SandboxCard = SevenCard &
     sport: string;
     owner_id: string;
     player_id: string;
-    inventory_source?: "credits-fixture-v1" | "roster-beta-core-v1";
+    inventory_source?:
+      "credits-fixture-v1" | "roster-beta-core-v1" | "public-free-core-v1";
     inventory_class?: "real-roster-beta-v1";
     roster_source?: RosterBetaEvidence;
     season?: string;
@@ -114,7 +116,10 @@ export function sandboxRecommendation(state: SandboxState, id: string) {
       card.sport === c.sport &&
       card.owner_id === state.user_id &&
       card.status === "active" &&
-      (!realRoster || card.inventory_class === "real-roster-beta-v1") &&
+      eligibleInRound(card, id) &&
+      (!realRoster ||
+        isFreeCore(card) ||
+        card.inventory_class === "real-roster-beta-v1") &&
       !card.listed &&
       cfg.slots.some((s) => fitsSlot(card, s.positions)),
   );

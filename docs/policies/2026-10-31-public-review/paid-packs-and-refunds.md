@@ -19,7 +19,7 @@ Direct Google pack SKUs are an alternative, not a parallel implementation. They 
 
 Each sport uses its own authoritative product IDs. Core is excluded from paid packs. Premium has Ultra Rare, Legendary and Icon only. Exact configured per-card odds are displayed before confirmation. No guaranteed Legendary/Icon result is implied. Fulfilment fails without charge/substitution when the configured draw cannot be supplied; do not invent a fallback or exceed lifetime supply. Successful-pack frequencies can be affected by supply failure near exhaustion.
 
-Free Core gameplay remains a public-launch requirement. The present beta picker is owned-card-only; do not claim public unlimited free Core onboarding has passed until a separate public-mode eligibility path is implemented and tested without issuing collectible inventory.
+Free Core gameplay now has a disabled-by-default, competition-scoped eligibility path tested with the existing NFL/AFL/NRL lineup validators. It creates no collectible ownership. Public registration, reviewed roster eligibility and future-round activation remain closed. This is not evidence that public onboarding is live.
 
 ## Refund handling proven in isolated fixtures
 
@@ -46,6 +46,6 @@ Do not publish a blanket “no refunds” promise or imply that random content g
 
 1. Exact legal/platform classification for paid cards with scoring multipliers, marketplace resale and any prizes; commercial player/data rights.
 2. Approved credit provenance and spent-refund policy; permanent issuance approval and available approved pools.
-3. Customer-authenticated receipt adapter, public wallet mode/admission, durable hosted reconciliation, RTDN and missed-event recovery, monitoring and support tools. Existing local/hosted operator fixtures are not a customer billing endpoint.
+3. The customer-authenticated TEST receipt adapter, admission migration, native wallet UI and transactional settlement are implemented. Production-money acceptance deliberately does not exist in this TEST route. Deploy and verify the disabled route, provision an approved test account, and complete durable hosted reconciliation/RTDN configuration and missed-event recovery. Do not reuse customer test balances as paid-money balances.
 4. Isolated public-mode signup → Google test receipt → wallet → both pack families → refund → deletion acceptance, including a genuine Android store-installed checkout.
 5. Matching policies, Data Safety, IARC/rating, reviewer access and owner final activation approval.

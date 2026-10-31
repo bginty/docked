@@ -2,6 +2,7 @@ import type { FantasyCard, FantasyCompetition } from "./fantasy";
 import { competitionCardEligible } from "./fantasy-play";
 import { teamFilter } from "./card-presentation";
 import { nflSeven } from "./nfl-seven";
+import { eligibleInRound } from "./free-core";
 /** Membership and slot eligibility are applied before all optional filters. */
 export function slotPool(
   cards: FantasyCard[],
@@ -15,6 +16,7 @@ export function slotPool(
     (c) =>
       c.owner_id === owner &&
       c.sport === competition.sport &&
+      eligibleInRound(c, competition.id) &&
       positions.includes(c.position) &&
       competitionCardEligible(c, competition),
   );

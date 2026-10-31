@@ -246,6 +246,9 @@ export const fantasyAction = z
 export type FantasyCard = {
   /** Only populated by a verified roster projection, never the legacy placeholder. */
   verifiedJerseyNumber?: number | null;
+  inventory_source?: string;
+  collectible_owned?: boolean;
+  eligible_competition_ids?: string[];
   availability_reason?: string;
   source_status?: string;
   status_observed_at?: string;

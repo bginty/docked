@@ -11,6 +11,7 @@ import { PackShop } from "./pack-shop";
 import { packTitle } from "@/core/pack-presentation";
 import { EconomyOwnerReport } from "./economy-owner-report";
 import { TestWalletOverview } from "./test-wallet-overview";
+import { GoogleTestCredits } from "./google-test-credits";
 
 export function MemberTestWallet({
   initial,
@@ -143,6 +144,20 @@ export function MemberTestWallet({
         />
       )}
       {surface === "wallet" && <TestWalletOverview state={s} />}
+      {surface === "wallet" && (
+        <GoogleTestCredits
+          key={initial.member}
+          member={initial.member}
+          onSettled={async () => {
+            const r = await boundedFetch(endpoint, { cache: "no-store" });
+            if (!r.ok) throw Error("Could not refresh wallet. Retry shortly.");
+            const data = await r.json();
+            if (data.state?.member !== initial.member)
+              throw Error("Account session changed. Sign in again.");
+            setS(data.state);
+          }}
+        />
+      )}
       {error && <p role="alert">{error}</p>}
       {recovery && (
         <p role="status">

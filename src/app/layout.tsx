@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   ),
   title: { default: "Docked — " + fantasyTagline, template: "%s | Docked" },
   description:
-    "Collect player cards, build your NFL fantasy team and follow post-game points. Free invited beta; EPL coming when verified.",
+    "Collect NFL, AFL and NRL player cards, build fantasy teams and follow postgame points where available. Invitation-only test beta; no cash value.",
   manifest: "/manifest.webmanifest",
   robots: { index: false, follow: false },
   appleWebApp: {

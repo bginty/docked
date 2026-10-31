@@ -882,6 +882,89 @@ test("seven-mode SQL: salary boundaries, API authority, immutable locks, private
       progress.rows[0].lineup.filter((p: any) => p.status === "dnp").length,
       1,
     );
+    // New optional policy: free gameplay eligibility never issues collectibles.
+    const freeRound = randomUUID(),
+      freeStream = "beta-real:qa:free:" + freeRound;
+    await q("select set_config('request.jwt.claim.sub',$1,false)", [u]);
+    const corePlayers = nflSeven.slots.map((s) => ({
+      id: randomUUID(),
+      position: s.positions[0],
+    }));
+    for (const p of corePlayers) {
+      await q(
+        `insert into beta_fantasy.players(id,name,sport,position,team,colour,shirt,first_season) values($1,'Synthetic free Core','nfl',$2,'QA','#123456',1,'2026')`,
+        [p.id, p.position],
+      );
+      await q(
+        `insert into sports_feed.free_core_roster values($1,'nfl','2026',$2,clock_timestamp()+interval '10 days','https://example.invalid/qa',$3,true)`,
+        [p.id, JSON.stringify([p.position]), "a".repeat(64)],
+      );
+    }
+    await q(
+      `insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize) values($1,'FREE CORE QA','nfl','2026',9999,clock_timestamp()+interval '1 day',$2,(select id from beta_fantasy.scoring_rules where version=$3),'No cash prize')`,
+      [
+        freeRound,
+        JSON.stringify({
+          lineup_version: nflSeven.version,
+          mode: "SALARY_CAP",
+          inventory_scope: "invited-nfl-test-v2",
+          scoring_version: rule.version,
+          free_core_policy: "public-free-core-v1",
+        }),
+        rule.version,
+      ],
+    );
+    await q("insert into sports_feed.streams(id) values($1)", [freeStream]);
+    await q(
+      "insert into sports_feed.nfl_rounds(competition_id,stream_id,purpose,fixtures)values($1,$2,'member',$3)",
+      [
+        freeRound,
+        freeStream,
+        JSON.stringify([
+          {
+            fixtureId: freeStream + ":f",
+            scheduledAt: new Date(Date.now() + 2 * 86400000).toISOString(),
+            playerIds: corePlayers.map((p) => p.id),
+          },
+        ]),
+      ],
+    );
+    assert.deepEqual(
+      (
+        await q("select sports_feed.free_core_inventory($1,$2) cards", [
+          u,
+          freeRound,
+        ])
+      )[0].cards,
+      [],
+    );
+    await q(
+      "update sports_feed.free_core_programmes set enabled=true where sport='nfl'",
+    );
+    const core = (
+      await q("select sports_feed.free_core_inventory($1,$2) cards", [
+        u,
+        freeRound,
+      ])
+    )[0].cards;
+    assert.equal(core.length, 7);
+    const freePicks = nflSeven.slots.map((s, i) => ({
+      slot: s.id,
+      card: core.find((c: any) => c.player_id === corePlayers[i].id).id,
+    }));
+    const ownedBefore = (
+      await q("select count(*)::int n from beta_fantasy.cards")
+    )[0].n;
+    assert.equal(
+      (await command("seven_enter", freeRound, freePicks, 0)).salary,
+      3500000,
+    );
+    assert.equal(
+      (await q("select count(*)::int n from beta_fantasy.cards"))[0].n,
+      ownedBefore,
+    );
+    await q("select set_config('request.jwt.claim.sub',$1,false)", [other]);
+    await assert.rejects(command("seven_enter", freeRound, freePicks, 0));
   } finally {
     await pg.close();
   }

@@ -7,7 +7,24 @@ import {
 } from "./store-purchase-verification";
 
 type Identity = { member: string; session: string };
-type Admission = {
+export function sameStoreProducts(
+  a: readonly StoreProduct[],
+  b: readonly StoreProduct[],
+) {
+  const key = (p: StoreProduct) =>
+    JSON.stringify([
+      p.id,
+      p.version,
+      p.credits,
+      p.scope ?? "sport",
+      p.sport ?? null,
+    ]);
+  return (
+    a.length === b.length &&
+    a.map(key).sort().join("\n") === b.map(key).sort().join("\n")
+  );
+}
+export type StoreTestAdmission = {
   version: string;
   expiresAt: number;
   products: readonly StoreProduct[];
@@ -16,7 +33,7 @@ type Dependencies = {
   /** Must call the existing verified identity/session/MFA service, never decode a client claim. */
   authenticate: () => Promise<Identity>;
   /** Server-owned isolated acceptance membership; null is disabled. No public activation here. */
-  admission: (who: Identity) => Promise<Admission | null>;
+  admission: (who: Identity) => Promise<StoreTestAdmission | null>;
   rateLimit: (who: Identity) => Promise<boolean>;
   bindingSecret: string;
   verify: (token: string, account: string) => Promise<StoreReceipt>;
@@ -25,6 +42,7 @@ type Dependencies = {
     member: string,
     account: string,
     token: string,
+    grant: StoreTestAdmission,
   ) => Promise<unknown>;
 };
 const receiptBody = z
@@ -113,11 +131,11 @@ export class MemberStoreTestPurchases {
       current.who.session !== who.session ||
       current.account !== account ||
       current.grant.version !== grant.version ||
-      JSON.stringify(current.grant.products) !== JSON.stringify(grant.products)
+      !sameStoreProducts(current.grant.products, grant.products)
     )
       throw Error("Purchase session changed. Sign in and reconcile again.");
     try {
-      await this.deps.accept(receipt, who.member, account, token);
+      await this.deps.accept(receipt, who.member, account, token, grant);
     } catch {
       throw Error(
         "Purchase fulfilment is not confirmed. Retry reconciliation.",

@@ -9,6 +9,7 @@ import {
   wallet,
   creditsCommand,
   financialReport,
+  validateStoreTestProvenance,
   type CreditsState,
 } from "./credits-sandbox";
 import type { AwardedCard, PackReceipt } from "./pack-opening";
@@ -40,12 +41,13 @@ export function initialMemberTestCredits() {
   return s;
 }
 export function assertMemberTestEconomy(s: CreditsState) {
+  validateStoreTestProvenance(s);
   if (
     s.policy.version !== testWalletVersion ||
     s.policy.liveEnabled ||
     s.policy.purchasedWithdrawable ||
     Object.values(s.lots).some((l) => l.redeemable) ||
-    Object.keys(s.deposits).length ||
+    Object.keys(s.deposits).some((key) => !s.storeTestDeposits?.[key]) ||
     Object.keys(s.withdrawals).length
   )
     throw Error("Test-only economy required");

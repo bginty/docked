@@ -88,6 +88,16 @@ type Withdrawal = {
   provider?: string;
 };
 export type CreditsState = {
+  /** Written only by verified server-side TEST settlement, never a member command. */
+  storeTestDeposits?: Record<string, {
+    provider: "google" | "apple";
+    environment: "test";
+    member: string;
+    product: string;
+    productVersion: string;
+    credits: number;
+    verifiedAt: number;
+  }>;
   roundRewards?: Record<string, { fingerprint: string; contextHash: string; recipient: string; competition: string; round: string; sport: string; place: number; schedule: string; reward: unknown; reference: string; status: "ISSUED"; at: number }>;
   packCoupons?: CouponBook;
   privateCardOffers?: Record<
@@ -493,7 +503,21 @@ export function wallet(s: CreditsState, member: string) {
     restricted: total.available - total.withdrawable,
   };
 }
+export function validateStoreTestProvenance(s: CreditsState) {
+  for (const [key, proof] of Object.entries(s.storeTestDeposits ?? {})) {
+    const d = s.deposits[key];
+    if (!d || !d.creditOnly || proof.environment !== "test" ||
+      !["google", "apple"].includes(proof.provider) ||
+      !new RegExp(`^${proof.provider}_[a-f0-9]{64}$`).test(key) ||
+      proof.member !== d.member || proof.credits !== d.amount ||
+      !proof.product || !proof.productVersion || !Number.isSafeInteger(proof.verifiedAt) ||
+      (d.lot && (!s.lots[d.lot] || s.lots[d.lot].redeemable ||
+        s.lots[d.lot].member !== proof.member || s.lots[d.lot].provenance !== `payment:${key}`)))
+      throw Error("Verified TEST funding provenance invariant");
+  }
+}
 export function validateCredits(s: CreditsState) {
+  validateStoreTestProvenance(s);
   validateCouponBook(s);
   if (s.economy) validateCardEconomy(s.economy);
   if (
@@ -1104,7 +1128,7 @@ export function executeCredits(
             d.lot = lot(
               d.member,
               "purchased",
-              d.creditOnly ? true : s.policy.purchasedWithdrawable,
+              s.storeTestDeposits?.[c.deposit] ? false : d.creditOnly ? true : s.policy.purchasedWithdrawable,
               `payment:${c.capture}`,
             );
             d.capture = c.capture;

@@ -34,6 +34,21 @@ async function main() {
     );
     await sql`insert into credits_sandbox.state values(true,0,${sql.json(initial as any)})`;
     let store = new CreditsSandboxStore(sql);
+    await sql`create table qa_store_admission(member text primary key,enabled boolean not null)`;
+    await sql`insert into qa_store_admission values(${packMember.id},true)`;
+    const transactionalInbox = () =>
+      new StoreTestInbox(
+        {
+          memberTestWallet: sql,
+          authorize: async (tx, _receipt, member) => {
+            const [grant] =
+              await tx`select enabled from qa_store_admission where member=${member} for share`;
+            if (!grant?.enabled) throw Error("Synthetic admission revoked");
+          },
+        },
+        key,
+      );
+    inbox = transactionalInbox();
     const token = "synthetic-token-only",
       receipt = storePackReceipt(
         createHash("sha256")
@@ -95,7 +110,8 @@ async function main() {
       rateLimit: async () => true,
       bindingSecret,
       verify: provider.verify,
-      accept: (...args) => inbox.accept(...args),
+      accept: (r, member, account, reference) =>
+        inbox.accept(r, member, account, reference),
     });
     assert.equal(
       (await memberService.session()).accountBinding,
@@ -109,6 +125,17 @@ async function main() {
     await Promise.all(Array.from({ length: 12 }, () => worker.runOne()));
     assert.equal(verifications, 2);
     assert.equal(wallet(await store.read(), packMember.id).spendable, 9900);
+    const beforeRevoked = JSON.stringify(await store.read());
+    await sql`update qa_store_admission set enabled=false where member=${packMember.id}`;
+    await assert.rejects(
+      inbox.accept(receipt, packMember.id, receipt.account, token),
+      /admission revoked/,
+    );
+    assert.equal(JSON.stringify(await store.read()), beforeRevoked);
+    await sql`update qa_store_admission set enabled=true where member=${packMember.id}`;
+    checks.push(
+      "Transaction-time membership revocation rejects even an idempotent receipt retry without modifying the wallet",
+    );
     await worker.consumeOne();
     assert.equal(consumed, true);
     checks.push(
@@ -170,6 +197,7 @@ async function main() {
     await inbox.close();
     inbox = new StoreTestInbox(url, key);
     sql = inbox.sql;
+    inbox = transactionalInbox();
     store = new CreditsSandboxStore(sql);
     worker = new StoreTestReconciliation(
       inbox,

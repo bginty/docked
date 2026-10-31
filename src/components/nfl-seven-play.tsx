@@ -1,4 +1,5 @@
 "use client";
+import { eligibleInRound, isFreeCore } from "@/core/free-core";
 import { NavigationShortcut } from "./navigation-shortcut";
 import { SevenField } from "./seven-field";
 import { useSportDraftGuard } from "./sport-context";
@@ -290,7 +291,9 @@ export function NflSevenPlay({
       .map((c) => [c.slot, c]),
   );
 
-  const inventory = [...(data.seven?.inventory ?? [])];
+  const inventory = (data.seven?.inventory ?? []).filter((c) =>
+    eligibleInRound(c, comp?.id),
+  );
 
   const historical =
     !!comp?.scored_at ||
@@ -724,7 +727,7 @@ export function NflSevenPlay({
             {autoBusy ? "Finding your lineup…" : "Auto Select"}
           </button>
           <small>
-            Build your first team from eligible owned cards. After your first
+            Build your first team from eligible cards. After your first
             confirmed entry, make changes manually.
           </small>
         </div>
@@ -1412,7 +1415,7 @@ export function NflSevenPlay({
             )}
           </div>
           {!pool.length ? (
-            <p>No owned cards for this position in this competition.</p>
+            <p>No eligible cards for this position in this competition.</p>
           ) : !filtered.length ? (
             <p>No cards match your current filters.</p>
           ) : filtered.every((c) => candidate(c)) ? (
@@ -1444,6 +1447,11 @@ export function NflSevenPlay({
                   />
                 </span>
                 <span className="candidate-context">
+                  {isFreeCore(c) && (
+                    <small className="block-note">
+                      Free Core · gameplay only
+                    </small>
+                  )}
                   {mode === "SALARY_CAP" && (
                     <small className="block-note">
                       Fantasy salary{" "}

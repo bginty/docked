@@ -1,4 +1,5 @@
 "use client";
+import { eligibleInRound, isFreeCore } from "@/core/free-core";
 import { NavigationShortcut } from "./navigation-shortcut";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -252,16 +253,19 @@ export function SportSandbox({
     };
   }, [nbaProposal, locked, comp?.id, state.sport]);
   const selected = slot && cfg?.slots.find((s) => s.id === slot);
-  const hasRealRoster = state.cards.some(
+  const eligibleCards = state.cards.filter((c) => eligibleInRound(c, comp?.id));
+  const hasRealRoster = eligibleCards.some(
     (c) => c.inventory_class === "real-roster-beta-v1",
   );
   const pickerCards = selected
-    ? state.cards.filter(
+    ? eligibleCards.filter(
         (c) =>
           c.owner_id === state.user_id &&
           c.sport === state.sport &&
           (!pickerRarity || c.tier === pickerRarity) &&
-          (!hasRealRoster || c.inventory_class === "real-roster-beta-v1") &&
+          (!hasRealRoster ||
+            isFreeCore(c) ||
+            c.inventory_class === "real-roster-beta-v1") &&
           `${c.name} ${c.team ?? ""}`
             .toLowerCase()
             .includes(pickerQuery.trim().toLowerCase()) &&
@@ -295,7 +299,7 @@ export function SportSandbox({
   }, []);
   const display = viewing?.snapshot ?? (locked ? entry?.snapshot : null);
   const validate = cfg
-    ? sevenIssues(mode, picks, state.cards, true, cfg)
+    ? sevenIssues(mode, picks, eligibleCards, true, cfg)
     : null;
   const capPending =
     mode === "SALARY_CAP" &&
@@ -861,7 +865,7 @@ export function SportSandbox({
           historyEntry
         >
           <label>
-            Find in My Cards
+            {eligibleCards.some(isFreeCore) ? "Find a player" : "Find in My Cards"}
             <input
               type="search"
               value={pickerQuery}
@@ -916,6 +920,7 @@ export function SportSandbox({
                   variant="compact"
                 />
                 <span>{c.name}</span>
+                {isFreeCore(c) && <small>Free Core · gameplay only</small>}
                 <small>
                   {c.listed
                     ? "Listed for sale · cancel listing first"
@@ -931,7 +936,7 @@ export function SportSandbox({
           </div>
           {!pickerCards.length && (
             <p>
-              No eligible owned cards match this position and search.{" "}
+              No eligible cards match this position and search.{" "}
               <Link href={`/fantasy/cards?sport=${state.sport}`}>
                 View My Cards
               </Link>

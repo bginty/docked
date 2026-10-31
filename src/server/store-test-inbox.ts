@@ -8,6 +8,11 @@ import postgres, { type Sql } from "postgres";
 import { CreditsSandboxStore } from "./credits-sandbox-store";
 import { settleStoreTestReceipt } from "./store-test-settlement";
 import type { StoreReceipt } from "./store-purchase-verification";
+type TransactionAdmission = (
+  tx: Sql,
+  receipt: StoreReceipt,
+  member: string,
+) => Promise<void>;
 
 /** Shared TEST receipt persistence. String connections remain disposable-local only.
  * Hosted acceptance requires an explicitly injected, dedicated least-privilege role.
@@ -22,11 +27,24 @@ export class StoreTestInbox {
   private schema: "credits_sandbox" | "store_billing_acceptance" =
     "credits_sandbox";
   private admission?: Promise<void>;
+  private transactionAdmission?: TransactionAdmission;
+  private memberWallet = false;
   constructor(
-    url: string | { hostedAcceptance: Sql },
+    url:
+      | string
+      | { hostedAcceptance: Sql }
+      | { memberTestWallet: Sql; authorize: TransactionAdmission },
     private encryptionKey: Buffer,
   ) {
     if (typeof url !== "string") {
+      if ("memberTestWallet" in url) {
+        if (typeof url.authorize !== "function" || encryptionKey.length !== 32)
+          throw Error("Member transaction admission and encryption required");
+        this.sql = url.memberTestWallet;
+        this.transactionAdmission = url.authorize;
+        this.memberWallet = true;
+        return;
+      }
       this.schema = "store_billing_acceptance";
       this.sql = url.hostedAcceptance;
 
@@ -45,6 +63,7 @@ export class StoreTestInbox {
     this.sql = postgres(url, { max: 12, onnotice: () => {} });
   }
   private ready() {
+    if (this.memberWallet) return;
     if (this.schema === "store_billing_acceptance")
       return (this.admission ??= this.assertHostedRole());
   }
@@ -100,6 +119,9 @@ export class StoreTestInbox {
       async (tx, state) => {
         if (state.mode !== "financial-sandbox-only" || !state.creditOnly)
           throw Error("Isolated wallet required");
+        // Runs under the existing wallet lock, even for retries. Revocation must
+        // not race remote verification or be bypassed by cached admission.
+        await this.transactionAdmission?.(tx, receipt, member);
         const [old] =
           await tx`select * from ${tx(this.schema)}.store_receipts where provider=${receipt.provider} and receipt_key=${receipt.key} for update`;
         if (
@@ -165,11 +187,12 @@ export class StoreTestInbox {
       reference: string,
       product: string,
     ) => Promise<void>,
+    receiptKey?: string,
   ) {
     await this.ready();
     const [job] = await this
       .sql`update ${this.sql(this.schema)}.store_outbox o set state='working',attempts=attempts+1,lease_until=clock_timestamp()+interval '60 seconds',updated_at=clock_timestamp()
-      where (provider,receipt_key) in (select provider,receipt_key from ${this.sql(this.schema)}.store_outbox where state='pending' or (state='working' and lease_until<clock_timestamp()) order by updated_at for update skip locked limit 1)
+      where (provider,receipt_key) in (select provider,receipt_key from ${this.sql(this.schema)}.store_outbox where (${receiptKey ?? null}::text is null or receipt_key=${receiptKey ?? null}) and (state='pending' or (state='working' and lease_until<clock_timestamp())) order by updated_at for update skip locked limit 1)
       returning *`;
     if (!job) return false;
     try {
@@ -218,10 +241,11 @@ export class StoreTestInbox {
   }
   /** LOCAL harness worker only. Never serialize these references into a client
    * response or logs. Unknown/other-member purchases cannot enter reconciliation. */
-  async references(member: string) {
+  async references(member: string, limit = 50) {
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100) throw Error("Bounded reconciliation required");
     await this.ready();
     const rows = await this
-      .sql`select receipt_key, encrypted_reference from ${this.sql(this.schema)}.store_receipts where provider='google' and member_id=${member} order by updated_at`;
+      .sql`select receipt_key, encrypted_reference from ${this.sql(this.schema)}.store_receipts where provider='google' and member_id=${member} and status in ('PENDING','PURCHASED') order by updated_at,receipt_key limit ${limit}`;
     return rows.map((row) => ({
       key: String(row.receipt_key),
       token: this.decrypt(row.encrypted_reference),
