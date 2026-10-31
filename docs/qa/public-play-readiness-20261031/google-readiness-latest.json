@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-31T07:03:45.527Z",
+  "at": "2026-10-31T07:29:37.653Z",
   "oauthHttpStatus": 200,
   "checks": [
     {
@@ -32,7 +32,7 @@
       "returnedRefunds": 0
     },
     {
-      "name": "generated-release-23",
+      "name": "generated-release-24",
       "httpStatus": 200,
       "signingKeys": [
         {
@@ -41,7 +41,8 @@
           "standalone": 0,
           "universal": true
         }
-      ]
+      ],
+      "downloaded": true
     }
   ],
   "mutations": 0

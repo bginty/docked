@@ -14,6 +14,12 @@ const env = {
   CAPACITOR_PREVIEW_DEBUGGING: "",
 };
 const root = process.cwd();
+const billingQa = process.argv.includes("--billing-qa");
+if (
+  billingQa &&
+  !existsSync("android/app/src/storeBillingQa/res/raw/google_lab_ca.pem")
+)
+  throw Error("Prepare the private loopback TLS lab before the QA build");
 const input = closedTestInputs(env, root);
 if (!env.JAVA_HOME || !env.ANDROID_HOME)
   throw Error("JDK21 and Android SDK36 are required");
@@ -51,18 +57,36 @@ run("node", ["scripts/build-mobile-shell.mjs"]);
 run("npx", ["cap", "sync", "android"]);
 run(
   "gradlew.bat",
-  [":app:bundleStoreInternal", ":app:assembleStoreInternal", "--console=plain"],
+  billingQa
+    ? [
+        ":app:bundleStoreBillingQa",
+        ":app:assembleStoreBillingQa",
+        "--console=plain",
+      ]
+    : [
+        ":app:bundleStoreInternal",
+        ":app:assembleStoreInternal",
+        "--console=plain",
+      ],
   path.join(root, "android"),
 );
 mkdirSync("artifacts/android", { recursive: true });
 for (const [source, target] of [
   [
-    "android/app/build/outputs/bundle/storeInternal/app-storeInternal.aab",
-    "artifacts/android/Docked-store-internal.aab",
+    billingQa
+      ? "android/app/build/outputs/bundle/storeBillingQa/app-storeBillingQa.aab"
+      : "android/app/build/outputs/bundle/storeInternal/app-storeInternal.aab",
+    billingQa
+      ? "artifacts/android/Docked-billing-qa.aab"
+      : "artifacts/android/Docked-store-internal.aab",
   ],
   [
-    "android/app/build/outputs/apk/storeInternal/app-storeInternal.apk",
-    "artifacts/android/Docked-store-internal.apk",
+    billingQa
+      ? "android/app/build/outputs/apk/storeBillingQa/app-storeBillingQa.apk"
+      : "android/app/build/outputs/apk/storeInternal/app-storeInternal.apk",
+    billingQa
+      ? "artifacts/android/Docked-billing-qa.apk"
+      : "artifacts/android/Docked-store-internal.apk",
   ],
 ]) {
   if (!existsSync(source)) throw Error("Expected native artifact missing");

@@ -165,4 +165,14 @@ export class StoreTestInbox {
   async close() {
     await this.sql.end();
   }
+  /** LOCAL harness worker only. Never serialize these references into a client
+   * response or logs. Unknown/other-member purchases cannot enter reconciliation. */
+  async references(member: string) {
+    const rows = await this
+      .sql`select receipt_key, encrypted_reference from credits_sandbox.store_receipts where provider='google' and member_id=${member} order by updated_at`;
+    return rows.map((row) => ({
+      key: String(row.receipt_key),
+      token: this.decrypt(row.encrypted_reference),
+    }));
+  }
 }

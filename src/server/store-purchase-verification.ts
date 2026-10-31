@@ -43,6 +43,8 @@ export type StoreReceipt = {
   state: "PENDING" | "PURCHASED" | "CANCELLED" | "REVOKED";
   environment: "test";
   consumed?: boolean;
+  /** Server readback only; never accept an order ID supplied by a client. */
+  orderId?: string;
 };
 export function storeAccountId(member: string, secret: string) {
   if (secret.length < 32 || !member)
@@ -62,6 +64,10 @@ function productFor(products: readonly StoreProduct[], id: string) {
   return product;
 }
 const googlePurchase = z.object({
+  orderId: z
+    .string()
+    .regex(/^GPA\.[0-9-]+$/)
+    .optional(),
   purchaseStateContext: z.object({
     purchaseState: z.enum(["PENDING", "PURCHASED", "CANCELLED"]),
   }),
@@ -136,6 +142,7 @@ export class GooglePlayTestVerifier {
       product,
       account: expectedAccount,
       environment: "test",
+      orderId: purchase.orderId,
       consumed:
         item.productOfferDetails.consumptionState ===
         "CONSUMPTION_STATE_CONSUMED",
@@ -174,6 +181,33 @@ export class GooglePlayTestVerifier {
         return;
       throw Error("Purchase consumption requires reconciliation");
     }
+  }
+  /** Explicit operator-only TEST refund. Verifies provenance immediately before
+   * mutation; receipt tokens/account bindings select the order, never client IDs.
+   * A successful refund request is not itself a ledger reversal: reconcile the
+   * authoritative receipt afterwards. No production endpoint exposes this. */
+  async refundTestPurchase(token: string, expectedAccount: string) {
+    const receipt = await this.verify(token, expectedAccount);
+    if (receipt.state === "REVOKED" || receipt.state === "CANCELLED")
+      return { requested: false, alreadyReversed: true };
+    if (receipt.state !== "PURCHASED" || !receipt.orderId)
+      throw Error("Only a verified purchased test order can be refunded");
+    const response = await this.request(
+      `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${this.packageName}/orders/${encodeURIComponent(receipt.orderId)}:refund?revoke=true`,
+      {
+        method: "POST",
+        headers: { Authorization: `Bearer ${await this.authorizationToken()}` },
+        redirect: "error",
+        signal: AbortSignal.timeout(15000),
+      },
+    );
+    if (!response.ok) {
+      const latest = await this.verify(token, expectedAccount);
+      if (latest.state === "REVOKED" || latest.state === "CANCELLED")
+        return { requested: false, alreadyReversed: true };
+      throw Error("Test refund not confirmed; reconcile before retrying");
+    }
+    return { requested: true, alreadyReversed: false };
   }
   private async authorizationToken() {
     try {

@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 // Existing Play Console package, verified during the first bundle upload.
 // All legacy sideload variants retain their original package identity.
-def storeInternalBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storeinternal') }
+def billingQaBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storebillingqa') }
+def storeInternalBuild = billingQaBuild || gradle.startParameter.taskNames.any { it.toLowerCase().contains('storeinternal') }
 
 android {
     namespace = "au.com.docked.app"
@@ -10,8 +11,8 @@ android {
         applicationId storeInternalBuild ? "docked.fantasy" : "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 23
-        versionName "1.22"
+        versionCode billingQaBuild ? 24 : 23
+        versionName billingQaBuild ? "1.23" : "1.22"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -29,6 +30,13 @@ android {
         }
     }
     buildTypes {
+        storeBillingQa {
+            initWith release
+            versionNameSuffix "-billing-qa"
+            signingConfig signingConfigs.closedTestUpload
+            debuggable false
+            matchingFallbacks = ['release']
+        }
         storeInternal {
             initWith release
             versionNameSuffix "-internal"
@@ -81,7 +89,7 @@ android {
 // Production release remains blocked. The separate closedTest variant requires
 // exact isolated HTTPS assets and a real owner-controlled upload certificate.
 gradle.taskGraph.whenReady { graph ->
-    if (graph.allTasks.any { it.project == project && it.name.toLowerCase().contains('storeinternal') }) {
+    if (graph.allTasks.any { it.project == project && (it.name.toLowerCase().contains('storeinternal') || it.name.toLowerCase().contains('storebillingqa')) }) {
         def verification = providers.exec {
             workingDir rootProject.projectDir.parentFile
             commandLine 'node', 'scripts/verify-store-internal.mjs'

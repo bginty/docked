@@ -7,6 +7,10 @@ import { join } from "node:path";
 const base =
   "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/docked.fantasy/";
 async function main() {
+  const versionArg = process.argv.find((arg) => arg.startsWith("--version="));
+  const version = versionArg ? versionArg.slice("--version=".length) : "23";
+  if (!/^[1-9][0-9]{0,8}$/.test(version))
+    throw Error("Invalid release version");
   const key = JSON.parse(
     readFileSync(
       join(
@@ -62,7 +66,7 @@ async function main() {
   for (const [name, path] of [
     ["catalogue", "oneTimeProducts?pageSize=10"],
     ["refund-readback", "purchases/voidedpurchases?type=0&maxResults=1"],
-    ["generated-release-23", "generatedApks/23"],
+    [`generated-release-${version}`, `generatedApks/${version}`],
   ]) {
     const r = await get(path),
       body = await r.json();
@@ -77,7 +81,7 @@ async function main() {
       }));
     if (r.ok && name === "refund-readback")
       summary.returnedRefunds = body.voidedPurchases?.length ?? 0;
-    if (r.ok && name === "generated-release-23") {
+    if (r.ok && name === `generated-release-${version}`) {
       summary.signingKeys = body.generatedApks?.map((g) => ({
         sha256: g.certificateSha256Hash,
         splits: g.generatedSplitApks?.length ?? 0,
@@ -94,7 +98,7 @@ async function main() {
             "No unique Google-signed universal APK available; inspect targeting before download",
           );
         const apk = await get(
-          "generatedApks/23/downloads/" +
+          `generatedApks/${version}/downloads/` +
             encodeURIComponent(variants[0].generatedUniversalApk.downloadId) +
             ":download?alt=media",
         );
@@ -104,7 +108,7 @@ async function main() {
           throw Error("Invalid APK container");
         mkdirSync("tmp/play-generated", { recursive: true });
         writeFileSync(
-          "tmp/play-generated/docked-23-google-universal.apk",
+          `tmp/play-generated/docked-${version}-google-universal.apk`,
           bytes,
         );
         summary.downloaded = true;
