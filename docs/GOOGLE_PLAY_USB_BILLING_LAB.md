@@ -43,4 +43,10 @@ Stop the runner after acceptance and remove only the owned forwarding rule with 
 - Google catalogue and voided-purchase read APIs returned 200; both options remain DRAFT and no refunds were returned. This does not establish successful receipt verification or refund mutation.
 - Phone initially installed version 24 through USB, while Google Play's update request still selected version 23. Genuine checkout, settlement and refund remain pending until the Play-managed QA build and approved products are available.
 
+### Follow-up acceptance
+
+The owner approved temporary product activation. Version 24 subsequently installed through Play (`com.android.vending`) and paired successfully with the local TLS server. Both correct products appeared. Google's A$49 review showed its no-charge test card. Cancellation was verified against the local database: zero receipts, credits and queued settlement work. Use `node --import tsx scripts/google-play-lab-evidence.ts <safe-label>` for redacted read-only database evidence.
+
+The final Google checkout button explicitly accepts buyer terms; separate action-time confirmation remains pending. No completed order, consumption or refund is claimed. Both options were deactivated after the session, with API-confirmed **INACTIVE** state at 19:26 AEDT. The earlier DRAFT description records the pre-activation state. Do not leave temporary products active between supervised sessions.
+
 Official references: [license testing](https://developer.android.com/google/play/billing/test), [published product requirement](https://support.google.com/googleplay/android-developer/answer/6062777), [verified purchase fields](https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.productsv2), [order refunds](https://developers.google.com/android-publisher/api-ref/rest/v3/orders/refund).

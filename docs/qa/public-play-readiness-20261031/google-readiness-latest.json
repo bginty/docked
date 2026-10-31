@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-31T07:29:37.653Z",
+  "at": "2026-10-31T08:26:19.002Z",
   "oauthHttpStatus": 200,
   "checks": [
     {
@@ -11,7 +11,7 @@
           "options": [
             {
               "id": "buy-au",
-              "state": "DRAFT"
+              "state": "INACTIVE"
             }
           ]
         },
@@ -20,7 +20,7 @@
           "options": [
             {
               "id": "buy-au",
-              "state": "DRAFT"
+              "state": "INACTIVE"
             }
           ]
         }
@@ -41,8 +41,7 @@
           "standalone": 0,
           "universal": true
         }
-      ],
-      "downloaded": true
+      ]
     }
   ],
   "mutations": 0
