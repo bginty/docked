@@ -56,6 +56,15 @@ test("Google API readback binds account/product, keeps pending and cancels disti
     (await verifier(body).verify("synthetic-token", account)).state,
     "REVOKED",
   );
+  // A pending/declined order has no refundable purchased units. This must not
+  // turn an unpaid order into a refund or prematurely terminalise pending work.
+  for (const state of ["PENDING", "CANCELLED"]) {
+    body.purchaseStateContext.purchaseState = state;
+    assert.equal(
+      (await verifier(body).verify("synthetic-token", account)).state,
+      state,
+    );
+  }
 });
 test("no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes", async () => {
   await assert.rejects(verifier(payload()).verify("synthetic-token", "other"));

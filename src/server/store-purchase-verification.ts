@@ -146,7 +146,10 @@ export class GooglePlayTestVerifier {
       consumed:
         item.productOfferDetails.consumptionState ===
         "CONSUMPTION_STATE_CONSUMED",
+      // Unpaid/cancelled orders may have no refundable units. Preserve Google's
+      // state; zero refundable units imply revocation only for PURCHASED.
       state:
+        purchase.purchaseStateContext.purchaseState === "PURCHASED" &&
         item.productOfferDetails.refundableQuantity === 0
           ? "REVOKED"
           : purchase.purchaseStateContext.purchaseState,

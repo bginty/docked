@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-31T08:59:24.006Z",
+  "label": "declined-zero-grant",
+  "source": "disposable local PostgreSQL",
+  "balance": 0,
+  "receipts": [
+    {
+      "status": "REVOKED",
+      "count": 2
+    }
+  ],
+  "events": [
+    {
+      "status": "PURCHASED",
+      "count": 2
+    },
+    {
+      "status": "REVOKED",
+      "count": 2
+    }
+  ],
+  "outbox": [
+    {
+      "state": "done",
+      "count": 2,
+      "attempts": 2
+    }
+  ],
+  "providerReadback": [],
+  "productionConnections": 0
+}

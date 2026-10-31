@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-31T08:56:26.386Z",
+  "label": "refunded-4900",
+  "source": "disposable local PostgreSQL",
+  "balance": 0,
+  "receipts": [
+    {
+      "status": "REVOKED",
+      "count": 1
+    }
+  ],
+  "events": [
+    {
+      "status": "PURCHASED",
+      "count": 1
+    },
+    {
+      "status": "REVOKED",
+      "count": 1
+    }
+  ],
+  "outbox": [
+    {
+      "state": "done",
+      "count": 1,
+      "attempts": 1
+    }
+  ],
+  "productionConnections": 0
+}

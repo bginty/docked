@@ -1,0 +1,50 @@
+{
+  "at": "2026-10-31T08:57:29.351Z",
+  "label": "settled-9900",
+  "source": "disposable local PostgreSQL",
+  "balance": 9900,
+  "receipts": [
+    {
+      "status": "PURCHASED",
+      "count": 1
+    },
+    {
+      "status": "REVOKED",
+      "count": 1
+    }
+  ],
+  "events": [
+    {
+      "status": "PURCHASED",
+      "count": 2
+    },
+    {
+      "status": "REVOKED",
+      "count": 1
+    }
+  ],
+  "outbox": [
+    {
+      "state": "done",
+      "count": 2,
+      "attempts": 2
+    }
+  ],
+  "providerReadback": [
+    {
+      "product": "docked_credits_9900_v1",
+      "environment": "test",
+      "state": "PURCHASED",
+      "consumed": true,
+      "hasVerifiedOrderId": true
+    },
+    {
+      "product": "docked_credits_4900_v1",
+      "environment": "test",
+      "state": "REVOKED",
+      "consumed": true,
+      "hasVerifiedOrderId": true
+    }
+  ],
+  "productionConnections": 0
+}

@@ -170,3 +170,40 @@ At 19:19 AEDT the Play Store successfully installed version 24; package diagnost
 Before the first completed test order, Google's final button displayed acceptance of its buyer terms. Separate action-time confirmation was requested under the computer-use legal-agreement rule. No final buy button has yet been pressed, so successful Google purchase, consumption and refund remain unverified. The activation decision is not represented as acceptance of those terms.
 
 The second unconfirmed checkout was cancelled while that confirmation remained pending. Both purchase options were then deactivated as promised; Google API readback at 19:26 AEDT confirmed **INACTIVE** for each. Final local evidence still showed zero receipts, events, outbox records and credits. No Google refund could be tested because no purchase was completed. No real payment method was selected or charged. The new read-only evidence script passed TypeScript and ESLint checks. Temporary activation is closed, not left running unattended.
+
+## Completed supervised Google checkout and refund acceptance — 31 October 2026
+
+This section supersedes the earlier buyer-terms blocker. The owner explicitly approved the displayed Google test-checkout terms. Both AU options were temporarily reactivated for this supervised session and restored to **INACTIVE**, confirmed by Console and Publisher API at 20:07 AEDT. No public release or normal payment activation occurred.
+
+Actual Samsung SM-S921B / Android 16, Play-installed version 24 results:
+
+| Scenario | Actual result |
+| --- | --- |
+| A$49 / 4,900, always-approve test card | Google success; verified TEST receipt; local credit 4,900 exactly once; consumption completed |
+| Reconcile first purchase | Balance unchanged; no duplicate credit |
+| Refund first purchase | Google refund/revoke; authoritative readback; local balance returned to zero |
+| A$99 / 9,900, always-approve test card | Google success; verified and consumed; local credit 9,900; refund returned balance to zero |
+| A$49, always-decline test card | Google's explicit decline; no new receipt or credit |
+| A$99, slow-approve test card | PENDING and zero credits first; automatic reconciliation later credited 9,900 once and consumed; subsequent refund returned balance to zero |
+| A$49, slow-decline test card | PENDING granted nothing; eventual cancellation granted nothing |
+| Session end | Three completed purchases, all refunded; four terminal receipts; zero outstanding credits; three completed consumption jobs |
+
+All checkouts used Google's visibly labelled no-charge test instruments. Settlement used a disposable, loopback-only PostgreSQL database and synthetic member, never a Production customer wallet. The three successful orders were refunded through the restricted server credential after fresh TEST verification. No raw receipt, order ID, account binding, pairing key or credential is included in evidence.
+
+### Defect found and correction
+
+The original verifier gave zero refundable quantity precedence over Google's purchase state. A slow-declined, never-paid order therefore appeared REVOKED. The correction preserves PENDING/CANCELLED and interprets zero refundable units as REVOKED only for PURCHASED. Regression now covers zero-refundable pending and cancelled responses. Google's documented purchase state and refundable quantity are separate fields: https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.productsv2.
+
+Fresh genuine-receipt readback using corrected code confirms all four terminal provider states are CANCELLED, with consumption true for the three completed/refunded orders and false for the never-paid order. Existing isolated audit rows retain the original REVOKED classification; they were not rewritten. The running test service used its original loaded code, so corrected parsing was verified by a fresh read-only process plus automated tests, not a new native purchase session. Both terminal states block replay and reverse any previously granted credit. This is not a change to historical customer records.
+
+### Verification and release boundaries
+
+- Fifteen focused platform tests passed after the fix; full TypeScript and changed-file ESLint passed.
+- Four real PostgreSQL concurrency scenarios passed: 20 concurrent settlements credit once; 12 consumption workers deliver once; concurrent refunds/stale callbacks cannot regrant; pending/outbox failure rollback is atomic. These concurrency tests use fixtures, separate from the genuine Google orders.
+- The v24 main launcher reopened authenticated in docked.fantasy/au.com.docked.app.MainActivity. NFL Week 7 rendered 105.81 points and 6/7 completed; displayed account balance remained 35,200 test credits. Selector showed NFL/AFL/NRL, not NBA. No main-app mutations were performed.
+- Source still has payments/public registration/prizes/withdrawals disabled and empty native purchase allowlists. No web deployment, Production migration, new release upload or customer ledger mutation occurred in this session.
+- Google Play's Open button currently chooses the separate Billing Test launcher in this QA variant; the normal Docked launcher works. This QA variant must not be promoted publicly. Remove the lab source set for the public build.
+
+Evidence in qa/public-play-readiness-20261031: google-lab-settled-4900.json, google-lab-reconciled-4900.json, google-lab-settled-9900.json, google-lab-refunded-both.json, google-lab-declined-zero-grant.json, google-lab-pending-9900.json, google-lab-pending-approved.json, google-lab-slow-refund.json, google-lab-pending-decline-final.json, google-lab-corrected-provider-status.json and google-readiness-latest.json. Early files named first-purchase/after-google-success/verified-purchase capture zero-state before callback delivery and are NOT successful-settlement evidence. The voided-list endpoint returned one row at final inspection; it is not used to infer refund count. Each order's direct verified state is the acceptance evidence.
+
+Public launch remains **NO-GO**: hosted production wallet/receipt settlement and refund notification/reconciliation acceptance; final privacy/Data Safety/content/legal policy review; reviewer access and public registration decisions; and a public build without the QA launcher remain outstanding. A genuine local Google test is not Production payment certification. Keep both products inactive, NBA hidden and all real-money gates closed until these are satisfied and the owner approves activation.

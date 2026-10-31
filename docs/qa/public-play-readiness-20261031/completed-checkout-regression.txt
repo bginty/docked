@@ -1,0 +1,85 @@
+TAP version 13
+# Subtest: expired lab pairing cannot read data or invoke provider operations
+ok 1 - expired lab pairing cannot read data or invoke provider operations
+  ---
+  duration_ms: 4.2209
+  ...
+# Subtest: native lab rejects web, missing/expired pairing, hostile fields and nonlocal host before settlement
+ok 2 - native lab rejects web, missing/expired pairing, hostile fields and nonlocal host before settlement
+  ---
+  duration_ms: 128.7076
+  ...
+# Subtest: test refund derives order only from freshly verified Google test receipt
+ok 3 - test refund derives order only from freshly verified Google test receipt
+  ---
+  duration_ms: 60.1151
+  ...
+# Subtest: test refund lost response reconciles reversal and duplicate retry does not refund twice
+ok 4 - test refund lost response reconciles reversal and duplicate retry does not refund twice
+  ---
+  duration_ms: 4.9392
+  ...
+# Subtest: approved credit contents stay separate from runtime purchase activation
+ok 5 - approved credit contents stay separate from runtime purchase activation
+  ---
+  duration_ms: 74.1643
+  ...
+# Subtest: native links preserve visible sport and reject hidden/ambiguous/malicious context
+ok 6 - native links preserve visible sport and reject hidden/ambiguous/malicious context
+  ---
+  duration_ms: 3.3542
+  ...
+# Subtest: internal native build is HTTPS-only and does not weaken old release targets
+ok 7 - internal native build is HTTPS-only and does not weaken old release targets
+  ---
+  duration_ms: 1.2726
+  ...
+# Subtest: Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+ok 8 - Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+  ---
+  duration_ms: 49.1063
+  ...
+# Subtest: no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+ok 9 - no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+  ---
+  duration_ms: 8.6804
+  ...
+# Subtest: Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+ok 10 - Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+  ---
+  duration_ms: 6.073
+  ...
+# Subtest: account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+ok 11 - account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+  ---
+  duration_ms: 5.6377
+  ...
+# Subtest: consumption verifies account and test status before any provider mutation
+ok 12 - consumption verifies account and test status before any provider mutation
+  ---
+  duration_ms: 6.4775
+  ...
+# Subtest: consumption retries use authoritative consumed state and remain retryable on failure
+ok 13 - consumption retries use authoritative consumed state and remain retryable on failure
+  ---
+  duration_ms: 4.8083
+  ...
+# Subtest: provider failures and malformed data cannot leak raw receipt material
+ok 14 - provider failures and malformed data cannot leak raw receipt material
+  ---
+  duration_ms: 2.2086
+  ...
+# Subtest: store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+ok 15 - store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+  ---
+  duration_ms: 38.9098
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5105.4251

@@ -50,3 +50,13 @@ The owner approved temporary product activation. Version 24 subsequently install
 The final Google checkout button explicitly accepts buyer terms; separate action-time confirmation remains pending. No completed order, consumption or refund is claimed. Both options were deactivated after the session, with API-confirmed **INACTIVE** state at 19:26 AEDT. The earlier DRAFT description records the pre-activation state. Do not leave temporary products active between supervised sessions.
 
 Official references: [license testing](https://developer.android.com/google/play/billing/test), [published product requirement](https://support.google.com/googleplay/android-developer/answer/6062777), [verified purchase fields](https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.productsv2), [order refunds](https://developers.google.com/android-publisher/api-ref/rest/v3/orders/refund).
+
+### Completed checkout session after buyer-terms approval
+
+Actual Google no-charge purchases for both approved products succeeded, were server-verified, consumed, reconciled without duplicate grants and refunded. Slow approval withheld credits while pending then settled automatically; immediate and slow declines granted nothing. Three completed orders were refunded; final isolated balance zero. Both Google options were restored to INACTIVE at 20:07 AEDT. See the final acceptance section in PUBLIC_PLAY_READINESS_20261031.md and its redacted evidence files.
+
+The slow-decline test revealed a status-classification defect: zero refundable quantity must not override PENDING or CANCELLED. Corrected code passes provider readback and regression tests. Existing local terminal audit labels were preserved; no customer history was rewritten. The normal v24 Docked launcher retained sign-in, the 35,200 displayed customer test balance and NFL/AFL/NRL-only navigation. The Play Store Open button can select the separate QA launcher; public builds must exclude that source set.
+
+Run evidence with --provider to include fresh, redacted Google state/consumption readback. It remains read-only. Do not interpret these local synthetic-ledger tests as acceptance of hosted Production settlement, RTDN, compliance or public billing.
+
+Session cleanup: loopback HTTP listener stopped, owned USB reverse rule removed, and local database files plus protected recovery material retained. No public endpoint was left running.

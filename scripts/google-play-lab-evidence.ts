@@ -4,6 +4,9 @@ import { join } from "node:path";
 import { StoreTestInbox } from "../src/server/store-test-inbox";
 import { CreditsSandboxStore } from "../src/server/credits-sandbox-store";
 import { wallet } from "../src/core/credits-sandbox";
+import { GooglePlayTestVerifier } from "../src/server/store-purchase-verification";
+import { googleLabOAuth } from "./google-play-lab-oauth";
+import draft from "../config/store-credit-package-drafts.json";
 async function main() {
   const session = JSON.parse(
     readFileSync(
@@ -22,6 +25,29 @@ async function main() {
     Buffer.from(session.encryptionKey, "hex"),
   );
   try {
+    const providerReadback = [];
+    if (process.argv.includes("--provider")) {
+      const verifier = new GooglePlayTestVerifier(
+        "docked.fantasy",
+        draft.products.map((p) => ({
+          id: p.id,
+          credits: p.credits,
+          scope: "account" as const,
+          version: draft.version,
+        })),
+        googleLabOAuth(),
+      );
+      for (const ref of await inbox.references(session.member)) {
+        const r = await verifier.verify(ref.token, session.account);
+        providerReadback.push({
+          product: r.product.id,
+          environment: r.environment,
+          state: r.state,
+          consumed: r.consumed,
+          hasVerifiedOrderId: !!r.orderId,
+        });
+      }
+    }
     const state = await new CreditsSandboxStore(inbox.sql).read();
     const receipts =
       await inbox.sql`select status,count(*)::integer as count from credits_sandbox.store_receipts group by status order by status`;
@@ -37,6 +63,7 @@ async function main() {
       receipts,
       events,
       outbox,
+      providerReadback,
       productionConnections: 0,
     };
     writeFileSync(

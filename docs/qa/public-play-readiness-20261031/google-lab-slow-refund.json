@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-31T09:05:09.186Z",
+  "label": "slow-refund",
+  "source": "disposable local PostgreSQL",
+  "balance": 0,
+  "receipts": [
+    {
+      "status": "PENDING",
+      "count": 1
+    },
+    {
+      "status": "REVOKED",
+      "count": 3
+    }
+  ],
+  "events": [
+    {
+      "status": "PENDING",
+      "count": 2
+    },
+    {
+      "status": "PURCHASED",
+      "count": 3
+    },
+    {
+      "status": "REVOKED",
+      "count": 3
+    }
+  ],
+  "outbox": [
+    {
+      "state": "done",
+      "count": 3,
+      "attempts": 3
+    }
+  ],
+  "providerReadback": [
+    {
+      "product": "docked_credits_9900_v1",
+      "environment": "test",
+      "state": "REVOKED",
+      "consumed": true,
+      "hasVerifiedOrderId": true
+    },
+    {
+      "product": "docked_credits_4900_v1",
+      "environment": "test",
+      "state": "REVOKED",
+      "consumed": true,
+      "hasVerifiedOrderId": true
+    },
+    {
+      "product": "docked_credits_9900_v1",
+      "environment": "test",
+      "state": "REVOKED",
+      "consumed": true,
+      "hasVerifiedOrderId": true
+    },
+    {
+      "product": "docked_credits_4900_v1",
+      "environment": "test",
+      "state": "PENDING",
+      "consumed": false,
+      "hasVerifiedOrderId": false
+    }
+  ],
+  "productionConnections": 0
+}

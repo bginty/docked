@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-31T08:55:46.080Z",
+  "label": "settled-4900",
+  "source": "disposable local PostgreSQL",
+  "balance": 4900,
+  "receipts": [
+    {
+      "status": "PURCHASED",
+      "count": 1
+    }
+  ],
+  "events": [
+    {
+      "status": "PURCHASED",
+      "count": 1
+    }
+  ],
+  "outbox": [
+    {
+      "state": "done",
+      "count": 1,
+      "attempts": 1
+    }
+  ],
+  "productionConnections": 0
+}
