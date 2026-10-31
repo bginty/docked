@@ -123,3 +123,26 @@ A read-only Publisher API diagnostic (`scripts/google-play-readiness.mjs`) retri
 Following Google's Get app link exposed **Update from Play**. That operation completed successfully; the listing then showed **Open**. Android package diagnostics confirmed versionCode 23 / versionName 1.22-internal with both installerPackageName and initiatingPackageName equal to `com.android.vending`. Opening from Play reached Docked's actual login screen on the Samsung device. Thus Play-managed installation and unauthenticated launch are now verified on this device. Fresh installation on another tester's device, authenticated app acceptance, checkout and refunds remain unverified. The initial Play download failure's underlying cause is not established; the successful recovery must not be described as a general fresh-install fix.
 
 Evidence: `android-play-protection.png`, `android-play-update-open.png`, `android-play-login.png`, `android-play-installed.txt`, and `google-readiness-latest.json` in the dated QA directory. NBA/payment gates remain unchanged; both paid products remain DRAFT. No purchase, refund, wallet mutation, public release, migration or application deployment was performed during recovery.
+
+### Signed-in Android acceptance — 31 October 2026, 18:01–18:05 AEDT
+
+The owner completed sign-in personally on version 23 / 1.22-internal. USB diagnostics confirmed the foreground package was `docked.fantasy`; this is actual authenticated installed-app acceptance, not desktop browser or emulator evidence.
+
+Read-only checks completed on Samsung SM-S921B / Android 16:
+
+- NFL Play loaded Week 7 with a nonblank 105.81-point Game Day total and 6/7 completion count. This verifies rendering, not an independent re-audit of the scoring calculation.
+- Switching to AFL and NRL loaded each sport's Play screen. No lineup, draft or entry was saved. The existing selected test round still displays historical/provisional cap wording; no salary migration was attempted as part of store acceptance.
+- NRL Cards displayed 8 owned cards; Profile displayed the same total with 8 Ultra Rare cards and 1 pack opened. AFL Cards displayed 24 owned cards. No inventory was granted or opened.
+- NRL Packs loaded coupon, product and weekly starter-pack interfaces, including existing unopened entitlements. No purchase, coupon redemption or opening occurred.
+- NRL Market loaded Browse / My Listings / Activity navigation and filters. No listing or settlement was changed.
+- Social loaded Latest / Following / Announcements, composer and existing feed content without a sport selector. Nothing was posted or reacted to.
+- Profile and Test Wallet loaded. The displayed account-wide test balance remained 35,200 throughout; this is UI evidence, not a new ledger reconciliation. Wallet clearly states no cash value / cannot be withdrawn.
+- Customer sport selectors showed NFL / AFL / NRL, with NBA absent.
+
+An unauthenticated request to `/api/mobile/capabilities` was denied with the authorised-sign-in error. Source configuration retains billing disabled, empty product allowlists and closed public registration. Eleven focused customer-sport, product-draft, verifier and settlement tests were executed again and passed. No checkout/refund provider mutations occurred in those tests.
+
+The read-only Google diagnostic was repeated at 07:03:45 UTC (18:03:45 AEDT): catalogue HTTP 200, generated APK HTTP 200, and voided-purchase read **HTTP 200 with zero results**. Both approved products remain DRAFT. This supersedes the earlier 401 refund-query blocker; no permissions were expanded. Actual receipt verification, purchase consumption and refund acceptance still require a genuine controlled test purchase and an isolated test-capable build/backend. Public billing remains disabled.
+
+Screenshots are saved as `android-signed-in-*.png` in the dated QA directory. These checks do not establish fresh installation on other devices, complete marketplace/pack transactions, account deletion, all deep links, full session recovery, or public-launch compliance. No application deployment or database migration occurred.
+
+AFL Rankings also rendered its sport/mode/season/round controls. Android's system Back returned to AFL Play with the sport context intact. These are read-only route checks, not evidence of a completed scoring or awards cycle.
