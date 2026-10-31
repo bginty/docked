@@ -9,10 +9,32 @@ import storeRelease from "../../config/mobile-store-release.json";
 
 export type StoreProduct = {
   id: string;
-  sport: "nfl" | "afl" | "nrl";
   credits: number;
   version: string;
-};
+} & (
+  | { scope: "account"; sport?: never }
+  | { scope?: "sport"; sport: "nfl" | "afl" | "nrl" }
+);
+/** Credit bundles fund the existing account wallet, not a separate sport wallet.
+ * Legacy sport-labelled test products remain valid. Neither form activates a
+ * product: the verifier still requires the server's explicit allowlist. */
+export function assertStoreProduct(product: StoreProduct) {
+  if (
+    !product.id ||
+    !Number.isSafeInteger(product.credits) ||
+    product.credits <= 0 ||
+    !product.version
+  )
+    throw Error("Approved integer product allocation required");
+  if (product.scope === "account") {
+    if (product.sport !== undefined)
+      throw Error("Account credit products cannot carry a sport override");
+  } else {
+    if (product.scope !== undefined && product.scope !== "sport")
+      throw Error("Unsupported store product scope");
+    assertCustomerSport(product.sport);
+  }
+}
 export type StoreReceipt = {
   provider: "google" | "apple";
   key: string;
@@ -35,7 +57,7 @@ function productFor(products: readonly StoreProduct[], id: string) {
     !product.version
   )
     throw Error("Store product is not approved");
-  assertCustomerSport(product.sport);
+  assertStoreProduct(product);
   return product;
 }
 const googlePurchase = z.object({

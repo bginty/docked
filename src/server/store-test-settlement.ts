@@ -1,7 +1,9 @@
 import { createHash } from "node:crypto";
 import { executeCredits, type CreditsState } from "../core/credits-sandbox";
-import type { StoreReceipt } from "./store-purchase-verification";
-import { assertCustomerSport } from "../core/customer-sports";
+import {
+  assertStoreProduct,
+  type StoreReceipt,
+} from "./store-purchase-verification";
 
 /** Isolated integration with Docked's existing wallet, not a second store wallet.
  * No public endpoint calls this. Hosting requires reviewed product, provenance,
@@ -22,12 +24,7 @@ export function settleStoreTestReceipt(
     throw Error("Isolated test wallet required");
   if (!member || receipt.account !== expectedAccount)
     throw Error("Store account mismatch");
-  assertCustomerSport(receipt.product.sport);
-  if (
-    !Number.isSafeInteger(receipt.product.credits) ||
-    receipt.product.credits < 1
-  )
-    throw Error("Approved integer product allocation required");
+  assertStoreProduct(receipt.product);
   if (receipt.state === "PENDING") return { state: before, finish: false };
   const key =
     receipt.provider +

@@ -5,6 +5,7 @@ import {
   GooglePlayTestVerifier,
   AppleStoreTestVerifier,
   storeAccountId,
+  type StoreProduct,
 } from "../../src/server/store-purchase-verification";
 const product = {
   id: "isolated_test_credits",
@@ -25,7 +26,7 @@ const payload = () => ({
     },
   ],
 });
-const verifier = (body: unknown, products = [product]) =>
+const verifier = (body: unknown, products: StoreProduct[] = [product]) =>
   new GooglePlayTestVerifier(
     "docked.fantasy",
     products,
@@ -92,4 +93,36 @@ test("Apple rejects unsigned/untrusted receipts; missing trust configuration is 
   );
   await assert.rejects(v.verify("unverified.client.payload", "fixture"));
   await assert.rejects(v.verifyNotification("unverified.notification.payload"));
+});
+
+test("account-wide credit bundles require approved scope and cannot smuggle a hidden sport", async () => {
+  const shared: StoreProduct = {
+    id: product.id,
+    scope: "account",
+    credits: 100,
+    version: "synthetic-only",
+  };
+  const got = await verifier(payload(), [shared]).verify(
+    "test-shared",
+    account,
+  );
+  assert.deepEqual(got.product, shared);
+  for (const invalid of [
+    { ...shared, sport: "basketball" },
+    { ...shared, sport: "nfl" },
+    { ...shared, scope: "unknown" },
+    { ...shared, credits: 0 },
+    { ...shared, credits: 1.5 },
+  ])
+    await assert.rejects(
+      verifier(payload(), [invalid as unknown as StoreProduct]).verify(
+        "test-shared",
+        account,
+      ),
+    );
+  const real = payload() as Record<string, unknown>;
+  delete real.testPurchaseContext;
+  await assert.rejects(
+    verifier(real, [shared]).verify("real-rejected", account),
+  );
 });

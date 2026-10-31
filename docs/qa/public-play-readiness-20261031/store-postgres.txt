@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": [
+    "20 concurrent account-wide receipts credit the existing wallet once; cross-account and changed-scope replay denied; private reference encrypted",
+    "Provider failure preserves committed credits; 12 acknowledgement workers deliver once after retry",
+    "Concurrent refunds reverse once; stale and out-of-order purchases cannot resurrect a refunded receipt",
+    "Pending receipts grant nothing; injected outbox failure rolls back wallet and inbox together; retry succeeds once"
+  ],
+  "productionConnections": 0,
+  "providerNetworkRequests": 0,
+  "realPurchases": 0
+}

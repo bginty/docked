@@ -16,7 +16,7 @@ test("store test settlement reuses one wallet; pending, retries, refunds and sta
     state: "PENDING",
     product: {
       id: "isolated-credit-test",
-      sport: "nrl",
+      scope: "account",
       credits: 100,
       version: "fixture",
     },

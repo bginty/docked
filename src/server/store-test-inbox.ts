@@ -75,7 +75,7 @@ export class StoreTestInbox {
         if (
           old &&
           (old.member_id !== member ||
-            ["id", "sport", "credits", "version"].some(
+            ["id", "scope", "sport", "credits", "version"].some(
               (k) =>
                 old.product[k] !==
                 receipt.product[k as keyof typeof receipt.product],

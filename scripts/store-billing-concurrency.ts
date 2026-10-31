@@ -30,7 +30,7 @@ async function main() {
       state: "PURCHASED",
       product: {
         id: "fixture-only-not-a-store-sku",
-        sport: "afl",
+        scope: "account",
         credits: 100,
         version: "fixture",
       },
@@ -52,8 +52,22 @@ async function main() {
       "synthetic-private-token",
     );
     await assert.rejects(apply(base, bob.id), /conflict/);
+    await assert.rejects(
+      apply({
+        ...base,
+        product: {
+          id: base.product.id,
+          credits: base.product.credits,
+          version: base.product.version,
+          scope: "sport",
+          sport: "afl",
+        },
+      }),
+      /conflict/,
+    );
+    assert.equal(wallet(await store.read(), alice.id).available, 100);
     checks.push(
-      "20 concurrent verified receipts credit the existing wallet once; cross-account replay denied; private reference encrypted",
+      "20 concurrent account-wide receipts credit the existing wallet once; cross-account and changed-scope replay denied; private reference encrypted",
     );
     await assert.rejects(
       inbox.deliverOne(async () => {
@@ -126,7 +140,7 @@ async function main() {
       realPurchases: 0,
     };
     writeFileSync(
-      "docs/qa/store-release-20261031/store-postgres.json",
+      "docs/qa/public-play-readiness-20261031/store-postgres.json",
       JSON.stringify(evidence, null, 2) + "\n",
     );
     console.log(JSON.stringify(evidence, null, 2));
