@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+ok 1 - Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+  ---
+  duration_ms: 63.0364
+  ...
+# Subtest: no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+ok 2 - no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+  ---
+  duration_ms: 18.1198
+  ...
+# Subtest: Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+ok 3 - Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+  ---
+  duration_ms: 10.1927
+  ...
+# Subtest: account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+ok 4 - account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+  ---
+  duration_ms: 5.2227
+  ...
+# Subtest: consumption verifies account and test status before any provider mutation
+ok 5 - consumption verifies account and test status before any provider mutation
+  ---
+  duration_ms: 5.0446
+  ...
+# Subtest: consumption retries use authoritative consumed state and remain retryable on failure
+ok 6 - consumption retries use authoritative consumed state and remain retryable on failure
+  ---
+  duration_ms: 10.7766
+  ...
+# Subtest: provider failures and malformed data cannot leak raw receipt material
+ok 7 - provider failures and malformed data cannot leak raw receipt material
+  ---
+  duration_ms: 3.4963
+  ...
+# Subtest: store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+ok 8 - store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+  ---
+  duration_ms: 52.7025
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4197.8623

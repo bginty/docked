@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-31T10:21:38.669Z",
+  "mutations": 0,
+  "rows": [
+    {
+      "route": "/privacy",
+      "status": 200,
+      "url": "https://docked.com.au/beta-policies",
+      "privacyVersion": "2026-10-11-beta-rc3"
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200,
+      "url": "https://docked.com.au/account-deletion",
+      "hasDeletionInformation": true,
+      "hasReviewPendingRetention": true
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401,
+      "url": "https://docked.com.au/api/mobile/capabilities"
+    },
+    {
+      "route": "private hosted acceptance without authentication",
+      "status": 302
+    }
+  ]
+}

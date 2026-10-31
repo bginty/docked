@@ -3,20 +3,21 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 /** Local operator credential only. Never bundled, logged or copied to phone. */
-export function googleLabOAuth() {
+export function googleLabOAuth(hostedCredential?: string) {
   let cached = "",
     until = 0;
   return async () => {
     if (cached && Date.now() < until) return cached;
     try {
       const key = JSON.parse(
-        readFileSync(
-          join(
-            process.env.USERPROFILE ?? "",
-            ".docked-secrets/google-play-test-verifier.json",
+        hostedCredential ??
+          readFileSync(
+            join(
+              process.env.USERPROFILE ?? "",
+              ".docked-secrets/google-play-test-verifier.json",
+            ),
+            "utf8",
           ),
-          "utf8",
-        ),
       );
       if (
         key.client_email !==

@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-31T10:15:43.603Z",
+  "receipts": [
+    {
+      "product": "docked_credits_4900_v1",
+      "status": "CANCELLED",
+      "count": 2
+    },
+    {
+      "product": "docked_credits_9900_v1",
+      "status": "CANCELLED",
+      "count": 1
+    }
+  ],
+  "outbox": [
+    {
+      "state": "done",
+      "count": 3
+    }
+  ],
+  "events": [
+    {
+      "status": "PENDING",
+      "count": 1
+    },
+    {
+      "status": "PURCHASED",
+      "count": 3
+    },
+    {
+      "status": "CANCELLED",
+      "count": 3
+    }
+  ],
+  "journal": {
+    "entries": 9,
+    "net": "0"
+  },
+  "role": {
+    "rolcanlogin": false,
+    "rolsuper": false,
+    "rolbypassrls": false,
+    "customer_schema_access": false
+  },
+  "customerRevision": "226",
+  "customerHash": "5f6b1926b820cb90f68d9a6a01ab5d5e",
+  "customerStateUnchanged": true
+}

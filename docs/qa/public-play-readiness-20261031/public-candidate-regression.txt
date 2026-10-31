@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: delivery filename follows package version and separates owner QA from friends beta
+ok 1 - delivery filename follows package version and separates owner QA from friends beta
+  ---
+  duration_ms: 4.249
+  ...
+# Subtest: APK archive survives a cleared Gradle output and refuses corrupted prior copies
+ok 2 - APK archive survives a cleared Gradle output and refuses corrupted prior copies
+  ---
+  duration_ms: 136.1555
+  ...
+# Subtest: closed-test signing refuses absent credentials, source-tree keys and debug keys
+ok 3 - closed-test signing refuses absent credentials, source-tree keys and debug keys
+  ---
+  duration_ms: 6.63
+  ...
+# Subtest: closed-test build has an independent upload signing gate while production stays blocked
+ok 4 - closed-test build has an independent upload signing gate while production stays blocked
+  ---
+  duration_ms: 4.8382
+  ...
+# Subtest: debug packaging refuses assets left by beta or hosted Preview sync
+ok 5 - debug packaging refuses assets left by beta or hosted Preview sync
+  ---
+  duration_ms: 1.8156
+  ...
+# Subtest: release provenance retains verified Netlify build metadata and rejects a mixed Vercel runtime
+ok 6 - release provenance retains verified Netlify build metadata and rejects a mixed Vercel runtime
+  ---
+  duration_ms: 1.3203
+  ...
+# Subtest: Android beta selects the exact live backend and preserves installed owner package without copying extra fields
+ok 7 - Android beta selects the exact live backend and preserves installed owner package without copying extra fields
+  ---
+  duration_ms: 1.7757
+  ...
+# Subtest: Android beta rechecks the live deployment and rejects rollout or registration drift
+ok 8 - Android beta rechecks the live deployment and rejects rollout or registration drift
+  ---
+  duration_ms: 33.6411
+  ...
+# Subtest: Android beta refuses failed, stale, unrelated or public registration receipts
+ok 9 - Android beta refuses failed, stale, unrelated or public registration receipts
+  ---
+  duration_ms: 1.6721
+  ...
+# Subtest: Android beta cannot fall back to preview, localhost or inspection
+ok 10 - Android beta cannot fall back to preview, localhost or inspection
+  ---
+  duration_ms: 0.8278
+  ...
+# Subtest: Vercel Android acceptance requires exact production project/team and current live provenance
+ok 11 - Vercel Android acceptance requires exact production project/team and current live provenance
+  ---
+  duration_ms: 5.833
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2828.4173

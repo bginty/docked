@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "versionCode": 25,
+  "versionName": "1.24",
+  "applicationId": "docked.fantasy",
+  "billingQaIncluded": false,
+  "launchers": 1,
+  "debuggable": false,
+  "paymentsApproved": false,
+  "sports": [
+    "NFL",
+    "AFL",
+    "NRL"
+  ],
+  "aabSha256": "3656d9b88797f5bc9a8cbae1b29995717631b478cd7b31002228caaa900e0f85",
+  "permissions": [
+    "uses-permission: name='android.permission.INTERNET'",
+    "uses-permission: name='android.permission.ACCESS_NETWORK_STATE'",
+    "uses-permission: name='android.permission.VIBRATE'",
+    "uses-permission: name='com.android.vending.BILLING'",
+    "uses-permission: name='docked.fantasy.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'"
+  ]
+}
