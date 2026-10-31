@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-31T06:07:47.359Z",
+  "oauthHttpStatus": 200,
+  "checks": [
+    {
+      "name": "catalogue",
+      "httpStatus": 200,
+      "products": [
+        {
+          "id": "docked_credits_4900_v1",
+          "options": [
+            {
+              "id": "buy-au",
+              "state": "DRAFT"
+            }
+          ]
+        },
+        {
+          "id": "docked_credits_9900_v1",
+          "options": [
+            {
+              "id": "buy-au",
+              "state": "DRAFT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "refund-readback",
+      "httpStatus": 401,
+      "reasons": [
+        "permissionDenied"
+      ]
+    }
+  ],
+  "mutations": 0
+}

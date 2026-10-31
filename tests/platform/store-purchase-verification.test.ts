@@ -126,3 +126,114 @@ test("account-wide credit bundles require approved scope and cannot smuggle a hi
     verifier(real, [shared]).verify("real-rejected", account),
   );
 });
+
+test("consumption verifies account and test status before any provider mutation", async () => {
+  for (const invalid of [
+    "live",
+    "other-account",
+    "PENDING",
+    "CANCELLED",
+    "refunded",
+  ] as const) {
+    const body = payload() as any;
+    if (invalid === "live") delete body.testPurchaseContext;
+    if (invalid === "other-account") body.obfuscatedExternalAccountId = "other";
+    if (invalid === "PENDING" || invalid === "CANCELLED")
+      body.purchaseStateContext.purchaseState = invalid;
+    if (invalid === "refunded")
+      body.productLineItem[0].productOfferDetails.refundableQuantity = 0;
+    let mutations = 0;
+    const v = new GooglePlayTestVerifier(
+      "docked.fantasy",
+      [product],
+      async () => "synthetic",
+      async (_url, options) => {
+        if (options?.method === "POST") mutations++;
+        return Response.json(body);
+      },
+    );
+    await assert.rejects(v.consume("synthetic", product.id, account));
+    assert.equal(mutations, 0, invalid);
+  }
+});
+
+test("consumption retries use authoritative consumed state and remain retryable on failure", async () => {
+  let consumed = false,
+    writes = 0;
+  const v = new GooglePlayTestVerifier(
+    "docked.fantasy",
+    [product],
+    async () => "synthetic",
+    async (_url, options) => {
+      if (options?.method === "POST") {
+        writes++;
+        consumed = true;
+        // Simulate success on Google followed by a failed transport response.
+        return new Response(null, { status: 503 });
+      }
+      const body: any = payload();
+      body.productLineItem[0].productOfferDetails.consumptionState = consumed
+        ? "CONSUMPTION_STATE_CONSUMED"
+        : "CONSUMPTION_STATE_YET_TO_BE_CONSUMED";
+      return Response.json(body);
+    },
+  );
+  await v.consume("synthetic", product.id, account);
+  await v.consume("synthetic", product.id, account);
+  assert.equal(writes, 1);
+  const failed = new GooglePlayTestVerifier(
+    "docked.fantasy",
+    [product],
+    async () => "synthetic",
+    async (_url, options) =>
+      options?.method === "POST"
+        ? new Response(null, { status: 503 })
+        : Response.json(payload()),
+  );
+  await assert.rejects(
+    failed.consume("synthetic", product.id, account),
+    /requires reconciliation/,
+  );
+});
+
+test("provider failures and malformed data cannot leak raw receipt material", async () => {
+  let requests = 0;
+  const unavailable = new GooglePlayTestVerifier(
+    "docked.fantasy",
+    [product],
+    async () => {
+      throw Error("secret-token-from-oauth-provider");
+    },
+    async () => {
+      requests++;
+      return Response.json(payload());
+    },
+  );
+  await assert.rejects(
+    unavailable.verify("synthetic", account),
+    /authorization unavailable/,
+  );
+  assert.equal(requests, 0);
+  for (const transport of [
+    async () => {
+      throw Error("secret-token-in-provider-url");
+    },
+    async () =>
+      Response.json({
+        ...payload(),
+        purchaseStateContext: { purchaseState: "secret-token-in-provider-url" },
+      }),
+  ]) {
+    const v = new GooglePlayTestVerifier(
+      "docked.fantasy",
+      [product],
+      async () => "synthetic",
+      transport,
+    );
+    await assert.rejects(
+      v.verify("synthetic", account),
+      (error: unknown) =>
+        error instanceof Error && !error.message.includes("secret-token"),
+    );
+  }
+});

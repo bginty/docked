@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: analytics accepts the finite taxonomy and rejects sensitive free-form payloads
+ok 1 - analytics accepts the finite taxonomy and rejects sensitive free-form payloads
+  ---
+  duration_ms: 7.2375
+  ...
+# Subtest: browser telemetry cannot forge successful community or account actions
+ok 2 - browser telemetry cannot forge successful community or account actions
+  ---
+  duration_ms: 0.4873
+  ...
+# Subtest: mobile/web scope includes only NFL AFL NRL and rejects hidden sport even with legacy flags
+ok 3 - mobile/web scope includes only NFL AFL NRL and rejects hidden sport even with legacy flags
+  ---
+  duration_ms: 8.2176
+  ...
+# Subtest: store preparation cannot activate money, prizes or public access
+ok 4 - store preparation cannot activate money, prizes or public access
+  ---
+  duration_ms: 0.5158
+  ...
+# Subtest: moderation filters intersect and staff evidence stays behind the AAL2 server path
+ok 5 - moderation filters intersect and staff evidence stays behind the AAL2 server path
+  ---
+  duration_ms: 169.9709
+  ...
+# Subtest: dashboard moderation groups preserve outstanding content/member boundaries
+ok 6 - dashboard moderation groups preserve outstanding content/member boundaries
+  ---
+  duration_ms: 1.2447
+  ...
+# Subtest: moderation offers only the existing server-authorised actions for each target
+ok 7 - moderation offers only the existing server-authorised actions for each target
+  ---
+  duration_ms: 0.7538
+  ...
+# Subtest: approved credit contents stay separate from runtime purchase activation
+ok 8 - approved credit contents stay separate from runtime purchase activation
+  ---
+  duration_ms: 72.0379
+  ...
+# Subtest: native links preserve visible sport and reject hidden/ambiguous/malicious context
+ok 9 - native links preserve visible sport and reject hidden/ambiguous/malicious context
+  ---
+  duration_ms: 4.3103
+  ...
+# Subtest: internal native build is HTTPS-only and does not weaken old release targets
+ok 10 - internal native build is HTTPS-only and does not weaken old release targets
+  ---
+  duration_ms: 1.813
+  ...
+# Subtest: Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+ok 11 - Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+  ---
+  duration_ms: 42.0208
+  ...
+# Subtest: no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+ok 12 - no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+  ---
+  duration_ms: 9.3058
+  ...
+# Subtest: Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+ok 13 - Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+  ---
+  duration_ms: 7.6868
+  ...
+# Subtest: account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+ok 14 - account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+  ---
+  duration_ms: 5.6246
+  ...
+# Subtest: consumption verifies account and test status before any provider mutation
+ok 15 - consumption verifies account and test status before any provider mutation
+  ---
+  duration_ms: 3.1656
+  ...
+# Subtest: consumption retries use authoritative consumed state and remain retryable on failure
+ok 16 - consumption retries use authoritative consumed state and remain retryable on failure
+  ---
+  duration_ms: 3.5232
+  ...
+# Subtest: provider failures and malformed data cannot leak raw receipt material
+ok 17 - provider failures and malformed data cannot leak raw receipt material
+  ---
+  duration_ms: 1.5458
+  ...
+# Subtest: store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+ok 18 - store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+  ---
+  duration_ms: 57.3023
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6790.1031

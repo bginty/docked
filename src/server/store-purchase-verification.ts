@@ -42,6 +42,7 @@ export type StoreReceipt = {
   account: string;
   state: "PENDING" | "PURCHASED" | "CANCELLED" | "REVOKED";
   environment: "test";
+  consumed?: boolean;
 };
 export function storeAccountId(member: string, secret: string) {
   if (secret.length < 32 || !member)
@@ -74,6 +75,13 @@ const googlePurchase = z.object({
         productOfferDetails: z.object({
           quantity: z.literal(1),
           refundableQuantity: z.number().int().min(0).max(1),
+          consumptionState: z
+            .enum([
+              "CONSUMPTION_STATE_UNSPECIFIED",
+              "CONSUMPTION_STATE_YET_TO_BE_CONSUMED",
+              "CONSUMPTION_STATE_CONSUMED",
+            ])
+            .optional(),
         }),
       }),
     )
@@ -96,10 +104,10 @@ export class GooglePlayTestVerifier {
   async verify(token: string, expectedAccount: string): Promise<StoreReceipt> {
     if (!token || token.length > 4096 || /[\s\x00-\x1f]/.test(token))
       throw Error("Invalid purchase reference");
-    const response = await this.transport(
+    const response = await this.request(
       `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${this.packageName}/purchases/productsv2/tokens/${encodeURIComponent(token)}`,
       {
-        headers: { Authorization: `Bearer ${await this.accessToken()}` },
+        headers: { Authorization: `Bearer ${await this.authorizationToken()}` },
         cache: "no-store",
         redirect: "error",
         signal: AbortSignal.timeout(15000),
@@ -108,7 +116,14 @@ export class GooglePlayTestVerifier {
     // Never log tokens, raw provider bodies, OAuth responses or receipt-bearing URLs.
     if (!response.ok)
       throw Error("Purchase verification unavailable; retry reconciliation");
-    const purchase = googlePurchase.parse(await response.json());
+    // Provider validation errors can include raw input. Never propagate that
+    // input to callers, logs or client responses (it may contain receipt data).
+    let purchase: z.infer<typeof googlePurchase>;
+    try {
+      purchase = googlePurchase.parse(await response.json());
+    } catch {
+      throw Error("Unsupported or invalid test purchase response");
+    }
     if (purchase.obfuscatedExternalAccountId !== expectedAccount)
       throw Error("Purchase belongs to a different account");
     const item = purchase.productLineItem[0];
@@ -121,6 +136,9 @@ export class GooglePlayTestVerifier {
       product,
       account: expectedAccount,
       environment: "test",
+      consumed:
+        item.productOfferDetails.consumptionState ===
+        "CONSUMPTION_STATE_CONSUMED",
       state:
         item.productOfferDetails.refundableQuantity === 0
           ? "REVOKED"
@@ -129,19 +147,51 @@ export class GooglePlayTestVerifier {
   }
   /** Worker calls this only after the existing-wallet transaction commits.
    * Retry failures through a durable outbox; a client callback cannot consume. */
-  async consume(token: string, productId: string) {
+  async consume(token: string, productId: string, expectedAccount: string) {
     productFor(this.products, productId);
-    const response = await this.transport(
+    const verified = await this.verify(token, expectedAccount);
+    if (verified.product.id !== productId || verified.state !== "PURCHASED")
+      throw Error("Only a verified purchased test receipt can be consumed");
+    if (verified.consumed) return;
+    const response = await this.request(
       `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${this.packageName}/purchases/products/${encodeURIComponent(productId)}/tokens/${encodeURIComponent(token)}:consume`,
       {
         method: "POST",
-        headers: { Authorization: `Bearer ${await this.accessToken()}` },
+        headers: { Authorization: `Bearer ${await this.authorizationToken()}` },
         redirect: "error",
         signal: AbortSignal.timeout(15000),
       },
     );
-    if (!response.ok)
+    if (!response.ok) {
+      // A prior delivery may have consumed successfully before the response was
+      // lost. Only authoritative, account-bound readback resolves that retry.
+      const latest = await this.verify(token, expectedAccount);
+      if (
+        latest.product.id === productId &&
+        latest.state === "PURCHASED" &&
+        latest.consumed
+      )
+        return;
       throw Error("Purchase consumption requires reconciliation");
+    }
+  }
+  private async authorizationToken() {
+    try {
+      const token = await this.accessToken();
+      if (!token || /[\s\x00-\x1f]/.test(token)) throw Error();
+      return token;
+    } catch {
+      throw Error(
+        "Google purchase authorization unavailable; retry reconciliation",
+      );
+    }
+  }
+  private async request(url: string, options: RequestInit) {
+    try {
+      return await this.transport(url, options);
+    } catch {
+      throw Error("Google purchase service unavailable; retry reconciliation");
+    }
   }
 }
 
