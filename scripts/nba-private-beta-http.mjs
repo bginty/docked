@@ -19,6 +19,10 @@ const auth = JSON.parse(
   readFileSync(main + "/private-data/vercel-cli/auth.json", "utf8"),
 );
 const paths = [
+  ...(process.env.NBA_RELEASE_EVIDENCE ===
+  "docs/qa/store-internal-release-20261031"
+    ? ["/api/mobile/capabilities"]
+    : []),
   "/api/beta-release",
   "/api/status",
   "/api/nba-beta",

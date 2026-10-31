@@ -15,7 +15,8 @@ test-results
 playwright-report
 tmp
 android
-mobile
+# Ignore native build resources only; retain src/app/api/mobile routes.
+/mobile
 legacy
 db
 supabase
