@@ -35,7 +35,7 @@ Evidence: `billing-tests.txt`, `typecheck.txt`, `store-postgres.json` and `store
 3. **Store declarations and native acceptance:** complete truthful Data Safety, rating, financial features, target audience, privacy and final listing. Validate the Play-distributed build on real Android devices, including session recovery and account deletion. Browser and local emulator results do not replace those checks.
 4. **Commercial and policy classification:** establish rights for player/data/card use and review the actual credit, marketplace, competition/prize and possible withdrawal model. Ordinary digital credits generally use Play Billing; regulated gambling/daily-fantasy models have different eligibility and cannot simply be enabled through ordinary Billing.
 5. **Billing implementation remains test-only:** no hosted live settlement endpoint, production Google verification credentials/notification reconciliation or real Google sandbox purchase/refund acceptance was established here. Complete and review server verification, account binding, durable settlement, acknowledgement/consumption, voided-purchase reconciliation and spent-credit refund policy before enabling real products. Native product allowlist and server billing gate remain disabled.
-6. **Product contents pending owner confirmation:** the launch brief requests A$49/A$99 credit packages and A$1 = 100 credits, while older source contains single-card products at those prices. Proposed 4,900/9,900-credit allocations without bonuses were asked about, not assumed or activated.
+6. **Product contents resolved by owner follow-up:** A$49 = 4,900 credits and A$99 = 9,900 credits, with no bonus credits. This approval covers contents/prices, not payment activation. The versioned preparation catalogue is `config/store-credit-package-drafts.json`; runtime product allowlists remain empty.
 
 ## Order of remaining actions
 
@@ -55,3 +55,16 @@ Evidence: `billing-tests.txt`, `typecheck.txt`, `store-postgres.json` and `store
 - [One-time products](https://support.google.com/googleplay/android-developer/answer/16430488): product and purchase-option configuration.
 
 Google Pay on the website is a separate processor/merchant integration. No browser checkout was enabled or processor agreement accepted in this task.
+
+## Owner confirmation follow-up
+
+The two Google Play products were created as **Draft** purchase options (`buy-au`), restricted to Australia, with new countries/regions excluded:
+
+| Product ID | Credits | Bonus | Australian price |
+| --- | ---: | ---: | ---: |
+| `docked_credits_4900_v1` | 4,900 | 0 | A$49.00 |
+| `docked_credits_9900_v1` | 9,900 | 0 | A$99.00 |
+
+Google's bulk-price tool initially changed 49.00 to 48.99; the individual Australian price was corrected to exactly 49.00 and saved before handover. The second price was entered directly as 99.00. No Activate control was used. Existing default tax classification was left unchanged and must be reviewed with the merchant/tax setup before activation; Console displaying "No VAT" is not Australian tax advice or a tax-readiness certification.
+
+The package-config regression, hidden-sport/release-gate checks and existing verification/settlement tests passed: 8 tests, 0 failures. ESLint and typecheck passed. The regression verifies that approved draft products are still rejected by the empty runtime allowlist. Legacy single-card products, pack pricing, wallet balances and issuance rules are unchanged. No application deployment or migration is necessary to save these non-active drafts.

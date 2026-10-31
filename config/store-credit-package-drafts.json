@@ -1,0 +1,27 @@
+{
+  "version": "owner-credit-packages-2026-10-31-v1",
+  "status": "contents-approved-not-activated",
+  "scope": "account",
+  "currency": "AUD",
+  "territories": ["AU"],
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "title": "4,900 Docked Credits",
+      "description": "4,900 Docked Credits for your Docked account. No bonus credits.",
+      "credits": 4900,
+      "bonusCredits": 0,
+      "priceCents": 4900,
+      "purchaseOptionId": "buy-au"
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "title": "9,900 Docked Credits",
+      "description": "9,900 Docked Credits for your Docked account. No bonus credits.",
+      "credits": 9900,
+      "bonusCredits": 0,
+      "priceCents": 9900,
+      "purchaseOptionId": "buy-au"
+    }
+  ]
+}
