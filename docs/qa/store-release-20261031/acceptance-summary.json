@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-31",
+  "productionCommit": "60a1a3ee966e9782cae7478b44340a3193fc3253",
+  "candidateAndroid": {"package": "docked.fantasy", "versionCode": 23, "versionName": "1.22-internal", "targetSdk": 36},
+  "googlePlay": {"bundleAccepted": true, "draftSaved": true, "internalRollout": false, "publicRelease": false, "testerCount": 3, "iconAndFeatureGraphicSaved": true},
+  "tests": {"platformPassed": 636, "databasePassed": 223, "focusedStorePassed": 8, "localPostgresScenariosPassed": 4, "typecheck": "passed", "lint": "passed", "webBuild": "passed", "androidBuild": "passed", "runtimeAuditVulnerabilities": 0},
+  "signedInProductionBrowser": {"actualSession": true, "readOnly": true, "sportsVisible": ["nfl", "afl", "nrl"], "routesLoaded": ["NFL Play", "AFL Play", "AFL Cards", "AFL Packs", "NRL Packs", "NRL Market", "Social", "Profile", "Test Wallet", "NRL Play", "NRL Rankings"], "mobileViewport": "390x844", "nbaSelectorAbsent": true, "walletUnchangedDuringInspection": true, "teamEntryMutationTested": false},
+  "observations": ["NFL selected Week 7: 105.81 points, 6/7 completed, rank 1 of 2", "AFL collection: 24 cards, 20 Ultra Rare and 4 Legendary", "AFL existing saved draft reports no-longer-owned selections; unchanged", "NRL Rankings shows No entries yet"],
+  "nativeEmulator": {"api": 36, "correctedApkInstalled": true, "mainActivityResumed": true, "crashBufferEmptyAtInspection": true, "signedInTested": false, "earlierSystemUiStartupInstability": true},
+  "actualStorePurchases": 0,
+  "productionMutations": 0,
+  "serverPatchDeployed": false,
+  "iosArchiveBuilt": false
+}

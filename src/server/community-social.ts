@@ -1,4 +1,5 @@
 import "server-only";
+import { isHiddenCustomerSport } from "@/core/customer-sports";
 import { snapshotSocialCards } from "./social-card-projection";
 import { socialAttachments } from "@/core/social-attachment";
 import { createHash, randomUUID } from "node:crypto";
@@ -238,7 +239,7 @@ async function projectPosts(
     );
     return {
       id: String(r.id),
-      cardSnapshots: attachments.cards,
+      cardSnapshots: attachments.cards.filter((card) => !isHiddenCustomerSport(card.sport)),
       unavailableCards: attachments.unavailable,
       playerId: r.player_id ? String(r.player_id) : null,
       communityId: r.community_id ? String(r.community_id) : null,

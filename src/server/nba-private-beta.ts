@@ -1,8 +1,10 @@
 import "server-only";
 import { nbaPrivateBetaEnabled } from "@/core/nba-private-beta";
+import { isHiddenCustomerSport } from "@/core/customer-sports";
 import { requireIdentity } from "./auth";
 import { db } from "./db";
 export async function nbaBetaCapability() {
+  if (isHiddenCustomerSport("basketball")) return false;
   if (!nbaPrivateBetaEnabled()) return false;
   const who = await requireIdentity();
   return db().begin(async (tx) => {

@@ -71,7 +71,7 @@ export function buildMobileShell(target = resolveAndroidTarget()) {
   writeFileSync(`${target.webDir}/offline.html`, html);
   writeFileSync(
     `${target.webDir}/index.html`,
-    ["hosted", "beta"].includes(target.mode)
+    ["hosted", "beta", "store-internal"].includes(target.mode)
       ? html
       : brandShell(readFileSync("mobile/www/index.html", "utf8")),
   );

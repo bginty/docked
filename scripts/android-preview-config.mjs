@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { storeInternalTarget } from "./store-internal-target.mjs";
 import { resolveLiveBetaTarget } from "./android-live-beta-config.mjs";
 import { validateOwnerQaManifest } from "./android-owner-qa-config.mjs";
 
@@ -106,6 +107,8 @@ export function resolveAndroidTarget(
   read = readFileSync,
   now = Date.now(),
 ) {
+  const internal = storeInternalTarget(env);
+  if (internal) return internal;
   if (env.CAPACITOR_LIVE_BETA === "true")
     return resolveLiveBetaTarget(env, read, now);
   if (env.CAPACITOR_LIVE_BETA && env.CAPACITOR_LIVE_BETA !== "false")

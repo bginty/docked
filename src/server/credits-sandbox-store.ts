@@ -30,6 +30,11 @@ export class CreditsSandboxStore {
       command: unknown,
       now: number,
     ) => ReturnType<typeof executeCredits> & { steps?: CreditsState[] },
+    private finalize?: (
+      tx: Sql,
+      state: CreditsState,
+      result: ReturnType<typeof executeCredits>["result"],
+    ) => Promise<void>,
   ) {}
   async execute(actor: Operator, request: string, command: unknown) {
     return this.sql
@@ -84,6 +89,10 @@ export class CreditsSandboxStore {
           if (this.persist)
             await this.persist(tx as unknown as Sql, old, state);
         }
+        // Optional receipt/outbox work commits with the wallet even when an
+        // idempotent command or a pending receipt did not change its journal.
+        if (this.finalize)
+          await this.finalize(tx as unknown as Sql, state, result);
         return result;
       })
       .catch((error: unknown) => {

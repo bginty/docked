@@ -1,3 +1,4 @@
+import { isCustomerSport } from "./customer-sports";
 const id =
   "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
 const community = new RegExp(`^/community/(posts)/(${id})$`);
@@ -8,6 +9,10 @@ const staticPaths = new Set([
   "/fantasy/market",
   "/fantasy/social",
   "/fantasy/profile",
+  "/fantasy/packs",
+  "/fantasy/results",
+  "/fantasy/prizes",
+  "/fantasy/history",
   "/app",
   "/app/login",
   "/app/signup",
@@ -53,7 +58,37 @@ export function nativeDeepLink(
     route = url.pathname;
   else return null;
   if (route.endsWith("/") && route !== "/") route = route.slice(0, -1);
-  if (url.search) return null;
+  if (url.search) {
+    if (!staticPaths.has(route) || !route.startsWith("/fantasy/")) return null;
+    const keys = [...url.searchParams.keys()];
+    if (
+      new Set(keys).size !== keys.length ||
+      keys.some((key) => !["sport", "tab", "packs"].includes(key))
+    )
+      return null;
+    const sport = url.searchParams.get("sport");
+    if (sport !== null && !isCustomerSport(sport)) return null;
+    const tab = url.searchParams.get("tab"),
+      packs = url.searchParams.get("packs");
+    if (
+      tab !== null &&
+      !(
+        (route === "/fantasy/cards" && tab === "packs") ||
+        (route === "/fantasy/packs" && ["buy", "mine", "history"].includes(tab))
+      )
+    )
+      return null;
+    if (
+      packs !== null &&
+      !(
+        ((route === "/fantasy/cards" && tab === "packs") ||
+          route === "/fantasy/packs") &&
+        ["buy", "mine", "history"].includes(packs)
+      )
+    )
+      return null;
+    return route + url.search;
+  }
   if (community.test(route)) return route;
   const post = route.match(shortPost);
   if (post) return `/community/posts/${post[1]}`;

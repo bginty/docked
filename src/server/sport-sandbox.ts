@@ -1,4 +1,5 @@
 import "server-only";
+import { isHiddenCustomerSport } from "@/core/customer-sports";
 import { rosterCardMetadata } from "@/core/roster-card-metadata";
 import { authClient, requireRole, requireIdentity } from "./auth";
 import { nbaPrivateBetaEnabled } from "@/core/nba-private-beta";
@@ -23,6 +24,8 @@ import {
   type SandboxState,
 } from "@/core/sport-sandbox";
 export async function sportSandbox(sport: string, input?: unknown) {
+  if (isHiddenCustomerSport(sport))
+    throw Error("This sport is currently unavailable.");
   assertSportSandbox();
   const privateBeta = nbaPrivateBetaEnabled();
   if (privateBeta && !sportPrivateBetaEnabled(sport))

@@ -1,9 +1,9 @@
 import { isBetaSport } from "./sports-private-beta";
+import { isHiddenCustomerSport } from "./customer-sports";
 export const activeSportCookie = "docked-active-sport";
 // Temporarily hidden at the owner's request. Keep NBA identities, inventory,
 // competition history and shared AFL/NRL infrastructure intact.
-export const isHiddenWorkspaceSport = (value: unknown) =>
-  value === "basketball";
+export const isHiddenWorkspaceSport = isHiddenCustomerSport;
 // This is a display preference only. All data APIs still enforce their own
 // verified session, MFA, sport admission and feature gates.
 export function workspaceSport(query: unknown, saved: unknown) {

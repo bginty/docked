@@ -4,12 +4,28 @@ import brand from "./src/brand/brand-tokens.json";
 
 const target = resolveAndroidTarget();
 const config: CapacitorConfig = {
-  appId: "au.com.docked.app",
-  appName: target.mode === "beta" ? "Docked Beta" : "Docked Preview",
+  appId:
+    target.mode === "store-internal"
+      ? process.env.DOCKED_STORE_PLATFORM === "ios"
+        ? target.manifest.appleBundleId
+        : target.manifest.applicationId
+      : "au.com.docked.app",
+  appName:
+    target.mode === "store-internal"
+      ? "Docked"
+      : target.mode === "beta"
+        ? "Docked Beta"
+        : "Docked Preview",
   webDir: target.webDir,
   loggingBehavior: "none",
   backgroundColor: brand.colors.navy,
   zoomEnabled: true,
+  ios: {
+    path: "ios",
+    scheme: "App",
+    contentInset: "automatic",
+    webContentsDebuggingEnabled: false,
+  },
   android: {
     path: "android",
     allowMixedContent: false,
