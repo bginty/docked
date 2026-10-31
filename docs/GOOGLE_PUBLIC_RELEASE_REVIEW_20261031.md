@@ -1,5 +1,7 @@
 # Google Play public release review — 31 October 2026
 
+Continuation evidence after checkpoint 9a0f2d69 is in [the 1 November report](GOOGLE_LAUNCH_CONTINUATION_20261101.md). This earlier checkpoint remains a historical record; its local implementation/deployment status is superseded where explicitly updated there.
+
 **Decision: NO-GO for public or paid activation. Internal v25 remains available.**
 This is an evidence-based handover, not Google approval or legal clearance. NBA remains hidden. No public release, real purchase, public registration, prize award, withdrawal, customer mutation or new security permission was activated in this continuation.
 

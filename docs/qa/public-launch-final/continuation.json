@@ -1,0 +1,60 @@
+{
+  "at": "2026-10-31T13:38:57.006Z",
+  "source": "1dfe3239c6059cfd0aa4d8aa249fd9d3920ee9c5",
+  "publicLaunch": "NO-GO",
+  "platform": {
+    "passed": 688,
+    "failed": 0,
+    "skipped": 0
+  },
+  "database": {
+    "passed": 225,
+    "failed": 0,
+    "skipped": 0,
+    "engine": "repository PGlite migration fixtures"
+  },
+  "postgres": {
+    "checks": 5,
+    "provider": "mock",
+    "customerConnections": 0
+  },
+  "lint": true,
+  "typecheck": true,
+  "productionBuild": true,
+  "candidate": {
+    "id": "dpl_54hrgdhenETWAnr3AacYtkDrRitw",
+    "state": "READY",
+    "promoted": false,
+    "httpChecks": 22,
+    "authenticatedMember": false
+  },
+  "production": {
+    "commit": "673a751b2ec755836ef31dfb9b967786861c7b99",
+    "deployment": "dpl_2cdQMeCTvRaX6dPSfoxuAF6SsBA9",
+    "walletRevision": 226,
+    "walletHash": "5f6b1926b820cb90f68d9a6a01ab5d5e",
+    "deposits": 0,
+    "mutations": 0,
+    "newMigrationsApplied": 0
+  },
+  "hostedOwnerReadOnly": {
+    "nflWeek": 7,
+    "teamPoints": 105.81,
+    "completed": 6,
+    "lineupSize": 7,
+    "rank": 1,
+    "entries": 2,
+    "nrlTraditionalCap": 8200000,
+    "nrlRound": 3
+  },
+  "newHostedCustomerCheckout": false,
+  "googleProducts": "INACTIVE",
+  "connectedAndroidDevices": 0,
+  "playSetup": "5/11",
+  "storeListing": "Ready to send for review; not submitted",
+  "nba": "hidden",
+  "publicRegistration": false,
+  "realMoney": false,
+  "withdrawals": false,
+  "prizes": false
+}

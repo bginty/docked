@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-31T13:34:14.978Z",
+  "commit": "1dfe3239c6059cfd0aa4d8aa249fd9d3920ee9c5",
+  "checks": [
+    {
+      "url": "/api/store/google/test",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "url": "/api/mobile/capabilities",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "url": "/api/nba-beta?view=state",
+      "status": 403,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "memberAuthenticated": false,
+  "mutations": 0
+}
