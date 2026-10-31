@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-31T23:21:02.753Z",
+  "device": {
+    "versionCode": 27,
+    "versionName": "1.26",
+    "installer": "com.android.vending"
+  },
+  "artifact": "artifacts/android/Docked-public-candidate.aab",
+  "aabSha256": "3e76cd5e0f0c15f7bcdc02b339d088ac3998a07f05233fa4b0188efe6f0d594e",
+  "tests": {
+    "platform": {
+      "tests": 688,
+      "pass": 688,
+      "fail": 0,
+      "skipped": 0
+    },
+    "database": {
+      "tests": 226,
+      "pass": 226,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "finalTargetedTests": {
+    "tests": 31,
+    "pass": 31,
+    "fail": 0,
+    "skipped": 0
+  },
+  "typecheck": true,
+  "lint": true,
+  "internalRelease": 5,
+  "publicRelease": false,
+  "hostedMutationScope": "synthetic isolated member engine; not customer Auth"
+}

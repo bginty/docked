@@ -30,6 +30,8 @@ async function main() {
           hostedGoogleCall({ operation: "receipt", token }),
         reconcile: () => hostedGoogleCall({ operation: "reconcile" }),
         refund: (key: string) => hostedGoogleCall({ operation: "refund", key }),
+        pack: (request: string, command: unknown) =>
+          hostedGoogleCall({ operation: "pack", request, command }),
       },
       secret,
       expiresAt,

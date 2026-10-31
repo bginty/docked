@@ -30,6 +30,8 @@ public class GoogleBillingLabActivity extends Activity implements PurchasesUpdat
     private TextView status;
     private EditText pairingInput;
     private LinearLayout productRows;
+    private LinearLayout packRows;
+    private String pendingPackRequest = "", pendingPackBody = "";
     private CheckBox testOnly;
     private volatile Map<String, Long> allowed = Collections.emptyMap();
     private volatile boolean busy;
@@ -42,7 +44,7 @@ public class GoogleBillingLabActivity extends Activity implements PurchasesUpdat
         LinearLayout column = new LinearLayout(this); column.setOrientation(LinearLayout.VERTICAL);
         column.setPadding(28, 56, 28, 48); column.setBackgroundColor(Color.rgb(6, 15, 32)); scroll.addView(column); setContentView(scroll);
         TextView heading = text("Docked · Google Billing Test", 24); column.addView(heading);
-        column.addView(text("Internal USB lab only. Credits settle into a synthetic local ledger, never your Docked account. Use only Google's clearly labelled test payment methods. Cancel if a real payment method is shown.", 16));
+        column.addView(text("Internal USB test only. Hosted isolated member wallet and synthetic cards; never your customer account. Use only Google's clearly labelled test payment methods. Cancel if a real payment method is shown.", 16));
         pairingInput = new EditText(this); pairingInput.setHint("Local lab pairing key"); pairingInput.setTextColor(Color.WHITE); pairingInput.setHintTextColor(Color.LTGRAY);
         pairingInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         pairingInput.setImportantForAutofill(android.view.View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS); pairingInput.setSaveEnabled(false); column.addView(pairingInput);
@@ -52,6 +54,8 @@ public class GoogleBillingLabActivity extends Activity implements PurchasesUpdat
         productRows = new LinearLayout(this); productRows.setOrientation(LinearLayout.VERTICAL); column.addView(productRows);
         Button reconcile = button("Reconcile test purchases"); column.addView(reconcile); reconcile.setOnClickListener(v -> reconcile());
         Button refund = button("Refund latest verified test receipt"); column.addView(refund); refund.setOnClickListener(v -> refund());
+        packRows = new LinearLayout(this); packRows.setOrientation(LinearLayout.VERTICAL); column.addView(packRows);
+        Button retryPack = button("Retry unconfirmed pack action"); column.addView(retryPack); retryPack.setOnClickListener(v -> submitPack());
         Button close = button("Return to Docked"); column.addView(close); close.setOnClickListener(v -> finish());
         try {
             KeyStore store = KeyStore.getInstance(KeyStore.getDefaultType()); store.load(null);
@@ -103,6 +107,57 @@ public class GoogleBillingLabActivity extends Activity implements PurchasesUpdat
         JSONArray receipts=data.getJSONArray("receipts"); lastKey=""; StringBuilder rows=new StringBuilder();
         for(int i=0;i<receipts.length();i++){ JSONObject r=receipts.getJSONObject(i); String key=r.getString("key"), state=r.getString("state"); rows.append("\n").append(key.substring(0,8)).append(": ").append(state); if(state.equals("PURCHASED")) lastKey=key; }
         message("Paired · synthetic ledger: " + data.getLong("balance") + " credits\nVerified receipts: " + receipts.length() + rows + "\nProduction payments remain disabled.");
+        runOnUiThread(() -> renderPacks(data));
+    }
+    private void renderPacks(JSONObject data) {
+        packRows.removeAllViews();
+        try {
+            packRows.addView(text("Hosted test member · " + data.optString("member") + "\nSpendable: " + data.optLong("spendable") + " test credits", 16));
+            JSONArray packs = data.optJSONArray("packs"), products = data.optJSONArray("packProducts"), cards = data.optJSONArray("collection");
+            if (products != null) for(int i=0;i<products.length();i++) {
+                JSONObject p=products.getJSONObject(i);
+                // Keep this acceptance screen compact; all 18 products stay in server catalogue.
+                if(p.getInt("cards")!=9) continue;
+                String title=p.getString("sport").toUpperCase()+" "+p.getString("name")+" · "+p.getLong("priceCredits")+" test credits";
+                Button buy=button(title); packRows.addView(buy);
+                buy.setOnClickListener(v -> {
+                    if(!paired() || busy || !pendingPackRequest.isEmpty()) {message("Finish or retry the pending operation first.");return;}
+                    new AlertDialog.Builder(this).setTitle("Confirm isolated test pack").setMessage(title+"\nSynthetic non-permanent cards only. The shared test wallet will be debited on confirmation.").setNegativeButton("Cancel",null).setPositiveButton("Confirm test purchase",(d,w)->{
+                        try {
+                            JSONObject command=new JSONObject().put("kind","buy-pack").put("product",p.getString("id")).put("configuration",p.getString("version")).put("expectedPrice",p.getLong("priceCredits")).put("confirmed",true).put("policy",data.getString("policy"));
+                            queuePack(command);
+                        } catch(Exception e) {message("Pack configuration unavailable. Reconcile to refresh.");}
+                    }).show();
+                });
+            }
+            if(packs != null) for(int i=0;i<packs.length();i++) {
+                JSONObject p=packs.getJSONObject(i);
+                packRows.addView(text(p.getString("sport").toUpperCase()+" · "+p.getString("name")+" · "+p.getString("status"),14));
+                if(!p.getBoolean("opened") && "SEALED".equals(p.getString("status"))) {
+                    Button open=button("Open "+p.getString("name")); packRows.addView(open);
+                    open.setOnClickListener(v->{try{queuePack(new JSONObject().put("kind","open-pack").put("entitlement",p.getString("id")));}catch(Exception e){message("Opening not started.");}});
+                }
+            }
+            if(cards!=null) {
+                packRows.addView(text("Owned isolated cards: "+cards.length(),18));
+                for(int i=0;i<cards.length();i++) {
+                    JSONObject c=cards.getJSONObject(i);
+                    packRows.addView(text(c.getString("sport").toUpperCase()+" · "+c.getString("name")+" · "+c.getString("tier")+" · #"+c.getLong("serial"),14));
+                }
+            }
+        } catch(Exception e) {message("Pack summary unavailable. Reconcile to refresh.");}
+    }
+    private void queuePack(JSONObject command) {
+        if(!paired() || busy || !pendingPackRequest.isEmpty()) {message("Finish or retry the pending operation first.");return;}
+        pendingPackRequest=UUID.randomUUID().toString(); pendingPackBody=command.toString(); submitPack();
+    }
+    private void submitPack() {
+        if(!paired() || busy || pendingPackRequest.isEmpty()) return;
+        busy=true;
+        worker.execute(()->{try{
+            JSONObject data=request("/pack",new JSONObject().put("request",pendingPackRequest).put("command",new JSONObject(pendingPackBody)));
+            pendingPackRequest="";pendingPackBody="";render(data);
+        }catch(Exception e){message("Pack action not confirmed. Use Retry unconfirmed pack action; the same operation ID is retained.");}finally{busy=false;}});
     }
     private void loadProducts() {
         if (!paired()) { message("Pairing expired. Checkout disabled."); return; }

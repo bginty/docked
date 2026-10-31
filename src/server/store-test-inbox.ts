@@ -24,7 +24,7 @@ export class StoreTestInbox {
     return this.schema === "credits_sandbox";
   }
   readonly sql: ReturnType<typeof postgres>;
-  private schema: "credits_sandbox" | "store_billing_acceptance" =
+  private schema: "credits_sandbox" | "store_billing_acceptance" | "store_member_acceptance" =
     "credits_sandbox";
   private admission?: Promise<void>;
   private transactionAdmission?: TransactionAdmission;
@@ -32,7 +32,7 @@ export class StoreTestInbox {
   constructor(
     url:
       | string
-      | { hostedAcceptance: Sql }
+      | { hostedAcceptance: Sql; memberAcceptance?: boolean; authorize?: TransactionAdmission }
       | { memberTestWallet: Sql; authorize: TransactionAdmission },
     private encryptionKey: Buffer,
   ) {
@@ -45,8 +45,9 @@ export class StoreTestInbox {
         this.memberWallet = true;
         return;
       }
-      this.schema = "store_billing_acceptance";
+      this.schema = url.memberAcceptance ? "store_member_acceptance" : "store_billing_acceptance";
       this.sql = url.hostedAcceptance;
+      this.transactionAdmission = url.authorize;
 
       if (encryptionKey.length !== 32)
         throw Error("Store reference encryption key required");
@@ -64,7 +65,7 @@ export class StoreTestInbox {
   }
   private ready() {
     if (this.memberWallet) return;
-    if (this.schema === "store_billing_acceptance")
+    if (this.schema !== "credits_sandbox")
       return (this.admission ??= this.assertHostedRole());
   }
   private async assertHostedRole() {
@@ -73,7 +74,7 @@ export class StoreTestInbox {
     if (role.name !== "docked_billing_test" || role.customer_access)
       throw Error("Dedicated isolated billing role required");
     const [marker] = await this
-      .sql`select purpose from store_billing_acceptance.control where id`;
+      .sql`select purpose from ${this.sql(this.schema)}.control where id`;
     if (marker?.purpose !== "google-test-only-no-customer-wallet")
       throw Error("Isolated acceptance marker required");
   }

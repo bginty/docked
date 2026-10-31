@@ -4,14 +4,25 @@ import { randomBytes } from "node:crypto";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 const secretDir = join(process.env.USERPROFILE!, ".docked-secrets");
+const memberMode = process.env.DOCKED_HOSTED_MEMBER_ACCEPTANCE === "true";
 export async function hostedGoogleCall(body: Record<string, unknown>) {
   const config = JSON.parse(
-    await readFile(join(secretDir, "hosted-google-acceptance.json"), "utf8"),
+    await readFile(
+      join(
+        secretDir,
+        memberMode
+          ? "hosted-member-acceptance.json"
+          : "hosted-google-acceptance.json",
+      ),
+      "utf8",
+    ),
   );
   if (config.expiresAt < Date.now()) throw Error("Acceptance expired");
   const d = JSON.parse(
     await readFile(
-      "docs/qa/public-play-readiness-20261031/hosted-acceptance-deployment.json",
+      memberMode
+        ? "docs/qa/hosted-member-20261101/deployment.json"
+        : "docs/qa/public-play-readiness-20261031/hosted-acceptance-deployment.json",
       "utf8",
     ),
   );
@@ -101,7 +112,9 @@ if (process.argv[1]?.endsWith("hosted-google-client.ts")) {
         customerWallet: false,
       };
       await writeFile(
-        "docs/qa/public-play-readiness-20261031/hosted-status.json",
+        memberMode
+          ? "docs/qa/hosted-member-20261101/status.json"
+          : "docs/qa/public-play-readiness-20261031/hosted-status.json",
         JSON.stringify(evidence, null, 2),
       );
       console.log(JSON.stringify(evidence));

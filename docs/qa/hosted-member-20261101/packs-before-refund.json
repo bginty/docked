@@ -1,0 +1,346 @@
+{
+  "at": "2026-10-31T23:06:53.908Z",
+  "backend": "protected-vercel-isolated-supabase",
+  "member": "synthetic-store-member-20261101",
+  "balance": 3500,
+  "spendable": 3500,
+  "packProducts": [
+    {
+      "sport": "nfl",
+      "family": "PREMIUM",
+      "count": 9,
+      "price": 5000
+    },
+    {
+      "sport": "nfl",
+      "family": "PREMIUM",
+      "count": 3,
+      "price": 1900
+    },
+    {
+      "sport": "nfl",
+      "family": "PREMIUM",
+      "count": 1,
+      "price": 700
+    },
+    {
+      "sport": "nfl",
+      "family": "STANDARD",
+      "count": 9,
+      "price": 700
+    },
+    {
+      "sport": "nfl",
+      "family": "STANDARD",
+      "count": 3,
+      "price": 300
+    },
+    {
+      "sport": "nfl",
+      "family": "STANDARD",
+      "count": 1,
+      "price": 100
+    },
+    {
+      "sport": "afl",
+      "family": "PREMIUM",
+      "count": 9,
+      "price": 5000
+    },
+    {
+      "sport": "afl",
+      "family": "PREMIUM",
+      "count": 3,
+      "price": 1900
+    },
+    {
+      "sport": "afl",
+      "family": "PREMIUM",
+      "count": 1,
+      "price": 700
+    },
+    {
+      "sport": "afl",
+      "family": "STANDARD",
+      "count": 9,
+      "price": 700
+    },
+    {
+      "sport": "afl",
+      "family": "STANDARD",
+      "count": 3,
+      "price": 300
+    },
+    {
+      "sport": "afl",
+      "family": "STANDARD",
+      "count": 1,
+      "price": 100
+    },
+    {
+      "sport": "nrl",
+      "family": "PREMIUM",
+      "count": 9,
+      "price": 5000
+    },
+    {
+      "sport": "nrl",
+      "family": "PREMIUM",
+      "count": 3,
+      "price": 1900
+    },
+    {
+      "sport": "nrl",
+      "family": "PREMIUM",
+      "count": 1,
+      "price": 700
+    },
+    {
+      "sport": "nrl",
+      "family": "STANDARD",
+      "count": 9,
+      "price": 700
+    },
+    {
+      "sport": "nrl",
+      "family": "STANDARD",
+      "count": 3,
+      "price": 300
+    },
+    {
+      "sport": "nrl",
+      "family": "STANDARD",
+      "count": 1,
+      "price": 100
+    }
+  ],
+  "packs": [
+    {
+      "id": "136bb0dc-8f28-4714-b7af-0575196b1432",
+      "name": "NRL Standard 9 Pack · Test",
+      "sport": "nrl",
+      "cards": 9,
+      "opened": true,
+      "status": "OPENED"
+    },
+    {
+      "id": "3b98008e-3de0-43e9-a4f1-86379b8f7e49",
+      "name": "Standard 9 Pack",
+      "sport": "nfl",
+      "cards": 9,
+      "opened": true,
+      "status": "OPENED"
+    },
+    {
+      "id": "e43962ee-336a-4ecc-809e-283d3464af2c",
+      "name": "AFL Premium 9 Pack · Test",
+      "sport": "afl",
+      "cards": 9,
+      "opened": true,
+      "status": "OPENED"
+    }
+  ],
+  "collection": [
+    {
+      "id": "731890d6-9649-4bc7-a80e-209ccc268ef3",
+      "name": "Synthetic NRL Player nrl-fixture-12",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "fc4e0e22-a112-4b93-885b-82087d176136",
+      "name": "Synthetic NRL Player nrl-fixture-14",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "9572383a-b19a-4c30-bec8-d0b1754d7b1c",
+      "name": "Synthetic NRL Player nrl-fixture-23",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "1e5e3a40-f7ed-442b-98c2-a5f548a84bf1",
+      "name": "Synthetic NRL Player nrl-fixture-19",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "98958d03-56d5-464c-8328-d790ca26ad4e",
+      "name": "Synthetic NRL Player nrl-fixture-2",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "98f243a1-7e04-40f7-b084-757c0ec3d6ae",
+      "name": "Synthetic NRL Player nrl-fixture-3",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "c1e78503-62f5-4484-b0aa-be53782c3a55",
+      "name": "Synthetic NRL Player nrl-fixture-17",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "31e7651d-0341-4995-ba34-372dbc400c83",
+      "name": "Synthetic NRL Player nrl-fixture-4",
+      "sport": "nrl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "12442c44-317d-45f1-8477-a4cfdd62b555",
+      "name": "Synthetic NRL Player nrl-fixture-6",
+      "sport": "nrl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "747d547b-3ae7-4cc4-bc75-e3695c6751f8",
+      "name": "Synthetic NFL Player 23",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "d2480813-f4a7-4ab2-95c1-88005b5a15ae",
+      "name": "Synthetic NFL Player 18",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "759e6b04-4626-4a3c-a105-e4a2f803daee",
+      "name": "Synthetic NFL Player 4",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "serial": 1
+    },
+    {
+      "id": "5583631a-5a97-4184-912e-a0394b4c38de",
+      "name": "Synthetic NFL Player 12",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "870f0a7d-a938-4dbd-91a5-b72eec2d4b4a",
+      "name": "Synthetic NFL Player 7",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "267f7d14-790f-4ab5-9d50-b3376bb9397d",
+      "name": "Synthetic NFL Player 6",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "665a4963-5e5b-4db4-b470-eb6a1532e148",
+      "name": "Synthetic NFL Player 8",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "50b15f5d-bcb7-47d6-8d00-2fd7a86f4dac",
+      "name": "Synthetic NFL Player 17",
+      "sport": "nfl",
+      "rarity": "LEGENDARY",
+      "serial": 1
+    },
+    {
+      "id": "3d5cfeb4-0c65-4091-9037-805f26ef6082",
+      "name": "Synthetic NFL Player 0",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "serial": 1
+    },
+    {
+      "id": "95378162-516f-4b45-8b91-49cb6df72a32",
+      "name": "Synthetic AFL Player afl-fixture-4",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "328422bd-35dd-4ed8-9b0d-16be65ccaf19",
+      "name": "Synthetic AFL Player afl-fixture-22",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "a088127b-1d5c-4840-9413-49413a8f309f",
+      "name": "Synthetic AFL Player afl-fixture-21",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "bafaa1f2-cd0b-4932-b9b2-af0497fbdd6f",
+      "name": "Synthetic AFL Player afl-fixture-7",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "e214bb7c-1986-4590-bfc5-9a823e3f022d",
+      "name": "Synthetic AFL Player afl-fixture-8",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "3085c13f-2c98-4c1f-b0a5-be497071634d",
+      "name": "Synthetic AFL Player afl-fixture-0",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "4ffd0d17-d54c-4b2f-a9bf-97d1fd3aeab8",
+      "name": "Synthetic AFL Player afl-fixture-17",
+      "sport": "afl",
+      "rarity": "LEGENDARY",
+      "serial": 1
+    },
+    {
+      "id": "964ed929-dae1-464c-8dad-6af6747c4124",
+      "name": "Synthetic AFL Player afl-fixture-15",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    },
+    {
+      "id": "9db552b7-5c14-4c43-9e38-a40f6d9afa26",
+      "name": "Synthetic AFL Player afl-fixture-16",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "serial": 1
+    }
+  ],
+  "receipts": [
+    {
+      "key": "de3f3c9a8efece95662f6c0ebca61300758d13a9bde92a485ceefb2f72ede38d",
+      "state": "CANCELLED"
+    },
+    {
+      "key": "85ee1d4418b0c1f5023201cf948c431e1d15649d8b2aad90373f77d374965c76",
+      "state": "PURCHASED"
+    }
+  ],
+  "customerWallet": false,
+  "permanentInventory": false
+}

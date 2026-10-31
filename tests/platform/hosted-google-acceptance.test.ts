@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { hostedGoogleAcceptance } from "../../src/server/hosted-google-acceptance";
+import { storeAccountId } from "../../src/server/store-purchase-verification";
 
 const config = {
   secret: "a".repeat(64),
@@ -100,4 +101,26 @@ test("expired hosted session rejects even the correct credential", async () => {
     } as unknown as ServerResponse,
   );
   assert.equal(status, 401);
+});
+
+test("isolated member configuration requires the fixed synthetic subject and server HMAC binding", () => {
+  const bindingSecret = "d".repeat(64);
+  const member = "synthetic-store-member-20261101";
+  const scoped = {
+    ...config,
+    memberAcceptance: true,
+    member,
+    bindingSecret,
+    account: storeAccountId(member, bindingSecret),
+  };
+  assert.doesNotThrow(() => hostedGoogleAcceptance(scoped, async () => ""));
+  for (const override of [
+    { member: "customer" },
+    { bindingSecret: "" },
+    { account: "e".repeat(64) },
+    { memberAcceptance: false },
+  ])
+    assert.throws(() =>
+      hostedGoogleAcceptance({ ...scoped, ...override }, async () => ""),
+    );
 });

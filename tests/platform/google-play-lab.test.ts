@@ -56,6 +56,11 @@ test("native lab rejects web, missing/expired pairing, hostile fields and nonloc
         receipt: operation,
         reconcile: operation,
         refund: operation,
+        pack: async (id, command) => {
+          assert.equal(id, "synthetic-request");
+          assert.deepEqual(command, { kind: "buy-pack" });
+          return operation();
+        },
       },
       secret,
       Date.now() + 60000,
@@ -134,6 +139,12 @@ test("native lab rejects web, missing/expired pairing, hostile fields and nonloc
     );
     assert.equal((await send("/receipt", '"not-an-object"')).status, 400);
     assert.equal((await send("/receipt", "x".repeat(8193))).status, 413);
+    for (const body of [
+      { request: "x", command: {} },
+      { request: "synthetic-request", command: {}, member: "victim" },
+      { request: "synthetic-request", command: {}, credits: 9900 },
+    ])
+      assert.equal((await send("/pack", JSON.stringify(body))).status, 400);
     assert.equal(calls, 0);
     assert.equal((await send("/session")).status, 200);
     assert.equal(
@@ -146,6 +157,19 @@ test("native lab rejects web, missing/expired pairing, hostile fields and nonloc
       200,
     );
     assert.equal(calls, 4);
+    assert.equal(
+      (
+        await send(
+          "/pack",
+          JSON.stringify({
+            request: "synthetic-request",
+            command: { kind: "buy-pack" },
+          }),
+        )
+      ).status,
+      200,
+    );
+    assert.equal(calls, 5);
   } finally {
     server.closeAllConnections();
     await new Promise<void>((r) => server.close(() => r()));

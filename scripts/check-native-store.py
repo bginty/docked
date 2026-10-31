@@ -9,7 +9,8 @@ from zipfile import ZipFile
 
 root = Path(__file__).resolve().parent.parent
 candidate = "--public-candidate" in sys.argv
-artifact = "Docked-public-candidate.apk" if candidate else "Docked-store-internal.apk"
+qa = "--billing-qa" in sys.argv
+artifact = "Docked-billing-qa.apk" if qa else "Docked-public-candidate.apk" if candidate else "Docked-store-internal.apk"
 with ZipFile(root / "artifacts/android" / artifact) as package:
     config = json.loads(package.read("assets/capacitor.config.json"))
     assert config["appId"] == "docked.fantasy"
@@ -33,6 +34,6 @@ with ZipFile(root / "artifacts/android" / artifact) as package:
     evidence = dict(passed=True, applicationId=config["appId"], server=config["server"]["url"],
                     debugging=False, cleartext=False, mixedContent=False, assetsScanned=count,
                     scope="Pattern scan of packaged text assets; not a penetration test")
-    destination = "docs/qa/public-play-readiness-20261031/public-native-security.json" if candidate else "docs/qa/store-release-20261031/native-security.json"
+    destination = "docs/qa/hosted-member-20261101/native-security.json" if qa else "docs/qa/public-play-readiness-20261031/public-native-security.json" if candidate else "docs/qa/store-release-20261031/native-security.json"
     (root / destination).write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(evidence))

@@ -4,12 +4,13 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { build } from "esbuild";
 const secretDir = path.join(process.env.USERPROFILE, ".docked-secrets");
+const memberMode = process.env.DOCKED_HOSTED_MEMBER_ACCEPTANCE === "true";
 const team = "team_tf6xweKKyVCj9bTppUKttJ4l",
   project = "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR";
 try {
   const config = JSON.parse(
     await fs.readFile(
-      path.join(secretDir, "hosted-google-acceptance.json"),
+      path.join(secretDir, memberMode ? "hosted-member-acceptance.json" : "hosted-google-acceptance.json"),
       "utf8",
     ),
   );
@@ -143,7 +144,7 @@ try {
     customerWallet: false,
   };
   await fs.writeFile(
-    "docs/qa/public-play-readiness-20261031/hosted-acceptance-deployment.json",
+    memberMode ? "docs/qa/hosted-member-20261101/deployment.json" : "docs/qa/public-play-readiness-20261031/hosted-acceptance-deployment.json",
     JSON.stringify(receipt, null, 2),
   );
   console.log(JSON.stringify(receipt));

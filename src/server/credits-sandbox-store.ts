@@ -36,7 +36,7 @@ export class CreditsSandboxStore {
       result: ReturnType<typeof executeCredits>["result"],
     ) => Promise<void>,
     private schema:
-      "credits_sandbox" | "store_billing_acceptance" = "credits_sandbox",
+      "credits_sandbox" | "store_billing_acceptance" | "store_member_acceptance" = "credits_sandbox",
   ) {}
   async execute(actor: Operator, request: string, command: unknown) {
     return this.sql

@@ -24,6 +24,6 @@ Confirm the exact account can access the same enabled NFL/AFL/NRL features as no
 
 ## Optional supervised license-test access
 
-This is a separate expiring server grant for authorised Google test accounts, not special reviewer approval. Google must clearly show a test payment method and no charge. The TEST receipt route rejects real purchases and binds each receipt to the signed-in member. The v25 native allowlist is empty, so it cannot perform this new customer-wallet test yet.
+This is a separate expiring server grant for authorised Google test accounts, not special reviewer approval. Google must clearly show a test payment method and no charge. The customer TEST receipt route rejects real purchases and binds each receipt to the signed-in member. The v27 normal native allowlist is empty. A separate v26 native paired harness has now verified genuine Google TEST purchases, hosted shared-member-engine pack settlement and refunds against a fixed synthetic subject; it did not provision the reviewer or establish an ordinary customer-authenticated checkout. That temporary environment is closed. See `HOSTED_MEMBER_BILLING_ACCEPTANCE_20261101.md` for evidence and the remaining boundary.
 
 Required evidence before marking reviewer setup complete: fresh login, security steps, all visible sports, free-Core eligibility in an approved round, pack review and assigned inventory, signed-in hosted screenshots without secrets, logout/relogin and server denial of owner routes. No real account/balance mutations during preparation.
