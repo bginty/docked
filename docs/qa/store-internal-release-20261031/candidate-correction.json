@@ -1,0 +1,10 @@
+{
+  "rejectedCommit": "be83ebeb6cf531ed6cb6d58e5a095cb15b4d9f13",
+  "rejectedDeployment": "dpl_9etdYxhkvbAhf65oJgE7AEavNtW5",
+  "productionPromoted": false,
+  "finding": "Authenticated mobile capability route returned 404 on protected candidate; other 19 read-only route checks passed.",
+  "rootCause": "Unanchored mobile entry in .vercelignore excluded src/app/api/mobile as well as native resources.",
+  "correction": "Anchor the exclusion to /mobile and include /api/mobile/capabilities in subsequent candidate and live release checks.",
+  "correctedCommit": "673a751b2ec755836ef31dfb9b967786861c7b99",
+  "uploadRetry": "First corrected upload failed with fetch failed before creating a deployment; checked provider inventory and retried successfully."
+}

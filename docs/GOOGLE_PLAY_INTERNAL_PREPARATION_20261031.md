@@ -2,6 +2,10 @@
 
 This is an internal-test candidate, not a public-launch approval. NFL, AFL and NRL are the customer-visible scope. NBA remains hidden; its underlying records and internal shared infrastructure are preserved. No Production database migration, wallet mutation, real purchase, prize award or public registration change was performed.
 
+## Release status update
+
+The subsequently authorised server release is live on https://docked.com.au at `673a751b2ec755836ef31dfb9b967786861c7b99` (deployment `dpl_2cdQMeCTvRaX6dPSfoxuAF6SsBA9`). Google Play internal version 23 was already Active when work resumed; the existing three-person tester list and working invitation page were verified without creating another release. See `docs/qa/store-internal-release-20261031` for current evidence. Earlier draft-only observations below are historical.
+
 ## Build and signing
 
 - Existing Capacitor 8.5.2 implementation retained. Store application ID **`docked.fantasy`**, version code **23**, version name **1.22-internal**, compile/target API36, minimum API24. Google rejected the initial `au.com.docked.app` candidate because the existing Console app was already registered as `docked.fantasy`; the Store-only build was corrected to that authoritative identity. Legacy sideload variants retain `au.com.docked.app.preview`.
@@ -31,13 +35,13 @@ Existing company account and existing Docked app reused; no duplicate app or dev
 
 - Developer: Ginty United Investments Pty Ltd; publisher display Docked Fantasy.
 - Developer ID `6139268121863991375`, app ID `4973145400906008303`.
-- Internal track `4701080901813472104`; draft `1.22 (23) — internal preparation`.
+- Internal track `4701080901813472104`; **active** release `1.22 (23) — internal preparation`. It was observed already published on resumption, not published a second time by the agent.
 - Owner, Barry and Luke tester list created and attached. Existing verified Docked addresses used for Barry/Luke. Owner explicitly substituted the signed-in Google account after Google rejected the Docked support address as not a Google account. Brenton is reserved for Apple testing.
 - Internal testing access does not bypass Docked account confirmation, MFA or invitation admission. Tester selection is not an installation or sign-in acceptance result.
 - Listing description saved with NFL/AFL/NRL only, invitation-only test-credit wording, no cash withdrawals/prizes or promised live play-by-play. Existing App classification retained; Sports category and public support email/website saved for review.
 - No legal agreements accepted, payments profile activated, public release submitted or customer messages sent.
 
-Google accepted bundle 23 (1.22-internal), target API36, into the saved internal draft. Review reports two warnings only: no deobfuscation mapping (minification is disabled) and no native debug-symbol archive for bundled third-party native libraries. Estimated new-install size is 7.82 MB. Icon and 1024×500 feature graphic were uploaded and saved with the listing. Phone screenshots and declarations remain incomplete. No internal rollout or public release was published. The internal opt-in URL is not usable until a release is actually rolled out.
+Google accepted bundle 23 (1.22-internal), target API36, into the saved internal draft. Review reports two warnings only: no deobfuscation mapping (minification is disabled) and no native debug-symbol archive for bundled third-party native libraries. Estimated new-install size is 7.82 MB. Icon and 1024×500 feature graphic were uploaded and saved with the listing. Phone screenshots and declarations remain incomplete. The earlier preparation ended at a saved draft. On resumption, Google showed version 23 Active and available to internal testers. The invitation page at https://play.google.com/apps/internaltest/4701080901813472104 is now accessible; each tester must accept the invitation themselves. No public release was submitted.
 
 ## Store listing assets
 
@@ -96,4 +100,4 @@ After the owner signed in normally, read-only Production browser acceptance veri
 
 The corrected `docked.fantasy` APK installed successfully on API36 and its MainActivity was resumed; the crash buffer was empty at inspection. Earlier emulator startup attempts encountered a System UI hang. No native signed-in, physical-device, Play-distributed update, actual store purchase/refund or iOS acceptance is claimed. These remain release acceptance requirements.
 
-Production remained on `60a1a3ee966e9782cae7478b44340a3193fc3253` with publicRegistration false. This preparation does not deploy the candidate server visibility patch. Before internal rollout, deploy/review that compatible patch through Docked's existing release process and verify hidden-sport endpoints and member flows against the hosted release. No new Production migration is required by the visibility patch. Keep the current Vercel deployment available for rollback; never restore an old wallet document over subsequent legitimate transactions.
+Production was subsequently promoted from `60a1a3ee966e9782cae7478b44340a3193fc3253` to `673a751b2ec755836ef31dfb9b967786861c7b99` under the owner's deployment authorisation. Twenty protected-candidate checks and twenty live-domain checks passed, including exact release identity, anonymous mobile API denial, NBA denial and closed registration. A genuine signed-in owner session returned only nfl/afl/nrl, billing disabled with no products, and publicRegistration false. NBA state remained denied in that session. No Production migration was applied. Keep the previous deployment available for rollback; recheck NBA denial before continuing distribution if reverting, because that baseline only hid navigation. Never restore old wallet or inventory data over legitimate activity.

@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-31",
+  "commit": "673a751b2ec755836ef31dfb9b967786861c7b99",
+  "deploymentId": "dpl_2cdQMeCTvRaX6dPSfoxuAF6SsBA9",
+  "url": "https://docked.com.au",
+  "candidateHttpChecks": 20,
+  "liveHttpChecks": 20,
+  "passed": true,
+  "databaseMigrations": [],
+  "authenticatedBrowser": {
+    "actualOwnerSession": true,
+    "mobileViewport": "390x844",
+    "sports": [
+      "nfl",
+      "afl",
+      "nrl"
+    ],
+    "nbaStateDenied": true,
+    "billingEnabled": false,
+    "googleProducts": [],
+    "publicRegistration": false,
+    "nflWeek7": {
+      "points": 105.81,
+      "completed": 6,
+      "total": 7,
+      "rank": 1,
+      "entries": 2
+    },
+    "aflOwnedCards": 24,
+    "nrlOwnedCards": 8,
+    "nrlProfilePacksOpened": 1,
+    "walletBefore": 35200,
+    "walletAfter": 35200,
+    "nrlPackVariants": 6,
+    "nrlMarketListings": 1,
+    "globalSocialLoaded": true,
+    "profileLoaded": true,
+    "packPageWidth": 390,
+    "packDocumentWidth": 390,
+    "nrlPlaySlots": 13,
+    "aflPreexistingDraftWarningPreserved": true,
+    "nrlRankings": "All-Star Round 2; No entries yet; Not entered"
+  },
+  "limitations": [
+    "Read-only browser acceptance; no purchases, openings, submissions or balance mutations performed.",
+    "AFL pre-existing draft reports selections no longer owned; not altered.",
+    "Profile required a longer loading interval before its correct summary appeared; not a measured performance pass.",
+    "No actual Play-distributed device installation, native signed-in acceptance, store purchase or refund verified.",
+    "Temporary unreviewed app name and remaining public-store declarations do not constitute public-launch approval."
+  ],
+  "nativeVersionCode": 23,
+  "internalTrackActive": true,
+  "configuredTesterCount": 3,
+  "publicRelease": false,
+  "legacyEnvironmentNote": "privateNba=true in release receipts denotes the legacy shared admission umbrella required by AFL/NRL. Separate deployed customer-sport guard denies NBA; it does not activate customer NBA."
+}
