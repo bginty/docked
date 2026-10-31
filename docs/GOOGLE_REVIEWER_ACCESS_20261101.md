@@ -2,9 +2,11 @@
 
 Status: instructions prepared; dedicated credentials NOT provisioned or verified. No owner's password copied, no authentication exemption, no owner permissions granted.
 
+Update, 1 November: the owner nominated a specific reviewer email. A read-only exact-identity lookup found no corresponding Auth account. The address is held in the local private reviewer request record, not committed here. Do not ask the owner to nominate it again. Normal creation, email confirmation, secure password entry and reviewer login acceptance are still required. The physical Samsung check used the existing owner session and does not satisfy this requirement.
+
 ## Exact owner setup
 
-Choose a dedicated monitored email for the review account and create/confirm it through Docked's normal account flow. Set its password securely and satisfy the normal account confirmation and applicable MFA rules. Authorise ordinary-member access only; no owner/admin, financial or document-review permissions. Keep credentials out of source control, logs, screenshots and this document.
+Use the already nominated dedicated email and create/confirm it through Docked's normal account flow. Set its password securely and satisfy the normal account confirmation and applicable MFA rules. Authorise ordinary-member access only; no owner/admin, financial or document-review permissions. Keep credentials out of source control, logs, screenshots and this document. Public registration remains closed; do not open it to create a reviewer.
 
 Use Play Console → Docked → App content → App access → restricted functionality instructions. Enter the dedicated login securely there. Explain the actual verification steps and ensure reviewers can complete them without waiting for the owner's personal device. If normal MFA cannot provide a reviewable workflow, return this as an access blocker; do not bypass it or conceal different reviewer behaviour.
 

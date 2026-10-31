@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-31T21:57:18.174Z",
+  "checks": [
+    "Both migrations roll back transactionally without changing pre-existing rows",
+    "Both migrations preserve all 251 existing table fingerprints",
+    "Version/hash history skips a repeated migration run without duplicate DDL",
+    "Free Core remains disabled; store admission and receipt tables start empty",
+    "Public deletion refuses an active account before any Auth request",
+    "Auth outage retains one queued erasure and already revokes account sessions"
+  ],
+  "failures": [
+    "Auth identity delete blocked by application foreign key"
+  ],
+  "authCalls": 2,
+  "scope": "Disposable PostgreSQL; actual public deletion service and runtime role; loopback mocked Supabase Auth transport; no hosted/customer connection"
+}

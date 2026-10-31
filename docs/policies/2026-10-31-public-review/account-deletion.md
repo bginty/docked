@@ -17,6 +17,7 @@ Deletion does not silently cancel a Google order, refund a purchase or erase ano
 - Approve exact categories, retention triggers, periods/decision rules, holds, processor requests and backup/restoration handling. No statutory period is invented here.
 - Current private-beta Auth identities are shared across environments. Automated identity erasure is deliberately blocked pending operator review; do not claim it already works for public accounts.
 - Validate a separate, synthetic public-mode account: request → session revocation → queue → eligible social/content erasure → Auth erasure → retained minimal audit → final status. Verify retries and processor failure recovery. Do not delete a real tester to prove this.
+- Technical evidence added 1 November: the actual public-mode deletion service passed disposable PostgreSQL tests with a loopback mocked Supabase Auth transport, including failed transport, four concurrent retries, one completion audit, transient test-admission cleanup and preservation of an unrelated member/wallet. This is not hosted Supabase Auth or customer-account acceptance. The shared beta erasure safeguard remains active.
 - The app and web page must show the same accurate completion state. The public page must remain usable without a prior login, with proportionate verification before any destructive action.
 - Owner must approve a practical response process and support staffing; no unapproved service timeframe is promised.
 

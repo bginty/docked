@@ -1,7 +1,9 @@
 -- Empty, disabled-by-default Google TEST admission. No grants, money, products
 -- or existing wallet documents are inserted/updated by this migration.
 create table credits_sandbox.store_test_admissions (
- user_id uuid primary key references auth.users(id),
+ -- Admission is a revocable permission, not a retained financial record.
+ -- It must not prevent normal public-mode Auth erasure. Receipts/audit remain.
+ user_id uuid primary key references auth.users(id) on delete cascade,
  version text not null,
  enabled boolean not null default false,
  expires_at timestamptz not null,

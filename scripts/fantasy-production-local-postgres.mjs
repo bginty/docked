@@ -60,71 +60,77 @@ try {
       : [
           "--import",
           "tsx",
-          process.argv.includes("--store-pack-lifecycle")
-            ? "scripts/store-pack-postgres.ts"
-            : process.argv.includes("--hosted-billing")
-            ? "scripts/hosted-billing-postgres.ts"
-            : process.argv.includes("--google-play-lab")
-              ? "scripts/google-play-lab-server.ts"
-              : process.argv.includes("--store-billing")
-                ? "scripts/store-billing-concurrency.ts"
-                : process.argv.includes("--australian-salary")
-                  ? "tests/database/australian-future-adoption.test.ts"
-                  : process.argv.includes("--progressive-concurrency")
-                    ? "scripts/progressive-nfl-concurrency.ts"
-                    : process.argv.includes("--progressive-nfl")
-                      ? "tests/database/nfl-seven.test.ts"
-                      : process.argv.includes("--sport-activation")
-                        ? "tests/database/owner-sport-reconcile.test.ts"
-                        : process.argv.includes("--premium-member")
-                          ? "tests/database/premium-member-release.test.ts"
-                          : process.argv.includes("--weekly-core")
-                            ? "tests/database/weekly-core.test.ts"
-                            : process.argv.includes("--redemption")
-                              ? "scripts/redemption-postgres.ts"
-                              : process.argv.includes("--marketplace-phase-one")
-                                ? "scripts/marketplace-postgres.ts"
-                                : process.argv.includes("--credit-v2")
-                                  ? "scripts/credit-v2-concurrency.ts"
-                                  : process.argv.includes("--credit-only")
-                                    ? "scripts/credit-only-concurrency.ts"
-                                    : process.argv.includes("--card-economy")
-                                      ? "scripts/card-economy-concurrency.ts"
-                                      : process.argv.includes(
-                                            "--member-credits",
-                                          )
-                                        ? "scripts/member-test-wallet-concurrency.ts"
-                                        : process.argv.includes("--credits")
-                                          ? "scripts/credits-concurrency.ts"
+          process.argv.includes("--launch-acceptance")
+            ? "scripts/launch-migrations-postgres.ts"
+            : process.argv.includes("--store-pack-lifecycle")
+              ? "scripts/store-pack-postgres.ts"
+              : process.argv.includes("--hosted-billing")
+                ? "scripts/hosted-billing-postgres.ts"
+                : process.argv.includes("--google-play-lab")
+                  ? "scripts/google-play-lab-server.ts"
+                  : process.argv.includes("--store-billing")
+                    ? "scripts/store-billing-concurrency.ts"
+                    : process.argv.includes("--australian-salary")
+                      ? "tests/database/australian-future-adoption.test.ts"
+                      : process.argv.includes("--progressive-concurrency")
+                        ? "scripts/progressive-nfl-concurrency.ts"
+                        : process.argv.includes("--progressive-nfl")
+                          ? "tests/database/nfl-seven.test.ts"
+                          : process.argv.includes("--sport-activation")
+                            ? "tests/database/owner-sport-reconcile.test.ts"
+                            : process.argv.includes("--premium-member")
+                              ? "tests/database/premium-member-release.test.ts"
+                              : process.argv.includes("--weekly-core")
+                                ? "tests/database/weekly-core.test.ts"
+                                : process.argv.includes("--redemption")
+                                  ? "scripts/redemption-postgres.ts"
+                                  : process.argv.includes(
+                                        "--marketplace-phase-one",
+                                      )
+                                    ? "scripts/marketplace-postgres.ts"
+                                    : process.argv.includes("--credit-v2")
+                                      ? "scripts/credit-v2-concurrency.ts"
+                                      : process.argv.includes("--credit-only")
+                                        ? "scripts/credit-only-concurrency.ts"
+                                        : process.argv.includes(
+                                              "--card-economy",
+                                            )
+                                          ? "scripts/card-economy-concurrency.ts"
                                           : process.argv.includes(
-                                                "--sports-feed",
+                                                "--member-credits",
                                               )
-                                            ? "scripts/sports-feed-concurrency.ts"
-                                            : process.argv.includes(
-                                                  "--commerce",
-                                                )
-                                              ? "scripts/commerce-concurrency.ts"
+                                            ? "scripts/member-test-wallet-concurrency.ts"
+                                            : process.argv.includes("--credits")
+                                              ? "scripts/credits-concurrency.ts"
                                               : process.argv.includes(
-                                                    "--friends",
+                                                    "--sports-feed",
                                                   )
-                                                ? "scripts/two-person-beta-concurrency.ts"
+                                                ? "scripts/sports-feed-concurrency.ts"
                                                 : process.argv.includes(
-                                                      "--scoring-v1",
+                                                      "--commerce",
                                                     )
-                                                  ? "scripts/scoring-v1-concurrency.ts"
+                                                  ? "scripts/commerce-concurrency.ts"
                                                   : process.argv.includes(
-                                                        "--two-person",
+                                                        "--friends",
                                                       )
                                                     ? "scripts/two-person-beta-concurrency.ts"
                                                     : process.argv.includes(
-                                                          "--market-sandbox",
+                                                          "--scoring-v1",
                                                         )
-                                                      ? "scripts/fantasy-market-concurrency.ts"
+                                                      ? "scripts/scoring-v1-concurrency.ts"
                                                       : process.argv.includes(
-                                                            "--beta-isolation",
+                                                            "--two-person",
                                                           )
-                                                        ? "scripts/beta-isolation-concurrency.ts"
-                                                        : "scripts/fantasy-production-concurrency.ts",
+                                                        ? "scripts/two-person-beta-concurrency.ts"
+                                                        : process.argv.includes(
+                                                              "--market-sandbox",
+                                                            )
+                                                          ? "scripts/fantasy-market-concurrency.ts"
+                                                          : process.argv.includes(
+                                                                "--beta-isolation",
+                                                              )
+                                                            ? "scripts/beta-isolation-concurrency.ts"
+                                                            : "scripts/fantasy-production-concurrency.ts",
           ...(process.argv.includes("--friends") ? ["--friends"] : []),
         ],
     {
