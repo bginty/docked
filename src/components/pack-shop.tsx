@@ -19,11 +19,17 @@ import { boundedFetch } from "@/core/bounded-request";
 import type { CouponQuote } from "@/core/pack-coupons";
 import type { memberCoupon } from "@/server/pack-coupons";
 type Product = MemberTestView["products"][number];
-function FamilyDisclosures({ p }: { p: Product }) {
+function FamilyDisclosures({
+  p,
+  expanded = false,
+}: {
+  p: Product;
+  expanded?: boolean;
+}) {
   return (
     <div className="pack-disclosures">
       {p.weights && (
-        <details>
+        <details open={expanded || undefined}>
           <summary>Rarity Chances</summary>
           <table>
             <caption>Per card · before supply checks</caption>
@@ -52,7 +58,10 @@ function FamilyDisclosures({ p }: { p: Product }) {
       <details>
         <summary>Pack Details</summary>
         <p>
-          1, 3 or 9 cards · {p.eligiblePlayers} eligible players
+          {expanded
+            ? `${p.cards} ${p.cards === 1 ? "card" : "cards"}`
+            : "1 / 3 / 9-card options"}{" "}
+          · {p.eligiblePlayers} eligible players
           {p.positions.length ? ` · ${p.positions.join(", ")}` : ""}.
         </p>
         <p>
@@ -627,6 +636,7 @@ export function PackShop({
             {review.odds?.guarantee && (
               <p className="small-note">{review.odds.guarantee}</p>
             )}
+            <FamilyDisclosures p={review} expanded />
             {error && <p role="alert">{error}</p>}
             {recovery && !submitting && (
               <p role="status">

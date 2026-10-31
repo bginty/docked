@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-31",
+  "platform": {"passed": 686, "failed": 0, "skipped": 0},
+  "database": {"passed": 223, "failed": 0, "skipped": 0},
+  "postgresStorePackIntegration": {"passed": 4, "provider": "mock", "customerConnections": 0},
+  "lintExitCode": 0,
+  "typecheckExitCode": 0,
+  "webBuildExitCode": 0,
+  "runtimeDependencyVulnerabilities": 0,
+  "developmentDependencyVulnerabilities": {"moderate": 13, "high": 0, "critical": 0},
+  "nativeArtifactRebuilt": false,
+  "productionCodeDeployedThisContinuation": false,
+  "productionMigrationsAppliedThisContinuation": [],
+  "playListing": {"screenshotsSaved": 3, "state": "draft", "publicSubmitted": false},
+  "googleProducts": "both INACTIVE",
+  "customerAggregate": {"revision": 226, "hash": "5f6b1926b820cb90f68d9a6a01ab5d5e", "unchanged": true},
+  "hostedBrowser": {
+    "authenticated": true,
+    "mutations": 0,
+    "nfl": {"week": 7, "points": 105.81, "completed": 6, "slots": 7, "rank": 1, "entrants": 2},
+    "afl": {"ownedCards": 24, "ultraRare": 20, "legendary": 4},
+    "nrl": {"packsLoaded": true, "paidVariants": 6},
+    "nbaVisible": false,
+    "device": "desktop Chrome responsive viewport, not physical Android"
+  },
+  "localRenderedAcceptance": {
+    "afl": "Premium 9 review, synthetic purchase/open, completed reveal, new same-product confirmation cancelled",
+    "nfl": "Standard 3 review; 300 credits; all five authoritative odds visible before confirmation; cancelled",
+    "nrl": "Premium 1 review; 700 credits; 90/9.9/0.1 odds visible before confirmation; cancelled",
+    "nflNrlMobileGeometry": {"viewport": 390, "documentWidth": 390, "detailsOpen": true},
+    "productionMutations": 0
+  },
+  "publicLaunch": "NO-GO: commercial decisions, customer public-mode integration, hosted reconciliation/acceptance, privacy/deletion approval and reviewer access remain"
+}

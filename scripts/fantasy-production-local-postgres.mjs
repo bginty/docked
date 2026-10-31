@@ -60,7 +60,9 @@ try {
       : [
           "--import",
           "tsx",
-          process.argv.includes("--hosted-billing")
+          process.argv.includes("--store-pack-lifecycle")
+            ? "scripts/store-pack-postgres.ts"
+            : process.argv.includes("--hosted-billing")
             ? "scripts/hosted-billing-postgres.ts"
             : process.argv.includes("--google-play-lab")
               ? "scripts/google-play-lab-server.ts"

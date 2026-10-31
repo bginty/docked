@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "20 duplicate early notifications retained once; unknown member binding cannot credit a wallet",
+    "12 reconciliation workers verify once; approved pending payment credits 9900 and consumption follows durable commit",
+    "16 concurrent Premium purchases charge 5000 once; 10 opening retries retain exactly nine instances and one receipt",
+    "Durable checkpoint deduplicates; network outage preserves state; expired worker lease recovers after restart; spent refund holds remaining funding without debt, confiscation or duplicate reversal"
+  ],
+  "realCharges": 0,
+  "customerConnections": 0,
+  "providerRequests": "mock only",
+  "scope": "same wallet, pack allocator and receipt services in disposable PostgreSQL"
+}

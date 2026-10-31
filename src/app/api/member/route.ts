@@ -123,8 +123,10 @@ export async function POST(request: Request) {
           ok: true,
           redirect: "/",
           message: pending
-            ? "Account access revoked. Identity erasure is queued for retry."
-            : "Account deleted. Pseudonymous audit evidence is retained under the reviewed retention policy.",
+            ? process.env.DOCKED_BETA_STAGING === "true"
+              ? "Account access revoked. Your deletion request is recorded; shared beta identity erasure requires operator review. Deletion is not yet complete."
+              : "Account access revoked. Identity erasure is queued for retry."
+            : "Account deleted. Necessary ownership, competition and audit records are retained separately from your active profile.",
         },
         { status: pending ? 202 : 200 },
       );

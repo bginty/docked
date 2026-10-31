@@ -15,6 +15,9 @@ import type { StoreReceipt } from "./store-purchase-verification";
  * authenticated receipt verification must precede this service. There is no
  * public purchase endpoint or production activation path here. */
 export class StoreTestInbox {
+  get localAcceptance() {
+    return this.schema === "credits_sandbox";
+  }
   readonly sql: ReturnType<typeof postgres>;
   private schema: "credits_sandbox" | "store_billing_acceptance" =
     "credits_sandbox";
@@ -193,6 +196,25 @@ export class StoreTestInbox {
   }
   async close() {
     await this.sql.end();
+  }
+  /** Server worker only. Never serialize this result into customer responses. */
+  async reference(key: string) {
+    await this.ready();
+    const [row] = await this
+      .sql`select member_id, encrypted_reference from ${this.sql(this.schema)}.store_receipts where provider='google' and receipt_key=${key}`;
+    return row
+      ? {
+          member: String(row.member_id),
+          token: this.decrypt(row.encrypted_reference),
+        }
+      : null;
+  }
+  async referenceForToken(token: string) {
+    return this.reference(
+      createHash("sha256")
+        .update("docked.fantasy\0" + token)
+        .digest("hex"),
+    );
   }
   /** LOCAL harness worker only. Never serialize these references into a client
    * response or logs. Unknown/other-member purchases cannot enter reconciliation. */
