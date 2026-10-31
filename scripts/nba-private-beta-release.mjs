@@ -28,7 +28,7 @@ assert(
 await fs.mkdir(parent, { recursive: true });
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
-async function run(args) {
+async function run(args, runtimeEnv = {}) {
   try {
     return await promisify(execFile)(
       process.execPath,
@@ -40,7 +40,12 @@ async function run(args) {
         "--scope",
         target.teamId,
       ],
-      { windowsHide: true, maxBuffer: 16e6, timeout: 240000 },
+      {
+        windowsHide: true,
+        maxBuffer: 16e6,
+        timeout: 240000,
+        env: { ...process.env, ...runtimeEnv },
+      },
     );
   } catch (e) {
     await fs.writeFile(
@@ -292,9 +297,11 @@ if (process.argv[2] === "prepare") {
     "--meta",
     `githubCommitRef=${target.branch}`,
   ];
-  for (const [k, v] of Object.entries({ ...env, ...overrides }))
-    args.push("--env", `${k}=${v}`, "--build-env", `${k}=${v}`);
-  const result = await run(args);
+  // The installed Vercel CLI resolves name-only --env/--build-env options from
+  // its process environment. Never expose secret values in process arguments.
+  for (const k of Object.keys({ ...env, ...overrides }))
+    args.push("--env", k, "--build-env", k);
+  const result = await run(args, { ...env, ...overrides });
   await fs.writeFile(
     path.join(parent, "deploy.private.log"),
     result.stdout + "\n" + result.stderr,
