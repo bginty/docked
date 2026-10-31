@@ -20,10 +20,12 @@ The installed base APK's signature was verified and matches Google's generated-b
 | NRL packs / history | Buy Packs and history rendered; two unopened starter entitlements were visible. Neither was opened. |
 | NRL market | Browse, My Listings, Activity and filters rendered. No purchase, listing or transfer performed. |
 | Visible sports | NFL, AFL and NRL; NBA absent. |
-| Fresh restart/session persistence | Attempted, but the phone had locked. Owner unlock requested; not counted as passed. |
+| Fresh restart/session persistence | **Passed after owner unlock at 09:31 Sydney.** ADB force-stop verified no remaining app process, followed by a cold launch with a new PID. The existing signed-in session, NRL selection and 35,200-credit balance returned. Profile loaded with 8 NRL cards, 0 entries and 1 opened pack. No fresh password/MFA login was performed. |
 | Google TEST purchase / new wallet credit / refund | **Not executed** in this continuation. No Google checkout screen or licence-test payment method was asserted. |
 
 Screenshots: [NFL](qa/android-device-20261101/nfl-play.png), [AFL](qa/android-device-20261101/afl-play.png), [NRL](qa/android-device-20261101/nrl-play.png), [wallet](qa/android-device-20261101/wallet.png), [cards](qa/android-device-20261101/nrl-cards.png), [packs](qa/android-device-20261101/nrl-packs.png), [history](qa/android-device-20261101/nrl-pack-history.png), [market](qa/android-device-20261101/nrl-market.png). No lock-screen/private wallpaper capture is included.
+
+Unlock follow-up evidence: [before restart](qa/android-device-20261101/restart-before.png), [after cold restart](qa/android-device-20261101/restart-after.png), [loaded Profile](qa/android-device-20261101/restart-profile.png), [process replacement](qa/android-device-20261101/restart-process.json). The native Activity launch timing in ADB output is not a measurement of complete page usability. This follow-up changes only evidence/documentation; purchase and hosted-migration blockers remain unchanged.
 
 ## Exact checkout blocker
 

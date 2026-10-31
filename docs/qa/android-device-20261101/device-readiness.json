@@ -24,5 +24,24 @@
   "packOpeningsThisRun": 0,
   "refundsThisRun": 0,
   "authenticatedSession": "Existing owner session; no fresh login entered",
-  "backendCandidateClaimed": false
+  "backendCandidateClaimed": false,
+  "restartAcceptance": {
+    "checkedAt": "2026-10-31T22:31:07.6093573Z",
+    "coldStart": true,
+    "processReplaced": true,
+    "existingSessionRestored": true,
+    "sportRestored": "nrl",
+    "visibleSports": [
+      "nfl",
+      "afl",
+      "nrl"
+    ],
+    "walletObserved": 35200,
+    "nrlOwnedCardsObserved": 8,
+    "nrlEntriesObserved": 0,
+    "nrlPacksOpenedObserved": 1,
+    "androidBackReturnedToPlay": true,
+    "freshLoginPerformed": false,
+    "mutations": 0
+  }
 }
