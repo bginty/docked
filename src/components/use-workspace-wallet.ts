@@ -10,6 +10,7 @@ import {
 } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 import { usePathname } from "next/navigation";
+import { useEnvironmentPresentation } from "./environment-context";
 type WalletProjection = {
   member: string;
   balance: number;
@@ -17,6 +18,7 @@ type WalletProjection = {
   openedPacks: number;
   completedTrades: number;
   portfolio: PortfolioValuation | null;
+  commercial: boolean;
 };
 const WalletContext = createContext<{
   value: WalletProjection | null;
@@ -30,6 +32,7 @@ export function WorkspaceWalletProvider({ children }: { children: ReactNode }) {
 export function useWorkspaceWallet(member: string, enabled: boolean) {
   const shared = useContext(WalletContext);
   const pathname = usePathname();
+  const { commercialSurface } = useEnvironmentPresentation();
   const hasShared = shared !== null;
   const [value, setValue] = useState<WalletProjection | null>(null);
   const [status, setStatus] = useState("Loading balance…");
@@ -43,10 +46,15 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
       current = controller;
       setStatus("Updating balance…");
       try {
-        const response = await boundedFetch("/api/test-wallet?view=summary", {
-          cache: "no-store",
-          signal: controller.signal,
-        });
+        const response = await boundedFetch(
+          commercialSurface
+            ? "/api/workspace-wallet"
+            : "/api/test-wallet?view=summary",
+          {
+            cache: "no-store",
+            signal: controller.signal,
+          },
+        );
         if (!response.ok) {
           if (response.status === 401 || response.status === 403)
             setValue(null);
@@ -64,12 +72,13 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
         if (!disposed && !controller.signal.aborted) {
           setValue({
             member: state.member,
+            commercial: state.environment === "commercial",
             balance: state.wallet.spendable,
             portfolio: state.portfolio ?? null,
-            unopened: state.packs.filter(
+            unopened: state.environment==='commercial'&&Number.isSafeInteger(state.unopened)?state.unopened:state.packs.filter(
               (p: { status: string }) => p.status === "SEALED",
             ).length,
-            openedPacks: state.packs.filter(
+            openedPacks: state.environment==='commercial'&&Number.isSafeInteger(state.openedPacks)?state.openedPacks:state.packs.filter(
               (p: { status: string }) => p.status === "OPENED",
             ).length,
             completedTrades: Array.isArray(state.swaps)
@@ -103,7 +112,7 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
       window.removeEventListener("docked-app-resume", resume);
       document.removeEventListener("visibilitychange", visible);
     };
-  }, [member, enabled, hasShared, pathname]);
+  }, [member, enabled, hasShared, pathname, commercialSurface]);
   const result = shared ?? { value, status };
   return {
     ...result,

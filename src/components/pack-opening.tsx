@@ -40,6 +40,7 @@ export type PackOpeningProps = {
   ownedIds: string[];
   replay?: boolean;
   preview?: boolean;
+  commercial?:boolean;
   autoOpen?: boolean;
   collectionHref?: string;
   teamHref?: string | null;
@@ -369,8 +370,7 @@ export default function PackOpening(props: PackOpeningProps) {
               </p>
             )}
             <p className="pack-disclosure">
-              Test cards. No cash value. The animation does not determine your
-              cards or their tier.
+              {props.commercial?'The animation does not determine your cards or their rarity. No cash redemption.':'Test cards. No cash value. The animation does not determine your cards or their tier.'}
             </p>
           </>
         )}
@@ -532,7 +532,7 @@ export default function PackOpening(props: PackOpeningProps) {
               →
             </button>
             <p className="pack-inspect-hint">
-              {motionOff ? "Reduced movement" : "Drag to tilt"} · No cash value
+              {motionOff ? "Reduced movement" : "Drag to tilt"} · {props.commercial?'No cash redemption':'No cash value'}
             </p>
           </>
         )}
@@ -541,13 +541,12 @@ export default function PackOpening(props: PackOpeningProps) {
             <h3 ref={title} tabIndex={-1}>
               {props.replay || replaying
                 ? "Your original pack result"
-                : props.teamHref === null
+                : props.commercial ? 'Your collection' : props.teamHref === null
                   ? "Your test collection"
                   : "Ready to build your team"}
             </h3>
             <p>
-              {receipt.cards.length} confirmed cards · Test cards, no cash
-              value.
+              {receipt.cards.length} confirmed cards · {props.commercial?'No cash redemption.':'Test cards, no cash value.'}
             </p>
             <ul className="pack-summary">
               {receipt.cards.map((c) => (

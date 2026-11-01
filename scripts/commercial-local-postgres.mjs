@@ -1,0 +1,96 @@
+// Dedicated loopback-only, disposable real PostgreSQL acceptance runner.
+import { randomBytes } from "node:crypto";
+import { createServer } from "node:net";
+import { spawn } from "node:child_process";
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
+import { readFileSync } from "node:fs";
+const runtime = resolve(
+  "tmp/free-play-postgres-runtime/node_modules/embedded-postgres",
+);
+if (
+  JSON.parse(readFileSync(resolve(runtime, "package.json"), "utf8")).version !==
+  "17.10.0-beta.17"
+)
+  throw Error("Pinned local PostgreSQL runtime required");
+const { default: EmbeddedPostgres } = await import(
+  pathToFileURL(resolve(runtime, "dist/index.js")).href
+);
+const socket = createServer();
+await new Promise((r) => socket.listen(0, "127.0.0.1", r));
+const port = socket.address().port;
+await new Promise((r) => socket.close(r));
+const password = randomBytes(32).toString("hex"),
+  directory = resolve(`tmp/commercial-acceptance-${Date.now()}`);
+const pg = new EmbeddedPostgres({
+  databaseDir: directory,
+  user: "postgres",
+  password,
+  port,
+  persistent: true,
+  createPostgresUser: false,
+  authMethod: "scram-sha-256",
+  initdbFlags: ["--encoding=UTF8", "--locale=C"],
+  postgresFlags: ["-h", "127.0.0.1"],
+  onLog: () => {},
+  onError: () => {},
+});
+const run = (cmd, args, env, stdio = "inherit") =>
+  new Promise((r, j) => {
+    const p = spawn(cmd, args, { windowsHide: true, stdio, env });
+    p.once("error", j);
+    p.once("close", (c) => r(c ?? 1));
+  });
+let started = false,
+  code = 1;
+try {
+  await pg.initialise();
+  await pg.start();
+  started = true;
+  await pg.createDatabase("commercial_acceptance");
+  const connection = new URL(
+    `postgres://127.0.0.1:${port}/commercial_acceptance`,
+  );
+  connection.username = "postgres";
+  connection.password = password;
+  const gameplay = process.argv.includes("--gameplay");
+  const gameConnection = new URL(connection);
+  gameConnection.pathname = `/docked_free_play_test_${Date.now()}`;
+  if (gameplay) await pg.createDatabase(gameConnection.pathname.slice(1));
+  code = await run(
+    process.execPath,
+    [
+      "--import",
+      "tsx",
+      ...(gameplay
+        ? [
+            "--test",
+            `--test-name-pattern=${process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
+            "tests/database/commercial-lineup.test.ts",
+          ]
+        : ["scripts/commercial-billing-postgres.ts"]),
+      ...(process.argv.includes("--browser") ? ["--browser"] : []),
+    ],
+    {
+      ...process.env,
+      COMMERCIAL_ACCEPTANCE_DB: connection.toString(),
+      ...(gameplay
+        ? { AUSTRALIAN_SALARY_TEST_DB: gameConnection.toString() }
+        : {}),
+    },
+  );
+} finally {
+  if (started) {
+    const stop = await run(
+      resolve(
+        "tmp/free-play-postgres-runtime/node_modules/@embedded-postgres/windows-x64/native/bin/pg_ctl.exe",
+      ),
+      ["-D", directory, "-m", "fast", "-w", "-t", "30", "stop"],
+      process.env,
+      "ignore",
+    );
+    pg.process = undefined;
+    if (stop !== 0) code = 1;
+  }
+}
+process.exit(code);

@@ -2,7 +2,9 @@ import { rarities, rarityRule } from "./card-rarity";
 import type { NinePackProduct } from "./card-economy";
 
 /** Disclosure from the purchase configuration, never a second set of odds. */
-export function packOdds(p: NinePackProduct) {
+export function packOdds(
+  p: Pick<NinePackProduct, "weights" | "guaranteedSlots" | "cards">,
+) {
   const included = rarities.filter((r) => r !== "CORE" && p.weights[r] > 0);
   const floor = included[0];
   const ultraFloor =

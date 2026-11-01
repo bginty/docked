@@ -16,6 +16,7 @@ const markers = [
   "MULTI_READ",
   "MULTI_ADMIN",
   "MULTI_DELIVERY",
+  'COMMERCIAL_REFERENCE','COMMERCIAL_BINDING','COMMERCIAL_GOOGLE','COMMERCIAL_DB','COMMERCIAL_WORKER',
 ].map((name) => `DOCKED_BUILD_CANARY_${name}_20261002`);
 async function inspect(directory: string): Promise<number> {
   let checked = 0;

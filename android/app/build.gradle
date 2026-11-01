@@ -4,7 +4,8 @@ apply plugin: 'com.android.application'
 def billingQaBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storebillingqa') }
 def storeCandidateBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storecandidate') }
 def memberTestBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storemembertest') }
-def storeInternalBuild = billingQaBuild || storeCandidateBuild || memberTestBuild || gradle.startParameter.taskNames.any { it.toLowerCase().contains('storeinternal') }
+def commercialCandidateBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storecommercialcandidate') }
+def storeInternalBuild = billingQaBuild || storeCandidateBuild || memberTestBuild || commercialCandidateBuild || gradle.startParameter.taskNames.any { it.toLowerCase().contains('storeinternal') }
 def creditProducts = new groovy.json.JsonSlurper().parse(file('../../config/store-credit-package-drafts.json')).products.collect { it.id }.join(',')
 
 android {
@@ -15,9 +16,10 @@ android {
         applicationId storeInternalBuild ? "docked.fantasy" : "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode memberTestBuild ? 28 : (storeCandidateBuild ? 29 : (billingQaBuild ? 26 : 23))
-        versionName memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.28" : (billingQaBuild ? "1.25" : "1.22"))
+        versionCode commercialCandidateBuild ? 30 : (memberTestBuild ? 28 : (storeCandidateBuild ? 29 : (billingQaBuild ? 26 : 23)))
+        versionName commercialCandidateBuild ? "1.29" : (memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.28" : (billingQaBuild ? "1.25" : "1.22")))
         buildConfigField 'String', 'DOCKED_MEMBER_TEST_PRODUCTS', '""'
+        buildConfigField 'String', 'DOCKED_COMMERCIAL_PRODUCTS', '""'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -35,6 +37,15 @@ android {
         }
     }
     buildTypes {
+        // Preparation only. Backend, approved product configuration and Google
+        // product activation remain independently mandatory. Never uses TEST wallet.
+        storeCommercialCandidate {
+            initWith release
+            buildConfigField 'String', 'DOCKED_COMMERCIAL_PRODUCTS', '"' + creditProducts + '"'
+            signingConfig signingConfigs.closedTestUpload
+            debuggable false
+            matchingFallbacks = ['release']
+        }
         // Internal TEST receipt acceptance only; no loopback lab, custom CA or
         // synthetic identity. Normal member authentication and server admission
         // still apply. Never promote this variant to a public release.

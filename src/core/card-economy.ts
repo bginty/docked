@@ -110,7 +110,7 @@ export type CardEconomy = {
 export const definitionId = (player: string, rarity: string) =>
   `${player}:${rarity}`;
 export function drawPackRarity(
-  p: NinePackProduct,
+  p: Pick<NinePackProduct, "weights" | "guaranteedSlots">,
   slot: number,
   choose: (max: number) => number = randomInt,
 ): Rarity {

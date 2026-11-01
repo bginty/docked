@@ -302,6 +302,11 @@ if (process.argv[2] === "prepare") {
     assert.equal(env.DOCKED_BETA_STAGING, "true");
     env.DOCKED_MEMBER_GOOGLE_TEST = "true";
   }
+  if(process.env.DOCKED_RELEASE_COMMERCIAL_DORMANT==='true'){
+    assert(!process.argv.includes('--supervised-member-test'));
+    Object.assign(env,{DOCKED_COMMERCIAL_SERVICE:'false',DOCKED_COMMERCIAL_SURFACES:'false',DOCKED_COMMERCIAL_CHECKOUT:'false'});
+    assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST,'false');
+  }
   assert.equal(
     base.env.filter(
       (k) => /^(DOCKED_|NFL_|BETA_|FANTASY_|PROVIDER_)/.test(k) && !(k in env),

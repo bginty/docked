@@ -6,12 +6,28 @@ import type { CollectionQuery } from "@/core/owned-collection";
 import { MemberTestWallet } from "./member-test-wallet";
 import { WeeklyCorePanel } from "./weekly-core-panel";
 import { LightSweep } from "./startup-loading";
+import { useEnvironmentPresentation } from "./environment-context";
+import { CommercialMember } from "./commercial-member";
 const EarlierPacks = lazy(() =>
   import("./collection-legacy-packs").then((m) => ({
     default: m.CollectionLegacyPacks,
   })),
 );
 export function CollectionPacks({
+  member,
+  sport,
+}: {
+  member: string;
+  sport: CollectionQuery["sport"];
+}) {
+  const { commercialSurface } = useEnvironmentPresentation();
+  if (commercialSurface)
+    return sport === "basketball" ? null : (
+      <CommercialMember key={member + sport} member={member} sport={sport} />
+    );
+  return <BetaCollectionPacks member={member} sport={sport} />;
+}
+function BetaCollectionPacks({
   member,
   sport,
 }: {

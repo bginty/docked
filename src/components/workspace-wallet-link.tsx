@@ -7,7 +7,11 @@ export function WorkspaceWalletLink() {
     <Link
       className="workspace-balance"
       href="/fantasy/test-wallet"
-      title="Available test Docked Credits · no cash value"
+      title={
+        wallet.value?.commercial
+          ? "Available Docked Credits · not withdrawable"
+          : "Available test Docked Credits · no cash value"
+      }
     >
       <svg
         width="16"
@@ -27,7 +31,9 @@ export function WorkspaceWalletLink() {
           <span>
             {wallet.status
               ? `Last checked · ${wallet.status}`
-              : "test Docked Credits"}
+              : wallet.value.commercial
+                ? "Docked Credits"
+                : "test Docked Credits"}
           </span>
         </>
       ) : (

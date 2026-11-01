@@ -17,7 +17,8 @@ const root = process.cwd();
 const billingQa = process.argv.includes("--billing-qa");
 const candidate = process.argv.includes("--public-candidate");
 const memberTest = process.argv.includes("--member-test");
-if ([billingQa, candidate, memberTest].filter(Boolean).length > 1)
+const commercialCandidate = process.argv.includes('--commercial-candidate');
+if ([billingQa, candidate, memberTest, commercialCandidate].filter(Boolean).length > 1)
   throw Error("Choose exactly one isolated Android build variant");
 if (
   billingQa &&
@@ -61,7 +62,7 @@ run("node", ["scripts/build-mobile-shell.mjs"]);
 run("npx", ["cap", "sync", "android"]);
 run(
   "gradlew.bat",
-  memberTest
+  commercialCandidate ? [':app:bundleStoreCommercialCandidate',':app:assembleStoreCommercialCandidate',':app:lintStoreCommercialCandidate','--console=plain'] : memberTest
     ? [
         ":app:bundleStoreMemberTest",
         ":app:assembleStoreMemberTest",
@@ -91,14 +92,14 @@ run(
 mkdirSync("artifacts/android", { recursive: true });
 for (const [source, target] of [
   [
-    memberTest
+    commercialCandidate ? 'android/app/build/outputs/bundle/storeCommercialCandidate/app-storeCommercialCandidate.aab' : memberTest
       ? "android/app/build/outputs/bundle/storeMemberTest/app-storeMemberTest.aab"
       : candidate
         ? "android/app/build/outputs/bundle/storeCandidate/app-storeCandidate.aab"
         : billingQa
           ? "android/app/build/outputs/bundle/storeBillingQa/app-storeBillingQa.aab"
           : "android/app/build/outputs/bundle/storeInternal/app-storeInternal.aab",
-    memberTest
+    commercialCandidate ? 'artifacts/android/Docked-commercial-candidate.aab' : memberTest
       ? "artifacts/android/Docked-member-test.aab"
       : candidate
         ? "artifacts/android/Docked-public-candidate.aab"
@@ -107,14 +108,14 @@ for (const [source, target] of [
           : "artifacts/android/Docked-store-internal.aab",
   ],
   [
-    memberTest
+    commercialCandidate ? 'android/app/build/outputs/apk/storeCommercialCandidate/app-storeCommercialCandidate.apk' : memberTest
       ? "android/app/build/outputs/apk/storeMemberTest/app-storeMemberTest.apk"
       : candidate
         ? "android/app/build/outputs/apk/storeCandidate/app-storeCandidate.apk"
         : billingQa
           ? "android/app/build/outputs/apk/storeBillingQa/app-storeBillingQa.apk"
           : "android/app/build/outputs/apk/storeInternal/app-storeInternal.apk",
-    memberTest
+    commercialCandidate ? 'artifacts/android/Docked-commercial-candidate.apk' : memberTest
       ? "artifacts/android/Docked-member-test.apk"
       : candidate
         ? "artifacts/android/Docked-public-candidate.apk"

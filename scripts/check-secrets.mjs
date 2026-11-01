@@ -6,7 +6,9 @@ const files = [
   ...new Set(
     execFileSync(
       "git",
-      ["ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+      process.argv.includes("--staged")
+        ? ["diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z"]
+        : ["ls-files", "--cached", "--others", "--exclude-standard", "-z"],
       { encoding: "utf8" },
     )
       .split("\0")
@@ -45,8 +47,7 @@ console.log(
       status: findings.length ? "FAIL" : "PASS",
       inspected,
       findings,
-      scope:
-        "Tracked and non-ignored source/text files; known private-key, access-token, JWT and credentialed-database-URL patterns. No credentials are printed. This is a heuristic scan, separate from the built browser-canary check.",
+      scope: `${process.argv.includes("--staged") ? "Staged" : "Tracked and non-ignored"} source/text files; known private-key, access-token, JWT and credentialed-database-URL patterns. No credentials are printed. This is a heuristic scan, separate from the built browser-canary check.`,
     },
     null,
     2,

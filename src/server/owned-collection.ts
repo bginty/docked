@@ -15,6 +15,8 @@ import {
 } from "@/core/owned-collection";
 import { nflSearchTeams } from "@/core/card-presentation";
 import production from "../../config/hosted-production.json";
+import { commercialSurfaceEnabled } from "../core/commercial-presentation";
+import { memberCommercial } from "./member-commercial";
 
 const cursorSchema = z
   .object({
@@ -33,6 +35,8 @@ export type RawCard = {
   player: NonNullable<TestCardSource["economy"]>["players"][string];
 };
 export async function ownedCollection(input: unknown): Promise<CollectionPage> {
+  if (commercialSurfaceEnabled())
+    return (await memberCommercial()).view.collection(input);
   const { cursor, ...query } = collectionQuery.parse(input);
   const who = await requireIdentity();
   if (process.env.DOCKED_BETA_STAGING !== "true") throw Error("Access denied");

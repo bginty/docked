@@ -22,6 +22,27 @@ test("free Core eligibility cannot inflate owned inventory or leak between round
   for (const id of [undefined, "nfl-open", "afl-locked", "nrl-open"])
     assert.equal(eligibleInRound(core, id), false);
   assert.equal(eligibleInRound(owned, "nfl-open"), true);
+  assert.equal(
+    eligibleInRound(
+      { ...owned, eligible_competition_ids: ["commercial-open"] },
+      "nfl-open",
+    ),
+    false,
+  );
+  assert.equal(
+    eligibleInRound(
+      { ...owned, eligible_competition_ids: ["commercial-open"] },
+      "commercial-open",
+    ),
+    true,
+  );
+  assert.equal(
+    eligibleInRound(
+      { ...owned, eligible_competition_ids: [] },
+      "commercial-open",
+    ),
+    false,
+  );
 });
 
 test("all sports accept server-projected PostgreSQL Core IDs at the request boundary", () => {

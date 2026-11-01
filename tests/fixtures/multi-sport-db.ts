@@ -21,6 +21,7 @@ export async function multiSportDatabase(
     ? nbaWeeklyRules().version
     : "isolated-no-scoring-v1",
   freeCoreRounds = false,
+  commercialRounds = false,
 ) {
   const nativeUrl = process.env.AUSTRALIAN_SALARY_TEST_DB;
   if (
@@ -176,6 +177,9 @@ export async function multiSportDatabase(
           sport.id,
           week,
           JSON.stringify({
+            ...(commercialRounds && mode === "OPEN" && week === 1
+              ? { commercial_inventory_policy: "commercial-owned-v1" }
+              : {}),
             ...(freeCoreRounds && week < 3
               ? { free_core_policy: "public-free-core-v1" }
               : {}),

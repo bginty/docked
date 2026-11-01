@@ -4,6 +4,7 @@ import { authUiReadiness } from "@/core/auth-readiness";
 import { config } from "./config";
 import { db } from "./db";
 import { fantasyEnabled } from "@/core/fantasy";
+import { commercialSurfaceEnabled } from "../core/commercial-presentation";
 import {
   fantasyProductionEnabled,
   fantasyPresentationEnabled,
@@ -30,6 +31,7 @@ export const environmentPresentation = cache(async () => {
       process.env.BETA_ACCESS_ENABLED === "true");
   return {
     ...readiness,
+    commercialSurface: commercialSurfaceEnabled(),
     reviewOnly: settings.reviewOnly,
     fantasyPreview: fantasyEnabled(),
     fantasyProduction: fantasyProductionEnabled(),

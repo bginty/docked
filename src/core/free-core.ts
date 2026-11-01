@@ -13,7 +13,7 @@ export function eligibleInRound(
   competition?: string,
 ) {
   return (
-    !isFreeCore(card) ||
+    (!isFreeCore(card) && card.eligible_competition_ids === undefined) ||
     (!!competition &&
       card.eligible_competition_ids?.includes(competition) === true)
   );

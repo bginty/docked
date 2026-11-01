@@ -6,12 +6,24 @@ import { setCommunityClaims } from "./community-social";
 import { setSportBetaContext } from "./sports-private-beta";
 import production from "../../config/hosted-production.json";
 import type { CollectionRecord } from "@/core/profile-overview";
+import { commercialSurfaceEnabled } from "@/core/commercial-presentation";
+import { memberCommercial } from "./member-commercial";
 
 export async function memberCollectionRecord(
   input: unknown,
 ): Promise<CollectionRecord> {
   const sport = z.enum(["nfl", "afl", "nrl"]).parse(input);
   const who = await requireIdentity();
+  if (commercialSurfaceEnabled()) {
+    const commercial = await memberCommercial();
+    if (commercial.member !== who.user.id) throw Error("Account changed");
+    return db().begin(async (tx) => {
+      await setCommunityClaims(tx, who);
+      const [r] =
+        await tx`select commercial_billing.member_record(${sport}) result`;
+      return r.result as CollectionRecord;
+    });
+  }
   if (process.env.DOCKED_BETA_STAGING !== "true") throw Error("Access denied");
   if (!(await rateLimit(`profile-record:${who.user.id}`, 90, 60)))
     throw Error("Rate limit");

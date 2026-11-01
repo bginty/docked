@@ -14,7 +14,10 @@ type StoreItem = {
 };
 type PurchaseEvent = { responseCode: number; purchases: { token: string }[] };
 interface Billing {
-  capabilities(): Promise<{ enabled: boolean }>;
+  capabilities(): Promise<{
+    enabled: boolean;
+    environment?: "test" | "commercial";
+  }>;
   products(): Promise<{ products: StoreItem[] }>;
   purchase(args: {
     productId: string;
@@ -31,19 +34,35 @@ const billing = registerPlugin<Billing>("DockedBilling");
 type Session = {
   member: string;
   accountBinding: string;
-  environment: "test";
+  environment: "test" | "commercial";
   products: { id: string; credits: number }[];
 };
-const endpoint = "/api/store/google/test";
+
 /** Invisible unless BOTH the native allowlist and account-specific server gate
  * admit no-charge testing. No PayPal link, client allocation or local receipt cache. */
-export function GoogleTestCredits({
-  member,
-  onSettled,
-}: {
+export function GoogleTestCredits(props: {
   member: string;
   onSettled: () => Promise<void>;
 }) {
+  return <GoogleCredits {...props} mode="test" />;
+}
+export function GoogleCommercialCredits(props: {
+  member: string;
+  onSettled: () => Promise<void>;
+}) {
+  return <GoogleCredits {...props} mode="commercial" />;
+}
+function GoogleCredits({
+  member,
+  onSettled,
+  mode,
+}: {
+  member: string;
+  onSettled: () => Promise<void>;
+  mode: "test" | "commercial";
+}) {
+  const endpoint =
+    mode === "test" ? "/api/store/google/test" : "/api/store/google/commercial";
   const [items, setItems] = useState<(StoreItem & { credits: number })[]>([]),
     [session, setSession] = useState<Session | null>(null),
     [busy, setBusy] = useState(false),
@@ -57,11 +76,12 @@ export function GoogleTestCredits({
   }, [onSettled]);
   async function readSession() {
     const r = await boundedFetch(endpoint, { cache: "no-store" });
-    if (!r.ok) throw Error("Google testing is not enabled for this account.");
+    if (!r.ok)
+      throw Error("Google purchases are not enabled for this account.");
     const s = (await r.json()) as Session;
     if (
       s.member !== member ||
-      s.environment !== "test" ||
+      s.environment !== mode ||
       !/^[a-f0-9]{64}$/.test(s.accountBinding)
     )
       throw Error("Purchase session unavailable.");
@@ -94,8 +114,12 @@ export function GoogleTestCredits({
                 result.state === "PENDING"
                   ? "Payment is pending; no credits added."
                   : result.state === "PURCHASED"
-                    ? "Test purchase verified."
-                    : "Purchase cancelled or refunded.",
+                    ? mode === "test"
+                      ? "Test purchase verified."
+                      : "Purchase verified. Docked Credits added."
+                    : result.state === "REVIEW"
+                      ? "Purchase requires review. Contact support; no additional purchase is needed."
+                      : "Purchase cancelled or refunded.",
               );
           }
           if (!stopped) {
@@ -123,6 +147,8 @@ export function GoogleTestCredits({
         !(await billing.capabilities()).enabled
       )
         return;
+      const capability = await billing.capabilities();
+      if ((capability.environment ?? "test") !== mode) return;
       const s = await readSession();
       const available = await billing.products();
       if (stopped) return;
@@ -170,7 +196,7 @@ export function GoogleTestCredits({
       active.current = false;
       void listener?.remove();
     };
-  }, [member]);
+  }, [member, mode]);
   if (!session) return null;
   async function buy(item: StoreItem) {
     if (running.current) return;
@@ -206,10 +232,13 @@ export function GoogleTestCredits({
   }
   return (
     <section className="panel" aria-labelledby="google-test-title">
-      <h2 id="google-test-title">Google Play test purchases</h2>
+      <h2 id="google-test-title">
+        {mode === "test" ? "Google Play test purchases" : "Add Docked Credits"}
+      </h2>
       <p>
-        Authorised license testing only. Continue only when Google shows a test
-        payment method and confirms you will not be charged.
+        {mode === "test"
+          ? "Authorised license testing only. Continue only when Google shows a test payment method and confirms you will not be charged."
+          : "Google Play confirms the price before you pay. Docked Credits are usable within Docked and cannot be withdrawn."}
       </p>
       {items.map((item) => (
         <button
@@ -218,7 +247,8 @@ export function GoogleTestCredits({
           disabled={busy}
           onClick={() => void buy(item)}
         >
-          {item.credits.toLocaleString("en-AU")} test credits ·{" "}
+          {item.credits.toLocaleString("en-AU")}{" "}
+          {mode === "test" ? "test credits" : "Docked Credits"} ·{" "}
           {item.offers[0].price}
         </button>
       ))}
@@ -267,7 +297,7 @@ export function GoogleTestCredits({
       >
         Check purchases
       </button>
-      {!items.length && <p>No test products are currently available.</p>}
+      {!items.length && <p>No products are currently available.</p>}
       {message && <p role="status">{message}</p>}
     </section>
   );

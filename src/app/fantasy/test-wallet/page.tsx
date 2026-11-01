@@ -9,6 +9,9 @@ import { memberAccessFailure } from "@/core/member-access-recovery";
 import { StartupReady } from "@/components/startup-loading";
 import { cookies } from "next/headers";
 import { activeSportCookie, workspaceSport } from "@/core/workspace-sport";
+import { commercialSurfaceEnabled } from "@/core/commercial-presentation";
+import { requireIdentity } from "@/server/auth";
+import { CommercialMember } from "@/components/commercial-member";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Docked · Packs & test wallet",
@@ -38,6 +41,23 @@ export default async function TestWalletPage({
   }
   let data;
   try {
+    if (commercialSurfaceEnabled()) {
+      const who = await requireIdentity();
+      const selected = workspaceSport(
+        requested,
+        (await cookies()).get(activeSportCookie)?.value,
+      );
+      return (
+        <AppShell authenticated>
+          <CommercialMember
+            key={who.user.id}
+            member={who.user.id}
+            sport={selected === "afl" || selected === "nrl" ? selected : "nfl"}
+            surface="wallet"
+          />
+        </AppShell>
+      );
+    }
     data = await memberTestWallet(undefined, "wallet");
   } catch (error) {
     const kind = memberAccessFailure(error);

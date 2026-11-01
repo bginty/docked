@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavigationShortcut } from "./navigation-shortcut";
 import { useSearchParams } from "next/navigation";
-import type { MemberTestView } from "@/core/member-test-wallet";
+import type { PackShopState } from "@/core/pack-shop-state";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import {
   newestPacks,
@@ -18,7 +18,7 @@ import { StarterPackHistory } from "./starter-pack-history";
 import { boundedFetch } from "@/core/bounded-request";
 import type { CouponQuote } from "@/core/pack-coupons";
 import type { memberCoupon } from "@/server/pack-coupons";
-type Product = MemberTestView["products"][number];
+type Product = PackShopState["products"][number];
 function FamilyDisclosures({
   p,
   expanded = false,
@@ -99,16 +99,18 @@ export function PackShop({
   repeatRequest,
   repeatStatus,
 }: {
-  state: MemberTestView;
+  state: PackShopState;
   sport?: "nfl" | "basketball" | "afl" | "nrl";
   busy: boolean;
   recovery: boolean;
   purchase: (product: Product, coupon?: CouponQuote) => Promise<unknown>;
-  refresh: () => Promise<MemberTestView>;
+  refresh: () => Promise<PackShopState>;
   open: (id: string, replay: boolean) => void;
   repeatRequest?: { product: string; nonce: number } | null;
   repeatStatus?: (busy: boolean, error: string) => void;
 }) {
+  const commercial = s.environment === "commercial";
+  const creditLabel = commercial ? "Docked Credits" : "test credits";
   const search = useSearchParams().toString();
   const [tab, setTab] = useState<PackTab>("buy"),
     [review, setReview] = useState<Product | null>(null);
@@ -262,7 +264,7 @@ export function PackShop({
         </div>
         <p className="pack-shop-balance">
           <strong>{credits(s.wallet.spendable)}</strong>
-          <span>test Docked Credits</span>
+          <span>{commercial ? "Docked Credits" : "test Docked Credits"}</span>
         </p>
       </header>
       <nav className="pack-tabs" aria-label="Pack navigation">
@@ -285,7 +287,7 @@ export function PackShop({
       </nav>
       {tab === "buy" && (
         <div className="pack-families">
-          {["nfl", "afl", "nrl"].includes(sport) && (
+          {!commercial && ["nfl", "afl", "nrl"].includes(sport) && (
             <form
               className="pack-coupon-panel"
               onSubmit={(e) => {
@@ -397,7 +399,7 @@ export function PackShop({
                             <s>{credits(p.price)}</s>{" "}
                           </>
                         )}
-                        <strong>{credits(priceFor(p))}</strong> test credits
+                        <strong>{credits(priceFor(p))}</strong> {creditLabel}
                       </p>
                       {coupon && (
                         <p className="small-note">
@@ -437,7 +439,7 @@ export function PackShop({
                       ) : (
                         s.wallet.spendable < priceFor(p) && (
                           <p className="small-note">
-                            Insufficient available test credits
+                            Insufficient available {creditLabel}
                           </p>
                         )
                       )}
@@ -445,7 +447,8 @@ export function PackShop({
                   ))}
                 </div>
                 <FamilyDisclosures p={products[0]} />
-                {family === "STANDARD" &&
+                {!commercial &&
+                  family === "STANDARD" &&
                   ["nfl", "afl", "nrl"].includes(sport) && (
                     <WeeklyCorePanel
                       key={sport}
@@ -456,7 +459,8 @@ export function PackShop({
               </section>
             );
           })}
-          {!sportProducts.some((p) => p.tier === "STANDARD") &&
+          {!commercial &&
+            !sportProducts.some((p) => p.tier === "STANDARD") &&
             ["nfl", "afl", "nrl"].includes(sport) && (
               <WeeklyCorePanel
                 key={sport}
@@ -466,7 +470,7 @@ export function PackShop({
             )}
           {s.economyEnabled && (
             <p className="small-note">
-              {sport === "nfl"
+              {!commercial && sport === "nfl"
                 ? "Core cards are exclusive to weekly starter packs."
                 : "Core cards are free and are never included in paid packs."}
             </p>
@@ -498,7 +502,7 @@ export function PackShop({
       {tab !== "buy" && (
         <section id="pack-history" className="pack-library">
           <h2>{tab === "mine" ? "My Packs" : "Pack history"}</h2>
-          {["nfl", "afl", "nrl"].includes(sport) && (
+          {!commercial && ["nfl", "afl", "nrl"].includes(sport) && (
             <WeeklyCorePanel
               key={sport}
               member={s.member}
@@ -506,15 +510,15 @@ export function PackShop({
               history={tab === "history"}
             />
           )}
-          {sport === "nfl" && tab === "history" && (
+          {!commercial && sport === "nfl" && tab === "history" && (
             <StarterPackHistory member={s.member} />
           )}
           {(tab === "mine" ? unopened : historyPacks).length === 0 && (
             <p>
               {tab === "mine"
                 ? sport === "nfl"
-                  ? "No unopened purchased packs. Weekly rewards are shown above."
-                  : "No unopened purchased packs. Weekly rewards are shown above."
+                  ? "No unopened purchased packs."
+                  : "No unopened purchased packs."
                 : "Your purchased pack history will appear here."}
             </p>
           )}
@@ -549,7 +553,7 @@ export function PackShop({
                       })
                     : "Date unavailable"}
                   {p.paidCredits !== null
-                    ? ` · ${credits(p.paidCredits)} test credits`
+                    ? ` · ${credits(p.paidCredits)} ${creditLabel}`
                     : ""}
                 </p>
                 {p.coupon && (
@@ -576,7 +580,11 @@ export function PackShop({
           )}
         </section>
       )}
-      <p className="pack-no-cash">Test Docked Credits · No cash value</p>
+      <p className="pack-no-cash">
+        {commercial
+          ? "Docked Credits · Not withdrawable"
+          : "Test Docked Credits · No cash value"}
+      </p>
       <NavigationShortcut
         compact
         icon="save"
@@ -602,7 +610,9 @@ export function PackShop({
             <dl>
               <div>
                 <dt>Pack price</dt>
-                <dd>{credits(review.price)} test credits</dd>
+                <dd>
+                  {credits(review.price)} {creditLabel}
+                </dd>
               </div>
               {reviewCoupon && (
                 <div>
@@ -613,12 +623,14 @@ export function PackShop({
               <div>
                 <dt>You pay</dt>
                 <dd>
-                  {credits(reviewCoupon?.charge ?? review.price)} test credits
+                  {credits(reviewCoupon?.charge ?? review.price)} {creditLabel}
                 </dd>
               </div>
               <div>
                 <dt>Available</dt>
-                <dd>{credits(s.wallet.spendable)} test credits</dd>
+                <dd>
+                  {credits(s.wallet.spendable)} {creditLabel}
+                </dd>
               </div>
               <div>
                 <dt>After purchase</dt>
@@ -629,7 +641,7 @@ export function PackShop({
                       reviewCoupon?.charge ?? review.price,
                     ),
                   )}{" "}
-                  test credits
+                  {creditLabel}
                 </dd>
               </div>
             </dl>
@@ -689,7 +701,9 @@ export function PackShop({
             <p className="pack-no-cash">
               {submitting
                 ? "Confirming your purchase. Closing this review does not cancel a submitted request."
-                : "No credits deducted until you confirm. Test credits have no cash value."}
+                : commercial
+                  ? "No credits deducted until you confirm. Docked Credits cannot be withdrawn."
+                  : "No credits deducted until you confirm. Test credits have no cash value."}
             </p>
           </div>
         </FantasySheet>

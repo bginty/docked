@@ -12,9 +12,12 @@ import java.util.*;
 @CapacitorPlugin(name = "DockedBilling")
 public class DockedBillingPlugin extends Plugin implements PurchasesUpdatedListener {
     private BillingClient billing;
-    private final Set<String> approvedProducts = BuildConfig.DOCKED_MEMBER_TEST_PRODUCTS.isEmpty()
+    private final boolean commercial = !BuildConfig.DOCKED_COMMERCIAL_PRODUCTS.isEmpty();
+    private final String productConfiguration = commercial && !BuildConfig.DOCKED_MEMBER_TEST_PRODUCTS.isEmpty()
+            ? "" : commercial ? BuildConfig.DOCKED_COMMERCIAL_PRODUCTS : BuildConfig.DOCKED_MEMBER_TEST_PRODUCTS;
+    private final Set<String> approvedProducts = productConfiguration.isEmpty()
             ? Collections.emptySet()
-            : Collections.unmodifiableSet(new HashSet<>(Arrays.asList(BuildConfig.DOCKED_MEMBER_TEST_PRODUCTS.split(","))));
+            : Collections.unmodifiableSet(new HashSet<>(Arrays.asList(productConfiguration.split(","))));
     private final Map<String, ProductDetails> details = new HashMap<>();
     @Override public void load() {
         billing = BillingClient.newBuilder(getContext()).setListener(this)
@@ -23,6 +26,7 @@ public class DockedBillingPlugin extends Plugin implements PurchasesUpdatedListe
     }
     @PluginMethod public void capabilities(PluginCall call) {
         JSObject result = new JSObject(); result.put("enabled", !approvedProducts.isEmpty());
+        result.put("environment", commercial ? "commercial" : "test");
         result.put("products", new JSArray(new ArrayList<>(approvedProducts))); call.resolve(result);
     }
     private void connect(PluginCall call, Runnable action) {

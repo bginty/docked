@@ -13,6 +13,7 @@ import {
 } from "@/core/workspace-sport";
 import { PrivateSportPage } from "@/components/private-sport-page";
 import { OwnedCollection } from "@/components/owned-collection";
+import { commercialSurfaceEnabled } from "@/core/commercial-presentation";
 
 import { Marketplace } from "@/components/marketplace";
 import { requireIdentity, requireRole } from "@/server/auth";
@@ -105,7 +106,10 @@ export default async function FantasyPage({
       </div>
     );
 
-  if (tab === "cards" && process.env.DOCKED_FRIENDS_BETA === "true") {
+  if (
+    tab === "cards" &&
+    (process.env.DOCKED_FRIENDS_BETA === "true" || commercialSurfaceEnabled())
+  ) {
     try {
       const who = await requireIdentity();
       return (
