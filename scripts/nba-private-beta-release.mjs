@@ -267,6 +267,7 @@ if (process.argv[2] === "prepare") {
       await fs.readFile(notificationPath, "utf8"),
     );
     const allowed = new Set([
+      "CRON_SECRET",
       "DOCKED_STORE_REFERENCE_KEY",
       "DOCKED_STORE_ACCOUNT_BINDING_SECRET",
       "DOCKED_STORE_WORKER_SECRET",
@@ -280,6 +281,7 @@ if (process.argv[2] === "prepare") {
     ]);
     assert(Object.keys(notification).every((k) => allowed.has(k)));
     assert.equal(notification.DOCKED_MEMBER_GOOGLE_TEST, "false");
+    assert(notification.CRON_SECRET?.length >= 32);
     assert.equal(
       notification.DOCKED_GOOGLE_PUSH_AUDIENCE,
       "https://docked.com.au/api/store/google/notifications",

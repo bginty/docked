@@ -73,3 +73,19 @@ export async function googleReconciliationRequest(
     });
   }
 }
+
+/** Vercel Cron uses GET. Keep the ordinary worker POST-only and preserve all
+ * credential, Cookie and Origin checks at this separate server-only boundary. */
+export function googleScheduledReconciliationRequest(
+  req: Request,
+  deps: { secret: string; run: () => Promise<unknown> },
+) {
+  if (req.method !== "GET")
+    return Promise.resolve(
+      reply(401, { error: "Scheduler authentication required" }),
+    );
+  return googleReconciliationRequest(
+    new Request(req.url, { method: "POST", headers: req.headers }),
+    deps,
+  );
+}

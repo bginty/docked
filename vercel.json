@@ -2,6 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "regions": ["syd1"],
+  "crons": [
+    { "path": "/api/store/google/scheduled", "schedule": "*/5 * * * *" }
+  ],
   "buildCommand": "node scripts/guard-hosted-build.mjs && npm run build",
   "installCommand": "npm ci",
   "git": {

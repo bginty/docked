@@ -83,6 +83,15 @@ async function mainTask() {
         { flag: "wx", mode: 0o600 },
       );
     }
+    const prepared = JSON.parse(readFileSync(target, "utf8"));
+    if (!prepared.CRON_SECRET) {
+      assert(
+        !live.env.includes("CRON_SECRET"),
+        "Preserve existing scheduler secret",
+      );
+      prepared.CRON_SECRET = randomBytes(32).toString("hex");
+      writeFileSync(target, JSON.stringify(prepared), { mode: 0o600 });
+    }
     const evidence = {
       at: new Date().toISOString(),
       baseline: live.id,

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   googleNotificationRequest,
   googleReconciliationRequest,
+  googleScheduledReconciliationRequest,
 } from "../../src/server/google-reconciliation-http";
 const policy = {
   audience: "https://example.invalid/api/store/google/notifications",
@@ -43,6 +44,65 @@ test("push acknowledges only durable persistence; duplicate is still successful"
   );
   assert.equal(failed.status, 503);
   assert.ok(!(await failed.text()).includes("secret"));
+});
+
+test("host scheduler accepts only its secret and cannot use browser credentials", async () => {
+  const secret = "synthetic-cron-secret-with-at-least-32-characters";
+  let runs = 0;
+  const deps = {
+    secret,
+    run: async () => {
+      runs++;
+      return { pending: 0 };
+    },
+  };
+  const denied: RequestInit[] = [
+    { method: "GET" },
+    { method: "POST", headers: { authorization: `Bearer ${secret}` } },
+    {
+      method: "GET",
+      headers: { authorization: `Bearer ${secret}`, cookie: "session" },
+    },
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${secret}`,
+        origin: "https://docked.com.au",
+      },
+    },
+    { method: "GET", headers: { authorization: "Bearer forged" } },
+    {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${secret}`,
+        "x-forwarded-authorization": "forged",
+      },
+    },
+  ];
+  for (const options of denied) {
+    assert.equal(
+      (
+        await googleScheduledReconciliationRequest(
+          new Request("https://example.invalid/scheduled", options),
+          deps,
+        )
+      ).status,
+      401,
+    );
+  }
+  assert.equal(runs, 0);
+  assert.equal(
+    (
+      await googleScheduledReconciliationRequest(
+        new Request("https://example.invalid/scheduled", {
+          headers: { authorization: `Bearer ${secret}` },
+        }),
+        deps,
+      )
+    ).status,
+    200,
+  );
+  assert.equal(runs, 1);
 });
 test("invalid Google identity or alternate callback never reaches persistence", async () => {
   let writes = 0;
