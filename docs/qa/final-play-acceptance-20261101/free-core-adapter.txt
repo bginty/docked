@@ -1,0 +1,30 @@
+TAP version 13
+# Subtest: AFL: verified registry free-Core adapter preserves ownership and fails closed
+ok 1 - AFL: verified registry free-Core adapter preserves ownership and fails closed
+  ---
+  duration_ms: 10914.3764
+  ...
+# Subtest: NRL: verified registry free-Core adapter preserves ownership and fails closed
+ok 2 - NRL: verified registry free-Core adapter preserves ownership and fails closed
+  ---
+  duration_ms: 9953.1684
+  ...
+# Subtest: AFL: free Core is round eligibility, not collectible issuance
+ok 3 - AFL: free Core is round eligibility, not collectible issuance
+  ---
+  duration_ms: 11328.7913
+  ...
+# Subtest: NRL: free Core is round eligibility, not collectible issuance
+ok 4 - NRL: free Core is round eligibility, not collectible issuance
+  ---
+  duration_ms: 9784.0588
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23560.7157

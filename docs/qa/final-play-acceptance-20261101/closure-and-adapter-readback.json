@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-01T09:56:01Z",
+  "project": "pojoymtniryarxxunyvz",
+  "migration": "20261101090955_free_core_verified_roster_adapter.sql",
+  "adapterRows": 0,
+  "enabledFreeCoreProgrammes": 0,
+  "enabledGoogleTestAdmissions": 0,
+  "temporaryQaAccess": {"wallet": false, "roster": false, "sportBeta": false},
+  "directApplicationTableAndFunctionAccess": false,
+  "securityAdvisors": {
+    "newAdapter": "private RLS table with all application grants revoked; no client policies intentionally",
+    "warnings": ["Existing leaked password protection disabled"],
+    "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+  }
+}

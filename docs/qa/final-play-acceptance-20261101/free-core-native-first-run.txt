@@ -1,0 +1,25 @@
+TAP version 13
+# Subtest: AFL: verified registry free-Core adapter preserves ownership and fails closed
+ok 1 - AFL: verified registry free-Core adapter preserves ownership and fails closed
+  ---
+  duration_ms: 11170.8298
+  ...
+# Subtest: NRL: verified registry free-Core adapter preserves ownership and fails closed
+not ok 2 - NRL: verified registry free-Core adapter preserves ownership and fails closed
+  ---
+  duration_ms: 2892.157
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\fixed-market-live\\Docked.com.au\\tests\\database\\free-core-roster-beta.test.ts:2:1339'
+  failureType: 'testCodeFailure'
+  error: 'Existing docked_app role requires independent review'
+  code: 'P0001'
+  name: 'PostgresError'
+  stack: |-
+    ErrorResponse (C:\Users\61412\.codex\worktrees\fixed-market-live\Docked.com.au\node_modules\postgres\cjs\src\connection.js:815:30)
+    handle (C:\Users\61412\.codex\worktrees\fixed-market-live\Docked.com.au\node_modules\postgres\cjs\src\connection.js:489:6)
+    Socket.data (C:\Users\61412\.codex\worktrees\fixed-market-live\Docked.com.au\node_modules\postgres\cjs\src\connection.js:324:9)
+    Socket.emit (node:events:518:28)
+    addChunk (node:internal/streams/readable:561:12)
+    readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    Readable.push (node:internal/streams/readable:392:5)
+    TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+  ...

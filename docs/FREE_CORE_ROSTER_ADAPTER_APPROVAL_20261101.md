@@ -33,3 +33,14 @@ Rollback is to keep programmes disabled and restore the original function body f
 Approval of this additive migration does not itself make reviewer gameplay ready. A reviewed eligibility snapshot with source hashes/expiry and a saved rule opt-in are required for each suitable no-prize test round. Existing AFL/NRL future Round 3 records must be inspected for entries and immutable-rule constraints before any transition. NFL presently has only closed Week 7, so a separately identified, explicitly labelled future/practice no-prize competition is required; do not invent official fixtures or rewrite Week 7. Public registration and broad activation remain separate decisions.
 
 No full-access Play Console declaration should be made before the nominated ordinary reviewer completes the actual free-Core lineup and entry journey in all three sports.
+
+Read-only Production follow-up identified these nearest test Round 3 candidates, locking 7 November 2026 08:00 UTC, each with zero entries and no free-Core rule opt-in:
+
+| Sport/mode | Competition ID |
+| --- | --- |
+| AFL All-Star | `1d021a00-a576-4737-b511-4fcd1ddb1738` |
+| AFL Traditional | `efbc15fb-3d17-453d-a982-94857b840930` |
+| NRL All-Star | `c8b1691d-dc81-4697-b92d-7818b1720e4a` |
+| NRL Traditional | `4074cd90-cabc-47e3-8694-9d2e03065e66` |
+
+Empty-entry status alone does not authorise rewriting rules. Existing immutable-rule guards allow only the previously approved salary-version transition, not a `free_core_policy` amendment. A reviewed future-round creation/transition with eligibility evidence and audit is required; do not disable those guards. No NFL future round exists. Round 4/5 AFL/NRL candidates also have zero entries; they were not modified.

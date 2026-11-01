@@ -1,0 +1,48 @@
+{
+  "at": "2026-11-01T09:44:02.088Z",
+  "oauthHttpStatus": 200,
+  "checks": [
+    {
+      "name": "catalogue",
+      "httpStatus": 200,
+      "products": [
+        {
+          "id": "docked_credits_4900_v1",
+          "options": [
+            {
+              "id": "buy-au",
+              "state": "INACTIVE"
+            }
+          ]
+        },
+        {
+          "id": "docked_credits_9900_v1",
+          "options": [
+            {
+              "id": "buy-au",
+              "state": "INACTIVE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "refund-readback",
+      "httpStatus": 200,
+      "returnedRefunds": 1
+    },
+    {
+      "name": "generated-release-28",
+      "httpStatus": 200,
+      "signingKeys": [
+        {
+          "sha256": "64:F8:4E:E6:33:3C:E0:FE:7A:E3:08:A3:81:B0:9B:BF:AA:C0:2A:E6:EA:5A:CD:47:68:91:9C:E0:BC:DD:28:F1",
+          "splits": 173,
+          "standalone": 0,
+          "universal": true
+        }
+      ]
+    }
+  ],
+  "mutations": 0
+}

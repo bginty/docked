@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-01T09:48:34.821Z",
+  "scope": "Genuine ordinary QA member session; read-only HTTP, no new checkout or pack action",
+  "checks": [
+    {
+      "path": "/api/test-wallet?view=summary",
+      "status": 200,
+      "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+      "wallet": {
+        "available": 4500,
+        "pending": 0,
+        "reserved": 0,
+        "withdrawable": 0,
+        "total": 4500,
+        "heldAvailable": 4500,
+        "spendable": 0,
+        "label": "Docked Credits · financial sandbox · no cash value",
+        "withdrawableIsSubset": true,
+        "restricted": 4500
+      }
+    },
+    {
+      "path": "/api/store/google/test",
+      "status": 403
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "status": 200,
+      "capabilities": {
+        "version": "australia-store-preparation-2026-10-31-v1",
+        "sports": [
+          "nfl",
+          "afl",
+          "nrl"
+        ],
+        "billing": {
+          "enabled": false,
+          "products": [],
+          "reason": "Store purchases are not available."
+        },
+        "publicRegistration": false
+      }
+    },
+    {
+      "path": "/api/nba-beta",
+      "status": 403,
+      "allowed": false
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-01",
+  "package": "docked.fantasy",
+  "versionCode": 29,
+  "versionName": "1.28",
+  "backend": "https://docked.com.au/app",
+  "sports": [
+    "nfl",
+    "afl",
+    "nrl"
+  ],
+  "nativeProductAllowlist": [],
+  "debuggable": false,
+  "customLabCA": false,
+  "configuredSecretMarkersFound": false,
+  "aabSha256": "ea1b27589e06300da0886aa30b7485c846c75248d4184fe96138d1ee06773a77",
+  "apkSha256": "3d975eea6d345352af58dffe9c6fdea4019ea434c2264692603ed9c6dadbcf94",
+  "aabBytes": 9213929,
+  "signature": "AAB jarsigner verified; APK apksigner verified; existing upload certificate",
+  "nativeLint": {
+    "errors": 0,
+    "warnings": 34
+  },
+  "distribution": "Uploaded and accepted in Google Play internal track; saved as draft 29 (1.28) — payments-disabled candidate. Not rolled out or submitted publicly.",
+  "physicalAcceptance": "v28 observed; v29 not installed on Samsung"
+}

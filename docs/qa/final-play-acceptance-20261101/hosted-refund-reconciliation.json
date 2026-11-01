@@ -1,0 +1,241 @@
+{
+  "at": "2026-11-01T09:45:40.512Z",
+  "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+  "revision": "236",
+  "receipts": [
+    {
+      "receipt_key": "56ff87fabd5d2c7df76cd9547fcc3aeb85a757b60683e91379eef98e4cb484f0",
+      "status": "CANCELLED",
+      "product": {
+        "id": "docked_credits_4900_v1",
+        "scope": "account",
+        "credits": 4900,
+        "version": "owner-credit-packages-2026-10-31-v1"
+      },
+      "updated_at": "2026-11-01T09:20:16.942Z"
+    },
+    {
+      "receipt_key": "feaa873c970a2ab6a5bb084b96e99053f536eaf2a3604380a0370f8b50738e39",
+      "status": "CANCELLED",
+      "product": {
+        "id": "docked_credits_4900_v1",
+        "scope": "account",
+        "credits": 4900,
+        "version": "owner-credit-packages-2026-10-31-v1"
+      },
+      "updated_at": "2026-11-01T09:30:10.957Z"
+    },
+    {
+      "receipt_key": "0bae3456753bc3ebb0854de04d460845dce6bffd98c62a9f0891788f4d531f50",
+      "status": "CANCELLED",
+      "product": {
+        "id": "docked_credits_4900_v1",
+        "scope": "account",
+        "credits": 4900,
+        "version": "owner-credit-packages-2026-10-31-v1"
+      },
+      "updated_at": "2026-11-01T09:30:25.856Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "2e794a621176988eacdbe96b917938c7c9738c295120f80e0e66a7e17d4f8de9",
+      "kind": "purchase",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T09:10:52.785Z",
+      "completed_at": "2026-11-01T09:15:18.936Z"
+    },
+    {
+      "id": "fe5528d90693370657d77377d7c76e19ae42fa58c8691149e3301e476622bc03",
+      "kind": "voided",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T09:15:11.116Z",
+      "completed_at": "2026-11-01T09:20:17.058Z"
+    },
+    {
+      "id": "512645da8f0f2314e76f7fdf99b5d3c7ace8c73282e3489abe91826081d6c6cb",
+      "kind": "purchase",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T09:18:34.695Z",
+      "completed_at": "2026-11-01T09:20:17.052Z"
+    },
+    {
+      "id": "fc0e576ad39348fb1a74bb7f55f7b0af4cf38501bf33bdf435833d09078c78d1",
+      "kind": "purchase",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T09:23:57.273Z",
+      "completed_at": "2026-11-01T09:25:11.030Z"
+    },
+    {
+      "id": "2026-11-01T09:25:feaa873c970a2ab6a5bb084b96e99053f536eaf2a3604380a0370f8b50738e39",
+      "kind": "scheduled",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T09:25:09.461Z",
+      "completed_at": "2026-11-01T09:25:11.036Z"
+    },
+    {
+      "id": "ee8a2e867d61bd0ccc90826eed210e1e6af246a432385821e1f90e5503608390",
+      "kind": "voided",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T09:28:27.350Z",
+      "completed_at": "2026-11-01T09:30:38.601Z"
+    },
+    {
+      "id": "86946eeb47dfa14b93db692314a392e554fcbb5b87424cc6888382918c537e5a",
+      "kind": "voided",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T09:28:34.666Z",
+      "completed_at": "2026-11-01T09:30:38.612Z"
+    }
+  ],
+  "outbox": [
+    {
+      "receipt_key": "0bae3456753bc3ebb0854de04d460845dce6bffd98c62a9f0891788f4d531f50",
+      "state": "done",
+      "attempts": 1
+    },
+    {
+      "receipt_key": "56ff87fabd5d2c7df76cd9547fcc3aeb85a757b60683e91379eef98e4cb484f0",
+      "state": "done",
+      "attempts": 1
+    },
+    {
+      "receipt_key": "feaa873c970a2ab6a5bb084b96e99053f536eaf2a3604380a0370f8b50738e39",
+      "state": "done",
+      "attempts": 1
+    }
+  ],
+  "baselineWallet": {
+    "available": 400,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 400,
+    "heldAvailable": 0,
+    "spendable": 400,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 400
+  },
+  "wallet": {
+    "available": 4500,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 4500,
+    "heldAvailable": 4500,
+    "spendable": 0,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 4500
+  },
+  "deposits": [
+    {
+      "id": "google_052280f4fb71a7bd6b94e865023bea4d6bc4686b5e024728f7821af9077bba80",
+      "product": "credits-only",
+      "amount": 4900,
+      "refunded": 4900,
+      "status": "REVIEW"
+    },
+    {
+      "id": "google_4e329bcb9d5886299a1a5ba74c9176fb1340b2db61db687ec74a5456dbd359a7",
+      "product": "credits-only",
+      "amount": 4900,
+      "refunded": 4900,
+      "status": "REVIEW"
+    },
+    {
+      "id": "google_d78c7498dc6e5675c5c10a2bfcaef2416914e985bbe081b287c6f1a6072b922a",
+      "product": "credits-only",
+      "amount": 4900,
+      "refunded": 4900,
+      "status": "REVIEW"
+    }
+  ],
+  "cases": [
+    {
+      "id": "google_052280f4fb71a7bd6b94e865023bea4d6bc4686b5e024728f7821af9077bba80_refund",
+      "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+      "reason": "Verified test store refund or revocation; bonus remedy and funds eligibility require recorded review",
+      "status": "OPEN",
+      "reference": "google_052280f4fb71a7bd6b94e865023bea4d6bc4686b5e024728f7821af9077bba80"
+    },
+    {
+      "id": "google_4e329bcb9d5886299a1a5ba74c9176fb1340b2db61db687ec74a5456dbd359a7_refund",
+      "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+      "reason": "Verified test store refund or revocation; bonus remedy and funds eligibility require recorded review",
+      "status": "OPEN",
+      "reference": "google_4e329bcb9d5886299a1a5ba74c9176fb1340b2db61db687ec74a5456dbd359a7"
+    },
+    {
+      "id": "google_d78c7498dc6e5675c5c10a2bfcaef2416914e985bbe081b287c6f1a6072b922a_refund",
+      "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+      "reason": "Verified test store refund or revocation; bonus remedy and funds eligibility require recorded review",
+      "status": "OPEN",
+      "reference": "google_d78c7498dc6e5675c5c10a2bfcaef2416914e985bbe081b287c6f1a6072b922a"
+    }
+  ],
+  "packs": [
+    {
+      "id": "0bc1af1f-6d84-46b7-98cf-a28bc98b0e84",
+      "product": "premium-9-nrl-real-roster-beta-v1",
+      "name": "NRL Premium 9 Pack · Real-player beta",
+      "sport": "nrl",
+      "price": 5000,
+      "cards": 9,
+      "createdAt": 1793524806811,
+      "openedAt": 1793524819163,
+      "rarities": [
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "LEGENDARY",
+        "LEGENDARY",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE"
+      ]
+    },
+    {
+      "id": "25f1e568-b266-42c9-b0fa-4d86da1c479a",
+      "product": "standard-9-afl-real-roster-beta-v1",
+      "name": "AFL Standard 9 Pack · Real-player beta",
+      "sport": "afl",
+      "price": 700,
+      "cards": 9,
+      "createdAt": 1793525163361,
+      "openedAt": 1793525230739,
+      "rarities": [
+        "RARE",
+        "RARE",
+        "RARE",
+        "ELITE",
+        "RARE",
+        "RARE",
+        "RARE",
+        "RARE",
+        "RARE"
+      ]
+    }
+  ],
+  "baselineInventory": 52,
+  "currentInventory": 70,
+  "newCards": 18,
+  "unrelatedWalletsUnchanged": true,
+  "unrelatedOwnershipUnchanged": true
+}

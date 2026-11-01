@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-01",
+  "environment": "isolated localhost fixture using TestWalletOverview and existing design CSS",
+  "financialMutations": false,
+  "heldWallet": {"total": 4500,"spendable": 0,"heldAvailable": 4500,"withdrawable": 0},
+  "checks": [
+    {"width":360,"documentWidth":345,"holdMessage":true,"breakdownHoldAmount":4500,"supportMailto":true},
+    {"width":1440,"documentWidth":1425,"holdMessage":true},
+    {"width":1440,"normalFixture":true,"spendable":9100,"holdMessage":false}
+  ],
+  "targetedRegression": {"passed":9,"failed":0},
+  "typecheck":"passed",
+  "targetedLint":"passed",
+  "physicalScope":"Earlier actual v28 wallet showed zero spendable after refund. New explanatory text verified locally; QA account access was then disabled."
+}

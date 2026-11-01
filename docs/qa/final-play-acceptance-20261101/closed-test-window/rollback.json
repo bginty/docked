@@ -1,0 +1,7 @@
+{
+  "deployment": "dpl_4wkgoDiKcUrKpuZ1eVc89aYw5UsR",
+  "url": "docked-production-fiq053nje-briant-s-projects.vercel.app",
+  "commit": "c5018bdaba1346e9e2ac7a3396e1cb78c8516b0d",
+  "databaseMigrations": [],
+  "recovery": "Do not promote the prior temporary TEST-checkout deployment. Use a closed-gate build with DOCKED_MEMBER_GOOGLE_TEST=false. Preserve all wallet, receipt and ownership audit history; no database migration occurred in this release."
+}
