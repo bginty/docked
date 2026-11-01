@@ -3,8 +3,8 @@ import { memberGoogleReconciliation } from "@/server/member-google-reconciliatio
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
-export function GET(req: Request) {
-  return googleScheduledReconciliationRequest(req, {
+export async function GET(req: Request) {
+  const response = await googleScheduledReconciliationRequest(req, {
     secret: process.env.CRON_SECRET ?? "",
     run: async () => {
       const health = await memberGoogleReconciliation().run();
@@ -15,4 +15,17 @@ export function GET(req: Request) {
       return health;
     },
   });
+  if (response.status === 401)
+    console.warn(
+      JSON.stringify({
+        event: "google-test-scheduler-auth-denied",
+        authorizationPresent: req.headers.has("authorization"),
+        cookiePresent: req.headers.has("cookie"),
+        originPresent: req.headers.has("origin"),
+        forwardedAuthorizationPresent: req.headers.has(
+          "x-forwarded-authorization",
+        ),
+      }),
+    );
+  return response;
 }
