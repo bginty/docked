@@ -68,7 +68,9 @@ export const fantasyProductionAction = z.union([
           selections: z
             .array(
               z
-                .object({ slot: z.string().min(1).max(20), card: z.uuid() })
+                // Free-Core projections are PostgreSQL UUIDs without RFC
+                // version bits; server inventory remains authoritative.
+                .object({ slot: z.string().min(1).max(20), card: z.guid() })
                 .strict(),
             )
             .max(30),

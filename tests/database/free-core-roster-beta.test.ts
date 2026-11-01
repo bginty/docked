@@ -6,7 +6,11 @@ import {
   aflConfiguration,
   nrlConfiguration,
 } from "../../src/core/sport-configuration";
-import { sandboxRecommendation } from "../../src/core/sport-sandbox";
+import {
+  sandboxRecommendation,
+  sandboxCommand,
+} from "../../src/core/sport-sandbox";
+import { randomUUID } from "node:crypto";
 
 for (const sport of [aflConfiguration, nrlConfiguration]) {
   test(`${sport.label}: verified registry free-Core adapter preserves ownership and fails closed`, async () => {
@@ -94,6 +98,15 @@ for (const sport of [aflConfiguration, nrlConfiguration]) {
       const state = await d.state(),
         team = sandboxRecommendation(state, d.rounds.OPEN1);
       assert.equal(team.picks.length, sport.slots.length);
+      // Exercise the actual HTTP request boundary before the SQL command.
+      sandboxCommand.parse({
+        sport: sport.id,
+        action: "seven_draft",
+        competition_id: d.rounds.OPEN1,
+        revision: 0,
+        selections: team.picks,
+        request_id: randomUUID(),
+      });
       await d.command("seven_draft", d.rounds.OPEN1, team.picks, 0);
       await d.command("seven_enter", d.rounds.OPEN1, team.picks, 0);
       assert.equal(

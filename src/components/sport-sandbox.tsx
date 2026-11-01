@@ -511,7 +511,18 @@ export function SportSandbox({
               ? "Provisional test cap"
               : "Configuration pending"
         }
-        onChange={(next) => navigateRound("", next)}
+        onChange={(next) =>
+          navigateRound(
+            state.competitions.find(
+              (c) =>
+                c.sport === state.sport &&
+                c.rules.mode === next &&
+                c.season === comp?.season &&
+                c.round === comp?.round,
+            )?.id ?? "",
+            next,
+          )
+        }
       />
       <div className="sport-entry-heading">
         <div>
@@ -865,7 +876,9 @@ export function SportSandbox({
           historyEntry
         >
           <label>
-            {eligibleCards.some(isFreeCore) ? "Find a player" : "Find in My Cards"}
+            {eligibleCards.some(isFreeCore)
+              ? "Find a player"
+              : "Find in My Cards"}
             <input
               type="search"
               value={pickerQuery}

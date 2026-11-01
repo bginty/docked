@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-01T10:25:03.624Z",
+  "mode": "--apply-authorised-practice",
+  "version": "reviewer-free-core-practice-20261101",
+  "season": "2026 Practice",
+  "deadline": "2027-01-31T00:00:00.000Z",
+  "nflPlayers": 386,
+  "aflPlayers": 545,
+  "nrlPlayers": 337,
+  "priorRounds": 0,
+  "scope": "Owner instruction 1 November 2026: genuine reviewer free-Core NFL/AFL/NRL gameplay in future editable no-prize practice competitions. Verified roster snapshot; no official fixtures, automatic statistics, permanent cards, payments or public admission.",
+  "rounds": [
+    {
+      "sport": "nfl",
+      "mode": "SALARY_CAP",
+      "id": "2a94395d-71c5-4f83-bf83-f8e867aca682",
+      "existing": false
+    },
+    {
+      "sport": "nfl",
+      "mode": "OPEN",
+      "id": "026edc2d-b51d-4525-b0da-072a8e42ebed",
+      "existing": false
+    },
+    {
+      "sport": "afl",
+      "mode": "SALARY_CAP",
+      "id": "5f200a16-9185-4edb-99a8-cdba9e765e3d",
+      "existing": false
+    },
+    {
+      "sport": "afl",
+      "mode": "OPEN",
+      "id": "2da9e7d9-3e12-4aea-b298-1707076f4f89",
+      "existing": false
+    },
+    {
+      "sport": "nrl",
+      "mode": "SALARY_CAP",
+      "id": "5ff32114-d621-41ac-ae2b-f006b0401eba",
+      "existing": false
+    },
+    {
+      "sport": "nrl",
+      "mode": "OPEN",
+      "id": "f2ba4834-7804-485a-ba1b-742da7ad7d9f",
+      "existing": false
+    }
+  ],
+  "encryptedBackupVerified": true,
+  "protectedDataUnchanged": true,
+  "historicalRulesUnchanged": true,
+  "prizesEnabled": false,
+  "collectiblesIssued": 0
+}

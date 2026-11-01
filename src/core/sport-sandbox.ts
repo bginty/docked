@@ -90,7 +90,9 @@ export const sandboxCommand = z
     competition_id: z.uuid(),
     revision: z.number().int().min(0),
     selections: z
-      .array(z.object({ slot: z.string().max(20), card: z.uuid() }).strict())
+      // Projected Core IDs use PostgreSQL's full UUID space (MD5), not an
+      // RFC version/variant. SQL still resolves eligibility for this member.
+      .array(z.object({ slot: z.string().max(20), card: z.guid() }).strict())
       .max(30),
     request_id: z.uuid(),
   })
