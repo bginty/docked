@@ -38,3 +38,9 @@ The enabled beta programme expires **2027-01-31 00:00 UTC**. An ongoing public-r
 ## Separate Google licence-test evidence
 
 Ordinary authenticated QA-member 4,900-credit acceptance is documented in `FINAL_GOOGLE_MEMBER_ACCEPTANCE_20261101.md`. Genuine 9,900-credit checkout, nine-card issuance, replay protection, refund and authenticated persistent notifications are documented in `FINAL_GOOGLE_RELEASE_READINESS_20261101.md`. They do not fund this reviewer account or approve commercial payment handling. Both Google options and temporary test admissions are inactive again. v29 / 1.28 is internally released with an empty native purchase allowlist and a payment-disabled backend.
+
+## Internal v30 addendum — 2 November 2026
+
+The same package is now v30 / 1.29 on internal testing. It adds a separately gated commercial native capability; both Google products remain INACTIVE and the live backend still disables checkout. Existing sign-in and practice instructions above remain applicable. No new reviewer password or account is required. Do not claim v30 has been physically accepted: the Samsung was unavailable. The earlier genuine reviewer gameplay and v29 phone results remain evidence only for their original scope.
+
+Public paid review requires approved public access/consent configuration, licensed permanent inventory, and a matching hosted commercial journey. Update App access, Data Safety purchase history, financial features, age/classification, refund/retention links and listing language to the actually activated scope before submission. The current saved Console declarations still describe invitation-only testing; they were not silently changed into commercial attestations.

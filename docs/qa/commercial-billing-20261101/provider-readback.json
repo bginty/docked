@@ -1,0 +1,133 @@
+{
+  "at": "2026-11-01T12:36:38.537Z",
+  "mutations": 0,
+  "newPurchases": 0,
+  "realSettlement": false,
+  "checks": [
+    {
+      "product": "docked_credits_4900_v1",
+      "test": true,
+      "acceptanceVerifierCompatible": true,
+      "commercialVerifierDenied": true,
+      "state": "REVOKED",
+      "grossAudCents": 4900,
+      "purchaseFields": [
+        "acknowledgementState",
+        "kind",
+        "obfuscatedExternalAccountId",
+        "orderId",
+        "productLineItem",
+        "purchaseCompletionTime",
+        "purchaseStateContext",
+        "regionCode",
+        "testPurchaseContext"
+      ],
+      "offerFields": [
+        "consumptionState",
+        "purchaseOptionId",
+        "quantity",
+        "refundableQuantity"
+      ]
+    },
+    {
+      "product": "docked_credits_9900_v1",
+      "test": true,
+      "acceptanceVerifierCompatible": true,
+      "commercialVerifierDenied": true,
+      "state": "REVOKED",
+      "grossAudCents": 9900,
+      "purchaseFields": [
+        "acknowledgementState",
+        "kind",
+        "obfuscatedExternalAccountId",
+        "orderId",
+        "productLineItem",
+        "purchaseCompletionTime",
+        "purchaseStateContext",
+        "regionCode",
+        "testPurchaseContext"
+      ],
+      "offerFields": [
+        "consumptionState",
+        "purchaseOptionId",
+        "quantity",
+        "refundableQuantity"
+      ]
+    },
+    {
+      "product": "docked_credits_9900_v1",
+      "test": true,
+      "acceptanceVerifierCompatible": true,
+      "commercialVerifierDenied": true,
+      "state": "REVOKED",
+      "grossAudCents": 9900,
+      "purchaseFields": [
+        "acknowledgementState",
+        "kind",
+        "obfuscatedExternalAccountId",
+        "orderId",
+        "productLineItem",
+        "purchaseCompletionTime",
+        "purchaseStateContext",
+        "regionCode",
+        "testPurchaseContext"
+      ],
+      "offerFields": [
+        "consumptionState",
+        "purchaseOptionId",
+        "quantity",
+        "refundableQuantity"
+      ]
+    },
+    {
+      "product": "docked_credits_4900_v1",
+      "test": true,
+      "acceptanceVerifierCompatible": true,
+      "commercialVerifierDenied": true,
+      "state": "REVOKED",
+      "grossAudCents": 4900,
+      "purchaseFields": [
+        "acknowledgementState",
+        "kind",
+        "obfuscatedExternalAccountId",
+        "orderId",
+        "productLineItem",
+        "purchaseCompletionTime",
+        "purchaseStateContext",
+        "regionCode",
+        "testPurchaseContext"
+      ],
+      "offerFields": [
+        "consumptionState",
+        "purchaseOptionId",
+        "quantity",
+        "refundableQuantity"
+      ]
+    },
+    {
+      "product": "docked_credits_9900_v1",
+      "test": true,
+      "acceptanceVerifierCompatible": true,
+      "commercialVerifierDenied": true,
+      "state": "REVOKED",
+      "grossAudCents": 9900,
+      "purchaseFields": [
+        "acknowledgementState",
+        "kind",
+        "obfuscatedExternalAccountId",
+        "orderId",
+        "productLineItem",
+        "purchaseCompletionTime",
+        "purchaseStateContext",
+        "regionCode",
+        "testPurchaseContext"
+      ],
+      "offerFields": [
+        "consumptionState",
+        "purchaseOptionId",
+        "quantity",
+        "refundableQuantity"
+      ]
+    }
+  ]
+}

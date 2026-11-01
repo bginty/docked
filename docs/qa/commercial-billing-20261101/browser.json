@@ -1,0 +1,58 @@
+{
+  "at": "2026-11-01T13:25:06.749Z",
+  "transport": "loopback fixture",
+  "database": "real isolated PostgreSQL",
+  "googleCheckout": false,
+  "hostedAuthenticated": false,
+  "ownerPresentation": {
+    "widths": [
+      390,
+      1440
+    ],
+    "explicitReasonRequired": true,
+    "actualOwnerAuth": false,
+    "decisionsSubmitted": 0
+  },
+  "checks": [
+    {
+      "sport": "nfl",
+      "pack": "STANDARD 9",
+      "charged": 700,
+      "cards": 9,
+      "confirmationBeforeCharge": true,
+      "mobile": 390,
+      "desktop": 1440,
+      "pageErrors": []
+    },
+    {
+      "sport": "afl",
+      "pack": "STANDARD 9",
+      "charged": 700,
+      "cards": 9,
+      "confirmationBeforeCharge": true,
+      "mobile": 390,
+      "desktop": 1440,
+      "pageErrors": []
+    },
+    {
+      "sport": "nrl",
+      "pack": "STANDARD 9",
+      "charged": 700,
+      "cards": 9,
+      "confirmationBeforeCharge": true,
+      "mobile": 390,
+      "desktop": 1440,
+      "pageErrors": []
+    },
+    {
+      "sport": "afl",
+      "pack": "PREMIUM 9",
+      "charged": 5000,
+      "cards": 9,
+      "confirmationBeforeCharge": true,
+      "mobile": 390,
+      "desktop": 0,
+      "pageErrors": []
+    }
+  ]
+}

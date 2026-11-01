@@ -17,7 +17,7 @@ The two narrow private SECURITY DEFINER locking functions let the runtime obtain
 
 Three independent server flags default closed: `DOCKED_COMMERCIAL_SERVICE`, `DOCKED_COMMERCIAL_SURFACES`, `DOCKED_COMMERCIAL_CHECKOUT`. The deployed adapter always expects commercial receipts; a client cannot choose acceptance mode. Existing Google TEST endpoints and beta wallet remain separate. No commercial secret is public configuration.
 
-Android v29/1.28 continues to run the current private beta with payments disabled. The prepared v30/1.29 adds an explicit native commercial capability and the two approved product identifiers; it still needs a matching authenticated server session and current product availability. Native product visibility is not authority to fulfil a purchase. Do not use v30's preparation as evidence of real-money settlement or physical-device acceptance.
+Android v29/1.28 continues to run the current private beta with payments disabled. The internally released v30/1.29 adds an explicit native commercial capability and the two approved product identifiers; it still needs a matching authenticated server session and current product availability. Native product visibility is not authority to fulfil a purchase. Do not use v30's preparation as evidence of real-money settlement or physical-device acceptance.
 
 ## Approval-gated rollout
 
@@ -39,7 +39,7 @@ Android v29/1.28 continues to run the current private beta with payments disable
 
 Google notifications are hints, not credits. The server fetches the current purchase and order, checks package/product, account binding, quantity, environment, AU region and exact approved AUD price. Credit fulfilment and a durable consumption job commit atomically. Pending/cancelled purchases receive no credits. TEST receipts are rejected by commercial runtime.
 
-Full verified refunds remove only unused credits from that receipt. Spent/refunded funding creates a hold and auditable exposure; spendable balances cannot go negative. Partial refunds and price discrepancies require review. Completed opening receipts and other members' acquired cards are preserved. The owner/MFA review screen can waive an eligible completed-refund hold with a reason and expected revision; it cannot send money, manufacture credits, activate products, approve its own case or erase the audit.
+Full verified refunds remove only unused credits from that receipt. Spent/refunded funding creates a hold and auditable exposure; spendable balances cannot go negative. Partial refunds and price discrepancies require review. Delayed purchase completion after account closure records the charge for support remedy review without issuing credits; later verified refunds still reconcile. Completed opening receipts and other members' acquired cards are preserved. The owner/MFA review screen can waive an eligible completed-refund hold with a reason and expected revision; it cannot send money, manufacture credits, activate products, approve its own case or erase the audit.
 
 Gross charges/refunds, outstanding credits, recovery exposure and job health are available. Provider fees, payout reconciliation and recognised revenue are **not fabricated**; an approved accountant/provider-settlement reconciliation process remains required. No real settlement has been tested.
 
@@ -53,7 +53,7 @@ The gameplay adapter is reversible by disabling `gameplay_enabled` and stopping 
 
 - Fresh approved backup/restore evidence; Production migration/runtime/worker configuration and genuine hosted commercial acceptance.
 - Rights and supply-baseline reconciliation for commercial permanent cards.
-- Public access programme/region/consent configuration and its hosted journey; no automatic promotion of beta grants.
+- Public access programme/region/consent configuration, ordinary-member route integration and its hosted journey; no automatic promotion of beta grants. Current AFL/NRL routes still require private-beta context. Enabling public registration alone is insufficient.
 - Commercial social sharing/coupon eligibility and full marketplace UI are deliberately not activated; keep them off unless their adapters and commercial scope are separately verified.
 - Approved retention/minimisation job and provider settlement reporting; the current immutable ledger is not a legal basis for indefinite retention.
 - Physical Play-installed v30 acceptance when a suitable device is available; existing v29 TEST evidence remains valid within its original scope.

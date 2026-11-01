@@ -1,0 +1,27 @@
+{
+  "commit": "1b33983ed5a486e1f0ef8054c1620f076257199c",
+  "authenticatedMemberTesting": false,
+  "checks": [
+    {
+      "path": "/api/store/google/commercial",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "at": "Sun, 01 Nov 2026 13:49:28 GMT",
+      "passed": true
+    },
+    {
+      "path": "/api/admin/commercial-billing",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "at": "Sun, 01 Nov 2026 13:49:30 GMT",
+      "passed": true
+    },
+    {
+      "path": "/api/workspace-wallet",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "at": "Sun, 01 Nov 2026 13:49:32 GMT",
+      "passed": true
+    }
+  ]
+}

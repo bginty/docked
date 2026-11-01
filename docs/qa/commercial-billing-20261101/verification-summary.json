@@ -1,0 +1,80 @@
+{
+  "applicationCommit": "1b33983ed5a486e1f0ef8054c1620f076257199c",
+  "android": {
+    "versionCode": 30,
+    "versionName": "1.29",
+    "package": "docked.fantasy",
+    "track": "internal",
+    "consoleStatus": "Available to internal testers",
+    "physicalDeviceAcceptance": false,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "googleWarnings": [
+      "No deobfuscation mapping; release minification is disabled",
+      "Prebuilt native dependency debug symbols unavailable"
+    ],
+    "aab": {
+      "path": "artifacts\\android\\Docked-commercial-candidate.aab",
+      "bytes": 9214095,
+      "sha256": "d3837d7191e0a6bbd64a572a9ac3288fd37b440eb36e67408648fb4b3c879e29"
+    },
+    "apk": {
+      "path": "artifacts\\android\\Docked-commercial-candidate.apk",
+      "bytes": 10151946,
+      "sha256": "8d41e63859632b34682a59183756eb030082407f538741aa4fb0d2d004f5e7ce"
+    },
+    "nativeSourceCommit": "298e10259f8b45cb7b4420c40a8fc6544e6245a0"
+  },
+  "suites": {
+    "platform": {
+      "passed": 709,
+      "failed": 0
+    },
+    "database": {
+      "passed": 230,
+      "failed": 0
+    },
+    "commercialRealPostgres": {
+      "checks": 15,
+      "environment": "disposable loopback PostgreSQL 17.10",
+      "realSettlement": false
+    },
+    "commercialGameplay": {
+      "AFL": true,
+      "NRL": true,
+      "realPostgres": true,
+      "identityTransport": "isolated fixture; not public Auth acceptance"
+    },
+    "typecheck": "passed",
+    "eslint": "passed",
+    "webBuild": "passed",
+    "clientCanaryAssets": 94,
+    "androidBundleApkLint": "passed"
+  },
+  "productionReadback": {
+    "at": "2026-11-01T13:45:18.822702Z",
+    "liveCommit": "053848ed67946fdd727a5c1d8547272d383c9470",
+    "commercialSchemaExists": false,
+    "newMigrationsApplied": 0,
+    "customerMutations": 0
+  },
+  "priorEvidence": "docs/FINAL_GOOGLE_RELEASE_READINESS_20261101.md",
+  "freshGooglePurchases": 0,
+  "freshRefunds": 0,
+  "realMoneySettlement": false,
+  "limitations": [
+    "No physical v30 acceptance; Samsung unavailable",
+    "No hosted authenticated commercial acceptance; schema/configuration unapproved",
+    "Broad heuristic secret scan still flags eight pre-existing fixture/local-URL files; staged scan and browser-canary scan passed",
+    "Public access programme/consents and corresponding hosted route acceptance pending; invitation-only review is not public launch acceptance",
+    "Public AFL/NRL route authorization still depends on private-beta context; ordinary-member public integration and real Auth acceptance remain required before launch, not a registration-only switch."
+  ],
+  "candidate": {
+    "url": "https://docked-production-3omjjcfvs-briant-s-projects.vercel.app",
+    "deployment": "dpl_FtXztq1VYsdtZF8PRu8i74uUt6Fp",
+    "ready": true,
+    "liveDomainPromoted": false,
+    "commercialRoutesUnauthenticatedDenied": 3,
+    "preReadyHttpAttempt": "Returned Vercel building HTML; not counted as a pass. Rechecked after READY."
+  }
+}
