@@ -3,9 +3,10 @@ import assert from "node:assert/strict";
 import {multiSportDatabase} from "../fixtures/multi-sport-db";
 import {sameStoreProducts} from "../../src/server/member-store-purchases";
 import draft from "../../config/store-credit-package-drafts.json";
+import {storeAdmissionQuery} from "../../src/server/store-admission-query";
 test("member Google admission is empty by default, session-bound, revocable and cannot be self-granted",async()=>{
  const d=await multiSportDatabase();try{
-  const grant=async()=>(await d.q("select credits_sandbox.member_store_test_admission() g"))[0].g;
+  const grant=async()=>(await d.q(storeAdmissionQuery))[0].admission;
   assert.equal(await grant(),null);
   // Isolated invitation transport, while the admission/session/MFA SQL remains real.
   await d.pg.exec(`create or replace function beta_private.admitted(p_user uuid) returns boolean language sql as $$select true$$;

@@ -12,6 +12,7 @@ import { StoreTestInbox } from "./store-test-inbox";
 import { GooglePlayTestVerifier } from "./store-purchase-verification";
 import { googlePlayOAuth } from "./google-play-oauth";
 import draft from "../../config/store-credit-package-drafts.json";
+import { storeAdmissionQuery } from "./store-admission-query";
 
 /** Same member authentication, same wallet/ledger and same pack engine. Only
  * Google's no-charge TEST receipts are accepted; no production-money switch.
@@ -36,9 +37,8 @@ export async function memberGoogleTest() {
   }));
   const readGrant = async (tx: Sql): Promise<StoreTestAdmission | null> => {
     await setCommunityClaims(tx as unknown as TransactionSql, who);
-    const [row] =
-      await tx`select credits_sandbox.member_store_test_admission() grant`;
-    const grant = row?.grant as StoreTestAdmission | null;
+    const [row] = await tx.unsafe(storeAdmissionQuery);
+    const grant = row?.admission as StoreTestAdmission | null;
     if (!grant || !sameStoreProducts(grant.products, products)) return null;
     return grant;
   };
