@@ -26,6 +26,7 @@ export type CommercialReceipt = {
   product: CommercialProduct;
   state: "PENDING" | "PURCHASED" | "CANCELLED" | "REVOKED" | "REVIEW";
   consumed: boolean;
+  reviewReason?: "account-unavailable";
   paid: boolean;
   orderId: string | null;
   grossCents: number | null;

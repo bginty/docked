@@ -370,7 +370,11 @@ async function main() {
           consumes++;
         },
       };
-      const worker = new CommercialReconciliation(ledger, verifier);
+      const worker = new CommercialReconciliation(
+        ledger,
+        verifier,
+        async () => true,
+      );
       const notice = {
         id: "d".repeat(64),
         receiptKey: x.r.key,
@@ -393,6 +397,7 @@ async function main() {
       const restarted = new CommercialReconciliation(
         new CommercialLedger(sql, "acceptance", keys),
         verifier,
+        async () => true,
       );
       await Promise.all([restarted.runOne(), restarted.runOne()]);
       assert.equal((await ledger.wallet(who)).balance, 0);
@@ -410,6 +415,57 @@ async function main() {
       const y = receipt();
       await assert.rejects(accept(y), /disabled/);
       await sql`update commercial_billing.control set sales_enabled=true`;
+    },
+  );
+  await check(
+    "delayed approval after account closure requires remedy review, never new fulfilment",
+    async () => {
+      await sql`update commercial_billing.jobs set state='done'`;
+      const who = randomUUID(),
+        x = receipt();
+      x.r = { ...x.r, state: "PENDING", paid: false, grossCents: null };
+      await accept(x, who);
+      x.r = { ...x.r, state: "PURCHASED", paid: true, grossCents: 4900 };
+      let consumed = 0;
+      const worker = new CommercialReconciliation(
+        ledger,
+        {
+          verify: async () => x.r,
+          consume: async () => {
+            consumed++;
+          },
+        },
+        async () => false,
+      );
+      await worker.enqueue({
+        id: "e".repeat(64),
+        receiptKey: x.r.key,
+        kind: "purchase",
+        occurredAt: Date.now(),
+      });
+      await worker.runOne();
+      const [r] =
+        await sql`select state,credited,money_recorded from commercial_billing.receipts where key=${x.r.key}`;
+      assert.deepEqual(
+        { state: r.state, credited: r.credited, money: r.money_recorded },
+        { state: "REVIEW", credited: false, money: true },
+      );
+      assert.equal((await ledger.wallet(who)).balance, 0);
+      assert.equal(consumed, 0);
+      x.r = { ...x.r, state: "REVOKED", refundedCents: 4900 };
+      await worker.enqueue({
+        id: "f".repeat(64),
+        receiptKey: x.r.key,
+        kind: "voided",
+        occurredAt: Date.now(),
+      });
+      await worker.runOne();
+      assert.equal(
+        (
+          await sql`select refunded_cents from commercial_billing.receipts where key=${x.r.key}`
+        )[0].refunded_cents,
+        "4900",
+      );
     },
   );
   await check(

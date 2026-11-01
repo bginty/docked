@@ -318,7 +318,7 @@ export class CommercialLedger {
               ? integer(lot.original) - integer(lot.refund_removed)
               : 0;
           await tx`insert into commercial_billing.recovery_cases(id,receipt,member_id,exposure_credits,reason)
-            values(${r.key},${r.key},${member},${exposure},${state === "REVIEW" ? "Provider amount/partial-refund review" : "Refunded funding already used; no automatic debt or card confiscation"}) on conflict(receipt) do update set exposure_credits=excluded.exposure_credits,reason=excluded.reason,revision=commercial_billing.recovery_cases.revision+1 where commercial_billing.recovery_cases.state='OPEN' and (commercial_billing.recovery_cases.exposure_credits is distinct from excluded.exposure_credits or commercial_billing.recovery_cases.reason is distinct from excluded.reason)`;
+            values(${r.key},${r.key},${member},${exposure},${state === "REVIEW" ? (r.reviewReason === "account-unavailable" ? "Account unavailable; provider refund/remedy review required" : "Provider amount/partial-refund review") : "Refunded funding already used; no automatic debt or card confiscation"}) on conflict(receipt) do update set exposure_credits=excluded.exposure_credits,reason=excluded.reason,revision=commercial_billing.recovery_cases.revision+1 where commercial_billing.recovery_cases.state='OPEN' and (commercial_billing.recovery_cases.exposure_credits is distinct from excluded.exposure_credits or commercial_billing.recovery_cases.reason is distinct from excluded.reason)`;
         }
         if (state === "REVOKED" && exposure === 0) {
           // A prior partial-refund review remains an explicit support decision,

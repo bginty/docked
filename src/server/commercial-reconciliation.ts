@@ -10,6 +10,7 @@ export class CommercialReconciliation {
   constructor(
     private ledger: CommercialLedger,
     private verifier: Pick<GoogleCommercialVerifier, "verify" | "consume">,
+    private memberActive: (member: string) => Promise<boolean>,
   ) {}
   async enqueue(n: StoreNotice) {
     if (
@@ -52,8 +53,17 @@ export class CommercialReconciliation {
           ref.token,
           ref.account_binding,
         );
+        const eligible =
+          current.state !== "PURCHASED" ||
+          (await this.memberActive(ref.member_id));
         const accepted = await this.ledger.accept(
-          current,
+          eligible
+            ? current
+            : {
+                ...current,
+                state: "REVIEW",
+                reviewReason: "account-unavailable",
+              },
           ref.member_id,
           ref.token,
           async () => {},

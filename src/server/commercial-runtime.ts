@@ -1,5 +1,7 @@
 import "server-only";
 import postgres from "postgres";
+import { db } from "./db";
+import { authUsersRelation } from "../core/auth-relations";
 import { databaseConnectionOptions } from "./database-tls";
 import { CommercialLedger } from "./commercial-ledger";
 import { GoogleCommercialVerifier } from "./google-commercial-verifier";
@@ -57,6 +59,11 @@ export async function commercialRuntime() {
   return {
     ledger,
     verifier,
-    worker: new CommercialReconciliation(ledger, verifier),
+    worker: new CommercialReconciliation(ledger, verifier, async (member) => {
+      const sql = db();
+      const [r] =
+        await sql`select exists(select 1 from public.profiles p join ${sql.unsafe(authUsersRelation())} u on u.id=p.id where p.id=${member} and p.disabled_at is null and u.email_confirmed_at is not null and not coalesce(u.is_anonymous,false) and (u.banned_until is null or u.banned_until<=clock_timestamp())) active`;
+      return r.active === true;
+    }),
   };
 }
