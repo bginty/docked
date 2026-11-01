@@ -1,4 +1,4 @@
-/** Exact two migrations authorised by owner on 1 November 2026. No activation. */
+/** Exact migrations authorised by owner on 1 November 2026. No activation. */
 import assert from "node:assert/strict";
 import {
   createHash,
@@ -11,13 +11,16 @@ import { resolve, join } from "node:path";
 import { ownerDatabase, projectRef } from "./owner-gameplay-db.mjs";
 const root = process.cwd(),
   mode = process.argv[2];
+const queueOnly = process.argv.includes("--queue-approved-20261101");
 assert(["--inspect", "--apply"].includes(mode));
 if (mode === "--apply")
-  assert(process.argv.includes("--owner-approved-20261101"));
-const files = [
-  "20261031123611_free_core_gameplay_eligibility.sql",
-  "20261031123931_member_google_test_receipts.sql",
-];
+  assert(queueOnly || process.argv.includes("--owner-approved-20261101"));
+const files = queueOnly
+  ? ["20261031234304_google_test_reconciliation_queue.sql"]
+  : [
+      "20261031123611_free_core_gameplay_eligibility.sql",
+      "20261031123931_member_google_test_receipts.sql",
+    ];
 const out = resolve("docs/qa/customer-billing-20261101");
 const vault = resolve("private-data/launch-migration-backups");
 mkdirSync(out, { recursive: true });
@@ -119,6 +122,16 @@ async function main() {
           digest,
         );
         const migrations = [];
+        if (queueOnly) {
+          const prerequisites =
+            await tx`select version from supabase_migrations.schema_migrations
+            where version in ('20261031123611','20261031123931')`;
+          assert.equal(
+            prerequisites.length,
+            2,
+            "Approved predecessor migrations required",
+          );
+        }
         for (const file of files) {
           const source = readFileSync(
             resolve(root, "supabase/migrations", file),
@@ -179,6 +192,34 @@ async function main() {
               )[0].allowed,
               false,
             );
+          if (queueOnly) {
+            const [queue] = await tx`select relrowsecurity enabled from pg_class
+              where oid='credits_sandbox.store_notifications'::regclass`;
+            assert.equal(queue.enabled, true);
+            for (const role of [
+              "anon",
+              "authenticated",
+              "service_role",
+              "docked_app",
+            ])
+              for (const privilege of ["SELECT", "INSERT", "UPDATE", "DELETE"])
+                assert.equal(
+                  (
+                    await tx`select has_table_privilege(${role},
+                  'credits_sandbox.store_notifications',${privilege}) allowed`
+                  )[0].allowed,
+                  false,
+                );
+            // A new queue must be empty. A later exact-history replay must
+            // preserve legitimate deliveries instead of treating them as drift.
+            if (migrations.some((migration) => migration.appliedNow))
+              assert.equal(
+                (
+                  await tx`select count(*)::int n from credits_sandbox.store_notifications`
+                )[0].n,
+                0,
+              );
+          }
         }
         return {
           at: new Date().toISOString(),
@@ -206,9 +247,13 @@ async function main() {
     writeFileSync(
       join(
         out,
-        mode === "--apply"
-          ? "migrations-applied.json"
-          : "migrations-inspected.json",
+        queueOnly
+          ? mode === "--apply"
+            ? "queue-applied.json"
+            : "queue-inspected.json"
+          : mode === "--apply"
+            ? "migrations-applied.json"
+            : "migrations-inspected.json",
       ),
       JSON.stringify(result, null, 2),
     );

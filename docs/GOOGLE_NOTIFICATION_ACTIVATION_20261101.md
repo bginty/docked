@@ -4,7 +4,7 @@ The HTTP boundary and durable worker are implemented. This is **not** evidence o
 
 ## Database and recovery
 
-The owner-approved migrations `20261031123611` and `20261031123931` were applied atomically on 1 November. The added `20261031234304_google_test_reconciliation_queue.sql` is separately prepared for approval. It creates an empty RLS-protected queue and two indexes. Only the existing application runtime can read/write it; anonymous, member, service_role and the unrelated public runtime have no access. No customer balances or receipts are inserted. The three-migration disposable PostgreSQL check preserved 251 pre-existing table fingerprints, exercised transactional rollback and migration-ledger replay, and verified queue permissions/deduplication.
+All three migrations are now applied. The owner-approved `20261031123611` and `20261031123931` were applied atomically on 1 November. The separately approved `20261031234304_google_test_reconciliation_queue.sql` was applied at **2026-11-01T06:15:48.488Z**, with exact source/hash comparison, an authenticated encrypted recovery snapshot and twelve unchanged protected table fingerprints. The queue is empty and RLS-protected. Only the existing application runtime can read/write it; anonymous, member, service_role and the unrelated public runtime have no access. No customer balances or receipts were inserted. The earlier three-migration disposable PostgreSQL check preserved 251 pre-existing table fingerprints and exercised rollback, migration-ledger replay, queue permissions and deduplication.
 
 Use the existing migration ledger with exact source/hash comparison. These migrations are not designed to be blindly replayed as raw DDL. The Production backup is encrypted with its key outside Git; it contains 11 relevant tables and three replaced function definitions, plus fingerprints for 12 tables. Append-only wallet history was fingerprinted in PostgreSQL, not downloaded as one 313 MB JSON value. This is a targeted recovery snapshot, not a complete Supabase Auth/storage disaster-recovery backup.
 
@@ -14,7 +14,7 @@ Rollback: disable the worker/new purchase flags and retain receipts, queue, audi
 
 Use the existing Vercel application and Supabase `pg_cron`/`pg_net`. No additional persistent host is required. Scope activation to TEST receipts only.
 
-1. Apply the separately approved queue migration with the reviewed transaction/ledger procedure.
+1. **Complete:** queue migration applied with the reviewed transaction/ledger procedure. Do not replay its raw DDL.
 2. Configure server-only `DOCKED_STORE_REFERENCE_KEY`, `DOCKED_STORE_ACCOUNT_BINDING_SECRET`, existing restricted verifier email/private key, and a random `DOCKED_STORE_WORKER_SECRET`. Keep the same encryption/binding secrets for already-bound receipts. Never rotate by discarding old decryptability.
 3. Create a dedicated Pub/Sub topic in `docked-play-verification`, with Google Play's documented notification publisher granted **Publisher on that topic only**. Configure the exact topic in Play Console. Do not give the verifier release or developer-administrator permissions.
 4. Create a dedicated push identity with no customer-data permissions. Grant Google's Pub/Sub service agent the scoped permission to mint its OIDC token; grant the configuring operator only the required service-account use permission. These are new security-sensitive grants and need action-time confirmation in the browser.
@@ -25,11 +25,11 @@ Use the existing Vercel application and Supabase `pg_cron`/`pg_net`. No addition
 
 The bounded tick schedules at most 100 known receipts, claims two verification jobs and one consumption job. Leases use `SKIP LOCKED`; expired leases retry. Verification retries back off to an hour, with persistent operator-attention state after 12 attempts. The worker response reports pending/working/attention/overdue counts without identities or tokens. Operational alerts must consume this health result or a scoped database monitor before relying on unattended processing. No paid alerting service is required.
 
-Pub/Sub is currently unconfigured (no topics observed). Before activation confirm existing project permissions and available no-charge quota. No new paid plan or recurring service is authorised. No Cloud IAM, topic, subscription, production worker secret or cron job has been created by this change.
+An empty topic now exists at `projects/docked-play-verification/topics/docked-google-test-notifications`. It has no default subscription, message retention, export or publisher grant. No messages have been sent. Topic-only Publisher access for Google's documented identity is prepared in the Console, awaiting the required action-time confirmation together with scoped keyless push-identity permissions. No subscription, production worker secret or cron job has been activated. Do not connect Play before durable subscription/endpoint readiness. Google's first 10 GiB monthly basic throughput allowance does not make every storage/network configuration free; remain within existing approved resources and do not enable paid plans.
 
 ## Acceptance still required
 
-- The ordinary nominated account must complete normal email confirmation, password creation and consent; no reviewer bypass.
+- The nominated account has completed ordinary email confirmation, password sign-in and consent. Its missing ordinary test-wallet/multi-sport memberships were provisioned without funds, inventory or privileged roles. Rendered access acceptance is recorded separately; this does not enable Google checkout or remove commercial blockers.
 - A test-capable native product allowlist is required for ordinary member checkout; v27 intentionally has an empty allowlist. Do not enable real-money products in a public build to satisfy this test.
 - An authorised store-installed Android licence tester must complete ordinary-session checkout, wallet, pack and refund acceptance. The disconnected Samsung's previous v27 installation/session tests need not be repeated without a new build or regression reason.
 - Real-money fulfilment and commercial refund recovery remain separately gated. The TEST verifier rejects real purchases; a successful TEST order is not approval for paid launch.

@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-01T06:27:50.943Z",
+  "applied": true,
+  "ordinaryAdmissionConfirmed": true,
+  "prior": {
+    "wallet": false,
+    "sport": false,
+    "multisport": false
+  },
+  "existingProgrammeExpiresAt": "2027-01-31T00:00:00.000Z",
+  "customerSports": [
+    "nfl",
+    "afl",
+    "nrl"
+  ],
+  "walletAndInventoryUnchanged": true,
+  "peerAccessUnchanged": true,
+  "featureFlagsUnchanged": true,
+  "creditsGranted": 0,
+  "cardsIssued": 0,
+  "privilegedRolesGranted": 0,
+  "before": {
+    "revision": "226",
+    "wallet_hash": "5f6b1926b820cb90f68d9a6a01ab5d5e",
+    "journal_count": "91",
+    "inventory_count": "447",
+    "peer_wallet_access": "44bb54451a5016b6fac38583fbd6fc53",
+    "peer_sport_access": "f46cfd86d161210aaf23119ccfcb717e",
+    "sport_control": "cfc6b649b4efda6b869aa09dee8870db",
+    "visible_sport_control": "f1d8910de92ae7a148cdca2eb0702b41"
+  }
+}

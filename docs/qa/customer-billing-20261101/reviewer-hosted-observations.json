@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-01",
+  "environment": "https://docked.com.au",
+  "method": "Genuine owner-entered reviewer login; Chrome DOM and rendered pages. No fabricated session or API credentials.",
+  "applicationCommit": "5a62f4ee5594dffba1812c1ce6b1c0983efbf962",
+  "confirmedEmailShown": true,
+  "ordinaryMember": true,
+  "ownerShortcutAbsent": true,
+  "wallet": {"testCredits": 0, "loadingResolved": true},
+  "play": {
+    "nfl": {"rendered": true, "slots": 7, "selectedWeek": 7, "entryClosed": true, "nextWeekAvailable": false},
+    "afl": {"rendered": true, "slots": 22},
+    "nrl": {"rendered": true, "slots": 13, "pickerEmpty": true}
+  },
+  "packs": {
+    "sports": ["nfl", "afl", "nrl"],
+    "renderedProductsPerSport": 6,
+    "premiumPricesBySize": {"9": 5000, "3": 1900, "1": 700},
+    "standardPricesBySize": {"9": 700, "3": 300, "1": 100},
+    "insufficientFundsDisablesPurchase": true,
+    "weeklyFourCoreStarterReadyPerSport": true,
+    "opened": 0,
+    "purchased": 0,
+    "note": "Existing weekly programme may initialise unopened entitlements on read; no card issuance/opening or manual entitlement grant was performed."
+  },
+  "collection": {"rendered": true, "owned": 0},
+  "market": {"sport": "nrl", "rendered": true, "sections": ["Browse", "My Listings", "Activity"], "purchaseSubmitted": false},
+  "social": {"feedRendered": true, "mutationsSubmitted": false},
+  "security": {
+    "nbaSelectorAbsent": true,
+    "authenticatedNbaCapabilityResponse": {"allowed": false},
+    "directOwnerPage": "Security gate only; no owner data exposed",
+    "databasePrivilegedRole": false
+  },
+  "viewport": {"measuredWidth": 887, "documentWidth": 872, "requestedMobileOverrideApplied": false, "mobileAcceptanceClaimed": false},
+  "financialAggregate": {"revision": 226, "hash": "5f6b1926b820cb90f68d9a6a01ab5d5e", "unchanged": true},
+  "fullReviewerAcceptance": false,
+  "remaining": [
+    "Verified free-Core roster and eligible round configuration; the new member cannot yet build a complete team",
+    "Secure Console password entry and truthful full-access declaration",
+    "Supported review access beyond the existing beta programme deadline, if necessary",
+    "Ordinary-member Google TEST checkout and genuine refund-notification acceptance",
+    "No reviewer-specific physical-device acceptance claimed"
+  ]
+}
