@@ -74,8 +74,9 @@ export async function googleReconciliationRequest(
   }
 }
 
-/** Vercel Cron uses GET. Keep the ordinary worker POST-only and preserve all
- * credential, Cookie and Origin checks at this separate server-only boundary. */
+/** Vercel Cron uses GET and can carry its deployment-protection cookie. That
+ * cookie grants no application authority: the independent worker secret is
+ * always required. Member cookies, Origin and forwarded authorization stay denied. */
 export function googleScheduledReconciliationRequest(
   req: Request,
   deps: { secret: string; run: () => Promise<unknown> },
@@ -84,8 +85,15 @@ export function googleScheduledReconciliationRequest(
     return Promise.resolve(
       reply(401, { error: "Scheduler authentication required" }),
     );
+  const schedulerHeaders = new Headers(req.headers);
+  const cookie = schedulerHeaders.get("cookie");
+  if (
+    cookie &&
+    cookie.split(";").every((part) => /^_vercel_jwt=[^;]+$/.test(part.trim()))
+  )
+    schedulerHeaders.delete("cookie");
   return googleReconciliationRequest(
-    new Request(req.url, { method: "POST", headers: req.headers }),
+    new Request(req.url, { method: "POST", headers: schedulerHeaders }),
     deps,
   );
 }

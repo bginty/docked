@@ -103,6 +103,48 @@ test("host scheduler accepts only its secret and cannot use browser credentials"
     200,
   );
   assert.equal(runs, 1);
+  // Deployment protection is a hosting concern, never a member credential.
+  for (const headers of [
+    { cookie: "_vercel_jwt=synthetic-platform-token" },
+    { cookie: "_vercel_jwt=synthetic", authorization: "Bearer forged" },
+    {
+      cookie: "_vercel_jwt=synthetic; member-session=synthetic",
+      authorization: `Bearer ${secret}`,
+    },
+    {
+      cookie: "_vercel_jwt=synthetic",
+      authorization: `Bearer ${secret}`,
+      origin: "https://docked.com.au",
+    },
+  ]) {
+    assert.equal(
+      (
+        await googleScheduledReconciliationRequest(
+          new Request("https://example.invalid/scheduled", {
+            headers: headers as HeadersInit,
+          }),
+          deps,
+        )
+      ).status,
+      401,
+    );
+  }
+  assert.equal(runs, 1);
+  assert.equal(
+    (
+      await googleScheduledReconciliationRequest(
+        new Request("https://example.invalid/scheduled", {
+          headers: {
+            authorization: `Bearer ${secret}`,
+            cookie: "_vercel_jwt=synthetic-platform-token",
+          },
+        }),
+        deps,
+      )
+    ).status,
+    200,
+  );
+  assert.equal(runs, 2);
 });
 test("invalid Google identity or alternate callback never reaches persistence", async () => {
   let writes = 0;
