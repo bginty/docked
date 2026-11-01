@@ -77,6 +77,12 @@ async function main() {
         options: p.purchaseOptions?.map((o) => ({
           id: o.purchaseOptionId,
           state: o.state,
+          multiQuantityEnabled: o.buyOption?.multiQuantityEnabled === true,
+          regions: o.regionalPricingAndAvailabilityConfigs?.map((r) => ({
+            region: r.regionCode,
+            availability: r.availability,
+            price: r.price,
+          })),
         })),
       }));
     if (r.ok && name === "refund-readback")
@@ -122,11 +128,15 @@ async function main() {
     checks: results,
     mutations: 0,
   };
-  writeFileSync(
-    "docs/qa/public-play-readiness-20261031/google-readiness-latest.json",
-    JSON.stringify(evidence, null, 2) + "\n",
-  );
+  const evidenceArg = process.argv.find((arg) => arg.startsWith("--evidence="));
+  const evidenceFile =
+    evidenceArg?.slice("--evidence=".length) ??
+    "docs/qa/public-play-readiness-20261031/google-readiness-latest.json";
+  if (!/^docs\/qa\/[a-zA-Z0-9_/-]+\.json$/.test(evidenceFile))
+    throw Error("Repository evidence path required");
+  writeFileSync(evidenceFile, JSON.stringify(evidence, null, 2) + "\n");
   console.log(JSON.stringify(evidence, null, 2));
+  if (results.some((r) => r.httpStatus !== 200)) process.exitCode = 1;
 }
 main().catch(() => {
   console.error(

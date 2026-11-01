@@ -4,6 +4,8 @@ Prepared 2 November 2026 (Australia/Sydney). **No Production migration or commer
 
 **Later 2 November update:** owner model approval is recorded in `OWNER_COMMERCIAL_APPROVAL_20261102.md`. The ordinary public-member gameplay/Profile integration is now implemented and accepted against isolated real Auth. Its third, default-disabled migration and updated activation requirements are in `PUBLIC_CUSTOMER_ACTIVATION_REVIEW_20261102.md`. This supersedes the route-integration gap below; hosted activation, rights and policies remain gated. All three migrations are still unapplied to Production.
 
+**Final-gate continuation:** the fresh encrypted Production restore and all three migration applications/reapplications passed on PostgreSQL 17.11 at 2026-11-01 22:45 UTC. Seventeen protected-table checksums were unchanged. See `PUBLIC_ACTIVATION_GATE_20261102.md` and `qa/public-activation-20261102/restore-drill.json` for exact scope and recovery limitations. Named Production application approval remains pending; conditional public submission authority is already granted once mandatory gates pass.
+
 ## Exact proposed migrations
 
 | Migration | Effect | Defaults / preservation |
@@ -24,8 +26,8 @@ Android v29/1.28 continues to run the current private beta with payments disable
 ## Approval-gated rollout
 
 1. Confirm exact source commit and hashes, current Production migration history and supported PostgreSQL version. Check migrations in a restored isolated copy with the actual restricted runtime role.
-2. Before any Production application, capture an encrypted schema/data backup, current function definitions/grants, release configuration and protected-record checksums. Verify restore to an isolated target. **A fresh Production restore drill has not been performed in this task; it is a pre-apply gate.** Do not rely solely on an old QA snapshot or assume a provider backup is restorable.
-3. Apply these two exact migrations, in order, in transactions using the approved migration mechanism. Do not run a blanket push of unrelated pending migrations. Recheck all gates false and zero new member/card/credit rows; compare protected records.
+2. Before any Production application, capture an encrypted schema/data backup, current function definitions/grants, release configuration and protected-record checksums. The 2 November isolated restore passed; refresh the capture if intervening data changed. Do not rely solely on an old QA snapshot or assume a provider backup is restorable. Storage object bodies and hosted configuration require their own recovery procedures.
+3. After named approval, apply these two exact migrations followed by `20261102010001_public_customer_gameplay.sql`, in order, in transactions using the approved migration mechanism. Do not run a blanket push of unrelated pending migrations. Recheck all gates false and zero new member/card/credit rows; compare protected records.
 4. Provision an approved non-superuser, non-BYPASSRLS login inheriting only `docked_commercial_app`. No role login/password is created by the migrations. Store its TLS connection URL server-side as `DOCKED_COMMERCIAL_DATABASE_URL`; preserve existing app roles.
 5. Provision a reviewed Google verifier identity with only the required Docked purchase/order/consumption permissions. Configure `DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL` and `DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY` in secret storage. Do not copy secrets into build files or client bundles.
 6. Provision stable HMAC account binding (`DOCKED_COMMERCIAL_ACCOUNT_BINDING_SECRET`) and AES-GCM reference keyring (`DOCKED_COMMERCIAL_REFERENCE_KEYS`, JSON key-id to 32-byte hex key; `DOCKED_COMMERCIAL_REFERENCE_KEY_ID` active id). Retain old decrypt keys until the approved retention window closes. Test restore/rotation without logging keys. TEST binding/keys are not reused.
@@ -35,7 +37,7 @@ Android v29/1.28 continues to run the current private beta with payments disable
 10. Configure approved current AU adult eligibility and consent versions. Only an 18+ policy is implemented; a higher age threshold cannot be satisfied by the existing 18+ attestation. Keep public registration closed until the separate onboarding approval and public-mode hosted acceptance.
 11. For gameplay, create approved future **free/no-prize** rounds with saved `commercial_inventory_policy='commercial-owned-v1'` and `free_core_policy='public-free-core-v1'`, verified roster/fixtures and the existing sport rules. Do not mutate historical/confirmed rounds. Opt-in and `gameplay_enabled` are distinct from sales/prizes. Free Core eligibility remains available during a payment recovery hold; owned paid cards cannot be newly selected while held. Historical locked entitlement remains intact.
 12. Conduct authenticated acceptance of that exact protected configuration before enabling commercial checkout/products. Recheck order price/AU identity, fulfilment, acknowledgement, pack opening, ownership/lineup/summary, refund/revocation and worker recovery. Keep commercial transfers off for the recommended launch unless separately reviewed. Beta coupons and social ownership adapters do not automatically gain commercial eligibility.
-13. Publish approved policy versions, update actual Console declarations/listing/screenshots, obtain final owner approval, and only then consider Australian public submission/activation. No cash features, prizes, paid entry or NBA activation is part of this package.
+13. Publish approved policy versions and update actual Console declarations/listing/screenshots. Conditional owner submission authority is now granted: submit only after every mandatory gate is verified; activate products only after Google approval and exact deployed acceptance. Do not ask again for the same commercial model or routine submission authority. No cash features, prizes, paid entry or NBA activation is part of this package.
 
 ## Reconciliation and support
 
@@ -53,7 +55,7 @@ The gameplay adapter is reversible by disabling `gameplay_enabled` and stopping 
 
 ## Remaining release checks
 
-- Fresh approved backup/restore evidence; Production migration/runtime/worker configuration and genuine hosted commercial acceptance.
+- Production migration/runtime/worker configuration and genuine hosted commercial acceptance; the fresh logical restore drill passed with the scope above.
 - Rights and supply-baseline reconciliation for commercial permanent cards.
 - Public access programme/region/consent configuration, ordinary-member route integration and its hosted journey; no automatic promotion of beta grants. Current AFL/NRL routes still require private-beta context. Enabling public registration alone is insufficient.
 - Commercial social sharing/coupon eligibility and full marketplace UI are deliberately not activated; keep them off unless their adapters and commercial scope are separately verified.

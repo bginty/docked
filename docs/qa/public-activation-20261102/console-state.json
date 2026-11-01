@@ -1,0 +1,26 @@
+{
+  "observedOn": "2026-11-02 Australia/Sydney",
+  "source": "Authenticated owner Google Play Console, visible publishing overview and release preview",
+  "package": "docked.fantasy",
+  "versionCode": 30,
+  "versionName": "1.29",
+  "productionTrack": "4699527647302307644",
+  "releaseId": "1",
+  "releaseName": "30 (1.29) - AU launch candidate - gated",
+  "bundleSource": "Existing Google Play app-bundle library",
+  "countryChange": "Australia only",
+  "changesNotSubmitted": 10,
+  "managedPublishing": true,
+  "submitted": false,
+  "approved": false,
+  "published": false,
+  "paymentsActivated": false,
+  "releasePreviewErrors": 0,
+  "releasePreviewWarnings": [
+    "No deobfuscation mapping file; current release has minifyEnabled=false",
+    "Native debug symbols not uploaded"
+  ],
+  "firstReleaseRollout": "Console shows Start full rollout; percentage staging is unavailable for a first release",
+  "legalAttestationAccepted": false,
+  "screenshot": "publishing-overview.png"
+}

@@ -2,6 +2,8 @@
 
 Prepared 2 November 2026. Owner commercial-model approval is recorded in `OWNER_COMMERCIAL_APPROVAL_20261102.md`; it is not awaiting another business-model decision. This document does not establish external rights or enable any live feature.
 
+Latest continuation: `PUBLIC_ACTIVATION_GATE_20261102.md` records the successful encrypted Production restore, three-migration compatibility/reapplication test and saved Google Production release draft. Submission is conditionally owner-authorised after mandatory gates pass; specific application approval for the three dormant migrations remains pending.
+
 ## New migration and dependencies
 
 Apply only after the separately prepared `20261101120754_commercial_google_ledger.sql` and `20261102010000_commercial_lineup_inventory.sql`:
@@ -20,7 +22,7 @@ The new endpoint rejects a caller-selected identity, unsupported sport, mismatch
 4. Label practice fixtures as practice. The local acceptance uses clearly synthetic players and no scores; it is not verified sports-data coverage. Missing statistics remain awaiting statistics. No synthetic result is imported into Production.
 5. For read-only commercial wallet/collection presentation, provision the reviewed restricted commercial runtime and encryption/account-binding keys, then use the existing service/surface flags. Wallet reading does not require a Google OAuth call. Checkout, issuance, transfers and Google products have independent disabled gates. A verifier credential failure still rejects purchase verification.
 6. Set `DOCKED_PUBLIC_CUSTOMERS=true` only on the protected candidate under review, with `DOCKED_BETA_STAGING=false`. Public and private-beta identities/programmes are not interchanged. Keep registration switches and Google checkout off until exact hosted acceptance and the final activation gate.
-7. Verify the ordinary customer journey on the exact protected deployment and Android release, then separately approve migration/application promotion and public registration. Do not enable NBA, paid entry, withdrawals or prizes.
+7. Verify the ordinary customer journey on the exact protected deployment and Android release. Complete named migration approval and all mandatory release conditions before application promotion/public registration. Conditional submission authority is already recorded. Do not enable NBA, paid entry, withdrawals or prizes.
 
 ## Recovery
 

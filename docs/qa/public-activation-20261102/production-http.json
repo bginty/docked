@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-01T22:48:05.843Z",
+  "host": "https://docked.com.au",
+  "authenticated": false,
+  "mutations": 0,
+  "observations": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "cacheControl": "private, no-store",
+      "response": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "053848ed67946fdd727a5c1d8547272d383c9470",
+        "deploymentId": "dpl_2bWUkY1sgtshkifqRRty89oPfuzQ",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      }
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "cacheControl": "no-store",
+      "response": {
+        "product": "fantasy-cards",
+        "registration": "closed"
+      }
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "status": 404,
+      "cacheControl": "private, no-store"
+    },
+    {
+      "path": "/api/public-gameplay?sport=nfl",
+      "status": 404,
+      "cacheControl": "private, no-store"
+    }
+  ]
+}

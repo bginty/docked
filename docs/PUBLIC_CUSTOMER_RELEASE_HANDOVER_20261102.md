@@ -1,5 +1,7 @@
 # Commercial approval and public customer readiness — 2 November 2026
 
+Subsequent release preparation and authority: see `PUBLIC_ACTIVATION_GATE_20261102.md`. It records the successful Production logical restore, migration reapplication checks and unpublished Google v30 Production draft. The dated acceptance below is preserved; conditional submission authority is now granted, without a new business-model approval.
+
 **The owner commercial model is approved. Live customer charging and public submission are not ready for activation.** The remaining gates concern rights, regulatory/platform verification, published policies, migration/runtime provisioning and exact hosted release acceptance. No repeated approval of pack prices, odds, multipliers, credits, fees or the disclosed recovery-hold design is requested.
 
 Read the preserved commercial architecture/test report in `COMMERCIAL_GOOGLE_RELEASE_HANDOVER_20261102.md` alongside this update. This update closes its ordinary-member route integration gap with actual isolated Auth/browser acceptance; it does not claim public Production or real-money acceptance.
