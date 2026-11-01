@@ -298,6 +298,15 @@ if (process.argv[2] === "prepare") {
   } catch (error) {
     if (error.code !== "ENOENT") throw error;
   }
+  // Explicit supervised licence-test window only. The server still requires
+  // an unexpired operator-owned admission for the authenticated member and
+  // rejects every non-TEST receipt. The persisted default remains disabled.
+  if (process.argv.includes("--supervised-member-test")) {
+    assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST, "false");
+    assert.equal(env.DOCKED_FRIENDS_BETA, "true");
+    assert.equal(env.DOCKED_BETA_STAGING, "true");
+    env.DOCKED_MEMBER_GOOGLE_TEST = "true";
+  }
   assert.equal(
     base.env.filter(
       (k) => /^(DOCKED_|NFL_|BETA_|FANTASY_|PROVIDER_)/.test(k) && !(k in env),
