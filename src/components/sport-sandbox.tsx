@@ -25,6 +25,7 @@ import { competitionName, seasonLabel } from "@/core/competition-display";
 import { usesApprovedAustralianSalary } from "@/core/approved-australian-rules";
 import { competitionHref } from "@/core/prize-schedules";
 import { rarityRule, rarities } from "@/core/card-rarity";
+import { TeamNameSetup } from "./team-name-setup";
 
 export function SportSandbox({
   initial,
@@ -313,6 +314,10 @@ export function SportSandbox({
   ) {
     if (!comp || inFlight.current || (capPending && action !== "seven_draft"))
       return;
+    if (privateBeta && !state.team_name && action !== "auto_select") {
+      setError("Choose your permanent team name before saving or entering.");
+      return;
+    }
     inFlight.current = true;
     setBusy(true);
     setError("");
@@ -525,10 +530,53 @@ export function SportSandbox({
         }
       />
       <div className="sport-entry-heading">
-        <div>
-          <small>Team name</small>
-          <strong>{state.team_name ?? "Your team"}</strong>
-        </div>
+        <TeamNameSetup
+          name={state.team_name}
+          busy={busy}
+          canChoose={privateBeta}
+          onSave={async (name) => {
+            if (inFlight.current || !privateBeta) return false;
+            inFlight.current = true;
+            setBusy(true);
+            setError("");
+            try {
+              const response = await boundedFetch("/api/fantasy", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  action: "name_team",
+                  payload: { name },
+                  request_id: crypto.randomUUID(),
+                }),
+              });
+              const body = await response.json();
+              if (!response.ok)
+                throw Error(
+                  body.error ?? "Unable to save team name. Please retry.",
+                );
+              const refreshed = await boundedFetch(readPath, {
+                cache: "no-store",
+              });
+              if (!refreshed.ok)
+                throw Error("Name saved. Refresh to continue.");
+              const next = (await refreshed.json()).state as SandboxState;
+              if (next.sport !== state.sport || next.user_id !== state.user_id)
+                throw Error("Sport context changed");
+              // Do not replace draft/card references and erase an unsaved lineup.
+              setState((previous) => ({
+                ...previous,
+                team_name: next.team_name,
+              }));
+              return true;
+            } catch (e) {
+              setError(e instanceof Error ? e.message : "Unable to save name");
+              return false;
+            } finally {
+              inFlight.current = false;
+              setBusy(false);
+            }
+          }}
+        />
         <span className="play-status">
           {locked
             ? entry

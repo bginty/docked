@@ -2,6 +2,7 @@
 import { eligibleInRound, isFreeCore } from "@/core/free-core";
 import { NavigationShortcut } from "./navigation-shortcut";
 import { SevenField } from "./seven-field";
+import { TeamNameSetup } from "./team-name-setup";
 import { useSportDraftGuard } from "./sport-context";
 import { competitionName, competitionLabel } from "@/core/competition-display";
 import { slotPool, filterSlotPool } from "@/core/lineup-picker";
@@ -119,8 +120,6 @@ export function NflSevenPlay({
     [notice, setNotice] = useState(""),
     [list, setList] = useState(false);
 
-  const [teamName, setTeamName] = useState(data.team_name ?? "");
-  const [editingName, setEditingName] = useState(false);
   const [pickerPage, setPickerPage] = useState(1);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -557,44 +556,11 @@ export function NflSevenPlay({
   return (
     <section className="fantasy-play seven-play">
       <header className="play-heading compact-entry-heading">
-        <div className="lineup-team-name">
-          <small>Team name</small>
-          <strong>{data.team_name || "Unnamed team"}</strong>
-          {!data.team_name && (
-            <button
-              className="play-support"
-              aria-label="Choose team name"
-              onClick={() => setEditingName(!editingName)}
-            >
-              Choose name
-            </button>
-          )}
-          {editingName && !data.team_name && (
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const result = await act("name_team", {
-                  name: teamName.trim(),
-                });
-                if (result) setEditingName(false);
-              }}
-            >
-              <label>
-                Team name
-                <input
-                  value={teamName}
-                  maxLength={40}
-                  onChange={(e) => setTeamName(e.target.value)}
-                  required
-                />
-              </label>
-              <p className="small-note">
-                Choose carefully. Your team name is permanent.
-              </p>
-              <button disabled={busy || !teamName.trim()}>Save name</button>
-            </form>
-          )}
-        </div>
+        <TeamNameSetup
+          name={data.team_name}
+          busy={busy}
+          onSave={async (name) => !!(await act("name_team", { name }))}
+        />
         <span className="entry-badge" role="status">
           {closed && !entry ? "Not entered" : draftState}
         </span>
