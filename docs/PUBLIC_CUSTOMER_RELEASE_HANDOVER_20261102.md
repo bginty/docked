@@ -80,7 +80,11 @@ NBA, real charges, registration, withdrawals, paid entry and prizes remain off. 
 
 ## Release evidence
 
-The code commit, protected candidate URL, hosted guard checks and unchanged live deployment identity are recorded in the accompanying `release.json` after staging. The candidate is preparation only and never receives the live domain automatically.
+Code commits `ac29f1db` and `8dcfd9f1` are pushed. The protected candidate is READY at https://docked-production-cegqqc17p-briant-s-projects.vercel.app, deployment `dpl_2KUfz1Haq2B5DUNbPM54AyQFG6Rs`, source `8dcfd9f18960936145a605595a01119a92fa1c89`.
+
+Hosted checks passed: 19 release/route/access checks and seven commercial/public-gameplay guards, all seven returning 403 with `private, no-store`. This verifies closed access, not an authenticated customer purchase. Public-mode journeys above ran in the isolated local environment only.
+
+At 2026-11-01 22:27:09 UTC, `docked.com.au` still resolves to `dpl_2bWUkY1sgtshkifqRRty89oPfuzQ`, source `053848ed67946fdd727a5c1d8547272d383c9470`. No live-domain promotion, Production migration, customer mutation, charge or public submission occurred. Full sanitized deployment identities and checks are in `qa/public-customer-20261102/release.json` and `qa/public-customer-20261102/candidate/candidate-http.json`.
 
 ![Ordinary-member AFL entry, isolated mobile](qa/public-customer-20261102/afl-entry-mobile.png)
 ![Ordinary-member NRL Rankings, isolated mobile](qa/public-customer-20261102/nrl-rankings-mobile.png)

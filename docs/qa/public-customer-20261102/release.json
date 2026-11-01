@@ -1,0 +1,85 @@
+{
+  "at": "2026-11-01T22:27:09.251Z",
+  "candidate": {
+    "commit": "8dcfd9f18960936145a605595a01119a92fa1c89",
+    "url": "https://docked-production-cegqqc17p-briant-s-projects.vercel.app",
+    "target": "production",
+    "domainAssigned": false,
+    "projectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "privateNbaInfrastructure": true,
+    "customerNbaVisible": false,
+    "memberGoogleTest": false,
+    "fixtureCommerce": true,
+    "at": "2026-11-01T22:23:53.016Z"
+  },
+  "deployments": [
+    {
+      "requested": "docked-production-cegqqc17p-briant-s-projects.vercel.app",
+      "id": "dpl_2KUfz1Haq2B5DUNbPM54AyQFG6Rs",
+      "url": "docked-production-cegqqc17p-briant-s-projects.vercel.app",
+      "state": "READY",
+      "commit": "8dcfd9f18960936145a605595a01119a92fa1c89",
+      "aliases": [
+        "docked-production-briant-s-projects.vercel.app"
+      ]
+    },
+    {
+      "requested": "docked.com.au",
+      "id": "dpl_2bWUkY1sgtshkifqRRty89oPfuzQ",
+      "url": "docked-production-hdijyy3uu-briant-s-projects.vercel.app",
+      "state": "READY",
+      "commit": "053848ed67946fdd727a5c1d8547272d383c9470",
+      "aliases": [
+        "docked-production-briant-s-projects.vercel.app"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "path": "/api/store/google/commercial",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "passed": true
+    },
+    {
+      "path": "/api/admin/commercial-billing",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "passed": true
+    },
+    {
+      "path": "/api/workspace-wallet",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "passed": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "passed": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "passed": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "passed": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=basketball",
+      "status": 403,
+      "cacheControl": "private, no-store",
+      "passed": true
+    }
+  ],
+  "authenticatedHostedAcceptance": false,
+  "publicSubmission": false,
+  "productionMigrationsApplied": [],
+  "realMoneyPayments": false
+}
