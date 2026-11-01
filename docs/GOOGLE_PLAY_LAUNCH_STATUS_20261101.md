@@ -1,104 +1,82 @@
-# Google Play launch status — 1 November 2026
+# Docked Google Play launch status — 1 November 2026
 
-Public submission: **NO-GO**. The website/policy release is live; Google Play remains internal testing. This report supersedes the migration, privacy-URL and declaration status in the earlier 309b7861 handover, without replacing its genuine isolated TEST evidence.
+**Public launch: NO-GO.** Scoped Google notification infrastructure is now deployed and genuine Google delivery is verified. Android v28 is available to the existing internal testers. Real-money products, public registration, withdrawals, prizes and NBA remain disabled. This report supersedes earlier notification-IAM and Android-version checkpoints; it does not erase their evidence.
 
-## Follow-up: confirmed reviewer and approved queue
+## Completed in this continuation
 
-Updated 1 November, after the owner completed normal reviewer signup/sign-in:
+- Applied the owner-approved topic-only Google publisher grant and keyless OIDC delivery identity. No wallet, release or administrator role granted.
+- Saved authenticated Pub/Sub delivery and the exact Play Console topic, including one-time purchase/refund events.
+- Observed a **real Google Console test message** in the private durable queue at 07:09:20 UTC, `test/done`. No purchase token or credit award. This is genuine delivery evidence, **not a real refund event**.
+- Deployed the private TEST reconciliation runtime to https://docked.com.au. Application commit **de9508a767ea971f50c9238dc893844b54b589d3**, Vercel **dpl_D9qbsBbeHrjCAjAtdpTvsjaiAEyX**. Candidate: https://docked-production-n5yj6h2a0-briant-s-projects.vercel.app.
+- Added one five-minute Vercel Cron on the already-active Pro account; no new paid subscription/host. Fixed a hosted-only rejection: Vercel's scheduler carries its deployment-protection cookie. The handler now tolerates only `_vercel_jwt` in addition to the independent secret, while denying member cookies, Origin and forwarded authorization. Existing POST and Google JWT protections are unchanged.
+- Prepared and released **28 / 1.27-member-test** to internal testing. The existing v27 artifact remains unchanged. Native products are enabled only in the separate TEST build; server admission and Play products remain disabled. No ordinary member was granted purchase access.
+- Verified the genuine signed-in reviewer's mobile-capabilities endpoint on the live backend: sports exactly NFL/AFL/NRL, billing false with no products, public registration false. Restored its Profile afterward.
 
-- Queue migration `20261031234304_google_test_reconciliation_queue.sql` is now **applied**, separately approved by the owner. The 06:15:48 UTC transaction preserved twelve protected fingerprints. Queue readback: empty, RLS enabled, no anon/authenticated/service_role/unrelated-runtime access. Encrypted targeted recovery snapshot verified. This supersedes the earlier "prepared, not applied" status below.
-- Reviewer email verification initially failed because the approved-beta email allowlist omitted the nominated address, not because the invitation had expired. Existing four recipients were retained and only the nominated reviewer added. Normal resend was accepted by the provider at 06:18 UTC; the user confirmed and signed in. No password reset or verification bypass.
-- Reviewer consent/admission is accepted and the account has no privileged role. Genuine browser login revealed separate wallet/multi-sport access rows were missing. Those three existing membership rows were provisioned under the owner's reviewer-setup authority, with the existing programme deadline (31 January 2027). No credits, cards, purchase permission or admin role were granted; other users and feature flags were unchanged.
-- **Hosted read-only evidence:** verified reviewer email shown in Profile; zero-credit wallet loads; NFL, AFL and NRL Play render, with seven-, 22- and 13-slot formations respectively. NBA absent from the selector. These are genuine signed-in browser checks, not the previous owner session or mocked fixtures.
-- All 18 pack products render with correct sport, quantity and configured prices; zero funds correctly disables purchases. Each sport shows one normal weekly starter pack ready. No pack was opened or purchased. NRL marketplace and unified Social load. Direct owner operations navigation remains behind the security gate, and the authenticated NBA capability endpoint returns `allowed:false`.
-- **Full reviewer acceptance still blocked:** NRL player picker has no eligible owned/free-Core cards; free-Core programmes remain disabled. NFL currently resolves to closed Week 7 with no next selectable week. Do not mark Google's declaration of full feature access complete, or imply the user can build/enter a team. A testable eligible-round/free-Core programme and supported reviewer access duration must be approved before submission. No round was created, unlocked or activated during this check.
-- An empty Google Pub/Sub topic has been created without subscription, retention, export, traffic or publisher permissions. Topic-only publisher and scoped keyless push identity permissions are prepared for owner confirmation. Genuine Google delivery/refund acceptance remains pending.
-- Android v27/1.26 and website deployment remain unchanged. Script lint and full TypeScript checks passed again after the provisioning work. Financial aggregate remains revision **226**, hash **5f6b1926b820cb90f68d9a6a01ab5d5e**. Existing automated test results below remain applicable; they were not needlessly rerun.
-- Supabase security advisors are unchanged before/after the queue migration: 219 existing informational private-RLS/no-policy findings and the existing disabled leaked-password-protection warning; no queue-specific finding. See [Supabase password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection) for the remaining security setting. No policies were broadened to suppress advice.
+Detailed evidence and rollback: [notification acceptance](GOOGLE_NOTIFICATION_ACTIVATION_20261101.md), [Android internal release](ANDROID_MEMBER_TEST_RELEASE_20261101.md), `qa/customer-billing-20261101/rtdn-verified-release/`, `genuine-google-notification.json` and `reviewer-live-mobile-capabilities.json`.
 
-Evidence: `qa/customer-billing-20261101/queue-applied.json`, `reviewer-mail-repair.json`, `reviewer-recovery-inspected.json`, `reviewer-access-applied.json`, `reviewer-hosted-observations.json` and signed-in screenshots. Credentials and invitation tokens remain outside Git.
+## Preservation and migrations
 
-## Deployed and preserved
+Wallet revision **226**, document hash **5f6b1926b820cb90f68d9a6a01ab5d5e**, unchanged from before this work. Ordinary Google receipts **0**, test admissions **0**. All nine existing database schedules, including NFL processing, retain their original command hashes/schedules. No purchase, opening, balance adjustment, prize or permanent card issuance was used to verify this continuation.
 
-- Website: https://docked.com.au, commit `5a62f4ee5594dffba1812c1ce6b1c0983efbf962`.
-- Vercel deployment `dpl_FpXCzRPTNYFtK7DVTj5dAXW3PiYp`, READY. Candidate https://docked-production-hq7rml7id-briant-s-projects.vercel.app. Staged, checked, then promoted; live identity independently read back.
-- NFL/AFL/NRL remain the customer sport allowlist. NBA code/data remain preserved and hidden. Native mobile capabilities still require authentication and report billing disabled. No public-registration, real-money, withdrawal, prize, permanent-issuance or statistics-feed activation.
-- The reused release receipt's legacy `privateNba: true` field names the shared private multi-sport infrastructure required by AFL/NRL; it is not NBA customer activation. The authoritative customer sport allowlist excludes basketball. The copied commerce receipt is provenance for an earlier authorised setup, not a new commerce migration in this release.
-- Wallet after deployment: revision **226**, document hash **5f6b1926b820cb90f68d9a6a01ab5d5e**, matching before migration. Customer Google receipts **0**, purchase admissions **0**, enabled free-Core programmes **0**.
-- No customer purchase, pack opening, balance adjustment, prize award or account deletion was used for verification. The reviewer completed normal account creation and consent, followed by the narrowly scoped membership repair described above. Normal weekly pack entitlements are visible; no collectible cards were opened/issued by a verification action.
+Previously approved migrations are all applied; no new migration was introduced for notifications or v28:
 
-## Published policies
+1. `20261031123611_free_core_gameplay_eligibility.sql` — disabled versioned gameplay eligibility, no collectible issuance/history rewrite.
+2. `20261031123931_member_google_test_receipts.sql` — private TEST admission/receipt/consumption records.
+3. `20261031234304_google_test_reconciliation_queue.sql` — private RLS queue, applied 06:15:48 UTC after separate approval.
 
-All four pages return HTTP 200 publicly without login. Version: **2026-11-01-release-preparation-v1**. Exact source is `config/launch-policy-content.json`; the release record contains its SHA-256.
+Exact source/history checks, encrypted targeted recovery snapshots and twelve protected fingerprints were verified when applying them. They are not blindly rerunnable raw DDL. The backup is not a complete Auth/storage disaster-recovery backup. Suspend the notification runtime by promoting **dpl_FpXCzRPTNYFtK7DVTj5dAXW3PiYp** / **5a62f4ee**; preserve receipt keys, queues and audit records. Never restore a stale wallet snapshot over later activity.
 
-| URL | Published scope |
+The old release script's `privateNba:true` receipt field names shared beta infrastructure; customer NBA visibility remains denied. Copied commerce receipts are provenance from earlier work, not a new activation.
+
+## Actual verification
+
+| Check | Evidence/result |
 | --- | --- |
-| https://docked.com.au/privacy | Current service/privacy notice, including actual test-mode limitations |
-| https://docked.com.au/refund-policy | Current TEST purchasing and proposed paid-release terms; unresolved spent-credit recovery identified |
-| https://docked.com.au/retention | Existing beta targets, provider limitations and outstanding commercial retention decisions |
-| https://docked.com.au/commercial-policy | Proposed public model, explicitly not payment activation or legal approval |
-| https://docked.com.au/account-deletion | Existing public deletion resource |
+| Initial notification/security/member tests | 17 passed |
+| Follow-up HTTP/native-navigation tests | 11 passed; overlapping focused suites, not 11 additional unique scenarios |
+| Final scheduler-cookie and Google-signature tests | 9 passed; valid secret required, forged/missing secret and mixed member cookies denied |
+| TypeScript and targeted lint | Passed; final application built READY on Vercel |
+| Final protected deployment HTTP checks | 8 passed |
+| Final hosted HTTP/authorised worker health | 10 passed; zero pending/working/attention/overdue jobs |
+| Natural five-minute scheduled worker | Passed at 07:30:09.812 UTC, independently of manual trigger; healthy empty queue |
+| Genuine Google delivery | Persisted completed Console test message; no financial mutation |
+| Signed-in reviewer backend capability check | NFL/AFL/NRL only; payments and registration disabled |
+| Android AAB/APK, signing, archive security inspection | Passed; exact package/version/HTTPS origin, no configured server secrets/custom lab CA |
+| Android lint | 0 errors, 34 resource/icon/manifest warnings |
+| Play bundle validation/internal publication | Accepted; two advisory symbol/mapping warnings; Available to internal testers |
+| v28 device purchase/refund | **Pending**; no device attached, not simulated as passed |
 
-Historical accepted policy content, consent versions and hashes remain unchanged. Publication is not a replacement of previous consent or proof of legal review. New public-registration consent configuration still needs approval against the final release model.
+Earlier 1 November baseline remains applicable: **692 platform tests**, **226 database tests**, 12 disposable migration/deletion checks preserving 251 pre-existing fingerprints, and six disposable wallet/pack/refund concurrency checks (20 duplicate notifications, 12 workers, 16 purchases/10 openings). Those broad suites were not unnecessarily rerun for the narrow scheduler/native transport changes. PostgreSQL/provider mutation tests used disposable fixtures; they are not hosted customer checkout evidence.
 
-## Billing implementation and evidence boundary
+No external operational-alert delivery has been verified. Attention counters are visible in existing Vercel logs. Inspection also found pre-existing broad pg_net queue access; this worker avoids it entirely rather than storing its secret there. Separate infrastructure hardening remains advisable. The prior Supabase leaked-password-protection warning remains unresolved; no RLS/authentication protection was weakened to dismiss warnings.
 
-- Ordinary customer checkout session now returns the authoritative member. The UI refuses a session/account mismatch before starting checkout; server receipt binding, product allocation, token replay protection and wallet transactions remain authoritative.
-- Deployed notification and worker routes remain disabled/protected. Google JWT validation checks exact audience, verified service identity, subscription, package and bounded payload. Durable insertion precedes acknowledgement.
-- Reconciliation implementation has bounded sweeps, SKIP LOCKED leases, retry/backoff, attention state, consumption outbox and repeat/refund protection. Only existing bound TEST receipts can be reconciled; expired new-purchase admission does not prevent refund recovery.
-- The previous genuine Samsung Google TEST purchases/refunds are still valid isolated evidence. They used a paired synthetic subject and shared settlement engine, **not the ordinary Supabase-authenticated customer wallet/reveal journey**.
-- No new ordinary-member Google checkout or genuine RTDN push occurred. Limited authenticated customer browser acceptance is now recorded above. Synthetic JWT/provider tests are not evidence of Google push delivery. No real-money acceptance is claimed.
-- Google AU products `docked_credits_4900_v1` and `docked_credits_9900_v1` were read back INACTIVE. The TEST verifier rejects real purchases. Commercial settlement is not enabled by flipping a feature flag.
+## Reviewer and Console
 
-## Production migrations
+- Dedicated reviewer `briantginty21@gmail.com` completed normal signup, email confirmation, consent and password sign-in. Existing ordinary membership rows were repaired earlier without funds/cards/admin roles. Password remains owner-held.
+- Real browser access to Profile, three Play formations, all 18 pack products, NRL Market and unified Social was observed. NBA and owner operations remain denied. No gameplay submission or purchase was performed.
+- **Full reviewer access is incomplete:** no free-Core programme is enabled, the empty collection cannot build a team, and NFL currently resolves to closed Week 7. A verified eligible free-Core roster/round programme must be configured before attesting full access. Existing beta access deadline is 31 January 2027; review support must cover Google's actual review window.
+- Console currently has **8/11 setup tasks completed**. Sign-in details, target audience/content and final Data Safety remain. Target audience is blocked until sign-in details are complete. The prepared login modal has an empty password and unticked full-access declaration; these were not fabricated.
+- Privacy, financial features, advertising ID, content rating, health, government and ads declarations were previously actioned. Listing/category/contact setup is marked complete. These are saved declarations, not external commercial approval.
+- Both Google products remain INACTIVE: A$49/4,900 and A$99/9,900 credits, no bonuses. No public Production track was submitted.
 
-Applied atomically at **2026-10-31T23:56:08Z** (1 November AEDT):
+## Published policy versions
 
-1. `20261031123611_free_core_gameplay_eligibility.sql` — disabled, versioned gameplay eligibility; no collectible issuance or historical rewrites.
-2. `20261031123931_member_google_test_receipts.sql` — empty private admission/receipt/outbox records and restricted functions; no purchase grant or wallet credit.
+Published version **2026-11-01-release-preparation-v1**, source `config/launch-policy-content.json`:
 
-Exact hashes, backup receipt and migration-ledger evidence are in `qa/customer-billing-20261101/migrations-applied.json`. Twelve protected table fingerprints were unchanged. Encrypted recovery snapshot covers eleven relevant tables and three replaced function definitions; append-only wallet history was fingerprinted instead of downloading its 313 MB aggregate. This is a targeted migration backup, not full Auth/storage disaster recovery. Raw DDL is not blindly replayable: the reviewed runner skips exact version/source history and rejects mismatches.
+- https://docked.com.au/privacy
+- https://docked.com.au/refund-policy
+- https://docked.com.au/retention
+- https://docked.com.au/commercial-policy
+- Existing deletion resource: https://docked.com.au/account-deletion
 
-**Separately approved and applied at 06:15:48 UTC:** `20261031234304_google_test_reconciliation_queue.sql`. It creates an empty private RLS queue and indexes; protected data fingerprints unchanged. An empty Pub/Sub topic now exists, but no publisher IAM/subscription, worker secret or schedule has been activated. See `GOOGLE_NOTIFICATION_ACTIVATION_20261101.md` for exact existing-infrastructure setup and scoped permissions.
+These describe the actual TEST service and identify proposed commercial terms. Existing accepted consent versions were preserved. Publication does not claim legal review or settle player/card/data rights, paid-random-pack/platform classification, spent-credit refund recovery/appeals or commercial retention obligations.
 
-Rollback: return the website alias to `dpl_2cdQMeCTvRaX6dPSfoxuAF6SsBA9` / commit `673a751b2ec755836ef31dfb9b967786861c7b99`. Keep additive receipt/audit tables disabled. Do not overwrite later customer activity with backup wallet documents or delete financial history. Any function restoration requires an operator-reviewed disabled-programme window.
+## Exact remaining launch work
 
-## Tests actually executed
+1. **Ordinary customer TEST acceptance:** use v28 on an authorised Play licence-test environment, confirmed isolated member, bounded admission and temporarily enabled test products. Verify genuine checkout → correct member wallet → permitted pack/ownership → duplicate/delayed handling → refunds before/after spending, with actual refund RTDN/reconciliation. Current Console test delivery does not substitute for this. A Play-enabled device is required for the native boundary; do not repeat unrelated prior v27 tests.
+2. **Reviewer gameplay:** configure a source-verified eligible free-Core roster and valid testable rounds without prizes or permanent issuance, within the already-authorised free-Core work. Current programme/roster configuration is absent; do not invent eligibility, fixture dates or rewrite closed historical rounds. Complete full access acceptance, then have the owner enter the existing reviewer password directly in Console and finish the truthful app-access declaration. Do not reset credentials or bypass normal security.
+3. **Public-mode registration/deletion:** complete an isolated hosted end-to-end member acceptance using approved consent/age/territory configuration. Local public-mode deletion with mocked Auth passed; disposable hosted Auth deletion remains pending. Keep public registration closed meanwhile.
+4. **Commercial approval:** resolve rights and Google/legal classification for the intended paid cards, rarity-based fantasy performance and marketplace model; approve the final refund/retention terms. Finish accurate Data Safety/target-audience declarations against that exact release configuration. Do not hide paid products from the long-term model or call TEST acceptance commercial acceptance.
+5. **Final release:** use a newer public-candidate version code after v28 with separately reviewed features. Do not promote the member-TEST build publicly. Obtain the owner's final Australian submission/rollout approval; payments, withdrawals and prizes are separate approvals.
 
-| Check | Actual result |
-| --- | --- |
-| Platform suite | 692 passed; 0 failures/skips |
-| Database suite | 226 passed; 0 failures/skips |
-| Disposable PostgreSQL migration/deletion integration | 12 checks passed; 251 pre-existing table fingerprints preserved; rollback/history replay; four concurrent Auth-erasure retries |
-| Disposable PostgreSQL wallet/pack/refund concurrency | 6 checks passed; 20 duplicate notifications, 12 reconciliation workers, 16 purchases/10 openings, stale events and exhausted retries |
-| TypeScript, lint, production build | Passed; final committed release also built READY on Vercel |
-| Candidate protected HTTP checks | 7 passed; real Vercel-authenticated requests, no member authentication |
-| Production HTTP/policy checks | 11 passed; public policy version, registration closed, protected/disabled routes |
-| Rendered policy pages | Desktop and 390-pixel mobile inspection; readable, no horizontal overflow; privacy/refund navigation verified |
-| Android artifact | Existing v27/1.26 AAB hash and Google signing readback verified; no unnecessary rebuild/device retest |
-
-Database mutation tests used disposable PostgreSQL, mocked Google/Auth transport and synthetic members. They did not connect to customer ledgers. The client-boundary scanner examined 92 build assets without finding configured secret markers; this was not a special injected-canary build. Limited genuine reviewer browser checks now pass as recorded above; full gameplay, native customer checkout and refund acceptance remain pending.
-
-## Console and Android
-
-- Console dashboard: **8/11 initial tasks complete**, Production **Inactive**, release task locked until initial setup completes.
-- Privacy URL saved to https://docked.com.au/privacy. Data Safety draft saved with actual collected-data categories and deletion URL; not submitted for review.
-- Remaining declarations: **Sign in details; Target audience and content; final Data Safety**. Google blocks target-audience setup until sign-in details are complete.
-- Seven actioned declarations observed: privacy, financial features, advertising ID, content rating, health, government and ads. Category/contact details and store listing are marked complete. These are saved declarations, not Google approval of the commercial model.
-- Nominated reviewer: ordinary signup, email confirmation, consent and browser login complete. Initial invite expiry **2026-11-06T23:57:40.508Z** no longer limits accepted signup. Existing multi-sport beta programme runs until **2027-01-31 UTC**. No invented credentials, account bypass or owner password shared. Console username/name prepared but not saved; password remains owner-held and the full-access declaration remains unticked pending actual playable access.
-- Android package `docked.fantasy`, **27 / 1.26**, existing internal release. AAB `artifacts/android/Docked-public-candidate.aab`, SHA-256 `3e76cd5e0f0c15f7bcdc02b339d088ac3998a07f05233fa4b0188efe6f0d594e`.
-- v27 has no QA launcher and an empty normal native purchase allowlist. Website/server changes do not require an AAB rebuild. Ordinary member TEST checkout requires a separately restricted test-capable allowlist/build and an authenticated Play licence-test environment. The disconnected Samsung's prior successful v27 tests were not repeated.
-- Planned public territory remains Australia. No Production track or country rollout was activated; Console currently prevents preparing the final release through its locked setup workflow.
-
-## Exact remaining actions
-
-1. **Reviewer readiness:** finish verified free-Core/eligible-round access and authorised paid-content testing, then the owner securely enters the existing password directly in Console. Do not send it in chat or recreate the account. Only attest full access when true; finish target audience (adult-only actual policy) and Data Safety. Support access through the full review window, including after the existing beta deadline if necessary.
-2. **Billing infrastructure approval:** queue migration approval is complete. Authorize the prepared topic-only Pub/Sub publisher and scoped keyless push-identity grants. Existing Vercel/Supabase can host the endpoint and minute worker; no new paid host is proposed. Verify available no-charge Pub/Sub quota, configure alerts and observe real test notification plus refund delivery.
-3. **Ordinary customer TEST acceptance:** use a dedicated confirmed test member with bounded admission, isolated funding/inventory and a test-capable native configuration. Complete wallet, pack reveal, refund-before/after-spend and duplicate protection. A real Play test environment is required for the final checkout boundary; the disconnected phone does not block the completed server work.
-4. **Public configuration:** approve the final release-policy/consent versions, eligible AU registration and free-Core programme configuration; then verify the full new-member email-confirmation → consent → free gameplay → deletion journey in the protected public-mode environment. Current public-mode deletion integration passed locally with mocked Auth, not against a disposable hosted Auth member. Registration stays closed meanwhile.
-5. **Commercial decisions:** settle player/data/card rights for public use; legal/platform classification of paid random cards, rarity-based performance and marketplace resale; spent-credit refund recovery/notices/appeals; final commercial retention and processor obligations. Paid products remain part of the proposed model, not removed. A free/no-prize release still needs its own accurate rights, privacy, reviewer and registration acceptance.
-6. **Final approval:** once the exact free/paid feature configuration passes and Console permits it, request explicit owner approval for the Australian public submission/rollout. Payment activation, withdrawals and prizes remain separate decisions. Do not submit the QA build publicly.
-
-Google's [payments guidance](https://support.google.com/googleplay/android-developer/answer/10281818) ordinarily requires Play Billing for digital goods and distinguishes unsupported peer-to-peer/gambling payments; it does not establish Docked's classification. [Account deletion requirements](https://support.google.com/googleplay/android-developer/answer/13327111) require in-app and external deletion-request paths and appropriate handling of associated data. The current retention/process limitations are disclosed; no external legal or Google approval is claimed.
-
-**Decision:** website and protected engineering deployment complete; Google public submission and paid launch remain **NO-GO** for the specific outstanding items above. No final public-release approval is requested prematurely.
+No permission to submit publicly or activate real-money purchases was exercised. The outstanding items above prevent an honest public-launch GO decision.

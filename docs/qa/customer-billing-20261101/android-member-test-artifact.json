@@ -1,0 +1,22 @@
+{
+  "package": "docked.fantasy",
+  "versionCode": 28,
+  "versionName": "1.27-member-test",
+  "purpose": "internal ordinary authenticated member TEST checkout only",
+  "backend": "https://docked.com.au/app",
+  "sports": [
+    "nfl",
+    "afl",
+    "nrl"
+  ],
+  "debuggable": false,
+  "customLabCA": false,
+  "configuredSecretMarkersFound": false,
+  "sha256": "89d8475aa14e88b4a201a9f836d34367287900bfd1a5f8c62bd8e98fc6108be2",
+  "originalV27Unchanged": "3e76cd5e0f0c15f7bcdc02b339d088ac3998a07f05233fa4b0188efe6f0d594e",
+  "nativeLint": {
+    "errors": 0,
+    "warnings": 34
+  },
+  "deviceAcceptance": "pending: no attached device"
+}

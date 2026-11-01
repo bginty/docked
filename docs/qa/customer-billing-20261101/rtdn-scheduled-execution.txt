@@ -1,0 +1,23 @@
+Observed using Vercel runtime logs on 2026-11-01T07:32:05Z.
+07:30:09.812Z is the natural five-minute schedule (no manual trigger at that time).
+07:25:19.025Z is a manually requested Vercel Cron run.
+07:25:35.352Z is a direct authenticated acceptance request.
+These logs prove scheduled execution with an empty healthy queue, not purchase/refund processing.
+
+## Runtime Logs
+
+**Project:** prj_l0rpVDPRuIRp9UcBUkudeyUK5yST
+**Deployment:** dpl_D9qbsBbeHrjCAjAtdpTvsjaiAEyX
+**Time range:** 2026-11-01T07:22:05.741Z → 2026-11-01T07:32:05.741Z
+
+### 2026-11-01T07:30:09.812Z GET /api/store/google/scheduled [info/function]
+dep=dpl_D9qbsBbeHrjCAjAtdpTvsjaiAEyX request=l4rnd-1793518209468-119ceaddecb2 domain=docked-production-n5yj6h2a0-briant-s-projects.vercel.app environment=production region=iad1 runtime=nodejs24.x stream=stdout
+    {"event":"google-test-reconciliation","scheduled":0,"completed":0,"pending":0,"working":0,"attention":0,"overdue":0,"attentionRequired":false}
+
+### 2026-11-01T07:25:35.352Z GET /api/store/google/scheduled [info/function]
+dep=dpl_D9qbsBbeHrjCAjAtdpTvsjaiAEyX request=4ghbt-1793517935291-dc68f7b65eb5 domain=docked.com.au environment=production region=syd1 runtime=nodejs24.x stream=stdout
+    {"event":"google-test-reconciliation","scheduled":0,"completed":0,"pending":0,"working":0,"attention":0,"overdue":0,"attentionRequired":false}
+
+### 2026-11-01T07:25:19.025Z GET /api/store/google/scheduled [info/function]
+dep=dpl_D9qbsBbeHrjCAjAtdpTvsjaiAEyX request=gqzz2-1793517918235-bb1a1bac4bc9 domain=docked-production-n5yj6h2a0-briant-s-projects.vercel.app environment=production region=iad1 runtime=nodejs24.x stream=stdout
+    {"event":"google-test-reconciliation","scheduled":0,"completed":0,"pending":0,"working":0,"attention":0,"overdue":0,"attentionRequired":false}

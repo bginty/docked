@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: push acknowledges only durable persistence; duplicate is still successful
+ok 1 - push acknowledges only durable persistence; duplicate is still successful
+  ---
+  duration_ms: 19.957
+  ...
+# Subtest: host scheduler accepts only its secret and cannot use browser credentials
+ok 2 - host scheduler accepts only its secret and cannot use browser credentials
+  ---
+  duration_ms: 15.3817
+  ...
+# Subtest: invalid Google identity or alternate callback never reaches persistence
+ok 3 - invalid Google identity or alternate callback never reaches persistence
+  ---
+  duration_ms: 2.7627
+  ...
+# Subtest: scheduled worker requires independent server credential, never a member session
+ok 4 - scheduled worker requires independent server credential, never a member session
+  ---
+  duration_ms: 3.6382
+  ...
+# Subtest: signed Google push produces only a stable refresh hint, no client credit or member
+ok 5 - signed Google push produces only a stable refresh hint, no client credit or member
+  ---
+  duration_ms: 314.2855
+  ...
+# Subtest: wrong push account, unverified email, browser origin and cookies denied
+ok 6 - wrong push account, unverified email, browser origin and cookies denied
+  ---
+  duration_ms: 17.4832
+  ...
+# Subtest: wrong issuer/audience/signature and expired tokens rejected by cryptographic verifier
+ok 7 - wrong issuer/audience/signature and expired tokens rejected by cryptographic verifier
+  ---
+  duration_ms: 180.3081
+  ...
+# Subtest: wrong subscription/package, malformed/oversized body and ambiguous notifications rejected
+ok 8 - wrong subscription/package, malformed/oversized body and ambiguous notifications rejected
+  ---
+  duration_ms: 24.2004
+  ...
+# Subtest: voided purchase and test notifications do not carry executable refund amounts
+ok 9 - voided purchase and test notifications do not carry executable refund amounts
+  ---
+  duration_ms: 8.4988
+  ...
+# Subtest: native links preserve visible sport and reject hidden/ambiguous/malicious context
+ok 10 - native links preserve visible sport and reject hidden/ambiguous/malicious context
+  ---
+  duration_ms: 6.1978
+  ...
+# Subtest: internal native build is HTTPS-only and does not weaken old release targets
+ok 11 - internal native build is HTTPS-only and does not weaken old release targets
+  ---
+  duration_ms: 1.8448
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2976.3731

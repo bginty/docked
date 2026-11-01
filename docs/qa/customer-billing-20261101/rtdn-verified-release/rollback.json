@@ -1,0 +1,6 @@
+{
+  "deployment": "dpl_FpXCzRPTNYFtK7DVTj5dAXW3PiYp",
+  "commit": "5a62f4ee5594dffba1812c1ce6b1c0983efbf962",
+  "databaseMigrations": [],
+  "recovery": "Promote this pre-activation application to suspend the TEST notification runtime and its scheduled worker. Preserve receipt keys, queue, audit and wallet history. No new database changes. The immediately preceding 6eb91e20 deployment rejected Vercel Cron's hosting cookie and is not the functional recovery target."
+}

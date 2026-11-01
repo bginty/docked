@@ -1,0 +1,85 @@
+{
+  "at": "2026-11-01T07:25:36.544Z",
+  "base": "https://docked.com.au",
+  "checks": [
+    {
+      "path": "/api/status",
+      "method": "GET",
+      "status": 200,
+      "body": "{\"product\":\"fantasy-cards\",\"registration\":\"closed\"}"
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"error\":\"Sign in with an authorised account.\"}"
+    },
+    {
+      "path": "/api/store/google/test",
+      "method": "GET",
+      "status": 403,
+      "body": "{\"error\":\"Google test purchasing is unavailable. No purchase fulfilment has been confirmed.\"}"
+    },
+    {
+      "path": "/api/store/google/notifications",
+      "method": "POST",
+      "status": 401,
+      "body": "{\"error\":\"Notification authentication or payload rejected\"}"
+    },
+    {
+      "path": "/api/store/google/reconcile",
+      "method": "POST",
+      "status": 401,
+      "body": "{\"error\":\"Worker authentication required\"}"
+    },
+    {
+      "path": "/api/store/google/scheduled",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"error\":\"Worker authentication required\"}"
+    },
+    {
+      "path": "/api/auth/customer-signup",
+      "method": "POST",
+      "status": 403,
+      "body": "{\"error\":\"Invite required. Docked is open to invited friends only.\"}"
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=basketball",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"allowed\":[],\"error\":\"Please sign in again.\"}"
+    },
+    {
+      "path": "/api/store/google/reconcile",
+      "method": "POST",
+      "authenticatedWorker": true,
+      "status": 200,
+      "body": {
+        "scheduled": 0,
+        "completed": 0,
+        "pending": 0,
+        "working": 0,
+        "attention": 0,
+        "overdue": 0,
+        "attentionRequired": false
+      }
+    },
+    {
+      "path": "/api/store/google/scheduled",
+      "method": "GET",
+      "authenticatedWorker": true,
+      "status": 200,
+      "body": {
+        "scheduled": 0,
+        "completed": 0,
+        "pending": 0,
+        "working": 0,
+        "attention": 0,
+        "overdue": 0,
+        "attentionRequired": false
+      }
+    }
+  ],
+  "passed": true
+}
