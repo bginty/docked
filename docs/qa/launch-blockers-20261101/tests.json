@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-01T11:42:35.809Z",
+  "suites": {
+    "platform": {
+      "tests": 694,
+      "pass": 694,
+      "fail": 0,
+      "skipped": 0
+    },
+    "database": {
+      "tests": 228,
+      "pass": 228,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "acceptanceScriptLint": {
+    "command": "npx eslint scripts/isolated-auth-deletion.ts scripts/reviewer-practice-readback.ts --max-warnings=0",
+    "exitCode": 0
+  },
+  "scope": "Actual completed runs; not a new whole-platform browser or public-money acceptance"
+}

@@ -1,0 +1,164 @@
+{
+  "at": "2026-11-01T11:34:36.448Z",
+  "stage": "final",
+  "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+  "revision": "240",
+  "baseline": {
+    "available": 4500,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 4500,
+    "heldAvailable": 4500,
+    "spendable": 0,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 4500
+  },
+  "wallet": {
+    "available": 9400,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 9400,
+    "heldAvailable": 9400,
+    "spendable": 0,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 9400
+  },
+  "inventoryBefore": 70,
+  "inventoryAfter": 79,
+  "receipts": [
+    {
+      "receipt_key": "05f9e5f5fa27bb212a6138c311f1b2a7b709fb16acb87a767f6c65e05348b66b",
+      "status": "CANCELLED",
+      "product": {
+        "id": "docked_credits_9900_v1",
+        "scope": "account",
+        "credits": 9900,
+        "version": "owner-credit-packages-2026-10-31-v1"
+      },
+      "updated_at": "2026-11-01T11:30:21.657Z"
+    }
+  ],
+  "outbox": [
+    {
+      "receipt_key": "05f9e5f5fa27bb212a6138c311f1b2a7b709fb16acb87a767f6c65e05348b66b",
+      "state": "done",
+      "attempts": 1
+    }
+  ],
+  "notifications": [
+    {
+      "id": "4b5095918f24f17b9a1f148d98051be8c7f50b5a2bd7a73d2300304e5a21b74b",
+      "kind": "purchase",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T11:25:27.714Z",
+      "completed_at": "2026-11-01T11:30:21.779Z"
+    },
+    {
+      "id": "97f73512b4eaa087640b27638c670a15cb9adf84428f30ee9f7fa0dc21b15917",
+      "kind": "voided",
+      "state": "done",
+      "attempts": 1,
+      "last_error": null,
+      "created_at": "2026-11-01T11:28:30.614Z",
+      "completed_at": "2026-11-01T11:30:21.792Z"
+    }
+  ],
+  "packs": [
+    {
+      "id": "09042cb0-2a6a-4103-93f7-bf5a0fa05ee7",
+      "name": "AFL Premium 9 Pack · Real-player beta",
+      "sport": "afl",
+      "price": 5000,
+      "cards": 9,
+      "createdAt": 1793532431670,
+      "openedAt": 1793532445218,
+      "rarities": [
+        "ULTRA_RARE",
+        "LEGENDARY",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE"
+      ]
+    }
+  ],
+  "deposits": [
+    {
+      "id": "google_fe217f216df8b98e759e0c576840f6cd4643698de3d108c7c595681d7ca7f395",
+      "amount": 9900,
+      "refunded": 9900,
+      "status": "REVIEW"
+    }
+  ],
+  "journal": [
+    {
+      "at": 1793532329175,
+      "id": "google_fe217f216df8b98e759e0c576840f6cd4643698de3d108c7c595681d7ca7f395_capture_deposit",
+      "hash": "01a6c7c007b68cd8048314b40cd96858593c32f74d840817ff9e9e182d2d0264",
+      "actor": "store-test-provider",
+      "lines": [
+        {
+          "account": "lot:L237_18:pending",
+          "credits": 9900
+        },
+        {
+          "account": "system:provider-receivable",
+          "credits": -9900
+        }
+      ],
+      "policy": "invited-test-credits-2026-10-11-v1",
+      "reason": "Verified sandbox payment; member liability, not revenue",
+      "previousHash": "83fec9f86e4a5c8d810e0d02d862f300b25799c42b95863d6f5a856527ee47bf"
+    },
+    {
+      "at": 1793532329175,
+      "id": "google_fe217f216df8b98e759e0c576840f6cd4643698de3d108c7c595681d7ca7f395_clear_clear",
+      "hash": "7d44ac46c5666bf310894853790e0076bbcbe6424e6a3edfcb7e08ed0d7217e2",
+      "actor": "store-test-provider",
+      "lines": [
+        {
+          "account": "lot:L237_18:pending",
+          "credits": -9900
+        },
+        {
+          "account": "lot:L237_18:available",
+          "credits": 9900
+        }
+      ],
+      "policy": "invited-test-credits-2026-10-11-v1",
+      "reason": "Cleared purchased credits",
+      "previousHash": "01a6c7c007b68cd8048314b40cd96858593c32f74d840817ff9e9e182d2d0264"
+    },
+    {
+      "at": 1793532610671,
+      "id": "google_fe217f216df8b98e759e0c576840f6cd4643698de3d108c7c595681d7ca7f395_refund_refund-review",
+      "hash": "f676de6be6efc3ef6f86f6a7bf4d5e0f5ce98d642ab3c55225031679da969223",
+      "actor": "store-test-provider",
+      "lines": [
+        {
+          "account": "system:recovery-review",
+          "credits": -9900
+        },
+        {
+          "account": "system:provider-receivable",
+          "credits": 9900
+        }
+      ],
+      "policy": "invited-test-credits-2026-10-11-v1",
+      "reason": "Provider refund cash movement; liability unresolved, no confiscation",
+      "previousHash": "49b04ca35441e2542aca04f546662e1a7e30a822c934166c3295e3146e37cbc2"
+    }
+  ],
+  "captureEvents": 1,
+  "unrelatedWalletsUnchanged": true,
+  "unrelatedOwnershipUnchanged": true
+}

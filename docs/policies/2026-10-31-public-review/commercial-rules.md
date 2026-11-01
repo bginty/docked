@@ -24,4 +24,4 @@ Rarity multipliers are Core 1.0×, Rare 1.1×, Elite 1.2×, Ultra Rare 1.3×, Le
 6. Keep cash features, withdrawals, paid entry and prize awards disabled. Any later activation is a separate decision. Identity verification does not turn these on.
 7. Approve the exact tested release, products, store declarations and public registration switch only after hosted customer acceptance.
 
-The published beta policy currently says NFL-only, permits swaps and omits rarity multipliers. Replace it with a newly approved immutable version matching the chosen release; preserve historical consents. Do not submit those stale statements as the public launch policy.
+The current release-preparation content is version `2026-11-01-release-preparation-v1` in `config/launch-policy-content.json`. It reflects NFL/AFL/NRL, credit sales only and saved rarity rules. Older NFL-only/swap wording is historical, not the current release source. The commercial draft still requires owner/legal approval; preserve historical consents and publish any approved commercial terms as a new immutable version.

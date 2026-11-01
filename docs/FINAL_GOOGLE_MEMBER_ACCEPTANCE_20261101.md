@@ -1,5 +1,7 @@
 # Google Play ordinary-member acceptance — 1 November 2026
 
+Later status: `FINAL_GOOGLE_RELEASE_READINESS_20261101.md` records completed 9,900-credit physical acceptance, reviewer gameplay, local real-Auth deletion, saved Console declarations and v29 internal rollout. The checkpoint below remains historical evidence; its pending items are superseded by that report.
+
 **Real Google TEST checkout, both nine-card pack families, and genuine refund notifications were observed. Public/paid launch remains NO-GO.** This supersedes the earlier “ordinary-member purchase pending” checkpoint, not the outstanding commercial approval or reviewer/deletion requirements.
 
 ## Actual hosted and physical evidence

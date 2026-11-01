@@ -1,0 +1,124 @@
+{
+  "at": "2026-11-01T11:38:44.145Z",
+  "temporaryQaAccess": {
+    "roster": false,
+    "wallet": false,
+    "sport_access": false
+  },
+  "enabledGoogleTestAdmissions": 0,
+  "status": {
+    "product": "fantasy-cards",
+    "registration": "closed"
+  },
+  "release": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "053848ed67946fdd727a5c1d8547272d383c9470",
+    "deploymentId": "dpl_2bWUkY1sgtshkifqRRty89oPfuzQ",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  },
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/nba-beta?view=state",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet?view=summary",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/test-wallet?view=packs",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=afl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/marketplace?sport=nrl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/community?view=hub",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/standings",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/admin/sports-sandbox?sport=basketball",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/app/login",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=basketball",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=afl",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/fantasy/play?sport=nrl",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "authenticatedMemberTesting": false
+}

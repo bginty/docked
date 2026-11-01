@@ -1,0 +1,34 @@
+{
+  "at": "2026-11-01T11:28:22.872Z",
+  "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+  "receiptKey": "05f9e5f5fa27bb212a6138c311f1b2a7b709fb16acb87a767f6c65e05348b66b",
+  "concurrentReplays": [
+    {
+      "status": 200,
+      "state": "PURCHASED"
+    },
+    {
+      "status": 200,
+      "state": "PURCHASED"
+    },
+    {
+      "status": 200,
+      "state": "PURCHASED"
+    }
+  ],
+  "wallet": {
+    "available": 9400,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 9400,
+    "heldAvailable": 4500,
+    "spendable": 4900,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 9400
+  },
+  "journalComparison": "Not measured by this replay snapshot. The final readback separately verifies one capture event and unique receipt journal entries; see member-9900-final.json.",
+  "ownershipUnchanged": true,
+  "depositsUnchanged": true
+}

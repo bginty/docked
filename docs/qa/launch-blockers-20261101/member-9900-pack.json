@@ -1,0 +1,88 @@
+{
+  "at": "2026-11-01T11:28:03.400Z",
+  "stage": "pack",
+  "member": "e56880e0-2143-42b1-97aa-049317f96db7",
+  "revision": "239",
+  "baseline": {
+    "available": 4500,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 4500,
+    "heldAvailable": 4500,
+    "spendable": 0,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 4500
+  },
+  "wallet": {
+    "available": 9400,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 9400,
+    "heldAvailable": 4500,
+    "spendable": 4900,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 9400
+  },
+  "inventoryBefore": 70,
+  "inventoryAfter": 79,
+  "receipts": [
+    {
+      "receipt_key": "05f9e5f5fa27bb212a6138c311f1b2a7b709fb16acb87a767f6c65e05348b66b",
+      "status": "PURCHASED",
+      "product": {
+        "id": "docked_credits_9900_v1",
+        "scope": "account",
+        "credits": 9900,
+        "version": "owner-credit-packages-2026-10-31-v1"
+      },
+      "updated_at": "2026-11-01T11:25:29.156Z"
+    }
+  ],
+  "outbox": [
+    {
+      "receipt_key": "05f9e5f5fa27bb212a6138c311f1b2a7b709fb16acb87a767f6c65e05348b66b",
+      "state": "done",
+      "attempts": 1
+    }
+  ],
+  "notifications": [
+    {
+      "id": "4b5095918f24f17b9a1f148d98051be8c7f50b5a2bd7a73d2300304e5a21b74b",
+      "kind": "purchase",
+      "state": "pending",
+      "attempts": 0,
+      "last_error": null,
+      "created_at": "2026-11-01T11:25:27.714Z",
+      "completed_at": null
+    }
+  ],
+  "packs": [
+    {
+      "id": "09042cb0-2a6a-4103-93f7-bf5a0fa05ee7",
+      "name": "AFL Premium 9 Pack · Real-player beta",
+      "sport": "afl",
+      "price": 5000,
+      "cards": 9,
+      "createdAt": 1793532431670,
+      "openedAt": 1793532445218,
+      "rarities": [
+        "ULTRA_RARE",
+        "LEGENDARY",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE",
+        "ULTRA_RARE"
+      ]
+    }
+  ],
+  "deposits": [],
+  "unrelatedWalletsUnchanged": true,
+  "unrelatedOwnershipUnchanged": true
+}

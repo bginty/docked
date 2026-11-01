@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-01T11:15:32.289Z",
+  "source": "Read-only Production database following genuine reviewer browser entry",
+  "entries": [
+    {
+      "sport": "afl",
+      "competition": "5f200a16-9185-4edb-99a8-cdba9e765e3d",
+      "mode": "SALARY_CAP",
+      "players": 22
+    },
+    {
+      "sport": "nfl",
+      "competition": "2a94395d-71c5-4f83-bf83-f8e867aca682",
+      "mode": "SALARY_CAP",
+      "players": 7
+    },
+    {
+      "sport": "nrl",
+      "competition": "5ff32114-d621-41ac-ae2b-f006b0401eba",
+      "mode": "SALARY_CAP",
+      "players": 13
+    }
+  ],
+  "drafts": [
+    {
+      "sport": "nfl",
+      "revision": 1,
+      "players": 7
+    },
+    {
+      "sport": "afl",
+      "revision": 1,
+      "players": 22
+    },
+    {
+      "sport": "nrl",
+      "revision": 1,
+      "players": 13
+    }
+  ],
+  "protectedTablesUnchanged": [
+    "credits_sandbox.state",
+    "credits_sandbox.card_instances",
+    "credits_sandbox.journal",
+    "beta_fantasy.cards",
+    "beta_fantasy.entries",
+    "beta_fantasy.round_drafts",
+    "beta_fantasy.slot_locks",
+    "beta_fantasy.prize_schedules",
+    "sports_feed.private_beta_sports"
+  ],
+  "reviewerEntriesAndDraftsExcludedFromPreservationComparison": true,
+  "historicalRulesUnchanged": true,
+  "collectibleOrWalletMutation": false
+}

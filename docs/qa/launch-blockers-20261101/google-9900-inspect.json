@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-01T11:22:24.138Z",
+  "command": "inspect",
+  "status": 200,
+  "id": "docked_credits_9900_v1",
+  "options": [
+    {
+      "purchaseOptionId": "buy-au",
+      "state": "INACTIVE",
+      "buyOption": {
+        "legacyCompatible": true
+      },
+      "regionalPricingAndAvailabilityConfigs": [
+        {
+          "regionCode": "AU",
+          "price": {
+            "currencyCode": "AUD",
+            "units": "99"
+          },
+          "availability": "AVAILABLE"
+        }
+      ],
+      "taxAndComplianceSettings": {
+        "withdrawalRightType": "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
+      }
+    }
+  ]
+}

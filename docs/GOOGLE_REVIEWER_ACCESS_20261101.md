@@ -1,42 +1,40 @@
-# Google Play reviewer access — preparation record
+# Google Play reviewer access — verified private-beta configuration
 
-Status: dedicated account now created by its owner, email confirmed and normal consent accepted. A genuine reviewer browser sign-in has been observed. Its password remains owner-held and is not stored in this repository. No authentication exemption or owner permissions granted. Console credential submission and full reviewer acceptance remain pending.
+Updated 1 November 2026. This supersedes the earlier preparation-only status in this file. The dedicated account is **briantginty21@gmail.com**, team **Docked Review**. The owner created its password, confirmed email and completed ordinary authentication/consent. The owner also reported saving its existing password and access declaration directly in Play Console. No password is stored in this repository or report; no owner role, MFA exemption or special authentication bypass was granted.
 
-Current update, 1 November 06:28 UTC: the signup failure was not an expired invitation. The exact nominated address was missing from the approved-beta outbound-email allowlist. The existing four recipients were preserved and only the nominated reviewer added; all other secret digests stayed unchanged. Resending through the normal UI produced one accepted provider delivery (HTTP 202) at 06:18 UTC; the user then confirmed their email and signed in. Existing account/password preserved. Normal consent was accepted at 06:19:19 UTC. The invite expiry is the deadline to accept the invitation, not an ongoing trial deadline after acceptance.
+## Actual hosted acceptance
 
-Genuine reviewer sign-in exposed a separate access gap: signup admission existed, but `credits_sandbox.access`, `sports_feed.sport_sandbox_access` and the legacy shared `sports_feed.nba_beta_access` registry had no member row. The nominated ordinary reviewer was added to these existing registries at 06:27:50 UTC, following the same beta programme deadline as existing testers (2027-01-31 UTC). This legacy table name does not activate NBA: server customer-sport gates still admit only NFL/AFL/NRL. Wallet revision/hash, inventory, peers and feature controls were unchanged. Zero credits/cards/privileged roles were granted; the account's visible wallet correctly reads zero. Public review after the beta programme deadline needs a separately approved supported access programme; do not promise perpetual access.
+The genuine signed-in reviewer Chrome session completed free-Core selection, draft save, confirmed entry, Rankings and View Team in all three Traditional practice competitions. These are browser observations with subsequent read-only Production database confirmation, not fixtures masquerading as hosted acceptance.
 
-## Exact owner setup
+| Sport | Free Core roster eligibility | Selected | Salary / cap | Competition |
+| --- | ---: | ---: | --- | --- |
+| NFL | 386 | 7 | $3.5m / $4.4m | `2a94395d-71c5-4f83-bf83-f8e867aca682` |
+| AFL | 545 | 22 | $11m / $13.8m | `5f200a16-9185-4edb-99a8-cdba9e765e3d` |
+| NRL | 337 | 13 | $6.5m / $8.2m | `5ff32114-d621-41ac-ae2b-f006b0401eba` |
 
-Account creation, password entry, confirmation and normal onboarding are complete. Do not recreate the account or reset its password. Ordinary members follow the existing member security policy; owner MFA requirements remain intact. Keep credentials out of source control, logs, screenshots and this document. Public registration remains closed.
+The season is **2026 Practice**, an explicitly configured, editable, no-prize test season. All-Star counterparts exist but were not separately entered in this acceptance. Free Core eligibility is competition-scoped and creates no collectible inventory. Scores remain awaiting statistics; no fabricated game results were added. The reviewer wallet and owned inventory were not funded or modified. Existing normal starter entitlements are distinct from opened collectible cards.
 
-Use Play Console → Docked → App content → App access → restricted functionality instructions. Enter the dedicated login securely there. Explain the actual verification steps and ensure reviewers can complete them without waiting for the owner's personal device. If normal MFA cannot provide a reviewable workflow, return this as an access blocker; do not bypass it or conceal different reviewer behaviour.
+Evidence: `docs/qa/launch-blockers-20261101/reviewer-hosted-readback.json` and `reviewer-{nfl,afl,nrl}-{entered,team}.png`. The readback was captured before the separate isolated Google billing test; it excludes the three authorised reviewer entries/drafts from its preservation comparison. Historical rules, other entries, cards, wallets and prize records matched the encrypted pre-configuration backup.
 
-Confirm the exact account can access the same enabled NFL/AFL/NRL features as normal members, using the store-installed candidate. An already-signed-in owner session is not dedicated reviewer acceptance.
+## Resolved access defects
 
-## Observed customer browser acceptance
+1. The nominated address originally lacked beta outbound-email permission. It was added without changing existing recipients; normal verification delivery and user confirmation succeeded.
+2. Ordinary beta admission did not create the existing sport/wallet access rows. Those registries were populated for the nominated reviewer without credits, cards or privilege grants. The legacy shared `nba_beta_access` table name does not activate NBA; customer visibility remains server-denied.
+3. Free-Core player identifiers produced by PostgreSQL were valid GUIDs but failed a strict UUID-version check at the request boundary. GUID validation now agrees with the stored identifiers without weakening identity/eligibility validation.
+4. First-time AFL/NRL members lacked NFL's permanent-team-name setup. The shared component now calls the existing `name_team` service before saving/entering, rather than bypassing the required member relationship.
+5. Changing competition mode now retains the same practice season/round instead of selecting an unrelated historical test round.
 
-- Reviewer Profile identifies the nominated confirmed Gmail account, with no Owner dashboard shortcut. The real wallet loads zero, and collection counts are zero rather than another member's inventory.
-- NFL, AFL and NRL Play load. AFL has 22 slots; NRL 13; NFL seven. NBA remains absent, and the authenticated `/api/nba-beta` response is `allowed:false` after the membership repair.
-- The NRL picker has no eligible cards. The free-Core gameplay programme has not been enabled. NFL currently opens closed Week 7 with no next week available. No draft or entry was saved.
-- Each sport displays its six correct pack variants and an existing weekly four-Core starter entitlement. No pack was purchased, claimed through an action, or opened. Existing normal weekly issuance may initialise entitlements while reading the pack view; this is distinct from issuing/opening collectible cards. Four starter cards alone cannot fill a complete seven/22/13-player formation.
-- NRL Market and unified Social load through the real reviewer session. No listing purchase, post, comment, reaction or follow was submitted.
-- Direct owner operations navigation exposes only the security gate, not owner data; the account has no privileged database role. This is not a claim of an AAL2 owner-role penetration test.
+## Console review instructions
 
-Google's full-access checkbox remains unticked. A zero-balance, unplayable new-member account is not sufficient evidence for it. The exact remaining customer prerequisites are a verified eligible free-Core roster/round configuration and, for paid-pack review, an authorised test-funding/checkout workflow. The Console password field remains empty for secure owner entry when the full access declaration is truthful. Android reviewer-specific acceptance is still pending; the observed checks above used desktop Chrome.
+1. Install the supplied Docked build. Sign in with the dedicated credentials saved in Play Console. Use normal account security. Do not use the owner's support account.
+2. PLAY: choose NFL, AFL or NRL. Choose **2026 Practice**, Week 1 for NFL or Round 1 for AFL/NRL. Traditional uses the saved $4.4m / $13.8m / $8.2m cap; All-Star is uncapped. Each position picker offers eligible free Core players without requiring a purchase. Save draft, then explicitly enter/update. The team name is already **Docked Review** and cannot be renamed.
+3. Rankings and View Team show the selected practice entry. Awaiting statistics is expected; these are no-prize practice competitions, not official completed league fixtures.
+4. CARDS shows only recorded owned inventory. PACKS displays Standard/Premium 1/3/9 products, current odds, unopened entitlements and history. The v29 supplied candidate does **not** offer Google paid checkout. Do not promise access to a paid feature disabled in that build.
+5. MARKET supports credit sales only. SOCIAL uses the current unified feed and moderation/reporting controls. PROFILE provides account settings, sport records, support and account-deletion requests. External deletion resource: https://docked.com.au/account-deletion.
+6. This candidate is invitation-only, with non-redeemable test credits. NBA, real-money payments, withdrawals, prize awards and public registration remain disabled.
 
-## Instructions to paste after credentials have been verified
+The enabled beta programme expires **2027-01-31 00:00 UTC**. An ongoing public-review access programme and public-mode instructions must be approved before that deadline or any changed release scope. Do not claim perpetual reviewer access. Reviewer gameplay above was verified in desktop Chrome; the separate Samsung acceptance used an isolated ordinary QA member, not the reviewer account.
 
-1. Install Docked from the supplied review build and open it. Sign in with the dedicated credentials entered above. Complete the documented account security flow.
-2. PLAY: select NFL, AFL or NRL; inspect the competition and selected Week/Round, lineup, salary cap and rankings. Traditional uses the saved cap; All-Star is uncapped. Test seasons and awaiting statistics are labelled. NBA is unavailable.
-3. CARDS: My Cards shows recorded owned inventory only. PACKS has Standard and Premium 1/3/9 products, unopened packs and history. Inspect quantity, rarity pool/chances and confirmation before any authorised test transaction.
-4. MARKET: Browse, My Listings and Activity support credit sales. No offer/swap workflow is available.
-5. SOCIAL: inspect posts, comments and reporting/blocking controls. Use only authorised test content if a mutation is required.
-6. PROFILE: inspect sport-specific records, account settings, support@docked.com.au and the deletion request path. External deletion resource: https://docked.com.au/account-deletion.
-7. The current candidate is invitation-only and uses non-redeemable test credits. Real payments, withdrawals, prizes and public registration are disabled. Do not promise a paid checkout that the supplied build cannot perform. Public paid-release instructions must be updated after that exact configuration passes acceptance.
+## Separate Google licence-test evidence
 
-## Optional supervised license-test access
-
-This is a separate expiring server grant for authorised Google test accounts, not special reviewer approval. Google must clearly show a test payment method and no charge. The customer TEST receipt route rejects real purchases and binds each receipt to the signed-in member. The v27 normal native allowlist is empty. A separate v26 native paired harness has now verified genuine Google TEST purchases, hosted shared-member-engine pack settlement and refunds against a fixed synthetic subject; it did not provision the reviewer or establish an ordinary customer-authenticated checkout. That temporary environment is closed. See `HOSTED_MEMBER_BILLING_ACCEPTANCE_20261101.md` for evidence and the remaining boundary.
-
-Required evidence before marking reviewer setup complete: fresh login, security steps, all visible sports, free-Core eligibility in an approved round, pack review and assigned inventory, signed-in hosted screenshots without secrets, logout/relogin and server denial of owner routes. No real account/balance mutations during preparation.
+Ordinary authenticated QA-member 4,900-credit acceptance is documented in `FINAL_GOOGLE_MEMBER_ACCEPTANCE_20261101.md`. Genuine 9,900-credit checkout, nine-card issuance, replay protection, refund and authenticated persistent notifications are documented in `FINAL_GOOGLE_RELEASE_READINESS_20261101.md`. They do not fund this reviewer account or approve commercial payment handling. Both Google options and temporary test admissions are inactive again. v29 / 1.28 is internally released with an empty native purchase allowlist and a payment-disabled backend.

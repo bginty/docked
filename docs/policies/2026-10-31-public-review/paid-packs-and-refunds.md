@@ -19,9 +19,11 @@ Direct Google pack SKUs are an alternative, not a parallel implementation. They 
 
 Each sport uses its own authoritative product IDs. Core is excluded from paid packs. Premium has Ultra Rare, Legendary and Icon only. Exact configured per-card odds are displayed before confirmation. No guaranteed Legendary/Icon result is implied. Fulfilment fails without charge/substitution when the configured draw cannot be supplied; do not invent a fallback or exceed lifetime supply. Successful-pack frequencies can be affected by supply failure near exhaustion.
 
-Free Core gameplay now has a disabled-by-default, competition-scoped eligibility path tested with the existing NFL/AFL/NRL lineup validators. It creates no collectible ownership. Public registration, reviewed roster eligibility and future-round activation remain closed. This is not evidence that public onboarding is live.
+Free Core gameplay uses competition-scoped eligibility and the existing NFL/AFL/NRL lineup validators. It creates no collectible ownership. Six explicitly opted-in, no-prize practice rounds are configured for the authorised reviewer journey using the existing verified rosters. Other rounds retain their saved eligibility rules. Public registration remains closed; reviewer practice is not public onboarding activation.
 
-## Refund handling proven in isolated fixtures
+## Refund handling and acceptance scope
+
+The ordinary-member 4,900-credit journey passed genuine Google Play TEST checkout, authenticated wallet crediting, both nine-card pack families, before/after-spending refunds and authenticated RTDN reconciliation. Evidence is in `docs/FINAL_GOOGLE_MEMBER_ACCEPTANCE_20261101.md`. On 1 November, the 9,900-credit ordinary-member Samsung journey also passed: verified member wallet credit, AFL Premium 9 opening, three concurrent receipt replays without repeat credit or cards, refund after spending, genuine Google void notification and scheduled reconciliation. The remaining QA funds were held for review, with no unrelated-wallet or ownership changes. Evidence is in `docs/FINAL_GOOGLE_RELEASE_READINESS_20261101.md`. These establish TEST behaviour, not commercial approval. Both Google purchase options and temporary test admissions are disabled again.
 
 Google is authoritative for payment state. A signed notification is a refresh hint, not an amount, account or award instruction. Verify the purchase again server-side using its bound member and approved product. Never accept a client-provided amount, order owner or successful checkout callback as fulfilment authority.
 
@@ -46,6 +48,6 @@ Do not publish a blanket “no refunds” promise or imply that random content g
 
 1. Exact legal/platform classification for paid cards with scoring multipliers, marketplace resale and any prizes; commercial player/data rights.
 2. Approved credit provenance and spent-refund policy; permanent issuance approval and available approved pools.
-3. The customer-authenticated TEST receipt adapter, admission migration, native wallet UI and transactional settlement are implemented. Production-money acceptance deliberately does not exist in this TEST route. Deploy and verify the disabled route, provision an approved test account, and complete durable hosted reconciliation/RTDN configuration and missed-event recovery. Do not reuse customer test balances as paid-money balances.
+3. The customer-authenticated TEST receipt adapter, admission migrations, native wallet UI, transactional settlement, authenticated RTDN and durable reconciliation are deployed. Production-money acceptance deliberately does not exist in this TEST route: real purchases are rejected, independently of the disabled checkout switches. A commercial deployment needs a separately reviewed real-purchase/provenance implementation and acceptance; changing a flag alone is insufficient. Do not reuse customer test balances as paid-money balances.
 4. Isolated public-mode signup → Google test receipt → wallet → both pack families → refund → deletion acceptance, including a genuine Android store-installed checkout.
 5. Matching policies, Data Safety, IARC/rating, reviewer access and owner final activation approval.
