@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-31T23:55:31.726Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "applied": false,
+  "migrations": [
+    {
+      "file": "20261031123611_free_core_gameplay_eligibility.sql",
+      "sha256": "9305eb9cba13701ff499455360fc6a0122864058ee9bc9af754ce64cbb747c9d",
+      "alreadyApplied": false,
+      "appliedNow": false
+    },
+    {
+      "file": "20261031123931_member_google_test_receipts.sql",
+      "sha256": "81497a4836b31be3349b5b0bfdb3204e68510a92c7e03c45860eac40e24b7ce5",
+      "alreadyApplied": false,
+      "appliedNow": false
+    }
+  ],
+  "backup": {
+    "file": "C:\\Users\\61412\\.codex\\worktrees\\fixed-market-live\\Docked.com.au\\private-data\\launch-migration-backups\\7f893d59b3dae1f35af12ce4b67c1306bf27326ca4d07b40fdbf50c368ccee77.enc",
+    "sha256": "7f893d59b3dae1f35af12ce4b67c1306bf27326ca4d07b40fdbf50c368ccee77",
+    "encrypted": true,
+    "authenticatedReadback": true,
+    "tables": 11,
+    "fingerprintedTables": 12,
+    "excludedAppendOnlyHistory": "credits_sandbox.history (fingerprinted; not changed by migration)",
+    "functionDefinitions": 3,
+    "fullDisasterRecovery": false
+  },
+  "protectedDataUnchanged": true,
+  "activation": "none",
+  "transaction": "repeatable-read; atomic DDL + history; 5s lock timeout"
+}

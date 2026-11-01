@@ -46,6 +46,7 @@ function fixture() {
 test("member binding and approved allocation come from authenticated server state", async () => {
   const f = fixture(),
     s = await f.service.session();
+  assert.equal(s.member, "fixture-member");
   assert.equal(
     s.accountBinding,
     storeAccountId("fixture-member", f.deps.bindingSecret),

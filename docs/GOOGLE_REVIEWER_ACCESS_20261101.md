@@ -2,6 +2,8 @@
 
 Status: instructions prepared; dedicated credentials NOT provisioned or verified. No owner's password copied, no authentication exemption, no owner permissions granted.
 
+Current update: an email-bound six-day invitation has now been prepared through the existing invitation table for the nominated address. The ordinary signup page is open for owner password entry and email confirmation. No Auth account, wallet, cards, payment grant or admin access was created. The invitation token is stored outside Git and is not part of these instructions. Do not create a second invitation or reset its lifetime eligibility; inspect the existing record first.
+
 Update, 1 November: the owner nominated a specific reviewer email. A read-only exact-identity lookup found no corresponding Auth account. The address is held in the local private reviewer request record, not committed here. Do not ask the owner to nominate it again. Normal creation, email confirmation, secure password entry and reviewer login acceptance are still required. The physical Samsung check used the existing owner session and does not satisfy this requirement.
 
 ## Exact owner setup

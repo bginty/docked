@@ -217,6 +217,19 @@ async function main() {
     checks.push(
       "Durable checkpoint deduplicates; network outage preserves state; expired worker lease recovers after restart; spent refund holds remaining funding without debt, confiscation or duplicate reversal",
     );
+    const terminal = JSON.stringify(await store.read());
+    await worker.enqueue({ ...notice, id: "late-purchased-notice" });
+    // Even a stale successful provider read cannot revive terminal revocation.
+    current = receipt;
+    assert.equal(await worker.runOne(), true);
+    assert.equal(JSON.stringify(await store.read()), terminal);
+    await worker.enqueue({ ...notice, id: "unknown-needs-review", receiptKey: "unbound-receipt" });
+    await sql`update credits_sandbox.store_notifications set attempts=11 where id='unknown-needs-review'`;
+    assert.equal(await worker.runOne(), false);
+    assert.equal((await worker.health()).attention, 1);
+    assert.equal(await worker.runOne(), false);
+    assert.equal(JSON.stringify(await store.read()), terminal);
+    checks.push("Out-of-order purchased event cannot revive refunded funding; exhausted unknown receipt enters operator attention without touching any wallet");
     mkdirSync("docs/qa/public-launch-final", { recursive: true });
     const result = {
       passed: true,

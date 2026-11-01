@@ -87,8 +87,9 @@ export class MemberStoreTestPurchases {
     };
   }
   async session() {
-    const { grant, account } = await this.admitted();
+    const { who, grant, account } = await this.admitted();
     return {
+      member: who.member,
       accountBinding: account,
       products: grant.products.map((p) => ({ id: p.id, credits: p.credits })),
       environment: "test" as const,

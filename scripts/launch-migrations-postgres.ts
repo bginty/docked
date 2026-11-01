@@ -88,9 +88,9 @@ async function main() {
       .filter((f) => f.endsWith(".sql"))
       .sort();
     const pending = files.filter((f) =>
-      /^(20261031123611|20261031123931)_/.test(f),
+      /^(20261031123611|20261031123931|20261031234304)_/.test(f),
     );
-    assert.equal(pending.length, 2);
+    assert.equal(pending.length, 3);
     const apply = async (file: string) =>
       sql.begin(async (tx) => {
         await tx`select pg_advisory_xact_lock(684210)`;
@@ -146,12 +146,12 @@ async function main() {
       null,
     );
     checks.push(
-      "Both migrations roll back transactionally without changing pre-existing rows",
+      "Three launch migrations roll back transactionally without changing pre-existing rows",
     );
     for (const file of pending) assert.equal(await apply(file), true);
     assert.deepEqual(await fingerprint(), before);
     checks.push(
-      `Both migrations preserve all ${tables.length} existing table fingerprints`,
+      `Three launch migrations preserve all ${tables.length} existing table fingerprints`,
     );
     for (const file of pending) assert.equal(await apply(file), false);
     checks.push(
@@ -171,6 +171,41 @@ async function main() {
     );
     checks.push(
       "Free Core remains disabled; store admission and receipt tables start empty",
+    );
+
+    for (const role of [
+      "anon",
+      "authenticated",
+      "service_role",
+      "docked_app",
+    ]) {
+      assert.equal(
+        (
+          await sql`select has_table_privilege(${role},'credits_sandbox.store_notifications','SELECT') allowed`
+        )[0].allowed,
+        false,
+      );
+      assert.equal(
+        (
+          await sql`select has_table_privilege(${role},'credits_sandbox.store_notifications','INSERT') allowed`
+        )[0].allowed,
+        false,
+      );
+    }
+    await sql.begin(async (tx) => {
+      await tx`set local role docked_beta_app`;
+      await tx`insert into credits_sandbox.store_notifications(id,kind,occurred_at) values('synthetic-queue-test','test',1) on conflict do nothing`;
+      await tx`insert into credits_sandbox.store_notifications(id,kind,occurred_at) values('synthetic-queue-test','test',1) on conflict do nothing`;
+      assert.equal(
+        (
+          await tx`select count(*)::int n from credits_sandbox.store_notifications`
+        )[0].n,
+        1,
+      );
+    });
+    assert.deepEqual(await fingerprint(), before);
+    checks.push(
+      "Notification queue enforces runtime-only RLS/grants and deduplicates without changing customer data",
     );
 
     const password = randomBytes(24).toString("hex");
@@ -329,9 +364,9 @@ async function main() {
     auth.closeAllConnections();
     await new Promise<void>((r) => auth.close(() => r()));
     await sql.end();
-    mkdirSync("docs/qa/android-device-20261101", { recursive: true });
+    mkdirSync("docs/qa/customer-billing-20261101", { recursive: true });
     writeFileSync(
-      "docs/qa/android-device-20261101/isolated-migrations-deletion.json",
+      "docs/qa/customer-billing-20261101/isolated-migrations-deletion.json",
       JSON.stringify(
         {
           at: new Date().toISOString(),

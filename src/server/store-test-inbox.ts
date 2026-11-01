@@ -23,6 +23,13 @@ export class StoreTestInbox {
   get localAcceptance() {
     return this.schema === "credits_sandbox";
   }
+  /** Closed server-side schema union; never derived from a request. */
+  get reconciliationSchema() {
+    return this.schema;
+  }
+  async assertReady() {
+    await this.ready();
+  }
   readonly sql: ReturnType<typeof postgres>;
   private schema: "credits_sandbox" | "store_billing_acceptance" | "store_member_acceptance" =
     "credits_sandbox";

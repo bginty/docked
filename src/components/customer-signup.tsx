@@ -115,7 +115,7 @@ export function CustomerSignup() {
       </form>
       <p className="app-auth-hint">
         Invite-only · Australian adults 18+ · Free test cards, no cash value.
-        NFL available; EPL coming later. Scores are post-game and may remain
+        NFL, AFL and NRL. Scores are post-game where available and may remain
         pending.
       </p>
       <p className="app-auth-switch">

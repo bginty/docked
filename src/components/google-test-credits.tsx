@@ -29,6 +29,7 @@ interface Billing {
 }
 const billing = registerPlugin<Billing>("DockedBilling");
 type Session = {
+  member: string;
   accountBinding: string;
   environment: "test";
   products: { id: string; credits: number }[];
@@ -58,7 +59,11 @@ export function GoogleTestCredits({
     const r = await boundedFetch(endpoint, { cache: "no-store" });
     if (!r.ok) throw Error("Google testing is not enabled for this account.");
     const s = (await r.json()) as Session;
-    if (s.environment !== "test" || !/^[a-f0-9]{64}$/.test(s.accountBinding))
+    if (
+      s.member !== member ||
+      s.environment !== "test" ||
+      !/^[a-f0-9]{64}$/.test(s.accountBinding)
+    )
       throw Error("Purchase session unavailable.");
     return s;
   }
