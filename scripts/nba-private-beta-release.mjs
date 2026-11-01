@@ -146,16 +146,11 @@ if (process.argv[2] === "prepare") {
         deployment: baseline.id,
         url: baseline.url,
         commit: baseline.meta.githubCommitSha,
-        databaseMigrations: [
-          "20261022115817",
-          "20261022122441",
-          "20261022123136",
-          "20261022124750",
-          "20261022203038",
-          "20261022211500",
-        ],
+        // This application release helper does not apply database migrations.
+        // A separately approved migration must have its own apply receipt.
+        databaseMigrations: [],
         recovery:
-          "Promote the previous deployment. If isolation requires suspension, disable the affected private sport and test-commerce application gates. Retain additive fixture registries, ownership history and audit records.",
+          "Inspect the previous deployment's gates before promoting it: a supervised member TEST deployment must not reopen checkout after its window closes. Prefer a new closed-gate build when that baseline had temporary billing enabled. Retain ownership, receipts and audit records; no database rollback is required by this application-only release.",
       },
       null,
       2,
@@ -367,7 +362,9 @@ if (process.argv[2] === "prepare") {
     target: "production",
     domainAssigned: false,
     projectId: target.projectId,
-    privateNba: true,
+    privateNbaInfrastructure: true,
+    customerNbaVisible: false,
+    memberGoogleTest: env.DOCKED_MEMBER_GOOGLE_TEST === "true",
     fixtureCommerce,
     at: new Date().toISOString(),
   };

@@ -12,16 +12,28 @@ import { ownerDatabase, projectRef } from "./owner-gameplay-db.mjs";
 const root = process.cwd(),
   mode = process.argv[2];
 const queueOnly = process.argv.includes("--queue-approved-20261101");
+const rosterOnly = process.argv.includes("--roster-adapter-approved-20261101");
+assert(!(queueOnly && rosterOnly), "Select one approved migration scope");
 assert(["--inspect", "--apply"].includes(mode));
 if (mode === "--apply")
-  assert(queueOnly || process.argv.includes("--owner-approved-20261101"));
-const files = queueOnly
-  ? ["20261031234304_google_test_reconciliation_queue.sql"]
-  : [
-      "20261031123611_free_core_gameplay_eligibility.sql",
-      "20261031123931_member_google_test_receipts.sql",
-    ];
-const out = resolve("docs/qa/customer-billing-20261101");
+  assert(
+    rosterOnly ||
+      queueOnly ||
+      process.argv.includes("--owner-approved-20261101"),
+  );
+const files = rosterOnly
+  ? ["20261101090955_free_core_verified_roster_adapter.sql"]
+  : queueOnly
+    ? ["20261031234304_google_test_reconciliation_queue.sql"]
+    : [
+        "20261031123611_free_core_gameplay_eligibility.sql",
+        "20261031123931_member_google_test_receipts.sql",
+      ];
+const out = resolve(
+  rosterOnly
+    ? "docs/qa/final-play-acceptance-20261101/roster-adapter"
+    : "docs/qa/customer-billing-20261101",
+);
 const vault = resolve("private-data/launch-migration-backups");
 mkdirSync(out, { recursive: true });
 mkdirSync(vault, { recursive: true });
@@ -54,6 +66,13 @@ const protectedTables = [
   "beta_fantasy.slot_locks",
   "beta_fantasy.competitions",
   "beta_fantasy.players",
+  ...(rosterOnly
+    ? [
+        "sports_feed.free_core_programmes",
+        "sports_feed.free_core_roster",
+        "credits_sandbox.nba_fixture_players",
+      ]
+    : []),
 ];
 async function main() {
   try {
@@ -86,8 +105,9 @@ async function main() {
           await tx`select n.nspname,p.proname,pg_get_function_identity_arguments(p.oid) arguments,
         pg_get_functiondef(p.oid) definition,p.proacl::text grants from pg_proc p join pg_namespace n on n.oid=p.pronamespace
         where (n.nspname='sports_feed' and p.proname in ('lineup_inventory','sport_sandbox_state'))
-        or (n.nspname='beta_fantasy' and p.proname='production_read_state') order by 1,2`;
-        assert.equal(functions.length, 3);
+        or (n.nspname='beta_fantasy' and p.proname='production_read_state')
+        or (${rosterOnly} and n.nspname='sports_feed' and p.proname='free_core_inventory') order by 1,2`;
+        assert.equal(functions.length, rosterOnly ? 4 : 3);
         const plain = JSON.stringify({
           projectRef,
           at: new Date().toISOString(),
@@ -122,7 +142,7 @@ async function main() {
           digest,
         );
         const migrations = [];
-        if (queueOnly) {
+        if (queueOnly || rosterOnly) {
           const prerequisites =
             await tx`select version from supabase_migrations.schema_migrations
             where version in ('20261031123611','20261031123931')`;
@@ -174,12 +194,13 @@ async function main() {
             )[0].n,
             0,
           );
-          assert.equal(
-            (
-              await tx`select count(*)::int n from credits_sandbox.store_test_admissions`
-            )[0].n,
-            0,
-          );
+          if (!rosterOnly)
+            assert.equal(
+              (
+                await tx`select count(*)::int n from credits_sandbox.store_test_admissions`
+              )[0].n,
+              0,
+            );
           for (const role of [
             "anon",
             "authenticated",
@@ -192,6 +213,62 @@ async function main() {
               )[0].allowed,
               false,
             );
+          if (rosterOnly) {
+            const [adapter] =
+              await tx`select relrowsecurity enabled from pg_class
+              where oid='sports_feed.free_core_roster_beta'::regclass`;
+            assert.equal(adapter.enabled, true);
+            assert.equal(
+              (
+                await tx`select count(*)::int n from sports_feed.free_core_roster_beta`
+              )[0].n,
+              0,
+            );
+            assert.ok(
+              (
+                await tx`select to_regprocedure('sports_feed.free_core_inventory_before_roster_beta(uuid,uuid)') preserved`
+              )[0].preserved,
+            );
+            for (const role of [
+              "anon",
+              "authenticated",
+              "service_role",
+              "docked_app",
+              "docked_beta_app",
+            ]) {
+              for (const privilege of ["SELECT", "INSERT", "UPDATE", "DELETE"])
+                assert.equal(
+                  (
+                    await tx`select has_table_privilege(${role},'sports_feed.free_core_roster_beta',${privilege}) allowed`
+                  )[0].allowed,
+                  false,
+                );
+              for (const signature of [
+                "sports_feed.free_core_inventory(uuid,uuid)",
+                "sports_feed.free_core_inventory_before_roster_beta(uuid,uuid)",
+              ])
+                assert.equal(
+                  (
+                    await tx`select has_function_privilege(${role},${signature},'EXECUTE') allowed`
+                  )[0].allowed,
+                  false,
+                );
+            }
+            if (migrations.some((migration) => migration.appliedNow)) {
+              const [preserved] =
+                await tx`select pg_get_functiondef('sports_feed.free_core_inventory_before_roster_beta(uuid,uuid)'::regprocedure) definition`;
+              const original = functions.find(
+                (fn) => fn.proname === "free_core_inventory",
+              )!;
+              assert.equal(
+                preserved.definition.replace(
+                  "free_core_inventory_before_roster_beta(",
+                  "free_core_inventory(",
+                ),
+                original.definition,
+              );
+            }
+          }
           if (queueOnly) {
             const [queue] = await tx`select relrowsecurity enabled from pg_class
               where oid='credits_sandbox.store_notifications'::regclass`;

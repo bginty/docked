@@ -42,12 +42,20 @@ export function TestWalletOverview({ state: s }: { state: MemberTestView }) {
         <p className="wallet-disclaimer">
           ⓘ Test credits have no cash value and cannot be withdrawn.
         </p>
+        {s.wallet.heldAvailable > 0 && (
+          <p className="wallet-disclaimer" role="status">
+            {amount(s.wallet.heldAvailable)} test credits are on hold while an
+            account review is open. These credits cannot be spent. For help,
+            contact <a href="mailto:support@docked.com.au">Docked support</a>.
+          </p>
+        )}
         <details className="wallet-breakdown">
           <summary>Balance breakdown</summary>
           <dl>
             {[
               ["Total", s.wallet.total],
               ["Available to spend", s.wallet.spendable],
+              ["On hold", s.wallet.heldAvailable],
               ["Pending", s.wallet.pending],
               ["Reserved", s.wallet.reserved],
               ["Non-redeemable", s.wallet.restricted],

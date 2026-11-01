@@ -15,8 +15,8 @@ android {
         applicationId storeInternalBuild ? "docked.fantasy" : "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode memberTestBuild ? 28 : (storeCandidateBuild ? 27 : (billingQaBuild ? 26 : 23))
-        versionName memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.26" : (billingQaBuild ? "1.25" : "1.22"))
+        versionCode memberTestBuild ? 28 : (storeCandidateBuild ? 29 : (billingQaBuild ? 26 : 23))
+        versionName memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.28" : (billingQaBuild ? "1.25" : "1.22"))
         buildConfigField 'String', 'DOCKED_MEMBER_TEST_PRODUCTS', '""'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
