@@ -1,0 +1,81 @@
+{
+  "at": "2026-11-01T06:57:25.925Z",
+  "baseline": "dpl_FpXCzRPTNYFtK7DVTj5dAXW3PiYp",
+  "baselineCommit": "5a62f4ee5594dffba1812c1ce6b1c0983efbf962",
+  "counts": {
+    "receipts": 0,
+    "admissions": 0
+  },
+  "wallet": {
+    "revision": "226",
+    "hash": "5f6b1926b820cb90f68d9a6a01ab5d5e"
+  },
+  "jobs": [
+    {
+      "jobid": "1",
+      "jobname": "docked-beta-nfl-raw-expiry",
+      "active": true,
+      "schedule": "17 * * * *",
+      "command_hash": "7797a6873a635869b31361865d01980e"
+    },
+    {
+      "jobid": "2",
+      "jobname": "docked-nfl-weekly",
+      "active": true,
+      "schedule": "5 0,12 * * *",
+      "command_hash": "f0c2c4c989a6f7e082f274c1a45e8743"
+    },
+    {
+      "jobid": "3",
+      "jobname": "docked-nfl-pbp",
+      "active": true,
+      "schedule": "10 0,12 * * *",
+      "command_hash": "b5bab743d7d1ac5a7f2cb9b251bebfe6"
+    },
+    {
+      "jobid": "4",
+      "jobname": "docked-nfl-rosters",
+      "active": true,
+      "schedule": "15 0,12 * * *",
+      "command_hash": "ed0ce5999ab12a9440ee35f62ad7d3f2"
+    },
+    {
+      "jobid": "5",
+      "jobname": "docked-nfl-reconcile",
+      "active": true,
+      "schedule": "*/15 * * * *",
+      "command_hash": "ae9cc1cbb22390a8a81d12958198c2b4"
+    },
+    {
+      "jobid": "6",
+      "jobname": "docked-nfl-lineup-lock",
+      "active": true,
+      "schedule": "* * * * *",
+      "command_hash": "a185f15d6d083800a28e75c11f95c316"
+    },
+    {
+      "jobid": "7",
+      "jobname": "docked-auth-mail-drain",
+      "active": true,
+      "schedule": "* * * * *",
+      "command_hash": "b8e93629f7cafa537792a7c72583ee16"
+    },
+    {
+      "jobid": "8",
+      "jobname": "docked-weekly-core-entitlements",
+      "active": true,
+      "schedule": "* * * * *",
+      "command_hash": "26b74b493e234afbf3094af5965e34f2"
+    },
+    {
+      "jobid": "10",
+      "jobname": "docked-sale-receipts",
+      "active": true,
+      "schedule": "* * * * *",
+      "command_hash": "c5ecd13c12ee81667548c4a870d26dcd"
+    }
+  ],
+  "privateRuntimePrepared": true,
+  "purchaseAdmissionChanged": false,
+  "schedulerActivated": false
+}

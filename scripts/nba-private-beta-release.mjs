@@ -259,6 +259,43 @@ if (process.argv[2] === "prepare") {
       ),
     ),
   };
+  // Preserve the approved TEST-only notification runtime across later releases.
+  // A private file is provisioned separately; it cannot change other launch gates.
+  const notificationPath = main + "/private-data/google-rtdn/worker-env.json";
+  try {
+    const notification = JSON.parse(
+      await fs.readFile(notificationPath, "utf8"),
+    );
+    const allowed = new Set([
+      "DOCKED_STORE_REFERENCE_KEY",
+      "DOCKED_STORE_ACCOUNT_BINDING_SECRET",
+      "DOCKED_STORE_WORKER_SECRET",
+      "DOCKED_GOOGLE_SERVICE_EMAIL",
+      "DOCKED_GOOGLE_PRIVATE_KEY",
+      "DOCKED_GOOGLE_PUSH_AUDIENCE",
+      "DOCKED_GOOGLE_PUSH_SERVICE_ACCOUNT",
+      "DOCKED_GOOGLE_PUSH_SUBSCRIPTION",
+      "DOCKED_GOOGLE_RECONCILIATION_ENABLED",
+      "DOCKED_MEMBER_GOOGLE_TEST",
+    ]);
+    assert(Object.keys(notification).every((k) => allowed.has(k)));
+    assert.equal(notification.DOCKED_MEMBER_GOOGLE_TEST, "false");
+    assert.equal(
+      notification.DOCKED_GOOGLE_PUSH_AUDIENCE,
+      "https://docked.com.au/api/store/google/notifications",
+    );
+    assert.equal(
+      notification.DOCKED_GOOGLE_PUSH_SERVICE_ACCOUNT,
+      "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+    );
+    assert.equal(
+      notification.DOCKED_GOOGLE_PUSH_SUBSCRIPTION,
+      "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push",
+    );
+    Object.assign(env, notification);
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
   assert.equal(
     base.env.filter(
       (k) => /^(DOCKED_|NFL_|BETA_|FANTASY_|PROVIDER_)/.test(k) && !(k in env),
