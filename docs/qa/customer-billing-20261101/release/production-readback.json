@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-11-01",
+  "deployment": {
+    "id": "dpl_FpXCzRPTNYFtK7DVTj5dAXW3PiYp",
+    "state": "READY",
+    "commit": "5a62f4ee5594dffba1812c1ce6b1c0983efbf962",
+    "url": "docked-production-hq7rml7id-briant-s-projects.vercel.app",
+    "alias": [
+      "docked-production-briant-s-projects.vercel.app"
+    ]
+  },
+  "policiesVersion": "2026-11-01-release-preparation-v1",
+  "wallet": {
+    "revision": 226,
+    "documentHash": "5f6b1926b820cb90f68d9a6a01ab5d5e",
+    "unchanged": true
+  },
+  "customerGoogleReceipts": 0,
+  "customerGoogleAdmissions": 0,
+  "freeCoreProgrammesEnabled": 0,
+  "queueMigrationApplied": false,
+  "authenticatedHostedAcceptance": false,
+  "console": {
+    "initialTasksCompleted": 8,
+    "totalInitialTasks": 11,
+    "production": "Inactive",
+    "productionTask": "Locked pending setup",
+    "privacySaved": true,
+    "dataSafety": "Draft saved",
+    "remaining": [
+      "Sign in details",
+      "Target audience and content",
+      "Data Safety"
+    ]
+  }
+}

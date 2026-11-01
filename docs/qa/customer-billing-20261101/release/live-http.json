@@ -1,0 +1,79 @@
+{
+  "at": "2026-11-01T00:21:12.558Z",
+  "base": "https://docked.com.au",
+  "phase": "live",
+  "mutations": "None: unauthenticated empty requests checked rejection before any account or transaction writes",
+  "results": [
+    {
+      "path": "/api/status",
+      "method": "GET",
+      "status": 200,
+      "body": "{\"product\":\"fantasy-cards\",\"registration\":\"closed\"}",
+      "cache": "no-store"
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"error\":\"Sign in with an authorised account.\"}",
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/store/google/test",
+      "method": "GET",
+      "status": 403,
+      "body": "{\"error\":\"Google test purchasing is unavailable. No purchase fulfilment has been confirmed.\"}",
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/store/google/notifications",
+      "method": "POST",
+      "status": 503,
+      "body": "{\"error\":\"Store notifications unavailable\"}",
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/store/google/reconcile",
+      "method": "POST",
+      "status": 401,
+      "body": "{\"error\":\"Worker authentication required\"}",
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/auth/customer-signup",
+      "method": "POST",
+      "status": 403,
+      "body": "{\"error\":\"Invite required. Open your personal invitation link first.\"}",
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=basketball",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"allowed\":[],\"error\":\"Please sign in again.\"}",
+      "cache": "private, no-store"
+    }
+  ],
+  "policies": [
+    {
+      "path": "/privacy",
+      "status": 200,
+      "policyVersion": "2026-11-01-release-preparation-v1"
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200,
+      "policyVersion": "2026-11-01-release-preparation-v1"
+    },
+    {
+      "path": "/retention",
+      "status": 200,
+      "policyVersion": "2026-11-01-release-preparation-v1"
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200,
+      "policyVersion": "2026-11-01-release-preparation-v1"
+    }
+  ]
+}

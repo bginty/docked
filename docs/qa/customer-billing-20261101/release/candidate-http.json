@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-01T00:20:36.731Z",
+  "base": "https://docked-production-hq7rml7id-briant-s-projects.vercel.app",
+  "checks": [
+    {
+      "path": "/api/status",
+      "method": "GET",
+      "status": 200,
+      "body": "{\"product\":\"fantasy-cards\",\"registration\":\"closed\"}"
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"error\":\"Sign in with an authorised account.\"}"
+    },
+    {
+      "path": "/api/store/google/test",
+      "method": "GET",
+      "status": 403,
+      "body": "{\"error\":\"Google test purchasing is unavailable. No purchase fulfilment has been confirmed.\"}"
+    },
+    {
+      "path": "/api/store/google/notifications",
+      "method": "POST",
+      "status": 503,
+      "body": "{\"error\":\"Store notifications unavailable\"}"
+    },
+    {
+      "path": "/api/store/google/reconcile",
+      "method": "POST",
+      "status": 401,
+      "body": "{\"error\":\"Worker authentication required\"}"
+    },
+    {
+      "path": "/api/auth/customer-signup",
+      "method": "POST",
+      "status": 403,
+      "body": "{\"error\":\"Invite required. Docked is open to invited friends only.\"}"
+    },
+    {
+      "path": "/api/sports-beta?view=state&sport=basketball",
+      "method": "GET",
+      "status": 401,
+      "body": "{\"allowed\":[],\"error\":\"Please sign in again.\"}"
+    }
+  ],
+  "passed": true
+}
