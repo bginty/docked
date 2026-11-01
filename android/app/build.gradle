@@ -3,17 +3,21 @@ apply plugin: 'com.android.application'
 // All legacy sideload variants retain their original package identity.
 def billingQaBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storebillingqa') }
 def storeCandidateBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storecandidate') }
-def storeInternalBuild = billingQaBuild || storeCandidateBuild || gradle.startParameter.taskNames.any { it.toLowerCase().contains('storeinternal') }
+def memberTestBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('storemembertest') }
+def storeInternalBuild = billingQaBuild || storeCandidateBuild || memberTestBuild || gradle.startParameter.taskNames.any { it.toLowerCase().contains('storeinternal') }
+def creditProducts = new groovy.json.JsonSlurper().parse(file('../../config/store-credit-package-drafts.json')).products.collect { it.id }.join(',')
 
 android {
     namespace = "au.com.docked.app"
     compileSdk = rootProject.ext.compileSdkVersion
+    buildFeatures { buildConfig = true }
     defaultConfig {
         applicationId storeInternalBuild ? "docked.fantasy" : "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode storeCandidateBuild ? 27 : (billingQaBuild ? 26 : 23)
-        versionName storeCandidateBuild ? "1.26" : (billingQaBuild ? "1.25" : "1.22")
+        versionCode memberTestBuild ? 28 : (storeCandidateBuild ? 27 : (billingQaBuild ? 26 : 23))
+        versionName memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.26" : (billingQaBuild ? "1.25" : "1.22"))
+        buildConfigField 'String', 'DOCKED_MEMBER_TEST_PRODUCTS', '""'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -31,6 +35,17 @@ android {
         }
     }
     buildTypes {
+        // Internal TEST receipt acceptance only; no loopback lab, custom CA or
+        // synthetic identity. Normal member authentication and server admission
+        // still apply. Never promote this variant to a public release.
+        storeMemberTest {
+            initWith release
+            versionNameSuffix "-member-test"
+            buildConfigField 'String', 'DOCKED_MEMBER_TEST_PRODUCTS', '"' + creditProducts + '"'
+            signingConfig signingConfigs.closedTestUpload
+            debuggable false
+            matchingFallbacks = ['release']
+        }
         // Distribution candidate only: no billing QA source set or launcher.
         // Building this artifact does not approve public access or payments.
         storeCandidate {
@@ -98,7 +113,7 @@ android {
 // Production release remains blocked. The separate closedTest variant requires
 // exact isolated HTTPS assets and a real owner-controlled upload certificate.
 gradle.taskGraph.whenReady { graph ->
-    if (graph.allTasks.any { it.project == project && (it.name.toLowerCase().contains('storeinternal') || it.name.toLowerCase().contains('storebillingqa') || it.name.toLowerCase().contains('storecandidate')) }) {
+    if (graph.allTasks.any { it.project == project && (it.name.toLowerCase().contains('storeinternal') || it.name.toLowerCase().contains('storebillingqa') || it.name.toLowerCase().contains('storecandidate') || it.name.toLowerCase().contains('storemembertest')) }) {
         def verification = providers.exec {
             workingDir rootProject.projectDir.parentFile
             commandLine 'node', 'scripts/verify-store-internal.mjs'

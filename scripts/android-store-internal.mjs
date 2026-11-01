@@ -16,8 +16,9 @@ const env = {
 const root = process.cwd();
 const billingQa = process.argv.includes("--billing-qa");
 const candidate = process.argv.includes("--public-candidate");
-if (billingQa && candidate)
-  throw Error("Public candidate cannot include billing QA");
+const memberTest = process.argv.includes("--member-test");
+if ([billingQa, candidate, memberTest].filter(Boolean).length > 1)
+  throw Error("Choose exactly one isolated Android build variant");
 if (
   billingQa &&
   !existsSync("android/app/src/storeBillingQa/res/raw/google_lab_ca.pem")
@@ -60,51 +61,66 @@ run("node", ["scripts/build-mobile-shell.mjs"]);
 run("npx", ["cap", "sync", "android"]);
 run(
   "gradlew.bat",
-  candidate
+  memberTest
     ? [
-        ":app:bundleStoreCandidate",
-        ":app:assembleStoreCandidate",
-        ":app:lintStoreCandidate",
+        ":app:bundleStoreMemberTest",
+        ":app:assembleStoreMemberTest",
+        ":app:lintStoreMemberTest",
         "--console=plain",
       ]
-    : billingQa
+    : candidate
       ? [
-          ":app:bundleStoreBillingQa",
-          ":app:assembleStoreBillingQa",
+          ":app:bundleStoreCandidate",
+          ":app:assembleStoreCandidate",
+          ":app:lintStoreCandidate",
           "--console=plain",
         ]
-      : [
-          ":app:bundleStoreInternal",
-          ":app:assembleStoreInternal",
-          "--console=plain",
-        ],
+      : billingQa
+        ? [
+            ":app:bundleStoreBillingQa",
+            ":app:assembleStoreBillingQa",
+            "--console=plain",
+          ]
+        : [
+            ":app:bundleStoreInternal",
+            ":app:assembleStoreInternal",
+            "--console=plain",
+          ],
   path.join(root, "android"),
 );
 mkdirSync("artifacts/android", { recursive: true });
 for (const [source, target] of [
   [
-    candidate
-      ? "android/app/build/outputs/bundle/storeCandidate/app-storeCandidate.aab"
-      : billingQa
-        ? "android/app/build/outputs/bundle/storeBillingQa/app-storeBillingQa.aab"
-        : "android/app/build/outputs/bundle/storeInternal/app-storeInternal.aab",
-    candidate
-      ? "artifacts/android/Docked-public-candidate.aab"
-      : billingQa
-        ? "artifacts/android/Docked-billing-qa.aab"
-        : "artifacts/android/Docked-store-internal.aab",
+    memberTest
+      ? "android/app/build/outputs/bundle/storeMemberTest/app-storeMemberTest.aab"
+      : candidate
+        ? "android/app/build/outputs/bundle/storeCandidate/app-storeCandidate.aab"
+        : billingQa
+          ? "android/app/build/outputs/bundle/storeBillingQa/app-storeBillingQa.aab"
+          : "android/app/build/outputs/bundle/storeInternal/app-storeInternal.aab",
+    memberTest
+      ? "artifacts/android/Docked-member-test.aab"
+      : candidate
+        ? "artifacts/android/Docked-public-candidate.aab"
+        : billingQa
+          ? "artifacts/android/Docked-billing-qa.aab"
+          : "artifacts/android/Docked-store-internal.aab",
   ],
   [
-    candidate
-      ? "android/app/build/outputs/apk/storeCandidate/app-storeCandidate.apk"
-      : billingQa
-        ? "android/app/build/outputs/apk/storeBillingQa/app-storeBillingQa.apk"
-        : "android/app/build/outputs/apk/storeInternal/app-storeInternal.apk",
-    candidate
-      ? "artifacts/android/Docked-public-candidate.apk"
-      : billingQa
-        ? "artifacts/android/Docked-billing-qa.apk"
-        : "artifacts/android/Docked-store-internal.apk",
+    memberTest
+      ? "android/app/build/outputs/apk/storeMemberTest/app-storeMemberTest.apk"
+      : candidate
+        ? "android/app/build/outputs/apk/storeCandidate/app-storeCandidate.apk"
+        : billingQa
+          ? "android/app/build/outputs/apk/storeBillingQa/app-storeBillingQa.apk"
+          : "android/app/build/outputs/apk/storeInternal/app-storeInternal.apk",
+    memberTest
+      ? "artifacts/android/Docked-member-test.apk"
+      : candidate
+        ? "artifacts/android/Docked-public-candidate.apk"
+        : billingQa
+          ? "artifacts/android/Docked-billing-qa.apk"
+          : "artifacts/android/Docked-store-internal.apk",
   ],
 ]) {
   if (!existsSync(source)) throw Error("Expected native artifact missing");

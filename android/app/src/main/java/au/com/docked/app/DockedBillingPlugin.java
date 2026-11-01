@@ -6,11 +6,15 @@ import com.android.billingclient.api.*;
 import java.util.*;
 
 /** Native receipt transport only. No balances/credits are accepted from JS.
- * The reviewed product allowlist is empty until classification and products are approved. */
+ * The public candidate has no products. Only the separate internal member TEST
+ * variant includes the owner-approved products; server admission and Google's
+ * TEST receipt verification remain mandatory before any wallet fulfilment. */
 @CapacitorPlugin(name = "DockedBilling")
 public class DockedBillingPlugin extends Plugin implements PurchasesUpdatedListener {
     private BillingClient billing;
-    private final Set<String> approvedProducts = Collections.emptySet();
+    private final Set<String> approvedProducts = BuildConfig.DOCKED_MEMBER_TEST_PRODUCTS.isEmpty()
+            ? Collections.emptySet()
+            : Collections.unmodifiableSet(new HashSet<>(Arrays.asList(BuildConfig.DOCKED_MEMBER_TEST_PRODUCTS.split(","))));
     private final Map<String, ProductDetails> details = new HashMap<>();
     @Override public void load() {
         billing = BillingClient.newBuilder(getContext()).setListener(this)
