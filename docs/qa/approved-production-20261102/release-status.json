@@ -1,0 +1,62 @@
+{
+  "observedOn": "2026-11-02 Australia/Sydney",
+  "productionMigrationsApplied": 3,
+  "protectedTablesUnchanged": 310,
+  "sourceCommit": "78012503a67213ba2c66ac5e4efeffd23bcf1aba",
+  "liveAppCommit": "053848ed67946fdd727a5c1d8547272d383c9470",
+  "protectedCandidateCommit": "8dcfd9f18960936145a605595a01119a92fa1c89",
+  "applicationSourceDiffSinceCandidate": false,
+  "android": {
+    "package": "docked.fantasy",
+    "versionCode": 30,
+    "versionName": "1.29",
+    "bytes": 9214095,
+    "sha256": "d3837d7191e0a6bbd64a572a9ac3288fd37b440eb36e67408648fb4b3c879e29",
+    "adbConnectedDevices": 0,
+    "freshPhysicalAcceptance": false
+  },
+  "checks": {
+    "restoreAndReapply": "passed",
+    "typecheck": "passed",
+    "targetedLint": "passed",
+    "newBackupGuardTests": 2,
+    "liveHttp": 19,
+    "protectedCandidateHttp": 19,
+    "newDisabledEndpointChecks": 7,
+    "livePolicyUrls": 5,
+    "freshHostedAuthenticatedPublicAcceptance": false,
+    "newGoogleTestPurchases": 0,
+    "realCharges": 0
+  },
+  "hostedAuth": {
+    "previousPreviewProject": "bckkllmndoxzpzdqrevb",
+    "status": "DNS ENOTFOUND; not present in accessible organisation",
+    "newProjectQuote": {"amount": 10, "recurrence": "monthly", "currencyReturned": false},
+    "created": false,
+    "reason": "No-new-recurring-cost restriction"
+  },
+  "console": {
+    "productionDraft": "30 (1.29) - AU launch candidate - gated",
+    "releaseId": "1",
+    "countryScope": ["AU"],
+    "managedPublishing": true,
+    "changesNotSubmitted": 10,
+    "needsAttentionDeclarations": 0,
+    "australianRating": "Mature (M)",
+    "australianDescriptors": ["Online Interactivity and Chat", "Chance-Based In-Game Purchases", "In-Game Purchases"],
+    "iarcCertificateIdDisplayed": "-",
+    "savedCashConvertibleGoodsAnswerRequiresReview": true,
+    "newQuestionnaireTermsAccepted": false,
+    "submitted": false,
+    "published": false,
+    "productsActive": false
+  },
+  "ownerModelApproval": "Already granted; not requested again",
+  "publicSubmission": "Blocked until documented rights, declaration consistency and exact hosted release acceptance are complete",
+  "nba": "hidden; no data deleted",
+  "commercialActivation": false,
+  "registration": false,
+  "withdrawals": false,
+  "paidCompetitionEntry": false,
+  "prizes": false
+}

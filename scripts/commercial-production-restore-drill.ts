@@ -16,10 +16,16 @@ import { Transform, Writable } from "node:stream";
 import { ownerDatabase } from "./owner-gameplay-db.mjs";
 const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
-const dir = root + "/private-data/commercial-restore-20261102";
-const evidence = root + "/docs/qa/public-activation-20261102";
+const runId = process.env.DOCKED_RESTORE_RUN ?? "20261102";
+assert.match(runId, /^20261102[a-z]?$/);
+const dir = root + "/private-data/commercial-restore-" + runId;
+const evidence =
+  root +
+  (runId === "20261102"
+    ? "/docs/qa/public-activation-20261102"
+    : "/docs/qa/approved-production-20261102/restore");
 const client = "supabase_db_deletion-auth-local",
-  target = "docked-commercial-restore-20261102";
+  target = "docked-commercial-restore-" + runId;
 const image = "public.ecr.aws/supabase/postgres:17.11.0.002";
 let createdTarget = false;
 const files = [

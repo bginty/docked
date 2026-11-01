@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-01T23:22:13.139Z",
+  "candidate": "https://docked-production-cegqqc17p-briant-s-projects.vercel.app",
+  "sourceCommit": "8dcfd9f18960936145a605595a01119a92fa1c89",
+  "memberAuthenticated": false,
+  "mutations": 0,
+  "checks": [
+    {
+      "path": "/api/store/google/commercial",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/admin/commercial-billing",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/workspace-wallet",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/public-gameplay?sport=basketball",
+      "status": 403,
+      "noStore": true
+    }
+  ],
+  "policies": [
+    {
+      "path": "/privacy",
+      "status": 200,
+      "releasePreparationVersionPresent": true
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200,
+      "releasePreparationVersionPresent": true
+    },
+    {
+      "path": "/retention",
+      "status": 200,
+      "releasePreparationVersionPresent": true
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200,
+      "releasePreparationVersionPresent": true
+    },
+    {
+      "path": "/account-deletion",
+      "status": 200,
+      "releasePreparationVersionPresent": false
+    }
+  ]
+}

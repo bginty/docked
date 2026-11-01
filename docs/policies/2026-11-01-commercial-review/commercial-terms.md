@@ -14,4 +14,4 @@ Do not exploit purchases, duplicate receipts, accounts, marketplace transfers or
 
 Account deletion does not silently erase necessary historical transaction or ownership evidence. Applicable privacy and retention conditions explain the distinction. These conditions do not exclude Australian Consumer Law guarantees or other non-excludable rights. Contact support@docked.com.au about access, purchases or disputes.
 
-The final service-change/closure and discontinuation remedy provisions require owner/legal approval before this text is published; no automatic forfeiture of purchased balances is authorised here.
+If Docked materially changes or discontinues a paid service, we will explain the effect on purchased credits, unopened packs and card access and provide a support route to resolve affected purchases. Changes do not retrospectively remove non-excludable rights or automatically forfeit purchased balances. Any refund or other remedy will take account of the circumstances and applicable consumer law. We do not promise that a particular feature will operate forever or that a collectible will have a cash or resale value.

@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-01T23:07:25.337Z",
+  "sourceProject": "pojoymtniryarxxunyvz",
+  "backupAt": "2026-11-01T23:05:50.875Z",
+  "archiveBytes": 80464306,
+  "archiveSha256": "faf6ddf3422281ae43e6a02c46dba785d2265142059a73fe224de95f279ea9e9",
+  "encryptedAtRest": "AES-256-GCM with existing operator-held key",
+  "restoreTarget": "docked-commercial-restore-20261102b",
+  "network": "none",
+  "publishedPorts": 0,
+  "cronActive": false,
+  "postgres": "17.11",
+  "restored": true,
+  "migrationsReapplied": true,
+  "migrations": [
+    {
+      "file": "20261101120754_commercial_google_ledger.sql",
+      "sha256": "a9d77454705a9c827155f1a07acda040ce48e5fb6911bf793edc3e0efed7a28c"
+    },
+    {
+      "file": "20261102010000_commercial_lineup_inventory.sql",
+      "sha256": "c39d5da280d2d76226740d904e93732b2ca6ecffee505bf1803924b0e54e995b"
+    },
+    {
+      "file": "20261102010001_public_customer_gameplay.sql",
+      "sha256": "121e97e5e41d160aee4f7bcdcd92fcaee2aae87c547c17a7af7b71ded978b4f2"
+    }
+  ],
+  "protectedTables": [
+    "auth.users",
+    "private.feature_flags",
+    "beta_fantasy.cards",
+    "beta_fantasy.entries",
+    "beta_fantasy.results",
+    "beta_fantasy.competitions",
+    "beta_fantasy.ownership_events",
+    "beta_fantasy.sales",
+    "credits_sandbox.state",
+    "credits_sandbox.card_instances",
+    "credits_sandbox.pack_receipts",
+    "credits_sandbox.journal",
+    "sports_feed.nfl_control",
+    "sports_feed.nfl_rounds",
+    "sports_feed.sport_sandbox_inventory",
+    "sports_feed.sport_rounds",
+    "supabase_migrations.schema_migrations"
+  ],
+  "protectedRecordsUnchanged": true,
+  "productionWrites": 0,
+  "storageObjectBodiesIncluded": false,
+  "scope": "Logical PostgreSQL database and role definitions/membership; no custom role passwords, hosted configuration, Storage object bodies or external service secrets restored"
+}

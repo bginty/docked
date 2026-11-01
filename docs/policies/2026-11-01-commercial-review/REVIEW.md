@@ -18,3 +18,9 @@ Before publication:
 6. Publish immutable, separately versioned policies; update actual consent versions and Google declarations only after approval. Never replace old accepted text in place.
 
 No real checkout, public registration, policy acceptance, prize award or Google public submission was activated by preparing this package.
+
+## 2 November final-wording update
+
+The public drafts now contain service-discontinuation/remedy wording, a direct Google refund-help route, the company financial-record baseline and explicit proposed operational retention limits. They remain unpublished and do not replace beta consent text. The concrete remaining rights and classification decisions are in [the release rights matrix](../../COMMERCIAL_RIGHTS_MATRIX_20261102.md). Model/pricing approval is complete; do not ask for it again.
+
+Verified current routes are `/privacy`, `/refund-policy`, `/retention`, `/commercial-policy` and `/account-deletion`. `config/launch-policy-content.json` supplies the first four through `ReleasePolicyPage`; those pages distinguish current beta operation from proposed paid release. Consolidate the digital-purchase, commercial-term, marketplace and competition wording into the existing commercial-policy document when approved rather than inventing new policy URLs. Save an immutable approved policy version and its content checksum, then update the consent version and Console references in the same reviewed release. These revised Markdown drafts have not replaced the live version `2026-11-01-release-preparation-v1`.

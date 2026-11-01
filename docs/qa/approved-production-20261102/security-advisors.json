@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-01T23:22:25.943Z",
+  "groups": {
+    "INFO:rls_enabled_no_policy": 1,
+    "WARN:auth_leaked_password_protection": 1
+  },
+  "interpretation": "Private schemas intentionally use RLS default deny for browser roles; existing leaked-password-protection warning remains. No protection was weakened; no paid upgrade was purchased."
+}

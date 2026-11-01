@@ -11,3 +11,5 @@ When Google confirms a full refund, unused credits from that purchase are remove
 Free gameplay and access to support are not automatically blocked by the payment review. Previously opened pack receipts remain available. Support can release an eligible completed-refund hold following an authorised, recorded review; releasing a hold does not itself issue credits or send money.
 
 Partial refunds and inconsistent provider records require individual reconciliation. Contact support for the outcome, remedy or review of a restriction. A provider refund and a Docked support decision have separate audit records. This policy does not promise an unapproved review time or replace Google's applicable refund processes.
+
+You can request a Google Play refund through https://support.google.com/googleplay/answer/2479637. Google handles the payment-method refund; Docked reconciles the corresponding in-app entitlement. A missing in-app update is not a reason to pay again. Contact support with the order reference so the existing purchase can be checked. Support will not ask you to repay through an external checkout to remove a hold.

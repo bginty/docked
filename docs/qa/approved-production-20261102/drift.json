@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-01T23:14:45.682Z",
+  "schemaMatchesRestore": true,
+  "schemaHash": "2cb14e0aa9df5b0dad22cf14fc0211fd9a81708693d999df842ff608cd1738b2",
+  "changedSinceRestore": [
+    "sports_feed.nfl_rounds"
+  ],
+  "expectedOperationalDrift": [
+    {
+      "table": "sports_feed.nfl_rounds",
+      "fields": [
+        "last_checked",
+        "next_check",
+        "lease_until"
+      ],
+      "immutableRows": 8,
+      "comparison": "exact parsed rows; fixtures, lock snapshots, issues and round identities unchanged"
+    }
+  ],
+  "unexpectedDrift": [],
+  "backupAt": "2026-11-01T23:05:50.875Z",
+  "mode": "apply"
+}

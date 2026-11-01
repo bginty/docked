@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-01T23:15:26.128865+00:00",
+  "migrations": [
+    {
+      "sha256": "a9d77454705a9c827155f1a07acda040ce48e5fb6911bf793edc3e0efed7a28c",
+      "version": "20261101120754"
+    },
+    {
+      "sha256": "c39d5da280d2d76226740d904e93732b2ca6ecffee505bf1803924b0e54e995b",
+      "version": "20261102010000"
+    },
+    {
+      "sha256": "121e97e5e41d160aee4f7bcdcd92fcaee2aae87c547c17a7af7b71ded978b4f2",
+      "version": "20261102010001"
+    }
+  ],
+  "runtimeRole": {
+    "login": false,
+    "bypassRls": false,
+    "superuser": false
+  },
+  "publicRounds": 0,
+  "registration": false,
+  "publicEnabled": false,
+  "commercialCards": 0,
+  "publicSportRows": [
+    {
+      "sport": "afl",
+      "visible": false,
+      "playEnabled": false
+    },
+    {
+      "sport": "nfl",
+      "visible": false,
+      "playEnabled": false
+    },
+    {
+      "sport": "nrl",
+      "visible": false,
+      "playEnabled": false
+    }
+  ],
+  "approvedProducts": 0,
+  "commercialAccounts": 0,
+  "commercialControls": {
+    "approvals": {},
+    "environment": "commercial",
+    "sales_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "gameplay_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  },
+  "commercialReceipts": 0,
+  "newSchemasWithoutRls": 0
+}

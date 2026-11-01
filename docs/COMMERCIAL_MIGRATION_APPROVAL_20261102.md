@@ -1,5 +1,7 @@
 # Commercial billing migration and activation review
 
+**Application update, 2 November 2026:** the owner subsequently approved the three exact dormant migrations. They were applied atomically to Production at 2026-11-01 23:15 UTC after a refreshed encrypted restore test, checksum/schema/dependency checks and explicit verification of routine NFL scheduler timestamp drift. All 310 protected-table fingerprints and existing RLS/table grants were unchanged within the transaction. A separate read confirmed all gates off and exact stored migration checksums. See `qa/approved-production-20261102/apply.json` and `post-migration.json`. References below to pending migration approval are historical; they do not request the same approval again. No commercial runtime login, public programme, customer wallet, inventory, payment or prize was activated.
+
 Prepared 2 November 2026 (Australia/Sydney). **No Production migration or commercial activation is authorised by this document.** The live invitation-only service remains unchanged.
 
 **Later 2 November update:** owner model approval is recorded in `OWNER_COMMERCIAL_APPROVAL_20261102.md`. The ordinary public-member gameplay/Profile integration is now implemented and accepted against isolated real Auth. Its third, default-disabled migration and updated activation requirements are in `PUBLIC_CUSTOMER_ACTIVATION_REVIEW_20261102.md`. This supersedes the route-integration gap below; hosted activation, rights and policies remain gated. All three migrations are still unapplied to Production.

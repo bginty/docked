@@ -1,5 +1,7 @@
 # Public customer gameplay — additive activation review
 
+**2 November application update:** all three named dormant migrations are now applied to Production under the owner's explicit approval. See `qa/approved-production-20261102/apply.json` and `post-migration.json`. Public programme/sport flags remain false, rounds empty and registration closed. This supersedes the earlier migration-approval-pending status below; activation and isolated hosted acceptance remain separate requirements.
+
 Prepared 2 November 2026. Owner commercial-model approval is recorded in `OWNER_COMMERCIAL_APPROVAL_20261102.md`; it is not awaiting another business-model decision. This document does not establish external rights or enable any live feature.
 
 Latest continuation: `PUBLIC_ACTIVATION_GATE_20261102.md` records the successful encrypted Production restore, three-migration compatibility/reapplication test and saved Google Production release draft. Submission is conditionally owner-authorised after mandatory gates pass; specific application approval for the three dormant migrations remains pending.
