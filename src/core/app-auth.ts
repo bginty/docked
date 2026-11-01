@@ -19,11 +19,7 @@ export function appAuthCallbackDestination(next: string | null) {
 }
 
 export const appSports = [
-  ["football", "Football"],
   ["nfl", "NFL"],
-  ["basketball", "NBA / basketball"],
   ["afl", "AFL"],
-  ["tennis", "Tennis"],
-  ["cricket", "Cricket"],
-  ["horse-racing", "Racing"],
+  ["nrl", "NRL"],
 ] as const;

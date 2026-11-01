@@ -2,6 +2,8 @@
 
 **Not published terms, a legal opinion or an approval. Payments remain off.** The current invitation-only app and its test-credit policies remain in force. This document concerns the proposed Australian paid-pack release only.
 
+**2 November owner update:** the commercial business model, existing fees, paid packs and disclosed recovery holds are approved in [the decision record](OWNER_COMMERCIAL_APPROVAL_20261102.md). References below to model approval now mean external classification, rights and platform verification, not a repeated owner business decision. Google Payments and Billing security sources were rechecked on 2 November; this did not establish Docked-specific clearance.
+
 ## Recommended launch configuration
 
 NFL, AFL and NRL; verified adult Australian accounts; free Core gameplay; optional paid Standard/Premium packs; Google Play Billing for Android credit purchases. Keep NBA, cash redemption/withdrawals, paid entry and prizes disabled. Keep commercial card transfers disabled initially, pending a written assessment of the secondary-market model. Preserve the existing private-beta market and records; do not represent beta inventory as purchased permanent property.
@@ -66,7 +68,7 @@ Before commercial activation the owner and adviser must specify retention period
 
 ## Approvals still required
 
-1. Legal/commercial model, Australian classification and any Google-specific permissions for the complete product, including transferability.
+1. External legal assessment, Australian classification and any Google-specific permissions for the approved product, including transferability. The owner business model is already approved.
 2. Real player/card/statistics rights and an audited lifetime-supply baseline; no duplicate permanent serial programme.
 3. Published commercial Terms/Privacy/Refund/Retention versions and customer consent changeover.
 4. Recovery-hold support policy, staffing, appeal/remedy process and financial settlement reporting.

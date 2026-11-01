@@ -5,6 +5,7 @@ import { config } from "./config";
 import { db } from "./db";
 import { fantasyEnabled } from "@/core/fantasy";
 import { commercialSurfaceEnabled } from "../core/commercial-presentation";
+import { publicCustomersEnabled } from "@/core/public-customer";
 import {
   fantasyProductionEnabled,
   fantasyPresentationEnabled,
@@ -32,6 +33,7 @@ export const environmentPresentation = cache(async () => {
   return {
     ...readiness,
     commercialSurface: commercialSurfaceEnabled(),
+    publicCustomer: publicCustomersEnabled(),
     reviewOnly: settings.reviewOnly,
     fantasyPreview: fantasyEnabled(),
     fantasyProduction: fantasyProductionEnabled(),

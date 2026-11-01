@@ -12,9 +12,12 @@ export function sportStandingRounds(state: SandboxState): StandingRound[] {
       const locked = Date.parse(c.locks_at) <= Date.parse(state.server_time);
       return {
         sport: state.sport,
-        salaryLabel: australianSalaryLabel(
-          state.configurations[c.rules.lineup_version],
-        ),
+        salaryLabel:
+          state.public_play && state.sport === "nfl"
+            ? `$${(state.configurations[c.rules.lineup_version].salaryCap / 1_000_000).toFixed(1)}m salary cap`
+            : australianSalaryLabel(
+                state.configurations[c.rules.lineup_version],
+              ),
         slots: state.configurations[c.rules.lineup_version]?.slots,
         competitionId: c.id,
         label: c.name,
@@ -75,10 +78,12 @@ export function sportStandingRounds(state: SandboxState): StandingRound[] {
                         playerId: p.player_id,
                         team: p.team ?? "",
                         multiplier:
-                          state.sport === "basketball" &&
-                          c.rules.scoring_version?.includes("rarity")
-                            ? rarityRule(p.tier).multiplierTenths / 10
-                            : 1,
+                          state.public_play && p.multiplierTenths != null
+                            ? p.multiplierTenths / 10
+                            : state.sport === "basketball" &&
+                                c.rules.scoring_version?.includes("rarity")
+                              ? rarityRule(p.tier).multiplierTenths / 10
+                              : 1,
                         locked,
                         baseCentipoints:
                           point?.games.length &&

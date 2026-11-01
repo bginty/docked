@@ -222,14 +222,16 @@ export function AppAuthForm({
               label="Country code"
               name="country"
               placeholder="AU"
-              defaultValue={customerSetup ? "AU" : undefined}
-              readOnly={customerSetup}
+              defaultValue={
+                customerSetup || environment.publicCustomer ? "AU" : undefined
+              }
+              readOnly={customerSetup || environment.publicCustomer}
               autoComplete="country"
               pattern="[A-Z]{2}"
               maxLength={2}
               required
             />
-            {environment.liveBeta ? (
+            {environment.liveBeta || environment.publicCustomer ? (
               <label className="app-auth-field">
                 <span>State / region</span>
                 <select
@@ -557,9 +559,8 @@ export function AppOnboardingForm({
       {step === 1 && (
         <>
           <p className="app-auth-hint">
-            Personalise your fantasy sports interests. Gameplay access is
-            managed separately for each sport; choosing an interest does not
-            enable testing access.
+            Choose your sports. You can change your preferences later. Available
+            competitions follow each sport’s eligibility rules.
           </p>
           <div className="app-sport-options">
             {appSports.map(([value, label]) => (

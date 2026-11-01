@@ -104,11 +104,14 @@ export async function multiSportDatabase(
   );
   const user = randomUUID(),
     other = randomUUID();
-  const config = freeCoreRounds && (sport.id === "afl" || sport.id === "nrl") ? approvedAustralianLineup(sport.id) : sandboxConfig(sport);
-  await q("insert into beta_fantasy.lineup_configurations values($1,$2) on conflict do nothing", [
-    config.version,
-    JSON.stringify(config),
-  ]);
+  const config =
+    freeCoreRounds && (sport.id === "afl" || sport.id === "nrl")
+      ? approvedAustralianLineup(sport.id)
+      : sandboxConfig(sport);
+  await q(
+    "insert into beta_fantasy.lineup_configurations values($1,$2) on conflict do nothing",
+    [config.version, JSON.stringify(config)],
+  );
   await q(
     "insert into beta_fantasy.scoring_rules(version,rules)values('isolated-no-scoring-v1','{}')",
   );
@@ -152,10 +155,11 @@ export async function multiSportDatabase(
       verifiedJerseyNumber: null,
     }));
     inventories[u] = cards;
-    await q(
-      "insert into sports_feed.sport_sandbox_inventory values($1,$2,$3)",
-      [u, sport.id, JSON.stringify(cards)],
-    );
+    if (sport.id !== "nfl")
+      await q(
+        "insert into sports_feed.sport_sandbox_inventory values($1,$2,$3)",
+        [u, sport.id, JSON.stringify(cards)],
+      );
   }
   const rounds: Record<string, string> = {};
   // These fixtures deliberately exercise SAVED legacy QA contracts. New-round
@@ -196,26 +200,27 @@ export async function multiSportDatabase(
           }),
         ],
       );
-      await q(
-        "insert into sports_feed.sport_rounds(competition_id,sport,fixtures)values($1,$2,$3)",
-        [
-          id,
-          sport.id,
-          JSON.stringify([
-            {
-              fixtureId: `sim:${sport.id}:qa:${id}`,
-              scheduledAt:
-                sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1"
-                  ? "2099-02-01T00:00:00Z"
-                  : "2099-02-02T00:00:00Z",
-              status: "scheduled",
-              playerIds: Object.values(inventories)
-                .flat()
-                .map((c) => c.player_id),
-            },
-          ]),
-        ],
-      );
+      if (sport.id !== "nfl")
+        await q(
+          "insert into sports_feed.sport_rounds(competition_id,sport,fixtures)values($1,$2,$3)",
+          [
+            id,
+            sport.id,
+            JSON.stringify([
+              {
+                fixtureId: `sim:${sport.id}:qa:${id}`,
+                scheduledAt:
+                  sport.formatVersion === "docked-nba-weekly-lineup-proposal-v1"
+                    ? "2099-02-01T00:00:00Z"
+                    : "2099-02-02T00:00:00Z",
+                status: "scheduled",
+                playerIds: Object.values(inventories)
+                  .flat()
+                  .map((c) => c.player_id),
+              },
+            ]),
+          ],
+        );
     }
   await pg.exec(
     "alter table beta_fantasy.competitions enable trigger australian_future_approved_salary",

@@ -124,6 +124,14 @@ for (const cfg of [aflConfiguration, nrlConfiguration]) {
     assert.equal(rounds[0].fixtures!.length, 1);
     state.scores.round.rows[0].points = 1500;
     assert.equal(sportStandingRounds(state)[0].rows[0].centipoints, 1500);
+    // Public rounds display the saved card multiplier; presentation never
+    // multiplies an already authoritative contribution or total again.
+    state.public_play = true;
+    state.entries[0].snapshot[0].multiplierTenths = 14;
+    const publicRow = sportStandingRounds(state)[0].rows[0];
+    assert.equal(publicRow.lineup![0].multiplier, 1.4);
+    assert.equal(publicRow.lineup![0].centipoints, 1234);
+    assert.equal(publicRow.centipoints, 1500);
   });
 }
 

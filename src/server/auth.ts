@@ -1,4 +1,5 @@
 import { authSessionsRelation } from "@/core/auth-relations";
+import { publicCustomersEnabled } from "@/core/public-customer";
 import { cache } from "react";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
@@ -84,8 +85,11 @@ export const identity = cache(async function identity() {
       : [];
   return {
     mfaRequired:
-      process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
-      protection[0]?.required !== false,
+      (process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
+        protection[0]?.required !== false) ||
+      (publicCustomersEnabled() &&
+        (await sql`select 1 from private.roles where user_id=${user.id}`)
+          .length > 0),
     user,
     profile: p[0],
     aal: claims.aal as string,

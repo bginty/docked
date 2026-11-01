@@ -16,7 +16,7 @@ export default async function AppSignup() {
     <>
       <h1>Create your Docked account</h1>
       <p className="app-auth-hint">
-        {environment.production
+        {environment.production || environment.publicCustomer
           ? environment.registrationAvailable
             ? "Create a free account. Marketing is optional and separate from account messages."
             : `Registration is unavailable. ${environment.reason ?? "Please check back later."}`

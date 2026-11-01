@@ -12,6 +12,7 @@ import {
   privateSportWorkspace,
 } from "@/core/workspace-sport";
 import { PrivateSportPage } from "@/components/private-sport-page";
+import { publicCustomersEnabled } from "@/core/public-customer";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Prizes" };
 export default async function Page({
@@ -19,6 +20,7 @@ export default async function Page({
 }: {
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
+  if (publicCustomersEnabled()) return <PrivateSportPage />;
   const query = await searchParams;
   const sport = workspaceSport(
     query.sport,

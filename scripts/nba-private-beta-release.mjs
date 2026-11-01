@@ -304,7 +304,7 @@ if (process.argv[2] === "prepare") {
   }
   if(process.env.DOCKED_RELEASE_COMMERCIAL_DORMANT==='true'){
     assert(!process.argv.includes('--supervised-member-test'));
-    Object.assign(env,{DOCKED_COMMERCIAL_SERVICE:'false',DOCKED_COMMERCIAL_SURFACES:'false',DOCKED_COMMERCIAL_CHECKOUT:'false'});
+    Object.assign(env,{DOCKED_COMMERCIAL_SERVICE:'false',DOCKED_COMMERCIAL_SURFACES:'false',DOCKED_COMMERCIAL_CHECKOUT:'false',DOCKED_PUBLIC_CUSTOMERS:'false'});
     assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST,'false');
   }
   assert.equal(

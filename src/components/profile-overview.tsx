@@ -12,15 +12,17 @@ import type { PrivateAccountSummary } from "@/core/profile-overview";
 import { RarityCounts } from "./rarity-counts";
 import { useSport } from "./sport-context";
 import { MemberAvatar } from "./member-avatar";
+import { useEnvironmentPresentation } from "./environment-context";
 export function ProfileOverview({
   data,
   account,
 }: {
-  data: FantasyState;
+  data: Pick<FantasyState, "user_id" | "team_name" | "members">;
   account?: PrivateAccountSummary;
   onRefresh?: () => void;
 }) {
   const { sport } = useSport();
+  const { commercialSurface, publicCustomer } = useEnvironmentPresentation();
   const displayName =
     data.team_name ||
     account?.displayName ||
@@ -97,7 +99,7 @@ export function ProfileOverview({
             Packs
           </Link>
           <Link className="pack-control secondary" href="/fantasy/test-wallet">
-            Test Wallet
+            {commercialSurface || publicCustomer ? "Wallet" : "Test Wallet"}
           </Link>
         </div>
       </header>

@@ -2,6 +2,8 @@
 
 Prepared 2 November 2026 (Australia/Sydney). **No Production migration or commercial activation is authorised by this document.** The live invitation-only service remains unchanged.
 
+**Later 2 November update:** owner model approval is recorded in `OWNER_COMMERCIAL_APPROVAL_20261102.md`. The ordinary public-member gameplay/Profile integration is now implemented and accepted against isolated real Auth. Its third, default-disabled migration and updated activation requirements are in `PUBLIC_CUSTOMER_ACTIVATION_REVIEW_20261102.md`. This supersedes the route-integration gap below; hosted activation, rights and policies remain gated. All three migrations are still unapplied to Production.
+
 ## Exact proposed migrations
 
 | Migration | Effect | Defaults / preservation |

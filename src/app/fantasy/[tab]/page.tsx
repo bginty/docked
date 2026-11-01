@@ -14,6 +14,10 @@ import {
 import { PrivateSportPage } from "@/components/private-sport-page";
 import { OwnedCollection } from "@/components/owned-collection";
 import { commercialSurfaceEnabled } from "@/core/commercial-presentation";
+import { publicCustomersEnabled } from "@/core/public-customer";
+import { ProfileOverview } from "@/components/profile-overview";
+import { db } from "@/server/db";
+import { NavigationShortcut } from "@/components/navigation-shortcut";
 
 import { Marketplace } from "@/components/marketplace";
 import { requireIdentity, requireRole } from "@/server/auth";
@@ -83,7 +87,61 @@ export default async function FantasyPage({
   if (!["play", "cards", "market", "social", "profile", "admin"].includes(tab))
     notFound();
 
-  if (!fantasyEnabled())
+  if (publicCustomersEnabled() && tab === "play") return <PrivateSportPage />;
+  // Account presentation must not depend on the private-beta gameplay reader.
+  // Collection/entry aggregates still come from the authenticated summary API.
+  if (publicCustomersEnabled() && ["profile", "market"].includes(tab)) {
+    try {
+      const who = await boundedRead(requireIdentity());
+      const selectedSport = workspaceSport(
+        (await searchParams).sport,
+        (await cookies()).get(activeSportCookie)?.value,
+      );
+      if (tab === "market")
+        return (
+          <AppShell authenticated>
+            <section className="fantasy-panel">
+              <h1>Market</h1>
+              <p>Card trading is not available in this release.</p>
+              <p>Your cards and purchase history remain in your collection.</p>
+              <NavigationShortcut
+                href={`/fantasy/cards?sport=${selectedSport}`}
+              >
+                View Collection
+              </NavigationShortcut>
+            </section>
+          </AppShell>
+        );
+      const team = await db().begin(async (tx) => {
+        await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true),set_config('docked.public_gameplay','enabled',true)`;
+        return (await tx`select public_gameplay.my_team_name() name`)[0];
+      });
+      const account = privateAccountSummary(who.user);
+      const social = await boundedRead(ownProfileIdentity()).catch(() => ({}));
+      return (
+        <AppShell authenticated>
+          <ProfileOverview
+            data={{
+              user_id: who.user.id,
+              team_name: team?.name ?? null,
+              members: [],
+            }}
+            account={{ ...account, ...social }}
+          />
+        </AppShell>
+      );
+    } catch (error) {
+      const kind = memberAccessFailure(error);
+      return (
+        <FantasyLoadError
+          authRequired={kind === "authentication"}
+          mfaRequired={kind === "mfa"}
+          permissionDenied={kind === "permission"}
+        />
+      );
+    }
+  }
+  if (!fantasyEnabled() && !publicCustomersEnabled())
     return (
       <div className="fantasy-gate">
         <StartupReady />

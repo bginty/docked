@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-02",
+  "environment": "isolated-loopback-real-supabase-auth",
+  "productionMutations": false,
+  "realPayments": false,
+  "platform": {"passed": 710, "failed": 0, "skipped": 0},
+  "database": {"passed": 233, "failed": 0, "skipped": 0, "note": "Full run before the narrow own-team-name read; final read covered again by all three targeted and real PostgreSQL runs"},
+  "finalPublicDatabase": {"passed": 3, "failed": 0},
+  "realPostgres": {"version": "17.10", "sportsPassed": ["nfl", "afl", "nrl"], "isolated": true},
+  "typescript": "passed",
+  "eslint": "passed",
+  "optimizedBuild": "passed",
+  "commercialSecretCanaries": {"markers": 5, "browserAssets": 96, "findings": 0},
+  "stagedSecretScan": {"files": 53, "findings": 0},
+  "browser": {
+    "normalSignupAndConfirmation": true,
+    "syntheticLocalEmailOnly": true,
+    "onboardingSports": ["nfl", "afl", "nrl"],
+    "savedAndEnteredLineupSizes": {"nfl": 7, "afl": 22, "nrl": 13},
+    "rankingsAndViewTeam": true,
+    "profileCountsAndWallet": true,
+    "packPurchasesDisabled": true,
+    "socialRead": true,
+    "mobileCssWidth": 390,
+    "hosted": false,
+    "physicalAndroid": false
+  },
+  "productionReadOnly": {
+    "checkedAt": "2026-11-01T21:55:48.631041Z",
+    "postgres": "17.11",
+    "registration": false,
+    "commercialSchema": false,
+    "publicGameplaySchema": false,
+    "preparedMigrationsApplied": []
+  },
+  "android": {
+    "versionCode": 30,
+    "versionName": "1.29",
+    "aabSha256": "d3837d7191e0a6bbd64a572a9ac3288fd37b440eb36e67408648fb4b3c879e29",
+    "rebuilt": false
+  },
+  "googleConsole": {"publicDescriptionSavedAsDraft": true, "publicSubmission": false},
+  "rawLogs": ["platform-final.log", "database.log", "public-database-final.log", "postgres-nfl.log", "postgres-afl.log", "postgres-nrl.log", "build-canary.log", "lint-final.log", "typecheck-final.log"],
+  "rawLogNote": "Retained locally in this directory; repository ignores .log files. Existing TEST/commercial fixture evidence is linked in the handover, not claimed as new executions."
+}

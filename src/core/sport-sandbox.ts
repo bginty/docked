@@ -34,6 +34,7 @@ export type SandboxCard = SevenCard &
     season?: string;
   };
 export type SandboxState = {
+  public_play?: boolean;
   scores?: SandboxScores;
   fixtures?: Record<string, { scheduledAt: string; status: string }[]>;
   /** Server-derived averages of up to five completed, prior-period games. */
@@ -51,6 +52,7 @@ export type SandboxState = {
     season: string;
     round: number;
     locks_at: string;
+    fixture_kind?: "practice" | "verified";
     rules: {
       mode: "SALARY_CAP" | "OPEN";
       lineup_version: string;
@@ -73,6 +75,7 @@ export type SandboxState = {
       slot: string;
       card_id: string;
       fixture_ids?: string[];
+      multiplierTenths?: number;
     })[];
   }[];
   continuity: {

@@ -1,6 +1,6 @@
 /* Docked web app v1. Only the public offline shell is cached. Never cache pages,
    API responses, authenticated RSC payloads, cards or member media. */
-const CACHE = "docked-public-offline-fantasy-cleanup-v2";
+const CACHE = "docked-public-offline-account-neutral-v3";
 const OFFLINE = "/brand/docked/offline.html";
 self.addEventListener("install", (event) =>
   event.waitUntil(caches.open(CACHE).then((cache) => cache.add(OFFLINE))),

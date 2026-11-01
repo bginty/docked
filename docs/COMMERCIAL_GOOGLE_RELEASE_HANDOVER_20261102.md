@@ -1,5 +1,7 @@
 # Commercial Google Play release handover — 2 November 2026
 
+**Subsequent owner approval and public-member integration:** see `OWNER_COMMERCIAL_APPROVAL_20261102.md`, `PUBLIC_CUSTOMER_ACTIVATION_REVIEW_20261102.md` and `PUBLIC_CUSTOMER_RELEASE_HANDOVER_20261102.md`. They supersede this checkpoint's commercial-model approval request and ordinary-member route gap; the historical test/deployment evidence below remains unchanged.
+
 **Internal testing: GO. Public paid launch: NO-GO.** Commercial billing is implemented, tested in isolation and staged with its switches off. Android **v30 / 1.29** is available to internal testers. No commercial migration, real payment, public registration, withdrawal, prize award or public release was activated.
 
 This report supersedes the commercial-engineering gap in `FINAL_GOOGLE_RELEASE_READINESS_20261101.md`, but does not turn that report's genuine Google TEST results into commercial settlement evidence. It also identifies the remaining public-gameplay integration gap explicitly; a registration switch alone is insufficient.

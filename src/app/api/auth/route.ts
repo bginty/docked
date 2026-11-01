@@ -1,3 +1,4 @@
+import { publicCustomersEnabled } from "@/core/public-customer";
 import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
 import { memberReturnPath } from "@/core/member-access-recovery";
 import { signOutBetaSession } from "@/core/beta-signout";
@@ -377,6 +378,18 @@ export async function POST(request: Request) {
       { error: "Registration awaits approved Terms and Privacy documents." },
       { status: 503 },
     );
+  }
+  if (publicCustomersEnabled()) {
+    const [eligibility] =
+      await sql`select public_gameplay.signup_allowed(${v.country},${v.state},${versions.terms},${versions.privacy}) allowed`;
+    if (eligibility?.allowed !== true)
+      return NextResponse.json(
+        {
+          error:
+            "Registration is available only to eligible Australian adults under the current published policy.",
+        },
+        { status: 403 },
+      );
   }
   if (
     v.username &&

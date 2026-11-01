@@ -31,11 +31,13 @@ export function SportSandbox({
   initial,
   navigationPath = "/admin/sports",
   privateBeta = false,
+  publicCustomer = false,
   apiPath = "/api/admin/sports-sandbox",
 }: {
   initial: SandboxState;
   navigationPath?: string;
   privateBeta?: boolean;
+  publicCustomer?: boolean;
   apiPath?: string;
 }) {
   const [inspecting, setInspecting] = useState<ViewerCard | null>(null);
@@ -124,12 +126,14 @@ export function SportSandbox({
     );
   const comp =
     rounds.find((c) => c.id === round) ??
-    (state.sport === "afl" || state.sport === "nrl"
+    (publicCustomer || state.sport === "afl" || state.sport === "nrl"
       ? ([...rounds]
           .sort((a, b) => Date.parse(a.locks_at) - Date.parse(b.locks_at))
           .find((c) => Date.parse(c.locks_at) > serverNow) ?? rounds.at(-1))
       : rounds[0]);
-  const roundWord = state.sport === "basketball" ? "Week" : "Round";
+  const roundWord = ["nfl", "basketball"].includes(state.sport)
+    ? "Week"
+    : "Round";
   const context = {
     sport: state.sport,
     mode,
@@ -308,7 +312,10 @@ export function SportSandbox({
       !Number.isSafeInteger(cfg.salaryCap) ||
       cfg.salaryCap <
         cfg.slots.length * Math.min(...Object.values(cfg.salaries)));
-  const salaryDollars = nbaProposal || usesApprovedAustralianSalary(cfg);
+  const salaryDollars =
+    (publicCustomer && state.sport === "nfl") ||
+    nbaProposal ||
+    usesApprovedAustralianSalary(cfg);
   async function command(
     action: "seven_draft" | "seven_enter" | "auto_select",
   ) {
@@ -494,15 +501,23 @@ export function SportSandbox({
       )}
       <details className="sport-beta-details">
         <summary>
-          Test rounds · No prizes
-          {state.sport !== "basketball" ? " · Provisional scoring" : ""}
+          {publicCustomer
+            ? comp?.fixture_kind === "practice"
+              ? "Practice round · Free entry · No prizes"
+              : "Free entry · No prizes"
+            : "Test rounds · No prizes"}
+          {!publicCustomer && state.sport !== "basketball"
+            ? " · Provisional scoring"
+            : ""}
         </summary>
         <p>
-          {privateBeta
-            ? `${sport?.label ?? state.sport} testing · ${state.cards.some((c) => c.inventory_class === "real-roster-beta-v1") ? "Real-player roster cards; test rounds only. Real game statistics are not connected." : "Fictional players and simulated statistics."} ${state.sport === "basketball" ? "" : salaryDollars ? "Approved fantasy salaries; provisional scoring. " : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
-            : nbaProposal
-              ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
-              : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
+          {publicCustomer
+            ? "Free Core eligibility is available in Play and does not issue collectible cards. Practice fixtures are labelled separately from official results. No entry fee or prize applies to these competitions."
+            : privateBeta
+              ? `${sport?.label ?? state.sport} testing · ${state.cards.some((c) => c.inventory_class === "real-roster-beta-v1") ? "Real-player roster cards; test rounds only. Real game statistics are not connected." : "Fictional players and simulated statistics."} ${state.sport === "basketball" ? "" : salaryDollars ? "Approved fantasy salaries; provisional scoring. " : "Provisional beta salary/scoring rules. "}No permanent cards or prizes.`
+              : nbaProposal
+                ? "PROPOSED NBA · Isolated testing with fictional cards and statistics. No member assets, prizes or live issuance."
+                : "Isolated sandbox · Fictional QA cards · No member assets, credits or prizes. Salary units are test fixtures; scoring and live issuance are disabled."}
         </p>
       </details>
       <span className="competition-label">Competition</span>
@@ -540,15 +555,18 @@ export function SportSandbox({
             setBusy(true);
             setError("");
             try {
-              const response = await boundedFetch("/api/fantasy", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  action: "name_team",
-                  payload: { name },
-                  request_id: crypto.randomUUID(),
-                }),
-              });
+              const response = await boundedFetch(
+                publicCustomer ? apiPath : "/api/fantasy",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    action: "name_team",
+                    payload: { name },
+                    request_id: crypto.randomUUID(),
+                  }),
+                },
+              );
               const body = await response.json();
               if (!response.ok)
                 throw Error(

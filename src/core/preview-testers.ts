@@ -62,6 +62,7 @@ export const appOnboardingSchema = z.object({
         "ice-hockey",
         "motorsport",
         "afl",
+        "nrl",
       ]),
     )
     .max(10)

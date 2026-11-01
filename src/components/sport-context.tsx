@@ -10,6 +10,11 @@ import {
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { boundedFetch } from "@/core/bounded-request";
+import { useEnvironmentPresentation } from "./environment-context";
+import { isPublicSport } from "@/core/public-customer";
+const PublicGameplay = lazy(() =>
+  import("./public-gameplay").then((m) => ({ default: m.PublicGameplay })),
+);
 const NbaBetaScreen = lazy(() =>
   import("./nba-beta-screen").then((m) => ({ default: m.NbaBetaScreen })),
 );
@@ -62,6 +67,7 @@ const SportContext = createContext({
   retryCapabilities: () => {},
 });
 export function SportProvider({ children }: { children: ReactNode }) {
+  const { publicCustomer } = useEnvironmentPresentation();
   const path = usePathname();
   const [search, setSearch] = useState("");
   const router = useRouter();
@@ -98,10 +104,13 @@ export function SportProvider({ children }: { children: ReactNode }) {
       try {
         // This existing endpoint includes NBA as well as AFL/NRL. One request
         // per workspace lifetime avoids duplicate auth/DB work on every tab.
-        const r = await boundedFetch("/api/sports-beta", {
-          cache: "no-store",
-          signal: controller.signal,
-        });
+        const r = await boundedFetch(
+          publicCustomer ? "/api/public-gameplay" : "/api/sports-beta",
+          {
+            cache: "no-store",
+            signal: controller.signal,
+          },
+        );
         if (!r.ok && ![401, 403].includes(r.status))
           throw Error("Sport access unavailable");
         const allowed = r.ok ? (await r.json()).allowed : [];
@@ -139,7 +148,7 @@ export function SportProvider({ children }: { children: ReactNode }) {
       window.removeEventListener("docked-app-resume", resume);
       document.removeEventListener("visibilitychange", resume);
     };
-  }, [memberArea, capabilityAttempt]);
+  }, [memberArea, capabilityAttempt, publicCustomer]);
   useEffect(() => {
     const read = () => {
       const requested = new URLSearchParams(location.search).get("sport");
@@ -249,6 +258,7 @@ function SportQueryObserver({
 }
 export const useSport = () => useContext(SportContext);
 export function SportScope({ children }: { children: ReactNode }) {
+  const { publicCustomer } = useEnvironmentPresentation();
   const {
     sport,
     ready,
@@ -261,6 +271,27 @@ export function SportScope({ children }: { children: ReactNode }) {
   const path = usePathname();
   const search = useSearchParams();
   if (!ready) return <p role="status">Loading your sport…</p>;
+  if (
+    publicCustomer &&
+    isPublicSport(sport) &&
+    ["/fantasy/play", "/fantasy/results", "/fantasy/prizes"].includes(path)
+  )
+    return (
+      <Suspense fallback={<p role="status">Loading competitions…</p>}>
+        <PublicGameplay
+          key={`${path}:${sport}`}
+          sport={sport}
+          surface={
+            path.endsWith("/results")
+              ? "results"
+              : path.endsWith("/prizes")
+                ? "prizes"
+                : "play"
+          }
+        />
+      </Suspense>
+    );
+  if (publicCustomer) return children;
   if (isBetaSport(sport) && !capabilitiesReady)
     return <p role="status">Checking sport access…</p>;
   if (isBetaSport(sport) && capabilitiesError && !beta.includes(sport))

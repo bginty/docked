@@ -45,6 +45,7 @@ export function CompetitionResults({
   selection = {},
   sport = "nfl",
   seasonAggregationEnabled = true,
+  refreshEndpoint,
 }: {
   rounds: ReviewRound[];
   standings: NflStanding[];
@@ -54,12 +55,14 @@ export function CompetitionResults({
   selection?: Selection;
   sport?: string;
   seasonAggregationEnabled?: boolean;
+  refreshEndpoint?: string;
 }) {
   const live = useGameDay(
     initialWeekly,
-    sport === "nfl"
-      ? "/api/fantasy/standings"
-      : `/api/sports-beta?view=standings&sport=${sport}`,
+    refreshEndpoint ??
+      (sport === "nfl"
+        ? "/api/fantasy/standings"
+        : `/api/sports-beta?view=standings&sport=${sport}`),
   );
   const roundWord = sport === "afl" || sport === "nrl" ? "Round" : "Week";
   const weekly = live.rounds;

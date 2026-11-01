@@ -129,7 +129,8 @@ export function AppShell({
     ].includes(href)
       ? `${href}?sport=${sport}`
       : href;
-  const { production, liveBeta,commercialSurface } = useEnvironmentPresentation();
+  const { production, liveBeta, commercialSurface, publicCustomer } =
+    useEnvironmentPresentation();
   const activeNav = nav;
   const destination = appDestination(path);
   const shell = useEditingViewport(authenticated);
@@ -198,7 +199,9 @@ export function AppShell({
           <p className="small-note">
             18+ · Fantasy Cards
             <br />
-            {commercialSurface?'Free Core play. No cash redemption.':'Free play. No cash value.'}
+            {commercialSurface
+              ? "Free Core play. No cash redemption."
+              : "Free play. No cash value."}
           </p>
         </aside>
         <div className="app-workspace">
@@ -279,7 +282,9 @@ export function AppShell({
             )}
           </div>
           <p className="app-footnote">
-            {commercialSurface?'No cash redemption. Competition rules apply.':'Invited test beta · No cash value. Competition rules apply.'}
+            {commercialSurface || publicCustomer
+              ? "No cash redemption. Competition rules apply."
+              : "Invited test beta · No cash value. Competition rules apply."}
           </p>
         </div>
         <nav className="app-bottom-nav" aria-label="Mobile app navigation">

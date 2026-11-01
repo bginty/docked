@@ -37,9 +37,11 @@ export function PrizeTrophy() {
 export function PrizesPage({
   competitions,
   schedules,
+  showUpcoming = true,
 }: {
   competitions: PrizeCompetition[];
   schedules: PrizeSchedule[];
+  showUpcoming?: boolean;
 }) {
   const { sport } = useSport();
   const roundWord = sport === "afl" || sport === "nrl" ? "Round" : "Week";
@@ -82,7 +84,10 @@ export function PrizesPage({
   };
   const items = schedule?.items.slice().sort((a, b) => a.from - b.from) ?? [];
   const upcoming =
-    !items.length && period === "weekly" && (sport === "afl" || sport === "nrl")
+    showUpcoming &&
+    !items.length &&
+    period === "weekly" &&
+    (sport === "afl" || sport === "nrl")
       ? approvedAustralianPrizes(sport, mode === "OPEN" ? "OPEN" : "SALARY_CAP")
       : null;
   const displayedItems = upcoming?.items ?? items;

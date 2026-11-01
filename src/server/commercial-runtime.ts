@@ -49,13 +49,17 @@ export async function commercialRuntime() {
     active,
     values,
   });
-  const verifier = new GoogleCommercialVerifier(
-    "commercial",
-    googlePlayOAuth(
+  // Read-only wallets/collections must remain available during a verifier
+  // credential outage. Verification still fails closed before any receipt is
+  // accepted; no read projection needs to request a Google access token.
+  let oauth: ReturnType<typeof googlePlayOAuth> | undefined;
+  const verifier = new GoogleCommercialVerifier("commercial", () => {
+    oauth ??= googlePlayOAuth(
       process.env.DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL ?? "",
       process.env.DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY ?? "",
-    ),
-  );
+    );
+    return oauth();
+  });
   return {
     ledger,
     verifier,

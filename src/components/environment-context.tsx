@@ -13,6 +13,7 @@ export type EnvironmentPresentation = Omit<
   fantasyProduction?: boolean;
   fantasyBranding?: boolean;
   commercialSurface?: boolean;
+  publicCustomer?: boolean;
 };
 
 // Isolated component previews have no account authority. Real routes always
