@@ -36,7 +36,7 @@ function brandShell(template) {
 export function renderPublicOfflineShell() {
   return brandShell(
     readFileSync("mobile/pwa-offline.template.html", "utf8"),
-  ).replace("{{STYLE}}", shellStyle());
+  ).replace("{{STYLE}}", shellStyle()).replace(/\r\n?/g, "\n");
 }
 export function renderOfflineShell(target) {
   const style = shellStyle();
