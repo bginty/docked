@@ -3,6 +3,7 @@ import postgres from "postgres";
 import { db } from "./db";
 import { authUsersRelation } from "../core/auth-relations";
 import { databaseConnectionOptions } from "./database-tls";
+import { databasePoolOptions } from "./database-pool";
 import { CommercialLedger } from "./commercial-ledger";
 import { GoogleCommercialVerifier } from "./google-commercial-verifier";
 import { CommercialReconciliation } from "./commercial-reconciliation";
@@ -38,8 +39,9 @@ export async function commercialRuntime() {
   if (!connection)
     connection = postgres(url, {
       ...databaseConnectionOptions(url),
-      max: 3,
-      prepare: false,
+      ...(process.env.DATABASE_RUNTIME === "serverless"
+        ? databasePoolOptions()
+        : { max: 3, prepare: false }),
     });
   const [role] =
     await connection`select current_user name,r.rolsuper,r.rolbypassrls,pg_has_role(current_user,'docked_commercial_app','member') permitted from pg_roles r where r.rolname=current_user`;

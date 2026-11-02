@@ -141,6 +141,7 @@ if (mode === "deploy") {
     NEXT_PUBLIC_SUPABASE_URL: `https://${fixture.projectRef}.supabase.co`,
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: fixture.publishableKey,
     DATABASE_URL: fixture.runtime,
+    DATABASE_RUNTIME: "serverless",
     DOCKED_COMMERCIAL_DATABASE_URL: fixture.commerce,
     DOCKED_COMMERCIAL_SERVICE: "true",
     DOCKED_COMMERCIAL_SURFACES: "true",

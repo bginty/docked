@@ -30,7 +30,11 @@ const kind = process.argv[3] ?? "member",
   a = f.accounts.find((v) => v.kind === kind);
 assert(a);
 const mode = process.argv[2];
-assert(["signup", "play", "screens", "deletion"].includes(mode));
+assert(
+  ["signup", "play", "traditional", "screens", "deletion", "denials"].includes(
+    mode,
+  ),
+);
 const report = {
   at: new Date().toISOString(),
   origin: f.origin,
@@ -203,9 +207,12 @@ try {
     await context.storageState({ path: `${dir}/${kind}-session.private.json` });
     await snapshot("signed-in");
   }
-  if (mode === "play") {
+  if (mode === "play" || mode === "traditional") {
     for (const sport of ["nfl", "afl", "nrl"]) {
-      await page.goto(f.origin + `/fantasy/play?sport=${sport}`);
+      await page.goto(
+        f.origin +
+          `/fantasy/play?sport=${sport}&mode=${mode === "traditional" ? "SALARY_CAP" : "OPEN"}`,
+      );
       await page
         .getByRole("button", { name: "Auto Select", exact: true })
         .waitFor({ timeout: 45000 });
@@ -255,15 +262,32 @@ try {
       await page.getByText("Team entry confirmed", { exact: true }).waitFor();
       const result = await api(`/api/public-gameplay?sport=${sport}`);
       assert.equal(result.status, 200);
-      assert.equal(result.body.state.entries.length, 1);
       assert.equal(
-        result.body.state.entries[0].snapshot.length,
+        result.body.state.entries.length,
+        mode === "traditional" ? 2 : 1,
+      );
+      const selected = result.body.state.entries.find(
+        (e) =>
+          e.competition_id === f.rounds[sport][mode === "traditional" ? 0 : 1],
+      );
+      assert(selected);
+      assert.equal(
+        selected.snapshot.length,
         { nfl: 7, afl: 22, nrl: 13 }[sport],
       );
-      await snapshot(`${sport}-entered`);
+      if (mode === "traditional") {
+        const comp = result.body.state.competitions.find(
+          (c) => c.id === selected.competition_id,
+        );
+        assert.equal(
+          result.body.state.configurations[comp.rules.lineup_version].salaryCap,
+          { nfl: 4400000, afl: 13800000, nrl: 8200000 }[sport],
+        );
+      }
+      await snapshot(`${sport}-${mode}-entered`);
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.screenshot({
-        path: `${out}/${sport}-entered-1440.png`,
+        path: `${out}/${sport}-${mode}-entered-1440.png`,
         fullPage: true,
       });
       await page.setViewportSize({ width: 390, height: 844 });
@@ -283,11 +307,11 @@ try {
       cards: 0,
       receipts: 0,
       credits: 0,
-      entries: 3,
+      entries: mode === "traditional" ? 6 : 3,
     });
     report.summary = summary;
     check(
-      "All three entries use eligibility only: zero collectibles, paid receipts or credited funds",
+      "Entries use eligibility only: zero collectibles, paid receipts or credited funds",
     );
   }
   if (mode === "screens") {
@@ -296,7 +320,7 @@ try {
       "/fantasy/packs?sport=nrl",
       "/fantasy/market?sport=nfl",
       "/profile",
-      "/terms",
+      "/commercial-policy",
       "/privacy",
       "/refund-policy",
       "/retention",
@@ -316,6 +340,64 @@ try {
       await snapshot(route.split("?")[0].replaceAll("/", "-"));
       check("Rendered " + route);
     }
+  }
+  if (mode === "denials") {
+    await page.goto(f.origin + "/fantasy/play?sport=nfl");
+    const wallet = await api("/api/workspace-wallet");
+    assert.equal(wallet.status, 200);
+    assert.equal(wallet.body.state.wallet.spendable, 0);
+    report.wallet = {
+      balance: wallet.body.state.wallet.balance,
+      spendable: wallet.body.state.wallet.spendable,
+    };
+    check(
+      "Authenticated read-only empty wallet is correct, not an error fallback",
+    );
+    for (const action of [
+      "",
+      "?action=pack",
+      "?action=open",
+      "?action=reconcile",
+    ]) {
+      const status = await page.evaluate(
+        async (action) =>
+          (
+            await fetch("/api/store/google/commercial" + action, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: "{}",
+            })
+          ).status,
+        action,
+      );
+      assert.equal(status, 403);
+    }
+    assert.equal(
+      (await api("/api/public-gameplay?sport=basketball")).status,
+      403,
+    );
+    check(
+      "Isolated member cannot submit commercial receipts, buy/open/reconcile packs, or access NBA",
+    );
+    const anonymous = await browser.newContext();
+    await anonymous.route("**/*", (r) =>
+      r.continue({
+        headers: {
+          ...r.request().headers(),
+          ...(new URL(r.request().url()).origin === f.origin
+            ? { "x-vercel-trusted-oidc-idp-token": oidc }
+            : {}),
+        },
+      }),
+    );
+    const tab = await anonymous.newPage();
+    await tab.goto(f.origin + "/app/login");
+    const denied = await tab.evaluate(
+      async () => (await fetch("/api/workspace-wallet")).status,
+    );
+    assert([401, 403].includes(denied));
+    await anonymous.close();
+    check("Anonymous wallet request denied");
   }
   if (mode === "deletion") {
     await page.goto(f.origin + "/dashboard");

@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { ApiForm } from "@/components/forms";
 import { AppAuthShell } from "@/components/app-auth-shell";
 import { MfaForm } from "@/components/mfa-form";
+import { publicCustomersEnabled } from "@/core/public-customer";
 export const metadata = {
   title: "Docked account and support",
   robots: { index: false, follow: false },
@@ -23,7 +24,9 @@ export default async function Page({
     join: "/app/signup",
     recover: "/app/forgot-password",
     "reset-password": "/app/reset-password",
-    terms: "/beta-policies#terms",
+    terms: publicCustomersEnabled()
+      ? "/commercial-policy"
+      : "/beta-policies#terms",
     privacy: "/beta-policies#privacy",
     "safer-gambling": "/beta-policies#responsible-gambling",
   };
@@ -64,14 +67,16 @@ export default async function Page({
         Docked is a fantasy sports card platform. Collect limited cards, build
         teams and compete in {competitionNames.SALARY_CAP} or{" "}
         {competitionNames.OPEN}. Available sports depend on your approved
-        testing access.
+        account eligibility and the current release configuration.
       </p>
       <p>
-        The invited friends beta uses real NFL roster cards and post-game
-        scoring. Authorised testers can also use clearly labelled fictional NBA,
-        AFL and NRL inventory. Test credits and cards have no cash value.
-        Scoring depends on the competition’s saved rules. Public registration is
-        closed; real payments, cash prizes and withdrawals are disabled.
+        NFL, AFL and NRL share one Docked account. Free Core players support
+        eligible free competitions. Optional Standard and Premium packs and
+        credit sales are available only where enabled. Scoring follows each
+        competition’s saved rules. Clearly labelled practice fixtures and test
+        inventory are separate from verified results and permanent collectibles.
+        Test credits have no cash value. Cash prizes and withdrawals are
+        disabled.
       </p>
       {section === "legacy-support" && (
         <p>
