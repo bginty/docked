@@ -10,6 +10,7 @@ import { currentConsentVersions } from "../core/auth-readiness";
 import { CommercialMemberView } from "./commercial-member-view";
 import { commercialCard } from "../core/commercial-presentation";
 import { isolatedPreviewReadOnlyIdentity } from "../core/isolated-public-preview.mjs";
+import { isolatedBillingIdentity } from "../core/isolated-billing-acceptance";
 /** Ordinary authenticated member; body never contains a customer, balance, price
  * or credited amount. TEST admission and synthetic identities are not reused. */
 export async function memberCommercial() {
@@ -24,8 +25,15 @@ export async function memberCommercial() {
     process.env,
     who.user.email,
   );
+  const acceptance = isolatedBillingIdentity(
+    process.env,
+    who.user.id,
+    who.user.email,
+  );
+  const checkoutEnabled =
+    process.env.DOCKED_COMMERCIAL_CHECKOUT === "true" || acceptance;
   const assertTransactionIdentity = () => {
-    if (isolatedReadOnly)
+    if (isolatedReadOnly && !acceptance)
       throw Error(
         "Isolated public acceptance is read-only for commercial records",
       );
@@ -60,19 +68,18 @@ export async function memberCommercial() {
     wallet: () => ledger.wallet(who.user.id),
     session: async () => ({
       environment: "commercial",
+      isolatedTestOnly: acceptance,
       policy: commercialPolicyVersion,
       member: who.user.id,
       accountBinding: account,
-      products:
-        process.env.DOCKED_COMMERCIAL_CHECKOUT === "true"
-          ? await ledger.checkout(who.user.id, authorize)
-          : [],
+      products: checkoutEnabled
+        ? await ledger.checkout(who.user.id, authorize)
+        : [],
       wallet: await ledger.wallet(who.user.id),
     }),
     receipt: async (body: unknown) => {
       assertTransactionIdentity();
-      if (process.env.DOCKED_COMMERCIAL_CHECKOUT !== "true")
-        throw Error("Checkout disabled");
+      if (!checkoutEnabled) throw Error("Checkout disabled");
       const { token } = z
         .object({
           token: z

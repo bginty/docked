@@ -9,6 +9,10 @@ import { customerEmailEnabled } from "../../src/core/customer-email-readiness";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
 import { authUiReadiness } from "../../src/core/auth-readiness";
 import {
+  isolatedBillingConfiguration,
+  isolatedBillingIdentity,
+} from "../../src/core/isolated-billing-acceptance";
+import {
   authUsersRelation,
   authSessionsRelation,
 } from "../../src/core/auth-relations";
@@ -47,6 +51,36 @@ const env: Record<string, string> = {
     ].map((k) => [k, "false"]),
   ),
 };
+test("Google TEST admission cannot select Production, a different account, live checkout or an expired window", () => {
+  const id = "00000000-0000-4000-8000-000000000001";
+  const email = "docked-preview-public-member-abcdef@example.invalid";
+  const e = {
+    ...env,
+    DOCKED_COMMERCIAL_DATABASE_URL: `postgresql://docked_isolated_commercial.${ref}:fixture@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres`,
+    DOCKED_ISOLATED_GOOGLE_TEST: "true",
+    DOCKED_ISOLATED_GOOGLE_MEMBER: id,
+    DOCKED_ISOLATED_GOOGLE_EMAIL: email,
+    DOCKED_ISOLATED_GOOGLE_UNTIL: new Date(Date.now() + 3600000).toISOString(),
+  };
+  assert(isolatedBillingIdentity(e, id, email));
+  assert(
+    !isolatedBillingIdentity(e, "00000000-0000-4000-8000-000000000002", email),
+  );
+  assert(!isolatedBillingIdentity(e, id, "someone@example.invalid"));
+  assert.equal(isolatedBillingConfiguration({}), null);
+  for (const patch of [
+    { VERCEL_ENV: "production" },
+    { DOCKED_COMMERCIAL_CHECKOUT: "true" },
+    { DOCKED_ISOLATED_GOOGLE_UNTIL: "2000-01-01" },
+    {
+      DOCKED_COMMERCIAL_DATABASE_URL: e.DOCKED_COMMERCIAL_DATABASE_URL.replace(
+        ref,
+        "pojoymtniryarxxunyvz",
+      ),
+    },
+  ])
+    assert.throws(() => isolatedBillingConfiguration({ ...e, ...patch }));
+});
 test("external Preview email uses exact expiring admission without granting transactions or invitations", () => {
   const e = {
     ...env,

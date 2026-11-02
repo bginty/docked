@@ -3,13 +3,31 @@ import { NextResponse, type NextRequest } from "next/server";
 import { authCookieOptions } from "@/core/auth-cookies";
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 import { retiredProductPath } from "@/core/retired-product";
+import { isolatedV30Transport } from "@/server/isolated-v30-transport";
 export async function proxy(request: NextRequest) {
+  const isolated = await isolatedV30Transport(request, process.env);
+  if (isolated) return isolated;
+  if (
+    request.nextUrl.pathname.startsWith("/_next/") ||
+    request.nextUrl.pathname.startsWith("/brand/") ||
+    request.nextUrl.pathname === "/favicon.ico"
+  )
+    return NextResponse.next();
   assertDeploymentEnvironment(process.env);
   if (retiredProductPath(request.nextUrl.pathname)) {
-    const headers = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' };
-    return request.nextUrl.pathname.startsWith('/api/')
-      ? NextResponse.json({ error: 'This service has been retired.', code: 'PRODUCT_RETIRED' }, { status: 410, headers })
-      : new NextResponse('<!doctype html><html lang="en"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docked · Page retired</title><main><h1>This page has been retired</h1><p>Docked is now a fantasy sports card platform.</p><a href="/">Open Docked</a></main></html>', { status: 410, headers: { ...headers, 'Content-Type': 'text/html; charset=utf-8' } });
+    const headers = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" };
+    return request.nextUrl.pathname.startsWith("/api/")
+      ? NextResponse.json(
+          { error: "This service has been retired.", code: "PRODUCT_RETIRED" },
+          { status: 410, headers },
+        )
+      : new NextResponse(
+          '<!doctype html><html lang="en"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docked · Page retired</title><main><h1>This page has been retired</h1><p>Docked is now a fantasy sports card platform.</p><a href="/">Open Docked</a></main></html>',
+          {
+            status: 410,
+            headers: { ...headers, "Content-Type": "text/html; charset=utf-8" },
+          },
+        );
   }
   let response = NextResponse.next({ request });
   if (
@@ -37,4 +55,4 @@ export async function proxy(request: NextRequest) {
   response.headers.set("Cache-Control", "private, no-store");
   return response;
 }
-export const config = {matcher: ['/((?!_next/static|_next/image|favicon.ico|brand/).*)']};
+export const config = { matcher: "/:path*" };

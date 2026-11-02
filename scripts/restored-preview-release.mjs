@@ -165,6 +165,30 @@ if (mode === "deploy") {
       DOCKED_ISOLATED_EMAIL_RECIPIENT: mail.email,
     });
   }
+  if (process.argv.includes("--google-acceptance")) {
+    const billing = JSON.parse(
+      await fs.readFile(`${dir}/billing.private.json`, "utf8"),
+    );
+    assert.equal(billing.projectRef, fixture.projectRef);
+    assert.equal(billing.closed, false);
+    assert(Date.parse(billing.until) > Date.now());
+    const google = JSON.parse(
+      await fs.readFile(
+        "C:/Users/61412/.docked-secrets/google-play-test-verifier.json",
+        "utf8",
+      ),
+    );
+    assert.equal(google.project_id, "docked-play-verification");
+    Object.assign(env, {
+      DOCKED_ISOLATED_GOOGLE_TEST: "true",
+      DOCKED_ISOLATED_GOOGLE_MEMBER: billing.member,
+      DOCKED_ISOLATED_GOOGLE_EMAIL: billing.email,
+      DOCKED_ISOLATED_GOOGLE_UNTIL: billing.until,
+      DOCKED_ISOLATED_GOOGLE_SERVICE_EMAIL: google.client_email,
+      DOCKED_ISOLATED_GOOGLE_PRIVATE_KEY: google.private_key,
+      DOCKED_GOOGLE_COMMERCIAL_WORKER_SECRET: fixture.accountBinding,
+    });
+  }
   assert(
     assertIsolatedPublicPreview({
       ...env,

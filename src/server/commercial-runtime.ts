@@ -8,13 +8,15 @@ import { CommercialLedger } from "./commercial-ledger";
 import { GoogleCommercialVerifier } from "./google-commercial-verifier";
 import { CommercialReconciliation } from "./commercial-reconciliation";
 import { googlePlayOAuth } from "./google-play-oauth";
+import { isolatedBillingConfiguration } from "../core/isolated-billing-acceptance";
 let connection: ReturnType<typeof postgres> | undefined;
-/** No acceptance-mode toggle in the deployed commercial adapter. Dedicated
- * least-privilege login is provisioned only by the approved rollout runbook. */
+/** Commercial always rejects TEST. A separately bound existing Preview may use
+ * the acceptance ledger, which itself rejects every real Google receipt. */
 export async function commercialRuntime() {
   if (process.env.DOCKED_COMMERCIAL_SERVICE !== "true")
     throw Error("Commercial service disabled");
   const url = process.env.DOCKED_COMMERCIAL_DATABASE_URL ?? "";
+  const acceptance = isolatedBillingConfiguration(process.env);
   const active = process.env.DOCKED_COMMERCIAL_REFERENCE_KEY_ID ?? "v1";
   const configured: unknown = process.env.DOCKED_COMMERCIAL_REFERENCE_KEYS
     ? JSON.parse(process.env.DOCKED_COMMERCIAL_REFERENCE_KEYS)
@@ -47,7 +49,12 @@ export async function commercialRuntime() {
     await connection`select current_user name,r.rolsuper,r.rolbypassrls,pg_has_role(current_user,'docked_commercial_app','member') permitted from pg_roles r where r.rolname=current_user`;
   if (!role?.permitted || role.rolsuper || role.rolbypassrls)
     throw Error("Restricted commercial database role required");
-  const ledger = new CommercialLedger(connection, "commercial", {
+  const environment = acceptance ? "acceptance" : "commercial";
+  const [control] =
+    await connection`select environment from commercial_billing.control where id`;
+  if (control?.environment !== environment)
+    throw Error("Runtime and ledger environment mismatch");
+  const ledger = new CommercialLedger(connection, environment, {
     active,
     values,
   });
@@ -55,10 +62,14 @@ export async function commercialRuntime() {
   // credential outage. Verification still fails closed before any receipt is
   // accepted; no read projection needs to request a Google access token.
   let oauth: ReturnType<typeof googlePlayOAuth> | undefined;
-  const verifier = new GoogleCommercialVerifier("commercial", () => {
+  const verifier = new GoogleCommercialVerifier(environment, () => {
     oauth ??= googlePlayOAuth(
-      process.env.DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL ?? "",
-      process.env.DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY ?? "",
+      (acceptance
+        ? process.env.DOCKED_ISOLATED_GOOGLE_SERVICE_EMAIL
+        : process.env.DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL) ?? "",
+      (acceptance
+        ? process.env.DOCKED_ISOLATED_GOOGLE_PRIVATE_KEY
+        : process.env.DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY) ?? "",
     );
     return oauth();
   });

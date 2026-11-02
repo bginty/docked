@@ -85,6 +85,17 @@ export default async function Layout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className="fantasy-mode">
+        {process.env.DOCKED_ISOLATED_GOOGLE_TEST === "true" && (
+          <aside
+            aria-label="Isolated acceptance notice"
+            style={{ padding: 12, background: "#18364b", color: "white" }}
+          >
+            Isolated Google TEST · No real money or permanent cards
+            <form action="/profile/qa_billing_exit" method="post">
+              <button>Exit TEST session</button>
+            </form>
+          </aside>
+        )}
         <EnvironmentProvider value={environment}>
           <SportProvider>
             {environment.liveBeta && (
