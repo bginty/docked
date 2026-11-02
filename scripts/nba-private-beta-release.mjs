@@ -302,6 +302,18 @@ if (process.argv[2] === "prepare") {
     assert.equal(env.DOCKED_BETA_STAGING, "true");
     env.DOCKED_MEMBER_GOOGLE_TEST = "true";
   }
+  if (process.env.DOCKED_RELEASE_V30_TRANSPORT === 'true') {
+    assert.equal(baselineCommit, 'f0eb28e7a6f9621574399e894aadbef20ff25cdd');
+    assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST, 'false');
+    const isolated = JSON.parse(await fs.readFile(path.join(root, 'private-data/v30-transport/env.private.json'), 'utf8'));
+    const names = ['DOCKED_V30_TRANSPORT','DOCKED_V30_TRANSPORT_UNTIL','DOCKED_V30_TRANSPORT_KEY','DOCKED_V30_TRANSPORT_TARGET','DOCKED_V30_TRANSPORT_OIDC'];
+    assert.equal(Object.keys(isolated).length,names.length);
+    assert(Object.keys(isolated).every(k=>names.includes(k)));
+    assert.equal(isolated.DOCKED_V30_TRANSPORT,'true');
+    assert.equal(env.SITE_URL,'https://docked.com.au');
+    assert(Date.parse(isolated.DOCKED_V30_TRANSPORT_UNTIL)>Date.now()+3600000);
+    Object.assign(env, isolated);
+  }
   assert.equal(
     base.env.filter(
       (k) => /^(DOCKED_|NFL_|BETA_|FANTASY_|PROVIDER_)/.test(k) && !(k in env),
