@@ -73,6 +73,8 @@ test("admission requires exact secret, same-origin POST and bounded input", asyn
     env,
   );
   assert.equal(r!.status, 303);
+  assert.equal(r!.headers.get('location'),'https://docked.com.au/app/login');
+  assert.equal(r!.headers.get('referrer-policy'),'same-origin');
   assert.match(r!.headers.get("set-cookie")!, /HttpOnly; SameSite=Strict/);
 });
 test("only Preview Auth reaches protected upstream; no Production cookie/bearer/admission forwarding", async () => {

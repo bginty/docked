@@ -32,6 +32,7 @@ interface Billing {
 }
 const billing = registerPlugin<Billing>("DockedBilling");
 type Session = {
+  isolatedTestOnly?: boolean;
   member: string;
   accountBinding: string;
   environment: "test" | "commercial";
@@ -66,7 +67,9 @@ function GoogleCredits({
   const [items, setItems] = useState<(StoreItem & { credits: number })[]>([]),
     [session, setSession] = useState<Session | null>(null),
     [busy, setBusy] = useState(false),
-    [message, setMessage] = useState("");
+    [message, setMessage] = useState(""),
+    [refreshAttempt, setRefreshAttempt] = useState(0),
+    [diagnostic, setDiagnostic] = useState("");
   const active = useRef(true),
     running = useRef(false),
     queue = useRef(Promise.resolve()),
@@ -153,6 +156,11 @@ function GoogleCredits({
       const available = await billing.products();
       if (stopped) return;
       setSession(s);
+      setDiagnostic(
+        s.isolatedTestOnly
+          ? `TEST connection: ${available.products.length} Google products; ${s.products.length} server-approved products. Store currencies: ${[...new Set(available.products.flatMap((p) => p.offers.map((o) => o.currency)))].join(", ") || "none"}.`
+          : "",
+      );
       setItems(
         available.products.flatMap((p) => {
           const approved = s.products.find((a) => a.id === p.id);
@@ -196,7 +204,7 @@ function GoogleCredits({
       active.current = false;
       void listener?.remove();
     };
-  }, [member, mode]);
+  }, [member, mode, refreshAttempt]);
   if (!session) return null;
   async function buy(item: StoreItem) {
     if (running.current) return;
@@ -298,6 +306,15 @@ function GoogleCredits({
         Check purchases
       </button>
       {!items.length && <p>No products are currently available.</p>}
+      <button
+        disabled={busy}
+        onClick={() => {
+          if (!running.current) setRefreshAttempt((n) => n + 1);
+        }}
+      >
+        Refresh store prices
+      </button>
+      {diagnostic && <p role="status">{diagnostic}</p>}
       {message && <p role="status">{message}</p>}
     </section>
   );
