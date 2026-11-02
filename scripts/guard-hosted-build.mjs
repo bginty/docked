@@ -3,6 +3,7 @@ import { writeFileSync } from "node:fs";
 import { netlifyBuildCandidate } from "../src/core/hosting-identity.mjs";
 import { assertHostedReview } from "../src/core/hosted-review.mjs";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
+import { assertIsolatedPublicPreview } from "../src/core/isolated-public-preview.mjs";
 import {
   assertHostedProduction,
   productionDeploymentRequested,
@@ -11,7 +12,11 @@ import {
 // Local builds use npm run build; hosted builds must select a reviewed target.
 // An accidental production target can never reuse the Preview configuration.
 try {
-  if (assertHostedBeta(process.env)) {
+  if (assertIsolatedPublicPreview(process.env)) {
+    console.log(
+      "Protected existing Preview: isolated public-customer acceptance; live payments disabled.",
+    );
+  } else if (assertHostedBeta(process.env)) {
     console.log(
       process.env.DOCKED_PRIVATE_PREVIEW === "true"
         ? "Isolated private Preview; owner setup only, member admission remains closed."

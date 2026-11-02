@@ -412,6 +412,7 @@ test("plain Node hosted build uses the same reviewed manifest and rejects incomp
       "config/friends-policy-content.json",
       "src/core/hosted-review.mjs",
       "src/core/hosting-identity.mjs",
+      "src/core/isolated-public-preview.mjs",
       "config/netlify-build.json",
     ])
       await copyFile(file, path.join(directory, file));

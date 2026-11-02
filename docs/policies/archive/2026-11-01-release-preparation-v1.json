@@ -1,0 +1,123 @@
+{
+  "version": "2026-11-01-release-preparation-v1",
+  "date": "1 November 2026",
+  "operator": "Ginty United Investments Pty Ltd · ABN 78 606 187 106",
+  "documents": [
+    {
+      "id": "privacy",
+      "title": "Privacy notice",
+      "status": "Current service notice. Public release and real-money purchases are not yet enabled.",
+      "sections": [
+        {
+          "title": "Who we are",
+          "text": "Docked is operated by Ginty United Investments Pty Ltd, ABN 78 606 187 106. Contact support@docked.com.au for privacy, access, correction, deletion or a complaint. NFL, AFL and NRL use one account. The current service is an invitation-only Australian adult beta."
+        },
+        {
+          "title": "Account and gameplay information",
+          "text": "We handle email addresses and account identifiers, login and security records, profile information, country/state and age attestations, accepted policy versions and preferences. Required information supports authentication, eligibility, recovery and the service. Optional profile details are your choice.\n\nWe record cards, ownership transfers, serial and supply records, packs, credit transactions, marketplace sales, fantasy teams, competition entries and results. These support your collection, scoring, transaction reconciliation, dispute handling and fraud prevention. Test credits and test inventory have no cash value."
+        },
+        {
+          "title": "Social content and support",
+          "text": "Posts, comments, reactions, follows, community memberships, optional images and shared-card snapshots are processed to provide the social features. Visibility follows audience, privacy, blocking and moderation controls. Other members may copy content you share. A historical card-post snapshot can remain a record of what was shared after a transfer. Reports, internal moderation notes, private preferences and authentication records are not ordinary public posts.\n\nSupport receives the messages and information you provide. Do not email passwords, payment-card details, verification links or identity documents. Real identity-document collection is disabled in the current test release."
+        },
+        {
+          "title": "Purchases",
+          "text": "Real-money purchasing is disabled. Authorised Google Play TEST checkout is used only for testing. Google handles checkout and payment methods. Docked's server verifies purchase references, product, bound account, purchase state, fulfilment and refund evidence. Docked does not receive a complete Google payment-card number. Purchase references are sensitive and are not public profile data. Google processes information under its own privacy terms. A paid release will require completion of the payment and commercial approval process; this notice does not activate it."
+        },
+        {
+          "title": "Service providers and overseas processing",
+          "text": "Docked uses Supabase for authentication and database services and Vercel for hosting. Our support/account mailbox uses Microsoft Exchange Online, purchased through GoDaddy with its listed email security service. The database and application functions are configured in Sydney. Providers can also use overseas infrastructure, support, backups and subprocessors. Sydney configuration does not mean all processing stays in Australia. Supabase's residency guidance identifies additional support/service processing in the United States, Singapore and Europe; this is not an exhaustive list across all providers.\n\nWe have not verified the mailbox's data-at-rest geography or every provider recovery, quarantine, backup or hold setting. We do not promise Australian-only processing or a fixed date when every provider-held copy is erased. Necessary information may also be disclosed to authorised personnel, advisers or authorities to provide the service, handle requests or incidents, or meet applicable obligations."
+        },
+        {
+          "title": "Device information and analytics",
+          "text": "Network and security operations can involve IP addresses, device/request information and service logs. Optional first-party usage events require analytics consent and respect the browser's Do Not Track setting. Anonymous visitors are not assigned an identity by that observer. This does not mean hosting providers collect no operational information.\n\nThe app has no advertising SDK. Android and Google Play can provide diagnostics under their own settings. Optional media selection and notification preferences follow device permissions and application controls. Contacts, microphone and location access are not required to buy a pack. We do not use identity documents or purchase tokens in analytics."
+        },
+        {
+          "title": "Access, correction and account deletion",
+          "text": "Request an account export or deletion through Account settings. The account-deletion page is accessible on the web without installing the app. If you cannot sign in, use account recovery or contact support. We verify requests proportionately and do not routinely ask for identity documents.\n\nDeletion first revokes access and sessions. In the current private beta, shared authentication identities require operator review before identity erasure; access revocation alone is not completed deletion. Eligible personal content is removed or pseudonymised through the deletion workflow. A failed or deferred step remains pending. Necessary ownership, competition, consent, dispute and security evidence can be retained for its documented purpose. Still-linkable information is not anonymous. Our retention notice explains the current targets and limitations."
+        },
+        {
+          "title": "Questions and complaints",
+          "text": "Email support@docked.com.au for access, correction, deletion or review of a privacy response. We explain restrictions needed to protect another person or meet an applicable obligation. Where the Privacy Act applies, you can seek assistance from the Office of the Australian Information Commissioner. This notice does not restrict rights that cannot lawfully be excluded. Previous accepted policy versions remain recorded; publication does not rewrite a past consent."
+        }
+      ]
+    },
+    {
+      "id": "refund-policy",
+      "title": "Purchases and refunds",
+      "status": "Current test-service information and proposed paid-release policy. Real-money purchases remain disabled.",
+      "sections": [
+        {
+          "title": "Current availability",
+          "text": "Docked currently uses test credits and isolated test inventory. These are not cash and cannot be withdrawn. Google Play licence-test orders are not evidence of a real-money purchase. Public paid purchasing, withdrawals, paid competition entry and prize awards remain disabled."
+        },
+        {
+          "title": "Proposed paid packs",
+          "text": "The proposed Google Play credit packages are A$49 for 4,900 Docked Credits and A$99 for 9,900, with no bonus credits. Google checkout must display the current price before confirmation. Credits would be used in the shared wallet for sport-specific packs. No direct Australian-dollar pack prices are approved.\n\nStandard packs: 1 card for 100 credits; 3 for 300; 9 for 700. Premium packs: 1 card for 700 credits; 3 for 1,900; 9 for 5,000. Review the exact product, card count, eligible rarities, displayed chances and final price before confirming. Packs contain random digital cards; a particular player, rarity or financial return is not guaranteed. Core is excluded from paid packs. Premium draws only Ultra Rare, Legendary and Icon. These product descriptions do not activate sales."
+        },
+        {
+          "title": "Requesting help or a refund",
+          "text": "For a Google Play purchase issue, contact support@docked.com.au and use Google Play's purchase-support options. Include an order reference if available; do not send passwords or full payment details. Refunds and remedies remain subject to applicable consumer rights. Opening a pack does not by itself remove rights that cannot be excluded. We do not impose a blanket no-refunds rule."
+        },
+        {
+          "title": "Payment and refund safety",
+          "text": "A pending or declined purchase does not provide spendable credits. The server verifies purchase state and the associated member before fulfilment. Repeated requests must not credit a purchase twice.\n\nIn isolated testing, an unspent reversed purchase is reversed once. If credits have been spent, remaining refunded funding is held for recovery review. This does not automatically charge a bank account, create a negative balance, seize unrelated funds or confiscate another member's cards. Ownership and transaction history are preserved for investigation. A recovery hold is not a completed recovery."
+        },
+        {
+          "title": "Decisions needed before paid activation",
+          "text": "The resolution process for spent-credit refunds, customer notices and appeals, treatment of unopened refunded packs, permitted recovery actions, commercial player/data rights and legal/platform classification of paid cards, scoring and resale remain release requirements. No debt-collection or third-party clawback policy is created here. Paid activation requires separate owner approval after these decisions and customer checkout acceptance. Existing beta credits and cards will not silently become money or permanent commercial inventory."
+        }
+      ]
+    },
+    {
+      "id": "retention",
+      "title": "Retention and deletion",
+      "status": "Current beta handling targets. A commercial retention schedule remains an owner approval requirement.",
+      "sections": [
+        {
+          "title": "Existing handling targets",
+          "text": "The existing beta policy targets removal of eligible account/contact details and posts/media within 30 days of verified closure. Access is revoked first. Account-to-game identity links are targeted for removal within 30 days after relevant rounds or disputes close. Minimized ownership/scoring evidence is reviewed at beta end and deleted or further de-identified within 12 months of beta closure unless a documented exception remains. These are handling targets, not a claim that every provider automatically erases every copy by that date."
+        },
+        {
+          "title": "Operational and support records",
+          "text": "Existing targets are removal of routine support cases from the active mailbox 12 months after closure, and exported working copies after delivery verification within seven days. Routine operational logs have a maximum target of 30 days and security logs 90 days. Exceptional incident/dispute evidence requires a recorded reason and review at least every 90 days. These targets apply to records Docked controls; individual provider settings and legal holds must be checked."
+        },
+        {
+          "title": "Exceptions, backups and pending deletion",
+          "text": "Ongoing competitions, disputes, documented incidents or applicable obligations may require limited records for longer. Record the reason and review date and limit access. Permanent supply and scoring integrity do not justify retaining names or email addresses indefinitely. Still-linkable records are not anonymous.\n\nRecovery, quarantine, backups and holds can preserve copies after active deletion. Relevant restrictions need review for each request. Completed deletion requests must be reapplied before restored data returns to active use. The current shared beta identity requires operator review for identity erasure. Failed erasure steps remain pending rather than being reported complete."
+        },
+        {
+          "title": "Public commercial release",
+          "text": "The public commercial schedule must identify record categories, retention triggers and periods or decision rules, responsible operators, backup treatment and deletion jobs. No statutory period is invented here. The beta targets are not automatically a sufficient schedule for paid purchases. Contact support@docked.com.au about retained information or a deletion request."
+        }
+      ]
+    },
+    {
+      "id": "commercial-policy",
+      "title": "Service and commercial release policy",
+      "status": "Proposed public-release document. No public launch, payment or commercial-rights approval is claimed.",
+      "sections": [
+        {
+          "title": "Service scope",
+          "text": "Docked offers NFL, AFL and NRL fantasy cards through one account. The current service is an invitation-only Australian adult test beta. Public registration is closed. Withdrawals, real-money purchases, paid competition entry and prize awards are disabled. Test credits and inventory have no cash value. NBA remains unavailable."
+        },
+        {
+          "title": "Gameplay and collections",
+          "text": "Teams, positions, salary caps, multipliers, lockout and scoring follow the selected competition's saved rules. Fantasy salaries are not wallet credits. Scoring is postgame or as available, not guaranteed live play-by-play. A purchase does not guarantee a win. The prepared free Core eligibility path creates no collectible ownership and remains controlled by competition eligibility and activation. Public free-play onboarding must be verified before registration opens."
+        },
+        {
+          "title": "Packs and marketplace",
+          "text": "Standard and Premium packs remain part of the planned commercial model, subject to the purchase and refund policy and activation requirements. Card supply, serials, probabilities and ownership protections are not changed by these documents.\n\nThe marketplace supports credit sales only; offers and swaps are disabled. A 5% selling fee is deducted when your card sells, capped at 2,000 credits per sale. There's no minimum fee. Buyers pay the listed price. Fees are rounded to the nearest whole credit; half a credit rounds up. Sell a card for 1,000 credits: the fee is 50 and you receive 950. Existing historical fees are preserved. Commercial resale using purchased funds requires separate approval of the relevant transfer, fraud and refund policies."
+        },
+        {
+          "title": "Account and community rules",
+          "text": "Use your own account, accurate eligibility information and the normal confirmation/security procedures. Do not evade access restrictions, impersonate others, exploit purchases or harass members. Existing reporting, blocking and moderation controls apply. No new privacy consent or previously accepted policy is silently replaced by this publication."
+        },
+        {
+          "title": "Outstanding public-release decisions",
+          "text": "Required decisions include commercial player/card and statistics rights; legal and Google Play assessment of the paid-card, multiplier, resale and reward model; separation of paid funds from beta funds; spent-refund recovery and appeals; the public retention and deletion schedule; and approval of the final tested release. Payment technology does not establish legal or platform eligibility. Cash features and prizes require separate decisions. These documents have not been represented as reviewed by a lawyer or approved by Google."
+        }
+      ]
+    }
+  ]
+}

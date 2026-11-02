@@ -71,7 +71,11 @@ try {
               ? "tests/database/public-customer.test.ts"
               : "tests/database/commercial-lineup.test.ts",
           ]
-        : ["scripts/commercial-billing-postgres.ts"]),
+        : [
+            process.argv.includes("--retention")
+              ? "scripts/commercial-retention-postgres.ts"
+              : "scripts/commercial-billing-postgres.ts",
+          ]),
       ...(process.argv.includes("--browser") ? ["--browser"] : []),
     ],
     {

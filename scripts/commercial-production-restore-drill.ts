@@ -14,21 +14,61 @@ import { spawn } from "node:child_process";
 import { pipeline } from "node:stream/promises";
 import { Transform, Writable } from "node:stream";
 import { ownerDatabase } from "./owner-gameplay-db.mjs";
+import postgres from "postgres";
+import { readdirSync, readFileSync } from "node:fs";
+const previewRestore = process.argv.includes("--existing-free-preview");
+const previewConnection = previewRestore
+  ? JSON.parse(
+      readFileSync(
+        "C:/Users/61412/Documents/ChatGPT/Docked.com.au/private-data/hosted-preview/connection.json",
+        "utf8",
+      ),
+    )
+  : null;
+const sourceRef = previewRestore
+  ? "bckkllmndoxzpzdqrevb"
+  : "pojoymtniryarxxunyvz";
+function sourceDatabase() {
+  if (!previewRestore) return ownerDatabase();
+  assert.equal(previewConnection.projectRef, sourceRef);
+  const u = new URL(previewConnection.databaseUrl);
+  assert.equal(u.username, `postgres.${sourceRef}`);
+  assert.match(u.hostname, /^aws-\d+-ap-southeast-2\.pooler\.supabase\.com$/);
+  return postgres(u.href, {
+    max: 1,
+    ssl: {
+      rejectUnauthorized: true,
+      ca: readFileSync("certs/supabase-prod-ca-2021.crt", "utf8"),
+    },
+    onnotice: () => {},
+  });
+}
 const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
-const runId = process.env.DOCKED_RESTORE_RUN ?? "20261102";
+const runId =
+  process.env.DOCKED_RESTORE_RUN ?? (previewRestore ? "20261102p" : "20261102");
 assert.match(runId, /^20261102[a-z]?$/);
-const dir = root + "/private-data/commercial-restore-" + runId;
+const dir =
+  root +
+  (previewRestore
+    ? "/private-data/preview-restore-"
+    : "/private-data/commercial-restore-") +
+  runId;
 const evidence =
   root +
-  (runId === "20261102"
-    ? "/docs/qa/public-activation-20261102"
-    : "/docs/qa/approved-production-20261102/restore");
+  (previewRestore
+    ? "/docs/qa/launch-resolution-20261102/restore"
+    : runId === "20261102"
+      ? "/docs/qa/public-activation-20261102"
+      : "/docs/qa/approved-production-20261102/restore");
 const client = "supabase_db_deletion-auth-local",
-  target = "docked-commercial-restore-" + runId;
+  target =
+    (previewRestore
+      ? "docked-preview-restore-"
+      : "docked-commercial-restore-") + runId;
 const image = "public.ecr.aws/supabase/postgres:17.11.0.002";
 let createdTarget = false;
-const files = [
+let files = [
   "20261101120754_commercial_google_ledger.sql",
   "20261102010000_commercial_lineup_inventory.sql",
   "20261102010001_public_customer_gameplay.sql",
@@ -184,29 +224,53 @@ async function mainRun() {
     console.log(JSON.stringify(verification));
     return;
   }
-  const provision = JSON.parse(
-    await readFile(
-      main + "/private-data/production/provision-request.json",
-      "utf8",
-    ),
-  );
+  const provision = previewRestore
+    ? {
+        databasePassword: decodeURIComponent(
+          new URL(previewConnection.databaseUrl).password,
+        ),
+      }
+    : JSON.parse(
+        await readFile(
+          main + "/private-data/production/provision-request.json",
+          "utf8",
+        ),
+      );
   const url = new URL(
-    (
-      await readFile(
-        main +
-          "/private-data/production/provider-config/supabase/.temp/pooler-url",
-        "utf8",
-      )
-    ).trim(),
+    previewRestore
+      ? previewConnection.databaseUrl
+      : (
+          await readFile(
+            main +
+              "/private-data/production/provider-config/supabase/.temp/pooler-url",
+            "utf8",
+          )
+        ).trim(),
   );
-  assert.equal(url.username, "postgres.pojoymtniryarxxunyvz");
+  assert.equal(url.username, `postgres.${sourceRef}`);
   assert.equal(url.port, "5432");
   assert.match(url.hostname, /^aws-\d+-ap-southeast-2\.pooler\.supabase\.com$/);
+  if (previewRestore) {
+    const sql = sourceDatabase();
+    try {
+      const applied =
+        await sql`select version from supabase_migrations.schema_migrations`;
+      files = readdirSync("supabase/migrations")
+        .filter(
+          (f) =>
+            f.endsWith(".sql") &&
+            !applied.some((a) => a.version === f.split("_")[0]),
+        )
+        .sort();
+    } finally {
+      await sql.end();
+    }
+  }
   const resume = process.argv.includes("--restore-existing");
   let manifest: Manifest;
   if (!resume) {
     process.chdir(main);
-    const sql = ownerDatabase();
+    const sql = sourceDatabase();
     process.chdir(root);
     try {
       manifest = await sql.begin(
@@ -284,7 +348,7 @@ async function mainRun() {
           }
           const m: Manifest = {
             at: new Date().toISOString(),
-            project: "pojoymtniryarxxunyvz",
+            project: sourceRef,
             bytes,
             sha256: hash.digest("hex"),
             iv: iv.toString("hex"),
@@ -333,7 +397,7 @@ async function mainRun() {
         manifest.rolesCapturedAt = extra.at;
       } else {
         process.chdir(main);
-        const sql = ownerDatabase();
+        const sql = sourceDatabase();
         process.chdir(root);
         try {
           const extra = await sql.begin("read only", async (tx) => ({
@@ -458,6 +522,27 @@ async function mainRun() {
     (await local("select current_setting('pg_net.database_name');")).trim(),
     "network_worker_disabled",
   );
+  const previewRounds = previewRestore
+    ? (JSON.parse(
+        (
+          await local(
+            "select coalesce(jsonb_agg(to_jsonb(c) order by id),'[]') from beta_fantasy.competitions c;",
+          )
+        ).trim(),
+      ) as {
+        id: string;
+        sport: string;
+        locks_at: string;
+        scored_at: string | null;
+        rules: Record<string, unknown>;
+      }[])
+    : [];
+  const approvedRoundChanges: {
+    id: string;
+    sport: string;
+    previous: string;
+    version: string;
+  }[] = [];
   const migrations = [];
   for (const file of files) {
     const source = await readFile(
@@ -470,12 +555,67 @@ async function mainRun() {
       sha256: createHash("sha256").update(source).digest("hex"),
     });
   }
+  if (previewRestore) {
+    const current = JSON.parse(
+      (
+        await local(
+          "select coalesce(jsonb_agg(to_jsonb(c) order by id),'[]') from beta_fantasy.competitions c;",
+        )
+      ).trim(),
+    );
+    assert.equal(current.length, previewRounds.length);
+    for (let i = 0; i < current.length; i++) {
+      const prior = previewRounds[i],
+        next = current[i];
+      if (JSON.stringify(prior) === JSON.stringify(next)) continue;
+      assert.equal(prior.id, next.id);
+      assert.ok(["afl", "nrl"].includes(prior.sport));
+      assert.ok(new Date(prior.locks_at).getTime() > Date.now());
+      assert.equal(prior.scored_at, null);
+      assert.equal(prior.rules.mode, "SALARY_CAP");
+      assert.equal(
+        prior.rules.lineup_version,
+        prior.sport === "afl" ? "docked-afl-22-v1-qa" : "docked-nrl-13-v1-qa",
+      );
+      const approved = "docked-australian-owner-2026-10-24-v1-" + prior.sport;
+      assert.equal(next.rules.lineup_version, approved);
+      assert.equal(
+        (
+          await local(
+            "select (select count(*) from beta_fantasy.entries where competition_id='" +
+              prior.id +
+              "')+(select count(*) from beta_fantasy.round_drafts where competition_id='" +
+              prior.id +
+              "')+(select count(*) from beta_fantasy.slot_locks where competition_id='" +
+              prior.id +
+              "');",
+          )
+        ).trim(),
+        "0",
+      );
+      assert.deepEqual(next, {
+        ...prior,
+        rules: { ...prior.rules, lineup_version: approved },
+      });
+      approvedRoundChanges.push({
+        id: prior.id,
+        sport: prior.sport,
+        previous: prior.rules.lineup_version,
+        version: approved,
+      });
+    }
+    before["beta_fantasy.competitions"] = JSON.parse(
+      (await local(checksumQuery("beta_fantasy.competitions") + ";")).trim(),
+    );
+  }
   const after: Record<string, Checksum> = {};
   for (const table of Object.keys(before)) {
     after[table] = JSON.parse((await local(checksumQuery(table) + ";")).trim());
     assert.deepEqual(after[table], before[table], table);
   }
-  for (const file of files)
+  for (const file of previewRestore
+    ? files.filter((f) => f.startsWith("20261102"))
+    : files)
     await local(
       "begin;\n" +
         (await readFile(root + "/supabase/migrations/" + file, "utf8")) +
@@ -501,9 +641,13 @@ async function mainRun() {
     postgres: "17.11",
     restored: true,
     migrationsReapplied: true,
+    reapplicationScope: previewRestore
+      ? "Only 20261102 idempotent additions; older one-shot migrations applied once in snapshot"
+      : "all listed",
     migrations,
     protectedTables: Object.keys(before),
     protectedRecordsUnchanged: true,
+    approvedRoundChanges,
     productionWrites: 0,
     storageObjectBodiesIncluded: false,
     scope:

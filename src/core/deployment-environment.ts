@@ -3,6 +3,7 @@ import { assertHostedPreview } from "./hosted-preview";
 import { assertHostedProduction } from "./hosted-production.mjs";
 import { assertHostedReview } from "./hosted-review.mjs";
 import { assertHostedBeta } from "./hosted-beta.mjs";
+import { assertIsolatedPublicPreview } from "./isolated-public-preview.mjs";
 
 /** Shared by entry points before a database connection, Auth call or request. */
 export function assertDeploymentEnvironment(
@@ -20,6 +21,7 @@ export function assertDeploymentEnvironment(
     if (env[flag] === "true")
       throw new Error("Retired product workflow cannot be activated");
   }
+  if (assertIsolatedPublicPreview(env)) return;
   if (assertHostedBeta(env)) return;
   if (assertHostedReview(env)) return;
   assertHostedPreview(env);

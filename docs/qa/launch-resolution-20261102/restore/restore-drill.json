@@ -1,0 +1,191 @@
+{
+  "at": "2026-11-02T01:39:48.165Z",
+  "sourceProject": "bckkllmndoxzpzdqrevb",
+  "backupAt": "2026-11-02T01:35:57.046Z",
+  "archiveBytes": 3609714,
+  "archiveSha256": "5548a174897a59f65f1c1177bcda1340d59cf771dbbc2187b5367ec95e96d7f3",
+  "encryptedAtRest": "AES-256-GCM with existing operator-held key",
+  "restoreTarget": "docked-preview-restore-20261102p",
+  "network": "none",
+  "publishedPorts": 0,
+  "cronActive": false,
+  "postgres": "17.11",
+  "restored": true,
+  "migrationsReapplied": true,
+  "reapplicationScope": "Only 20261102 idempotent additions; older one-shot migrations applied once in snapshot",
+  "migrations": [
+    {
+      "file": "20261022101445_nba_private_beta_access.sql",
+      "sha256": "285ebf9f1409d24cd09b45fc1ca6f0358fb74fd0fe3c471d54f50b64d36b5537"
+    },
+    {
+      "file": "20261022115817_nba_isolated_economy_boundary.sql",
+      "sha256": "ed6d6e0d618cd6895a6ac9372fa181bd7736b036d99a49f5d2a4d756c60f3c79"
+    },
+    {
+      "file": "20261022122441_multi_sport_private_beta_access.sql",
+      "sha256": "c7c94875541f08016b3dfe625b249ad920f202aad37f4bcce5b615f0f72992c5"
+    },
+    {
+      "file": "20261022123136_multi_sport_fixture_economy.sql",
+      "sha256": "1e07cd2744dbd7fda2f1caae58fe4ff2220a8bbd6780eb6711cdb267e0a7d3e0"
+    },
+    {
+      "file": "20261022124750_fixture_inventory_projection.sql",
+      "sha256": "bc8a7713c89498817c591944210dc9e694fa87d67ca952053995d76b5817571c"
+    },
+    {
+      "file": "20261022203038_fixture_social_audience.sql",
+      "sha256": "08aca1837b8fe505fc2e830936c2e9c50b9245878be9ec4caa3f80e396435ebb"
+    },
+    {
+      "file": "20261022211500_private_beta_operations_report.sql",
+      "sha256": "b3f3c0b69e693985dea743b7638167f49a5b180c22edf75ce42e41a963e7dc5d"
+    },
+    {
+      "file": "20261022222531_verified_roster_beta_inventory.sql",
+      "sha256": "8ee7dfa28eeb0f834803a2230ab06f57bb2697cfcaeca852c5fdbc4504ae76f5"
+    },
+    {
+      "file": "20261023022240_owned_collection_read.sql",
+      "sha256": "a11b6eee48ba988209ffacc769389def6d3280e9cd126b62e9d54c9daf76d6cb"
+    },
+    {
+      "file": "20261023052447_play_owned_inventory.sql",
+      "sha256": "559ee527dec700b586ba04f0220ccff51837fd0631a506e8e31bf289014d7647"
+    },
+    {
+      "file": "20261023092404_sport_social_and_pack_entitlements.sql",
+      "sha256": "9b14745009062b3ebac00525b6f7236de0b61a37e7ce63d8340730b6311419bb"
+    },
+    {
+      "file": "20261023130000_nba_private_beta_rarity_v2.sql",
+      "sha256": "34b2bc139cf6b8e12e9e216e3471cbc4b20b22ace3a3148485dc132ac0ebd15b"
+    },
+    {
+      "file": "20261023234346_member_collection_record.sql",
+      "sha256": "0f68094a91b6d3a68db15d5a91fb2aa95be11f45c75d5cbd89240bef8e7ade0b"
+    },
+    {
+      "file": "20261023234740_approved_afl_nrl_future_rules.sql",
+      "sha256": "0562c1e0d1bdbed3c27f0198783dcc0b012a83af253ff401e30e206d8ecdde6b"
+    },
+    {
+      "file": "20261024000314_australian_prize_preparation.sql",
+      "sha256": "8afc156294ac60f22110e72b896dd3ebf047d357dacc555461bf2fb7949bd78e"
+    },
+    {
+      "file": "20261025015440_upcoming_australian_prize_inheritance.sql",
+      "sha256": "9a1af8ad4dbcc794c18f77eb2bc6898142c974e7118703869218a76a0d1c80b8"
+    },
+    {
+      "file": "20261025040808_progressive_nfl_completion.sql",
+      "sha256": "3a06432907c3963993c8b7fab08f25466c241d7633116bb39c196a203bb756ea"
+    },
+    {
+      "file": "20261025234813_australian_future_salary_adoption.sql",
+      "sha256": "7c4e2688427cff6a8caf8fd7132dbd86e88eebd8d8cacef9bced96c5b37c5e3c"
+    },
+    {
+      "file": "20261031094324_isolated_google_billing_acceptance.sql",
+      "sha256": "36240361ca978b3b7be9f21f9beb797ceab68d357d9b6287c2d742f0e63a643c"
+    },
+    {
+      "file": "20261031123611_free_core_gameplay_eligibility.sql",
+      "sha256": "9305eb9cba13701ff499455360fc6a0122864058ee9bc9af754ce64cbb747c9d"
+    },
+    {
+      "file": "20261031123931_member_google_test_receipts.sql",
+      "sha256": "81497a4836b31be3349b5b0bfdb3204e68510a92c7e03c45860eac40e24b7ce5"
+    },
+    {
+      "file": "20261031224322_isolated_member_billing_acceptance.sql",
+      "sha256": "016d9c9b36754692aeb71b8ac8a7bdf2964664d9ce2c03664e001abdbb97d57c"
+    },
+    {
+      "file": "20261031234304_google_test_reconciliation_queue.sql",
+      "sha256": "4c519155bc2cc4bb2f86e211231f34e81bca67777343e0dbd028b3efa2ae3785"
+    },
+    {
+      "file": "20261101090955_free_core_verified_roster_adapter.sql",
+      "sha256": "6bf8215ee146cd167e5cb921aa05d7155633cba5d0fc09aaa0714df2c37d5af8"
+    },
+    {
+      "file": "20261101120754_commercial_google_ledger.sql",
+      "sha256": "a9d77454705a9c827155f1a07acda040ce48e5fb6911bf793edc3e0efed7a28c"
+    },
+    {
+      "file": "20261102010000_commercial_lineup_inventory.sql",
+      "sha256": "c39d5da280d2d76226740d904e93732b2ca6ecffee505bf1803924b0e54e995b"
+    },
+    {
+      "file": "20261102010001_public_customer_gameplay.sql",
+      "sha256": "121e97e5e41d160aee4f7bcdcd92fcaee2aae87c547c17a7af7b71ded978b4f2"
+    },
+    {
+      "file": "20261102011703_commercial_retention_controls.sql",
+      "sha256": "30382db53d5ca29e869f385b640169b935808e1e57d9f3de8000735b74f9c20b"
+    }
+  ],
+  "protectedTables": [
+    "auth.users",
+    "private.feature_flags",
+    "beta_fantasy.cards",
+    "beta_fantasy.entries",
+    "beta_fantasy.results",
+    "beta_fantasy.competitions",
+    "beta_fantasy.ownership_events",
+    "beta_fantasy.sales",
+    "credits_sandbox.state",
+    "credits_sandbox.card_instances",
+    "credits_sandbox.pack_receipts",
+    "credits_sandbox.journal",
+    "sports_feed.nfl_control",
+    "sports_feed.nfl_rounds",
+    "sports_feed.sport_sandbox_inventory",
+    "sports_feed.sport_rounds",
+    "supabase_migrations.schema_migrations"
+  ],
+  "protectedRecordsUnchanged": true,
+  "approvedRoundChanges": [
+    {
+      "id": "2a1a8610-448e-48bd-9105-805d1e1c801c",
+      "sport": "nrl",
+      "previous": "docked-nrl-13-v1-qa",
+      "version": "docked-australian-owner-2026-10-24-v1-nrl"
+    },
+    {
+      "id": "a9852ef1-afd7-4419-82fc-60c50c708226",
+      "sport": "afl",
+      "previous": "docked-afl-22-v1-qa",
+      "version": "docked-australian-owner-2026-10-24-v1-afl"
+    },
+    {
+      "id": "b58cadfe-890c-4a8d-aff8-0eda735c9e32",
+      "sport": "afl",
+      "previous": "docked-afl-22-v1-qa",
+      "version": "docked-australian-owner-2026-10-24-v1-afl"
+    },
+    {
+      "id": "c2854f40-bd7e-46cf-bf72-1c814467a857",
+      "sport": "nrl",
+      "previous": "docked-nrl-13-v1-qa",
+      "version": "docked-australian-owner-2026-10-24-v1-nrl"
+    },
+    {
+      "id": "d91fb029-04a3-4567-a159-0675f86938f2",
+      "sport": "nrl",
+      "previous": "docked-nrl-13-v1-qa",
+      "version": "docked-australian-owner-2026-10-24-v1-nrl"
+    },
+    {
+      "id": "e6731f90-abc2-47bc-9140-9a57011ea485",
+      "sport": "afl",
+      "previous": "docked-afl-22-v1-qa",
+      "version": "docked-australian-owner-2026-10-24-v1-afl"
+    }
+  ],
+  "productionWrites": 0,
+  "storageObjectBodiesIncluded": false,
+  "scope": "Logical PostgreSQL database and role definitions/membership; no custom role passwords, hosted configuration, Storage object bodies or external service secrets restored"
+}

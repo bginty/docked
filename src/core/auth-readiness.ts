@@ -1,6 +1,7 @@
 import { localPreviewAuth } from "./preview-auth";
 import { previewCommunityContext } from "./preview-community";
 import { assertHostedBeta, betaPolicyVersions } from "./hosted-beta.mjs";
+import { assertIsolatedPublicPreview } from "./isolated-public-preview.mjs";
 
 type Environment = Record<string, string | undefined>;
 export type ConsentVersions = { terms: string; privacy: string };
@@ -75,7 +76,7 @@ export function authUiReadiness(
   }
   const emailAvailable = production
     ? env.AUTH_EMAIL_ENABLED === "true"
-    : localPreviewAuth(env);
+    : localPreviewAuth(env) || assertIsolatedPublicPreview(env);
   const registrationAvailable =
     !liveBeta &&
     emailAvailable &&
