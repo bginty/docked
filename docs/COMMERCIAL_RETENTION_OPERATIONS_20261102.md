@@ -1,6 +1,6 @@
 # Commercial retention — implementation and activation record
 
-2 November 2026. Source: `20261102011703_commercial_retention_controls.sql`, `CommercialRetention`, and the authenticated `/api/internal/billing-retention` worker. New migration; not one of the three previously approved/applied Production migrations. No Production application or destructive cleanup is authorised by this document.
+2 November 2026. Source: `20261102011703_commercial_retention_controls.sql`, `CommercialRetention`, and the authenticated `/api/internal/billing-retention` worker. This exact migration was separately owner-approved and applied at 07:27 UTC on 2 November, with protected data fingerprints preserved. Approval covered dormant schema only. Destructive cleanup and its operational schedule/key custody are not authorised by this document.
 
 | Category | Trigger / period | Actual handling |
 |---|---|---|
@@ -23,7 +23,7 @@ An archive failure rolls back minimisation and audit together. Workers and hold/
 
 ## Activation / recovery sequence
 
-1. Review and separately approve the new additive migration for the intended environment. Capture backup and source fingerprints. Apply once; policy is disabled and private RLS is enabled.
+1. Completed: the approved additive migration is applied once, disabled, with private RLS. Do not reapply or replace it. Retain its backup/rehearsal and committed-state verification evidence.
 2. Create a restricted LOGIN member of `docked_retention_worker`, with no superuser/bypass-RLS/ownership privileges. Store its URL and a dedicated random 32-byte archive key in server-side secrets; protect recovery copies and key-version rotation. Do not reuse a client key.
 3. Configure `DOCKED_RETENTION_SERVICE=true`, policy version `operational-retention-2026-11-02-v1`, worker secret and key ID. Keep `DOCKED_RETENTION_APPLY=false`; run authenticated dry-run and review the bounded candidate counts and overdue holds.
 4. Only after approval record policy authority and expiry, set enabled, then set apply true. Use an existing scheduler if authorised; this change installs **no schedule** and incurs no new service.

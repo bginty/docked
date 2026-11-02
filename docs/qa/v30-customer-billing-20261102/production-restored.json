@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-02T09:54:01.473Z",
+  "results": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "body": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "f0eb28e7a6f9621574399e894aadbef20ff25cdd",
+        "deploymentId": "dpl_6kKiZfN6qcin6HFJ3psRLs2qeakv",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      }
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "status": 401,
+      "body": {
+        "error": "Sign in with an authorised account."
+      }
+    },
+    {
+      "path": "/app/login",
+      "status": 200
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "status": 404
+    },
+    {
+      "path": "/profile/qa_billing",
+      "status": 200
+    },
+    {
+      "path": "/privacy",
+      "status": 200
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200
+    },
+    {
+      "path": "/retention",
+      "status": 200
+    },
+    {
+      "path": "/account-deletion",
+      "status": 200
+    }
+  ]
+}

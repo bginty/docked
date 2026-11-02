@@ -142,7 +142,59 @@ async function run() {
       console.log(
         "Existing isolated Preview prepared; no Production writes, no receipt or card issued.",
       );
-    } else throw Error("inspect or prepare required");
+    } else if (process.argv[2] === "close") {
+      assert(
+        existsSync(stateFile),
+        "Recorded acceptance configuration required",
+      );
+      const state = JSON.parse(readFileSync(stateFile, "utf8"));
+      assert.equal(state.projectRef, c.projectRef);
+      assert.equal(state.member, member.id);
+      const before = state.before;
+      assert.equal(before.sales_enabled, false);
+      assert.equal(before.issuance_enabled, false);
+      assert.equal(before.transfers_enabled, false);
+      await sql.begin(async (tx) => {
+        const [control] =
+          await tx`select * from commercial_billing.control where id for update`;
+        assert.equal(control.environment, "acceptance");
+        // Close access, retaining every receipt, ledger, definition and issued card.
+        // Repeated closure is safe and never refunds or rewrites financial state.
+        await tx`update commercial_billing.control set sales_enabled=false,issuance_enabled=false,transfers_enabled=false,policy_version=${before.policy_version},approvals=${tx.json(before.approvals)} where id`;
+        const [closed] =
+          await tx`select sales_enabled,issuance_enabled,transfers_enabled from commercial_billing.control where id`;
+        assert.deepEqual(closed, {
+          sales_enabled: false,
+          issuance_enabled: false,
+          transfers_enabled: false,
+        });
+      });
+      const closedAt = new Date().toISOString();
+      writeFileSync(
+        stateFile,
+        JSON.stringify({ ...state, closed: true, closedAt }, null, 2),
+        { mode: 0o600 },
+      );
+      writeFileSync(
+        out + "/acceptance-closed.json",
+        JSON.stringify(
+          {
+            at: closedAt,
+            project: c.projectRef,
+            sales: false,
+            issuance: false,
+            transfers: false,
+            retainedCounts: counts,
+            productionWrites: 0,
+          },
+          null,
+          2,
+        ),
+      );
+      console.log(
+        "Isolated acceptance closed; all test audit and inventory records retained.",
+      );
+    } else throw Error("inspect, prepare or close required");
   } finally {
     await sql.end();
   }

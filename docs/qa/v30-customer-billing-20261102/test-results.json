@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-02T09:58:43.223Z",
+  "runs": [
+    {
+      "file": "targeted.log",
+      "tests": 55,
+      "pass": 55,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "file": "relay-tests.log",
+      "tests": 15,
+      "pass": 15,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "file": "redirect-tests.log",
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "file": "recovery-targeted.log",
+      "tests": 26,
+      "pass": 26,
+      "fail": 0,
+      "skipped": 0
+    }
+  ],
+  "overlappingRuns": true,
+  "finalTypecheckExit": 0,
+  "targetedEslintExit": 0,
+  "closureExecutedTwice": true,
+  "fullPlatformRerun": false
+}
