@@ -21,10 +21,12 @@ async function run() {
     await sql.begin(async (tx) => {
       await tx.unsafe(`create table if not exists preview_auth.hosted_mail(
    id uuid primary key default gen_random_uuid(),email text not null references preview_auth.allowed_recipients(email),
-   auth_user_id uuid not null,action text not null check(action in ('signup','recovery')),token_hash text not null check(token_hash ~ '^(pkce_)?[a-f0-9]{40,256}$'),
+   auth_user_id uuid not null,action text not null check(action in ('signup','recovery')),token_hash text not null check(token_hash ~ '^(pkce_)?[a-f0-9]+$' and length(regexp_replace(token_hash,'^pkce_','')) between 40 and 256),
    redirect_to text not null check(redirect_to in ('https://docked-preview-s24-briant-ginty.vercel.app/auth/callback','https://docked-preview-s24-briant-ginty.vercel.app/auth/callback?next=/app/verified')),
    received_at timestamptz not null,expires_at timestamptz not null check(expires_at>received_at and expires_at<=received_at+interval '30 minutes'),
    unique(email,action,token_hash));
+   alter table preview_auth.hosted_mail drop constraint if exists hosted_mail_token_hash_check;
+   alter table preview_auth.hosted_mail add constraint hosted_mail_token_hash_check check(token_hash ~ '^(pkce_)?[a-f0-9]+$' and length(regexp_replace(token_hash,'^pkce_','')) between 40 and 256);
    alter table preview_auth.hosted_mail enable row level security;
    revoke all on preview_auth.hosted_mail from public,anon,authenticated,service_role,docked_app,docked_beta_app;
    grant insert on preview_auth.hosted_mail to supabase_auth_admin;
@@ -44,10 +46,16 @@ async function run() {
           f.definition.includes("insert into preview_auth.hosted_mail"),
       );
       await tx.unsafe(
-        f.definition.replace(
-          "insert into preview_auth.captured_mail",
-          "insert into preview_auth.hosted_mail",
-        ),
+        f.definition
+          .replace(
+            "token !~ '^(pkce_)?[a-f0-9]{40,256}$'",
+            () =>
+              "(token !~ '^(pkce_)?[a-f0-9]+$' or length(regexp_replace(token,'^pkce_','')) not between 40 and 256)",
+          )
+          .replace(
+            "insert into preview_auth.captured_mail",
+            "insert into preview_auth.hosted_mail",
+          ),
       );
       const [grants] =
         await tx`select has_table_privilege('anon','preview_auth.hosted_mail','select') or has_table_privilege('authenticated','preview_auth.hosted_mail','select') or has_table_privilege('docked_app','preview_auth.hosted_mail','select') leaked`;

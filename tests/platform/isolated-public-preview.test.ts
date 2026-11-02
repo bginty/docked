@@ -1,6 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { assertIsolatedPublicPreview } from "../../src/core/isolated-public-preview.mjs";
+import {
+  assertIsolatedPublicPreview,
+  isolatedPreviewReadOnlyIdentity,
+} from "../../src/core/isolated-public-preview.mjs";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
 import { authUiReadiness } from "../../src/core/auth-readiness";
 import {
@@ -50,6 +53,24 @@ test("public acceptance is bound to existing protected Preview, with ordinary-cu
   assert.equal(assertIsolatedPublicPreview({}), false);
   assert.equal(authUiReadiness(env, true).registrationAvailable, true);
   assert.equal(authUiReadiness(env, false).registrationAvailable, false);
+  assert.equal(
+    isolatedPreviewReadOnlyIdentity(
+      env,
+      "docked-preview-public-member-a1@example.invalid",
+    ),
+    true,
+  );
+  assert.equal(
+    isolatedPreviewReadOnlyIdentity(
+      {},
+      "docked-preview-public-member-a1@example.invalid",
+    ),
+    false,
+  );
+  assert.equal(
+    isolatedPreviewReadOnlyIdentity(env, "unrelated@example.invalid"),
+    false,
+  );
 });
 test("public acceptance rejects Production, cross-project credentials, privileged runtime and checkout", () => {
   const mutations = [

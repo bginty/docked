@@ -1,5 +1,14 @@
 // Existing free Preview only. This does not authorise public Production signup.
 const ref = "bckkllmndoxzpzdqrevb";
+/** Read projections only; this never permits a receipt, purchase or opening. */
+export function isolatedPreviewReadOnlyIdentity(env, email) {
+  return (
+    assertIsolatedPublicPreview(env) &&
+    /^docked-preview-public-(member|deletion)-[a-f0-9]+@example\.invalid$/.test(
+      email ?? "",
+    )
+  );
+}
 /** @param {Record<string,string|undefined>} env */
 export function assertIsolatedPublicPreview(env) {
   if (!env.DOCKED_ISOLATED_PUBLIC || env.DOCKED_ISOLATED_PUBLIC === "false")

@@ -9,6 +9,7 @@ import { storeAccountId } from "./store-purchase-verification";
 import { currentConsentVersions } from "../core/auth-readiness";
 import { CommercialMemberView } from "./commercial-member-view";
 import { commercialCard } from "../core/commercial-presentation";
+import { isolatedPreviewReadOnlyIdentity } from "../core/isolated-public-preview.mjs";
 /** Ordinary authenticated member; body never contains a customer, balance, price
  * or credited amount. TEST admission and synthetic identities are not reused. */
 export async function memberCommercial() {
@@ -19,9 +20,20 @@ export async function memberCommercial() {
     throw Error("Commercial checkout disabled");
   const who = await requireIdentity(),
     sql = db();
+  const isolatedReadOnly = isolatedPreviewReadOnlyIdentity(
+    process.env,
+    who.user.email,
+  );
+  const assertTransactionIdentity = () => {
+    if (isolatedReadOnly)
+      throw Error(
+        "Isolated public acceptance is read-only for commercial records",
+      );
+  };
   if (
     !who.user.email ||
-    /(@synthetic\.invalid$|@example\.(com|invalid)$)/i.test(who.user.email)
+    (!isolatedReadOnly &&
+      /(@synthetic\.invalid$|@example\.(com|invalid)$)/i.test(who.user.email))
   )
     throw Error("Commercial customer identity required");
   const binding = process.env.DOCKED_COMMERCIAL_ACCOUNT_BINDING_SECRET ?? "";
@@ -58,6 +70,7 @@ export async function memberCommercial() {
       wallet: await ledger.wallet(who.user.id),
     }),
     receipt: async (body: unknown) => {
+      assertTransactionIdentity();
       if (process.env.DOCKED_COMMERCIAL_CHECKOUT !== "true")
         throw Error("Checkout disabled");
       const { token } = z
@@ -84,6 +97,7 @@ export async function memberCommercial() {
       };
     },
     reconcile: async () => {
+      assertTransactionIdentity();
       const refs =
         await ledger.sql`select key from commercial_billing.receipts where member_id=${who.user.id} order by updated_at,key limit 4`;
       for (const row of refs) {
@@ -96,6 +110,7 @@ export async function memberCommercial() {
       return { checked: refs.length, morePossible: refs.length === 4 };
     },
     buyPack: async (body: unknown) => {
+      assertTransactionIdentity();
       const v = z
         .object({
           request: z.string().uuid(),
@@ -111,6 +126,7 @@ export async function memberCommercial() {
       return ledger.buyPack(who.user.id, v.request, v, authorize);
     },
     openPack: async (body: unknown) => {
+      assertTransactionIdentity();
       const { id } = z
         .object({
           id: z.string().uuid(),

@@ -134,7 +134,7 @@ async function mainRun() {
     if current_user<>'supabase_auth_admin' or octet_length(event::text)>32768 or coalesce(event->'email_data'->>'email_action_type','') not in ('signup','recovery') or coalesce(event->'user'->>'new_email','')<>''
       or event->'email_data'->>'site_url' is distinct from 'https://bckkllmndoxzpzdqrevb.supabase.co/auth/v1'
       or target is null or target not in ('https://docked-preview-s24-briant-ginty.vercel.app/auth/callback','https://docked-preview-s24-briant-ginty.vercel.app/auth/callback?next=/app/verified')
-      or token is null or token !~ '^(pkce_)?[a-f0-9]{40,256}$' then raise exception 'Hosted capture denied';end if;
+      or token is null or token !~ '^(pkce_)?[a-f0-9]+$' or length(regexp_replace(token,'^pkce_','')) not between 40 and 256 then raise exception 'Hosted capture denied';end if;
     select least(expires_at,clock_timestamp()+interval '30 minutes') into deadline from preview_auth.allowed_recipients where email=recipient and email like 'docked-preview-public-%@example.invalid' and revoked_at is null and expires_at>clock_timestamp();
     if deadline is null then raise exception 'Hosted recipient unavailable';end if;
     insert into preview_auth.captured_mail(email,auth_user_id,action,token_hash,redirect_to,received_at,expires_at) values(recipient,(event->'user'->>'id')::uuid,event->'email_data'->>'email_action_type',token,target,clock_timestamp(),deadline) on conflict do nothing;
