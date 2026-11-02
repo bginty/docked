@@ -54,7 +54,9 @@ try {
   connection.username = "postgres";
   connection.password = password;
   const publicGameplay = process.argv.includes("--public-gameplay");
-  const gameplay = process.argv.includes("--gameplay") || publicGameplay;
+  const social = process.argv.includes("--social");
+  const gameplay =
+    process.argv.includes("--gameplay") || publicGameplay || social;
   const gameConnection = new URL(connection);
   gameConnection.pathname = `/docked_free_play_test_${Date.now()}`;
   if (gameplay) await pg.createDatabase(gameConnection.pathname.slice(1));
@@ -66,10 +68,12 @@ try {
       ...(gameplay
         ? [
             "--test",
-            `--test-name-pattern=${publicGameplay ? `${process.argv.includes("--nfl") ? "NFL" : process.argv.includes("--nrl") ? "NRL" : "AFL"} public member` : process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
-            publicGameplay
-              ? "tests/database/public-customer.test.ts"
-              : "tests/database/commercial-lineup.test.ts",
+            `--test-name-pattern=${social ? "Commercial social" : publicGameplay ? `${process.argv.includes("--nfl") ? "NFL" : process.argv.includes("--nrl") ? "NRL" : "AFL"} public member` : process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
+            social
+              ? "tests/database/commercial-social.test.ts"
+              : publicGameplay
+                ? "tests/database/public-customer.test.ts"
+                : "tests/database/commercial-lineup.test.ts",
           ]
         : [
             process.argv.includes("--retention")

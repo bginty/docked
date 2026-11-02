@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-02T02:33:54.043Z",
+  "project": "bckkllmndoxzpzdqrevb",
+  "file": "20261102023100_commercial_social_inventory.sql",
+  "sha256": "2a019dce3789f34ce050b5ea70eb0cca5090fdbf69191f0e286c42875437d3a0",
+  "alreadyApplied": false,
+  "protectedRecordsUnchanged": true,
+  "tables": [
+    "auth.users",
+    "public.profiles",
+    "commercial_billing.control",
+    "commercial_billing.cards",
+    "commercial_billing.packs",
+    "commercial_billing.receipts",
+    "commercial_billing.lots",
+    "commercial_billing.journals",
+    "beta_fantasy.entries"
+  ],
+  "productionWrites": 0
+}

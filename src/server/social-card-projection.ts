@@ -4,9 +4,23 @@ import { testCard } from "../core/member-test-wallet";
 import { refreshEconomyCatalogue } from "./economy-catalogue";
 import type { AwardedCard } from "../core/pack-opening";
 import { fixtureCommerceVisibility } from "./fixture-commerce";
+import {
+  commercialSurfaceEnabled,
+  commercialCard,
+} from "../core/commercial-presentation";
 
 /** A projection of existing inventory, never a new collection or issuance path. */
 export async function socialInventory(tx: TransactionSql, member: string) {
+  if (commercialSurfaceEnabled()) {
+    const [owned] =
+      await tx`select commercial_billing.social_inventory(${member}::uuid) cards`;
+    return (owned.cards as Parameters<typeof commercialCard>[0][]).map(
+      (row) => ({
+        ...commercialCard(row),
+        offerEligible: false,
+      }),
+    );
+  }
   const [row] = await tx`select document from credits_sandbox.state where id`;
   const [legacy] =
     await tx`select private.social_legacy_cards(${member}::uuid) cards`;

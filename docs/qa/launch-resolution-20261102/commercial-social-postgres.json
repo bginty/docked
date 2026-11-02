@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-02T02:33:09.470Z",
+  "engine": "isolated PostgreSQL 17",
+  "checks": [
+    "narrow runtime reads own opened commercial cards; no legacy sandbox grants",
+    "listed ownership included; private, hidden-card and blocked-member collections denied",
+    "expired sessions and direct browser/service/beta roles denied",
+    "actual PostgreSQL transfer waits for snapshot transaction; transferred card immediately excluded",
+    "projection/migration never activate billing or create receipts/credits"
+  ],
+  "passed": true,
+  "productionWrites": 0
+}

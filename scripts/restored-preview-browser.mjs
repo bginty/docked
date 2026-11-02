@@ -31,9 +31,15 @@ const kind = process.argv[3] ?? "member",
 assert(a);
 const mode = process.argv[2];
 assert(
-  ["signup", "play", "traditional", "screens", "deletion", "denials"].includes(
-    mode,
-  ),
+  [
+    "signup",
+    "play",
+    "traditional",
+    "screens",
+    "deletion",
+    "denials",
+    "existing",
+  ].includes(mode),
 );
 const report = {
   at: new Date().toISOString(),
@@ -314,6 +320,28 @@ try {
       "Entries use eligibility only: zero collectibles, paid receipts or credited funds",
     );
   }
+  if (mode === "existing") {
+    for (const sport of ["nfl", "afl", "nrl"]) {
+      await page.goto(
+        f.origin + `/fantasy/play?sport=${sport}&mode=SALARY_CAP`,
+      );
+      await page.getByText("Your lineup", { exact: false }).first().waitFor();
+      await page
+        .getByText("Isolated acceptance", { exact: true })
+        .first()
+        .waitFor();
+      await page.getByText("Entered", { exact: true }).first().waitFor();
+      assert.equal((await api("/api/workspace-wallet")).status, 200);
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.screenshot({ path: `${out}/final-${sport}-play-390.png` });
+      await page.setViewportSize({ width: 1440, height: 1000 });
+      await page.screenshot({ path: `${out}/final-${sport}-play-1440.png` });
+      await page.setViewportSize({ width: 390, height: 844 });
+      check(
+        `${sport}: persisted entry and restored wallet on final deployment, read-only`,
+      );
+    }
+  }
   if (mode === "screens") {
     for (const route of [
       "/fantasy/cards?sport=afl",
@@ -337,6 +365,16 @@ try {
           () => document.documentElement.scrollWidth <= innerWidth + 1,
         ),
       );
+      if (route === "/profile") {
+        await page.locator(".social-collection h2").waitFor();
+        assert.equal(
+          await page.locator(".social-collection [role=alert]").count(),
+          0,
+        );
+        const collection = await api("/api/community?view=hub");
+        assert.equal(collection.status, 200);
+        assert.equal(collection.body.cards.length, 0);
+      }
       await snapshot(route.split("?")[0].replaceAll("/", "-"));
       check("Rendered " + route);
     }
