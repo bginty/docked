@@ -305,6 +305,7 @@ if (process.argv[2] === "prepare") {
   if (process.env.DOCKED_RELEASE_V30_TRANSPORT === 'true') {
     assert.equal(baselineCommit, 'f0eb28e7a6f9621574399e894aadbef20ff25cdd');
     assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST, 'false');
+    Object.assign(env,{DOCKED_COMMERCIAL_SERVICE:'false',DOCKED_COMMERCIAL_SURFACES:'false',DOCKED_COMMERCIAL_CHECKOUT:'false',DOCKED_PUBLIC_CUSTOMERS:'false'});
     const isolated = JSON.parse(await fs.readFile(path.join(root, 'private-data/v30-transport/env.private.json'), 'utf8'));
     const names = ['DOCKED_V30_TRANSPORT','DOCKED_V30_TRANSPORT_UNTIL','DOCKED_V30_TRANSPORT_KEY','DOCKED_V30_TRANSPORT_TARGET','DOCKED_V30_TRANSPORT_OIDC'];
     assert.equal(Object.keys(isolated).length,names.length);
