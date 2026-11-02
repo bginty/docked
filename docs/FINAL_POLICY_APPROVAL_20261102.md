@@ -1,8 +1,8 @@
 # Material publication decisions — 2 November 2026
 
-The commercial model, prices, free Core gameplay, player-name position and recovery-hold design are already owner-approved. This package does not request those decisions again. The proposed text is `config/launch-policy-content.json`, version `2026-11-02-release-preparation-v2`; live v1 remains unchanged. The immutable prior text is in `docs/policies/archive/2026-11-01-release-preparation-v1.json`.
+The commercial model, prices, free Core gameplay, player-name position and recovery-hold design are already owner-approved. This package does not request those decisions again. The exact approved text is `config/launch-policy-content.json`, version `2026-11-02-release-preparation-v2`, now published in Production release `f0eb28e7a6f9621574399e894aadbef20ff25cdd`. The immutable prior text is in `docs/policies/archive/2026-11-01-release-preparation-v1.json`.
 
-Reviewed UTF-8 file SHA-256: `9655ebB36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93` (case-insensitive). Any content change requires a new publication review.
+Reviewed UTF-8 file SHA-256: `9655ebb36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93`. **Owner approved publication of this exact wording on 2 November 2026** (`call_f782a9be64214e069406708e8ee16ec2`). Any content change requires a new publication review. This approval does not enable retention cleanup or other launch flags.
 
 ## Changes for publication review
 
@@ -17,7 +17,7 @@ These pages describe the **current restricted service and prepared paid release*
 
 ## Only outstanding material decisions
 
-1. **Publication:** approve the exact v2 wording/checksum recorded in the final evidence. This authorises policy publication only; not registration, payments, prize awards or commercial transfers.
+1. **Publication — APPROVED:** the exact v2 wording/checksum above may be published. This authorises policy publication only; not registration, payments, prize awards or commercial transfers.
 2. **Operational retention:** approve 90 days after successful notification reconciliation, followed by 30 days of encrypted recovery archive, with unresolved jobs/recovery cases/legal holds excluded. Confirm responsible support/privacy operator and archive-key recovery custody before enabling a worker. Migration approval alone enables no cleanup.
 3. **Purchase-reference and replay-evidence retirement:** obtain a documented finite period/decision rule based on actual Google refund/dispute/replay requirements and legal record needs. Do not substitute the seven-year company financial-record minimum for every token or identifier. No destructive reference cleanup is prepared for automatic activation without this decision.
 4. **Provider settings:** verify Microsoft mailbox/recovery/holds and Vercel/Supabase log/backup retention against the notice's existing handling targets. Current wording honestly states what is not yet verified; it does not promise all copies are erased on a fixed date.
@@ -26,7 +26,9 @@ No new commercial-model decision is needed. Commercial resale remains disabled u
 
 ## Publication / rollback
 
-After wording approval, store an immutable approved content copy and hash; deploy the same source that passed protected acceptance; verify `/privacy`, `/refund-policy`, `/retention`, `/commercial-policy` and `/account-deletion` from the hosted release. Update Google declarations only if actual handling changes. Keep the previous consent texts and versions available. Rollback returns page rendering/configuration to the prior version; it does not erase historical consents or refund evidence. Retention activation and payment activation remain separate gated operations.
+Publication completed on 2 November 2026 in deployment `dpl_6kKiZfN6qcin6HFJ3psRLs2qeakv`. This isolated one-file hotfix is based on the previously live `053848ed` and does not promote the pending commercial runtime. All four policy routes were verified in a rendered mobile browser at 390px; desktop privacy was also checked at 1440px. The hosted release identity and `/account-deletion` were checked. Evidence is under `docs/qa/policy-publication-20261102/` and `docs/qa/final-australia-20261102/policy-rendered.json`.
+
+Rollback is the prior deployment `dpl_2bWUkY1sgtshkifqRRty89oPfuzQ`. Keep the previous consent texts and versions available. Rollback returns page rendering/configuration to the prior version; it does not erase historical consents or refund evidence. No existing customer's consent was changed by publication. Retention activation and payment activation remain separate gated operations.
 
 ## Source basis and limits
 
@@ -35,4 +37,4 @@ After wording approval, store an immutable approved content copy and hash; deplo
 - [ACCC consumer guarantees](https://www.accc.gov.au/consumers/buying-products-and-services/consumer-rights-and-guarantees): statutory remedies are not removed by spending credits/opening a pack.
 - [Supabase Auth deletion](https://supabase.com/docs/reference/javascript/auth-admin-deleteuser): irreversible credential/identity erasure while preserving the reference used by retained records. Actual hosted verification confirms no password, identifying user metadata, active profile or sessions remain for the disposable account.
 
-This package records implementation and proposed publication, not independent legal review or Google approval.
+This package records implementation, owner wording approval and verified publication, not independent legal review or Google approval.

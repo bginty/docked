@@ -1,0 +1,203 @@
+{
+  "at": "2026-11-02T07:12:39.396Z",
+  "backupAt": "2026-11-02T06:43:29.970Z",
+  "mutations": 0,
+  "valuesDisclosed": false,
+  "reviews": [
+    {
+      "table": "\"auth\".\"refresh_tokens\"",
+      "keyColumns": [
+        "id"
+      ],
+      "columns": [
+        "instance_id",
+        "id",
+        "token",
+        "user_id",
+        "revoked",
+        "created_at",
+        "updated_at",
+        "parent",
+        "session_id"
+      ],
+      "previousRows": 474,
+      "currentRows": 475,
+      "added": 1,
+      "removed": 0,
+      "updated": 1,
+      "changedFields": {
+        "revoked": 1,
+        "updated_at": 1
+      }
+    },
+    {
+      "table": "\"auth\".\"sessions\"",
+      "keyColumns": [
+        "id"
+      ],
+      "columns": [
+        "id",
+        "user_id",
+        "created_at",
+        "updated_at",
+        "factor_id",
+        "aal",
+        "not_after",
+        "refreshed_at",
+        "user_agent",
+        "ip",
+        "tag",
+        "oauth_client_id",
+        "refresh_token_hmac_key",
+        "refresh_token_counter",
+        "scopes"
+      ],
+      "previousRows": 132,
+      "currentRows": 132,
+      "added": 0,
+      "removed": 0,
+      "updated": 1,
+      "changedFields": {
+        "updated_at": 1,
+        "refreshed_at": 1,
+        "ip": 1
+      }
+    },
+    {
+      "table": "\"auth\".\"users\"",
+      "keyColumns": [
+        "id"
+      ],
+      "columns": [
+        "instance_id",
+        "id",
+        "aud",
+        "role",
+        "email",
+        "encrypted_password",
+        "email_confirmed_at",
+        "invited_at",
+        "confirmation_token",
+        "confirmation_sent_at",
+        "recovery_token",
+        "recovery_sent_at",
+        "email_change_token_new",
+        "email_change",
+        "email_change_sent_at",
+        "last_sign_in_at",
+        "raw_app_meta_data",
+        "raw_user_meta_data",
+        "is_super_admin",
+        "created_at",
+        "updated_at",
+        "phone",
+        "phone_confirmed_at",
+        "phone_change",
+        "phone_change_token",
+        "phone_change_sent_at",
+        "email_change_token_current",
+        "email_change_confirm_status",
+        "banned_until",
+        "reauthentication_token",
+        "reauthentication_sent_at",
+        "is_sso_user",
+        "deleted_at",
+        "is_anonymous"
+      ],
+      "previousRows": 6,
+      "currentRows": 6,
+      "added": 0,
+      "removed": 0,
+      "updated": 1,
+      "changedFields": {
+        "updated_at": 1
+      }
+    },
+    {
+      "table": "\"cron\".\"job_run_details\"",
+      "keyColumns": [
+        "runid"
+      ],
+      "columns": [
+        "jobid",
+        "runid",
+        "job_pid",
+        "database",
+        "username",
+        "command",
+        "status",
+        "return_message",
+        "start_time",
+        "end_time"
+      ],
+      "previousRows": 106925,
+      "currentRows": 107091,
+      "added": 166,
+      "removed": 0,
+      "updated": 0,
+      "changedFields": {}
+    },
+    {
+      "table": "\"private\".\"docked_mail_scheduler\"",
+      "keyColumns": [
+        "singleton"
+      ],
+      "columns": [
+        "singleton",
+        "enabled",
+        "project_ref",
+        "last_tick_at",
+        "last_request_at",
+        "last_request_id",
+        "last_error_code"
+      ],
+      "previousRows": 1,
+      "currentRows": 1,
+      "added": 0,
+      "removed": 0,
+      "updated": 1,
+      "changedFields": {
+        "last_tick_at": 1
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_worker_runs\"",
+      "keyColumns": [
+        "id"
+      ],
+      "columns": [
+        "id",
+        "started_at",
+        "finished_at",
+        "status",
+        "detail"
+      ],
+      "previousRows": 2294,
+      "currentRows": 2296,
+      "added": 2,
+      "removed": 0,
+      "updated": 0,
+      "changedFields": {}
+    },
+    {
+      "table": "\"sports_feed\".\"weekly_core_job_runs\"",
+      "keyColumns": [
+        "id"
+      ],
+      "columns": [
+        "id",
+        "started_at",
+        "finished_at",
+        "issued",
+        "failures",
+        "status"
+      ],
+      "previousRows": 34259,
+      "currentRows": 34341,
+      "added": 82,
+      "removed": 0,
+      "updated": 0,
+      "changedFields": {}
+    }
+  ]
+}

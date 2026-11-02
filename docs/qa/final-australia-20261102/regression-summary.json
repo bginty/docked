@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-11-02T07:44:39.4600257Z",
+  "checks": [
+    {
+      "name": "platform-release-final",
+      "tests": 723,
+      "passed": 723,
+      "failed": 0,
+      "skipped": 0,
+      "logSha256": "6768e0f85fa5d468b74f6cf79e81e97ac6ab67cbad08de237ecebbe4d66c130e"
+    },
+    {
+      "name": "database",
+      "tests": 234,
+      "passed": 234,
+      "failed": 0,
+      "skipped": 0,
+      "logSha256": "0f59b0bb40d07056c5d9bfdb23c7ffd3c9734dfbb986135b74c91b776715af11"
+    }
+  ],
+  "additionalPassed": [
+    "typecheck",
+    "lint",
+    "production build",
+    "commercial and retention canary build",
+    "auth erasure tests",
+    "operational drift guards"
+  ],
+  "rawLogs": "Ignored local .log files in the same evidence directory; hashes preserve the complete test-run evidence without committing operational logs."
+}

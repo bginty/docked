@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-02T07:28:35.474Z",
+  "project": "pojoymtniryarxxunyvz",
+  "committedMigrationHashesMatch": true,
+  "protectedTablesCompared": 326,
+  "protectedRecordsUnchanged": true,
+  "flags": {
+    "registration": false,
+    "retention": false,
+    "commercial": false,
+    "public_policy": false,
+    "public_sports": false,
+    "public_rounds": 0,
+    "retention_worker_active": false
+  },
+  "operationalTables": "NFL round telemetry, mail tick and append-only worker run logs were fully verified unchanged inside DDL transaction; later scheduler activity excluded. cron.job schedule definitions are included in the fresh committed-state comparison.",
+  "mutations": 0
+}

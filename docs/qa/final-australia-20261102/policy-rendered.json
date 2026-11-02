@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-02T07:33:05.583Z",
+  "passed": true,
+  "authenticated": false,
+  "mutations": 0,
+  "checks": [
+    {
+      "path": "privacy",
+      "status": 200,
+      "version": "2026-11-02-release-preparation-v2",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "path": "refund-policy",
+      "status": 200,
+      "version": "2026-11-02-release-preparation-v2",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "path": "retention",
+      "status": 200,
+      "version": "2026-11-02-release-preparation-v2",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "path": "commercial-policy",
+      "status": 200,
+      "version": "2026-11-02-release-preparation-v2",
+      "width": 390,
+      "scrollWidth": 390
+    }
+  ]
+}

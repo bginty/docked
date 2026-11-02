@@ -1,0 +1,54 @@
+{
+  "at": "2026-11-02T07:28:41.654Z",
+  "candidate": {
+    "id": "dpl_6kKiZfN6qcin6HFJ3psRLs2qeakv",
+    "url": "https://docked-production-577ddj75s-briant-s-projects.vercel.app",
+    "commit": "f0eb28e7a6f9621574399e894aadbef20ff25cdd"
+  },
+  "baseline": {
+    "id": "dpl_2bWUkY1sgtshkifqRRty89oPfuzQ",
+    "commit": "053848ed67946fdd727a5c1d8547272d383c9470"
+  },
+  "changedFiles": [
+    "config/launch-policy-content.json"
+  ],
+  "approvedPolicySha256": "9655ebb36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93",
+  "checks": [
+    {
+      "route": "/privacy",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/retention",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200,
+      "approvedVersion": null
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200,
+      "approvedVersion": null
+    }
+  ],
+  "publicRegistration": false,
+  "googleTestWindow": false,
+  "paymentActivation": false,
+  "customerNbaVisible": false,
+  "productionMutations": 0,
+  "passed": true
+}

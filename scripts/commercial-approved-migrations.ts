@@ -15,18 +15,29 @@ import {
   assertOnlyRoundTelemetryChanged,
   roundTelemetry,
 } from "./lib/round-backup-compare";
+import {
+  readArchivedRows,
+  textRowsQuery,
+  type BackupRow,
+} from "./lib/backup-row-review";
+import { assertOperationalDrift } from "./lib/operational-drift";
 const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const mode = process.argv[2];
+const remaining = process.argv.includes("--remaining-additions");
 assert(["inspect", "apply"].includes(mode));
 if (mode === "apply")
   assert(process.argv.includes("--owner-approved-20261102"));
-const out = root + "/docs/qa/approved-production-20261102";
+const out =
+  root +
+  (remaining
+    ? "/docs/qa/final-australia-20261102/migrations"
+    : "/docs/qa/approved-production-20261102");
 const fresh = process.argv.includes("--fresh-backup");
 const vault =
   root +
   "/private-data/commercial-restore-" +
-  (fresh ? "20261102b" : "20261102");
+  (remaining ? "20261102d" : fresh ? "20261102b" : "20261102");
 const h = (x: string | Buffer) => createHash("sha256").update(x).digest("hex");
 const q = (x: string) => "'" + x.replaceAll("'", "'\\''") + "'";
 const tableHash = (table: string) =>
@@ -83,9 +94,11 @@ async function mainRun() {
   const manifest = JSON.parse(
     Buffer.concat([md.update(raw.subarray(28)), md.final()]).toString(),
   );
-  const evidenceDir = fresh
-    ? out + "/restore"
-    : root + "/docs/qa/public-activation-20261102";
+  const evidenceDir = remaining
+    ? root + "/docs/qa/final-australia-20261102/restore"
+    : fresh
+      ? out + "/restore"
+      : root + "/docs/qa/public-activation-20261102";
   const restored = JSON.parse(
     await readFile(evidenceDir + "/restore-drill.json", "utf8"),
   );
@@ -101,7 +114,7 @@ async function mainRun() {
   );
   assert.equal(manifest.project, "pojoymtniryarxxunyvz");
   assert.equal(restored.archiveSha256, manifest.sha256);
-  const approvedHashes: Record<string, string> = {
+  const originalHashes: Record<string, string> = {
     "20261101120754_commercial_google_ledger.sql":
       "a9d77454705a9c827155f1a07acda040ce48e5fb6911bf793edc3e0efed7a28c",
     "20261102010000_commercial_lineup_inventory.sql":
@@ -109,6 +122,14 @@ async function mainRun() {
     "20261102010001_public_customer_gameplay.sql":
       "121e97e5e41d160aee4f7bcdcd92fcaee2aae87c547c17a7af7b71ded978b4f2",
   };
+  const approvedHashes: Record<string, string> = remaining
+    ? {
+        "20261102011703_commercial_retention_controls.sql":
+          "30382db53d5ca29e869f385b640169b935808e1e57d9f3de8000735b74f9c20b",
+        "20261102023100_commercial_social_inventory.sql":
+          "2a019dce3789f34ce050b5ea70eb0cca5090fdbf69191f0e286c42875437d3a0",
+      }
+    : originalHashes;
   const migrations: {
     file: string;
     sha256: string;
@@ -130,7 +151,7 @@ async function mainRun() {
   }
   assert.deepEqual(
     migrations.map((m) => m.version),
-    ["20261101120754", "20261102010000", "20261102010001"],
+    Object.keys(approvedHashes).map((f) => f.slice(0, 14)),
   );
   const d = createDecipheriv(
     "aes-256-gcm",
@@ -149,13 +170,16 @@ async function mainRun() {
         "exec",
         "-i",
         "supabase_db_deletion-auth-local",
-        "pg_restore",
-        "--schema-only",
-        "--no-owner",
-        "--file=-",
+        "sh",
+        "-c",
+        "pg_restore --schema-only --no-owner --file=-; restore_result=$?; cat >/dev/null; exit $restore_result",
       ],
       archive,
     ),
+  );
+  assert(
+    /\n-- PostgreSQL database dump complete\n--\s*$/.test(oldSchema),
+    "Archived schema extraction incomplete; no writes permitted",
   );
   const provision = JSON.parse(
     await readFile(
@@ -187,12 +211,23 @@ async function mainRun() {
         await tx`set local statement_timeout='180s'`;
         if (mode === "apply") await tx`select pg_advisory_xact_lock(71820342)`;
         const prior =
-          await tx`select version,statements from supabase_migrations.schema_migrations where version in ('20261101120754','20261102010000','20261102010001') order by version`;
+          await tx`select version,statements from supabase_migrations.schema_migrations where version=any(${migrations.map((m) => m.version)}::text[]) order by version`;
         assert.equal(
           prior.length,
           0,
           "Already/partially applied: inspect existing migration history before proceeding",
         );
+        if (remaining)
+          for (const [file, sha] of Object.entries(originalHashes)) {
+            const [applied] =
+              await tx`select statements from supabase_migrations.schema_migrations where version=${file.slice(0, 14)}`;
+            assert(applied, "Missing applied dependency " + file);
+            assert.equal(
+              h(applied.statements.join("\n")),
+              sha,
+              "Applied dependency differs " + file,
+            );
+          }
         const snapshot = (await tx`select pg_export_snapshot() snapshot`)[0]
           .snapshot;
         const env = {
@@ -214,6 +249,10 @@ async function mainRun() {
               `\nexec pg_dump --schema-only --no-owner --snapshot=${q(snapshot)} --lock-wait-timeout=5000\n`,
           ),
         );
+        assert(
+          /\n-- PostgreSQL database dump complete\n--\s*$/.test(newSchema),
+          "Current schema extraction incomplete; no writes permitted",
+        );
         if (h(newSchema) !== h(oldSchema)) {
           // Metadata can contain privileged definitions: encrypt the diagnostic too.
           const iv = randomBytes(12),
@@ -232,12 +271,12 @@ async function mainRun() {
           );
         }
         const tables = (
-          await tx`select format('%I.%I',n.nspname,c.relname) name from pg_class c join pg_namespace n on n.oid=c.relnamespace where c.relkind='r' and (n.nspname in ('public','private','beta_fantasy','credits_sandbox','fantasy','scoring_beta','nfl_history','nfl_roster') or (n.nspname='auth' and c.relname='users') or (n.nspname='cron' and c.relname='job') or (n.nspname='sports_feed' and c.relname not in ('raw_revisions','jobs','job_events','budget'))) order by 1`
+          await tx`select format('%I.%I',n.nspname,c.relname) name from pg_class c join pg_namespace n on n.oid=c.relnamespace where c.relkind='r' and (n.nspname in ('public','private','beta_fantasy','credits_sandbox','fantasy','scoring_beta','nfl_history','nfl_roster','commercial_billing','public_gameplay') or (n.nspname='auth' and c.relname='users') or (n.nspname='cron' and c.relname='job') or (n.nspname='sports_feed' and c.relname not in ('raw_revisions','jobs','job_events','budget'))) order by 1`
         ).map((t) => t.name as string);
         const before: Record<string, unknown> = {};
         for (const table of tables)
           before[table] = (await tx.unsafe(tableHash(table)))[0];
-        const changedSinceRestore = [];
+        const changedSinceRestore: string[] = [];
         for (const [table, previous] of Object.entries(manifest.sums) as [
           string,
           { count: number; hash: string },
@@ -255,7 +294,12 @@ async function mainRun() {
           immutableRows: number;
           comparison: string;
         }[] = [];
-        if (changedSinceRestore.includes("sports_feed.nfl_rounds")) {
+        const nflRoundsTable = changedSinceRestore.find(
+          (t) =>
+            t === "sports_feed.nfl_rounds" ||
+            t === '"sports_feed"."nfl_rounds"',
+        );
+        if (nflRoundsTable) {
           const data = await command(
             [
               "exec",
@@ -277,7 +321,7 @@ async function mainRun() {
               rows,
             );
             expectedOperationalDrift.push({
-              table: "sports_feed.nfl_rounds",
+              table: nflRoundsTable,
               fields: roundTelemetry,
               immutableRows: unchanged.length,
               comparison:
@@ -287,6 +331,89 @@ async function mainRun() {
             throw Error(
               "NFL round non-telemetry data changed; migration stopped before writes",
             );
+          }
+        }
+        // The restored rehearsal explicitly excludes pg_net's unlogged
+        // transport buffers. They are not durable notification/retry queues.
+        // Verify the exact exclusion and relation persistence, never exempt
+        // arbitrary tables or any financial/application outbox here.
+        for (const table of [
+          '"net"."_http_response"',
+          '"net"."http_request_queue"',
+        ]) {
+          if (!remaining || !changedSinceRestore.includes(table)) continue;
+          assert(restored.excludedTransportTables.includes(table));
+          const [relation] =
+            await tx`select relpersistence from pg_class where oid=to_regclass(${table})`;
+          assert.equal(relation.relpersistence, "u");
+          expectedOperationalDrift.push({
+            table,
+            fields: ["ephemeral HTTP transport buffer"],
+            immutableRows: 0,
+            comparison:
+              "unlogged pg_net transport; excluded from the rehearsed logical archive, never replayed",
+          });
+        }
+        const reviewedOperational = [
+          '"auth"."refresh_tokens"',
+          '"auth"."sessions"',
+          '"auth"."users"',
+          '"cron"."job_run_details"',
+          '"private"."docked_mail_scheduler"',
+          '"sports_feed"."nfl_worker_runs"',
+          '"sports_feed"."weekly_core_job_runs"',
+        ].filter((t) => changedSinceRestore.includes(t));
+        if (remaining && reviewedOperational.length) {
+          await tx`set local time zone 'UTC'`;
+          const data = await command(
+            [
+              "exec",
+              "-i",
+              "supabase_db_deletion-auth-local",
+              "pg_restore",
+              "--data-only",
+              ...reviewedOperational.map(
+                (t) => "--table=" + t.split(".")[1].replaceAll('"', ""),
+              ),
+              "--file=-",
+            ],
+            archive,
+          );
+          const context = {
+            sessions:
+              (await tx`select id::text,user_id::text from auth.sessions`) as BackupRow[],
+            jobs: (await tx`select jobid::text,command,database,username from cron.job`) as BackupRow[],
+            rotatedSessions: [] as string[],
+          };
+          for (const table of reviewedOperational) {
+            const previous = readArchivedRows(data, table);
+            const columns =
+              await tx`select attname name,format_type(atttypid,atttypmod) type from pg_attribute where attrelid=to_regclass(${table}) and attnum>0 and not attisdropped and attgenerated='' order by attnum`;
+            const rows = (
+              await tx.unsafe(
+                textRowsQuery(
+                  table,
+                  columns.map((c) => ({
+                    name: String(c.name),
+                    type: String(c.type),
+                  })),
+                ),
+              )
+            ).map((r) => r.value) as BackupRow[];
+            const review = assertOperationalDrift(
+              table,
+              previous,
+              rows,
+              context,
+            );
+            expectedOperationalDrift.push(review);
+            if (table === '"auth"."refresh_tokens"') {
+              const ids = new Set(previous.map((r) => r.id));
+              context.rotatedSessions = rows
+                .filter((r) => !ids.has(r.id))
+                .map((r) => r.session_id!)
+                .filter(Boolean);
+            }
           }
         }
         const unexpectedDrift = changedSinceRestore.filter(
@@ -316,6 +443,12 @@ async function mainRun() {
             unexpectedDrift.join(","),
         );
         const dependencies = [
+          ...(remaining
+            ? [
+                "private.community_actor(uuid,text,boolean)",
+                "private.social_collection_cards(uuid,jsonb)",
+              ]
+            : []),
           "sports_feed.free_core_inventory(uuid,uuid)",
           "sports_feed.lineup_inventory(uuid,uuid)",
           "sports_feed.sport_sandbox_state(text)",
@@ -440,14 +573,64 @@ async function mainRun() {
                 )[0].allowed,
                 false,
               );
+          if (remaining) {
+            assert.equal(
+              (
+                await tx`select enabled from billing_retention.policy where id`
+              )[0].enabled,
+              false,
+            );
+            const [retentionRole] =
+              await tx`select rolcanlogin,rolsuper,rolbypassrls from pg_roles where rolname='docked_retention_worker'`;
+            assert.deepEqual(retentionRole, {
+              rolcanlogin: false,
+              rolsuper: false,
+              rolbypassrls: false,
+            });
+            assert.equal(
+              (
+                await tx`select count(*)::int n from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='billing_retention' and c.relkind='r' and c.relrowsecurity`
+              )[0].n,
+              5,
+            );
+            for (const role of [
+              "anon",
+              "authenticated",
+              "service_role",
+              "docked_beta_app",
+              "docked_commercial_app",
+            ]) {
+              assert.equal(
+                (
+                  await tx`select has_function_privilege(${role},'commercial_billing.social_inventory(uuid)','execute') allowed`
+                )[0].allowed,
+                false,
+              );
+              assert.equal(
+                (
+                  await tx`select has_schema_privilege(${role},'billing_retention','USAGE') allowed`
+                )[0].allowed,
+                false,
+              );
+            }
+            assert.equal(
+              (
+                await tx`select has_function_privilege('docked_app','commercial_billing.social_inventory(uuid)','execute') allowed`
+              )[0].allowed,
+              true,
+            );
+          }
         }
         return {
           at: new Date().toISOString(),
           mode,
           project: manifest.project,
-          sourceCommit: "78012503",
-          ownerApproval:
-            "APPROVED PRODUCTION MIGRATIONS AND FINAL RELEASE COMPLETION, 2026-11-02",
+          sourceCommit: remaining
+            ? "211cf3a1 with exact unchanged approved migration files"
+            : "78012503",
+          ownerApproval: remaining
+            ? "Approve both dormant migrations, 2026-11-02; call_2666be6940e44646962c257d86f7d261"
+            : "APPROVED PRODUCTION MIGRATIONS AND FINAL RELEASE COMPLETION, 2026-11-02",
           schemaMatchesRestore: true,
           schemaHash: h(newSchema),
           protectedRecordsMatchBackup: changedSinceRestore.length === 0,
@@ -455,6 +638,7 @@ async function mainRun() {
           expectedOperationalDrift,
           protectedTables: tables,
           protectedTableCount: tables.length,
+          protectedRecordFingerprint: h(JSON.stringify(before)),
           protectedRecordsUnchanged: true,
           existingRlsAndTableGrantsUnchanged: true,
           migrations: migrations.map(({ file, sha256 }) => ({

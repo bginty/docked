@@ -1,0 +1,99 @@
+{
+  "at": "2026-11-02T07:26:45.532Z",
+  "schemaMatchesRestore": true,
+  "schemaHash": "1a165d256dbcd339095b474fe5de157a9da118c8670d9cef42567bd37c690703",
+  "changedSinceRestore": [
+    "\"auth\".\"refresh_tokens\"",
+    "\"auth\".\"sessions\"",
+    "\"auth\".\"users\"",
+    "\"cron\".\"job_run_details\"",
+    "\"net\".\"_http_response\"",
+    "\"private\".\"docked_mail_scheduler\"",
+    "\"sports_feed\".\"nfl_rounds\"",
+    "\"sports_feed\".\"nfl_worker_runs\"",
+    "\"sports_feed\".\"weekly_core_job_runs\""
+  ],
+  "expectedOperationalDrift": [
+    {
+      "table": "\"sports_feed\".\"nfl_rounds\"",
+      "fields": [
+        "last_checked",
+        "next_check",
+        "lease_until"
+      ],
+      "immutableRows": 8,
+      "comparison": "exact parsed rows; fixtures, lock snapshots, issues and round identities unchanged"
+    },
+    {
+      "table": "\"net\".\"_http_response\"",
+      "fields": [
+        "ephemeral HTTP transport buffer"
+      ],
+      "immutableRows": 0,
+      "comparison": "unlogged pg_net transport; excluded from the rehearsed logical archive, never replayed"
+    },
+    {
+      "table": "\"auth\".\"refresh_tokens\"",
+      "fields": [
+        "updated_at",
+        "revoked"
+      ],
+      "immutableRows": 474,
+      "addedRows": 1,
+      "comparison": "Every existing immutable field matches; timestamp/rotation/append invariants verified; no values disclosed"
+    },
+    {
+      "table": "\"auth\".\"sessions\"",
+      "fields": [
+        "updated_at",
+        "refreshed_at",
+        "ip"
+      ],
+      "immutableRows": 132,
+      "addedRows": 0,
+      "comparison": "Every existing immutable field matches; timestamp/rotation/append invariants verified; no values disclosed"
+    },
+    {
+      "table": "\"auth\".\"users\"",
+      "fields": [
+        "updated_at"
+      ],
+      "immutableRows": 6,
+      "addedRows": 0,
+      "comparison": "Every existing immutable field matches; timestamp/rotation/append invariants verified; no values disclosed"
+    },
+    {
+      "table": "\"cron\".\"job_run_details\"",
+      "fields": [],
+      "immutableRows": 106925,
+      "addedRows": 220,
+      "comparison": "Every existing immutable field matches; timestamp/rotation/append invariants verified; no values disclosed"
+    },
+    {
+      "table": "\"private\".\"docked_mail_scheduler\"",
+      "fields": [
+        "last_tick_at"
+      ],
+      "immutableRows": 1,
+      "addedRows": 0,
+      "comparison": "Every existing immutable field matches; timestamp/rotation/append invariants verified; no values disclosed"
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_worker_runs\"",
+      "fields": [],
+      "immutableRows": 2294,
+      "addedRows": 3,
+      "comparison": "Every existing immutable field matches; timestamp/rotation/append invariants verified; no values disclosed"
+    },
+    {
+      "table": "\"sports_feed\".\"weekly_core_job_runs\"",
+      "fields": [],
+      "immutableRows": 34259,
+      "addedRows": 108,
+      "comparison": "Every existing immutable field matches; timestamp/rotation/append invariants verified; no values disclosed"
+    }
+  ],
+  "unexpectedDrift": [],
+  "backupAt": "2026-11-02T06:43:29.970Z",
+  "mode": "apply"
+}

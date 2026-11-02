@@ -1,0 +1,54 @@
+{
+  "at": "2026-11-02T07:31:59.299Z",
+  "mutations": 0,
+  "checks": [
+    {
+      "url": "https://docked-preview-s24-briant-ginty.vercel.app/app/login",
+      "status": 200,
+      "sha256": "697c906b9fe284ba5d8427a87aaf36c3a88688e486ac327257d4651560c0aab3",
+      "loginRendered": true
+    },
+    {
+      "url": "https://docked.com.au/api/beta-release",
+      "status": 200,
+      "sha256": "c2b3e1cecbb668680c96b532c5371b94a7f8e9ac9d60090f2917a805bb27f84f",
+      "identity": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "f0eb28e7a6f9621574399e894aadbef20ff25cdd",
+        "deploymentId": "dpl_6kKiZfN6qcin6HFJ3psRLs2qeakv",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      }
+    },
+    {
+      "url": "https://docked.com.au/privacy",
+      "status": 200,
+      "sha256": "1cd6c66486f68340e8c0fe007aab41414bb098bcea212fce59b425e16af272b1"
+    },
+    {
+      "url": "https://docked.com.au/refund-policy",
+      "status": 200,
+      "sha256": "a1c1062ae30be44475c91900636f1d5ecdbe7d1b6c096f8be1adfacc52e20f8c"
+    },
+    {
+      "url": "https://docked.com.au/retention",
+      "status": 200,
+      "sha256": "ca92a1ededb167b82d8480fa5b50d2c5917ac281e42b7c1cf6ac6a12f76e73a1"
+    },
+    {
+      "url": "https://docked.com.au/commercial-policy",
+      "status": 200,
+      "sha256": "f0bd27c53ba0da7a203de2f54c1e9a8c7113c26d51677f59db396b6789c443ec"
+    },
+    {
+      "url": "https://docked.com.au/account-deletion",
+      "status": 200,
+      "sha256": "ece163fa9b376b1ee26800181444edc2fdc651a1cb23a550ffea6d6385d56b37"
+    }
+  ]
+}

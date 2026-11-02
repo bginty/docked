@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-02T06:18:49.518Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "kind": "external",
+  "mode": "deletion",
+  "synthetic": false,
+  "externalEmail": true,
+  "productionWrites": 0,
+  "checks": [
+    "Actual customer-facing deletion request revoked the isolated account; erasure queued for scoped worker"
+  ],
+  "passed": true,
+  "requestStatus": 202
+}

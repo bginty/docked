@@ -1,5 +1,7 @@
 # Commercial publication package — owner approval required
 
+**Publication status, 2 November:** the owner approved the exact consolidated v2 JSON wording in [the publication record](../../FINAL_POLICY_APPROVAL_20261102.md). It is now live in policy-only release `f0eb28e7` at the four existing policy URLs. The older Markdown proposals below are review history, not separate approved/public consent documents. Operational retention decisions and release gates remain open; the model and exact v2 publication must not be requested again.
+
 Prepared 1 November 2026. **DRAFT: not published, not a consent version, not legal advice or an approval.** These proposed texts supersede the commercial proposals dated 31 October, not the policies currently accepted by beta members.
 
 Update 2 November: the owner has approved the business model and recovery-hold mechanism; see [the decision record](../../OWNER_COMMERCIAL_APPROVAL_20261102.md). Do not request that model approval again. Publication wording, retention decisions, third-party rights and regulatory/platform requirements remain separate release gates.

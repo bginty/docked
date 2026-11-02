@@ -18,6 +18,8 @@ import postgres from "postgres";
 import { readdirSync, readFileSync } from "node:fs";
 const previewRestore = process.argv.includes("--existing-free-preview");
 const remainingAdditions = process.argv.includes("--remaining-additions");
+const finalApproval = process.argv.includes("--final-approval");
+assert(!finalApproval || remainingAdditions);
 assert.ok(
   !(previewRestore && remainingAdditions),
   "Choose one rehearsal source",
@@ -61,13 +63,15 @@ const dir =
   runId;
 const evidence =
   root +
-  (remainingAdditions
-    ? "/docs/qa/launch-convergence-20261102/restore"
-    : previewRestore
-      ? "/docs/qa/launch-resolution-20261102/restore"
-      : runId === "20261102"
-        ? "/docs/qa/public-activation-20261102"
-        : "/docs/qa/approved-production-20261102/restore");
+  (finalApproval
+    ? "/docs/qa/final-australia-20261102/restore"
+    : remainingAdditions
+      ? "/docs/qa/launch-convergence-20261102/restore"
+      : previewRestore
+        ? "/docs/qa/launch-resolution-20261102/restore"
+        : runId === "20261102"
+          ? "/docs/qa/public-activation-20261102"
+          : "/docs/qa/approved-production-20261102/restore");
 const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
 assert.ok(attempt === undefined || /^[2-9]$/.test(attempt));
 const client = "supabase_db_deletion-auth-local",
