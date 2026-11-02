@@ -119,7 +119,9 @@ async function main() {
     const erased = fixture.users[0].id,
       retained = fixture.users[1].id;
     assert.equal(
-      (await sql`select id from auth.users where id=${erased}`).length,
+      (
+        await sql`select id from auth.users where id=${erased} and deleted_at is null`
+      ).length,
       0,
     );
     assert.equal(
@@ -203,7 +205,8 @@ async function main() {
       at: new Date().toISOString(),
       environment: "Disposable local Supabase Auth + customer dashboard route",
       migrations: 126,
-      authDeleted: true,
+      authCredentialsErased: true,
+      opaqueRecordReferenceRetained: true,
       profileDeleted: true,
       sessionsDeleted: true,
       otherMemberPreserved: true,

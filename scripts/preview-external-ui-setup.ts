@@ -154,6 +154,23 @@ async function run() {
       assert.equal(s.projectRef, ref);
       if (mode === "open") {
         assert(!s.closed && Date.parse(s.until) > Date.now());
+        // The restored legacy fixture has a three-member capacity, unrelated to
+        // public eligibility. Reserve one additional slot for this admitted UI
+        // identity only; all Auth, public-policy and round checks still apply.
+        if (!s.memberGuardOriginal) {
+          const [guard] =
+            await sql`select pg_get_functiondef('beta_fantasy.member_guard()'::regprocedure) definition`;
+          assert.equal(guard.definition.split(">=3").length, 2);
+          s.memberGuardOriginal = guard.definition;
+          save(s);
+        }
+        await sql.unsafe(s.memberGuardOriginal.replace(">=3", ">=4"));
+        if (s.registrationOriginal === undefined) {
+          s.registrationOriginal = (
+            await sql`select enabled from private.feature_flags where key='registration'`
+          )[0].enabled;
+          save(s);
+        }
         const admission = s.functions.find(
           (f: { name: string }) => f.name === "hosted_recipient_allowed",
         ).definition;
@@ -161,7 +178,10 @@ async function run() {
           "recipient ~ '^docked-preview-public-(member|deletion)-[a-f0-9]+@example[.]invalid$'";
         assert.equal(admission.split(marker).length, 2);
         await sql.unsafe(
-          admission.replace(marker, `(${marker} or recipient='${s.email}')`),
+          admission.replace(
+            marker,
+            () => `(${marker} or recipient='${s.email}')`,
+          ),
         );
         const config = {
           disable_signup: false,
@@ -175,6 +195,7 @@ async function run() {
         const p = dir + "/external-ui-auth.private.json";
         writeFileSync(p, JSON.stringify(config), { mode: 0o600 });
         manage("auth-config", p);
+        await sql`update private.feature_flags set enabled=true where key='registration'`;
         s.opened = true;
         save(s);
         console.log(
@@ -196,6 +217,9 @@ async function run() {
         writeFileSync(p, JSON.stringify(restored), { mode: 0o600 });
         manage("auth-config", p);
         await sql.begin(async (t) => {
+          if (s.memberGuardOriginal) await t.unsafe(s.memberGuardOriginal);
+          if (typeof s.registrationOriginal === "boolean")
+            await t`update private.feature_flags set enabled=${s.registrationOriginal} where key='registration'`;
           for (const f of s.functions) await t.unsafe(f.definition);
           await t`delete from preview_auth.allowed_recipients where email=${s.email}`;
           await t.unsafe(

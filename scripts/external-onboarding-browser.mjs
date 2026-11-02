@@ -134,17 +134,8 @@ try {
       );
     }
   } else if (mode === "recover") {
-    checkpoint = "signout-for-recovery";
-    await page.goto(a.origin + "/app");
-    const logout = await page.evaluate(async () => {
-      const r = await fetch("/api/auth", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "logout", app: true }),
-      });
-      return r.status;
-    });
-    assert.equal(logout, 200);
+    checkpoint = "fresh-browser-recovery";
+    await context.clearCookies();
     await page.goto(a.origin + "/app/forgot-password");
     await page.locator("form[data-api-ready=true]").waitFor();
     await page.getByLabel("Email", { exact: true }).fill(a.email);
@@ -209,6 +200,11 @@ try {
   report.passed = true;
   report.path = new URL(page.url()).pathname;
 } catch (error) {
+  await fs.writeFile(
+    dir + "/external-browser-error.private.txt",
+    String(error),
+    { mode: 0o600 },
+  );
   report.checkpoint = checkpoint;
   report.error = error instanceof Error ? error.name : "Error";
   process.exitCode = 1;

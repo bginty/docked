@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { db } from "./db";
+import { eraseAuthRetainingReferences } from "./auth-erasure";
 /** Called only after private.disable_account has atomically revoked access and queued erasure. */
 export async function processAccountDeletion(userId: string) {
   if (process.env.DOCKED_BETA_STAGING === "true")
@@ -33,9 +34,7 @@ export async function processAccountDeletion(userId: string) {
       },
     },
   );
-  const { error } = await admin.auth.admin.deleteUser(userId);
-  if (error && error.code !== "user_not_found")
-    throw new Error("Remote Auth erasure pending; retry safely");
+  await eraseAuthRetainingReferences(admin.auth.admin, userId);
   await sql.begin(async (tx) => {
     // Serialise completion after Auth erasure. Concurrent retries may see an
     // already-deleted Auth user; only one completion/audit event is recorded.

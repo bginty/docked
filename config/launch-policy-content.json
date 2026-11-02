@@ -34,7 +34,7 @@
         },
         {
           "title": "Access, correction and account deletion",
-          "text": "Request an account export or deletion through Account settings. The account-deletion page is accessible on the web without installing the app. If you cannot sign in, use account recovery or contact support. We verify requests proportionately and do not routinely ask for identity documents.\n\nDeletion first revokes access and sessions. In the current private beta, shared authentication identities require operator review before identity erasure; access revocation alone is not completed deletion. Eligible personal content is removed or pseudonymised through the deletion workflow. A failed or deferred step remains pending. Necessary ownership, competition, consent, dispute and security evidence can be retained for its documented purpose. Still-linkable information is not anonymous. Our retention notice explains the current targets and limitations."
+          "text": "Request an account export or deletion through Account settings. The account-deletion page is accessible on the web without installing the app. If you cannot sign in, use account recovery or contact support. We verify requests proportionately and do not routinely ask for identity documents.\n\nDeletion first revokes access and sessions. In the current private beta, shared authentication identities require operator review before identity erasure; access revocation alone is not completed deletion. Eligible personal content is removed or pseudonymised through the deletion workflow. A failed or deferred step remains pending. Necessary ownership, competition, consent, dispute and security evidence can be retained for its documented purpose. Still-linkable information is not anonymous. Our retention notice explains the current targets and limitations.\n\nFor public customer accounts, credential erasure removes sign-in secrets and identifying Auth metadata while an opaque account reference may remain linked to necessary ownership, competition and audit records. The active profile is removed. This reference is restricted, is not an active login and is not described as anonymous while still linkable."
         },
         {
           "title": "Questions and complaints",
@@ -115,7 +115,7 @@
         },
         {
           "title": "Remaining release requirements",
-          "text": "The commercial-model decisions are approved. Remaining release requirements concern evidence for commercial player/card and statistics rights; legal and Google Play assessment of paid cards, multipliers and credit resale; final customer acceptance; activation of approved retention operations; and the final release configuration. Withdrawals, paid competition entry and prizes remain disabled. These documents do not claim independent legal review, a provider licence or Google approval."
+          "text": "The commercial-model decisions and use of verified professional player names are owner-confirmed. Separate rights for proprietary statistics, photographs, logos, distinctive protected artwork or endorsement claims are not implied by that confirmation. Remaining release requirements concern the applicable sources/materials, legal and Google Play assessment of paid cards, multipliers and credit resale, final customer acceptance, approved retention operations and the final release configuration. Withdrawals, paid competition entry and prizes remain disabled. These documents do not claim independent legal review, a provider licence or Google approval."
         }
       ]
     }

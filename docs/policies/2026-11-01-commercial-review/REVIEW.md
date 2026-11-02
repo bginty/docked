@@ -14,10 +14,12 @@ Before publication:
 2. Verify classification, platform eligibility, player/card/data rights and lifetime supply reconciliation for the approved linked pack/fantasy/secondary-market model. Randomness alone is not a legal conclusion in either direction.
 3. Approve refund remedies, review staffing and appeals. No automatic monetary debt or third-party card confiscation is implemented.
 4. Complete retention periods/bases and deletion/restoration responsibilities; the retention draft deliberately does not invent statutory periods.
-5. Close the deployment/integration checks in the commercial migration package. The dormant owned-card gameplay bridge is implemented and locally tested; public access and round programmes still require approved configuration and hosted acceptance. Commercial coupons and social ownership attachments remain unavailable; they must not be advertised as enabled merely because collection browsing works.
+5. Close the deployment/integration checks in the commercial migration package. Public free-Core access and six future no-prize practice competition journeys have passed protected hosted acceptance, including actual external confirmation and recovery email. Production public activation remains off. The restricted commercial social inventory projection is implemented and separately migration-gated; commercial coupons and attachments must not be advertised as activated merely because source code or collection browsing exists.
 6. Publish immutable, separately versioned policies; update actual consent versions and Google declarations only after approval. Never replace old accepted text in place.
 
 No real checkout, public registration, policy acceptance, prize award or Google public submission was activated by preparing this package.
+
+The current concise publication decisions and exact scope are in [Final policy approval](../../FINAL_POLICY_APPROVAL_20261102.md). The commercial-model and player-name approvals are not being requested again.
 
 ## 2 November final-wording update
 

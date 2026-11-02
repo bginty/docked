@@ -18,10 +18,25 @@ async function main() {
   );
   assert.equal(c.projectRef, "bckkllmndoxzpzdqrevb");
   assert.equal(f.projectRef, c.projectRef);
-  const a = f.accounts.find((v: { kind: string }) => v.kind === "deletion");
+  const external = process.argv.includes("--external-email");
+  const a = external
+    ? JSON.parse(
+        readFileSync(
+          "private-data/restored-public-preview/external-ui.private.json",
+          "utf8",
+        ),
+      )
+    : f.accounts.find((v: { kind: string }) => v.kind === "deletion");
+  if (external) {
+    assert.equal(a.projectRef, c.projectRef);
+    assert.equal(a.origin, f.origin);
+    assert.equal(a.closed, false);
+  }
   assert.match(
     a.email,
-    /^docked-preview-public-deletion-[a-f0-9]+@example\.invalid$/,
+    external
+      ? /^briantg_21\+docked-ui-[0-9]+@hotmail\.com$/
+      : /^docked-preview-public-deletion-[a-f0-9]+@example\.invalid$/,
   );
   const owner = postgres(c.databaseUrl, {
     max: 1,
@@ -30,11 +45,22 @@ async function main() {
       ca: readFileSync("certs/supabase-prod-ca-2021.crt", "utf8"),
     },
   });
-  const [user] = await owner`select id from auth.users where email=${a.email}`;
+  const [user] =
+    await owner`select id from auth.users where email=${a.email} or (${external} and id=${a.userId ?? null}::uuid)`;
   assert(user, "Only the normally registered isolated deletion identity");
+  if (external && !a.userId) {
+    a.userId = user.id;
+    writeFileSync(
+      "private-data/restored-public-preview/external-ui.private.json",
+      JSON.stringify(a, null, 2),
+      { mode: 0o600 },
+    );
+  }
   const [profile] =
     await owner`select disabled_at from public.profiles where id=${user.id}`;
   assert(profile?.disabled_at, "Customer must request deletion first");
+  const [historyBefore] =
+    await owner`select count(*)::int entries,md5(coalesce(string_agg(row_to_json(e)::text,',' order by id),'')) fingerprint from beta_fantasy.entries e where user_id=${user.id}`;
   const [before] =
     await owner`select (select count(*)::int from commercial_billing.receipts) receipts,(select count(*)::int from commercial_billing.cards) cards,(select coalesce(sum(remaining),0)::text from commercial_billing.lots) funds,(select count(*)::int from auth.users where id<>${user.id}) unrelated_users,(select count(*)::int from private.consent_events where user_id=${user.id}) consent`;
   for (const key of Object.keys(process.env))
@@ -62,27 +88,46 @@ async function main() {
       await owner`select (select count(*)::int from commercial_billing.receipts) receipts,(select count(*)::int from commercial_billing.cards) cards,(select coalesce(sum(remaining),0)::text from commercial_billing.lots) funds,(select count(*)::int from auth.users where id<>${user.id}) unrelated_users,(select count(*)::int from private.consent_events where user_id=${user.id}) consent`;
     assert.deepEqual(after, before);
     const [done] =
-      await owner`select (select count(*)::int from auth.users where id=${user.id}) auth,(select count(*)::int from public.profiles where id=${user.id}) profiles,(select count(*)::int from private.audit_events where action='account_erasure_completed' and subject=${user.id}) completion,(select state from private.job_runs where kind='account_deletion' and dedupe_key=${`account-deletion:${user.id}`}) job`;
+      await owner`select (select count(*)::int from auth.users where id=${user.id} and deleted_at is null) active_auth,(select count(*)::int from public.profiles where id=${user.id}) profiles,(select count(*)::int from auth.sessions where user_id=${user.id}) sessions,(select count(*)::int from private.audit_events where action='account_erasure_completed' and subject=${user.id}) completion,(select state from private.job_runs where kind='account_deletion' and dedupe_key=${`account-deletion:${user.id}`}) job`;
     assert.deepEqual(done, {
-      auth: 0,
+      active_auth: 0,
       profiles: 0,
+      sessions: 0,
       completion: 1,
       job: "done",
     });
+    const [identity] =
+      await owner`select deleted_at is not null erased,email<>${a.email} obfuscated_email,coalesce(encrypted_password,'')='' password_erased,raw_user_meta_data='{}'::jsonb metadata_erased from auth.users where id=${user.id}`;
+    assert.deepEqual(identity, {
+      erased: true,
+      obfuscated_email: true,
+      password_erased: true,
+      metadata_erased: true,
+    });
+    const [historyAfter] =
+      await owner`select count(*)::int entries,md5(coalesce(string_agg(row_to_json(e)::text,',' order by id),'')) fingerprint from beta_fantasy.entries e where user_id=${user.id}`;
+    assert.deepEqual(historyAfter, historyBefore);
     const evidence = {
       at: new Date().toISOString(),
       project: c.projectRef,
       normalHostedCustomerRequest: true,
       scopedOperatorWorker: true,
-      syntheticOnly: true,
+      syntheticOnly: !external,
+      externalEmailFixture: external,
       completion: done,
+      credentialErasure: identity,
+      retainedCompetitionEntries: historyAfter.entries,
+      historicalEntriesUnchanged: true,
+      retainedEvidenceIsAnonymous: false,
       unrelatedAndFinancialRecordsPreserved: true,
       consentRetained: after.consent,
       repeatSafe: true,
       productionWrites: 0,
     };
     writeFileSync(
-      "docs/qa/launch-resolution-20261102/hosted-deletion-worker.json",
+      external
+        ? "docs/qa/final-australia-20261102/external-deletion-worker.json"
+        : "docs/qa/launch-resolution-20261102/hosted-deletion-worker.json",
       JSON.stringify(evidence, null, 2),
     );
     console.log(JSON.stringify(evidence));

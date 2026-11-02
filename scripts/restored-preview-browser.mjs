@@ -260,7 +260,11 @@ try {
           .click();
         await page
           .getByLabel("Team name", { exact: true })
-          .fill("Isolated acceptance");
+          .fill(
+            externalEmail
+              ? "External " + a.email.match(/docked-ui-(\d+)/)[1].slice(-6)
+              : "Isolated acceptance",
+          );
         await page
           .getByRole("button", { name: "Save name", exact: true })
           .click();
