@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-01-release-preparation-v1",
-  "date": "1 November 2026",
+  "version": "2026-11-02-release-preparation-v2",
+  "date": "2 November 2026",
   "operator": "Ginty United Investments Pty Ltd · ABN 78 606 187 106",
   "documents": [
     {
@@ -34,7 +34,7 @@
         },
         {
           "title": "Access, correction and account deletion",
-          "text": "Request an account export or deletion through Account settings. The account-deletion page is accessible on the web without installing the app. If you cannot sign in, use account recovery or contact support. We verify requests proportionately and do not routinely ask for identity documents.\n\nDeletion first revokes access and sessions. In the current private beta, shared authentication identities require operator review before identity erasure; access revocation alone is not completed deletion. Eligible personal content is removed or pseudonymised through the deletion workflow. A failed or deferred step remains pending. Necessary ownership, competition, consent, dispute and security evidence can be retained for its documented purpose. Still-linkable information is not anonymous. Our retention notice explains the current targets and limitations."
+          "text": "Request an account export or deletion through Account settings. The account-deletion page is accessible on the web without installing the app. If you cannot sign in, use account recovery or contact support. We verify requests proportionately and do not routinely ask for identity documents.\n\nDeletion first revokes access and sessions. In the current private beta, shared authentication identities require operator review before identity erasure; access revocation alone is not completed deletion. Eligible personal content is removed or pseudonymised through the deletion workflow. A failed or deferred step remains pending. Necessary ownership, competition, consent, dispute and security evidence can be retained for its documented purpose. Still-linkable information is not anonymous. Our retention notice explains the current targets and limitations.\n\nFor public customer accounts, credential erasure removes sign-in secrets and identifying Auth metadata while an opaque account reference may remain linked to necessary ownership, competition and audit records. The active profile is removed. This reference is restricted, is not an active login and is not described as anonymous while still linkable."
         },
         {
           "title": "Questions and complaints",
@@ -45,15 +45,15 @@
     {
       "id": "refund-policy",
       "title": "Purchases and refunds",
-      "status": "Current test-service information and proposed paid-release policy. Real-money purchases remain disabled.",
+      "status": "Owner-approved commercial model, prepared for release. Real-money purchases remain disabled pending external and technical release checks.",
       "sections": [
         {
           "title": "Current availability",
           "text": "Docked currently uses test credits and isolated test inventory. These are not cash and cannot be withdrawn. Google Play licence-test orders are not evidence of a real-money purchase. Public paid purchasing, withdrawals, paid competition entry and prize awards remain disabled."
         },
         {
-          "title": "Proposed paid packs",
-          "text": "The proposed Google Play credit packages are A$49 for 4,900 Docked Credits and A$99 for 9,900, with no bonus credits. Google checkout must display the current price before confirmation. Credits would be used in the shared wallet for sport-specific packs. No direct Australian-dollar pack prices are approved.\n\nStandard packs: 1 card for 100 credits; 3 for 300; 9 for 700. Premium packs: 1 card for 700 credits; 3 for 1,900; 9 for 5,000. Review the exact product, card count, eligible rarities, displayed chances and final price before confirming. Packs contain random digital cards; a particular player, rarity or financial return is not guaranteed. Core is excluded from paid packs. Premium draws only Ultra Rare, Legendary and Icon. These product descriptions do not activate sales."
+          "title": "Approved paid-release products",
+          "text": "The approved Google Play credit packages are A$49 for 4,900 Docked Credits and A$99 for 9,900, with no bonus credits. Google checkout must display the current price before confirmation. Credits are intended to be used in the shared wallet for sport-specific packs. No direct Australian-dollar pack prices are approved.\n\nStandard packs: 1 card for 100 credits; 3 for 300; 9 for 700. Premium packs: 1 card for 700 credits; 3 for 1,900; 9 for 5,000. Review the exact product, card count, eligible rarities, displayed chances and final price before confirming. Packs contain random digital cards; a particular player, rarity or financial return is not guaranteed. Core is excluded from paid packs. Premium draws only Ultra Rare, Legendary and Icon. These product descriptions do not activate sales."
         },
         {
           "title": "Requesting help or a refund",
@@ -61,18 +61,18 @@
         },
         {
           "title": "Payment and refund safety",
-          "text": "A pending or declined purchase does not provide spendable credits. The server verifies purchase state and the associated member before fulfilment. Repeated requests must not credit a purchase twice.\n\nIn isolated testing, an unspent reversed purchase is reversed once. If credits have been spent, remaining refunded funding is held for recovery review. This does not automatically charge a bank account, create a negative balance, seize unrelated funds or confiscate another member's cards. Ownership and transaction history are preserved for investigation. A recovery hold is not a completed recovery."
+          "text": "A pending or declined purchase does not provide spendable credits. The server verifies purchase state and the associated member before fulfilment. Repeated requests must not credit a purchase twice.\n\nWhen Google confirms a refund or revocation, Docked reverses the remaining credits from that purchase once. If credits have already been spent, the account can enter a recovery hold: affected spending or transfers may be restricted while support reviews the purchase, spending and refund records. Your history remains available. A hold is not an automatic bank charge, a negative spendable balance, debt collection or permission to take another member's cards. It does not remove consumer-law remedies.\n\nContact support@docked.com.au to dispute a hold, correct a mistaken account association or provide relevant refund evidence. Support must verify the purchase and record the reason for any resolution. No automatic charge or unrelated-card clawback is authorised by this policy. TEST orders and commercial purchases remain separate."
         },
         {
-          "title": "Decisions needed before paid activation",
-          "text": "The resolution process for spent-credit refunds, customer notices and appeals, treatment of unopened refunded packs, permitted recovery actions, commercial player/data rights and legal/platform classification of paid cards, scoring and resale remain release requirements. No debt-collection or third-party clawback policy is created here. Paid activation requires separate owner approval after these decisions and customer checkout acceptance. Existing beta credits and cards will not silently become money or permanent commercial inventory."
+          "title": "Release and consumer safeguards",
+          "text": "The owner has approved this commercial model and the disclosed recovery-hold approach. That approval does not establish player/data rights, legal clearance or Google Play approval. Sales remain disabled until those requirements, the final customer purchase flow and operational support procedures are verified. Unopened packs, completed openings and later card transfers must be reviewed under the actual purchase evidence and applicable consumer law; there is no blanket forfeiture or no-refund rule. Beta credits and cards do not silently become money or permanent commercial inventory."
         }
       ]
     },
     {
       "id": "retention",
       "title": "Retention and deletion",
-      "status": "Current beta handling targets. A commercial retention schedule remains an owner approval requirement.",
+      "status": "Current service targets and prepared commercial retention controls. Automated billing minimisation is disabled until separately configured and verified.",
       "sections": [
         {
           "title": "Existing handling targets",
@@ -88,14 +88,14 @@
         },
         {
           "title": "Public commercial release",
-          "text": "The public commercial schedule must identify record categories, retention triggers and periods or decision rules, responsible operators, backup treatment and deletion jobs. No statutory period is invented here. The beta targets are not automatically a sufficient schedule for paid purchases. Contact support@docked.com.au about retained information or a deletion request."
+          "text": "Financial records required by Australian company law must be kept for at least seven years after the transactions covered are completed. This does not require every profile field, document or routine log to be kept for seven years. Records subject to an active dispute, recovery case or legal hold remain restricted and under review; expiry of a review date does not automatically release a hold.\n\nThe prepared billing worker minimizes completed notification/retry records after 90 days, with an encrypted recovery archive for a further 30 days. Minimal notification identifiers remain to reject replay. It does not delete financial journals, ownership history or purchase verification references. The worker is not yet active. Purchase references are access-restricted for verification, refund/replay prevention and dispute handling; the final deletion point must be documented against the applicable provider and legal requirements before automated erasure. These records are not described as anonymous while still linkable.\n\nRetention controls do not erase all provider backups or mailbox copies. Contact support@docked.com.au for the records and reasons applicable to your deletion request. We will not call a pending or held step complete."
         }
       ]
     },
     {
       "id": "commercial-policy",
       "title": "Service and commercial release policy",
-      "status": "Proposed public-release document. No public launch, payment or commercial-rights approval is claimed.",
+      "status": "Owner-approved commercial model; public release, live payments and third-party rights remain gated.",
       "sections": [
         {
           "title": "Service scope",
@@ -107,15 +107,15 @@
         },
         {
           "title": "Packs and marketplace",
-          "text": "Standard and Premium packs remain part of the planned commercial model, subject to the purchase and refund policy and activation requirements. Card supply, serials, probabilities and ownership protections are not changed by these documents.\n\nThe marketplace supports credit sales only; offers and swaps are disabled. A 5% selling fee is deducted when your card sells, capped at 2,000 credits per sale. There's no minimum fee. Buyers pay the listed price. Fees are rounded to the nearest whole credit; half a credit rounds up. Sell a card for 1,000 credits: the fee is 50 and you receive 950. Existing historical fees are preserved. Commercial resale using purchased funds requires separate approval of the relevant transfer, fraud and refund policies."
+          "text": "Standard and Premium packs are part of the owner-approved commercial model, subject to the purchase and refund policy and activation requirements. Card supply, serials, probabilities and ownership protections are not changed by these documents.\n\nThe marketplace supports credit sales only; offers and swaps are disabled. A 5% selling fee is deducted when your card sells, capped at 2,000 credits per sale. There's no minimum fee. Buyers pay the listed price. Fees are rounded to the nearest whole credit; half a credit rounds up. Sell a card for 1,000 credits: the fee is 50 and you receive 950. Existing historical fees are preserved. Commercial resale using purchased funds remains switched off until transfer, fraud, recovery and platform requirements are verified. Docked does not currently offer credit cash-out, peer-to-peer cash transfers or export of cards outside the service. A Docked card is a digital entitlement within the service, not ownership of a player, trademark or copyright, and no resale or financial return is promised."
         },
         {
           "title": "Account and community rules",
           "text": "Use your own account, accurate eligibility information and the normal confirmation/security procedures. Do not evade access restrictions, impersonate others, exploit purchases or harass members. Existing reporting, blocking and moderation controls apply. No new privacy consent or previously accepted policy is silently replaced by this publication."
         },
         {
-          "title": "Outstanding public-release decisions",
-          "text": "Required decisions include commercial player/card and statistics rights; legal and Google Play assessment of the paid-card, multiplier, resale and reward model; separation of paid funds from beta funds; spent-refund recovery and appeals; the public retention and deletion schedule; and approval of the final tested release. Payment technology does not establish legal or platform eligibility. Cash features and prizes require separate decisions. These documents have not been represented as reviewed by a lawyer or approved by Google."
+          "title": "Remaining release requirements",
+          "text": "The commercial-model decisions and use of verified professional player names are owner-confirmed. Separate rights for proprietary statistics, photographs, logos, distinctive protected artwork or endorsement claims are not implied by that confirmation. Remaining release requirements concern the applicable sources/materials, legal and Google Play assessment of paid cards, multipliers and credit resale, final customer acceptance, approved retention operations and the final release configuration. Withdrawals, paid competition entry and prizes remain disabled. These documents do not claim independent legal review, a provider licence or Google approval."
         }
       ]
     }
