@@ -303,7 +303,7 @@ if (process.argv[2] === "prepare") {
     env.DOCKED_MEMBER_GOOGLE_TEST = "true";
   }
   if (process.env.DOCKED_RELEASE_V30_TRANSPORT === 'true') {
-    assert(['f0eb28e7a6f9621574399e894aadbef20ff25cdd','4eabe87f14ef371202bbf75199a267408df447dc','89f775d814ec2322cacf84ab1445e1d3fb3e46bf','53907253aa8a8d111911414309c1c916514e58f4','12e1129485ea406f590b152173de717e018e5296'].includes(baselineCommit));
+    assert(['f0eb28e7a6f9621574399e894aadbef20ff25cdd','4eabe87f14ef371202bbf75199a267408df447dc','89f775d814ec2322cacf84ab1445e1d3fb3e46bf','53907253aa8a8d111911414309c1c916514e58f4','12e1129485ea406f590b152173de717e018e5296','9ac8f1d7b1b750bd3c0cece0bbc08543d2674c98'].includes(baselineCommit));
     assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST, 'false');
     Object.assign(env,{DOCKED_COMMERCIAL_SERVICE:'false',DOCKED_COMMERCIAL_SURFACES:'false',DOCKED_COMMERCIAL_CHECKOUT:'false',DOCKED_PUBLIC_CUSTOMERS:'false'});
     const isolated = JSON.parse(await fs.readFile(path.join(root, 'private-data/v30-transport/env.private.json'), 'utf8'));
