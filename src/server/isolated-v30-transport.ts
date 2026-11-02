@@ -132,7 +132,7 @@ export async function isolatedV30Transport(
       return html("<p>Use the exit button in your TEST session.</p>", 403);
     const r = new Response(null, {
       status: 303,
-      headers: { ...headers, Location: "/app/login" },
+      headers: { ...headers, Location: "https://docked.com.au/app/login" },
     });
     r.headers.append(
       "Set-Cookie",
@@ -189,7 +189,7 @@ export async function isolatedV30Transport(
       status: 303,
       headers: {
         ...headers,
-        Location: "/app/login",
+        Location: "https://docked.com.au/app/login",
         "Set-Cookie": `${cookie}=${c.session}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=86400`,
       },
     });
@@ -258,7 +258,7 @@ export async function isolatedV30Transport(
         ].includes(redirect.origin)
       )
         return fail();
-      h.set("Location", redirect.pathname + redirect.search);
+      h.set("Location", 'https://docked.com.au' + redirect.pathname + redirect.search);
     }
     for (const value of r.headers.getSetCookie()) {
       if (
