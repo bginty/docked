@@ -24,7 +24,11 @@ for (const match of xml.matchAll(/<node\s+([^>]+)>?/g)) {
     ]),
   );
   if (
-    !["docked.fantasy", "com.android.vending"].includes(a.package) ||
+    ![
+      "docked.fantasy",
+      "com.android.vending",
+      "com.google.android.apps.play.billingtestcompanion",
+    ].includes(a.package) ||
     a.password === "true" ||
     a.bounds === "[0,0][0,0]"
   )

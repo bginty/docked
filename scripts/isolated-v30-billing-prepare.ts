@@ -142,6 +142,87 @@ async function run() {
       console.log(
         "Existing isolated Preview prepared; no Production writes, no receipt or card issued.",
       );
+    } else if (process.argv[2] === "resume") {
+      assert(existsSync(stateFile), "Recorded isolated acceptance required");
+      const state = JSON.parse(readFileSync(stateFile, "utf8"));
+      assert.equal(state.projectRef, c.projectRef);
+      assert.equal(state.member, member.id);
+      assert.equal(state.email, a.email);
+      assert.equal(
+        state.closed,
+        true,
+        "Only explicitly closed acceptance may resume",
+      );
+      assert.equal(state.definitions.length, 180);
+      assert.equal(state.before.sales_enabled, false);
+      assert.equal(state.before.issuance_enabled, false);
+      assert.equal(state.before.transfers_enabled, false);
+      const until = new Date(Date.now() + 5 * 3600000).toISOString();
+      const approvals = Object.fromEntries(
+        [
+          "owner",
+          "legal",
+          "googlePlay",
+          "privacy",
+          "retention",
+          "refundRecovery",
+          "playerRights",
+          "supplyReconciliation",
+        ].map((k) => [
+          k,
+          "ISOLATED TEST FIXTURE ONLY - no commercial approval asserted",
+        ]),
+      );
+      Object.assign(approvals, {
+        validUntil: until,
+        withdrawals: false,
+        prizes: false,
+        paidEntry: false,
+        nba: false,
+      });
+      await sql.begin(async (tx) => {
+        const [control] =
+          await tx`select * from commercial_billing.control where id for update`;
+        assert.equal(control.environment, "acceptance");
+        assert.equal(control.sales_enabled, false);
+        assert.equal(control.issuance_enabled, false);
+        assert.equal(control.transfers_enabled, false);
+        const [definitions] =
+          await tx`select count(*)::int count from commercial_billing.definitions where id in ${tx(state.definitions)} and rights_reference='isolated-v30-synthetic-fixture'`;
+        assert.equal(definitions.count, 180);
+        // Renew only the bounded isolated configuration. Never reseed identities,
+        // definitions, wallets, receipts, inventory or historical test events.
+        await tx`update commercial_billing.control set sales_enabled=true,issuance_enabled=true,transfers_enabled=false,policy_version=${commercialPolicyVersion},approvals=${tx.json(approvals)} where id`;
+      });
+      const resumedAt = new Date().toISOString();
+      writeFileSync(
+        stateFile,
+        JSON.stringify({ ...state, until, closed: false, resumedAt }, null, 2),
+        { mode: 0o600 },
+      );
+      writeFileSync(
+        out + "/acceptance-resumed.json",
+        JSON.stringify(
+          {
+            at: resumedAt,
+            until,
+            project: c.projectRef,
+            retainedCounts: counts,
+            productionWrites: 0,
+            livePaymentActivation: false,
+          },
+          null,
+          2,
+        ),
+      );
+      console.log(
+        JSON.stringify({
+          resumed: true,
+          until,
+          retainedCounts: counts,
+          productionWrites: 0,
+        }),
+      );
     } else if (process.argv[2] === "close") {
       assert(
         existsSync(stateFile),
@@ -194,7 +275,7 @@ async function run() {
       console.log(
         "Isolated acceptance closed; all test audit and inventory records retained.",
       );
-    } else throw Error("inspect, prepare or close required");
+    } else throw Error("inspect, prepare, resume or close required");
   } finally {
     await sql.end();
   }

@@ -68,7 +68,8 @@ try {
   );
   await page.getByRole("button", { name: "Log in", exact: true }).click();
   assert.equal((await response).status(), 200);
-  await page.waitForURL((u) => u.pathname !== "/app/login");
+  // /app is an intermediate session-routing screen, not a settled login.
+  await page.waitForURL((u) => u.pathname === "/fantasy/play");
   const session = await page.evaluate(async () => {
     const r = await fetch("/api/store/google/commercial");
     return { status: r.status, body: await r.json() };

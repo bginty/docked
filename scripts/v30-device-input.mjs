@@ -7,7 +7,7 @@ const mode=process.argv[2];
 if(mode==='operator'){
  const e=JSON.parse(fs.readFileSync('C:/Users/61412/.codex/worktrees/v30-transport/Docked.com.au/private-data/v30-transport/env.private.json'));
  assert.match(e.DOCKED_V30_TRANSPORT_KEY,/^[a-f0-9]{64}$/);
- shell('input tap 350 904');
+ assert.equal(process.argv[3],'focused','Focus the current observed TEST code field first');
  shell('input text '+e.DOCKED_V30_TRANSPORT_KEY);
  shell('input keyevent 4');
  console.log('Operator code entered in observed TEST form; not submitted.');

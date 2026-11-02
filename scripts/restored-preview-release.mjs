@@ -59,7 +59,14 @@ if (mode === "deploy") {
   );
   const git = (...a) =>
     execFileSync("git", a, { encoding: "utf8", windowsHide: true }).trim();
-  const sha = git("rev-parse", "HEAD");
+  const redeployReviewed = process.argv.includes("--renew-reviewed-runtime");
+  const previous = redeployReviewed
+    ? JSON.parse(await fs.readFile(`${dir}/deployment.json`, "utf8"))
+    : null;
+  if (previous) assert.equal(previous.project, project);
+  const sha = previous?.commit ?? git("rev-parse", "HEAD");
+  assert.match(sha, /^[a-f0-9]{40}$/);
+  assert.equal(git("rev-parse", sha + "^{commit}"), sha);
   const explicit = new Set([
     "package.json",
     "package-lock.json",
@@ -75,10 +82,11 @@ if (mode === "deploy") {
     ["src/", "public/", "config/"].some((x) => f.startsWith(x)) ||
     explicit.has(f);
   assert(
-    !git("diff", "--name-only", "HEAD").split("\n").some(allowed),
+    redeployReviewed ||
+      !git("diff", "--name-only", "HEAD").split("\n").some(allowed),
     "Commit source before hosted release",
   );
-  const files = git("ls-files", "-z")
+  const files = git("ls-tree", "-r", "--name-only", "-z", sha)
     .split("\0")
     .filter(Boolean)
     .filter(allowed);

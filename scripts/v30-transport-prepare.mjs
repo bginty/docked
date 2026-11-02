@@ -36,9 +36,11 @@ if (process.argv[2] === "refresh") {
   const previous = JSON.parse(
     await fs.readFile(out + "/env.private.json", "utf8"),
   );
-  assert.equal(
-    previous.DOCKED_V30_TRANSPORT_TARGET,
-    "https://docked-preview-r7pprjg0w-briant-s-projects.vercel.app",
+  assert(
+    [
+      "https://docked-preview-r7pprjg0w-briant-s-projects.vercel.app",
+      "https://docked-preview-fzxgv1xhq-briant-s-projects.vercel.app",
+    ].includes(previous.DOCKED_V30_TRANSPORT_TARGET),
   );
   env.DOCKED_V30_TRANSPORT_KEY = previous.DOCKED_V30_TRANSPORT_KEY;
   await fs.writeFile(out + "/env.private.json", JSON.stringify(env), {
