@@ -1,6 +1,9 @@
 import { sameOrigin } from "@/server/auth";
 import { boundedCommunityBody } from "@/core/community-social";
-import { memberCommercial } from "@/server/member-commercial";
+import {
+  CommercialRateLimit,
+  memberCommercial,
+} from "@/server/member-commercial";
 export const runtime = "nodejs";
 const headers = {
   "Cache-Control": "private, no-store",
@@ -28,7 +31,12 @@ export async function GET(req: Request) {
         headers,
       },
     );
-  } catch {
+  } catch (error) {
+    if (error instanceof CommercialRateLimit)
+      return Response.json(
+        { error: "Please retry shortly." },
+        { status: 429, headers: { ...headers, "Retry-After": "60" } },
+      );
     return unavailable();
   }
 }
@@ -38,7 +46,7 @@ export async function POST(req: Request) {
     const body = JSON.parse(
         new TextDecoder().decode(await boundedCommunityBody(req, 8192)),
       ),
-      member = await memberCommercial(),
+      member = await memberCommercial("mutation"),
       action = new URL(req.url).searchParams.get("action");
     const result =
       action === "reconcile" &&
@@ -56,6 +64,11 @@ export async function POST(req: Request) {
     if (result === null) return unavailable();
     return Response.json(result, { headers });
   } catch (error) {
+    if (error instanceof CommercialRateLimit)
+      return Response.json(
+        { error: "Please retry shortly." },
+        { status: 429, headers: { ...headers, "Retry-After": "60" } },
+      );
     const message = error instanceof Error ? error.message : "";
     if (
       /^(Insufficient Docked Credits|Pack quote changed; review again|Pack supply unavailable; no charge or substitution|Account review required before spending or purchasing|Commercial feature disabled|Explicit pack confirmation required)$/.test(

@@ -95,6 +95,13 @@ function GoogleCredits({
     let stopped = false;
     let listener: PluginListenerHandle | undefined;
     const receive = (purchases: { token: string }[]) => {
+      if (!purchases.length) {
+        // An empty startup reconciliation is not a wallet mutation. Avoid
+        // repeated wallet/pack loads and application-wide resume broadcasts.
+        running.current = false;
+        setBusy(false);
+        return;
+      }
       // Serial delivery also handles duplicate Play callbacks safely. Token never
       // enters browser persistence; the server inbox provides durable idempotency.
       queue.current = queue.current

@@ -154,6 +154,24 @@ test("expired or disabled sessions, admin routes and forged origins fail without
   );
   assert.equal(calls, 0);
 });
+test("native expired-session documents retain recovery controls without forwarding API or RSC requests", async () => {
+  let calls = 0;
+  const upstream: typeof fetch = async () => { calls++; return new Response(); };
+  for (const [path, headers, status] of [
+    ["/app", { accept: "text/html" }, 200],
+    ["/api/store/google/commercial", { accept: "text/html" }, 503],
+    ["/app", { accept: "text/html", rsc: "1" }, 503],
+  ] as const) {
+    const r = await isolatedV30Transport(new Request(origin + path, {
+      headers: { ...headers, cookie: session },
+    }), env, upstream, now + 7200000);
+    assert.equal(r!.status, status);
+    assert.match(await r!.text(), /Reconnect authorised TEST session/);
+    assert.equal(r!.headers.get("set-cookie"), null);
+  }
+  assert.equal(calls, 0);
+});
+
 test("redirects and Set-Cookie cannot escape Preview scope; expired marker can be exited explicitly", async () => {
   const req = new Request(origin + "/app", { headers: { cookie: session } });
   for (const h of [

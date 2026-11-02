@@ -153,8 +153,16 @@ export async function isolatedV30Transport(
   if (!session && u.pathname !== entry) return null;
   const fail = () =>
     html(
-      `<p>The isolated test connection is closed. No request has been sent to a customer wallet.</p><form method="post" action="${exit}"><button>Exit TEST session</button></form>`,
-      503,
+      `<p>The isolated test connection is closed. No request has been sent to a customer wallet.</p><form method="post" action="${exit}"><button>Exit TEST session</button></form><p><a href="${entry}" style="color:#7dd3fc">Reconnect authorised TEST session</a></p>`,
+      // Android's native offline handler replaces HTTP error documents. Keep
+      // the explicit exit/reconnect controls reachable without forwarding a
+      // stale session. API, RSC and mutation requests still fail closed.
+      request.method === "GET" &&
+        !u.pathname.startsWith("/api/") &&
+        request.headers.get("accept")?.includes("text/html") &&
+        !request.headers.has("rsc")
+        ? 200
+        : 503,
     );
   let c;
   try {

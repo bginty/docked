@@ -7,7 +7,9 @@ const mode=process.argv[2];
 if(mode==='operator'){
  const e=JSON.parse(fs.readFileSync('C:/Users/61412/.codex/worktrees/v30-transport/Docked.com.au/private-data/v30-transport/env.private.json'));
  assert.match(e.DOCKED_V30_TRANSPORT_KEY,/^[a-f0-9]{64}$/);
- shell('input tap 350 904\ninput text '+e.DOCKED_V30_TRANSPORT_KEY+'\ninput keyevent 4');
+ shell('input tap 350 904');
+ shell('input text '+e.DOCKED_V30_TRANSPORT_KEY);
+ shell('input keyevent 4');
  console.log('Operator code entered in observed TEST form; not submitted.');
 }else if(mode==='email'||mode==='password'){
  const f=JSON.parse(fs.readFileSync('private-data/restored-public-preview/fixture.private.json'));

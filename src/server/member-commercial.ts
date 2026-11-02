@@ -13,7 +13,8 @@ import { isolatedPreviewReadOnlyIdentity } from "../core/isolated-public-preview
 import { isolatedBillingIdentity } from "../core/isolated-billing-acceptance";
 /** Ordinary authenticated member; body never contains a customer, balance, price
  * or credited amount. TEST admission and synthetic identities are not reused. */
-export async function memberCommercial() {
+export class CommercialRateLimit extends Error {}
+export async function memberCommercial(access: "read" | "mutation" = "read") {
   if (
     process.env.DOCKED_COMMERCIAL_SERVICE !== "true" ||
     process.env.DOCKED_BETA_STAGING === "true"
@@ -59,8 +60,16 @@ export async function memberCommercial() {
       throw Error("Current customer eligibility and policy consent required");
   };
   await authorize();
-  if (!(await rateLimit(`commercial:${who.user.id}`, 15, 60)))
-    throw Error("Please retry shortly");
+  // Header, collection, history and current-price reads must not consume the
+  // receipt/purchase quota. Preserve the existing mutation key and limit.
+  if (
+    !(await rateLimit(
+      `${access === "read" ? "commercial-read" : "commercial"}:${who.user.id}`,
+      access === "read" ? 90 : 15,
+      60,
+    ))
+  )
+    throw new CommercialRateLimit("Please retry shortly");
   const { ledger, verifier } = await commercialRuntime();
   return {
     member: who.user.id,
