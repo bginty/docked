@@ -187,6 +187,12 @@ if (mode === "deploy") {
       DOCKED_ISOLATED_GOOGLE_SERVICE_EMAIL: google.client_email,
       DOCKED_ISOLATED_GOOGLE_PRIVATE_KEY: google.private_key,
       DOCKED_GOOGLE_COMMERCIAL_WORKER_SECRET: fixture.accountBinding,
+      DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE:
+        "https://docked.com.au/api/store/google/notifications",
+      DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT:
+        "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+      DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION:
+        "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push",
     });
   }
   assert(

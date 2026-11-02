@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   isolatedV30Transport,
   v30TransportConfig,
+  relayIsolatedGoogleNotification,
 } from "../../src/server/isolated-v30-transport";
 const now = Date.now();
 const origin = "https://docked.com.au";
@@ -24,6 +25,15 @@ const env = {
 };
 const session =
   "__Host-docked-v30-acceptance=" + v30TransportConfig(env, now)!.session;
+test('isolated notification relay preserves Google bearer and waits for durable upstream acknowledgement',async()=>{
+ const request=()=>new Request(origin+'/api/store/google/notifications',{method:'POST',headers:{authorization:'Bearer signed-google-fixture','content-type':'application/json'},body:'{"message":{}}'});
+ let calls=0;
+ const fake:typeof fetch=async(url,init)=>{calls++;assert.equal(url,env.DOCKED_V30_TRANSPORT_TARGET+'/api/store/google/commercial/notifications');assert.equal(new Headers(init!.headers).get('authorization'),'Bearer signed-google-fixture');assert.equal(new Headers(init!.headers).get('cookie'),null);return new Response(null,{status:204});};
+ await relayIsolatedGoogleNotification(request(),env,fake);assert.equal(calls,1);
+ await relayIsolatedGoogleNotification(request(),{...env,DOCKED_V30_TRANSPORT:'false'},fake);assert.equal(calls,1);
+ await assert.rejects(relayIsolatedGoogleNotification(request(),env,async()=>new Response(null,{status:503})));
+ const browser=request();browser.headers.set('origin',origin);await assert.rejects(relayIsolatedGoogleNotification(browser,env,fake));assert.equal(calls,1);
+});
 test("ordinary v30 requests never enter transport; wrong project/target/expiry denied", async () => {
   assert.equal(
     await isolatedV30Transport(new Request(origin + "/app"), env),

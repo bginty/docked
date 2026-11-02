@@ -1,0 +1,30 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {chromium} from '@playwright/test';
+const dir='private-data/restored-public-preview', out='docs/qa/v30-customer-billing-20261102';
+const f=JSON.parse(await fs.readFile(`${dir}/fixture.private.json`,'utf8'));
+const billing=JSON.parse(await fs.readFile(`${dir}/billing.private.json`,'utf8'));
+const vars=await fs.readFile(`${dir}/oidc.private.env`,'utf8');
+const oidc=vars.match(/^VERCEL_OIDC_TOKEN="?([^"\r\n]+)"?$/m)?.[1]; assert(oidc);
+const a=f.accounts.find(a=>a.kind==='member'); assert.equal(a.email,billing.email);
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const context=await browser.newContext({viewport:{width:390,height:844}});
+await context.route('**/*',route=>{const h={...route.request().headers()}; delete h['x-vercel-trusted-oidc-idp-token']; if(new URL(route.request().url()).origin===f.origin)h['x-vercel-trusted-oidc-idp-token']=oidc;return route.continue({headers:h});});
+const page=await context.newPage();
+try {
+ await page.goto(f.origin+'/app/login');
+ await page.locator('form[data-api-ready=true]').waitFor({timeout:45000});
+ await page.getByLabel('Email',{exact:true}).fill(a.email);
+ await page.getByLabel('Password',{exact:true}).fill(a.password);
+ const response=page.waitForResponse(r=>r.url()===f.origin+'/api/auth'&&r.request().method()==='POST');
+ await page.getByRole('button',{name:'Log in',exact:true}).click(); assert.equal((await response).status(),200);
+ await page.waitForURL(u=>u.pathname!=='/app/login');
+ const session=await page.evaluate(async()=>{const r=await fetch('/api/store/google/commercial');return {status:r.status,body:await r.json()};});
+ assert.equal(session.status,200,JSON.stringify(session));assert.equal(session.body.member,billing.member);assert.equal(session.body.isolatedTestOnly,true);assert.equal(session.body.products.length,2);
+ await context.storageState({path:`${dir}/v30-member-session.private.json`});
+ const evidence={at:new Date().toISOString(),normalHostedLogin:true,correctMember:true,isolatedTestOnly:true,products:session.body.products,wallet:session.body.wallet,physicalDevice:false,googlePurchase:false};
+ await fs.writeFile(`${out}/preview-billing-read.json`,JSON.stringify(evidence,null,2));
+ await page.goto(f.origin+'/fantasy/test-wallet?sport=nfl');
+ await page.screenshot({path:`${out}/preview-wallet-390.png`,fullPage:true});
+ console.log(JSON.stringify(evidence));
+} finally {await browser.close();}

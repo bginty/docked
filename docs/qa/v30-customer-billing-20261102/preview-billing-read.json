@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-02T08:09:30.779Z",
+  "normalHostedLogin": true,
+  "correctMember": true,
+  "isolatedTestOnly": true,
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "credits": 4900,
+      "audCents": 4900
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "credits": 9900,
+      "audCents": 9900
+    }
+  ],
+  "wallet": {
+    "balance": 0,
+    "spendable": 0,
+    "held": 0,
+    "reviewRequired": false,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "physicalDevice": false,
+  "googlePurchase": false
+}

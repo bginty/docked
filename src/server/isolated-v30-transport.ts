@@ -66,6 +66,47 @@ export function v30TransportConfig(env: Env, now = Date.now()) {
     .digest("hex");
   return { until, key, target, oidc, session: `${until}.${sig}` };
 }
+/** Called only after the existing receiver authenticates and durably queues the
+ * original Google message. Preserve that behaviour; relay failure asks Pub/Sub
+ * to retry, and both queues deduplicate. Never forwards customer/browser input. */
+export async function relayIsolatedGoogleNotification(
+  request: Request,
+  env: Env,
+  transport: typeof fetch = fetch,
+) {
+  if (
+    env.DOCKED_V30_TRANSPORT !== "true" ||
+    Date.parse(env.DOCKED_V30_TRANSPORT_UNTIL ?? "") <= Date.now()
+  )
+    return;
+  const c = v30TransportConfig(env);
+  if (
+    !c ||
+    request.url !== "https://docked.com.au/api/store/google/notifications" ||
+    request.method !== "POST" ||
+    request.headers.has("cookie") ||
+    request.headers.has("origin") ||
+    !request.headers.get("authorization")?.startsWith("Bearer ")
+  )
+    throw Error("Invalid authenticated relay");
+  const r = await transport(
+    c.target + "/api/store/google/commercial/notifications",
+    {
+      method: "POST",
+      headers: {
+        authorization: request.headers.get("authorization")!,
+        "content-type": "application/json",
+        "x-vercel-trusted-oidc-idp-token": c.oidc,
+      },
+      body: Buffer.from(await boundedCommunityBody(request, 65536)),
+      redirect: "error",
+      signal: AbortSignal.timeout(20000),
+      cache: "no-store",
+    },
+  );
+  if (r.status !== 204)
+    throw Error("Isolated durable notification unavailable");
+}
 /** Temporary opt-in transport only. No wallet, Auth administration or settlement
  * credentials exist here. The complete upstream app still authenticates the
  * ordinary customer and applies its own isolated receipt/ledger checks. */
