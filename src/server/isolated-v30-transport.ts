@@ -13,7 +13,9 @@ const same = (a: string, b: string) =>
 const headers = {
   "Cache-Control": "private, no-store",
   "X-Robots-Tag": "noindex",
-  "Referrer-Policy": "no-referrer",
+  // HTML form POST needs its same-origin Origin header. `no-referrer` makes
+  // Chromium serialize Origin:null on navigation, correctly denied below.
+  "Referrer-Policy": "same-origin",
   "X-Content-Type-Options": "nosniff",
 };
 function html(body: string, status = 200) {
