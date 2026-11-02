@@ -1,11 +1,11 @@
 import { customerVerification } from "@/core/customer-verification";
-import { productionInvitationsEnabled } from "@/core/auth-invitation";
+import { customerEmailEnabled } from "@/core/customer-email-readiness";
 import { authClient } from "@/server/auth";
 import { config } from "@/server/config";
 import { rateLimit } from "@/server/db";
 import { hash } from "@/core/canonical-hash";
 async function handle(request: Request) {
-  const enabled = productionInvitationsEnabled(process.env);
+  const enabled = customerEmailEnabled(process.env);
   return customerVerification(request, {
     enabled,
     origin: enabled ? config().siteUrl : "https://docked.com.au",

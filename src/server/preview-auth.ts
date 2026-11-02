@@ -1,7 +1,10 @@
 import "server-only";
 import { db } from "./db";
 import { previewAuthReadinessQuery } from "./preview-auth-query";
-import { assertIsolatedPublicPreview } from "@/core/isolated-public-preview.mjs";
+import {
+  assertIsolatedPublicPreview,
+  isolatedExternalEmailRecipient,
+} from "@/core/isolated-public-preview.mjs";
 import {
   hostedPreviewCaptureReady,
   hostedPreviewEnvironmentBound,
@@ -21,9 +24,10 @@ export async function previewAuthEmailAllowed(
     // The database returns only admission, never captured confirmation tokens.
     if (
       !app ||
-      !/^docked-preview-public-(member|deletion)-[a-f0-9]+@example\.invalid$/.test(
+      (!/^docked-preview-public-(member|deletion)-[a-f0-9]+@example\.invalid$/.test(
         email ?? "",
-      )
+      ) &&
+        !isolatedExternalEmailRecipient(process.env, email))
     )
       return false;
     try {

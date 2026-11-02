@@ -152,6 +152,19 @@ if (mode === "deploy") {
     VERCEL_PROJECT_ID: project,
     VERCEL_ORG_ID: team,
   });
+  if (process.argv.includes("--external-email")) {
+    const mail = JSON.parse(
+      await fs.readFile(`${dir}/external-ui.private.json`, "utf8"),
+    );
+    assert.equal(mail.projectRef, fixture.projectRef);
+    assert.equal(mail.closed, false);
+    assert(Date.parse(mail.until) > Date.now());
+    Object.assign(env, {
+      AUTH_EMAIL_ENABLED: "true",
+      DOCKED_ISOLATED_EMAIL_UNTIL: mail.until,
+      DOCKED_ISOLATED_EMAIL_RECIPIENT: mail.email,
+    });
+  }
   assert(
     assertIsolatedPublicPreview({
       ...env,

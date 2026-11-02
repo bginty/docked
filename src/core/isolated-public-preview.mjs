@@ -1,12 +1,36 @@
 // Existing free Preview only. This does not authorise public Production signup.
 const ref = "bckkllmndoxzpzdqrevb";
+/** Exact, expiring operator-authorised external recipient; never public signup. */
+export function isolatedExternalEmailRecipient(env, email, now = Date.now()) {
+  if (!assertIsolatedPublicPreview(env) || env.AUTH_EMAIL_ENABLED !== "true")
+    return false;
+  const until = Date.parse(env.DOCKED_ISOLATED_EMAIL_UNTIL ?? "");
+  const allowed = env.DOCKED_ISOLATED_EMAIL_RECIPIENT ?? "";
+  return (
+    Number.isFinite(until) &&
+    until > now &&
+    until <= now + 86400000 &&
+    /^[^\s<>@,;]+@[^\s<>@,;]+\.[^\s<>@,;]+$/.test(allowed) &&
+    allowed.length <= 254 &&
+    typeof email === "string" &&
+    email.toLowerCase() === allowed.toLowerCase()
+  );
+}
+
+export function isolatedCustomerEmailEnabled(env) {
+  return isolatedExternalEmailRecipient(
+    env,
+    env.DOCKED_ISOLATED_EMAIL_RECIPIENT,
+  );
+}
 /** Read projections only; this never permits a receipt, purchase or opening. */
 export function isolatedPreviewReadOnlyIdentity(env, email) {
   return (
     assertIsolatedPublicPreview(env) &&
-    /^docked-preview-public-(member|deletion)-[a-f0-9]+@example\.invalid$/.test(
+    (/^docked-preview-public-(member|deletion)-[a-f0-9]+@example\.invalid$/.test(
       email ?? "",
-    )
+    ) ||
+      isolatedExternalEmailRecipient(env, email))
   );
 }
 /** @param {Record<string,string|undefined>} env */

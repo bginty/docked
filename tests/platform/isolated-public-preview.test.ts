@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import {
   assertIsolatedPublicPreview,
   isolatedPreviewReadOnlyIdentity,
+  isolatedExternalEmailRecipient,
 } from "../../src/core/isolated-public-preview.mjs";
+import { customerEmailEnabled } from "../../src/core/customer-email-readiness";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
 import { authUiReadiness } from "../../src/core/auth-readiness";
 import {
@@ -45,6 +47,33 @@ const env: Record<string, string> = {
     ].map((k) => [k, "false"]),
   ),
 };
+test("external Preview email uses exact expiring admission without granting transactions or invitations", () => {
+  const e = {
+    ...env,
+    AUTH_EMAIL_ENABLED: "true",
+    DOCKED_ISOLATED_EMAIL_RECIPIENT: "authorised@example.test",
+    DOCKED_ISOLATED_EMAIL_UNTIL: new Date(Date.now() + 3600000).toISOString(),
+  };
+  assert.equal(customerEmailEnabled(e), true);
+  assert.equal(
+    isolatedExternalEmailRecipient(e, "authorised@example.test"),
+    true,
+  );
+  assert.equal(
+    isolatedPreviewReadOnlyIdentity(e, "authorised@example.test"),
+    true,
+  );
+  assert.equal(isolatedExternalEmailRecipient(e, "other@example.test"), false);
+  assert.equal(customerEmailEnabled(env), false);
+  for (const patch of [
+    { AUTH_EMAIL_ENABLED: "false" },
+    { DOCKED_ISOLATED_EMAIL_UNTIL: "invalid" },
+    { DOCKED_ISOLATED_EMAIL_UNTIL: "2000-01-01" },
+    { DOCKED_ISOLATED_EMAIL_RECIPIENT: "a@b.test,c@d.test" },
+  ])
+    assert.equal(customerEmailEnabled({ ...e, ...patch }), false);
+  assert.throws(() => customerEmailEnabled({ ...e, VERCEL_ENV: "production" }));
+});
 test("public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections", () => {
   assert.equal(assertIsolatedPublicPreview(env), true);
   assert.doesNotThrow(() => assertDeploymentEnvironment(env));

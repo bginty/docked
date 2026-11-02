@@ -1,6 +1,26 @@
 // Production-only, provider-independent core. Never logs payloads or credentials.
 export const projectUrl = "https://pojoymtniryarxxunyvz.supabase.co";
 const sender = "support@docked.com.au";
+const isolatedProject = "https://bckkllmndoxzpzdqrevb.supabase.co";
+export function isolatedMailContext(env, now = Date.now()) {
+  const until = Date.parse(env.DOCKED_ISOLATED_EMAIL_UNTIL ?? "");
+  if (
+    env.SUPABASE_URL !== isolatedProject ||
+    env.DOCKED_ISOLATED_EMAIL_ENABLED !== "true" ||
+    !Number.isFinite(until) ||
+    until <= now ||
+    until > now + 86400000 ||
+    env.DOCKED_ISOLATED_EMAIL_ORIGIN !==
+      "https://docked-preview-s24-briant-ginty.vercel.app"
+  )
+    throw Error("Isolated email acceptance unavailable");
+  email(env.DOCKED_ISOLATED_EMAIL_RECIPIENT);
+  return {
+    project: isolatedProject,
+    origin: env.DOCKED_ISOLATED_EMAIL_ORIGIN,
+    recipient: env.DOCKED_ISOLATED_EMAIL_RECIPIENT.toLowerCase(),
+  };
+}
 const origins = [
   "https://docked-production.netlify.app",
   "https://docked.com.au",
@@ -87,13 +107,26 @@ export function productionRecipientAllowed(address, env) {
   }
   return recipients.includes(address.toLowerCase());
 }
-/** @param {any} payload @param {{allowInvites?: boolean, betaOrigin?: string}} [options] */
+/** @param {any} payload @param {{allowInvites?: boolean, betaOrigin?: string, isolatedEnv?: any}} [options] */
 export function messagesFor(
   payload,
-  { allowInvites = false, betaOrigin = undefined } = {},
+  {
+    allowInvites = false,
+    betaOrigin = undefined,
+    isolatedEnv = undefined,
+  } = {},
 ) {
-  const allowedOrigins = [...origins];
-  const allowedCallbacks = new Set(callbacks);
+  const isolated = isolatedEnv ? isolatedMailContext(isolatedEnv) : null;
+  if (isolated && (allowInvites || betaOrigin))
+    throw Error("Isolated email scope mismatch");
+  const authProject = isolated?.project ?? projectUrl;
+  const allowedOrigins = isolated ? [isolated.origin] : [...origins];
+  const allowedCallbacks = isolated
+    ? new Set([
+        isolated.origin + "/auth/callback?next=/app/verified",
+        isolated.origin + "/auth/callback?next=/app/reset-password",
+      ])
+    : new Set(callbacks);
   if (betaOrigin !== undefined) {
     if (
       typeof betaOrigin !== "string" ||
@@ -120,10 +153,10 @@ export function messagesFor(
   // GoTrue uses its Auth service external URL in this signed payload field.
   // Keep the project exact and validate the website callback independently.
   const serviceSite = new Set([
-    projectUrl,
-    projectUrl + "/",
-    projectUrl + "/auth/v1",
-    projectUrl + "/auth/v1/",
+    authProject,
+    authProject + "/",
+    authProject + "/auth/v1",
+    authProject + "/auth/v1/",
   ]).has(data.site_url);
   if (!serviceSite && !allowedOrigins.includes(data.site_url))
     throw Object.assign(Error("Unapproved Auth origin or callback"), {
@@ -139,6 +172,12 @@ export function messagesFor(
     });
   const current = email(user.email);
   const action = data.email_action_type;
+  if (
+    isolated &&
+    (current.toLowerCase() !== isolated.recipient ||
+      !["signup", "recovery"].includes(action))
+  )
+    throw Error("Isolated recipient or action denied");
   if (
     action === "invite" &&
     !serviceSite &&
@@ -238,9 +277,24 @@ export async function graphAssertion(env, now = Date.now()) {
   );
   return { endpoint, assertion: `${unsigned}.${b64url(signature)}` };
 }
-export async function sendGraph(messages, env, fetcher = fetch) {
+export async function sendGraph(
+  messages,
+  env,
+  fetcher = fetch,
+  isolated = false,
+) {
+  if (isolated) {
+    const context = isolatedMailContext(env);
+    if (
+      messages.length !== 1 ||
+      messages[0]?.toRecipients?.length !== 1 ||
+      messages[0].toRecipients[0]?.emailAddress?.address?.toLowerCase() !==
+        context.recipient
+    )
+      throw Error("Isolated recipient denied");
+  }
   if (
-    env.SUPABASE_URL !== projectUrl ||
+    (!isolated && env.SUPABASE_URL !== projectUrl) ||
     env.DOCKED_GRAPH_MAIL_ENABLED !== "true"
   )
     throw Error("Production mail is not enabled");
