@@ -154,6 +154,15 @@ async function run() {
       assert.equal(s.projectRef, ref);
       if (mode === "open") {
         assert(!s.closed && Date.parse(s.until) > Date.now());
+        const admission = s.functions.find(
+          (f: { name: string }) => f.name === "hosted_recipient_allowed",
+        ).definition;
+        const marker =
+          "recipient ~ '^docked-preview-public-(member|deletion)-[a-f0-9]+@example[.]invalid$'";
+        assert.equal(admission.split(marker).length, 2);
+        await sql.unsafe(
+          admission.replace(marker, `(${marker} or recipient='${s.email}')`),
+        );
         const config = {
           disable_signup: false,
           mailer_autoconfirm: false,

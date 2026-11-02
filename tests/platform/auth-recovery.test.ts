@@ -16,6 +16,50 @@ const post = (
     headers: { Origin: from },
     body,
   });
+test("isolated recovery keeps its own provider, CSP and verifier cookie without changing Production", async () => {
+  const siteUrl = "https://docked-preview-s24-briant-ginty.vercel.app";
+  const request = new Request(siteUrl + "/auth/recovery", {
+    method: "POST",
+    headers: { Origin: siteUrl },
+    body: new URLSearchParams({ type: "recovery", token_hash: token }),
+  });
+  const r = await recoveryRequest(request, {
+    enabled: true,
+    siteUrl,
+    isolatedPreview: true,
+    canContinue: async () => "ready",
+  });
+  assert.equal(r.status, 303);
+  assert.equal(
+    new URL(r.headers.get("location")!).origin,
+    "https://bckkllmndoxzpzdqrevb.supabase.co",
+  );
+  assert.match(
+    r.headers.get("content-security-policy")!,
+    /bckkllmndoxzpzdqrevb/,
+  );
+  const cookie = {
+    name: "sb-bckkllmndoxzpzdqrevb-auth-token-code-verifier.0",
+    value: "fixture",
+  };
+  assert.equal(hasRecoveryVerifier([cookie], true), true);
+  assert.equal(hasRecoveryVerifier([cookie]), false);
+  assert.equal(
+    hasRecoveryVerifier(
+      [
+        {
+          ...cookie,
+          name: cookie.name.replace(
+            "bckkllmndoxzpzdqrevb",
+            "pojoymtniryarxxunyvz",
+          ),
+        },
+      ],
+      true,
+    ),
+    false,
+  );
+});
 test("recovery link scanners cannot consume tokens; only explicit POST reaches provider", async () => {
   let calls = 0;
   const deps = {

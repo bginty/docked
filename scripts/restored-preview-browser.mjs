@@ -4,10 +4,13 @@ import fs from "node:fs/promises";
 import { chromium } from "@playwright/test";
 import postgres from "postgres";
 const verifiedRounds = process.argv.includes("--verified-rounds");
+const externalEmail = process.argv.includes("--external-email");
 const dir = "private-data/restored-public-preview",
-  out = verifiedRounds
-    ? "docs/qa/launch-convergence-20261102"
-    : "docs/qa/launch-resolution-20261102";
+  out = externalEmail
+    ? "docs/qa/final-australia-20261102"
+    : verifiedRounds
+      ? "docs/qa/launch-convergence-20261102"
+      : "docs/qa/launch-resolution-20261102";
 const f = JSON.parse(await fs.readFile(`${dir}/fixture.private.json`, "utf8"));
 if (verifiedRounds) {
   const prepared = JSON.parse(
@@ -37,10 +40,24 @@ const sql = postgres(config.databaseUrl, {
 const variables = await fs.readFile(`${dir}/oidc.private.env`, "utf8");
 const oidc = variables.match(/^VERCEL_OIDC_TOKEN="?([^"\r\n]+)"?$/m)?.[1];
 assert(oidc, "Refresh project OIDC credential privately");
-const kind = process.argv[3] ?? "member",
-  a = f.accounts.find((v) => v.kind === kind);
+const kind = externalEmail ? "external" : (process.argv[3] ?? "member"),
+  a = externalEmail
+    ? JSON.parse(await fs.readFile(`${dir}/external-ui.private.json`, "utf8"))
+    : f.accounts.find((v) => v.kind === kind);
 assert(a);
 const mode = process.argv[2];
+if (externalEmail)
+  assert(
+    [
+      "play",
+      "traditional",
+      "deletion",
+      "screens",
+      "denials",
+      "existing",
+    ].includes(mode),
+    "External email signup must use the actual email journey",
+  );
 assert(
   [
     "signup",
@@ -57,8 +74,8 @@ const report = {
   origin: f.origin,
   kind,
   mode,
-  synthetic: true,
-  externalEmail: false,
+  synthetic: !externalEmail,
+  externalEmail,
   productionWrites: 0,
   checks: [],
   passed: false,
@@ -340,7 +357,9 @@ try {
       cards: 0,
       receipts: 0,
       credits: 0,
-      entries: (verifiedRounds ? 6 : 0) + (mode === "traditional" ? 6 : 3),
+      entries:
+        (verifiedRounds && !externalEmail ? 6 : 0) +
+        (mode === "traditional" ? 6 : 3),
     });
     report.summary = summary;
     check(
