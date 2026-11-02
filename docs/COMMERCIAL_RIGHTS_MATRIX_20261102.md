@@ -4,6 +4,8 @@ Reviewed 2 November 2026. This records the evidence found, not a legal opinion, 
 
 ## Actual sources and permitted uses
 
+**Subsequent owner confirmation:** the owner confirms advice and approval for professional player-name use in Docked's approved NFL/AFL/NRL fantasy-card model. That decision is recorded as owner-confirmed and is no longer a repeated approval blocker. It is not represented as an executed licence or independent legal verification. The prior paid-name assessment below is historical and superseded for that precise use; separate proprietary statistics, likenesses, trademarks, source contracts and endorsement claims are not automatically covered. See `LAUNCH_RIGHTS_AND_CLASSIFICATION_DECISIONS_20261102.md` for the current decision matrix.
+
 | Sport / asset | Evidence in the repositories | What is supported | Exact remaining condition |
 |---|---|---|---|
 | NFL player-game history | Existing ingestion uses nflverse player statistics; `player-statistics.tsx` About Statistics, `postgame-results.tsx` and the owner history page credit nflverse. [nflverse licensing](https://github.com/nflverse) and [data licence](https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md) expressly allow commercial reuse under CC BY 4.0 for the general data releases; FTN is separately CC BY-SA 4.0. | Storage, adaptation and display of the applicable released data with attribution and modification notice. The code licence alone was not used as data permission. | Preserve existing customer-visible attribution, release-specific provenance and applicable upstream credit. This is not a licence for photos, logos, player merchandise or every NFL-hosted webpage. |
@@ -16,7 +18,7 @@ Reviewed 2 November 2026. This records the evidence found, not a legal opinion, 
 
 Counts above describe the documented source import, not a fresh assertion of current eligible Production counts. NBA source records and historical attribution files are retained; they are not an activation programme.
 
-## Paid player cards: three specific outstanding assessments
+## Prior player-card assessment (superseded for owner-confirmed name use)
 
 1. **NFL:** [NFL Players Inc.](https://nflpa.com/partners/licensing) offers group rights for products using names, numbers and other player identity. No Docked agreement was found. Obtain the applicable digital collectible/fantasy category permission or qualified advice establishing why Docked's precise Australian use needs no such permission. A licence for statistics is insufficient evidence.
 2. **AFL:** the [2023–2027 AFL/AFLW CBA](https://cdn.aflplayers.com.au/app/uploads/2023/10/2023-2027-AFL-and-AFLW-CBA-MASTER-LONG-FORM-FINAL-DISTRIBUTION-VERSION.pdf) and [AFLPA licensing handbook](https://cdn.aflplayers.com.au/app/uploads/2023/01/AFLPA_Players-Handbook_2023_FINAL_Updated.pdf) distinguish player IP and licensed card/merchandise activity. No Docked grant was found. Resolve the digital-card category with AFLPA/appropriate rights holders or documented Australian legal analysis.
@@ -34,7 +36,7 @@ These are evidence gaps, not a conclusion that every factual name or score neces
 
 ## Release decision
 
-Open data can support several parts of the product now. Commercial card rights, the linked-market assessment, lifetime supply reconciliation and the category-specific retention process are not evidenced as complete. Keep paid products, permanent commercial issuance, public registration and public submission gated. No licence was purchased, provider contacted, legal attestation accepted or payment processed by this review.
+Open data and owner-confirmed name use support the documented factual/name-based product. The linked-market assessment, separate protected-material/source permissions where applicable, lifetime supply reconciliation and category-specific retention decisions must still be evidenced. Keep paid products, permanent commercial issuance, public registration and public submission gated until those applicable conditions and acceptance pass. No licence was purchased, provider contacted, legal attestation accepted or payment processed by this review.
 
 ### Authenticated Console evidence added 2 November
 

@@ -17,6 +17,11 @@ import { ownerDatabase } from "./owner-gameplay-db.mjs";
 import postgres from "postgres";
 import { readdirSync, readFileSync } from "node:fs";
 const previewRestore = process.argv.includes("--existing-free-preview");
+const remainingAdditions = process.argv.includes("--remaining-additions");
+assert.ok(
+  !(previewRestore && remainingAdditions),
+  "Choose one rehearsal source",
+);
 const previewConnection = previewRestore
   ? JSON.parse(
       readFileSync(
@@ -56,16 +61,22 @@ const dir =
   runId;
 const evidence =
   root +
-  (previewRestore
-    ? "/docs/qa/launch-resolution-20261102/restore"
-    : runId === "20261102"
-      ? "/docs/qa/public-activation-20261102"
-      : "/docs/qa/approved-production-20261102/restore");
+  (remainingAdditions
+    ? "/docs/qa/launch-convergence-20261102/restore"
+    : previewRestore
+      ? "/docs/qa/launch-resolution-20261102/restore"
+      : runId === "20261102"
+        ? "/docs/qa/public-activation-20261102"
+        : "/docs/qa/approved-production-20261102/restore");
+const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
+assert.ok(attempt === undefined || /^[2-9]$/.test(attempt));
 const client = "supabase_db_deletion-auth-local",
   target =
     (previewRestore
       ? "docked-preview-restore-"
-      : "docked-commercial-restore-") + runId;
+      : "docked-commercial-restore-") +
+    runId +
+    (attempt ? `-attempt-${attempt}` : "");
 const image = "public.ecr.aws/supabase/postgres:17.11.0.002";
 let createdTarget = false;
 let files = [
@@ -73,6 +84,13 @@ let files = [
   "20261102010000_commercial_lineup_inventory.sql",
   "20261102010001_public_customer_gameplay.sql",
 ];
+const remainingHashes: Record<string, string> = {
+  "20261102011703_commercial_retention_controls.sql":
+    "30382db53d5ca29e869f385b640169b935808e1e57d9f3de8000735b74f9c20b",
+  "20261102023100_commercial_social_inventory.sql":
+    "2a019dce3789f34ce050b5ea70eb0cca5090fdbf69191f0e286c42875437d3a0",
+};
+if (remainingAdditions) files = Object.keys(remainingHashes);
 const tables = [
   "auth.users",
   "private.profiles",
@@ -284,6 +302,17 @@ async function mainRun() {
           const members =
             await tx`select r.rolname role,m.rolname member from pg_auth_members a join pg_roles r on r.oid=a.roleid join pg_roles m on m.oid=a.member where r.rolname !~ '^pg_'`;
           const sums: Record<string, Checksum> = {};
+          if (remainingAdditions) {
+            const capturedTables =
+              await tx`select schemaname,tablename from pg_tables where schemaname not in ('pg_catalog','information_schema') and schemaname !~ '^pg_' order by schemaname,tablename`;
+            tables.splice(
+              0,
+              tables.length,
+              ...capturedTables.map(
+                (t) => sqlQuote(t.schemaname) + "." + sqlQuote(t.tablename),
+              ),
+            );
+          }
           for (const t of tables) {
             if ((await tx`select to_regclass(${t}) name`)[0].name)
               sums[t] = (await tx.unsafe(checksumQuery(t)))[0].value;
@@ -508,7 +537,15 @@ async function mainRun() {
   if (streamError)
     throw Error("Encrypted archive authentication/stream verification failed");
   const before: Record<string, Checksum> = {};
+  // pg_net extension transport caches/queues are unlogged and excluded from
+  // pg_dump. Never replay their outbound requests in a restored environment.
+  // These are not durable application notification/outbox or financial tables.
+  const excludedTransportTables = [
+    '"net"."_http_response"',
+    '"net"."http_request_queue"',
+  ];
   for (const [table, expected] of Object.entries(manifest.sums)) {
+    if (remainingAdditions && excludedTransportTables.includes(table)) continue;
     before[table] = JSON.parse(
       (await local(checksumQuery(table) + ";")).trim(),
     );
@@ -544,11 +581,37 @@ async function mainRun() {
     version: string;
   }[] = [];
   const migrations = [];
+  if (remainingAdditions) {
+    assert.equal(
+      (
+        await local(
+          "select count(*) from supabase_migrations.schema_migrations where version in ('20261102011703','20261102023100');",
+        )
+      ).trim(),
+      "0",
+      "Do not rehearse already-applied additions",
+    );
+    assert.equal(
+      (
+        await local(
+          "select count(*) from supabase_migrations.schema_migrations where version in ('20261101120754','20261102010000','20261102010001');",
+        )
+      ).trim(),
+      "3",
+      "Approved dependencies must already be present",
+    );
+  }
   for (const file of files) {
     const source = await readFile(
       root + "/supabase/migrations/" + file,
       "utf8",
     );
+    if (remainingAdditions)
+      assert.equal(
+        createHash("sha256").update(source).digest("hex"),
+        remainingHashes[file],
+        "Approval-package hash mismatch",
+      );
     await local("begin;\n" + source + "\ncommit;");
     migrations.push({
       file,
@@ -627,6 +690,46 @@ async function mainRun() {
       before[table],
       table + " after second application",
     );
+  if (remainingAdditions) {
+    assert.equal(
+      (
+        await local("select enabled from billing_retention.policy where id;")
+      ).trim(),
+      "f",
+    );
+    assert.equal(
+      (
+        await local(
+          "select count(*) from pg_tables t join pg_class c on c.oid=(quote_ident(t.schemaname)||'.'||quote_ident(t.tablename))::regclass where t.schemaname='billing_retention' and not c.relrowsecurity;",
+        )
+      ).trim(),
+      "0",
+    );
+    assert.equal(
+      (
+        await local(
+          "select has_function_privilege('authenticated','commercial_billing.social_inventory(uuid)','execute') or has_function_privilege('anon','commercial_billing.social_inventory(uuid)','execute');",
+        )
+      ).trim(),
+      "f",
+    );
+    assert.equal(
+      (
+        await local(
+          "select has_function_privilege('docked_app','commercial_billing.social_inventory(uuid)','execute');",
+        )
+      ).trim(),
+      "t",
+    );
+    assert.equal(
+      (
+        await local(
+          "select rolcanlogin or rolsuper or rolbypassrls from pg_roles where rolname='docked_retention_worker';",
+        )
+      ).trim(),
+      "f",
+    );
+  }
   const report = {
     at: new Date().toISOString(),
     sourceProject: manifest.project,
@@ -647,6 +750,8 @@ async function mainRun() {
     migrations,
     protectedTables: Object.keys(before),
     protectedRecordsUnchanged: true,
+    remainingAdditionsVerified: remainingAdditions,
+    excludedTransportTables: remainingAdditions ? excludedTransportTables : [],
     approvedRoundChanges,
     productionWrites: 0,
     storageObjectBodiesIncluded: false,

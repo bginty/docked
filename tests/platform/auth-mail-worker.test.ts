@@ -12,8 +12,43 @@ import { hookRouter } from "../../supabase/functions/docked-auth-email/router.mj
 import {
   messagesFor,
   projectUrl,
+  productionRecipientAllowed,
 } from "../../supabase/functions/docked-auth-email/mail.mjs";
 let pg: PGlite;
+test("ordinary customer mail requires explicit unexpired public activation; beta stays scoped", () => {
+  const e = {
+    SUPABASE_URL: projectUrl,
+    DOCKED_GRAPH_RECIPIENT_MODE: "public-customers",
+    DOCKED_GRAPH_PUBLIC_AUTH_READY: "true",
+    DOCKED_GRAPH_PUBLIC_AUTH_UNTIL: new Date(Date.now() + 60000).toISOString(),
+  };
+  assert.equal(productionRecipientAllowed("member@example.test", e), true);
+  for (const patch of [
+    { DOCKED_GRAPH_PUBLIC_AUTH_READY: "false" },
+    { DOCKED_GRAPH_PUBLIC_AUTH_READY: undefined },
+    { DOCKED_GRAPH_PUBLIC_AUTH_UNTIL: "invalid" },
+    { DOCKED_GRAPH_PUBLIC_AUTH_UNTIL: "2000-01-01T00:00:00Z" },
+    { SUPABASE_URL: "https://other.supabase.co" },
+  ])
+    assert.equal(
+      productionRecipientAllowed("member@example.test", { ...e, ...patch }),
+      false,
+    );
+  for (const value of [
+    "",
+    "member\r\nBcc: stranger@example.test",
+    "a@example.test,b@example.test",
+  ])
+    assert.equal(productionRecipientAllowed(value, e), false);
+  assert.equal(
+    productionRecipientAllowed("member@example.test", {
+      ...e,
+      DOCKED_GRAPH_RECIPIENT_MODE: "approved-beta",
+      DOCKED_GRAPH_BETA_RECIPIENTS: "support@docked.com.au",
+    }),
+    false,
+  );
+});
 const secret = "v1,whsec_" + Buffer.alloc(32, 7).toString("base64"); // authored test secret, never deployed
 const key = generateKeyPairSync("rsa", { modulusLength: 2048 });
 const env = {

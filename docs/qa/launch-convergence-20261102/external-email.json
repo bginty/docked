@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-02T05:20:56.480Z",
+  "project": "bckkllmndoxzpzdqrevb",
+  "transport": "Existing Microsoft Graph support mailbox",
+  "scope": "Normal hosted Auth signup/recovery API and actual external inbox; not full public application onboarding",
+  "operatorRelay": true,
+  "passwordChanged": false,
+  "signup": true,
+  "signupMail": {
+    "intentAt": "2026-11-02T05:14:55.221Z",
+    "submitted": true,
+    "inboxVerified": true,
+    "receivedAt": "2026-11-02T05:15:07Z",
+    "messageIdHash": "3fcfbd724a98305fc8b5719c4e287ab4ba3150e94614e07d9855e9002b9c6bb7"
+  },
+  "recovery": true,
+  "recoveryMail": {
+    "intentAt": "2026-11-02T05:17:53.175Z",
+    "submitted": true,
+    "inboxVerified": true,
+    "receivedAt": "2026-11-02T05:18:01Z",
+    "messageIdHash": "87747a9fa495647b63d8929df0a02e8833b79a7ede493157306a3e7c0cb2d43d"
+  },
+  "confirmed": {
+    "signup": true,
+    "recovery": true
+  },
+  "closed": true,
+  "productionWrites": 0,
+  "providerCredentialsAdded": 0
+}

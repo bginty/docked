@@ -11,6 +11,9 @@ Prerequisites: approved commercial ledger/lineup schemas, existing `private.acti
 
 Evidence:
 
+- **Full Production logical-restore rehearsal passed on 2 November 2026**: encrypted 81,276,071-byte backup captured 04:34:18 UTC, archive SHA-256 `135000f6cda9c2b0ec66d4c4f6ef4d4fe87039d22e9760ffefb3a803fe833656`. Restored to PostgreSQL 17.11 with no network, no exposed port and cron disabled. Applied and reapplied both exact files; protected record fingerprints unchanged, private RLS and restricted worker grants verified. Evidence: `qa/launch-convergence-20261102/restore/restore-drill.json`.
+- This rehearses database data/schema and required role memberships. It does **not** restore Storage object bodies, provider secrets or hosted service configuration. Only pg_net's two unlogged HTTP transport-cache tables are excluded from fingerprints; no durable business queue is excluded. HTTP requests must not be replayed from a backup. A fresh pre-application drift check remains required.
+
 - `qa/launch-resolution-20261102/retention-postgres.json`: twelve real PostgreSQL retention scenario groups.
 - `qa/launch-resolution-20261102/commercial-social-postgres.json`: real PostgreSQL full migration fixture, ownership/privacy, expired-session and direct-role denial, concurrent transfer locking and activation/receipt preservation.
 - Existing collection-privacy/expired-session database tests: 2/2 passed after projection addition.

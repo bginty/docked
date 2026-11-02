@@ -3,9 +3,20 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { chromium } from "@playwright/test";
 import postgres from "postgres";
+const verifiedRounds = process.argv.includes("--verified-rounds");
 const dir = "private-data/restored-public-preview",
-  out = "docs/qa/launch-resolution-20261102";
+  out = verifiedRounds
+    ? "docs/qa/launch-convergence-20261102"
+    : "docs/qa/launch-resolution-20261102";
 const f = JSON.parse(await fs.readFile(`${dir}/fixture.private.json`, "utf8"));
+if (verifiedRounds) {
+  const prepared = JSON.parse(
+    await fs.readFile(`${dir}/verified-rounds.private.json`, "utf8"),
+  );
+  assert.equal(prepared.previewOnly, true);
+  assert.equal(prepared.preserved, true);
+  f.rounds = prepared.rounds;
+}
 assert.equal(f.projectRef, "bckkllmndoxzpzdqrevb");
 assert.equal(f.origin, "https://docked-preview-s24-briant-ginty.vercel.app");
 const config = JSON.parse(
@@ -217,7 +228,7 @@ try {
     for (const sport of ["nfl", "afl", "nrl"]) {
       await page.goto(
         f.origin +
-          `/fantasy/play?sport=${sport}&mode=${mode === "traditional" ? "SALARY_CAP" : "OPEN"}`,
+          `/fantasy/play?sport=${sport}&mode=${mode === "traditional" ? "SALARY_CAP" : "OPEN"}${verifiedRounds ? `&competition=${f.rounds[sport][mode === "traditional" ? 0 : 1]}` : ""}`,
       );
       await page
         .getByRole("button", { name: "Auto Select", exact: true })
@@ -268,15 +279,28 @@ try {
       await page.getByText("Team entry confirmed", { exact: true }).waitFor();
       const result = await api(`/api/public-gameplay?sport=${sport}`);
       assert.equal(result.status, 200);
-      assert.equal(
-        result.body.state.entries.length,
-        mode === "traditional" ? 2 : 1,
-      );
+      if (!verifiedRounds)
+        assert.equal(
+          result.body.state.entries.length,
+          mode === "traditional" ? 2 : 1,
+        );
       const selected = result.body.state.entries.find(
         (e) =>
           e.competition_id === f.rounds[sport][mode === "traditional" ? 0 : 1],
       );
       assert(selected);
+      if (verifiedRounds) {
+        assert(
+          selected.snapshot.every(
+            (card) => !String(card.name ?? "").startsWith("Synthetic "),
+          ),
+        );
+        assert(
+          selected.snapshot.every(
+            (card) => card.inventory_source === "public-free-core-v1",
+          ),
+        );
+      }
       assert.equal(
         selected.snapshot.length,
         { nfl: 7, afl: 22, nrl: 13 }[sport],
@@ -297,7 +321,10 @@ try {
         fullPage: true,
       });
       await page.setViewportSize({ width: 390, height: 844 });
-      await page.goto(f.origin + `/fantasy/results?sport=${sport}`);
+      await page.goto(
+        f.origin +
+          `/fantasy/results?sport=${sport}${verifiedRounds ? `&competition=${selected.competition_id}` : ""}`,
+      );
       await page
         .getByRole("heading", { name: "Rankings", exact: true })
         .waitFor({ timeout: 45000 });
@@ -313,7 +340,7 @@ try {
       cards: 0,
       receipts: 0,
       credits: 0,
-      entries: mode === "traditional" ? 6 : 3,
+      entries: (verifiedRounds ? 6 : 0) + (mode === "traditional" ? 6 : 3),
     });
     report.summary = summary;
     check(

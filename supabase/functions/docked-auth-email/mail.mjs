@@ -51,6 +51,23 @@ function hash(value) {
 }
 export function productionRecipientAllowed(address, env) {
   if (typeof address !== "string") return false;
+  // Signed Auth messages can serve ordinary customers only after a separate,
+  // time-bounded public-email activation. Existing beta admission is unchanged.
+  if (env.DOCKED_GRAPH_RECIPIENT_MODE === "public-customers") {
+    if (
+      env.SUPABASE_URL !== projectUrl ||
+      env.DOCKED_GRAPH_PUBLIC_AUTH_READY !== "true"
+    )
+      return false;
+    const until = Date.parse(env.DOCKED_GRAPH_PUBLIC_AUTH_UNTIL ?? "");
+    if (!Number.isFinite(until) || until <= Date.now()) return false;
+    try {
+      email(address);
+      return true;
+    } catch {
+      return false;
+    }
+  }
   if (env.DOCKED_GRAPH_RECIPIENT_MODE === "support-test")
     return address.toLowerCase() === sender;
   if (env.DOCKED_GRAPH_RECIPIENT_MODE !== "approved-beta") return false;
@@ -148,11 +165,16 @@ export function messagesFor(
   return recipients.map(([address, token]) => {
     // Mail scanners must not consume invitation or recovery tokens on GET.
     // Recovery's POST interstitial preserves the provider PKCE exchange.
-    const confirmation = action === "invite" || action === "recovery" || action === "signup";
+    const confirmation =
+      action === "invite" || action === "recovery" || action === "signup";
     const url = new URL(
       confirmation
         ? new URL(data.redirect_to).origin +
-              (action === "invite" ? "/auth/invite" : action === "signup" ? "/auth/verify" : "/auth/recovery")
+            (action === "invite"
+              ? "/auth/invite"
+              : action === "signup"
+                ? "/auth/verify"
+                : "/auth/recovery")
         : projectUrl + "/auth/v1/verify",
     );
     url.searchParams.set(confirmation ? "token_hash" : "token", token);

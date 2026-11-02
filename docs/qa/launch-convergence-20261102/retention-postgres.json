@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-02T04:46:29.377Z",
+  "engine": "PostgreSQL 17 isolated loopback",
+  "checks": [
+    "dormant reapplication and dry run preserve source rows",
+    "stale policy refuses mutation",
+    "concurrent workers minimize once, archive encrypted, retain dedup key",
+    "Google notification duplicate remains rejected after minimization",
+    "overdue holds and unresolved recovery prevent cleanup",
+    "encrypted archives expire only without a hold; evidence remains",
+    "financial records and encrypted purchase reference unchanged",
+    "worker cannot grant funds, activate policy, read Auth, or erase audit",
+    "restricted worker executes with RLS and no bypass",
+    "failed archive write rolls back minimization and audit",
+    "hold insertion serializes with cleanup and never silently expires",
+    "expired policy and global holds fail closed"
+  ],
+  "passed": 12,
+  "productionMutation": false
+}
