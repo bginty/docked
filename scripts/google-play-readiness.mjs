@@ -6,6 +6,7 @@ import { join } from "node:path";
 
 const base =
   "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/docked.fantasy/";
+let diagnosticStage = "configuration";
 async function main() {
   const versionArg = process.argv.find((arg) => arg.startsWith("--version="));
   const version = versionArg ? versionArg.slice("--version=".length) : "23";
@@ -41,6 +42,7 @@ async function main() {
   const signer = createSign("RSA-SHA256");
   signer.update(payload);
   signer.end();
+  diagnosticStage = "google-authentication";
   const auth = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     redirect: "error",
@@ -65,18 +67,55 @@ async function main() {
   const results = [];
   for (const [name, path] of [
     ["catalogue", "oneTimeProducts?pageSize=10"],
+    ...(process.argv.includes("--catalogue-details")
+      ? [
+          ...["docked_credits_4900_v1", "docked_credits_9900_v1"].map((id) => [
+            `catalogue-offers-${id}`,
+            `oneTimeProducts/${id}/purchaseOptions/buy-au/offers?pageSize=1000`,
+          ]),
+        ]
+      : []),
     ["refund-readback", "purchases/voidedpurchases?type=0&maxResults=1"],
     [`generated-release-${version}`, `generatedApks/${version}`],
   ]) {
-    const r = await get(path),
-      body = await r.json();
+    diagnosticStage = name;
+    const r = await get(path);
+    if (r.status === 204 && name.startsWith("catalogue-offers-")) {
+      // Preserve Google's empty response explicitly; don't invent offer metadata.
+      results.push({ name, httpStatus: r.status, emptyResponse: true });
+      continue;
+    }
+    const body = await r.json().catch(() => null);
     const summary = { name, httpStatus: r.status };
+    if (!body) {
+      results.push({ ...summary, invalidJson: true });
+      continue;
+    }
     if (r.ok && name === "catalogue")
       summary.products = body.oneTimeProducts?.map((p) => ({
         id: p.productId,
+        ...(process.argv.includes("--catalogue-details")
+          ? {
+              packageName: p.packageName,
+              listings: p.listings,
+              restrictedPaymentCountries: p.restrictedPaymentCountries ?? null,
+              taxAndComplianceSettings: p.taxAndComplianceSettings ?? null,
+              regionsVersion: p.regionsVersion,
+              offerTags: p.offerTags ?? [],
+            }
+          : {}),
         options: p.purchaseOptions?.map((o) => ({
           id: o.purchaseOptionId,
           state: o.state,
+          ...(process.argv.includes("--catalogue-details")
+            ? {
+                buyOption: o.buyOption ?? null,
+                rentOption: o.rentOption ?? null,
+                newRegionsConfig: o.newRegionsConfig ?? null,
+                taxAndComplianceSettings: o.taxAndComplianceSettings ?? null,
+                offerTags: o.offerTags ?? [],
+              }
+            : {}),
           multiQuantityEnabled: o.buyOption?.multiQuantityEnabled === true,
           regions: o.regionalPricingAndAvailabilityConfigs?.map((r) => ({
             region: r.regionCode,
@@ -87,6 +126,10 @@ async function main() {
       }));
     if (r.ok && name === "refund-readback")
       summary.returnedRefunds = body.voidedPurchases?.length ?? 0;
+    if (r.ok && name.startsWith("catalogue-offers-")) {
+      summary.offers = body.oneTimeProductOffers ?? [];
+      summary.hasMore = !!body.nextPageToken;
+    }
     if (r.ok && name === `generated-release-${version}`) {
       summary.signingKeys = body.generatedApks?.map((g) => ({
         sha256: g.certificateSha256Hash,
@@ -128,6 +171,7 @@ async function main() {
     checks: results,
     mutations: 0,
   };
+  diagnosticStage = "evidence-write";
   const evidenceArg = process.argv.find((arg) => arg.startsWith("--evidence="));
   const evidenceFile =
     evidenceArg?.slice("--evidence=".length) ??
@@ -136,11 +180,16 @@ async function main() {
     throw Error("Repository evidence path required");
   writeFileSync(evidenceFile, JSON.stringify(evidence, null, 2) + "\n");
   console.log(JSON.stringify(evidence, null, 2));
-  if (results.some((r) => r.httpStatus !== 200)) process.exitCode = 1;
+  if (
+    results.some(
+      (r) => (r.httpStatus !== 200 && !r.emptyResponse) || r.invalidJson,
+    )
+  )
+    process.exitCode = 1;
 }
 main().catch(() => {
   console.error(
-    "Read-only Google diagnostic failed. Credentials and provider response content were redacted.",
+    `Read-only Google diagnostic failed at ${diagnosticStage}. Credentials and provider response content were redacted.`,
   );
   process.exitCode = 1;
 });

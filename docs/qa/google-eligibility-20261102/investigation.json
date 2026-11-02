@@ -1,0 +1,56 @@
+{
+  "recordedAt": "2026-11-02T10:51:17.760394+00:00",
+  "rootCauseEstablished": false,
+  "lastPhysicalFailure": {
+    "at": "2026-11-02T09:48:13Z",
+    "code": 4,
+    "meaning": "NO_ELIGIBLE_OFFER",
+    "products": [
+      "docked_credits_4900_v1",
+      "docked_credits_9900_v1"
+    ],
+    "source": "../v30-customer-billing-20261102/device-result.json"
+  },
+  "internalTrack": {
+    "versionCode": 30,
+    "versionName": "1.29",
+    "release": 8,
+    "availableToInternalTesters": true,
+    "authorisedTesterInSelectedList": true
+  },
+  "installedApk": {
+    "package": "docked.fantasy",
+    "versionCode": 30,
+    "versionName": "1.29",
+    "sha256": "56ee0d2de9be5aa4978d393a1b0258a007c4a391e956b4604c91b20b26c2600f",
+    "billingLibrary": "9.1.0",
+    "billingPermission": true,
+    "signingCertificateMatchesGoogle": true,
+    "usesProductDetailsOfferList": true
+  },
+  "publication": {
+    "managedPublishing": true,
+    "changesNotSubmitted": 10,
+    "approvedChangesReadyToPublish": 0,
+    "submitted": false
+  },
+  "verification": {
+    "syntax": "passed",
+    "targetedEslint": "passed",
+    "apkSignature": "passed",
+    "newPhysicalPurchase": "not run",
+    "emulator": "booted; no Google account; shut down without data wipe",
+    "applicationRebuild": false,
+    "broadRegressionRepeated": false
+  },
+  "remainingDiagnostic": "Authenticated Play Billing Lab Australia test, then Google serving-side support if it still fails; current physical device disconnected",
+  "safety": {
+    "googleProductActivations": 0,
+    "purchases": 0,
+    "refunds": 0,
+    "customerMutations": 0,
+    "productionMigrations": 0,
+    "deployments": 0,
+    "nbaHiddenPreserved": true
+  }
+}
