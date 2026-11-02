@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-02T02:20:14.270Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "kind": "member",
+  "mode": "existing",
+  "synthetic": true,
+  "externalEmail": false,
+  "productionWrites": 0,
+  "checks": [
+    "nfl: persisted entry and restored wallet on final deployment, read-only",
+    "afl: persisted entry and restored wallet on final deployment, read-only",
+    "nrl: persisted entry and restored wallet on final deployment, read-only"
+  ],
+  "passed": true
+}

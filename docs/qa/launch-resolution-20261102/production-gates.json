@@ -1,0 +1,87 @@
+{
+  "at": "2026-11-02T02:38:05.150Z",
+  "project": "pojoymtniryarxxunyvz",
+  "migrations": [
+    {
+      "version": "20261101120754",
+      "sha256": "a9d77454705a9c827155f1a07acda040ce48e5fb6911bf793edc3e0efed7a28c",
+      "alreadyApplied": true,
+      "reapplied": false
+    },
+    {
+      "version": "20261102010000",
+      "sha256": "c39d5da280d2d76226740d904e93732b2ca6ecffee505bf1803924b0e54e995b",
+      "alreadyApplied": true,
+      "reapplied": false
+    },
+    {
+      "version": "20261102010001",
+      "sha256": "121e97e5e41d160aee4f7bcdcd92fcaee2aae87c547c17a7af7b71ded978b4f2",
+      "alreadyApplied": true,
+      "reapplied": false
+    }
+  ],
+  "state": {
+    "registration": false,
+    "public_enabled": false,
+    "public_rounds": 0,
+    "commercial_cards": 0,
+    "commercial_receipts": 0,
+    "commercial_funds": "0",
+    "commercial_enabled": false,
+    "retention_table": null
+  },
+  "sports": [
+    {
+      "sport": "afl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nfl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nrl",
+      "visible": false,
+      "play_enabled": false
+    }
+  ],
+  "currentCounts": [
+    {
+      "table": "auth.users",
+      "count": 6
+    },
+    {
+      "table": "public.profiles",
+      "count": 0
+    },
+    {
+      "table": "beta_fantasy.cards",
+      "count": 59
+    },
+    {
+      "table": "beta_fantasy.entries",
+      "count": 17
+    },
+    {
+      "table": "beta_fantasy.ledger",
+      "count": 0
+    },
+    {
+      "table": "beta_fantasy.ownership_events",
+      "count": 59
+    },
+    {
+      "table": "beta_fantasy.pack_items",
+      "count": 11
+    },
+    {
+      "table": "cron.job",
+      "count": 9
+    }
+  ],
+  "productionMutations": 0,
+  "comparison": "Current read-only census; prior transactional preservation evidence retained separately. Legitimate customer/cron changes are not overwritten."
+}

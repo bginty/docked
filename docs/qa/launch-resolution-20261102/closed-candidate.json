@@ -1,0 +1,75 @@
+{
+  "at": "2026-11-02T02:39:11.506Z",
+  "candidate": {
+    "id": "dpl_GG58CUhZcHbB7u8rSZnJUWzDfGTr",
+    "url": "docked-production-owjmvt5sx-briant-s-projects.vercel.app",
+    "state": "READY",
+    "commit": "7161f6efe7078673b5c79ab38bdac17a05a89c03"
+  },
+  "live": {
+    "id": "dpl_2bWUkY1sgtshkifqRRty89oPfuzQ",
+    "url": "docked-production-hdijyy3uu-briant-s-projects.vercel.app",
+    "state": "READY",
+    "commit": "053848ed67946fdd727a5c1d8547272d383c9470"
+  },
+  "checks": [
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "route": "/api/admin/commercial-billing",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200
+    },
+    {
+      "route": "/retention",
+      "status": 200
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200
+    }
+  ],
+  "authenticatedMember": false,
+  "productionMutations": 0,
+  "promoted": false
+}

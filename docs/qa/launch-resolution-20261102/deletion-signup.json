@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-02T02:05:38.540Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "kind": "deletion",
+  "mode": "signup",
+  "synthetic": true,
+  "externalEmail": false,
+  "productionWrites": 0,
+  "checks": [
+    "Normal hosted signup accepted with explicit age, Terms and Privacy consent",
+    "Actual Auth-generated email confirmation token verified; no admin autoconfirm",
+    "Hosted identity has confirmed email and its own provisioned profile",
+    "Normal authenticated sign-in succeeds",
+    "Ordinary customer capabilities include NFL/AFL/NRL without private-beta admission",
+    "NBA unavailable server-side"
+  ],
+  "passed": true
+}

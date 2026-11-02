@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-02T02:09:58.971Z",
+  "mutations": 0,
+  "authenticated": false,
+  "checks": [
+    {
+      "path": "/privacy",
+      "status": 200,
+      "policyVersion": "v1"
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200,
+      "policyVersion": "v1"
+    },
+    {
+      "path": "/retention",
+      "status": 200,
+      "policyVersion": "v1"
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200,
+      "policyVersion": "v1"
+    },
+    {
+      "path": "/account-deletion",
+      "status": 200,
+      "policyVersion": null
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "status": 401,
+      "policyVersion": null,
+      "capabilities": {
+        "error": "Sign in with an authorised account."
+      }
+    },
+    {
+      "path": "/api/public-gameplay?sport=basketball",
+      "status": 404,
+      "policyVersion": null
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "status": 404,
+      "policyVersion": null
+    }
+  ]
+}

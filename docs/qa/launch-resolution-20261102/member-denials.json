@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-02T02:37:34.877Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "kind": "member",
+  "mode": "denials",
+  "synthetic": true,
+  "externalEmail": false,
+  "productionWrites": 0,
+  "checks": [
+    "Authenticated read-only empty wallet is correct, not an error fallback",
+    "Isolated member cannot submit commercial receipts, buy/open/reconcile packs, or access NBA",
+    "Anonymous wallet request denied"
+  ],
+  "passed": true,
+  "wallet": {
+    "balance": 0,
+    "spendable": 0
+  }
+}
