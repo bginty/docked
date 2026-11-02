@@ -174,7 +174,7 @@ export async function isolatedV30Transport(
   if (u.pathname === entry) {
     if (request.method === "GET")
       return html(
-        `<p>Authorised no-charge testing only. This connects to isolated Preview accounts and inventory. Never use a real payment method.</p><form method="post"><label>Operator access code <input name="code" type="password" autocomplete="off" required maxlength="64"></label><button>Connect to TEST</button></form>`,
+        `<p>Authorised no-charge testing only. This connects to isolated Preview accounts and inventory. Never use a real payment method.</p><p>If this page is in your browser, <a href="docked://profile/qa_billing" style="display:inline-block;padding:12px;color:#7dd3fc;border:1px solid #3572a3;border-radius:8px">Open installed Docked app</a>. Choose Docked, not Docked Beta. No code or account session is included in this link.</p><form method="post"><label>Operator access code <input name="code" type="password" autocomplete="off" required maxlength="64"></label><button>Connect to TEST</button></form>`,
       );
     if (
       request.method !== "POST" ||
