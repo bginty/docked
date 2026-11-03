@@ -62,6 +62,17 @@ try {
   await page.locator("form[data-api-ready=true]").waitFor({ timeout: 45000 });
   await page.getByLabel("Email", { exact: true }).fill(a.email);
   await page.getByLabel("Password", { exact: true }).fill(a.password);
+  if (process.argv.includes("--input-diagnostic")) {
+    // The temporary visible event trace updates when focus moves. Settle that
+    // diagnostic layout before pointer-down; this does not submit the form.
+    await page.getByRole("button", { name: "Log in", exact: true }).focus();
+    await page.evaluate(
+      () =>
+        new Promise((done) =>
+          requestAnimationFrame(() => requestAnimationFrame(done)),
+        ),
+    );
+  }
   const response = page.waitForResponse(
     (r) =>
       r.url() === f.origin + "/api/auth" && r.request().method() === "POST",

@@ -10,7 +10,13 @@ const deployment = JSON.parse(
   await fs.readFile(`${dir}/deployment.json`, "utf8"),
 );
 assert.equal(state.projectRef, "bckkllmndoxzpzdqrevb");
-assert.equal(deployment.commit, "57ec798bb094228ec5aa056dc4d6a3a0c5c2e66f");
+assert(
+  [
+    "57ec798bb094228ec5aa056dc4d6a3a0c5c2e66f",
+    "b8c4498389fd9be44085a7bf696ba2541f2570a9",
+    "e214c682327cc50f4ad2e62125f2ff7b04b1b6b5",
+  ].includes(deployment.commit),
+);
 assert.equal(
   state.closed,
   false,
@@ -40,6 +46,8 @@ if (process.argv[2] === "refresh") {
     [
       "https://docked-preview-r7pprjg0w-briant-s-projects.vercel.app",
       "https://docked-preview-fzxgv1xhq-briant-s-projects.vercel.app",
+      "https://docked-preview-qfe6hz0kf-briant-s-projects.vercel.app",
+      "https://docked-preview-4xb5v2zad-briant-s-projects.vercel.app",
     ].includes(previous.DOCKED_V30_TRANSPORT_TARGET),
   );
   env.DOCKED_V30_TRANSPORT_KEY = previous.DOCKED_V30_TRANSPORT_KEY;

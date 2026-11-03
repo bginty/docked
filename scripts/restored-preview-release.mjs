@@ -64,7 +64,39 @@ if (mode === "deploy") {
     ? JSON.parse(await fs.readFile(`${dir}/deployment.json`, "utf8"))
     : null;
   if (previous) assert.equal(previous.project, project);
-  const sha = previous?.commit ?? git("rev-parse", "HEAD");
+  const diagnostic = process.argv.includes("--native-input-diagnostic");
+  const nativeFix = process.argv.includes("--native-input-fix");
+  if (nativeFix) {
+    assert.equal(previous?.commit, "b8c4498389fd9be44085a7bf696ba2541f2570a9");
+    assert(process.argv.includes("--google-acceptance"));
+  }
+  if (diagnostic) {
+    assert.equal(previous?.commit, "57ec798bb094228ec5aa056dc4d6a3a0c5c2e66f");
+    assert(process.argv.includes("--google-acceptance"));
+  }
+  const sha = nativeFix
+    ? git("rev-parse", "e214c682^{commit}")
+    : diagnostic
+      ? git("rev-parse", "b8c44983^{commit}")
+      : (previous?.commit ?? git("rev-parse", "HEAD"));
+  if (diagnostic) {
+    assert.equal(git("rev-parse", sha + "^"), previous.commit);
+    assert.deepEqual(
+      git("diff", "--name-only", previous.commit, sha).split("\n"),
+      ["src/app/layout.tsx", "src/components/native-bridge.tsx"],
+    );
+  }
+  if (nativeFix) {
+    assert.equal(git("rev-parse", sha + "^"), previous.commit);
+    assert.deepEqual(
+      git("diff", "--name-only", previous.commit, sha).split("\n"),
+      [
+        "src/components/native-bridge.tsx",
+        "src/core/native-navigation.ts",
+        "tests/platform/native-refresh.test.ts",
+      ],
+    );
+  }
   assert.match(sha, /^[a-f0-9]{40}$/);
   assert.equal(git("rev-parse", sha + "^{commit}"), sha);
   const explicit = new Set([

@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-03T10:21:03.821Z",
+  "candidate": {
+    "id": "dpl_DPuRZZ6E86VURysBJJmieGEVZ3zW",
+    "url": "https://docked-production-pig3s6ffq-briant-s-projects.vercel.app",
+    "commit": "da24e69d6e78bd4a1dbe53b740881386088a340e"
+  },
+  "baseline": {
+    "id": "dpl_6kKiZfN6qcin6HFJ3psRLs2qeakv",
+    "commit": "f0eb28e7a6f9621574399e894aadbef20ff25cdd"
+  },
+  "changedFiles": [
+    "src/components/native-bridge.tsx",
+    "src/core/native-navigation.ts",
+    "tests/platform/native-refresh.test.ts"
+  ],
+  "approvedPolicySha256": "9655ebb36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93",
+  "checks": [
+    {
+      "route": "/privacy",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/retention",
+      "status": 200,
+      "approvedVersion": "2026-11-02-release-preparation-v2"
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200,
+      "approvedVersion": null
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200,
+      "approvedVersion": null
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 404,
+      "approvedVersion": null
+    },
+    {
+      "route": "/app/login",
+      "status": 200,
+      "approvedVersion": null
+    }
+  ],
+  "publicRegistration": false,
+  "googleTestWindow": false,
+  "paymentActivation": false,
+  "customerNbaVisible": false,
+  "productionMutations": 0,
+  "passed": true
+}

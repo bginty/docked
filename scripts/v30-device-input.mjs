@@ -9,7 +9,6 @@ if(mode==='operator'){
  assert.match(e.DOCKED_V30_TRANSPORT_KEY,/^[a-f0-9]{64}$/);
  assert.equal(process.argv[3],'focused','Focus the current observed TEST code field first');
  shell('input text '+e.DOCKED_V30_TRANSPORT_KEY);
- shell('input keyevent 4');
  console.log('Operator code entered in observed TEST form; not submitted.');
 }else if(mode==='email'||mode==='password'){
  const f=JSON.parse(fs.readFileSync('private-data/restored-public-preview/fixture.private.json'));

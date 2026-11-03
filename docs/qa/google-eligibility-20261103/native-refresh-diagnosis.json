@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-03T09:59:36.301Z",
+  "device": "Samsung S24",
+  "package": "docked.fantasy",
+  "versionCode": 30,
+  "versionName": "1.29",
+  "observed": {
+    "native": true,
+    "launchUrl": "absent",
+    "sequence": [
+      "network connected",
+      "document leaving",
+      "new native mount",
+      "login form cleared"
+    ],
+    "sampleMillisecondsWithinDocument": {
+      "networkConnected": 2887,
+      "documentLeaving": 3079
+    }
+  },
+  "cause": "Initial connected notification called router.refresh and repeatedly replaced the authentication document in the v30 isolated transport.",
+  "diagnosticCommit": "b8c4498389fd9be44085a7bf696ba2541f2570a9",
+  "fixCommit": "e214c682327cc50f4ad2e62125f2ff7b04b1b6b5",
+  "targetedTests": {
+    "passed": 14,
+    "failed": 0,
+    "typecheck": true,
+    "lint": true
+  },
+  "physicalFixVerification": {
+    "passed": true,
+    "at": "2026-11-03T10:03:00Z",
+    "normalMemberLogin": true,
+    "formPreserved": true,
+    "duplicateConnectedEventsDoNotReload": true,
+    "walletBalance": 0
+  },
+  "googleEligibilityResult": "Both products returned statusCode=4 after login, Australian Billing Lab override and Play Store cache refresh; no purchase."
+}

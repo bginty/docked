@@ -2,6 +2,18 @@
 
 Subject: Both active AU one-time purchase options return NO_ELIGIBLE_OFFER to licence tester
 
+## Update: 3 November 2026 physical-device reproduction
+
+The official Play Billing Lab test has now been completed. The authorised licence-test account had a temporary Australia override valid until 22:11 Sydney, with response simulation and real-payment testing off. The installed v30 app signed into the normal isolated member successfully. Both purchase options were again confirmed ACTIVE / AU AVAILABLE / AUD49 and AUD99 by Publisher API at 10:07:28 UTC. A fresh native query returned `UnfetchedProduct.statusCode=4` for both IDs at 10:07:11 UTC. After clearing **only Google Play Store cache** (confirmed 0 B; application data retained), the same result was returned at **10:10:31 UTC**. No checkout opened and no payment method was used.
+
+The isolated member wallet, receipts, packs and cards all remained zero. Both options were deactivated and independently confirmed INACTIVE at 10:12:46 UTC. The temporary acceptance environment is closed. These inactive states are intentional cleanup, not the state of the failed query.
+
+A separate native page-reload defect was diagnosed and fixed before the product query: duplicate connected-network notifications were refreshing the login document. The successful member login and stable wallet after that fix establish that today's eligibility failure happens after normal authentication, in Google's product response. It does not establish Google's exact failed eligibility predicate. The AU Billing Lab override and cache refresh did not resolve that response. Please investigate the serving-side eligibility for these two options; do not suggest real charges or public publication as a test.
+
+Latest attachments: `qa/google-eligibility-20261103/customer-active-catalogue.json`, `final-closed-catalogue.json`, `native-wallet-no-offers.png` and `native-query.json`. No secret or private customer data is included.
+
+## Original diagnostic context
+
 Application: Docked, package `docked.fantasy`. Internal testing build 30 (1.29), installed through Google Play on Samsung SM-S921B. No public release yet. Google Play Store version observed: 53.8.11-34 [0] [PR] 1005778592.
 
 On 2 November 2026, the two one-time products `docked_credits_4900_v1` and `docked_credits_9900_v1` each had purchase option `buy-au` ACTIVE, AU AVAILABLE, AUD49 and AUD99 respectively. Android Publisher API confirmed this at 09:44:34 UTC. No other region is enabled; multi-quantity is off.
