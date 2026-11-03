@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   nativeAppRoute,
@@ -19,12 +19,64 @@ export function isDockedNative() {
     ).Capacitor?.isNativePlatform?.()
   );
 }
-export function NativeBridge() {
+export function NativeBridge({
+  diagnostics = false,
+}: {
+  diagnostics?: boolean;
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const [native, setNative] = useState(false),
     [online, setOnline] = useState(true),
     [message, setMessage] = useState("");
+  const [trace, setTrace] = useState<string[]>([]);
+  const record = useCallback(
+    (event: string) => {
+      if (!diagnostics) return;
+      try {
+        const key = "docked:isolated-native-events";
+        const previous: string[] = JSON.parse(
+          sessionStorage.getItem(key) ?? "[]",
+        );
+        const next = [
+          ...previous,
+          `${Math.round(performance.now())}: ${event}`,
+        ].slice(-8);
+        sessionStorage.setItem(key, JSON.stringify(next));
+        setTrace(next);
+      } catch {
+        setTrace([event]);
+      }
+    },
+    [diagnostics],
+  );
+  useEffect(() => {
+    if (!diagnostics) return;
+    record("mount " + (isDockedNative() ? "native" : "web"));
+    const focus = (event: FocusEvent) => {
+      const name = (event.target as HTMLInputElement | null)?.name;
+      record(
+        event.type +
+          ":" +
+          (name === "email" || name === "password" ? name : "control"),
+      );
+    };
+    const leaving = () => record("document leaving");
+    const failure = () => record("javascript error");
+    document.addEventListener("focusin", focus);
+    document.addEventListener("focusout", focus);
+    window.addEventListener("beforeunload", leaving);
+    window.addEventListener("error", failure);
+    return () => {
+      document.removeEventListener("focusin", focus);
+      document.removeEventListener("focusout", focus);
+      window.removeEventListener("beforeunload", leaving);
+      window.removeEventListener("error", failure);
+    };
+  }, [diagnostics, record]);
+  useEffect(() => {
+    record("route " + pathname);
+  }, [pathname, record]);
   useEffect(() => {
     if (!isDockedNative()) return;
     setNative(true);
@@ -115,6 +167,7 @@ export function NativeBridge() {
           ),
           listeners.track(
             App.addListener("appStateChange", ({ isActive }) => {
+              record(isActive ? "native resume" : "native pause");
               if (alive && isActive) {
                 router.refresh();
                 window.dispatchEvent(new Event("docked-app-resume"));
@@ -123,6 +176,9 @@ export function NativeBridge() {
           ),
           listeners.track(
             Network.addListener("networkStatusChange", (status) => {
+              record(
+                status.connected ? "network connected" : "network disconnected",
+              );
               if (alive) {
                 setOnline(status.connected);
                 if (status.connected) {
@@ -138,6 +194,7 @@ export function NativeBridge() {
         if (!alive) return;
         setOnline(connection.connected);
         const launch = await App.getLaunchUrl();
+        record(launch?.url ? "launch URL present" : "launch URL absent");
         if (!alive) return;
         if (launch?.url) open(launch.url);
         await SplashScreen.hide();
@@ -153,7 +210,7 @@ export function NativeBridge() {
       for (const remove of cleanup) remove();
       document.documentElement.classList.remove("docked-native");
     };
-  }, [router]);
+  }, [router, record]);
   useEffect(() => {
     if (!isDockedNative()) return;
     const mapped = nativeAppRoute(pathname);
@@ -196,9 +253,17 @@ export function NativeBridge() {
       window.removeEventListener("docked-app-resume", resume);
     };
   }, [pathname, router]);
-  if (!native || (online && !message)) return null;
+  if ((!native || (online && !message)) && !diagnostics) return null;
   return (
     <aside className="native-status" aria-label="Android connection status">
+      {diagnostics && (
+        <details open>
+          <summary>Isolated input diagnostics</summary>
+          <pre style={{ fontSize: 10, whiteSpace: "pre-wrap" }}>
+            {trace.join("\n")}
+          </pre>
+        </details>
+      )}
       {!online && (
         <p role="alert">
           Offline. Current prices and private content cannot be verified.

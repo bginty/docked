@@ -111,7 +111,9 @@ export default async function Layout({
               </div>
             )}
             <AnalyticsObserver />
-            <NativeBridge />
+            <NativeBridge
+              diagnostics={process.env.DOCKED_ISOLATED_GOOGLE_TEST === "true"}
+            />
             <a className="skip-link" href="#main">
               Skip to content
             </a>
