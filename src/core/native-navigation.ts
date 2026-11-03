@@ -175,6 +175,17 @@ export function nativeAuthenticationScreen(pathname: string): boolean {
     pathname === "/app" || pathname.startsWith("/app/") || pathname === "/mfa"
   );
 }
+/** Initial network notifications are not reconnections. Authentication screens
+ * own their form state and must not be replaced by a background refresh. */
+export function nativeRefreshAllowed(
+  pathname: string,
+  event: "resume" | "network",
+  previouslyOnline?: boolean,
+  online?: boolean,
+): boolean {
+  if (nativeAuthenticationScreen(pathname)) return false;
+  return event === "resume" || (previouslyOnline === false && online === true);
+}
 export function safeSharePath(path: string): string | null {
   if (!path.startsWith("/") || path.startsWith("//")) return null;
   return nativeDeepLink(`docked://${path.slice(1)}`);

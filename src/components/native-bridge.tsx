@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   nativeAppRoute,
@@ -7,6 +7,7 @@ import {
   nativeDeepLink,
   nativeSessionDestination,
   nativeAuthenticationScreen,
+  nativeRefreshAllowed,
 } from "@/core/native-navigation";
 import { brand } from "@/brand/brand";
 import { topModal } from "@/core/modal-lifecycle";
@@ -26,6 +27,10 @@ export function NativeBridge({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const currentPath = useRef(pathname);
+  useEffect(() => {
+    currentPath.current = pathname;
+  }, [pathname]);
   const [native, setNative] = useState(false),
     [online, setOnline] = useState(true),
     [message, setMessage] = useState("");
@@ -82,6 +87,7 @@ export function NativeBridge({
     setNative(true);
     document.documentElement.classList.add("docked-native");
     let alive = true;
+    let lastConnected: boolean | undefined;
     const cleanup: (() => void)[] = [];
     const listeners = nativeListenerScope();
     cleanup.push(() => listeners.close());
@@ -169,7 +175,8 @@ export function NativeBridge({
             App.addListener("appStateChange", ({ isActive }) => {
               record(isActive ? "native resume" : "native pause");
               if (alive && isActive) {
-                router.refresh();
+                if (nativeRefreshAllowed(currentPath.current, "resume"))
+                  router.refresh();
                 window.dispatchEvent(new Event("docked-app-resume"));
               }
             }),
@@ -180,8 +187,17 @@ export function NativeBridge({
                 status.connected ? "network connected" : "network disconnected",
               );
               if (alive) {
+                const previous = lastConnected;
+                lastConnected = status.connected;
                 setOnline(status.connected);
-                if (status.connected) {
+                if (
+                  nativeRefreshAllowed(
+                    currentPath.current,
+                    "network",
+                    previous,
+                    status.connected,
+                  )
+                ) {
                   router.refresh();
                   window.dispatchEvent(new Event("docked-app-resume"));
                 }
@@ -192,6 +208,7 @@ export function NativeBridge({
         if (!alive) return;
         const connection = await Network.getStatus();
         if (!alive) return;
+        lastConnected ??= connection.connected;
         setOnline(connection.connected);
         const launch = await App.getLaunchUrl();
         record(launch?.url ? "launch URL present" : "launch URL absent");
@@ -257,12 +274,19 @@ export function NativeBridge({
   return (
     <aside className="native-status" aria-label="Android connection status">
       {diagnostics && (
-        <details open>
-          <summary>Isolated input diagnostics</summary>
-          <pre style={{ fontSize: 10, whiteSpace: "pre-wrap" }}>
+        <div
+          style={{
+            height: 112,
+            overflow: "auto",
+            background: "#18364b",
+            color: "white",
+          }}
+        >
+          <strong>Isolated input diagnostics</strong>
+          <pre style={{ fontSize: 10, whiteSpace: "pre-wrap", margin: 0 }}>
             {trace.join("\n")}
           </pre>
-        </details>
+        </div>
       )}
       {!online && (
         <p role="alert">
