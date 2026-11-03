@@ -17,7 +17,7 @@ Diagnostic implementation: `b8c44983`, `e214c682`. Clean fix without diagnostic 
 - Actual v30 query: both `docked_credits_4900_v1` and `docked_credits_9900_v1` returned `UnfetchedProduct.statusCode=4`, including **10:10:31 UTC** after clearing only Play Store cache (0 B confirmed; app data retained).
 - No native checkout sheet opened. No purchase, pack issuance, refund or new genuine RTDN occurred. These acceptance steps remain pending; older verified TEST results are not relabelled as today's v30 success.
 
-Google documents code 4 as no eligible purchase option. The exact unmet eligibility predicate is not exposed. Active AU configuration, the Billing Lab override and cache refresh did not resolve it; no evidence justifies another product toggle or Android rebuild. The updated [support request](GOOGLE_NO_ELIGIBLE_OFFER_SUPPORT_20261102.md) asks Google to investigate the serving-side eligibility. It has not been submitted; explicit permission to send is pending.
+Google documents code 4 as no eligible purchase option. The exact unmet eligibility predicate is not exposed. Active AU configuration, the Billing Lab override and cache refresh did not resolve it; no evidence justifies another product toggle or Android rebuild. After explicit owner approval, the [support request](GOOGLE_NO_ELIGIBLE_OFFER_SUPPORT_20261102.md) was submitted on 3 November and escalated beyond automated suggestions. Console confirms **Pending / Case ID pending**; no assigned reference or specialist response is yet shown. The submitted evidence contains no passwords, purchase tokens or customer records.
 
 ## Checks and cleanup
 

@@ -1,0 +1,23 @@
+Subject: Both active Australian one-time purchase options return NO_ELIGIBLE_OFFER to an authorised licence tester
+
+Application: Docked (docked.fantasy). Google Play internal testing, version code 30 / version 1.29, installed through Google Play on Samsung SM-S921B. Billing Library 9.1.0. No public release or live customer charges.
+
+Affected one-time products:
+- docked_credits_4900_v1: buy-au, AUD49, 4,900 credits.
+- docked_credits_9900_v1: buy-au, AUD99, 9,900 credits.
+
+During the supervised test window on 3 November 2026, Play Console and Android Publisher API confirmed both buy-au purchase options ACTIVE, Australia AVAILABLE, legacyCompatible=true. API evidence timestamp: 21:07:28 Sydney (10:07:28 UTC). Multi-quantity is off; neither option is a rental/pre-order or discount offer. No restricted payment-country list was returned. Only Australia is enabled.
+
+The authorised licence tester is also on the internal testing email list. The installed package/product IDs and signing certificate match the generated Google Play v30 release. The internal release is available to testers; the separate Production draft remains unsubmitted, with managed publishing enabled. The query uses INAPP, queryProductDetailsAsync and getOneTimePurchaseOfferDetailsList, not the legacy SKU API.
+
+The official Play Billing Lab was signed into the authorised licence-test account, with a temporary Australia override valid until 22:11 Sydney on 3 November. Response simulation and real-payment testing were off. No permanent Play country change was made.
+
+BillingClient connected, but the native product query returned both IDs as UnfetchedProduct with statusCode=4 (NO_ELIGIBLE_OFFER). After clearing ONLY Play Store cache (0 B confirmed; app data retained), both still returned code 4 at 21:10:31 Sydney (10:10:31 UTC). The app showed 0 Google products and 2 server-approved products. No purchase sheet opened, and no payment method was used.
+
+This also reproduced on 2 November, including approximately 53 minutes after the first option's activation, so it is not limited to an immediate post-activation query. The normal authenticated isolated customer session and wallet are working; a separate native login-refresh defect was fixed before today's reproduction.
+
+Please investigate the exact unmet purchase-option eligibility condition, account/catalogue constraint or propagation problem. Which eligibility predicate is failing despite ACTIVE / AU AVAILABLE and the Australian Billing Lab override? If additional non-secret diagnostics are required, please specify them.
+
+IMPORTANT: Both purchase options were deliberately deactivated after testing, verified at 21:12:46 Sydney (10:12:46 UTC). Their current INACTIVE status is cleanup, not their state during the failed queries. Please do not activate live payments or publish the application as a troubleshooting step. Another supervised no-charge licence-test window can be arranged after a concrete correction is identified.
+
+Attached evidence is limited to product configuration, filtered query results and the isolated zero-balance wallet screen. It contains no passwords, purchase tokens, signing credentials or customer records.

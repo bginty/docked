@@ -1,4 +1,8 @@
-# Prepared Google Play support request — not sent
+# Google Play support request — submitted 3 November 2026
+
+The owner explicitly authorised sending this request. It was submitted through authenticated Google Play Console under Docked → Monetization → Managing monetization → managed products, with the filtered evidence file and isolated wallet screenshot. The automated recommendation was escalated using **No, create support ticket**; the completed ticket detail now displays **Pending / Case ID pending**. Replies are sent by email. No case number has yet been assigned in the visible Console.
+
+Exact submitted text: `qa/google-eligibility-20261103/google-support-message.txt`. Attachments: `google-support-evidence.txt` and `native-wallet-no-offers.png` in the same directory. Confirmation: `google-support-submitted.png` and `google-support-submission.json`. No passwords, purchase tokens or customer records were sent. Products, public release and payment activation were not changed by this submission.
 
 Subject: Both active AU one-time purchase options return NO_ELIGIBLE_OFFER to licence tester
 
@@ -12,7 +16,7 @@ A separate native page-reload defect was diagnosed and fixed before the product 
 
 Latest attachments: `qa/google-eligibility-20261103/customer-active-catalogue.json`, `final-closed-catalogue.json`, `native-wallet-no-offers.png` and `native-query.json`. No secret or private customer data is included.
 
-## Original diagnostic context
+## Original diagnostic context (preserved pre-submission notes)
 
 Application: Docked, package `docked.fantasy`. Internal testing build 30 (1.29), installed through Google Play on Samsung SM-S921B. No public release yet. Google Play Store version observed: 53.8.11-34 [0] [PR] 1005778592.
 
@@ -41,4 +45,4 @@ References: [Google status-code definition](https://developer.android.com/refere
 
 Attachments available: redacted active/inactive Publisher API evidence, relevant product IDs and filtered BillingClient diagnostic. No passwords, access tokens, signing credentials or purchase tokens should be attached. If Google requires the licence-test account email, supply it directly through authenticated Play Console support with the owner's permission; it is omitted from this public repository record.
 
-Owner action, if needed: Play Console → Help and support → contact support for in-app product availability; paste the above and attach `qa/v30-customer-billing-20261102/google-active-readback.json`. This draft was prepared only; no support message has been sent.
+Current next action: await Google's response to the submitted ticket. Do not create a duplicate request or re-enable products merely because their current state is intentionally inactive. The exact failure condition remains unresolved; the automated recommendation is not treated as a verified root cause.
