@@ -1,5 +1,18 @@
 import { assertIsolatedPublicPreview } from "./isolated-public-preview.mjs";
 type Env = Record<string, string | undefined>;
+/** The ledger's immutable environment is independent of the temporary permission
+ * to test a purchase. Closing that window must not hide existing wallet reads.
+ * This admits only the established isolated project and its restricted role. */
+export function commercialLedgerEnvironment(env: Env) {
+  if (!assertIsolatedPublicPreview(env)) return "commercial" as const;
+  const connection = new URL(env.DOCKED_COMMERCIAL_DATABASE_URL ?? "");
+  if (
+    decodeURIComponent(connection.username) !==
+    "docked_isolated_commercial.bckkllmndoxzpzdqrevb"
+  )
+    throw Error("Isolated commercial ledger role required");
+  return "acceptance" as const;
+}
 /** Exact temporary customer in the existing isolated Auth/database project.
  * No flag can switch the Production ledger into TEST mode. */
 export function isolatedBillingConfiguration(env: Env, now = Date.now()) {

@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-04T21:00:17.310Z",
+  "commit": "d2f200f10947cf5c0a343a9cb5eaeef2c259ec5b",
+  "url": "https://docked-preview-os6zdjxzk-briant-s-projects.vercel.app",
+  "productionChanged": false,
+  "routes": [
+    {
+      "path": "/app/login",
+      "status": 200,
+      "elapsedMs": 1292
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "status": 401,
+      "elapsedMs": 630
+    },
+    {
+      "path": "/api/store/apple/test",
+      "status": 404,
+      "elapsedMs": 585
+    }
+  ],
+  "protectionStatus": 302
+}

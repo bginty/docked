@@ -8,7 +8,10 @@ import { CommercialLedger } from "./commercial-ledger";
 import { GoogleCommercialVerifier } from "./google-commercial-verifier";
 import { CommercialReconciliation } from "./commercial-reconciliation";
 import { googlePlayOAuth } from "./google-play-oauth";
-import { isolatedBillingConfiguration } from "../core/isolated-billing-acceptance";
+import {
+  commercialLedgerEnvironment,
+  isolatedBillingConfiguration,
+} from "../core/isolated-billing-acceptance";
 let connection: ReturnType<typeof postgres> | undefined;
 /** Commercial always rejects TEST. A separately bound existing Preview may use
  * the acceptance ledger, which itself rejects every real Google receipt. */
@@ -49,7 +52,7 @@ export async function commercialRuntime() {
     await connection`select current_user name,r.rolsuper,r.rolbypassrls,pg_has_role(current_user,'docked_commercial_app','member') permitted from pg_roles r where r.rolname=current_user`;
   if (!role?.permitted || role.rolsuper || role.rolbypassrls)
     throw Error("Restricted commercial database role required");
-  const environment = acceptance ? "acceptance" : "commercial";
+  const environment = commercialLedgerEnvironment(process.env);
   const [control] =
     await connection`select environment from commercial_billing.control where id`;
   if (control?.environment !== environment)
@@ -63,6 +66,8 @@ export async function commercialRuntime() {
   // accepted; no read projection needs to request a Google access token.
   let oauth: ReturnType<typeof googlePlayOAuth> | undefined;
   const verifier = new GoogleCommercialVerifier(environment, () => {
+    if (environment === "acceptance" && !acceptance)
+      throw Error("Isolated Google test window is closed");
     oauth ??= googlePlayOAuth(
       (acceptance
         ? process.env.DOCKED_ISOLATED_GOOGLE_SERVICE_EMAIL

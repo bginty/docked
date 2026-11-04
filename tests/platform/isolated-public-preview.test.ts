@@ -9,6 +9,7 @@ import { customerEmailEnabled } from "../../src/core/customer-email-readiness";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
 import { authUiReadiness } from "../../src/core/auth-readiness";
 import {
+  commercialLedgerEnvironment,
   isolatedBillingConfiguration,
   isolatedBillingIdentity,
 } from "../../src/core/isolated-billing-acceptance";
@@ -51,6 +52,38 @@ const env: Record<string, string> = {
     ].map((k) => [k, "false"]),
   ),
 };
+test("closed Google test window preserves isolated ledger reads without admitting checkout", () => {
+  const e = {
+    ...env,
+    DOCKED_COMMERCIAL_DATABASE_URL: `postgresql://docked_isolated_commercial.${ref}:fixture@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres`,
+    DOCKED_ISOLATED_GOOGLE_TEST: "false",
+  };
+  assert.equal(commercialLedgerEnvironment(e), "acceptance");
+  assert.equal(isolatedBillingConfiguration(e), null);
+  assert.equal(
+    isolatedBillingIdentity(e, "unadmitted", "unknown@example.invalid"),
+    false,
+  );
+  assert.equal(commercialLedgerEnvironment({}), "commercial");
+  for (const patch of [
+    { VERCEL_ENV: "production" },
+    { VERCEL_PROJECT_ID: "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST" },
+    { DOCKED_COMMERCIAL_CHECKOUT: "true" },
+    {
+      DOCKED_COMMERCIAL_DATABASE_URL: e.DOCKED_COMMERCIAL_DATABASE_URL.replace(
+        "docked_isolated_commercial",
+        "docked_app",
+      ),
+    },
+    {
+      DOCKED_COMMERCIAL_DATABASE_URL: e.DOCKED_COMMERCIAL_DATABASE_URL.replace(
+        ref,
+        "pojoymtniryarxxunyvz",
+      ),
+    },
+  ])
+    assert.throws(() => commercialLedgerEnvironment({ ...e, ...patch }));
+});
 test("Google TEST admission cannot select Production, a different account, live checkout or an expired window", () => {
   const id = "00000000-0000-4000-8000-000000000001";
   const email = "docked-preview-public-member-abcdef@example.invalid";
