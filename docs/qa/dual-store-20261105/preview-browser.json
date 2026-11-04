@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-04T21:05:52.795Z",
+  "origin": "https://docked-preview-s24-briant-ginty.vercel.app",
+  "realAuthenticatedBrowser": true,
+  "syntheticAccount": true,
+  "providerCheckoutPerformed": false,
+  "productionWrites": 0,
+  "checks": [
+    "Normal isolated-member login; native and web public sports agree; no private-beta admission; billing unavailable",
+    "nfl: existing public Play renders with eligible cards, no page overflow at 390px",
+    "afl: existing public Play renders with eligible cards, no page overflow at 390px",
+    "nrl: existing public Play renders with eligible cards, no page overflow at 390px",
+    "NBA denied server-side; isolated wallet unchanged across read-only navigation"
+  ],
+  "timings": [
+    {
+      "sport": "nfl",
+      "readAndRenderMs": 3150,
+      "connection": "Desktop automated browser; no mobile throttle"
+    },
+    {
+      "sport": "afl",
+      "readAndRenderMs": 2352,
+      "connection": "Desktop automated browser; no mobile throttle"
+    },
+    {
+      "sport": "nrl",
+      "readAndRenderMs": 2576,
+      "connection": "Desktop automated browser; no mobile throttle"
+    }
+  ],
+  "passed": true
+}
