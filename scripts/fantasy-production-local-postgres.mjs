@@ -60,7 +60,9 @@ try {
       : [
           "--import",
           "tsx",
-          process.argv.includes("--launch-acceptance")
+          process.argv.includes("--apple-store")
+            ? "scripts/apple-store-postgres.ts"
+            : process.argv.includes("--launch-acceptance")
             ? "scripts/launch-migrations-postgres.ts"
             : process.argv.includes("--store-pack-lifecycle")
               ? "scripts/store-pack-postgres.ts"
@@ -175,7 +177,8 @@ try {
   if (
     started &&
     process.platform === "win32" &&
-    (process.argv.includes("--hosted-billing") ||
+    (process.argv.includes("--apple-store") ||
+      process.argv.includes("--hosted-billing") ||
       process.argv.includes("--google-play-lab") ||
       process.argv.includes("--progressive-concurrency") ||
       process.argv.includes("--progressive-nfl") ||

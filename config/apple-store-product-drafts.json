@@ -1,0 +1,11 @@
+{
+  "status": "draft-only-not-created-or-activated",
+  "bundleId": "au.com.docked.app",
+  "territory": "AU",
+  "environment": "Sandbox",
+  "products": [
+    { "suggestedId": "au.com.docked.credits4900.v1", "type": "consumable", "credits": 4900, "targetPriceAUD": "49.00" },
+    { "suggestedId": "au.com.docked.credits9900.v1", "type": "consumable", "credits": 9900, "targetPriceAUD": "99.00" }
+  ],
+  "note": "Reuse the approved account-wide credit model and pack engine. Confirm final IDs and Australian price points in App Store Connect before any sandbox admission. These drafts are not a runtime allowlist or proof of Apple approval."
+}

@@ -1,6 +1,6 @@
 # Google Play support request — submitted 3 November 2026
 
-The owner explicitly authorised sending this request. It was submitted through authenticated Google Play Console under Docked → Monetization → Managing monetization → managed products, with the filtered evidence file and isolated wallet screenshot. The automated recommendation was escalated using **No, create support ticket**; the completed ticket detail now displays **Pending / Case ID pending**. Replies are sent by email. No case number has yet been assigned in the visible Console.
+The owner explicitly authorised sending this request. It was submitted through authenticated Google Play Console under Docked → Monetization → Managing monetization → managed products, with the filtered evidence file and isolated wallet screenshot. The automated recommendation was escalated using **No, create support ticket**. On 5 November Sydney, the authenticated Console showed **case 4-5905000041947 — Open**, last updated 3 November. The mailbox contains Google's case acknowledgement, not a corrective instruction. No duplicate request, new query, activation or phone test was performed in that follow-up.
 
 Exact submitted text: `qa/google-eligibility-20261103/google-support-message.txt`. Attachments: `google-support-evidence.txt` and `native-wallet-no-offers.png` in the same directory. Confirmation: `google-support-submitted.png` and `google-support-submission.json`. No passwords, purchase tokens or customer records were sent. Products, public release and payment activation were not changed by this submission.
 

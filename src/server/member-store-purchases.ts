@@ -30,6 +30,9 @@ export type StoreTestAdmission = {
   products: readonly StoreProduct[];
 };
 type Dependencies = {
+  /** Explicit server-selected provider; clients cannot choose this. */
+  provider?: "google" | "apple";
+  accountBinding?: (member: string, secret: string) => string;
   /** Must call the existing verified identity/session/MFA service, never decode a client claim. */
   authenticate: () => Promise<Identity>;
   /** Server-owned isolated acceptance membership; null is disabled. No public activation here. */
@@ -45,15 +48,16 @@ type Dependencies = {
     grant: StoreTestAdmission,
   ) => Promise<unknown>;
 };
-const receiptBody = z
-  .object({
-    token: z
-      .string()
-      .min(1)
-      .max(4096)
-      .regex(/^[^\s\x00-\x1f]+$/),
-  })
-  .strict();
+const receiptBody = (maximum: number) =>
+  z
+    .object({
+      token: z
+        .string()
+        .min(1)
+        .max(maximum)
+        .regex(/^[^\s\x00-\x1f]+$/),
+    })
+    .strict();
 
 /** Authenticated member orchestration for an isolated TEST environment. It reuses
  * the verified receipt/inbox and wallet services; it does not provision accounts,
@@ -83,7 +87,10 @@ export class MemberStoreTestPurchases {
     return {
       who,
       grant,
-      account: storeAccountId(who.member, this.deps.bindingSecret),
+      account: (this.deps.accountBinding ?? storeAccountId)(
+        who.member,
+        this.deps.bindingSecret,
+      ),
     };
   }
   async session() {
@@ -99,7 +106,9 @@ export class MemberStoreTestPurchases {
     const { who, grant, account } = await this.admitted();
     let token: string;
     try {
-      token = receiptBody.parse(input).token;
+      token = receiptBody(this.deps.provider === "apple" ? 16000 : 4096).parse(
+        input,
+      ).token;
     } catch {
       throw Error("Invalid purchase reference");
     }
@@ -114,6 +123,7 @@ export class MemberStoreTestPurchases {
     const approved = grant.products.find((p) => p.id === receipt.product.id);
     if (
       !approved ||
+      receipt.provider !== (this.deps.provider ?? "google") ||
       receipt.environment !== "test" ||
       receipt.account !== account ||
       ["id", "version", "credits", "scope", "sport"].some(

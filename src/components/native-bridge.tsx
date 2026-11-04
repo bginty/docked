@@ -60,8 +60,8 @@ export function NativeBridge() {
         event.preventDefault();
         setMessage(
           url.protocol === "mailto:"
-            ? "Email links are not enabled in this Android preview. Use the support address shown on the page in your email app."
-            : "This link type is not supported in the Android preview.",
+            ? "Use the support address shown on the page in your email app."
+            : "This link type is not supported in Docked.",
         );
         return;
       }

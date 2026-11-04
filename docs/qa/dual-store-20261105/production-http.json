@@ -1,0 +1,75 @@
+{
+  "at": "2026-11-04T20:54:40.768Z",
+  "method": "read-only HTTP; no authenticated browser or device session",
+  "mutations": 0,
+  "routes": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "elapsedMs": 772,
+      "bytes": 367,
+      "sha256": "c7bdb01c8b6349106f1ee7889345402de5d9b4aba1aeb78190985d67c39a9b93",
+      "release": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "da24e69d6e78bd4a1dbe53b740881386088a340e",
+        "deploymentId": "dpl_DPuRZZ6E86VURysBJJmieGEVZ3zW",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      }
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "elapsedMs": 75,
+      "bytes": 36488,
+      "sha256": "7f1ac70a677fc9290585e846326802813c4c4008bd00002287eb3c7ced823364"
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200,
+      "elapsedMs": 121,
+      "bytes": 28144,
+      "sha256": "f7e0838e618f45ee419f01d6431e3c99208e8fed40079ac71368b80982221362"
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200,
+      "elapsedMs": 88,
+      "bytes": 27295,
+      "sha256": "c3e90258fcfbc364b4c3b0b8bbfce7fb8804495864d66e1e3bbf4da8fcd09067"
+    },
+    {
+      "path": "/retention",
+      "status": 200,
+      "elapsedMs": 101,
+      "bytes": 27579,
+      "sha256": "39c9d5f1e839dd4c56a900c1a2aa1c722f060b36d81eaaa943ab94e040d77c8d"
+    },
+    {
+      "path": "/account-deletion",
+      "status": 200,
+      "elapsedMs": 98,
+      "bytes": 18576,
+      "sha256": "2baacf4bcf8bd71b95d3bebecf46dbb061009cfc093eff9472682ef784ce3fc0"
+    },
+    {
+      "path": "/app/login",
+      "status": 200,
+      "elapsedMs": 523,
+      "bytes": 18665,
+      "sha256": "e0ce4f045f835dabf2fb483d7ea00fa7923eec95a3de71173833973fbb5b6201"
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "status": 401,
+      "elapsedMs": 155,
+      "bytes": 47,
+      "sha256": "7e8db646027571bc5304346bc8ceaf6f00915a6ca46ad9185d4f36cbb5cc293d"
+    }
+  ]
+}

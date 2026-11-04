@@ -31,7 +31,8 @@ export class StoreTestInbox {
     await this.ready();
   }
   readonly sql: ReturnType<typeof postgres>;
-  private schema: "credits_sandbox" | "store_billing_acceptance" | "store_member_acceptance" =
+  private schema:
+    "credits_sandbox" | "store_billing_acceptance" | "store_member_acceptance" =
     "credits_sandbox";
   private admission?: Promise<void>;
   private transactionAdmission?: TransactionAdmission;
@@ -39,7 +40,11 @@ export class StoreTestInbox {
   constructor(
     url:
       | string
-      | { hostedAcceptance: Sql; memberAcceptance?: boolean; authorize?: TransactionAdmission }
+      | {
+          hostedAcceptance: Sql;
+          memberAcceptance?: boolean;
+          authorize?: TransactionAdmission;
+        }
       | { memberTestWallet: Sql; authorize: TransactionAdmission },
     private encryptionKey: Buffer,
   ) {
@@ -52,7 +57,9 @@ export class StoreTestInbox {
         this.memberWallet = true;
         return;
       }
-      this.schema = url.memberAcceptance ? "store_member_acceptance" : "store_billing_acceptance";
+      this.schema = url.memberAcceptance
+        ? "store_member_acceptance"
+        : "store_billing_acceptance";
       this.sql = url.hostedAcceptance;
       this.transactionAdmission = url.authorize;
 
@@ -167,11 +174,14 @@ export class StoreTestInbox {
       },
       async (tx, _state, result) => {
         if (
+          receipt.provider === "google" &&
           result &&
           typeof result === "object" &&
           "finish" in result &&
           result.finish === true
         )
+          // Apple finishes StoreKit transactions on-device after this commit.
+          // It must never enter Google's server-side consumption outbox.
           await tx`insert into ${tx(this.schema)}.store_outbox(provider,receipt_key) values(${receipt.provider},${receipt.key}) on conflict do nothing`;
         if (["REVOKED", "CANCELLED"].includes(effective.state))
           await tx`update ${tx(this.schema)}.store_outbox set state='cancelled',lease_until=null,updated_at=clock_timestamp() where provider=${receipt.provider} and receipt_key=${receipt.key} and state<>'done'`;
@@ -229,10 +239,10 @@ export class StoreTestInbox {
     await this.sql.end();
   }
   /** Server worker only. Never serialize this result into customer responses. */
-  async reference(key: string) {
+  async reference(key: string, provider: "google" | "apple" = "google") {
     await this.ready();
     const [row] = await this
-      .sql`select member_id, encrypted_reference from ${this.sql(this.schema)}.store_receipts where provider='google' and receipt_key=${key}`;
+      .sql`select member_id, encrypted_reference from ${this.sql(this.schema)}.store_receipts where provider=${provider} and receipt_key=${key}`;
     return row
       ? {
           member: String(row.member_id),
@@ -250,7 +260,8 @@ export class StoreTestInbox {
   /** LOCAL harness worker only. Never serialize these references into a client
    * response or logs. Unknown/other-member purchases cannot enter reconciliation. */
   async references(member: string, limit = 50) {
-    if (!Number.isInteger(limit) || limit < 1 || limit > 100) throw Error("Bounded reconciliation required");
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100)
+      throw Error("Bounded reconciliation required");
     await this.ready();
     const rows = await this
       .sql`select receipt_key, encrypted_reference from ${this.sql(this.schema)}.store_receipts where provider='google' and member_id=${member} and status in ('PENDING','PURCHASED') order by updated_at,receipt_key limit ${limit}`;

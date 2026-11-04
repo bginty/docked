@@ -1,0 +1,116 @@
+{
+  "project": "pojoymtniryarxxunyvz",
+  "productionMutations": 0,
+  "observations": [
+    {
+      "readiness": {
+        "funds": {
+          "lots": 0,
+          "outstanding": 0,
+          "negative_lots": 0
+        },
+        "census": {
+          "auth_users": 6,
+          "beta_cards": 59,
+          "beta_entries": 17
+        },
+        "archives": 0,
+        "cron_24h": [
+          {
+            "n": 1440,
+            "status": "succeeded",
+            "jobname": "docked-auth-mail-drain",
+            "last_end": "2026-11-04T20:43:00.119948+00:00"
+          },
+          {
+            "n": 24,
+            "status": "succeeded",
+            "jobname": "docked-beta-nfl-raw-expiry",
+            "last_end": "2026-11-04T20:17:00.123104+00:00"
+          },
+          {
+            "n": 1440,
+            "status": "succeeded",
+            "jobname": "docked-nfl-lineup-lock",
+            "last_end": "2026-11-04T20:43:00.135976+00:00"
+          },
+          {
+            "n": 2,
+            "status": "succeeded",
+            "jobname": "docked-nfl-pbp",
+            "last_end": "2026-11-04T12:10:00.163128+00:00"
+          },
+          {
+            "n": 96,
+            "status": "succeeded",
+            "jobname": "docked-nfl-reconcile",
+            "last_end": "2026-11-04T20:30:00.197908+00:00"
+          },
+          {
+            "n": 2,
+            "status": "succeeded",
+            "jobname": "docked-nfl-rosters",
+            "last_end": "2026-11-04T12:15:00.198232+00:00"
+          },
+          {
+            "n": 2,
+            "status": "succeeded",
+            "jobname": "docked-nfl-weekly",
+            "last_end": "2026-11-04T12:05:00.161982+00:00"
+          },
+          {
+            "n": 1440,
+            "status": "succeeded",
+            "jobname": "docked-sale-receipts",
+            "last_end": "2026-11-04T20:43:00.105398+00:00"
+          },
+          {
+            "n": 1440,
+            "status": "succeeded",
+            "jobname": "docked-weekly-core-entitlements",
+            "last_end": "2026-11-04T20:43:00.129225+00:00"
+          }
+        ],
+        "recovery": {
+          "open": 0,
+          "exposure": 0
+        },
+        "financial": {
+          "receipts": 0,
+          "recorded": 0,
+          "gross_cents": 0,
+          "needs_review": 0,
+          "refund_cents": 0
+        },
+        "retention": {
+          "enabled": false,
+          "job_days": 90,
+          "valid_until": null,
+          "archive_days": 30,
+          "authority_recorded": false
+        },
+        "commercial": {
+          "sales": false,
+          "gameplay": false,
+          "issuance": false,
+          "transfers": false
+        },
+        "observed_at": "2026-11-04T20:43:25.876596+00:00",
+        "registration": false,
+        "public_enabled": false,
+        "retention_role": {
+          "login": false,
+          "superuser": false,
+          "bypass_rls": false
+        },
+        "enabled_public_rounds": 0
+      }
+    }
+  ],
+  "notes": [
+    "Cron success proves the database job ran; external HTTP/mail/alert delivery is not inferred.",
+    "Current census is not a claim of unchanged counts across legitimate customer activity.",
+    "Financial sums have no provider payout/fee/revenue attestation.",
+    "Retention cleanup was not activated."
+  ]
+}

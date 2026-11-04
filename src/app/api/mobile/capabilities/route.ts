@@ -1,4 +1,6 @@
-import { customerSports } from "@/core/customer-sports";
+import { mobileSportCapabilities } from "@/core/mobile-capabilities";
+import { publicCustomersEnabled } from "@/core/public-customer";
+import { publicGameplay } from "@/server/public-gameplay";
 import { sportsBetaCapabilities } from "@/server/sports-private-beta";
 import { requireIdentity } from "@/server/auth";
 import release from "../../../../../config/mobile-store-release.json";
@@ -9,13 +11,15 @@ const headers = { "Cache-Control": "private, no-store" };
 export async function GET() {
   try {
     await requireIdentity();
-    const beta = await sportsBetaCapabilities();
+    const sports = await mobileSportCapabilities({
+      publicMode: publicCustomersEnabled(),
+      publicSports: async () => (await publicGameplay()).allowed ?? [],
+      betaSports: sportsBetaCapabilities,
+    });
     return Response.json(
       {
         version: release.version,
-        sports: customerSports.filter(
-          (sport) => sport === "nfl" || beta.includes(sport),
-        ),
+        sports,
         billing: {
           enabled: false,
           products: [],

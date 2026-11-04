@@ -12,6 +12,7 @@ import { packTitle } from "@/core/pack-presentation";
 import { EconomyOwnerReport } from "./economy-owner-report";
 import { TestWalletOverview } from "./test-wallet-overview";
 import { GoogleTestCredits } from "./google-test-credits";
+import { AppleTestCredits } from "./apple-test-credits";
 
 export function MemberTestWallet({
   initial,
@@ -159,6 +160,20 @@ export function MemberTestWallet({
         />
       )}
       {error && <p role="alert">{error}</p>}
+      {surface === "wallet" && (
+        <AppleTestCredits
+          key={`apple-${initial.member}`}
+          member={initial.member}
+          onSettled={async () => {
+            const r = await boundedFetch(endpoint, { cache: "no-store" });
+            if (!r.ok) throw Error("Could not refresh wallet.");
+            const data = await r.json();
+            if (data.state?.member !== initial.member)
+              throw Error("Account session changed.");
+            setS(data.state);
+          }}
+        />
+      )}
       {recovery && (
         <p role="status">
           A test transaction is awaiting confirmation.{" "}

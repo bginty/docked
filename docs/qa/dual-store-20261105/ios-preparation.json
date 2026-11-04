@@ -1,0 +1,16 @@
+{
+  "prepared": true,
+  "platform": "win32",
+  "bundleId": "au.com.docked.app",
+  "backend": "https://docked.com.au/app",
+  "sports": [
+    "nfl",
+    "afl",
+    "nrl"
+  ],
+  "billingEnabled": false,
+  "signed": false,
+  "compiled": false,
+  "testFlightUploaded": false,
+  "next": "Build and validate on an authorised Mac with Xcode 26+, Apple Developer team and App Store Connect access."
+}

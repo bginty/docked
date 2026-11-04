@@ -1,0 +1,290 @@
+TAP version 13
+# Subtest: Apple binding is stable, private, provider-separated and UUID-shaped
+ok 1 - Apple binding is stable, private, provider-separated and UUID-shaped
+  ---
+  duration_ms: 3.3393
+  ...
+# Subtest: Apple sandbox validates identity, signed product, region, quantity and provenance
+ok 2 - Apple sandbox validates identity, signed product, region, quantity and provenance
+  ---
+  duration_ms: 2.0087
+  ...
+# Subtest: old purchase proof refreshes against Apple before crediting; errors disclose no payload
+ok 3 - old purchase proof refreshes against Apple before crediting; errors disclose no payload
+  ---
+  duration_ms: 2.586
+  ...
+# Subtest: notifications require both signed layers and keep consumption/refund reversal for review
+ok 4 - notifications require both signed layers and keep consumption/refund reversal for review
+  ---
+  duration_ms: 7.1387
+  ...
+# Subtest: Apple uses the shared member orchestration and refuses cross-provider fulfilment
+ok 5 - Apple uses the shared member orchestration and refuses cross-provider fulfilment
+  ---
+  duration_ms: 23.2108
+  ...
+# Subtest: Apple HTTP binds normal auth, denies cross-origin and bounds untrusted bodies
+ok 6 - Apple HTTP binds normal auth, denies cross-origin and bounds untrusted bodies
+  ---
+  duration_ms: 111.3121
+  ...
+# Subtest: Apple notification acknowledges only authenticated durable persistence and permits safe retry
+ok 7 - Apple notification acknowledges only authenticated durable persistence and permits safe retry
+  ---
+  duration_ms: 20.4113
+  ...
+# Subtest: member binding and approved allocation come from authenticated server state
+ok 8 - member binding and approved allocation come from authenticated server state
+  ---
+  duration_ms: 16.6506
+  ...
+# Subtest: client cannot select member, credits, product, environment, account or refund action
+ok 9 - client cannot select member, credits, product, environment, account or refund action
+  ---
+  duration_ms: 11.7614
+  ...
+# Subtest: disabled, expired or rate-limited sessions cannot start provider work
+ok 10 - disabled, expired or rate-limited sessions cannot start provider work
+  ---
+  duration_ms: 1.486
+  ...
+# Subtest: revocation or changed session during verification prevents settlement
+ok 11 - revocation or changed session during verification prevents settlement
+  ---
+  duration_ms: 4.4916
+  ...
+# Subtest: cross-account, altered allocation and real purchases are rejected
+ok 12 - cross-account, altered allocation and real purchases are rejected
+  ---
+  duration_ms: 3.3244
+  ...
+# Subtest: provider/SQL failures redact sensitive details and never claim fulfilment
+ok 13 - provider/SQL failures redact sensitive details and never claim fulfilment
+  ---
+  duration_ms: 5.0802
+  ...
+# Subtest: ordinary public members receive the public sports without beta allowlisting
+ok 14 - ordinary public members receive the public sports without beta allowlisting
+  ---
+  duration_ms: 4.4278
+  ...
+# Subtest: denied public eligibility never defaults to NFL or private beta
+ok 15 - denied public eligibility never defaults to NFL or private beta
+  ---
+  duration_ms: 1.3516
+  ...
+# Subtest: private beta retains NFL and only eligible visible sports
+ok 16 - private beta retains NFL and only eligible visible sports
+  ---
+  duration_ms: 0.6411
+  ...
+# Subtest: pending consent does not interrupt owner MFA on native navigation or resume
+ok 17 - pending consent does not interrupt owner MFA on native navigation or resume
+  ---
+  duration_ms: 6.3667
+  ...
+# Subtest: native app entry, recovery and expired-session transitions retain UI context without new authority
+ok 18 - native app entry, recovery and expired-session transitions retain UI context without new authority
+  ---
+  duration_ms: 4.8224
+  ...
+# Subtest: mobile app tabs are exact deep links without expanding push or auth authority
+ok 19 - mobile app tabs are exact deep links without expanding push or auth authority
+  ---
+  duration_ms: 1.3781
+  ...
+# Subtest: native links canonicalize official results and community records without importing session tokens
+ok 20 - native links canonicalize official results and community records without importing session tokens
+  ---
+  duration_ms: 0.6544
+  ...
+# Subtest: native auth callbacks accept only a code for the original same-origin PKCE exchange
+ok 21 - native auth callbacks accept only a code for the original same-origin PKCE exchange
+  ---
+  duration_ms: 0.898
+  ...
+# Subtest: push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+ok 22 - push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+  ---
+  duration_ms: 0.6166
+  ...
+# Subtest: Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+ok 23 - Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+  ---
+  duration_ms: 19.0307
+  ...
+# Subtest: native links preserve visible sport and reject hidden/ambiguous/malicious context
+ok 24 - native links preserve visible sport and reject hidden/ambiguous/malicious context
+  ---
+  duration_ms: 3.966
+  ...
+# Subtest: internal native build is HTTPS-only and does not weaken old release targets
+ok 25 - internal native build is HTTPS-only and does not weaken old release targets
+  ---
+  duration_ms: 1.1408
+  ...
+# Subtest: nfl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 26 - nfl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 160.1394
+  ...
+# Subtest: nfl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 27 - nfl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 44.105
+  ...
+# Subtest: nfl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 28 - nfl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 36.3096
+  ...
+# Subtest: nfl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 29 - nfl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 41.1636
+  ...
+# Subtest: nfl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 30 - nfl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 37.9142
+  ...
+# Subtest: nfl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 31 - nfl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 46.7202
+  ...
+# Subtest: afl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 32 - afl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 55.349
+  ...
+# Subtest: afl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 33 - afl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 53.4724
+  ...
+# Subtest: afl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 34 - afl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 35.2299
+  ...
+# Subtest: afl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 35 - afl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 41.6766
+  ...
+# Subtest: afl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 36 - afl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 40.8643
+  ...
+# Subtest: afl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 37 - afl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 43.056
+  ...
+# Subtest: nrl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 38 - nrl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 36.2173
+  ...
+# Subtest: nrl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 39 - nrl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 39.8679
+  ...
+# Subtest: nrl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 40 - nrl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 35.8909
+  ...
+# Subtest: nrl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 41 - nrl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 34.8713
+  ...
+# Subtest: nrl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 42 - nrl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 37.8572
+  ...
+# Subtest: nrl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 43 - nrl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 35.0942
+  ...
+# Subtest: member wallet accepts only verified TEST provenance, never client claims or real deposits
+ok 44 - member wallet accepts only verified TEST provenance, never client claims or real deposits
+  ---
+  duration_ms: 21.0541
+  ...
+# Subtest: refund after transfer preserves recipient ownership and locked fantasy card metadata
+ok 45 - refund after transfer preserves recipient ownership and locked fantasy card metadata
+  ---
+  duration_ms: 56.4056
+  ...
+# Subtest: failed pack fulfilment preserves verified credits; full unspent refund reverses exactly once
+ok 46 - failed pack fulfilment preserves verified credits; full unspent refund reverses exactly once
+  ---
+  duration_ms: 24.9035
+  ...
+# Subtest: refund before opening preserves the already-issued entitlement without issuing another pack
+ok 47 - refund before opening preserves the already-issued entitlement without issuing another pack
+  ---
+  duration_ms: 28.5946
+  ...
+# Subtest: declined or pending Google receipts cannot fund any paid pack
+ok 48 - declined or pending Google receipts cannot fund any paid pack
+  ---
+  duration_ms: 14.271
+  ...
+# Subtest: Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+ok 49 - Google API readback binds account/product, keeps pending and cancels distinct, and identifies revocation
+  ---
+  duration_ms: 65.1669
+  ...
+# Subtest: no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+ok 50 - no live payment, wrong account, foreign storefront, unknown product, extra quantity or hidden sport passes
+  ---
+  duration_ms: 11.7185
+  ...
+# Subtest: Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+ok 51 - Apple rejects unsigned/untrusted receipts; missing trust configuration is closed
+  ---
+  duration_ms: 7.7095
+  ...
+# Subtest: account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+ok 52 - account-wide credit bundles require approved scope and cannot smuggle a hidden sport
+  ---
+  duration_ms: 6.7132
+  ...
+# Subtest: consumption verifies account and test status before any provider mutation
+ok 53 - consumption verifies account and test status before any provider mutation
+  ---
+  duration_ms: 5.6176
+  ...
+# Subtest: consumption retries use authoritative consumed state and remain retryable on failure
+ok 54 - consumption retries use authoritative consumed state and remain retryable on failure
+  ---
+  duration_ms: 6.1417
+  ...
+# Subtest: provider failures and malformed data cannot leak raw receipt material
+ok 55 - provider failures and malformed data cannot leak raw receipt material
+  ---
+  duration_ms: 2.6749
+  ...
+# Subtest: store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+ok 56 - store test settlement reuses one wallet; pending, retries, refunds and stale notifications cannot duplicate credits
+  ---
+  duration_ms: 73.251
+  ...
+1..56
+# tests 56
+# suites 0
+# pass 56
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8348.686

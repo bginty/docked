@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": [
+    "20 duplicate authenticated-notification references persist once; an unknown receipt cannot assign or credit a member",
+    "20 concurrent Apple receipts credit 9900 once in the shared wallet; cross-member replay denied; no Apple receipt enters Google consumption outbox",
+    "16 concurrent Premium purchases and 10 open retries yield one charge, one opened pack and exactly nine isolated cards",
+    "Outage defers safely; expired lease recovers after process restart; 12 workers reconcile once; spent refund places recovery hold without confiscating cards or changing supply",
+    "Out-of-order purchase cannot revive revoked funds; refund reversal requires review and never silently recredits",
+    "Periodic missed-notification sweep is bounded and idempotent; unprivileged role cannot read the private queue",
+    "4900 refund before spending reverses once; ledger validates and unrelated-wallet baseline is restored"
+  ],
+  "providerRequests": "mock only; no genuine Apple Sandbox or notification delivery claimed",
+  "database": "disposable local PostgreSQL",
+  "realCharges": 0,
+  "productionConnections": 0
+}
