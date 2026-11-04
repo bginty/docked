@@ -5,12 +5,18 @@ import { chromium } from "@playwright/test";
 import postgres from "postgres";
 const verifiedRounds = process.argv.includes("--verified-rounds");
 const externalEmail = process.argv.includes("--external-email");
+const evidenceArg = process.argv
+  .find((v) => v.startsWith("--evidence="))
+  ?.slice(11);
+assert(!evidenceArg || /^docs\/qa\/[a-z0-9-]+$/.test(evidenceArg));
 const dir = "private-data/restored-public-preview",
-  out = externalEmail
-    ? "docs/qa/final-australia-20261102"
-    : verifiedRounds
-      ? "docs/qa/launch-convergence-20261102"
-      : "docs/qa/launch-resolution-20261102";
+  out =
+    evidenceArg ??
+    (externalEmail
+      ? "docs/qa/final-australia-20261102"
+      : verifiedRounds
+        ? "docs/qa/launch-convergence-20261102"
+        : "docs/qa/launch-resolution-20261102");
 const f = JSON.parse(await fs.readFile(`${dir}/fixture.private.json`, "utf8"));
 if (verifiedRounds) {
   const prepared = JSON.parse(
@@ -263,7 +269,7 @@ try {
           .fill(
             externalEmail
               ? "External " + a.email.match(/docked-ui-(\d+)/)[1].slice(-6)
-              : "Isolated acceptance",
+              : "Isolated " + a.email.split("-").at(-1).split("@")[0],
           );
         await page
           .getByRole("button", { name: "Save name", exact: true })
@@ -361,10 +367,13 @@ try {
       cards: 0,
       receipts: 0,
       credits: 0,
-      entries:
-        (verifiedRounds && !externalEmail ? 6 : 0) +
-        (mode === "traditional" ? 6 : 3),
+      // Other accepted practice rounds are preserved; verify this package's
+      // exact persisted entries separately, not an assumed lifetime count.
+      entries: summary.entries,
     });
+    const [current] =
+      await sql`select count(*)::int n from beta_fantasy.entries where user_id=${who.id} and competition_id=any(${Object.values(f.rounds).flat()}::uuid[])`;
+    assert.equal(current.n, mode === "traditional" ? 6 : 3);
     report.summary = summary;
     check(
       "Entries use eligibility only: zero collectibles, paid receipts or credited funds",

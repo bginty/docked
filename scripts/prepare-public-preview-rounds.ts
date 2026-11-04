@@ -24,9 +24,15 @@ const s = postgres(c.databaseUrl, {
   },
   onnotice: () => {},
 });
-const version = "public-roster-practice-20261102-v1",
-  season = "2026 Roster Practice",
-  deadline = "2026-11-08T12:00:00.000Z";
+const template = JSON.parse(
+  readFileSync("config/public-practice-rounds.json", "utf8"),
+);
+assert.deepEqual(template.sports, ["nfl", "afl", "nrl"]);
+assert.deepEqual(template.modes, ["SALARY_CAP", "OPEN"]);
+assert.equal(template.productionEnabled, false);
+assert.equal(template.prizesEnabled, false);
+assert.equal(template.entryFeeCredits, 0);
+const { version, season, deadline } = template;
 const nfl = JSON.parse(
   readFileSync(dir + "/nfl-verified-readonly.json", "utf8"),
 );
@@ -107,7 +113,7 @@ async function main() {
       const [historical] =
         await t`select md5(coalesce(jsonb_agg(to_jsonb(c) order by id)::text,'')) hash from beta_fantasy.competitions c where rules->>'public_template_version' is distinct from ${version}`;
       await t`insert into beta_fantasy.players(id,name,sport,position,team,colour,shirt,first_season,status) select p.id,p.name,'nfl',p.position,p.team,p.colour,p.shirt,p.first_season,'active' from jsonb_to_recordset(${t.json(nfl)}) p(id uuid,name text,position text,team text,colour text,shirt integer,first_season text) on conflict(id) do nothing`;
-      await t`insert into sports_feed.free_core_roster select p.id,'nfl',${season},jsonb_build_array(p.position),${deadline},p.source_url,p.source_hash,true from jsonb_to_recordset(${t.json(nfl)}) p(id uuid,position text,source_url text,source_hash text) on conflict(player_id) do nothing`;
+      await t`insert into sports_feed.free_core_roster select p.id,'nfl',${season},jsonb_build_array(p.position),${deadline},p.source_url,p.source_hash,true from jsonb_to_recordset(${t.json(nfl)}) p(id uuid,position text,source_url text,source_hash text) on conflict(player_id) do update set valid_until=greatest(sports_feed.free_core_roster.valid_until,excluded.valid_until),source_url=excluded.source_url,source_hash=excluded.source_hash,eligible_positions=excluded.eligible_positions`;
       assert.equal(
         (
           await t`select bool_and(credits_sandbox.is_roster_beta_player(value)) ok from jsonb_array_elements(${t.json(aus)})`
@@ -115,7 +121,7 @@ async function main() {
         true,
       );
       await t`insert into credits_sandbox.nba_fixture_players(id,identity) select value->>'id',value from jsonb_array_elements(${t.json(aus)}) on conflict(id) do nothing`;
-      await t`insert into sports_feed.free_core_roster_beta select value->>'id',value->>'sport',${season},value->'eligiblePositions',${deadline},value#>>'{rosterBeta,sourceHash}',true from jsonb_array_elements(${t.json(aus)}) on conflict(provider_player_id) do nothing`;
+      await t`insert into sports_feed.free_core_roster_beta select value->>'id',value->>'sport',${season},value->'eligiblePositions',${deadline},value#>>'{rosterBeta,sourceHash}',true from jsonb_array_elements(${t.json(aus)}) on conflict(provider_player_id) do update set valid_until=greatest(sports_feed.free_core_roster_beta.valid_until,excluded.valid_until) where sports_feed.free_core_roster_beta.source_hash=excluded.source_hash`;
       for (const sport of ["nfl", "afl", "nrl"] as const) {
         const config =
           sport === "nfl"
@@ -201,6 +207,8 @@ async function main() {
             lock_policy: "round-wide-v1",
             public_template_version: version,
             synthetic: true,
+            authority:
+              "Owner authorised protected public customer acceptance, 5 November 2026. Dated roster practice only; no official fixtures, prizes, permanent issuance or Production activation.",
             round_reward_policy: {
               version: "public-no-prizes-v1",
               active: false,
@@ -213,7 +221,7 @@ async function main() {
           const id = old?.id ?? randomUUID();
           if (old) assert.deepEqual(old.rules, rules);
           else {
-            await t`insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize,awards) values(${id},${sport.toUpperCase() + " Roster Practice · " + (mode === "OPEN" ? "All-Star" : "Traditional")},${sport},${season},1,${deadline},${t.json(rules)},${scoring.id},'No cash prize','[]')`;
+            await t`insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize,awards) values(${id},${sport.toUpperCase() + " Roster Practice · " + (mode === "OPEN" ? "All-Star" : "Traditional")},${sport},${season},${template.round},${deadline},${t.json(rules)},${scoring.id},'No cash prize','[]')`;
             const fixture = [
               {
                 fixtureId: version + ":" + sport + ":" + mode,
@@ -248,7 +256,7 @@ async function main() {
       JSON.stringify(result, null, 2),
     );
     writeFileSync(
-      "docs/qa/launch-convergence-20261102/public-roster-rounds.json",
+      "docs/qa/public-promotion-20261105/public-roster-rounds.json",
       JSON.stringify(result, null, 2),
     );
     console.log(JSON.stringify(result));

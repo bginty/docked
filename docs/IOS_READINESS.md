@@ -11,7 +11,7 @@ This current section supersedes the archived 4 October note below. The existing 
 - Prepared signed-notification HTTP adapter and durable private queue: deduplication, leases, outage recovery, bounded missed-notification sweep, current-provider readback, no cross-account binding, and support review for refund reversal/consumption requests. No consumption information is automatically disclosed to Apple.
 - `node scripts/prepare-ios.mjs` synchronises the existing project, prepares branding, checks registered source files, portable SPM paths, secure backend and disabled billing. It **does not compile Swift or produce an IPA**.
 
-The native capability endpoint had still consulted private-beta eligibility in public mode. It now uses the website's public eligibility service and filters server-approved sports. This change belongs to the prepared public runtime, which is not yet Production.
+The native capability endpoint had still consulted private-beta eligibility in public mode. It now uses the website's public eligibility service and filters server-approved sports. The verified runtime was promoted to Production as `4a44b269` on 5 November, with public gameplay/registration and commercial activation still disabled. Authenticated public customer acceptance was performed in protected Preview, not Production; see [promotion evidence](PUBLIC_GAMEPLAY_DUAL_STORE_HANDOVER_20261105.md).
 
 ## Boundaries
 

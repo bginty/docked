@@ -19,6 +19,10 @@ import { readdirSync, readFileSync } from "node:fs";
 const previewRestore = process.argv.includes("--existing-free-preview");
 const remainingAdditions = process.argv.includes("--remaining-additions");
 const finalApproval = process.argv.includes("--final-approval");
+const releaseBackup = process.argv.includes("--release-backup");
+assert(
+  !releaseBackup || (!previewRestore && !remainingAdditions && !finalApproval),
+);
 assert(!finalApproval || remainingAdditions);
 assert.ok(
   !(previewRestore && remainingAdditions),
@@ -54,7 +58,7 @@ const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const runId =
   process.env.DOCKED_RESTORE_RUN ?? (previewRestore ? "20261102p" : "20261102");
-assert.match(runId, /^20261102[a-z]?$/);
+assert.match(runId, /^2026\d{4}[a-z]?$/);
 const dir =
   root +
   (previewRestore
@@ -63,15 +67,17 @@ const dir =
   runId;
 const evidence =
   root +
-  (finalApproval
-    ? "/docs/qa/final-australia-20261102/restore"
-    : remainingAdditions
-      ? "/docs/qa/launch-convergence-20261102/restore"
-      : previewRestore
-        ? "/docs/qa/launch-resolution-20261102/restore"
-        : runId === "20261102"
-          ? "/docs/qa/public-activation-20261102"
-          : "/docs/qa/approved-production-20261102/restore");
+  (releaseBackup
+    ? "/docs/qa/public-promotion-20261105/restore"
+    : finalApproval
+      ? "/docs/qa/final-australia-20261102/restore"
+      : remainingAdditions
+        ? "/docs/qa/launch-convergence-20261102/restore"
+        : previewRestore
+          ? "/docs/qa/launch-resolution-20261102/restore"
+          : runId === "20261102"
+            ? "/docs/qa/public-activation-20261102"
+            : "/docs/qa/approved-production-20261102/restore");
 const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
 assert.ok(attempt === undefined || /^[2-9]$/.test(attempt));
 const client = "supabase_db_deletion-auth-local",
@@ -95,6 +101,8 @@ const remainingHashes: Record<string, string> = {
     "2a019dce3789f34ce050b5ea70eb0cca5090fdbf69191f0e286c42875437d3a0",
 };
 if (remainingAdditions) files = Object.keys(remainingHashes);
+// A code-only release rehearses the current database, never an old migration.
+if (releaseBackup) files = [];
 const tables = [
   "auth.users",
   "private.profiles",
@@ -306,7 +314,7 @@ async function mainRun() {
           const members =
             await tx`select r.rolname role,m.rolname member from pg_auth_members a join pg_roles r on r.oid=a.roleid join pg_roles m on m.oid=a.member where r.rolname !~ '^pg_'`;
           const sums: Record<string, Checksum> = {};
-          if (remainingAdditions) {
+          if (remainingAdditions || releaseBackup) {
             const capturedTables =
               await tx`select schemaname,tablename from pg_tables where schemaname not in ('pg_catalog','information_schema') and schemaname !~ '^pg_' order by schemaname,tablename`;
             tables.splice(
@@ -549,7 +557,11 @@ async function mainRun() {
     '"net"."http_request_queue"',
   ];
   for (const [table, expected] of Object.entries(manifest.sums)) {
-    if (remainingAdditions && excludedTransportTables.includes(table)) continue;
+    if (
+      (remainingAdditions || releaseBackup) &&
+      excludedTransportTables.includes(table)
+    )
+      continue;
     before[table] = JSON.parse(
       (await local(checksumQuery(table) + ";")).trim(),
     );
@@ -747,7 +759,7 @@ async function mainRun() {
     cronActive: false,
     postgres: "17.11",
     restored: true,
-    migrationsReapplied: true,
+    migrationsReapplied: files.length > 0,
     reapplicationScope: previewRestore
       ? "Only 20261102 idempotent additions; older one-shot migrations applied once in snapshot"
       : "all listed",
@@ -755,7 +767,8 @@ async function mainRun() {
     protectedTables: Object.keys(before),
     protectedRecordsUnchanged: true,
     remainingAdditionsVerified: remainingAdditions,
-    excludedTransportTables: remainingAdditions ? excludedTransportTables : [],
+    excludedTransportTables:
+      remainingAdditions || releaseBackup ? excludedTransportTables : [],
     approvedRoundChanges,
     productionWrites: 0,
     storageObjectBodiesIncluded: false,

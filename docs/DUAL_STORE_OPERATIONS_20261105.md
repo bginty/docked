@@ -35,7 +35,7 @@ Operational response:
 1. Capture release ID, route, timestamp and sanitised error/queue reference. Classify auth, payment, ownership, data-feed or outage scope.
 2. Disable the narrow affected admission gate if approved/necessary; keep the read-only ledger and reconciliation evidence. Stop new commercial purchases before investigating incorrect settlement; do not assume hiding a button stops server purchases.
 3. Preserve completed receipt/pack IDs. A worker crash is recovered through lease expiry and idempotent retry, not reissuance. Failed statistics remain awaiting data, not confirmed zero.
-4. For a code regression, promote the verified compatible rollback deployment after checking current database compatibility. Current Production is `da24e69d`; recorded prior `f0eb28e7` lacks the native login refresh fix, so treat that regression explicitly. Never roll back by deleting paid receipts, ownership or historical migrations.
+4. For a code regression, promote the verified compatible rollback deployment after checking current database compatibility. Current Production is `4a44b269`; its recorded rollback is `da24e69d` / `dpl_DPuRZZ6E86VURysBJJmieGEVZ3zW`, which retains the native login fix. The older `f0eb28e7` does not. Never roll back by deleting paid receipts, ownership or historical migrations. The public-access/wallet improvements would be absent after rollback and must remain gated.
 5. Validate the affected path read-only first; use isolated mutations for acceptance. Record remediation, remaining restrictions and next review. Do not announce resolution from a passing build alone.
 
 ## Retention and custody
@@ -48,7 +48,7 @@ Activation checklist:
 
 - Owner approves the category schedule and names operational custodian plus independent recovery custodian.
 - Provision a dedicated versioned 32-byte archive key in approved server secrets, with a separate encrypted recovery copy. Record key ID, custody and recovery proof, never key material in Git/reports. Do not reuse Supabase/service-role/purchase binding secrets.
-- Document Vercel/Supabase/mailbox backup and log retention from actual account settings. Current provider backup expiry and independent key recovery were not verified here.
+- Document Vercel/Supabase/mailbox backup and log retention from actual account settings. Follow-up provider readback found eight completed daily backups (latest 4 November 15:00 UTC), WALG enabled and PITR disabled. A fresh encrypted logical backup restored 550 durable tables successfully. Contractual provider expiry, Storage-object backup and independent key recovery remain unverified; see [current evidence and limits](PUBLIC_GAMEPLAY_DUAL_STORE_HANDOVER_20261105.md).
 - Rehearse decrypt/restore in isolation and record audit. A restore must preserve deletion suppression, legal holds, completed receipt IDs and deduplication tombstones; it must not requeue paid fulfilment or reopen erased accounts.
 - Use the already tested least-privilege retention role and bounded dry-run first. Review legal holds, unreconciled refunds and expiry. A passed hold review date does not release a hold.
 - Enable apply/cleanup only after recorded operational approval. Stop by setting apply off, then service off; retain schema/audit/archives. Do not issue destructive cleanup as a rollback.
