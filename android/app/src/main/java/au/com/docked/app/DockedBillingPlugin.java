@@ -41,12 +41,18 @@ public class DockedBillingPlugin extends Plugin implements PurchasesUpdatedListe
         });
     }
     @PluginMethod public void products(PluginCall call) {
+        final boolean includeDiagnostics = Boolean.TRUE.equals(call.getBoolean("includeDiagnostics", false));
         connect(call, () -> {
             List<QueryProductDetailsParams.Product> products = new ArrayList<>();
             for (String id : approvedProducts) products.add(QueryProductDetailsParams.Product.newBuilder()
                 .setProductId(id).setProductType(BillingClient.ProductType.INAPP).build());
             billing.queryProductDetailsAsync(QueryProductDetailsParams.newBuilder().setProductList(products).build(), (result, found) -> {
-                if (result.getResponseCode() != BillingClient.BillingResponseCode.OK) { call.reject("Products unavailable."); return; }
+                JSObject diagnostics = includeDiagnostics ? productDiagnostics(result, found) : null;
+                if (result.getResponseCode() != BillingClient.BillingResponseCode.OK) {
+                    if (diagnostics == null) call.reject("Products unavailable.");
+                    else { JSObject data = new JSObject(); data.put("diagnostics", diagnostics); call.reject("Products unavailable.", data); }
+                    return;
+                }
                 JSArray rows = new JSArray(); details.clear();
                 for (ProductDetails item : found.getProductDetailsList()) {
                     if (!approvedProducts.contains(item.getProductId())) continue;
@@ -60,9 +66,44 @@ public class DockedBillingPlugin extends Plugin implements PurchasesUpdatedListe
                         }
                     row.put("offers", offers); rows.put(row);
                 }
-                JSObject response = new JSObject(); response.put("products", rows); call.resolve(response);
+                JSObject response = new JSObject(); response.put("products", rows);
+                if (diagnostics != null) response.put("diagnostics", diagnostics);
+                call.resolve(response);
             });
         });
+    }
+    /** Explicit, ephemeral query evidence only. Never includes receipt/offer tokens,
+     * account identifiers, raw ProductDetails JSON, storage or analytics writes. */
+    private JSObject productDiagnostics(BillingResult result, QueryProductDetailsResult found) {
+        JSObject diagnostics = new JSObject();
+        diagnostics.put("responseCode", result.getResponseCode());
+        diagnostics.put("debugMessage", BillingDiagnosticsText.safeDebugMessage(result.getDebugMessage()));
+        JSArray requested = new JSArray(), returned = new JSArray(), unfetched = new JSArray(), offers = new JSArray();
+        List<String> ids = new ArrayList<>(approvedProducts); Collections.sort(ids);
+        for (String id : ids) {
+            JSObject row = new JSObject(); row.put("id", id); row.put("type", BillingClient.ProductType.INAPP); requested.put(row);
+        }
+        if (found != null) {
+            for (ProductDetails item : found.getProductDetailsList()) {
+                if (!approvedProducts.contains(item.getProductId())) continue;
+                returned.put(item.getProductId());
+                if (item.getOneTimePurchaseOfferDetailsList() != null)
+                    for (ProductDetails.OneTimePurchaseOfferDetails offer : item.getOneTimePurchaseOfferDetailsList()) {
+                        JSObject row = new JSObject(); row.put("id", item.getProductId());
+                        row.put("currency", offer.getPriceCurrencyCode()); row.put("priceMicros", offer.getPriceAmountMicros());
+                        offers.put(row);
+                    }
+            }
+            for (UnfetchedProduct item : found.getUnfetchedProductList()) {
+                if (!approvedProducts.contains(item.getProductId())) continue;
+                JSObject row = new JSObject(); row.put("id", item.getProductId()); row.put("type", item.getProductType());
+                row.put("statusCode", item.getStatusCode()); row.put("status", BillingDiagnosticsText.unfetchedStatus(item.getStatusCode()));
+                unfetched.put(row);
+            }
+        }
+        diagnostics.put("requested", requested); diagnostics.put("returnedIds", returned);
+        diagnostics.put("unfetched", unfetched); diagnostics.put("offers", offers);
+        return diagnostics;
     }
     @PluginMethod public void purchase(PluginCall call) {
         String id = call.getString("productId"), account = call.getString("accountBinding"), offerToken = call.getString("offerToken");

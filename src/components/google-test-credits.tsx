@@ -13,12 +13,23 @@ type StoreItem = {
   offers: { token: string; price: string; currency: string }[];
 };
 type PurchaseEvent = { responseCode: number; purchases: { token: string }[] };
+type ProductQueryDiagnostics = {
+  responseCode: number;
+  debugMessage: string;
+  requested: { id: string; type: string }[];
+  returnedIds: string[];
+  unfetched: { id: string; type: string; statusCode: number; status: string }[];
+  offers: { id: string; currency: string; priceMicros: number }[];
+};
 interface Billing {
   capabilities(): Promise<{
     enabled: boolean;
     environment?: "test" | "commercial";
   }>;
-  products(): Promise<{ products: StoreItem[] }>;
+  products(options?: { includeDiagnostics?: boolean }): Promise<{
+    products: StoreItem[];
+    diagnostics?: ProductQueryDiagnostics;
+  }>;
   purchase(args: {
     productId: string;
     accountBinding: string;
