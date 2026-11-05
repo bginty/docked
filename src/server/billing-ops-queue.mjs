@@ -5,7 +5,8 @@ import { billingOpsAlertPolicy } from "./billing-ops-alerts.mjs";
 /** Restricted commercial connection only; zero arguments prevent caller-chosen
  * messages/recipients/counters. SQL independently checks its approved window. */
 export async function enqueueBillingOpsAlert(sql, env, now = Date.now()) {
-  if (!billingOpsAlertPolicy(env, now)) return null;
+  if (env.DOCKED_BILLING_OPS_SIGNALS !== "true") return null;
+  void now;
   const [row] = await sql`select public.docked_billing_ops_enqueue() id`;
   return row?.id ?? null;
 }

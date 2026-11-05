@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-05T22:03:16.314Z",
+  "engine": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "sqlSha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121",
+  "checks": [
+    "first-apply collisions and nullable dedupe schema fail without hiding customer records",
+    "prepared SQL is dormant, idempotent and preserves existing records",
+    "actual DB grants deny public/app callers and forged role claims",
+    "DB policy window cannot be replaced by a runtime flag",
+    "24 concurrent producers persist one server-derived aggregate and audit event",
+    "delivery uncertainty cannot enqueue email about its own failing channel",
+    "ordinary outbox reads/inserts/suppression and generic leasing remain correct",
+    "24 real claims and duplicate fences produce one dispatch owner",
+    "unfenced lease can recover; stale owner and post-fence retry are denied",
+    "real adapter fences before mocked Graph acceptance; outage cannot resend",
+    "failed dispatch fence rolls back and sends no email; settlement outage is held",
+    "closed admission still records an already fenced provider outcome",
+    "enum-only signal RPC is disabled/least-privilege/idempotent without raw payloads",
+    "rolled-back fulfilment and pack failures produce separate durable sanitized signals",
+    "replay denial is not legitimate retry or failed fulfilment",
+    "actual reconciliation hooks distinguish refund, ack and provider outages",
+    "20 concurrent identical verified receipts produce 19 informational duplicates and one credit",
+    "derived wallet/journal/pack/refund/stale and delivery faults are actually observed"
+  ],
+  "passed": true,
+  "productionWrites": 0,
+  "providerCalls": 0,
+  "emailsSent": 0,
+  "permanentInventoryIssued": 0,
+  "preExistingQueueScenarioRecordsPreserved": true,
+  "isolatedSyntheticFinancialFaultsSeeded": true,
+  "productionApply": false
+}

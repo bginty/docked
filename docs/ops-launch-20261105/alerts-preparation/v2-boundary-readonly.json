@@ -1,0 +1,77 @@
+{
+  "at": "2026-11-05T21:58:50.237Z",
+  "readOnly": true,
+  "productionWrites": 0,
+  "auditBoundary": {
+    "rls": true,
+    "forced": false
+  },
+  "auditRows": 0,
+  "existingReservedSignals": 0,
+  "outboxCollisions": 0,
+  "signalRpcPresent": false,
+  "queueRpcPresent": false,
+  "activationFlag": false,
+  "dependencies": [
+    {
+      "name": "private.outbox",
+      "present": true
+    },
+    {
+      "name": "private.feature_flags",
+      "present": true
+    },
+    {
+      "name": "private.audit_events",
+      "present": true
+    },
+    {
+      "name": "private.docked_auth_mail_outbox",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.control",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.jobs",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.recovery_cases",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.receipts",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.lots",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.lines",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.journals",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.packs",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.cards",
+      "present": true
+    },
+    {
+      "name": "commercial_billing.definitions",
+      "present": true
+    },
+    {
+      "name": "credits_sandbox.store_notifications",
+      "present": true
+    }
+  ]
+}

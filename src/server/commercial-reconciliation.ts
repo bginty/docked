@@ -3,6 +3,11 @@ import type { Sql } from "postgres";
 import type { StoreNotice } from "./google-store-notifications";
 import type { GoogleCommercialVerifier } from "./google-commercial-verifier";
 import { CommercialLedger } from "./commercial-ledger";
+import {
+  BillingOpsMonitor,
+  billingFailureSignal,
+  type BillingFailureStage,
+} from "./billing-ops-monitor";
 type ReconciliationJob = {
   id: string;
   receipt: string | null;
@@ -84,6 +89,8 @@ export class CommercialReconciliation {
   }
   private async process(job: ReconciliationJob, lease: string) {
     const sql = this.ledger.sql;
+    const monitor = new BillingOpsMonitor(sql);
+    let stage: BillingFailureStage = "reconciliation";
     let acknowledged = false;
     try {
       if (job.kind !== "test") {
@@ -98,6 +105,8 @@ export class CommercialReconciliation {
         const eligible =
           current.state !== "PURCHASED" ||
           (await this.memberActive(ref.member_id));
+        if (current.state === "REVOKED" || current.refundedCents > 0)
+          stage = "refund";
         const accepted = await this.ledger.accept(
           eligible
             ? current
@@ -112,30 +121,36 @@ export class CommercialReconciliation {
           false,
         );
         if (job.kind === "consume" && accepted.state === "PURCHASED") {
+          stage = "acknowledgement";
           await this.verifier.consume(ref.token, ref.account_binding);
           acknowledged = true;
         }
       }
       await sql`update commercial_billing.jobs set state='done',completed_at=clock_timestamp(),lease=null,lease_until=null,last_error=null where id=${job.id} and lease=${lease}`;
       return job.kind !== "consume" || acknowledged;
-    } catch {
+    } catch (error) {
+      const signal = billingFailureSignal(stage, error);
+      if (signal) await monitor.record(signal);
       // No provider payload, token, legal identity or exception text in audit logs.
       await sql`update commercial_billing.jobs set state=${job.attempts >= 12 ? "attention" : "pending"},next_attempt_at=clock_timestamp()+${Math.min(3600, 15 * 2 ** Math.min(job.attempts, 8))}*interval '1 second',lease=null,lease_until=null,last_error='Provider reconciliation deferred; operator review if repeated' where id=${job.id} and lease=${lease}`;
       return false;
     }
   }
   async run() {
-    const scheduled = await this.schedule();
-    const results = await Promise.all([
-      this.runOne(),
-      this.runOne(),
-      this.runOne(),
-    ]);
-    return {
-      scheduled,
-      attempted: results.filter(Boolean).length,
-      ...(await this.health()),
-    };
+    const monitor = new BillingOpsMonitor(this.ledger.sql);
+    return monitor.run("reconciliation", async () => {
+      const scheduled = await this.schedule();
+      const results = await Promise.all([
+        this.runOne(),
+        this.runOne(),
+        this.runOne(),
+      ]);
+      return {
+        scheduled,
+        attempted: results.filter(Boolean).length,
+        ...(await this.health()),
+      };
+    });
   }
   async health() {
     const [row] = await this.ledger
