@@ -1,0 +1,146 @@
+{
+  "package": "billing-ops-outbox-20261106-v2",
+  "status": "PREPARED_UNAPPLIED",
+  "at": "2026-11-05T22:05:22.129Z",
+  "checksumConvention": "SHA-256 exact UTF-8 file bytes and LF canonical source; approve canonical digest and stop on any difference other than checkout newline conversion.",
+  "preservedV1": {
+    "commit": "665a5769daef736a736f5436c0e5053e5054e3a2",
+    "lfCanonicalSqlSha256": "68dfd76393b817e728a5896a8d499719b6a5d8f3148fde7b80c19e2e970a6038",
+    "approved": false,
+    "applied": false
+  },
+  "requiredLedgerFlag": "internal duplicateObservation derived from existing receipt-event uniqueness, stripped from HTTP response",
+  "ledgerPrerequisiteCommit": "4b6d503bba96840c1c3b42dfe720a8c2493633de",
+  "files": [
+    {
+      "file": "config/operations/billing-ops-outbox-v2.prepared.sql",
+      "sha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121",
+      "lfCanonicalSha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121"
+    },
+    {
+      "file": "config/operations/billing-ops-outbox.stop.prepared.sql",
+      "sha256": "aa5c6d107a06c5542e43f4055efdfd4858ad2fae1d04fe2dbad1774a66e337fa",
+      "lfCanonicalSha256": "aa5c6d107a06c5542e43f4055efdfd4858ad2fae1d04fe2dbad1774a66e337fa"
+    },
+    {
+      "file": "src/server/billing-ops-monitor.ts",
+      "sha256": "d36859f7689dbe8b3542474c37cd823dad4e80ffc7f6274c40c5189860823fd3",
+      "lfCanonicalSha256": "d36859f7689dbe8b3542474c37cd823dad4e80ffc7f6274c40c5189860823fd3"
+    },
+    {
+      "file": "src/server/billing-ops-alerts.mjs",
+      "sha256": "c12ae9a5afed5399ddf3e3a51774737fe2a2dc6ad2be01f58c9a42a0f10fa2ab",
+      "lfCanonicalSha256": "c12ae9a5afed5399ddf3e3a51774737fe2a2dc6ad2be01f58c9a42a0f10fa2ab"
+    },
+    {
+      "file": "src/server/billing-ops-queue.mjs",
+      "sha256": "3242ce22c0e5c1154c53701d249b3f594ed1fae3010ae4c0a835d3863f0b1e83",
+      "lfCanonicalSha256": "3242ce22c0e5c1154c53701d249b3f594ed1fae3010ae4c0a835d3863f0b1e83"
+    },
+    {
+      "file": "src/server/member-commercial.ts",
+      "sha256": "bd3120db8aa1cf41b24509a6186fe55b2c728513659b7a2a9e852107146494fc",
+      "lfCanonicalSha256": "bd3120db8aa1cf41b24509a6186fe55b2c728513659b7a2a9e852107146494fc"
+    },
+    {
+      "file": "src/server/commercial-reconciliation.ts",
+      "sha256": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+      "lfCanonicalSha256": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03"
+    },
+    {
+      "file": "src/server/outbox-lease.ts",
+      "sha256": "094b0b2cd711c3f6d89afe641662f6b3b771ca0b1627218fcdab034bda766c64",
+      "lfCanonicalSha256": "094b0b2cd711c3f6d89afe641662f6b3b771ca0b1627218fcdab034bda766c64"
+    },
+    {
+      "file": "src/server/commercial-ledger.ts",
+      "sha256": "d9807d450cf4afbaf6317f64c235c99e7d84c6d3837b900727cc66a49b45032f",
+      "lfCanonicalSha256": "d9807d450cf4afbaf6317f64c235c99e7d84c6d3837b900727cc66a49b45032f"
+    },
+    {
+      "file": "scripts/billing-ops-alerts-postgres.ts",
+      "sha256": "b1e29448a7f0bf0fd499cf193d55393e4bc9cda7abd024781bbe37c460b2162f",
+      "lfCanonicalSha256": "b1e29448a7f0bf0fd499cf193d55393e4bc9cda7abd024781bbe37c460b2162f"
+    },
+    {
+      "file": "scripts/commercial-local-postgres.mjs",
+      "sha256": "574928524cc6d4b79d17bad686de3fc2ef5ef59a5915293a4b7ece58dfdc9237",
+      "lfCanonicalSha256": "574928524cc6d4b79d17bad686de3fc2ef5ef59a5915293a4b7ece58dfdc9237"
+    },
+    {
+      "file": "tests/platform/billing-ops-monitor.test.ts",
+      "sha256": "d4ff130e126ecf78001f3de375a08877edf1076ce11c81552bce400f5a8ef83b",
+      "lfCanonicalSha256": "d4ff130e126ecf78001f3de375a08877edf1076ce11c81552bce400f5a8ef83b"
+    },
+    {
+      "file": "tests/platform/billing-ops-alerts.test.mjs",
+      "sha256": "7e588c02311015cc16fd0b8c1e39dca07ed378a7f917cd8932db9b9404c3c5b8",
+      "lfCanonicalSha256": "7e588c02311015cc16fd0b8c1e39dca07ed378a7f917cd8932db9b9404c3c5b8"
+    }
+  ],
+  "databaseObjects": {
+    "newTables": 0,
+    "newRoles": 0,
+    "newSchedules": 0,
+    "newCredentials": 0,
+    "partialIndexes": [
+      "billing_ops_signal_recent"
+    ],
+    "functions": [
+      "private.billing_ops_window()",
+      "private.billing_ops_key(jsonb,timestamptz)",
+      "public.docked_billing_ops_enqueue()",
+      "public.docked_billing_ops_signal(text,uuid)",
+      "public.docked_billing_ops_queue(text,jsonb)"
+    ],
+    "reservedPolicies": [
+      "billing_ops_reserved_select",
+      "billing_ops_reserved_insert",
+      "billing_ops_reserved_update",
+      "billing_ops_reserved_delete",
+      "billing_ops_signal_reserved_insert"
+    ],
+    "featureFlag": {
+      "key": "billing_ops_alerts",
+      "enabled": false
+    },
+    "approvedPolicyInserted": false
+  },
+  "grants": [
+    {
+      "function": "public.docked_billing_ops_enqueue()",
+      "executeOnly": "docked_commercial_app"
+    },
+    {
+      "function": "public.docked_billing_ops_signal(text,uuid)",
+      "executeOnly": "docked_commercial_app"
+    },
+    {
+      "function": "public.docked_billing_ops_queue(text,jsonb)",
+      "executeOnly": "service_role"
+    }
+  ],
+  "directPrivateTableOrSchemaGrants": 0,
+  "defaultOffRuntimeFlags": [
+    "DOCKED_BILLING_OPS_SIGNALS",
+    "DOCKED_BILLING_OPS_ALERTS"
+  ],
+  "policyVersionRequired": "billing-ops-policy-v2",
+  "coverageCounters": 20,
+  "verification": {
+    "realPostgresqlGroupsPassed": 18,
+    "targetedTestsPassed": 10,
+    "wholeTypeScriptPassed": true,
+    "targetedEslintPassed": true,
+    "concurrentExactObservations": 20,
+    "informationalDuplicates": 19,
+    "syntheticLotCredits": 4900,
+    "providerCalls": 0,
+    "emailsSent": 0
+  },
+  "productionApplied": false,
+  "productionDeployed": false,
+  "frozenGoogleReviewReleaseUnchanged": true,
+  "liveIndependentDeliveryProof": false,
+  "activationApprovalRequired": true
+}

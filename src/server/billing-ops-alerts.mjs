@@ -5,7 +5,7 @@ import {
 } from "../../supabase/functions/docked-auth-email/mail.mjs";
 
 const recipient = "support@docked.com.au";
-const countNames = [
+const legacyCountNames = [
   "commercialAttention",
   "commercialOverdue",
   "openRecoveryCases",
@@ -14,6 +14,21 @@ const countNames = [
   "authMailFailures",
   "authMailPending",
   "authMailOverdue",
+];
+const expandedCountNames = [
+  ...legacyCountNames,
+  "purchaseFulfilmentFailures",
+  "duplicateReceiptAttempts",
+  "receiptReplayRejections",
+  "refundReconciliationFailures",
+  "walletLedgerMismatches",
+  "ledgerIntegrityFailures",
+  "packIssuanceFailures",
+  "opsNotificationFailures",
+  "reconciliationStaleReceipts",
+  "receiptAcknowledgementFailures",
+  "reconciliationFailures",
+  "receiptVerificationFailures",
 ];
 
 /** No route, scheduler, credential loading or production queue binding is added.
@@ -39,6 +54,10 @@ export function billingOpsAlertMessage(health, observedAt) {
   const timestamp = Date.parse(observedAt);
   if (!Number.isFinite(timestamp))
     throw Error("Valid observation time required");
+  const expanded = expandedCountNames
+    .slice(legacyCountNames.length)
+    .some((name) => Object.prototype.hasOwnProperty.call(health ?? {}, name));
+  const countNames = expanded ? expandedCountNames : legacyCountNames;
   const counts = {};
   for (const name of countNames) {
     if (!Number.isSafeInteger(health?.[name]) || health[name] < 0)
@@ -46,14 +65,28 @@ export function billingOpsAlertMessage(health, observedAt) {
     counts[name] = health[name];
   }
   if (
-    countNames.every((name) => name === "authMailPending" || counts[name] === 0)
+    countNames.every(
+      (name) =>
+        [
+          "authMailPending",
+          "duplicateReceiptAttempts",
+          "opsNotificationFailures",
+        ].includes(name) || counts[name] === 0,
+    )
   )
     return null;
   const window = new Date(
     Math.floor(timestamp / 3600000) * 3600000,
   ).toISOString();
-  const key = `billing-ops-v1:${window}:${createHash("sha256")
-    .update(countNames.map((name) => counts[name]).join(","))
+  const key = `billing-ops-${expanded ? "v2" : "v1"}:${window}:${createHash(
+    "sha256",
+  )
+    .update(
+      countNames
+        .filter((name) => name !== "opsNotificationFailures")
+        .map((name) => counts[name])
+        .join(","),
+    )
     .digest("hex")}`;
   return {
     key,
@@ -71,6 +104,24 @@ export function billingOpsAlertMessage(health, observedAt) {
           `Auth mail failures: ${counts.authMailFailures}`,
           `Auth mail pending: ${counts.authMailPending}`,
           `Auth mail overdue: ${counts.authMailOverdue}`,
+          ...(expanded
+            ? [
+                `Purchase fulfilment failure signals/invariants: ${counts.purchaseFulfilmentFailures}`,
+                `Exact verified receipt duplicates (informational): ${counts.duplicateReceiptAttempts}`,
+                `Rejected receipt replay signals: ${counts.receiptReplayRejections}`,
+                `Refund reconciliation failure signals/invariants: ${counts.refundReconciliationFailures}`,
+                `Wallet/lot balance mismatches: ${counts.walletLedgerMismatches}`,
+                `Journal integrity failures: ${counts.ledgerIntegrityFailures}`,
+                `Pack issuance failure signals/invariants: ${counts.packIssuanceFailures}`,
+                `Operational notification failed/uncertain outcomes: ${counts.opsNotificationFailures}`,
+                `Stale scheduled receipt reconciliations: ${counts.reconciliationStaleReceipts}`,
+                `Acknowledgement failure signals/jobs: ${counts.receiptAcknowledgementFailures}`,
+                `Reconciliation failure signals: ${counts.reconciliationFailures}`,
+                `Receipt verification failure signals: ${counts.receiptVerificationFailures}`,
+              ]
+            : [
+                "Expanded financial monitoring was not collected by this legacy observation.",
+              ]),
           "Review with an authorised staff session:",
           "https://docked.com.au/admin/commercial-billing",
           "https://docked.com.au/admin/operations",
@@ -112,11 +163,26 @@ export async function dispatchBillingOpsAlert(
   try {
     await send([prepared.message], env);
   } catch {
+    logDeliveryUncertainty();
     await queue.finish(job.id, job.lease, "unknown");
     return { status: "unknown", deliveryVerified: false };
   }
   // If settlement fails after Graph acceptance, propagate without retrying send.
   // A durable fenced lease remains recoverable as an uncertain operation.
-  await queue.finish(job.id, job.lease, "accepted");
+  try {
+    await queue.finish(job.id, job.lease, "accepted");
+  } catch (error) {
+    logDeliveryUncertainty();
+    throw error;
+  }
   return { status: "accepted", deliveryVerified: false };
+}
+function logDeliveryUncertainty() {
+  try {
+    console.warn(
+      JSON.stringify({ event: "billing-ops-alert-delivery-uncertain" }),
+    );
+  } catch {
+    /* preserve the transport/settlement outcome */
+  }
 }

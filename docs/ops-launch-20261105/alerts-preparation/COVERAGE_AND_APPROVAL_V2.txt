@@ -1,0 +1,166 @@
+Billing operations monitor v2 — exact approval review
+6 November 2026 Australia/Sydney
+
+Status: IMPLEMENTED / ISOLATED VERIFIED / PREPARED SQL / UNAPPLIED / NOT DEPLOYED
+Production stays at the frozen Google review release. No flags, grants, SQL,
+provider settings, email, customer records or release action changed here.
+
+This standalone v2 package supersedes the unapproved v1 proposal for review.
+The v1 SQL, manifest and 11-group evidence remain preserved at 665a5769.
+Do not apply both packages. Exact v2 source, SHA-256 and prerequisite ledger
+commit are in approval-package-v2.json. Reuse the unchanged tested stop SQL.
+
+Monitoring coverage — actual sources, not a generic queue assumption
+
+1. Failed fulfilment: member checkout observes a verified paid PURCHASED receipt
+   failing ledger fulfilment outside the rolled-back transaction. Separate
+   verification failures are not described as lost credits. The SQL snapshot
+   also detects a committed PURCHASED receipt missing credited/money flags or
+   its lot. No monitor can retroactively observe old rolled-back failures.
+2. Duplicate receipt attempts: authoritative exact observation duplicates are
+   reported by the existing receipt-event uniqueness check under the ledger
+   lock, including concurrent first submissions. An acknowledgement/provider
+   change producing a new fingerprint is progress, not a duplicate. The member
+   strips this internal boolean from its unchanged HTTP response. Successful
+   exact duplicates are informational and never trigger email alone. A known
+   bound-other-account token is identified by an existing receipt hash/boolean
+   probe and remains subject to unchanged verifier and ledger authorization.
+   Ledger replay denial is separately counted. Unknown verification failures
+   are not automatically labelled fraud. Raw tokens/keys never enter an event.
+3. Refund failures: the member reconciliation and actual worker hooks distinguish
+   a verified revoked/refunded observation failing acceptance from an unknown
+   provider error. SQL also detects a full revoked refund with unremoved credits.
+   An ordinary unpaid cancellation is not mislabelled as a refund failure.
+4. Wallet/ledger: per-member CREDIT journal balances must match remaining lots;
+   missing/unbalanced journal lines are separately counted. Holds do not change
+   that comparison because spendable and underlying balance are different.
+5. Pack issuance: supply-unavailable and unexpected purchase/open failures are
+   observed after rollback; expected insufficient balance, changed quote and
+   account-hold denials are not counted as issuance incidents. SQL compares saved
+   card quantity to persisted cards and definition issuance to actual cards plus
+   legacy baseline. No pack, serial, supply cap or allocation is modified.
+6. Notification delivery: persisted TEST/commercial attention and overdue jobs,
+   Auth provider failure/unknown states, and failed/expired/uncertain operational
+   outbox rows are counted. Graph202 means provider acceptance, not inbox receipt.
+   Its own uncertain-delivery count is context only and excluded from the v2
+   email fingerprint, so a failing alert channel cannot enqueue its own alert.
+   No new end-to-end Google push or actual support-mailbox delivery is claimed.
+7. Recovery holds: count current OPEN cases from authoritative recovery records.
+   The observer cannot waive, reverse or alter a case or any customer balance.
+8. Reconciliation outages: worker verification/ack/refund failures are classified,
+   expired/attention/overdue jobs remain visible and stale scheduled receipts are
+   counted after the existing one-hour health horizon. A completely unavailable
+   database or missing scheduler cannot write its own database-backed alert;
+   follow the independent escalation below.
+
+The new aggregate shape has20 counters. A v1 observation retains its8 counters
+and is explicitly labelled as lacking expanded collection. Both reserved key
+prefixes are protected; no historical queue payload is rewritten. V2 counters
+are whole aggregate values only, with no customer record or order attached.
+Event counts represent observed attempts and invariant findings, not a count of
+unique people or purchases. The one-hour signal observation window is NOT a new
+retention or deletion schedule. No historical record is erased.
+
+Exact DB and runtime changes requiring review
+
+- One new EXECUTE-only function public.docked_billing_ops_signal(text,uuid),
+  granted only to existing docked_commercial_app. Its nine fixed codes and random
+  attempt UUID are the only inputs. A unique audit-event ID prevents a retry
+  writing twice. It stores enum/UUID, not errors, member IDs, order IDs, tokens,
+  account bindings, descriptions or recipient-supplied text.
+- Existing protected zero-argument enqueue and service_role-only queue RPC
+  retain their restricted grants. The SQL producer derives all counters from
+  existing source tables. The signal writer and producer require the DB flag
+  plus approved version=billing-ops-policy-v2 window. V1 policy authority does
+  not automatically approve v2. Nothing inserts any approved policy/window.
+- Restrictive outbox policies reserve v1/v2 keys and exact purpose, while
+  ordinary null/absent-purpose rows retain their existing rights. The generic
+  lease query excludes the reserved rows even for a table owner. A restrictive
+  audit INSERT policy reserves only billing_ops_signal; existing audit actions
+  continue. One partial audit index bounds recent enum signal lookup. No new
+  tables, roles, general table/schema grants, services or scheduler.
+- Fully qualified relations and empty search_path on owner-definer functions;
+  direct PUBLIC/anon/authenticated/ordinary-app EXECUTE revoked. Actual DB ACLs
+  enforce roles; no custom GUC or definer current_user grants caller authority.
+  Production read-only metadata confirms existing audit RLS, required tables,
+  zero reserved collisions, both prepared RPCs absent and flag OFF.
+- Member and reconciliation hooks are best effort after transaction outcome.
+  A monitor write/logger failure preserves the original result/error. Their
+  DOCKED_BILLING_OPS_SIGNALS flag defaults OFF and needs no Graph credentials.
+  The producer uses the existing restricted commercial SQL connection only.
+  The separately OFF sender keeps the existing Graph trust environment. The
+  Auth-email hook, Auth outbox and credentials were not broadened/copied.
+
+Verification performed
+
+node scripts/commercial-local-postgres.mjs --ops-alerts
+18 scenario groups passed on disposable loopback PostgreSQL17.10: the coherent
+11 lease/role/rollback groups, plus seven expanded coverage groups. Real restricted
+role tests submitted20 identical verified fixture observations concurrently;
+19 duplicate observations, exactly one4,900-credit lot/journal, peer wallet0.
+New acknowledgement metadata was not marked a duplicate. Actual worker hooks
+were exercised with mocked refund, provider and acknowledgement failures.
+Injected SQL rollback, RLS/audit spoof denial, false-role GUC denial, known replay
+hash lookup, sanitized idempotent signal writes and committed invariant failures
+were checked. Seeded malformed receipts/lots/pack records were isolated fixtures,
+not hosted transactions or permanent cards. No external provider request.
+
+node --import tsx --test tests/platform/billing-ops-monitor.test.ts tests/platform/billing-ops-alerts.test.mjs
+10 targeted tests passed. Whole TypeScript, targeted ESLint, formatting and
+changed-path whitespace checks passed. No broader suite or previous real Google
+TEST purchase/device acceptance was rerun. See postgres-v2.json and
+v2-boundary-readonly.json for exact evidence and timestamps.
+
+Owner approval checklist / compatible rollout order
+
+1. Approve the exact v2 SQL hash and three public function EXECUTE scopes after
+   backup recoverability/project/schema/drift review. Deploy compatible observer,
+   v1/v2 generic-query exclusion and adapter source first with both runtime flags
+   OFF. This is a later independent backend release, not a change to 7319.
+2. Apply only the specifically approved v2 SQL as dormant (DB flagfalse, no
+   opsAlerts authority). Verify no protected row/count/hash changes, table grants
+   unchanged, exact ACLs and zero reserved collisions before/after. No duplicate
+   v1 apply. Preserve private audit/Auth-mail and customer data.
+3. Name primary and backup support operators; approve a finite v2 scope in
+   control.approvals.opsAlerts, exact support recipient and one non-financial
+   delivery drill. Bind the producer/worker to existing authorised scheduling
+   without moving Graph credentials or extending the signed Auth hook. Review
+   query plan/time bounds on restored data before enabling; producer aggregates
+   never run on customer receipt/pack requests. Avoid a new paid service.
+4. Verify actual support mailbox receipt once, including unknown-send recovery.
+   Do not activate merely because Graph202 or fixture delivery succeeded.
+   No email or grant is authorised by this preparation itself.
+5. Only after that evidence, explicitly enable the finite DB/runtime monitoring
+   window. Keep ordinary payments, public registration, transfers, withdrawals,
+   prizes, destructive retention and NBA controlled by their separate gates.
+
+Independent outage escalation — existing infrastructure only
+
+The deployed Vercel schedule is /api/store/google/scheduled every five minutes.
+In the existing Docked Vercel project Logs/Cron run view, check that exact path
+for repeated5xx/401, missing scheduled runs, billing-ops-signal-unavailable or
+billing-ops-alert-delivery-uncertain.
+Two missed expected ticks is a practical manual investigation point, not a new
+activated policy. Check existing Supabase availability and Google/Graph provider
+status. Escalate through the already approved support/backup operator channel;
+keep secrets out of the incident. Pause affected checkout admission if needed,
+keep existing reconciliation available, and recheck durable jobs/holds after
+recovery. Do not blindly replay purchases or unknown mail. Configure/verify any
+independent automated failure notification only in an existing approved channel
+with named recipients and its own drill. No such external delivery is asserted.
+
+Stop/rollback
+
+Disable producer/signal/sender runtime admission and use the existing tested stop
+SQL to set only billing_ops_alerts=false. It leaves exact valid in-flight
+settlement available, preserves durable/audit rows and makes no financial change.
+After resolving in-flight outcomes, separately revoke the exact EXECUTE grants
+on enqueue/signal/queue if withdrawing permission. Retain reserved-purpose
+policies so legacy workers cannot reclaim ops rows. Never delete or blindly retry
+unknown dispatched rows; do not roll back historical financial records.
+
+Primary implementation references reviewed before the SQL change:
+https://supabase.com/changelog
+https://supabase.com/docs/guides/database/functions
+https://supabase.com/docs/guides/database/postgres/row-level-security
+No remote CLI change or hosted SQL was executed.
