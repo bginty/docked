@@ -1,0 +1,37 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_APPLIED",
+  "scope": "Final ordinary public runtime on existing Production; no new resources or secret values",
+  "baseline": {"commit": "7319dddd1227b294fb38542cdee2044e01c89bd4", "deployment": "dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ"},
+  "manifestDiff": {"file": "config/hosted-production.json", "field": "approved", "before": false, "proposedAfter": true, "applyCondition": "Specific final public deployment approval and verified exact hosting/Auth/database binding; not applied by this packet"},
+  "manifestPreserved": {"hostingProvider": "vercel", "origin": "https://docked.com.au", "vercelProjectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST", "vercelTeamId": "team_tf6xweKKyVCj9bTppUKttJ4l", "supabaseProjectRef": "pojoymtniryarxxunyvz", "supabaseRegion": "ap-southeast-2", "databaseRole": "docked_app"},
+  "closedCandidateRuntimeDiff": {
+    "DOCKED_BETA_STAGING": {"before": "true", "proposedAfter": "false"},
+    "DOCKED_FRIENDS_BETA": {"before": "true", "proposedAfter": "false"},
+    "DOCKED_RELEASE_CHANNEL": {"before": "beta", "proposedAfter": "stable"},
+    "DOCKED_HOSTED_PRODUCTION": {"proposedAfter": "true"},
+    "DOCKED_HOSTED_PREVIEW": {"proposedAfter": "false"},
+    "DOCKED_HOSTED_REVIEW": {"proposedAfter": "false"},
+    "DATABASE_URL": {"proposedBinding": "Existing restricted docked_app.pojoymtniryarxxunyvz connection; no password/key in this document"},
+    "TERMS_VERSION": {"proposedAfter": "2026-11-02-release-preparation-v2"},
+    "PRIVACY_POLICY_VERSION": {"proposedAfter": "2026-11-06-privacy-sdk-v3"},
+    "DOCKED_PUBLIC_CUSTOMERS": {"before": "false", "closedCandidate": "false", "protectedAcceptanceCandidate": "true only with separately scoped disabled/fixture DB bindings"},
+    "REGISTRATION_ENABLED": {"before": "false", "closedCandidate": "false"}
+  },
+  "requiredServerBindings": ["APP_ENV=production", "SUPABASE_ENV=production", "SITE_URL=https://docked.com.au", "LEGAL_ENTITY_VERIFIED=true (existing official evidence)", "Existing project publishable key and separate server-only Auth secret; never copied into client/ordinary DB URL", "Reviewed hosting commit identity and strict TLS/server role validation"],
+  "alwaysClosedInitialScope": ["COMPETITIONS_ENABLED=false (retired generic gate; public free competitions use public_gameplay)", "PRIZES_ENABLED=false", "DOCKED_MEMBER_GOOGLE_TEST=false", "DOCKED_MULTI_SPORT_SANDBOX=false", "No DOCKED_V30_TRANSPORT fields", "No withdrawals, paid entry, prizes, commercial transfers or NBA", "Retired scanners/marketing/ads/paid-plans flags remain false"],
+  "laterFreePublicActivation": {
+    "requires": ["Final owner activation and Google release conditions", "Current future editable exact rounds and real eligibility", "Normal confirmed profile/current explicit consent and staff MFA", "Actual configured external email/recovery and deletion readiness"],
+    "runtime": {"DOCKED_PUBLIC_CUSTOMERS": "true", "REGISTRATION_ENABLED": "true", "AUTH_EMAIL_ENABLED": "true"},
+    "database": ["private.feature_flags.registration=true", "public_gameplay.policy.enabled=true with exact current authority/versions/expiry", "NFL/AFL/NRL sports.visible/play_enabled=true", "Exact eligible public_gameplay.rounds.enabled=true"],
+    "preserve": "Beta records/accounts/consents remain untouched; actual eligible existing members complete their own ordinary public setup. Do not set generic COMPETITIONS_ENABLED=true."
+  },
+  "laterCommercialActivation": {
+    "requires": ["Reviewed immutable source/supply pool import and approval", "Final commercial scope/evidence references and expiry", "Named operations/key custody and observed alert drill", "Commercial runtime + authenticated RTDN/reconciliation ready with checkout off", "Accurate approved live availability policy wording", "Final live customer-charge/product activation authority"],
+    "runtime": {"DOCKED_COMMERCIAL_SERVICE": "true before checkout for durable notifications/reconciliation", "DOCKED_COMMERCIAL_SURFACES": "true only at approved exposure", "DOCKED_COMMERCIAL_CHECKOUT": "true only at final admission"},
+    "database": ["commercial_billing.products.approved=true only for exact approved products", "commercial_billing.definitions.approved=true only for reviewed immutable pool", "commercial_billing.control policy/authority references verified", "sales_enabled/issuance_enabled true only at final admission", "transfers_enabled=false, withdrawals/prizes/paidEntry/nba=false"],
+    "provider": "Google options remain inactive until this whole gate is satisfied; native options can permit real charges independently of hidden Docked UI",
+    "rollbackRequirement": "Prepare a public-namespace-compatible closed checkout rollback; do not assume closed beta7319/Hxyw preserves ordinary public access or commercial reconciliation"
+  },
+  "historicalConsentTreatment": "No copying, rewriting or fabricating age/state/Terms/Privacy consent. If final availability wording requires a version change, approve and bind exact prospective versions; keep historical text/acceptance.",
+  "executedChanges": 0
+}

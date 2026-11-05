@@ -1,0 +1,413 @@
+{
+  "checkedAt": "2026-11-05T21:38:55.604Z",
+  "project": "pojoymtniryarxxunyvz",
+  "canonical": {
+    "id": "dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ",
+    "source": "7319dddd1227b294fb38542cdee2044e01c89bd4",
+    "readyState": "READY"
+  },
+  "runtimeFlagEvidence": "exact deployed immutable runtime receipt plus live gate probes; no secret values or project-default substitutions",
+  "normalFlags": {
+    "REGISTRATION_ENABLED": false,
+    "COMPETITIONS_ENABLED": false,
+    "PRIZES_ENABLED": false,
+    "DOCKED_MULTI_SPORT_SANDBOX": false,
+    "DOCKED_MEMBER_GOOGLE_TEST": false,
+    "DOCKED_COMMERCIAL_SERVICE": false,
+    "DOCKED_COMMERCIAL_SURFACES": false,
+    "DOCKED_COMMERCIAL_CHECKOUT": false,
+    "DOCKED_PUBLIC_CUSTOMERS": false
+  },
+  "namespace": {
+    "betaStaging": true,
+    "friendsBeta": true,
+    "releaseChannel": "beta"
+  },
+  "noTestTransport": true,
+  "customerVisibleSports": [
+    "nfl",
+    "afl",
+    "nrl"
+  ],
+  "nbaCustomerHidden": true,
+  "http": [
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503
+    }
+  ],
+  "context": {
+    "as_of": "2026-11-05T21:38:52.529Z",
+    "connection_role": "postgres",
+    "read_only": "on"
+  },
+  "control": {
+    "environment": "commercial",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1"
+  },
+  "counts": {
+    "definitions": 0,
+    "approved_definitions": 0,
+    "issued": 0,
+    "legacy_issued": 0,
+    "accounts": 0,
+    "receipts": 0,
+    "cards": 0,
+    "packs": 0,
+    "journals": 0,
+    "lots": 0,
+    "recoveries": 0,
+    "listings": 0,
+    "legacy_beta_cards": 59,
+    "historical_beta_entries": 17,
+    "sandbox_instances": 447
+  },
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "credits": "4900",
+      "aud_cents": "4900",
+      "version": "owner-credit-packages-2026-10-31-v1",
+      "approved": false
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "credits": "9900",
+      "aud_cents": "9900",
+      "version": "owner-credit-packages-2026-10-31-v1",
+      "approved": false
+    }
+  ],
+  "reviewer": {
+    "confirmed": true,
+    "deleted": false,
+    "testWallet": {
+      "available": 30000,
+      "total": 30000,
+      "spendable": 30000,
+      "restricted": 30000,
+      "withdrawable": 0
+    },
+    "ordinary_profile": false,
+    "beta_profile": true,
+    "permanent_cards": 0,
+    "commercial_receipts": 0
+  },
+  "policy": {
+    "enabled": false,
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-06-privacy-sdk-v3",
+    "valid_until": "2027-02-03T13:03:30.607Z",
+    "version": "au-adult-free-play-v1"
+  },
+  "sports": [
+    {
+      "sport": "afl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nfl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nrl",
+      "visible": false,
+      "play_enabled": false
+    }
+  ],
+  "rounds": [
+    {
+      "id": "0073858d-b14b-49ce-8cda-56c2357490c5",
+      "sport": "afl",
+      "mode": "OPEN",
+      "name": "AFL Roster Practice · All-Star",
+      "season": "2026 Practice",
+      "round": 2,
+      "locksAt": "2026-11-15T12:00:00.000Z",
+      "future": true,
+      "enabled": false,
+      "savedRulesMatch": true,
+      "slots": 22,
+      "traditionalCap": null,
+      "coreSalary": 500000,
+      "allCoreTotal": 11000000,
+      "entryFeeCredits": 0,
+      "awards": [],
+      "fixtureKind": "practice",
+      "rosterCandidates": 545,
+      "uniquePositionMatch": 22,
+      "sourceReference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 892886107366a3f445ffd7e0825f5f848036ee4773f1e4934403c1b9a7ed5530",
+      "eligibilityExpiresAt": "2027-01-31T00:00:00.000Z"
+    },
+    {
+      "id": "38f8e2da-a8cd-41ec-b34b-008084be7722",
+      "sport": "afl",
+      "mode": "SALARY_CAP",
+      "name": "AFL Roster Practice · Traditional",
+      "season": "2026 Practice",
+      "round": 2,
+      "locksAt": "2026-11-15T12:00:00.000Z",
+      "future": true,
+      "enabled": false,
+      "savedRulesMatch": true,
+      "slots": 22,
+      "traditionalCap": 13800000,
+      "coreSalary": 500000,
+      "allCoreTotal": 11000000,
+      "entryFeeCredits": 0,
+      "awards": [],
+      "fixtureKind": "practice",
+      "rosterCandidates": 545,
+      "uniquePositionMatch": 22,
+      "sourceReference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 892886107366a3f445ffd7e0825f5f848036ee4773f1e4934403c1b9a7ed5530",
+      "eligibilityExpiresAt": "2027-01-31T00:00:00.000Z"
+    },
+    {
+      "id": "fa53ab81-b8fd-4d4e-bf5e-214c5209b09f",
+      "sport": "nfl",
+      "mode": "OPEN",
+      "name": "NFL Roster Practice · All-Star",
+      "season": "2026 Practice",
+      "round": 2,
+      "locksAt": "2026-11-15T12:00:00.000Z",
+      "future": true,
+      "enabled": false,
+      "savedRulesMatch": true,
+      "slots": 7,
+      "traditionalCap": null,
+      "coreSalary": 500000,
+      "allCoreTotal": 3500000,
+      "entryFeeCredits": 0,
+      "awards": [],
+      "fixtureKind": "practice",
+      "rosterCandidates": 386,
+      "uniquePositionMatch": 7,
+      "sourceReference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 8053bbef1019f7ef14a6ee96c397d09d4e45f0e23384965be12f0c429d3db9ba",
+      "eligibilityExpiresAt": "2027-01-31T00:00:00.000Z"
+    },
+    {
+      "id": "11edf5ac-262b-41ad-a6d9-06a53053a051",
+      "sport": "nfl",
+      "mode": "SALARY_CAP",
+      "name": "NFL Roster Practice · Traditional",
+      "season": "2026 Practice",
+      "round": 2,
+      "locksAt": "2026-11-15T12:00:00.000Z",
+      "future": true,
+      "enabled": false,
+      "savedRulesMatch": true,
+      "slots": 7,
+      "traditionalCap": 4400000,
+      "coreSalary": 500000,
+      "allCoreTotal": 3500000,
+      "entryFeeCredits": 0,
+      "awards": [],
+      "fixtureKind": "practice",
+      "rosterCandidates": 386,
+      "uniquePositionMatch": 7,
+      "sourceReference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 8053bbef1019f7ef14a6ee96c397d09d4e45f0e23384965be12f0c429d3db9ba",
+      "eligibilityExpiresAt": "2027-01-31T00:00:00.000Z"
+    },
+    {
+      "id": "3e19ab97-7cff-490c-aa9c-aeba3a8e6207",
+      "sport": "nrl",
+      "mode": "OPEN",
+      "name": "NRL Roster Practice · All-Star",
+      "season": "2026 Practice",
+      "round": 2,
+      "locksAt": "2026-11-15T12:00:00.000Z",
+      "future": true,
+      "enabled": false,
+      "savedRulesMatch": true,
+      "slots": 13,
+      "traditionalCap": null,
+      "coreSalary": 500000,
+      "allCoreTotal": 6500000,
+      "entryFeeCredits": 0,
+      "awards": [],
+      "fixtureKind": "practice",
+      "rosterCandidates": 337,
+      "uniquePositionMatch": 13,
+      "sourceReference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 11cda30bd1444ad96d19521298c3998ff1d4c37d8ed6ebd0685effa7ff6ec14b",
+      "eligibilityExpiresAt": "2027-01-31T00:00:00.000Z"
+    },
+    {
+      "id": "c49a6684-8d34-4411-92f5-50393d55386e",
+      "sport": "nrl",
+      "mode": "SALARY_CAP",
+      "name": "NRL Roster Practice · Traditional",
+      "season": "2026 Practice",
+      "round": 2,
+      "locksAt": "2026-11-15T12:00:00.000Z",
+      "future": true,
+      "enabled": false,
+      "savedRulesMatch": true,
+      "slots": 13,
+      "traditionalCap": 8200000,
+      "coreSalary": 500000,
+      "allCoreTotal": 6500000,
+      "entryFeeCredits": 0,
+      "awards": [],
+      "fixtureKind": "practice",
+      "rosterCandidates": 337,
+      "uniquePositionMatch": 13,
+      "sourceReference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 11cda30bd1444ad96d19521298c3998ff1d4c37d8ed6ebd0685effa7ff6ec14b",
+      "eligibilityExpiresAt": "2027-01-31T00:00:00.000Z"
+    }
+  ],
+  "regions": [
+    {
+      "state": "ACT",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    },
+    {
+      "state": "NSW",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    },
+    {
+      "state": "NT",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    },
+    {
+      "state": "QLD",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    },
+    {
+      "state": "SA",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    },
+    {
+      "state": "TAS",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    },
+    {
+      "state": "VIC",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    },
+    {
+      "state": "WA",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false,
+      "review_current": true,
+      "effective_current": true
+    }
+  ],
+  "retention": {
+    "enabled": false,
+    "completed_job_days": 90,
+    "archive_days": 30,
+    "archives": 0,
+    "active_holds": 0
+  },
+  "ops": {
+    "alert_enqueue_present": false,
+    "alert_worker_present": false
+  },
+  "registrationEnabled": false,
+  "scope": {
+    "productionWrites": 0,
+    "authSecretsRead": false,
+    "newCredentialsOrGrants": 0,
+    "googleTests": 0,
+    "consoleInteractions": 0,
+    "authenticatedBrowserAcceptance": false,
+    "newBackupOrRestore": false,
+    "claimsCreated": 0
+  },
+  "passed": true
+}
