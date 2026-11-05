@@ -1,0 +1,398 @@
+{
+  "at": "2026-11-05T13:20:41.011Z",
+  "project": "pojoymtniryarxxunyvz",
+  "readOnly": true,
+  "rounds": [
+    {
+      "id": "0073858d-b14b-49ce-8cda-56c2357490c5",
+      "sport": "afl",
+      "mode": "OPEN",
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "salary_cap": "13800000",
+      "slots": 22,
+      "enabled": false,
+      "rules_match": true,
+      "prize": "No cash prize",
+      "awards": []
+    },
+    {
+      "id": "38f8e2da-a8cd-41ec-b34b-008084be7722",
+      "sport": "afl",
+      "mode": "SALARY_CAP",
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "salary_cap": "13800000",
+      "slots": 22,
+      "enabled": false,
+      "rules_match": true,
+      "prize": "No cash prize",
+      "awards": []
+    },
+    {
+      "id": "fa53ab81-b8fd-4d4e-bf5e-214c5209b09f",
+      "sport": "nfl",
+      "mode": "OPEN",
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "salary_cap": "4400000",
+      "slots": 7,
+      "enabled": false,
+      "rules_match": true,
+      "prize": "No cash prize",
+      "awards": []
+    },
+    {
+      "id": "11edf5ac-262b-41ad-a6d9-06a53053a051",
+      "sport": "nfl",
+      "mode": "SALARY_CAP",
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "salary_cap": "4400000",
+      "slots": 7,
+      "enabled": false,
+      "rules_match": true,
+      "prize": "No cash prize",
+      "awards": []
+    },
+    {
+      "id": "3e19ab97-7cff-490c-aa9c-aeba3a8e6207",
+      "sport": "nrl",
+      "mode": "OPEN",
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "salary_cap": "8200000",
+      "slots": 13,
+      "enabled": false,
+      "rules_match": true,
+      "prize": "No cash prize",
+      "awards": []
+    },
+    {
+      "id": "c49a6684-8d34-4411-92f5-50393d55386e",
+      "sport": "nrl",
+      "mode": "SALARY_CAP",
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "salary_cap": "8200000",
+      "slots": 13,
+      "enabled": false,
+      "rules_match": true,
+      "prize": "No cash prize",
+      "awards": []
+    }
+  ],
+  "regions": [
+    {
+      "state": "ACT",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    },
+    {
+      "state": "NSW",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    },
+    {
+      "state": "NT",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    },
+    {
+      "state": "QLD",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    },
+    {
+      "state": "SA",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    },
+    {
+      "state": "TAS",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    },
+    {
+      "state": "VIC",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    },
+    {
+      "state": "WA",
+      "approved": true,
+      "minimum_age": 18,
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "preview_community_only": false
+    }
+  ],
+  "policy": {
+    "id": true,
+    "enabled": false,
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-02-release-preparation-v2",
+    "valid_until": "2027-02-03T13:03:30.607Z",
+    "authority": "Owner expressly approved prospective v2 Terms/Privacy binding and AU adult eligibility for ACT/NSW/NT/QLD/SA/TAS/VIC/WA on 6 November 2026 Sydney, with commercial marketplace transfers, swaps, paid entry, withdrawals and prizes OFF. Scope basis: owner decisions plus FINAL_MARKETPLACE_COMMERCIAL_ASSESSMENT_20261105.txt; no independent legal/regulatory approval is asserted. Public programme and registration remain disabled.",
+    "version": "au-adult-free-play-v1"
+  },
+  "gates": {
+    "public_sports": false,
+    "public_rounds": false,
+    "registration": false,
+    "commercial": false
+  },
+  "security": {
+    "missing_rls": false,
+    "direct_public_execute": false
+  },
+  "fingerprints": {
+    "auth.sessions": {
+      "count": 132,
+      "hash": "52e9bee46e086d52e540b6f16cf536c9",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "auth.users": {
+      "count": 6,
+      "hash": "33db181ced805f4e3835994531aef3e4",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.cards": {
+      "count": 59,
+      "hash": "4f5735107c963fd5359ebf77de3e53c4",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.competitions": {
+      "count": 59,
+      "hash": "e17eed776c27f7cb5f64c0ec8af522b3",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.entries": {
+      "count": 17,
+      "hash": "db8da2a5b18576a5606e8a5b60095542",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.lineup_configurations": {
+      "count": 6,
+      "hash": "b9cee4705ef2f13292298fe8b788d060",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.ownership_events": {
+      "count": 59,
+      "hash": "704a314a527c2d8d2aa625dc1546ca60",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.pack_items": {
+      "count": 11,
+      "hash": "3799b85f85c01bf8b37059591335479e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.packs": {
+      "count": 1,
+      "hash": "79a2a7b163723a34efdfdacbaeaff280",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.production_rounds": {
+      "count": 12,
+      "hash": "724f198fdcbfd52a98eef067485d4fb0",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.results": {
+      "count": 1,
+      "hash": "43e1177a655929f54569b347ceb9c266",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.round_drafts": {
+      "count": 34,
+      "hash": "7f0b7f8bbd1b0ab0c8e9cbcaef8b8a40",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.sales": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.scoring_rules": {
+      "count": 10,
+      "hash": "a1f287a2c1c840aa4a4ceb37ffb80467",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_fantasy.slot_locks": {
+      "count": 79,
+      "hash": "c6c7ec6ac63bafbc4b427c2ad2b54b0a",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_private.consent_events": {
+      "count": 46,
+      "hash": "86babab4d13d866d3528d6a7d32b25a8",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_private.roles": {
+      "count": 2,
+      "hash": "9bde22e6cb721c7b605c11824759a86f",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "beta_public.profiles": {
+      "count": 5,
+      "hash": "2960aa50a11225f95492627909508bae",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.accounts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.cards": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.control": {
+      "count": 1,
+      "hash": "e1220b898c4a91fbd5eda948efdd47d1",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.journals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.lots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.packs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.receipts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "commercial_billing.recovery_cases": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "credits_sandbox.card_instances": {
+      "count": 447,
+      "hash": "1ba391e5302c1294608811756061f083",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "credits_sandbox.journal": {
+      "count": 108,
+      "hash": "ea377fcd31184e32d813ee3a01b15c7f",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "credits_sandbox.pack_receipts": {
+      "count": 77,
+      "hash": "e7dde22701afebd84df0f408250f1c47",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "credits_sandbox.state": {
+      "count": 1,
+      "hash": "8f0d0503994f5ae628e15cef5c311271",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "cron.job": {
+      "count": 9,
+      "hash": "3a28cd5be439194810fa98d7d231671f",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "private.consent_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "private.feature_flags": {
+      "count": 11,
+      "hash": "b47c8febe2b1918c4e2b8df870c9436c",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "private.region_policies": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "private.roles": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "public.profiles": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "public_gameplay.rounds": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "public_gameplay.sports": {
+      "count": 3,
+      "hash": "068ae27b33eade21e3bf0f3371767b69",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "sports_feed.free_core_programmes": {
+      "count": 3,
+      "hash": "ab0516658064d284f28fc93e7dcf8f9b",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "sports_feed.free_core_roster": {
+      "count": 386,
+      "hash": "0de74dc17f193a05f3f518c84422d138",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "sports_feed.free_core_roster_beta": {
+      "count": 882,
+      "hash": "63c41a820325ad948fcaffa86e1f2179",
+      "matchesBackupExcludingApprovedAdditions": true
+    },
+    "sports_feed.nfl_rounds": {
+      "count": 8,
+      "hash": "abb6d145a9d0ccc34568f75ad9eef7e6",
+      "matchesBackupExcludingApprovedAdditions": false
+    },
+    "sports_feed.sport_rounds": {
+      "count": 44,
+      "hash": "c7919624b97cd4ade5944da0b4d5b06b",
+      "matchesBackupExcludingApprovedAdditions": true
+    }
+  },
+  "unexpectedDifferences": [],
+  "allOtherProtectedFingerprintsMatch": false,
+  "onlyApprovedConfigurationChanged": false,
+  "comparisonUsesFieldValuesNotJsonKeyOrder": true,
+  "acceptedOperationalDifferences": [
+    "sports_feed.nfl_rounds:last_checked,next_check,lease_until"
+  ],
+  "immutableBusinessDataPreserved": true,
+  "onlyApprovedConfigurationAndVerifiedTelemetryChanged": true
+}

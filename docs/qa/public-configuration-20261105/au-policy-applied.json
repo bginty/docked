@@ -1,0 +1,143 @@
+{
+  "at": "2026-11-05T13:17:13.949Z",
+  "sqlSha256": "6765f899a8ee5791cbc0659ab849f16ea4942f0a87a9c83b5d00e9c437db1457",
+  "regions": [
+    {
+      "country": "AU",
+      "state": "ACT",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    },
+    {
+      "country": "AU",
+      "state": "NSW",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    },
+    {
+      "country": "AU",
+      "state": "NT",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    },
+    {
+      "country": "AU",
+      "state": "QLD",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    },
+    {
+      "country": "AU",
+      "state": "SA",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    },
+    {
+      "country": "AU",
+      "state": "TAS",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    },
+    {
+      "country": "AU",
+      "state": "VIC",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    },
+    {
+      "country": "AU",
+      "state": "WA",
+      "version": "docked-au-adult-closed-loop-v1",
+      "effective_from": "2026-11-05T13:03:30.607Z",
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z",
+      "approved": true,
+      "minimum_age": 18,
+      "features": [
+        "community_social",
+        "public_profiles"
+      ],
+      "preview_community_only": false
+    }
+  ],
+  "policy": {
+    "id": true,
+    "enabled": false,
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-02-release-preparation-v2",
+    "valid_until": "2027-02-03T13:03:30.607Z",
+    "authority": "Owner expressly approved prospective v2 Terms/Privacy binding and AU adult eligibility for ACT/NSW/NT/QLD/SA/TAS/VIC/WA on 6 November 2026 Sydney, with commercial marketplace transfers, swaps, paid entry, withdrawals and prizes OFF. Scope basis: owner decisions plus FINAL_MARKETPLACE_COMMERCIAL_ASSESSMENT_20261105.txt; no independent legal/regulatory approval is asserted. Public programme and registration remain disabled.",
+    "version": "au-adult-free-play-v1"
+  },
+  "publicProgrammeEnabled": false,
+  "registrationChanged": false,
+  "paymentsChanged": false,
+  "profilesChanged": false,
+  "consentsChanged": false,
+  "legacyEligibilityChanged": false,
+  "migrations": [],
+  "passed": true
+}

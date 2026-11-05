@@ -4,8 +4,10 @@ import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash, randomUUID } from "node:crypto";
 import postgres from "postgres";
-import { approvedAustralianLineup } from "../src/core/approved-australian-rules";
-import { nflSeven } from "../src/core/nfl-seven";
+import {
+  publicPracticeLineup,
+  publicPracticeRules,
+} from "../src/core/public-practice-configuration";
 const dir = "private-data/restored-public-preview";
 const c = JSON.parse(
   readFileSync(
@@ -123,15 +125,7 @@ async function main() {
       await t`insert into credits_sandbox.nba_fixture_players(id,identity) select value->>'id',value from jsonb_array_elements(${t.json(aus)}) on conflict(id) do nothing`;
       await t`insert into sports_feed.free_core_roster_beta select value->>'id',value->>'sport',${season},value->'eligiblePositions',${deadline},value#>>'{rosterBeta,sourceHash}',true from jsonb_array_elements(${t.json(aus)}) on conflict(provider_player_id) do update set valid_until=greatest(sports_feed.free_core_roster_beta.valid_until,excluded.valid_until) where sports_feed.free_core_roster_beta.source_hash=excluded.source_hash`;
       for (const sport of ["nfl", "afl", "nrl"] as const) {
-        const config =
-          sport === "nfl"
-            ? {
-                ...nflSeven,
-                version: "public-nfl-round-wide-practice-v1",
-                lockPolicy: "round-wide-v1",
-                salaryUnit: "fantasy-dollars",
-              }
-            : approvedAustralianLineup(sport);
+        const config = publicPracticeLineup(sport);
         const source = snapshots.find(
           (x: { sport: string }) => x.sport === sport,
         );
@@ -194,28 +188,14 @@ async function main() {
         assert.deepEqual(scoring.rules, source.scoring_rules);
         result.rounds[sport] = [];
         result.counts[sport] = ids.length;
-        for (const mode of ["SALARY_CAP", "OPEN"]) {
-          const rules = {
-            ...source.rules,
+        for (const mode of ["SALARY_CAP", "OPEN"] as const) {
+          const rules = publicPracticeRules(
+            source,
+            sport,
             mode,
-            lineup_version: config.version,
-            scoring_version: source.scoring_version,
-            inventory_scope: config.inventoryScope,
-            free_core_policy: "public-free-core-v1",
-            public_access_policy: "au-adult-free-play-v1",
-            entry_fee_credits: 0,
-            lock_policy: "round-wide-v1",
-            public_template_version: version,
-            synthetic: true,
-            authority:
-              "Owner authorised protected public customer acceptance, 5 November 2026. Dated roster practice only; no official fixtures, prizes, permanent issuance or Production activation.",
-            round_reward_policy: {
-              version: "public-no-prizes-v1",
-              active: false,
-              items: [],
-              tiePolicy: null,
-            },
-          };
+            version,
+            "Owner authorised protected public customer acceptance, 5 November 2026. Dated roster practice only; no official fixtures, prizes, permanent issuance or Production activation.",
+          );
           const [old] =
             await t`select id,rules from beta_fantasy.competitions where sport=${sport} and season=${season} and rules->>'mode'=${mode} and rules->>'public_template_version'=${version}`;
           const id = old?.id ?? randomUUID();

@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-05T12:57:18.359Z",
+  "mode": "--plan",
+  "project": "pojoymtniryarxxunyvz",
+  "version": "public-roster-practice-20261105-v1",
+  "season": "2026 Practice",
+  "deadline": "2026-11-15T12:00:00.000Z",
+  "sqlSha256": "c148af91762398e978b8bcb1e9020066e7ce85b6e38e5f5ac9c5350464f27ed2",
+  "newCompetitions": 6,
+  "newDisabledPublicMappings": 6,
+  "eligibilityRowsChanged": 0,
+  "programmeChanges": 0,
+  "publicPolicyChanges": 0,
+  "registrationChanges": 0,
+  "billingChanges": 0,
+  "prizes": false,
+  "officialFixtures": false,
+  "datedRosterPractice": true,
+  "rounds": [
+    {
+      "sport": "nfl",
+      "mode": "SALARY_CAP",
+      "players": 7,
+      "rosterPlayers": 386,
+      "salaryCap": 4400000,
+      "coreSalary": 500000,
+      "positionalFeasibility": true
+    },
+    {
+      "sport": "nfl",
+      "mode": "OPEN",
+      "players": 7,
+      "rosterPlayers": 386,
+      "salaryCap": null,
+      "coreSalary": 500000,
+      "positionalFeasibility": true
+    },
+    {
+      "sport": "afl",
+      "mode": "SALARY_CAP",
+      "players": 22,
+      "rosterPlayers": 545,
+      "salaryCap": 13800000,
+      "coreSalary": 500000,
+      "positionalFeasibility": true
+    },
+    {
+      "sport": "afl",
+      "mode": "OPEN",
+      "players": 22,
+      "rosterPlayers": 545,
+      "salaryCap": null,
+      "coreSalary": 500000,
+      "positionalFeasibility": true
+    },
+    {
+      "sport": "nrl",
+      "mode": "SALARY_CAP",
+      "players": 13,
+      "rosterPlayers": 337,
+      "salaryCap": 8200000,
+      "coreSalary": 500000,
+      "positionalFeasibility": true
+    },
+    {
+      "sport": "nrl",
+      "mode": "OPEN",
+      "players": 13,
+      "rosterPlayers": 337,
+      "salaryCap": null,
+      "coreSalary": 500000,
+      "positionalFeasibility": true
+    }
+  ],
+  "productionWrites": 0
+}

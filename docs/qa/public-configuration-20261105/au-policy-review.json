@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "status": "INITIAL_PROPOSAL_SUPERSEDED_BY_OWNER_APPROVED_APPLIED_PLAN",
+  "currentApprovedEvidence": "au-policy-applied.json",
+  "note": "Fields below preserve the initial review proposal. The owner subsequently approved the exact scoped eligibility and prospective v2 binding; see the applied record for actual values. Public programme, registration and payments remain off.",
+  "project": "pojoymtniryarxxunyvz",
+  "authority": "Owner-approved Australian adult commercial model and initial Google review with commercial marketplace transfers disabled. This records scope; it does not assert independent legal review or regulatory certification.",
+  "assessment": "docs/FINAL_MARKETPLACE_COMMERCIAL_ASSESSMENT_20261105.txt",
+  "scope": {
+    "countries": ["AU"],
+    "minimumAge": 18,
+    "visibleSports": ["nfl", "afl", "nrl"],
+    "nba": false,
+    "freeCoreGameplay": true,
+    "entryFeeCredits": 0,
+    "commercialMarketplaceTransfers": false,
+    "swaps": false,
+    "cashRedemption": false,
+    "withdrawals": false,
+    "prizes": false,
+    "paidEntry": false,
+    "paidPackModelRetained": true,
+    "livePaymentsActivatedByThisManifest": false
+  },
+  "currentOrdinaryProductionState": {
+    "auRegionalPolicyRows": 0,
+    "publicProgrammeEnabled": false,
+    "publicSportVisibility": false,
+    "publicRegistration": false,
+    "runtimeTermsVersion": null,
+    "runtimePrivacyVersion": null,
+    "runtimeLegalEntityVerified": false,
+    "betaConsentVersion": "2026-10-09-beta-rc2",
+    "publishedReleaseNoticeVersion": "2026-11-02-release-preparation-v2"
+  },
+  "proposedRegionRows": {
+    "table": "private.region_policies",
+    "states": ["ACT", "NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"],
+    "sharedFields": {
+      "country": "AU",
+      "version": "docked-au-adult-closed-loop-v1",
+      "approved": false,
+      "minimum_age": 18,
+      "features": ["community_social", "public_profiles"],
+      "operators": [],
+      "notices": [],
+      "communication_rules": {},
+      "preview_community_only": false,
+      "evidence": "Owner scope approval plus the recorded Australian/Google Play technical boundary assessment; no cash-out, prizes, paid entry, swaps or commercial marketplace transfers. No independent legal approval is claimed."
+    },
+    "proposedOperationalWindows": {
+      "effective_from": "activation_at",
+      "effective_to": "activation_at + 90 days",
+      "review_at": "activation_at + 30 days",
+      "purpose": "Proposed operational review/expiry windows for owner review, not statutory retention or legal periods. Activation requires explicit timestamps and a non-expired review date."
+    }
+  },
+  "proposedPublicProgramme": {
+    "table": "public_gameplay.policy",
+    "id": true,
+    "enabled": false,
+    "version": "au-adult-free-play-v1",
+    "terms_version": "Bind to the final reviewed published public Terms ID; do not silently reuse beta terms",
+    "privacy_version": "Bind to the final reviewed published public Privacy ID",
+    "valid_until": "activation_at + 90 days, subject to the same operational review",
+    "authority": "Owner-approved Australian adult free participation; separately reviewed runtime/configuration activation only"
+  },
+  "proposedDormantSportRows": [
+    {"sport": "nfl", "visible": false, "play_enabled": false},
+    {"sport": "afl", "visible": false, "play_enabled": false},
+    {"sport": "nrl", "visible": false, "play_enabled": false}
+  ],
+  "activationSequenceForReview": [
+    "Confirm final published Terms/Privacy content and IDs, verified operator details, approved runtime manifest, restricted docked_app credentials, email provider and RLS/session checks.",
+    "Review the eight exact regional rows and operational timestamps. No beta profiles, consents, roles or regional approvals are copied.",
+    "Approve the scoped public programme and the six separately mapped no-prize dated practice rounds as one coordinated configuration step. Preserve historical/private mappings and reviewer entries.",
+    "Stage the protected public runtime with ordinary existing-account onboarding; require verified own session and fresh region, age, Terms and Privacy submissions. Staff MFA stays enforced.",
+    "Perform ordinary reviewer access and targeted free-Core acceptance. Existing-account onboarding can be tested while new public registration remains false.",
+    "Keep commercial checkout, commercial transfers, withdrawals, paid entry, prizes and irreversible cleanup disabled. Google real-money products stay inactive until their separate final activation gate.",
+    "Enable public registration only through its separately authorised DB feature flag, runtime flag and verified external email readiness. Submission/managed publishing do not activate these flags."
+  ],
+  "rollback": "Disable public programme/sports/round visibility and restore the reviewed closed application deployment. Preserve new configuration, accounts, entries, receipts and audit history; do not delete live records as rollback.",
+  "productionWrites": 0,
+  "schemaChanges": 0,
+  "permissionsChanged": false
+}

@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-11-05 12:25:13.583669+00",
+  "policy": {
+    "id": true,
+    "enabled": false,
+    "terms_version": null,
+    "privacy_version": null,
+    "valid_until": null,
+    "authority": null,
+    "version": "au-adult-free-play-v1"
+  },
+  "sports": [
+    {
+      "sport": "afl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nfl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nrl",
+      "visible": false,
+      "play_enabled": false
+    }
+  ],
+  "mapped_rounds": 0,
+  "enabled_mapped_rounds": 0,
+  "public_template_competitions": 0,
+  "fresh_nfl_evidence": 426,
+  "latest_nfl_check": "2026-11-05 12:15:13.593+00"
+}
