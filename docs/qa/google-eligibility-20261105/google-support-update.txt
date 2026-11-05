@@ -1,0 +1,47 @@
+Prepared update for Google Play case 4-5905000041947. NOT SENT.
+
+The original NO_ELIGIBLE_OFFER failure is no longer reproducible in our
+post-bank-verification test on 5 November 2026. Please keep the case open while
+we finish acceptance and confirm the original eligibility condition.
+
+Google Payments confirmed bank verification at 10:23:44 UTC. On the unchanged
+Google Play-installed Docked v30 / 1.29 (docked.fantasy, Billing Library 9.1.0),
+both existing products subsequently returned eligible AUD purchase details:
+docked_credits_4900_v1 / buy-au / AUD49 and
+docked_credits_9900_v1 / buy-au / AUD99.
+
+Publisher API confirmed both options ACTIVE, AU AVAILABLE and backwards
+compatible at 11:11:38 UTC. The installed application displayed two Google
+products and both AUD prices. The native Google Play sheets explicitly showed
+Test card, always approves and that the tester would not be charged. Successful
+TEST purchases credited the correctly authenticated isolated member at
+11:17:23 UTC (4,900 credits) and 11:21:28 UTC (9,900 credits).
+
+We did not replace products, change prices, change legacy compatibility,
+downgrade Billing Library, rebuild Android or change the native product query.
+The last successful v28 tests used the same two product IDs and purchase
+options. The v28-to-v30 change selected a commercial capability/allowlist from
+the same IDs; the native query and offer-token handling are identical.
+
+This sequence does not establish that bank verification was the cause. The
+first documented v30 failure was 2 November at 09:48:13 UTC; the bank-added
+verification email arrived at 10:10:01 UTC. Could you confirm whether a merchant
+restriction, account verification condition or catalogue-serving change
+explains the earlier status 4 despite ACTIVE/AU AVAILABLE options?
+
+A separate Docked server acknowledgement-dispatch defect was exposed by the
+A$99 test. Google reported voidedSource=2, voidedReason=8 (unacknowledged
+purchase); our isolated recovery retained the audit and 18 test cards, removed
+the remaining credits and opened a recovery review. A server correction is
+deployed behind closed normal-payment gates. A fresh A$49 TEST order at 12:11 UTC
+was consumed automatically in 2.411 seconds from queue creation, and its genuine
+refund push automatically reconciled the isolated wallet to zero without any
+operator worker invocation. We are not attributing this defect to Google product
+eligibility.
+
+Both purchase options were restored to INACTIVE and independently confirmed
+by Publisher API at 11:32:33 UTC, and again at 12:15:10 UTC after the separately
+approved A$49-only follow-up window. No real payment method was used. Public
+registration, commercial settlement, withdrawals and prizes remain disabled.
+No passwords, purchase/offer tokens, customer identities or bank details are
+included in this update.

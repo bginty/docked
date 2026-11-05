@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-05T12:16:07.793Z",
+  "project": "bckkllmndoxzpzdqrevb",
+  "control": {
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  },
+  "counts": {
+    "receipts": 2,
+    "cards": 18,
+    "packs": 2,
+    "unfinished_jobs": 0
+  },
+  "cases": [
+    {
+      "exposure_credits": "5700",
+      "state": "OPEN"
+    }
+  ],
+  "wallet": {
+    "balance": 0,
+    "spendable": 0,
+    "held": 0,
+    "reviewRequired": true,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "readOnly": true,
+  "customerFinancialMutations": 0,
+  "passed": true
+}

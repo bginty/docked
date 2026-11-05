@@ -1,0 +1,140 @@
+{
+  "recordedAt": "2026-11-05T12:17:10.3461336Z",
+  "package": "docked.fantasy",
+  "android": {
+    "versionCode": 30,
+    "versionName": "1.29",
+    "installedBy": "com.android.vending",
+    "rebuilt": false,
+    "diagnosticsPatchReleased": false
+  },
+  "eligibility": {
+    "status": "RESOLVED_IN_OBSERVED_TEST",
+    "bankVerificationEmailAt": "2026-11-05T10:23:44Z",
+    "nativeGoogleProducts": 2,
+    "currency": "AUD",
+    "products": [
+      {
+        "id": "docked_credits_4900_v1",
+        "purchaseOption": "buy-au",
+        "aud": 49,
+        "credits": 4900
+      },
+      {
+        "id": "docked_credits_9900_v1",
+        "purchaseOption": "buy-au",
+        "aud": 99,
+        "credits": 9900
+      }
+    ],
+    "originalFailedEligibilityPredicate": "UNDETERMINED",
+    "bankCausationEstablished": false,
+    "productConfigCorrection": false,
+    "nativeQueryCorrection": false,
+    "lastSuccessfulComparisonBuild": "28 / 1.27-member-test"
+  },
+  "actualAcceptance": {
+    "testPaymentMethod": "Google Test card, always approves",
+    "noChargeLabelObserved": true,
+    "successfulPurchases": 3,
+    "realPayments": 0,
+    "paidPackPurchases": [
+      {
+        "sport": "afl",
+        "name": "Premium 9 Pack",
+        "credits": 5000,
+        "cards": 9
+      },
+      {
+        "sport": "afl",
+        "name": "Standard 9 Pack",
+        "credits": 700,
+        "cards": 9
+      }
+    ],
+    "collectionOwnedCardsObserved": 18,
+    "isolatedInventory": true,
+    "permanentProductionCardsIssued": 0,
+    "duplicateVerification": "Client, signed Google notifications and operator-run periodic re-verification retained one fulfilment per receipt",
+    "purchaseWindows": [
+      "Original approved two-product window",
+      "Separately approved A$49-only acknowledgement follow-up"
+    ]
+  },
+  "refunds": {
+    "product4900": {
+      "mode": "Explicit Google TEST refund before spending",
+      "refundNotificationAuthenticated": true,
+      "reconciledWallet": 0
+    },
+    "product9900": {
+      "mode": "Google automatic unacknowledged-purchase refund after spending",
+      "voidedSource": 2,
+      "voidedReason": 8,
+      "refundNotificationsAuthenticated": true,
+      "unspentRemoved": 4200,
+      "recoveryReviewExposure": 5700,
+      "finalSpendable": 0,
+      "cardsRetained": 18,
+      "notificationsReplayedWithoutAdditionalDebit": true
+    }
+  },
+  "establishedSeparateDefect": {
+    "cause": "Commercial receipt fulfilment only queued consumption; the existing scheduler did not dispatch commercial jobs automatically",
+    "fixCommit": "7c8b0574",
+    "changes": [
+      "Prompt account-bound consumption using the existing durable lease",
+      "Persist-first authenticated notification dispatch via Next after()",
+      "Existing scheduler dispatches configured commercial service and preserves legacy monitoring contracts"
+    ],
+    "localVerification": {
+      "targetedPlatformTests": 23,
+      "realPostgresChecks": 6,
+      "typescript": "passed",
+      "lint": "passed"
+    },
+    "freshGoogleAcceptance": "PASSED_OWNER_APPROVED_A49_ONLY_WINDOW",
+    "deployment": {
+      "commit": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+      "id": "dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En",
+      "url": "https://docked.com.au",
+      "liveHttpChecksPassed": 13,
+      "normalFlagsUnchanged": true,
+      "operatorRouteClosed": true,
+      "freshGoogleAcceptance": true
+    },
+    "automaticGoogleAcceptance": {
+      "versionCode": 30,
+      "nativeTestOrder": true,
+      "credits": 4900,
+      "consumeJobMilliseconds": 2411,
+      "providerConsumed": true,
+      "genuineRefundNotification": true,
+      "refundJobMilliseconds": 1615,
+      "manualWorkerInvocations": 0,
+      "finalBalance": 0,
+      "finalHeld": 0,
+      "recoveryReview": false,
+      "cards": 0,
+      "packs": 0,
+      "earlyPurchaseNotificationRetriedAutomatically": true,
+      "notificationIngressBoundary": "Production legacy ingress audit rows retained pending; matched isolated commercial jobs complete"
+    }
+  },
+  "safety": {
+    "googlePurchaseOptions": "Both INACTIVE; independently confirmed 2026-11-05T12:15:10Z after approved A$49-only follow-up",
+    "normalPaymentsEnabled": false,
+    "publicRegistrationEnabled": false,
+    "nbaVisible": false,
+    "withdrawalsEnabled": false,
+    "prizesEnabled": false,
+    "productionMigrationsApplied": 0,
+    "productionCommercialTables": "Seven inspected tables remain empty"
+  },
+  "support": {
+    "case": "4-5905000041947",
+    "status": "Open; only acknowledgement email found",
+    "update": "google-support-update.txt prepared, not sent"
+  },
+  "publicPaidRelease": "BILLING_TEST_ACCEPTANCE_PASSED; live payments/public submission remain gated by separate mandatory launch requirements"
+}

@@ -1,0 +1,58 @@
+{
+  "at": "2026-11-05T12:14:28.879Z",
+  "matched": [
+    {
+      "kind": "purchase",
+      "id": "08874ee7e3561df8f7ecd4afbe554967f4a4af7c7feda7deeefada1393b4c404",
+      "productionPersisted": "2026-11-05 12:11:12.424658+00",
+      "previewJob": {
+        "id": "push:08874ee7e3561df8f7ecd4afbe554967f4a4af7c7feda7deeefada1393b4c404",
+        "kind": "verify",
+        "state": "done",
+        "attempts": 2,
+        "created_at": "2026-11-05T12:11:13.630Z",
+        "completed_at": "2026-11-05T12:11:58.834Z",
+        "last_error": null
+      }
+    },
+    {
+      "kind": "voided",
+      "id": "452d961d6b582af014a4b2d883d6d552b3e9aa02836f7d125ac933868dcf376e",
+      "productionPersisted": "2026-11-05 12:11:56.990376+00",
+      "previewJob": {
+        "id": "push:452d961d6b582af014a4b2d883d6d552b3e9aa02836f7d125ac933868dcf376e",
+        "kind": "verify",
+        "state": "done",
+        "attempts": 1,
+        "created_at": "2026-11-05T12:11:57.213Z",
+        "completed_at": "2026-11-05T12:11:58.828Z",
+        "last_error": null
+      }
+    }
+  ],
+  "consume": {
+    "id": "consume:17bab9222b16387d0a6aab3ad1789c8e34495db5e485b460e57f2012d2f4059f",
+    "kind": "consume",
+    "state": "done",
+    "attempts": 1,
+    "created_at": "2026-11-05T12:11:14.567Z",
+    "completed_at": "2026-11-05T12:11:16.978Z",
+    "last_error": null
+  },
+  "acknowledgementFromCreditMs": 2514,
+  "authenticatedBothReceivers": true,
+  "syntheticPushes": 0,
+  "manualWorkers": 0,
+  "wallet": {
+    "balance": 0,
+    "spendable": 0,
+    "held": 0,
+    "reviewRequired": false,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "cards": 0,
+  "packs": 0,
+  "readOnly": true,
+  "passed": true
+}

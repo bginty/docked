@@ -1,0 +1,176 @@
+Docked Google Play billing investigation — 5 November 2026
+
+The installed Google Play v30 / 1.29 app retrieved both eligible AUD offers and
+completed genuine no-charge purchases for 4,900 and 9,900 credits. The previous
+NO_ELIGIBLE_OFFER failure did not recur in the authorised window. Both products
+were subsequently restored to INACTIVE; real-money settlement stays disabled.
+
+Bank verification and the original failure
+
+Google's bank-verification confirmation arrived at 10:23:44 UTC on 5 November.
+The earlier verification warning was absent from the payments overview. This
+is a relevant account change, but it does not prove which eligibility condition
+changed. The original failed predicate remains undetermined (classification F).
+Merchant verification or serving propagation remain hypotheses D/E.
+
+The first recorded v30 failure was 2 November 09:48:13 UTC; the bank-added
+verification email followed at 10:10:01 UTC. Successful v28 purchases on
+1 November used the same products. These facts prevent a confident assertion
+that an unverified bank was the sole cause.
+
+Native implementation and configuration
+
+- Actual package: docked.fantasy; installed version 30 / 1.29, installer
+  com.android.vending. No Android rebuild or replacement APK was used.
+- Existing signing evidence was reused; Publisher API also returned the
+  expected Google-generated v30 signing identity.
+- Product docked_credits_4900_v1, option buy-au: AUD49 for 4,900 credits.
+- Product docked_credits_9900_v1, option buy-au: AUD99 for 9,900 credits.
+- During the test both options were ACTIVE, AU AVAILABLE, legacyCompatible=true,
+  with no restricted payment-country list or extra promotional offer criteria.
+- The selected licence-test list contains the owner Google account; response
+  mode is RESPOND_NORMALLY. The installed internal track is v30. The Play Store
+  and Billing Lab showed that same authorised Google account; Lab used AU and
+  response simulation was off.
+- v28 / 1.27-member-test was the last successful purchase build. v29 covered
+  update/session checks. v28 and v30 both use Billing Library 9.1.0, INAPP,
+  queryProductDetailsAsync, getOneTimePurchaseOfferDetailsList and the actual
+  returned offer token. The mode/allowlist selection changed, using the same
+  product IDs; no native product-query regression was established.
+- There was no replacement product, option recreation, compatibility change,
+  price change, library downgrade or alternative checkout.
+
+The historical JSON evidence records status 4, but its raw capture mechanism
+was not retained in the files located during this investigation. Current v30
+verbose SDK capture is now repeatable and filters out ProductDetails/offer
+tokens. The fresh successful test displayed two Google products and both AUD
+prices; it is not reported as a newly captured failure code.
+
+Observed customer journey
+
+1. A normal isolated customer signed in on the physical Samsung. Both native
+   Google purchase sheets explicitly said Test card, always approves and
+   This is a test order, you will not be charged.
+2. A$49 purchase: 4,900 credits were credited once. Client verification,
+   authenticated Google push and repeated provider verification retained one
+   receipt and one credit. The durable consume job was processed by the
+   operator before refund. An explicit Google TEST refund before spending
+   delivered a genuine voided notification and reconciled the wallet to zero.
+3. A$99 purchase: exactly 9,900 credits were credited. The actual app purchased
+   an AFL Premium 9 Pack for 5,000 credits and Standard 9 Pack for 700 credits.
+   Each opening confirmed nine cards; My Cards displayed 18 owned test cards.
+   Remaining credits were 4,200. All issuance stayed in isolated inventory.
+4. Google automatically refunded the A$99 order before the planned manual
+   refund: voidedSource=2, voidedReason=8, acknowledgement PENDING and consumption
+   YET_TO_BE_CONSUMED. This is an established Docked acknowledgement-dispatch
+   defect, separate from offer eligibility.
+5. Reconciliation removed the unspent 4,200 credits and opened one 5,700-credit
+   recovery review. Spendable balance became zero; the app displayed spending
+   paused pending review. All 18 test cards and the two pack/audit records were
+   retained. No negative spendable balance or automatic card confiscation.
+6. The first A$99 reversal was an authoritative worker pull. Its subsequent
+   genuine Google refund notifications were also authenticated, durably stored
+   and processed without another debit or recovery case. Do not describe the
+   initial reversal as push-triggered.
+
+Acknowledgement correction
+
+The previous receipt endpoint only enqueued consumption. The existing cron
+dispatched the legacy TEST queue, not the commercial queue. Prompt automatic
+consumption was therefore missing. The server patch 7c8b0574 now claims only
+the authenticated member/receipt's existing consume job immediately after
+credit commit. Provider failure leaves the retry job and credit audit intact.
+Authenticated notifications persist first, then dispatch bounded background
+work. The existing cron also dispatches a configured commercial service,
+retaining its cadence, legacy health fields and monitoring event identifier.
+There are no migrations, wallet-algorithm changes or new paid services.
+
+Source dfed57b2 contains precisely the current Production baseline plus this
+server patch. It excludes the optional native diagnostics. The latter are
+committed separately as 7293f981 and have not been released in an AAB.
+
+The closed-gate server release dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f was
+promoted to https://docked.com.au on 5 November. Deployment
+dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En passed all 13 live HTTP safety checks at
+12:02:08 UTC. Approved policy content was unchanged; all nine normal launch
+flags remain false, the operator route is closed, and no TEST transport
+variables are present. This is deployment/gate verification, not a new
+authenticated Google purchase acceptance.
+
+Verification actually executed
+
+- Both physical-device native Google TEST purchases and credit mapping.
+- Two actual nine-card pack purchases/openings and an 18-card collection.
+- Explicit unspent refund, provider-confirmed spent refund/recovery, genuine
+  Google notification delivery and durable reconciliation/replay.
+- 23 targeted platform tests; six real PostgreSQL acknowledgement/concurrency,
+  outage/restart, identity-binding and recovery-preservation checks.
+- Three native diagnostic privacy/status tests and native Java compilation.
+- Typecheck, targeted ESLint, diff checks and filtered diagnostic capture smoke.
+- Protected authenticated API read and dormant release/gate checks. These are
+  not claimed as a post-fix genuine Google purchase.
+
+Final post-fix Google acceptance
+
+The owner approved one additional A$49-only no-charge TEST window. The same
+Google Play-installed v30 signed into a different existing ordinary isolated
+member whose wallet and inventory started empty. A$99 stayed inactive.
+
+- Provider purchase time: 12:11:10.759 UTC.
+- One 4,900-credit fulfilment: 12:11:14.464 UTC.
+- Durable consume job: created 12:11:14.567, done 12:11:16.978 (2.411 seconds).
+  Google's independent purchase readback confirmed PURCHASED and consumed=true.
+- An explicit refund followed only after consumed=true was verified. The
+  genuine Google push job arrived 12:11:57.213 and completed 12:11:58.828.
+  The saved receipt became REVOKED at 12:11:58.797; the wallet returned to zero,
+  with zero held, no recovery review, no new packs and no new cards.
+- No operator worker invocation was made in this window. The purchase push
+  that arrived before the client-created receipt initially deferred; it was
+  automatically retried and completed with no duplicate credit or debit.
+- The Production ingress rows are retained as notification/audit records; their
+  legacy queue columns remain pending. The matched isolated commercial jobs
+  completed. This is not a claim that every Production legacy queue was drained.
+- The on-device wallet and global header both displayed zero after Check
+  purchases completed its existing refresh sequence. These UI reads did not
+  cause the earlier, independently recorded backend refund reconciliation.
+
+Both options were independently confirmed INACTIVE again at 12:15:10 UTC.
+The phone exited TEST and returned to normal Welcome back login. No new build
+or repeated A$99/pack purchases were needed for this targeted fix acceptance.
+
+Safety and release status
+
+Both Google options were independently confirmed INACTIVE at 11:32:33 UTC.
+Production commercial accounts, receipts, funding lots, journals, packs, cards
+and recovery cases remain empty. Actual tests used the isolated Supabase
+project; no Production commercial wallet or permanent card was created.
+Normal registration, payments, withdrawals and prizes remain disabled; NBA
+remains hidden. The phone exited TEST and returned to normal Docked login.
+
+The acknowledgement patch has now passed the fresh genuine Google check.
+The original actor's 5,700-credit recovery review and 18 test cards remain
+preserved. No commercial-model approval is being requested again.
+
+Google case 4-5905000041947 remains open, with only its acknowledgement email
+found. A factual update is prepared in google-support-update.txt; it was not
+sent. This closes the observed Google product/acknowledgement test blockers;
+it does not establish commercial rights, Google approval or authorised live
+activation. Existing mandatory public-launch gates remain separate.
+
+Remaining release work from the existing 5 November handover is the scoped
+assessment of paid packs plus transferable closed-loop marketplace value;
+fresh reviewed Production public-round/programme activation (currently zero
+enabled public rounds); named operational/key/alert ownership and delivery
+checks; and final Console, reviewer and release-configuration alignment.
+Owner approval of the business model and factual player-name position stands.
+No new player-name licence or repeat commercial-model approval is requested.
+Statistics/provider permissions are separate from names and original jerseys.
+Irreversible retention cleanup remains disabled pending its operational controls.
+Today's Google eligibility and acknowledgement tests are no longer listed as
+unresolved release gates. No public submission or live activation occurred.
+
+Primary references:
+https://developer.android.com/reference/com/android/billingclient/api/UnfetchedProduct.StatusCode
+https://developer.android.com/google/play/billing/one-time-product-multi-purchase-options-offers
+https://developer.android.com/google/play/billing/test
+https://support.google.com/googleplay/android-developer/answer/13628312

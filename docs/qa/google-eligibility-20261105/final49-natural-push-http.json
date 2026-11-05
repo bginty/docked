@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-05T12:16:36.823Z",
+  "naturalGoogleRequests": [
+    {
+      "environment": "production",
+      "at": "2026-11-05T12:11:56.700Z",
+      "method": "POST",
+      "status": 204,
+      "path": "/api/store/google/notifications",
+      "deployment": "dpl_E9iWsubcmRY85TR8wjgGAepyNfGJ"
+    },
+    {
+      "environment": "preview",
+      "at": "2026-11-05T12:11:57.004Z",
+      "method": "POST",
+      "status": 204,
+      "path": "/api/store/google/commercial/notifications",
+      "deployment": "dpl_DR1CQYHWZm8xTiqJmXs7CvsWhfAo"
+    }
+  ],
+  "coverage": "Authenticated refund delivery to both receivers; purchase delivery independently matched in persisted ingress/queue evidence",
+  "purchaseHttpRowsAbsentFromReturnedLogs": true,
+  "authenticatedSourceEndpoints": true,
+  "syntheticPushes": 0,
+  "manualWorkers": 0,
+  "readOnly": true
+}

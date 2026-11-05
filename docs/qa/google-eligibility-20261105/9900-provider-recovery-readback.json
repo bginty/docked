@@ -1,0 +1,129 @@
+{
+  "at": "2026-11-05T11:29:36.727Z",
+  "strictGoogleTest": true,
+  "provider": {
+    "state": "REVOKED",
+    "consumed": false,
+    "grossCents": 9900,
+    "refundedCents": 9900,
+    "providerAt": "2026-11-05T11:26:24.948Z",
+    "acknowledgementState": "ACKNOWLEDGEMENT_STATE_PENDING",
+    "consumptionState": "CONSUMPTION_STATE_YET_TO_BE_CONSUMED",
+    "voided": [
+      {
+        "purchaseAt": "2026-11-05T11:21:24.459Z",
+        "voidedAt": "2026-11-05T11:26:24.948Z",
+        "voidedSource": 2,
+        "voidedReason": 8
+      }
+    ]
+  },
+  "receipt": {
+    "key": "9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41",
+    "state": "REVOKED",
+    "product": {
+      "id": "docked_credits_9900_v1",
+      "credits": 9900,
+      "version": "owner-credit-packages-2026-10-31-v1",
+      "audCents": 9900
+    },
+    "gross_cents": "9900",
+    "refunded_cents": "9900",
+    "created_at": "2026-11-05T11:21:28.415Z",
+    "updated_at": "2026-11-05T11:26:25.662Z",
+    "provider_at": "2026-11-05T11:26:24.948Z"
+  },
+  "wallet": {
+    "balance": 0,
+    "spendable": 0,
+    "held": 0,
+    "reviewRequired": true,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "cases": [
+    {
+      "exposure_credits": "5700",
+      "reason": "Refunded funding already used; no automatic debt or card confiscation",
+      "state": "OPEN",
+      "revision": 1,
+      "created_at": "2026-11-05T11:26:25.580Z"
+    }
+  ],
+  "lots": [
+    {
+      "original": "9900",
+      "remaining": "0",
+      "refund_removed": "4200",
+      "created_at": "2026-11-05T11:21:28.466Z"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "push:d5e29a4b3de668e092966715a64f7256d0fe36d8d4d41e961de07b164940796b",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:21:26.601Z",
+      "completed_at": "2026-11-05T11:26:25.688Z"
+    },
+    {
+      "id": "consume:9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41",
+      "kind": "consume",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:21:28.500Z",
+      "completed_at": "2026-11-05T11:26:25.585Z"
+    },
+    {
+      "id": "periodic:9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41:056ab5a6-b3c2-4a1a-aada-e34fe7acf1f7",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:26:24.235Z",
+      "completed_at": "2026-11-05T11:26:25.693Z"
+    },
+    {
+      "id": "push:b7a07af2b663fad01521d95cf3bc4f7fd98ec737c94fcf220c7f04a22057465c",
+      "kind": "verify",
+      "state": "pending",
+      "attempts": 0,
+      "created_at": "2026-11-05T11:26:26.320Z",
+      "completed_at": null
+    },
+    {
+      "id": "push:f90f14ec3c695aee3f816b01244e4a47d3daf9063e9a9832525c3f8ac671329b",
+      "kind": "verify",
+      "state": "pending",
+      "attempts": 0,
+      "created_at": "2026-11-05T11:26:26.356Z",
+      "completed_at": null
+    }
+  ],
+  "cards": [
+    {
+      "total": 18,
+      "explicitly_locked": 0,
+      "distinct_definitions": 18,
+      "distinct_serials": 18
+    }
+  ],
+  "packs": [
+    {
+      "family": null,
+      "name": "Premium 9 Pack",
+      "price": "5000",
+      "created_at": "2026-11-05T11:23:30.292Z",
+      "opened_at": "2026-11-05T11:23:40.681Z"
+    },
+    {
+      "family": null,
+      "name": "Standard 9 Pack",
+      "price": "700",
+      "created_at": "2026-11-05T11:25:37.658Z",
+      "opened_at": "2026-11-05T11:25:51.815Z"
+    }
+  ],
+  "readOnly": true,
+  "mutation": false
+}

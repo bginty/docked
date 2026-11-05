@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-05T11:56:10.892Z",
+  "sourceCommit": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "files": 854,
+  "canonicalGitBlobHashesMatch": true,
+  "normalizedTextFiles": 765,
+  "workingTreeExcluded": true,
+  "normalFlags": {
+    "REGISTRATION_ENABLED": "false",
+    "COMPETITIONS_ENABLED": "false",
+    "PRIZES_ENABLED": "false",
+    "DOCKED_MULTI_SPORT_SANDBOX": "false",
+    "DOCKED_MEMBER_GOOGLE_TEST": "false",
+    "DOCKED_COMMERCIAL_SERVICE": "false",
+    "DOCKED_COMMERCIAL_SURFACES": "false",
+    "DOCKED_COMMERCIAL_CHECKOUT": "false",
+    "DOCKED_PUBLIC_CUSTOMERS": "false"
+  },
+  "transportPresent": false,
+  "runtimeMatchesPreviousReviewedClosedRecipe": true,
+  "allowedRuntimeChanges": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ],
+  "noMigrations": true
+}

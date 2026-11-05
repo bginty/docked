@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-05T11:54:36.322Z",
+  "deployment": "dpl_J1U6nvEyz2UJ6oKG3CDEaVfMeAgr",
+  "source": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "url": "https://docked-preview-hg2yl9m5j-briant-s-projects.vercel.app",
+  "protectedAnonymousStatus": 302,
+  "protectedSso": "all",
+  "testAdmissionAbsent": true,
+  "providerCredentialsAbsent": true,
+  "checks": [
+    {
+      "path": "/app/login",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "path": "/api/store/google/commercial/notifications",
+      "method": "POST",
+      "status": 401
+    },
+    {
+      "path": "/api/store/google/commercial/reconcile",
+      "method": "POST",
+      "status": 401
+    },
+    {
+      "path": "/api/store/google/scheduled",
+      "method": "GET",
+      "status": 401
+    }
+  ],
+  "ordinaryExistingSyntheticMemberLogin": true,
+  "correctMember": true,
+  "wallet": {
+    "balance": 0,
+    "spendable": 0,
+    "held": 0,
+    "reviewRequired": false,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "purchaseProducts": 0,
+  "nbaDenied": true,
+  "authenticatedApiRead": true,
+  "browserAcceptance": false,
+  "googlePurchase": false,
+  "customerFinancialMutations": 0,
+  "productionChanged": false,
+  "passed": true
+}

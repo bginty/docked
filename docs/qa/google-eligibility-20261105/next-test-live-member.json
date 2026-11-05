@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-05T12:08:39.612Z",
+  "deployment": "dpl_E9iWsubcmRY85TR8wjgGAepyNfGJ",
+  "source": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "normalUnauthenticatedCommerce": 403,
+  "normalFlagsClosed": true,
+  "operatorScoped": true,
+  "isolatedTarget": "https://docked-preview-ahuaeeyc9-briant-s-projects.vercel.app",
+  "until": "2026-11-05T13:55:04.671Z",
+  "ordinaryNormalAuthentication": true,
+  "correctFreshIsolatedMember": true,
+  "testOnly": true,
+  "wallet": {
+    "balance": 0,
+    "spendable": 0,
+    "held": 0,
+    "reviewRequired": false,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "configuredProducts": [
+    "docked_credits_4900_v1",
+    "docked_credits_9900_v1"
+  ],
+  "googleProductsQueried": false,
+  "googlePurchase": false,
+  "customerFinancialMutations": 0,
+  "passed": true
+}

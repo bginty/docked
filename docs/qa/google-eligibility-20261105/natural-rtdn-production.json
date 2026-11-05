@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-05T11:20:28.257Z",
+  "receiver": "Production authenticated Google RTDN",
+  "records": [
+    {
+      "id": "b67edfc36d50f5f957cd5c036a393cbd4602a9d95bd00acbc0de9deb5867186f",
+      "kind": "purchase",
+      "state": "pending",
+      "attempts": 1,
+      "occurred_at": "1793877439486",
+      "created_at": "2026-11-05T11:17:22.053Z",
+      "completed_at": null
+    },
+    {
+      "id": "aaefadee117ee6e1bc66660be21204145af2f4b6fdc072df90c84042b68b8466",
+      "kind": "voided",
+      "state": "pending",
+      "attempts": 1,
+      "occurred_at": "1793877572013",
+      "created_at": "2026-11-05T11:19:33.334Z",
+      "completed_at": null
+    }
+  ],
+  "readOnly": true
+}

@@ -1,0 +1,110 @@
+{
+  "at": "2026-11-05T11:26:26.770Z",
+  "wallet": {
+    "balance": 0,
+    "spendable": 0,
+    "held": 0,
+    "reviewRequired": true,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "receipts": [
+    {
+      "key": "fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6",
+      "product": {
+        "id": "docked_credits_4900_v1",
+        "credits": 4900,
+        "version": "owner-credit-packages-2026-10-31-v1",
+        "audCents": 4900
+      },
+      "state": "REVOKED",
+      "gross_cents": "4900",
+      "refunded_cents": "4900",
+      "created_at": "2026-11-05T11:17:23.377Z",
+      "updated_at": "2026-11-05T11:20:10.018Z"
+    },
+    {
+      "key": "9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41",
+      "product": {
+        "id": "docked_credits_9900_v1",
+        "credits": 9900,
+        "version": "owner-credit-packages-2026-10-31-v1",
+        "audCents": 9900
+      },
+      "state": "REVOKED",
+      "gross_cents": "9900",
+      "refunded_cents": "9900",
+      "created_at": "2026-11-05T11:21:28.415Z",
+      "updated_at": "2026-11-05T11:26:25.662Z"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "push:b67edfc36d50f5f957cd5c036a393cbd4602a9d95bd00acbc0de9deb5867186f",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:17:22.271Z",
+      "completed_at": "2026-11-05T11:18:56.711Z",
+      "last_error": null
+    },
+    {
+      "id": "consume:fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6",
+      "kind": "consume",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:17:23.464Z",
+      "completed_at": "2026-11-05T11:18:57.900Z",
+      "last_error": null
+    },
+    {
+      "id": "periodic:fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6:1dfe67ea-5763-4c46-b0cb-f6ae8b0bc23c",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:18:54.868Z",
+      "completed_at": "2026-11-05T11:18:56.703Z",
+      "last_error": null
+    },
+    {
+      "id": "push:aaefadee117ee6e1bc66660be21204145af2f4b6fdc072df90c84042b68b8466",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:19:33.625Z",
+      "completed_at": "2026-11-05T11:20:10.097Z",
+      "last_error": null
+    },
+    {
+      "id": "push:d5e29a4b3de668e092966715a64f7256d0fe36d8d4d41e961de07b164940796b",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:21:26.601Z",
+      "completed_at": "2026-11-05T11:26:25.688Z",
+      "last_error": null
+    },
+    {
+      "id": "consume:9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41",
+      "kind": "consume",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:21:28.500Z",
+      "completed_at": "2026-11-05T11:26:25.585Z",
+      "last_error": null
+    },
+    {
+      "id": "periodic:9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41:056ab5a6-b3c2-4a1a-aada-e34fe7acf1f7",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:26:24.235Z",
+      "completed_at": "2026-11-05T11:26:25.693Z",
+      "last_error": null
+    }
+  ],
+  "counts": {
+    "cards": 18,
+    "packs": 2
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "at": "2026-11-05T11:58:33.618Z",
+  "live": false,
+  "id": "dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En",
+  "commit": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "url": "https://docked-production-je30cavrx-briant-s-projects.vercel.app",
+  "policyHash": "9655ebb36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93",
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200
+    },
+    {
+      "route": "/retention",
+      "status": 200
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "route": "/api/store/apple/test",
+      "status": 404
+    }
+  ],
+  "passed": true,
+  "authenticatedAcceptance": false,
+  "customerMutations": 0
+}

@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-05T11:18:58.975Z",
+  "wallet": {
+    "balance": 4900,
+    "spendable": 4900,
+    "held": 0,
+    "reviewRequired": false,
+    "withdrawable": 0,
+    "environment": "acceptance"
+  },
+  "receipts": [
+    {
+      "key": "fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6",
+      "product": {
+        "id": "docked_credits_4900_v1",
+        "credits": 4900,
+        "version": "owner-credit-packages-2026-10-31-v1",
+        "audCents": 4900
+      },
+      "state": "PURCHASED",
+      "gross_cents": "4900",
+      "refunded_cents": "0",
+      "created_at": "2026-11-05T11:17:23.377Z",
+      "updated_at": "2026-11-05T11:18:56.676Z"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "push:b67edfc36d50f5f957cd5c036a393cbd4602a9d95bd00acbc0de9deb5867186f",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:17:22.271Z",
+      "completed_at": "2026-11-05T11:18:56.711Z",
+      "last_error": null
+    },
+    {
+      "id": "consume:fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6",
+      "kind": "consume",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:17:23.464Z",
+      "completed_at": "2026-11-05T11:18:57.900Z",
+      "last_error": null
+    },
+    {
+      "id": "periodic:fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6:1dfe67ea-5763-4c46-b0cb-f6ae8b0bc23c",
+      "kind": "verify",
+      "state": "done",
+      "attempts": 1,
+      "created_at": "2026-11-05T11:18:54.868Z",
+      "completed_at": "2026-11-05T11:18:56.703Z",
+      "last_error": null
+    }
+  ],
+  "counts": {
+    "cards": 0,
+    "packs": 0
+  }
+}

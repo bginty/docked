@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-05T11:48:47.310Z",
+  "deployment": "dpl_4FMnoApYgNUjymg4HspytmLVRq4D",
+  "commit": "4a44b269a211f9893d7d48d1b150bfea11f984d4",
+  "normalFlagsUnchangedFromImmutableClosedBaseline": true,
+  "environmentKeysMatchBaseline": true,
+  "transportPresent": false,
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "path": "/app/login",
+      "status": 200
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "path": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "path": "/profile/qa_billing",
+      "status": 503,
+      "operatorAdmission": false
+    }
+  ],
+  "passed": true
+}

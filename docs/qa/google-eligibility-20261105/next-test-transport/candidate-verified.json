@@ -1,0 +1,85 @@
+{
+  "at": "2026-11-05T12:04:45.710Z",
+  "id": "dpl_E9iWsubcmRY85TR8wjgGAepyNfGJ",
+  "commit": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "url": "https://docked-production-h1wp4oj5d-briant-s-projects.vercel.app",
+  "normalFlags": {
+    "REGISTRATION_ENABLED": false,
+    "COMPETITIONS_ENABLED": false,
+    "PRIZES_ENABLED": false,
+    "DOCKED_MULTI_SPORT_SANDBOX": false,
+    "DOCKED_MEMBER_GOOGLE_TEST": false,
+    "DOCKED_COMMERCIAL_SERVICE": false,
+    "DOCKED_COMMERCIAL_SURFACES": false,
+    "DOCKED_COMMERCIAL_CHECKOUT": false,
+    "DOCKED_PUBLIC_CUSTOMERS": false
+  },
+  "boundedTransportAdditions": [
+    "DOCKED_V30_TRANSPORT",
+    "DOCKED_V30_TRANSPORT_KEY",
+    "DOCKED_V30_TRANSPORT_OIDC",
+    "DOCKED_V30_TRANSPORT_TARGET",
+    "DOCKED_V30_TRANSPORT_UNTIL"
+  ],
+  "protectedTarget": "https://docked-preview-ahuaeeyc9-briant-s-projects.vercel.app",
+  "until": "2026-11-05T13:55:04.671Z",
+  "domainAssigned": false,
+  "currentProductionClosed": true,
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200
+    },
+    {
+      "route": "/retention",
+      "status": 200
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "route": "/api/store/apple/test",
+      "status": 404
+    }
+  ],
+  "customerMutations": 0,
+  "googleProductsActivated": false,
+  "passed": true
+}
