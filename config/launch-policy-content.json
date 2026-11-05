@@ -6,6 +6,8 @@
     {
       "id": "privacy",
       "title": "Privacy notice",
+      "version": "2026-11-06-privacy-sdk-v3",
+      "date": "6 November 2026",
       "status": "Current service notice. Public release and real-money purchases are not yet enabled.",
       "sections": [
         {
@@ -30,7 +32,7 @@
         },
         {
           "title": "Device information and analytics",
-          "text": "Network and security operations can involve IP addresses, device/request information and service logs. Optional first-party usage events require analytics consent and respect the browser's Do Not Track setting. Anonymous visitors are not assigned an identity by that observer. This does not mean hosting providers collect no operational information.\n\nThe app has no advertising SDK. Android and Google Play can provide diagnostics under their own settings. Optional media selection and notification preferences follow device permissions and application controls. Contacts, microphone and location access are not required to buy a pack. We do not use identity documents or purchase tokens in analytics."
+          "text": "Network and security operations can involve IP addresses, device/request information and service logs. Optional first-party usage events require analytics consent and respect the browser's Do Not Track setting. Anonymous visitors are not assigned an identity by that observer. This does not mean hosting providers collect no operational information.\n\nThe app has no advertising SDK. Android and Google Play may provide operating-system diagnostics under their own settings.\n\nThe Android app also includes Google Play Billing Library. When the library is initialised or used, it sends billing-operation results, technical app/device information and a per-session identifier to Google for billing reliability, performance improvement and error support. This automatic SDK processing can occur without a completed purchase. It is separate from Docked's optional usage analytics and is not disabled by that analytics preference. Google handles this information under its own privacy terms.\n\nOptional media selection and notification preferences follow device permissions and application controls. Contacts, microphone and location access are not required to buy a pack. We do not use identity documents or purchase tokens in Docked's optional usage analytics."
         },
         {
           "title": "Access, correction and account deletion",
