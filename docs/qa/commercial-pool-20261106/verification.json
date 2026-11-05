@@ -1,0 +1,41 @@
+{
+  "generation": {
+    "at": "2026-11-05T21:59:49.735Z",
+    "exitCode": 0,
+    "isolation": "REPEATABLE READ READ ONLY",
+    "productionWrites": 0,
+    "candidateSha256": "9554c8a186ea79a33d38ca74314d53ee46371655f7113a362aab1ee8197016bc",
+    "existingPlayers": 1242,
+    "dormantDefinitions": 6210,
+    "identityConflicts": 0,
+    "excludedTestInstancesPreserved": 447,
+    "approved": 0,
+    "issued": 0
+  },
+  "tests": {
+    "command": "npx tsx --test tests/platform/commercial-pool-source-inputs.test.ts",
+    "exitCode": 0,
+    "passed": 6,
+    "failed": 0
+  },
+  "typecheck": { "command": "npm run typecheck", "exitCode": 0 },
+  "targetedEslint": { "exitCode": 0, "sourceFiles": 3 },
+  "targetedPrettier": { "exitCode": 0, "sourceFiles": 3 },
+  "incompleteArguments": {
+    "refusedBeforeDatabaseSetup": true,
+    "candidateWritten": false
+  },
+  "sameTagReplay": {
+    "refusedBeforeDatabaseSetup": true,
+    "candidateHashUnchanged": true
+  },
+  "preservedSha256": {
+    "publishedOctoberCatalogue": "6d668ba8658b843077120cc1c31d7f92ce5e60d10f76accc56c6db638b75f6f7",
+    "november5PrivateCandidate": "6df8ec2bc3b455f8e03081422b7b0aa7a735d824fed3eef485972df7219d4276",
+    "november5PublicPlan": "22f2128d2407f7ea57e9dadb21729b4b19c73eae119a670d8f530ae4d6db496b"
+  },
+  "sourcePayloadsCommitted": false,
+  "deployed": false,
+  "imported": false,
+  "activated": false
+}

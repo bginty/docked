@@ -1,0 +1,63 @@
+Dormant commercial roster candidate — 6 November 2026 AEDT
+
+Generated at 2026-11-05T21:59:49.735Z from one Production REPEATABLE READ READ
+ONLY transaction and the two immutable dated source derivatives. No changes to
+Production, customer records, supply, the Android release, or Google review.
+
+Candidate (ignored private artifact):
+private-data/commercial-pool-20261106/candidate.private.json
+SHA256 9554c8a186ea79a33d38ca74314d53ee46371655f7113a362aab1ee8197016bc
+Source/coverage/read-only result: docs/qa/commercial-pool-20261106/plan.json
+
+1,242 existing identities, 6,210 dormant limited-rarity definitions:
+  NFL 426 / 32 teams / 2,130 definitions
+  AFL 537 / 18 teams / 2,685 definitions
+  NRL 279 / 14 teams / 1,395 definitions
+  NBA and Core collectible definitions: zero
+
+NFL combines 385 fresh identity-verified Production observations with 41 local
+ARI/MIA/TEN observations, all using existing stable IDs and the four approved
+positions. Eight potential new inputs were held upstream for roster status or
+missing unique current agreement. These counts are coverage, not a claim to
+include every player. The official pages do not declare a roster season; their
+observation times are distinct from the existing 2026 catalogue season.
+
+AFL/NRL uses the freshly verified Wikimedia derivative ONLY. It does not read
+the published October catalogue in dated mode. Brisbane Broncos, North
+Queensland Cowboys and New Zealand Warriors were held because their current
+NRL source templates explicitly describe 2027. No season labels, positions or
+permanent NRL jersey numbers were invented. The derivative source manifest
+preserves team/profile revisions, source dates, attribution, exclusions and the
+licence boundaries. NRL's 14-team 2026 candidate is incomplete for a full
+17-team pool; do not fill it from older or incompatible source contexts.
+
+No stable-ID or provider conflicts in the combined candidate. The new mode
+requires both input files plus their manifests, hashes, counts, current source
+timestamps and permitted source forms. It reconciles the added identities
+against their existing stable Docked provider IDs in a read-only transaction,
+holds conflicts, and refuses to replace an existing dated output. The definition
+ID namespace is unchanged; the source plan version is dated separately.
+Manifest digests are of the original UTF-8, LF bytes. Use the Git blob for
+comparison if a Windows checkout converted line endings.
+
+Every definition remains approved=false, issued=0 and legacy_issued=0, and each
+source row remains permanentIssuanceEligible=false. All 447 existing limited NFL
+instances reconcile to saved TEST_ONLY pack receipts and remain excluded from
+commercial supply without any data changes. Production readback found zero
+commercial definitions, cards, receipts or approved products. Sales, issuance
+and transfers were all false. This artifact grants no approval or activation.
+
+Existing evidence preservation (before and after SHA256):
+October catalogue 6d668ba8658b843077120cc1c31d7f92ce5e60d10f76accc56c6db638b75f6f7
+Nov5 private plan 6df8ec2bc3b455f8e03081422b7b0aa7a735d824fed3eef485972df7219d4276
+Nov5 public plan 22f2128d2407f7ea57e9dadb21729b4b19c73eae119a670d8f530ae4d6db496b
+
+Original generation command (a repeat is refused; use a separate dated tag
+such as 20261106-v2 for a newly reviewed source revision):
+npx tsx scripts/prepare-commercial-pool.ts --plan-production-read-only --output-tag 20261106 --nfl-inputs private-data/roster-refresh-20261106/nfl/pool-inputs.private.json --nfl-manifest docs/qa/roster-refresh-20261106/nfl/candidate-manifest.json --aus-inputs private-data/roster-refresh-20261106/wikimedia/pool-roster-inputs.json --aus-manifest docs/qa/roster-refresh-20261106/wikimedia/input-manifest.json
+
+The generator tests and operational checks are recorded in verification.json.
+Candidate facts and source attribution do not establish rights to proprietary
+statistics, photos, likenesses or trademarks. Permanent issuance, source
+freshness at activation, NRL season coverage, commercial control/product
+approval and an independently rehearsed immutable import are separate gates.

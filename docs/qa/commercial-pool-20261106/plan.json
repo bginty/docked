@@ -1,0 +1,226 @@
+{
+  "at": "2026-11-05T21:59:49.735Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "readOnly": true,
+  "productionWrites": 0,
+  "planSha256": "9554c8a186ea79a33d38ca74314d53ee46371655f7113a362aab1ee8197016bc",
+  "datasetSha256": null,
+  "datedSourceMode": true,
+  "sourceEvidence": [
+    {
+      "group": "nfl",
+      "manifestFile": "docs/qa/roster-refresh-20261106/nfl/candidate-manifest.json",
+      "count": 41,
+      "inputsSha256": "f17d4c05871c99e062115f66a38cc614fecf743dceb6508edafb113c4bf47ed6",
+      "manifestSha256": "b771b335929f07896565e11f3c7e1802804f45372a7e24631dd15c6354071784"
+    },
+    {
+      "group": "wikimedia",
+      "manifestFile": "docs/qa/roster-refresh-20261106/wikimedia/input-manifest.json",
+      "count": 816,
+      "inputsSha256": "9cdddf3960f3f184e71ab3885fbdfc5e29274994f02a7e8ce7aa73998ea2b275",
+      "manifestSha256": "e1ee52b695a0ca99c41080417bd79fb3b3d3454f1cc9e2c41cf0e9e7cbec3fef"
+    }
+  ],
+  "sourceCoverageIsNotCompleteCatalogue": true,
+  "publishedOctoberRosterUsed": false,
+  "baselineNflPlayers": 385,
+  "identityHolds": [],
+  "duplicateIdenticalInputsRemoved": 0,
+  "sourceAttribution": {
+    "nfl": "Existing official team factual roster observations; no statistics, likeness or trademark rights inferred",
+    "wikimedia": "English Wikipedia contributors (CC BY-SA 4.0); Wikidata identifiers (CC0). Source revisions, derivative changes, dates and excluded contexts are in the hashed source manifest."
+  },
+  "sports": [
+    {
+      "sport": "nfl",
+      "players": 426,
+      "definitions": 2130,
+      "oldestSourceCheck": "2026-11-05T12:15:06.947Z",
+      "newestSourceCheck": "2026-11-05T21:36:21.154Z",
+      "teamCount": 32,
+      "expectedTeamCount": 32,
+      "representedTeams": [
+        "ARI",
+        "ATL",
+        "BAL",
+        "BUF",
+        "CAR",
+        "CHI",
+        "CIN",
+        "CLE",
+        "DAL",
+        "DEN",
+        "DET",
+        "GB",
+        "HOU",
+        "IND",
+        "JAX",
+        "KC",
+        "LAC",
+        "LAR",
+        "LV",
+        "MIA",
+        "MIN",
+        "NE",
+        "NO",
+        "NYG",
+        "NYJ",
+        "PHI",
+        "PIT",
+        "SEA",
+        "SF",
+        "TB",
+        "TEN",
+        "WAS"
+      ],
+      "missingTeams": [],
+      "eligibilityCounts": {
+        "QB": 76,
+        "RB": 94,
+        "TE": 108,
+        "WR": 148
+      },
+      "verifiedNumbers": 426,
+      "sourcePermanentIssuanceApproved": false
+    },
+    {
+      "sport": "afl",
+      "players": 537,
+      "definitions": 2685,
+      "oldestSourceCheck": "2026-11-05T21:52:23.432Z",
+      "newestSourceCheck": "2026-11-05T21:56:42.912Z",
+      "teamCount": 18,
+      "expectedTeamCount": 18,
+      "representedTeams": [
+        "ADE",
+        "BRI",
+        "CAR",
+        "COL",
+        "ESS",
+        "FRE",
+        "GCS",
+        "GEE",
+        "GWS",
+        "HAW",
+        "MEL",
+        "NME",
+        "POR",
+        "RIC",
+        "STK",
+        "SYD",
+        "WBD",
+        "WCE"
+      ],
+      "missingTeams": [],
+      "eligibilityCounts": {
+        "DEF": 193,
+        "FWD": 197,
+        "MID": 202,
+        "RUC": 45
+      },
+      "verifiedNumbers": 532,
+      "sourcePermanentIssuanceApproved": false
+    },
+    {
+      "sport": "nrl",
+      "players": 279,
+      "definitions": 1395,
+      "oldestSourceCheck": "2026-11-05T21:52:23.432Z",
+      "newestSourceCheck": "2026-11-05T21:56:42.912Z",
+      "teamCount": 14,
+      "expectedTeamCount": 17,
+      "representedTeams": [
+        "CAN",
+        "CBY",
+        "CRO",
+        "DOL",
+        "GLD",
+        "MAN",
+        "MEL",
+        "NEW",
+        "PAR",
+        "PEN",
+        "SGI",
+        "SOU",
+        "SYD",
+        "WST"
+      ],
+      "missingTeams": [
+        "BRI",
+        "NQL",
+        "WAR"
+      ],
+      "eligibilityCounts": {
+        "CTR": 43,
+        "EDG": 54,
+        "HLF": 46,
+        "MID": 90,
+        "WFB": 68
+      },
+      "verifiedNumbers": 0,
+      "sourcePermanentIssuanceApproved": false
+    }
+  ],
+  "definitions": 6210,
+  "approved": 0,
+  "issued": 0,
+  "coreDefinitions": 0,
+  "nbaDefinitions": 0,
+  "reconciliation": {
+    "version": "existing-test-allocation-exclusion-v1",
+    "commercialBaseline": 0,
+    "excludedInstances": 447,
+    "authority": "docs/NFL_CARD_ECONOMY_DELIVERY.md; docs/NFL_CARD_ECONOMY_V2.md; TEST_ONLY saved pack receipts",
+    "recordsPreserved": true,
+    "rows": [
+      {
+        "sport": "nfl",
+        "rarity": "ELITE",
+        "instances": 39,
+        "matchedTestReceipts": 39
+      },
+      {
+        "sport": "nfl",
+        "rarity": "ICON",
+        "instances": 2,
+        "matchedTestReceipts": 2
+      },
+      {
+        "sport": "nfl",
+        "rarity": "LEGENDARY",
+        "instances": 36,
+        "matchedTestReceipts": 36
+      },
+      {
+        "sport": "nfl",
+        "rarity": "RARE",
+        "instances": 95,
+        "matchedTestReceipts": 95
+      },
+      {
+        "sport": "nfl",
+        "rarity": "ULTRA_RARE",
+        "instances": 275,
+        "matchedTestReceipts": 275
+      }
+    ]
+  },
+  "productionGates": {
+    "environment": "commercial",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "definitions": 0,
+    "cards": 0,
+    "receipts": 0,
+    "approved_products": 0
+  },
+  "activationBlockers": [
+    "Every definition remains unapproved; source facts are not permanent issuance approval",
+    "Review source manifests, held identities, missing team coverage and source age before permanent issuance",
+    "Review original artwork/source attribution and saved pool snapshot before immutable import",
+    "Commercial control approval references, product approval, supply pool and activation remain separate"
+  ]
+}
